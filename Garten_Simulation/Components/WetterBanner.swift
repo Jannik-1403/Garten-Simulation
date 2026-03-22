@@ -6,64 +6,46 @@ struct WetterBanner: View {
 
     @State private var isPressed = false
     @State private var hapticTrigger = false
-    @State private var blinken = false
 
     var body: some View {
         ZStack {
-            // Schatten unten
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 14)
                 .fill(event.bannerFarbeSekundaer)
-                .frame(height: 70)
+                .frame(height: 80)
 
-            // Haupt-Banner
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 14)
                 .fill(event.bannerFarbe)
-                .frame(height: 70)
+                .frame(height: 80)
                 .overlay {
                     HStack(spacing: 12) {
-
-                        // Event Icon
                         Image(systemName: event.systemIcon)
-                            .font(.system(size: 28))
+                            .font(.system(size: 28, weight: .semibold))
                             .foregroundStyle(.white)
-                            .scaleEffect(blinken ? 1.2 : 1.0)
-                            .animation(
-                                event == .sturm || event == .duerre
-                                    ? .easeInOut(duration: 0.6)
-                                    .repeatForever(autoreverses: true)
-                                    : .default,
-                                value: blinken
-                            )
 
-                        // Texte
                         VStack(alignment: .leading, spacing: 2) {
                             Text(event.untertitel)
-                                .font(.caption2)
-                                .fontWeight(.semibold)
+                                .font(.system(size: 12, weight: .medium, design: .rounded))
                                 .foregroundStyle(.white.opacity(0.85))
                             Text(event.titel)
-                                .font(.subheadline)
-                                .fontWeight(.bold)
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
                                 .foregroundStyle(.white)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
 
-                        // Trennlinie
                         Rectangle()
                             .fill(Color.white.opacity(0.3))
                             .frame(width: 1, height: 36)
 
-                        // Rechtes Icon
-                        Image(systemName: event.systemIcon)
-                            .font(.title3)
-                            .foregroundStyle(.white)
-                            .symbolEffect(.bounce, value: blinken)
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundStyle(.white.opacity(0.7))
                     }
-                    .padding(.horizontal, 16)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 16)
                 }
                 .offset(y: isPressed ? 0 : -6)
         }
-        .padding(.horizontal, 24)
+        .padding(.horizontal, 20)
         .animation(.spring(.snappy(duration: 0.02)), value: isPressed)
         .sensoryFeedback(.selection, trigger: hapticTrigger)
         .gesture(
@@ -77,19 +59,6 @@ struct WetterBanner: View {
                     isPressed = false
                 }
         )
-        .onAppear {
-            if event == .sturm || event == .duerre || event == .perfekt {
-                blinken = true
-            }
-        }
-        .onChange(of: event) { _, _ in
-            blinken = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                if event == .sturm || event == .duerre || event == .perfekt {
-                    blinken = true
-                }
-            }
-        }
     }
 }
 
