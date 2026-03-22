@@ -66,6 +66,7 @@
 				ProfilView.swift,
 				Views/AufgabenView.swift,
 				Views/GartenView.swift,
+				Views/PflanzenDetailView.swift,
 				Views/SplashScreenView.swift,
 			);
 			target = 1424D41B2F6EA14200908588 /* Garten_Simulation */;
@@ -88,6 +89,7 @@
 				ProfilView.swift,
 				Views/AufgabenView.swift,
 				Views/GartenView.swift,
+				Views/PflanzenDetailView.swift,
 				Views/SplashScreenView.swift,
 			);
 			target = 1424D4282F6EA14300908588 /* Garten_SimulationTests */;

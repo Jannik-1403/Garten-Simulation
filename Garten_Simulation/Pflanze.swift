@@ -33,6 +33,23 @@ enum Seltenheit: String, Codable {
         case .legendaer: return .legendaerSecondary
         }
     }
+
+    var tagHintergrund: Color {
+        ringFarbe.opacity(0.18)
+    }
+
+    var tagTextFarbe: Color {
+        ringFarbe
+    }
+
+    var iconName: String {
+        switch self {
+        case .gewoehnlich: return "bonsai_stufe1"
+        case .selten: return "bonsai_stufe2"
+        case .episch: return "bonsai_stufe3"
+        case .legendaer: return "bonsai_stufe4"
+        }
+    }
 }
 
 @Model
@@ -45,6 +62,10 @@ class Pflanze {
     var gewaessert: Bool
     var istGesperrt: Bool
     var seltenheit: Seltenheit
+
+    var iconName: String {
+        seltenheit.iconName
+    }
 
     init(name: String, bildName: String, seltenheit: Seltenheit = .gewoehnlich) {
         self.name = name

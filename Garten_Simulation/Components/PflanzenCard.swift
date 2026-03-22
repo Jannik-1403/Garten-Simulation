@@ -5,10 +5,21 @@ struct PflanzenCard: View {
     let bildName: String
     let fortschritt: Double
     let gewaessert: Bool
+    let giessZaehler: Int
     let seltenheit: Seltenheit
     let wetterEvent: WetterEvent
     let onGiessen: () -> Void
     let onTap: () -> Void
+
+    private var fortschrittRingFarbe: Color {
+        if gewaessert {
+            return seltenheit.ringFarbe
+        }
+        if wetterEvent == .duerre, giessZaehler == 1 {
+            return WetterEvent.duerre.bannerFarbe
+        }
+        return wetterEvent.bannerFarbe
+    }
 
     @State private var pflanzenPosition: CGPoint = .zero
     @State private var giessAnimation = false
@@ -34,10 +45,10 @@ struct PflanzenCard: View {
                     y: 4
                 )
 
-            VStack(spacing: 12) {
+            VStack(spacing: 16) {
                 VStack(spacing: 4) {
                     Text(name)
-                        .font(.appSubheadline)
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundStyle(.primary)
 
                     Text(seltenheit.bezeichnung)
@@ -60,9 +71,7 @@ struct PflanzenCard: View {
                     Circle()
                         .trim(from: 0, to: fortschritt)
                         .stroke(
-                            gewaessert
-                                ? seltenheit.ringFarbe
-                                : wetterEvent.bannerFarbe,
+                            fortschrittRingFarbe,
                             style: StrokeStyle(lineWidth: 6, lineCap: .round)
                         )
                         .frame(width: 90, height: 90)
@@ -121,35 +130,44 @@ struct PflanzenCard: View {
                 )
 
                 if !gewaessert {
-                    DragToWater(
-                        onGiessen: {
-                            withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
-                                plantWobble = 1.15
-                                greenGlowOpacity = 1.0
-                            }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
+                    VStack(spacing: 4) {
+                        DragToWater(
+                            onGiessen: {
                                 withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
-                                    plantWobble = 1.0
+                                    plantWobble = 1.15
+                                    greenGlowOpacity = 1.0
                                 }
-                            }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.48) {
-                                withAnimation(.easeOut(duration: 0.35)) {
-                                    greenGlowOpacity = 0
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
+                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
+                                        plantWobble = 1.0
+                                    }
                                 }
-                            }
-                            withAnimation {
-                                giessAnimation = true
-                            }
-                            DispatchQueue.main.asyncAfter(
-                                deadline: .now() + 0.6
-                            ) {
-                                giessAnimation = false
-                                onGiessen()
-                            }
-                        },
-                        pflanzenPosition: pflanzenPosition,
-                        istErledigt: gewaessert
-                    )
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.48) {
+                                    withAnimation(.easeOut(duration: 0.35)) {
+                                        greenGlowOpacity = 0
+                                    }
+                                }
+                                withAnimation {
+                                    giessAnimation = true
+                                }
+                                DispatchQueue.main.asyncAfter(
+                                    deadline: .now() + 0.6
+                                ) {
+                                    giessAnimation = false
+                                    onGiessen()
+                                }
+                            },
+                            pflanzenPosition: pflanzenPosition,
+                            istErledigt: gewaessert
+                        )
+                        .id("tropfen-\(giessZaehler)-\(gewaessert)")
+
+                        if wetterEvent == .duerre, giessZaehler == 1 {
+                            Text("Noch 1x gießen!")
+                                .font(.system(size: 11, weight: .semibold, design: .rounded))
+                                .foregroundStyle(.orange)
+                        }
+                    }
                 } else {
                     HStack(spacing: 6) {
                         Image(systemName: "checkmark.circle.fill")
@@ -161,7 +179,7 @@ struct PflanzenCard: View {
                     .padding(.vertical, 8)
                 }
             }
-            .padding(16)
+            .padding(20)
         }
     }
 
@@ -175,9 +193,10 @@ struct PflanzenCard: View {
     HStack(spacing: 16) {
         PflanzenCard(
             name: "Gym",
-            bildName: "icon-bonsaipng",
+            bildName: Seltenheit.selten.iconName,
             fortschritt: 0.6,
             gewaessert: false,
+            giessZaehler: 0,
             seltenheit: .selten,
             wetterEvent: .normal,
             onGiessen: {},
@@ -185,9 +204,10 @@ struct PflanzenCard: View {
         )
         PflanzenCard(
             name: "Lesen",
-            bildName: "icon-bonsaipng",
+            bildName: Seltenheit.legendaer.iconName,
             fortschritt: 0.9,
             gewaessert: true,
+            giessZaehler: 0,
             seltenheit: .legendaer,
             wetterEvent: .normal,
             onGiessen: {},
