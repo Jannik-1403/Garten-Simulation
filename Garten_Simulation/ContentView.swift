@@ -1,21 +1,29 @@
- //
-//  ContentView.swift
-//  Garten_Simulation
-//
-//  Created by Jannik Schill on 21.03.26.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            GartenView()
+                .tabItem {
+                    Label("Garten", systemImage: "leaf.fill")
+                }
+            
+            AufgabenView()
+                .tabItem {
+                    Label("Aufgaben", systemImage: "checkmark.circle.fill")
+                }
+            
+            GewohnheitenView()
+                .tabItem {
+                    Label("Gewohnheiten", systemImage: "flame.fill")
+                }
+            
+            ProfilView()
+                .tabItem {
+                    Label("Profil", systemImage: "person.fill")
+                }
         }
-        .padding()
+        .tint(.green)
     }
 }
 
