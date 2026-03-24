@@ -168,6 +168,8 @@ struct GartenView: View {
 
             p.benoetigtZweiMal = aktivesEvent == .duerre && !p.gewaessert
 
+            p.benoetigtZweiMal = aktivesEvent == .duerre && !p.gewaessert
+
             pflanzen[index] = p
         }
     }
