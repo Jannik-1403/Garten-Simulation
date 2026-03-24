@@ -39,7 +39,6 @@
 			membershipExceptions = (
 				Animations/character.riv,
 				Animations/fire_button.riv,
-				Animations/fire.riv,
 				Animations/note_book.riv,
 				Animations/plant_Splash_Screen.riv,
 				Animations/progress_bar.riv,
@@ -68,6 +67,7 @@
 				Views/GartenView.swift,
 				Views/PflanzenDetailView.swift,
 				Views/SplashScreenView.swift,
+				Views/WetterDetailView.swift,
 			);
 			target = 1424D41B2F6EA14200908588 /* Garten_Simulation */;
 		};
@@ -76,7 +76,6 @@
 			membershipExceptions = (
 				Animations/character.riv,
 				Animations/fire_button.riv,
-				Animations/fire.riv,
 				Animations/note_book.riv,
 				Animations/plant_Splash_Screen.riv,
 				Animations/progress_bar.riv,
@@ -91,6 +90,7 @@
 				Views/GartenView.swift,
 				Views/PflanzenDetailView.swift,
 				Views/SplashScreenView.swift,
+				Views/WetterDetailView.swift,
 			);
 			target = 1424D4282F6EA14300908588 /* Garten_SimulationTests */;
 		};

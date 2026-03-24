@@ -6,6 +6,7 @@ struct WetterBanner: View {
 
     @State private var isPressed = false
     @State private var hapticTrigger = false
+    @State private var hatAusgeloest = false
 
     var body: some View {
         ZStack {
@@ -52,13 +53,27 @@ struct WetterBanner: View {
             DragGesture(minimumDistance: 0)
                 .onChanged { _ in
                     isPressed = true
-                    hapticTrigger.toggle()
-                    aktion?()
+                    if !hatAusgeloest {
+                        hatAusgeloest = true
+                        hapticTrigger.toggle()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.06) {
+                            aktion?()
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                            isPressed = false
+                            hatAusgeloest = false
+                        }
+                    }
                 }
                 .onEnded { _ in
                     isPressed = false
+                    hatAusgeloest = false
                 }
         )
+        .onDisappear {
+            isPressed = false
+            hatAusgeloest = false
+        }
     }
 }
 

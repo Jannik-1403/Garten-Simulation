@@ -5,6 +5,9 @@ struct WetterPopup: View {
     let onDismiss: () -> Void
 
     @State private var erschienen = false
+    @State private var verstandenPressed = false
+    @State private var verstandenHaptic = false
+    @State private var verstandenAusgeloest = false
 
     var body: some View {
         ZStack {
@@ -63,17 +66,39 @@ struct WetterPopup: View {
                         )
                     }
 
-                    Button("Verstanden!") {
-                        schliessen()
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(event.bannerFarbeSekundaer)
+                            .frame(height: 56)
+
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(event.bannerFarbe)
+                            .frame(height: 56)
+                            .overlay {
+                                Text("Verstanden!")
+                                    .font(.appButton)
+                                    .foregroundStyle(.white)
+                            }
+                            .offset(y: verstandenPressed ? 0 : -8)
                     }
-                    .font(.appButton)
-                    .buttonStyle(DepthButtonStyle(
-                        foregroundColor: event.bannerFarbe,
-                        backgroundColor: event.bannerFarbeSekundaer,
-                        cornerRadius: 16
-                    ))
                     .frame(maxWidth: .infinity)
-                    .frame(height: 56)
+                    .animation(.spring(.snappy(duration: 0.02)), value: verstandenPressed)
+                    .sensoryFeedback(.selection, trigger: verstandenHaptic)
+                    .gesture(
+                        DragGesture(minimumDistance: 0)
+                            .onChanged { _ in
+                                verstandenPressed = true
+                                if !verstandenAusgeloest {
+                                    verstandenAusgeloest = true
+                                    verstandenHaptic.toggle()
+                                    schliessen()
+                                }
+                            }
+                            .onEnded { _ in
+                                verstandenPressed = false
+                                verstandenAusgeloest = false
+                            }
+                    )
                 }
                 .padding(28)
                 .background(

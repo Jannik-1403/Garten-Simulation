@@ -20,13 +20,20 @@ struct PflanzenDetailView: View {
     let seltenheit: Seltenheit
     let streak: Int
     let fortschritt: Double
+    let thirstSystem: ThirstSystem
     let gesamtGegossen: Int
     let stuermUeberlebt: Int
-    let letzten30Tage: [Bool] // true = erledigt, false = nicht
+    let erledigteTageDaten: [Bool] // true = erledigt, false = nicht
+    var onLoeschen: (() -> Void)? = nil
 
     @State private var pulsieren = false
     @State private var wippen = false
     @State private var partikelFall: CGFloat = -130
+    @State private var zeigeErinnerungPicker = false
+    @State private var erinnerungsZeit = Date()
+    @State private var zeigeNotizEditor = false
+    @State private var notizText = ""
+    @State private var zeigeLoeschenDialog = false
     private let partikel = (0..<10).map { _ in SternPartikel() }
 
     private var prozentText: String {
@@ -60,34 +67,125 @@ struct PflanzenDetailView: View {
     private let heatmapSpalten = Array(repeating: GridItem(.flexible(), spacing: 8), count: 10)
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: 16) {
-                header
-                heroVisual
-                    .padding(.top, 8)
-                statsCards
-                naechsteStufeCard
-                heatmapCard
-                laborSektion
+        ZStack {
+            LinearGradient(
+                colors: [
+                    seltenheit.ringFarbe.opacity(0.05),
+                    Color.clear,
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 16) {
+                    header
+                    heroVisual
+                        .padding(.top, 8)
+                    statsCards
+                    naechsteStufeCard
+                    heatmapCard
+                    laborSektion
+                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 40)
             }
-            .padding(.horizontal, 24)
-            .padding(.bottom, 40)
         }
-        .background(.regularMaterial)
+        .background(.ultraThinMaterial)
         .onAppear {
             withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
                 wippen.toggle()
             }
-            if seltenheit == .episch {
-                withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true)) {
-                    pulsieren.toggle()
-                }
+            withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true)) {
+                pulsieren.toggle()
             }
             if seltenheit == .legendaer {
                 withAnimation(.linear(duration: 2.0).repeatForever(autoreverses: false)) {
                     partikelFall = 150
                 }
             }
+            notizText = UserDefaults.standard
+                .string(forKey: "notiz_\(name)") ?? ""
+            erinnerungsZeit = UserDefaults.standard
+                .object(forKey: "erinnerung_\(name)")
+                as? Date ?? Date()
+        }
+        .sheet(isPresented: $zeigeErinnerungPicker) {
+            VStack(spacing: 20) {
+                Text("Erinnerung setzen")
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
+
+                DatePicker(
+                    "",
+                    selection: $erinnerungsZeit,
+                    displayedComponents: .hourAndMinute
+                )
+                .datePickerStyle(.wheel)
+                .labelsHidden()
+
+                DuolingoButton(title: "Speichern", color: .gruenPrimary) {
+                    UserDefaults.standard.set(
+                        erinnerungsZeit,
+                        forKey: "erinnerung_\(name)"
+                    )
+                    zeigeErinnerungPicker = false
+                }
+                .padding(.horizontal, 24)
+            }
+            .padding(24)
+            .presentationDetents([PresentationDetent.medium])
+            .presentationCornerRadius(32)
+            .presentationBackground(.ultraThinMaterial)
+        }
+        .sheet(isPresented: $zeigeNotizEditor) {
+            VStack(spacing: 20) {
+                Text("Meine Notiz")
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
+
+                TextEditor(text: $notizText)
+                    .frame(minHeight: 150)
+                    .padding(12)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(.ultraThinMaterial)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.gray.opacity(0.2))
+                    )
+
+                if notizText.isEmpty {
+                    Text("Warum ziehst du das durch?")
+                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                }
+
+                DuolingoButton(title: "Speichern", color: .gruenPrimary) {
+                    UserDefaults.standard.set(
+                        notizText,
+                        forKey: "notiz_\(name)"
+                    )
+                    zeigeNotizEditor = false
+                }
+                .padding(.horizontal, 24)
+            }
+            .padding(24)
+            .presentationDetents([PresentationDetent.medium])
+            .presentationCornerRadius(32)
+            .presentationBackground(.ultraThinMaterial)
+        }
+        .confirmationDialog(
+            "Willst du \(name) wirklich löschen?",
+            isPresented: $zeigeLoeschenDialog,
+            titleVisibility: .visible
+        ) {
+            Button("Löschen", role: .destructive) {
+                onLoeschen?()
+            }
+            Button("Abbrechen", role: .cancel) {}
+        } message: {
+            Text("Dein gesamter Fortschritt geht verloren.")
         }
     }
 
@@ -115,70 +213,125 @@ struct PflanzenDetailView: View {
     }
 
     private var heroVisual: some View {
-        ZStack {
-            Circle()
-                .fill(Color.gruenPrimary.opacity(0.16))
-                .frame(width: 220, height: 220)
-
-            Circle()
-                .trim(from: 0, to: fortschritt)
-                .stroke(
-                    seltenheit.ringFarbe,
-                    style: StrokeStyle(lineWidth: 10, lineCap: .round)
-                )
-                .rotationEffect(.degrees(-90))
-                .frame(width: 200, height: 200)
-                .shadow(
-                    color: seltenheit == .episch
-                        ? Color.epischPrimary.opacity(0.8)
-                        : seltenheit.ringFarbe.opacity(0.35),
-                    radius: seltenheit == .episch ? (pulsieren ? 20 : 8) : 8
-                )
-
-            if seltenheit == .legendaer {
-                ForEach(partikel) { partikel in
-                    Image(systemName: "star.fill")
-                        .font(.system(size: partikel.groesse))
-                        .foregroundStyle(Color.legendaerPrimary.opacity(partikel.opazitaet))
-                        .offset(x: partikel.x, y: partikel.y + partikelFall)
-                }
-            }
+        TimelineView(.periodic(from: .now, by: 60)) { timeline in
+            let now = timeline.date
+            let thirstState = thirstSystem.state(at: now)
+            let ringColor = thirstState == .dead ? Color.gray : thirstSystem.interpolatedColor(at: now)
+            let ringTrim = thirstSystem.remainingFraction48h(at: now)
+            let pulseDuration = thirstSystem.thirstyPulseDuration(at: now)
 
             ZStack {
                 Circle()
-                    .fill(Color.green.opacity(0.15))
+                    .fill(Color.gruenPrimary.opacity(0.16))
                     .frame(width: 220, height: 220)
 
-                Image(bildName)
-                    .resizable()
-                    .scaledToFit()
+                if thirstState == .thirsty {
+                    Circle()
+                        .fill(Color.red.opacity(pulsieren ? 0.20 : 0.08))
+                        .frame(width: pulsieren ? 236 : 224, height: pulsieren ? 236 : 224)
+                        .blur(radius: pulsieren ? 18 : 8)
+                        .animation(.easeInOut(duration: pulseDuration).repeatForever(autoreverses: true), value: pulsieren)
+                }
+
+                Circle()
+                    .trim(from: 0, to: ringTrim)
+                    .stroke(
+                        ringColor,
+                        style: StrokeStyle(lineWidth: 10, lineCap: .round)
+                    )
+                    .rotationEffect(.degrees(-90))
                     .frame(width: 200, height: 200)
-                    .clipShape(Circle())
+                    .shadow(
+                        color: thirstState == .thirsty
+                            ? Color.red.opacity(0.45)
+                            : seltenheit.ringFarbe.opacity(0.35),
+                        radius: thirstState == .thirsty ? (pulsieren ? 22 : 10) : 8
+                    )
+
+                if seltenheit == .legendaer {
+                    ForEach(partikel) { partikel in
+                        Image(systemName: "star.fill")
+                            .font(.system(size: partikel.groesse))
+                            .foregroundStyle(Color.legendaerPrimary.opacity(partikel.opazitaet))
+                            .offset(x: partikel.x, y: partikel.y + partikelFall)
+                    }
+                }
+
+                ZStack {
+                    Circle()
+                        .fill(Color.green.opacity(0.15))
+                        .frame(width: 220, height: 220)
+
+                    Image(bildName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200, height: 200)
+                        .clipShape(Circle())
+                        .saturation(thirstState == .dead ? 0 : (thirstState == .thirsty ? 0.7 : 1))
+                        .opacity(thirstState == .dead ? 0.6 : 1)
+                }
+                .rotationEffect(.degrees(thirstState == .thirsty ? (wippen ? 3 : -3) : (wippen ? 5 : -5)))
+
+                if thirstState == .dead {
+                    crackOverlay
+                }
             }
-            .rotationEffect(.degrees(wippen ? 5 : -5))
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 10)
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 10)
+    }
+
+    private var crackOverlay: some View {
+        ZStack {
+            Path { path in
+                path.move(to: CGPoint(x: 0, y: -70))
+                path.addLine(to: CGPoint(x: 14, y: -20))
+                path.addLine(to: CGPoint(x: -4, y: 18))
+                path.addLine(to: CGPoint(x: 20, y: 65))
+            }
+            .stroke(Color.white.opacity(0.5), lineWidth: 1.5)
+
+            Path { path in
+                path.move(to: CGPoint(x: -58, y: -10))
+                path.addLine(to: CGPoint(x: -20, y: 8))
+                path.addLine(to: CGPoint(x: -44, y: 48))
+            }
+            .stroke(Color.white.opacity(0.35), lineWidth: 1.2)
+        }
     }
 
     private var statsCards: some View {
         HStack(spacing: 12) {
-            VStack(spacing: 6) {
-                Image(systemName: "flame.fill")
-                    .foregroundStyle(.orange)
-                    .font(.system(size: 28))
-                Text("\(streak)")
-                    .font(.system(size: 24, weight: .black, design: .rounded))
-                Text(streak == 1 ? "Tag Streak" : "Tage Streak")
-                    .font(.system(size: 11, weight: .medium, design: .rounded))
-                    .foregroundStyle(.secondary)
+            ZStack {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(.ultraThinMaterial)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.orange.opacity(0.3), lineWidth: 1)
+                    )
+
+                VStack(spacing: 6) {
+                    Image(systemName: "flame.fill")
+                        .font(.system(size: 28))
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [.orange, .red],
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                        )
+
+                    Text("\(streak)")
+                        .font(.system(size: 32, weight: .black, design: .rounded))
+                        .foregroundStyle(.primary)
+
+                    Text(streak == 1 ? "Tag Streak" : "Tage Streak")
+                        .font(.system(size: 11, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                }
+                .padding(16)
             }
             .frame(maxWidth: .infinity)
-            .padding(12)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.gray.opacity(0.08))
-            )
             statCard(
                 icon: "drop.fill",
                 iconColor: .blauPrimary,
@@ -206,33 +359,61 @@ struct PflanzenDetailView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(12)
-        .background(
+        .background(.ultraThinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.gray.opacity(0.08))
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
         )
     }
 
     private var naechsteStufeCard: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text("Nächste Stufe")
+                    .font(.system(size: 15, weight: .bold, design: .rounded))
                 Spacer()
                 Text(prozentText)
+                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                    .foregroundStyle(seltenheit.ringFarbe)
             }
-            .font(.system(size: 13, weight: .semibold, design: .rounded))
 
-            ProgressView(value: fortschritt)
-                .tint(seltenheit.ringFarbe)
-                .scaleEffect(x: 1, y: 1.5, anchor: .center)
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.gray.opacity(0.15))
+                        .frame(height: 12)
+
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(
+                            LinearGradient(
+                                colors: [
+                                    seltenheit.ringFarbe,
+                                    seltenheit.ringFarbe.opacity(0.7),
+                                ],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .frame(
+                            width: geo.size.width * fortschritt,
+                            height: 12
+                        )
+                        .animation(.easeInOut(duration: 1.0), value: fortschritt)
+                }
+            }
+            .frame(height: 12)
 
             Text("Noch \(tageBisNaechsteStufe) Tage bis \(naechsteStufeName)")
-                .font(.appCaption)
+                .font(.system(size: 12, weight: .medium, design: .rounded))
                 .foregroundStyle(.secondary)
         }
         .padding(16)
-        .background(
+        .background(.ultraThinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.gray.opacity(0.08))
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
         )
     }
 
@@ -242,7 +423,7 @@ struct PflanzenDetailView: View {
                 .font(.system(size: 16, weight: .bold, design: .rounded))
 
             LazyVGrid(columns: heatmapSpalten, spacing: 8) {
-                ForEach(letzten30Tage.indices, id: \.self) { index in
+                ForEach(erledigteTageDaten.indices, id: \.self) { index in
                     let status = tagStatus(for: index)
                     ZStack {
                         switch status {
@@ -266,30 +447,51 @@ struct PflanzenDetailView: View {
             }
         }
         .padding(16)
-        .background(
+        .background(.ultraThinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.gray.opacity(0.08))
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
         )
     }
 
     private var laborSektion: some View {
         VStack(spacing: 12) {
-            laborButton(icon: "bell.fill", title: "Erinnerung setzen")
-            laborButton(icon: "note.text", title: "Notiz hinzufügen")
-
-            HStack(spacing: 12) {
-                Image(systemName: "trash.fill")
-                    .foregroundStyle(Color.rotPrimary)
-                Text("Gewohnheit löschen")
-                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                    .foregroundStyle(Color.rotPrimary)
-                Spacer()
+            Button {
+                zeigeErinnerungPicker = true
+            } label: {
+                laborButton(icon: "bell.fill", title: "Erinnerung setzen")
             }
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.rotPrimary.opacity(0.08))
-            )
+            .buttonStyle(.plain)
+
+            Button {
+                zeigeNotizEditor = true
+            } label: {
+                laborButton(icon: "note.text", title: "Notiz hinzufügen")
+            }
+            .buttonStyle(.plain)
+
+            Button {
+                zeigeLoeschenDialog = true
+            } label: {
+                HStack(spacing: 12) {
+                    Image(systemName: "trash.fill")
+                        .foregroundStyle(Color.rotPrimary)
+                    Text("Gewohnheit löschen")
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.rotPrimary)
+                    Spacer()
+                }
+                .padding(16)
+                .background(.ultraThinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                )
+            }
+            .buttonStyle(.plain)
+            .tint(.primary)
         }
     }
 
@@ -305,9 +507,11 @@ struct PflanzenDetailView: View {
                 .foregroundStyle(.secondary)
         }
         .padding(16)
-        .background(
+        .background(.ultraThinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.gray.opacity(0.08))
+                .stroke(Color.white.opacity(0.2), lineWidth: 1)
         )
     }
 
@@ -315,7 +519,7 @@ struct PflanzenDetailView: View {
         if index >= heuteTageIndex {
             return .zukunft
         }
-        return letzten30Tage[index] ? .erledigt : .verpasst
+        return erledigteTageDaten[index] ? .erledigt : .verpasst
     }
 }
 
@@ -326,8 +530,9 @@ struct PflanzenDetailView: View {
         seltenheit: .episch,
         streak: 12,
         fortschritt: 0.8,
+        thirstSystem: ThirstSystem(),
         gesamtGegossen: 42,
         stuermUeberlebt: 3,
-        letzten30Tage: Array(repeating: true, count: 30)
+        erledigteTageDaten: Array(repeating: true, count: 30)
     )
 }

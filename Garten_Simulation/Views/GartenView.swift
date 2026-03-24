@@ -7,12 +7,34 @@ struct GartenView: View {
     @State private var herzen: Int = 5
     @State private var aktivesEvent: WetterEvent = .normal
     @State private var ausgewaehltePflanze: PflanzenModel? = nil
+    @State private var zeigeWetterDetails = false
+    @State private var startAbstandAktiv = true
 
     @State private var pflanzen: [PflanzenModel] = [
-        PflanzenModel(name: "Gym", bildName: Seltenheit.gewoehnlich.iconName, seltenheit: .gewoehnlich),
-        PflanzenModel(name: "Zuckerfrei", bildName: Seltenheit.selten.iconName, seltenheit: .selten),
-        PflanzenModel(name: "Meditation", bildName: Seltenheit.episch.iconName, seltenheit: .episch),
-        PflanzenModel(name: "Lesen", bildName: Seltenheit.legendaer.iconName, seltenheit: .legendaer),
+        PflanzenModel(
+            name: "Gym",
+            bildName: Seltenheit.gewoehnlich.iconName,
+            seltenheit: .gewoehnlich,
+            thirstSystem: ThirstSystem.withRemaining(hours: 1, minutes: 0)
+        ),
+        PflanzenModel(
+            name: "Zuckerfrei",
+            bildName: Seltenheit.selten.iconName,
+            seltenheit: .selten,
+            thirstSystem: ThirstSystem.withRemaining(hours: 2, minutes: 0)
+        ),
+        PflanzenModel(
+            name: "Meditation",
+            bildName: Seltenheit.episch.iconName,
+            seltenheit: .episch,
+            thirstSystem: ThirstSystem.withRemaining(hours: 1, minutes: 30)
+        ),
+        PflanzenModel(
+            name: "Lesen",
+            bildName: Seltenheit.legendaer.iconName,
+            seltenheit: .legendaer,
+            thirstSystem: ThirstSystem.withRemaining(hours: 3, minutes: 0)
+        ),
     ]
 
     let columns = [
@@ -54,11 +76,18 @@ struct GartenView: View {
                 .padding(.top, 20)
 
                 // MARK: - Wetter Banner
-                WetterBanner(event: aktivesEvent)
+                WetterBanner(event: aktivesEvent) {
+                    zeigeWetterDetails = true
+                }
                     .padding(.top, 12)
 
                 // MARK: - Pflanzen Grid
                 ScrollView {
+                    if startAbstandAktiv {
+                        Color.clear
+                            .frame(height: 12)
+                    }
+
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(pflanzen.indices, id: \.self) { index in
                             PflanzenCard(
@@ -68,6 +97,7 @@ struct GartenView: View {
                                 gewaessert: pflanzen[index].gewaessert,
                                 giessZaehler: pflanzen[index].giessZaehler,
                                 seltenheit: pflanzen[index].seltenheit,
+                                thirstSystem: pflanzen[index].thirstSystem,
                                 wetterEvent: aktivesEvent,
                                 onGiessen: {
                                     giessen(index: index)
@@ -81,7 +111,17 @@ struct GartenView: View {
                     .padding(.horizontal, 20)
                     .padding(.bottom, 32)
                 }
-                .padding(.top, 20)
+                .padding(.top, 0)
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 2)
+                        .onChanged { _ in
+                            if startAbstandAktiv {
+                                withAnimation(.easeOut(duration: 0.18)) {
+                                    startAbstandAktiv = false
+                                }
+                            }
+                        }
+                )
             }
         }
         .onAppear {
@@ -95,9 +135,14 @@ struct GartenView: View {
                 seltenheit: pflanze.seltenheit,
                 streak: pflanze.streak,
                 fortschritt: pflanze.fortschritt,
+                thirstSystem: pflanze.thirstSystem,
                 gesamtGegossen: pflanze.gesamtGegossen,
                 stuermUeberlebt: pflanze.stuermUeberlebt,
-                letzten30Tage: (0..<30).map { _ in Bool.random() }
+                erledigteTageDaten: pflanze.erledigteTageDaten,
+                onLoeschen: {
+                    pflanzen.removeAll { $0.id == pflanze.id }
+                    ausgewaehltePflanze = nil
+                }
             )
             .presentationDetents([
                 PresentationDetent.medium,
@@ -105,7 +150,17 @@ struct GartenView: View {
             ])
             .presentationDragIndicator(.visible as Visibility)
             .presentationCornerRadius(32)
-            .presentationBackground(Material.regular)
+            .presentationBackground(.ultraThinMaterial)
+        }
+        .sheet(isPresented: $zeigeWetterDetails) {
+            WetterDetailView(event: aktivesEvent)
+                .presentationDetents([
+                    PresentationDetent.medium,
+                    PresentationDetent.large,
+                ])
+                .presentationDragIndicator(.visible as Visibility)
+                .presentationCornerRadius(32)
+                .presentationBackground(.ultraThinMaterial)
         }
     }
 
@@ -142,7 +197,8 @@ struct GartenView: View {
         withAnimation {
             var p = pflanzen[index]
 
-            let gemBonus = Int(10.0 * aktivesEvent.gemMultiplikator)
+            let rewardFactor = p.thirstSystem.potentialReward()
+            let gemBonus = Int((10.0 * aktivesEvent.gemMultiplikator * rewardFactor).rounded())
             gems += gemBonus
 
             p.fortschritt = min(p.fortschritt + 0.05, 1.0)
@@ -160,15 +216,27 @@ struct GartenView: View {
             }
 
             if p.gewaessert {
+                if p.thirstSystem.state() == .dead {
+                    p.streak = 0
+                }
                 p.streak += 1
                 if aktivesEvent == .sturm {
                     p.stuermUeberlebt += 1
                 }
+                if !p.erledigteTageDaten.isEmpty {
+                    p.erledigteTageDaten.removeFirst()
+                    p.erledigteTageDaten.append(true)
+                }
+            } else if !p.erledigteTageDaten.isEmpty {
+                p.erledigteTageDaten.removeFirst()
+                p.erledigteTageDaten.append(false)
             }
 
             p.benoetigtZweiMal = aktivesEvent == .duerre && !p.gewaessert
 
-            p.benoetigtZweiMal = aktivesEvent == .duerre && !p.gewaessert
+            if p.gewaessert {
+                p.thirstSystem.water()
+            }
 
             pflanzen[index] = p
         }
@@ -186,7 +254,37 @@ struct PflanzenModel: Identifiable {
     var gesamtGegossen: Int = 0
     var stuermUeberlebt: Int = 0
     var streak: Int = 0
+    var erledigteTageDaten: [Bool] = Array(repeating: false, count: 30)
     var seltenheit: Seltenheit = .gewoehnlich
+    var thirstSystem: ThirstSystem
+
+    init(
+        name: String,
+        bildName: String,
+        fortschritt: Double = 0.0,
+        gewaessert: Bool = false,
+        giessZaehler: Int = 0,
+        benoetigtZweiMal: Bool = false,
+        gesamtGegossen: Int = 0,
+        stuermUeberlebt: Int = 0,
+        streak: Int = 0,
+        erledigteTageDaten: [Bool] = Array(repeating: false, count: 30),
+        seltenheit: Seltenheit = .gewoehnlich,
+        thirstSystem: ThirstSystem = ThirstSystem()
+    ) {
+        self.name = name
+        self.bildName = bildName
+        self.fortschritt = fortschritt
+        self.gewaessert = gewaessert
+        self.giessZaehler = giessZaehler
+        self.benoetigtZweiMal = benoetigtZweiMal
+        self.gesamtGegossen = gesamtGegossen
+        self.stuermUeberlebt = stuermUeberlebt
+        self.streak = streak
+        self.erledigteTageDaten = erledigteTageDaten
+        self.seltenheit = seltenheit
+        self.thirstSystem = thirstSystem
+    }
 }
 
 #Preview {

@@ -25,6 +25,11 @@ extension Color {
     
     static let legendaerPrimary = Color(red: 1.0, green: 0.85, blue: 0.0)
     static let legendaerSecondary = Color(red: 0.85, green: 0.65, blue: 0.0)
+
+    /// Warmes Banner-/Belohnungs-Gold (harmoniert mit „Doppelte Belohnung“)
+    static let belohnungGoldHighlight = Color(red: 0.96, green: 0.84, blue: 0.42)
+    static let belohnungGoldMid = Color(red: 0.88, green: 0.68, blue: 0.22)
+    static let belohnungGoldSchatten = Color(red: 0.62, green: 0.42, blue: 0.08)
     
     // Hintergrund
     static let appHintergrund = Color(red: 0.95, green: 0.95, blue: 0.97)

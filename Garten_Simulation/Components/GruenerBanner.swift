@@ -7,6 +7,7 @@ struct GruenerBanner: View {
     
     @State private var isPressed = false
     @State private var hapticTrigger = false
+    @State private var hatAusgeloest = false
     
     var body: some View {
         ZStack {
@@ -52,11 +53,15 @@ struct GruenerBanner: View {
             DragGesture(minimumDistance: 0)
                 .onChanged { _ in
                     isPressed = true
-                    hapticTrigger.toggle()
-                    aktion?()
+                    if !hatAusgeloest {
+                        hatAusgeloest = true
+                        hapticTrigger.toggle()
+                        aktion?()
+                    }
                 }
                 .onEnded { _ in
                     isPressed = false
+                    hatAusgeloest = false
                 }
         )
     }

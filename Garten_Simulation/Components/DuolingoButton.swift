@@ -11,6 +11,7 @@ struct DuolingoButton: View {
     
     @State private var isPressed = false
     @State private var hapticTrigger = false
+    @State private var hatAusgeloest = false
     
     var body: some View {
         ZStack {
@@ -27,25 +28,40 @@ struct DuolingoButton: View {
                         .font(.system(size: 20, weight: .semibold, design: .rounded))
                 }
                 .offset(y: offset)
-                .onTapGesture {
-                    hapticTrigger.toggle()
-                    action?()
-                }
                 .gesture(
                     DragGesture(minimumDistance: 0)
                         .onChanged { _ in
                             withAnimation(.spring(.snappy(duration: 0.02))) {
                                 isPressed = true
                             }
+                            if !hatAusgeloest {
+                                hatAusgeloest = true
+                                hapticTrigger.toggle()
+                                // Short delay so press animation is visible before action (e.g. sheet dismiss)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
+                                    action?()
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                                    withAnimation(.spring(.snappy(duration: 0.02))) {
+                                        isPressed = false
+                                    }
+                                    hatAusgeloest = false
+                                }
+                            }
                         }
                         .onEnded { _ in
                             withAnimation(.spring(.snappy(duration: 0.02))) {
                                 isPressed = false
                             }
+                            hatAusgeloest = false
                         }
                 )
         }
         .sensoryFeedback(.selection, trigger: hapticTrigger)
+        .onDisappear {
+            isPressed = false
+            hatAusgeloest = false
+        }
     }
 }
 
