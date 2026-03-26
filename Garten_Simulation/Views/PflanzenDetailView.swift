@@ -120,13 +120,14 @@ struct PflanzenDetailView: View {
                 .datePickerStyle(.wheel)
                 .labelsHidden()
 
-                DuolingoButton(title: "Speichern", color: .gruenPrimary) {
+                Button("Speichern") {
                     UserDefaults.standard.set(
                         erinnerungsZeit,
                         forKey: "erinnerung_\(name)"
                     )
                     zeigeErinnerungPicker = false
                 }
+                .buttonStyle(DuolingoButtonStyle())
                 .padding(.horizontal, 24)
             }
             .padding(24)
@@ -157,13 +158,14 @@ struct PflanzenDetailView: View {
                         .foregroundStyle(.secondary)
                 }
 
-                DuolingoButton(title: "Speichern", color: .gruenPrimary) {
+                Button("Speichern") {
                     UserDefaults.standard.set(
                         notizText,
                         forKey: "notiz_\(name)"
                     )
                     zeigeNotizEditor = false
                 }
+                .buttonStyle(DuolingoButtonStyle())
                 .padding(.horizontal, 24)
             }
             .padding(24)

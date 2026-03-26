@@ -398,9 +398,10 @@ private struct ThirstTimerSheetView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
 
-                DuolingoButton(title: "OK", color: .gruenPrimary) {
+                Button("OK") {
                     onDismiss()
                 }
+                .buttonStyle(DuolingoButtonStyle())
                 .padding(.horizontal, 40)
             }
             .padding(28)
