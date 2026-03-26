@@ -1,7 +1,5 @@
 import SwiftUI
 
-// MARK: - App Colors (Local fallbacks for the preview)
-
 // MARK: - Data Models
 
 struct StandardItem: Identifiable {
@@ -13,7 +11,7 @@ struct StandardItem: Identifiable {
     let accentColor: Color
     let shadowColor: Color
     let tag: String?
-    let isLarge: Bool // Permanent vs Consumable
+    let isLarge: Bool
 }
 
 struct UpgradeItem: Identifiable {
@@ -26,6 +24,283 @@ struct UpgradeItem: Identifiable {
     let shadowColor: Color
 }
 
+// MARK: - 3D Icon (WetterBanner-Stil – nur Icon, keine Änderungen an WetterBanner.swift)
+
+struct Relief3DIcon: View {
+    let systemName: String
+    let color: Color
+    let shadowColor: Color
+    var iconSize: CGFloat = 28
+    var circleSize: CGFloat = 64
+
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(shadowColor.opacity(0.45))
+                .frame(width: circleSize, height: circleSize)
+                .offset(y: 5)
+            Circle()
+                .fill(
+                    LinearGradient(
+                        colors: [color.opacity(0.22), color.opacity(0.10)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+                .frame(width: circleSize, height: circleSize)
+                .overlay(
+                    Circle()
+                        .stroke(color.opacity(0.18), lineWidth: 1.5)
+                )
+            Image(systemName: systemName)
+                .font(.system(size: iconSize, weight: .semibold))
+                .foregroundStyle(color)
+        }
+        .frame(width: circleSize, height: circleSize + 5)
+    }
+}
+
+// MARK: - Embossed Plaque Card (die klickbare weiße Hauptkarte)
+
+struct PlaquCard<Content: View>: View {
+    let onBuy: () -> Void
+    @ViewBuilder let content: Content
+    @State private var isPressed = false
+    @State private var hatAusgeloest = false
+
+    var body: some View {
+        ZStack {
+            // Shadow-Basis – bleibt statisch (WetterBanner-Stil)
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color(UIColor.systemGray4))
+                .frame(maxWidth: .infinity)
+
+            // Haupt-Plaque – schwebt bei -6, drückt auf 0
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(
+                    LinearGradient(
+                        colors: [
+                            Color(UIColor.systemBackground),
+                            Color(red: 0.96, green: 0.96, blue: 0.97)
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .fill(
+                            LinearGradient(
+                                colors: [Color.white.opacity(0.55), Color.clear],
+                                startPoint: .top,
+                                endPoint: .init(x: 0.5, y: 0.45)
+                            )
+                        )
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .stroke(Color.white.opacity(0.8), lineWidth: 1.5)
+                )
+                .overlay(
+                    content
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 20),
+                    alignment: .center
+                )
+                .frame(minHeight: 110)
+                .padding(.bottom, 6)
+                .offset(y: isPressed ? 0 : -6)
+        }
+        .shadow(color: Color.black.opacity(0.09), radius: 8, x: 0, y: 3)
+        .animation(.spring(.snappy(duration: 0.02)), value: isPressed)
+        .gesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in
+                    isPressed = true
+                    if !hatAusgeloest {
+                        hatAusgeloest = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.06) {
+                            onBuy()
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                            isPressed = false
+                            hatAusgeloest = false
+                        }
+                    }
+                }
+                .onEnded { _ in
+                    isPressed = false
+                    hatAusgeloest = false
+                }
+        )
+    }
+}
+
+// MARK: - Shop Item Card
+
+struct ShopItemCard: View {
+    let icon: String
+    let accentColor: Color
+    let shadowColor: Color
+    let name: String
+    let subtitle: String
+    let price: Int
+    let onBuy: () -> Void
+
+    var body: some View {
+        PlaquCard(onBuy: onBuy) {
+            HStack(alignment: .top, spacing: 14) {
+                Relief3DIcon(
+                    systemName: icon,
+                    color: accentColor,
+                    shadowColor: shadowColor
+                )
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(name)
+                        .font(.system(size: 17, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.primary)
+                        .lineLimit(1)
+                    Text(subtitle)
+                        .font(.system(size: 14))
+                        .foregroundStyle(Color.secondary)
+                        .lineLimit(2)
+
+                    Spacer(minLength: 14)
+
+                    // Preis unten rechts
+                    HStack(spacing: 5) {
+                        Spacer()
+                        Image("Coin")
+                            .resizable().scaledToFit()
+                            .frame(width: 20, height: 20)
+                        Text("\(price)")
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .foregroundStyle(Color.belohnungGoldHighlight)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+}
+
+// MARK: - Deal Card
+
+struct DealCard: View {
+    let emoji: String
+    let name: String
+    let subtitle: String
+    let price: Int
+    let badgeText: String
+    let accentColor: Color
+    let onBuy: () -> Void
+
+    var body: some View {
+        PlaquCard(onBuy: onBuy) {
+            HStack(alignment: .top, spacing: 14) {
+                // Emoji 3D Icon
+                ZStack {
+                    Circle()
+                        .fill(accentColor.opacity(0.22))
+                        .frame(width: 64, height: 64)
+                        .offset(y: 5)
+                    Circle()
+                        .fill(accentColor.opacity(0.10))
+                        .frame(width: 64, height: 64)
+                    Text(emoji)
+                        .font(.system(size: 30))
+                }
+                .frame(width: 64, height: 69)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(spacing: 6) {
+                        Text(name)
+                            .font(.system(size: 17, weight: .bold, design: .rounded))
+                            .foregroundStyle(Color.primary)
+                        Text(badgeText)
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 6).padding(.vertical, 2)
+                            .background(Capsule().fill(accentColor))
+                    }
+                    Text(subtitle)
+                        .font(.system(size: 14))
+                        .foregroundStyle(Color.secondary)
+                        .lineLimit(2)
+
+                    Spacer(minLength: 14)
+
+                    HStack(spacing: 5) {
+                        Spacer()
+                        Image("Coin")
+                            .resizable().scaledToFit()
+                            .frame(width: 20, height: 20)
+                        Text("\(price)")
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .foregroundStyle(Color.belohnungGoldHighlight)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+}
+
+// MARK: - Bundle Card
+
+struct BundleCardRow: View {
+    let onBuy: () -> Void
+
+    var body: some View {
+        PlaquCard(onBuy: onBuy) {
+            HStack(alignment: .top, spacing: 14) {
+                ZStack {
+                    Circle()
+                        .fill(Color.lilaPrimary.opacity(0.22))
+                        .frame(width: 64, height: 64)
+                        .offset(y: 5)
+                    Circle()
+                        .fill(Color.lilaPrimary.opacity(0.10))
+                        .frame(width: 64, height: 64)
+                    Text("🌱")
+                        .font(.system(size: 30))
+                }
+                .frame(width: 64, height: 69)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(spacing: 6) {
+                        Text("Starter Bundle")
+                            .font(.system(size: 17, weight: .bold, design: .rounded))
+                            .foregroundStyle(Color.primary)
+                        Text("-20%")
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 6).padding(.vertical, 2)
+                            .background(Capsule().fill(Color.green))
+                    }
+                    Text("Samen + Wasser Bundle")
+                        .font(.system(size: 14))
+                        .foregroundStyle(Color.secondary)
+
+                    Spacer(minLength: 14)
+
+                    HStack(spacing: 5) {
+                        Spacer()
+                        Image("Coin")
+                            .resizable().scaledToFit()
+                            .frame(width: 20, height: 20)
+                        Text("50")
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .foregroundStyle(Color.belohnungGoldHighlight)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+}
+
 // MARK: - Main Shop View
 
 struct UnifiedShopView: View {
@@ -33,107 +308,137 @@ struct UnifiedShopView: View {
     @State private var searchText = ""
     @State private var selectedTag: String? = nil
     @State private var showFilters: Bool = true
-    
+
     private let allTags = ["ALLE", "WERKZEUG", "VERBRAUCH", "UPGRADES"]
-    
-    // Data
+
     let essentials = [
-        StandardItem(name: "Goldene Gießkanne", subtitle: "Unbegrenzte Kapazität (Permanent)", price: 2500, icon: "drop.fill", accentColor: .blauPrimary, shadowColor: .blauSecondary, tag: "WERKZEUG", isLarge: true),
-        StandardItem(name: "Magie-Dünger", subtitle: "10x Wachtsum", price: 50, icon: "wand.and.stars", accentColor: .lilaPrimary, shadowColor: .lilaSecondary, tag: "VERBRAUCH", isLarge: false),
-        StandardItem(name: "Mystic Samen", subtitle: "Unbekannt", price: 100, icon: "sparkles", accentColor: .orangePrimary, shadowColor: .orangeSecondary, tag: "VERBRAUCH", isLarge: false)
+        StandardItem(name: "Goldene Gießkanne", subtitle: "Unbegrenzte Kapazität · Permanent", price: 2500, icon: "drop.fill", accentColor: .blauPrimary, shadowColor: .blauSecondary, tag: "WERKZEUG", isLarge: true),
+        StandardItem(name: "Magie-Dünger", subtitle: "10× Wachstum", price: 50, icon: "wand.and.stars", accentColor: .lilaPrimary, shadowColor: .lilaSecondary, tag: "VERBRAUCH", isLarge: false),
+        StandardItem(name: "Mystic Samen", subtitle: "Unbekannter Inhalt", price: 100, icon: "sparkles", accentColor: .orangePrimary, shadowColor: .orangeSecondary, tag: "VERBRAUCH", isLarge: false)
     ]
-    
+
     let upgrades = [
-        UpgradeItem(name: "Premium Slot", description: "Schalte einen dauerhaften Pflanzenslot für seltene Gewächse frei.", price: 5000, icon: "lock.open.fill", color: .goldPrimary, shadowColor: .goldSecondary),
-        UpgradeItem(name: "Wetter-Meister", description: "Kontrolliere einmal täglich das Gartenwetter komplett.", price: 8000, icon: "cloud.sun.rain.fill", color: .blauPrimary, shadowColor: .blauSecondary)
+        UpgradeItem(name: "Premium Slot", description: "Dauerhafter Pflanzenslot für seltene Gewächse.", price: 5000, icon: "lock.open.fill", color: .goldPrimary, shadowColor: .goldSecondary),
+        UpgradeItem(name: "Wetter-Meister", description: "Kontrolliere einmal täglich das Gartenwetter.", price: 8000, icon: "cloud.sun.rain.fill", color: .blauPrimary, shadowColor: .blauSecondary)
     ]
 
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
-                // Heller Duolingo-Style App-Hintergrund
                 Color.appHintergrund.ignoresSafeArea()
 
                 ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 40) { // Klar getrennte Zonen (Visual Anchors)
-                        
-                        Spacer().frame(height: 70) // Platz für Floating Header
-                        
-                        // Header Text (Clean iOS iOS Style)
-                        Text("Shop")
-                            .font(.system(size: 34, weight: .bold)) 
-                            .foregroundStyle(Color.primary)
-                            .padding(.horizontal, 20)
-                            .padding(.top, 10)
-                        
-                        // Filter Pills (iOS Style)
-                        if showFilters {
-                            filterBar
-                                .padding(.bottom, 8)
-                                .transition(.move(edge: .top).combined(with: .opacity))
-                        }
+                    VStack(alignment: .leading, spacing: 0) {
+                        Spacer().frame(height: 60)
 
-                        // 1. Limited Power-ups (Daily Deal & Bundles)
-                        if searchText.isEmpty && (selectedTag == nil || selectedTag == "ALLE") {
-                            VStack(alignment: .leading, spacing: 20) {
-                                Text("ANGEBOTE & BUNDLES")
-                                    .font(.system(size: 18, weight: .bold))
-                                    .foregroundStyle(Color.primary)
-                                    .padding(.horizontal, 24)
-                                
-                                VStack(spacing: 24) {
-                                    DailyDealCard()
-                                    BundleCard()
-                                }
-                                .padding(.horizontal, 20)
-                            }
-                        }
-
-                        // 2. Garden Essentials (Permanente Items & Verbrauchsmaterial)
-                        let essentialsToDisplay = essentials.filter { passesFilter($0) }
-                        if !essentialsToDisplay.isEmpty {
-                            VStack(alignment: .leading, spacing: 20) {
-                                Text("GARTEN ESSENTIALS")
-                                    .font(.system(size: 18, weight: .bold))
-                                    .foregroundStyle(Color.primary)
-                                    .padding(.horizontal, 24)
-
-                                VStack(spacing: 24) {
-                                    // Großes permanentes Item
-                                    if let tool = essentialsToDisplay.first(where: { $0.isLarge }) {
-                                        StandardShopCard(item: tool)
-                                    }
-                                    
-                                    // Kleine Consumer Items in 2er Grid
-                                    let consumables = essentialsToDisplay.filter { !$0.isLarge }
-                                    if !consumables.isEmpty {
-                                        LazyVGrid(columns: [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)], spacing: 20) {
-                                            ForEach(consumables) { item in
-                                                StandardShopCard(item: item)
-                                            }
+                        // MARK: Suche + Filter
+                        VStack(spacing: 10) {
+                            HStack(spacing: 10) {
+                                HStack(spacing: 8) {
+                                    Image(systemName: "magnifyingglass")
+                                        .font(.system(size: 15))
+                                        .foregroundColor(Color(UIColor.placeholderText))
+                                    TextField("Suchen...", text: $searchText)
+                                        .font(.system(size: 16))
+                                        .submitLabel(.search)
+                                    if !searchText.isEmpty {
+                                        Button(action: { searchText = "" }) {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .foregroundColor(Color(UIColor.placeholderText))
                                         }
                                     }
                                 }
-                                .padding(.horizontal, 20)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 10)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                        .fill(Color(UIColor.systemGray6))
+                                )
+
+                                Button(action: {
+                                    withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
+                                        showFilters.toggle()
+                                    }
+                                }) {
+                                    Image(systemName: showFilters
+                                          ? "line.3.horizontal.decrease.circle.fill"
+                                          : "line.3.horizontal.decrease.circle")
+                                    .font(.system(size: 26))
+                                    .foregroundStyle(showFilters ? Color.blauPrimary : Color.secondary)
+                                }
+                            }
+                            .padding(.horizontal, 16)
+
+                            if showFilters {
+                                filterBar
+                                    .transition(.move(edge: .top).combined(with: .opacity))
                             }
                         }
+                        .padding(.top, 10)
+                        .padding(.bottom, 16)
+                        .animation(.spring(response: 0.35, dampingFraction: 0.75), value: showFilters)
 
-                        // 3. Life Upgrades (Gewohnheiten, Unlocks - jetzt auch im Duolingo Style!)
-                        let upgradesToDisplay = upgrades.filter { searchText.isEmpty || $0.name.localizedCaseInsensitiveContains(searchText) }
-                        if (selectedTag == nil || selectedTag == "ALLE" || selectedTag == "UPGRADES") && !upgradesToDisplay.isEmpty {
-                            VStack(alignment: .leading, spacing: 20) {
-                                Text("UPGRADES")
-                                    .font(.system(size: 18, weight: .bold))
-                                    .foregroundStyle(Color.primary)
-                                    .padding(.horizontal, 24)
-
-                                VStack(spacing: 24) {
-                                    ForEach(upgradesToDisplay) { upgrade in
-                                        UpgradeCard(item: upgrade)
-                                    }
-                                }
-                                .padding(.horizontal, 20)
+                        // MARK: Angebote & Bundles
+                        if searchText.isEmpty && (selectedTag == nil || selectedTag == "ALLE") {
+                            sectionHeader("Angebote & Bundles")
+                            VStack(spacing: 12) {
+                                DealCard(
+                                    emoji: "🎁",
+                                    name: "Wunder-Box",
+                                    subtitle: "3 Epische Samen + 500 Dünger",
+                                    price: 99,
+                                    badgeText: "DEAL",
+                                    accentColor: .red,
+                                    onBuy: {}
+                                )
+                                BundleCardRow(onBuy: {})
                             }
+                            .padding(.horizontal, 16)
+                            Spacer().frame(height: 28)
+                        }
+
+                        // MARK: Garten Essentials
+                        let essentialsToDisplay = essentials.filter { passesFilter($0) }
+                        if !essentialsToDisplay.isEmpty {
+                            sectionHeader("Garten Essentials")
+                            VStack(spacing: 12) {
+                                ForEach(essentialsToDisplay) { item in
+                                    ShopItemCard(
+                                        icon: item.icon,
+                                        accentColor: item.accentColor,
+                                        shadowColor: item.shadowColor,
+                                        name: item.name,
+                                        subtitle: item.subtitle,
+                                        price: item.price,
+                                        onBuy: {}
+                                    )
+                                }
+                            }
+                            .padding(.horizontal, 16)
+                            Spacer().frame(height: 28)
+                        }
+
+                        // MARK: Upgrades
+                        let upgradesToDisplay = upgrades.filter {
+                            searchText.isEmpty || $0.name.localizedCaseInsensitiveContains(searchText)
+                        }
+                        if (selectedTag == nil || selectedTag == "ALLE" || selectedTag == "UPGRADES") && !upgradesToDisplay.isEmpty {
+                            sectionHeader("Upgrades")
+                            VStack(spacing: 12) {
+                                ForEach(upgradesToDisplay) { upgrade in
+                                    ShopItemCard(
+                                        icon: upgrade.icon,
+                                        accentColor: upgrade.color,
+                                        shadowColor: upgrade.shadowColor,
+                                        name: upgrade.name,
+                                        subtitle: upgrade.description,
+                                        price: upgrade.price,
+                                        onBuy: {}
+                                    )
+                                }
+                            }
+                            .padding(.horizontal, 16)
+                            Spacer().frame(height: 28)
                         }
 
                         Spacer(minLength: 80)
@@ -141,453 +446,115 @@ struct UnifiedShopView: View {
                     .animation(.spring(response: 0.4, dampingFraction: 0.75), value: selectedTag)
                     .animation(.spring(response: 0.4, dampingFraction: 0.75), value: searchText)
                 }
-                
-                // Moderner "iOS 26" Floating Header Layer + Coin Stats
-                modernSearchAndCoinHeader
+
+                // MARK: Fixierter Header (bleibt oben)
+                shopHeader
             }
             .navigationBarHidden(true)
         }
     }
-    
-    // Hilfsfunktion für Filterung
+
+    // MARK: - Filter
+
     private func passesFilter(_ item: StandardItem) -> Bool {
         if let tag = selectedTag, tag != "ALLE", item.tag != tag { return false }
         if !searchText.isEmpty && !item.name.localizedCaseInsensitiveContains(searchText) { return false }
         return true
     }
-    
-    // MARK: - Modern "iOS 26" Search, Coins & Menu Header
-    
-    var modernSearchAndCoinHeader: some View {
-        HStack(spacing: 12) {
-            
-            // 1. Floating Search Pill (Flexible)
-            HStack(spacing: 8) {
-                Image(systemName: "magnifyingglass")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.secondary)
-                
-                TextField("Suchen...", text: $searchText)
-                    .font(.system(size: 16, weight: .regular))
-                    .submitLabel(.search)
-                
-                if !searchText.isEmpty {
-                    Button(action: { searchText = "" }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 12)
-            .background(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(.regularMaterial)
-                    .shadow(color: Color.black.opacity(0.08), radius: 8, x: 0, y: 4)
-            )
-            
-            // 2. Coin Stats Pill (iOS Style Container)
-            HStack(spacing: 4) {
-                Text("🪙")
-                    .font(.system(size: 16))
+
+    private func sectionHeader(_ title: String) -> some View {
+        Text(title)
+            .font(.system(size: 19, weight: .bold, design: .rounded))
+            .foregroundStyle(Color.primary)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 10)
+    }
+
+    // MARK: - Shop Header
+
+    var shopHeader: some View {
+        HStack {
+            HStack(spacing: 5) {
+                Image("Coin")
+                    .resizable().scaledToFit()
+                    .frame(width: 20, height: 20)
                 Text("\(coins)")
-                    .font(.system(size: 16, weight: .bold)) 
-                    .foregroundStyle(Color.belohnungGoldHighlight) // Solid, ohne Schatten
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundStyle(Color.belohnungGoldHighlight)
             }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 12)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 7)
             .background(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(.regularMaterial)
-                    .shadow(color: Color.black.opacity(0.08), radius: 8, x: 0, y: 4)
+                Capsule()
+                    .fill(Color(UIColor.systemBackground))
+                    .shadow(color: .black.opacity(0.10), radius: 5, x: 0, y: 2)
             )
 
-            // 3. Floating Circle Menu
+            Spacer()
+
+            Text("Shop")
+                .font(.system(size: 17, weight: .semibold))
+                .foregroundStyle(Color.primary)
+
+            Spacer()
+
             Menu {
                 Button(action: {
                     withAnimation { showFilters.toggle() }
                 }) {
-                    Label(showFilters ? "Filter ausblenden" : "Filter anzeigen", systemImage: "line.3.horizontal.decrease")
+                    Label(showFilters ? "Filter ausblenden" : "Filter anzeigen",
+                          systemImage: "line.3.horizontal.decrease")
                 }
-                
-                Button(action: {
+                Divider()
+                Button(role: .destructive, action: {
                     selectedTag = "ALLE"
                     searchText = ""
                 }) {
-                    Label("Zurücksetzen", systemImage: "arrow.counterclockwise")
+                    Label("Filter zurücksetzen", systemImage: "arrow.counterclockwise")
                 }
             } label: {
-                Image(systemName: "ellipsis")
-                    .font(.system(size: 20, weight: .semibold))
+                Image(systemName: "ellipsis.circle")
+                    .font(.system(size: 22))
                     .foregroundStyle(Color.primary)
-                    .frame(width: 44, height: 44) // Höhe passend zur Search Bar
-                    .background(
-                        Circle()
-                            .fill(.regularMaterial)
-                            .shadow(color: Color.black.opacity(0.08), radius: 8, x: 0, y: 4)
-                    )
             }
         }
         .padding(.horizontal, 20)
-        .padding(.top, 10) 
+        .padding(.vertical, 10)
+        .background(
+            Rectangle()
+                .fill(.regularMaterial)
+                .ignoresSafeArea(edges: .top)
+        )
     }
 
-    // MARK: - Filter Bar (Flacher iOS Style)
+    // MARK: - Filter Bar
 
     var filterBar: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
                 ForEach(allTags, id: \.self) { tag in
-                    Button(action: {
-                        withAnimation {
-                            selectedTag = tag
-                        }
-                    }) {
+                    Button(action: { withAnimation { selectedTag = tag } }) {
                         Text(tag)
-                            .font(.system(size: 14, weight: .semibold)) // Clean
-                            .foregroundStyle((selectedTag ?? "ALLE") == tag ? Color.white : Color.primary)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 9)
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundStyle((selectedTag ?? "ALLE") == tag ? .white : Color.primary)
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 7)
                             .background(
                                 Capsule()
-                                    .fill((selectedTag ?? "ALLE") == tag ? Color.blue : Color(UIColor.systemGray5))
+                                    .fill((selectedTag ?? "ALLE") == tag
+                                          ? Color.blauPrimary
+                                          : Color(UIColor.systemGray5))
                             )
                     }
                     .buttonStyle(.plain)
                 }
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 16)
         }
     }
 }
 
-// MARK: - 1. Daily Deal Card (Pure Duolingo Style)
-
-struct DailyDealCard: View {
-    @State private var isPressed = false
-    
-    var body: some View {
-        ZStack {
-            // Massive roter Duolingo 3D-Block
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .fill(Color.red)
-                .offset(y: 6) // Fixer 6px Offset!
-            
-            ZStack(alignment: .bottomLeading) {
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .fill(Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 24, style: .continuous)
-                            .stroke(Color.red.opacity(0.4), lineWidth: 2.5)
-                    )
-                
-                VStack(alignment: .leading, spacing: 16) {
-                    HStack {
-                        Text("DAILY DEAL")
-                            .font(.system(size: 12, weight: .bold)) // Clean Font
-                            .foregroundStyle(Color.red)
-                            .padding(.horizontal, 10).padding(.vertical, 6)
-                            .background(Color.red.opacity(0.12))
-                            .clipShape(Capsule())
-                        
-                        Spacer()
-                        
-                        Text("14:23:09")
-                            .font(.system(size: 14, weight: .bold, design: .monospaced))
-                            .foregroundStyle(Color.red)
-                    }
-                    
-                    HStack {
-                        ZStack {
-                            Circle().fill(Color.orange.opacity(0.15)).frame(width: 70, height: 70)
-                            Text("🎁").font(.system(size: 40))
-                        }
-                        
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Wunder-Box")
-                                .font(.system(size: 24, weight: .bold)) // Clean iOS Font!
-                                .foregroundStyle(Color.primary)
-                            Text("Enthält 3 garantierte Epische Samen und 500 Dünger.")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundStyle(Color.secondary)
-                        }
-                    }
-                    
-                    HStack {
-                        HStack(spacing: 8) {
-                            Text("🪙").font(.system(size: 18))
-                            Text("150").strikethrough().font(.system(size: 18, weight: .bold)).foregroundStyle(.gray)
-                            Text("  99").font(.system(size: 24, weight: .bold)).foregroundStyle(Color.red)
-                        }
-                        Spacer()
-                        ModernBuyButton(color: .red, shadowColor: Color(red: 0.7, green: 0, blue: 0), title: "KAUFEN")
-                            .frame(width: 120)
-                    }
-                }
-                .padding(24)
-            }
-            .offset(y: isPressed ? 6 : 0) // Drückt sich mechanisch in den roten Block
-        }
-        .padding(.bottom, 6)
-        .onTapGesture {
-            withAnimation(.spring(response: 0.1, dampingFraction: 0.6)) { isPressed = true }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { withAnimation(.spring(response: 0.1, dampingFraction: 0.6)) { isPressed = false } }
-        }
-    }
-}
-
-// MARK: - 2. Bundle Card (Pure Duolingo Style)
-
-struct BundleCard: View {
-    @State private var isPressed = false
-    
-    var body: some View {
-        ZStack {
-            // Lila Duolingo 3D Block
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .fill(Color.lilaSecondary)
-                .offset(y: 6)
-
-            ZStack(alignment: .bottomLeading) {
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .fill(Color.white)
-                    .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).stroke(Color.lilaSecondary.opacity(0.4), lineWidth: 2.5))
-
-                HStack(spacing: 16) {
-                    // Bundle Icons
-                    ZStack {
-                        Circle().fill(Color.lilaPrimary.opacity(0.15)).frame(width: 80, height: 80)
-                        HStack(spacing: -15) {
-                            Text("🌱").font(.system(size: 30)).rotationEffect(.degrees(-15))
-                            Text("💧").font(.system(size: 30)).rotationEffect(.degrees(10))
-                        }
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("STARTER BUNDLE")
-                            .font(.system(size: 12, weight: .bold)) // Clean
-                            .foregroundStyle(Color.lilaPrimary)
-                            .padding(.horizontal, 10).padding(.vertical, 6)
-                            .background(Color.lilaPrimary.opacity(0.15))
-                            .clipShape(Capsule())
-
-                        Text("Samen + Wasser")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundStyle(Color.primary)
-                        
-                        HStack {
-                            Text("🪙 50").font(.system(size: 18, weight: .bold)).foregroundStyle(Color.belohnungGoldHighlight)
-                            Text("-20%")
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 8).padding(.vertical, 4)
-                                .background(Color.green)
-                                .clipShape(Capsule())
-                        }
-                    }
-                    Spacer()
-                }
-                .padding(20)
-            }
-            .offset(y: isPressed ? 6 : 0)
-        }
-        .padding(.bottom, 6)
-        .onTapGesture {
-            withAnimation(.spring(response: 0.1, dampingFraction: 0.6)) { isPressed = true }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { withAnimation(.spring(response: 0.1, dampingFraction: 0.6)) { isPressed = false } }
-        }
-    }
-}
-
-// MARK: - 3. Standard Shop Card (Garden Essentials - Duolingo Component)
-
-struct StandardShopCard: View {
-    let item: StandardItem
-    @State private var isPressed = false
-
-    var body: some View {
-        ZStack {
-            // Farbiger 3D Shadow Block permanent sichtbar unten +6px
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .fill(item.shadowColor)
-                .offset(y: 6)
-
-            ZStack(alignment: .bottomLeading) {
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .fill(Color.white)
-                    .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).stroke(item.shadowColor.opacity(0.4), lineWidth: 2.5))
-                
-                VStack(alignment: .leading, spacing: 0) {
-                    HStack(alignment: .top) {
-                        if let tag = item.tag {
-                            Text(tag)
-                                .font(.system(size: 12, weight: .bold)) // Clean
-                                .foregroundStyle(item.accentColor)
-                                .padding(.horizontal, 10).padding(.vertical, 6)
-                                .background(item.accentColor.opacity(0.15))
-                                .clipShape(Capsule())
-                        }
-                        Spacer()
-                        ZStack {
-                            Circle().fill(item.accentColor.opacity(0.15)).frame(width: item.isLarge ? 64 : 44, height: item.isLarge ? 64 : 44)
-                            Image(systemName: item.icon).font(.system(size: item.isLarge ? 32 : 20, weight: .bold)).foregroundStyle(item.accentColor)
-                        }
-                    }
-
-                    Spacer(minLength: 16)
-
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(item.name)
-                            .font(.system(size: item.isLarge ? 24 : 18, weight: .bold)) // Clean
-                            .foregroundStyle(Color.primary)
-                            .lineLimit(2)
-                            .minimumScaleFactor(0.8)
-
-                        Text(item.subtitle)
-                            .font(.system(size: 15, weight: .regular)) // Clean
-                            .foregroundStyle(Color.secondary)
-                            .lineLimit(2)
-                    }
-
-                    Spacer(minLength: 16)
-
-                    // Price & Auto Layout
-                    if item.isLarge {
-                        HStack(alignment: .bottom) {
-                            Text("🪙 \(item.price)").font(.system(size: 20, weight: .semibold)).foregroundStyle(Color.belohnungGoldHighlight)
-                            Spacer()
-                            ModernBuyButton(color: item.accentColor, shadowColor: item.shadowColor, title: "KAUFEN")
-                                .frame(width: 120)
-                        }
-                    } else {
-                        VStack(spacing: 12) {
-                            Text("🪙 \(item.price)").font(.system(size: 20, weight: .semibold)).foregroundStyle(Color.belohnungGoldHighlight)
-                            ModernBuyButton(color: item.accentColor, shadowColor: item.shadowColor, title: "KAUFEN")
-                                .frame(maxWidth: .infinity)
-                        }
-                    }
-                }
-                .padding(20)
-            }
-            .frame(height: item.isLarge ? 260 : 230) 
-            .offset(y: isPressed ? 6 : 0) // Drückt sich beim Tippen herein
-        }
-        .padding(.bottom, 6)
-        .onTapGesture {
-            withAnimation(.spring(response: 0.1, dampingFraction: 0.6)) { isPressed = true }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { withAnimation(.spring(response: 0.1, dampingFraction: 0.6)) { isPressed = false } }
-        }
-    }
-}
-
-// MARK: - 4. Upgrade Card (Reines Duolingo Style!)
-
-struct UpgradeCard: View {
-    let item: UpgradeItem
-    @State private var isPressed = false
-
-    var body: some View {
-        ZStack {
-            // Massiver farbiger 3D Shadow Block
-            RoundedRectangle(cornerRadius: 32, style: .continuous)
-                .fill(item.shadowColor)
-                .offset(y: 6)
-
-            // Premium Card Shell (Weiß mit starkem Rahmen)
-            ZStack(alignment: .bottomLeading) {
-                RoundedRectangle(cornerRadius: 32, style: .continuous)
-                    .fill(Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 32, style: .continuous)
-                            .stroke(item.color.opacity(0.4), lineWidth: 3)
-                    )
-                
-                HStack(spacing: 20) {
-                    // Massive Premium Icon (ohne verrücktes Blur)
-                    ZStack {
-                        Circle()
-                            .fill(item.color.opacity(0.15))
-                            .frame(width: 80, height: 80)
-                        
-                        Image(systemName: item.icon)
-                            .font(.system(size: 40, weight: .bold)) // Clean
-                            .foregroundStyle(item.color)
-                    }
-
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("UPGRADE")
-                            .font(.system(size: 12, weight: .bold)) // Clean
-                            .foregroundStyle(item.color)
-                            .padding(.horizontal, 10).padding(.vertical, 6)
-                            .background(item.color.opacity(0.15))
-                            .clipShape(Capsule())
-
-                        Text(item.name)
-                            .font(.system(size: 24, weight: .bold)) // Clean
-                            .foregroundStyle(Color.primary)
-                        
-                        Text(item.description)
-                            .font(.system(size: 15, weight: .regular)) // Clean
-                            .foregroundStyle(Color.secondary)
-                            .lineLimit(3)
-
-                        Spacer()
-
-                        HStack {
-                            Text("🪙 \(item.price)").font(.system(size: 20, weight: .bold)).foregroundStyle(Color.belohnungGoldHighlight)
-                            Spacer()
-                            // Reiner Duolingo Buy Button!
-                            ModernBuyButton(color: item.color, shadowColor: item.shadowColor, title: "FREISCHALTEN")
-                                .frame(width: 140)
-                        }
-                    }
-                }
-                .padding(24)
-            }
-            .frame(height: 220)
-            .offset(y: isPressed ? 6 : 0)
-        }
-        .padding(.bottom, 6)
-        .onTapGesture {
-            withAnimation(.spring(response: 0.1, dampingFraction: 0.6)) { isPressed = true }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { withAnimation(.spring(response: 0.1, dampingFraction: 0.6)) { isPressed = false } }
-        }
-    }
-}
-
-// MARK: - Reusable Modern Buy Button (Duolingo Style 3D Block)
-
-struct ModernBuyButton: View {
-    let color: Color
-    let shadowColor: Color
-    let title: String
-    @State private var isPressed = false
-
-    var body: some View {
-        GeometryReader { proxy in
-            ZStack(alignment: .bottom) {
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(shadowColor)
-                    .frame(height: proxy.size.height)
-                
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(color)
-                    .frame(height: proxy.size.height)
-                    .overlay(
-                        Text(title)
-                            .font(.system(size: 16, weight: .bold)) // Clean iOS Font
-                            .foregroundStyle(.white)
-                    )
-                    .offset(y: isPressed ? 0 : -6)
-            }
-        }
-        .frame(height: 50)
-        .onTapGesture {
-            withAnimation(.spring(response: 0.1, dampingFraction: 0.6)) { isPressed = true }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { withAnimation(.spring(response: 0.1, dampingFraction: 0.6)) { isPressed = false } }
-        }
-    }
-}
+// MARK: - Preview
 
 #Preview {
     UnifiedShopView()
