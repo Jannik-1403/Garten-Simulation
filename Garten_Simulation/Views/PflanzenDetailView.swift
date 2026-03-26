@@ -27,7 +27,6 @@ struct PflanzenDetailView: View {
     var onLoeschen: (() -> Void)? = nil
 
     @State private var pulsieren = false
-    @State private var wippen = false
     @State private var partikelFall: CGFloat = -130
     @State private var zeigeErinnerungPicker = false
     @State private var erinnerungsZeit = Date()
@@ -42,10 +41,10 @@ struct PflanzenDetailView: View {
 
     private var naechsteStufeName: String {
         switch seltenheit {
-        case .gewoehnlich: return "Selten"
-        case .selten: return "Episch"
-        case .episch: return "Legendär"
-        case .legendaer: return "Meisterform"
+        case .bronze: return "Silber"
+        case .silber: return "Gold"
+        case .gold: return "Diamant"
+        case .diamant: return "Meisterform"
         }
     }
 
@@ -94,13 +93,10 @@ struct PflanzenDetailView: View {
         }
         .background(.ultraThinMaterial)
         .onAppear {
-            withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
-                wippen.toggle()
-            }
             withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true)) {
                 pulsieren.toggle()
             }
-            if seltenheit == .legendaer {
+            if seltenheit == .diamant {
                 withAnimation(.linear(duration: 2.0).repeatForever(autoreverses: false)) {
                     partikelFall = 150
                 }
@@ -197,16 +193,10 @@ struct PflanzenDetailView: View {
 
             Text(seltenheit.bezeichnung)
                 .font(.system(size: 12, weight: .bold, design: .rounded))
-                .padding(.horizontal, seltenheit == .gewoehnlich ? 12 : 10)
-                .padding(.vertical, seltenheit == .gewoehnlich ? 5 : 6)
-                .background(
-                    Capsule().fill(
-                        seltenheit == .gewoehnlich
-                            ? Color(red: 0.45, green: 0.45, blue: 0.47)
-                            : seltenheit.tagHintergrund
-                    )
-                )
-                .foregroundStyle(seltenheit == .gewoehnlich ? Color.white : seltenheit.tagTextFarbe)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+                .background(Capsule().fill(seltenheit.tagHintergrund))
+                .foregroundStyle(seltenheit.tagTextFarbe)
 
             Spacer()
         }
@@ -216,15 +206,9 @@ struct PflanzenDetailView: View {
         TimelineView(.periodic(from: .now, by: 60)) { timeline in
             let now = timeline.date
             let thirstState = thirstSystem.state(at: now)
-            let ringColor = thirstState == .dead ? Color.gray : thirstSystem.interpolatedColor(at: now)
-            let ringTrim = thirstSystem.remainingFraction48h(at: now)
             let pulseDuration = thirstSystem.thirstyPulseDuration(at: now)
 
             ZStack {
-                Circle()
-                    .fill(Color.gruenPrimary.opacity(0.16))
-                    .frame(width: 220, height: 220)
-
                 if thirstState == .thirsty {
                     Circle()
                         .fill(Color.red.opacity(pulsieren ? 0.20 : 0.08))
@@ -233,44 +217,43 @@ struct PflanzenDetailView: View {
                         .animation(.easeInOut(duration: pulseDuration).repeatForever(autoreverses: true), value: pulsieren)
                 }
 
-                Circle()
-                    .trim(from: 0, to: ringTrim)
-                    .stroke(
-                        ringColor,
-                        style: StrokeStyle(lineWidth: 10, lineCap: .round)
-                    )
-                    .rotationEffect(.degrees(-90))
-                    .frame(width: 200, height: 200)
-                    .shadow(
-                        color: thirstState == .thirsty
-                            ? Color.red.opacity(0.45)
-                            : seltenheit.ringFarbe.opacity(0.35),
-                        radius: thirstState == .thirsty ? (pulsieren ? 22 : 10) : 8
-                    )
-
-                if seltenheit == .legendaer {
+                if seltenheit == .diamant {
                     ForEach(partikel) { partikel in
                         Image(systemName: "star.fill")
                             .font(.system(size: partikel.groesse))
-                            .foregroundStyle(Color.legendaerPrimary.opacity(partikel.opazitaet))
+                            .foregroundStyle(Color.diamantPrimary.opacity(partikel.opazitaet))
                             .offset(x: partikel.x, y: partikel.y + partikelFall)
                     }
                 }
 
+                SeltenheitProgressRing(
+                    progress: CGFloat(fortschritt),
+                    color: seltenheit.ringFarbe,
+                    lineWidth: 12,
+                    size: 200,
+                    celebrateTrigger: false
+                )
+                .shadow(color: seltenheit.ringFarbe.opacity(0.35), radius: 8)
+
                 ZStack {
                     Circle()
-                        .fill(Color.green.opacity(0.15))
-                        .frame(width: 220, height: 220)
+                        .fill(Color.gruenSecondary)
+                        .frame(width: 176, height: 176)
+
+                    Circle()
+                        .fill(Color.gruenPrimary)
+                        .frame(width: 176, height: 176)
+                        .offset(y: -8)
 
                     Image(bildName)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 200, height: 200)
+                        .frame(width: 110, height: 110)
                         .clipShape(Circle())
                         .saturation(thirstState == .dead ? 0 : (thirstState == .thirsty ? 0.7 : 1))
                         .opacity(thirstState == .dead ? 0.6 : 1)
+                        .offset(y: -8)
                 }
-                .rotationEffect(.degrees(thirstState == .thirsty ? (wippen ? 3 : -3) : (wippen ? 5 : -5)))
 
                 if thirstState == .dead {
                     crackOverlay
@@ -311,15 +294,10 @@ struct PflanzenDetailView: View {
                     )
 
                 VStack(spacing: 6) {
-                    Image(systemName: "flame.fill")
-                        .font(.system(size: 28))
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [.orange, .red],
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        )
+                    Image("Sonnen_Streak")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 28, height: 28)
 
                     Text("\(streak)")
                         .font(.system(size: 32, weight: .black, design: .rounded))
@@ -428,8 +406,14 @@ struct PflanzenDetailView: View {
                     ZStack {
                         switch status {
                         case .erledigt:
-                            Circle()
-                                .fill(seltenheit.ringFarbe)
+                            ZStack {
+                                Circle()
+                                    .fill(Color.orange.opacity(0.15))
+                                Image("Sonnen_Streak")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 13, height: 13)
+                            }
                         case .verpasst:
                             Circle()
                                 .fill(Color.red.opacity(0.3))
@@ -526,8 +510,8 @@ struct PflanzenDetailView: View {
 #Preview {
     PflanzenDetailView(
         name: "Meditation",
-        bildName: Seltenheit.episch.iconName,
-        seltenheit: .episch,
+        bildName: Seltenheit.gold.iconName,
+        seltenheit: .gold,
         streak: 12,
         fortschritt: 0.8,
         thirstSystem: ThirstSystem(),
@@ -536,3 +520,4 @@ struct PflanzenDetailView: View {
         erledigteTageDaten: Array(repeating: true, count: 30)
     )
 }
+

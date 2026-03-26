@@ -36,7 +36,7 @@ struct SeltenheitsBadge: View {
         SeltenheitsBadge(stufe: .bronze)
         SeltenheitsBadge(stufe: .silber)
         SeltenheitsBadge(stufe: .gold)
-        SeltenheitsBadge(stufe: .platin)
+        SeltenheitsBadge(stufe: .diamant)
         HStack(spacing: 8) {
             SeltenheitsBadge(stufe: .gold, zeigeTitel: false)
             SeltenheitsBadge(stufe: .silber, kompakt: true)

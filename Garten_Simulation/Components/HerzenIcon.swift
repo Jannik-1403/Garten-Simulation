@@ -5,9 +5,10 @@ struct HerzenIcon: View {
 
     var body: some View {
         HStack(spacing: 4) {
-            Image(systemName: "heart.fill")
-                .foregroundStyle(.red)
-                .font(.appStats)
+            Image("Hert")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 28, height: 28)
             Text("\(wert)")
                 .font(.appStats)
                 .foregroundStyle(.red)

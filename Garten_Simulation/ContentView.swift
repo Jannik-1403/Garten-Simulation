@@ -18,6 +18,11 @@ struct ContentView: View {
                     Label("Gewohnheiten", systemImage: "flame.fill")
                 }
             
+            UnifiedShopView()
+                .tabItem {
+                    Label("Shop", systemImage: "cart.fill")
+                }
+            
             ProfilView()
                 .tabItem {
                     Label("Profil", systemImage: "person.fill")

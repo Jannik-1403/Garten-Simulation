@@ -5,9 +5,10 @@ struct StreakIcon: View {
 
     var body: some View {
         HStack(spacing: 4) {
-            Image(systemName: "flame.fill")
-                .foregroundStyle(.orange)
-                .font(.appStats)
+            Image("Sonnen_Streak")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 20, height: 20)
             Text("\(wert)")
                 .font(.appStats)
                 .foregroundStyle(.orange)

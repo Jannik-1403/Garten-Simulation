@@ -64,14 +64,14 @@ struct PflanzenButton: View {
 #Preview {
     VStack(spacing: 30) {
         PflanzenButton(
-            bildName: Seltenheit.gewoehnlich.iconName,
+            bildName: Seltenheit.bronze.iconName,
             farbe: .gruenPrimary,
             sekundaerFarbe: .gruenSecondary,
             groesse: 100
         )
         
         PflanzenButton(
-            bildName: Seltenheit.legendaer.iconName,
+            bildName: Seltenheit.diamant.iconName,
             farbe: .gruenPrimary,
             sekundaerFarbe: .gruenSecondary,
             groesse: 80

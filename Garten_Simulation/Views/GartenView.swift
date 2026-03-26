@@ -1,3 +1,4 @@
+import Combine
 import SwiftUI
 
 struct GartenView: View {
@@ -9,37 +10,18 @@ struct GartenView: View {
     @State private var ausgewaehltePflanze: PflanzenModel? = nil
     @State private var zeigeWetterDetails = false
     @State private var startAbstandAktiv = true
+    @State private var timerAktuell = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     @State private var pflanzen: [PflanzenModel] = [
-        PflanzenModel(
-            name: "Gym",
-            bildName: Seltenheit.gewoehnlich.iconName,
-            seltenheit: .gewoehnlich,
-            thirstSystem: ThirstSystem.withRemaining(hours: 1, minutes: 0)
-        ),
-        PflanzenModel(
-            name: "Zuckerfrei",
-            bildName: Seltenheit.selten.iconName,
-            seltenheit: .selten,
-            thirstSystem: ThirstSystem.withRemaining(hours: 2, minutes: 0)
-        ),
-        PflanzenModel(
-            name: "Meditation",
-            bildName: Seltenheit.episch.iconName,
-            seltenheit: .episch,
-            thirstSystem: ThirstSystem.withRemaining(hours: 1, minutes: 30)
-        ),
-        PflanzenModel(
-            name: "Lesen",
-            bildName: Seltenheit.legendaer.iconName,
-            seltenheit: .legendaer,
-            thirstSystem: ThirstSystem.withRemaining(hours: 3, minutes: 0)
-        ),
+        PflanzenModel(name: "Gym", bildName: Seltenheit.bronze.iconName, seltenheit: .bronze),
+        PflanzenModel(name: "Zuckerfrei", bildName: Seltenheit.silber.iconName, seltenheit: .silber),
+        PflanzenModel(name: "Meditation", bildName: Seltenheit.gold.iconName, seltenheit: .gold),
+        PflanzenModel(name: "Lesen", bildName: Seltenheit.diamant.iconName, seltenheit: .diamant),
     ]
 
     let columns = [
-        GridItem(.flexible(), spacing: 20),
-        GridItem(.flexible(), spacing: 20),
+        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible(), spacing: 16),
     ]
 
     var body: some View {
@@ -88,7 +70,7 @@ struct GartenView: View {
                             .frame(height: 12)
                     }
 
-                    LazyVGrid(columns: columns, spacing: 20) {
+                    LazyVGrid(columns: columns, spacing: 26) {
                         ForEach(pflanzen.indices, id: \.self) { index in
                             PflanzenCard(
                                 name: pflanzen[index].name,
@@ -97,6 +79,8 @@ struct GartenView: View {
                                 gewaessert: pflanzen[index].gewaessert,
                                 giessZaehler: pflanzen[index].giessZaehler,
                                 seltenheit: pflanzen[index].seltenheit,
+                                letzteGiessung: pflanzen[index].letzteGiessung,
+                                pflanzenPhase: pflanzen[index].phase,
                                 thirstSystem: pflanzen[index].thirstSystem,
                                 wetterEvent: aktivesEvent,
                                 onGiessen: {
@@ -106,6 +90,7 @@ struct GartenView: View {
                                     ausgewaehltePflanze = pflanzen[index]
                                 }
                             )
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                         }
                     }
                     .padding(.horizontal, 20)
@@ -127,6 +112,13 @@ struct GartenView: View {
         .onAppear {
             ladeTagesEvent()
             starteTageswechselTimer()
+        }
+        .onReceive(timerAktuell) { _ in
+            for index in pflanzen.indices {
+                pflanzen[index].phase = PflanzenModel.berechnePhase(
+                    letzteGiessung: pflanzen[index].letzteGiessung
+                )
+            }
         }
         .sheet(item: $ausgewaehltePflanze) { pflanze in
             PflanzenDetailView(
@@ -197,8 +189,16 @@ struct GartenView: View {
         withAnimation {
             var p = pflanzen[index]
 
-            let rewardFactor = p.thirstSystem.potentialReward()
-            let gemBonus = Int((10.0 * aktivesEvent.gemMultiplikator * rewardFactor).rounded())
+            let phaseBeimGiessen = PflanzenModel.berechnePhase(letzteGiessung: p.letzteGiessung)
+            let gemBonus: Int
+            switch phaseBeimGiessen {
+            case .wachstum:
+                gemBonus = Int(10.0 * aktivesEvent.gemMultiplikator)
+            case .kampf:
+                gemBonus = Int(5.0 * aktivesEvent.gemMultiplikator)
+            case .tot:
+                gemBonus = 0
+            }
             gems += gemBonus
 
             p.fortschritt = min(p.fortschritt + 0.05, 1.0)
@@ -216,7 +216,7 @@ struct GartenView: View {
             }
 
             if p.gewaessert {
-                if p.thirstSystem.state() == .dead {
+                if phaseBeimGiessen == .tot {
                     p.streak = 0
                 }
                 p.streak += 1
@@ -236,11 +236,19 @@ struct GartenView: View {
 
             if p.gewaessert {
                 p.thirstSystem.water()
+                p.letzteGiessung = Date()
+                p.phase = .wachstum
             }
 
             pflanzen[index] = p
         }
     }
+}
+
+enum PflanzenPhase: Equatable {
+    case wachstum
+    case kampf
+    case tot
 }
 
 struct PflanzenModel: Identifiable {
@@ -255,35 +263,37 @@ struct PflanzenModel: Identifiable {
     var stuermUeberlebt: Int = 0
     var streak: Int = 0
     var erledigteTageDaten: [Bool] = Array(repeating: false, count: 30)
-    var seltenheit: Seltenheit = .gewoehnlich
-    var thirstSystem: ThirstSystem
+    var seltenheit: Seltenheit = .bronze
+    var thirstSystem: ThirstSystem = ThirstSystem()
+    var letzteGiessung: Date? = nil
+    var phase: PflanzenPhase = .wachstum
 
-    init(
-        name: String,
-        bildName: String,
-        fortschritt: Double = 0.0,
-        gewaessert: Bool = false,
-        giessZaehler: Int = 0,
-        benoetigtZweiMal: Bool = false,
-        gesamtGegossen: Int = 0,
-        stuermUeberlebt: Int = 0,
-        streak: Int = 0,
-        erledigteTageDaten: [Bool] = Array(repeating: false, count: 30),
-        seltenheit: Seltenheit = .gewoehnlich,
-        thirstSystem: ThirstSystem = ThirstSystem()
-    ) {
-        self.name = name
-        self.bildName = bildName
-        self.fortschritt = fortschritt
-        self.gewaessert = gewaessert
-        self.giessZaehler = giessZaehler
-        self.benoetigtZweiMal = benoetigtZweiMal
-        self.gesamtGegossen = gesamtGegossen
-        self.stuermUeberlebt = stuermUeberlebt
-        self.streak = streak
-        self.erledigteTageDaten = erledigteTageDaten
-        self.seltenheit = seltenheit
-        self.thirstSystem = thirstSystem
+    static func berechnePhase(letzteGiessung: Date?, jetzt: Date = Date()) -> PflanzenPhase {
+        guard let letzteGiessung = letzteGiessung else {
+            return .wachstum
+        }
+        let stunden = jetzt.timeIntervalSince(letzteGiessung) / 3600
+        if stunden < 24 {
+            return .wachstum
+        } else if stunden < 48 {
+            return .kampf
+        } else {
+            return .tot
+        }
+    }
+
+    static func verbleibendeZeit(letzteGiessung: Date?, jetzt: Date = Date()) -> TimeInterval {
+        guard let letzteGiessung = letzteGiessung else {
+            return 24 * 3600
+        }
+        let stunden = jetzt.timeIntervalSince(letzteGiessung) / 3600
+        if stunden < 24 {
+            return (24 * 3600) - jetzt.timeIntervalSince(letzteGiessung)
+        } else if stunden < 48 {
+            return (48 * 3600) - jetzt.timeIntervalSince(letzteGiessung)
+        } else {
+            return 0
+        }
     }
 }
 

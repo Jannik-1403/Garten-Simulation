@@ -4,52 +4,62 @@ import Observation
 import UIKit
 
 enum Seltenheit: String, Codable {
-    case gewoehnlich
-    case selten
-    case episch
-    case legendaer
+    case bronze
+    case silber
+    case gold
+    case diamant
 
     var bezeichnung: String {
         switch self {
-        case .gewoehnlich: return "Gewöhnlich"
-        case .selten: return "Selten"
-        case .episch: return "Episch"
-        case .legendaer: return "Legendär"
+        case .bronze: return "Bronze"
+        case .silber: return "Silber"
+        case .gold: return "Gold"
+        case .diamant: return "Diamant"
         }
     }
 
     var ringFarbe: Color {
         switch self {
-        case .gewoehnlich: return .gewoehnlichPrimary
-        case .selten: return .seltenPrimary
-        case .episch: return .epischPrimary
-        case .legendaer: return .legendaerPrimary
+        case .bronze: return .bronzePrimary
+        case .silber: return .silberPrimary
+        case .gold: return .goldPrimary
+        case .diamant: return .diamantPrimary
         }
     }
 
     var ringFarbeSekundaer: Color {
         switch self {
-        case .gewoehnlich: return .gewoehnlichSecondary
-        case .selten: return .seltenSecondary
-        case .episch: return .epischSecondary
-        case .legendaer: return .legendaerSecondary
+        case .bronze: return .bronzeSecondary
+        case .silber: return .silberSecondary
+        case .gold: return .goldSecondary
+        case .diamant: return .diamantSecondary
         }
     }
 
     var tagHintergrund: Color {
-        ringFarbe.opacity(0.18)
+        switch self {
+        case .bronze:  return Color(red: 0.60, green: 0.20, blue: 0.00)
+        case .silber:  return Color(red: 0.45, green: 0.50, blue: 0.55)
+        case .gold:    return Color(red: 0.70, green: 0.50, blue: 0.00)
+        case .diamant: return Color(red: 0.00, green: 0.35, blue: 0.70)
+        }
     }
 
     var tagTextFarbe: Color {
-        ringFarbe
+        switch self {
+        case .bronze:  return .white
+        case .silber:  return .white
+        case .gold:    return .white
+        case .diamant: return .white
+        }
     }
 
     var iconName: String {
         switch self {
-        case .gewoehnlich: return "bonsai_stufe1"
-        case .selten: return "bonsai_stufe2"
-        case .episch: return "bonsai_stufe3"
-        case .legendaer: return "bonsai_stufe4"
+        case .bronze: return "bonsai_stufe1"
+        case .silber: return "bonsai_stufe2"
+        case .gold: return "bonsai_stufe3"
+        case .diamant: return "bonsai_stufe4"
         }
     }
 }
@@ -69,7 +79,7 @@ class Pflanze {
         seltenheit.iconName
     }
 
-    init(name: String, bildName: String, seltenheit: Seltenheit = .gewoehnlich) {
+    init(name: String, bildName: String, seltenheit: Seltenheit = .bronze) {
         self.name = name
         self.bildName = bildName
         self.streak = 0
@@ -101,23 +111,6 @@ final class ThirstSystem {
         self.lastWatered = lastWatered
         self.baseReward = baseReward
         self.hourlyPenaltyAfter24h = hourlyPenaltyAfter24h
-    }
-
-    /// `lastWatered` so, dass zum Zeitpunkt `reference` genau `remainingHours` Std. und `remainingMinutes` Min. bis zum 48h-Ende verbleiben.
-    static func withRemaining(
-        hours remainingHours: Int,
-        minutes remainingMinutes: Int,
-        reference: Date = Date()
-    ) -> ThirstSystem {
-        let rem = max(0, remainingHours * 3600 + remainingMinutes * 60)
-        let cap = 48 * 3600
-        let clampedRem = min(cap, rem)
-        let elapsed = TimeInterval(cap - clampedRem)
-        return ThirstSystem(lastWatered: reference.addingTimeInterval(-elapsed))
-    }
-
-    static func withRemaining(hours: Int, minutes: Int) -> ThirstSystem {
-        withRemaining(hours: hours, minutes: minutes, reference: Date())
     }
 
     func water(at date: Date = Date()) {

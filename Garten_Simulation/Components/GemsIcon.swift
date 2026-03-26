@@ -74,18 +74,19 @@ struct GemIconView: View {
     }
 }
 
-// MARK: - GemsIcon
 struct GemsIcon: View {
     let wert: Int
 
     var body: some View {
         HStack(spacing: 7) {
-            GemIconView()
-                .frame(width: 30, height: 30)
+            Image("Coin")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 32, height: 32)
 
             Text("\(wert)")
                 .font(.appStats)
-                .foregroundStyle(Color(red: 0.30, green: 0.72, blue: 0.05))
+                .foregroundStyle(Color.orangePrimary)
         }
     }
 }
