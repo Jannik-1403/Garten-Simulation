@@ -146,30 +146,14 @@ struct ShopItemDetailView: View {
 
                             } else {
                                 // Zustand 3: Kaufen möglich — Animation DANN Aktion
-                                Button {
-                                    // DuolingoButtonStyle spielt Press-Animation ab
-                                    // Wir warten kurz damit Nutzer die Animation SIEHT
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {
-                                        shopStore.buy(id: payload.id, price: payload.price)
-                                        withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
-                                            showSuccess = true
-                                        }
-                                    }
-                                } label: {
-                                    HStack(spacing: 8) {
-                                        Image("Coin")
-                                            .resizable().scaledToFit()
-                                            .frame(width: 20, height: 20)
-                                        Text("Jetzt kaufen")
+                                DuolingoKaufButton(
+                                    color: payload.color
+                                ) {
+                                    shopStore.buy(id: payload.id, price: payload.price)
+                                    withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
+                                        showSuccess = true
                                     }
                                 }
-                                .buttonStyle(DuolingoButtonStyle(
-                                    size: .large,
-                                    fillWidth: true,
-                                    backgroundColor: payload.color,
-                                    shadowColor: payload.shadowColor,
-                                    foregroundColor: .white
-                                ))
                             }
                         }
                     }

@@ -66,7 +66,7 @@ struct PurchaseSuccessOverlay: View {
                     size: .large,
                     fillWidth: true,
                     backgroundColor: .green,
-                    shadowColor: Color(red: 0.1, green: 0.5, blue: 0.15),
+                    shadowColor: Color.green.darker(),
                     foregroundColor: .white
                 ))
             }

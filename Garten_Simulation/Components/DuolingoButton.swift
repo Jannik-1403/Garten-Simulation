@@ -49,6 +49,16 @@ private extension Color {
     static let duoGreenShadow = Color(red: 0.345, green: 0.646, blue: 0.000)
 }
 
+extension Color {
+    func darker() -> Color {
+        let ui = UIColor(self)
+        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        ui.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+        return Color(hue: h, saturation: min(s + 0.1, 1.0),
+                     brightness: max(b - 0.22, 0), opacity: a)
+    }
+}
+
 // MARK: - DuolingoButtonStyle
 
 struct DuolingoButtonStyle: ButtonStyle {

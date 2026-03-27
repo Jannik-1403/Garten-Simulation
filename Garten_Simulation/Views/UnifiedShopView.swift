@@ -24,6 +24,20 @@ struct UpgradeItem: Identifiable {
     let shadowColor: Color
 }
 
+struct PlantItem: Identifiable {
+    let id: String
+    let name: String
+    let subtitle: String
+    let description: String
+    let price: Int
+    let icon: String          // Asset-Name
+    let accentColor: Color
+    let shadowColor: Color
+    let tag: String?          // "BAUM", "STRAUCH", "BLUME", "KAKTUS"
+    let badgeText: String?    // z.B. "NEU", "SELTEN", "-20%"
+    let badgeColor: Color?
+}
+
 // MARK: - 3D Icon Removed
 
 // MARK: - Duolingo Shop Card (Replaces PlaquCard)
@@ -241,6 +255,12 @@ struct UnifiedShopView: View {
     @State private var selectedTag: String? = nil
     @State private var showFilters: Bool = true
     @State private var detailPayload: ShopDetailPayload? = nil
+    @State private var shopCategory: ShopCategory = .gegenstande
+
+    enum ShopCategory: String, CaseIterable {
+        case pflanzen    = "Pflanzen"
+        case gegenstande = "Gegenstände"
+    }
 
     var coins: Int { shopStore.coins }
 
@@ -257,6 +277,93 @@ struct UnifiedShopView: View {
         UpgradeItem(name: "Wetter-Meister", description: "Kontrolliere einmal täglich das Gartenwetter.", price: 8000, icon: "bonsai_stufe5", color: .blauPrimary, shadowColor: .blauSecondary)
     ]
 
+    let baeume: [PlantItem] = [
+        PlantItem(
+            id: "kirschbaum",
+            name: "Kirschbaum",
+            subtitle: "Blüht jeden Frühling",
+            description: "Ein wunderschöner Kirschbaum der jeden Frühling in zartem Rosa erblüht. Pflegeleicht und langlebig.",
+            price: 320,
+            icon: "bonsai_stufe4",
+            accentColor: .pink,
+            shadowColor: Color(red: 0.7, green: 0.2, blue: 0.4),
+            tag: "BAUM",
+            badgeText: "BELIEBT",
+            badgeColor: .pink
+        ),
+        PlantItem(
+            id: "apfelbaum",
+            name: "Apfelbaum",
+            subtitle: "Trägt im Herbst Früchte",
+            description: "Ein klassischer Apfelbaum. Im Herbst kannst du seine Früchte ernten und als Bonus-Coins einlösen.",
+            price: 280,
+            icon: "bonsai_stufe3",
+            accentColor: .green,
+            shadowColor: Color(red: 0.1, green: 0.5, blue: 0.15),
+            tag: "BAUM",
+            badgeText: nil,
+            badgeColor: nil
+        ),
+        PlantItem(
+            id: "bonsai-gold",
+            name: "Goldener Bonsai",
+            subtitle: "Seltene Zierpflanze",
+            description: "Ein extrem seltener goldener Bonsai. Gibt täglich 5 Bonus-Coins und wertet deinen Garten massiv auf.",
+            price: 1500,
+            icon: "bonsai_stufe5",
+            accentColor: .goldPrimary,
+            shadowColor: .goldSecondary,
+            tag: "BAUM",
+            badgeText: "SELTEN",
+            badgeColor: .goldPrimary
+        )
+    ]
+
+    let straucher: [PlantItem] = [
+        PlantItem(
+            id: "lavendel",
+            name: "Lavendel",
+            subtitle: "Duftend & bienenfreundlich",
+            description: "Lavendel bringt nicht nur Duft in deinen Garten, sondern zieht auch Bienen an die deine anderen Pflanzen bestäuben.",
+            price: 80,
+            icon: "bonsai_stufe1",
+            accentColor: .lilaPrimary,
+            shadowColor: .lilaSecondary,
+            tag: "STRAUCH",
+            badgeText: "NEU",
+            badgeColor: .lilaPrimary
+        ),
+        PlantItem(
+            id: "rosenstrauch",
+            name: "Rosenstrauch",
+            subtitle: "Klassische Schönheit",
+            description: "Ein prächtiger Rosenstrauch mit leuchtend roten Blüten. Braucht etwas mehr Pflege, aber lohnt sich.",
+            price: 150,
+            icon: "bonsai_stufe2",
+            accentColor: .red,
+            shadowColor: Color(red: 0.6, green: 0.1, blue: 0.1),
+            tag: "STRAUCH",
+            badgeText: nil,
+            badgeColor: nil
+        )
+    ]
+
+    let kakteen: [PlantItem] = [
+        PlantItem(
+            id: "saguaro",
+            name: "Saguaro Kaktus",
+            subtitle: "Braucht kaum Wasser",
+            description: "Der klassische Wüstenkaktus. Braucht nur einmal pro Woche Wasser — perfekt wenn du mal vergisst zu gießen.",
+            price: 120,
+            icon: "bonsai_stufe1",
+            accentColor: .green,
+            shadowColor: Color(red: 0.1, green: 0.45, blue: 0.1),
+            tag: "KAKTUS",
+            badgeText: "-20%",
+            badgeColor: .orange
+        )
+    ]
+
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
@@ -267,6 +374,9 @@ struct UnifiedShopView: View {
                         ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading, spacing: 0) {
                             Spacer().frame(height: 60).id("top")
+
+                            shopSwitcher
+                                .padding(.bottom, 8)
 
                         // MARK: Suche + Filter
                         VStack(spacing: 10) {
@@ -315,115 +425,179 @@ struct UnifiedShopView: View {
                         .padding(.bottom, 16)
                         .animation(.spring(response: 0.35, dampingFraction: 0.75), value: showFilters)
 
-                        // MARK: Angebote & Bundles
-                        if searchText.isEmpty && (selectedTag == nil || selectedTag == "ALLE") {
-                            sectionHeader("Angebote & Bundles")
-                            VStack(spacing: 12) {
-                                DealCard(
-                                    icon: "bonsai_stufe5",
-                                    name: "Wunder-Box",
-                                    subtitle: "3 Epische Samen + 500 Dünger",
-                                    price: 99,
-                                    badgeText: "DEAL",
-                                    accentColor: .red,
-                                    onBuy: {
+                        if shopCategory == .gegenstande {
+                            // MARK: Angebote & Bundles
+                            if searchText.isEmpty && (selectedTag == nil || selectedTag == "ALLE") {
+                                sectionHeader("Angebote & Bundles")
+                                VStack(spacing: 12) {
+                                    DealCard(
+                                        icon: "bonsai_stufe5",
+                                        name: "Wunder-Box",
+                                        subtitle: "3 Epische Samen + 500 Dünger",
+                                        price: 99,
+                                        badgeText: "DEAL",
+                                        accentColor: .red,
+                                        onBuy: {
+                                            detailPayload = ShopDetailPayload(
+                                                id: "wunder-box",
+                                                title: "Wunder-Box",
+                                                subtitle: "Spezial-Angebot",
+                                                description: "Enthält 3 garantierte Epische Samen und 500 Magie-Dünger. Perfekt für einen starken Start in die nächste Saison!",
+                                                price: 99,
+                                                icon: "bonsai_stufe5",
+                                                color: .red,
+                                                shadowColor: .red,
+                                                tag: "DEAL"
+                                            )
+                                        }
+                                    )
+                                    BundleCardRow(onBuy: {
                                         detailPayload = ShopDetailPayload(
-                                            id: "wunder-box",
-                                            title: "Wunder-Box",
-                                            subtitle: "Spezial-Angebot",
-                                            description: "Enthält 3 garantierte Epische Samen und 500 Magie-Dünger. Perfekt für einen starken Start in die nächste Saison!",
-                                            price: 99,
-                                            icon: "bonsai_stufe5",
-                                            color: .red,
-                                            shadowColor: .red,
-                                            tag: "DEAL"
+                                            id: "starter-bundle",
+                                            title: "Starter Bundle",
+                                            subtitle: "Samen + Wasser Bundle",
+                                            description: "Hol dir das Basis-Set für deinen Garten. Beinhaltet 10 Normale Samen und 50 Gießkannen-Ladungen mit einem Rabatt von 20%.",
+                                            price: 50,
+                                            icon: "bonsai_stufe1",
+                                            color: .green,
+                                            shadowColor: .green,
+                                            tag: "BUNDLE"
+                                        )
+                                    })
+                                }
+                                .padding(.horizontal, 16)
+                                Spacer().frame(height: 28)
+                            }
+
+                            // MARK: Garten Essentials
+                            let essentialsToDisplay = essentials.filter { passesFilter($0) }
+                            if !essentialsToDisplay.isEmpty {
+                                sectionHeader("Garten Essentials")
+                                VStack(spacing: 12) {
+                                    ForEach(essentialsToDisplay) { item in
+                                        ShopItemCard(
+                                            icon: item.icon,
+                                            accentColor: item.accentColor,
+                                            shadowColor: item.shadowColor,
+                                            name: item.name,
+                                            subtitle: item.subtitle,
+                                            price: item.price,
+                                            onBuy: {
+                                                detailPayload = ShopDetailPayload(
+                                                    id: item.name,
+                                                    title: item.name,
+                                                    subtitle: item.subtitle,
+                                                    description: "Ein essenzieller Gegenstand für deinen Garten. Verbessere deine Pflanzen oder erleichtere dir die Pflege.",
+                                                    price: item.price,
+                                                    icon: item.icon,
+                                                    color: item.accentColor,
+                                                    shadowColor: item.shadowColor,
+                                                    tag: item.tag
+                                                )
+                                            }
                                         )
                                     }
-                                )
-                                BundleCardRow(onBuy: {
+                                }
+                                .padding(.horizontal, 16)
+                                Spacer().frame(height: 28)
+                            }
+
+                            // MARK: Upgrades
+                            let upgradesToDisplay = upgrades.filter {
+                                !shopStore.isPurchased($0.name) &&
+                                (searchText.isEmpty || $0.name.localizedCaseInsensitiveContains(searchText))
+                            }
+                            if (selectedTag == nil || selectedTag == "ALLE" || selectedTag == "UPGRADES") && !upgradesToDisplay.isEmpty {
+                                sectionHeader("Upgrades")
+                                VStack(spacing: 12) {
+                                    ForEach(upgradesToDisplay) { upgrade in
+                                        ShopItemCard(
+                                            icon: upgrade.icon,
+                                            accentColor: upgrade.color,
+                                            shadowColor: upgrade.shadowColor,
+                                            name: upgrade.name,
+                                            subtitle: upgrade.description,
+                                            price: upgrade.price,
+                                            onBuy: {
+                                                detailPayload = ShopDetailPayload(
+                                                    id: upgrade.name,
+                                                    title: upgrade.name,
+                                                    subtitle: "Garten-Upgrade",
+                                                    description: upgrade.description,
+                                                    price: upgrade.price,
+                                                    icon: upgrade.icon,
+                                                    color: upgrade.color,
+                                                    shadowColor: upgrade.shadowColor,
+                                                    tag: "UPGRADE"
+                                                )
+                                            }
+                                        )
+                                    }
+                                }
+                                .padding(.horizontal, 16)
+                                Spacer().frame(height: 28)
+                            }
+                        } else {
+                            // MARK: Pflanzen-Shop
+
+                            // Angebot des Tages
+                            sectionHeader("Angebot des Tages")
+                            DealCard(
+                                icon: "bonsai_stufe5",
+                                name: "Goldener Bonsai",
+                                subtitle: "Seltene Zierpflanze · Täglich +5 Coins",
+                                price: 1200,
+                                badgeText: "DEAL",
+                                accentColor: .goldPrimary,
+                                onBuy: {
                                     detailPayload = ShopDetailPayload(
-                                        id: "starter-bundle",
-                                        title: "Starter Bundle",
-                                        subtitle: "Samen + Wasser Bundle",
-                                        description: "Hol dir das Basis-Set für deinen Garten. Beinhaltet 10 Normale Samen und 50 Gießkannen-Ladungen mit einem Rabatt von 20%.",
-                                        price: 50,
-                                        icon: "bonsai_stufe1",
-                                        color: .green,
-                                        shadowColor: .green,
-                                        tag: "BUNDLE"
+                                        id: "bonsai-gold-deal",
+                                        title: "Goldener Bonsai",
+                                        subtitle: "Angebot des Tages",
+                                        description: "Ein extrem seltener goldener Bonsai zum Sonderpreis. Gibt täglich 5 Bonus-Coins und wertet deinen Garten massiv auf.",
+                                        price: 1200,
+                                        icon: "bonsai_stufe5",
+                                        color: .goldPrimary,
+                                        shadowColor: .goldSecondary,
+                                        tag: "DEAL"
                                     )
-                                })
-                            }
+                                }
+                            )
                             .padding(.horizontal, 16)
-                            Spacer().frame(height: 28)
-                        }
 
-                        // MARK: Garten Essentials
-                        let essentialsToDisplay = essentials.filter { passesFilter($0) }
-                        if !essentialsToDisplay.isEmpty {
-                            sectionHeader("Garten Essentials")
+                            Spacer().frame(height: 28)
+
+                            // Bäume
+                            sectionHeader("Bäume")
                             VStack(spacing: 12) {
-                                ForEach(essentialsToDisplay) { item in
-                                    ShopItemCard(
-                                        icon: item.icon,
-                                        accentColor: item.accentColor,
-                                        shadowColor: item.shadowColor,
-                                        name: item.name,
-                                        subtitle: item.subtitle,
-                                        price: item.price,
-                                        onBuy: {
-                                            detailPayload = ShopDetailPayload(
-                                                id: item.name,
-                                                title: item.name,
-                                                subtitle: item.subtitle,
-                                                description: "Ein essenzieller Gegenstand für deinen Garten. Verbessere deine Pflanzen oder erleichtere dir die Pflege.",
-                                                price: item.price,
-                                                icon: item.icon,
-                                                color: item.accentColor,
-                                                shadowColor: item.shadowColor,
-                                                tag: item.tag
-                                            )
-                                        }
-                                    )
+                                ForEach(baeume) { plant in
+                                    plantCard(plant)
                                 }
                             }
                             .padding(.horizontal, 16)
-                            Spacer().frame(height: 28)
-                        }
 
-                        // MARK: Upgrades
-                        let upgradesToDisplay = upgrades.filter {
-                            !shopStore.isPurchased($0.name) &&
-                            (searchText.isEmpty || $0.name.localizedCaseInsensitiveContains(searchText))
-                        }
-                        if (selectedTag == nil || selectedTag == "ALLE" || selectedTag == "UPGRADES") && !upgradesToDisplay.isEmpty {
-                            sectionHeader("Upgrades")
+                            Spacer().frame(height: 28)
+
+                            // Sträucher
+                            sectionHeader("Sträucher")
                             VStack(spacing: 12) {
-                                ForEach(upgradesToDisplay) { upgrade in
-                                    ShopItemCard(
-                                        icon: upgrade.icon,
-                                        accentColor: upgrade.color,
-                                        shadowColor: upgrade.shadowColor,
-                                        name: upgrade.name,
-                                        subtitle: upgrade.description,
-                                        price: upgrade.price,
-                                        onBuy: {
-                                            detailPayload = ShopDetailPayload(
-                                                id: upgrade.name,
-                                                title: upgrade.name,
-                                                subtitle: "Garten-Upgrade",
-                                                description: upgrade.description,
-                                                price: upgrade.price,
-                                                icon: upgrade.icon,
-                                                color: upgrade.color,
-                                                shadowColor: upgrade.shadowColor,
-                                                tag: "UPGRADE"
-                                            )
-                                        }
-                                    )
+                                ForEach(straucher) { plant in
+                                    plantCard(plant)
                                 }
                             }
                             .padding(.horizontal, 16)
+
+                            Spacer().frame(height: 28)
+
+                            // Kakteen
+                            sectionHeader("Kakteen & Sukkulenten")
+                            VStack(spacing: 12) {
+                                ForEach(kakteen) { plant in
+                                    plantCard(plant)
+                                }
+                            }
+                            .padding(.horizontal, 16)
+
                             Spacer().frame(height: 28)
                         }
 
@@ -438,22 +612,11 @@ struct UnifiedShopView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Button {
+                        ScrollToTopButton {
                             withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
                                 proxy.scrollTo("top", anchor: .top)
                             }
-                        } label: {
-                            Image(systemName: "arrow.up")
-                                .font(.system(size: 12, weight: .bold))
-                                .frame(width: 28, height: 28)
                         }
-                        .buttonStyle(DuolingoButtonStyle(
-                            size: .small,
-                            fillWidth: false,
-                            backgroundColor: .blauPrimary,
-                            shadowColor: .blauSecondary,
-                            foregroundColor: .white
-                        ))
                     }
                     .padding(.trailing, 20)
                     .padding(.bottom, 10) 
@@ -491,6 +654,41 @@ struct UnifiedShopView: View {
             .foregroundStyle(Color.primary)
             .padding(.horizontal, 16)
             .padding(.bottom, 10)
+    }
+
+    private func plantCard(_ plant: PlantItem) -> some View {
+        ShopItemCard(
+            icon: plant.icon,
+            accentColor: plant.accentColor,
+            shadowColor: plant.shadowColor,
+            name: plant.name,
+            subtitle: plant.subtitle,
+            price: plant.price,
+            onBuy: {
+                detailPayload = ShopDetailPayload(
+                    id: plant.id,
+                    title: plant.name,
+                    subtitle: plant.subtitle,
+                    description: plant.description,
+                    price: plant.price,
+                    icon: plant.icon,
+                    color: plant.accentColor,
+                    shadowColor: plant.shadowColor,
+                    tag: plant.tag
+                )
+            }
+        )
+    }
+
+    // MARK: - Switcher
+    var shopSwitcher: some View {
+        Picker("Kategorie", selection: $shopCategory) {
+            Text("Gegenstände").tag(ShopCategory.gegenstande)
+            Text("Pflanzen").tag(ShopCategory.pflanzen)
+        }
+        .pickerStyle(.segmented)
+        .padding(.horizontal, 16)
+        .padding(.top, 8)
     }
 
     // MARK: - Shop Header
@@ -541,23 +739,18 @@ struct UnifiedShopView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
                 ForEach(allTags, id: \.self) { tag in
-                    Button(action: { withAnimation { selectedTag = tag } }) {
-                        Text(tag)
-                            .font(.system(size: 13, weight: .semibold))
-                            .foregroundStyle((selectedTag ?? "ALLE") == tag ? .white : Color.primary)
-                            .padding(.horizontal, 14)
-                            .padding(.vertical, 7)
-                            .background(
-                                Capsule()
-                                    .fill((selectedTag ?? "ALLE") == tag
-                                          ? Color.blauPrimary
-                                          : Color(UIColor.systemGray5))
-                            )
+                    LiquidGlassFilterPill(
+                        title: tag,
+                        isSelected: (selectedTag ?? "ALLE") == tag
+                    ) {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.72)) {
+                            selectedTag = tag
+                        }
                     }
-                    .buttonStyle(.plain)
                 }
             }
             .padding(.horizontal, 16)
+            .padding(.vertical, 4)
         }
     }
 }
