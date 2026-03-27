@@ -8,55 +8,50 @@ struct PflanzenButton: View {
     var externerPress: Bool = false
     var aktion: (() -> Void)? = nil
     
-    @State private var isPressed = false
-    @State private var hapticTrigger = false
-    @State private var hatAusgeloest = false
-    
     var body: some View {
+        Button {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                aktion?()
+            }
+        } label: {
+            Image(bildName)
+                .resizable()
+                .scaledToFit()
+        }
+        .buttonStyle(PflanzenButtonStyle(
+            farbe: farbe,
+            sekundaerFarbe: sekundaerFarbe,
+            groesse: groesse,
+            externerPress: externerPress
+        ))
+    }
+}
+
+struct PflanzenButtonStyle: ButtonStyle {
+    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
+    let farbe: Color
+    let sekundaerFarbe: Color
+    let groesse: CGFloat
+    var externerPress: Bool
+
+    func makeBody(configuration: Configuration) -> some View {
+        let isPressed = configuration.isPressed || externerPress
+        
         ZStack {
             Ellipse()
                 .fill(sekundaerFarbe)
             Ellipse()
                 .fill(farbe)
                 .overlay {
-                    Image(bildName)
-                        .resizable()
-                        .scaledToFit()
+                    configuration.label
                         .frame(width: groesse * 0.55, height: groesse * 0.55)
                 }
-                .offset(y: (isPressed || externerPress) ? 0 : -6)
+                .offset(y: isPressed ? 0 : -6)
         }
         .frame(width: groesse, height: groesse)
-        .animation(
-            .spring(response: 0.22, dampingFraction: 0.86),
-            value: isPressed || externerPress
-        )
-        .sensoryFeedback(.selection, trigger: hapticTrigger)
-        .gesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in
-                    isPressed = true
-                    if !hatAusgeloest {
-                        hatAusgeloest = true
-                        hapticTrigger.toggle()
-                        // Keep the down state briefly, then reset even if a sheet opens immediately.
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.06) {
-                            aktion?()
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                            isPressed = false
-                            hatAusgeloest = false
-                        }
-                    }
-                }
-                .onEnded { _ in
-                    isPressed = false
-                    hatAusgeloest = false
-                }
-        )
-        .onDisappear {
-            isPressed = false
-            hatAusgeloest = false
+        .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
+        .sensoryFeedback(trigger: configuration.isPressed) { _, newValue in
+            (isHapticEnabled && newValue) ? .selection : nil
         }
     }
 }

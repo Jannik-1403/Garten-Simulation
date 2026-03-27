@@ -3,47 +3,46 @@ import SwiftUI
 struct ScrollToTopButton: View {
     let action: () -> Void
 
-    @State private var isPressed = false
+    var body: some View {
+        Button(action: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                action()
+            }
+        }) {
+            Image(systemName: "arrow.up")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundStyle(.white)
+        }
+        .buttonStyle(ScrollToTopButtonStyle())
+    }
+}
+
+struct ScrollToTopButtonStyle: ButtonStyle {
+    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
     private let size: CGFloat = 46
     private let depth: CGFloat = 4
 
-    var body: some View {
+    func makeBody(configuration: Configuration) -> some View {
+        let isPressed = configuration.isPressed
+        
         ZStack {
-            // Unterer Layer — bewegt sich NICHT
+            // Unterer Layer
             Circle()
                 .fill(Color.blauSecondary)
                 .frame(width: size, height: size)
-                .offset(y: depth) // immer unten, nie animiert
+                .offset(y: depth)
 
-            // Oberer Layer — bewegt sich beim Drücken
-            Circle()
-                .fill(Color.blauPrimary)
+            // Oberer Layer
+            configuration.label
                 .frame(width: size, height: size)
-                .overlay(
-                    Image(systemName: "arrow.up")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundStyle(.white)
-                )
+                .background(Circle().fill(Color.blauPrimary))
                 .offset(y: isPressed ? depth : 0)
         }
         .frame(width: size, height: size + depth)
         .scaleEffect(isPressed ? 0.96 : 1.0)
-        .animation(.bouncy(duration: 0.2), value: isPressed)
-        .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.75), trigger: isPressed) { _, new in new }
-        .gesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in
-                    if !isPressed {
-                        isPressed = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.06) {
-                            action()
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
-                            isPressed = false
-                        }
-                    }
-                }
-                .onEnded { _ in isPressed = false }
-        )
+        .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
+        .sensoryFeedback(trigger: isPressed) { _, newValue in
+            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
+        }
     }
 }

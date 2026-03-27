@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1470B3D42F77100D00FBAB1D /* DotLottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1470B3D32F77100D00FBAB1D /* DotLottie */; };
 		1473815F2F73A8470070F455 /* SeltenheitProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */; };
 		147B21B22F6F269C00741BF8 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 147B21B12F6F269C00741BF8 /* RiveRuntime */; };
 /* End PBXBuildFile section */
@@ -69,13 +70,21 @@
 				Models/WetterEvent.swift,
 				Pflanze.swift,
 				ProfilView.swift,
+				Stores/GardenProgressStore.swift,
+				Stores/SettingsStore.swift,
 				Stores/ShopStore.swift,
+				Stores/StreakStore.swift,
 				Views/AufgabenView.swift,
 				Views/GartenView.swift,
 				Views/PflanzenDetailView.swift,
+				Views/ProfileDetailView.swift,
 				Views/PurchaseSuccessOverlay.swift,
+				Views/RarityLevelUpOverlay.swift,
+				Views/SettingsDetailView.swift,
+				Views/SettingsView.swift,
 				Views/ShopItemDetailView.swift,
 				Views/SplashScreenView.swift,
+				Views/StreakView.swift,
 				Views/UnifiedShopView.swift,
 				Views/WetterDetailView.swift,
 			);
@@ -95,19 +104,28 @@
 				Components/LiquidGlassFilterPill.swift,
 				Components/PflanzenCard.swift,
 				Components/ScrollToTopButton.swift,
+				Components/StreakIcon.swift,
 				ContentView.swift,
 				Garten_SimulationApp.swift,
 				Gewohnheit.swift,
 				GewohnheitenView.swift,
 				Models/ShopDetailPayload.swift,
 				ProfilView.swift,
+				Stores/GardenProgressStore.swift,
+				Stores/SettingsStore.swift,
 				Stores/ShopStore.swift,
+				Stores/StreakStore.swift,
 				Views/AufgabenView.swift,
 				Views/GartenView.swift,
 				Views/PflanzenDetailView.swift,
+				Views/ProfileDetailView.swift,
 				Views/PurchaseSuccessOverlay.swift,
+				Views/RarityLevelUpOverlay.swift,
+				Views/SettingsDetailView.swift,
+				Views/SettingsView.swift,
 				Views/ShopItemDetailView.swift,
 				Views/SplashScreenView.swift,
+				Views/StreakView.swift,
 				Views/UnifiedShopView.swift,
 				Views/WetterDetailView.swift,
 			);
@@ -143,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				147B21B22F6F269C00741BF8 /* RiveRuntime in Frameworks */,
+				1470B3D42F77100D00FBAB1D /* DotLottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +229,7 @@
 			name = Garten_Simulation;
 			packageProductDependencies = (
 				147B21B12F6F269C00741BF8 /* RiveRuntime */,
+				1470B3D32F77100D00FBAB1D /* DotLottie */,
 			);
 			productName = Garten_Simulation;
 			productReference = 1424D41C2F6EA14200908588 /* Garten_Simulation.app */;
@@ -296,6 +316,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				147B218A2F6EEB9A00741BF8 /* XCRemoteSwiftPackageReference "rive-ios" */,
+				1470B3D22F77100D00FBAB1D /* XCRemoteSwiftPackageReference "dotlottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1424D41D2F6EA14200908588 /* Products */;
@@ -498,6 +519,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -529,6 +551,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -675,6 +698,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1470B3D22F77100D00FBAB1D /* XCRemoteSwiftPackageReference "dotlottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LottieFiles/dotlottie-ios.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		147B218A2F6EEB9A00741BF8 /* XCRemoteSwiftPackageReference "rive-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rive-app/rive-ios";
@@ -686,6 +717,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1470B3D32F77100D00FBAB1D /* DotLottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1470B3D22F77100D00FBAB1D /* XCRemoteSwiftPackageReference "dotlottie-ios" */;
+			productName = DotLottie;
+		};
 		147B21B12F6F269C00741BF8 /* RiveRuntime */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 147B218A2F6EEB9A00741BF8 /* XCRemoteSwiftPackageReference "rive-ios" */;

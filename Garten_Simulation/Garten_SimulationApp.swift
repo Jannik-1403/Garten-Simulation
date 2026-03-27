@@ -12,11 +12,17 @@ struct Garten_SimulationApp: App {
     }()
 
     @StateObject private var shopStore = ShopStore()
+    @StateObject private var settingsStore = SettingsStore()
+    @StateObject private var progressStore = GardenProgressStore()
+    @StateObject private var streakStore = StreakStore()
 
     var body: some Scene {
         WindowGroup {
             SplashScreenView()
                 .environmentObject(shopStore)
+                .environmentObject(settingsStore)
+                .environmentObject(progressStore)
+                .environmentObject(streakStore)
         }
         .modelContainer(modelContainer)
     }

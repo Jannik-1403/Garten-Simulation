@@ -3,7 +3,7 @@ import SwiftUI
 
 struct GartenView: View {
 
-    @State private var streak: Int = 12
+    @EnvironmentObject var streakStore: StreakStore
     @State private var gems: Int = 281
     @State private var herzen: Int = 5
     @State private var aktivesEvent: WetterEvent = .normal
@@ -35,7 +35,7 @@ struct GartenView: View {
                 // MARK: - Stats Bar
                 HStack(spacing: 20) {
                     Spacer()
-                    StreakIcon(wert: streak)
+                    StreakIcon(wert: streakStore.currentStreak)
                     GemsIcon(wert: gems)
                     HerzenIcon(wert: herzen)
                 }
@@ -241,6 +241,10 @@ struct GartenView: View {
             }
 
             pflanzen[index] = p
+            
+            if pflanzen.allSatisfy({ $0.gewaessert }) {
+                streakStore.completeDay()
+            }
         }
     }
 }
@@ -299,4 +303,5 @@ struct PflanzenModel: Identifiable {
 
 #Preview {
     GartenView()
+        .environmentObject(StreakStore())
 }

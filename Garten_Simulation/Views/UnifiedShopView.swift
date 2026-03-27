@@ -44,18 +44,60 @@ struct PlantItem: Identifiable {
 
 struct DuolingoShopCard<Content: View>: View {
     let action: () -> Void
+    let badgeText: String?
     @ViewBuilder let content: Content
     
-    @State private var isPressed = false
-    @State private var hatAusgeloest = false
+    init(action: @escaping () -> Void, badgeText: String? = nil, @ViewBuilder content: () -> Content) {
+        self.action = action
+        self.badgeText = badgeText
+        self.content = content()
+    }
+    
+    var body: some View {
+        Button(action: {
+            // Delay to allow the 3D "pop-back" animation to complete
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                action()
+            }
+        }) {
+            ZStack(alignment: .topLeading) {
+                content
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 20)
+                    .frame(maxWidth: .infinity, minHeight: 110, alignment: .leading)
+
+                // Corner Badge
+                if let badge = badgeText {
+                    Text(badge)
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(
+                            UnevenRoundedRectangle(
+                                topLeadingRadius: 12,
+                                bottomLeadingRadius: 0,
+                                bottomTrailingRadius: 8,
+                                topTrailingRadius: 0
+                            )
+                            .fill(Color.blauPrimary)
+                        )
+                }
+            }
+        }
+        .buttonStyle(DuolingoCardButtonStyle())
+    }
+}
+
+struct DuolingoCardButtonStyle: ButtonStyle {
+    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
     private let shadowDepth: CGFloat = 4
     private let cornerRadius: CGFloat = 12
 
-    var body: some View {
-        content
-            .padding(.horizontal, 20)
-            .padding(.vertical, 20)
-            .frame(maxWidth: .infinity, minHeight: 110, alignment: .leading)
+    func makeBody(configuration: Configuration) -> some View {
+        let isPressed = configuration.isPressed
+        
+        configuration.label
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                     .fill(Color(UIColor.systemBackground))
@@ -71,33 +113,9 @@ struct DuolingoShopCard<Content: View>: View {
                     .stroke(Color.gray.opacity(0.15), lineWidth: 1)
             )
             .offset(y: isPressed ? shadowDepth : 0)
-            .animation(.bouncy(duration: 0.2), value: isPressed)
-            .gesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged { _ in
-                        isPressed = true
-                        if !hatAusgeloest {
-                            hatAusgeloest = true
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.06) {
-                                action()
-                            }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                                isPressed = false
-                                hatAusgeloest = false
-                            }
-                        }
-                    }
-                    .onEnded { _ in
-                        isPressed = false
-                        hatAusgeloest = false
-                    }
-            )
-            .sensoryFeedback(
-                .impact(flexibility: .soft, intensity: 0.75),
-                trigger: isPressed
-            ) { _, newValue in
-                newValue
+            .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
+            .sensoryFeedback(trigger: isPressed) { _, newValue in
+                (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
             }
     }
 }
@@ -111,10 +129,22 @@ struct ShopItemCard: View {
     let name: String
     let subtitle: String
     let price: Int
+    let badgeText: String?
     let onBuy: () -> Void
 
+    init(icon: String, accentColor: Color, shadowColor: Color, name: String, subtitle: String, price: Int, badgeText: String? = nil, onBuy: @escaping () -> Void) {
+        self.icon = icon
+        self.accentColor = accentColor
+        self.shadowColor = shadowColor
+        self.name = name
+        self.subtitle = subtitle
+        self.price = price
+        self.badgeText = badgeText
+        self.onBuy = onBuy
+    }
+
     var body: some View {
-        DuolingoShopCard(action: onBuy) {
+        DuolingoShopCard(action: onBuy, badgeText: badgeText) {
             VStack(alignment: .center, spacing: 12) {
                 Image(icon)
                     .resizable()
@@ -162,7 +192,7 @@ struct DealCard: View {
     let onBuy: () -> Void
 
     var body: some View {
-        DuolingoShopCard(action: onBuy) {
+        DuolingoShopCard(action: onBuy, badgeText: badgeText) {
             VStack(alignment: .center, spacing: 12) {
                 Image(icon)
                     .resizable()
@@ -170,16 +200,9 @@ struct DealCard: View {
                     .frame(width: 80, height: 80)
 
                 VStack(alignment: .center, spacing: 4) {
-                    HStack(spacing: 6) {
-                        Text(name)
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
-                            .foregroundStyle(Color.primary)
-                        Text(badgeText)
-                            .font(.system(size: 10, weight: .bold))
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 6).padding(.vertical, 2)
-                            .background(Capsule().fill(accentColor))
-                    }
+                    Text(name)
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.primary)
                     Text(subtitle)
                         .font(.system(size: 14))
                         .foregroundStyle(Color.secondary)
@@ -208,7 +231,7 @@ struct BundleCardRow: View {
     let onBuy: () -> Void
 
     var body: some View {
-        DuolingoShopCard(action: onBuy) {
+        DuolingoShopCard(action: onBuy, badgeText: "-20%") {
             VStack(alignment: .center, spacing: 12) {
                 Image("bonsai_stufe1")
                     .resizable()
@@ -216,16 +239,9 @@ struct BundleCardRow: View {
                     .frame(width: 80, height: 80)
 
                 VStack(alignment: .center, spacing: 4) {
-                    HStack(spacing: 6) {
-                        Text("Starter Bundle")
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
-                            .foregroundStyle(Color.primary)
-                        Text("-20%")
-                            .font(.system(size: 10, weight: .bold))
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 6).padding(.vertical, 2)
-                            .background(Capsule().fill(Color.green))
-                    }
+                    Text("Starter Bundle")
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.primary)
                     Text("Samen + Wasser Bundle")
                         .font(.system(size: 14))
                         .foregroundStyle(Color.secondary)
@@ -664,6 +680,7 @@ struct UnifiedShopView: View {
             name: plant.name,
             subtitle: plant.subtitle,
             price: plant.price,
+            badgeText: plant.badgeText,
             onBuy: {
                 detailPayload = ShopDetailPayload(
                     id: plant.id,

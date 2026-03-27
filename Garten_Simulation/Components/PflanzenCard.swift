@@ -1,13 +1,5 @@
 import SwiftUI
 
-/// Höhe der sichtbaren Kartenfläche (weißer Bereich), damit der 3D-Sockel nicht die volle Zeilenhöhe der LazyVGrid einnimmt.
-private struct PflanzenKartenFaceHoeheKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
-    }
-}
-
 struct PflanzenCard: View {
     let name: String
     let bildName: String
@@ -27,28 +19,23 @@ struct PflanzenCard: View {
     @State private var plantWobble: CGFloat = 1.0
     @State private var greenGlowOpacity: Double = 0
     @State private var wasserPressAktiv = false
-    @State private var cardPressed = false
-    @State private var cardHapticTrigger = false
     @State private var threatPulse = false
     @State private var stopwatchExpanded = false
-    @State private var kartenSockelHoehe: CGFloat = 0
 
     var body: some View {
         TimelineView(.periodic(from: .now, by: 1)) { timeline in
             let now = timeline.date
             let phase = PflanzenModel.berechnePhase(letzteGiessung: letzteGiessung, jetzt: now)
-            let thirstState = thirstSystem.state(at: now)
             let vz = PflanzenModel.verbleibendeZeit(letzteGiessung: letzteGiessung, jetzt: now)
             let countdownKurz = Self.kurzerCountdownText(verbleibend: vz)
             let anzeigeBild = phase == .tot ? "bonsai_stufe5" : bildName
 
-            ZStack(alignment: .top) {
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(Color(red: 0.78, green: 0.78, blue: 0.82))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: kartenSockelHoehe)
-                    .opacity(kartenSockelHoehe > 0 ? 1 : 0)
-
+            Button(action: {
+                // Delay to allow the 3D "pop-back" animation to complete
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                    onTap()
+                }
+            }) {
                 VStack(spacing: 14) {
                     VStack(spacing: 6) {
                         Text(name)
@@ -73,10 +60,6 @@ struct PflanzenCard: View {
                             Text(countdownKurz)
                                 .font(.system(size: 11, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.secondary)
-                        }
-                        .onTapGesture {
-                            cardHapticTrigger.toggle()
-                            stopwatchExpanded = true
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -201,74 +184,16 @@ struct PflanzenCard: View {
                         .padding(.vertical, 4)
                     }
                 }
-                .fixedSize(horizontal: false, vertical: true)
                 .padding(.horizontal, 16)
-                .padding(.vertical, 12)
+                .padding(.vertical, 16)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .background {
-                    RoundedRectangle(cornerRadius: 24)
-                        .fill(Color.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 24)
-                                .stroke(
-                                    seltenheit.ringFarbe.opacity(gewaessert ? 0.55 : 0.35),
-                                    lineWidth: 1.5
-                                )
-                        )
-                        .overlay {
-                            if phase == .kampf {
-                                RoundedRectangle(cornerRadius: 24)
-                                    .stroke(Color.orange.opacity(0.6), lineWidth: 2)
-                            }
-                        }
-                }
-                .background(
-                    GeometryReader { geo in
-                        Color.clear.preference(
-                            key: PflanzenKartenFaceHoeheKey.self,
-                            value: geo.size.height
-                        )
-                    }
-                )
-                .shadow(
-                    color: Color.black.opacity(0.14),
-                    radius: 6,
-                    y: 5
-                )
-                .offset(y: cardPressed ? 0 : -8)
-                .animation(.spring(.snappy(duration: 0.02)), value: cardPressed)
             }
-            .fixedSize(horizontal: false, vertical: true)
-            .onPreferenceChange(PflanzenKartenFaceHoeheKey.self) { h in
-                kartenSockelHoehe = h
-            }
+            .buttonStyle(PflanzenCardButtonStyle(
+                seltenheitFarbe: seltenheit.ringFarbe,
+                isPhase2: phase == .kampf
+            ))
             .saturation(phase == .tot ? 0.2 : 1.0)
             .id(pflanzenPhase)
-        }
-        .frame(maxWidth: .infinity)
-        .sheet(isPresented: $stopwatchExpanded) {
-            ThirstTimerSheetView(
-                letzteGiessung: letzteGiessung,
-                onDismiss: { stopwatchExpanded = false }
-            )
-            .presentationDetents([PresentationDetent.medium])
-            .presentationCornerRadius(32)
-            .presentationBackground(.regularMaterial)
-        }
-        .contentShape(RoundedRectangle(cornerRadius: 24))
-        .sensoryFeedback(.selection, trigger: cardHapticTrigger)
-        .gesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in
-                    cardPressed = true
-                    cardHapticTrigger.toggle()
-                }
-                .onEnded { _ in
-                    cardPressed = false
-                }
-        )
-        .onDisappear {
-            cardPressed = false
         }
         .onAppear {
             threatPulse = true
@@ -277,6 +202,15 @@ struct PflanzenCard: View {
             if neu {
                 stopwatchExpanded = false
             }
+        }
+        .sheet(isPresented: $stopwatchExpanded) {
+            ThirstTimerSheetView(
+                letzteGiessung: letzteGiessung,
+                onDismiss: { stopwatchExpanded = false }
+            )
+            .presentationDetents([PresentationDetent.medium])
+            .presentationCornerRadius(32)
+            .presentationBackground(.regularMaterial)
         }
     }
 
@@ -292,6 +226,44 @@ struct PflanzenCard: View {
         return "\(h)h \(m)m"
     }
 
+}
+
+struct PflanzenCardButtonStyle: ButtonStyle {
+    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
+    let seltenheitFarbe: Color
+    let isPhase2: Bool
+    private let depth: CGFloat = 8
+    private let cornerRadius: CGFloat = 24
+
+    func makeBody(configuration: Configuration) -> some View {
+        let isPressed = configuration.isPressed
+        let baseColor = isPhase2 ? Color.orange : seltenheitFarbe
+        
+        ZStack(alignment: .top) {
+            // Unterer Layer (Sockel) - Nutzt hidden Label zur Größenfindung
+            configuration.label
+                .hidden()
+                .background(
+                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                        .fill(baseColor)
+                )
+                .offset(y: depth)
+
+            // Oberer Layer (Weiße Face)
+            configuration.label
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+                .overlay(
+                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                        .stroke(Color.black.opacity(0.12), lineWidth: 1)
+                )
+                .offset(y: isPressed ? depth : 0)
+        }
+        .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
+        .sensoryFeedback(trigger: isPressed) { _, newValue in
+            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
+        }
+    }
 }
 
 // MARK: - Timer-Sheet (Gieß-Countdown)
