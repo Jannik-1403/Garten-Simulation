@@ -1,149 +1,222 @@
 import SwiftUI
 
-// MARK: - Shop Detail Payload
-
-struct ShopDetailPayload: Identifiable {
-    let id = UUID()
-    let title: String
-    let subtitle: String
-    let description: String?
-    let price: Int
-    let icon: String
-    let color: Color
-    let shadowColor: Color
-    let tag: String?
-}
-
-// MARK: - Shop Item Detail View
-
 struct ShopItemDetailView: View {
     let payload: ShopDetailPayload
-    let onBuy: () -> Void
+    @EnvironmentObject var shopStore: ShopStore
+
     @Environment(\.dismiss) private var dismiss
-    
-    @State private var iconWobble = false
-    
+    @State private var showSuccess = false
+    @State private var showInsufficientCoins = false
+
+    private var isOwned: Bool { shopStore.isPurchased(payload.id) }
+    private var canAfford: Bool { shopStore.canAfford(payload.price) }
+
     var body: some View {
-        ZStack(alignment: .top) {
-            // Background tint
-            LinearGradient(
-                colors: [payload.color.opacity(0.15), Color.clear],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
-            
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 32) {
-                    heroSection
-                    infoCard
-                }
-                .padding(.top, 40)
-                .padding(.horizontal, 24)
-                .padding(.bottom, 140) // Space for bottom bar
-            }
-            
-            // Bottom Bar Fixed
-            VStack {
-                Spacer()
-                bottomBar
-            }
-        }
-        .background(Color.appHintergrund.ignoresSafeArea())
-        .onAppear {
-            withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
-                iconWobble = true
-            }
-        }
-    }
-    
-    private var heroSection: some View {
         ZStack {
-            // Icon directly displayed
-            Image(payload.icon)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 100, height: 100)
-                .shadow(color: payload.shadowColor.opacity(0.3), radius: 10, y: 5)
-                .offset(y: iconWobble ? -6 : 0)
-        }
-        .frame(height: 180)
-    }
-    
-    private var infoCard: some View {
-        VStack(spacing: 16) {
-            if let tag = payload.tag {
-                Text(tag)
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundStyle(payload.color)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(Capsule().fill(payload.color.opacity(0.15)))
-            }
-            
-            Text(payload.title)
-                .font(.system(size: 28, weight: .heavy, design: .rounded))
-                .multilineTextAlignment(.center)
-            
-            Text(payload.subtitle)
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-            
-            if let desc = payload.description {
-                Divider().padding(.vertical, 8)
-                
-                Text(desc)
-                    .font(.system(size: 15))
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                    .lineSpacing(4)
-            }
-        }
-        .padding(24)
-        .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .fill(.ultraThinMaterial)
-                .shadow(color: .black.opacity(0.05), radius: 10, y: 5)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .stroke(Color.white.opacity(0.2), lineWidth: 1)
-        )
-    }
-    
-    private var bottomBar: some View {
-        VStack(spacing: 16) {
-            Button(action: {
-                onBuy()
-                dismiss()
-            }) {
-                HStack(spacing: 8) {
-                    Text("KAUFEN FÜR \(payload.price)")
-                    Image("Coin")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
+            Color.appHintergrund.ignoresSafeArea()
+
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 0) {
+
+                    // MARK: Hero
+                    ZStack(alignment: .top) {
+                        Circle()
+                            .fill(payload.color.opacity(0.12))
+                            .frame(width: 220, height: 220)
+                            .offset(y: 20)
+
+                        VStack(spacing: 0) {
+                            Spacer().frame(height: 60)
+                            Image(payload.icon)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 150, height: 150)
+                                .shadow(
+                                    color: payload.shadowColor.opacity(0.35),
+                                    radius: 20, x: 0, y: 10
+                                )
+                            Spacer().frame(height: 24)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+
+                    // MARK: Inhalt-Karte
+                    VStack(alignment: .leading, spacing: 24) {
+
+                        // Tag + Titel + Subtitle
+                        VStack(alignment: .leading, spacing: 8) {
+                            if let tag = payload.tag {
+                                Text(tag)
+                                    .font(.system(size: 11, weight: .bold))
+                                    .foregroundStyle(payload.color)
+                                    .kerning(1.4)
+                            }
+                            Text(payload.title)
+                                .font(.system(size: 26, weight: .bold, design: .rounded))
+                            Text(payload.subtitle)
+                                .font(.system(size: 15))
+                                .foregroundStyle(.secondary)
+                        }
+
+                        Divider()
+
+                        // Beschreibung
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Beschreibung")
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundStyle(.secondary)
+                                .kerning(1.2)
+                            Text(payload.description)
+                                .font(.system(size: 15))
+                                .lineSpacing(4)
+                        }
+
+                        Divider()
+
+                        // MARK: Preis + Button
+                        VStack(spacing: 16) {
+
+                            // Preis
+                            HStack(spacing: 6) {
+                                Image("Coin")
+                                    .resizable().scaledToFit()
+                                    .frame(width: 24, height: 24)
+                                Text("\(payload.price)")
+                                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                                    .foregroundStyle(Color.belohnungGoldHighlight)
+                                Spacer()
+                                // Aktueller Kontostand
+                                HStack(spacing: 3) {
+                                    Text("Dein Stand:")
+                                        .font(.system(size: 13))
+                                        .foregroundStyle(.secondary)
+                                    Image("Coin")
+                                        .resizable().scaledToFit()
+                                        .frame(width: 14, height: 14)
+                                    Text("\(shopStore.coins)")
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundStyle(
+                                            canAfford
+                                                ? Color.belohnungGoldHighlight
+                                                : .red
+                                        )
+                                        // Zahl animiert sich beim Abzug
+                                        .contentTransition(.numericText(countsDown: true))
+                                }
+                            }
+
+                            // MARK: Button — 3 Zustände
+
+                            if isOwned {
+                                // Zustand 1: Bereits gekauft
+                                Button {} label: {
+                                    HStack(spacing: 8) {
+                                        Image(systemName: "checkmark.seal.fill")
+                                        Text("Bereits im Besitz")
+                                    }
+                                }
+                                .buttonStyle(DuolingoButtonStyle(
+                                    size: .large,
+                                    fillWidth: true,
+                                    backgroundColor: .green,
+                                    shadowColor: Color(red: 0.1, green: 0.5, blue: 0.15),
+                                    foregroundColor: .white
+                                ))
+                                .disabled(true)
+                                .opacity(0.7)
+
+                            } else if !canAfford {
+                                // Zustand 2: Zu wenig Coins
+                                Button {
+                                    // Haptic + Alert
+                                    showInsufficientCoins = true
+                                } label: {
+                                    HStack(spacing: 8) {
+                                        Image(systemName: "lock.fill")
+                                        Text("Zu wenig Coins")
+                                    }
+                                }
+                                .buttonStyle(DuolingoButtonStyle(
+                                    size: .large,
+                                    fillWidth: true,
+                                    backgroundColor: Color(UIColor.systemGray3),
+                                    shadowColor: Color(UIColor.systemGray),
+                                    foregroundColor: .white
+                                ))
+
+                            } else {
+                                // Zustand 3: Kaufen möglich — Animation DANN Aktion
+                                Button {
+                                    // DuolingoButtonStyle spielt Press-Animation ab
+                                    // Wir warten kurz damit Nutzer die Animation SIEHT
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {
+                                        shopStore.buy(id: payload.id, price: payload.price)
+                                        withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
+                                            showSuccess = true
+                                        }
+                                    }
+                                } label: {
+                                    HStack(spacing: 8) {
+                                        Image("Coin")
+                                            .resizable().scaledToFit()
+                                            .frame(width: 20, height: 20)
+                                        Text("Jetzt kaufen")
+                                    }
+                                }
+                                .buttonStyle(DuolingoButtonStyle(
+                                    size: .large,
+                                    fillWidth: true,
+                                    backgroundColor: payload.color,
+                                    shadowColor: payload.shadowColor,
+                                    foregroundColor: .white
+                                ))
+                            }
+                        }
+                    }
+                    .padding(24)
+                    .background(
+                        RoundedRectangle(cornerRadius: 28, style: .continuous)
+                            .fill(Color(UIColor.systemBackground))
+                    )
+                    .padding(.top, -20)
                 }
             }
-            .buttonStyle(DuolingoButtonStyle(size: .large))
-            
-            Button("Abbrechen") {
-                dismiss()
+
+            // X Button
+            VStack {
+                HStack {
+                    Spacer()
+                    Button { dismiss() } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundStyle(.secondary)
+                            .frame(width: 32, height: 32)
+                            .background(Circle().fill(.regularMaterial))
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.top, 16)
+                    .padding(.trailing, 20)
+                }
+                Spacer()
             }
-            .font(.system(size: 15, weight: .bold, design: .rounded))
-            .foregroundStyle(.secondary)
-            .padding(.bottom, 8)
+
+            // Erfolg-Overlay
+            if showSuccess {
+                PurchaseSuccessOverlay(
+                    itemName: payload.title,
+                    price: payload.price
+                ) {
+                    showSuccess = false
+                    dismiss()
+                }
+                .transition(.opacity.combined(with: .scale(scale: 0.92)))
+            }
         }
-        .padding(.horizontal, 24)
-        .padding(.top, 20)
-        .padding(.bottom, 16)
-        .background(
-            Rectangle()
-                .fill(.ultraThinMaterial)
-                .ignoresSafeArea(edges: .bottom)
-                .shadow(color: .black.opacity(0.05), radius: 8, y: -4)
-        )
+        .animation(.spring(response: 0.4, dampingFraction: 0.72), value: showSuccess)
+        .alert("Nicht genug Coins", isPresented: $showInsufficientCoins) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Du brauchst noch \(payload.price - shopStore.coins) Coins mehr.")
+        }
     }
 }

@@ -54,6 +54,9 @@ private extension Color {
 struct DuolingoButtonStyle: ButtonStyle {
     var size: DuoButtonSize = .medium
     var fillWidth: Bool = true
+    var backgroundColor: Color = .duoGreenFace
+    var shadowColor: Color = .duoGreenShadow
+    var foregroundColor: Color = .white
 
     func makeBody(configuration: Configuration) -> some View {
         let pressed = configuration.isPressed
@@ -61,15 +64,15 @@ struct DuolingoButtonStyle: ButtonStyle {
         configuration.label
             .font(size.font)
             .textCase(.uppercase)
-            .foregroundStyle(.white)
+            .foregroundStyle(foregroundColor)
             .padding(.vertical, size.verticalPadding)
             .padding(.horizontal, size.horizontalPadding)
             .frame(maxWidth: fillWidth ? .infinity : nil)
             .background(
                 RoundedRectangle(cornerRadius: size.cornerRadius, style: .continuous)
-                    .fill(Color.duoGreenFace)
+                    .fill(backgroundColor)
                     .shadow(
-                        color: .duoGreenShadow,
+                        color: shadowColor,
                         radius: 0,
                         y: pressed ? 0 : size.shadowDepth
                     )

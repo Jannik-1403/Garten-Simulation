@@ -236,11 +236,13 @@ struct BundleCardRow: View {
 // MARK: - Main Shop View
 
 struct UnifiedShopView: View {
-    @State private var coins: Int = 1500
+    @EnvironmentObject var shopStore: ShopStore
     @State private var searchText = ""
     @State private var selectedTag: String? = nil
     @State private var showFilters: Bool = true
     @State private var detailPayload: ShopDetailPayload? = nil
+
+    var coins: Int { shopStore.coins }
 
     private let allTags = ["ALLE", "WERKZEUG", "VERBRAUCH", "UPGRADES"]
 
@@ -261,7 +263,8 @@ struct UnifiedShopView: View {
                 Color.appHintergrund.ignoresSafeArea()
 
                 ScrollViewReader { proxy in
-                    ScrollView(showsIndicators: false) {
+                    ZStack {
+                        ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading, spacing: 0) {
                             Spacer().frame(height: 60).id("top")
 
@@ -325,6 +328,7 @@ struct UnifiedShopView: View {
                                     accentColor: .red,
                                     onBuy: {
                                         detailPayload = ShopDetailPayload(
+                                            id: "wunder-box",
                                             title: "Wunder-Box",
                                             subtitle: "Spezial-Angebot",
                                             description: "Enthält 3 garantierte Epische Samen und 500 Magie-Dünger. Perfekt für einen starken Start in die nächste Saison!",
@@ -338,6 +342,7 @@ struct UnifiedShopView: View {
                                 )
                                 BundleCardRow(onBuy: {
                                     detailPayload = ShopDetailPayload(
+                                        id: "starter-bundle",
                                         title: "Starter Bundle",
                                         subtitle: "Samen + Wasser Bundle",
                                         description: "Hol dir das Basis-Set für deinen Garten. Beinhaltet 10 Normale Samen und 50 Gießkannen-Ladungen mit einem Rabatt von 20%.",
@@ -368,6 +373,7 @@ struct UnifiedShopView: View {
                                         price: item.price,
                                         onBuy: {
                                             detailPayload = ShopDetailPayload(
+                                                id: item.name,
                                                 title: item.name,
                                                 subtitle: item.subtitle,
                                                 description: "Ein essenzieller Gegenstand für deinen Garten. Verbessere deine Pflanzen oder erleichtere dir die Pflege.",
@@ -387,7 +393,8 @@ struct UnifiedShopView: View {
 
                         // MARK: Upgrades
                         let upgradesToDisplay = upgrades.filter {
-                            searchText.isEmpty || $0.name.localizedCaseInsensitiveContains(searchText)
+                            !shopStore.isPurchased($0.name) &&
+                            (searchText.isEmpty || $0.name.localizedCaseInsensitiveContains(searchText))
                         }
                         if (selectedTag == nil || selectedTag == "ALLE" || selectedTag == "UPGRADES") && !upgradesToDisplay.isEmpty {
                             sectionHeader("Upgrades")
@@ -402,6 +409,7 @@ struct UnifiedShopView: View {
                                         price: upgrade.price,
                                         onBuy: {
                                             detailPayload = ShopDetailPayload(
+                                                id: upgrade.name,
                                                 title: upgrade.name,
                                                 subtitle: "Garten-Upgrade",
                                                 description: upgrade.description,
@@ -423,42 +431,47 @@ struct UnifiedShopView: View {
                     }
                     .animation(.spring(response: 0.4, dampingFraction: 0.75), value: selectedTag)
                     .animation(.spring(response: 0.4, dampingFraction: 0.75), value: searchText)
-                    .overlay(alignment: .bottomLeading) {
+                } // Closes ScrollView
+                
+                // Floating Action Button via ZStack
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
                         Button {
                             withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
                                 proxy.scrollTo("top", anchor: .top)
                             }
                         } label: {
                             Image(systemName: "arrow.up")
-                                .font(.system(size: 20, weight: .bold))
-                                .foregroundStyle(.white)
-                                .frame(width: 50, height: 50)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 12, style: .continuous)
-                                        .fill(Color(UIColor.systemGray))
-                                        .shadow(color: .black.opacity(0.15), radius: 6, y: 3)
-                                )
+                                .font(.system(size: 12, weight: .bold))
+                                .frame(width: 28, height: 28)
                         }
-                        .padding(.leading, 20)
-                        .padding(.bottom, 24)
+                        .buttonStyle(DuolingoButtonStyle(
+                            size: .small,
+                            fillWidth: false,
+                            backgroundColor: .blauPrimary,
+                            shadowColor: .blauSecondary,
+                            foregroundColor: .white
+                        ))
                     }
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 10) 
                 }
+                .zIndex(100)
+                    } // closes inner ZStack
+                } // closes ScrollViewReader
 
                 // MARK: Fixierter Header (bleibt oben)
                 shopHeader
             }
             .navigationBarHidden(true)
             .sheet(item: $detailPayload) { payload in
-                ShopItemDetailView(
-                    payload: payload,
-                    onBuy: {
-                        // TODO: Implement actual purchase logic
-                        print("Bought \(payload.title)")
-                    }
-                )
-                .presentationDetents([.large])
-                .presentationCornerRadius(32)
-                .presentationBackground(.clear) // Let detail view's background shine through
+                ShopItemDetailView(payload: payload)
+                    .environmentObject(shopStore)
+                    .presentationDetents([.large])
+                    .presentationCornerRadius(32)
+                    .presentationBackground(.clear) // Let detail view's background shine through
             }
         }
     }
@@ -466,6 +479,7 @@ struct UnifiedShopView: View {
     // MARK: - Filter
 
     private func passesFilter(_ item: StandardItem) -> Bool {
+        if shopStore.isPurchased(item.name) { return false }
         if let tag = selectedTag, tag != "ALLE", item.tag != tag { return false }
         if !searchText.isEmpty && !item.name.localizedCaseInsensitiveContains(searchText) { return false }
         return true
@@ -487,9 +501,10 @@ struct UnifiedShopView: View {
                 Image("Coin")
                     .resizable().scaledToFit()
                     .frame(width: 20, height: 20)
-                Text("\(coins)")
+                Text("\(shopStore.coins)")
                     .font(.system(size: 15, weight: .bold))
                     .foregroundStyle(Color.belohnungGoldHighlight)
+                    .contentTransition(.numericText(countsDown: true))
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 7)
@@ -551,4 +566,13 @@ struct UnifiedShopView: View {
 
 #Preview {
     UnifiedShopView()
+}
+
+// MARK: - Scroll Offset Preference
+
+struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
 }

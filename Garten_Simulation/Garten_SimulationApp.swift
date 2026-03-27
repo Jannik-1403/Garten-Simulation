@@ -11,9 +11,12 @@ struct Garten_SimulationApp: App {
         }
     }()
 
+    @StateObject private var shopStore = ShopStore()
+
     var body: some Scene {
         WindowGroup {
             SplashScreenView()
+                .environmentObject(shopStore)
         }
         .modelContainer(modelContainer)
     }
