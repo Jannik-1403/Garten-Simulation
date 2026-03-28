@@ -3,9 +3,25 @@ import SwiftUI
 struct ProfilView: View {
     @State private var showSettings = false
     @EnvironmentObject var settings: SettingsStore
-    @EnvironmentObject var progressStore: GardenProgressStore
+    @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var streakStore: StreakStore
+    @EnvironmentObject var achievementStore: AchievementStore
     
+    // MARK: - Computed Global Rarity (based on total XP)
+    private var globalRarity: PflanzenSeltenheit {
+        if gardenStore.gesamtXP >= GameConstants.xpFuerDiamant * 10 { return .diamant } // Scaling for global
+        if gardenStore.gesamtXP >= GameConstants.xpFuerGold * 5     { return .gold }
+        if gardenStore.gesamtXP >= GameConstants.xpFuerSilber * 3   { return .silber }
+        return .bronze
+    }
+
+    private var globalProgress: Double {
+        let xp = gardenStore.gesamtXP
+        if xp >= GameConstants.xpFuerDiamant * 10 { return 1.0 }
+        // Simple linear progress for demo
+        return min(Double(xp) / Double(GameConstants.xpFuerDiamant * 10), 1.0)
+    }
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -15,9 +31,9 @@ struct ProfilView: View {
                     VStack(spacing: 30) {
                         // User Profile Info
                         VStack(spacing: 4) {
-                            Text("Jannik Schill")
+                            Text("profile.user.name", bundle: .main)
                                 .font(.system(size: 24, weight: .bold, design: .rounded))
-                            Text("Garten-Meister · Level 12")
+                            Text("garden.habits.active", bundle: .main) // Simplified tag
                                 .font(.system(size: 15))
                                 .foregroundStyle(.secondary)
                         }
@@ -26,11 +42,11 @@ struct ProfilView: View {
                         // Level Progress (Duolingo Style)
                         VStack(alignment: .leading, spacing: 10) {
                             HStack {
-                                Text("\(progressStore.currentRarity.titel.uppercased()) FORTSCHRITT")
+                                Text(globalRarity.lokalisiertTitel.uppercased())
                                     .font(.system(size: 12, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                                 Spacer()
-                                Text("\(progressStore.currentXP) / \(progressStore.xpThreshold) XP")
+                                Text("\(gardenStore.gesamtXP) XP")
                                     .font(.system(size: 12, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                             }
@@ -43,8 +59,8 @@ struct ProfilView: View {
                                         .frame(height: 16)
                                     
                                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                                        .fill(progressStore.currentRarity.gradient)
-                                        .frame(width: geo.size.width * CGFloat(progressStore.progress), height: 16)
+                                        .fill(globalRarity.farbe)
+                                        .frame(width: geo.size.width * CGFloat(globalProgress), height: 16)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 12, style: .continuous)
                                                 .fill(.white.opacity(0.3))
@@ -62,27 +78,27 @@ struct ProfilView: View {
                         // Stats Bento Grid (3D tactile)
                         VStack(spacing: 16) {
                             // Row 1: Coins (Wide)
-                            NavigationLink(destination: ProfileDetailView(title: "Coins", icon: "dollarsign.circle.fill", value: "1,450", color: .goldPrimary)) {
-                                StatCard(title: "Coins", value: "1,450", icon: "Coin", color: .goldPrimary, isWide: true)
+                            NavigationLink(destination: CoinsDetailView()) {
+                                StatCard(title: "profile.coins", value: "\(gardenStore.coins)", icon: "Coin", color: .goldPrimary, isWide: true)
                             }
                             .buttonStyle(StatCardButtonStyle())
                             
                             // Row 2: Secondary Stats (Side-by-side)
                             HStack(spacing: 16) {
-                                NavigationLink(destination: ProfileDetailView(title: "Pflanzen", icon: "leaf.fill", value: "24", color: .green)) {
-                                    StatCard(title: "Pflanzen", value: "24", icon: "leaf.fill", color: .green)
+                                NavigationLink(destination: PflanzenDetailView()) {
+                                    StatCard(title: "profile.plants", value: "\(gardenStore.pflanzen.count)", icon: "leaf.fill", color: .green)
                                 }
                                 .buttonStyle(StatCardButtonStyle())
                                 
                                 NavigationLink(destination: StreakView()) {
-                                    StatCard(title: "Tage", value: "\(streakStore.currentStreak)", icon: "calendar", color: .orange)
+                                    StatCard(title: "profile.streak", value: "\(streakStore.currentStreak)", icon: "calendar", color: .orange)
                                 }
                                 .buttonStyle(StatCardButtonStyle())
                             }
                             
                             // Row 3: Erfolge Vitrine (Wide)
-                            NavigationLink(destination: ProfileDetailView(title: "Erfolge", icon: "trophy.fill", value: "8", color: .lilaPrimary)) {
-                                AchievementVitrine(count: 8)
+                            NavigationLink(destination: ErfolgeDetailView()) {
+                                AchievementVitrine(unlockedErfolge: achievementStore.freigeschalteteErfolge)
                             }
                             .buttonStyle(StatCardButtonStyle())
                         }
@@ -110,16 +126,6 @@ struct ProfilView: View {
             .sheet(isPresented: $showSettings) {
                 SettingsView()
                     .environmentObject(settings)
-            }
-            .overlay {
-                if progressStore.showLevelUp {
-                    RarityLevelUpOverlay(rarity: progressStore.currentRarity) {
-                        withAnimation(.spring()) {
-                            progressStore.showLevelUp = false
-                        }
-                    }
-                    .transition(.opacity)
-                }
             }
         }
     }
@@ -160,7 +166,7 @@ struct StatCard: View {
                     Text(value)
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundStyle(.primary)
-                    Text(title.uppercased())
+                    Text(LocalizedStringKey(title))
                         .font(.system(size: 11, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                         .kerning(1.0)
@@ -168,7 +174,7 @@ struct StatCard: View {
                 Spacer()
             }
             .padding(20)
-            .padding(.top, isWide ? 0 : 20) // Add some padding if narrow and no top icon
+            .padding(.top, isWide ? 0 : 20)
         }
         .frame(maxWidth: .infinity)
         .frame(height: isWide ? 110 : 130)
@@ -176,15 +182,15 @@ struct StatCard: View {
 }
 
 struct AchievementVitrine: View {
-    let count: Int
+    let unlockedErfolge: [ErfolgModel]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("\(count) Erfolge")
+                    Text("\(unlockedErfolge.count) \(Text("profile.achievements", bundle: .main))")
                         .font(.system(size: 20, weight: .bold, design: .rounded))
-                    Text("Dein Trophäen-Schrank")
+                    Text("profile.achievements.subtitle", bundle: .main)
                         .font(.system(size: 12))
                         .foregroundStyle(.secondary)
                 }
@@ -195,14 +201,19 @@ struct AchievementVitrine: View {
                     .shadow(color: Color.lilaPrimary.opacity(0.3), radius: 8, x: 0, y: 4)
             }
             
-            HStack(spacing: 15) {
-                BadgeIcon(icon: "star.fill", color: .yellow, isUnlocked: true)
-                BadgeIcon(icon: "leaf.fill", color: .green, isUnlocked: true)
-                BadgeIcon(icon: "heart.fill", color: .red, isUnlocked: true)
-                BadgeIcon(icon: "bolt.fill", color: .orange, isUnlocked: false)
-                BadgeIcon(icon: "crown.fill", color: .goldPrimary, isUnlocked: false)
+            HStack(spacing: 12) {
+                if unlockedErfolge.isEmpty {
+                    Text("Noch keine Erfolge freigeschaltet")
+                        .font(.system(size: 13))
+                        .foregroundStyle(.secondary)
+                        .italic()
+                } else {
+                    ForEach(unlockedErfolge.prefix(5)) { erfolg in
+                        BadgeIcon(icon: erfolg.icon, color: erfolg.farbe, isUnlocked: true)
+                    }
+                }
             }
-            .frame(maxWidth: .infinity, alignment: .center)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding(20)
         .frame(maxWidth: .infinity)
@@ -263,4 +274,11 @@ struct StatCardButtonStyle: ButtonStyle {
     }
 }
 
-#Preview { ProfilView() }
+#Preview { 
+    NavigationStack {
+        ProfilView()
+            .environmentObject(GardenStore())
+            .environmentObject(SettingsStore())
+            .environmentObject(StreakStore())
+    }
+}

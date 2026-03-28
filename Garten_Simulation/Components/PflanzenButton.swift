@@ -59,14 +59,14 @@ struct PflanzenButtonStyle: ButtonStyle {
 #Preview {
     VStack(spacing: 30) {
         PflanzenButton(
-            bildName: Seltenheit.bronze.iconName,
+            bildName: "bonsai_stufe1",
             farbe: .gruenPrimary,
             sekundaerFarbe: .gruenSecondary,
             groesse: 100
         )
         
         PflanzenButton(
-            bildName: Seltenheit.diamant.iconName,
+            bildName: "bonsai_stufe4",
             farbe: .gruenPrimary,
             sekundaerFarbe: .gruenSecondary,
             groesse: 80

@@ -267,6 +267,7 @@ struct BundleCardRow: View {
 
 struct UnifiedShopView: View {
     @EnvironmentObject var shopStore: ShopStore
+    @EnvironmentObject var gardenStore: GardenStore
     @State private var searchText = ""
     @State private var selectedTag: String? = nil
     @State private var showFilters: Bool = true
@@ -278,7 +279,7 @@ struct UnifiedShopView: View {
         case gegenstande = "Gegenstände"
     }
 
-    var coins: Int { shopStore.coins }
+    var coins: Int { gardenStore.coins }
 
     private let allTags = ["ALLE", "WERKZEUG", "VERBRAUCH", "UPGRADES"]
 
@@ -648,6 +649,7 @@ struct UnifiedShopView: View {
             .sheet(item: $detailPayload) { payload in
                 ShopItemDetailView(payload: payload)
                     .environmentObject(shopStore)
+                    .environmentObject(gardenStore)
                     .presentationDetents([.large])
                     .presentationCornerRadius(32)
                     .presentationBackground(.clear) // Let detail view's background shine through
@@ -716,7 +718,7 @@ struct UnifiedShopView: View {
                 Image("Coin")
                     .resizable().scaledToFit()
                     .frame(width: 20, height: 20)
-                Text("\(shopStore.coins)")
+                Text("\(gardenStore.coins)")
                     .font(.system(size: 15, weight: .bold))
                     .foregroundStyle(Color.belohnungGoldHighlight)
                     .contentTransition(.numericText(countsDown: true))

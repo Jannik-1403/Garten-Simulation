@@ -3,30 +3,13 @@ import Combine
 
 @MainActor
 class StreakStore: ObservableObject {
-    @Published var currentStreak: Int = 51
+    @Published var currentStreak: Int = 0
     @Published var completedDates: Set<Date> = []
-    @Published var streakGoal: Int = 60
+    @Published var streakGoal: Int = 100
     @Published var streakProtectionActive: Bool = false
     
     init() {
-        // Let's add some mock historical data to match the screenshot for March 2026
-        let calendar = Calendar.current
-        let march = calendar.date(from: DateComponents(year: 2026, month: 3, day: 1))!
-        
-        // Consecutive streak from March 15 to March 27 (mocking today as March 27)
-        for day in 15...27 {
-            if let date = calendar.date(byAdding: .day, value: day - 1, to: march) {
-                completedDates.insert(calendar.startOfDay(for: date))
-            }
-        }
-        
-        // Some random completed days earlier in March
-        for day in [1, 2, 3, 8, 9, 10, 11, 12, 13] {
-            if let date = calendar.date(byAdding: .day, value: day - 1, to: march) {
-                completedDates.insert(calendar.startOfDay(for: date))
-            }
-        }
-        
+        // Started fresh with no mock data
         calculateStreak()
     }
     

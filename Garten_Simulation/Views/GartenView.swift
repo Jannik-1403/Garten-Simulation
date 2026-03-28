@@ -3,21 +3,16 @@ import SwiftUI
 
 struct GartenView: View {
 
+    @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var streakStore: StreakStore
-    @State private var gems: Int = 281
+
     @State private var herzen: Int = 5
     @State private var aktivesEvent: WetterEvent = .normal
-    @State private var ausgewaehltePflanze: PflanzenModel? = nil
+    @State private var ausgewaehltePflanze: HabitModel? = nil
+    @State private var ausgewaehltesItem: ShopDetailPayload? = nil
     @State private var zeigeWetterDetails = false
     @State private var startAbstandAktiv = true
     @State private var timerAktuell = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
-    @State private var pflanzen: [PflanzenModel] = [
-        PflanzenModel(name: "Gym", bildName: Seltenheit.bronze.iconName, seltenheit: .bronze),
-        PflanzenModel(name: "Zuckerfrei", bildName: Seltenheit.silber.iconName, seltenheit: .silber),
-        PflanzenModel(name: "Meditation", bildName: Seltenheit.gold.iconName, seltenheit: .gold),
-        PflanzenModel(name: "Lesen", bildName: Seltenheit.diamant.iconName, seltenheit: .diamant),
-    ]
 
     let columns = [
         GridItem(.flexible(), spacing: 16),
@@ -35,8 +30,8 @@ struct GartenView: View {
                 // MARK: - Stats Bar
                 HStack(spacing: 20) {
                     Spacer()
-                    StreakIcon(wert: streakStore.currentStreak)
-                    GemsIcon(wert: gems)
+                    StreakIcon(wert: gardenStore.gesamtStreak)
+                    GemsIcon(wert: gardenStore.coins)
                     HerzenIcon(wert: herzen)
                 }
                 .padding(.horizontal, 28)
@@ -45,10 +40,10 @@ struct GartenView: View {
                 // MARK: - Sektion Titel
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Mein Garten")
+                        Text("garden.title", bundle: .main)
                             .font(.system(size: 32, weight: .black, design: .rounded))
                             .foregroundStyle(.primary)
-                        Text("4 Gewohnheiten aktiv")
+                        Text(String(format: NSLocalizedString("garden.habits.active", comment: ""), gardenStore.pflanzen.count))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(Color.primary.opacity(0.6))
                     }
@@ -61,7 +56,7 @@ struct GartenView: View {
                 WetterBanner(event: aktivesEvent) {
                     zeigeWetterDetails = true
                 }
-                    .padding(.top, 12)
+                .padding(.top, 12)
 
                 // MARK: - Pflanzen Grid
                 ScrollView {
@@ -70,31 +65,71 @@ struct GartenView: View {
                             .frame(height: 12)
                     }
 
-                    LazyVGrid(columns: columns, spacing: 26) {
-                        ForEach(pflanzen.indices, id: \.self) { index in
-                            PflanzenCard(
-                                name: pflanzen[index].name,
-                                bildName: pflanzen[index].seltenheit.iconName,
-                                fortschritt: pflanzen[index].fortschritt,
-                                gewaessert: pflanzen[index].gewaessert,
-                                giessZaehler: pflanzen[index].giessZaehler,
-                                seltenheit: pflanzen[index].seltenheit,
-                                letzteGiessung: pflanzen[index].letzteGiessung,
-                                pflanzenPhase: pflanzen[index].phase,
-                                thirstSystem: pflanzen[index].thirstSystem,
-                                wetterEvent: aktivesEvent,
-                                onGiessen: {
-                                    giessen(index: index)
-                                },
-                                onTap: {
-                                    ausgewaehltePflanze = pflanzen[index]
+                    if gardenStore.pflanzen.isEmpty {
+                        VStack(spacing: 12) {
+                            Spacer().frame(height: 60)
+                            Image(systemName: "leaf.fill")
+                                .font(.system(size: 60))
+                                .foregroundStyle(.secondary.opacity(0.3))
+                            Text("garden.empty.title", bundle: .main)
+                                .font(.headline)
+                            Text("garden.empty.subtitle", bundle: .main)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 40)
+                    } else {
+                        LazyVGrid(columns: columns, spacing: 26) {
+                            ForEach(gardenStore.pflanzen) { pflanze in
+                                PflanzenCard(
+                                    pflanze: pflanze,
+                                    wetterEvent: aktivesEvent,
+                                    onGiessen: {
+                                        gardenStore.giessen(pflanze: pflanze)
+                                    },
+                                    onTap: {
+                                        ausgewaehltePflanze = pflanze
+                                    }
+                                )
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                        
+                        // MARK: - Items Lager (Horizontal Scroll)
+                        if !gardenStore.boughtItems.isEmpty {
+                            VStack(alignment: .leading, spacing: 16) {
+                                Text("Meine Items")
+                                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.primary)
+                                    .padding(.horizontal, 8)
+                                
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(spacing: 16) {
+                                        ForEach(gardenStore.boughtItems) { item in
+                                            Item3DButton(
+                                                icon: item.icon,
+                                                farbe: .white,
+                                                sekundaerFarbe: Color.primary.opacity(0.1),
+                                                groesse: 110
+                                            ) {
+                                                ausgewaehltesItem = item
+                                            }
+                                        }
+                                    }
+                                    .padding(.horizontal, 8)
+                                    .padding(.bottom, 12) // Space for 3D shadow
                                 }
-                            )
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                            }
+                            .padding(.top, 16) // Added space to prevent clipping at the top
+                            .padding(.horizontal, 20)
+                            .padding(.bottom, 40)
+                        } else {
+                            // Bottom padding if no items
+                            Spacer().frame(height: 32)
                         }
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 32)
                 }
                 .padding(.top, 0)
                 .simultaneousGesture(
@@ -114,25 +149,13 @@ struct GartenView: View {
             starteTageswechselTimer()
         }
         .onReceive(timerAktuell) { _ in
-            for index in pflanzen.indices {
-                pflanzen[index].phase = PflanzenModel.berechnePhase(
-                    letzteGiessung: pflanzen[index].letzteGiessung
-                )
-            }
+            gardenStore.taeglicherStreakCheck()
         }
         .sheet(item: $ausgewaehltePflanze) { pflanze in
-            PflanzenDetailView(
-                name: pflanze.name,
-                bildName: pflanze.seltenheit.iconName,
-                seltenheit: pflanze.seltenheit,
-                streak: pflanze.streak,
-                fortschritt: pflanze.fortschritt,
-                thirstSystem: pflanze.thirstSystem,
-                gesamtGegossen: pflanze.gesamtGegossen,
-                stuermUeberlebt: pflanze.stuermUeberlebt,
-                erledigteTageDaten: pflanze.erledigteTageDaten,
+            PflanzeDetailSheet(
+                pflanze: pflanze,
                 onLoeschen: {
-                    pflanzen.removeAll { $0.id == pflanze.id }
+                    gardenStore.pflanzen.removeAll { $0.id == pflanze.id }
                     ausgewaehltePflanze = nil
                 }
             )
@@ -141,8 +164,14 @@ struct GartenView: View {
                 PresentationDetent.large,
             ])
             .presentationDragIndicator(.visible as Visibility)
-            .presentationCornerRadius(32)
             .presentationBackground(.ultraThinMaterial)
+        }
+        .sheet(item: $ausgewaehltesItem) { item in
+            ShopItemDetailView(payload: item)
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+                .presentationCornerRadius(32)
+                .presentationBackground(.ultraThinMaterial)
         }
         .sheet(isPresented: $zeigeWetterDetails) {
             WetterDetailView(event: aktivesEvent)
@@ -181,127 +210,10 @@ struct GartenView: View {
             starteTageswechselTimer()
         }
     }
-
-    // MARK: - Gieß Logik
-    func giessen(index: Int) {
-        guard !pflanzen[index].gewaessert else { return }
-
-        withAnimation {
-            var p = pflanzen[index]
-
-            let phaseBeimGiessen = PflanzenModel.berechnePhase(letzteGiessung: p.letzteGiessung)
-            let gemBonus: Int
-            switch phaseBeimGiessen {
-            case .wachstum:
-                gemBonus = Int(10.0 * aktivesEvent.gemMultiplikator)
-            case .kampf:
-                gemBonus = Int(5.0 * aktivesEvent.gemMultiplikator)
-            case .tot:
-                gemBonus = 0
-            }
-            gems += gemBonus
-
-            p.fortschritt = min(p.fortschritt + 0.05, 1.0)
-            p.gesamtGegossen += 1
-
-            if aktivesEvent == .duerre {
-                p.giessZaehler += 1
-                if p.giessZaehler >= 2 {
-                    p.gewaessert = true
-                    p.giessZaehler = 0
-                }
-            } else {
-                p.gewaessert = true
-                p.giessZaehler = 0
-            }
-
-            if p.gewaessert {
-                if phaseBeimGiessen == .tot {
-                    p.streak = 0
-                }
-                p.streak += 1
-                if aktivesEvent == .sturm {
-                    p.stuermUeberlebt += 1
-                }
-                if !p.erledigteTageDaten.isEmpty {
-                    p.erledigteTageDaten.removeFirst()
-                    p.erledigteTageDaten.append(true)
-                }
-            } else if !p.erledigteTageDaten.isEmpty {
-                p.erledigteTageDaten.removeFirst()
-                p.erledigteTageDaten.append(false)
-            }
-
-            p.benoetigtZweiMal = aktivesEvent == .duerre && !p.gewaessert
-
-            if p.gewaessert {
-                p.thirstSystem.water()
-                p.letzteGiessung = Date()
-                p.phase = .wachstum
-            }
-
-            pflanzen[index] = p
-            
-            if pflanzen.allSatisfy({ $0.gewaessert }) {
-                streakStore.completeDay()
-            }
-        }
-    }
-}
-
-enum PflanzenPhase: Equatable {
-    case wachstum
-    case kampf
-    case tot
-}
-
-struct PflanzenModel: Identifiable {
-    let id = UUID()
-    var name: String
-    var bildName: String
-    var fortschritt: Double = 0.0
-    var gewaessert: Bool = false
-    var giessZaehler: Int = 0
-    var benoetigtZweiMal: Bool = false
-    var gesamtGegossen: Int = 0
-    var stuermUeberlebt: Int = 0
-    var streak: Int = 0
-    var erledigteTageDaten: [Bool] = Array(repeating: false, count: 30)
-    var seltenheit: Seltenheit = .bronze
-    var thirstSystem: ThirstSystem = ThirstSystem()
-    var letzteGiessung: Date? = nil
-    var phase: PflanzenPhase = .wachstum
-
-    static func berechnePhase(letzteGiessung: Date?, jetzt: Date = Date()) -> PflanzenPhase {
-        guard let letzteGiessung = letzteGiessung else {
-            return .wachstum
-        }
-        let stunden = jetzt.timeIntervalSince(letzteGiessung) / 3600
-        if stunden < 24 {
-            return .wachstum
-        } else if stunden < 48 {
-            return .kampf
-        } else {
-            return .tot
-        }
-    }
-
-    static func verbleibendeZeit(letzteGiessung: Date?, jetzt: Date = Date()) -> TimeInterval {
-        guard let letzteGiessung = letzteGiessung else {
-            return 24 * 3600
-        }
-        let stunden = jetzt.timeIntervalSince(letzteGiessung) / 3600
-        if stunden < 24 {
-            return (24 * 3600) - jetzt.timeIntervalSince(letzteGiessung)
-        } else if stunden < 48 {
-            return (48 * 3600) - jetzt.timeIntervalSince(letzteGiessung)
-        } else {
-            return 0
-        }
-    }
 }
 
 #Preview {
     GartenView()
+        .environmentObject(GardenStore())
         .environmentObject(StreakStore())
 }

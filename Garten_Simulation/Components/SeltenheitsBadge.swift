@@ -1,8 +1,8 @@
 import SwiftUI
 
-// Ein kompakter Badge, der die neue SeltenheitsStufe mit Icon und Farbverlauf anzeigt.
+// Ein kompakter Badge, der die neue PflanzenSeltenheit mit Icon und Farbverlauf anzeigt.
 struct SeltenheitsBadge: View {
-    let stufe: SeltenheitsStufe
+    let stufe: PflanzenSeltenheit
     var zeigeTitel: Bool = true
     var kompakt: Bool = false
 
@@ -17,7 +17,7 @@ struct SeltenheitsBadge: View {
                 .symbolRenderingMode(.hierarchical)
                 .font(.system(size: iconSize, weight: .semibold))
             if zeigeTitel {
-                Text(stufe.titel)
+                Text(stufe.lokalisiertTitel)
                     .font(.system(size: fontSize, weight: .semibold, design: .rounded))
             }
         }
@@ -27,7 +27,7 @@ struct SeltenheitsBadge: View {
         .background(stufe.gradient)
         .clipShape(Capsule())
         .shadow(color: stufe.secondaryColor.opacity(0.35), radius: 3, x: 0, y: 2)
-        .accessibilityLabel("Seltenheit: \(stufe.titel)")
+        .accessibilityLabel("Seltenheit: \(stufe.lokalisiertTitel)")
     }
 }
 

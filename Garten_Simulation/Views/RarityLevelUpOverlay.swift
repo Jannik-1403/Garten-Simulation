@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RarityLevelUpOverlay: View {
-    let rarity: SeltenheitsStufe
+    let rarity: PflanzenSeltenheit
     let onDismiss: () -> Void
     
     @State private var iconScale: CGFloat = 0.5
@@ -26,7 +26,7 @@ struct RarityLevelUpOverlay: View {
                 // Rarity Icon
                 ZStack {
                     Circle()
-                        .fill(rarity.primaryColor.opacity(0.15))
+                        .fill(rarity.farbe.opacity(0.15))
                         .frame(width: 140, height: 140)
                         .blur(radius: 20)
                     
@@ -35,7 +35,7 @@ struct RarityLevelUpOverlay: View {
                         .foregroundStyle(rarity.gradient)
                         .scaleEffect(iconScale)
                         .rotationEffect(.degrees(iconRotation))
-                        .shadow(color: rarity.primaryColor.opacity(0.3), radius: 15, x: 0, y: 10)
+                        .shadow(color: rarity.farbe.opacity(0.3), radius: 15, x: 0, y: 10)
                 }
                 
                 // Details
@@ -44,7 +44,7 @@ struct RarityLevelUpOverlay: View {
                         .font(.system(size: 16))
                         .foregroundStyle(.secondary)
                     
-                    Text(rarity.titel)
+                    Text(rarity.lokalisiertTitel)
                         .font(.system(size: 28, weight: .heavy, design: .rounded))
                         .foregroundStyle(rarity.gradient)
                 }
@@ -56,7 +56,7 @@ struct RarityLevelUpOverlay: View {
                 }
                 .buttonStyle(DuolingoButtonStyle(
                     size: .large,
-                    backgroundColor: rarity.primaryColor,
+                    backgroundColor: rarity.farbe,
                     shadowColor: rarity.secondaryColor,
                     foregroundColor: .white
                 ))

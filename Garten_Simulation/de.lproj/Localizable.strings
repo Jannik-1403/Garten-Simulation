@@ -1,0 +1,120 @@
+// Alle sichtbaren Texte in der App hierher auslagern
+// Kein String darf direkt im Code stehen außer technische IDs
+
+// Allgemein
+"app.name" = "Garten Simulation";
+"button.buy" = "Kaufen";
+"button.water" = "Gießen";
+"button.ok" = "OK";
+"button.cancel" = "Abbrechen";
+
+// Garten
+"garden.title" = "Mein Garten";
+"garden.habits.active" = "%d Gewohnheiten aktiv";
+"garden.empty.title" = "Noch keine Pflanzen";
+"garden.empty.subtitle" = "Kaufe deine erste Pflanze im Shop";
+
+// Shop
+"shop.title" = "Shop";
+"shop.tab.items" = "Gegenstände";
+"shop.tab.plants" = "Pflanzen";
+"shop.buy.confirm" = "Wirklich für %d Coins kaufen?";
+"shop.buy.insufficient" = "Du brauchst noch %d Coins mehr";
+"shop.buy.success" = "Gekauft!";
+"shop.owned" = "Bereits im Besitz";
+"shop.purchases.count" = "Käufe im Shop";
+
+// Seltenheit
+"rarity.bronze"  = "Bronze";
+"rarity.silber"  = "Silber";
+"rarity.gold"    = "Gold";
+"rarity.diamant" = "Diamant";
+
+// Streak
+"streak.days" = "%d Tage";
+"streak.lost" = "Streak verloren";
+"streak.complete" = "Alle Pflanzen gegossen!";
+
+// Profil
+"profile.coins" = "Coins";
+"profile.plants" = "Pflanzen";
+"profile.streak" = "Tage";
+"profile.achievements" = "Erfolge";
+"profile.user.name" = "Jannik Schill";
+"profile.achievements.subtitle" = "Dein Trophäen-Schrank";
+"profile.achievements.unlocked" = "Erfolge freigeschaltet";
+"profile.achievements.locked_desc" = "Noch nicht freigeschaltet";
+"profile.coins.available" = "Coins verfügbar";
+"profile.coins.total" = "Gesamtstand";
+"profile.coins.earned" = "Verdient (gesamt)";
+"profile.coins.spent" = "Ausgegeben";
+"profile.coins.how_to_earn" = "SO VERDIENST DU COINS";
+"profile.coins.tip.habit" = "Gewohnheit erledigen";
+"profile.coins.tip.streak" = "7-Tage Streak";
+"profile.coins.tip.levelup" = "Level Up";
+"profile.coins.tip.watering" = "Alle Pflanzen gießen";
+"profile.plants.subtitle" = "Pflanzen in deinem Garten";
+"profile.plants.list" = "MEINE PFLANZEN";
+"profile.xp.earned" = "Verdiente XP";
+"profile.xp.max" = "Meiste XP";
+
+// Common / Detail
+"common.details" = "DETAILS";
+"common.history" = "VERLAUF";
+"common.total" = "Gesamt";
+"common.active" = "Aktiv";
+"common.of" = "von";
+"common.done" = "FERTIG";
+
+// Buttons
+"button.delete" = "Entfernen";
+
+// Garden
+"garden.plant.done" = "ERLEDIGT";
+"garden.plant.delete.title" = "Pflanze entfernen?";
+
+// Erfolg Kategorien
+"category.streak" = "Streak";
+"category.daytime" = "Tageszeit";
+"category.plants" = "Pflanzen";
+"category.coins" = "Coins";
+
+// Erfolge - Streak
+"achievement.streak3.title" = "Erste Schritte";
+"achievement.streak3.desc" = "3 Tage Streak";
+"achievement.streak7.title" = "Eine Woche";
+"achievement.streak7.desc" = "7 Tage Streak";
+"achievement.streak30.title" = "Monats-Krieger";
+"achievement.streak30.desc" = "30 Tage Streak";
+"achievement.streak100.title" = "Legende";
+"achievement.streak100.desc" = "100 Tage Streak";
+
+// Erfolge - Coins
+"achievement.coin100.title" = "Erstes Taschengeld";
+"achievement.coin100.desc" = "100 Coins gesammelt";
+"achievement.coin1000.title" = "Sparfuchs";
+"achievement.coin1000.desc" = "1.000 Coins gesammelt";
+"achievement.coin5000.title" = "Reicher Gärtner";
+"achievement.coin5000.desc" = "5.000 Coins gesammelt";
+"achievement.coin10000.title" = "Millionär";
+"achievement.coin10000.desc" = "10.000 Coins gesammelt";
+
+// Erfolge - Pflanzen
+"achievement.pfl1.title" = "Erster Setzling";
+"achievement.pfl1.desc" = "1 Pflanze im Garten";
+"achievement.pfl5.title" = "Kleiner Garten";
+"achievement.pfl5.desc" = "5 Pflanzen im Garten";
+"achievement.pfl10.title" = "Grüner Daumen";
+"achievement.pfl10.desc" = "10 Pflanzen im Garten";
+"achievement.pfl25.title" = "Meister-Gärtner";
+"achievement.pfl25.desc" = "25 Pflanzen im Garten";
+
+// Erfolge - Tageszeit
+"achievement.morgen5.title" = "Frühaufsteher";
+"achievement.morgen5.desc" = "5× vor 9 Uhr erledigt";
+"achievement.morgen30.title" = "Morgen-Meister";
+"achievement.morgen30.desc" = "30× vor 9 Uhr erledigt";
+"achievement.abend5.title" = "Nacht-Eule";
+"achievement.abend5.desc" = "5× nach 20 Uhr erledigt";
+"achievement.abend30.title" = "Mitternachts-Krieger";
+"achievement.abend30.desc" = "30× nach 20 Uhr erledigt";

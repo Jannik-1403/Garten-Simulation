@@ -8,16 +8,6 @@ struct ContentView: View {
                     Label("Garten", systemImage: "leaf.fill")
                 }
             
-            AufgabenView()
-                .tabItem {
-                    Label("Aufgaben", systemImage: "checkmark.circle.fill")
-                }
-            
-            GewohnheitenView()
-                .tabItem {
-                    Label("Gewohnheiten", systemImage: "flame.fill")
-                }
-            
             UnifiedShopView()
                 .tabItem {
                     Label("Shop", systemImage: "cart.fill")
@@ -33,5 +23,11 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    let garden = GardenStore()
+    return ContentView()
+        .environmentObject(garden)
+        .environmentObject(ShopStore())
+        .environmentObject(SettingsStore())
+        .environmentObject(StreakStore())
+        .environmentObject(AchievementStore(gardenStore: garden))
 }

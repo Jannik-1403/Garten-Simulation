@@ -3,6 +3,7 @@ import SwiftUI
 struct ShopItemDetailView: View {
     let payload: ShopDetailPayload
     @EnvironmentObject var shopStore: ShopStore
+    @EnvironmentObject var gardenStore: GardenStore
 
     @Environment(\.dismiss) private var dismiss
     @State private var showSuccess = false
@@ -93,7 +94,7 @@ struct ShopItemDetailView: View {
                                     Image("Coin")
                                         .resizable().scaledToFit()
                                         .frame(width: 14, height: 14)
-                                    Text("\(shopStore.coins)")
+                                    Text("\(gardenStore.coins)")
                                         .font(.system(size: 13, weight: .semibold))
                                         .foregroundStyle(
                                             canAfford
@@ -150,6 +151,18 @@ struct ShopItemDetailView: View {
                                     color: payload.color
                                 ) {
                                     shopStore.buy(id: payload.id, price: payload.price)
+                                    
+                                    // Identify if it's a plant or a general item
+                                    let plantTags = ["BAUM", "STRAUCH", "KAKTUS", "BLUME"]
+                                    let isPlantDeal = payload.id.contains("bonsai") || payload.id.contains("baum")
+                                    
+                                    if let tag = payload.tag, (plantTags.contains(tag) || isPlantDeal) {
+                                        gardenStore.pflanzHinzufuegen(shopItem: payload)
+                                    } else {
+                                        // Standard item (Wunder-Box, Dünger etc.)
+                                        gardenStore.itemHinzufuegen(shopItem: payload)
+                                    }
+
                                     withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
                                         showSuccess = true
                                     }
@@ -200,7 +213,7 @@ struct ShopItemDetailView: View {
         .alert("Nicht genug Coins", isPresented: $showInsufficientCoins) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text("Du brauchst noch \(payload.price - shopStore.coins) Coins mehr.")
+            Text("Du brauchst noch \(payload.price - gardenStore.coins) Coins mehr.")
         }
     }
 }

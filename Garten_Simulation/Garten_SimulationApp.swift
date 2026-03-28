@@ -1,29 +1,43 @@
-import SwiftData
 import SwiftUI
 
 @main
 struct Garten_SimulationApp: App {
-    private let modelContainer: ModelContainer = {
-        do {
-            return try ModelContainer(for: Schema([Gewohnheit.self, Pflanze.self]))
-        } catch {
-            fatalError("SwiftData ModelContainer: \(error)")
-        }
-    }()
-
-    @StateObject private var shopStore = ShopStore()
+    @StateObject private var gardenStore   = GardenStore()
+    @StateObject private var shopStore     = ShopStore()
     @StateObject private var settingsStore = SettingsStore()
-    @StateObject private var progressStore = GardenProgressStore()
-    @StateObject private var streakStore = StreakStore()
+    @StateObject private var streakStore   = StreakStore()
+    @StateObject private var achievementStore: AchievementStore
+    
+    init() {
+        let garden = GardenStore()
+        self._gardenStore = StateObject(wrappedValue: garden)
+        self._shopStore = StateObject(wrappedValue: ShopStore())
+        self._settingsStore = StateObject(wrappedValue: SettingsStore())
+        self._streakStore = StateObject(wrappedValue: StreakStore())
+        self._achievementStore = StateObject(wrappedValue: AchievementStore(gardenStore: garden))
+    }
 
     var body: some Scene {
         WindowGroup {
-            SplashScreenView()
+            ContentView()
+                .environmentObject(gardenStore)
                 .environmentObject(shopStore)
                 .environmentObject(settingsStore)
-                .environmentObject(progressStore)
                 .environmentObject(streakStore)
+                .environmentObject(achievementStore)
+                .onAppear {
+                    // Link ShopStore coin closures to GardenStore (single source of truth)
+                    shopStore.coinsProvider  = { [weak gardenStore] in gardenStore?.coins ?? 0 }
+                    shopStore.coinsAbziehen  = { [weak gardenStore] amount in gardenStore?.coins -= amount }
+                    
+                    // Link GardenStore watering action to StreakStore
+                    gardenStore.onWatering = { [weak streakStore] in
+                        streakStore?.completeDay()
+                    }
+
+                    // Onboarding: Gratis-Pflanzen beim ersten Start
+                    gardenStore.onboardingGratisPflanzen()
+                }
         }
-        .modelContainer(modelContainer)
     }
 }
