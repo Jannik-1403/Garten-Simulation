@@ -5,6 +5,7 @@ import SwiftUI
 // MARK: - CoinsDetailView
 struct CoinsDetailView: View {
     @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
 
     // Berechnungen aus echtem Store
     var verdient: Int { gardenStore.gesamtVerdient }
@@ -41,7 +42,7 @@ struct CoinsDetailView: View {
                             .contentTransition(.numericText())
                             .animation(.spring(response: 0.4), value: gardenStore.coins)
 
-                        Text("profile.coins.available", bundle: .main)
+                        Text(settings.localizedString(for: "profile.coins.available"))
                             .font(.system(size: 15))
                             .foregroundStyle(.secondary)
                     }
@@ -54,7 +55,7 @@ struct CoinsDetailView: View {
                     .padding(.horizontal, 20)
 
                     // MARK: Details
-                    sectionHeader(NSLocalizedString("common.details", comment: ""))
+                    sectionHeader(settings.localizedString(for: "common.details"))
 
                     VStack(spacing: 0) {
                         detailRow(
@@ -99,7 +100,7 @@ struct CoinsDetailView: View {
                     .padding(.horizontal, 20)
 
                     // MARK: Wie verdiene ich Coins?
-                    sectionHeader(NSLocalizedString("profile.coins.how_to_earn", comment: ""))
+                    sectionHeader(settings.localizedString(for: "profile.coins.how_to_earn"))
 
                     VStack(spacing: 0) {
                         ForEach(Array(verdienstTipps.enumerated()), id: \.offset) { index, tipp in
@@ -122,11 +123,11 @@ struct CoinsDetailView: View {
                     .padding(.horizontal, 20)
 
                     // MARK: Transaktions-Verlauf
-                    sectionHeader(NSLocalizedString("common.history", comment: ""))
+                    sectionHeader(settings.localizedString(for: "common.history"))
 
                     VStack(spacing: 0) {
                         if gardenStore.transactions.isEmpty {
-                            Text("Noch keine Transaktionen")
+                            Text(settings.localizedString(for: "profile.transactions.empty"))
                                 .font(.system(size: 14))
                                 .foregroundStyle(.secondary)
                                 .padding(.vertical, 30)
@@ -151,7 +152,7 @@ struct CoinsDetailView: View {
                 .padding(.top, 20)
             }
         }
-        .navigationTitle(Text("profile.coins", bundle: .main))
+        .navigationTitle(settings.localizedString(for: "profile.coins"))
         .navigationBarTitleDisplayMode(.inline)
     }
 
@@ -182,7 +183,7 @@ struct CoinsDetailView: View {
                         .foregroundStyle(color)
                 }
             }
-            Text(LocalizedStringKey(labelKey))
+            Text(settings.localizedString(for: labelKey))
                 .font(.system(size: 16))
                 .foregroundStyle(.primary)
             Spacer()

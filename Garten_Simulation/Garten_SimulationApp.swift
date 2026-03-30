@@ -7,6 +7,7 @@ struct Garten_SimulationApp: App {
     @StateObject private var settingsStore = SettingsStore()
     @StateObject private var streakStore   = StreakStore()
     @StateObject private var achievementStore: AchievementStore
+    @StateObject private var powerUpStore: PowerUpStore
     
     init() {
         let garden = GardenStore()
@@ -15,6 +16,7 @@ struct Garten_SimulationApp: App {
         self._settingsStore = StateObject(wrappedValue: SettingsStore())
         self._streakStore = StateObject(wrappedValue: StreakStore())
         self._achievementStore = StateObject(wrappedValue: AchievementStore(gardenStore: garden))
+        self._powerUpStore = StateObject(wrappedValue: PowerUpStore())
     }
 
     var body: some Scene {
@@ -25,6 +27,8 @@ struct Garten_SimulationApp: App {
                 .environmentObject(settingsStore)
                 .environmentObject(streakStore)
                 .environmentObject(achievementStore)
+                .environmentObject(powerUpStore)
+                .environment(\.locale, Locale(identifier: settingsStore.appLanguage))
                 .onAppear {
                     // Link ShopStore coin closures to GardenStore (single source of truth)
                     shopStore.coinsProvider  = { [weak gardenStore] in gardenStore?.coins ?? 0 }

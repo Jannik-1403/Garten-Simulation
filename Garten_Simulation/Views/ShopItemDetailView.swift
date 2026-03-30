@@ -4,6 +4,8 @@ struct ShopItemDetailView: View {
     let payload: ShopDetailPayload
     @EnvironmentObject var shopStore: ShopStore
     @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var powerUpStore: PowerUpStore
 
     @Environment(\.dismiss) private var dismiss
     @State private var showSuccess = false
@@ -28,14 +30,25 @@ struct ShopItemDetailView: View {
 
                         VStack(spacing: 0) {
                             Spacer().frame(height: 60)
-                            Image(payload.icon)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 150, height: 150)
-                                .shadow(
-                                    color: payload.shadowColor.opacity(0.35),
-                                    radius: 20, x: 0, y: 10
-                                )
+                            
+                            Group {
+                                if UIImage(named: payload.icon) != nil {
+                                    // Asset vorhanden
+                                    Image(payload.icon)
+                                        .resizable()
+                                        .scaledToFit()
+                                } else {
+                                    // SF Symbol fallback
+                                    Image(systemName: payload.icon)
+                                        .font(.system(size: 100))
+                                        .foregroundStyle(payload.color)
+                                }
+                            }
+                            .frame(width: 150, height: 150)
+                            .shadow(
+                                color: payload.shadowColor.opacity(0.35),
+                                radius: 20, x: 0, y: 10
+                            )
                             Spacer().frame(height: 24)
                         }
                     }
@@ -47,14 +60,14 @@ struct ShopItemDetailView: View {
                         // Tag + Titel + Subtitle
                         VStack(alignment: .leading, spacing: 8) {
                             if let tag = payload.tag {
-                                Text(tag)
+                                Text(settings.localizedString(for: tag))
                                     .font(.system(size: 11, weight: .bold))
                                     .foregroundStyle(payload.color)
                                     .kerning(1.4)
                             }
-                            Text(payload.title)
+                            Text(settings.localizedString(for: payload.title))
                                 .font(.system(size: 26, weight: .bold, design: .rounded))
-                            Text(payload.subtitle)
+                            Text(settings.localizedString(for: payload.subtitle))
                                 .font(.system(size: 15))
                                 .foregroundStyle(.secondary)
                         }
@@ -63,16 +76,29 @@ struct ShopItemDetailView: View {
 
                         // Beschreibung
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Beschreibung")
+                            Text(settings.localizedString(for: "shop.item.description"))
                                 .font(.system(size: 12, weight: .bold))
                                 .foregroundStyle(.secondary)
                                 .kerning(1.2)
-                            Text(payload.description)
+                            Text(settings.localizedString(for: payload.description))
                                 .font(.system(size: 15))
                                 .lineSpacing(4)
                         }
 
                         Divider()
+
+                        if let usage = payload.howToUse, !usage.isEmpty {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text(settings.localizedString(for: "shop.item.usage"))
+                                    .font(.system(size: 12, weight: .bold))
+                                    .foregroundStyle(.secondary)
+                                    .kerning(1.2)
+                                Text(settings.localizedString(for: usage))
+                                    .font(.system(size: 15))
+                                    .lineSpacing(4)
+                            }
+                            Divider()
+                        }
 
                         // MARK: Preis + Button
                         VStack(spacing: 16) {
@@ -88,7 +114,7 @@ struct ShopItemDetailView: View {
                                 Spacer()
                                 // Aktueller Kontostand
                                 HStack(spacing: 3) {
-                                    Text("Dein Stand:")
+                                    Text(settings.localizedString(for: "shop.your_balance"))
                                         .font(.system(size: 13))
                                         .foregroundStyle(.secondary)
                                     Image("Coin")
@@ -113,7 +139,7 @@ struct ShopItemDetailView: View {
                                 Button {} label: {
                                     HStack(spacing: 8) {
                                         Image(systemName: "checkmark.seal.fill")
-                                        Text("Bereits im Besitz")
+                                        Text(settings.localizedString(for: "shop.already_owned"))
                                     }
                                 }
                                 .buttonStyle(DuolingoButtonStyle(
@@ -134,7 +160,7 @@ struct ShopItemDetailView: View {
                                 } label: {
                                     HStack(spacing: 8) {
                                         Image(systemName: "lock.fill")
-                                        Text("Zu wenig Coins")
+                                        Text(settings.localizedString(for: "shop.not_enough_coins"))
                                     }
                                 }
                                 .buttonStyle(DuolingoButtonStyle(
@@ -152,14 +178,10 @@ struct ShopItemDetailView: View {
                                 ) {
                                     shopStore.buy(id: payload.id, price: payload.price)
                                     
-                                    // Identify if it's a plant or a general item
-                                    let plantTags = ["BAUM", "STRAUCH", "KAKTUS", "BLUME"]
-                                    let isPlantDeal = payload.id.contains("bonsai") || payload.id.contains("baum")
-                                    
-                                    if let tag = payload.tag, (plantTags.contains(tag) || isPlantDeal) {
+                                    if payload.itemType == .plant {
                                         gardenStore.pflanzHinzufuegen(shopItem: payload)
                                     } else {
-                                        // Standard item (Wunder-Box, Dünger etc.)
+                                        // Power-Up oder Müll
                                         gardenStore.itemHinzufuegen(shopItem: payload)
                                     }
 
@@ -210,10 +232,10 @@ struct ShopItemDetailView: View {
             }
         }
         .animation(.spring(response: 0.4, dampingFraction: 0.72), value: showSuccess)
-        .alert("Nicht genug Coins", isPresented: $showInsufficientCoins) {
+        .alert(settings.localizedString(for: "shop.not_enough_coins"), isPresented: $showInsufficientCoins) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text("Du brauchst noch \(payload.price - gardenStore.coins) Coins mehr.")
+            Text(String(format: settings.localizedString(for: "shop.need_more_coins"), payload.price - gardenStore.coins))
         }
     }
 }

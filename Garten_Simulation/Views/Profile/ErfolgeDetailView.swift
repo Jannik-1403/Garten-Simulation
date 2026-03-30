@@ -3,6 +3,7 @@ import SwiftUI
 struct ErfolgeDetailView: View {
     @State private var ausgewaehlteKategorie: ErfolgKategorie = .streak
     @EnvironmentObject var achievementStore: AchievementStore
+    @EnvironmentObject var settings: SettingsStore
     
     // Alle Erfolge aus dem Model
     var alleErfolge: [ErfolgModel] { achievementStore.alleErfolge }
@@ -35,7 +36,7 @@ struct ErfolgeDetailView: View {
                                 Text("\(freigeschaltetAnzahl)")
                                     .font(.system(size: 32, weight: .bold, design: .rounded))
                                 HStack(spacing: 2) {
-                                    Text("common.of", bundle: .main)
+                                    Text(settings.localizedString(for: "common.of"))
                                     Text("\(gesamtAnzahl)")
                                 }
                                 .font(.system(size: 13))
@@ -43,7 +44,7 @@ struct ErfolgeDetailView: View {
                             }
                         }
                         
-                        Text("profile.achievements.unlocked", bundle: .main)
+                        Text(settings.localizedString(for: "profile.achievements.unlocked"))
                             .font(.system(size: 15, weight: .medium))
                             .foregroundStyle(.secondary)
                     }
@@ -92,7 +93,7 @@ struct ErfolgeDetailView: View {
                 .padding(.top, 20)
             }
         }
-        .navigationTitle(Text("profile.achievements", bundle: .main))
+        .navigationTitle(settings.localizedString(for: "profile.achievements"))
         .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -125,6 +126,7 @@ struct FilterButton: View {
 // MARK: - Erfolg Card Component
 struct ErfolgCard: View {
     let erfolg: ErfolgModel
+    @EnvironmentObject var settings: SettingsStore
 
     var body: some View {
         VStack(spacing: 10) {
@@ -147,13 +149,13 @@ struct ErfolgCard: View {
             }
 
             if erfolg.istFreigeschaltet {
-                Text(LocalizedStringKey(erfolg.titel))
+                Text(settings.localizedString(for: erfolg.titel))
                     .font(.system(size: 13, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .frame(height: 34, alignment: .top)
 
-                Text(LocalizedStringKey(erfolg.beschreibung))
+                Text(settings.localizedString(for: erfolg.beschreibung))
                     .font(.system(size: 11))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -173,7 +175,7 @@ struct ErfolgCard: View {
                     .foregroundStyle(Color.gray.opacity(0.35))
                     .frame(height: 34, alignment: .top)
 
-                Text("profile.achievements.locked_desc", bundle: .main)
+                Text(settings.localizedString(for: "profile.achievements.locked_desc"))
                     .font(.system(size: 11))
                     .foregroundStyle(Color.gray.opacity(0.3))
                     .multilineTextAlignment(.center)

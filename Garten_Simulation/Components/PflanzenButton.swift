@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PflanzenButton: View {
-    let bildName: String
+    let symbolName: String
     let farbe: Color
     let sekundaerFarbe: Color
     let groesse: CGFloat
@@ -14,9 +14,18 @@ struct PflanzenButton: View {
                 aktion?()
             }
         } label: {
-            Image(bildName)
-                .resizable()
-                .scaledToFit()
+            Group {
+                if UIImage(named: symbolName) != nil {
+                    Image(symbolName)
+                        .resizable()
+                        .scaledToFit()
+                } else {
+                    Image(systemName: symbolName)
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(.white)
+                }
+            }
         }
         .buttonStyle(PflanzenButtonStyle(
             farbe: farbe,
@@ -59,14 +68,14 @@ struct PflanzenButtonStyle: ButtonStyle {
 #Preview {
     VStack(spacing: 30) {
         PflanzenButton(
-            bildName: "bonsai_stufe1",
+            symbolName: "bonsai_stufe1",
             farbe: .gruenPrimary,
             sekundaerFarbe: .gruenSecondary,
             groesse: 100
         )
         
         PflanzenButton(
-            bildName: "bonsai_stufe4",
+            symbolName: "bonsai_stufe4",
             farbe: .gruenPrimary,
             sekundaerFarbe: .gruenSecondary,
             groesse: 80

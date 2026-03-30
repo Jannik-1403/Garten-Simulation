@@ -12,7 +12,6 @@ struct ContentView: View {
                 .tabItem {
                     Label("Shop", systemImage: "cart.fill")
                 }
-            
             ProfilView()
                 .tabItem {
                     Label("Profil", systemImage: "person.fill")
@@ -29,5 +28,6 @@ struct ContentView: View {
         .environmentObject(ShopStore())
         .environmentObject(SettingsStore())
         .environmentObject(StreakStore())
+        .environmentObject(PowerUpStore())
         .environmentObject(AchievementStore(gardenStore: garden))
 }

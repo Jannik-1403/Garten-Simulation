@@ -7,7 +7,8 @@ enum PflanzenSeltenheit: String, Codable, CaseIterable {
     case diamant = "diamant"
 
     var lokalisiertTitel: String {
-        NSLocalizedString("rarity.\(rawValue)", bundle: .main, comment: "")
+        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
+        return AppStrings.get("rarity.\(rawValue)", language: lang)
     }
 
     var farbe: Color {

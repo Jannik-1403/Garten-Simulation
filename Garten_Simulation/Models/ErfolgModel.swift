@@ -10,11 +10,12 @@ enum ErfolgKategorie: String, CaseIterable, Identifiable {
     var id: String { self.rawValue }
 
     var titel: String {
+        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
         switch self {
-        case .streak:     return NSLocalizedString("category.streak", comment: "")
-        case .gewohnheit: return NSLocalizedString("category.daytime", comment: "")
-        case .seltenheit: return NSLocalizedString("category.plants", comment: "")
-        case .coins:      return NSLocalizedString("category.coins", comment: "")
+        case .streak:     return AppStrings.get("category.streak",   language: lang)
+        case .gewohnheit: return AppStrings.get("category.daytime",  language: lang)
+        case .seltenheit: return AppStrings.get("category.plants",   language: lang)
+        case .coins:      return AppStrings.get("category.coins",    language: lang)
         }
     }
 

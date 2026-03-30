@@ -6,6 +6,8 @@ struct PflanzenCard: View {
     let onGiessen: () -> Void
     let onTap: () -> Void
 
+    @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var powerUpStore: PowerUpStore
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
     @State private var pflanzenPosition: CGPoint = .zero
     @State private var giessAnimation = false
@@ -21,10 +23,9 @@ struct PflanzenCard: View {
             }
         }) {
             VStack(spacing: 14) {
-
                 // MARK: Name + Seltenheit
                 VStack(spacing: 6) {
-                    Text(pflanze.name)
+                    Text(settings.localizedString(for: pflanze.name))
                         .font(.appSubheadline)
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
@@ -77,9 +78,9 @@ struct PflanzenCard: View {
 
                     // Der 3D-Button (Jetzt Interaktiv!)
                     PflanzenButton(
-                        bildName: pflanze.bildName,
-                        farbe: .gruenPrimary,
-                        sekundaerFarbe: .gruenSecondary,
+                        symbolName: pflanze.symbolName,
+                        farbe: pflanze.color,
+                        sekundaerFarbe: pflanze.color.darker(),
                         groesse: 88,
                         externerPress: wasserPressAktiv,
                         aktion: {
@@ -110,12 +111,12 @@ struct PflanzenCard: View {
                         pflanzenPosition: pflanzenPosition,
                         istErledigt: pflanze.istBewässert
                     )
-                    .allowsHitTesting(true) // Ensure the slider works
+                    .allowsHitTesting(true)
                 } else {
                     HStack(spacing: 6) {
                         Image(systemName: "checkmark.circle.fill")
                             .foregroundStyle(Color.gruenPrimary)
-                        Text("garden.plant.done", bundle: .main)
+                        Text(settings.localizedString(for: "garden.plant.done"))
                             .font(.appButtonKlein)
                             .foregroundStyle(Color.gruenPrimary)
                     }
@@ -125,6 +126,20 @@ struct PflanzenCard: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 16)
             .frame(maxWidth: .infinity, alignment: .center)
+            .overlay(alignment: .topLeading) {
+                // Aktive Power-Ups Icons (Oben Links)
+                HStack(spacing: 4) {
+                    ForEach(powerUpStore.aktivePowerUps.filter { $0.isActive && $0.targetPlantId == pflanze.id }) { aktiv in
+                        Image(systemName: aktiv.symbolName)
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundStyle(Color.white)
+                            .padding(4)
+                            .background(Circle().fill(Color.gruenPrimary))
+                            .overlay(Circle().stroke(Color.white, lineWidth: 1))
+                    }
+                }
+                .padding(12)
+            }
         }
         .buttonStyle(PflanzenCardButtonStyle(
             seltenheitFarbe: pflanze.seltenheit.farbe,
@@ -169,7 +184,7 @@ struct PflanzenCard: View {
     }
 }
 
-// MARK: - Button Style für die gesamte Karte (wird nicht mehr verwendet, bleibt für Kompatibilität)
+// MARK: - Button Style für die gesamte Karte
 struct PflanzenCardButtonStyle: ButtonStyle {
     @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
     let seltenheitFarbe: Color
@@ -209,14 +224,14 @@ struct PflanzenCardButtonStyle: ButtonStyle {
 #Preview {
     HStack(spacing: 16) {
         PflanzenCard(
-            pflanze: HabitModel(id: "1", name: "Gym", bildName: "bonsai_stufe2"),
+            pflanze: HabitModel(id: "1", name: "Gym", symbolName: "figure.run", symbolColor: "orange", habitCategory: .fitness),
             wetterEvent: .normal,
             onGiessen: {},
             onTap: {}
         )
         PflanzenCard(
             pflanze: {
-                let p = HabitModel(id: "2", name: "Lesen", bildName: "bonsai_stufe4")
+                let p = HabitModel(id: "2", name: "Lesen", symbolName: "book.fill", symbolColor: "blue", habitCategory: .learning)
                 p.currentXP = 200
                 p.istBewässert = true
                 return p

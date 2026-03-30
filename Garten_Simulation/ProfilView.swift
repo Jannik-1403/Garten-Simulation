@@ -31,9 +31,9 @@ struct ProfilView: View {
                     VStack(spacing: 30) {
                         // User Profile Info
                         VStack(spacing: 4) {
-                            Text("profile.user.name", bundle: .main)
+                            Text("Jannik Schill")
                                 .font(.system(size: 24, weight: .bold, design: .rounded))
-                            Text("garden.habits.active", bundle: .main) // Simplified tag
+                            Text("\(gardenStore.pflanzen.count) " + settings.localizedString(for: "garden.habits.active"))
                                 .font(.system(size: 15))
                                 .foregroundStyle(.secondary)
                         }
@@ -108,7 +108,7 @@ struct ProfilView: View {
                     }
                 }
             }
-            .navigationTitle("Profil")
+            .navigationTitle(settings.localizedString(for: "profile.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -134,6 +134,7 @@ struct ProfilView: View {
 // MARK: - Subviews
 
 struct StatCard: View {
+    @EnvironmentObject var settings: SettingsStore
     let title: String
     let value: String
     let icon: String // Can be SF Symbol or Asset name
@@ -166,7 +167,7 @@ struct StatCard: View {
                     Text(value)
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundStyle(.primary)
-                    Text(LocalizedStringKey(title))
+                    Text(settings.localizedString(for: title))
                         .font(.system(size: 11, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                         .kerning(1.0)
@@ -182,15 +183,16 @@ struct StatCard: View {
 }
 
 struct AchievementVitrine: View {
+    @EnvironmentObject var settings: SettingsStore
     let unlockedErfolge: [ErfolgModel]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("\(unlockedErfolge.count) \(Text("profile.achievements", bundle: .main))")
+                    Text("\(unlockedErfolge.count) \(settings.localizedString(for: "profile.achievements"))")
                         .font(.system(size: 20, weight: .bold, design: .rounded))
-                    Text("profile.achievements.subtitle", bundle: .main)
+                    Text(settings.localizedString(for: "profile.achievements.subtitle"))
                         .font(.system(size: 12))
                         .foregroundStyle(.secondary)
                 }
@@ -203,7 +205,7 @@ struct AchievementVitrine: View {
             
             HStack(spacing: 12) {
                 if unlockedErfolge.isEmpty {
-                    Text("Noch keine Erfolge freigeschaltet")
+                    Text(settings.localizedString(for: "profile.achievements.empty"))
                         .font(.system(size: 13))
                         .foregroundStyle(.secondary)
                         .italic()

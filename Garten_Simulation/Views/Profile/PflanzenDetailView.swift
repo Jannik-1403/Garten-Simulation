@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PflanzenDetailView: View {
     @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
 
     var pflanzen: [HabitModel] { gardenStore.pflanzen }
 
@@ -32,7 +33,7 @@ struct PflanzenDetailView: View {
                         Text("\(pflanzen.count)")
                             .font(.system(size: 48, weight: .bold, design: .rounded))
 
-                        Text("profile.plants.subtitle", bundle: .main)
+                        Text(settings.localizedString(for: "profile.plants.subtitle"))
                             .font(.system(size: 15))
                             .foregroundStyle(.secondary)
                     }
@@ -44,7 +45,7 @@ struct PflanzenDetailView: View {
                     .padding(.horizontal, 20)
 
                     // MARK: Stats-Reihe
-                    sectionHeader(NSLocalizedString("common.details", comment: ""))
+                    sectionHeader(settings.localizedString(for: "common.details"))
 
                     VStack(spacing: 0) {
                         detailRow(
@@ -86,7 +87,7 @@ struct PflanzenDetailView: View {
                     .padding(.horizontal, 20)
 
                     // MARK: Pflanzen-Grid
-                    sectionHeader(NSLocalizedString("profile.plants.list", comment: ""))
+                    sectionHeader(settings.localizedString(for: "profile.plants.list"))
 
                     LazyVGrid(
                         columns: [
@@ -107,7 +108,7 @@ struct PflanzenDetailView: View {
                 .padding(.top, 20)
             }
         }
-        .navigationTitle(Text("profile.plants", bundle: .main))
+        .navigationTitle(settings.localizedString(for: "profile.plants"))
         .navigationBarTitleDisplayMode(.inline)
     }
 
@@ -131,7 +132,7 @@ struct PflanzenDetailView: View {
                     .foregroundStyle(color)
             }
 
-            Text(LocalizedStringKey(labelKey))
+            Text(settings.localizedString(for: labelKey))
                 .font(.system(size: 16))
                 .foregroundStyle(.primary)
 
@@ -157,13 +158,22 @@ struct PflanzenGridCell: View {
                     .frame(width: 72, height: 72)
 
                 Circle()
-                    .fill(Color.green)
+                    .fill(pflanze.color)
                     .frame(width: 68, height: 68)
 
-                Image(pflanze.bildName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 44, height: 44)
+                Group {
+                    if UIImage(named: pflanze.symbolName) != nil {
+                        Image(pflanze.symbolName)
+                            .resizable()
+                            .scaledToFit()
+                    } else {
+                        Image(systemName: pflanze.symbolName)
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundStyle(.white)
+                    }
+                }
+                .frame(width: 44, height: 44)
             }
 
             Text(pflanze.name)

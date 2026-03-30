@@ -3,13 +3,16 @@ import SwiftUI
 
 struct GartenView: View {
 
+    @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var streakStore: StreakStore
+    @EnvironmentObject var powerUpStore: PowerUpStore
 
     @State private var herzen: Int = 5
     @State private var aktivesEvent: WetterEvent = .normal
     @State private var ausgewaehltePflanze: HabitModel? = nil
     @State private var ausgewaehltesItem: ShopDetailPayload? = nil
+    @State private var ausgewaehltesAktivesPowerUp: ActivePowerUp? = nil
     @State private var zeigeWetterDetails = false
     @State private var startAbstandAktiv = true
     @State private var timerAktuell = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -40,12 +43,51 @@ struct GartenView: View {
                 // MARK: - Sektion Titel
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("garden.title", bundle: .main)
-                            .font(.system(size: 32, weight: .black, design: .rounded))
-                            .foregroundStyle(.primary)
-                        Text(String(format: NSLocalizedString("garden.habits.active", comment: ""), gardenStore.pflanzen.count))
-                            .font(.system(size: 14, weight: .medium, design: .rounded))
-                            .foregroundStyle(Color.primary.opacity(0.6))
+                        HStack(alignment: .firstTextBaseline, spacing: 12) {
+                            Text(settings.localizedString(for: "garden.title"))
+                                .font(.system(size: 32, weight: .black, design: .rounded))
+                                .foregroundStyle(.primary)
+                            
+                            if powerUpStore.globalXPMultiplikator > 1.0 {
+                                Text("XP x\(String(format: "%.1f", powerUpStore.globalXPMultiplikator))")
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(Color.gruenPrimary)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(Color.gruenPrimary.opacity(0.1))
+                                    .clipShape(Capsule())
+                            }
+                        }
+                        
+                        HStack(spacing: 12) {
+                            if !powerUpStore.aktivePowerUps.filter({ $0.isActive && $0.targetPlantId == nil }).isEmpty {
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(spacing: 8) {
+                                        ForEach(powerUpStore.aktivePowerUps.filter { $0.isActive && $0.targetPlantId == nil }) { aktiv in
+                                            Button {
+                                                ausgewaehltesAktivesPowerUp = aktiv
+                                            } label: {
+                                                HStack(spacing: 4) {
+                                                    Image(systemName: aktiv.symbolName)
+                                                        .font(.system(size: 10, weight: .semibold))
+                                                    if let zeit = aktiv.verbleibendeZeit {
+                                                        Text(zeit)
+                                                            .font(.system(size: 10, weight: .semibold))
+                                                    }
+                                                }
+                                                .foregroundStyle(Color.primary)
+                                                .padding(.horizontal, 8)
+                                                .padding(.vertical, 4)
+                                                .background(.regularMaterial)
+                                                .clipShape(Capsule())
+                                                .overlay(Capsule().strokeBorder(Color.primary.opacity(0.08), lineWidth: 0.5))
+                                            }
+                                            .buttonStyle(.plain)
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     Spacer()
                 }
@@ -57,6 +99,8 @@ struct GartenView: View {
                     zeigeWetterDetails = true
                 }
                 .padding(.top, 12)
+
+
 
                 // MARK: - Pflanzen Grid
                 ScrollView {
@@ -71,9 +115,9 @@ struct GartenView: View {
                             Image(systemName: "leaf.fill")
                                 .font(.system(size: 60))
                                 .foregroundStyle(.secondary.opacity(0.3))
-                            Text("garden.empty.title", bundle: .main)
+                            Text(settings.localizedString(for: "garden.empty.title"))
                                 .font(.headline)
-                            Text("garden.empty.subtitle", bundle: .main)
+                            Text(settings.localizedString(for: "garden.empty.subtitle"))
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
                         }
@@ -86,7 +130,7 @@ struct GartenView: View {
                                     pflanze: pflanze,
                                     wetterEvent: aktivesEvent,
                                     onGiessen: {
-                                        gardenStore.giessen(pflanze: pflanze)
+                                        gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
                                     },
                                     onTap: {
                                         ausgewaehltePflanze = pflanze
@@ -97,38 +141,67 @@ struct GartenView: View {
                         }
                         .padding(.horizontal, 20)
                         
-                        // MARK: - Items Lager (Horizontal Scroll)
-                        if !gardenStore.boughtItems.isEmpty {
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text("Meine Items")
+                        // MARK: - Power-Ups Lager
+                        if !gardenStore.gekaufteItems.isEmpty {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(settings.localizedString(for: "garden.powerups"))
                                     .font(.system(size: 20, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                                     .padding(.horizontal, 8)
                                 
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(spacing: 16) {
-                                        ForEach(gardenStore.boughtItems) { item in
+                                        ForEach(gardenStore.gekaufteItems) { item in
                                             Item3DButton(
                                                 icon: item.icon,
-                                                farbe: .white,
-                                                sekundaerFarbe: Color.primary.opacity(0.1),
-                                                groesse: 110
+                                                farbe: item.color,
+                                                sekundaerFarbe: item.color.darker(),
+                                                groesse: 90
                                             ) {
                                                 ausgewaehltesItem = item
                                             }
                                         }
                                     }
                                     .padding(.horizontal, 8)
-                                    .padding(.bottom, 12) // Space for 3D shadow
+                                    .padding(.top, 8) // Prevents clipping from 3D offset
+                                    .padding(.bottom, 12)
                                 }
                             }
-                            .padding(.top, 16) // Added space to prevent clipping at the top
+                            .padding(.top, 24)
                             .padding(.horizontal, 20)
-                            .padding(.bottom, 40)
-                        } else {
-                            // Bottom padding if no items
-                            Spacer().frame(height: 32)
                         }
+
+                        // MARK: - Müll & Herausforderungen
+                        if !gardenStore.aktiverMuell.isEmpty {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(settings.localizedString(for: "garden.trash"))
+                                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.primary)
+                                    .padding(.horizontal, 8)
+                                
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    HStack(spacing: 16) {
+                                        ForEach(gardenStore.aktiverMuell) { item in
+                                            Item3DButton(
+                                                icon: item.icon,
+                                                farbe: item.color,
+                                                sekundaerFarbe: item.color.darker(),
+                                                groesse: 90
+                                            ) {
+                                                ausgewaehltesItem = item
+                                            }
+                                        }
+                                    }
+                                    .padding(.horizontal, 8)
+                                    .padding(.top, 8) // Prevents clipping from 3D offset
+                                    .padding(.bottom, 12)
+                                }
+                            }
+                            .padding(.top, 24)
+                            .padding(.horizontal, 20)
+                        }
+
+                        Spacer().frame(height: 60)
                     }
                 }
                 .padding(.top, 0)
@@ -149,7 +222,7 @@ struct GartenView: View {
             starteTageswechselTimer()
         }
         .onReceive(timerAktuell) { _ in
-            gardenStore.taeglicherStreakCheck()
+            gardenStore.taeglicherStreakCheck(powerUpStore: powerUpStore)
         }
         .sheet(item: $ausgewaehltePflanze) { pflanze in
             PflanzeDetailSheet(
@@ -167,14 +240,26 @@ struct GartenView: View {
             .presentationBackground(.ultraThinMaterial)
         }
         .sheet(item: $ausgewaehltesItem) { item in
-            ShopItemDetailView(payload: item)
-                .presentationDetents([.medium, .large])
+            InventoryItemDetailSheet(item: item)
+                .environmentObject(settings)
+                .environmentObject(gardenStore)
+                .environmentObject(powerUpStore)
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+                .presentationCornerRadius(32)
+                .presentationBackground(.ultraThinMaterial)
+        }
+        .sheet(item: $ausgewaehltesAktivesPowerUp) { aktiv in
+            ActivePowerUpDetailSheet(aktiv: aktiv)
+                .environmentObject(settings)
+                .presentationDetents([.fraction(0.55), .medium])
                 .presentationDragIndicator(.visible)
                 .presentationCornerRadius(32)
                 .presentationBackground(.ultraThinMaterial)
         }
         .sheet(isPresented: $zeigeWetterDetails) {
             WetterDetailView(event: aktivesEvent)
+                .environmentObject(settings)
                 .presentationDetents([
                     PresentationDetent.medium,
                     PresentationDetent.large,

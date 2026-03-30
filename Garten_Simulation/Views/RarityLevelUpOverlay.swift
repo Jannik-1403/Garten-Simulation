@@ -3,6 +3,7 @@ import SwiftUI
 struct RarityLevelUpOverlay: View {
     let rarity: PflanzenSeltenheit
     let onDismiss: () -> Void
+    @EnvironmentObject var settings: SettingsStore
     
     @State private var iconScale: CGFloat = 0.5
     @State private var iconRotation: Double = -30
@@ -19,7 +20,7 @@ struct RarityLevelUpOverlay: View {
             // Popup Card
             VStack(spacing: 30) {
                 // Header
-                Text("STUFEN-AUFSTIEG! 🎉")
+                Text(settings.localizedString(for: "level_up.title"))
                     .font(.system(size: 26, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.primary)
                 
@@ -40,7 +41,7 @@ struct RarityLevelUpOverlay: View {
                 
                 // Details
                 VStack(spacing: 8) {
-                    Text("Dein Garten ist jetzt")
+                    Text(settings.localizedString(for: "level_up.subtitle"))
                         .font(.system(size: 16))
                         .foregroundStyle(.secondary)
                     
@@ -51,7 +52,7 @@ struct RarityLevelUpOverlay: View {
                 
                 // Action Button
                 Button(action: onDismiss) {
-                    Text("Super!")
+                    Text(settings.localizedString(for: "shop.purchase_success.awesome"))
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(DuolingoButtonStyle(

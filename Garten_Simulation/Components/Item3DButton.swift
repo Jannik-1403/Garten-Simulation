@@ -14,9 +14,18 @@ struct Item3DButton: View {
                 aktion?()
             }
         } label: {
-            Image(icon)
-                .resizable()
-                .scaledToFit()
+            Group {
+                if UIImage(named: icon) != nil {
+                    Image(icon)
+                        .resizable()
+                        .scaledToFit()
+                } else {
+                    Image(systemName: icon)
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(.white)
+                }
+            }
         }
         .buttonStyle(Item3DButtonStyle(
             farbe: farbe,
@@ -38,16 +47,15 @@ struct Item3DButtonStyle: ButtonStyle {
         
         ZStack {
             // Shadow / Base
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
+            Circle()
                 .fill(sekundaerFarbe)
             
             // Top Layer
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
+            Circle()
                 .fill(farbe)
                 .overlay {
                     configuration.label
-                        .frame(width: groesse * 0.6, height: groesse * 0.6)
-                        .shadow(color: .black.opacity(0.1), radius: 4, y: 2)
+                        .frame(width: groesse * 0.5, height: groesse * 0.5)
                 }
                 .offset(y: isPressed ? 0 : -shadowDepth)
         }

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct WetterDetailView: View {
     let event: WetterEvent
+    @EnvironmentObject var settings: SettingsStore
     @State private var perfektIconPressed = false
 
     var body: some View {
@@ -72,7 +73,7 @@ struct WetterDetailView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Heute gilt")
+                    Text(settings.localizedString(for: "weather.today_is"))
                         .font(.system(size: 17, weight: .bold, design: .rounded))
                     Text(ruleText)
                         .font(.system(size: 15, weight: .medium, design: .rounded))

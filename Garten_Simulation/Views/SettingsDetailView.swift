@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SettingsDetailView: View {
+    @EnvironmentObject var settings: SettingsStore
     let title: String
     let description: String
     let actionTitle: String
@@ -60,7 +61,7 @@ struct SettingsDetailView: View {
                     .padding(.horizontal, 24)
                     
                     if isDestructive {
-                        Text("Diese Aktion kann nicht rückgängig gemacht werden.")
+                        Text(settings.localizedString(for: "settings.action.irreversible"))
                             .font(.system(size: 12))
                             .foregroundStyle(.secondary)
                     }

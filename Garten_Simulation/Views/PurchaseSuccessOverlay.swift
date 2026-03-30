@@ -4,6 +4,7 @@ struct PurchaseSuccessOverlay: View {
     let itemName: String
     let price: Int
     let onDismiss: () -> Void
+    @EnvironmentObject var settings: SettingsStore
 
     @State private var checkScale: CGFloat = 0.2
     @State private var checkRotation: Double = -25
@@ -33,7 +34,7 @@ struct PurchaseSuccessOverlay: View {
 
                 // Text
                 VStack(spacing: 6) {
-                    Text("Gekauft! 🎉")
+                    Text(settings.localizedString(for: "shop.purchase_success.title"))
                         .font(.system(size: 22, weight: .bold, design: .rounded))
                     Text(itemName)
                         .font(.system(size: 15))
@@ -59,7 +60,7 @@ struct PurchaseSuccessOverlay: View {
 
                 // Super-Button — DuolingoButtonStyle
                 Button(action: onDismiss) {
-                    Text("Super!")
+                    Text(settings.localizedString(for: "shop.purchase_success.awesome"))
                         .font(.system(size: 17, weight: .bold, design: .rounded))
                 }
                 .buttonStyle(DuolingoButtonStyle(

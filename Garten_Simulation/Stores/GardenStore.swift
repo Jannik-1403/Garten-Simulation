@@ -14,33 +14,38 @@ class GardenStore: ObservableObject {
     @Published var gesamtVerdient: Int = 0
     @Published var gesamtAusgegeben: Int = 0
     
-    // Inventory for non-plant items (Wunder-Box etc.)
-    @Published var boughtItems: [ShopDetailPayload] = []
+    // Inventory for non-plant items
+    @Published var gekaufteItems: [ShopDetailPayload] = []
+    @Published var aktiverMuell: [ShopDetailPayload] = []
     
     // Streak-Integration
     var onWatering: (() -> Void)?
 
     // MARK: Pflanze gießen
-    func giessen(pflanze: HabitModel) {
+    func giessen(pflanze: HabitModel, powerUpStore: PowerUpStore) {
         guard !pflanze.istBewässert else { return }
 
         // XP + Coins gutschreiben
-        pflanze.currentXP  += GameConstants.xpProGiessen
+        let xpGewonnen = Int(Double(pflanze.xpPerCompletion) * powerUpStore.xpMultiplikator(for: pflanze.id))
+        let coinsGewonnen = GameConstants.coinsProGiessen
+
+        pflanze.currentXP  += xpGewonnen
         pflanze.istBewässert = true
         pflanze.letzteBewaesserung = Date()
         pflanze.streak += 1
 
         // Globale Stats
         withAnimation(.spring(response: 0.4)) {
-            coins    += GameConstants.coinsProGiessen
-            gesamtXP += GameConstants.xpProGiessen
-            gesamtVerdient += GameConstants.coinsProGiessen
+            coins    += coinsGewonnen
+            gesamtXP += xpGewonnen
+            gesamtVerdient += coinsGewonnen
             
             // Add real transaction
+            let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
             let transaction = CoinTransaction(
                 datum: Date(),
-                beschreibung: NSLocalizedString("profile.coins.tip.watering", bundle: .main, comment: ""),
-                betrag: GameConstants.coinsProGiessen,
+                beschreibung: AppStrings.get("profile.coins.tip.watering", language: lang),
+                betrag: coinsGewonnen,
                 icon: "drop.fill",
                 farbe: .blauPrimary
             )
@@ -66,7 +71,10 @@ class GardenStore: ObservableObject {
         let neue = HabitModel(
             id: shopItem.id,
             name: shopItem.title,
-            bildName: shopItem.icon
+            symbolName: shopItem.icon,
+            symbolColor: shopItem.symbolColor,
+            habitCategory: shopItem.habitCategory ?? .lifestyle,
+            symbolism: shopItem.symbolism ?? ""
         )
         withAnimation(.spring(response: 0.4)) {
             pflanzen.append(neue)
@@ -77,20 +85,34 @@ class GardenStore: ObservableObject {
     // MARK: Item aus Shop hinzufügen (Wunder-Box etc.)
     func itemHinzufuegen(shopItem: ShopDetailPayload) {
         withAnimation(.spring(response: 0.4)) {
-            boughtItems.append(shopItem)
+            if shopItem.itemType == .trash {
+                aktiverMuell.append(shopItem)
+            } else {
+                gekaufteItems.append(shopItem)
+            }
             logPurchase(shopItem: shopItem)
         }
     }
 
+    // MARK: Item verbrauchen (Inventar)
+    func itemVerbrauchen(shopItem: ShopDetailPayload) {
+        withAnimation(.spring(response: 0.4)) {
+            if let index = gekaufteItems.firstIndex(where: { $0.id == shopItem.id }) {
+                gekaufteItems.remove(at: index)
+            }
+        }
+    }
+
     private func logPurchase(shopItem: ShopDetailPayload) {
-        // Deduct coins and log transaction (only if price > 0)
+        // Deduct coins and log transaction
         if shopItem.price > 0 {
             coins -= shopItem.price
             gesamtAusgegeben += shopItem.price
             
+            let lang2 = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
             let transaction = CoinTransaction(
                 datum: Date(),
-                beschreibung: String(format: NSLocalizedString("shop.buy.success", bundle: .main, comment: ""), shopItem.title),
+                beschreibung: "\(AppStrings.get("shop.buy.success", language: lang2)) \(shopItem.title)",
                 betrag: -shopItem.price,
                 icon: "cart.fill",
                 farbe: .red
@@ -100,11 +122,10 @@ class GardenStore: ObservableObject {
     }
 
     // MARK: Streak-Check (täglich aufrufen, z.B. in .onReceive(timer))
-    func taeglicherStreakCheck() {
+    func taeglicherStreakCheck(powerUpStore: PowerUpStore) {
         for pflanze in pflanzen {
-            if pflanze.streakAbgelaufen {
+            if pflanze.streakAbgelaufen && !powerUpStore.hatZeitkapsel {
                 pflanze.streak = 0
-                pflanze.istBewässert = false
             }
         }
         // Mitternacht: istBewässert zurücksetzen
@@ -112,24 +133,24 @@ class GardenStore: ObservableObject {
         for pflanze in pflanzen {
             if let letzte = pflanze.letzteBewaesserung,
                Calendar.current.startOfDay(for: letzte) < heute {
-                pflanze.istBewässert = false
+                if !powerUpStore.hatRegenmacher {
+                    pflanze.istBewässert = false
+                }
             }
         }
     }
 
     // MARK: Seltenheit-Upgrade
     private func pruefeSeltenheitUpgrade(pflanze: HabitModel) {
-        // Seltenheit ist computed — wird automatisch neu berechnet
-        // Hier kann man eine Notification / Overlay triggern
-        // z.B.: NotificationCenter.default.post(name: .seltenheitUpgrade, object: pflanze)
+        // Seltenheit ist computed
     }
 
     // MARK: Onboarding — 2 Gratis-Pflanzen
     func onboardingGratisPflanzen() {
         guard pflanzen.isEmpty else { return }
         let gratis = [
-            HabitModel(id: "gratis-1", name: NSLocalizedString("Erster Setzling", comment: ""), bildName: "bonsai_stufe1"),
-            HabitModel(id: "gratis-2", name: NSLocalizedString("Kleiner Bonsai",  comment: ""), bildName: "bonsai_stufe2"),
+            HabitModel(id: "gratis-1", name: "plant.bambus.name",    symbolName: "leaf.fill",     symbolColor: "green", habitCategory: .fitness),
+            HabitModel(id: "gratis-2", name: "plant.aloe_vera.name", symbolName: "iphone.slash", symbolColor: "mint",  habitCategory: .lifestyle),
         ]
         pflanzen = gratis
     }

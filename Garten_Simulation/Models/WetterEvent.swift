@@ -10,23 +10,13 @@ enum WetterEvent: String, CaseIterable {
 
     // MARK: - Texte
     var titel: String {
-        switch self {
-        case .normal: return "Ruhiger Tag"
-        case .duerre: return "Dürre-Alarm!"
-        case .schnee: return "Frostwarnung"
-        case .sturm: return "Sturm zieht auf"
-        case .perfekt: return "Perfektes Wetter!"
-        }
+        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
+        return AppStrings.get("weather.\(rawValue).title", language: lang)
     }
 
     var untertitel: String {
-        switch self {
-        case .normal: return "Alles wächst nach Plan"
-        case .duerre: return "Doppeltes Gießen nötig!"
-        case .schnee: return "Nur 50% Belohnung heute"
-        case .sturm: return "Schwache Pflanzen in Gefahr!"
-        case .perfekt: return "Doppelte Belohnung heute!"
-        }
+        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
+        return AppStrings.get("weather.\(rawValue).subtitle", language: lang)
     }
 
     var icon: String {

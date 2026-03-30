@@ -3,6 +3,7 @@ import SwiftUI
 struct WetterPopup: View {
     let event: WetterEvent
     let onDismiss: () -> Void
+    @EnvironmentObject var settings: SettingsStore
 
     @State private var erschienen = false
     @State private var verstandenPressed = false
@@ -35,7 +36,7 @@ struct WetterPopup: View {
                     }
 
                     VStack(spacing: 8) {
-                        Text("Neues Wetter-Event!")
+                        Text(settings.localizedString(for: "weather.new_event"))
                             .font(.appCaption)
                             .foregroundStyle(.secondary)
                             .textCase(.uppercase)
@@ -75,7 +76,7 @@ struct WetterPopup: View {
                             .fill(event.bannerFarbe)
                             .frame(height: 56)
                             .overlay {
-                                Text("Verstanden!")
+                                Text(settings.localizedString(for: "settings.understood"))
                                     .font(.appButton)
                                     .foregroundStyle(.white)
                             }

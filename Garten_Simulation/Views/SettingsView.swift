@@ -26,52 +26,74 @@ struct SettingsView: View {
                         
                         // Sections
                         VStack(spacing: 32) {
-                            settingsSection(title: "Allgemein") {
+                            settingsSection(title: settings.localizedString(for: "settings.section.personalization")) {
+                                HStack(spacing: 12) {
+                                    Image(systemName: "globe")
+                                        .foregroundStyle(.white)
+                                        .frame(width: 28, height: 28)
+                                        .background(Circle().fill(Color.blue))
+                                    
+                                    Text(settings.localizedString(for: "settings.language"))
+                                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                                    
+                                    Spacer()
+                                    
+                                    Picker("", selection: $settings.appLanguage) {
+                                        Text(settings.localizedString(for: "settings.language.de")).tag("de")
+                                        Text(settings.localizedString(for: "settings.language.en")).tag("en")
+                                    }
+                                    .pickerStyle(.menu)
+                                }
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                            }
+
+                            settingsSection(title: settings.localizedString(for: "settings.section.general")) {
                                 VStack(spacing: 0) {
-                                    settingToggle(title: "Audio & Sounds", icon: "speaker.wave.2.fill", color: .blue, isOn: $settings.isSoundEnabled)
+                                    settingToggle(title: settings.localizedString(for: "settings.audio"), icon: "speaker.wave.2.fill", color: .blue, isOn: $settings.isSoundEnabled)
                                     Divider().padding(.leading, 44)
-                                    settingToggle(title: "Haptik Feedback", icon: "hand.tap.fill", color: .purple, isOn: $settings.isHapticEnabled)
+                                    settingToggle(title: settings.localizedString(for: "settings.haptic"), icon: "hand.tap.fill", color: .purple, isOn: $settings.isHapticEnabled)
                                     Divider().padding(.leading, 44)
-                                    settingToggle(title: "Benachrichtigungen", icon: "bell.fill", color: .red, isOn: $settings.isNotificationsEnabled)
+                                    settingToggle(title: settings.localizedString(for: "settings.notifications"), icon: "bell.fill", color: .red, isOn: $settings.isNotificationsEnabled)
                                 }
                             }
                             
-                            settingsSection(title: "Datenschutz & Sicherheit") {
+                            settingsSection(title: settings.localizedString(for: "settings.section.privacy")) {
                                 VStack(spacing: 0) {
-                                    settingLink(title: "Datenschutz-Einstellungen", icon: "lock.shield.fill", color: .green)
+                                    settingLink(title: settings.localizedString(for: "settings.privacy_settings"), description: settings.localizedString(for: "settings.privacy.desc"), icon: "lock.shield.fill", color: .green)
                                     Divider().padding(.leading, 44)
-                                    settingLink(title: "Nutzungsbedingungen", icon: "doc.text.fill", color: .gray)
+                                    settingLink(title: settings.localizedString(for: "settings.terms"), description: settings.localizedString(for: "settings.terms.desc"), icon: "doc.text.fill", color: .gray)
                                     Divider().padding(.leading, 44)
-                                    NavigationLink(destination: SettingsDetailView(title: "Daten exportieren", description: "Möchten Sie alle Ihre Daten exportieren? Sie erhalten eine Datei mit allen Ihren Pflanzen und Fortschritten.", actionTitle: "Export starten", icon: "square.and.arrow.up.fill", iconColor: .orange, action: { settings.exportData() })) {
-                                        settingRow(title: "Daten exportieren", icon: "square.and.arrow.up.fill", color: .orange)
+                                    NavigationLink(destination: SettingsDetailView(title: settings.localizedString(for: "settings.export"), description: settings.localizedString(for: "settings.export.desc"), actionTitle: settings.localizedString(for: "settings.export.action"), icon: "square.and.arrow.up.fill", iconColor: .orange, action: { settings.exportData() })) {
+                                        settingRow(title: settings.localizedString(for: "settings.export"), icon: "square.and.arrow.up.fill", color: .orange)
                                     }
                                     Divider().padding(.leading, 44)
-                                    NavigationLink(destination: SettingsDetailView(title: "Daten importieren", description: "Möchten Sie Daten importieren? Dies überschreibt Ihre aktuellen Fortschritte.", actionTitle: "Import starten", icon: "square.and.arrow.down.fill", iconColor: .blue, action: { settings.importData() })) {
-                                        settingRow(title: "Daten importieren", icon: "square.and.arrow.down.fill", color: .blue)
+                                    NavigationLink(destination: SettingsDetailView(title: settings.localizedString(for: "settings.import"), description: settings.localizedString(for: "settings.import.desc"), actionTitle: settings.localizedString(for: "settings.import.action"), icon: "square.and.arrow.down.fill", iconColor: .blue, action: { settings.importData() })) {
+                                        settingRow(title: settings.localizedString(for: "settings.import"), icon: "square.and.arrow.down.fill", color: .blue)
                                     }
                                 }
                             }
                             
-                            settingsSection(title: "Unterstützung") {
+                            settingsSection(title: settings.localizedString(for: "settings.section.support")) {
                                 VStack(spacing: 0) {
-                                    NavigationLink(destination: SettingsDetailView(title: "Käufe wiederherstellen", description: "Haben Sie bereits Käufe getätigt? Hier können Sie diese auf diesem Gerät wiederherstellen.", actionTitle: "Wiederherstellen", icon: "arrow.clockwise.circle.fill", iconColor: .goldPrimary, action: { settings.restorePurchases() })) {
-                                        settingRow(title: "Käufe wiederherstellen", icon: "arrow.clockwise.circle.fill", color: .goldPrimary)
+                                    NavigationLink(destination: SettingsDetailView(title: settings.localizedString(for: "settings.restore"), description: settings.localizedString(for: "settings.restore.desc"), actionTitle: settings.localizedString(for: "settings.restore.action"), icon: "arrow.clockwise.circle.fill", iconColor: .goldPrimary, action: { settings.restorePurchases() })) {
+                                        settingRow(title: settings.localizedString(for: "settings.restore"), icon: "arrow.clockwise.circle.fill", color: .goldPrimary)
                                     }
                                     Divider().padding(.leading, 44)
-                                    NavigationLink(destination: SettingsDetailView(title: "Support kontaktieren", description: "Haben Sie Fragen oder Probleme? Unser Support-Team hilft Ihnen gerne weiter.", actionTitle: "Support öffnen", icon: "questionmark.circle.fill", iconColor: .blauPrimary, action: { settings.contactSupport() })) {
-                                        settingRow(title: "Support kontaktieren", icon: "questionmark.circle.fill", color: .blauPrimary)
+                                    NavigationLink(destination: SettingsDetailView(title: settings.localizedString(for: "settings.contact"), description: settings.localizedString(for: "settings.contact.desc"), actionTitle: settings.localizedString(for: "settings.contact.action"), icon: "questionmark.circle.fill", iconColor: .blauPrimary, action: { settings.contactSupport() })) {
+                                        settingRow(title: settings.localizedString(for: "settings.contact"), icon: "questionmark.circle.fill", color: .blauPrimary)
                                     }
                                     Divider().padding(.leading, 44)
-                                    NavigationLink(destination: SettingsDetailView(title: "App weiterempfehlen", description: "Gefällt Ihnen die Garten-Simulation? Teilen Sie sie mit Ihren Freunden!", actionTitle: "App teilen", icon: "heart.fill", iconColor: .pink, action: { settings.shareApp() })) {
-                                        settingRow(title: "App weiterempfehlen", icon: "heart.fill", color: .pink)
+                                    NavigationLink(destination: SettingsDetailView(title: settings.localizedString(for: "settings.share"), description: settings.localizedString(for: "settings.share.desc"), actionTitle: settings.localizedString(for: "settings.share.action"), icon: "heart.fill", iconColor: .pink, action: { settings.shareApp() })) {
+                                        settingRow(title: settings.localizedString(for: "settings.share"), icon: "heart.fill", color: .pink)
                                     }
                                 }
                             }
                             
                             // Danger Zone
                             VStack(spacing: 12) {
-                                NavigationLink(destination: SettingsDetailView(title: "Account löschen", description: "Möchten Sie Ihren Account wirklich löschen? Alle Daten werden unwiderruflich entfernt.", actionTitle: "ACCOUNT LÖSCHEN", icon: "trash.fill", iconColor: .red, isDestructive: true, action: { settings.deleteAccount() })) {
-                                    Text("ACCOUNT LÖSCHEN")
+                                NavigationLink(destination: SettingsDetailView(title: settings.localizedString(for: "settings.delete_account"), description: settings.localizedString(for: "settings.delete_warning"), actionTitle: settings.localizedString(for: "settings.delete_account"), icon: "trash.fill", iconColor: .red, isDestructive: true, action: { settings.deleteAccount() })) {
+                                    Text(settings.localizedString(for: "settings.delete_account"))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .foregroundStyle(.white)
                                         .frame(height: 54)
@@ -81,7 +103,7 @@ struct SettingsView: View {
                                 }
                                 .buttonStyle(DangerButtonStyle())
                                 
-                                Text("Diese Aktion kann nicht rückgängig gemacht werden.")
+                                Text(settings.localizedString(for: "settings.delete_warning"))
                                     .font(.system(size: 11))
                                     .foregroundStyle(.secondary)
                                     .multilineTextAlignment(.center)
@@ -93,11 +115,11 @@ struct SettingsView: View {
                     }
                 }
             }
-            .navigationTitle("Einstellungen")
+            .navigationTitle(settings.localizedString(for: "settings.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Fertig") {
+                    Button(settings.localizedString(for: "settings.done")) {
                         dismiss()
                     }
                     .fontWeight(.bold)
@@ -148,11 +170,11 @@ struct SettingsView: View {
         .padding(.vertical, 12)
     }
     
-    private func settingLink(title: String, icon: String, color: Color) -> some View {
+    private func settingLink(title: String, description: String, icon: String, color: Color) -> some View {
         NavigationLink(destination: SettingsDetailView(
             title: title,
-            description: "Hier findest du alle Informationen zu den \(title).",
-            actionTitle: "Verstanden",
+            description: description,
+            actionTitle: settings.localizedString(for: "settings.understood"),
             icon: icon,
             iconColor: color,
             action: {})) {

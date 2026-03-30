@@ -7,17 +7,25 @@
 "button.water" = "Gießen";
 "button.ok" = "OK";
 "button.cancel" = "Abbrechen";
+"button.use" = "Einsetzen";
 
 // Garten
 "garden.title" = "Mein Garten";
-"garden.habits.active" = "%d Gewohnheiten aktiv";
-"garden.empty.title" = "Noch keine Pflanzen";
 "garden.empty.subtitle" = "Kaufe deine erste Pflanze im Shop";
+"garden.powerups" = "Meine Power-Ups";
+"garden.trash" = "Müll-Items";
+"garden.plant.symbolism.title" = "Symbolik";
+"garden.habits.active" = "%d aktive Gewohnheiten";
 
 // Shop
 "shop.title" = "Shop";
-"shop.tab.items" = "Gegenstände";
 "shop.tab.plants" = "Pflanzen";
+"shop.tab.items" = "Gegenstände";
+"Suchen..." = "Suchen...";
+"Power-Ups" = "Power-Ups";
+"⚠️ MÜLL-ITEMS" = "⚠️ MÜLL-ITEMS";
+"Alle" = "Alle";
+"Kategorie" = "Kategorie";
 "shop.buy.confirm" = "Wirklich für %d Coins kaufen?";
 "shop.buy.insufficient" = "Du brauchst noch %d Coins mehr";
 "shop.buy.success" = "Gekauft!";
@@ -36,10 +44,12 @@
 "streak.complete" = "Alle Pflanzen gegossen!";
 
 // Profil
+"profile.title" = "Profil";
 "profile.coins" = "Coins";
 "profile.plants" = "Pflanzen";
 "profile.streak" = "Tage";
 "profile.achievements" = "Erfolge";
+"profile.achievements.empty" = "Noch keine Erfolge freigeschaltet";
 "profile.user.name" = "Jannik Schill";
 "profile.achievements.subtitle" = "Dein Trophäen-Schrank";
 "profile.achievements.unlocked" = "Erfolge freigeschaltet";
@@ -118,3 +128,299 @@
 "achievement.abend5.desc" = "5× nach 20 Uhr erledigt";
 "achievement.abend30.title" = "Mitternachts-Krieger";
 "achievement.abend30.desc" = "30× nach 20 Uhr erledigt";
+
+// MARK: - Game Database - Pflanzen
+"plant.bambus.name" = "Bambus";
+"plant.bambus.symbolism" = "Wächst schnell, extrem stabil und schwer zu brechen";
+
+"plant.apfelbaum.name" = "Apfelbaum";
+"plant.apfelbaum.symbolism" = "Level 1 = Kern, Level 10 = voller Baum. Klassisch gesund";
+
+"plant.wildgras.name" = "Wildgras";
+"plant.wildgras.symbolism" = "Zäh, regeneriert sich blitzschnell, bedeckt das Spielfeld";
+
+"plant.eiche.name" = "Eiche";
+"plant.eiche.symbolism" = "Wächst langsam, wird über Jahrzehnte massiv und weise";
+
+"plant.lotus.name" = "Lotus";
+"plant.lotus.symbolism" = "Blüht im Schlamm – Ruhe trotz Stress";
+
+"plant.sonnenblume.name" = "Sonnenblume";
+"plant.sonnenblume.symbolism" = "Dreht sich immer zur Sonne – Frühaufsteher-Energie";
+
+"plant.kaktus.name" = "Kaktus";
+"plant.kaktus.symbolism" = "Überlebt extremste Bedingungen – Kalt duschen";
+
+"plant.weinrebe.name" = "Weinrebe";
+"plant.weinrebe.symbolism" = "Je länger nüchtern, desto reicher die Ernte";
+
+"plant.kirschbaum.name" = "Kirschbaum";
+"plant.kirschbaum.symbolism" = "Blüht nur, wenn man sich gut um ihn kümmert – Selfcare";
+
+"plant.palme.name" = "Palme";
+"plant.palme.symbolism" = "Steht in der Wärme, braucht weite Horizonte – Abenteuer";
+
+"plant.minzpflanze.name" = "Minzpflanze";
+"plant.minzpflanze.symbolism" = "Frisch, klar, täglich – Zähneputzen & Hygiene";
+
+"plant.rosmarin.name" = "Rosmarin";
+"plant.rosmarin.symbolism" = "Würzt das Leben, braucht tägliche Pflege – Meal Prep";
+
+"plant.mandelbaum.name" = "Mandelbaum";
+"plant.mandelbaum.symbolism" = "Investition zahlt sich erst später aus – Sparen";
+
+"plant.bambus_schilf.name" = "Bambus-Schilf";
+"plant.bambus_schilf.symbolism" = "Flexibel aber unzerbrechlich – Journaling";
+
+"plant.lavendel.name" = "Lavendel";
+"plant.lavendel.symbolism" = "Beruhigt und entspannt den Geist – besserer Schlaf";
+
+"plant.efeu.name" = "Efeu";
+"plant.efeu.symbolism" = "Breitet sich langsam aber stetig aus – tägliches Dehnen";
+
+"plant.aloe_vera.name" = "Aloe Vera";
+"plant.aloe_vera.symbolism" = "Heilt und regeneriert still im Hintergrund – weniger Handy";
+
+"plant.erdbeerpflanze.name" = "Erdbeerpflanze";
+"plant.erdbeerpflanze.symbolism" = "Kleine Früchte, große Belohnung – Obst & Gemüse essen";
+
+"plant.zitronenbaum.name" = "Zitronenbaum";
+"plant.zitronenbaum.symbolism" = "Sauer macht stark – Vitamin C & Immunsystem";
+
+"plant.weizenfeld.name" = "Weizenfeld";
+"plant.weizenfeld.symbolism" = "Viele kleine Ähren = große Ernte – Deep Work";
+
+"plant.orchidee.name" = "Orchidee";
+"plant.orchidee.symbolism" = "Selten, fragil, aber wunderschön wenn gepflegt – Kunst";
+
+"plant.pilzkolonie.name" = "Pilzkolonie";
+"plant.pilzkolonie.symbolism" = "Wächst im Verborgenen, verbindet alles – Networking";
+
+"plant.mangrove.name" = "Mangrove";
+"plant.mangrove.symbolism" = "Hält auch in Stürmen stand – Resilienz & Stressabbau";
+
+"plant.klee.name" = "Klee";
+"plant.klee.symbolism" = "Kleines Glück, täglich gefunden – Dankbarkeit";
+
+"plant.farn.name" = "Farn";
+"plant.farn.symbolism" = "Braucht kein Licht von Bildschirmen – Digital Detox";
+
+"plant.chrysantheme.name" = "Chrysantheme";
+"plant.chrysantheme.symbolism" = "Ordnung = Blüte – Sauberkeit & Aufräumen";
+
+"plant.walnussbaum.name" = "Walnussbaum";
+"plant.walnussbaum.symbolism" = "Harte Schale, wertvoller Kern – Weiterbildung & Kurse";
+
+"plant.pfirsichbaum.name" = "Pfirsichbaum";
+"plant.pfirsichbaum.symbolism" = "Braucht sanfte Pflege, keine Gewalt – Stressreduktion";
+
+"plant.brennnessel.name" = "Brennnessel";
+"plant.brennnessel.symbolism" = "Schmerzt kurz, macht unkaputtbar – Kaltdusche + Gym Kombo";
+
+"plant.bonsai.name" = "Bonsai";
+"plant.bonsai.symbolism" = "Braucht Jahre – wird ein Meisterwerk – Geduld & Langzeitprojekte";
+
+"plant.seerose.name" = "Seerose";
+"plant.seerose.symbolism" = "Wächst im Wasser, ruhig und stark – Schwimmen";
+
+"plant.zuckerrohr.name" = "Zuckerrohr";
+"plant.zuckerrohr.symbolism" = "Kein Zucker = das Feld bleibt sauber – Zuckerfrei + Sport";
+
+"plant.basilikum.name" = "Basilikum";
+"plant.basilikum.symbolism" = "Klein aber intensiv im Geschmack – Bewusstes Essen";
+
+"plant.kakaobaum.name" = "Kakaobaum";
+"plant.kakaobaum.symbolism" = "Süß nur nach harter Arbeit – Belohnung verdienen";
+
+"plant.feigenbaum.name" = "Feigenbaum";
+"plant.feigenbaum.symbolism" = "Braucht Pausen um zu tragen – Intervallfasten";
+
+"plant.korallenbusch.name" = "Korallenbusch";
+"plant.korallenbusch.symbolism" = "Wächst nur im richtigen Ökosystem – Freundschaften pflegen";
+
+"plant.eukalyptus.name" = "Eukalyptus";
+"plant.eukalyptus.symbolism" = "Reinigt die Luft von innen – Atemübungen & Breathwork";
+
+"plant.thymian.name" = "Thymian";
+"plant.thymian.symbolism" = "Klein, unscheinbar, aber immer da – Konsequenz & Routine";
+
+"plant.ginkgo.name" = "Ginkgo";
+"plant.ginkgo.symbolism" = "Ältester Baum der Welt – unvergesslich – Gedächtnisübungen";
+
+"plant.mammutbaum.name" = "Mammutbaum";
+"plant.mammutbaum.symbolism" = "Größter Baum der Welt – braucht alles – Jahresprojekt & Big Goal";
+
+"plant.passionsblume.name" = "Passionsblume";
+"plant.passionsblume.symbolism" = "Blüht bei innerer Beherrschung – NoFap";
+
+"plant.ingwerpflanze.name" = "Ingwerpflanze";
+"plant.ingwerpflanze.symbolism" = "Scharfe Alternative, natürliche Energie – Kein Koffein";
+
+"plant.teestrauch.name" = "Teestrauch";
+"plant.teestrauch.symbolism" = "Sanfter, nachhaltiger Wachstum – Weniger Kaffee";
+
+"plant.olivenbaum.name" = "Olivenbaum";
+"plant.olivenbaum.symbolism" = "Lebt 1000 Jahre – Beständigkeit pur – Mediterraner Lifestyle";
+
+// MARK: - Game Database - Müll
+"trash.ultra_konsole.name" = "Ultra-Konsole";
+"trash.ultra_konsole.description" = "Sieht cool aus, vergiftet deinen Garten.";
+
+"trash.fast_food_abo.name" = "Fast-Food-Abo";
+"trash.fast_food_abo.description" = "Billiges Vergnügen, teurer Preis.";
+
+"trash.endlos_scroll_tv.name" = "Endlos-Scroll-TV";
+"trash.endlos_scroll_tv.description" = "Zeitfresser Nummer 1.";
+
+"trash.luxus_auto.name" = "Luxus-Auto";
+"trash.luxus_auto.description" = "Status-Symbol das deinen Garten vernebelt.";
+
+"trash.party_pass.name" = "Party-Pass";
+"trash.party_pass.description" = "Spaß für eine Nacht, Schaden für zwei Tage.";
+
+"trash.energy_drink_kiste.name" = "Energy-Drink-Kiste";
+"trash.energy_drink_kiste.description" = "Explodiert schnell und nimmt alles mit.";
+
+"trash.zigaretten_automat.name" = "Zigaretten-Automat";
+"trash.zigaretten_automat.description" = "Schleichender Killer für alle Pflanzen.";
+
+"trash.online_shopping_app.name" = "Online-Shopping-App";
+"trash.online_shopping_app.description" = "Leert dein Wallet im Hintergrund.";
+
+"trash.junk_mail_abo.name" = "Junk-Mail-Abo";
+"trash.junk_mail_abo.description" = "Ablenkungs-Granate für Fokus-Pflanzen.";
+
+"trash.nacht_snack_box.name" = "Nacht-Snack-Box";
+"trash.nacht_snack_box.description" = "Nachts aktiv, tötet deinen Schlaf-Garten.";
+
+"trash.alkohol_flatrate.name" = "Alkohol-Flatrate";
+"trash.alkohol_flatrate.description" = "Jede Einheit kostet die Weinrebe ein Level.";
+
+"trash.doomscrolling_handy.name" = "Doomscrolling-Handy";
+"trash.doomscrolling_handy.description" = "Pixel-Parasiten auf allen Pflanzen.";
+
+"trash.binge_streaming.name" = "Binge-Streaming";
+"trash.binge_streaming.description" = "Frisst deinen Schlaf und deine Energie.";
+
+"trash.fastfood_lieferdienst.name" = "Fastfood-Lieferdienst";
+"trash.fastfood_lieferdienst.description" = "Verhindert den Regen-Event – kein Gratiswasser.";
+
+"trash.lootbox_zockerabo.name" = "Lootbox-Zockerabo";
+"trash.lootbox_zockerabo.description" = "Zufällige Pflanze verliert täglich XP.";
+
+"trash.luxus_uhr.name" = "Luxus-Uhr";
+"trash.luxus_uhr.description" = "Status-Käfer fressen an deinen ältesten Pflanzen.";
+
+"trash.couch_abo.name" = "Couch-Abo";
+"trash.couch_abo.description" = "Faulheits-Moos halbiert Fitness-Wachstum.";
+
+"trash.doener_dauerkarte.name" = "Döner-Dauerkarte";
+"trash.doener_dauerkarte.description" = "Salzige Erde macht Ernährungspflanzen unfruchtbar.";
+
+"trash.negativitaets_feed.name" = "Negativitäts-Feed";
+"trash.negativitaets_feed.description" = "Stress-Dornen verletzen Ruhe-Pflanzen täglich.";
+
+"trash.schlaf_killer_koffein.name" = "Schlaf-Killer-Koffein";
+"trash.schlaf_killer_koffein.description" = "Übernacht-Rost zerstört Schlaf & Ruhe-Pflanzen.";
+
+// MARK: - Game Database - Power-Ups
+"item.frostschutz_schild.name" = "Frostschutz-Schild";
+"item.frostschutz_schild.description" = "24h Schutz vor dem Schnee-Event.";
+
+"item.wunder_wasser.name" = "Wunder-Wasser";
+"item.wunder_wasser.description" = "Rettet eine vertrocknete Pflanze sofort.";
+
+"item.sturmfeste_glocke.name" = "Sturmfeste Glocke";
+"item.sturmfeste_glocke.description" = "Eine Pflanze übersteht den nächsten Sturm ohne Level-Down.";
+
+"item.duenger_blitz.name" = "Dünger-Blitz";
+"item.duenger_blitz.description" = "Verdoppelt XP für die nächsten 3 Erledigungen.";
+
+"item.unkraut_bot.name" = "Unkraut-Bot";
+"item.unkraut_bot.description" = "3 Tage automatische Unkraut-Entfernung.";
+
+"item.sonnenspiegel.name" = "Sonnenspiegel";
+"item.sonnenspiegel.description" = "Negiert den Abgas-Nebel für 48 Stunden.";
+
+"item.zeitkapsel.name" = "Zeitkapsel";
+"item.zeitkapsel.description" = "Friert eine Pflanze ein – kein Verfall für 3 Tage.";
+
+"item.regenmacher.name" = "Regenmacher";
+"item.regenmacher.description" = "Bewässert alle Pflanzen gleichzeitig gratis.";
+
+"item.goldene_giesskanne.name" = "Goldene Gießkanne";
+"item.goldene_giesskanne.description" = "+50% Wachstum für eine ganze Woche.";
+
+"item.schaedlingsschutz.name" = "Schädlingsschutz";
+"item.schaedlingsschutz.description" = "Blockiert alle Parasiten & Käfer-Effekte für 5 Tage.";
+
+"item.nebel_ventilator.name" = "Nebel-Ventilator";
+"item.nebel_ventilator.description" = "Entfernt Rauch-Smog & Abgas-Nebel sofort.";
+
+"item.kompost_boost.name" = "Kompost-Boost";
+"item.kompost_boost.description" = "Wandelt 1 Müll-Item in +20 XP um.";
+
+"item.diamant_erde.name" = "Diamant-Erde";
+"item.diamant_erde.description" = "Permanentes +10% XP für eine Pflanze. Für immer.";
+
+"item.tier_freund.name" = "Tier-Freund";
+"item.tier_freund.description" = "Bestäubt 3 Pflanzen mit einem Mini-Level-Boost.";
+
+"item.regenbogen_event.name" = "Regenbogen-Event";
+"item.regenbogen_event.description" = "Alle Pflanzen wachsen 24h doppelt so schnell.";
+
+// Settings
+"settings.title" = "Einstellungen";
+"settings.section.general" = "Allgemein";
+"settings.audio" = "Audio & Sounds";
+"settings.haptic" = "Haptik Feedback";
+"settings.notifications" = "Benachrichtigungen";
+"settings.section.privacy" = "Datenschutz & Sicherheit";
+"settings.privacy_settings" = "Datenschutz-Einstellungen";
+"settings.terms" = "Nutzungsbedingungen";
+"settings.export" = "Daten exportieren";
+"settings.import" = "Daten importieren";
+"settings.section.support" = "Unterstützung";
+"settings.restore" = "Käufe wiederherstellen";
+"settings.contact" = "Support kontaktieren";
+"settings.share" = "App weiterempfehlen";
+"settings.delete_account" = "ACCOUNT LÖSCHEN";
+"settings.delete_warning" = "Diese Aktion kann nicht rückgängig gemacht werden.";
+"settings.done" = "Fertig";
+"settings.section.personalization" = "Personalisierung";
+"settings.language" = "Sprache";
+"settings.language.de" = "Deutsch";
+"settings.language.en" = "English";
+
+// Added dynamically
+"settings.export.desc" = "Möchten Sie alle Ihre Daten exportieren? Sie erhalten eine Datei mit allen Ihren Pflanzen und Fortschritten.";
+"settings.export.action" = "Export starten";
+"settings.import.desc" = "Möchten Sie Daten importieren? Dies überschreibt Ihre aktuellen Fortschritte.";
+"settings.import.action" = "Import starten";
+"settings.restore.desc" = "Haben Sie bereits Käufe getätigt? Hier können Sie diese auf diesem Gerät wiederherstellen.";
+"settings.restore.action" = "Wiederherstellen";
+"settings.contact.desc" = "Haben Sie Fragen oder Probleme? Unser Support-Team hilft Ihnen gerne weiter.";
+"settings.contact.action" = "Support öffnen";
+"settings.share.desc" = "Gefällt Ihnen die Garten-Simulation? Teilen Sie sie mit Ihren Freunden!";
+"settings.share.action" = "App teilen";
+"settings.privacy.desc" = "Hier findest du alle Informationen zu den Datenschutzbestimmungen.";
+"settings.terms.desc" = "Hier findest du alle Informationen zu den Nutzungsbedingungen.";
+"settings.understood" = "Verstanden";
+"settings.action.irreversible" = "Diese Aktion kann nicht rückgängig gemacht werden.";
+
+"shop.item.description" = "Beschreibung";
+"shop.your_balance" = "Dein Stand:";
+"shop.already_owned" = "Bereits im Besitz";
+"shop.not_enough_coins" = "Zu wenig Coins";
+"shop.need_more_coins" = "Du brauchst noch %d Coins mehr.";
+"shop.trash_item_subtitle" = "Müll-Item";
+"shop.purchase_success.title" = "Gekauft! 🎉";
+"shop.purchase_success.awesome" = "Super!";
+
+"level_up.title" = "STUFEN-AUFSTIEG! 🎉";
+"level_up.subtitle" = "Dein Garten ist jetzt";
+
+"weather.new_event" = "Neues Wetter-Event!";
+"weather.today_is" = "Heute gilt";
+
+"profile.transactions.empty" = "Noch keine Transaktionen";

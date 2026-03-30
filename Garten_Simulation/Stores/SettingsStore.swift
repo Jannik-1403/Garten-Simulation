@@ -2,40 +2,32 @@ import SwiftUI
 import Combine
 
 class SettingsStore: ObservableObject {
-    @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
-    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
+    @AppStorage("isSoundEnabled")         var isSoundEnabled: Bool = true
+    @AppStorage("isHapticEnabled")        var isHapticEnabled: Bool = true
     @AppStorage("isNotificationsEnabled") var isNotificationsEnabled: Bool = true
-    
-    // Privacy & Data
-    @AppStorage("isAnalyticsEnabled") var isAnalyticsEnabled: Bool = true
-    
-    func restorePurchases() {
-        // Implementation for Restore Purchases
-        print("Restoring purchases...")
+    @AppStorage("isAnalyticsEnabled")     var isAnalyticsEnabled: Bool = true
+
+    // Published so every View re-renders when language changes
+    @Published var appLanguage: String {
+        didSet {
+            UserDefaults.standard.set(appLanguage, forKey: "appLanguage")
+        }
     }
-    
-    func exportData() {
-        // Implementation for Data Export
-        print("Exporting data...")
+
+    init() {
+        self.appLanguage = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
     }
-    
-    func importData() {
-        // Implementation for Data Import
-        print("Importing data...")
+
+    // MARK: - Localization
+    func localizedString(for key: String) -> String {
+        AppStrings.get(key, language: appLanguage)
     }
-    
-    func deleteAccount() {
-        // Implementation for Account Deletion
-        print("Deleting account...")
-    }
-    
-    func shareApp() {
-        // Implementation for Sharing the app
-        print("Sharing app...")
-    }
-    
-    func contactSupport() {
-        // Implementation for Support
-        print("Contacting support...")
-    }
+
+    // MARK: - Actions
+    func restorePurchases() { print("Restoring purchases...") }
+    func exportData()        { print("Exporting data...") }
+    func importData()        { print("Importing data...") }
+    func deleteAccount()     { print("Deleting account...") }
+    func shareApp()          { print("Sharing app...") }
+    func contactSupport()    { print("Contacting support...") }
 }
