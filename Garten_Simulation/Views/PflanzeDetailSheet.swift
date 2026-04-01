@@ -16,216 +16,220 @@ struct PflanzeDetailSheet: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 28) {
+                // MARK: - HERO (Zone 1)
+                VStack(spacing: 12) {
+                    ZStack {
+                        // Hintergrund-Ring (grau)
+                        Circle()
+                            .stroke(Color.gray.opacity(0.15), lineWidth: 8)
+                            .frame(width: 180, height: 180)
 
-                // MARK: - Hero: 3D Pflanze mit XP-Ring
-                ZStack {
-                    // Hintergrund-Ring (grau)
-                    Circle()
-                        .stroke(Color.gray.opacity(0.15), lineWidth: 8)
-                        .frame(width: 170, height: 170)
+                        // Fortschritts-Ring (Seltenheits-Farbe)
+                        Circle()
+                            .trim(from: 0, to: pflanze.ringFortschritt)
+                            .stroke(
+                                pflanze.seltenheit.farbe,
+                                style: StrokeStyle(lineWidth: 8, lineCap: .round)
+                            )
+                            .frame(width: 180, height: 180)
+                            .rotationEffect(.degrees(-90))
+                            .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
 
-                    // Fortschritts-Ring (Seltenheits-Farbe)
-                    Circle()
-                        .trim(from: 0, to: pflanze.ringFortschritt)
-                        .stroke(
-                            pflanze.seltenheit.farbe,
-                            style: StrokeStyle(lineWidth: 8, lineCap: .round)
+                        // 3D Pflanze Button
+                        PflanzenButton(
+                            symbolName: pflanze.symbolName,
+                            farbe: pflanze.color,
+                            sekundaerFarbe: pflanze.color.darker(),
+                            groesse: 140
                         )
-                        .frame(width: 170, height: 170)
-                        .rotationEffect(.degrees(-90))
-                        .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
+                        .scaleEffect(pulsieren ? 1.03 : 1.0)
+                        .allowsHitTesting(false)
+                    }
 
-                    // 3D Pflanze Button (wie auf der Gartenseite)
-                    PflanzenButton(
-                        symbolName: pflanze.symbolName,
-                        farbe: pflanze.color,
-                        sekundaerFarbe: pflanze.color.darker(),
-                        groesse: 130
-                    )
-                    .scaleEffect(pulsieren ? 1.03 : 1.0)
-                    .allowsHitTesting(false)
+                    Text(settings.localizedString(for: pflanze.name))
+                        .font(.system(size: 34, weight: .bold, design: .rounded))
+
+                    // Drei-Spalten Stats Header (Enger zusammen)
+                    HStack(spacing: 32) {
+                        // Links: Streak
+                        VStack(spacing: 2) {
+                            HStack(spacing: 3) {
+                                Image(systemName: "flame.fill")
+                                    .font(.system(size: 11))
+                                    .foregroundStyle(.orange)
+                                Text("\(pflanze.streak)")
+                                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                            }
+                            Text(settings.localizedString(for: "plant.detail.streak").uppercased())
+                                .font(.system(size: 8, weight: .bold))
+                                .foregroundStyle(.secondary)
+                        }
+
+                        // Mitte: Bronze Badge
+                        VStack(spacing: 4) {
+                            HStack(spacing: 3) {
+                                Image(systemName: pflanze.stufe.sfSymbol)
+                                    .font(.system(size: 10, weight: .bold))
+                                Text(settings.localizedString(for: pflanze.stufe.labelKey))
+                                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                            }
+                            .foregroundStyle(pflanze.stufe.farbe)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 4)
+                            .background(Capsule().fill(pflanze.stufe.farbe.opacity(0.12)))
+                        }
+
+                        // Rechts: XP
+                        VStack(spacing: 2) {
+                            HStack(spacing: 3) {
+                                Image(systemName: "star.fill")
+                                    .font(.system(size: 11))
+                                    .foregroundStyle(.yellow)
+                                Text("\(pflanze.currentXP)")
+                                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                            }
+                            Text(settings.localizedString(for: "plant.detail.xp").uppercased())
+                                .font(.system(size: 8, weight: .bold))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .padding(.top, 4)
                 }
                 .padding(.top, 24)
 
-                // MARK: - Name + Kategorie + Seltenheit
-                VStack(spacing: 8) {
-                    Text(settings.localizedString(for: pflanze.name))
-                        .font(.system(size: 28, weight: .black, design: .rounded))
-
-                    HStack(spacing: 8) {
-                        Text(settings.localizedString(for: pflanze.habitCategory.rawValue))
-                            .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .foregroundStyle(pflanze.color)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 4)
-                            .background(Capsule().fill(pflanze.color.opacity(0.12)))
-
-                        Text(pflanze.seltenheit.lokalisiertTitel)
-                            .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .foregroundStyle(pflanze.seltenheit.farbe)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 4)
-                            .background(Capsule().fill(pflanze.seltenheit.farbe.opacity(0.12)))
-
-                        // Stufe-Badge
-                        HStack(spacing: 3) {
-                            Image(systemName: pflanze.stufe.sfSymbol)
-                                .font(.system(size: 10, weight: .bold))
-                            Text(settings.localizedString(for: pflanze.stufe.labelKey))
-                                .font(.system(size: 11, weight: .bold, design: .rounded))
-                        }
-                        .foregroundStyle(pflanze.stufe.farbe)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Capsule().fill(pflanze.stufe.farbe.opacity(0.12)))
-                    }
+                // MARK: - WEEKLY (Zone 2)
+                VStack(spacing: 0) {
+                    PlantWeeklyStreakView(pflanze: pflanze)
+                        .padding(.vertical, 16)
                 }
-
-                // MARK: - Stats: Streak + XP (3D Buttons)
-                HStack(spacing: 16) {
-                    // Streak Stat
-                    stat3DCard(
-                        icon: "flame.fill",
-                        value: "\(pflanze.streak)",
-                        label: settings.localizedString(for: "plant.detail.streak"),
-                        farbe: .orange
-                    )
-
-                    // XP Stat
-                    stat3DCard(
-                        icon: "star.fill",
-                        value: "\(pflanze.currentXP)",
-                        label: settings.localizedString(for: "plant.detail.xp"),
-                        farbe: .yellow
-                    )
-                }
+                .background(
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .fill(.ultraThinMaterial)
+                        .shadow(color: Color.black.opacity(0.05), radius: 0, y: 4)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .stroke(Color.primary.opacity(0.06), lineWidth: 1)
+                )
                 .padding(.horizontal, 24)
+                .padding(.vertical, 8)
 
-                // MARK: - Notiz-Vorschau (wenn vorhanden)
-                if !pflanze.notiz.isEmpty {
-                    HStack(spacing: 10) {
-                        Image(systemName: "note.text")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundStyle(.secondary)
-                        Text(pflanze.notiz)
-                            .font(.system(size: 14, weight: .medium, design: .rounded))
-                            .foregroundStyle(.primary.opacity(0.8))
-                            .lineLimit(2)
-                        Spacer()
-                    }
-                    .padding(14)
-                    .background(
-                        RoundedRectangle(cornerRadius: 16, style: .continuous)
-                            .fill(.ultraThinMaterial)
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16, style: .continuous)
-                            .stroke(Color.primary.opacity(0.06), lineWidth: 1)
-                    )
-                    .padding(.horizontal, 24)
-                }
+                // MARK: - ACTIONS (Zone 3)
+                VStack(spacing: 12) {
 
-                // MARK: - Timer-Vorschau (wenn aktiv)
-                if let timerDate = pflanze.timerDatum, timerDate > Date() {
-                    HStack(spacing: 10) {
-                        Image(systemName: "bell.fill")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundStyle(.orange)
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(settings.localizedString(for: "plant.detail.timer.active"))
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
-                            Text("\(timerDate, style: .date) · \(timerDate, style: .time)")
-                                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    // Notiz Vorschau
+                    if !pflanze.notiz.isEmpty {
+                        HStack {
+                            Image(systemName: "doc.text")
+                            Text(pflanze.notiz)
+                                .lineLimit(2)
+                            Spacer()
                         }
-                        Spacer()
+                        .foregroundStyle(.secondary)
+                        .font(.subheadline)
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 8)
+                        .contentShape(Rectangle())
+                        .onTapGesture { zeigeNotizSheet = true }
+                    }
+
+                    // Timer Vorschau
+                    if let timerDate = pflanze.timerDatum, timerDate > Date() {
+                        HStack(spacing: 10) {
+                            Image(systemName: "bell.fill")
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundStyle(.orange)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(settings.localizedString(for: "plant.detail.timer.active"))
+                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                                Text("\(timerDate, style: .date) · \(timerDate, style: .time)")
+                                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                            }
+                            Spacer()
+                            Button {
+                                gardenStore.timerEntfernen(pflanze: pflanze)
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .font(.system(size: 20))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .padding(14)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                .fill(.ultraThinMaterial)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                .stroke(Color.orange.opacity(0.15), lineWidth: 1)
+                        )
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 8)
+                    }
+
+                    // 3D Buttons nebeneinander
+                    HStack(spacing: 12) {
                         Button {
-                            gardenStore.timerEntfernen(pflanze: pflanze)
+                            zeigeNotizSheet = true
                         } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.system(size: 20))
-                                .foregroundStyle(.secondary)
+                            ZStack {
+                                HStack {
+                                    Spacer()
+                                    Image(systemName: "square.and.pencil")
+                                        .font(.system(size: 24))
+                                        .foregroundStyle(.white.opacity(0.12))
+                                        .offset(x: 35, y: 15)
+                                }
+                                Text(settings.localizedString(for: "plant.detail.note")).textCase(.uppercase)
+                                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 24)
+                            .clipped()
                         }
+                        .buttonStyle(DuolingoButtonStyle(
+                            size: .medium, fillWidth: true,
+                            backgroundColor: .blauPrimary, shadowColor: .blauPrimary.darker(), foregroundColor: .white
+                        ))
+
+                        Button {
+                            zeigeTimerSheet = true
+                        } label: {
+                            ZStack {
+                                HStack {
+                                    Spacer()
+                                    Image(systemName: "bell.fill")
+                                        .font(.system(size: 24))
+                                        .foregroundStyle(.white.opacity(0.12))
+                                        .offset(x: 35, y: 15)
+                                }
+                                Text(settings.localizedString(for: "plant.detail.timer")).textCase(.uppercase)
+                                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 24)
+                            .clipped()
+                        }
+                        .buttonStyle(DuolingoButtonStyle(
+                            size: .medium, fillWidth: true,
+                            backgroundColor: .goldPrimary, shadowColor: .goldPrimary.darker(), foregroundColor: .white
+                        ))
                     }
-                    .padding(14)
-                    .background(
-                        RoundedRectangle(cornerRadius: 16, style: .continuous)
-                            .fill(.ultraThinMaterial)
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16, style: .continuous)
-                            .stroke(Color.orange.opacity(0.15), lineWidth: 1)
-                    )
                     .padding(.horizontal, 24)
-                }
 
-                // MARK: - Action Buttons
-                VStack(spacing: 14) {
-
-                    // Notiz Button
-                    Button {
-                        zeigeNotizSheet = true
-                    } label: {
-                        HStack(spacing: 8) {
-                            Image(systemName: "square.and.pencil")
-                                .font(.system(size: 16, weight: .bold))
-                            Text(settings.localizedString(for: "plant.detail.note"))
-                        }
-                    }
-                    .buttonStyle(DuolingoButtonStyle(
-                        size: .medium,
-                        fillWidth: true,
-                        backgroundColor: .blauPrimary,
-                        shadowColor: .blauPrimary.darker(),
-                        foregroundColor: .white
-                    ))
-
-                    // Timer Button
-                    Button {
-                        zeigeTimerSheet = true
-                    } label: {
-                        HStack(spacing: 8) {
-                            Image(systemName: "bell.badge")
-                                .font(.system(size: 16, weight: .bold))
-                            Text(settings.localizedString(for: "plant.detail.timer"))
-                        }
-                    }
-                    .buttonStyle(DuolingoButtonStyle(
-                        size: .medium,
-                        fillWidth: true,
-                        backgroundColor: .orangePrimary,
-                        shadowColor: .orangePrimary.darker(),
-                        foregroundColor: .white
-                    ))
-
-                    // Verkaufen Button
-                    let refund = Int(Double(pflanze.basePrice) * 0.5)
+                    // Verkaufen-Button (Roter Text)
                     Button {
                         zeigeVerkaufenDialog = true
                     } label: {
-                        HStack(spacing: 6) {
-                            Image(systemName: "tag.fill")
-                                .font(.system(size: 14, weight: .bold))
-                            Text(settings.localizedString(for: "plant.detail.sell"))
-                            Text("•")
-                            HStack(spacing: 3) {
-                                Image("Coin")
-                                    .resizable().scaledToFit().frame(width: 14, height: 14)
-                                Text("+\(refund)")
-                                    .font(.system(size: 14, weight: .black, design: .rounded))
-                            }
-                        }
+                        Text(settings.localizedString(for: "plant.detail.sell"))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundStyle(Color.red)
                     }
-                    .buttonStyle(DuolingoButtonStyle(
-                        size: .medium,
-                        fillWidth: true,
-                        backgroundColor: .rotPrimary,
-                        shadowColor: .rotPrimary.darker(),
-                        foregroundColor: .white
-                    ))
+                    .padding(.top, 24)
+                    .padding(.bottom, 24)
                 }
-                .padding(.horizontal, 24)
-                .padding(.top, 8)
+
 
                 Spacer().frame(height: 20)
             }
@@ -271,37 +275,8 @@ struct PflanzeDetailSheet: View {
         }
     }
 
-    // MARK: - 3D Stat Card
-    private func stat3DCard(icon: String, value: String, label: String, farbe: Color) -> some View {
-        VStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.system(size: 22, weight: .bold))
-                .foregroundStyle(farbe)
+    
 
-            Text(value)
-                .font(.system(size: 32, weight: .black, design: .rounded))
-
-            Text(label)
-                .font(.system(size: 12, weight: .bold, design: .rounded))
-                .foregroundStyle(.secondary)
-                .textCase(.uppercase)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 18)
-        .background(
-            ZStack(alignment: .top) {
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(farbe.opacity(0.15))
-                    .offset(y: 4)
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(.ultraThinMaterial)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20, style: .continuous)
-                            .stroke(farbe.opacity(0.15), lineWidth: 1)
-                    )
-            }
-        )
-    }
 }
 
 // MARK: - Notiz Sheet
@@ -465,5 +440,100 @@ struct TimerSheetView: View {
                 ausgewaehltesDatum = existing
             }
         }
+    }
+}
+
+// MARK: - StatLabelView
+struct StatLabelView: View {
+    let icon: String
+    let iconColor: Color
+    let value: String
+    let label: String
+
+    var body: some View {
+        VStack(spacing: 4) {
+            Image(systemName: icon)
+                .font(.system(size: 24))
+                .foregroundStyle(iconColor)
+            Text(value)
+                .font(.system(size: 32, weight: .bold))
+            Text(label)
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundStyle(.secondary)
+                .tracking(1.2)
+        }
+    }
+}
+
+// MARK: - PlantWeeklyStreakView
+struct PlantWeeklyStreakView: View {
+    @ObservedObject var pflanze: HabitModel
+    private let calendar = Calendar.current
+    
+    var body: some View {
+        HStack(spacing: 0) {
+            let weekdays = ["M", "D", "M", "D", "F", "S", "S"] // Mo, Di, Mi, Do, Fr, Sa, So
+            ForEach(0..<7, id: \.self) { index in
+                VStack(spacing: 8) {
+                    Text(weekdays[index])
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundStyle(.secondary)
+                    
+                    let dayXP = getXP(for: index)
+                    
+                    ZStack {
+                        // Schatten/Tiefe (nur wenn aktiv)
+                        if dayXP > 0 {
+                            Circle()
+                                .fill(Color.orange.darker())
+                                .frame(width: 38, height: 38)
+                                .offset(y: 3)
+                        }
+                        
+                        // Haupt-Bubble
+                        Circle()
+                            .fill(dayXP > 0 ? Color.orange : Color.primary.opacity(0.06))
+                            .frame(width: 38, height: 38)
+                            .overlay(
+                                Circle()
+                                    .stroke(dayXP > 0 ? Color.white.opacity(0.2) : .clear, lineWidth: 1.5)
+                            )
+                        
+                        if dayXP > 0 {
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundStyle(.white)
+                        }
+                    }
+                    .frame(width: 38, height: 41) // Platz für Schatten reservieren
+                    
+                    Text(dayXP > 0 ? "+\(dayXP) XP" : " ")
+                        .font(.system(size: 10, weight: .black, design: .rounded))
+                        .foregroundStyle(dayXP > 0 ? .orange : .clear)
+                }
+                .frame(maxWidth: .infinity)
+            }
+        }
+        .padding(.horizontal, 8)
+    }
+    
+    private func getXP(for index: Int) -> Int {
+        let today = calendar.startOfDay(for: Date())
+        
+        // Calendar weekday: Sun=1, Mon=2, Tue=3, Wed=4, Thu=5, Fri=6, Sat=7
+        let currentWeekday = calendar.component(.weekday, from: today)
+        
+        // Convert to Mon=0, Tue=1, ..., Sun=6
+        var normalizedToday = currentWeekday - 2
+        if normalizedToday < 0 { normalizedToday = 6 } 
+        
+        let daysToSubtract = normalizedToday - index
+        guard let targetDate = calendar.date(byAdding: .day, value: -daysToSubtract, to: today) else { return 0 }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let key = formatter.string(from: targetDate)
+        
+        return pflanze.xpHistory[key] ?? 0
     }
 }

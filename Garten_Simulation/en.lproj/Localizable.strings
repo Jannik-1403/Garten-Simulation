@@ -425,3 +425,32 @@
 "profile.achievements.empty" = "No achievements unlocked yet";
 "profile.achievements.subtitle" = "Your Trophy Cabinet";
 
+// MARK: - Daily Spin
+"dailyspin.title" = "Daily Spin";
+"dailyspin.subtitle" = "Spin the wheel to start your day!";
+"dailyspin.button.spin" = "SPIN THE WHEEL";
+"dailyspin.button.continue" = "Continue";
+"dailyspin.weed.danger" = "Weed Risk: %d%%";
+"dailyspin.result.safe.title" = "All Clear!";
+"dailyspin.result.safe.subtitle" = "Your garden is safe.";
+"dailyspin.result.weed.title" = "Weed Spotted!";
+"dailyspin.result.weed.subtitle" = "%@ needs your attention.";
+"dailyspin.result.coins.title" = "+200 Coins!";
+"dailyspin.result.coins.subtitle" = "Great start to the day!";
+"dailyspin.powerup.title" = "Power-Up available";
+"dailyspin.powerup.subtitle" = "Guaranteed Green — no weeds possible";
+"dailyspin.powerup.button" = "Use";
+
+// MARK: - Stufen Labels
+"stufe.bronze1" = "Bronze I";
+"stufe.bronze2" = "Bronze II";
+"stufe.bronze3" = "Bronze III";
+"stufe.silber1" = "Silver I";
+"stufe.silber2" = "Silver II";
+"stufe.silber3" = "Silver III";
+"stufe.gold1" = "Gold I";
+"stufe.gold2" = "Gold II";
+"stufe.gold3" = "Gold III";
+"stufe.diamant1" = "Diamond I";
+"stufe.diamant2" = "Diamond II";
+"stufe.diamant3" = "Diamond III";

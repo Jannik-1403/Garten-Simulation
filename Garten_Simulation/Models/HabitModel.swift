@@ -20,6 +20,12 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     var notiz: String = ""
     var timerDatum: Date? = nil
     
+    // XP Verlauf für die Wochenübersicht (Datum im Format "yyyy-MM-dd": XP an diesem Tag)
+    @Published var xpHistory: [String: Int] = [:]
+    
+    // Lebenslange Einnahmen durch diese Pflanze
+    @Published var totalCoinsEarned: Int = 0
+    
     // Performance / Growth Parameters from Database
     var maxLevel: Int
     var xpPerCompletion: Int
@@ -124,7 +130,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case id, name, symbolName, symbolColor, habitCategory, symbolism
         case currentXP, streak, letzteBewaesserung, gekauftAm, istBewässert
         case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays
-        case notiz, timerDatum
+        case notiz, timerDatum, xpHistory, totalCoinsEarned
     }
 
     required init(from decoder: Decoder) throws {
@@ -150,6 +156,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         
         notiz = try container.decodeIfPresent(String.self, forKey: .notiz) ?? ""
         timerDatum = try container.decodeIfPresent(Date.self, forKey: .timerDatum)
+        xpHistory = try container.decodeIfPresent([String: Int].self, forKey: .xpHistory) ?? [:]
+        totalCoinsEarned = try container.decodeIfPresent(Int.self, forKey: .totalCoinsEarned) ?? 0
     }
 
     func encode(to encoder: Encoder) throws {
@@ -175,6 +183,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         
         try container.encode(notiz, forKey: .notiz)
         try container.encodeIfPresent(timerDatum, forKey: .timerDatum)
+        try container.encode(xpHistory, forKey: .xpHistory)
+        try container.encode(totalCoinsEarned, forKey: .totalCoinsEarned)
     }
 }
 

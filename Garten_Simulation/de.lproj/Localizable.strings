@@ -433,3 +433,32 @@
 "profile.achievements.empty" = "Noch keine Erfolge freigeschaltet";
 "profile.achievements.subtitle" = "Deine Trophäenvitrine";
 
+// MARK: - Daily Spin
+"dailyspin.title" = "Daily Spin";
+"dailyspin.subtitle" = "Drehe das Rad, um in den Tag zu starten!";
+"dailyspin.button.spin" = "RAD DREHEN";
+"dailyspin.button.continue" = "Weiter";
+"dailyspin.weed.danger" = "Unkraut-Gefahr: %d%%";
+"dailyspin.result.safe.title" = "Alles gut!";
+"dailyspin.result.safe.subtitle" = "Dein Garten ist sicher.";
+"dailyspin.result.weed.title" = "Unkraut entdeckt!";
+"dailyspin.result.weed.subtitle" = "%@ braucht deine Aufmerksamkeit.";
+"dailyspin.result.coins.title" = "+200 Münzen!";
+"dailyspin.result.coins.subtitle" = "Super Start in den Tag!";
+"dailyspin.powerup.title" = "Power-Up verfuegbar";
+"dailyspin.powerup.subtitle" = "Garantiert Gruen — kein Unkraut moeglich";
+"dailyspin.powerup.button" = "Nutzen";
+
+// MARK: - Stufen Labels
+"stufe.bronze1" = "Bronze I";
+"stufe.bronze2" = "Bronze II";
+"stufe.bronze3" = "Bronze III";
+"stufe.silber1" = "Silber I";
+"stufe.silber2" = "Silber II";
+"stufe.silber3" = "Silber III";
+"stufe.gold1" = "Gold I";
+"stufe.gold2" = "Gold II";
+"stufe.gold3" = "Gold III";
+"stufe.diamant1" = "Diamant I";
+"stufe.diamant2" = "Diamant II";
+"stufe.diamant3" = "Diamant III";

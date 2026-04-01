@@ -87,6 +87,14 @@ class GardenStore: ObservableObject {
 
         pflanze.currentXP += xpGewonnen
 
+        // XP Verlauf für die Pflanze speichern
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let key = formatter.string(from: Date())
+        pflanze.xpHistory[key] = (pflanze.xpHistory[key] ?? 0) + xpGewonnen
+        
+        pflanze.totalCoinsEarned += coinsGewonnen
+
         // 3. XP zum Garten-Gesamt addieren
         gesamtXP += xpGewonnen
 

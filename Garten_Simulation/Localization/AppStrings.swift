@@ -439,5 +439,35 @@ enum AppStrings {
         "settings.reset.alert.title":      ["de": "App zurücksetzen?",              "en": "Reset App?"],
         "settings.reset.alert.message":     ["de": "Diese Aktion löscht alle deine Pflanzen, Coins und Fortschritte. Das kann nicht rückgängig gemacht werden.", "en": "This action will delete all your plants, coins, and progress. This cannot be undone."],
         "settings.reset.confirm":          ["de": "Alles löschen",                  "en": "Delete Everything"],
+
+        // MARK: Daily Spin
+        "dailyspin.title":                 ["de": "Daily Spin",                                      "en": "Daily Spin"],
+        "dailyspin.subtitle":              ["de": "Drehe das Rad, um in den Tag zu starten!",        "en": "Spin the wheel to start your day!"],
+        "dailyspin.button.spin":           ["de": "RAD DREHEN",                                      "en": "SPIN THE WHEEL"],
+        "dailyspin.button.continue":       ["de": "Weiter",                                          "en": "Continue"],
+        "dailyspin.weed.danger":           ["de": "Unkraut-Gefahr: %d%%",                            "en": "Weed Risk: %d%%"],
+        "dailyspin.result.safe.title":     ["de": "Alles gut!",                                      "en": "All Clear!"],
+        "dailyspin.result.safe.subtitle":  ["de": "Dein Garten ist sicher.",                         "en": "Your garden is safe."],
+        "dailyspin.result.weed.title":     ["de": "Unkraut entdeckt!",                               "en": "Weed Spotted!"],
+        "dailyspin.result.weed.subtitle":  ["de": "%@ braucht deine Aufmerksamkeit.",                "en": "%@ needs your attention."],
+        "dailyspin.result.coins.title":    ["de": "+200 Münzen!",                                    "en": "+200 Coins!"],
+        "dailyspin.result.coins.subtitle": ["de": "Super Start in den Tag!",                         "en": "Great start to the day!"],
+        "dailyspin.powerup.title":         ["de": "Power-Up verfügbar",                              "en": "Power-Up available"],
+        "dailyspin.powerup.subtitle":      ["de": "Garantiert Grün — kein Unkraut möglich",          "en": "Guaranteed Green — no weeds possible"],
+        "dailyspin.powerup.button":        ["de": "Nutzen",                                          "en": "Use"],
+
+        // MARK: Stufen Labels
+        "stufe.bronze1":                   ["de": "Bronze I",    "en": "Bronze I"],
+        "stufe.bronze2":                   ["de": "Bronze II",   "en": "Bronze II"],
+        "stufe.bronze3":                   ["de": "Bronze III",  "en": "Bronze III"],
+        "stufe.silber1":                   ["de": "Silber I",    "en": "Silver I"],
+        "stufe.silber2":                   ["de": "Silber II",   "en": "Silver II"],
+        "stufe.silber3":                   ["de": "Silber III",  "en": "Silver III"],
+        "stufe.gold1":                     ["de": "Gold I",      "en": "Gold I"],
+        "stufe.gold2":                     ["de": "Gold II",     "en": "Gold II"],
+        "stufe.gold3":                     ["de": "Gold III",    "en": "Gold III"],
+        "stufe.diamant1":                  ["de": "Diamant I",   "en": "Diamond I"],
+        "stufe.diamant2":                  ["de": "Diamant II",  "en": "Diamond II"],
+        "stufe.diamant3":                  ["de": "Diamant III", "en": "Diamond III"],
     ]
 }
