@@ -2,7 +2,13 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var shopStore: ShopStore
+    @EnvironmentObject var streakStore: StreakStore
+    @EnvironmentObject var powerUpStore: PowerUpStore
     @Environment(\.dismiss) var dismiss
+    
+    @State private var showResetAlert = false
     
     var body: some View {
         NavigationStack {
@@ -90,23 +96,61 @@ struct SettingsView: View {
                                 }
                             }
                             
-                            // Danger Zone
-                            VStack(spacing: 12) {
-                                NavigationLink(destination: SettingsDetailView(title: settings.localizedString(for: "settings.delete_account"), description: settings.localizedString(for: "settings.delete_warning"), actionTitle: settings.localizedString(for: "settings.delete_account"), icon: "trash.fill", iconColor: .red, isDestructive: true, action: { settings.deleteAccount() })) {
-                                    Text(settings.localizedString(for: "settings.delete_account"))
+                            .padding(.top, 16)
+
+                            // MARK: Developer / Debug Section
+                            settingsSection(title: "Developer / Debug 🛠️") {
+                                VStack(spacing: 0) {
+                                    Button {
+                                        gardenStore.taeglicherStreakCheck()
+                                        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                                    } label: {
+                                        settingRow(title: "Simulations-Tag (Reset)", icon: "clock.arrow.circlepath", color: .indigo)
+                                    }
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
+                                    Button {
+                                        gardenStore.coinsGutschreiben(amount: 1000, beschreibung: "Debug: Coins erhalten")
+                                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                    } label: {
+                                        settingRow(title: "1000 Coins hinzufügen", icon: "plus.circle.fill", color: .belohnungGoldHighlight)
+                                    }
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
+                                    Button {
+                                        for p in gardenStore.pflanzen {
+                                            p.istBewässert = false
+                                        }
+                                        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                                    } label: {
+                                        settingRow(title: "Alle Pflanzen durstig machen", icon: "drop.triangle.fill", color: .blue)
+                                    }
+
+                                    Divider().padding(.leading, 44)
+
+                                    Button {
+                                        gardenStore.showDailySpinOverlay = true
+                                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                    } label: {
+                                        settingRow(title: "Unkraut-Glücksrad testen", icon: "asterisk.circle.fill", color: .orange)
+                                    }
+                                }
+                            }
+
+                            // MARK: - Danger Zone
+                            settingsSection(title: settings.localizedString(for: "settings.section.danger")) {
+                                Button {
+                                    showResetAlert = true
+                                } label: {
+                                    Text(settings.localizedString(for: "settings.reset.title"))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .foregroundStyle(.white)
-                                        .frame(height: 54)
                                         .frame(maxWidth: .infinity)
-                                        .background(Color.red)
-                                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                                        .padding(.vertical, 14)
                                 }
                                 .buttonStyle(DangerButtonStyle())
-                                
-                                Text(settings.localizedString(for: "settings.delete_warning"))
-                                    .font(.system(size: 11))
-                                    .foregroundStyle(.secondary)
-                                    .multilineTextAlignment(.center)
                             }
                             .padding(.top, 16)
                         }
@@ -114,6 +158,19 @@ struct SettingsView: View {
                         .padding(.bottom, 40)
                     }
                 }
+            }
+            .alert(settings.localizedString(for: "settings.reset.alert.title"), isPresented: $showResetAlert) {
+                Button(settings.localizedString(for: "settings.reset.confirm"), role: .destructive) {
+                    gardenStore.resetAllData()
+                    shopStore.reset()
+                    streakStore.reset()
+                    powerUpStore.reset()
+                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                    dismiss()
+                }
+                Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
+            } message: {
+                Text(settings.localizedString(for: "settings.reset.alert.message"))
             }
             .navigationTitle(settings.localizedString(for: "settings.title"))
             .navigationBarTitleDisplayMode(.inline)

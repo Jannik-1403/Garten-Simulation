@@ -131,26 +131,61 @@ struct ShopItemDetailView: View {
                                         .contentTransition(.numericText(countsDown: true))
                                 }
                             }
+                            
 
                             // MARK: Button — 3 Zustände
 
                             if isOwned {
-                                // Zustand 1: Bereits gekauft
-                                Button {} label: {
-                                    HStack(spacing: 8) {
-                                        Image(systemName: "checkmark.seal.fill")
-                                        Text(settings.localizedString(for: "shop.already_owned"))
+                                // Zustand 1: Bereits gekauft + VERKAUFEN Option
+                                VStack(spacing: 12) {
+                                    Button {} label: {
+                                        HStack(spacing: 8) {
+                                            Image(systemName: "checkmark.seal.fill")
+                                            Text(settings.localizedString(for: "shop.already_owned"))
+                                        }
                                     }
+                                    .buttonStyle(DuolingoButtonStyle(
+                                        size: .large,
+                                        fillWidth: true,
+                                        backgroundColor: .green,
+                                        shadowColor: Color(red: 0.1, green: 0.5, blue: 0.15),
+                                        foregroundColor: .white
+                                    ))
+                                    .disabled(true)
+                                    .opacity(0.7)
+                                    
+                                    // Verkaufs-Button (Minimalismus-Mechanik)
+                                    let sellPrice = Int(Double(payload.price) * 0.5)
+                                    
+                                    Button {
+                                        // Haptik
+                                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                        
+                                        // Aktion
+                                        shopStore.sell(id: payload.id, price: payload.price, title: settings.localizedString(for: payload.title))
+                                        
+                                        if payload.itemType == .decoration {
+                                            gardenStore.itemEntfernen(id: payload.id)
+                                        }
+                                    } label: {
+                                        VStack(spacing: 2) {
+                                            Text("Gegenstand verkaufen")
+                                                .font(.system(size: 14, weight: .bold))
+                                            HStack(spacing: 4) {
+                                                Image("Coin")
+                                                    .resizable().scaledToFit().frame(width: 14, height: 14)
+                                                Text("+\(sellPrice)")
+                                                    .font(.system(size: 14, weight: .black))
+                                            }
+                                        }
+                                        .foregroundStyle(.red)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 12)
+                                        .background(Capsule().stroke(Color.red.opacity(0.3), lineWidth: 2))
+                                    }
+                                    
+
                                 }
-                                .buttonStyle(DuolingoButtonStyle(
-                                    size: .large,
-                                    fillWidth: true,
-                                    backgroundColor: .green,
-                                    shadowColor: Color(red: 0.1, green: 0.5, blue: 0.15),
-                                    foregroundColor: .white
-                                ))
-                                .disabled(true)
-                                .opacity(0.7)
 
                             } else if !canAfford {
                                 // Zustand 2: Zu wenig Coins
@@ -180,8 +215,8 @@ struct ShopItemDetailView: View {
                                     
                                     if payload.itemType == .plant {
                                         gardenStore.pflanzHinzufuegen(shopItem: payload)
-                                    } else {
-                                        // Power-Up oder Müll
+                                    } else if payload.itemType == .powerUp || payload.itemType == .decoration {
+                                        // Power-Up oder Dekoration
                                         gardenStore.itemHinzufuegen(shopItem: payload)
                                     }
 

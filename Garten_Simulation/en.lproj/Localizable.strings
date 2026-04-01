@@ -24,7 +24,7 @@
 "shop.tab.items" = "Items";
 "Suchen..." = "Search...";
 "Power-Ups" = "Power-Ups";
-"⚠️ MÜLL-ITEMS" = "⚠️ TRASH ITEMS";
+"Dekorationen" = "Decorations";
 "Alle" = "All";
 "Kategorie" = "Category";
 "shop.buy.confirm" = "Really buy for %d coins?";
@@ -39,8 +39,27 @@
 "rarity.gold"    = "Gold";
 "rarity.diamant" = "Diamond";
 
+// Tiers
+"stufe.bronze1"  = "Bronze I";
+"stufe.bronze2"  = "Bronze II";
+"stufe.bronze3"  = "Bronze III";
+"stufe.silber1"  = "Silver I";
+"stufe.silber2"  = "Silver II";
+"stufe.silber3"  = "Silver III";
+"stufe.gold1"    = "Gold I";
+"stufe.gold2"    = "Gold II";
+"stufe.gold3"    = "Gold III";
+"stufe.diamant1" = "Diamond I";
+"stufe.diamant2" = "Diamond II";
+"stufe.diamant3" = "Diamond III";
+"stufe.naechste.hinweis" = "%lld XP left for %@";
+
 // Streak
 "streak.days" = "%d Days";
+"streak.singular" = "1 Day";
+"streak.plural"   = "%lld Days";
+"streak.plural.label" = "Days";
+"streak.singular.label" = "Day";
 "streak.lost" = "Streak lost";
 "streak.complete" = "All plants watered!";
 
@@ -84,51 +103,7 @@
 "garden.plant.done" = "DONE";
 "garden.plant.delete.title" = "Remove plant?";
 
-// Achievement Categories
-"category.streak" = "Streak";
-"category.daytime" = "Time of Day";
-"category.plants" = "Plants";
-"category.coins" = "Coins";
 
-// Achievements - Streak
-"achievement.streak3.title" = "First Steps";
-"achievement.streak3.desc" = "3 Day Streak";
-"achievement.streak7.title" = "One Week";
-"achievement.streak7.desc" = "7 Day Streak";
-"achievement.streak30.title" = "Month Warrior";
-"achievement.streak30.desc" = "30 Day Streak";
-"achievement.streak100.title" = "Legend";
-"achievement.streak100.desc" = "100 Day Streak";
-
-// Achievements - Coins
-"achievement.coin100.title" = "First Pocket Money";
-"achievement.coin100.desc" = "Collected 100 Coins";
-"achievement.coin1000.title" = "Money Saver";
-"achievement.coin1000.desc" = "Collected 1,000 Coins";
-"achievement.coin5000.title" = "Rich Gardener";
-"achievement.coin5000.desc" = "Collected 5,000 Coins";
-"achievement.coin10000.title" = "Millionaire";
-"achievement.coin10000.desc" = "Collected 10,000 Coins";
-
-// Achievements - Plants
-"achievement.pfl1.title" = "First Seedling";
-"achievement.pfl1.desc" = "1 plant in the garden";
-"achievement.pfl5.title" = "Small Garden";
-"achievement.pfl5.desc" = "5 plants in the garden";
-"achievement.pfl10.title" = "Green Thumb";
-"achievement.pfl10.desc" = "10 plants in the garden";
-"achievement.pfl25.title" = "Master Gardener";
-"achievement.pfl25.desc" = "25 plants in the garden";
-
-// Achievements - Time of Day
-"achievement.morgen5.title" = "Early Bird";
-"achievement.morgen5.desc" = "Done 5× before 9 AM";
-"achievement.morgen30.title" = "Morning Master";
-"achievement.morgen30.desc" = "Done 30× before 9 AM";
-"achievement.abend5.title" = "Night Owl";
-"achievement.abend5.desc" = "Done 5× after 8 PM";
-"achievement.abend30.title" = "Midnight Warrior";
-"achievement.abend30.desc" = "Done 30× after 8 PM";
 
 // MARK: - Game Database - Plants
 "plant.bambus.name" = "Bamboo";
@@ -263,66 +238,47 @@
 "plant.olivenbaum.name" = "Olive Tree";
 "plant.olivenbaum.symbolism" = "Lives 1,000 years – pure persistence – Mediterranean lifestyle";
 
-// MARK: - Game Database - Trash
-"trash.ultra_konsole.name" = "Ultra Console";
-"trash.ultra_konsole.description" = "Looks cool, poisons your garden.";
-
-"trash.fast_food_abo.name" = "Fast Food Subscription";
-"trash.fast_food_abo.description" = "Cheap pleasure, high price.";
-
-"trash.endlos_scroll_tv.name" = "Endless Scroll TV";
-"trash.endlos_scroll_tv.description" = "Time sink number 1.";
-
-"trash.luxus_auto.name" = "Luxury Car";
-"trash.luxus_auto.description" = "Status symbol that fogs up your garden.";
-
-"trash.party_pass.name" = "Party Pass";
-"trash.party_pass.description" = "Fun for one night, damage for two days.";
-
-"trash.energy_drink_kiste.name" = "Energy Drink Crate";
-"trash.energy_drink_kiste.description" = "Explodes fast and takes everything with it.";
-
-"trash.zigaretten_automat.name" = "Cigarette Machine";
-"trash.zigaretten_automat.description" = "Creeping killer for all plants.";
-
-"trash.online_shopping_app.name" = "Online Shopping App";
-"trash.online_shopping_app.description" = "Empties your wallet in the background.";
-
-"trash.junk_mail_abo.name" = "Junk Mail Sub";
-"trash.junk_mail_abo.description" = "Distraction grenade for focus plants.";
-
-"trash.nacht_snack_box.name" = "Night Snack Box";
-"trash.nacht_snack_box.description" = "Active at night, kills your sleep garden.";
-
-"trash.alkohol_flatrate.name" = "Alcohol Flatrate";
-"trash.alkohol_flatrate.description" = "Each unit costs the vine one level.";
-
-"trash.doomscrolling_handy.name" = "Doomscrolling Phone";
-"trash.doomscrolling_handy.description" = "Pixel parasites on all plants.";
-
-"trash.binge_streaming.name" = "Binge Streaming";
-"trash.binge_streaming.description" = "Eats your sleep and energy.";
-
-"trash.fastfood_lieferdienst.name" = "Fast Food Delivery";
-"trash.fastfood_lieferdienst.description" = "Prevents rain event – no free water.";
-
-"trash.lootbox_zockerabo.name" = "Lootbox Gamer sub";
-"trash.lootbox_zockerabo.description" = "Random plant loses XP daily.";
-
-"trash.luxus_uhr.name" = "Luxury Watch";
-"trash.luxus_uhr.description" = "Status bugs eat your oldest plants.";
-
-"trash.couch_abo.name" = "Couch Subscription";
-"trash.couch_abo.description" = "Laziness moss halves fitness growth.";
-
-"trash.doener_dauerkarte.name" = "Kebab Season Ticket";
-"trash.doener_dauerkarte.description" = "Salty soil makes nutrition plants infertile.";
-
-"trash.negativitaets_feed.name" = "Negativity Feed";
-"trash.negativitaets_feed.description" = "Stress thorns hurt peace plants daily.";
-
-"trash.schlaf_killer_koffein.name" = "Sleep Killer Caffeine";
-"trash.schlaf_killer_koffein.description" = "Overnight rust destroys sleep & peace plants.";
+// MARK: - Game Database - Decorations (formerly Trash)
+"trash.ultra_konsole.name" = "Garden Bench";
+"trash.ultra_konsole.desc" = "A cozy place to relax.";
+"trash.fast_food_abo.name" = "Fountain";
+"trash.fast_food_abo.desc" = "Calming water sounds for your garden. (+1 Coin)";
+"trash.endlos_scroll_tv.name" = "Birdhouse";
+"trash.endlos_scroll_tv.desc" = "Attracts chirping friends.";
+"trash.luxus_auto.name" = "Lantern";
+"trash.luxus_auto.desc" = "Provides soft light in the evening.";
+"trash.party_pass.name" = "Stepping Stone Path";
+"trash.party_pass.desc" = "A beautiful path through the greenery.";
+"trash.energy_drink_kiste.name" = "Garden Gnome";
+"trash.energy_drink_kiste.desc" = "A classic garden protector.";
+"trash.zigaretten_automat.name" = "Sun Umbrella";
+"trash.zigaretten_automat.desc" = "Provides shade on hot days.";
+"trash.online_shopping_app.name" = "Lily Pond";
+"trash.online_shopping_app.desc" = "A biotope for water lovers. (+2 Coins)";
+"trash.junk_mail_abo.name" = "Bird Bath";
+"trash.junk_mail_abo.desc" = "A quick refresh for the birds.";
+"trash.nacht_snack_box.name" = "Wooden Fence";
+"trash.nacht_snack_box.desc" = "Secures your garden boundaries.";
+"trash.alkohol_flatrate.name" = "Stone Statue";
+"trash.alkohol_flatrate.desc" = "A touch of art and timelessness.";
+"trash.doomscrolling_handy.name" = "Windmill";
+"trash.doomscrolling_handy.desc" = "Spins happily in the wind.";
+"trash.binge_streaming.name" = "Hammock";
+"trash.binge_streaming.desc" = "Perfect for a little nap.";
+"trash.fastfood_lieferdienst.name" = "Garden Torch";
+"trash.fastfood_lieferdienst.desc" = "Fiery lighting for the night.";
+"trash.lootbox_zockerabo.name" = "Flower Pot";
+"trash.lootbox_zockerabo.desc" = "Extra space for wild flowers.";
+"trash.luxus_uhr.name" = "Bee House";
+"trash.luxus_uhr.desc" = "Buzzing helpers for pollination. (+1 Coin)";
+"trash.couch_abo.name" = "Hedgehog House";
+"trash.couch_abo.desc" = "A safe quarter for hedgehogs.";
+"trash.doener_dauerkarte.name" = "Gravel Path";
+"trash.doener_dauerkarte.desc" = "Crunches nicely when walking over it.";
+"trash.negativitaets_feed.name" = "Bridge";
+"trash.negativitaets_feed.desc" = "Connects different garden areas.";
+"trash.schlaf_killer_koffein.name" = "Garden Shed";
+"trash.schlaf_killer_koffein.desc" = "Plenty of space for all your tools.";
 
 // MARK: - Game Database - Power-Ups
 "item.frostschutz_schild.name" = "Frost Protection Shield";
@@ -420,8 +376,52 @@
 
 "level_up.title" = "LEVEL UP! 🎉";
 "level_up.subtitle" = "Your garden is now";
+"levelup.toast" = "New level reached!";
 
 "weather.new_event" = "New Weather Event!";
 "weather.today_is" = "Today is";
 
-"profile.transactions.empty" = "No transactions yet";
+
+// MARK: - Achievement Titles
+"erfolg.ersteMuenze.name"        = "First Coin";
+"erfolg.ersterkauf.name"         = "First Purchase";
+"erfolg.erstewoche.name"         = "First Week";
+"erfolg.monatsstreaker.name"     = "Month Streaker";
+"erfolg.legende.name"            = "Legend";
+"erfolg.jahresring.name"         = "Annual Ring";
+"erfolg.erstergaertner.name"     = "First Gardener";
+"erfolg.wassermeister.name"      = "Water Master";
+"erfolg.erstexp.name"            = "First XP";
+"erfolg.xpsammler.name"          = "XP Collector";
+"erfolg.ersterpflanze.name"      = "First Plant";
+"erfolg.pflanzensammler.name"    = "Plant Collector";
+"erfolg.gruenerDaumen.name"      = "Green Thumb";
+"erfolg.gartenprofi.name"        = "Garden Pro";
+"erfolg.muenzmeister.name"       = "Coin Master";
+"erfolg.reichtumssammler.name"   = "Wealth Collector";
+
+// MARK: - Achievement Descriptions
+"erfolg.ersteMuenze.beschreibung"        = "Earn your first coin";
+"erfolg.ersterkauf.beschreibung"         = "Buy your first item in the shop";
+"erfolg.erstewoche.beschreibung"         = "Keep a 7-day streak";
+"erfolg.monatsstreaker.beschreibung"     = "Keep a 30-day streak";
+"erfolg.legende.beschreibung"            = "Keep a 100-day streak";
+"erfolg.jahresring.beschreibung"         = "Keep a 365-day streak";
+"erfolg.erstergaertner.beschreibung"     = "Water a plant for the first time";
+"erfolg.wassermeister.beschreibung"      = "Water plants 100 times total";
+"erfolg.erstexp.beschreibung"            = "Collect your first XP";
+"erfolg.xpsammler.beschreibung"          = "Collect 500 XP total";
+"erfolg.ersterpflanze.beschreibung"      = "Buy your first plant";
+"erfolg.pflanzensammler.beschreibung"    = "Own 3 different plants";
+"erfolg.gruenerDaumen.beschreibung"      = "Own 10 plants";
+"erfolg.gartenprofi.beschreibung"        = "Own 20 plants";
+"erfolg.muenzmeister.beschreibung"       = "Collect 50 coins";
+"erfolg.reichtumssammler.beschreibung"   = "Collect 500 coins";
+
+// MARK: - Achievements UI
+"erfolge.titel"          = "Achievements";
+"erfolge.freigeschaltet" = "Unlocked";
+"erfolge.gesperrt"       = "Locked";
+"profile.achievements.empty" = "No achievements unlocked yet";
+"profile.achievements.subtitle" = "Your Trophy Cabinet";
+

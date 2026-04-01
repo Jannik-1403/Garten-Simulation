@@ -17,12 +17,16 @@ class PowerUpStore: ObservableObject {
         
         // 1. Globale Power-Ups
         for aktiv in aktivePowerUps where aktiv.isActive && aktiv.targetPlantId == nil {
-            mult *= aktiv.effectMultiplier
+            if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }) {
+                mult *= base.effectMultiplier
+            }
         }
         
         // 2. Pflanzenspezifische Power-Ups
         for aktiv in aktivePowerUps where aktiv.isActive && aktiv.targetPlantId == plantId {
-            mult *= aktiv.effectMultiplier
+            if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }) {
+                mult *= base.effectMultiplier
+            }
         }
         
         return mult
@@ -32,20 +36,19 @@ class PowerUpStore: ObservableObject {
     var globalXPMultiplikator: Double {
         var mult = 1.0
         for aktiv in aktivePowerUps where aktiv.isActive && aktiv.targetPlantId == nil {
-            mult *= aktiv.effectMultiplier
+            if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }) {
+                mult *= base.effectMultiplier
+            }
         }
         return mult
     }
 
     func aktivierePowerUp(_ item: PowerUpItem, for plantId: String? = nil) {
         let neue = ActivePowerUp(
+            id: UUID(),
             powerUpId: item.id,
-            name: item.name,
-            symbolName: item.symbolName,
-            symbolColor: item.symbolColor,
-            effectMultiplier: item.effectMultiplier,
-            durationHours: item.durationHours,
-            howToUse: item.howToUse,
+            appliedAt: Date(),
+            durationHours: item.durationHours ?? 24,
             targetPlantId: plantId
         )
         withAnimation {
@@ -63,17 +66,26 @@ class PowerUpStore: ObservableObject {
 
     /// Ist Zeitkapsel aktiv? (Streak-Schutz)
     var hatZeitkapsel: Bool {
-        aktivePowerUps.contains { $0.isActive && $0.name == "item.zeitkapsel.name" }
+        aktivePowerUps.contains { aktiv in
+            aktiv.isActive && 
+            GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId })?.name == "item.zeitkapsel.name"
+        }
     }
 
     /// Ist Regenmacher aktiv? (alle Pflanzen gratis gießen)
     var hatRegenmacher: Bool {
-        aktivePowerUps.contains { $0.isActive && $0.name == "item.regenmacher.name" }
+        aktivePowerUps.contains { aktiv in
+            aktiv.isActive && 
+            GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId })?.name == "item.regenmacher.name"
+        }
     }
 
     /// Ist Schädlingsschutz aktiv?
     var hatSchaedlingsschutz: Bool {
-        aktivePowerUps.contains { $0.isActive && $0.name == "item.schaedlingsschutz.name" }
+        aktivePowerUps.contains { aktiv in
+            aktiv.isActive && 
+            GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId })?.name == "item.schaedlingsschutz.name"
+        }
     }
 
     // MARK: Timer — prüft jede Minute ob Power-Ups abgelaufen sind
@@ -88,10 +100,10 @@ class PowerUpStore: ObservableObject {
     }
 
     private func pruefeAbgelaufene() {
-        let abgelaufene = aktivePowerUps.filter { $0.isExpired }
-        if !abgelaufene.isEmpty {
+        let abgelaufeneCount = aktivePowerUps.filter { !$0.isActive }.count
+        if abgelaufeneCount > 0 {
             withAnimation {
-                aktivePowerUps.removeAll { $0.isExpired }
+                aktivePowerUps.removeAll { !$0.isActive }
                 speichereAktivePowerUps()
             }
         }
@@ -100,6 +112,13 @@ class PowerUpStore: ObservableObject {
     private func speichereAktivePowerUps() {
         if let encoded = try? JSONEncoder().encode(aktivePowerUps) {
             UserDefaults.standard.set(encoded, forKey: "aktive_powerups")
+        }
+    }
+
+    func reset() {
+        withAnimation {
+            aktivePowerUps.removeAll()
+            UserDefaults.standard.removeObject(forKey: "aktive_powerups")
         }
     }
 }

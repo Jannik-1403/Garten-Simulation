@@ -7,6 +7,7 @@ struct GartenView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var powerUpStore: PowerUpStore
+    @EnvironmentObject var shopStore: ShopStore
 
     @State private var herzen: Int = 5
     @State private var aktivesEvent: WetterEvent = .normal
@@ -32,6 +33,22 @@ struct GartenView: View {
 
                 // MARK: - Stats Bar
                 HStack(spacing: 20) {
+                    if gardenStore.isWeedActive {
+                        HStack(spacing: 4) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .font(.system(size: 14))
+                            Text("\(gardenStore.dailyQuestsCompletedSinceWeed)/3")
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                        }
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(Color.red)
+                        .clipShape(Capsule())
+                        .shadow(color: .red.opacity(0.3), radius: 4, x: 0, y: 2)
+                        .transition(.scale.combined(with: .opacity))
+                    }
+                    
                     Spacer()
                     StreakIcon(wert: gardenStore.gesamtStreak)
                     GemsIcon(wert: gardenStore.coins)
@@ -48,8 +65,8 @@ struct GartenView: View {
                                 .font(.system(size: 32, weight: .black, design: .rounded))
                                 .foregroundStyle(.primary)
                             
-                            if powerUpStore.globalXPMultiplikator > 1.0 {
-                                Text("XP x\(String(format: "%.1f", powerUpStore.globalXPMultiplikator))")
+                            if gardenStore.globalXPMultiplier > 1.0 {
+                                Text("XP x\(String(format: "%.1f", gardenStore.globalXPMultiplier))")
                                     .font(.system(size: 14, weight: .bold, design: .rounded))
                                     .foregroundStyle(Color.gruenPrimary)
                                     .padding(.horizontal, 8)
@@ -60,20 +77,19 @@ struct GartenView: View {
                         }
                         
                         HStack(spacing: 12) {
-                            if !powerUpStore.aktivePowerUps.filter({ $0.isActive && $0.targetPlantId == nil }).isEmpty {
+                            if !gardenStore.activePowerUps.filter({ $0.isActive && $0.targetPlantId == nil }).isEmpty {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(spacing: 8) {
-                                        ForEach(powerUpStore.aktivePowerUps.filter { $0.isActive && $0.targetPlantId == nil }) { aktiv in
+                                        ForEach(gardenStore.activePowerUps.filter { $0.isActive && $0.targetPlantId == nil }) { aktiv in
+                                            let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId })
                                             Button {
                                                 ausgewaehltesAktivesPowerUp = aktiv
                                             } label: {
                                                 HStack(spacing: 4) {
-                                                    Image(systemName: aktiv.symbolName)
+                                                    Image(systemName: base?.symbolName ?? "bolt.fill")
                                                         .font(.system(size: 10, weight: .semibold))
-                                                    if let zeit = aktiv.verbleibendeZeit {
-                                                        Text(zeit)
-                                                            .font(.system(size: 10, weight: .semibold))
-                                                    }
+                                                    Text(aktiv.timeRemainingFormatted)
+                                                        .font(.system(size: 10, weight: .semibold))
                                                 }
                                                 .foregroundStyle(Color.primary)
                                                 .padding(.horizontal, 8)
@@ -171,29 +187,44 @@ struct GartenView: View {
                             .padding(.horizontal, 20)
                         }
 
-                        // MARK: - Müll & Herausforderungen
-                        if !gardenStore.aktiverMuell.isEmpty {
+                        // MARK: - Dekorationen
+                        if !gardenStore.placedDecorations.isEmpty {
                             VStack(alignment: .leading, spacing: 12) {
                                 Text(settings.localizedString(for: "garden.trash"))
                                     .font(.system(size: 20, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                                     .padding(.horizontal, 8)
-                                
+
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(spacing: 16) {
-                                        ForEach(gardenStore.aktiverMuell) { item in
+                                        ForEach(gardenStore.placedDecorations) { deko in
                                             Item3DButton(
-                                                icon: item.icon,
-                                                farbe: item.color,
-                                                sekundaerFarbe: item.color.darker(),
+                                                icon: deko.sfSymbol,
+                                                farbe: .orange,
+                                                sekundaerFarbe: .orange.darker(),
                                                 groesse: 90
                                             ) {
-                                                ausgewaehltesItem = item
+                                                ausgewaehltesItem = ShopDetailPayload(
+                                                    id: deko.id,
+                                                    title: deko.nameKey,
+                                                    subtitle: deko.category.localizationKey,
+                                                    description: deko.descriptionKey,
+                                                    price: deko.price,
+                                                    icon: deko.sfSymbol,
+                                                    colorHex: "#FF991A", // orange
+                                                    symbolColor: "orange",
+                                                    shadowColorHex: "#D98216", // darker orange
+                                                    tag: "DEKO",
+                                                    itemType: .decoration,
+                                                    habitCategory: nil,
+                                                    symbolism: nil,
+                                                    howToUse: nil
+                                                )
                                             }
                                         }
                                     }
                                     .padding(.horizontal, 8)
-                                    .padding(.top, 8) // Prevents clipping from 3D offset
+                                    .padding(.top, 8)
                                     .padding(.bottom, 12)
                                 }
                             }
@@ -216,34 +247,42 @@ struct GartenView: View {
                         }
                 )
             }
+            
+            // MARK: - Level-Up Overlay
+            LevelUpOverlayView(
+                isVisible: $gardenStore.showLevelUpAnimation,
+                stufe: gardenStore.newlyReachedGartenStufe
+            )
         }
         .onAppear {
             ladeTagesEvent()
             starteTageswechselTimer()
         }
         .onReceive(timerAktuell) { _ in
-            gardenStore.taeglicherStreakCheck(powerUpStore: powerUpStore)
+            gardenStore.taeglicherStreakCheck()
         }
         .sheet(item: $ausgewaehltePflanze) { pflanze in
             PflanzeDetailSheet(
                 pflanze: pflanze,
                 onLoeschen: {
-                    gardenStore.pflanzen.removeAll { $0.id == pflanze.id }
+                    gardenStore.pflanzEntfernen(pflanze: pflanze)
                     ausgewaehltePflanze = nil
                 }
             )
-            .presentationDetents([
-                PresentationDetent.medium,
-                PresentationDetent.large,
-            ])
-            .presentationDragIndicator(.visible as Visibility)
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
+            .presentationCornerRadius(32)
             .presentationBackground(.ultraThinMaterial)
+            .environmentObject(gardenStore)
+            .environmentObject(shopStore)
+            .environmentObject(settings)
         }
         .sheet(item: $ausgewaehltesItem) { item in
             InventoryItemDetailSheet(item: item)
                 .environmentObject(settings)
                 .environmentObject(gardenStore)
                 .environmentObject(powerUpStore)
+                .environmentObject(shopStore)
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
                 .presentationCornerRadius(32)
@@ -301,4 +340,6 @@ struct GartenView: View {
     GartenView()
         .environmentObject(GardenStore())
         .environmentObject(StreakStore())
+        .environmentObject(ShopStore())
 }
+

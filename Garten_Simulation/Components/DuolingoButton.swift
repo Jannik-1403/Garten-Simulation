@@ -88,7 +88,7 @@ struct DuolingoButtonStyle: ButtonStyle {
                     )
             )
             .offset(y: pressed ? size.shadowDepth : 0)
-            .animation(.bouncy(duration: 0.2), value: pressed)
+            .animation(pressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: pressed)
             // Haptic fires only on press-down (condition: newValue == true)
             .sensoryFeedback(
                 .impact(flexibility: .soft, intensity: 0.75),

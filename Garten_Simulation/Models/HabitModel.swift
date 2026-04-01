@@ -2,7 +2,7 @@ import SwiftUI
 import Combine
 
 // MARK: - HabitModel (plain class — kein SwiftData benötigt)
-class HabitModel: Identifiable, ObservableObject {
+class HabitModel: Identifiable, ObservableObject, Codable {
     let id: String
     var name: String
     var symbolName: String          // SF Symbol Name z.B. "leaf.fill"
@@ -16,11 +16,21 @@ class HabitModel: Identifiable, ObservableObject {
     var gekauftAm: Date
     @Published var istBewässert: Bool  // heute schon gegossen?
     
+    // Notiz & Timer
+    var notiz: String = ""
+    var timerDatum: Date? = nil
+    
     // Performance / Growth Parameters from Database
     var maxLevel: Int
     var xpPerCompletion: Int
     var waterNeedPerDay: Int
     var decayDays: Int
+
+    var basePrice: Int {
+        let basis = xpPerCompletion * 10
+        let levelBonus = maxLevel > 10 ? 50 : 0
+        return basis + levelBonus
+    }
 
     // MARK: - Computed Properties
     
@@ -49,6 +59,17 @@ class HabitModel: Identifiable, ObservableObject {
         if currentXP >= GameConstants.xpFuerGold    { return .gold }
         if currentXP >= GameConstants.xpFuerSilber  { return .silber }
         return .bronze
+    }
+
+    var stufe: PflanzenStufe {
+        PflanzenStufe.allCases.last { GameConstants.xpSchwelle(fuer: $0) <= self.currentXP } ?? .bronze1
+    }
+
+    var fortschrittZurNaechstenStufe: Double {
+        guard let naechste = stufe.naechste else { return 1.0 }
+        let aktuelleMin = GameConstants.xpSchwelle(fuer: stufe)
+        let naechsteMin = GameConstants.xpSchwelle(fuer: naechste)
+        return Double(currentXP - aktuelleMin) / Double(naechsteMin - aktuelleMin)
     }
 
     var timerLaeuftAb: Date? {
@@ -95,6 +116,65 @@ class HabitModel: Identifiable, ObservableObject {
         self.letzteBewaesserung = nil
         self.gekauftAm = Date()
         self.istBewässert = false
+    }
+
+    // MARK: - Codable
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, symbolName, symbolColor, habitCategory, symbolism
+        case currentXP, streak, letzteBewaesserung, gekauftAm, istBewässert
+        case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays
+        case notiz, timerDatum
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try container.decode(String.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        symbolName = try container.decode(String.self, forKey: .symbolName)
+        symbolColor = try container.decode(String.self, forKey: .symbolColor)
+        habitCategory = try container.decode(HabitCategory.self, forKey: .habitCategory)
+        symbolism = try container.decode(String.self, forKey: .symbolism)
+        
+        currentXP = try container.decode(Int.self, forKey: .currentXP)
+        streak = try container.decode(Int.self, forKey: .streak)
+        letzteBewaesserung = try container.decodeIfPresent(Date.self, forKey: .letzteBewaesserung)
+        gekauftAm = try container.decode(Date.self, forKey: .gekauftAm)
+        istBewässert = try container.decode(Bool.self, forKey: .istBewässert)
+        
+        maxLevel = try container.decode(Int.self, forKey: .maxLevel)
+        xpPerCompletion = try container.decode(Int.self, forKey: .xpPerCompletion)
+        waterNeedPerDay = try container.decode(Int.self, forKey: .waterNeedPerDay)
+        decayDays = try container.decode(Int.self, forKey: .decayDays)
+        
+        notiz = try container.decodeIfPresent(String.self, forKey: .notiz) ?? ""
+        timerDatum = try container.decodeIfPresent(Date.self, forKey: .timerDatum)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(symbolName, forKey: .symbolName)
+        try container.encode(symbolColor, forKey: .symbolColor)
+        try container.encode(habitCategory, forKey: .habitCategory)
+        try container.encode(symbolism, forKey: .symbolism)
+        
+        try container.encode(currentXP, forKey: .currentXP)
+        try container.encode(streak, forKey: .streak)
+        try container.encode(letzteBewaesserung, forKey: .letzteBewaesserung)
+        try container.encode(gekauftAm, forKey: .gekauftAm)
+        try container.encode(istBewässert, forKey: .istBewässert)
+        
+        try container.encode(maxLevel, forKey: .maxLevel)
+        try container.encode(xpPerCompletion, forKey: .xpPerCompletion)
+        try container.encode(waterNeedPerDay, forKey: .waterNeedPerDay)
+        try container.encode(decayDays, forKey: .decayDays)
+        
+        try container.encode(notiz, forKey: .notiz)
+        try container.encodeIfPresent(timerDatum, forKey: .timerDatum)
     }
 }
 

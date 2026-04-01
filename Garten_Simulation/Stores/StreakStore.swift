@@ -69,4 +69,11 @@ class StreakStore: ObservableObject {
         
         return isDateCompleted(d1) && isDateCompleted(d2)
     }
+
+    func reset() {
+        withAnimation {
+            completedDates.removeAll()
+            currentStreak = 0
+        }
+    }
 }

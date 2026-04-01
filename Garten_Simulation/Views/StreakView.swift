@@ -30,7 +30,7 @@ struct StreakView: View {
                                 .font(.system(size: 80, weight: .heavy, design: .rounded))
                                 .foregroundStyle(.orange)
                             
-                            Text("days streak")
+                            Text(streakStore.currentStreak.streakLabel.uppercased())
                                 .font(.system(size: 24, weight: .bold, design: .rounded))
                                 .foregroundStyle(.orange)
                         }

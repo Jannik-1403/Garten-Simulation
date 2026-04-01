@@ -147,6 +147,7 @@ struct UnifiedShopView: View {
     @State private var detailPayload: ShopDetailPayload? = nil
     @State private var shopCategory: ShopCategory = .gegenstande
     @State private var selectedHabitCategory: HabitCategory? = nil
+    @State private var selectedDecorationCategory: DecorationCategory? = nil
 
     enum ShopCategory: String, CaseIterable {
         case pflanzen    = "shop.tab.plants"
@@ -156,7 +157,7 @@ struct UnifiedShopView: View {
     var coins: Int { gardenStore.coins }
     
     var pflanzen: [Plant] { GameDatabase.allPlants }
-    var muellItems: [TrashItem] { GameDatabase.allTrashItems }
+    var decorationItems: [DecorationItem] { GameDatabase.allDecorations }
     var powerUps: [PowerUpItem] { GameDatabase.allPowerUps }
 
     var gefiltertePflanzen: [Plant] {
@@ -167,23 +168,29 @@ struct UnifiedShopView: View {
         if !searchText.isEmpty {
             base = base.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
-        return base
+        return base.filter { !shopStore.isPurchased($0.id) }
     }
 
-    private func preis(fuer pflanze: Plant) -> Int {
-        let basisPreis = pflanze.xpPerCompletion * 10
-        let levelBonus = pflanze.maxLevel > 10 ? 50 : 0
-        return basisPreis + levelBonus
-    }
-
-    private func preisForPowerUp(_ item: PowerUpItem) -> Int {
-        switch item.rarity {
-        case .common:    return 50
-        case .rare:      return 150
-        case .epic:      return 350
-        case .legendary: return 800
+    var gefilterteDekorationen: [DecorationItem] {
+        var base = decorationItems
+        if let kat = selectedDecorationCategory {
+            base = base.filter { $0.category == kat }
         }
+        if !searchText.isEmpty {
+            let lang = settings.appLanguage
+            base = base.filter { AppStrings.get($0.nameKey, language: lang).localizedCaseInsensitiveContains(searchText) }
+        }
+        return base.filter { !shopStore.isPurchased($0.id) }
     }
+
+    var gefiltertePowerUps: [PowerUpItem] {
+        var base = powerUps
+        if !searchText.isEmpty {
+            base = base.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+        return base.filter { !shopStore.isPurchased($0.id) }
+    }
+
 
     var body: some View {
         NavigationStack {
@@ -227,8 +234,8 @@ struct UnifiedShopView: View {
                                     // Power-Ups
                                     sectionHeader(settings.localizedString(for: "Power-Ups"))
                                     VStack(spacing: 12) {
-                                        ForEach(powerUps) { item in
-                                            let p = preisForPowerUp(item)
+                                        ForEach(gefiltertePowerUps) { item in
+                                            let p = item.basePrice
                                             ShopItemCard(
                                                 icon: item.symbolName,
                                                 accentColor: item.color,
@@ -244,9 +251,9 @@ struct UnifiedShopView: View {
                                                         description: item.description,
                                                         price: p,
                                                         icon: item.symbolName,
-                                                        color: item.color,
+                                                        colorHex: "#2BC1F5", // blue
                                                         symbolColor: item.symbolColor,
-                                                        shadowColor: item.color.darker(),
+                                                        shadowColorHex: "#1A7493", // dark blue
                                                         tag: item.rarity.rawValue,
                                                         itemType: .powerUp,
                                                         habitCategory: nil,
@@ -261,31 +268,49 @@ struct UnifiedShopView: View {
                                     
                                     Spacer().frame(height: 28)
 
-                                    // Müll
-                                    sectionHeader(settings.localizedString(for: "⚠️ MÜLL-ITEMS"))
+                                    // Dekorationen
+                                    sectionHeader(settings.localizedString(for: "Dekorationen"))
+                                    
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack(spacing: 8) {
+                                            LiquidGlassFilterPill(title: settings.localizedString(for: "Alle"), isSelected: selectedDecorationCategory == nil) {
+                                                selectedDecorationCategory = nil
+                                            }
+                                            ForEach(DecorationCategory.allCases, id: \.self) { kat in
+                                                LiquidGlassFilterPill(title: settings.localizedString(for: kat.localizationKey), isSelected: selectedDecorationCategory == kat) {
+                                                    selectedDecorationCategory = kat
+                                                }
+                                            }
+                                        }
+                                        .padding(.horizontal, 16)
+                                    }
+                                    .padding(.bottom, 16)
+
                                     VStack(spacing: 12) {
-                                        ForEach(muellItems) { item in
+                                        ForEach(gefilterteDekorationen) { item in
+                                            let isOwned = gardenStore.placedDecorations.contains(where: { $0.id == item.id })
                                             ShopItemCard(
-                                                icon: item.symbolName,
-                                                accentColor: .red,
-                                                shadowColor: Color(red: 0.6, green: 0.1, blue: 0.1),
-                                                name: item.name,
-                                                subtitle: item.description,
-                                                price: item.cost,
+                                                icon: item.sfSymbol,
+                                                accentColor: .orange,
+                                                shadowColor: .orange.darker(),
+                                                name: item.nameKey,
+                                                subtitle: item.descriptionKey,
+                                                price: item.price,
+                                                badgeText: isOwned ? settings.localizedString(for: "shop.owned") : nil,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: item.id,
-                                                        title: item.name,
+                                                        title: item.nameKey,
                                                         subtitle: "shop.trash_item_subtitle",
-                                                        description: item.description,
-                                                        price: item.cost,
-                                                        icon: item.symbolName,
-                                                        color: .red,
-                                                        symbolColor: item.symbolColor,
-                                                        shadowColor: Color(red: 0.6, green: 0.1, blue: 0.1),
-                                                        tag: "MÜLL",
-                                                        itemType: .trash,
-                                                        habitCategory: item.targetCategory,
+                                                        description: item.descriptionKey,
+                                                        price: item.price,
+                                                        icon: item.sfSymbol,
+                                                        colorHex: "#FF991A", // orange
+                                                        symbolColor: "orange",
+                                                        shadowColorHex: "#D98216", // dark orange
+                                                        tag: "DEKO",
+                                                        itemType: .decoration,
+                                                        habitCategory: nil,
                                                         symbolism: nil,
                                                         howToUse: nil
                                                     )
@@ -313,7 +338,7 @@ struct UnifiedShopView: View {
 
                                     VStack(spacing: 12) {
                                         ForEach(gefiltertePflanzen) { plant in
-                                            let p = preis(fuer: plant)
+                                            let p = plant.basePrice
                                             ShopItemCard(
                                                 icon: plant.symbolName,
                                                 accentColor: plant.color,
@@ -324,15 +349,15 @@ struct UnifiedShopView: View {
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: plant.id,
-                                                        title: plant.name,
-                                                        subtitle: plant.habitCategory.rawValue,
-                                                        description: plant.symbolism,
+                                                        title: settings.localizedString(for: plant.name),
+                                                        subtitle: settings.localizedString(for: plant.habitCategory.localizationKey),
+                                                        description: settings.localizedString(for: plant.symbolism),
                                                         price: p,
                                                         icon: plant.symbolName,
-                                                        color: plant.color,
+                                                        colorHex: "#59CC33", // green
                                                         symbolColor: plant.symbolColor,
-                                                        shadowColor: plant.color.darker(),
-                                                        tag: plant.habitCategory.rawValue,
+                                                        shadowColorHex: "#3F9922", // dark green
+                                                        tag: "PLANT",
                                                         itemType: .plant,
                                                         habitCategory: plant.habitCategory,
                                                         symbolism: plant.symbolism,

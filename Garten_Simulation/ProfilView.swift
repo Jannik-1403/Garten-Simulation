@@ -2,24 +2,42 @@ import SwiftUI
 
 struct ProfilView: View {
     @State private var showSettings = false
+    @State private var showCoinsDetail = false
+    @State private var showPflanzenDetail = false
+    @State private var showErfolgeDetail = false
+    @State private var showStreakDetail = false
+    
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var achievementStore: AchievementStore
     
-    // MARK: - Computed Global Rarity (based on total XP)
-    private var globalRarity: PflanzenSeltenheit {
-        if gardenStore.gesamtXP >= GameConstants.xpFuerDiamant * 10 { return .diamant } // Scaling for global
-        if gardenStore.gesamtXP >= GameConstants.xpFuerGold * 5     { return .gold }
-        if gardenStore.gesamtXP >= GameConstants.xpFuerSilber * 3   { return .silber }
-        return .bronze
+    // MARK: - Computed Global Stufe (based on total XP)
+    private var userStufe: PflanzenStufe {
+        PflanzenStufe.allCases.reversed().first {
+            GameConstants.xpSchwelleGarten(fuer: $0) <= gardenStore.gesamtXP
+        } ?? .bronze1
     }
 
-    private var globalProgress: Double {
-        let xp = gardenStore.gesamtXP
-        if xp >= GameConstants.xpFuerDiamant * 10 { return 1.0 }
-        // Simple linear progress for demo
-        return min(Double(xp) / Double(GameConstants.xpFuerDiamant * 10), 1.0)
+    private var userFortschritt: Double {
+        guard let naechste = userStufe.naechste else { return 1.0 }
+        let aktuelleMin = GameConstants.xpSchwelleGarten(fuer: userStufe)
+        let naechsteMin = GameConstants.xpSchwelleGarten(fuer: naechste)
+        return Double(gardenStore.gesamtXP - aktuelleMin) / Double(naechsteMin - aktuelleMin)
+    }
+
+    private var xpZurNaechstenStufe: Int {
+        guard let naechste = userStufe.naechste else { return 0 }
+        return GameConstants.xpSchwelleGarten(fuer: naechste) - gardenStore.gesamtXP
+    }
+    
+    private var xpNaechsteStufeAbsolut: Int {
+        guard let naechste = userStufe.naechste else { return gardenStore.gesamtXP }
+        return GameConstants.xpSchwelleGarten(fuer: naechste)
+    }
+    
+    private var freigeschalteteErfolgeAnzahl: Int {
+        achievementStore.alleErfolge.filter { $0.istFreigeschaltet }.count
     }
 
     var body: some View {
@@ -28,84 +46,37 @@ struct ProfilView: View {
                 Color.appHintergrund.ignoresSafeArea()
                 
                 ScrollView {
-                    VStack(spacing: 30) {
-                        // User Profile Info
-                        VStack(spacing: 4) {
-                            Text("Jannik Schill")
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
-                            Text("\(gardenStore.pflanzen.count) " + settings.localizedString(for: "garden.habits.active"))
-                                .font(.system(size: 15))
-                                .foregroundStyle(.secondary)
-                        }
-                        .padding(.top, 40)
-                        
-                        // Level Progress (Duolingo Style)
-                        VStack(alignment: .leading, spacing: 10) {
-                            HStack {
-                                Text(globalRarity.lokalisiertTitel.uppercased())
-                                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.primary)
-                                Spacer()
-                                Text("\(gardenStore.gesamtXP) XP")
-                                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.primary)
-                            }
+                    VStack(spacing: 32) {
+                        // User Profile Info (Name + Badge + XP-Bar)
+                        VStack(spacing: 20) {
+                            ProfilHeaderView(name: "Jannik Schill", stufe: userStufe)
+                                .padding(.top, 24)
                             
-                            // 3D Progress Bar
-                            GeometryReader { geo in
-                                ZStack(alignment: .leading) {
-                                    RoundedRectangle(cornerRadius: 12, style: .continuous)
-                                        .fill(Color.gray.opacity(0.15))
-                                        .frame(height: 16)
-                                    
-                                    RoundedRectangle(cornerRadius: 12, style: .continuous)
-                                        .fill(globalRarity.farbe)
-                                        .frame(width: geo.size.width * CGFloat(globalProgress), height: 16)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 12, style: .continuous)
-                                                .fill(.white.opacity(0.3))
-                                                .frame(height: 4)
-                                                .padding(.horizontal, 4)
-                                                .offset(y: -4)
-                                            , alignment: .top
-                                        )
-                                }
-                            }
-                            .frame(height: 16)
+                            ProfilXPBarView(
+                                stufe: userStufe,
+                                fortschritt: userFortschritt,
+                                aktuelleXP: gardenStore.gesamtXP,
+                                xpNaechsteStufe: xpNaechsteStufeAbsolut
+                            )
+                            .padding(.horizontal, 24)
                         }
-                        .padding(.horizontal, 24)
                         
-                        // Stats Bento Grid (3D tactile)
-                        VStack(spacing: 16) {
-                            // Row 1: Coins (Wide)
-                            NavigationLink(destination: CoinsDetailView()) {
-                                StatCard(title: "profile.coins", value: "\(gardenStore.coins)", icon: "Coin", color: .goldPrimary, isWide: true)
-                            }
-                            .buttonStyle(StatCardButtonStyle())
-                            
-                            // Row 2: Secondary Stats (Side-by-side)
-                            HStack(spacing: 16) {
-                                NavigationLink(destination: PflanzenDetailView()) {
-                                    StatCard(title: "profile.plants", value: "\(gardenStore.pflanzen.count)", icon: "leaf.fill", color: .green)
-                                }
-                                .buttonStyle(StatCardButtonStyle())
-                                
-                                NavigationLink(destination: StreakView()) {
-                                    StatCard(title: "profile.streak", value: "\(streakStore.currentStreak)", icon: "calendar", color: .orange)
-                                }
-                                .buttonStyle(StatCardButtonStyle())
-                            }
-                            
-                            // Row 3: Erfolge Vitrine (Wide)
-                            NavigationLink(destination: ErfolgeDetailView()) {
-                                AchievementVitrine(unlockedErfolge: achievementStore.freigeschalteteErfolge)
-                            }
-                            .buttonStyle(StatCardButtonStyle())
+                        // --- 3D STAT BUTTONS GRID ---
+                        LazyVGrid(columns: [
+                            GridItem(.flexible(), spacing: 20),
+                            GridItem(.flexible(), spacing: 20)
+                        ], spacing: 24) {
+                            CoinsStatButton(coins: gardenStore.coins, showDetail: $showCoinsDetail)
+                            PflanzenStatButton(count: gardenStore.pflanzen.count, showDetail: $showPflanzenDetail)
+                            StreakStatButton(streak: gardenStore.gesamtStreak, aktion: { showStreakDetail = true })
+                            ErfolgeStatButton(count: freigeschalteteErfolgeAnzahl, showDetail: $showErfolgeDetail)
                         }
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, 32)
+                        .padding(.top, 8)
                         
-                        Spacer()
+                        Spacer(minLength: 40)
                     }
+                    .padding(.vertical, 16)
                 }
             }
             .navigationTitle(settings.localizedString(for: "profile.title"))
@@ -127,151 +98,24 @@ struct ProfilView: View {
                 SettingsView()
                     .environmentObject(settings)
             }
-        }
-    }
-}
-
-// MARK: - Subviews
-
-struct StatCard: View {
-    @EnvironmentObject var settings: SettingsStore
-    let title: String
-    let value: String
-    let icon: String // Can be SF Symbol or Asset name
-    let color: Color
-    var isWide: Bool = false
-    
-    var body: some View {
-        ZStack(alignment: .trailing) {
-            // Background Icon (Stylized Duolingo-like)
-            Group {
-                if icon == "Coin" {
-                    Image("Coin")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: isWide ? 100 : 70)
-                        .opacity(0.15)
-                        .rotationEffect(.degrees(-15))
-                        .offset(x: 20, y: 15)
-                } else {
-                    Image(systemName: icon)
-                        .font(.system(size: isWide ? 80 : 60))
-                        .foregroundStyle(color.opacity(0.12))
-                        .offset(x: 10, y: 10)
-                }
+            // Navigation Destinations
+            .navigationDestination(isPresented: $showCoinsDetail) {
+                CoinsDetailView()
+                    .environmentObject(gardenStore)
             }
-            .clipped()
-            
-            HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(value)
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
-                        .foregroundStyle(.primary)
-                    Text(settings.localizedString(for: title))
-                        .font(.system(size: 11, weight: .bold, design: .rounded))
-                        .foregroundStyle(.secondary)
-                        .kerning(1.0)
-                }
-                Spacer()
+            .navigationDestination(isPresented: $showPflanzenDetail) {
+                PflanzenDetailView()
+                    .environmentObject(gardenStore)
             }
-            .padding(20)
-            .padding(.top, isWide ? 0 : 20)
-        }
-        .frame(maxWidth: .infinity)
-        .frame(height: isWide ? 110 : 130)
-    }
-}
-
-struct AchievementVitrine: View {
-    @EnvironmentObject var settings: SettingsStore
-    let unlockedErfolge: [ErfolgModel]
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("\(unlockedErfolge.count) \(settings.localizedString(for: "profile.achievements"))")
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                    Text(settings.localizedString(for: "profile.achievements.subtitle"))
-                        .font(.system(size: 12))
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-                Image(systemName: "trophy.fill")
-                    .font(.system(size: 30))
-                    .foregroundStyle(Color.lilaPrimary)
-                    .shadow(color: Color.lilaPrimary.opacity(0.3), radius: 8, x: 0, y: 4)
+            .navigationDestination(isPresented: $showErfolgeDetail) {
+                ErfolgeDetailView()
+                    .environmentObject(achievementStore)
+                    .environmentObject(gardenStore)
             }
-            
-            HStack(spacing: 12) {
-                if unlockedErfolge.isEmpty {
-                    Text(settings.localizedString(for: "profile.achievements.empty"))
-                        .font(.system(size: 13))
-                        .foregroundStyle(.secondary)
-                        .italic()
-                } else {
-                    ForEach(unlockedErfolge.prefix(5)) { erfolg in
-                        BadgeIcon(icon: erfolg.icon, color: erfolg.farbe, isUnlocked: true)
-                    }
-                }
+            .navigationDestination(isPresented: $showStreakDetail) {
+                StreakView()
+                    .environmentObject(streakStore)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .padding(20)
-        .frame(maxWidth: .infinity)
-    }
-}
-
-struct BadgeIcon: View {
-    let icon: String
-    let color: Color
-    let isUnlocked: Bool
-    
-    var body: some View {
-        ZStack {
-            Circle()
-                .fill(isUnlocked ? color.opacity(0.15) : Color.gray.opacity(0.1))
-                .frame(width: 45, height: 45)
-            
-            Image(systemName: icon)
-                .font(.system(size: 20, weight: .bold))
-                .foregroundStyle(isUnlocked ? color : Color.gray.opacity(0.4))
-                .shadow(color: isUnlocked ? color.opacity(0.3) : .clear, radius: 4, x: 0, y: 2)
-        }
-        .overlay(
-            Circle()
-                .stroke(isUnlocked ? color.opacity(0.2) : Color.clear, lineWidth: 2)
-        )
-    }
-}
-
-struct StatCardButtonStyle: ButtonStyle {
-    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
-    private let depth: CGFloat = 6
-    private let cornerRadius: CGFloat = 20
-
-    func makeBody(configuration: Configuration) -> some View {
-        let isPressed = configuration.isPressed
-        
-        ZStack(alignment: .top) {
-            // Sockel
-            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                .fill(Color.gray.opacity(0.2))
-                .offset(y: depth)
-
-            // Face
-            configuration.label
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-                .overlay(
-                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                        .stroke(Color.primary.opacity(0.08), lineWidth: 1)
-                )
-                .offset(y: isPressed ? depth : 0)
-        }
-        .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
-        .sensoryFeedback(trigger: isPressed) { _, newValue in
-            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.5) : nil
         }
     }
 }
@@ -282,5 +126,6 @@ struct StatCardButtonStyle: ButtonStyle {
             .environmentObject(GardenStore())
             .environmentObject(SettingsStore())
             .environmentObject(StreakStore())
+            .environmentObject(AchievementStore(gardenStore: GardenStore()))
     }
 }

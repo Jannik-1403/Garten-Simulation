@@ -14,18 +14,20 @@ struct ActivePowerUpDetailSheet: View {
         VStack(spacing: 32) {
             
             // MARK: - Icon
-            Image(systemName: aktiv.symbolName)
-                .font(.system(size: 60))
-                .foregroundStyle(powerUpBase?.color ?? .green)
-                .padding(.top, 40)
+            if let base = powerUpBase {
+                Image(systemName: base.symbolName)
+                    .font(.system(size: 60))
+                    .foregroundStyle(base.color)
+                    .padding(.top, 40)
+            }
             
             // MARK: - Texts
             VStack(spacing: 12) {
-                Text(settings.localizedString(for: aktiv.name))
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                    .multilineTextAlignment(.center)
-                
                 if let base = powerUpBase {
+                    Text(settings.localizedString(for: base.name))
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .multilineTextAlignment(.center)
+                    
                     Text(settings.localizedString(for: base.description))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
@@ -50,27 +52,19 @@ struct ActivePowerUpDetailSheet: View {
             
             // MARK: - Timer
             VStack(spacing: 4) {
-                Text("Aktiv bis:")
+                Text("Aktiv bis:") // Could be localized
                     .font(.system(size: 12, weight: .bold))
                     .foregroundStyle(.tertiary)
                     .textCase(.uppercase)
                 
-                if let expires = aktiv.expiresAt {
-                    Text(expires, style: .time)
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundStyle(powerUpBase?.color ?? .green)
-                    
-                    if let verbleibend = aktiv.verbleibendeZeit {
-                        Text("Noch \(verbleibend)")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundStyle(.secondary)
-                            .padding(.top, 4)
-                    }
-                } else {
-                    Text("Permanent aktiv")
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundStyle(powerUpBase?.color ?? .green)
-                }
+                Text(aktiv.expiresAt, style: .time)
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundStyle(powerUpBase?.color ?? .green)
+                
+                Text("Noch \(aktiv.timeRemainingFormatted)")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 4)
             }
             .padding()
             .frame(maxWidth: .infinity)

@@ -40,6 +40,7 @@
 		145797CC2F6FED1A00C51D53 /* Exceptions for "Garten_Simulation" folder in "Garten_Simulation" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"/Localized: Localizable.strings",
 				Animations/character.riv,
 				Animations/fire_button.riv,
 				Animations/note_book.riv,
@@ -51,10 +52,12 @@
 				Components/DragToWater.swift,
 				Components/DuolingoButton.swift,
 				Components/DuolingoKaufButton.swift,
+				Components/ErfolgBadgeView.swift,
 				Components/GemsIcon.swift,
 				Components/GruenerBanner.swift,
 				Components/HerzenIcon.swift,
 				Components/Item3DButton.swift,
+				Components/LiquidGlassDismissButton.swift,
 				Components/LiquidGlassFilterPill.swift,
 				Components/PflanzenButton.swift,
 				Components/PflanzenCard.swift,
@@ -62,19 +65,25 @@
 				Components/ScrollToTopButton.swift,
 				Components/SeltenheitsBadge.swift,
 				Components/StreakIcon.swift,
+				Components/TrashItemCard.swift,
 				Components/WetterBanner.swift,
 				Components/WetterPopup.swift,
 				Config/GameConstants.swift,
 				ContentView.swift,
 				Garten_SimulationApp.swift,
 				Localization/AppStrings.swift,
+				"Localization/Int+Streak.swift",
 				Models/ActivePowerUp.swift,
 				Models/CoinTransaction.swift,
 				Models/ErfolgModel.swift,
 				Models/GameDatabase.swift,
 				Models/HabitModel.swift,
 				Models/PflanzenSeltenheit.swift,
+				Models/PflanzenStufe.swift,
 				Models/ShopDetailPayload.swift,
+				Models/TrashCategory.swift,
+				Models/TrashItem.swift,
+				Models/WeedLogic.swift,
 				Models/WetterEvent.swift,
 				ProfilView.swift,
 				Stores/AchievementStore.swift,
@@ -87,10 +96,13 @@
 				Views/AufgabenView.swift,
 				Views/GartenView.swift,
 				Views/InventoryItemDetailSheet.swift,
+				Views/LevelUpOverlayView.swift,
 				Views/PflanzeDetailSheet.swift,
+				Views/PowerUpPlantPickerSheet.swift,
 				Views/Profile/CoinsDetailView.swift,
 				Views/Profile/ErfolgeDetailView.swift,
 				Views/Profile/PflanzenDetailView.swift,
+				Views/Profile/ProfilComponents.swift,
 				Views/ProfileDetailView.swift,
 				Views/PurchaseSuccessOverlay.swift,
 				Views/RarityLevelUpOverlay.swift,
@@ -100,12 +112,14 @@
 				Views/StreakView.swift,
 				Views/UnifiedShopView.swift,
 				Views/WetterDetailView.swift,
+				Views/WheelOfFortuneView.swift,
 			);
 			target = 1424D41B2F6EA14200908588 /* Garten_Simulation */;
 		};
 		145797CD2F6FED1A00C51D53 /* Exceptions for "Garten_Simulation" folder in "Garten_SimulationTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"/Localized: Localizable.strings",
 				Animations/character.riv,
 				Animations/fire_button.riv,
 				Animations/note_book.riv,
@@ -116,7 +130,9 @@
 				Components/AppTypografie.swift,
 				Components/DuolingoButton.swift,
 				Components/DuolingoKaufButton.swift,
+				Components/ErfolgBadgeView.swift,
 				Components/Item3DButton.swift,
+				Components/LiquidGlassDismissButton.swift,
 				Components/LiquidGlassFilterPill.swift,
 				Components/PflanzenButton.swift,
 				Components/PflanzenCard.swift,
@@ -124,17 +140,24 @@
 				Components/ScrollToTopButton.swift,
 				Components/SeltenheitsBadge.swift,
 				Components/StreakIcon.swift,
+				Components/TrashItemCard.swift,
 				Config/GameConstants.swift,
 				ContentView.swift,
 				Garten_SimulationApp.swift,
 				Localization/AppStrings.swift,
+				"Localization/Int+Streak.swift",
 				Models/ActivePowerUp.swift,
 				Models/CoinTransaction.swift,
 				Models/ErfolgModel.swift,
 				Models/GameDatabase.swift,
 				Models/HabitModel.swift,
 				Models/PflanzenSeltenheit.swift,
+				Models/PflanzenStufe.swift,
 				Models/ShopDetailPayload.swift,
+				Models/TrashCategory.swift,
+				Models/TrashItem.swift,
+				Models/WeedLogic.swift,
+				Models/WetterEvent.swift,
 				ProfilView.swift,
 				Stores/AchievementStore.swift,
 				Stores/GardenStore.swift,
@@ -146,10 +169,13 @@
 				Views/AufgabenView.swift,
 				Views/GartenView.swift,
 				Views/InventoryItemDetailSheet.swift,
+				Views/LevelUpOverlayView.swift,
 				Views/PflanzeDetailSheet.swift,
+				Views/PowerUpPlantPickerSheet.swift,
 				Views/Profile/CoinsDetailView.swift,
 				Views/Profile/ErfolgeDetailView.swift,
 				Views/Profile/PflanzenDetailView.swift,
+				Views/Profile/ProfilComponents.swift,
 				Views/ProfileDetailView.swift,
 				Views/PurchaseSuccessOverlay.swift,
 				Views/RarityLevelUpOverlay.swift,
@@ -159,6 +185,7 @@
 				Views/StreakView.swift,
 				Views/UnifiedShopView.swift,
 				Views/WetterDetailView.swift,
+				Views/WheelOfFortuneView.swift,
 			);
 			target = 1424D4282F6EA14300908588 /* Garten_SimulationTests */;
 		};
@@ -321,7 +348,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2630;
-				LastUpgradeCheck = 2630;
+				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					1424D41B2F6EA14200908588 = {
 						CreatedOnToolsVersion = 26.3;
@@ -430,6 +457,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -483,6 +511,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -493,6 +522,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -539,6 +569,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};

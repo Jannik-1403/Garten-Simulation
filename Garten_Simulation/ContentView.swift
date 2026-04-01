@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var gardenStore: GardenStore
+    
     var body: some View {
         TabView {
             GartenView()
@@ -18,6 +20,12 @@ struct ContentView: View {
                 }
         }
         .tint(.green)
+        .onAppear {
+            gardenStore.checkDailySpin()
+        }
+        .fullScreenCover(isPresented: $gardenStore.showDailySpinOverlay) {
+            WheelOfFortuneView()
+        }
     }
 }
 
