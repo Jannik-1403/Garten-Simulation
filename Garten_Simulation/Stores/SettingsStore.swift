@@ -2,10 +2,10 @@ import SwiftUI
 import Combine
 
 class SettingsStore: ObservableObject {
-    @AppStorage("isSoundEnabled")         var isSoundEnabled: Bool = true
     @AppStorage("isHapticEnabled")        var isHapticEnabled: Bool = true
     @AppStorage("isNotificationsEnabled") var isNotificationsEnabled: Bool = true
     @AppStorage("isAnalyticsEnabled")     var isAnalyticsEnabled: Bool = true
+    @AppStorage("showHabitInsteadOfName") var showHabitInsteadOfName: Bool = false
 
     // Published so every View re-renders when language changes
     @Published var appLanguage: String {

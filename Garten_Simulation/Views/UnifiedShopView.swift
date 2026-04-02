@@ -327,7 +327,7 @@ struct UnifiedShopView: View {
                                                 selectedHabitCategory = nil
                                             }
                                             ForEach(HabitCategory.allCases, id: \.self) { kat in
-                                                LiquidGlassFilterPill(title: settings.localizedString(for: kat.rawValue), isSelected: selectedHabitCategory == kat) {
+                                                LiquidGlassFilterPill(title: settings.localizedString(for: kat.localizationKey), isSelected: selectedHabitCategory == kat) {
                                                     selectedHabitCategory = kat
                                                 }
                                             }
@@ -339,19 +339,23 @@ struct UnifiedShopView: View {
                                     VStack(spacing: 12) {
                                         ForEach(gefiltertePflanzen) { plant in
                                             let p = plant.basePrice
+                                            let displayName = settings.showHabitInsteadOfName 
+                                                ? plant.habitCategory.localizationKey 
+                                                : plant.name
+                                            
                                             ShopItemCard(
                                                 icon: plant.symbolName,
                                                 accentColor: plant.color,
                                                 shadowColor: plant.color.darker(),
-                                                name: plant.name,
+                                                name: displayName,
                                                 subtitle: plant.symbolism,
                                                 price: p,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: plant.id,
-                                                        title: settings.localizedString(for: plant.name),
-                                                        subtitle: settings.localizedString(for: plant.habitCategory.localizationKey),
-                                                        description: settings.localizedString(for: plant.symbolism),
+                                                        title: displayName,
+                                                        subtitle: plant.habitCategory.localizationKey,
+                                                        description: plant.symbolism,
                                                         price: p,
                                                         icon: plant.symbolName,
                                                         colorHex: "#59CC33", // green

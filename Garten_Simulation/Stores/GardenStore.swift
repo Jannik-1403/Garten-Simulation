@@ -6,8 +6,17 @@ import Combine
 class GardenStore: ObservableObject {
     @Published var pflanzen: [HabitModel] = []
     @Published var coins: Int = GameConstants.startCoins
-    @Published var gesamtStreak: Int = 0
+    @Published var gesamtStreak: Int = 0 {
+        didSet {
+            if gesamtStreak > bestStreak {
+                bestStreak = gesamtStreak
+                saveStats()
+            }
+        }
+    }
     @Published var gesamtXP: Int = 0
+    @Published var bestStreak: Int = 0
+    @Published var gesamtGekaufteItemsCount: Int = 0
     @Published var transactions: [CoinTransaction] = []
     
     // Stats for Achievements
@@ -271,12 +280,14 @@ class GardenStore: ObservableObject {
     }
 
     private func logPurchase(shopItem: ShopDetailPayload) {
-        // Deduct coins and log transaction
         if shopItem.price > 0 {
             let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
             let desc = "\(AppStrings.get("shop.buy.success", language: lang)) \(shopItem.title)"
             coinsAbziehen(amount: shopItem.price, beschreibung: desc)
         }
+        // Count all shop exchanges
+        gesamtGekaufteItemsCount += 1
+        saveStats()
     }
 
     // MARK: Streak-Check (täglich aufrufen, z.B. in .onReceive(timer))
@@ -409,10 +420,26 @@ class GardenStore: ObservableObject {
         activePowerUps.contains { $0.isActive && $0.powerUpId == "powerup.schaedlingsschutz" }
     }
 
-    // MARK: Notiz speichern
-    func notizSpeichern(pflanze: HabitModel, notiz: String) {
-        pflanze.notiz = notiz
+    // MARK: Notizen Management
+    func notizHinzufuegen(pflanze: HabitModel, text: String) {
+        withAnimation(.spring(response: 0.4)) {
+            pflanze.notizen.append(text)
+            savePlants()
+        }
+    }
+
+    func notizAktualisieren(pflanze: HabitModel, index: Int, text: String) {
+        guard index >= 0 && index < pflanze.notizen.count else { return }
+        pflanze.notizen[index] = text
         savePlants()
+    }
+
+    func notizEntfernen(pflanze: HabitModel, index: Int) {
+        guard index >= 0 && index < pflanze.notizen.count else { return }
+        withAnimation(.spring(response: 0.4)) {
+            pflanze.notizen.remove(at: index)
+            savePlants()
+        }
     }
 
     // MARK: Timer setzen
@@ -462,6 +489,8 @@ class GardenStore: ObservableObject {
         UserDefaults.standard.set(coins, forKey: "stats_coins")
         UserDefaults.standard.set(gesamtXP, forKey: "stats_gesamt_xp")
         UserDefaults.standard.set(gesamtStreak, forKey: "stats_gesamt_streak")
+        UserDefaults.standard.set(bestStreak, forKey: "stats_best_streak")
+        UserDefaults.standard.set(gesamtGekaufteItemsCount, forKey: "stats_gesamt_gekaufte_items_count")
         UserDefaults.standard.set(gesamtGegossen, forKey: "stats_gesamt_gegossen")
         UserDefaults.standard.set(tageAktiv, forKey: "stats_tage_aktiv")
         UserDefaults.standard.set(gesamtVerdient, forKey: "stats_gesamt_verdient")
@@ -475,6 +504,8 @@ class GardenStore: ObservableObject {
         coins = UserDefaults.standard.object(forKey: "stats_coins") != nil ? UserDefaults.standard.integer(forKey: "stats_coins") : GameConstants.startCoins
         gesamtXP = UserDefaults.standard.integer(forKey: "stats_gesamt_xp")
         gesamtStreak = UserDefaults.standard.integer(forKey: "stats_gesamt_streak")
+        bestStreak = UserDefaults.standard.integer(forKey: "stats_best_streak")
+        gesamtGekaufteItemsCount = UserDefaults.standard.integer(forKey: "stats_gesamt_gekaufte_items_count")
         gesamtGegossen = UserDefaults.standard.integer(forKey: "stats_gesamt_gegossen")
         tageAktiv = UserDefaults.standard.integer(forKey: "stats_tage_aktiv")
         gesamtVerdient = UserDefaults.standard.integer(forKey: "stats_gesamt_verdient")
@@ -549,6 +580,8 @@ class GardenStore: ObservableObject {
             pflanzen.removeAll()
             coins = GameConstants.startCoins
             gesamtStreak = 0
+            bestStreak = 0
+            gesamtGekaufteItemsCount = 0
             gesamtXP = 0
             transactions.removeAll()
             gesamtVerdient = 0
@@ -565,6 +598,7 @@ class GardenStore: ObservableObject {
             
             let keys = [
                 "garden_plants", "stats_coins", "stats_gesamt_xp", "stats_gesamt_streak",
+                "stats_best_streak", "stats_gesamt_gekaufte_items_count",
                 "stats_gesamt_gegossen", "stats_tage_aktiv", "stats_gesamt_verdient",
                 "stats_gesamt_ausgegeben", "coin_transactions", "garden_transactions",
                 "garden_inventory", "active_powerups_garden", "garden_decorations",

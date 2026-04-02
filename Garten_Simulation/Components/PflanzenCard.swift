@@ -28,10 +28,13 @@ struct PflanzenCard: View {
                 VStack(spacing: 14) {
                     // MARK: Name + Seltenheit
                     VStack(spacing: 6) {
-                        Text(settings.localizedString(for: pflanze.name))
-                            .font(.appSubheadline)
-                            .foregroundStyle(.primary)
-                            .multilineTextAlignment(.center)
+                        Text(settings.showHabitInsteadOfName 
+                         ? settings.localizedString(for: pflanze.habitCategory.localizationKey)
+                         : settings.localizedString(for: pflanze.name))
+                        .font(.system(size: 16, weight: .black, design: .rounded))
+                        .foregroundStyle(Color.primary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
 
                         Text(pflanze.seltenheit.lokalisiertTitel)
                             .font(.appBadge)
@@ -87,6 +90,7 @@ struct PflanzenCard: View {
                             groesse: 88,
                             externerPress: wasserPressAktiv,
                             aktion: {
+                                FeedbackManager.shared.playTap()
                                 onTap()
                             }
                         )
@@ -176,6 +180,7 @@ struct PflanzenCard: View {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.65) {
             giessAnimation = false
+            FeedbackManager.shared.playWatering()
             onGiessen()
         }
     }
@@ -217,8 +222,10 @@ struct PflanzenCardButtonStyle: ButtonStyle {
                 .offset(y: isPressed ? depth : 0)
         }
         .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
-        .sensoryFeedback(trigger: isPressed) { _, newValue in
-            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
+        .onChange(of: isPressed) {
+            if isPressed {
+                FeedbackManager.shared.playTap()
+            }
         }
     }
 }

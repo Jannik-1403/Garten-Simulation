@@ -166,7 +166,10 @@ struct InventoryItemDetailSheet: View {
                         showPlantPicker = false
                         
                         let duration = Int(p.durationHours ?? 24)
-                        successMessage = String(format: settings.localizedString(for: "powerup.active.plant"), plant.name, duration)
+                        let plantDisplayName = settings.showHabitInsteadOfName 
+                            ? settings.localizedString(for: plant.habitCategory.localizationKey)
+                            : settings.localizedString(for: plant.name)
+                        successMessage = String(format: settings.localizedString(for: "powerup.active.plant"), plantDisplayName, duration)
                         
                         // Kurze Verzögerung damit Sheet schließt, dann Pill zeigen
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {

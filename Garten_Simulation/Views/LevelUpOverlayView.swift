@@ -41,9 +41,8 @@ struct LevelUpOverlayView: View {
             .transition(.opacity.combined(with: .scale(scale: 0.95)))
             .zIndex(999)
             .onAppear {
-                // Haptic Feedback beim Level-Up
-                let generator = UINotificationFeedbackGenerator()
-                generator.notificationOccurred(.success)
+                // Feedback beim Level-Up
+                FeedbackManager.shared.playLevelUp()
 
                 // Overlay nach 2,5 Sekunden automatisch ausblenden
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {

@@ -13,7 +13,7 @@ struct ProfilXPBarView: View {
     var body: some View {
         VStack(spacing: 8) {
             HStack {
-                Text(NSLocalizedString(stufe.labelKey, comment: ""))
+                Text(settings.localizedString(for: stufe.labelKey))
                     .font(.caption.weight(.bold))
                     .foregroundStyle(stufe.farbe)
                 
@@ -49,13 +49,13 @@ struct ProfilXPBarView: View {
             }
             
             if let naechste = stufe.naechste {
-                Text(String(format: NSLocalizedString("stufe.naechste.hinweis", comment: ""),
+                Text(String(format: settings.localizedString(for: "stufe.naechste.hinweis"),
                     xpNaechsteStufe - aktuelleXP,
-                    NSLocalizedString(naechste.labelKey, comment: "")))
+                    settings.localizedString(for: naechste.labelKey)))
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             } else {
-                Text("Max Level!")
+                Text(settings.localizedString(for: "profile.level.max"))
                     .font(.caption2)
                     .foregroundStyle(stufe.farbe)
             }
@@ -79,7 +79,7 @@ struct ProfilHeaderView: View {
                     .foregroundStyle(stufe.farbe)
                     .font(.caption)
                 
-                Text(NSLocalizedString(stufe.labelKey, comment: ""))
+                Text(settings.localizedString(for: stufe.labelKey))
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(stufe.farbe)
             }
@@ -92,44 +92,46 @@ struct ProfilHeaderView: View {
 
 // MARK: - Stat Buttons (Item3DButton Wrappers)
 
-struct CoinsStatButton: View {
-    let coins: Int
+struct XPStatButton: View {
+    let xp: Int
     @Binding var showDetail: Bool
+    @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
         VStack(spacing: 6) {
             Item3DButton(
-                icon: "dollarsign.circle.fill",
-                farbe: Color(hex: "#FFD60A"),          // Gold
-                sekundaerFarbe: Color(hex: "#B8960A"), // dunkles Gold
+                icon: "star.bubble.fill",
+                farbe: Color(hex: "#409CFF"),          // Blau
+                sekundaerFarbe: Color(hex: "#2B75D8"), // dunkles Blau
                 groesse: 72,
                 aktion: { showDetail = true }
             )
-            Text("\(coins)")
+            Text("\(xp)")
                 .font(.system(size: 22, weight: .black, design: .rounded))
-            Text(LocalizedStringKey("profile.coins"))
+            Text(settings.localizedString(for: "profile.xp.total"))
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
     }
 }
 
-struct PflanzenStatButton: View {
+struct InventoryStatButton: View {
     let count: Int
     @Binding var showDetail: Bool
+    @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
         VStack(spacing: 6) {
             Item3DButton(
-                icon: "leaf.fill",
-                farbe: Color(hex: "#34C759"),          // Grün
-                sekundaerFarbe: Color(hex: "#1E7A35"), // dunkles Grün
+                icon: "archivebox.fill",
+                farbe: Color(hex: "#FFB02E"),          // Orange-Gelb
+                sekundaerFarbe: Color(hex: "#D98216"), // dunkles Orange
                 groesse: 72,
                 aktion: { showDetail = true }
             )
             Text("\(count)")
                 .font(.system(size: 22, weight: .black, design: .rounded))
-            Text(LocalizedStringKey("profile.plants"))
+            Text(settings.localizedString(for: "profile.inventory"))
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
@@ -137,8 +139,9 @@ struct PflanzenStatButton: View {
 }
 
 struct StreakStatButton: View {
-    let streak: Int
+    let bestStreak: Int
     var aktion: (() -> Void)? = nil
+    @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
         VStack(spacing: 6) {
@@ -149,11 +152,10 @@ struct StreakStatButton: View {
                 groesse: 72,
                 aktion: aktion
             )
-            Text("\(streak)")
+            Text("\(bestStreak)")
                 .font(.system(size: 22, weight: .black, design: .rounded))
-            Text(streak == 1
-                 ? LocalizedStringKey("streak.singular.label")
-                 : LocalizedStringKey("streak.plural.label"))
+            
+            Text(settings.localizedString(for: "profile.streak.best"))
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
@@ -163,6 +165,7 @@ struct StreakStatButton: View {
 struct ErfolgeStatButton: View {
     let count: Int
     @Binding var showDetail: Bool
+    @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
         VStack(spacing: 6) {
@@ -175,7 +178,7 @@ struct ErfolgeStatButton: View {
             )
             Text("\(count)")
                 .font(.system(size: 22, weight: .black, design: .rounded))
-            Text(LocalizedStringKey("profile.achievements"))
+            Text(settings.localizedString(for: "profile.achievements"))
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }

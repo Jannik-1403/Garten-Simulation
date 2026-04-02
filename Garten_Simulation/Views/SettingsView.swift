@@ -17,16 +17,49 @@ struct SettingsView: View {
                 
                 ScrollView {
                     VStack(spacing: 24) {
-                        // Profile Header (Mini)
-                        VStack(spacing: 8) {
-                            Image(systemName: "person.circle.fill")
-                                .font(.system(size: 60))
-                                .foregroundStyle(Color.blauPrimary)
-                            Text("Jannik Schill")
-                                .font(.system(size: 20, weight: .bold, design: .rounded))
-                            Text("jannik.schill@example.com")
-                                .font(.system(size: 14))
-                                .foregroundStyle(.secondary)
+                        // Profile Header (Real Garden Stats)
+                        VStack(spacing: 12) {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.blauPrimary.opacity(0.1))
+                                    .frame(width: 80, height: 80)
+                                Image(systemName: "person.crop.circle.fill")
+                                    .font(.system(size: 80))
+                                    .foregroundStyle(
+                                        LinearGradient(colors: [.blauPrimary, .blauPrimary.darker()], startPoint: .top, endPoint: .bottom)
+                                    )
+                            }
+                            
+                            VStack(spacing: 4) {
+                                Text(settings.localizedString(for: "profile.user.name"))
+                                    .font(.system(size: 22, weight: .black, design: .rounded))
+                                
+                                HStack(spacing: 8) {
+                                    HStack(spacing: 4) {
+                                        Image(systemName: "star.fill")
+                                            .font(.system(size: 10))
+                                            .foregroundStyle(.yellow)
+                                        Text(settings.localizedString(for: gardenStore.gartenStufe.labelKey))
+                                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                                    }
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(Capsule().fill(gardenStore.gartenStufe.farbe.opacity(0.15)))
+                                    .foregroundStyle(gardenStore.gartenStufe.farbe)
+                                    
+                                    HStack(spacing: 4) {
+                                        Image(systemName: "bitcoinsign.circle.fill")
+                                            .font(.system(size: 10))
+                                            .foregroundStyle(.orange)
+                                        Text("\(gardenStore.coins) Coins")
+                                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                                    }
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(Capsule().fill(Color.orange.opacity(0.15)))
+                                    .foregroundStyle(.orange)
+                                }
+                            }
                         }
                         .padding(.top, 20)
                         
@@ -56,11 +89,21 @@ struct SettingsView: View {
 
                             settingsSection(title: settings.localizedString(for: "settings.section.general")) {
                                 VStack(spacing: 0) {
-                                    settingToggle(title: settings.localizedString(for: "settings.audio"), icon: "speaker.wave.2.fill", color: .blue, isOn: $settings.isSoundEnabled)
-                                    Divider().padding(.leading, 44)
-                                    settingToggle(title: settings.localizedString(for: "settings.haptic"), icon: "hand.tap.fill", color: .purple, isOn: $settings.isHapticEnabled)
+                                    settingToggle(title: settings.localizedString(for: "settings.haptic"), icon: "hand.tap.fill", color: .blauPrimary, isOn: $settings.isHapticEnabled)
                                     Divider().padding(.leading, 44)
                                     settingToggle(title: settings.localizedString(for: "settings.notifications"), icon: "bell.fill", color: .red, isOn: $settings.isNotificationsEnabled)
+                                }
+                            }
+                            
+                            settingsSection(title: settings.localizedString(for: "settings.section.display")) {
+                                VStack(alignment: .leading, spacing: 12) {
+                                    settingToggle(title: settings.localizedString(for: "settings.display.mode"), icon: "square.text.square.fill", color: .purple, isOn: $settings.showHabitInsteadOfName)
+                                    
+                                    Text(settings.localizedString(for: "settings.display.mode.desc"))
+                                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                        .padding(.horizontal, 16)
+                                        .padding(.bottom, 12)
                                 }
                             }
                             
@@ -103,7 +146,7 @@ struct SettingsView: View {
                                 VStack(spacing: 0) {
                                     Button {
                                         gardenStore.taeglicherStreakCheck()
-                                        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                                        FeedbackManager.shared.playSuccess()
                                     } label: {
                                         settingRow(title: "Simulations-Tag (Reset)", icon: "clock.arrow.circlepath", color: .indigo)
                                     }
@@ -112,7 +155,7 @@ struct SettingsView: View {
                                     
                                     Button {
                                         gardenStore.coinsGutschreiben(amount: 1000, beschreibung: "Debug: Coins erhalten")
-                                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                        FeedbackManager.shared.playCoins()
                                     } label: {
                                         settingRow(title: "1000 Coins hinzufügen", icon: "plus.circle.fill", color: .belohnungGoldHighlight)
                                     }
@@ -123,7 +166,7 @@ struct SettingsView: View {
                                         for p in gardenStore.pflanzen {
                                             p.istBewässert = false
                                         }
-                                        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                                        FeedbackManager.shared.playTap()
                                     } label: {
                                         settingRow(title: "Alle Pflanzen durstig machen", icon: "drop.triangle.fill", color: .blue)
                                     }
@@ -132,7 +175,7 @@ struct SettingsView: View {
 
                                     Button {
                                         gardenStore.showDailySpinOverlay = true
-                                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                        FeedbackManager.shared.playSuccess()
                                     } label: {
                                         settingRow(title: "Unkraut-Glücksrad testen", icon: "asterisk.circle.fill", color: .orange)
                                     }
@@ -165,7 +208,7 @@ struct SettingsView: View {
                     shopStore.reset()
                     streakStore.reset()
                     powerUpStore.reset()
-                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                    FeedbackManager.shared.playError()
                     dismiss()
                 }
                 Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
@@ -221,7 +264,12 @@ struct SettingsView: View {
             Spacer()
             Toggle("", isOn: isOn)
                 .labelsHidden()
-                .tint(.primary)
+                .tint(Color.gruenPrimary)
+                .onChange(of: isOn.wrappedValue) {
+                    if isOn.wrappedValue {
+                        FeedbackManager.shared.playSuccess()
+                    }
+                }
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)

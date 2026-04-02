@@ -16,8 +16,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     var gekauftAm: Date
     @Published var istBewässert: Bool  // heute schon gegossen?
     
-    // Notiz & Timer
-    var notiz: String = ""
+    // Notizen & Timer
+    @Published var notizen: [String] = []
     var timerDatum: Date? = nil
     
     // XP Verlauf für die Wochenübersicht (Datum im Format "yyyy-MM-dd": XP an diesem Tag)
@@ -130,7 +130,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case id, name, symbolName, symbolColor, habitCategory, symbolism
         case currentXP, streak, letzteBewaesserung, gekauftAm, istBewässert
         case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays
-        case notiz, timerDatum, xpHistory, totalCoinsEarned
+        case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned
     }
 
     required init(from decoder: Decoder) throws {
@@ -154,7 +154,13 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         waterNeedPerDay = try container.decode(Int.self, forKey: .waterNeedPerDay)
         decayDays = try container.decode(Int.self, forKey: .decayDays)
         
-        notiz = try container.decodeIfPresent(String.self, forKey: .notiz) ?? ""
+        if let existingNotes = try container.decodeIfPresent([String].self, forKey: .notizen) {
+            notizen = existingNotes
+        } else if let oldNote = try container.decodeIfPresent(String.self, forKey: .notiz), !oldNote.isEmpty {
+            notizen = [oldNote]
+        } else {
+            notizen = []
+        }
         timerDatum = try container.decodeIfPresent(Date.self, forKey: .timerDatum)
         xpHistory = try container.decodeIfPresent([String: Int].self, forKey: .xpHistory) ?? [:]
         totalCoinsEarned = try container.decodeIfPresent(Int.self, forKey: .totalCoinsEarned) ?? 0
@@ -181,7 +187,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(waterNeedPerDay, forKey: .waterNeedPerDay)
         try container.encode(decayDays, forKey: .decayDays)
         
-        try container.encode(notiz, forKey: .notiz)
+        try container.encode(notizen, forKey: .notizen)
         try container.encodeIfPresent(timerDatum, forKey: .timerDatum)
         try container.encode(xpHistory, forKey: .xpHistory)
         try container.encode(totalCoinsEarned, forKey: .totalCoinsEarned)

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ProfilView: View {
     @State private var showSettings = false
-    @State private var showCoinsDetail = false
+    @State private var showXPDetail = false
     @State private var showPflanzenDetail = false
     @State private var showErfolgeDetail = false
     @State private var showStreakDetail = false
@@ -66,9 +66,12 @@ struct ProfilView: View {
                             GridItem(.flexible(), spacing: 20),
                             GridItem(.flexible(), spacing: 20)
                         ], spacing: 24) {
-                            CoinsStatButton(coins: gardenStore.coins, showDetail: $showCoinsDetail)
-                            PflanzenStatButton(count: gardenStore.pflanzen.count, showDetail: $showPflanzenDetail)
-                            StreakStatButton(streak: gardenStore.gesamtStreak, aktion: { showStreakDetail = true })
+                            XPStatButton(xp: gardenStore.gesamtXP, showDetail: $showXPDetail)
+                            InventoryStatButton(count: gardenStore.totalItemsCount, showDetail: $showPflanzenDetail)
+                            StreakStatButton(
+                                bestStreak: gardenStore.bestStreak,
+                                aktion: { showStreakDetail = true }
+                            )
                             ErfolgeStatButton(count: freigeschalteteErfolgeAnzahl, showDetail: $showErfolgeDetail)
                         }
                         .padding(.horizontal, 32)
@@ -99,13 +102,15 @@ struct ProfilView: View {
                     .environmentObject(settings)
             }
             // Navigation Destinations
-            .navigationDestination(isPresented: $showCoinsDetail) {
-                CoinsDetailView()
+            .navigationDestination(isPresented: $showXPDetail) {
+                GesamtXPDetailView()
                     .environmentObject(gardenStore)
+                    .environmentObject(settings)
             }
             .navigationDestination(isPresented: $showPflanzenDetail) {
-                PflanzenDetailView()
+                InventoryDetailView()
                     .environmentObject(gardenStore)
+                    .environmentObject(settings)
             }
             .navigationDestination(isPresented: $showErfolgeDetail) {
                 ErfolgeDetailView()

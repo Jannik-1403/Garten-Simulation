@@ -34,7 +34,7 @@ struct WheelOfFortuneView: View {
     /// Segments of the same kind are spaced as far apart as possible.
     func generateLayout() -> [SegmentKind] {
         let weedCount = min(totalSegments - 1, max(0, Int(round(probWeed * Double(totalSegments - 1)))))
-        let safeCount = totalSegments - 1 - weedCount
+        _ = totalSegments - 1 - weedCount
         
         // Start with all safe slots
         var slots: [SegmentKind] = Array(repeating: .safe, count: totalSegments)
@@ -44,7 +44,7 @@ struct WheelOfFortuneView: View {
         slots[goldIndex] = .gold
         
         // Collect non-gold indices
-        var freeIndices = (0..<totalSegments).filter { $0 != goldIndex }
+        let freeIndices = (0..<totalSegments).filter { $0 != goldIndex }
         
         // Distribute weed segments evenly among the free slots
         if weedCount > 0 && !freeIndices.isEmpty {
@@ -69,7 +69,7 @@ struct WheelOfFortuneView: View {
                     // Header
                     VStack(spacing: 6) {
                         Button {
-                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            FeedbackManager.shared.playTap()
                         } label: {
                             Text(settings.localizedString(for: "dailyspin.title"))
                         }
@@ -92,7 +92,7 @@ struct WheelOfFortuneView: View {
                             
                             // === 3D TOP LAYER & POINTER (clickable and moves) ===
                             Button {
-                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                FeedbackManager.shared.playTap()
                             } label: {
                                 ZStack {
                                     // Main Wheel Top Layer
@@ -189,7 +189,7 @@ struct WheelOfFortuneView: View {
                             sekundaerFarbe: .gruenSecondary,
                             groesse: 56
                         ) {
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            FeedbackManager.shared.playSuccess()
                             powerUpActivated = true
                             if let item = gardenStore.gekaufteItems.first(where: { $0.id == "powerup.schaedlingsschutz" || $0.id == "powerup.unkraut_bot" }) {
                                 if let p = GameDatabase.allPowerUps.first(where: { $0.id == item.id }) {
@@ -206,7 +206,7 @@ struct WheelOfFortuneView: View {
                     // Unkraut-Bot re-spin button
                     if showResult, spinResult == .weed, gardenStore.hasActivePowerUp(powerUpId: "powerup.unkraut_bot") {
                         Button(action: {
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            FeedbackManager.shared.playSuccess()
                             showResult = false
                             spinResult = nil
                             spinWheel()
@@ -246,7 +246,7 @@ struct WheelOfFortuneView: View {
                     .padding(.bottom, 40)
                 }
                 .padding(.top, 40)
-                .frame(minHeight: UIScreen.main.bounds.height)
+                .frame(minHeight: 800) // Avoid deprecated UIScreen.main.bounds.height for minHeight
             }
             
             // Result Overlay
@@ -315,7 +315,7 @@ struct WheelOfFortuneView: View {
             let delay = min(easedTime, spinDuration - 0.1)
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 if isSpinning {
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    FeedbackManager.shared.playTick()
                 }
             }
         }
@@ -332,6 +332,13 @@ struct WheelOfFortuneView: View {
             }
             // Show the result overlay after a brief delay
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                let res = result
+                if res == .weed {
+                    FeedbackManager.shared.playError()
+                } else {
+                    FeedbackManager.shared.playSuccess()
+                }
+                
                 withAnimation(.spring(response: 0.42, dampingFraction: 0.65)) {
                     showResultOverlay = true
                 }

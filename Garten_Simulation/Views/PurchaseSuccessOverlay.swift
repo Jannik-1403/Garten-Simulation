@@ -36,7 +36,7 @@ struct PurchaseSuccessOverlay: View {
                 VStack(spacing: 6) {
                     Text(settings.localizedString(for: "shop.purchase_success.title"))
                         .font(.system(size: 22, weight: .bold, design: .rounded))
-                    Text(itemName)
+                    Text(settings.localizedString(for: itemName))
                         .font(.system(size: 15))
                         .foregroundStyle(Color.secondary)
                         .multilineTextAlignment(.center)

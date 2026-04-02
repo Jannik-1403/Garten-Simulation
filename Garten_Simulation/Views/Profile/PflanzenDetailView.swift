@@ -73,9 +73,12 @@ struct PflanzenDetailView: View {
                         Divider().padding(.leading, 52)
 
                         if let beste = seltenste {
+                            let displayName = settings.showHabitInsteadOfName 
+                                ? settings.localizedString(for: beste.habitCategory.localizationKey)
+                                : settings.localizedString(for: beste.name)
                             detailRow(
                                 labelKey: "profile.xp.max",
-                                value: beste.name,
+                                value: displayName,
                                 icon: "crown.fill",
                                 color: .goldPrimary
                             )
@@ -149,6 +152,7 @@ struct PflanzenDetailView: View {
 
 struct PflanzenGridCell: View {
     let pflanze: HabitModel
+    @EnvironmentObject var settings: SettingsStore
 
     var body: some View {
         VStack(spacing: 8) {
@@ -176,7 +180,9 @@ struct PflanzenGridCell: View {
                 .frame(width: 44, height: 44)
             }
 
-            Text(pflanze.name)
+            Text(settings.showHabitInsteadOfName 
+                ? settings.localizedString(for: pflanze.habitCategory.localizationKey)
+                : settings.localizedString(for: pflanze.name))
                 .font(.system(size: 12, weight: .semibold, design: .rounded))
                 .foregroundStyle(.primary)
                 .lineLimit(1)

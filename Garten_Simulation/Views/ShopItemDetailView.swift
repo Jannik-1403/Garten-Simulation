@@ -138,7 +138,9 @@ struct ShopItemDetailView: View {
                             if isOwned {
                                 // Zustand 1: Bereits gekauft + VERKAUFEN Option
                                 VStack(spacing: 12) {
-                                    Button {} label: {
+                                    Button {
+                                        FeedbackManager.shared.playTap()
+                                    } label: {
                                         HStack(spacing: 8) {
                                             Image(systemName: "checkmark.seal.fill")
                                             Text(settings.localizedString(for: "shop.already_owned"))
@@ -158,8 +160,8 @@ struct ShopItemDetailView: View {
                                     let sellPrice = Int(Double(payload.price) * 0.5)
                                     
                                     Button {
-                                        // Haptik
-                                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                        // Feedback
+                                        FeedbackManager.shared.playTap()
                                         
                                         // Aktion
                                         shopStore.sell(id: payload.id, price: payload.price, title: settings.localizedString(for: payload.title))
@@ -190,7 +192,8 @@ struct ShopItemDetailView: View {
                             } else if !canAfford {
                                 // Zustand 2: Zu wenig Coins
                                 Button {
-                                    // Haptic + Alert
+                                    // Feedback + Alert
+                                    FeedbackManager.shared.playError()
                                     showInsufficientCoins = true
                                 } label: {
                                     HStack(spacing: 8) {
@@ -211,6 +214,7 @@ struct ShopItemDetailView: View {
                                 DuolingoKaufButton(
                                     color: payload.color
                                 ) {
+                                    FeedbackManager.shared.playSuccess()
                                     shopStore.buy(id: payload.id, price: payload.price)
                                     
                                     if payload.itemType == .plant {
@@ -240,7 +244,10 @@ struct ShopItemDetailView: View {
             VStack {
                 HStack {
                     Spacer()
-                    Button { dismiss() } label: {
+                    Button { 
+                        FeedbackManager.shared.playTap()
+                        dismiss() 
+                    } label: {
                         Image(systemName: "xmark")
                             .font(.system(size: 12, weight: .bold))
                             .foregroundStyle(.secondary)
@@ -260,6 +267,7 @@ struct ShopItemDetailView: View {
                     itemName: payload.title,
                     price: payload.price
                 ) {
+                    FeedbackManager.shared.playTap()
                     showSuccess = false
                     dismiss()
                 }
@@ -268,7 +276,7 @@ struct ShopItemDetailView: View {
         }
         .animation(.spring(response: 0.4, dampingFraction: 0.72), value: showSuccess)
         .alert(settings.localizedString(for: "shop.not_enough_coins"), isPresented: $showInsufficientCoins) {
-            Button("OK", role: .cancel) {}
+            Button("OK", role: .cancel) { FeedbackManager.shared.playTap() }
         } message: {
             Text(String(format: settings.localizedString(for: "shop.need_more_coins"), payload.price - gardenStore.coins))
         }

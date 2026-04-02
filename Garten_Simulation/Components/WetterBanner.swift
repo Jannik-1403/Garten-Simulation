@@ -88,3 +88,15 @@ struct WetterBanner: View {
     .padding(.vertical)
     .background(Color(red: 0.95, green: 0.95, blue: 0.97))
 }
+
+#Preview {
+    VStack(spacing: 20) {
+        WetterBanner(event: .normal)
+        WetterBanner(event: .duerre)
+        WetterBanner(event: .schnee)
+        WetterBanner(event: .sturm)
+        WetterBanner(event: .perfekt)
+    }
+    .padding(.vertical)
+    .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+}
