@@ -15,21 +15,22 @@ struct PflanzenCard: View {
     @State private var plantWobble: CGFloat = 1.0
     @State private var greenGlowOpacity: Double = 0
     @State private var wasserPressAktiv = false
+    @State private var showDeathAlert = false
 
     var body: some View {
         ZStack {
             // MARK: Die eigentliche Karte (Button)
-            Button(action: {
+            Button {
                 // Delay to allow the 3D "pop-back" animation to complete
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
                     onTap()
                 }
-            }) {
+            } label: {
                 VStack(spacing: 14) {
                     // MARK: Name + Seltenheit
                     VStack(spacing: 6) {
                         Text(settings.showHabitInsteadOfName 
-                         ? settings.localizedString(for: pflanze.habitCategory.localizationKey)
+                         ? settings.localizedString(for: pflanze.habitName)
                          : settings.localizedString(for: pflanze.name))
                         .font(.system(size: 16, weight: .black, design: .rounded))
                         .foregroundStyle(Color.primary)
@@ -38,13 +39,26 @@ struct PflanzenCard: View {
 
                         Text(pflanze.seltenheit.lokalisiertTitel)
                             .font(.appBadge)
-                            .foregroundStyle(pflanze.seltenheit.farbe)
+                            .foregroundStyle(pflanze.isDead ? .red : pflanze.seltenheit.farbe)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 2)
                             .background(
                                 Capsule()
-                                    .fill(pflanze.seltenheit.farbe.opacity(0.15))
+                                    .fill((pflanze.isDead ? Color.red : pflanze.seltenheit.farbe).opacity(0.15))
                             )
+                        
+                        // MARK: Timer (24h-Countdown)
+                        HStack(spacing: 4) {
+                            Image(pflanze.timerIconName)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 14, height: 14)
+                            
+                            Text("\(pflanze.remainingHoursInCycle)h")
+                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.top, 2)
                     }
                     .frame(maxWidth: .infinity)
 
@@ -86,15 +100,33 @@ struct PflanzenCard: View {
                         PflanzenButton(
                             symbolName: pflanze.symbolName,
                             farbe: pflanze.color,
-                            sekundaerFarbe: pflanze.color.darker(),
+                            sekundaerFarbe: pflanze.isDead ? .red : pflanze.color.darker(),
                             groesse: 88,
                             externerPress: wasserPressAktiv,
                             aktion: {
-                                FeedbackManager.shared.playTap()
-                                onTap()
+                                if pflanze.isDead {
+                                    showDeathAlert = true
+                                    FeedbackManager.shared.playError()
+                                } else {
+                                    FeedbackManager.shared.playTap()
+                                    onTap()
+                                }
                             }
                         )
-                        .saturation(pflanze.istBewässert ? 1.0 : 0.85)
+                        .saturation(pflanze.isDead ? 0.3 : pflanze.drynessSaturation)
+                        .colorMultiply(pflanze.isDead ? Color.red.opacity(0.8) : Color.white)
+                        .opacity(pflanze.isDead ? 0.8 : 1.0)
+                        
+                        if pflanze.missedCycles > 0 {
+                            Text(pflanze.missedCycles == 1 ? "!" : "!!")
+                                .font(.system(size: 16, weight: .black, design: .rounded))
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 6)
+                                .background(Capsule().fill(Color.red))
+                                .shadow(radius: 2)
+                                .offset(x: 35, y: -35)
+                        }
                     }
                     .scaleEffect(plantWobble)
                     .animation(.spring(response: 0.3, dampingFraction: 0.4), value: plantWobble)
@@ -111,23 +143,49 @@ struct PflanzenCard: View {
                         }
                     )
 
-                    // MARK: Gieß-Slider oder Erledigt-Badge
-                    if !pflanze.istBewässert {
-                        DragToWater(
-                            onGiessen: { handleWatering() },
-                            pflanzenPosition: pflanzenPosition,
-                            istErledigt: pflanze.istBewässert
-                        )
-                        .allowsHitTesting(true)
-                    } else if pflanze.istBewässert {
-                        HStack(spacing: 6) {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundStyle(Color.gruenPrimary)
-                            Text(settings.localizedString(for: "garden.plant.done"))
-                                .font(.appButtonKlein)
-                                .foregroundStyle(Color.gruenPrimary)
+                    // MARK: Gieß-Slider, Erledigt-Badge oder Löschen-Button
+                    Group {
+                        if pflanze.isDead {
+                            HStack(spacing: 8) {
+                                Image(systemName: "cross.fill")
+                                    .font(.system(size: 20, weight: .bold))
+                                Text(settings.localizedString(for: "garden.plant.status.dead"))
+                                    .font(.system(size: 15, weight: .black, design: .rounded))
+                            }
+                            .padding(.horizontal, 20)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 54)
+                            .background(
+                                Capsule()
+                                    .fill(Color.red.opacity(0.15))
+                            )
+                            .overlay(
+                                Capsule()
+                                    .strokeBorder(Color.red.opacity(0.3), lineWidth: 1.5)
+                            )
+                            .foregroundStyle(Color.red)
+                            .frame(height: 72)
+                        } else if !pflanze.istBewässert {
+                            DragToWater(
+                                onGiessen: { handleWatering() },
+                                pflanzenPosition: pflanzenPosition,
+                                istErledigt: pflanze.istBewässert
+                            )
+                            .allowsHitTesting(true)
+                            .frame(height: 72)
+                        } else {
+                            HStack(spacing: 8) {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.system(size: 24, weight: .bold))
+                                    .foregroundStyle(Color.gruenPrimary)
+                                
+                                Text(settings.localizedString(for: "garden.plant.done"))
+                                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                                    .foregroundStyle(Color.gruenPrimary)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 72)
                         }
-                        .padding(.vertical, 4)
                     }
                 }
                 .padding(.horizontal, 16)
@@ -147,9 +205,17 @@ struct PflanzenCard: View {
                 }
             }
             .buttonStyle(PflanzenCardButtonStyle(
-                seltenheitFarbe: pflanze.seltenheit.farbe,
+                seltenheitFarbe: pflanze.isDead ? .red : pflanze.seltenheit.farbe,
                 isPhase2: false
             ))
+            .alert(settings.localizedString(for: "garden.plant.status.dead"), isPresented: $showDeathAlert) {
+                Button(settings.localizedString(for: "button.delete"), role: .destructive) {
+                    gardenStore.loeschePflanze(pflanze: pflanze)
+                }
+                Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
+            } message: {
+                Text(settings.localizedString(for: "garden.plant.dead.alert.message"))
+            }
         }
     }
 
@@ -237,13 +303,14 @@ struct PowerUpBadge: View {
     var body: some View {
         ZStack {
             Circle()
-                .fill(Color.goldPrimary)
+                .fill(Color.yellow)
                 .frame(width: 26, height: 26)
                 .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 1)
             
-            Image(systemName: "bolt.fill")
-                .font(.system(size: 12, weight: .bold))
-                .foregroundColor(.white)
+            Image("Powerup")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 14, height: 14)
         }
     }
 }

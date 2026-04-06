@@ -72,21 +72,6 @@ class PowerUpStore: ObservableObject {
         }
     }
 
-    /// Ist Regenmacher aktiv? (alle Pflanzen gratis gießen)
-    var hatRegenmacher: Bool {
-        aktivePowerUps.contains { aktiv in
-            aktiv.isActive && 
-            GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId })?.name == "item.regenmacher.name"
-        }
-    }
-
-    /// Ist Schädlingsschutz aktiv?
-    var hatSchaedlingsschutz: Bool {
-        aktivePowerUps.contains { aktiv in
-            aktiv.isActive && 
-            GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId })?.name == "item.schaedlingsschutz.name"
-        }
-    }
 
     // MARK: Timer — prüft jede Minute ob Power-Ups abgelaufen sind
     private func starteTimer() {

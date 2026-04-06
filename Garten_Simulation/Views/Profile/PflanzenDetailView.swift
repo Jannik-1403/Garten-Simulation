@@ -59,22 +59,24 @@ struct PflanzenDetailView: View {
                         detailRow(
                             labelKey: "profile.xp.earned",
                             value: "\(gesamtXP) XP",
-                            icon: "star.fill",
-                            color: .orange
+                            icon: "XP",
+                            color: .orange,
+                            isAsset: true
                         )
                         Divider().padding(.leading, 52)
 
                         detailRow(
                             labelKey: "common.active",
                             value: "\(pflanzen.filter { $0.istBewässert }.count)",
-                            icon: "drop.fill",
-                            color: .blauPrimary
+                            icon: "Drop water",
+                            color: .blauPrimary,
+                            isAsset: true
                         )
                         Divider().padding(.leading, 52)
 
                         if let beste = seltenste {
                             let displayName = settings.showHabitInsteadOfName 
-                                ? settings.localizedString(for: beste.habitCategory.localizationKey)
+                                ? settings.localizedString(for: beste.habitName)
                                 : settings.localizedString(for: beste.name)
                             detailRow(
                                 labelKey: "profile.xp.max",
@@ -124,15 +126,23 @@ struct PflanzenDetailView: View {
             .padding(.horizontal, 24)
     }
 
-    private func detailRow(labelKey: String, value: String, icon: String, color: Color) -> some View {
+    private func detailRow(labelKey: String, value: String, icon: String, color: Color, isAsset: Bool = false) -> some View {
         HStack(spacing: 14) {
             ZStack {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .fill(color.opacity(0.15))
                     .frame(width: 32, height: 32)
-                Image(systemName: icon)
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundStyle(color)
+                
+                if isAsset {
+                    Image(icon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                } else {
+                    Image(systemName: icon)
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundStyle(color)
+                }
             }
 
             Text(settings.localizedString(for: labelKey))
@@ -181,7 +191,7 @@ struct PflanzenGridCell: View {
             }
 
             Text(settings.showHabitInsteadOfName 
-                ? settings.localizedString(for: pflanze.habitCategory.localizationKey)
+                ? settings.localizedString(for: pflanze.habitName)
                 : settings.localizedString(for: pflanze.name))
                 .font(.system(size: 12, weight: .semibold, design: .rounded))
                 .foregroundStyle(.primary)

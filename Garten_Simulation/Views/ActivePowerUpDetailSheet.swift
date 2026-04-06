@@ -15,10 +15,19 @@ struct ActivePowerUpDetailSheet: View {
             
             // MARK: - Icon
             if let base = powerUpBase {
-                Image(systemName: base.symbolName)
-                    .font(.system(size: 60))
-                    .foregroundStyle(base.color)
-                    .padding(.top, 40)
+                Group {
+                    if UIImage(named: base.symbolName) != nil {
+                        Image(base.symbolName)
+                            .resizable()
+                            .scaledToFit()
+                    } else {
+                        Image(systemName: base.symbolName)
+                            .font(.system(size: 60))
+                            .foregroundStyle(base.color)
+                    }
+                }
+                .frame(width: 100, height: 100)
+                .padding(.top, 40)
             }
             
             // MARK: - Texts

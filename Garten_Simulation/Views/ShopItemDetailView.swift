@@ -105,26 +105,26 @@ struct ShopItemDetailView: View {
 
                             // Preis
                             HStack(spacing: 6) {
-                                Image("Coin")
+                                Image("coin")
                                     .resizable().scaledToFit()
                                     .frame(width: 24, height: 24)
                                 Text("\(payload.price)")
                                     .font(.system(size: 28, weight: .bold, design: .rounded))
-                                    .foregroundStyle(Color.belohnungGoldHighlight)
+                                    .foregroundStyle(Color.coinBlue)
                                 Spacer()
                                 // Aktueller Kontostand
                                 HStack(spacing: 3) {
                                     Text(settings.localizedString(for: "shop.your_balance"))
                                         .font(.system(size: 13))
                                         .foregroundStyle(.secondary)
-                                    Image("Coin")
+                                    Image("coin")
                                         .resizable().scaledToFit()
                                         .frame(width: 14, height: 14)
                                     Text("\(gardenStore.coins)")
                                         .font(.system(size: 13, weight: .semibold))
                                         .foregroundStyle(
                                             canAfford
-                                                ? Color.belohnungGoldHighlight
+                                                ? Color.coinBlue
                                                 : .red
                                         )
                                         // Zahl animiert sich beim Abzug
@@ -134,7 +134,6 @@ struct ShopItemDetailView: View {
                             
 
                             // MARK: Button — 3 Zustände
-
                             if isOwned {
                                 // Zustand 1: Bereits gekauft + VERKAUFEN Option
                                 VStack(spacing: 12) {
@@ -171,10 +170,10 @@ struct ShopItemDetailView: View {
                                         }
                                     } label: {
                                         VStack(spacing: 2) {
-                                            Text("Gegenstand verkaufen")
+                                            Text(settings.localizedString(for: "shop.item.sell"))
                                                 .font(.system(size: 14, weight: .bold))
                                             HStack(spacing: 4) {
-                                                Image("Coin")
+                                                Image("coin")
                                                     .resizable().scaledToFit().frame(width: 14, height: 14)
                                                 Text("+\(sellPrice)")
                                                     .font(.system(size: 14, weight: .black))
@@ -185,10 +184,7 @@ struct ShopItemDetailView: View {
                                         .padding(.vertical, 12)
                                         .background(Capsule().stroke(Color.red.opacity(0.3), lineWidth: 2))
                                     }
-                                    
-
                                 }
-
                             } else if !canAfford {
                                 // Zustand 2: Zu wenig Coins
                                 Button {
@@ -276,7 +272,7 @@ struct ShopItemDetailView: View {
         }
         .animation(.spring(response: 0.4, dampingFraction: 0.72), value: showSuccess)
         .alert(settings.localizedString(for: "shop.not_enough_coins"), isPresented: $showInsufficientCoins) {
-            Button("OK", role: .cancel) { FeedbackManager.shared.playTap() }
+            Button(settings.localizedString(for: "button.ok"), role: .cancel) { FeedbackManager.shared.playTap() }
         } message: {
             Text(String(format: settings.localizedString(for: "shop.need_more_coins"), payload.price - gardenStore.coins))
         }

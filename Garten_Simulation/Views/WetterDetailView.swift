@@ -59,16 +59,18 @@ struct WetterDetailView: View {
                 // MARK: - 3D Info Cards
                 HStack(spacing: 16) {
                     Weather3DCard(
-                        icon: "diamond.fill",
-                        title: "GEMS",
+                        icon: "coin",
+                        isAsset: true,
+                        title: settings.localizedString(for: "weather.detail.gems"),
                         value: gemsText,
                         color: .purple,
                         shadowColor: .purple.darker()
                     )
                     
                     Weather3DCard(
-                        icon: "drop.fill",
-                        title: "GIESSEN",
+                        icon: "Drop water",
+                        isAsset: true,
+                        title: settings.localizedString(for: "weather.detail.watering"),
                         value: giessText,
                         color: event.bannerFarbe,
                         shadowColor: event.bannerFarbeSekundaer
@@ -136,34 +138,29 @@ struct WetterDetailView: View {
 
     private var gemsText: String {
         switch event {
-        case .perfekt: return "2x"
-        case .schnee: return "0.5x"
-        default: return "1x"
+        case .perfekt: return settings.localizedString(for: "weather.detail.double")
+        case .schnee: return settings.localizedString(for: "weather.detail.half")
+        default: return settings.localizedString(for: "weather.detail.normal")
         }
     }
 
     private var giessText: String {
         switch event {
-        case .duerre: return "2x"
-        case .schnee: return "Erschwert"
-        default: return "Normal"
+        case .duerre: return settings.localizedString(for: "weather.detail.double")
+        case .schnee: return settings.localizedString(for: "weather.detail.difficult")
+        default: return settings.localizedString(for: "weather.detail.normal")
         }
     }
 
     private var ruleText: String {
-        switch event {
-        case .normal: return "Alles läuft normal. Einmal gießen reicht."
-        case .duerre: return "Dürre-Alarm: Du musst heute zweimal gießen."
-        case .schnee: return "Frost: Du bekommst nur halbe Gems."
-        case .sturm: return "Sturm: Empfindliche Pflanzen verlieren schneller an Level."
-        case .perfekt: return "Perfektes Wetter: Heute gibt es doppelte Gems."
-        }
+        settings.localizedString(for: "weather.rule.\(event.rawValue)")
     }
 }
 
 // MARK: - Weather 3D Card
 struct Weather3DCard: View {
     let icon: String
+    var isAsset: Bool = false
     let title: String
     let value: String
     let color: Color
@@ -188,9 +185,17 @@ struct Weather3DCard: View {
                 .overlay {
                     VStack(spacing: 4) {
                         HStack(spacing: 6) {
-                            Image(systemName: icon)
-                                .font(.system(size: 13, weight: .black))
-                                .foregroundStyle(color)
+                            if isAsset {
+                                Image(icon)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 18, height: 18)
+                            } else {
+                                Image(systemName: icon)
+                                    .font(.system(size: 13, weight: .black))
+                                    .foregroundStyle(color)
+                            }
+                            
                             Text(title)
                                 .font(.system(size: 11, weight: .heavy, design: .rounded))
                                 .foregroundStyle(.secondary)

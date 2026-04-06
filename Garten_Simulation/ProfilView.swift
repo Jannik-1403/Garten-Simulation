@@ -6,35 +6,14 @@ struct ProfilView: View {
     @State private var showPflanzenDetail = false
     @State private var showErfolgeDetail = false
     @State private var showStreakDetail = false
+    @State private var showWasserDetail = false
+    @State private var zeigeGartenPass = false
+    @State private var zeigeGartenPassWheel = false
     
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var achievementStore: AchievementStore
-    
-    // MARK: - Computed Global Stufe (based on total XP)
-    private var userStufe: PflanzenStufe {
-        PflanzenStufe.allCases.reversed().first {
-            GameConstants.xpSchwelleGarten(fuer: $0) <= gardenStore.gesamtXP
-        } ?? .bronze1
-    }
-
-    private var userFortschritt: Double {
-        guard let naechste = userStufe.naechste else { return 1.0 }
-        let aktuelleMin = GameConstants.xpSchwelleGarten(fuer: userStufe)
-        let naechsteMin = GameConstants.xpSchwelleGarten(fuer: naechste)
-        return Double(gardenStore.gesamtXP - aktuelleMin) / Double(naechsteMin - aktuelleMin)
-    }
-
-    private var xpZurNaechstenStufe: Int {
-        guard let naechste = userStufe.naechste else { return 0 }
-        return GameConstants.xpSchwelleGarten(fuer: naechste) - gardenStore.gesamtXP
-    }
-    
-    private var xpNaechsteStufeAbsolut: Int {
-        guard let naechste = userStufe.naechste else { return gardenStore.gesamtXP }
-        return GameConstants.xpSchwelleGarten(fuer: naechste)
-    }
     
     private var freigeschalteteErfolgeAnzahl: Int {
         achievementStore.alleErfolge.filter { $0.istFreigeschaltet }.count
@@ -47,19 +26,46 @@ struct ProfilView: View {
                 
                 ScrollView {
                     VStack(spacing: 32) {
-                        // User Profile Info (Name + Badge + XP-Bar)
-                        VStack(spacing: 20) {
-                            ProfilHeaderView(name: "Jannik Schill", stufe: userStufe)
+                        // User Profile Info (Name + Level-Badge)
+                        VStack(spacing: 8) {
+                            Text("Jannik Schill")
+                                .font(.system(size: 24, weight: .bold, design: .rounded))
                                 .padding(.top, 24)
                             
-                            ProfilXPBarView(
-                                stufe: userStufe,
-                                fortschritt: userFortschritt,
-                                aktuelleXP: gardenStore.gesamtXP,
-                                xpNaechsteStufe: xpNaechsteStufeAbsolut
-                            )
-                            .padding(.horizontal, 24)
+                            ProfilTierBadgeView(level: gardenStore.gartenStufe)
                         }
+                        
+                        // Anklickbarer XP-Header → öffnet GartenPassView
+                        VStack(spacing: 12) {
+                            ProfilXPHeaderView(
+                                gesamtXP: gardenStore.gesamtXP,
+                                onTippen: { zeigeGartenPass = true }
+                            )
+                            
+                            if gardenStore.gluecksradDrehungen > 0 {
+                                Button {
+                                    zeigeGartenPassWheel = true
+                                } label: {
+                                    HStack(spacing: 8) {
+                                        Image(systemName: "arrow.2.circlepath")
+                                            .font(.system(size: 14, weight: .bold))
+                                        Text(String(format: NSLocalizedString("spin_verfuegbar", comment: ""), 
+                                                    gardenStore.gluecksradDrehungen))
+                                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    }
+                                    .foregroundStyle(.white)
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 6)
+                                    .background(
+                                        Capsule()
+                                            .fill(Color.blauPrimary) 
+                                            .shadow(color: Color.blauPrimary.opacity(0.3), radius: 4, x: 0, y: 2)
+                                    )
+                                }
+                                .transition(.scale.combined(with: .opacity))
+                            }
+                        }
+                        .padding(.horizontal, 20)
                         
                         // --- 3D STAT BUTTONS GRID ---
                         LazyVGrid(columns: [
@@ -69,10 +75,12 @@ struct ProfilView: View {
                             XPStatButton(xp: gardenStore.gesamtXP, showDetail: $showXPDetail)
                             InventoryStatButton(count: gardenStore.totalItemsCount, showDetail: $showPflanzenDetail)
                             StreakStatButton(
-                                bestStreak: gardenStore.bestStreak,
+                                currentStreak: streakStore.currentStreak,
+                                bestStreak: streakStore.bestStreak,
                                 aktion: { showStreakDetail = true }
                             )
                             ErfolgeStatButton(count: freigeschalteteErfolgeAnzahl, showDetail: $showErfolgeDetail)
+                            WasserStatButton(liter: gardenStore.gesamtLiterFormatiert, showDetail: $showWasserDetail)
                         }
                         .padding(.horizontal, 32)
                         .padding(.top, 8)
@@ -101,6 +109,11 @@ struct ProfilView: View {
                 SettingsView()
                     .environmentObject(settings)
             }
+            .sheet(isPresented: $showWasserDetail) {
+                WasserDetailView()
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+            }
             // Navigation Destinations
             .navigationDestination(isPresented: $showXPDetail) {
                 GesamtXPDetailView()
@@ -121,8 +134,19 @@ struct ProfilView: View {
                 StreakView()
                     .environmentObject(streakStore)
             }
+            .fullScreenCover(isPresented: $zeigeGartenPass) {
+                GartenPassView()
+                    .environmentObject(gardenStore)
+            }
+            .fullScreenCover(isPresented: $zeigeGartenPassWheel) {
+                GartenPassWheelView()
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+            }
         }
     }
+    
+    // MARK: - Computed Properties
 }
 
 #Preview { 
@@ -131,6 +155,6 @@ struct ProfilView: View {
             .environmentObject(GardenStore())
             .environmentObject(SettingsStore())
             .environmentObject(StreakStore())
-            .environmentObject(AchievementStore(gardenStore: GardenStore()))
+            .environmentObject(AchievementStore(gardenStore: GardenStore(), streakStore: StreakStore()))
     }
 }

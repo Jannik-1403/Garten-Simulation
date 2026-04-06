@@ -10,7 +10,8 @@ struct Item3DButton: View {
     var body: some View {
         Button {
             // Delay to allow the 3D "pop-back" animation to complete
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+            // Increased to 0.22s for better visibility of the "up" motion
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
                 aktion?()
             }
         } label: {
@@ -19,11 +20,15 @@ struct Item3DButton: View {
                     Image(icon)
                         .resizable()
                         .scaledToFit()
-                } else {
+                } else if let _ = UIImage(systemName: icon) {
                     Image(systemName: icon)
                         .resizable()
                         .scaledToFit()
                         .foregroundStyle(.white)
+                } else {
+                    // Falls weder Asset noch SF Symbol, zeige es als Text (Emoji Support)
+                    Text(icon)
+                        .font(.system(size: groesse * 0.45))
                 }
             }
         }
@@ -42,8 +47,28 @@ struct Item3DButtonStyle: ButtonStyle {
     let groesse: CGFloat
 
     func makeBody(configuration: Configuration) -> some View {
-        let isPressed = configuration.isPressed
-        let shadowDepth: CGFloat = 6
+        Item3DButtonVisualView(
+            configuration: configuration,
+            farbe: farbe,
+            sekundaerFarbe: sekundaerFarbe,
+            groesse: groesse,
+            isHapticEnabled: isHapticEnabled
+        )
+    }
+}
+
+/// A helper view to manage the visual "pressed" state, ensuring it lasts long enough to be seen.
+private struct Item3DButtonVisualView: View {
+    let configuration: ButtonStyle.Configuration
+    let farbe: Color
+    let sekundaerFarbe: Color
+    let groesse: CGFloat
+    let isHapticEnabled: Bool
+    
+    @State private var isVisualPressed = false
+    
+    var body: some View {
+        let shadowDepth: CGFloat = groesse * 0.08
         
         ZStack {
             // Shadow / Base
@@ -55,15 +80,25 @@ struct Item3DButtonStyle: ButtonStyle {
                 .fill(farbe)
                 .overlay {
                     configuration.label
-                        .frame(width: groesse * 0.5, height: groesse * 0.5)
+                        .frame(width: groesse * 0.7, height: groesse * 0.7)
                 }
-                .offset(y: isPressed ? 0 : -shadowDepth)
+                .offset(y: isVisualPressed ? 0 : -shadowDepth)
         }
         .frame(width: groesse, height: groesse)
-        .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
-        .sensoryFeedback(trigger: configuration.isPressed) { _, newValue in
-            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.7) : nil
+        .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: isVisualPressed)
+        .onChange(of: configuration.isPressed) { oldValue, newValue in
+            if newValue {
+                // Instantly show pressed state
+                isVisualPressed = true
+            } else {
+                // On release, ensure the "down" state was held for a minimum duration
+                // so the animation is visible even for ultra-fast taps.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    isVisualPressed = false
+                }
+            }
         }
+        .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.8), trigger: configuration.isPressed)
     }
 }
 

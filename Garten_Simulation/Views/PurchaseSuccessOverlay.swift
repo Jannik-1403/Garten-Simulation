@@ -44,12 +44,12 @@ struct PurchaseSuccessOverlay: View {
 
                 // Coin-Abzug
                 HStack(spacing: 5) {
-                    Image("Coin")
+                    Image("coin")
                         .resizable().scaledToFit()
                         .frame(width: 16, height: 16)
                     Text("−\(price) Coins")
                         .font(.system(size: 14, weight: .semibold))
-                        .foregroundStyle(Color.belohnungGoldHighlight)
+                        .foregroundStyle(Color.coinBlue)
                 }
                 .padding(.horizontal, 14)
                 .padding(.vertical, 7)

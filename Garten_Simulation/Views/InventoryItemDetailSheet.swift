@@ -120,10 +120,10 @@ struct InventoryItemDetailSheet: View {
                         dismiss()
                     } label: {
                         VStack(spacing: 2) {
-                            Text("Gegenstand verkaufen")
+                            Text(settings.localizedString(for: "shop.item.sell"))
                                 .font(.system(size: 14, weight: .bold))
                             HStack(spacing: 4) {
-                                Image("Coin")
+                                Image("coin")
                                     .resizable().scaledToFit().frame(width: 14, height: 14)
                                 Text("+\(sellPrice)")
                                     .font(.system(size: 14, weight: .black))
@@ -167,7 +167,7 @@ struct InventoryItemDetailSheet: View {
                         
                         let duration = Int(p.durationHours ?? 24)
                         let plantDisplayName = settings.showHabitInsteadOfName 
-                            ? settings.localizedString(for: plant.habitCategory.localizationKey)
+                            ? settings.localizedString(for: plant.habitName)
                             : settings.localizedString(for: plant.name)
                         successMessage = String(format: settings.localizedString(for: "powerup.active.plant"), plantDisplayName, duration)
                         
@@ -201,10 +201,10 @@ struct InventoryItemDetailSheet: View {
             subtitle: "Wachstums-Boost",
             description: "Beschleunigt das Wachstum deiner Pflanzen um 50% für die nächsten 24 Stunden.",
             price: 500,
-            icon: "bolt.fill",
-            colorHex: "#FF991A", // orange
-            symbolColor: "orange",
-            shadowColorHex: "#D98216", // darker orange
+            icon: "Powerup",
+            colorHex: "#FFD000", // yellow
+            symbolColor: "yellow",
+            shadowColorHex: "#D9B200", // darker yellow
             tag: "POWER-UP",
             itemType: .powerUp,
             habitCategory: .fitness,

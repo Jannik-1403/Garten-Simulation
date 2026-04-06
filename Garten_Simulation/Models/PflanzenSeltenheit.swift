@@ -14,7 +14,7 @@ enum PflanzenSeltenheit: String, Codable, CaseIterable {
     var farbe: Color {
         switch self {
         case .bronze:  return Color(red: 0.8,  green: 0.5,  blue: 0.2)
-        case .silber:  return Color(red: 0.6,  green: 0.6,  blue: 0.7)
+        case .silber:  return Color(red: 0.50, green: 0.52, blue: 0.60)
         case .gold:    return Color.goldPrimary
         case .diamant: return Color.blauPrimary
         }
@@ -23,7 +23,7 @@ enum PflanzenSeltenheit: String, Codable, CaseIterable {
     var secondaryColor: Color {
         switch self {
         case .bronze:  return Color(red: 0.6, green: 0.3, blue: 0.1)
-        case .silber:  return Color(red: 0.4, green: 0.4, blue: 0.5)
+        case .silber:  return Color(red: 0.32, green: 0.35, blue: 0.42)
         case .gold:    return Color.orange
         case .diamant: return Color.cyan
         }

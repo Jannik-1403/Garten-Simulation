@@ -1,41 +1,5 @@
 import SwiftUI
 
-// MARK: - Tropfen-Form (Spitze oben, runder Bauch unten)
-
-struct TropfenShape: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let width = rect.width
-        let height = rect.height
-        let cx = width / 2
-
-        path.move(to: CGPoint(x: cx, y: 0))
-
-        path.addCurve(
-            to: CGPoint(x: 0, y: height * 0.65),
-            control1: CGPoint(x: cx - width * 0.1, y: height * 0.25),
-            control2: CGPoint(x: 0, y: height * 0.45)
-        )
-
-        path.addArc(
-            center: CGPoint(x: cx, y: height * 0.65),
-            radius: width / 2,
-            startAngle: .degrees(180),
-            endAngle: .degrees(0),
-            clockwise: true
-        )
-
-        path.addCurve(
-            to: CGPoint(x: cx, y: 0),
-            control1: CGPoint(x: width, y: height * 0.45),
-            control2: CGPoint(x: cx + width * 0.1, y: height * 0.25)
-        )
-
-        path.closeSubpath()
-        return path
-    }
-}
-
 // MARK: - Wasser-Partikel
 
 struct WasserPartikel: Identifiable {
@@ -64,9 +28,9 @@ struct DragToWater: View {
     @State private var istVerschwunden = false
     @State private var partikel: [WasserPartikel] = []
 
-    private let tropfenBreite: CGFloat = 32
-    private let tropfenHoehe: CGFloat = 42
-    private let trefferRadius: CGFloat = 60
+    private let tropfenBreite: CGFloat = 64
+    private let tropfenHoehe: CGFloat = 84
+    private let trefferRadius: CGFloat = 75
 
     private var partikelCyan: Color {
         Color(red: 0.2, green: 0.9, blue: 1.0)
@@ -92,14 +56,9 @@ struct DragToWater: View {
                     let h = p.groesse
                     let w = h * (tropfenBreite / tropfenHoehe)
 
-                    TropfenShape()
-                        .fill(
-                            LinearGradient(
-                                colors: [partikelCyan, partikelBlau],
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        )
+                    Image("Drop water")
+                        .resizable()
+                        .scaledToFit()
                         .frame(width: w, height: h)
                         .rotationEffect(.degrees(winkelZuRotation(p.winkel)))
                         .position(x: plantLocal.x + dx, y: plantLocal.y + dy)
@@ -107,8 +66,11 @@ struct DragToWater: View {
                 }
 
                 if !istVerschwunden {
-                    tropfenFill(heller: treffer)
-                        .frame(width: tropfenBreite, height: tropfenHoehe)
+                    Image("Drop water")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: tropfenBreite * 1.2, height: tropfenHoehe * 1.2) // Scaling slightly for asset
+                        .brightness(treffer ? 0.12 : 0)
                         .scaleEffect(tropfenSkalierung)
                         .opacity(tropfenOpazitaet)
                         .rotationEffect(.degrees(isDragging ? tropfenKippWinkel : 0))
@@ -221,20 +183,6 @@ struct DragToWater: View {
         }
     }
 
-    private func tropfenFill(heller: Bool) -> some View {
-        TropfenShape()
-            .fill(
-                LinearGradient(
-                    colors: [
-                        Color(red: 0.3, green: 0.75, blue: 1.0),
-                        Color(red: 0.1, green: 0.55, blue: 0.95),
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            )
-            .brightness(heller ? 0.14 : 0)
-    }
 
     private func winkelZuRotation(_ winkel: Double) -> Double {
         winkel - 90
@@ -245,7 +193,7 @@ struct DragToWater: View {
             WasserPartikel(
                 winkel: Double.random(in: 0...360),
                 distanz: CGFloat.random(in: 20...60),
-                groesse: CGFloat.random(in: 6...12)
+                groesse: CGFloat.random(in: 10...18)
             )
         }
 

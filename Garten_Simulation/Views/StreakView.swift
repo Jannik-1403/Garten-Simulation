@@ -3,6 +3,7 @@ import DotLottie
 
 struct StreakView: View {
     @EnvironmentObject var streakStore: StreakStore
+    @EnvironmentObject var settings: SettingsStore
     @Environment(\.dismiss) var dismiss
     
     @State private var showFullCalendar = false
@@ -29,10 +30,6 @@ struct StreakView: View {
                             Text("\(streakStore.currentStreak)")
                                 .font(.system(size: 80, weight: .heavy, design: .rounded))
                                 .foregroundStyle(.orange)
-                            
-                            Text(streakStore.currentStreak.streakLabel.uppercased())
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
-                                .foregroundStyle(.orange)
                         }
                     }
                     .padding(.top, 40)
@@ -41,7 +38,7 @@ struct StreakView: View {
                     VStack(spacing: 24) {
                         // Header for Card
                         HStack {
-                            Text(showFullCalendar ? monthYearString(from: currentMonth) : "Wochenübersicht")
+                            Text(showFullCalendar ? monthYearString(from: currentMonth) : settings.localizedString(for: "streak.view.weekly_overview"))
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                                 .foregroundStyle(.secondary)
                             
@@ -64,7 +61,7 @@ struct StreakView: View {
                             
                             Button(action: { withAnimation(.spring()) { showFullCalendar.toggle() } }) {
                                 HStack(spacing: 4) {
-                                    Text(showFullCalendar ? "Weniger" : "Siehe mehr")
+                                    Text(showFullCalendar ? settings.localizedString(for: "streak.view.see_less") : settings.localizedString(for: "streak.view.see_more"))
                                     Image(systemName: showFullCalendar ? "chevron.up" : "chevron.right")
                                 }
                             }
@@ -98,7 +95,7 @@ struct StreakView: View {
                 }
             }
             ToolbarItem(placement: .principal) {
-                Text("Streak")
+                Text(settings.localizedString(for: "streak.view.title"))
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                     .foregroundStyle(.secondary)
             }
@@ -108,7 +105,7 @@ struct StreakView: View {
     // MARK: - Weekly Progress
     private var weeklyProgressRow: some View {
         HStack(spacing: 10) {
-            let weekdays = ["M", "T", "W", "T", "F", "S", "S"]
+            let weekdays = localizedWeekdays
             ForEach(0..<7, id: \.self) { index in
                 VStack(spacing: 12) {
                     Text(weekdays[index])
@@ -138,7 +135,7 @@ struct StreakView: View {
         VStack(spacing: 15) {
             // Day Labels
             HStack(spacing: 0) {
-                let days = ["M", "D", "M", "D", "F", "S", "S"]
+                let days = localizedWeekdays
                 ForEach(days, id: \.self) { day in
                     Text(day)
                         .font(.system(size: 12, weight: .bold))
@@ -184,9 +181,22 @@ struct StreakView: View {
         guard let dateToCheck = calendar.date(byAdding: .day, value: -daysToSubtract, to: today) else { return false }
         return streakStore.isDateCompleted(dateToCheck)
     }
+
+    private var localizedWeekdays: [String] {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: settings.appLanguage == "de" ? "de_DE" : "en_US")
+        if var symbols = formatter.veryShortWeekdaySymbols, symbols.count == 7 {
+            let sunday = symbols.removeFirst()
+            symbols.append(sunday)
+            return symbols
+        }
+        // Fallback (Monday start)
+        return settings.appLanguage == "de" ? ["M", "D", "M", "D", "F", "S", "S"] : ["M", "T", "W", "T", "F", "S", "S"]
+    }
     
     private func monthYearString(from date: Date) -> String {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: settings.appLanguage == "de" ? "de_DE" : "en_US")
         formatter.dateFormat = "MMMM yyyy"
         return formatter.string(from: date)
     }

@@ -24,10 +24,36 @@ class SettingsStore: ObservableObject {
     }
 
     // MARK: - Actions
-    func restorePurchases() { print("Restoring purchases...") }
     func exportData()        { print("Exporting data...") }
     func importData()        { print("Importing data...") }
     func deleteAccount()     { print("Deleting account...") }
-    func shareApp()          { print("Sharing app...") }
-    func contactSupport()    { print("Contacting support...") }
+    func shareApp() {
+        let text = "Schau dir meine Garten-Simulation an! 🌿 Ich baue gerade einen wunderschönen Garten auf."
+        let url = URL(string: "https://apps.apple.com/app/garten-simulation")!
+        
+        let activityVC = UIActivityViewController(activityItems: [text, url], applicationActivities: nil)
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootVC = windowScene.windows.first?.rootViewController {
+            
+            // For iPad compatibility
+            if let popover = activityVC.popoverPresentationController {
+                popover.sourceView = rootVC.view
+                popover.sourceRect = CGRect(x: rootVC.view.bounds.midX, y: rootVC.view.bounds.midY, width: 0, height: 0)
+                popover.permittedArrowDirections = []
+            }
+            
+            rootVC.present(activityVC, animated: true)
+        }
+    }
+    
+    func contactSupport() {
+        let email = "jannik.schill.2010@gmail.com"
+        let subject = "Support: Garten-Simulation"
+        let mailto = "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
+        
+        if let url = URL(string: mailto) {
+            UIApplication.shared.open(url)
+        }
+    }
 }

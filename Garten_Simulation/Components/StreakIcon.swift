@@ -4,14 +4,15 @@ struct StreakIcon: View {
     let wert: Int
 
     var body: some View {
-        HStack(spacing: 4) {
-            Image("Sonnen_Streak")
+        HStack(alignment: .center, spacing: 6) {
+            Image("streak")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 20, height: 20)
+                .frame(width: 26, height: 26)
+            
             Text("\(wert)")
                 .font(.appStats)
-                .foregroundStyle(.orange)
+                .foregroundStyle(Color.orangePrimary)
         }
     }
 }

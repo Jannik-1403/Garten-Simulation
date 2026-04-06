@@ -42,7 +42,7 @@ struct ProfilXPBarView: View {
                     animierterFortschritt = max(0, min(1, fortschritt))
                 }
             }
-            .onChange(of: fortschritt) { newValue in
+            .onChange(of: fortschritt) { _, newValue in
                 withAnimation(.spring(response: 0.6, dampingFraction: 0.75)) {
                     animierterFortschritt = max(0, min(1, newValue))
                 }
@@ -100,10 +100,10 @@ struct XPStatButton: View {
     var body: some View {
         VStack(spacing: 6) {
             Item3DButton(
-                icon: "star.bubble.fill",
-                farbe: Color(hex: "#409CFF"),          // Blau
-                sekundaerFarbe: Color(hex: "#2B75D8"), // dunkles Blau
-                groesse: 72,
+                icon: "XP",
+                farbe: Color(hex: "#FFD000"),          // Blitzgelb
+                sekundaerFarbe: Color(hex: "#D9A300"), // dunkles Gelb
+                groesse: 80,
                 aktion: { showDetail = true }
             )
             Text("\(xp)")
@@ -123,10 +123,10 @@ struct InventoryStatButton: View {
     var body: some View {
         VStack(spacing: 6) {
             Item3DButton(
-                icon: "archivebox.fill",
-                farbe: Color(hex: "#FFB02E"),          // Orange-Gelb
-                sekundaerFarbe: Color(hex: "#D98216"), // dunkles Orange
-                groesse: 72,
+                icon: "Inventar",
+                farbe: Color(hex: "#8B4513"),          // Holz-Braun
+                sekundaerFarbe: Color(hex: "#5D2E0C"), // dunkles Braun
+                groesse: 80,
                 aktion: { showDetail = true }
             )
             Text("\(count)")
@@ -139,6 +139,7 @@ struct InventoryStatButton: View {
 }
 
 struct StreakStatButton: View {
+    let currentStreak: Int
     let bestStreak: Int
     var aktion: (() -> Void)? = nil
     @EnvironmentObject var settings: SettingsStore
@@ -146,14 +147,17 @@ struct StreakStatButton: View {
     var body: some View {
         VStack(spacing: 6) {
             Item3DButton(
-                icon: "flame.fill",
-                farbe: Color(hex: "#FF6B35"),          // Orange
-                sekundaerFarbe: Color(hex: "#C43D00"), // dunkles Orange
-                groesse: 72,
+                icon: "streak",
+                farbe: Color(hex: "#FF4B00"),          // Flammen-Rot/Orange
+                sekundaerFarbe: Color(hex: "#C43D00"), // dunkles Rot
+                groesse: 80,
                 aktion: aktion
             )
-            Text("\(bestStreak)")
-                .font(.system(size: 22, weight: .black, design: .rounded))
+            
+            HStack(alignment: .lastTextBaseline, spacing: 4) {
+                Text("\(bestStreak)")
+                    .font(.system(size: 22, weight: .black, design: .rounded))
+            }
             
             Text(settings.localizedString(for: "profile.streak.best"))
                 .font(.caption)
@@ -170,17 +174,50 @@ struct ErfolgeStatButton: View {
     var body: some View {
         VStack(spacing: 6) {
             Item3DButton(
-                icon: "trophy.fill",
-                farbe: Color(hex: "#AF52DE"),          // Lila
-                sekundaerFarbe: Color(hex: "#6B1F99"), // dunkles Lila
-                groesse: 72,
+                icon: "Erfolg",
+                farbe: Color(hex: "#FFB800"),          // Trophäen-Gold
+                sekundaerFarbe: Color(hex: "#C5A000"), // dunkles Gold
+                groesse: 80,
                 aktion: { showDetail = true }
             )
+            
             Text("\(count)")
                 .font(.system(size: 22, weight: .black, design: .rounded))
+
             Text(settings.localizedString(for: "profile.achievements"))
                 .font(.caption)
                 .foregroundStyle(.secondary)
+        }
+    }
+}
+
+struct WasserStatButton: View {
+    let liter: String
+    @Binding var showDetail: Bool
+    @EnvironmentObject var settings: SettingsStore
+    
+    var body: some View {
+        VStack(spacing: 6) {
+            Item3DButton(
+                icon: "Drop water",
+                farbe: .blauPrimary,
+                sekundaerFarbe: .blauSecondary,
+                groesse: 80,
+                aktion: { showDetail = true }
+            )
+            
+            VStack(spacing: 0) {
+                Text(settings.localizedString(for: "wasser.karte.titel"))
+                    .font(.system(size: 10, weight: .bold, design: .rounded))
+                    .foregroundStyle(.secondary)
+                
+                Text(liter)
+                    .font(.system(size: 22, weight: .black, design: .rounded))
+                
+                Text(settings.localizedString(for: "wasser.gesamt"))
+                    .font(.system(size: 10, weight: .medium, design: .rounded))
+                    .foregroundStyle(.secondary)
+            }
         }
     }
 }

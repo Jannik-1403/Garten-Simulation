@@ -13,14 +13,17 @@ extension Color {
     static let lilaPrimary = Color(red: 0.7, green: 0.2, blue: 0.9)
     static let lilaSecondary = Color(red: 0.5, green: 0.1, blue: 0.7)
     
+    // NEU: Coin-Farbe (aus GartenStatsBar)
+    static let coinBlue = Color(hex: "#00919E")
+    
     // NEU: Seltenheits-Farben
     // Bronze (dunkles, sattes Mahagoni/Kupfer)
     static let bronzePrimary = Color(red: 0.75, green: 0.30, blue: 0.05)
     static let bronzeSecondary = Color(red: 0.55, green: 0.15, blue: 0.00)
     
     // Silber (dunkler, kühler Stahl)
-    static let silberPrimary = Color(red: 0.60, green: 0.65, blue: 0.70)
-    static let silberSecondary = Color(red: 0.40, green: 0.45, blue: 0.55)
+    static let silberPrimary = Color(red: 0.50, green: 0.55, blue: 0.62)
+    static let silberSecondary = Color(red: 0.30, green: 0.35, blue: 0.45)
     
     // Gold (tiefes, dunkles Altgold)
     static let goldPrimary = Color(red: 0.80, green: 0.60, blue: 0.00)

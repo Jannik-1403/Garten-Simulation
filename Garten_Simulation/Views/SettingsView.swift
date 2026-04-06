@@ -10,6 +10,10 @@ struct SettingsView: View {
     
     @State private var showResetAlert = false
     
+    private var aktuelleTierStufe: GartenTierStufe {
+        GartenTierStufe.fuer(level: gardenStore.gartenStufe)
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -39,25 +43,25 @@ struct SettingsView: View {
                                         Image(systemName: "star.fill")
                                             .font(.system(size: 10))
                                             .foregroundStyle(.yellow)
-                                        Text(settings.localizedString(for: gardenStore.gartenStufe.labelKey))
+                                        Text(aktuelleTierStufe.bezeichnung)
                                             .font(.system(size: 12, weight: .bold, design: .rounded))
                                     }
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 4)
-                                    .background(Capsule().fill(gardenStore.gartenStufe.farbe.opacity(0.15)))
-                                    .foregroundStyle(gardenStore.gartenStufe.farbe)
+                                    .background(Capsule().fill(aktuelleTierStufe.farbe.opacity(0.15)))
+                                    .foregroundStyle(aktuelleTierStufe.farbe)
                                     
                                     HStack(spacing: 4) {
                                         Image(systemName: "bitcoinsign.circle.fill")
                                             .font(.system(size: 10))
-                                            .foregroundStyle(.orange)
+                                            .foregroundStyle(Color.coinBlue)
                                         Text("\(gardenStore.coins) Coins")
                                             .font(.system(size: 12, weight: .bold, design: .rounded))
                                     }
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 4)
-                                    .background(Capsule().fill(Color.orange.opacity(0.15)))
-                                    .foregroundStyle(.orange)
+                                    .background(Capsule().fill(Color.coinBlue.opacity(0.15)))
+                                    .foregroundStyle(Color.coinBlue)
                                 }
                             }
                         }
@@ -125,15 +129,17 @@ struct SettingsView: View {
                             
                             settingsSection(title: settings.localizedString(for: "settings.section.support")) {
                                 VStack(spacing: 0) {
-                                    NavigationLink(destination: SettingsDetailView(title: settings.localizedString(for: "settings.restore"), description: settings.localizedString(for: "settings.restore.desc"), actionTitle: settings.localizedString(for: "settings.restore.action"), icon: "arrow.clockwise.circle.fill", iconColor: .goldPrimary, action: { settings.restorePurchases() })) {
-                                        settingRow(title: settings.localizedString(for: "settings.restore"), icon: "arrow.clockwise.circle.fill", color: .goldPrimary)
+                                    Button {
+                                        settings.contactSupport()
+                                    } label: {
+                                        settingRow(title: settings.localizedString(for: "settings.contact"), icon: "message.fill", color: .blauPrimary)
                                     }
+                                    
                                     Divider().padding(.leading, 44)
-                                    NavigationLink(destination: SettingsDetailView(title: settings.localizedString(for: "settings.contact"), description: settings.localizedString(for: "settings.contact.desc"), actionTitle: settings.localizedString(for: "settings.contact.action"), icon: "questionmark.circle.fill", iconColor: .blauPrimary, action: { settings.contactSupport() })) {
-                                        settingRow(title: settings.localizedString(for: "settings.contact"), icon: "questionmark.circle.fill", color: .blauPrimary)
-                                    }
-                                    Divider().padding(.leading, 44)
-                                    NavigationLink(destination: SettingsDetailView(title: settings.localizedString(for: "settings.share"), description: settings.localizedString(for: "settings.share.desc"), actionTitle: settings.localizedString(for: "settings.share.action"), icon: "heart.fill", iconColor: .pink, action: { settings.shareApp() })) {
+                                    
+                                    Button {
+                                        settings.shareApp()
+                                    } label: {
                                         settingRow(title: settings.localizedString(for: "settings.share"), icon: "heart.fill", color: .pink)
                                     }
                                 }
@@ -144,6 +150,14 @@ struct SettingsView: View {
                             // MARK: Developer / Debug Section
                             settingsSection(title: "Developer / Debug 🛠️") {
                                 VStack(spacing: 0) {
+                                    Button {
+                                        gardenStore.debugLevelUp()
+                                    } label: {
+                                        settingRow(title: "Level Up (+1)", icon: "sparkles", color: .yellow)
+                                    }
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
                                     Button {
                                         gardenStore.taeglicherStreakCheck()
                                         FeedbackManager.shared.playSuccess()
@@ -157,7 +171,7 @@ struct SettingsView: View {
                                         gardenStore.coinsGutschreiben(amount: 1000, beschreibung: "Debug: Coins erhalten")
                                         FeedbackManager.shared.playCoins()
                                     } label: {
-                                        settingRow(title: "1000 Coins hinzufügen", icon: "plus.circle.fill", color: .belohnungGoldHighlight)
+                                        settingRow(title: "1000 Coins hinzufügen", icon: "plus.circle.fill", color: .coinBlue)
                                     }
                                     
                                     Divider().padding(.leading, 44)
@@ -168,7 +182,7 @@ struct SettingsView: View {
                                         }
                                         FeedbackManager.shared.playTap()
                                     } label: {
-                                        settingRow(title: "Alle Pflanzen durstig machen", icon: "drop.triangle.fill", color: .blue)
+                                        settingRow(title: "Alle Pflanzen durstig machen", icon: "Drop water", color: .blue, isAsset: true)
                                     }
 
                                     Divider().padding(.leading, 44)
@@ -179,6 +193,30 @@ struct SettingsView: View {
                                     } label: {
                                         settingRow(title: "Unkraut-Glücksrad testen", icon: "asterisk.circle.fill", color: .orange)
                                     }
+                                    
+                                    Button {
+                                        gardenStore.seeds += 10
+                                        FeedbackManager.shared.playSuccess()
+                                    } label: {
+                                        settingRow(title: "10 Samen hinzufügen", icon: "leaf.arrow.triangle.circlepath", color: .purple)
+                                    }
+                                    
+                                    Divider().padding(.leading, 44)
+
+                                    VStack(spacing: 8) {
+                                        Text("ZEITSPRUNG-SIMULATION")
+                                            .font(.system(size: 10, weight: .black))
+                                            .foregroundStyle(.secondary)
+                                            .padding(.top, 8)
+                                        
+                                        HStack(spacing: 12) {
+                                            debugTimeButton(title: "12h", hours: 12)
+                                            debugTimeButton(title: "24h", hours: 24)
+                                            debugTimeButton(title: "48h", hours: 48)
+                                        }
+                                        .padding(.bottom, 12)
+                                    }
+                                    .padding(.horizontal, 16)
                                 }
                             }
 
@@ -275,7 +313,7 @@ struct SettingsView: View {
         .padding(.vertical, 12)
     }
     
-    private func settingLink(title: String, description: String, icon: String, color: Color) -> some View {
+    private func settingLink(title: String, description: String, icon: String, color: Color, isAsset: Bool = false) -> some View {
         NavigationLink(destination: SettingsDetailView(
             title: title,
             description: description,
@@ -283,16 +321,26 @@ struct SettingsView: View {
             icon: icon,
             iconColor: color,
             action: {})) {
-            settingRow(title: title, icon: icon, color: color)
+            settingRow(title: title, icon: icon, color: color, isAsset: isAsset)
         }
     }
     
-    private func settingRow(title: String, icon: String, color: Color) -> some View {
+    private func settingRow(title: String, icon: String, color: Color, isAsset: Bool = false) -> some View {
         HStack(spacing: 12) {
-            Image(systemName: icon)
-                .foregroundStyle(.white)
-                .frame(width: 28, height: 28)
-                .background(Circle().fill(color))
+            Group {
+                if isAsset {
+                    Image(icon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18, height: 18)
+                } else {
+                    Image(systemName: icon)
+                        .foregroundStyle(.white)
+                        .frame(width: 28, height: 28)
+                }
+            }
+            .frame(width: 28, height: 28)
+            .background(Circle().fill(color))
             
             Text(title)
                 .font(.system(size: 16, weight: .medium, design: .rounded))
@@ -305,6 +353,20 @@ struct SettingsView: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
         .contentShape(Rectangle())
+    }
+    
+    private func debugTimeButton(title: String, hours: Double) -> some View {
+        Button {
+            gardenStore.simulateTimeJump(hours: hours)
+            FeedbackManager.shared.playSuccess()
+        } label: {
+            Text(title)
+                .font(.system(size: 14, weight: .bold, design: .rounded))
+                .foregroundStyle(.white)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .background(RoundedRectangle(cornerRadius: 12).fill(Color.indigo))
+        }
     }
 }
 

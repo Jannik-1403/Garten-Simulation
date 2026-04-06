@@ -19,9 +19,9 @@ enum PflanzenStufe: Int, CaseIterable, Codable {
         case .bronze1:  return Color(hex: "#E8C49A")  // hellstes Bronze
         case .bronze2:  return Color(hex: "#D4A76A")
         case .bronze3:  return Color(hex: "#B8843A")  // dunkelstes Bronze
-        case .silber1:  return Color(hex: "#D8E4EC")  // hellstes Silber
-        case .silber2:  return Color(hex: "#A8BFD0")
-        case .silber3:  return Color(hex: "#7A9BB5")  // dunkelstes Silber
+        case .silber1:  return Color(hex: "#BFCFDA")  // Abgedunkelt von #D8E4EC
+        case .silber2:  return Color(hex: "#8EA5B5")  // Abgedunkelt von #A8BFD0
+        case .silber3:  return Color(hex: "#668299")  // Abgedunkelt von #7A9BB5
         case .gold1:    return Color(hex: "#FFE566")  // hellstes Gold
         case .gold2:    return Color(hex: "#F5CC00")
         case .gold3:    return Color(hex: "#D4A800")  // dunkelstes Gold

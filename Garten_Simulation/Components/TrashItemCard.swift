@@ -63,19 +63,39 @@ struct DecorationItem: Identifiable, Codable {
     let sfSymbol: String
     let price: Int
     let category: DecorationCategory
+    let minGartenLevel: Int
+
+    init(
+        id: String,
+        nameKey: String,
+        descriptionKey: String,
+        sfSymbol: String,
+        price: Int,
+        category: DecorationCategory,
+        minGartenLevel: Int = 1
+    ) {
+        self.id = id
+        self.nameKey = nameKey
+        self.descriptionKey = descriptionKey
+        self.sfSymbol = sfSymbol
+        self.price = price
+        self.category = category
+        self.minGartenLevel = minGartenLevel
+    }
 }
 
 enum DecorationCategory: String, CaseIterable, Codable {
     case moebel
+    case wasser
+    case tiere
+    case pfade
+    case beleuchtung
     case deko
     case pflanzen
 
     var localizationKey: String {
-        switch self {
-        case .moebel:   return "deko.category.moebel"
-        case .deko:     return "deko.category.deko"
-        case .pflanzen: return "deko.category.pflanzen"
-        }
+        "decoration.category.\(self.rawValue)"
     }
 }
+
 

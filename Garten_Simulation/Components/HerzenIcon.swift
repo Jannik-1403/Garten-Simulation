@@ -4,14 +4,15 @@ struct HerzenIcon: View {
     let wert: Int
 
     var body: some View {
-        HStack(spacing: 4) {
-            Image("Hert")
+        HStack(alignment: .center, spacing: 6) {
+            Image("Heart")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 28, height: 28)
+                .frame(width: 26, height: 26)
+            
             Text("\(wert)")
                 .font(.appStats)
-                .foregroundStyle(.red)
+                .foregroundStyle(Color.rotPrimary)
         }
     }
 }

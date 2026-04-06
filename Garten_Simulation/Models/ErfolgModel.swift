@@ -9,6 +9,8 @@ struct Erfolg: Identifiable {
     let zielWert: Int            // z.B. 7 für "7 Tage Streak"
     let aktuellerWert: Int       // wird vom Store befüllt
     let kategorie: ErfolgKategorie
+    let imageName: String
+    var freigeschaltetAm: Date?
     
     var istFreigeschaltet: Bool { aktuellerWert >= zielWert }
     

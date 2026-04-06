@@ -4,6 +4,11 @@
 // Allgemein
 "app.name" = "Garten Simulation";
 "button.buy" = "Kaufen";
+
+// Tabs
+"tab.garten" = "Garten";
+"tab.shop" = "Shop";
+"tab.profil" = "Profil";
 "button.water" = "Gießen";
 "button.ok" = "OK";
 "button.cancel" = "Abbrechen";
@@ -103,6 +108,8 @@
 
 // Garden
 "garden.plant.done" = "ERLEDIGT";
+"garden.plant.status.dead" = "VERSTORBEN";
+"garden.plant.dead.alert.message" = "Diese Pflanze wurde leider zu lange nicht gegossen und ist eingegangen.";
 "garden.plant.delete.title" = "Pflanze entfernen?";
 
 
@@ -289,41 +296,26 @@
 "decoration.category.beleuchtung" = "Beleuchtung";
 
 // MARK: - Game Database - Power-Ups
-"item.frostschutz_schild.name" = "Frostschutz-Schild";
-"item.frostschutz_schild.description" = "24h Schutz vor dem Schnee-Event.";
+"item.gartenschutz.name" = "Gartenschutz";
+"item.gartenschutz.description" = "Ein schützendes Gartenhaus, das deine Pflanzen 24h vor Frost und Schnee bewahrt.";
 
 "item.wunder_wasser.name" = "Wunder-Wasser";
 "item.wunder_wasser.description" = "Rettet eine vertrocknete Pflanze sofort.";
 
-"item.sturmfeste_glocke.name" = "Sturmfeste Glocke";
-"item.sturmfeste_glocke.description" = "Eine Pflanze übersteht den nächsten Sturm ohne Level-Down.";
+"item.waechter_turm.name" = "Wächter-Turm";
+"item.waechter_turm.description" = "Ein Turm, der eine Pflanze vor dem nächsten Sturm schützt.";
 
 "item.duenger_blitz.name" = "Dünger-Blitz";
 "item.duenger_blitz.description" = "Verdoppelt XP für die nächsten 3 Erledigungen.";
 
-"item.unkraut_bot.name" = "Unkraut-Bot";
-"item.unkraut_bot.description" = "3 Tage automatische Unkraut-Entfernung.";
-
-"item.sonnenspiegel.name" = "Sonnenspiegel";
-"item.sonnenspiegel.description" = "Negiert den Abgas-Nebel für 48 Stunden.";
+"item.zauberstab.name" = "Zauberstab";
+"item.zauberstab.description" = "Ein magischer Stab, der 3 Tage lang automatisch das Unkraut wegzaubert.";
 
 "item.zeitkapsel.name" = "Zeitkapsel";
 "item.zeitkapsel.description" = "Friert eine Pflanze ein – kein Verfall für 3 Tage.";
 
-"item.regenmacher.name" = "Regenmacher";
-"item.regenmacher.description" = "Bewässert alle Pflanzen gleichzeitig gratis.";
-
-"item.goldene_giesskanne.name" = "Goldene Gießkanne";
-"item.goldene_giesskanne.description" = "+50% Wachstum für eine ganze Woche.";
-
-"item.schaedlingsschutz.name" = "Schädlingsschutz";
-"item.schaedlingsschutz.description" = "Blockiert alle Parasiten & Käfer-Effekte für 5 Tage.";
-
-"item.nebel_ventilator.name" = "Nebel-Ventilator";
-"item.nebel_ventilator.description" = "Entfernt Rauch-Smog & Abgas-Nebel sofort.";
-
-"item.kompost_boost.name" = "Kompost-Boost";
-"item.kompost_boost.description" = "Wandelt 1 Müll-Item in +20 XP um.";
+"item.goldener_schluessel.name" = "Goldener Schlüssel";
+"item.goldener_schluessel.description" = "Ein wertvoller Schlüssel, der das volle Wachstumspotenzial deines Gartens für eine Woche entriegelt.";
 
 "item.diamant_erde.name" = "Diamant-Erde";
 "item.diamant_erde.description" = "Permanentes +10% XP für eine Pflanze. Für immer.";
@@ -331,8 +323,8 @@
 "item.tier_freund.name" = "Tier-Freund";
 "item.tier_freund.description" = "Bestäubt 3 Pflanzen mit einem Mini-Level-Boost.";
 
-"item.regenbogen_event.name" = "Regenbogen-Event";
-"item.regenbogen_event.description" = "Alle Pflanzen wachsen 24h doppelt so schnell.";
+"item.gluecks_segen.name" = "Glücks-Segen";
+"item.gluecks_segen.description" = "Ein Segen, der 24h lang das Wachstum aller Pflanzen verdoppelt.";
 
 // Settings
 "settings.title" = "Einstellungen";
@@ -430,6 +422,9 @@
 "erfolge.titel"          = "Erfolge";
 "erfolge.freigeschaltet" = "Freigeschaltet";
 "erfolge.gesperrt"       = "Gesperrt";
+"erfolge.fortschritt"    = "Fortschritt";
+"erfolge.erreicht_am"    = "Erreicht am %@";
+"erfolge.beschreibung.titel" = "WIE DU ES ERREICHT HAST";
 "profile.achievements.empty" = "Noch keine Erfolge freigeschaltet";
 "profile.achievements.subtitle" = "Deine Trophäenvitrine";
 
@@ -439,12 +434,16 @@
 "dailyspin.button.spin" = "RAD DREHEN";
 "dailyspin.button.continue" = "Weiter";
 "dailyspin.weed.danger" = "Unkraut-Gefahr: %d%%";
-"dailyspin.result.safe.title" = "Alles gut!";
-"dailyspin.result.safe.subtitle" = "Dein Garten ist sicher.";
-"dailyspin.result.weed.title" = "Unkraut entdeckt!";
-"dailyspin.result.weed.subtitle" = "%@ braucht deine Aufmerksamkeit.";
-"dailyspin.result.coins.title" = "+200 Münzen!";
-"dailyspin.result.coins.subtitle" = "Super Start in den Tag!";
+
+"spin.result.nichts.titel" = "Alles klar!";
+"spin.result.nichts.untertitel" = "Dein Garten ist heute sicher.";
+
+"spin.result.muenzen.titel" = "Münzbonus!";
+"spin.result.muenzen.untertitel" = "+%d Münzen erhalten.";
+
+"spin.result.unkraut.titel" = "Oh nein! Unkraut entdeckt.";
+"spin.result.unkraut.untertitel" = "In deinem Garten wächst Unkraut. Entferne es schnell!";
+
 "dailyspin.powerup.title" = "Power-Up verfuegbar";
 "dailyspin.powerup.subtitle" = "Garantiert Gruen — kein Unkraut moeglich";
 "dailyspin.powerup.button" = "Nutzen";
@@ -462,3 +461,175 @@
 "stufe.diamant1" = "Diamant I";
 "stufe.diamant2" = "Diamant II";
 "stufe.diamant3" = "Diamant III";
+
+"stats.streak" = "Streak";
+"stats.coins"  = "Coins";
+"stats.leben"  = "Leben";
+
+// MARK: - Garten-Pass
+"pass_titel" = "Garten-Pass";
+"pass_level_label" = "Level %d";
+"pass_abholen" = "Abholen";
+"pass_naechstes_tier_hint" = "Nächste Stufe: %@";
+"pass_belohnung_coins" = "Pass-Belohnung";
+"pass_belohnung_paket" = "Meilenstein-Paket";
+
+"tier_bronze" = "Bronze";
+"tier_silber" = "Silber";
+"tier_gold" = "Gold";
+"tier_diamant" = "Diamant";
+
+"paket_bronze" = "Bronze-Paket";
+"paket_silber" = "Silber-Paket";
+"paket_gold" = "Gold-Paket";
+"paket_diamant_vorstufe" = "Prestige-Paket";
+"paket_meister" = "Meistergärtner-Paket";
+
+"profil_garten_level" = "Garten Level %d";
+
+// MARK: - Tier-Stufen (12 Stufen)
+"tier_stufe_bronze_1" = "Bronze I";
+"tier_stufe_bronze_2" = "Bronze II";
+"tier_stufe_bronze_3" = "Bronze III";
+"tier_stufe_silber_1" = "Silber I";
+"tier_stufe_silber_2" = "Silber II";
+"tier_stufe_silber_3" = "Silber III";
+"tier_stufe_gold_1" = "Gold I";
+"tier_stufe_gold_2" = "Gold II";
+"tier_stufe_gold_3" = "Gold III";
+"tier_stufe_diamant_1" = "Diamant I";
+"tier_stufe_diamant_2" = "Diamant II";
+"tier_stufe_diamant_3" = "Diamant III";
+
+"xp_bis_naechste" = "%d XP bis %@";
+"tier_maximum_erreicht" = "Maximale Stufe erreicht!";
+
+// MARK: - Garten Level System
+"level_up_label" = "LEVEL";
+"level_up_garten_titel" = "Garten aufgestiegen!";
+"level_up_freigeschaltet" = "Neu freigeschaltet";
+"level_up_weiter" = "Super!";
+"level_up_jetzt_drehen" = "Jetzt Glücksrad drehen";
+"level_up_next_milestone_hint" = "Nächste Belohnung bald verfügbar!";
+"level_up_pass_hint" = "Besuche den Garten-Pass für deine Belohnung!";
+
+"level_unlock_spin_titel" = "Glücksrad-Drehung";
+"level_unlock_spin_1_desc" = "+1 Drehung am Glücksrad";
+"level_unlock_spin_2_desc" = "+2 Drehungen am Glücksrad";
+"level_unlock_spin_bonus_desc" = "Bonus: +2 Glücksrad-Drehungen";
+"level_unlock_pflanze_titel" = "Neue Pflanze";
+"level_unlock_pflanze_exklusiv_desc" = "Exklusiv-Pflanze im Shop verfügbar";
+"level_unlock_kategorie_titel" = "Neue Kategorie";
+"level_unlock_kategorie_desc" = "Neue Pflanzenkategorie freigeschaltet";
+"level_unlock_kategorie_selten_desc" = "Seltene Pflanzen jetzt verfügbar";
+"level_unlock_legendaer_desc" = "Legendäre Pflanze als Geschenk erhalten";
+"level_unlock_deko_titel" = "Dekorationen";
+"level_unlock_deko_desc" = "Erste Dekorationen im Shop verfügbar";
+"level_unlock_powerup_titel" = "Power-Up";
+"level_unlock_powerup_desc" = "Neues Power-Up freigeschaltet";
+"level_unlock_powerup_slot_desc" = "Zusätzlicher Power-Up Slot";
+"level_unlock_coin_bonus_titel" = "Coin-Bonus";
+"level_unlock_coin_5_desc" = "+5 % Coins beim Gießen (dauerhaft)";
+"level_unlock_coin_10_desc" = "+10 % Coins beim Gießen (dauerhaft)";
+"level_unlock_coin_15_desc" = "+15 % Coins beim Gießen (dauerhaft)";
+"level_unlock_coin_20_desc" = "+20 % Coins beim Gießen (dauerhaft)";
+"level_unlock_prestige_titel" = "Prestige";
+"level_unlock_meister_titel" = "Meistergärtner";
+"level_unlock_meister_desc" = "Du hast alles erreicht. Alle Inhalte sind freigeschaltet.";
+
+"level_up_spin_verdient_titel" = "+%d Glücksrad-Drehung(en) verdient!";
+"level_up_spin_verdient_desc" = "Drehe das Rad für Münzen, Power-Ups und Pflanzen";
+
+"spin_verfuegbar" = "%d Drehung(en) verfügbar";
+"spin_button_mit_anzahl" = "Drehen (%d)";
+"spin_button_keine" = "Keine Drehungen – Level aufsteigen!";
+
+// MARK: - Ice Wheel
+"ice_wheel_title" = "Eis-Glücksrad";
+"ice_wheel_subtitle" = "Meilenstein-Belohnungen sammeln";
+"ice_wheel_button_spin" = "Drehen";
+"ice_wheel_button_no_spins" = "Keine Spins";
+"ice_wheel_reward_title" = "Gewonnen!";
+"ice_wheel_reward" = "🎰 Eis-Glücksrad Belohnung";
+
+// MARK: - Garten Pass Reward
+"reward_claim_title" = "Glückwunsch!";
+"reward_claim_subtitle" = "Deine Belohnung wurde freigeschaltet.";
+"reward_claimed_added_msg" = "Wurde deinem Garten hinzugefügt";
+"reward_button_super" = "Super!";
+"spin_button_later" = "Später";
+"ice_wheel_back_button" = "FERTIG";
+"reward_type_spin_singular" = "Drehung";
+"reward_type_spin_plural" = "Drehungen";
+"reward_type_powerup" = "Power-Up";
+"reward_type_plant" = "Pflanze";
+"reward_type_decoration" = "Dekoration";
+
+// MARK: - Pass Belohnungen (Detailliert)
+"plant.bonsai.name" = "Japanischer Bonsai";
+"plant.bonsai.symbolism" = "Kreativität & Geduld";
+"plant.magnolia.name" = "Magnolienbaum";
+"plant.magnolia.symbolism" = "Anmut & Achtsamkeit";
+"plant.lotusblume.name" = "Edle Lotusblume";
+"plant.lotusblume.symbolism" = "Reinheit & Erleuchtung";
+"plant.sakura.name" = "Kirschblüte (Sakura)";
+"plant.sakura.symbolism" = "Schönheit & Neuanfang";
+"plant.weltenbaum.name" = "Der Weltenbaum";
+"plant.weltenbaum.symbolism" = "Unendliches Wachstum";
+
+"item.duenger_basis.name" = "Basis-Dünger";
+"item.duenger_basis.description" = "Beschleunigt das Wachstum leicht.";
+"item.duenger_basis.usage" = "Wird auf eine Pflanze angewendet.";
+"item.giesscan_pro.name" = "Gießkanne Pro";
+"item.giesscan_pro.description" = "Hält deinen Garten länger feucht.";
+"item.giesscan_pro.usage" = "Automatischer Effekt.";
+"item.xp_boost.name" = "XP-Verstärker";
+"item.xp_boost.description" = "Verdoppelt XP für 12 Stunden.";
+"item.xp_boost.usage" = "Wird im Garten aktiviert.";
+"item.streak_schutz.name" = "Streak-Schutz Plus";
+"item.streak_schutz.description" = "Schützt deine Streaks 48h lang.";
+"item.streak_schutz.usage" = "Automatischer Schutz.";
+"item.duenger_x2.name" = "Super-Dünger x2";
+"item.duenger_x2.description" = "Verdoppelt das Wachstum.";
+"item.duenger_x2.usage" = "Wird auf eine Pflanze angewendet.";
+"item.extra_slot.name" = "Garten-Erweiterung";
+"item.extra_slot.description" = "Schaltet einen neuen Platz frei.";
+"item.extra_slot.usage" = "Permanent aktiv.";
+"item.coin_magnet.name" = "Münz-Magnet";
+"item.coin_magnet.description" = "Sammelt Münzen automatisch.";
+"item.coin_magnet.usage" = "Dauerhafter Effekt.";
+"item.duenger_x3.name" = "Meister-Dünger x3";
+"item.duenger_x3.description" = "Verdreifacht das Wachstum.";
+"item.duenger_x3.usage" = "Wird auf eine Pflanze angewendet.";
+
+"deco.gartenbank.name" = "Elegante Gartenbank";
+"deco.gartenbank.desc" = "Ein Ort zum Verweilen.";
+"deco.laterne.name" = "Japanische Laterne";
+"deco.laterne.desc" = "Spendet sanftes Licht.";
+"deco.brunnen.name" = "Prachtvoller Brunnen";
+"deco.brunnen.desc" = "Beruhigendes Wassergeplätscher.";
+"deco.steinweg.name" = "Antiker Steinweg";
+"deco.steinweg.desc" = "Ein Pfad aus Geschichte.";
+"deco.pagode.name" = "Heilige Pagode";
+"deco.pagode.desc" = "Zentrum der Ruhe.";
+"deco.tempel.name" = "Prunkvoller Tempel";
+"deco.tempel.desc" = "Ein Monument deines Erfolgs.";
+"deco.drachenskulptur.name" = "Goldene Drachenskulptur";
+"deco.drachenskulptur.desc" = "Stolz und Stärke.";
+
+"paket_bronze" = "Bronze-Meilenstein";
+"paket_silber" = "Silber-Meilenstein";
+"paket_gold" = "Gold-Meilenstein";
+"paket_diamant_vorstufe" = "Diamant-Vorschau";
+"paket_meister" = "Meister-Paket";
+"reward_type_paket" = "Meilenstein-Paket";
+
+"wasser.titel" = "Gießwasser";
+"wasser.entspricht" = "Das entspricht %d Gießvorgängen";
+"wasser.meine.pflanzen" = "Meine Pflanzen";
+"wasser.giessvorgang" = "Gießvorgänge";
+"wasser.zyklus.singular" = "1 Gießvorgang";
+"wasser.zyklus.plural" = "%d Gießvorgänge";
+
+"spin_button_gratis" = "Gratis drehen!";
+"spin_button_keine" = "Keine Drehungen!";

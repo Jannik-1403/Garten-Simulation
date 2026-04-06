@@ -9,12 +9,17 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     var symbolColor: String         // z.B. "green"
     var habitCategory: HabitCategory
     var symbolism: String
+    var habitName: String
+    var plantID: String // Link zur GameDatabase
     
     @Published var currentXP: Int
     @Published var streak: Int
     var letzteBewaesserung: Date?
     var gekauftAm: Date
     @Published var istBewässert: Bool  // heute schon gegossen?
+    @Published var missedCycles: Int   // Wie viele 24h-Fenster verpasst?
+    @Published var lastNotifiedCycle: Int // Welcher Zyklus wurde bereits "bestraft" (Herz-Abzug)?
+    @Published var totalMlGegossen: Double = 0
     
     // Notizen & Timer
     @Published var notizen: [String] = []
@@ -88,8 +93,47 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         return Date() > ablauf
     }
 
+    var isDead: Bool {
+        missedCycles >= 2
+    }
+
     var ringFortschritt: Double {
         seltenheit.fortschritt(aktuelleXP: currentXP)
+    }
+
+    var formattedVolume: String {
+        let liter = totalMlGegossen / 1000
+        if liter < 1 {
+            return String(format: "%.0f ml", totalMlGegossen)
+        } else {
+            return String(format: "%.1f Liter", liter)
+        }
+    }
+
+    var timerIconName: String {
+        let h = remainingHoursInCycle
+        if h > 16 { return "Timer full" }
+        if h > 8  { return "Timer half" }
+        return "Timer empty"
+    }
+
+    var hoursSinceWatering: Double {
+        guard let letzte = letzteBewaesserung else { return 0 }
+        return Date().timeIntervalSince(letzte) / 3600.0
+    }
+
+    var remainingHoursInCycle: Int {
+        let totalHours = hoursSinceWatering
+        let currentCycleHours = totalHours.truncatingRemainder(dividingBy: 24.0)
+        return max(0, Int(ceil(24.0 - currentCycleHours)))
+    }
+
+    var drynessSaturation: Double {
+        if isDead { return 0.0 }
+        // 0h: 1.0 -> 48h: 0.0
+        let s = 1.0 - (hoursSinceWatering / 48.0)
+        // Clamp between 0.2 and 1.0 so it's never fully black before death, or keep it 0.0 for dead.
+        return max(0.0, min(1.0, s))
     }
 
     // MARK: - Init
@@ -101,10 +145,14 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         symbolColor: String = "green",
         habitCategory: HabitCategory = .lifestyle,
         symbolism: String = "",
+        habitName: String = "",
         maxLevel: Int = 10,
         xpPerCompletion: Int = 10,
         waterNeedPerDay: Int = 1,
-        decayDays: Int = 3
+        decayDays: Int = 3,
+        missedCycles: Int = 0,
+        lastNotifiedCycle: Int = 0,
+        plantID: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -112,10 +160,21 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.symbolColor = symbolColor
         self.habitCategory = habitCategory
         self.symbolism = symbolism
+        self.habitName = habitName.isEmpty ? habitCategory.localizationKey : habitName
         self.maxLevel = maxLevel
         self.xpPerCompletion = xpPerCompletion
         self.waterNeedPerDay = waterNeedPerDay
         self.decayDays = decayDays
+        self.missedCycles = missedCycles
+        self.lastNotifiedCycle = lastNotifiedCycle
+        
+        // Fallback für plantID falls nicht übergeben
+        if let pid = plantID {
+            self.plantID = pid
+        } else {
+            // Heuristik: plant.NAME.name -> plant.NAME
+            self.plantID = name.replacingOccurrences(of: ".name", with: "")
+        }
         
         self.currentXP = 0
         self.streak = 0
@@ -127,10 +186,10 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     // MARK: - Codable
     
     enum CodingKeys: String, CodingKey {
-        case id, name, symbolName, symbolColor, habitCategory, symbolism
+        case id, name, symbolName, symbolColor, habitCategory, symbolism, habitName
         case currentXP, streak, letzteBewaesserung, gekauftAm, istBewässert
-        case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays
-        case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned
+        case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays, missedCycles, lastNotifiedCycle
+        case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned, totalMlGegossen, plantID
     }
 
     required init(from decoder: Decoder) throws {
@@ -142,6 +201,15 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         symbolColor = try container.decode(String.self, forKey: .symbolColor)
         habitCategory = try container.decode(HabitCategory.self, forKey: .habitCategory)
         symbolism = try container.decode(String.self, forKey: .symbolism)
+        let savedHabitName = try container.decodeIfPresent(String.self, forKey: .habitName) ?? ""
+        habitName = savedHabitName.isEmpty ? habitCategory.localizationKey : savedHabitName
+        
+        // Migration für plantID
+        if let pid = try container.decodeIfPresent(String.self, forKey: .plantID) {
+            plantID = pid
+        } else {
+            plantID = name.replacingOccurrences(of: ".name", with: "")
+        }
         
         currentXP = try container.decode(Int.self, forKey: .currentXP)
         streak = try container.decode(Int.self, forKey: .streak)
@@ -153,6 +221,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         xpPerCompletion = try container.decode(Int.self, forKey: .xpPerCompletion)
         waterNeedPerDay = try container.decode(Int.self, forKey: .waterNeedPerDay)
         decayDays = try container.decode(Int.self, forKey: .decayDays)
+        missedCycles = try container.decodeIfPresent(Int.self, forKey: .missedCycles) ?? 0
+        lastNotifiedCycle = try container.decodeIfPresent(Int.self, forKey: .lastNotifiedCycle) ?? 0
         
         if let existingNotes = try container.decodeIfPresent([String].self, forKey: .notizen) {
             notizen = existingNotes
@@ -164,6 +234,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         timerDatum = try container.decodeIfPresent(Date.self, forKey: .timerDatum)
         xpHistory = try container.decodeIfPresent([String: Int].self, forKey: .xpHistory) ?? [:]
         totalCoinsEarned = try container.decodeIfPresent(Int.self, forKey: .totalCoinsEarned) ?? 0
+        totalMlGegossen = try container.decodeIfPresent(Double.self, forKey: .totalMlGegossen) ?? 0
     }
 
     func encode(to encoder: Encoder) throws {
@@ -175,6 +246,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(symbolColor, forKey: .symbolColor)
         try container.encode(habitCategory, forKey: .habitCategory)
         try container.encode(symbolism, forKey: .symbolism)
+        try container.encode(habitName, forKey: .habitName)
         
         try container.encode(currentXP, forKey: .currentXP)
         try container.encode(streak, forKey: .streak)
@@ -186,11 +258,15 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(xpPerCompletion, forKey: .xpPerCompletion)
         try container.encode(waterNeedPerDay, forKey: .waterNeedPerDay)
         try container.encode(decayDays, forKey: .decayDays)
+        try container.encode(missedCycles, forKey: .missedCycles)
+        try container.encode(lastNotifiedCycle, forKey: .lastNotifiedCycle)
         
         try container.encode(notizen, forKey: .notizen)
         try container.encodeIfPresent(timerDatum, forKey: .timerDatum)
         try container.encode(xpHistory, forKey: .xpHistory)
         try container.encode(totalCoinsEarned, forKey: .totalCoinsEarned)
+        try container.encode(totalMlGegossen, forKey: .totalMlGegossen)
+        try container.encode(plantID, forKey: .plantID)
     }
 }
 

@@ -10,3 +10,9 @@ extension Int {
         }
     }
 }
+
+extension String {
+    init(key: String, tableName: String? = nil, bundle: Bundle = .main, value: String = "", comment: String = "") {
+        self = bundle.localizedString(forKey: key, value: value, table: tableName)
+    }
+}

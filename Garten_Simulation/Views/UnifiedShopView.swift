@@ -121,15 +121,8 @@ struct ShopItemCard: View {
                         .lineLimit(2)
                 }
 
-                HStack(spacing: 5) {
-                    Image("Coin")
-                        .resizable().scaledToFit()
-                        .frame(width: 20, height: 20)
-                    Text("\(price)")
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color.belohnungGoldHighlight)
-                }
-                .padding(.top, 4)
+                GemsIcon(wert: price)
+                    .padding(.top, 4)
             }
             .frame(maxWidth: .infinity, alignment: .center)
         }
@@ -168,7 +161,11 @@ struct UnifiedShopView: View {
         if !searchText.isEmpty {
             base = base.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
-        return base.filter { !shopStore.isPurchased($0.id) }
+        // Filter nach Level und Besitz
+        return base.filter { 
+            $0.minGartenLevel <= gardenStore.gartenStufe && 
+            !shopStore.isPurchased($0.id) 
+        }
     }
 
     var gefilterteDekorationen: [DecorationItem] {
@@ -188,7 +185,11 @@ struct UnifiedShopView: View {
         if !searchText.isEmpty {
             base = base.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
-        return base.filter { !shopStore.isPurchased($0.id) }
+        // Filter nach Level und Besitz
+        return base.filter { 
+            $0.minGartenLevel <= gardenStore.gartenStufe && 
+            !shopStore.isPurchased($0.id) 
+        }
     }
 
 
@@ -340,8 +341,9 @@ struct UnifiedShopView: View {
                                         ForEach(gefiltertePflanzen) { plant in
                                             let p = plant.basePrice
                                             let displayName = settings.showHabitInsteadOfName 
-                                                ? plant.habitCategory.localizationKey 
+                                                ? plant.habitName 
                                                 : plant.name
+                                            let isOwned = shopStore.isPurchased(plant.id)
                                             
                                             ShopItemCard(
                                                 icon: plant.symbolName,
@@ -350,11 +352,12 @@ struct UnifiedShopView: View {
                                                 name: displayName,
                                                 subtitle: plant.symbolism,
                                                 price: p,
+                                                badgeText: isOwned ? settings.localizedString(for: "shop.owned") : nil,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: plant.id,
                                                         title: displayName,
-                                                        subtitle: plant.habitCategory.localizationKey,
+                                                        subtitle: plant.habitName,
                                                         description: plant.symbolism,
                                                         price: p,
                                                         icon: plant.symbolName,
@@ -365,7 +368,8 @@ struct UnifiedShopView: View {
                                                         itemType: .plant,
                                                         habitCategory: plant.habitCategory,
                                                         symbolism: plant.symbolism,
-                                                        howToUse: nil
+                                                        howToUse: nil,
+                                                        habitName: plant.habitName
                                                     )
                                                 }
                                             )
@@ -424,17 +428,10 @@ struct UnifiedShopView: View {
 
     private var shopHeader: some View {
         HStack {
-            HStack(spacing: 5) {
-                Image("Coin")
-                    .resizable().scaledToFit()
-                    .frame(width: 20, height: 20)
-                Text("\(coins)")
-                    .font(.system(size: 15, weight: .bold))
-                    .foregroundStyle(Color.belohnungGoldHighlight)
-            }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 7)
-            .background(Capsule().fill(Color(UIColor.systemBackground)).shadow(radius: 2))
+            GemsIcon(wert: coins)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 7)
+                .background(Capsule().fill(Color(UIColor.systemBackground)).shadow(radius: 2))
 
             Spacer()
             Text(settings.localizedString(for: "shop.title")).font(.headline)

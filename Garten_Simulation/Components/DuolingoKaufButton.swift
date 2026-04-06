@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct DuolingoKaufButton: View {
+    @EnvironmentObject var settings: SettingsStore
     let color: Color
     let action: () -> Void
 
@@ -11,10 +12,10 @@ struct DuolingoKaufButton: View {
             }
         }) {
             HStack(spacing: 8) {
-                Image("Coin")
+                Image("coin")
                     .resizable().scaledToFit()
                     .frame(width: 20, height: 20)
-                Text("JETZT KAUFEN")
+                Text(settings.localizedString(for: "button.buy_now"))
                     .font(.system(.title3, design: .rounded, weight: .bold))
             }
             .foregroundStyle(.white)

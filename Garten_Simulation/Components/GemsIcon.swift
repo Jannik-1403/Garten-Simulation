@@ -78,15 +78,15 @@ struct GemsIcon: View {
     let wert: Int
 
     var body: some View {
-        HStack(spacing: 7) {
-            Image("Coin")
+        HStack(alignment: .center, spacing: 6) {
+            Image("coin")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 32, height: 32)
 
             Text("\(wert)")
                 .font(.appStats)
-                .foregroundStyle(Color.orangePrimary)
+                .foregroundStyle(Color.coinBlue)
         }
     }
 }

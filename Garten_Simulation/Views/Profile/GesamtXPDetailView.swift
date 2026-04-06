@@ -15,9 +15,11 @@ struct GesamtXPDetailView: View {
                         Circle()
                             .fill(Color(hex: "#409CFF").opacity(0.15))
                             .frame(width: 120, height: 120)
-                        Image(systemName: "star.bubble.fill")
-                            .font(.system(size: 60))
-                            .foregroundStyle(Color(hex: "#409CFF"))
+                        Image("XP")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80)
+                            .shadow(color: Color(hex: "#409CFF").opacity(0.3), radius: 15, x: 0, y: 8)
                     }
                     
                     VStack(spacing: 4) {

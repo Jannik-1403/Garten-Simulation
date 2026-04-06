@@ -4,6 +4,11 @@
 // General
 "app.name" = "Garden Simulation";
 "button.buy" = "Buy";
+
+// Tabs
+"tab.garten" = "Garden";
+"tab.shop" = "Shop";
+"tab.profil" = "Profile";
 "button.water" = "Water";
 "button.ok" = "OK";
 "button.cancel" = "Cancel";
@@ -101,6 +106,8 @@
 
 // Garden
 "garden.plant.done" = "DONE";
+"garden.plant.status.dead" = "DECEASED";
+"garden.plant.dead.alert.message" = "This plant unfortunately died due to a lack of water.";
 "garden.plant.delete.title" = "Remove plant?";
 
 
@@ -281,41 +288,26 @@
 "trash.schlaf_killer_koffein.desc" = "Plenty of space for all your tools.";
 
 // MARK: - Game Database - Power-Ups
-"item.frostschutz_schild.name" = "Frost Protection Shield";
-"item.frostschutz_schild.description" = "24h protection from snow events.";
+"item.gartenschutz.name" = "Garden Protection";
+"item.gartenschutz.description" = "A protective garden house that preserves your plants from frost and snow for 24h.";
 
 "item.wunder_wasser.name" = "Wonder Water";
 "item.wunder_wasser.description" = "Rescues a dried plant immediately.";
 
-"item.sturmfeste_glocke.name" = "Stormproof Bell";
-"item.sturmfeste_glocke.description" = "One plant survives the next storm without level-down.";
+"item.waechter_turm.name" = "Guardian Tower";
+"item.waechter_turm.description" = "A tower that protects a plant from the next storm.";
 
 "item.duenger_blitz.name" = "Fertilizer Blitz";
 "item.duenger_blitz.description" = "Doubles XP for the next 3 completions.";
 
-"item.unkraut_bot.name" = "Weed Bot";
-"item.unkraut_bot.description" = "3 days automatic weed removal.";
-
-"item.sonnenspiegel.name" = "Sun Mirror";
-"item.sonnenspiegel.description" = "Negates exhaust smog for 48 hours.";
+"item.zauberstab.name" = "Magic Wand";
+"item.zauberstab.description" = "A magic wand that automatically removes weeds for 3 days.";
 
 "item.zeitkapsel.name" = "Time Capsule";
 "item.zeitkapsel.description" = "Freezes a plant – no decay for 3 days.";
 
-"item.regenmacher.name" = "Rain Maker";
-"item.regenmacher.description" = "Waters all plants at once for free.";
-
-"item.goldene_giesskanne.name" = "Golden Watering Can";
-"item.goldene_giesskanne.description" = "+50% growth for a full week.";
-
-"item.schaedlingsschutz.name" = "Pest Protection";
-"item.schaedlingsschutz.description" = "Blocks all parasites & bug effects for 5 days.";
-
-"item.nebel_ventilator.name" = "Mist Fan";
-"item.nebel_ventilator.description" = "Removes smoke smog & exhaust fog immediately.";
-
-"item.kompost_boost.name" = "Compost Boost";
-"item.kompost_boost.description" = "Converts 1 trash item into +20 XP.";
+"item.goldener_schluessel.name" = "Golden Key";
+"item.goldener_schluessel.description" = "A valuable key that unlocks the full growth potential of your garden for one week.";
 
 "item.diamant_erde.name" = "Diamond Soil";
 "item.diamant_erde.description" = "Permanent +10% XP for one plant. Forever.";
@@ -323,8 +315,8 @@
 "item.tier_freund.name" = "Animal Friend";
 "item.tier_freund.description" = "Pollinates 3 plants with a mini level boost.";
 
-"item.regenbogen_event.name" = "Rainbow Event";
-"item.regenbogen_event.description" = "All plants grow twice as fast for 24h.";
+"item.gluecks_segen.name" = "Luck's Blessing";
+"item.gluecks_segen.description" = "A blessing that doubles the growth of all plants for 24h.";
 
 // Settings
 "settings.language" = "Language";
@@ -422,6 +414,9 @@
 "erfolge.titel"          = "Achievements";
 "erfolge.freigeschaltet" = "Unlocked";
 "erfolge.gesperrt"       = "Locked";
+"erfolge.fortschritt"    = "Progress";
+"erfolge.erreicht_am"    = "Achieved on %@";
+"erfolge.beschreibung.titel" = "HOW YOU ACHIEVED IT";
 "profile.achievements.empty" = "No achievements unlocked yet";
 "profile.achievements.subtitle" = "Your Trophy Cabinet";
 
@@ -431,12 +426,16 @@
 "dailyspin.button.spin" = "SPIN THE WHEEL";
 "dailyspin.button.continue" = "Continue";
 "dailyspin.weed.danger" = "Weed Risk: %d%%";
-"dailyspin.result.safe.title" = "All Clear!";
-"dailyspin.result.safe.subtitle" = "Your garden is safe.";
-"dailyspin.result.weed.title" = "Weed Spotted!";
-"dailyspin.result.weed.subtitle" = "%@ needs your attention.";
-"dailyspin.result.coins.title" = "+200 Coins!";
-"dailyspin.result.coins.subtitle" = "Great start to the day!";
+
+"spin.result.nichts.titel" = "All Clear!";
+"spin.result.nichts.untertitel" = "Your garden is safe today.";
+
+"spin.result.muenzen.titel" = "Coin Bonus!";
+"spin.result.muenzen.untertitel" = "+%d coins received.";
+
+"spin.result.unkraut.titel" = "Oh no! Weed detected.";
+"spin.result.unkraut.untertitel" = "A weed is growing in your garden. Remove it quickly!";
+
 "dailyspin.powerup.title" = "Power-Up available";
 "dailyspin.powerup.subtitle" = "Guaranteed Green — no weeds possible";
 "dailyspin.powerup.button" = "Use";
@@ -454,3 +453,175 @@
 "stufe.diamant1" = "Diamond I";
 "stufe.diamant2" = "Diamond II";
 "stufe.diamant3" = "Diamond III";
+
+"stats.streak" = "Streak";
+"stats.coins"  = "Coins";
+"stats.leben"  = "Lives";
+
+// MARK: - Garden Pass
+"pass_titel" = "Garden Pass";
+"pass_level_label" = "Level %d";
+"pass_abholen" = "Claim";
+"pass_naechstes_tier_hint" = "Next tier: %@";
+"pass_belohnung_coins" = "Pass reward";
+"pass_belohnung_paket" = "Milestone package";
+
+"tier_bronze" = "Bronze";
+"tier_silber" = "Silver";
+"tier_gold" = "Gold";
+"tier_diamant" = "Diamond";
+
+"paket_bronze" = "Bronze Package";
+"paket_silber" = "Silver Package";
+"paket_gold" = "Gold Package";
+"paket_diamant_vorstufe" = "Prestige Package";
+"paket_meister" = "Master Gardener Package";
+
+"profil_garten_level" = "Garden Level %d";
+
+// MARK: - Tier Stages (12 stages)
+"tier_stufe_bronze_1" = "Bronze I";
+"tier_stufe_bronze_2" = "Bronze II";
+"tier_stufe_bronze_3" = "Bronze III";
+"tier_stufe_silber_1" = "Silver I";
+"tier_stufe_silber_2" = "Silver II";
+"tier_stufe_silber_3" = "Silver III";
+"tier_stufe_gold_1" = "Gold I";
+"tier_stufe_gold_2" = "Gold II";
+"tier_stufe_gold_3" = "Gold III";
+"tier_stufe_diamant_1" = "Diamond I";
+"tier_stufe_diamant_2" = "Diamond II";
+"tier_stufe_diamant_3" = "Diamond III";
+
+"xp_bis_naechste" = "%d XP until %@";
+"tier_maximum_erreicht" = "Maximum tier reached!";
+
+// MARK: - Garden Level System
+"level_up_label" = "LEVEL";
+"level_up_garten_titel" = "Garden leveled up!";
+"level_up_freigeschaltet" = "Newly unlocked";
+"level_up_weiter" = "Awesome!";
+"level_up_jetzt_drehen" = "Spin the wheel now";
+"level_up_next_milestone_hint" = "Next reward coming soon!";
+"level_up_pass_hint" = "Check the Garden Pass to claim your rewards!";
+
+"level_unlock_spin_titel" = "Spin the Wheel";
+"level_unlock_spin_1_desc" = "+1 lucky wheel spin";
+"level_unlock_spin_2_desc" = "+2 lucky wheel spins";
+"level_unlock_spin_bonus_desc" = "Bonus: +2 wheel spins";
+"level_unlock_pflanze_titel" = "New Plant";
+"level_unlock_pflanze_exklusiv_desc" = "Exclusive plant now available in the shop";
+"level_unlock_kategorie_titel" = "New Category";
+"level_unlock_kategorie_desc" = "New plant category unlocked";
+"level_unlock_kategorie_selten_desc" = "Rare plants now available";
+"level_unlock_legendaer_desc" = "Legendary plant received as a gift";
+"level_unlock_deko_titel" = "Decorations";
+"level_unlock_deko_desc" = "First decorations available in the shop";
+"level_unlock_powerup_titel" = "Power-Up";
+"level_unlock_powerup_desc" = "New power-up unlocked";
+"level_unlock_powerup_slot_desc" = "Additional power-up slot";
+"level_unlock_coin_bonus_titel" = "Coin Bonus";
+"level_unlock_coin_5_desc" = "+5% coins when watering (permanent)";
+"level_unlock_coin_10_desc" = "+10% coins when watering (permanent)";
+"level_unlock_coin_15_desc" = "+15% coins when watering (permanent)";
+"level_unlock_coin_20_desc" = "+20% coins when watering (permanent)";
+"level_unlock_prestige_titel" = "Prestige";
+"level_unlock_meister_titel" = "Master Gardener";
+"level_unlock_meister_desc" = "You've reached the top. All content is unlocked.";
+
+"level_up_spin_verdient_titel" = "+%d spin(s) earned!";
+"level_up_spin_verdient_desc" = "Spin the wheel for coins, power-ups, and plants";
+
+"spin_verfuegbar" = "%d spin(s) available";
+"spin_button_mit_anzahl" = "Spin (%d)";
+"spin_button_no_spins" = "No spins – level up first!";
+
+// MARK: - Ice Wheel
+"ice_wheel_title" = "Ice Luck Wheel";
+"ice_wheel_subtitle" = "Collect milestone rewards";
+"ice_wheel_button_spin" = "Spin";
+"ice_wheel_button_no_spins" = "No spins";
+"ice_wheel_reward_title" = "You won!";
+"ice_wheel_reward" = "🎰 Ice Wheel Reward";
+
+// MARK: - Garten Pass Reward
+"reward_claim_title" = "Congratulations!";
+"reward_claim_subtitle" = "Your reward has been unlocked.";
+"reward_claimed_added_msg" = "Added to your garden";
+"reward_button_super" = "Awesome!";
+"spin_button_later" = "Later";
+"ice_wheel_back_button" = "DONE";
+"reward_type_spin_singular" = "Spin";
+"reward_type_spin_plural" = "Spins";
+"reward_type_powerup" = "Power-Up";
+"reward_type_plant" = "Plant";
+"reward_type_decoration" = "Decoration";
+
+// MARK: - Pass Rewards (Detailed)
+"plant.bonsai.name" = "Japanese Bonsai";
+"plant.bonsai.symbolism" = "Creativity & Patience";
+"plant.magnolia.name" = "Magnolia Tree";
+"plant.magnolia.symbolism" = "Grace & Mindfulness";
+"plant.lotusblume.name" = "Noble Lotus Flower";
+"plant.lotusblume.symbolism" = "Purity & Enlightenment";
+"plant.sakura.name" = "Cherry Blossom (Sakura)";
+"plant.sakura.symbolism" = "Beauty & New Beginnings";
+"plant.weltenbaum.name" = "The World Tree";
+"plant.weltenbaum.symbolism" = "Infinite Growth";
+
+"item.duenger_basis.name" = "Basic Fertilizer";
+"item.duenger_basis.description" = "Slightly speeds up growth.";
+"item.duenger_basis.usage" = "Applied to a plant.";
+"item.giesscan_pro.name" = "Watering Can Pro";
+"item.giesscan_pro.description" = "Keeps your garden moist longer.";
+"item.giesscan_pro.usage" = "Automatic effect.";
+"item.xp_boost.name" = "XP Booster";
+"item.xp_boost.description" = "Doubles XP for 12 hours.";
+"item.xp_boost.usage" = "Activate in the garden.";
+"item.streak_schutz.name" = "Streak Protection Plus";
+"item.streak_schutz.description" = "Protects your streaks for 48h.";
+"item.streak_schutz.usage" = "Automatic protection.";
+"item.duenger_x2.name" = "Super Fertilizer x2";
+"item.duenger_x2.description" = "Doubles the growth speed.";
+"item.duenger_x2.usage" = "Applied to a plant.";
+"item.extra_slot.name" = "Garden Expansion";
+"item.extra_slot.description" = "Unlocks a new plant spot.";
+"item.extra_slot.usage" = "Permanently active.";
+"item.coin_magnet.name" = "Coin Magnet";
+"item.coin_magnet.description" = "Automatically collects coins.";
+"item.coin_magnet.usage" = "Permanent effect.";
+"item.duenger_x3.name" = "Master Fertilizer x3";
+"item.duenger_x3.description" = "Triples the growth speed.";
+"item.duenger_x3.usage" = "Applied to a plant.";
+
+"deco.gartenbank.name" = "Elegant Garden Bench";
+"deco.gartenbank.desc" = "A place to rest.";
+"deco.laterne.name" = "Japanese Lantern";
+"deco.laterne.desc" = "Provides soft lighting.";
+"deco.brunnen.name" = "Magnificent Fountain";
+"deco.brunnen.desc" = "Soothing sound of water.";
+"deco.steinweg.name" = "Ancient Stone Path";
+"deco.steinweg.desc" = "A path made of history.";
+"deco.pagode.name" = "Sacred Pagoda";
+"deco.pagode.desc" = "Center of tranquility.";
+"deco.tempel.name" = "Grand Temple";
+"deco.tempel.desc" = "A monument to your success.";
+"deco.drachenskulptur.name" = "Golden Dragon Sculpture";
+"deco.drachenskulptur.desc" = "Pride and Strength.";
+
+"paket_bronze" = "Bronze Milestone";
+"paket_silber" = "Silver Milestone";
+"paket_gold" = "Gold Milestone";
+"paket_diamant_vorstufe" = "Diamond Preview";
+"paket_meister" = "Master Package";
+"reward_type_paket" = "Milestone Package";
+
+"wasser.titel" = "Watering Stats";
+"wasser.entspricht" = "That's %d watering cycles";
+"wasser.meine.pflanzen" = "My Plants";
+"wasser.giessvorgang" = "Watering cycles";
+"wasser.zyklus.singular" = "1 watering cycle";
+"wasser.zyklus.plural" = "%d watering cycles";
+
+"spin_button_gratis" = "Free Spin!";
+"spin_button_keine" = "No spins!";

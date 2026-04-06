@@ -2,7 +2,8 @@ import SwiftUI
 
 struct ErfolgeDetailView: View {
     @EnvironmentObject var achievementStore: AchievementStore
-    @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
+    @State private var ausgewaehlterErfolg: Erfolg? = nil
     
     // Grid: 3 Spalten
     let columns = Array(repeating: GridItem(.flexible(), spacing: 16), count: 3)
@@ -18,15 +19,33 @@ struct ErfolgeDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 
-                // Header-Stat
-                HStack {
-                    Label("\(freigeschaltet.count)/\(alleErfolge.count)",
-                          systemImage: "trophy.fill")
-                        .font(.headline)
-                        .foregroundStyle(Color.goldPrimary)
-                    Spacer()
+                // MARK: - Hero Header
+                VStack(spacing: 16) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.purple.opacity(0.15))
+                            .frame(width: 110, height: 110)
+                        Image("Erfolg")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 70, height: 70)
+                            .shadow(color: Color.purple.opacity(0.3), radius: 10, x: 0, y: 5)
+                    }
+                    
+                    Text("\(freigeschaltet.count)/\(alleErfolge.count)")
+                        .font(.system(size: 48, weight: .black, design: .rounded))
+                    
+                    Text(settings.localizedString(for: "profile.achievements"))
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .tracking(1.0)
                 }
-                .padding(.horizontal)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 32)
+                .background(Color(UIColor.systemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
+                .padding(.horizontal, 20)
                 
                 // Freigeschaltete Erfolge
                 if !freigeschaltet.isEmpty {
@@ -35,9 +54,12 @@ struct ErfolgeDetailView: View {
                             .font(.headline.weight(.bold))
                             .padding(.horizontal)
                         
-                        LazyVGrid(columns: columns, spacing: 20) {
+                        LazyVGrid(columns: columns, spacing: 32) {
                             ForEach(freigeschaltet) { erfolg in
-                                ErfolgGridItem(erfolg: erfolg, istFreigeschaltet: true)
+                                Button(action: { ausgewaehlterErfolg = erfolg }) {
+                                    ErfolgGridItem(erfolg: erfolg, istFreigeschaltet: true)
+                                }
+                                .buttonStyle(.plain)
                             }
                         }
                         .padding(.horizontal)
@@ -51,9 +73,12 @@ struct ErfolgeDetailView: View {
                             .font(.headline.weight(.bold))
                             .padding(.horizontal)
                         
-                        LazyVGrid(columns: columns, spacing: 20) {
+                        LazyVGrid(columns: columns, spacing: 32) {
                             ForEach(gesperrt) { erfolg in
-                                ErfolgGridItem(erfolg: erfolg, istFreigeschaltet: false)
+                                Button(action: { ausgewaehlterErfolg = erfolg }) {
+                                    ErfolgGridItem(erfolg: erfolg, istFreigeschaltet: false)
+                                }
+                                .buttonStyle(.plain)
                             }
                         }
                         .padding(.horizontal)
@@ -65,6 +90,11 @@ struct ErfolgeDetailView: View {
         .navigationTitle(LocalizedStringKey("erfolge.titel"))
         .navigationBarTitleDisplayMode(.inline)
         .background(Color.appHintergrund)
+        .sheet(item: $ausgewaehlterErfolg) { erfolg in
+            ErfolgDetailSheet(erfolg: erfolg, istFreigeschaltet: erfolg.istFreigeschaltet)
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+        }
     }
 }
 
@@ -83,12 +113,12 @@ struct ErfolgGridItem: View {
                 .opacity(isVisible ? 1.0 : 0.0)
             
             Text(LocalizedStringKey(erfolg.titelKey))
-                .font(.caption2.weight(.bold))  // Smaller font as requested in Step 6
+                .font(.system(size: 11, weight: .bold, design: .rounded))
                 .multilineTextAlignment(.center)
                 .foregroundStyle(istFreigeschaltet ? .primary : .secondary)
                 .lineLimit(2)
                 .fixedSize(horizontal: false, vertical: true)
-                .frame(maxWidth: 80)  // Ensure minimum width for better wrapping
+                .frame(maxWidth: 90)  // Slightly wider for the new shield
             
             // Fortschrittsbalken unter dem Badge
             if !istFreigeschaltet {

@@ -27,7 +27,7 @@ struct PowerUpPlantPickerSheet: View {
                         
                         VStack(alignment: .leading, spacing: 2) {
                             Text(settings.showHabitInsteadOfName 
-                                ? settings.localizedString(for: plant.habitCategory.localizationKey)
+                                ? settings.localizedString(for: plant.habitName)
                                 : settings.localizedString(for: plant.name))
                                 .font(.headline)
                             Text(plant.seltenheit.lokalisiertTitel) // Bronze/Silber/Gold/Diamant

@@ -6,18 +6,27 @@ import Combine
 class GardenStore: ObservableObject {
     @Published var pflanzen: [HabitModel] = []
     @Published var coins: Int = GameConstants.startCoins
-    @Published var gesamtStreak: Int = 0 {
-        didSet {
-            if gesamtStreak > bestStreak {
-                bestStreak = gesamtStreak
-                saveStats()
-            }
-        }
-    }
     @Published var gesamtXP: Int = 0
-    @Published var bestStreak: Int = 0
     @Published var gesamtGekaufteItemsCount: Int = 0
     @Published var transactions: [CoinTransaction] = []
+    @Published var herzen: Int = 5
+    @Published var selectedTab: Int = 0
+    @Published var gluecksradDrehungen: Int = 0 {
+        didSet { saveStats() }
+    }
+    @Published var seeds: Int = 0 {
+        didSet { saveStats() }
+    }
+    
+    // Level-Up System (50 Levels)
+    @Published var zeigeGartenLevelUpOverlay: Bool = false
+    @Published var neuerGartenLevel: Int = 1
+    @Published var neueFreischaltungen: [GartenLevelFreischaltung] = []
+    
+    // Garten-Pass
+    @Published var abgeholtePassLevel: Set<Int> = [] {
+        didSet { speichereAbgeholte() }
+    }
     
     // Stats for Achievements
     @Published var gesamtVerdient: Int = 0
@@ -45,28 +54,45 @@ class GardenStore: ObservableObject {
         }
     }
     
-    // Level-Up Animation State
-    @Published var showLevelUpAnimation: Bool = false
-    @Published var newlyReachedGartenStufe: PflanzenStufe? = nil
-
     // Daily Spin States
     @Published var showDailySpinOverlay: Bool = false
     @Published var lastSpinTimestamp: Date?
     @Published var isWeedActive: Bool = false
     @Published var dailyQuestsCompletedSinceWeed: Int = 0
 
+
     var totalItemsCount: Int {
         pflanzen.count + gekaufteItems.count + placedDecorations.count
     }
 
-    var gartenStufe: PflanzenStufe {
-        PflanzenStufe.allCases.reversed().first {
-            GameConstants.xpSchwelleGarten(fuer: $0) <= gesamtXP
-        } ?? .bronze1
+    var gekauftePowerUps: [ShopDetailPayload] {
+        gekaufteItems.filter { $0.itemType == .powerUp }
+    }
+
+    var gartenStufe: Int {
+        GartenLevel.level(fuerXP: gesamtXP)
+    }
+
+    var gesamtMlGegossen: Double {
+        pflanzen.reduce(0) { $0 + $1.totalMlGegossen }
+    }
+
+    var gesamtLiterFormatiert: String {
+        let liter = gesamtMlGegossen / 1000
+        if liter < 1 {
+            return String(format: "%.0f ml", gesamtMlGegossen)
+        } else {
+            return String(format: "%.1f Liter", liter)
+        }
+    }
+
+    var pflanzenNachMlSortiert: [HabitModel] {
+        pflanzen.sorted { $0.totalMlGegossen > $1.totalMlGegossen }
     }
     
     // Streak-Integration
     var onWatering: (() -> Void)?
+    var onItemClaimed: ((String) -> Void)?
 
     init() {
         loadStats()
@@ -75,22 +101,75 @@ class GardenStore: ObservableObject {
         loadInventory()
         loadActivePowerUps()
         loadDecorations()
+        ladeAbgeholte()
         updateTageAktiv()
+        pruefePflanzenStatus()
     }
 
+    func debugLevelUp() {
+        let vor = gartenStufe
+        let nextLevel = vor + 1
+        guard nextLevel <= 50 else { return }
+        
+        // Berechne XP die benötigt werden um das NÄCHSTE Level zu ERREICHEN
+        let xpFuerNaechstes = GameConstants.xpFuerLevel(nextLevel)
+        gesamtXP = xpFuerNaechstes
+        
+        let nach = gartenStufe
+        if nach > vor {
+            // Belohnungen (Spins)
+            let freigeschaltet = GartenLevel.freischaltungenFuer(level: nach)
+            for f in freigeschaltet {
+                if case .gluecksradDrehung(let anzahl) = f.typ {
+                    gluecksradDrehungen = min(gluecksradDrehungen + anzahl, GameConstants.maxGluecksradDrehungen)
+                }
+            }
+
+            neuerGartenLevel = nach
+            neueFreischaltungen = freigeschaltet
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.75)) {
+                zeigeGartenLevelUpOverlay = true
+            }
+        }
+        saveStats()
+    }
+    
+    func xpHinzufuegen(amount: Int) {
+        let vor = gartenStufe
+        gesamtXP += amount
+        let nach = gartenStufe
+        
+        if nach > vor {
+            // Level-Up Belohnungen verarbeiten (z.B. Spins)
+            let freigeschaltet = GartenLevel.freischaltungenFuer(level: nach)
+            for f in freigeschaltet {
+                if case .gluecksradDrehung(let anzahl) = f.typ {
+                    gluecksradDrehungen = min(gluecksradDrehungen + anzahl, GameConstants.maxGluecksradDrehungen)
+                }
+            }
+
+            neuerGartenLevel = nach
+            neueFreischaltungen = freigeschaltet
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.75)) {
+                zeigeGartenLevelUpOverlay = true
+            }
+        }
+        saveStats()
+    }
+    
     // MARK: Pflanze gießen
     func giessen(pflanze: HabitModel, powerUpStore: PowerUpStore) {
         guard !pflanze.istBewässert else { return }
 
-        // 1. Garten-Stufe VOR dem Gießen merken
-        let gartenStufeVorher = gartenStufe
-
         // 2. XP zur Pflanze addieren (Pflanzen-Progression bleibt unverändert)
-        var xpGewonnen = Int(Double(pflanze.xpPerCompletion) * xpMultiplikator(for: pflanze.id))
-        var coinsGewonnen = GameConstants.coinsProGiessen
+        let xpGewonnen = Int(Double(pflanze.xpPerCompletion) * xpMultiplikator(for: pflanze.id))
+        
+        // Coin Bonus basierend auf Garten-Level anwenden
+        let aktuellerLevel = GartenLevel.level(fuerXP: gesamtXP)
+        let multiplikator = GartenLevel.coinMultiplikator(fuerLevel: aktuellerLevel)
+        var coinsGewonnen = Int(Double(GameConstants.coinsProGiessen) * multiplikator)
 
         if isWeedActive {
-            xpGewonnen = max(1, xpGewonnen - 5)
             coinsGewonnen = max(1, coinsGewonnen - 5)
         }
 
@@ -105,23 +184,15 @@ class GardenStore: ObservableObject {
         pflanze.totalCoinsEarned += coinsGewonnen
 
         // 3. XP zum Garten-Gesamt addieren
-        gesamtXP += xpGewonnen
-
-        // 4. Garten-Stufe NACH dem Gießen prüfen
-        let gartenStufeDanach = gartenStufe
-
-        // 5. Nur triggern wenn GARTEN-Level gestiegen (nicht Pflanzen-Level)
-        if gartenStufeDanach.rawValue > gartenStufeVorher.rawValue {
-            newlyReachedGartenStufe = gartenStufeDanach
-            withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
-                showLevelUpAnimation = true
-            }
-        }
+        xpHinzufuegen(amount: xpGewonnen)
         
         
         pflanze.istBewässert = true
         pflanze.letzteBewaesserung = Date()
         pflanze.streak += 1
+        pflanze.missedCycles = 0 // Reset Gesundheit
+        pflanze.lastNotifiedCycle = 0 // Reset Herz-Abzug-Trigger
+        pflanze.totalMlGegossen += GameConstants.mlProGiessen
         
         savePlants()
 
@@ -137,8 +208,8 @@ class GardenStore: ObservableObject {
                 datum: Date(),
                 beschreibung: AppStrings.get("profile.coins.tip.watering", language: lang),
                 betrag: coinsGewonnen,
-                icon: "drop.fill",
-                farbeHex: "#2B75D8" // blauPrimary
+                icon: "Drop water",
+                farbeHex: "#00919E" // coinBlue
             )
             transactions.insert(transaction, at: 0)
             saveTransactions()
@@ -147,11 +218,10 @@ class GardenStore: ObservableObject {
             saveStats()
         }
 
-        // Gesamt-Streak: nur +1 wenn ALLE Pflanzen heute gegossen
+
+        // Notify StreakStore only if ALL plants are watered today
         if pflanzen.allSatisfy({ $0.istBewässert }) {
-            withAnimation {
-                gesamtStreak += 1
-            }
+            onWatering?()
         }
         
         // Cure Condition für Unkraut
@@ -166,11 +236,12 @@ class GardenStore: ObservableObject {
             saveStats() // Speichert den Status der Quests/Weed
         }
         
-        // Notify StreakStore that we did a "habit" action today
-        onWatering?()
 
         // Seltenheitsstufe prüfen
         pruefeSeltenheitUpgrade(pflanze: pflanze)
+
+        // Neue Benachrichtigungs-Logik
+        NotificationManager.shared.rescheduleAfterWatering(habit: pflanze, allHabits: pflanzen)
     }
 
     // MARK: Pflanze entfernen
@@ -189,12 +260,15 @@ class GardenStore: ObservableObject {
             symbolName: shopItem.icon,
             symbolColor: shopItem.symbolColor,
             habitCategory: shopItem.habitCategory ?? .lifestyle,
-            symbolism: shopItem.symbolism ?? ""
+            symbolism: shopItem.symbolism ?? "",
+            habitName: shopItem.habitName ?? "",
+            plantID: shopItem.id
         )
         withAnimation(.spring(response: 0.4)) {
             pflanzen.append(neue)
             logPurchase(shopItem: shopItem)
             savePlants()
+            NotificationManager.shared.scheduleAll(for: pflanzen)
         }
     }
 
@@ -242,7 +316,7 @@ class GardenStore: ObservableObject {
                 beschreibung: beschreibung,
                 betrag: amount,
                 icon: "dollarsign.circle.fill",
-                farbeHex: "#F5D66B" // belohnungGoldHighlight
+                farbeHex: "#00919E" // coinBlue
             )
             transactions.insert(transaction, at: 0)
             saveStats()
@@ -290,6 +364,13 @@ class GardenStore: ObservableObject {
         saveStats()
     }
 
+    func gluecksradDrehungVerbrauchen() -> Bool {
+        guard gluecksradDrehungen > 0 else { return false }
+        gluecksradDrehungen -= 1
+        saveStats()
+        return true
+    }
+
     // MARK: Streak-Check (täglich aufrufen, z.B. in .onReceive(timer))
     func taeglicherStreakCheck() {
         for pflanze in pflanzen {
@@ -302,15 +383,21 @@ class GardenStore: ObservableObject {
         for pflanze in pflanzen {
             if let letzte = pflanze.letzteBewaesserung,
                Calendar.current.startOfDay(for: letzte) < heute {
-                if !hatRegenmacher {
-                    pflanze.istBewässert = false
-                }
+                pflanze.istBewässert = false
             }
         }
         
-        objectWillChange.send() // UI-Update erzwingen (z.B. für Debug-Button)
+        objectWillChange.send() // UI-Update erzwingen
         savePlants()
         checkDailySpin()
+    }
+
+    var isDailySpinAvailable: Bool {
+        let heute = Calendar.current.startOfDay(for: Date())
+        if let lastSpin = lastSpinTimestamp {
+            return Calendar.current.startOfDay(for: lastSpin) < heute
+        }
+        return true
     }
 
     // MARK: Daily Spin Check
@@ -335,8 +422,8 @@ class GardenStore: ObservableObject {
     func onboardingGratisPflanzen() {
         guard pflanzen.isEmpty else { return }
         let gratis = [
-            HabitModel(id: "gratis-1", name: "plant.bambus.name",    symbolName: "leaf.fill",     symbolColor: "green", habitCategory: .fitness),
-            HabitModel(id: "gratis-2", name: "plant.aloe_vera.name", symbolName: "iphone.slash", symbolColor: "mint",  habitCategory: .lifestyle),
+            HabitModel(id: "gratis-1", name: "plant.bambus.name",    symbolName: "leaf.fill",     symbolColor: "green", habitCategory: .fitness,   habitName: "habit.krafttraining", plantID: "plant.bambus"),
+            HabitModel(id: "gratis-2", name: "plant.aloe_vera.name", symbolName: "iphone.slash", symbolColor: "mint",  habitCategory: .lifestyle, habitName: "habit.bildschirmzeit", plantID: "plant.aloe_vera"),
         ]
         pflanzen = gratis
     }
@@ -411,14 +498,117 @@ class GardenStore: ObservableObject {
         activePowerUps.contains { $0.isActive && $0.powerUpId == "powerup.zeitkapsel" }
     }
 
-    var hatRegenmacher: Bool {
-        activePowerUps.contains { $0.isActive && $0.powerUpId == "powerup.regenmacher" }
+    // MARK: - Garten-Pass
+    
+    func kannAbholen(level: Int) -> Bool {
+        let aktuellerLevel = GartenLevel.level(fuerXP: gesamtXP)
+        return level <= aktuellerLevel && !abgeholtePassLevel.contains(level)
+    }
+    
+    func belohnungAbholen(belohnung: GartenPassBelohnung) {
+        guard kannAbholen(level: belohnung.id) else { return }
+        
+        abgeholtePassLevel.insert(belohnung.id)
+        
+        switch belohnung.typ {
+        case .coins(let n):
+            coinsGutschreiben(amount: n, beschreibung: NSLocalizedString("pass_belohnung_coins", comment: ""))
+        case .gluecksradDrehung(let n):
+            gluecksradDrehungen = min(gluecksradDrehungen + n, GameConstants.maxGluecksradDrehungen)
+            saveStats()
+        case .powerUp(let id):
+            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == id }) {
+                let payload = ShopDetailPayload.from(powerUp: pu)
+                itemHinzufuegen(shopItem: payload)
+                onItemClaimed?(pu.id) // Sync mit Shop
+            }
+        case .pflanze(let id):
+            if let pl = GameDatabase.allPlants.first(where: { $0.id == id }) {
+                let payload = ShopDetailPayload.from(plant: pl)
+                pflanzHinzufuegen(shopItem: payload)
+                onItemClaimed?(pl.id) // Sync mit Shop
+            }
+        case .dekoration(let id):
+            if let dk = GameDatabase.allDecorations.first(where: { $0.id == id }) {
+                let payload = ShopDetailPayload.from(decoration: dk)
+                itemHinzufuegen(shopItem: payload)
+                onItemClaimed?(dk.id) // Sync mit Shop
+            }
+        case .paket(let titel, let paketCoins, let powerUpID):
+            coinsGutschreiben(amount: paketCoins, beschreibung: titel)
+            if let puID = powerUpID, let pu = GameDatabase.allPowerUps.first(where: { $0.id == puID }) {
+                let payload = ShopDetailPayload.from(powerUp: pu)
+                itemHinzufuegen(shopItem: payload)
+                onItemClaimed?(pu.id) // Sync mit Shop
+            }
+        case .seeds(let n):
+            seeds += n
+            saveStats()
+        }
+    }
+    
+    func einloesenGartenPassBelohnung(belohnung: GartenPassSpinBelohnung) {
+        switch belohnung {
+        case .coins(let amount):
+            coinsGutschreiben(amount: amount, beschreibung: NSLocalizedString("ice_wheel_reward", comment: ""))
+        case .xp(let amount):
+            xpHinzufuegen(amount: amount)
+        case .seeds(let amount):
+            seeds += amount
+        case .powerUp(let id):
+            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == id }) {
+                let payload = ShopDetailPayload.from(powerUp: pu)
+                itemHinzufuegen(shopItem: payload)
+            }
+        case .pflanze(let id):
+            if let pl = GameDatabase.allPlants.first(where: { $0.id == id }) {
+                let payload = ShopDetailPayload.from(plant: pl)
+                pflanzHinzufuegen(shopItem: payload)
+            }
+        case .deko(let id):
+            if let dk = GameDatabase.allDecorations.first(where: { $0.id == id }) {
+                let payload = ShopDetailPayload.from(decoration: dk)
+                itemHinzufuegen(shopItem: payload)
+            }
+        }
     }
 
-    /// Ist Schädlingsschutz aktiv?
-    var hatSchaedlingsschutz: Bool {
-        activePowerUps.contains { $0.isActive && $0.powerUpId == "powerup.schaedlingsschutz" }
+    func addCustomPlant(name: String, habit: String, icon: String, color: String) {
+        guard seeds >= 10 else { return }
+        seeds -= 10
+        saveStats()
+        
+        let newCustomID = "custom_\(UUID().uuidString)"
+        let customPlant = HabitModel(
+            id: newCustomID,
+            name: name,
+            symbolName: icon,
+            symbolColor: color,
+            habitCategory: .mindfulness,
+            symbolism: "Eine von dir erschaffene besondere Pflanze.",
+            habitName: habit,
+            maxLevel: 10,
+            xpPerCompletion: 10,
+            waterNeedPerDay: 1,
+            decayDays: 2
+        )
+        
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+            pflanzen.append(customPlant)
+            savePlants()
+            NotificationManager.shared.scheduleAll(for: pflanzen)
+        }
     }
+    
+    private func speichereAbgeholte() {
+        UserDefaults.standard.set(Array(abgeholtePassLevel), forKey: "abgeholtePassLevel")
+    }
+    
+    func ladeAbgeholte() {
+        let gespeichert = UserDefaults.standard.array(forKey: "abgeholtePassLevel") as? [Int] ?? []
+        abgeholtePassLevel = Set(gespeichert)
+    }
+
 
     // MARK: Notizen Management
     func notizHinzufuegen(pflanze: HabitModel, text: String) {
@@ -446,17 +636,17 @@ class GardenStore: ObservableObject {
     func timerSetzen(pflanze: HabitModel, datum: Date) {
         pflanze.timerDatum = datum
         savePlants()
-        
-        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
-        let name = AppStrings.get(pflanze.name, language: lang)
-        NotificationManager.shared.scheduleReminder(plantId: pflanze.id, plantName: name, date: datum)
+        // Wir planen alles neu, damit der Timer (falls wir ihn unterstützen wollen) berücksichtigt wird.
+        // Aktuell basiert das System auf lastWatered, aber wir halten uns an scheduleAll.
+        NotificationManager.shared.scheduleAll(for: pflanzen)
     }
 
     // MARK: Timer entfernen
     func timerEntfernen(pflanze: HabitModel) {
         pflanze.timerDatum = nil
         savePlants()
-        NotificationManager.shared.cancelReminder(plantId: pflanze.id)
+        NotificationManager.shared.cancelAll(for: pflanze)
+        NotificationManager.shared.scheduleAll(for: pflanzen)
     }
 
     private func saveActivePowerUps() {
@@ -488,8 +678,7 @@ class GardenStore: ObservableObject {
     private func saveStats() {
         UserDefaults.standard.set(coins, forKey: "stats_coins")
         UserDefaults.standard.set(gesamtXP, forKey: "stats_gesamt_xp")
-        UserDefaults.standard.set(gesamtStreak, forKey: "stats_gesamt_streak")
-        UserDefaults.standard.set(bestStreak, forKey: "stats_best_streak")
+        UserDefaults.standard.set(gesamtXP, forKey: "stats_gesamt_xp")
         UserDefaults.standard.set(gesamtGekaufteItemsCount, forKey: "stats_gesamt_gekaufte_items_count")
         UserDefaults.standard.set(gesamtGegossen, forKey: "stats_gesamt_gegossen")
         UserDefaults.standard.set(tageAktiv, forKey: "stats_tage_aktiv")
@@ -498,13 +687,14 @@ class GardenStore: ObservableObject {
         UserDefaults.standard.set(lastSpinTimestamp, forKey: "last_spin_timestamp")
         UserDefaults.standard.set(isWeedActive, forKey: "is_weed_active")
         UserDefaults.standard.set(dailyQuestsCompletedSinceWeed, forKey: "daily_quests_completed_since_weed")
+        UserDefaults.standard.set(herzen, forKey: "stats_herzen")
+        UserDefaults.standard.set(gluecksradDrehungen, forKey: "stats_gluecksrad_drehungen")
+        UserDefaults.standard.set(seeds, forKey: "stats_seeds")
     }
 
     private func loadStats() {
         coins = UserDefaults.standard.object(forKey: "stats_coins") != nil ? UserDefaults.standard.integer(forKey: "stats_coins") : GameConstants.startCoins
         gesamtXP = UserDefaults.standard.integer(forKey: "stats_gesamt_xp")
-        gesamtStreak = UserDefaults.standard.integer(forKey: "stats_gesamt_streak")
-        bestStreak = UserDefaults.standard.integer(forKey: "stats_best_streak")
         gesamtGekaufteItemsCount = UserDefaults.standard.integer(forKey: "stats_gesamt_gekaufte_items_count")
         gesamtGegossen = UserDefaults.standard.integer(forKey: "stats_gesamt_gegossen")
         tageAktiv = UserDefaults.standard.integer(forKey: "stats_tage_aktiv")
@@ -513,9 +703,12 @@ class GardenStore: ObservableObject {
         lastSpinTimestamp = UserDefaults.standard.object(forKey: "last_spin_timestamp") as? Date
         isWeedActive = UserDefaults.standard.bool(forKey: "is_weed_active")
         dailyQuestsCompletedSinceWeed = UserDefaults.standard.integer(forKey: "daily_quests_completed_since_weed")
+        herzen = UserDefaults.standard.object(forKey: "stats_herzen") != nil ? UserDefaults.standard.integer(forKey: "stats_herzen") : 5
+        gluecksradDrehungen = UserDefaults.standard.integer(forKey: "stats_gluecksrad_drehungen")
+        seeds = UserDefaults.standard.integer(forKey: "stats_seeds")
     }
 
-    private func savePlants() {
+    func savePlants() {
         if let encoded = try? JSONEncoder().encode(pflanzen) {
             UserDefaults.standard.set(encoded, forKey: "garden_plants")
         }
@@ -579,9 +772,6 @@ class GardenStore: ObservableObject {
         withAnimation {
             pflanzen.removeAll()
             coins = GameConstants.startCoins
-            gesamtStreak = 0
-            bestStreak = 0
-            gesamtGekaufteItemsCount = 0
             gesamtXP = 0
             transactions.removeAll()
             gesamtVerdient = 0
@@ -591,6 +781,9 @@ class GardenStore: ObservableObject {
             activePowerUps.removeAll()
             gekaufteItems.removeAll()
             placedDecorations.removeAll()
+            herzen = 5
+            gluecksradDrehungen = 0
+            abgeholtePassLevel.removeAll()
             
             lastSpinTimestamp = nil
             isWeedActive = false
@@ -603,7 +796,8 @@ class GardenStore: ObservableObject {
                 "stats_gesamt_ausgegeben", "coin_transactions", "garden_transactions",
                 "garden_inventory", "active_powerups_garden", "garden_decorations",
                 "last_active_date", "last_spin_timestamp", "is_weed_active",
-                "daily_quests_completed_since_weed"
+                "daily_quests_completed_since_weed", "abgeholtePassLevel",
+                "stats_gluecksrad_drehungen"
             ]
             keys.forEach { UserDefaults.standard.removeObject(forKey: $0) }
             
@@ -615,8 +809,63 @@ class GardenStore: ObservableObject {
             saveStats()
             saveTransactions()
             saveInventory()
+            saveInventory()
             saveActivePowerUps()
             saveDecorations()
         }
+    }
+
+    // MARK: - Health Check
+    func pruefePflanzenStatus() {
+        let now = Date()
+        var changed = false
+        
+        for pflanze in pflanzen {
+            guard let letzte = pflanze.letzteBewaesserung else { continue }
+            
+            let diffSekunden = now.timeIntervalSince(letzte)
+            let stunden = diffSekunden / 3600.0
+            
+            // 0-24h: 0 verpasst
+            // 24-48h: 1 verpasst (!)
+            // >48h: 2 verpasst (!!) -> Tot
+            let verpasst = Int(stunden / 24.0)
+            if pflanze.missedCycles != verpasst {
+                pflanze.missedCycles = verpasst
+                changed = true
+            }
+
+            // Herz-Abzug Logik: Nur wenn ein NEUER Zyklus erreicht wurde
+            if verpasst > pflanze.lastNotifiedCycle {
+                withAnimation(.spring) {
+                    herzen = max(0, herzen - 1)
+                }
+                pflanze.lastNotifiedCycle = verpasst
+                changed = true
+            }
+        }
+        
+        if changed {
+            savePlants()
+            saveStats()
+        }
+    }
+
+    func loeschePflanze(pflanze: HabitModel) {
+        withAnimation {
+            pflanzen.removeAll { $0.id == pflanze.id }
+            savePlants()
+        }
+    }
+
+    // MARK: - Debug Helpers
+    func simulateTimeJump(hours: Double) {
+        let seconds = hours * 3600
+        for pflanze in pflanzen {
+            if let letzte = pflanze.letzteBewaesserung {
+                pflanze.letzteBewaesserung = letzte.addingTimeInterval(-seconds)
+            }
+        }
+        pruefePflanzenStatus()
     }
 }

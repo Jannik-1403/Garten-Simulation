@@ -12,11 +12,11 @@ struct CoinsDetailView: View {
     var ausgegeben: Int { gardenStore.gesamtAusgegeben }
 
     // Wie-verdienen Tipps
-    let verdienstTipps: [(icon: String, farbe: Color, titel: String, betrag: String)] = [
-        ("checkmark.circle.fill", .green,      "profile.coins.tip.habit",  "+10 Coins"),
-        ("flame.fill",            .orange,     "profile.coins.tip.streak", "+50 Coins"),
-        ("star.fill",             .goldPrimary,"profile.coins.tip.levelup", "+100 Coins"),
-        ("drop.fill",             .blauPrimary,"profile.coins.tip.watering", "+5 Coins"),
+    let verdienstTipps: [(icon: String, farbe: Color, titel: String, betrag: String, isAsset: Bool)] = [
+        ("checkmark.circle.fill", .green,      "profile.coins.tip.habit",  "+10 Coins", false),
+        ("streak",                .orange,     "profile.coins.tip.streak", "+50 Coins", true),
+        ("XP",                    .orange,     "profile.coins.tip.levelup", "+100 Coins", true),
+        ("Drop water",             .blauPrimary,"profile.coins.tip.watering", "+5 Coins", true),
     ]
 
     var body: some View {
@@ -30,9 +30,9 @@ struct CoinsDetailView: View {
                     VStack(spacing: 16) {
                         ZStack {
                             Circle()
-                                .fill(Color.goldPrimary.opacity(0.15))
+                                .fill(Color.coinBlue.opacity(0.15))
                                 .frame(width: 90, height: 90)
-                            Image("Coin")
+                            Image("coin")
                                 .resizable().scaledToFit()
                                 .frame(width: 52, height: 52)
                         }
@@ -61,8 +61,8 @@ struct CoinsDetailView: View {
                         detailRow(
                             labelKey: "profile.coins.total",
                             value: "\(gardenStore.coins)",
-                            icon: "Coin",
-                            color: .goldPrimary,
+                            icon: "coin",
+                            color: .coinBlue,
                             isAsset: true
                         )
                         Divider().padding(.leading, 52)
@@ -109,7 +109,7 @@ struct CoinsDetailView: View {
                                 value: tipp.betrag,
                                 icon: tipp.icon,
                                 color: tipp.farbe,
-                                isAsset: false
+                                isAsset: tipp.isAsset
                             )
                             if index < verdienstTipps.count - 1 {
                                 Divider().padding(.leading, 52)
@@ -206,9 +206,16 @@ struct TransaktionRow: View {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .fill(transaktion.farbe.opacity(0.15))
                     .frame(width: 32, height: 32)
-                Image(systemName: transaktion.icon)
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundStyle(transaktion.farbe)
+                if UIImage(named: transaktion.icon) != nil {
+                    Image(transaktion.icon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18, height: 18)
+                } else {
+                    Image(systemName: transaktion.icon)
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundStyle(transaktion.farbe)
+                }
             }
 
             VStack(alignment: .leading, spacing: 2) {

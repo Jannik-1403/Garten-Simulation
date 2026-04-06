@@ -5,6 +5,7 @@ struct PflanzeDetailSheet: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var shopStore: ShopStore
+    @EnvironmentObject var powerUpStore: PowerUpStore
     @Environment(\.dismiss) private var dismiss
     var onLoeschen: (() -> Void)? = nil
 
@@ -52,64 +53,84 @@ struct PflanzeDetailSheet: View {
                     }
 
                     Text(settings.showHabitInsteadOfName 
-                         ? settings.localizedString(for: pflanze.habitCategory.localizationKey)
+                         ? settings.localizedString(for: pflanze.habitName)
                          : settings.localizedString(for: pflanze.name))
                         .font(.system(size: 34, weight: .bold, design: .rounded))
 
-                    // Drei-Spalten Stats Header (In einer schwebenden Karte)
+                    // Vier-Spalten Stats Header (In einer schwebenden Karte)
                     HStack(spacing: 0) {
-                        // Links: Streak
+                        // 1. Streak
                         VStack(spacing: 4) {
                             HStack(spacing: 4) {
-                                Image(systemName: "flame.fill")
-                                    .font(.system(size: 14))
-                                    .foregroundStyle(.orange)
+                                Image("streak")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 18, height: 18)
                                 Text("\(pflanze.streak)")
-                                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                                    .font(.system(size: 15, weight: .bold, design: .rounded))
                             }
                             Text(settings.localizedString(for: "plant.detail.streak").uppercased())
-                                .font(.system(size: 9, weight: .bold))
+                                .font(.system(size: 8, weight: .bold))
                                 .foregroundStyle(.secondary)
                         }
                         .frame(maxWidth: .infinity)
 
-                        Divider().frame(height: 30).padding(.horizontal, 8)
+                        Divider().frame(height: 24)
 
-                        // Mitte: Badge
+                        // 2. XP
+                        VStack(spacing: 4) {
+                            HStack(spacing: 4) {
+                                Image("XP")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 18, height: 18)
+                                Text("\(pflanze.currentXP)")
+                                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                            }
+                            Text(settings.localizedString(for: "plant.detail.xp").uppercased())
+                                .font(.system(size: 8, weight: .bold))
+                                .foregroundStyle(.secondary)
+                        }
+                        .frame(maxWidth: .infinity)
+
+                        Divider().frame(height: 24)
+
+                        // 3. Stufe (Badge)
                         VStack(spacing: 4) {
                             Image(systemName: pflanze.stufe.sfSymbol)
-                                .font(.system(size: 14, weight: .bold))
+                                .font(.system(size: 12, weight: .bold))
                             Text(settings.localizedString(for: pflanze.stufe.labelKey))
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .font(.system(size: 10, weight: .bold, design: .rounded))
                         }
                         .foregroundStyle(pflanze.stufe.farbe)
                         .frame(maxWidth: .infinity)
 
-                        Divider().frame(height: 30).padding(.horizontal, 8)
+                        Divider().frame(height: 24)
 
-                        // Rechts: XP
+                        // 4. Wasser (Drop)
                         VStack(spacing: 4) {
                             HStack(spacing: 4) {
-                                Image(systemName: "star.fill")
-                                    .font(.system(size: 14))
-                                    .foregroundStyle(.yellow)
-                                Text("\(pflanze.currentXP)")
-                                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                                Image("Drop water")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 18, height: 18)
+                                Text(pflanze.formattedVolume)
+                                    .font(.system(size: 15, weight: .bold, design: .rounded))
                             }
-                            Text(settings.localizedString(for: "plant.detail.xp").uppercased())
-                                .font(.system(size: 9, weight: .bold))
+                            Text(settings.localizedString(for: "plant.detail.watered").uppercased())
+                                .font(.system(size: 8, weight: .bold))
                                 .foregroundStyle(.secondary)
                         }
                         .frame(maxWidth: .infinity)
                     }
                     .padding(.vertical, 14)
-                    .padding(.horizontal, 20)
+                    .padding(.horizontal, 12)
                     .background(
                         RoundedRectangle(cornerRadius: 20, style: .continuous)
                             .fill(Color.white)
                             .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
                     )
-                    .padding(.horizontal, 40)
+                    .padding(.horizontal, 24)
                     .padding(.top, 4)
                 }
                 .padding(.top, 24)
@@ -146,6 +167,33 @@ struct PflanzeDetailSheet: View {
 
                 // MARK: - ACTIONS (Zone 3)
                 VStack(spacing: 12) {
+                    
+                    // Gießen Button (Primary Action)
+                    if !pflanze.istBewässert {
+                        Button {
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
+                        } label: {
+                            HStack(spacing: 10) {
+                                Image("Drop water")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
+                                Text(settings.localizedString(for: "button.water").uppercased())
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 30)
+                        }
+                        .buttonStyle(DuolingoButtonStyle(
+                            size: .large,
+                            fillWidth: true,
+                            backgroundColor: .blauPrimary,
+                            shadowColor: .blauPrimary.darker()
+                        ))
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 8)
+                    }
 
                     // Notizen Liste
                     ForEach(pflanze.notizen.indices, id: \.self) { index in
@@ -325,7 +373,7 @@ struct PflanzeDetailSheet: View {
             Button("\(settings.localizedString(for: "plant.detail.sell.action")) (+\(refund) Coins)", role: .destructive) {
                 UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                 let sellTitle = settings.showHabitInsteadOfName 
-                    ? settings.localizedString(for: pflanze.habitCategory.localizationKey)
+                    ? settings.localizedString(for: pflanze.habitName)
                     : settings.localizedString(for: pflanze.name)
                 shopStore.sell(id: pflanze.id, price: pflanze.basePrice, title: sellTitle)
                 onLoeschen?()
@@ -406,7 +454,7 @@ struct NotizSheetView: View {
                     Text(settings.localizedString(for: isEditing ? "plant.detail.note.edit" : "plant.detail.note.add"))
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         Text(settings.showHabitInsteadOfName 
-                             ? settings.localizedString(for: pflanze.habitCategory.localizationKey)
+                             ? settings.localizedString(for: pflanze.habitName)
                              : settings.localizedString(for: pflanze.name))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
@@ -489,7 +537,7 @@ struct TimerSheetView: View {
                     Text(settings.localizedString(for: "plant.detail.timer"))
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         Text(settings.showHabitInsteadOfName 
-                             ? settings.localizedString(for: pflanze.habitCategory.localizationKey)
+                             ? settings.localizedString(for: pflanze.habitName)
                              : settings.localizedString(for: pflanze.name))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
@@ -535,7 +583,8 @@ struct TimerSheetView: View {
 
             // Timer setzen Button
             Button {
-                NotificationManager.shared.requestPermission { _ in
+                Task {
+                    await NotificationManager.shared.requestPermission()
                     gardenStore.timerSetzen(pflanze: pflanze, datum: ausgewaehltesDatum)
                     dismiss()
                 }

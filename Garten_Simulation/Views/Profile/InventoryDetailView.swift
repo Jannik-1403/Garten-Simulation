@@ -3,6 +3,7 @@ import SwiftUI
 struct InventoryDetailView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
+    @State private var showCreationSheet = false
     
     var body: some View {
         ZStack {
@@ -13,62 +14,119 @@ struct InventoryDetailView: View {
                     
                     // MARK: - Hero Header
                     VStack(spacing: 16) {
-                        ZStack {
-                            Circle()
-                                .fill(Color.orange.opacity(0.15))
-                                .frame(width: 90, height: 90)
-                            Image(systemName: "archivebox.fill")
-                                .font(.system(size: 40))
-                                .foregroundStyle(.orange)
+                        Image("Inventar")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 140, height: 140)
+                            .shadow(color: Color.orange.opacity(0.2), radius: 15, x: 0, y: 8)
+                        
+                        VStack(spacing: 4) {
+                            Text("\(gardenStore.totalItemsCount)")
+                                .font(.system(size: 56, weight: .black, design: .rounded))
+                            
+                            Text(settings.localizedString(for: "profile.inventory").uppercased())
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .tracking(2.0)
                         }
-                        
-                        Text("\(gardenStore.totalItemsCount)")
-                            .font(.system(size: 48, weight: .black, design: .rounded))
-                        
-                        Text(settings.localizedString(for: "profile.inventory"))
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                            .tracking(1.0)
                     }
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 32)
-                    .background(Color(UIColor.systemBackground))
-                    .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                    .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
-                    .padding(.horizontal, 20)
+                    .padding(.vertical, 40)
                     
                     // MARK: - Breakdown Section
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text(settings.localizedString(for: "common.details"))
-                            .font(.system(size: 12, weight: .black, design: .rounded))
-                            .foregroundStyle(.secondary)
-                            .tracking(1.2)
-                            .padding(.horizontal, 8)
+                    VStack(spacing: 32) {
+                        Divider()
+                            .padding(.horizontal, 40)
                         
-                        VStack(spacing: 16) {
-                            InventoryBreakdownCard(
+                        LazyVGrid(columns: [
+                            GridItem(.flexible(), spacing: 20),
+                            GridItem(.flexible(), spacing: 20)
+                        ], spacing: 24) {
+                            Inventory3DStat(
                                 titleKey: "profile.inventory.plants",
                                 count: gardenStore.pflanzen.count,
                                 icon: "leaf.fill",
-                                color: .green
+                                farbe: Color(hex: "#2ECC71"),
+                                sekundaerFarbe: Color(hex: "#27AE60")
                             )
                             
-                            InventoryBreakdownCard(
+                            Inventory3DStat(
                                 titleKey: "profile.inventory.powerups",
-                                count: gardenStore.gekaufteItems.count,
-                                icon: "bolt.fill",
-                                color: .blue
+                                count: gardenStore.gekauftePowerUps.count,
+                                icon: "Powerup",
+                                farbe: Color(hex: "#FFD000"),
+                                sekundaerFarbe: Color(hex: "#D9A300")
                             )
                             
-                            InventoryBreakdownCard(
+                            Inventory3DStat(
                                 titleKey: "profile.inventory.decorations",
                                 count: gardenStore.placedDecorations.count,
                                 icon: "lamp.table.fill",
-                                color: .orange
+                                farbe: Color(hex: "#FF4B00"),
+                                sekundaerFarbe: Color(hex: "#C43D00")
+                            )
+                            
+                            Inventory3DStat(
+                                titleKey: "Samen",
+                                count: gardenStore.seeds,
+                                icon: "leaf.arrow.triangle.circlepath",
+                                farbe: Color(hex: "#9B59B6"),
+                                sekundaerFarbe: Color(hex: "#8E44AD")
                             )
                         }
+                        
+                        // MARK: - Seed Crafting Section
+                        VStack(spacing: 16) {
+                            HStack {
+                                Text("Samen-Sammlung")
+                                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                                Spacer()
+                                Text("\(gardenStore.seeds)/10")
+                                    .font(.system(size: 16, weight: .bold, design: .monospaced))
+                                    .foregroundStyle(.secondary)
+                            }
+                            .padding(.horizontal, 8)
+                            
+                            VStack(spacing: 20) {
+                                ZStack(alignment: .leading) {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(Color.gray.opacity(0.1))
+                                        .frame(height: 12)
+                                    
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(LinearGradient(colors: [Color(hex: "#9B59B6"), Color(hex: "#8E44AD")], startPoint: .leading, endPoint: .trailing))
+                                        .frame(width: CGFloat(min(Double(gardenStore.seeds) / 10.0, 1.0)) * (UIScreen.main.bounds.width - 80), height: 12)
+                                }
+                                
+                                Button(action: {
+                                    FeedbackManager.shared.playTap()
+                                    showCreationSheet = true
+                                }) {
+                                    HStack {
+                                        Image(systemName: "magicmouse.fill")
+                                        Text("Pflanze kreieren")
+                                    }
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                }
+                                .buttonStyle(DuolingoButtonStyle(
+                                    size: .medium,
+                                    fillWidth: true,
+                                    backgroundColor: gardenStore.seeds >= 10 ? Color(hex: "#9B59B6") : Color.gray.opacity(0.3),
+                                    shadowColor: gardenStore.seeds >= 10 ? Color(hex: "#8E44AD") : Color.gray.opacity(0.5),
+                                    foregroundColor: gardenStore.seeds >= 10 ? .white : .secondary
+                                ))
+                                .disabled(gardenStore.seeds < 10)
+                            }
+                            .padding(20)
+                            .background(
+                                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                    .fill(Color(UIColor.secondarySystemGroupedBackground))
+                                    .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
+                            )
+                        }
+                        .padding(.top, 16)
                     }
-                    .padding(.horizontal, 20)
+                    .padding(.horizontal, 24)
                     
                     Spacer(minLength: 40)
                 }
@@ -77,42 +135,41 @@ struct InventoryDetailView: View {
         }
         .navigationTitle(settings.localizedString(for: "profile.inventory"))
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showCreationSheet) {
+            CustomPlantCreationView()
+                .environmentObject(gardenStore)
+        }
     }
 }
 
-struct InventoryBreakdownCard: View {
+struct Inventory3DStat: View {
     let titleKey: String
     let count: Int
     let icon: String
-    let color: Color
+    let farbe: Color
+    let sekundaerFarbe: Color
     
     @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
-        HStack(spacing: 16) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 14, style: .continuous)
-                    .fill(color.opacity(0.15))
-                    .frame(width: 48, height: 48)
-                Image(systemName: icon)
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundStyle(color)
-            }
-            
-            Text(settings.localizedString(for: titleKey))
-                .font(.system(size: 18, weight: .bold, design: .rounded))
-            
-            Spacer()
+        VStack(spacing: 6) {
+            Item3DButton(
+                icon: icon,
+                farbe: farbe,
+                sekundaerFarbe: sekundaerFarbe,
+                groesse: 80
+            )
             
             Text("\(count)")
-                .font(.system(size: 24, weight: .black, design: .rounded))
-                .foregroundStyle(color)
+                .font(.system(size: 22, weight: .black, design: .rounded))
+                .foregroundStyle(.primary)
+            
+            Text(settings.localizedString(for: titleKey))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 16)
-        .background(Color(UIColor.systemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-        .shadow(color: .black.opacity(0.04), radius: 8, x: 0, y: 4)
+        .frame(maxWidth: .infinity)
     }
 }
 
