@@ -255,30 +255,6 @@ struct Streak3DButtonStyle: ButtonStyle {
     }
 }
 
-// MARK: - Liquid Glass UI Support
-struct LiquidGlassModifier: ViewModifier {
-    var opacity: Double = 0.08
-    var borderColor: Color = .primary.opacity(0.1)
-    
-    func body(content: Content) -> some View {
-        content
-            .background(.ultraThinMaterial)
-            .background(Color.white.opacity(opacity))
-            .overlay(
-                RoundedRectangle(cornerRadius: 12, style: .continuous) // Using 12 to match StreakButtonStyle
-                    .stroke(borderColor, lineWidth: 0.5)
-            )
-            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-            .shadow(color: .black.opacity(0.03), radius: 10, x: 0, y: 5)
-    }
-}
-
-extension View {
-    func liquidGlass(opacity: Double = 0.08, borderColor: Color = .primary.opacity(0.1)) -> some View {
-        self.modifier(LiquidGlassModifier(opacity: opacity, borderColor: borderColor))
-    }
-}
-
 extension Array {
     func chunked(into size: Int) -> [[Element]] {
         stride(from: 0, to: count, by: size).map {

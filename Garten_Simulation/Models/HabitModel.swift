@@ -7,7 +7,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     var name: String
     var symbolName: String          // SF Symbol Name z.B. "leaf.fill"
     var symbolColor: String         // z.B. "green"
-    var habitCategory: HabitCategory
+    var habitCategories: [HabitCategory]
     var symbolism: String
     var habitName: String
     var plantID: String // Link zur GameDatabase
@@ -20,6 +20,10 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var missedCycles: Int   // Wie viele 24h-Fenster verpasst?
     @Published var lastNotifiedCycle: Int // Welcher Zyklus wurde bereits "bestraft" (Herz-Abzug)?
     @Published var totalMlGegossen: Double = 0
+    
+    // Wiederbelebungs-System
+    @Published var wiederbelebtAm: Date? = nil
+    var strafTage: Int = 3
     
     // Notizen & Timer
     @Published var notizen: [String] = []
@@ -72,6 +76,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         return .bronze
     }
 
+
     var stufe: PflanzenStufe {
         PflanzenStufe.allCases.last { GameConstants.xpSchwelle(fuer: $0) <= self.currentXP } ?? .bronze1
     }
@@ -95,6 +100,14 @@ class HabitModel: Identifiable, ObservableObject, Codable {
 
     var isDead: Bool {
         missedCycles >= 2
+    }
+
+    var isPenaltyActive: Bool {
+        if let start = wiederbelebtAm {
+            let tage = Calendar.current.dateComponents([.day], from: start, to: Date()).day ?? 0
+            return tage < strafTage
+        }
+        return false
     }
 
     var ringFortschritt: Double {
@@ -143,11 +156,11 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         name: String,
         symbolName: String,
         symbolColor: String = "green",
-        habitCategory: HabitCategory = .lifestyle,
+        habitCategories: [HabitCategory] = [.lifestyle],
         symbolism: String = "",
         habitName: String = "",
         maxLevel: Int = 10,
-        xpPerCompletion: Int = 10,
+        xpPerCompletion: Int = 100,
         waterNeedPerDay: Int = 1,
         decayDays: Int = 3,
         missedCycles: Int = 0,
@@ -158,15 +171,17 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.name = name
         self.symbolName = symbolName
         self.symbolColor = symbolColor
-        self.habitCategory = habitCategory
+        self.habitCategories = habitCategories
         self.symbolism = symbolism
-        self.habitName = habitName.isEmpty ? habitCategory.localizationKey : habitName
+        self.habitName = habitName.isEmpty ? (habitCategories.first?.localizationKey ?? "category.lifestyle") : habitName
         self.maxLevel = maxLevel
         self.xpPerCompletion = xpPerCompletion
         self.waterNeedPerDay = waterNeedPerDay
         self.decayDays = decayDays
         self.missedCycles = missedCycles
         self.lastNotifiedCycle = lastNotifiedCycle
+        self.wiederbelebtAm = nil
+        self.strafTage = 3
         
         // Fallback für plantID falls nicht übergeben
         if let pid = plantID {
@@ -186,10 +201,11 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     // MARK: - Codable
     
     enum CodingKeys: String, CodingKey {
-        case id, name, symbolName, symbolColor, habitCategory, symbolism, habitName
+        case id, name, symbolName, symbolColor, habitCategories, habitCategory, symbolism, habitName
         case currentXP, streak, letzteBewaesserung, gekauftAm, istBewässert
         case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays, missedCycles, lastNotifiedCycle
         case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned, totalMlGegossen, plantID
+        case wiederbelebtAm, strafTage
     }
 
     required init(from decoder: Decoder) throws {
@@ -199,17 +215,33 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         name = try container.decode(String.self, forKey: .name)
         symbolName = try container.decode(String.self, forKey: .symbolName)
         symbolColor = try container.decode(String.self, forKey: .symbolColor)
-        habitCategory = try container.decode(HabitCategory.self, forKey: .habitCategory)
+        
+        // Migration für plantID (muss zuerst geladen werden für Kategorien-Sync)
+        let decodedPlantID: String
+        if let pid = try container.decodeIfPresent(String.self, forKey: .plantID) {
+            decodedPlantID = pid
+        } else {
+            decodedPlantID = name.replacingOccurrences(of: ".name", with: "")
+        }
+        self.plantID = decodedPlantID
+
+        // Migration für habitCategories
+        if let cats = try container.decodeIfPresent([HabitCategory].self, forKey: .habitCategories) {
+            habitCategories = cats
+        } else if let single = try container.decodeIfPresent(HabitCategory.self, forKey: .habitCategory) {
+            // Wenn möglich, echte Kategorien aus DB holen, sonst Fallback auf das gespeicherte
+            if let dbPlant = GameDatabase.allPlants.first(where: { $0.id == decodedPlantID }) {
+                habitCategories = dbPlant.habitCategories
+            } else {
+                habitCategories = [single]
+            }
+        } else {
+            habitCategories = [.lifestyle]
+        }
+        
         symbolism = try container.decode(String.self, forKey: .symbolism)
         let savedHabitName = try container.decodeIfPresent(String.self, forKey: .habitName) ?? ""
-        habitName = savedHabitName.isEmpty ? habitCategory.localizationKey : savedHabitName
-        
-        // Migration für plantID
-        if let pid = try container.decodeIfPresent(String.self, forKey: .plantID) {
-            plantID = pid
-        } else {
-            plantID = name.replacingOccurrences(of: ".name", with: "")
-        }
+        habitName = savedHabitName.isEmpty ? (habitCategories.first?.localizationKey ?? "category.lifestyle") : savedHabitName
         
         currentXP = try container.decode(Int.self, forKey: .currentXP)
         streak = try container.decode(Int.self, forKey: .streak)
@@ -235,6 +267,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         xpHistory = try container.decodeIfPresent([String: Int].self, forKey: .xpHistory) ?? [:]
         totalCoinsEarned = try container.decodeIfPresent(Int.self, forKey: .totalCoinsEarned) ?? 0
         totalMlGegossen = try container.decodeIfPresent(Double.self, forKey: .totalMlGegossen) ?? 0
+        wiederbelebtAm = try container.decodeIfPresent(Date.self, forKey: .wiederbelebtAm)
+        strafTage = try container.decodeIfPresent(Int.self, forKey: .strafTage) ?? 3
     }
 
     func encode(to encoder: Encoder) throws {
@@ -244,7 +278,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(name, forKey: .name)
         try container.encode(symbolName, forKey: .symbolName)
         try container.encode(symbolColor, forKey: .symbolColor)
-        try container.encode(habitCategory, forKey: .habitCategory)
+        try container.encode(habitCategories, forKey: .habitCategories)
         try container.encode(symbolism, forKey: .symbolism)
         try container.encode(habitName, forKey: .habitName)
         
@@ -267,6 +301,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(totalCoinsEarned, forKey: .totalCoinsEarned)
         try container.encode(totalMlGegossen, forKey: .totalMlGegossen)
         try container.encode(plantID, forKey: .plantID)
+        try container.encodeIfPresent(wiederbelebtAm, forKey: .wiederbelebtAm)
+        try container.encode(strafTage, forKey: .strafTage)
     }
 }
 

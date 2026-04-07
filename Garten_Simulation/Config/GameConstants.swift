@@ -4,40 +4,40 @@ enum GameConstants {
 
     // MARK: Belohnungen pro Gießvorgang
     static let coinsProGiessen: Int = 10
-    static let xpProGiessen: Int = 20
+    static let xpProGiessen: Int = 100
     static let mlProGiessen: Double = 300
-
+ 
     // MARK: XP-Schwellen für Pflanzen-Seltenheit
     // Bronze ist der Startzustand (0 XP)
-    static let xpFuerSilber: Int  = 50
-    static let xpFuerGold: Int    = 150
-    static let xpFuerDiamant: Int = 300
-
+    static let xpFuerSilber: Int  = 800
+    static let xpFuerGold: Int    = 2500
+    static let xpFuerDiamant: Int = 7500
+ 
     // MARK: Streak
     static let streakTimerStunden: Double = 24  // Timer-Fenster in Stunden
-
+ 
     // MARK: Onboarding
     static let startCoins: Int = 1000
     static let gratisPflanzenAnzahl: Int = 2
-
+ 
     // MARK: - Lokalisierung — Key-Präfix
     // Alle UI-Texte kommen aus Localizable.strings, nie hardcoden
     
     // MARK: - PflanzenStufe XP Schwellen
     static func xpSchwelle(fuer stufe: PflanzenStufe) -> Int {
         switch stufe {
-        case .bronze1: return 0
-        case .bronze2: return 20
-        case .bronze3: return 40
-        case .silber1: return 60
-        case .silber2: return 90
-        case .silber3: return 120
-        case .gold1:   return 160
-        case .gold2:   return 200
-        case .gold3:   return 250
-        case .diamant1: return 300
-        case .diamant2: return 375
-        case .diamant3: return 450
+        case .bronze1:  return 0
+        case .bronze2:  return 200
+        case .bronze3:  return 400
+        case .silber1:  return 800
+        case .silber2:  return 1200
+        case .silber3:  return 1600
+        case .gold1:    return 2500
+        case .gold2:    return 3500
+        case .gold3:    return 5000
+        case .diamant1: return 7500
+        case .diamant2: return 10000
+        case .diamant3: return 15000
         }
     }
 
@@ -80,6 +80,9 @@ enum GameConstants {
     
     /// Maximale gespeicherte Glücksrad-Drehungen
     static let maxGluecksradDrehungen: Int = 10
+    
+    /// Kosten für die Wiederbelebung einer toten Pflanze
+    static let wiederbelebungsKosten: Int = 50
     
     /// Coin-Bonus pro Stufe (kumulativ, in Prozent)
     static let coinBonusProLevel: [Int: Int] = [

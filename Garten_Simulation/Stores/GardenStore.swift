@@ -9,7 +9,9 @@ class GardenStore: ObservableObject {
     @Published var gesamtXP: Int = 0
     @Published var gesamtGekaufteItemsCount: Int = 0
     @Published var transactions: [CoinTransaction] = []
-    @Published var herzen: Int = 5
+    @Published var leben: Int = 5
+    @Published var gestorbenePflanzenLog: [String] = []
+    @Published var zeigeGameOverOverlay: Bool = false
     @Published var selectedTab: Int = 0
     @Published var gluecksradDrehungen: Int = 0 {
         didSet { saveStats() }
@@ -59,6 +61,9 @@ class GardenStore: ObservableObject {
     @Published var lastSpinTimestamp: Date?
     @Published var isWeedActive: Bool = false
     @Published var dailyQuestsCompletedSinceWeed: Int = 0
+    @Published var aktivesWetter: WetterEvent = .normal
+    
+    var titelStore: TitelStore? = nil
 
 
     var totalItemsCount: Int {
@@ -161,13 +166,12 @@ class GardenStore: ObservableObject {
     func giessen(pflanze: HabitModel, powerUpStore: PowerUpStore) {
         guard !pflanze.istBewässert else { return }
 
-        // 2. XP zur Pflanze addieren (Pflanzen-Progression bleibt unverändert)
-        let xpGewonnen = Int(Double(pflanze.xpPerCompletion) * xpMultiplikator(for: pflanze.id))
-        
-        // Coin Bonus basierend auf Garten-Level anwenden
-        let aktuellerLevel = GartenLevel.level(fuerXP: gesamtXP)
-        let multiplikator = GartenLevel.coinMultiplikator(fuerLevel: aktuellerLevel)
-        var coinsGewonnen = Int(Double(GameConstants.coinsProGiessen) * multiplikator)
+        // 2. XP & Coins berechnen (Multiplikative Logik)
+        let xpMult = xpMultiplikator(for: pflanze)
+        let coinMult = coinMultiplikator(for: pflanze)
+
+        let xpGewonnen = Int(Double(pflanze.xpPerCompletion) * xpMult)
+        var coinsGewonnen = Int(Double(GameConstants.coinsProGiessen) * coinMult)
 
         if isWeedActive {
             coinsGewonnen = max(1, coinsGewonnen - 5)
@@ -252,16 +256,41 @@ class GardenStore: ObservableObject {
         }
     }
 
+    // MARK: Pflanze wiederbeleben
+    func revive(pflanze: HabitModel) {
+        guard coins >= GameConstants.wiederbelebungsKosten else { return }
+        
+        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
+        coinsAbziehen(amount: GameConstants.wiederbelebungsKosten, beschreibung: AppStrings.get("transaction.revive", language: lang))
+        
+        objectWillChange.send()
+        withAnimation {
+            pflanze.wiederbelebtAm = Date()
+            pflanze.letzteBewaesserung = Date() // Reset the watering timer
+            pflanze.missedCycles = 0
+            pflanze.lastNotifiedCycle = 0
+            savePlants()
+        }
+    }
+
     // MARK: Pflanze hinzufügen
     func pflanzHinzufuegen(shopItem: ShopDetailPayload) {
+        // Sicherstellen, dass wir den echten Pflanzennamen aus der DB nehmen (nicht den Payload-Titel, der evtl. die Gewohnheit ist)
+        let dbPlant = GameDatabase.allPlants.first(where: { $0.id == shopItem.id })
+        let dbName = dbPlant?.name ?? shopItem.title
+        
         let neue = HabitModel(
-            id: shopItem.id,
-            name: shopItem.title,
+            id: UUID().uuidString,
+            name: dbName,
             symbolName: shopItem.icon,
-            symbolColor: shopItem.symbolColor,
-            habitCategory: shopItem.habitCategory ?? .lifestyle,
-            symbolism: shopItem.symbolism ?? "",
+            symbolColor: shopItem.colorHex,
+            habitCategories: shopItem.habitCategories ?? [.lifestyle],
+            symbolism: shopItem.description,
             habitName: shopItem.habitName ?? "",
+            maxLevel: dbPlant?.maxLevel ?? 10,
+            xpPerCompletion: dbPlant?.xpPerCompletion ?? 100,
+            waterNeedPerDay: dbPlant?.waterNeedPerDay ?? 1,
+            decayDays: dbPlant?.decayDays ?? 2,
             plantID: shopItem.id
         )
         withAnimation(.spring(response: 0.4)) {
@@ -272,7 +301,34 @@ class GardenStore: ObservableObject {
         }
     }
 
-    // MARK: Item aus Shop hinzufügen (Wunder-Box etc.)
+    // MARK: - Leben System
+    func pflanzeGestorben(_ habit: HabitModel) {
+        withAnimation(.spring) {
+            leben = max(0, leben - 1)
+            gestorbenePflanzenLog.append(habit.name)
+        }
+        
+        if leben <= 0 {
+            gartenGameOver()
+        }
+    }
+
+    func gartenGameOver() {
+        // Nur Pflanzen löschen (Coins/Items bleiben erhalten)
+        withAnimation(.easeInOut(duration: 1.0)) {
+            pflanzen.removeAll()
+            savePlants()
+            
+            // Leben zurücksetzen
+            leben = 5
+            saveStats()
+            
+            // Overlay zeigen
+            zeigeGameOverOverlay = true
+        }
+    }
+
+    // MARK: - Item aus Shop hinzufügen (Wunder-Box etc.)
     func itemHinzufuegen(shopItem: ShopDetailPayload) {
         withAnimation(.spring(response: 0.4)) {
             if shopItem.itemType == .decoration {
@@ -415,17 +471,19 @@ class GardenStore: ObservableObject {
 
     // MARK: Seltenheit-Upgrade
     private func pruefeSeltenheitUpgrade(pflanze: HabitModel) {
-        // Seltenheit ist computed
+        if pflanze.seltenheit == .diamant {
+            titelStore?.pruefUndSchalteFreiSofern(plantID: pflanze.plantID)
+        }
     }
 
     // MARK: Onboarding — 2 Gratis-Pflanzen
     func onboardingGratisPflanzen() {
         guard pflanzen.isEmpty else { return }
-        let gratis = [
-            HabitModel(id: "gratis-1", name: "plant.bambus.name",    symbolName: "leaf.fill",     symbolColor: "green", habitCategory: .fitness,   habitName: "habit.krafttraining", plantID: "plant.bambus"),
-            HabitModel(id: "gratis-2", name: "plant.aloe_vera.name", symbolName: "iphone.slash", symbolColor: "mint",  habitCategory: .lifestyle, habitName: "habit.bildschirmzeit", plantID: "plant.aloe_vera"),
+        let onboardingPflanzen = [
+            HabitModel(id: "gratis-1", name: "plant.bambus.name",    symbolName: "leaf.fill",     symbolColor: "green", habitCategories: [.fitness],   habitName: "habit.krafttraining", plantID: "plant.bambus"),
+            HabitModel(id: "gratis-2", name: "plant.aloe_vera.name", symbolName: "iphone.slash", symbolColor: "mint",  habitCategories: [.lifestyle], habitName: "habit.bildschirmzeit", plantID: "plant.aloe_vera")
         ]
-        pflanzen = gratis
+        pflanzen = onboardingPflanzen
     }
 
     // MARK: Power-Up Management
@@ -474,24 +532,99 @@ class GardenStore: ObservableObject {
             }
     }
     /// Berechnet den XP-Multiplikator für eine bestimmte Pflanze
-    func xpMultiplikator(for plantId: String) -> Double {
+    func xpMultiplikator(for pflanze: HabitModel) -> Double {
         var mult = 1.0
         
-        // 1. Globale Power-Ups
+        // 1. Wetter
+        mult *= aktivesWetter.gemMultiplikator
+        
+        // 2. Penalty (Revive)
+        if let start = pflanze.wiederbelebtAm {
+            let tage = Calendar.current.dateComponents([.day], from: start, to: Date()).day ?? 0
+            if tage < pflanze.strafTage {
+                mult *= 0.5
+            }
+        }
+
+        // 3. Globale Power-Ups
         for aktiv in activePowerUps where aktiv.isActive && aktiv.targetPlantId == nil {
             if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }) {
                 mult *= base.effectMultiplier
             }
         }
         
-        // 2. Pflanzenspezifische Power-Ups
-        for aktiv in activePowerUps where aktiv.isActive && aktiv.targetPlantId == plantId {
+        // 4. Pflanzenspezifische Power-Ups
+        for aktiv in activePowerUps where aktiv.isActive && aktiv.targetPlantId == pflanze.id {
             if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }) {
                 mult *= base.effectMultiplier
             }
         }
         
         return mult
+    }
+
+    func coinMultiplikator(for pflanze: HabitModel) -> Double {
+        var mult = GartenLevel.coinMultiplikator(fuerLevel: gartenStufe)
+        
+        // 1. Wetter
+        mult *= aktivesWetter.gemMultiplikator
+        
+        // 2. Penalty (Revive)
+        if let start = pflanze.wiederbelebtAm {
+            let tage = Calendar.current.dateComponents([.day], from: start, to: Date()).day ?? 0
+            if tage < pflanze.strafTage {
+                mult *= 0.5
+            }
+        }
+        
+        // Power-Ups (Coins werden meistens nicht durch Power-Ups beeinflusst, außer explizit)
+        // Aber falls wir welche haben:
+        for aktiv in activePowerUps where aktiv.isActive && (aktiv.targetPlantId == nil || aktiv.targetPlantId == pflanze.id) {
+            if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }), base.id.contains("coin") {
+                mult *= base.effectMultiplier
+            }
+        }
+        return mult
+    }
+
+
+
+
+
+    // MARK: - Wetter-Logik
+
+    func ladeTagesWetter() {
+        let kalender = Calendar.current
+        let tagDesJahres = kalender.ordinality(of: .day, in: .year, for: Date()) ?? 0
+        
+        // Deterministische Wetter-Berechnung pro Tag (0-4)
+        let index = tagDesJahres % WetterEvent.allCases.count
+        self.aktivesWetter = WetterEvent.allCases[index]
+        print("DEBUG: Wetter heute (\(tagDesJahres)): \(aktivesWetter.titel)")
+    }
+    
+    func cycleWetter() {
+        let all = WetterEvent.allCases
+        guard let currentIdx = all.firstIndex(of: aktivesWetter) else { return }
+        let nextIdx = (currentIdx + 1) % all.count
+        withAnimation(.easeInOut(duration: 0.8)) {
+            aktivesWetter = all[nextIdx]
+        }
+        UISelectionFeedbackGenerator().selectionChanged()
+    }
+    
+    func starteTageswechselTimer() {
+        Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            let jetzt = Date()
+            let stunde = Calendar.current.component(.hour, from: jetzt)
+            let minute = Calendar.current.component(.minute, from: jetzt)
+            
+            // Um Mitternacht Wetter aktualisieren
+            if stunde == 0 && minute == 0 {
+                self.ladeTagesWetter()
+            }
+        }
     }
 
     var hatZeitkapsel: Bool {
@@ -584,11 +717,11 @@ class GardenStore: ObservableObject {
             name: name,
             symbolName: icon,
             symbolColor: color,
-            habitCategory: .mindfulness,
+            habitCategories: [.mental],
             symbolism: "Eine von dir erschaffene besondere Pflanze.",
             habitName: habit,
             maxLevel: 10,
-            xpPerCompletion: 10,
+            xpPerCompletion: 100,
             waterNeedPerDay: 1,
             decayDays: 2
         )
@@ -678,7 +811,8 @@ class GardenStore: ObservableObject {
     private func saveStats() {
         UserDefaults.standard.set(coins, forKey: "stats_coins")
         UserDefaults.standard.set(gesamtXP, forKey: "stats_gesamt_xp")
-        UserDefaults.standard.set(gesamtXP, forKey: "stats_gesamt_xp")
+        UserDefaults.standard.set(leben, forKey: "stats_leben")
+        UserDefaults.standard.set(gluecksradDrehungen, forKey: "stats_gluecksrad_drehungen")
         UserDefaults.standard.set(gesamtGekaufteItemsCount, forKey: "stats_gesamt_gekaufte_items_count")
         UserDefaults.standard.set(gesamtGegossen, forKey: "stats_gesamt_gegossen")
         UserDefaults.standard.set(tageAktiv, forKey: "stats_tage_aktiv")
@@ -687,14 +821,14 @@ class GardenStore: ObservableObject {
         UserDefaults.standard.set(lastSpinTimestamp, forKey: "last_spin_timestamp")
         UserDefaults.standard.set(isWeedActive, forKey: "is_weed_active")
         UserDefaults.standard.set(dailyQuestsCompletedSinceWeed, forKey: "daily_quests_completed_since_weed")
-        UserDefaults.standard.set(herzen, forKey: "stats_herzen")
-        UserDefaults.standard.set(gluecksradDrehungen, forKey: "stats_gluecksrad_drehungen")
         UserDefaults.standard.set(seeds, forKey: "stats_seeds")
     }
 
     private func loadStats() {
         coins = UserDefaults.standard.object(forKey: "stats_coins") != nil ? UserDefaults.standard.integer(forKey: "stats_coins") : GameConstants.startCoins
         gesamtXP = UserDefaults.standard.integer(forKey: "stats_gesamt_xp")
+        leben = UserDefaults.standard.object(forKey: "stats_leben") != nil ? UserDefaults.standard.integer(forKey: "stats_leben") : 5
+        gluecksradDrehungen = UserDefaults.standard.integer(forKey: "stats_gluecksrad_drehungen")
         gesamtGekaufteItemsCount = UserDefaults.standard.integer(forKey: "stats_gesamt_gekaufte_items_count")
         gesamtGegossen = UserDefaults.standard.integer(forKey: "stats_gesamt_gegossen")
         tageAktiv = UserDefaults.standard.integer(forKey: "stats_tage_aktiv")
@@ -703,8 +837,6 @@ class GardenStore: ObservableObject {
         lastSpinTimestamp = UserDefaults.standard.object(forKey: "last_spin_timestamp") as? Date
         isWeedActive = UserDefaults.standard.bool(forKey: "is_weed_active")
         dailyQuestsCompletedSinceWeed = UserDefaults.standard.integer(forKey: "daily_quests_completed_since_weed")
-        herzen = UserDefaults.standard.object(forKey: "stats_herzen") != nil ? UserDefaults.standard.integer(forKey: "stats_herzen") : 5
-        gluecksradDrehungen = UserDefaults.standard.integer(forKey: "stats_gluecksrad_drehungen")
         seeds = UserDefaults.standard.integer(forKey: "stats_seeds")
     }
 
@@ -717,6 +849,25 @@ class GardenStore: ObservableObject {
     private func loadPlants() {
         if let data = UserDefaults.standard.data(forKey: "garden_plants"),
            let decoded = try? JSONDecoder().decode([HabitModel].self, from: data) {
+            
+            // Sync with Database to apply balance changes (like XP 10 -> 100)
+            for pflanze in decoded {
+                if let dbPlant = GameDatabase.allPlants.first(where: { $0.id == pflanze.plantID }) {
+                    pflanze.xpPerCompletion = dbPlant.xpPerCompletion
+                    pflanze.maxLevel = dbPlant.maxLevel
+                    pflanze.waterNeedPerDay = dbPlant.waterNeedPerDay
+                    pflanze.decayDays = dbPlant.decayDays
+                    
+                    // Reparatur: Falls der Name ein Habit-Key ist, korrigieren wir ihn
+                    if pflanze.name.starts(with: "habit.") {
+                        pflanze.name = dbPlant.name
+                    }
+                } else if pflanze.plantID.starts(with: "custom_") && pflanze.xpPerCompletion < 100 {
+                    // Update old custom plants to the new 100 XP standard
+                    pflanze.xpPerCompletion = 100
+                }
+            }
+            
             pflanzen = decoded
         } else {
             onboardingGratisPflanzen()
@@ -781,7 +932,8 @@ class GardenStore: ObservableObject {
             activePowerUps.removeAll()
             gekaufteItems.removeAll()
             placedDecorations.removeAll()
-            herzen = 5
+            leben = 5
+            gestorbenePflanzenLog.removeAll()
             gluecksradDrehungen = 0
             abgeholtePassLevel.removeAll()
             
@@ -837,9 +989,7 @@ class GardenStore: ObservableObject {
 
             // Herz-Abzug Logik: Nur wenn ein NEUER Zyklus erreicht wurde
             if verpasst > pflanze.lastNotifiedCycle {
-                withAnimation(.spring) {
-                    herzen = max(0, herzen - 1)
-                }
+                pflanzeGestorben(pflanze)
                 pflanze.lastNotifiedCycle = verpasst
                 changed = true
             }

@@ -13,6 +13,16 @@
 "button.ok" = "OK";
 "button.cancel" = "Cancel";
 "button.use" = "Use";
+"button.restart" = "Restart";
+"gameover.titel" = "Your garden has wilted";
+"gameover.beschreibung" = "All plants have dried out. Your coins and items are safe.";
+"gameover.button" = "Start new garden";
+"leben.titel" = "Your Lives";
+"leben.verbleibend" = "lives remaining";
+"leben.regel1" = "Water your plants daily to keep your lives";
+"leben.regel2" = "If a plant dies, you lose one life";
+"leben.regel3" = "At 0 lives, all plants are deleted";
+"leben.verloren.durch" = "Lives lost due to:";
 
 // Garden
 "garden.title" = "My Garden";
@@ -45,18 +55,18 @@
 "rarity.diamant" = "Diamond";
 
 // Tiers
-"stufe.bronze1"  = "Bronze I";
-"stufe.bronze2"  = "Bronze II";
-"stufe.bronze3"  = "Bronze III";
-"stufe.silber1"  = "Silver I";
-"stufe.silber2"  = "Silver II";
-"stufe.silber3"  = "Silver III";
-"stufe.gold1"    = "Gold I";
-"stufe.gold2"    = "Gold II";
-"stufe.gold3"    = "Gold III";
-"stufe.diamant1" = "Diamond I";
-"stufe.diamant2" = "Diamond II";
-"stufe.diamant3" = "Diamond III";
+"stufe.bronze1"  = "Bronze";
+"stufe.bronze2"  = "Bronze";
+"stufe.bronze3"  = "Bronze";
+"stufe.silber1"  = "Silver";
+"stufe.silber2"  = "Silver";
+"stufe.silber3"  = "Silver";
+"stufe.gold1"    = "Gold";
+"stufe.gold2"    = "Gold";
+"stufe.gold3"    = "Gold";
+"stufe.diamant1" = "Diamond";
+"stufe.diamant2" = "Diamond";
+"stufe.diamant3" = "Diamond";
 "stufe.naechste.hinweis" = "%lld XP left for %@";
 
 // Streak
@@ -100,6 +110,40 @@
 "common.active" = "Active";
 "common.of" = "of";
 "common.done" = "DONE";
+
+// Title System
+"titel.anfaenger" = "Newcomer";
+"titel.standard" = "Default Title";
+"titel.keiner" = "No title yet";
+"titel.auswahl.titel" = "Choose Title";
+"titel.section.gesperrt" = "Locked Titles";
+"titel.gesperrt.hinweis" = "Grow a plant to Diamond";
+"titel.diamant.pflanze" = "Diamond Plant";
+"titel.neu.freigeschaltet" = "New Title!";
+"titel.neu.untertitel" = "You grew a plant to Diamond!";
+
+// All 21 Titles
+"titel.bambus" = "Bamboo Whisperer";
+"titel.apfelbaum" = "Apple Aristocrat";
+"titel.wildgras" = "Grass Grandmaster";
+"titel.eiche" = "Oak Guardian";
+"titel.lotus" = "Lotus Legend";
+"titel.sonnenblume" = "Sun Child";
+"titel.kaktus" = "Thorn Baron";
+"titel.weinrebe" = "Vine Sage";
+"titel.kirschbaum" = "Cherry Blossom King";
+"titel.minze" = "Mint Monarch";
+"titel.mandelbaum" = "Almond Master";
+"titel.bambus_schilf" = "Reed Shaman";
+"titel.lavendel" = "Lavender Lord";
+"titel.efeu" = "Ivy Emperor";
+"titel.aloe" = "Aloe Doctor";
+"titel.erdbeere" = "Strawberry Noble";
+"titel.zitronenbaum" = "Lemon Czar";
+"titel.weizenfeld" = "Wheat Warrior";
+"titel.chrysantheme" = "Chrysanthemum Chef";
+"titel.klee" = "Clover King";
+"titel.mystic" = "Mystic Master";
 
 // Buttons
 "button.delete" = "Remove";
@@ -465,6 +509,13 @@
 "pass_naechstes_tier_hint" = "Next tier: %@";
 "pass_belohnung_coins" = "Pass reward";
 "pass_belohnung_paket" = "Milestone package";
+"pass.xp" = "XP";
+"pass.next_tier_level" = "%@ (Level %d)";
+"pass.level_range" = "Levels %@-%@";
+"reward.coins_format" = "%d Coins";
+"reward.seeds_format" = "%d Seeds";
+"wheel.spins_label" = "%d Spins";
+"wheel.reward.deko" = "Decor";
 
 "tier_bronze" = "Bronze";
 "tier_silber" = "Silver";
@@ -480,18 +531,18 @@
 "profil_garten_level" = "Garden Level %d";
 
 // MARK: - Tier Stages (12 stages)
-"tier_stufe_bronze_1" = "Bronze I";
-"tier_stufe_bronze_2" = "Bronze II";
-"tier_stufe_bronze_3" = "Bronze III";
-"tier_stufe_silber_1" = "Silver I";
-"tier_stufe_silber_2" = "Silver II";
-"tier_stufe_silber_3" = "Silver III";
-"tier_stufe_gold_1" = "Gold I";
-"tier_stufe_gold_2" = "Gold II";
-"tier_stufe_gold_3" = "Gold III";
-"tier_stufe_diamant_1" = "Diamond I";
-"tier_stufe_diamant_2" = "Diamond II";
-"tier_stufe_diamant_3" = "Diamond III";
+"tier_stufe_bronze_1" = "Bronze";
+"tier_stufe_bronze_2" = "Bronze";
+"tier_stufe_bronze_3" = "Bronze";
+"tier_stufe_silber_1" = "Silver";
+"tier_stufe_silber_2" = "Silver";
+"tier_stufe_silber_3" = "Silver";
+"tier_stufe_gold_1" = "Gold";
+"tier_stufe_gold_2" = "Gold";
+"tier_stufe_gold_3" = "Gold";
+"tier_stufe_diamant_1" = "Diamond";
+"tier_stufe_diamant_2" = "Diamond";
+"tier_stufe_diamant_3" = "Diamond";
 
 "xp_bis_naechste" = "%d XP until %@";
 "tier_maximum_erreicht" = "Maximum tier reached!";
@@ -625,3 +676,63 @@
 
 "spin_button_gratis" = "Free Spin!";
 "spin_button_keine" = "No spins!";
+
+// MARK: - Revive Plant
+"pflanze.tot.titel" = "Not watered";
+"pflanze.tot.seit" = "Since %d day(s)";
+"pflanze.wiederbeleben.titel" = "Revive plant?";
+"pflanze.wiederbeleben.beschreibung" = "This plant hasn't been watered for %d days. After revival, you'll earn less XP and coins for 3 days.";
+"pflanze.wiederbeleben.button" = "Revive";
+
+// MARK: - Retention Survey
+"retention.frage1.titel" = "Why did you stop using the app?";
+"retention.grund.vergessen" = "I forgot about the app";
+"retention.grund.keineZeit" = "I didn't have time";
+"retention.grund.keineLust" = "I didn't feel like it";
+"retention.grund.nichtMehrNoetig" = "I don't need the app anymore";
+"retention.grund.nichtMotiviert" = "The app didn't motivate me";
+"retention.frage2.vergessen" = "Should I remind you daily?";
+"retention.notification.aktivieren" = "Enable reminders";
+"retention.frage2.keineZeit" = "How many plants are realistic for you?";
+"retention.pflanzen.anzahl" = "%d plants is enough for me";
+"retention.frage2.keineLust" = "What did you enjoy the most?";
+"retention.spass.pflanzen" = "Collecting plants";
+"retention.spass.coins" = "Earning coins";
+"retention.spass.streak" = "Keeping my streak";
+"retention.spass.nichts" = "Honestly nothing";
+"retention.frage2.nichtMehrNoetig" = "Respect — you reached your goal! 🎉";
+"retention.frage2.nichtMehrNoetig.sub" = "Maybe there are new habits you'd like to build?";
+"retention.frage2.nichtMotiviert" = "What would help you?";
+"retention.mehr.belohnungen" = "More rewards when watering";
+"retention.mehr.pflanzen" = "Rarer and more beautiful plants";
+"retention.mehr.erinnerungen" = "Better reminders";
+"retention.mehr.anderes" = "Something else";
+"retention.abschluss.titel" = "Thanks for your feedback!";
+"retention.abschluss.sub" = "Would you like to start fresh with a new garden?";
+"retention.abschluss.button" = "Start new garden";
+"retention.abschluss.nein" = "No, thanks";
+"retention.weiter" = "Continue";
+
+// Weed Detail
+"weed.detail.titel" = "Weeds in the Garden!";
+"weed.detail.beschreibung" = "Oh no! Weeds have spread in your garden. To remove them, you must complete 3 habits today.";
+"weed.detail.fortschritt" = "Progress: %d of 3";
+"weed.detail.button" = "Got it";
+
+// Effects
+"effekt.frostwarnung.titel" = "Frost Warning";
+"effekt.frostwarnung.beschreibung" = "Only 50% coins and XP from watering today.";
+"effekt.sonnenschein.titel" = "Sunshine";
+"effekt.sonnenschein.beschreibung" = "150% coins and XP from watering today!";
+"effekt.regen.titel" = "Rain";
+"effekt.regen.beschreibung" = "Plants grow faster — +25% XP today.";
+"effekt.sturm.titel" = "Storm";
+"effekt.sturm.beschreibung" = "Streak protection active — no streak loss today.";
+"effekt.typ.wetter" = "Weather Effect";
+"effekt.typ.powerup" = "Power-Up";
+"effekt.typ.status" = "Plant Status";
+
+// Recovery (Tortoise)
+"effekt.erholung.titel" = "Recovery Mode";
+"effekt.erholung.beschreibung" = "The plant is recovering after being revived. Growth is temporarily reduced.";
+

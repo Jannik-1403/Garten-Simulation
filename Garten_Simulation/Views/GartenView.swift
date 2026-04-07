@@ -13,6 +13,8 @@ struct GartenView: View {
     @State private var ausgewaehltePflanze: HabitModel? = nil
     @State private var ausgewaehltesItem: ShopDetailPayload? = nil
     @State private var ausgewaehltesAktivesPowerUp: ActivePowerUp? = nil
+    @State private var zeigeUnkrautDetail = false
+    @State private var zeigeLebenDetail = false
     @State private var zeigeWetterDetails = false
     @State private var startAbstandAktiv = true
     @State private var timerAktuell = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -32,47 +34,17 @@ struct GartenView: View {
 
                 // MARK: - Sticky Header
                 VStack(spacing: 0) {
-                    if gardenStore.isWeedActive {
-                        HStack {
-                            HStack(spacing: 8) {
-                                Image(systemName: "exclamationmark.triangle.fill")
-                                    .font(.system(size: 14, weight: .bold))
-                                Text("\(gardenStore.dailyQuestsCompletedSinceWeed)/3")
-                                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                            }
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 6)
-                            .background(
-                                ZStack {
-                                    Capsule()
-                                        .fill(Color.red)
-                                    Capsule()
-                                        .strokeBorder(Color.white.opacity(0.2), lineWidth: 1)
-                                }
-                            )
-                            .overlay(alignment: .bottom) {
-                                Capsule()
-                                    .fill(Color.black.opacity(0.2))
-                                    .frame(height: 2)
-                                    .padding(.horizontal, 4)
-                                    .offset(y: 2)
-                            }
-                            .shadow(color: .red.opacity(0.3), radius: 4, x: 0, y: 2)
-                            Spacer()
-                        }
-                        .padding(.horizontal, 8)
-                        .padding(.top, 12)
-                        .transition(.scale.combined(with: .opacity))
-                    }
 
                     VStack(spacing: 0) {
                         GartenStatsBar(
                             streak: streakStore.currentStreak,
                             coins: gardenStore.coins,
-                            leben: gardenStore.herzen
+                            leben: gardenStore.leben,
+                            onLebenTap: {
+                                zeigeLebenDetail = true
+                            }
                         )
-                        .padding(.top, gardenStore.isWeedActive ? 8 : 16)
+                        .padding(.top, 16)
                         .padding(.bottom, 10)
 
                         // MARK: - Sticky Titel
@@ -101,40 +73,28 @@ struct GartenView: View {
                                     }
                                 }
                                 
-                                HStack(spacing: 12) {
-                                    if !gardenStore.activePowerUps.filter({ $0.isActive && $0.targetPlantId == nil }).isEmpty {
-                                        ScrollView(.horizontal, showsIndicators: false) {
-                                            HStack(spacing: 8) {
-                                                ForEach(gardenStore.activePowerUps.filter { $0.isActive && $0.targetPlantId == nil }) { aktiv in
-                                                    let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId })
-                                                    Button {
-                                                        ausgewaehltesAktivesPowerUp = aktiv
-                                                    } label: {
-                                                        HStack(spacing: 4) {
-                                                            Image("Powerup")
-                                                                .resizable()
-                                                                .scaledToFit()
-                                                                .frame(width: 12, height: 12)
-                                                            Text(aktiv.timeRemainingFormatted)
-                                                                .font(.system(size: 10, weight: .semibold))
-                                                        }
-                                                        .foregroundStyle(Color.primary)
-                                                        .padding(.horizontal, 8)
-                                                        .padding(.vertical, 4)
-                                                        .background(.regularMaterial)
-                                                        .clipShape(Capsule())
-                                                        .overlay(Capsule().strokeBorder(Color.primary.opacity(0.08), lineWidth: 0.5))
-                                                    }
-                                                    .buttonStyle(.plain)
-                                                }
-                                            }
+                                if gardenStore.isWeedActive {
+                                    Button {
+                                        zeigeUnkrautDetail = true
+                                    } label: {
+                                        HStack(spacing: 6) {
+                                            Image(systemName: "exclamationmark.triangle.fill")
+                                                .font(.system(size: 14, weight: .bold))
+                                                .foregroundStyle(Color.orangePrimary)
+                                            
+                                            Text("\(gardenStore.dailyQuestsCompletedSinceWeed)/3")
+                                                .font(.system(size: 15, weight: .black, design: .rounded))
+                                                .foregroundStyle(.secondary)
                                         }
-                                    }
+                                        .padding(.vertical, 2)
                                 }
+                                .buttonStyle(.plain)
+                                .transition(.move(edge: .top).combined(with: .opacity))
                             }
-                            Spacer()
                         }
-                        .padding(.bottom, 10)
+                        Spacer()
+                    }
+                    .padding(.bottom, 10)
 
                         // MARK: - Sticky Wetter Banner
                         WetterBanner(event: aktivesEvent) {
@@ -242,7 +202,7 @@ struct GartenView: View {
                                                         shadowColorHex: "#D98216", // darker orange
                                                         tag: "DEKO",
                                                         itemType: .decoration,
-                                                        habitCategory: nil,
+                                                        habitCategories: nil,
                                                         symbolism: nil,
                                                         howToUse: nil
                                                     )
@@ -276,24 +236,6 @@ struct GartenView: View {
                 .onReceive(timerAktuell) { _ in
                     gardenStore.pruefePflanzenStatus()
                 }
-            }
-            
-            // MARK: - Level-Up Overlay (50-Level System)
-            if gardenStore.zeigeGartenLevelUpOverlay {
-                GartenLevelUpOverlay(
-                    neuerLevel: gardenStore.neuerGartenLevel,
-                    freischaltungen: gardenStore.neueFreischaltungen,
-                    onDismiss: {
-                        withAnimation {
-                            gardenStore.zeigeGartenLevelUpOverlay = false
-                        }
-                    },
-                    onGluecksradDrehen: {
-                        // Navigate to Spin screen or handle spin logic
-                    }
-                )
-                .transition(.opacity.combined(with: .scale(scale: 0.9)))
-                .zIndex(100)
             }
         }
         .onAppear {
@@ -348,6 +290,31 @@ struct GartenView: View {
                 .presentationDragIndicator(.visible as Visibility)
                 .presentationCornerRadius(32)
                 .presentationBackground(.ultraThinMaterial)
+        }
+        .sheet(isPresented: $zeigeLebenDetail) {
+            LebenDetailView()
+                .environmentObject(gardenStore)
+                .environmentObject(settings)
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+                .presentationCornerRadius(32)
+                .presentationBackground(.ultraThinMaterial)
+        }
+        .sheet(isPresented: $zeigeUnkrautDetail) {
+            WeedDetailView()
+                .environmentObject(gardenStore)
+                .environmentObject(settings)
+                .presentationDetents([PresentationDetent.medium])
+                .presentationDragIndicator(Visibility.visible)
+                .presentationCornerRadius(32)
+                .presentationBackground(Material.ultraThinMaterial)
+        }
+        .overlay {
+            if gardenStore.zeigeGameOverOverlay {
+                GameOverOverlayView()
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+            }
         }
     }
 

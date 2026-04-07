@@ -207,7 +207,7 @@ struct InventoryItemDetailSheet: View {
             shadowColorHex: "#D9B200", // darker yellow
             tag: "POWER-UP",
             itemType: .powerUp,
-            habitCategory: .fitness,
+            habitCategories: [.fitness],
             symbolism: "Energie und schnelles Vorankommen.",
             howToUse: "item.duenger_blitz.usage"
         )

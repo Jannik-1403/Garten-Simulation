@@ -3,38 +3,44 @@ import SwiftUI
 
 enum HabitCategory: String, CaseIterable, Codable {
     case fitness
-    case nutrition
-    case endurance
-    case learning
-    case mentalHealth
+    case health
+    case mental
+    case growth
     case lifestyle
-    case noAddiction
-    case hygiene
     case finance
-    case mindfulness
-    case sleep
-    case productivity
-    case creativity
-    case social
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let raw = try container.decode(String.self).lowercased()
+        
+        switch raw {
+        case "fitness", "endurance":
+            self = .fitness
+        case "health", "nutrition", "hygiene", "sleep":
+            self = .health
+        case "mental", "mentalhealth", "mindfulness":
+            self = .mental
+        case "growth", "learning", "creativity", "productivity":
+            self = .growth
+        case "lifestyle", "social", "noaddiction":
+            self = .lifestyle
+        case "finance":
+            self = .finance
+        default:
+            self = .lifestyle
+        }
+    }
 
     var localizationKey: String { "category.\(self.rawValue)" }
     
     var icon: String {
         switch self {
-        case .fitness:      return "figure.run"
-        case .nutrition:    return "fork.knife"
-        case .endurance:    return "heart.fill"
-        case .learning:     return "book.fill"
-        case .mentalHealth: return "brain.head.profile"
-        case .lifestyle:    return "sun.max.fill"
-        case .noAddiction:  return "lock.fill"
-        case .hygiene:      return "bubbles.and.sparkles.fill"
-        case .finance:      return "banknote.fill"
-        case .mindfulness:  return "leaf.fill"
-        case .sleep:        return "moon.stars.fill"
-        case .productivity: return "briefcase.fill"
-        case .creativity:   return "paintbrush.fill"
-        case .social:       return "person.2.fill"
+        case .fitness:   return "figure.run"
+        case .health:    return "fork.knife"
+        case .mental:    return "brain.head.profile"
+        case .growth:    return "book.fill"
+        case .lifestyle: return "sun.max.fill"
+        case .finance:   return "banknote.fill"
         }
     }
 }
@@ -59,22 +65,24 @@ struct Plant: Identifiable, Codable {
     let symbolName: String
     let symbol: String // Neu: Emoji-Symbol
     let symbolColor: String
-    let habitCategory: HabitCategory
+    let habitCategories: [HabitCategory]
     let symbolism: String
     let habitName: String
     let maxLevel: Int
     let xpPerCompletion: Int
     let waterNeedPerDay: Int
     let decayDays: Int
+    let assetName: String?
     let minGartenLevel: Int
 
-    init(id: String, name: String, symbolName: String, symbol: String = "🌱", symbolColor: String, habitCategory: HabitCategory, symbolism: String, habitName: String = "", maxLevel: Int = 10, xpPerCompletion: Int = 10, waterNeedPerDay: Int = 1, decayDays: Int = 3, minGartenLevel: Int = 1) {
+    init(id: String, name: String, symbolName: String, assetName: String? = nil, symbol: String = "🌱", symbolColor: String, habitCategories: [HabitCategory], symbolism: String, habitName: String = "", maxLevel: Int = 10, xpPerCompletion: Int = 10, waterNeedPerDay: Int = 1, decayDays: Int = 3, minGartenLevel: Int = 1) {
         self.id = id
         self.name = name
         self.symbolName = symbolName
+        self.assetName = assetName
         self.symbol = symbol
         self.symbolColor = symbolColor
-        self.habitCategory = habitCategory
+        self.habitCategories = habitCategories
         self.symbolism = symbolism
         self.habitName = habitName
         self.maxLevel = maxLevel
@@ -193,29 +201,29 @@ struct GameDatabase {
 
     // MARK: Pflanzen (20 Stück)
     static let allPlants: [Plant] = [
-        Plant(id: "plant.bambus",           name: "plant.bambus.name",             symbolName: "leaf.fill",                     symbol: "🎋", symbolColor: "green",   habitCategory: .fitness,      symbolism: "plant.bambus.symbolism",           habitName: "habit.krafttraining",          xpPerCompletion: 12, decayDays: 2, minGartenLevel: 3),
-        Plant(id: "plant.apfelbaum",        name: "plant.apfelbaum.name",          symbolName: "heart.circle.fill",             symbol: "🍎", symbolColor: "red",     habitCategory: .nutrition,    symbolism: "plant.apfelbaum.symbolism",        habitName: "habit.gesund_kochen",          xpPerCompletion: 10, decayDays: 3, minGartenLevel: 1),
-        Plant(id: "plant.wildgras",         name: "plant.wildgras.name",           symbolName: "wind",                          symbol: "🌿", symbolColor: "mint",    habitCategory: .endurance,    symbolism: "plant.wildgras.symbolism",         habitName: "habit.joggen",                xpPerCompletion: 8,  decayDays: 2, minGartenLevel: 1),
-        Plant(id: "plant.eiche",            name: "plant.eiche.name",              symbolName: "tree.fill",                     symbol: "🌳", symbolColor: "brown",   habitCategory: .learning,     symbolism: "plant.eiche.symbolism",            habitName: "habit.lesen",                 maxLevel: 15, xpPerCompletion: 15, decayDays: 4, minGartenLevel: 5),
-        Plant(id: "plant.lotus",            name: "plant.lotus.name",              symbolName: "sparkles",                      symbol: "🪷", symbolColor: "pink",    habitCategory: .mentalHealth, symbolism: "plant.lotus.symbolism",            habitName: "habit.meditieren",            xpPerCompletion: 10, decayDays: 3, minGartenLevel: 1),
-        Plant(id: "plant.sonnenblume",      name: "plant.sonnenblume.name",        symbolName: "sun.max.fill",                  symbol: "🌻", symbolColor: "yellow",  habitCategory: .lifestyle,    symbolism: "plant.sonnenblume.symbolism",      habitName: "habit.frueh_aufstehen",       xpPerCompletion: 8,  decayDays: 2, minGartenLevel: 1),
-        Plant(id: "plant.kaktus",           name: "plant.kaktus.name",             symbolName: "thermometer.sun.fill",          symbol: "🌵", symbolColor: "orange",  habitCategory: .fitness,      symbolism: "plant.kaktus.symbolism",           habitName: "habit.kalt_duschen",          xpPerCompletion: 12, decayDays: 5, minGartenLevel: 8),
-        Plant(id: "plant.weinrebe",         name: "plant.weinrebe.name",           symbolName: "drop.fill",                     symbol: "🍇", symbolColor: "purple",  habitCategory: .noAddiction,  symbolism: "plant.weinrebe.symbolism",         habitName: "habit.kein_alkohol",          xpPerCompletion: 10, decayDays: 3, minGartenLevel: 1),
-        Plant(id: "plant.kirschbaum",       name: "plant.kirschbaum.name",         symbolName: "camera.macro",                  symbol: "🍒", symbolColor: "pink",    habitCategory: .hygiene,      symbolism: "plant.kirschbaum.symbolism",       habitName: "habit.selfcare",              xpPerCompletion: 8,  decayDays: 3, minGartenLevel: 1),
-        Plant(id: "plant.minzpflanze",      name: "plant.minzpflanze.name",       symbolName: "aqi.low",                       symbol: "🌱", symbolColor: "mint",    habitCategory: .hygiene,      symbolism: "plant.minzpflanze.symbolism",      habitName: "habit.zaehneputzen",          xpPerCompletion: 6,  decayDays: 2, minGartenLevel: 1),
-        Plant(id: "plant.mandelbaum",       name: "plant.mandelbaum.name",        symbolName: "banknote.fill",                 symbol: "🪵", symbolColor: "green",   habitCategory: .finance,      symbolism: "plant.mandelbaum.symbolism",       habitName: "habit.geld_sparen",           maxLevel: 12, xpPerCompletion: 10, decayDays: 5, minGartenLevel: 10),
-        Plant(id: "plant.bambus_schilf",    name: "plant.bambus_schilf.name",     symbolName: "pencil.and.scribble",           symbol: "🎋", symbolColor: "teal",    habitCategory: .mindfulness,  symbolism: "plant.bambus_schilf.symbolism",    habitName: "habit.journaling",            xpPerCompletion: 8,  decayDays: 3, minGartenLevel: 1),
-        Plant(id: "plant.lavendel",         name: "plant.lavendel.name",          symbolName: "moon.stars.fill",               symbol: "🪻", symbolColor: "purple",  habitCategory: .sleep,        symbolism: "plant.lavendel.symbolism",         habitName: "habit.schlafroutine",         xpPerCompletion: 8,  decayDays: 3, minGartenLevel: 12),
-        Plant(id: "plant.efeu",             name: "plant.efeu.name",              symbolName: "figure.flexibility",            symbol: "🍃", symbolColor: "green",   habitCategory: .fitness,      symbolism: "plant.efeu.symbolism",             habitName: "habit.stretching",            xpPerCompletion: 6,  decayDays: 2, minGartenLevel: 1),
-        Plant(id: "plant.aloe_vera",        name: "plant.aloe_vera.name",         symbolName: "iphone.slash",                  symbol: "🪴", symbolColor: "mint",    habitCategory: .lifestyle,    symbolism: "plant.aloe_vera.symbolism",        habitName: "habit.bildschirmzeit",        xpPerCompletion: 8,  decayDays: 4, minGartenLevel: 15),
-        Plant(id: "plant.erdbeerpflanze",   name: "plant.erdbeerpflanze.name",    symbolName: "heart.fill",                    symbol: "🍓", symbolColor: "red",     habitCategory: .nutrition,    symbolism: "plant.erdbeerpflanze.symbolism",   habitName: "habit.obst_gemuese",          xpPerCompletion: 8,  decayDays: 2, minGartenLevel: 1),
-        Plant(id: "plant.zitronenbaum",     name: "plant.zitronenbaum.name",      symbolName: "bolt.circle.fill",              symbol: "🍋", symbolColor: "yellow",  habitCategory: .nutrition,    symbolism: "plant.zitronenbaum.symbolism",     habitName: "habit.wasser_trinken",        xpPerCompletion: 8,  decayDays: 3, minGartenLevel: 18),
-        Plant(id: "plant.weizenfeld",       name: "plant.weizenfeld.name",        symbolName: "chart.bar.fill",                symbol: "🌾", symbolColor: "orange",  habitCategory: .productivity, symbolism: "plant.weizenfeld.symbolism",       habitName: "habit.deep_work",             xpPerCompletion: 12, decayDays: 2, minGartenLevel: 20),
-        Plant(id: "plant.chrysantheme",     name: "plant.chrysantheme.name",      symbolName: "house.fill",                    symbol: "🌼", symbolColor: "yellow",  habitCategory: .hygiene,      symbolism: "plant.chrysantheme.symbolism",     habitName: "habit.aufraeumen",            xpPerCompletion: 6,  decayDays: 2, minGartenLevel: 1),
-        Plant(id: "plant.klee",             name: "plant.klee.name",              symbolName: "star.fill",                     symbol: "🍀", symbolColor: "green",   habitCategory: .mindfulness,  symbolism: "plant.klee.symbolism",             habitName: "habit.dankbarkeit",           xpPerCompletion: 6,  decayDays: 2, minGartenLevel: 1),
+        Plant(id: "plant.bambus",           name: "plant.bambus.name",             symbolName: "leaf.fill",                     assetName: "plant_bambus",    symbol: "🎋", symbolColor: "green",   habitCategories: [.fitness],      symbolism: "plant.bambus.symbolism",           habitName: "habit.krafttraining",          xpPerCompletion: 120, decayDays: 2, minGartenLevel: 3),
+        Plant(id: "plant.apfelbaum",        name: "plant.apfelbaum.name",          symbolName: "heart.circle.fill",             assetName: "plant_apfelbaum", symbol: "🍎", symbolColor: "red",     habitCategories: [.health, .lifestyle],    symbolism: "plant.apfelbaum.symbolism",        habitName: "habit.gesund_kochen",          xpPerCompletion: 100, decayDays: 3, minGartenLevel: 1),
+        Plant(id: "plant.wildgras",         name: "plant.wildgras.name",           symbolName: "wind",                          assetName: "plant_wildgras",  symbol: "🌿", symbolColor: "mint",    habitCategories: [.fitness],    symbolism: "plant.wildgras.symbolism",         habitName: "habit.joggen",                xpPerCompletion: 80,  decayDays: 2, minGartenLevel: 1),
+        Plant(id: "plant.eiche",            name: "plant.eiche.name",              symbolName: "tree.fill",                     symbol: "🌳", symbolColor: "brown",   habitCategories: [.growth, .mental],     symbolism: "plant.eiche.symbolism",            habitName: "habit.lesen",                 maxLevel: 15, xpPerCompletion: 150, decayDays: 4, minGartenLevel: 5),
+        Plant(id: "plant.lotus",            name: "plant.lotus.name",              symbolName: "sparkles",                      assetName: "plant_lotus",     symbol: "🪷", symbolColor: "pink",    habitCategories: [.mental], symbolism: "plant.lotus.symbolism",            habitName: "habit.meditieren",            xpPerCompletion: 100, decayDays: 3, minGartenLevel: 1),
+        Plant(id: "plant.sonnenblume",      name: "plant.sonnenblume.name",        symbolName: "sun.max.fill",                  assetName: "plant_sonnenblume",      symbol: "🌻", symbolColor: "yellow",  habitCategories: [.lifestyle, .mental],    symbolism: "plant.sonnenblume.symbolism",      habitName: "habit.frueh_aufstehen",       xpPerCompletion: 80,  decayDays: 2, minGartenLevel: 1),
+        Plant(id: "plant.kaktus",           name: "plant.kaktus.name",             symbolName: "thermometer.sun.fill",          assetName: "plant_kaktus",           symbol: "🌵", symbolColor: "orange",  habitCategories: [.fitness, .health],      symbolism: "plant.kaktus.symbolism",           habitName: "habit.kalt_duschen",          xpPerCompletion: 120, decayDays: 5, minGartenLevel: 8),
+        Plant(id: "plant.weinrebe",         name: "plant.weinrebe.name",           symbolName: "drop.fill",                     assetName: "plant_weintraube",       symbol: "🍇", symbolColor: "purple",  habitCategories: [.lifestyle, .health],  symbolism: "plant.weinrebe.symbolism",         habitName: "habit.kein_alkohol",          xpPerCompletion: 100, decayDays: 3, minGartenLevel: 1),
+        Plant(id: "plant.kirschbaum",       name: "plant.kirschbaum.name",         symbolName: "camera.macro",                  assetName: "plant_kirschbaum",       symbol: "🍒", symbolColor: "pink",    habitCategories: [.health, .mental],      symbolism: "plant.kirschbaum.symbolism",       habitName: "habit.selfcare",              xpPerCompletion: 80,  decayDays: 3, minGartenLevel: 1),
+        Plant(id: "plant.minzpflanze",      name: "plant.minzpflanze.name",       symbolName: "aqi.low",                       assetName: "plant_minzpflanze",      symbol: "🌱", symbolColor: "mint",    habitCategories: [.health],      symbolism: "plant.minzpflanze.symbolism",      habitName: "habit.zaehneputzen",          xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1),
+        Plant(id: "plant.mandelbaum",       name: "plant.mandelbaum.name",        symbolName: "banknote.fill",                 symbol: "🪵", symbolColor: "green",   habitCategories: [.finance, .growth],      symbolism: "plant.mandelbaum.symbolism",       habitName: "habit.geld_sparen",           maxLevel: 12, xpPerCompletion: 100, decayDays: 5, minGartenLevel: 10),
+        Plant(id: "plant.bambus_schilf",    name: "plant.bambus_schilf.name",     symbolName: "pencil.and.scribble",           symbol: "🎋", symbolColor: "teal",    habitCategories: [.mental, .growth],  symbolism: "plant.bambus_schilf.symbolism",    habitName: "habit.journaling",            xpPerCompletion: 80,  decayDays: 3, minGartenLevel: 1),
+        Plant(id: "plant.lavendel",         name: "plant.lavendel.name",          symbolName: "moon.stars.fill",               symbol: "🪻", symbolColor: "purple",  habitCategories: [.health, .mental],        symbolism: "plant.lavendel.symbolism",         habitName: "habit.schlafroutine",         xpPerCompletion: 80,  decayDays: 3, minGartenLevel: 12),
+        Plant(id: "plant.efeu",             name: "plant.efeu.name",              symbolName: "figure.flexibility",            symbol: "🍃", symbolColor: "green",   habitCategories: [.fitness, .health],             symbolism: "plant.efeu.symbolism",             habitName: "habit.stretching",            xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1),
+        Plant(id: "plant.aloe_vera",        name: "plant.aloe_vera.name",         symbolName: "iphone.slash",                  symbol: "🪴", symbolColor: "mint",    habitCategories: [.lifestyle, .mental],    symbolism: "plant.aloe_vera.symbolism",        habitName: "habit.bildschirmzeit",        xpPerCompletion: 80,  decayDays: 4, minGartenLevel: 15),
+        Plant(id: "plant.erdbeerpflanze",   name: "plant.erdbeerpflanze.name",    symbolName: "heart.fill",                    symbol: "🍓", symbolColor: "red",     habitCategories: [.health, .lifestyle],    symbolism: "plant.erdbeerpflanze.symbolism",   habitName: "habit.obst_gemuese",          xpPerCompletion: 80,  decayDays: 2, minGartenLevel: 1),
+        Plant(id: "plant.zitronenbaum",     name: "plant.zitronenbaum.name",      symbolName: "bolt.circle.fill",              symbol: "🍋", symbolColor: "yellow",  habitCategories: [.health, .lifestyle],    symbolism: "plant.zitronenbaum.symbolism",     habitName: "habit.wasser_trinken",        xpPerCompletion: 80,  decayDays: 3, minGartenLevel: 18),
+        Plant(id: "plant.weizenfeld",       name: "plant.weizenfeld.name",        symbolName: "chart.bar.fill",                symbol: "🌾", symbolColor: "orange",  habitCategories: [.growth], symbolism: "plant.weizenfeld.symbolism",       habitName: "habit.deep_work",             xpPerCompletion: 120, decayDays: 2, minGartenLevel: 20),
+        Plant(id: "plant.chrysantheme",     name: "plant.chrysantheme.name",      symbolName: "house.fill",                    symbol: "🌼", symbolColor: "yellow",  habitCategories: [.health, .lifestyle],      symbolism: "plant.chrysantheme.symbolism",     habitName: "habit.aufraeumen",            xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1),
+        Plant(id: "plant.klee",             name: "plant.klee.name",              symbolName: "star.fill",                     symbol: "🍀", symbolColor: "green",   habitCategories: [.mental, .lifestyle],  symbolism: "plant.klee.symbolism",             habitName: "habit.dankbarkeit",           xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1),
         
         // MARK: Spezial-Pflanzen (Durch Samen freischaltbar)
-        Plant(id: "plant.mystic_seed",      name: "plant.mystic_seed.name",       symbolName: "leaf.arrow.triangle.circlepath", symbolColor: "indigo", habitCategory: .mindfulness, symbolism: "plant.mystic_seed.symbolism",    habitName: "habit.atemarbeit",            xpPerCompletion: 25, decayDays: 5, minGartenLevel: 25)
+        Plant(id: "plant.mystic_seed",      name: "plant.mystic_seed.name",       symbolName: "leaf.arrow.triangle.circlepath", symbolColor: "indigo", habitCategories: [.mental], symbolism: "plant.mystic_seed.symbolism",    habitName: "habit.atemarbeit",            xpPerCompletion: 250, decayDays: 5, minGartenLevel: 25)
     ]
 
     // MARK: Müll-Items (20 Stück, Re-branded IDs)
@@ -258,6 +266,55 @@ struct GameDatabase {
         PowerUpItem(id: "powerup.tier_freund",        name: "item.tier_freund.name",           symbolName: "Powerup-Tier-Freund",   symbolColor: "orange", description: "item.tier_freund.description",          unlockMethod: .compassionDrop, rarity: .common,    durationHours: 24.0,  effectMultiplier: 1.0, howToUse: "item.tier_freund.usage",    target: .garden),
         PowerUpItem(id: "powerup.gluecks_segen",     name: "item.gluecks_segen.name",         symbolName: "Powerup-Glückssegen",   symbolColor: "pink",   description: "item.gluecks_segen.description",            unlockMethod: .streak50,       rarity: .legendary, durationHours: 24.0,  effectMultiplier: 2.0, howToUse: "item.gluecks_segen.usage",   target: .garden),
         
+    ]
+    
+    // MARK: - Alle 45 Titel (Spieler-Titel System)
+    static let allTitles: [PlayerTitle] = [
+        PlayerTitle(id: "titel_anfaenger",     plantID: nil,                      displayName: "titel.anfaenger",     color: "#4CAF50", isBonus: false),
+        PlayerTitle(id: "titel_bambus",          plantID: "plant.bambus",           displayName: "titel.bambus",        color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_eiche",          plantID: "plant.eiche",            displayName: "titel.eiche",         color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_bonsai",         plantID: nil,                      displayName: "titel.bonsai",        color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_kaktus",         plantID: "plant.kaktus",           displayName: "titel.kaktus",        color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_rose",           plantID: nil,                      displayName: "titel.rose",          color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_sonnenblume",    plantID: "plant.sonnenblume",      displayName: "titel.sonnenblume",   color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_lavendel",       plantID: "plant.lavendel",         displayName: "titel.lavendel",      color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_tomate",         plantID: nil,                      displayName: "titel.tomate",        color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_minze",          plantID: "plant.minzpflanze",      displayName: "titel.minze",         color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_orchidee",       plantID: nil,                      displayName: "titel.orchidee",      color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_farn",           plantID: nil,                      displayName: "titel.farn",          color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_efeu",           plantID: "plant.efeu",             displayName: "titel.efeu",          color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_aloe",           plantID: "plant.aloe_vera",        displayName: "titel.aloe",          color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_tulpe",          plantID: nil,                      displayName: "titel.tulpe",         color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_monstera",       plantID: nil,                      displayName: "titel.monstera",      color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_kirschbaum",     plantID: "plant.kirschbaum",       displayName: "titel.kirschbaum",    color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_feigenkaktus",   plantID: nil,                      displayName: "titel.feigenkaktus",  color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_zitronenbaum",   plantID: "plant.zitronenbaum",     displayName: "titel.zitronenbaum",  color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_magnolia",       plantID: nil,                      displayName: "titel.magnolia",      color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_jasmin",         plantID: nil,                      displayName: "titel.jasmin",        color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_palme",          plantID: nil,                      displayName: "titel.palme",         color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_weinrebe",       plantID: "plant.weinrebe",         displayName: "titel.weinrebe",      color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_basilikum",      plantID: nil,                      displayName: "titel.basilikum",     color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_pfingstrose",    plantID: nil,                      displayName: "titel.pfingstrose",   color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_eukalyptus",     plantID: nil,                      displayName: "titel.eukalyptus",    color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_hanfpalme",      plantID: nil,                      displayName: "titel.hanfpalme",     color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_agave",          plantID: nil,                      displayName: "titel.agave",         color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_dahlie",         plantID: nil,                      displayName: "titel.dahlie",        color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_wisteria",       plantID: nil,                      displayName: "titel.wisteria",      color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_chrysantheme",  plantID: "plant.chrysantheme",     displayName: "titel.chrysantheme",  color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_papyrus",        plantID: nil,                      displayName: "titel.papyrus",       color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_bambusorchidee", plantID: nil,                      displayName: "titel.bambusorchidee",color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_geranium",       plantID: nil,                      displayName: "titel.geranium",      color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_lorbeer",        plantID: nil,                      displayName: "titel.lorbeer",       color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_feige",          plantID: nil,                      displayName: "titel.feige",         color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_passionsblume",  plantID: nil,                      displayName: "titel.passionsblume", color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_ingwer",         plantID: nil,                      displayName: "titel.ingwer",        color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_zimt",           plantID: nil,                      displayName: "titel.zimt",          color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_drachenpflanze", plantID: nil,                      displayName: "titel.drachenpflanze",color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_edelweiss",      plantID: nil,                      displayName: "titel.edelweiss",     color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_kirschlorbeer",  plantID: nil,                      displayName: "titel.kirschlorbeer", color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_bambusgras",     plantID: nil,                      displayName: "titel.bambusgras",    color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_bodendecker",    plantID: nil,                      displayName: "titel.bodendecker",   color: "#4ECDC4", isBonus: false),
+        PlayerTitle(id: "titel_seerose",        plantID: nil,                      displayName: "titel.seerose",       color: "#4ECDC4", isBonus: false)
     ]
 }
 

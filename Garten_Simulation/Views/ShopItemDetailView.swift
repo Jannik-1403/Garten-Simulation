@@ -32,8 +32,12 @@ struct ShopItemDetailView: View {
                             Spacer().frame(height: 60)
                             
                             Group {
-                                if UIImage(named: payload.icon) != nil {
-                                    // Asset vorhanden
+                                if payload.itemType == .plant, 
+                                   let basePlant = GameDatabase.shared.plant(for: payload.id) {
+                                    // Spezial-View für Pflanzen (mit Shopp-Modus)
+                                    PlantIconView(plant: basePlant, seltenheit: .bronze, size: 150, alwaysShowFullGrown: true)
+                                } else if UIImage(named: payload.icon) != nil {
+                                    // Asset vorhanden (Icons/Dekos)
                                     Image(payload.icon)
                                         .resizable()
                                         .scaledToFit()

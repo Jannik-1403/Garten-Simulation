@@ -175,19 +175,15 @@ struct PflanzenGridCell: View {
                     .fill(pflanze.color)
                     .frame(width: 68, height: 68)
 
-                Group {
-                    if UIImage(named: pflanze.symbolName) != nil {
-                        Image(pflanze.symbolName)
-                            .resizable()
-                            .scaledToFit()
-                    } else {
-                        Image(systemName: pflanze.symbolName)
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundStyle(.white)
-                    }
+                if let basePlant = GameDatabase.shared.plant(for: pflanze.plantID) {
+                    PlantIconView(plant: basePlant, seltenheit: pflanze.seltenheit, size: 44)
+                } else {
+                    Image(systemName: pflanze.symbolName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 44, height: 44)
+                        .foregroundStyle(.white)
                 }
-                .frame(width: 44, height: 44)
             }
 
             Text(settings.showHabitInsteadOfName 

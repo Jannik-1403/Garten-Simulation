@@ -73,7 +73,7 @@ struct GartenPassView: View {
                     }
                 }
             }
-            .navigationTitle(NSLocalizedString("pass_titel", comment: ""))
+            .navigationTitle(settings.localizedString(for: "pass_titel"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -131,6 +131,7 @@ struct GartenPassView: View {
 // MARK: - Header
 
 struct PassHeaderView: View {
+    @EnvironmentObject var settings: SettingsStore
     let aktuellerLevel: Int
     let gesamtXP: Int
     
@@ -152,7 +153,7 @@ struct PassHeaderView: View {
                     Circle()
                         .fill(tierAktuell.farbe)
                         .frame(width: 10, height: 10)
-                    Text(tierAktuell.bezeichnung)
+                    Text(settings.localizedString(for: tierAktuell.bezeichnungKey))
                         .font(.caption.weight(.semibold))
                         .foregroundColor(tierAktuell.dunkelFarbe)
                 }
@@ -161,13 +162,14 @@ struct PassHeaderView: View {
                 .background(tierAktuell.hellFarbe)
                 .clipShape(Capsule())
                 
-                Text(String(format: NSLocalizedString("pass_level_label", comment: ""), aktuellerLevel))
+                
+                Text(String(format: settings.localizedString(for: "pass_level_label"), aktuellerLevel))
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
                 Spacer()
                 
-                Text("\(xpImLevel) / \(xpZiel) XP")
+                Text("\(xpImLevel) / \(xpZiel) \(settings.localizedString(for: "pass.xp"))")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -186,7 +188,7 @@ struct PassHeaderView: View {
             .frame(height: 10)
             
             if aktuellerLevel < 50 {
-                Text(String(format: NSLocalizedString("pass_naechstes_tier_hint", comment: ""),
+                Text(String(format: settings.localizedString(for: "pass_naechstes_tier_hint"),
                             naechstesTierName()))
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -198,9 +200,9 @@ struct PassHeaderView: View {
     
     private func naechstesTierName() -> String {
         switch aktuellerLevel {
-        case ..<10: return "\(GartenTier.silber.bezeichnung) (Level 11)"
-        case ..<25: return "\(GartenTier.gold.bezeichnung) (Level 26)"
-        case ..<40: return "\(GartenTier.diamant.bezeichnung) (Level 41)"
+        case ..<10: return String(format: settings.localizedString(for: "pass.next_tier_level"), settings.localizedString(for: GartenTier.silber.bezeichnungKey), 11)
+        case ..<25: return String(format: settings.localizedString(for: "pass.next_tier_level"), settings.localizedString(for: GartenTier.gold.bezeichnungKey), 26)
+        case ..<40: return String(format: settings.localizedString(for: "pass.next_tier_level"), settings.localizedString(for: GartenTier.diamant.bezeichnungKey), 41)
         default:    return ""
         }
     }
@@ -209,6 +211,7 @@ struct PassHeaderView: View {
 // MARK: - Tier Sektion
 
 struct TierSektionView: View {
+    @EnvironmentObject var settings: SettingsStore
     let tier: GartenTier
     let belohnungen: [GartenPassBelohnung]
     let aktuellerLevel: Int
@@ -237,6 +240,7 @@ struct TierSektionView: View {
 // MARK: - Tier-Trenner (farbiger Section-Header)
 
 struct TierTrennerView: View {
+    @EnvironmentObject var settings: SettingsStore
     let tier: GartenTier
     
     /// Mittlere Stufe (II) als Referenzfarbe für den Trenner
@@ -259,7 +263,7 @@ struct TierTrennerView: View {
                 Circle()
                     .fill(referenzStufe.farbe)
                     .frame(width: 8, height: 8)
-                Text("\(tier.bezeichnung) · \(tier.levelRange)")
+                Text("\(settings.localizedString(for: tier.bezeichnungKey)) · \(tier.levelRange(settings: settings))")
                     .font(.caption.weight(.semibold))
                     .foregroundColor(referenzStufe.dunkelFarbe)
             }
@@ -280,6 +284,7 @@ struct TierTrennerView: View {
 // MARK: - Einzelne Pass-Zeile
 
 struct PassZeileView: View {
+    @EnvironmentObject var settings: SettingsStore
     let belohnung: GartenPassBelohnung
     let aktuellerLevel: Int
     let istAbgeholt: Bool
@@ -455,6 +460,7 @@ struct GartenPassNodeView: View {
 // MARK: - Belohnungs-Karte
 
 struct GartenPassReward3DButton: View {
+    @EnvironmentObject var settings: SettingsStore
     let belohnung: GartenPassBelohnung
     let istAbgeholt: Bool
     let istGesperrt: Bool
@@ -479,9 +485,12 @@ struct GartenPassReward3DButton: View {
                     onAbholen()
                 }
             } label: {
-                let info = belohnung.getDisplayInfo()
+                let info = belohnung.getDisplayInfo(settings: settings)
                 Group {
-                    if info.isAsset {
+                    if case .pflanze(let id) = belohnung.typ, 
+                       let pl = GameDatabase.shared.plant(for: id) {
+                        PlantIconView(plant: pl, seltenheit: .bronze, size: groesse * 0.6, alwaysShowFullGrown: true)
+                    } else if info.isAsset {
                         Image(info.icon)
                             .resizable()
                             .scaledToFit()
@@ -506,7 +515,7 @@ struct GartenPassReward3DButton: View {
             .disabled(istAbgeholt || istGesperrt)
             
             // Label
-            Text(belohnung.beschriftung)
+            Text(belohnung.beschriftung(settings: settings))
                 .font(.system(size: 11, weight: .black, design: .rounded))
                 .foregroundColor(istGesperrt ? .secondary.opacity(0.5) : .primary)
                 .padding(.horizontal, 10)

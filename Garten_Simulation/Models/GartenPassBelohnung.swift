@@ -27,6 +27,10 @@ struct GartenPassBelohnung: Identifiable {
         }
     }
     
+    func beschriftung(settings: SettingsStore) -> String {
+        getDisplayInfo(settings: settings).name
+    }
+    
     var beschriftung: String {
         getDisplayInfo().name
     }
@@ -44,38 +48,45 @@ struct GartenPassBelohnung: Identifiable {
     }
     
     /// Holt detaillierte Anzeige-Informationen (Asset-Name & Klartext-Name) aus der Datenbank
-    func getDisplayInfo() -> (name: String, icon: String, isAsset: Bool) {
+    func getDisplayInfo(settings: SettingsStore? = nil) -> (name: String, icon: String, isAsset: Bool) {
+        let localized: (String) -> String = { key in
+            if let settings = settings {
+                return settings.localizedString(for: key)
+            }
+            return NSLocalizedString(key, comment: "")
+        }
+        
         switch typ {
         case .coins(let n):
-            return ("\(n) Coins", "coin", true)
+            return (String(format: localized("reward.coins_format"), n), "coin", true)
             
         case .gluecksradDrehung(let n):
-            let label = n == 1 ? NSLocalizedString("reward_type_spin_singular", comment: "") : NSLocalizedString("reward_type_spin_plural", comment: "")
-            return ("\(n) \(label)", "arrow.2.circlepath", false)
+            let key = n == 1 ? "reward_type_spin_singular" : "reward_type_spin_plural"
+            return ("\(n) \(localized(key))", "arrow.2.circlepath", false)
             
         case .powerUp(let id):
             if let pu = GameDatabase.allPowerUps.first(where: { $0.id == id }) {
-                return (NSLocalizedString(pu.name, comment: ""), pu.symbolName, true)
+                return (localized(pu.name), pu.symbolName, true)
             }
-            return (NSLocalizedString("reward_type_powerup", comment: ""), "bolt.fill", false)
+            return (localized("reward_type_powerup"), "bolt.fill", false)
             
         case .pflanze(let id):
             if let pl = GameDatabase.allPlants.first(where: { $0.id == id }) {
-                return (NSLocalizedString(pl.name, comment: ""), pl.symbolName, false)
+                return (localized(pl.name), pl.assetName ?? pl.symbolName, pl.assetName != nil)
             }
-            return (NSLocalizedString("reward_type_plant", comment: ""), "leaf.fill", false)
+            return (localized("reward_type_plant"), "leaf.fill", false)
             
         case .dekoration(let id):
             if let dk = GameDatabase.allDecorations.first(where: { $0.id == id }) {
-                return (NSLocalizedString(dk.nameKey, comment: ""), dk.sfSymbol, false)
+                return (localized(dk.nameKey), dk.sfSymbol, false)
             }
-            return (NSLocalizedString("reward_type_decoration", comment: ""), "sparkles", false)
+            return (localized("reward_type_decoration"), "sparkles", false)
             
         case .paket(let titel, _, _):
-            return (NSLocalizedString(titel, comment: ""), "reward_type_paket", false)
+            return (localized(titel), "reward_type_paket", false)
             
         case .seeds(let n):
-            return ("\(n) Samen", "leaf.arrow.triangle.circlepath", false)
+            return (String(format: localized("reward.seeds_format"), n), "leaf.arrow.triangle.circlepath", false)
         }
     }
     
@@ -128,22 +139,37 @@ enum GartenTier {
         }
     }
     
-    var bezeichnung: String {
+    var bezeichnungKey: String {
         switch self {
-        case .bronze:  return NSLocalizedString("tier_bronze", comment: "")
-        case .silber:  return NSLocalizedString("tier_silber", comment: "")
-        case .gold:    return NSLocalizedString("tier_gold", comment: "")
-        case .diamant: return NSLocalizedString("tier_diamant", comment: "")
+        case .bronze:  return "tier_bronze"
+        case .silber:  return "tier_silber"
+        case .gold:    return "tier_gold"
+        case .diamant: return "tier_diamant"
+        }
+    }
+    
+    var bezeichnung: String {
+        NSLocalizedString(bezeichnungKey, comment: "")
+    }
+    
+    func levelRange(settings: SettingsStore? = nil) -> String {
+        let localized: (String) -> String = { key in
+            if let settings = settings {
+                return settings.localizedString(for: key)
+            }
+            return NSLocalizedString(key, comment: "")
+        }
+        
+        switch self {
+        case .bronze:  return String(format: localized("pass.level_range"), "1", "10")
+        case .silber:  return String(format: localized("pass.level_range"), "11", "25")
+        case .gold:    return String(format: localized("pass.level_range"), "26", "40")
+        case .diamant: return String(format: localized("pass.level_range"), "41", "50")
         }
     }
     
     var levelRange: String {
-        switch self {
-        case .bronze:  return "1–10"
-        case .silber:  return "11–25"
-        case .gold:    return "26–40"
-        case .diamant: return "41–50"
-        }
+        levelRange(settings: nil)
     }
 }
 

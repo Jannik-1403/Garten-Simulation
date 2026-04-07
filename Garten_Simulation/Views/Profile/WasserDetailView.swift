@@ -141,11 +141,15 @@ struct WasserRankingRow: View {
                     .foregroundStyle(rank <= 3 ? .white : .secondary)
             }
             
-            // Pflanzen-Symbol (SF Symbol)
-            Image(systemName: habit.symbolName)
-                .font(.title2)
-                .foregroundStyle(habit.seltenheit.farbe)
-                .frame(width: 36, height: 36)
+            // Pflanzen-Symbol (SVG or SF Symbol)
+            if let basePlant = GameDatabase.shared.plant(for: habit.plantID) {
+                PlantIconView(plant: basePlant, seltenheit: habit.seltenheit, size: 36)
+            } else {
+                Image(systemName: habit.symbolName)
+                    .font(.title2)
+                    .foregroundStyle(habit.seltenheit.farbe)
+                    .frame(width: 36, height: 36)
+            }
             
             VStack(alignment: .leading, spacing: 2) {
                 let plant = GameDatabase.shared.plant(for: habit.plantID)

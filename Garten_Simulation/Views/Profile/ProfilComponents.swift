@@ -2,26 +2,34 @@ import SwiftUI
 
 // MARK: - ProfilXPBarView
 struct ProfilXPBarView: View {
-    let stufe: PflanzenStufe
-    let fortschritt: Double  // 0.0–1.0
+    let seltenheit: PflanzenSeltenheit
     let aktuelleXP: Int
-    let xpNaechsteStufe: Int  // absoluter XP-Wert der nächsten Stufe
     
     @EnvironmentObject var settings: SettingsStore
     @State private var animierterFortschritt: Double = 0.0
     
+    private var fortschritt: Double {
+        seltenheit.fortschritt(aktuelleXP: aktuelleXP)
+    }
+    
     var body: some View {
         VStack(spacing: 8) {
             HStack {
-                Text(settings.localizedString(for: stufe.labelKey))
+                Text(seltenheit.lokalisiertTitel)
                     .font(.caption.weight(.bold))
-                    .foregroundStyle(stufe.farbe)
+                    .foregroundStyle(seltenheit.farbe)
                 
                 Spacer()
                 
-                Text("\(aktuelleXP) / \(xpNaechsteStufe) XP")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                if let naechste = seltenheit.naechste {
+                    Text("\(aktuelleXP) / \(naechste.xpSchwelle) XP")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                } else {
+                    Text("\(aktuelleXP) XP")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
             }
             
             GeometryReader { geo in
@@ -31,9 +39,9 @@ struct ProfilXPBarView: View {
                         .frame(height: 14)
                     
                     Capsule()
-                        .fill(stufe.farbe)
+                        .fill(seltenheit.farbe)
                         .frame(width: max(0, geo.size.width * CGFloat(animierterFortschritt)), height: 14)
-                        .shadow(color: stufe.farbe.opacity(0.6), radius: 6, y: 2)
+                        .shadow(color: seltenheit.farbe.opacity(0.6), radius: 6, y: 2)
                 }
             }
             .frame(height: 14)
@@ -48,16 +56,16 @@ struct ProfilXPBarView: View {
                 }
             }
             
-            if let naechste = stufe.naechste {
+            if let naechste = seltenheit.naechste {
                 Text(String(format: settings.localizedString(for: "stufe.naechste.hinweis"),
-                    xpNaechsteStufe - aktuelleXP,
-                    settings.localizedString(for: naechste.labelKey)))
+                    Int64(max(0, naechste.xpSchwelle - aktuelleXP)),
+                    naechste.lokalisiertTitel))
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             } else {
                 Text(settings.localizedString(for: "profile.level.max"))
                     .font(.caption2)
-                    .foregroundStyle(stufe.farbe)
+                    .foregroundStyle(seltenheit.farbe)
             }
         }
     }
@@ -66,7 +74,7 @@ struct ProfilXPBarView: View {
 // MARK: - ProfilHeaderView
 struct ProfilHeaderView: View {
     let name: String
-    let stufe: PflanzenStufe
+    let seltenheit: PflanzenSeltenheit
     @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
@@ -75,17 +83,17 @@ struct ProfilHeaderView: View {
                 .font(.system(size: 24, weight: .bold, design: .rounded))
             
             HStack(spacing: 6) {
-                Image(systemName: stufe.sfSymbol)
-                    .foregroundStyle(stufe.farbe)
+                Image(systemName: seltenheit.iconName)
+                    .foregroundStyle(seltenheit.farbe)
                     .font(.caption)
                 
-                Text(settings.localizedString(for: stufe.labelKey))
+                Text(seltenheit.lokalisiertTitel)
                     .font(.caption.weight(.semibold))
-                    .foregroundStyle(stufe.farbe)
+                    .foregroundStyle(seltenheit.farbe)
             }
             .padding(.horizontal, 10)
             .padding(.vertical, 4)
-            .background(stufe.farbe.opacity(0.15), in: Capsule())
+            .background(seltenheit.farbe.opacity(0.15), in: Capsule())
         }
     }
 }

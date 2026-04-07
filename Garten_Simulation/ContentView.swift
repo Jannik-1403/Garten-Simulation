@@ -42,6 +42,28 @@ struct ContentView: View {
                 .ignoresSafeArea()
                 .zIndex(9999)
             }
+            
+            // Globaler Level-Up Overlay
+            if gardenStore.zeigeGartenLevelUpOverlay {
+                GartenLevelUpOverlay(
+                    neuerLevel: gardenStore.neuerGartenLevel,
+                    freischaltungen: gardenStore.neueFreischaltungen,
+                    onDismiss: {
+                        withAnimation {
+                            gardenStore.zeigeGartenLevelUpOverlay = false
+                        }
+                    },
+                    onGluecksradDrehen: {
+                        withAnimation {
+                            gardenStore.zeigeGartenLevelUpOverlay = false
+                            gardenStore.showDailySpinOverlay = true
+                        }
+                    }
+                )
+                .transition(.opacity.combined(with: .scale(scale: 0.9)))
+                .ignoresSafeArea()
+                .zIndex(10001)
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ struct GartenPassRewardOverlay: View {
     @State private var showConfetti = false
     
     private var info: (name: String, icon: String, isAsset: Bool) {
-        belohnung.getDisplayInfo()
+        belohnung.getDisplayInfo(settings: settings)
     }
     
     var body: some View {
@@ -36,11 +36,11 @@ struct GartenPassRewardOverlay: View {
                 
                 // Celebration Title
                 VStack(spacing: 12) {
-                    Text(NSLocalizedString("reward_claim_title", comment: ""))
+                    Text(settings.localizedString(for: "reward_claim_title"))
                         .font(.system(size: 36, weight: .black, design: .rounded))
                         .foregroundStyle(.black)
                     
-                    Text(NSLocalizedString("reward_claim_subtitle", comment: ""))
+                    Text(settings.localizedString(for: "reward_claim_subtitle"))
                         .font(.system(size: 18, weight: .medium, design: .rounded))
                         .foregroundStyle(.black.opacity(0.6))
                 }
@@ -51,7 +51,13 @@ struct GartenPassRewardOverlay: View {
                         .fill(rewardColor.opacity(0.1))
                         .frame(width: 220, height: 220)
                     
-                    if info.isAsset {
+                    if case .pflanze(let id) = belohnung.typ, 
+                       let pl = GameDatabase.shared.plant(for: id) {
+                        // Spezial-View für Pflanzen
+                        PlantIconView(plant: pl, seltenheit: .bronze, size: 160, alwaysShowFullGrown: true)
+                            .shadow(color: .black.opacity(0.15), radius: 20, x: 0, y: 10)
+                            .scaleEffect(iconScale)
+                    } else if info.isAsset {
                         Image(info.icon)
                             .resizable()
                             .scaledToFit()
@@ -74,7 +80,7 @@ struct GartenPassRewardOverlay: View {
                         .foregroundStyle(.black)
                         .multilineTextAlignment(.center)
                     
-                    Text(NSLocalizedString("reward_claimed_added_msg", comment: "Wurde deinem Garten hinzugefügt"))
+                    Text(settings.localizedString(for: "reward_claimed_added_msg"))
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(rewardColor)
                         .padding(.horizontal, 16)
@@ -95,7 +101,7 @@ struct GartenPassRewardOverlay: View {
                                 onSpinNow()
                             }
                         }) {
-                            Text(NSLocalizedString("ice_wheel_button_spin", comment: ""))
+                            Text(settings.localizedString(for: "ice_wheel_button_spin"))
                                 .font(.system(size: 20, weight: .black, design: .rounded))
                         }
                         .buttonStyle(DuolingoButtonStyle(
@@ -112,7 +118,7 @@ struct GartenPassRewardOverlay: View {
                                 onContinue()
                             }
                         }) {
-                            Text(NSLocalizedString("spin_button_later", comment: "Später"))
+                            Text(settings.localizedString(for: "spin_button_later"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundStyle(Color.blauPrimary)
                                 .padding(.vertical, 8)
@@ -124,7 +130,7 @@ struct GartenPassRewardOverlay: View {
                                 onContinue()
                             }
                         }) {
-                            Text(NSLocalizedString("reward_button_super", comment: "Super!"))
+                            Text(settings.localizedString(for: "reward_button_super"))
                                 .font(.system(size: 20, weight: .black, design: .rounded))
                         }
                         .buttonStyle(DuolingoButtonStyle(
@@ -142,12 +148,16 @@ struct GartenPassRewardOverlay: View {
             .opacity(contentOpacity)
         }
         .onAppear {
-            showConfetti = true
+            // Tiny delay to ensure the view hierarchy is stable before Lottie starts loading/rendering
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                showConfetti = true
+            }
             withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
                 contentOpacity = 1.0
                 iconScale = 1.0
             }
         }
+
         .statusBar(hidden: true)
     }
     

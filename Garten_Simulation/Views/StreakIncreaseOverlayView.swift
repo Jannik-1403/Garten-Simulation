@@ -304,9 +304,13 @@ struct StreakIncreaseOverlayView: View {
             // Morph pill → Lottie flame
             withAnimation(.spring(response: 0.35, dampingFraction: 0.6)) {
                 pillVisible = false
-                showLottie = true
-                lottieScale = 1.0
+                // Small delay within the sequence to ensure layout is ready
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    showLottie = true
+                    lottieScale = 1.0
+                }
             }
+
 
             // Number: HARD CUT — no animation wrapper on the state change.
             // The value + color switch instantly. Only the scale pop is animated.

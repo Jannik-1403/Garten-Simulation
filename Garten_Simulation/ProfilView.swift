@@ -8,12 +8,13 @@ struct ProfilView: View {
     @State private var showStreakDetail = false
     @State private var showWasserDetail = false
     @State private var zeigeGartenPass = false
-    @State private var zeigeGartenPassWheel = false
+    @State private var showTitelAuswahl = false
     
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var achievementStore: AchievementStore
+    @EnvironmentObject var titelStore: TitelStore
     
     private var freigeschalteteErfolgeAnzahl: Int {
         achievementStore.alleErfolge.filter { $0.istFreigeschaltet }.count
@@ -26,12 +27,37 @@ struct ProfilView: View {
                 
                 ScrollView {
                     VStack(spacing: 32) {
-                        // User Profile Info (Name + Level-Badge)
+                        // User Profile Info (Name, Title, Level)
                         VStack(spacing: 8) {
                             Text("Jannik Schill")
                                 .font(.system(size: 24, weight: .bold, design: .rounded))
                                 .padding(.top, 24)
                             
+                            // 1. Name (above)
+                            // Aktiver Titel
+                            if let titel = titelStore.aktiverTitel() {
+                                Button {
+                                    showTitelAuswahl = true
+                                } label: {
+                                    TitelTextView(titel: titel)
+                                }
+                                .buttonStyle(.plain)
+                                .transition(.scale.combined(with: .opacity))
+                            } else {
+                                Button {
+                                    showTitelAuswahl = true
+                                } label: {
+                                    Text(settings.localizedString(for: "titel.keiner"))
+                                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 4)
+                                        .background(Capsule().fill(Color.secondary.opacity(0.1)))
+                                }
+                                .buttonStyle(.plain)
+                            }
+
+                            // 3. Level (now below Title, and without background via its own view)
                             ProfilTierBadgeView(level: gardenStore.gartenStufe)
                         }
                         
@@ -42,28 +68,6 @@ struct ProfilView: View {
                                 onTippen: { zeigeGartenPass = true }
                             )
                             
-                            if gardenStore.gluecksradDrehungen > 0 {
-                                Button {
-                                    zeigeGartenPassWheel = true
-                                } label: {
-                                    HStack(spacing: 8) {
-                                        Image(systemName: "arrow.2.circlepath")
-                                            .font(.system(size: 14, weight: .bold))
-                                        Text(String(format: NSLocalizedString("spin_verfuegbar", comment: ""), 
-                                                    gardenStore.gluecksradDrehungen))
-                                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                                    }
-                                    .foregroundStyle(.white)
-                                    .padding(.horizontal, 12)
-                                    .padding(.vertical, 6)
-                                    .background(
-                                        Capsule()
-                                            .fill(Color.blauPrimary) 
-                                            .shadow(color: Color.blauPrimary.opacity(0.3), radius: 4, x: 0, y: 2)
-                                    )
-                                }
-                                .transition(.scale.combined(with: .opacity))
-                            }
                         }
                         .padding(.horizontal, 20)
                         
@@ -138,10 +142,19 @@ struct ProfilView: View {
                 GartenPassView()
                     .environmentObject(gardenStore)
             }
-            .fullScreenCover(isPresented: $zeigeGartenPassWheel) {
-                GartenPassWheelView()
-                    .environmentObject(gardenStore)
-                    .environmentObject(settings)
+            .sheet(isPresented: $showTitelAuswahl) {
+                TitelAuswahlSheet()
+            }
+            .overlay {
+                if let neuerTitel = titelStore.neuerTitelZumAnzeigen {
+                    NeuerTitelOverlay(titel: neuerTitel) {
+                        withAnimation {
+                            titelStore.neuerTitelZumAnzeigen = nil
+                        }
+                    }
+                    .transition(.opacity.combined(with: .scale(scale: 0.9)))
+                    .zIndex(100)
+                }
             }
         }
     }

@@ -9,38 +9,12 @@ struct WetterDetailView: View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 28) {
                 // MARK: - 3D Header Icon
-                ZStack {
-                    // Shadows/Extrusion (Base)
-                    Circle()
-                        .fill(event.bannerFarbeSekundaer)
-                        .frame(width: 120, height: 120)
-
-                    // Main Surface (Top Layer)
-                    Circle()
-                        .fill(
-                            LinearGradient(
-                                colors: [event.bannerFarbe, event.bannerFarbe.opacity(0.9)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .frame(width: 120, height: 120)
-                        .overlay {
-                            Image(systemName: event.systemIcon)
-                                .font(.system(size: 48, weight: .bold))
-                                .foregroundStyle(.white)
-                                .shadow(color: .black.opacity(0.15), radius: 2)
-                        }
-                        .overlay {
-                            Circle()
-                                .stroke(.white.opacity(0.25), lineWidth: 2)
-                        }
-                        .offset(y: perfektIconPressed ? 0 : -6) // Raised when not pressed
-                }
-                .animation(perfektIconPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: perfektIconPressed)
-                .onTapGesture {
-                    handleIconPress()
-                }
+                Item3DButton(
+                    icon: event.systemIcon,
+                    farbe: event.bannerFarbe,
+                    sekundaerFarbe: event.bannerFarbeSekundaer,
+                    groesse: 120
+                )
                 .padding(.top, 32)
 
                 VStack(spacing: 6) {
@@ -57,25 +31,22 @@ struct WetterDetailView: View {
                 }
 
                 // MARK: - 3D Info Cards
-                HStack(spacing: 16) {
-                    Weather3DCard(
+                HStack(spacing: 24) {
+                    weatherInfoBlock(
                         icon: "coin",
                         isAsset: true,
                         title: settings.localizedString(for: "weather.detail.gems"),
-                        value: gemsText,
-                        color: .purple,
-                        shadowColor: .purple.darker()
+                        value: gemsText
                     )
                     
-                    Weather3DCard(
+                    weatherInfoBlock(
                         icon: "Drop water",
                         isAsset: true,
                         title: settings.localizedString(for: "weather.detail.watering"),
-                        value: giessText,
-                        color: event.bannerFarbe,
-                        shadowColor: event.bannerFarbeSekundaer
+                        value: giessText
                     )
                 }
+                .padding(.horizontal, 16)
 
                 // MARK: - 3D Rules Card
                 VStack(alignment: .leading, spacing: 12) {
@@ -155,62 +126,31 @@ struct WetterDetailView: View {
     private var ruleText: String {
         settings.localizedString(for: "weather.rule.\(event.rawValue)")
     }
-}
 
-// MARK: - Weather 3D Card
-struct Weather3DCard: View {
-    let icon: String
-    var isAsset: Bool = false
-    let title: String
-    let value: String
-    let color: Color
-    let shadowColor: Color
-
-    var body: some View {
-        ZStack {
-            // Shadow (Extrusion)
-            RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .fill(shadowColor.opacity(0.6))
-                .frame(height: 90)
-                .offset(y: 4)
-
-            // Surface
-            RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .fill(Color.white)
-                .frame(height: 90)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 22, style: .continuous)
-                        .stroke(Color.primary.opacity(0.06), lineWidth: 1)
-                )
-                .overlay {
-                    VStack(spacing: 4) {
-                        HStack(spacing: 6) {
-                            if isAsset {
-                                Image(icon)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 18, height: 18)
-                            } else {
-                                Image(systemName: icon)
-                                    .font(.system(size: 13, weight: .black))
-                                    .foregroundStyle(color)
-                            }
-                            
-                            Text(title)
-                                .font(.system(size: 11, weight: .heavy, design: .rounded))
-                                .foregroundStyle(.secondary)
-                                .tracking(1.0)
-                        }
-                        
-                        Text(value)
-                            .font(.system(size: 20, weight: .black, design: .rounded))
-                            .foregroundStyle(.primary)
-                    }
-                }
+    private func weatherInfoBlock(icon: String, isAsset: Bool, title: String, value: String) -> some View {
+        VStack(spacing: 12) {
+            Item3DButton(
+                icon: icon,
+                farbe: event.bannerFarbe,
+                sekundaerFarbe: event.bannerFarbeSekundaer,
+                groesse: 90
+            )
+            
+            VStack(spacing: 4) {
+                Text(title.uppercased())
+                    .font(.system(size: 11, weight: .black, design: .rounded))
+                    .foregroundStyle(.secondary)
+                    .tracking(1.0)
+                
+                Text(value)
+                    .font(.system(size: 22, weight: .black, design: .rounded))
+                    .foregroundStyle(.primary)
+            }
         }
         .frame(maxWidth: .infinity)
     }
 }
+
 
 #Preview {
     WetterDetailView(event: .perfekt)

@@ -90,23 +90,28 @@ struct ShopItemCard: View {
     let subtitle: String
     let price: Int
     var badgeText: String? = nil
+    var plant: Plant? = nil
     let onBuy: () -> Void
 
     var body: some View {
         DuolingoShopCard(action: onBuy, badgeText: badgeText) {
             VStack(alignment: .center, spacing: 12) {
                 Group {
-                    if UIImage(named: icon) != nil {
-                        Image(icon)
-                            .resizable()
-                            .scaledToFit()
+                    if let plant = plant {
+                        PlantIconView(plant: plant, seltenheit: .bronze, size: 80, alwaysShowFullGrown: true) // Erhöht von 50
                     } else {
-                        Image(systemName: icon)
-                            .font(.system(size: 50))
-                            .foregroundStyle(accentColor)
+                        if UIImage(named: icon) != nil {
+                            Image(icon)
+                                .resizable()
+                                .scaledToFit()
+                        } else {
+                            Image(systemName: icon)
+                                .font(.system(size: 80)) // Erhöht von 50
+                                .foregroundStyle(accentColor)
+                        }
                     }
                 }
-                .frame(width: 80, height: 80)
+                .frame(width: 110, height: 110) // Erhöht von 80x80
 
                 VStack(alignment: .center, spacing: 4) {
                     Text(settings.localizedString(for: name))
@@ -153,10 +158,15 @@ struct UnifiedShopView: View {
     var decorationItems: [DecorationItem] { GameDatabase.allDecorations }
     var powerUps: [PowerUpItem] { GameDatabase.allPowerUps }
 
+    var relevantHabitCategories: [HabitCategory] {
+        let allUsedCats = Set(GameDatabase.allPlants.flatMap { $0.habitCategories })
+        return HabitCategory.allCases.filter { allUsedCats.contains($0) }
+    }
+    
     var gefiltertePflanzen: [Plant] {
         var base = pflanzen
         if let kat = selectedHabitCategory {
-            base = base.filter { $0.habitCategory == kat }
+            base = base.filter { $0.habitCategories.contains(kat) }
         }
         if !searchText.isEmpty {
             base = base.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
@@ -257,7 +267,7 @@ struct UnifiedShopView: View {
                                                         shadowColorHex: "#1A7493", // dark blue
                                                         tag: item.rarity.rawValue,
                                                         itemType: .powerUp,
-                                                        habitCategory: nil,
+                                                        habitCategories: nil,
                                                         symbolism: nil,
                                                         howToUse: item.howToUse
                                                     )
@@ -311,7 +321,7 @@ struct UnifiedShopView: View {
                                                         shadowColorHex: "#D98216", // dark orange
                                                         tag: "DEKO",
                                                         itemType: .decoration,
-                                                        habitCategory: nil,
+                                                        habitCategories: nil,
                                                         symbolism: nil,
                                                         howToUse: nil
                                                     )
@@ -340,9 +350,7 @@ struct UnifiedShopView: View {
                                     VStack(spacing: 12) {
                                         ForEach(gefiltertePflanzen) { plant in
                                             let p = plant.basePrice
-                                            let displayName = settings.showHabitInsteadOfName 
-                                                ? plant.habitName 
-                                                : plant.name
+                                            let displayName = plant.name
                                             let isOwned = shopStore.isPurchased(plant.id)
                                             
                                             ShopItemCard(
@@ -350,13 +358,14 @@ struct UnifiedShopView: View {
                                                 accentColor: plant.color,
                                                 shadowColor: plant.color.darker(),
                                                 name: displayName,
-                                                subtitle: plant.symbolism,
+                                                subtitle: plant.habitName,
                                                 price: p,
                                                 badgeText: isOwned ? settings.localizedString(for: "shop.owned") : nil,
+                                                plant: plant,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: plant.id,
-                                                        title: displayName,
+                                                        title: plant.name,
                                                         subtitle: plant.habitName,
                                                         description: plant.symbolism,
                                                         price: p,
@@ -366,7 +375,7 @@ struct UnifiedShopView: View {
                                                         shadowColorHex: "#3F9922", // dark green
                                                         tag: "PLANT",
                                                         itemType: .plant,
-                                                        habitCategory: plant.habitCategory,
+                                                        habitCategories: plant.habitCategories,
                                                         symbolism: plant.symbolism,
                                                         howToUse: nil,
                                                         habitName: plant.habitName

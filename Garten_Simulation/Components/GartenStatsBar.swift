@@ -4,6 +4,7 @@ struct GartenStatsBar: View {
     let streak: Int
     let coins: Int
     let leben: Int
+    var onLebenTap: (() -> Void)? = nil // NEU
 
     private let streakFarbe = Color(hex: "#D95F00")
     private let coinsFarbe  = Color.coinBlue
@@ -28,6 +29,10 @@ struct GartenStatsBar: View {
                 wert: "\(leben)",
                 farbe: leben <= 0 ? .gray : lebenFarbe
             )
+            .contentShape(Rectangle())
+            .onTapGesture {
+                onLebenTap?()
+            }
         }
     }
 

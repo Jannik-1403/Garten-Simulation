@@ -13,9 +13,21 @@
 "button.ok" = "OK";
 "button.cancel" = "Abbrechen";
 "button.use" = "Verwenden";
+"button.restart" = "Neustarten";
+"gameover.titel" = "Dein Garten ist eingegangen";
+"gameover.beschreibung" = "Alle Pflanzen sind vertrocknet. Deine Coins und Items bleiben erhalten.";
+"gameover.button" = "Neuen Garten anlegen";
+"leben.titel" = "Deine Leben";
+"leben.verbleibend" = "Leben verbleibend";
+"leben.regel1" = "Gieße deine Pflanzen täglich um Leben zu behalten";
+"leben.regel2" = "Stirbt eine Pflanze, verlierst du ein Leben";
+"leben.regel3" = "Bei 0 Leben werden alle Pflanzen gelöscht";
+"leben.verloren.durch" = "Leben verloren durch:";
 "powerup.active.garden" = "PowerUp aktiv für %dh";
 "powerup.active.plant" = "Aktiv auf %@ für %dh";
 "powerup.picker.title" = "Pflanze wählen";
+"powerup.select_plant_prompt" = "Wähle eine Pflanze aus deinem Garten:";
+
 
 // Garten
 "garden.title" = "Mein Garten";
@@ -102,6 +114,63 @@
 "common.active" = "Aktiv";
 "common.of" = "von";
 "common.done" = "FERTIG";
+
+// Titel-System
+"titel.anfaenger" = "Frischling";
+"titel.bambus" = "Bambus-Flüsterer";
+"titel.eiche" = "Ewiger Eichenwächter";
+"titel.bonsai" = "Bonsai-Sensei";
+"titel.kaktus" = "Stachel-Baron";
+"titel.rose" = "Rosenkavalier";
+"titel.sonnenblume" = "Sonnenkind";
+"titel.lavendel" = "Lavendel-Lord";
+"titel.tomate" = "Tomaten-Tyrann";
+"titel.minze" = "Minze-Monarch";
+"titel.orchidee" = "Orchideen-Orakel";
+"titel.farn" = "Farn-Fürst";
+"titel.efeu" = "Efeu-Imperator";
+"titel.aloe" = "Aloe-Arzt";
+"titel.tulpe" = "Tulpen-Titan";
+"titel.monstera" = "Monstera-Mastermind";
+"titel.kirschbaum" = "Kirschblüten-König";
+"titel.feigenkaktus" = "Wüstenphilosoph";
+"titel.zitronenbaum" = "Zitronen-Zar";
+"titel.magnolia" = "Magnolien-Magier";
+"titel.jasmin" = "Jasmin-Jedi";
+"titel.palme" = "Palmen-Pirat";
+"titel.weinrebe" = "Wein-Weise";
+"titel.basilikum" = "Basilikum-Boss";
+"titel.pfingstrose" = "Pfingstrosen-Prophet";
+"titel.eukalyptus" = "Eukalyptus-Entdecker";
+"titel.hanfpalme" = "Hanfpalmen-Held";
+"titel.agave" = "Agaven-Astronaut";
+"titel.dahlie" = "Dahlien-Dämon";
+"titel.wisteria" = "Wisteria-Weise";
+"titel.chrysantheme" = "Chrysanthemen-Chef";
+"titel.papyrus" = "Papyrus-Pharao";
+"titel.bambusorchidee" = "Doppel-Diva";
+"titel.geranium" = "Geranium-Genius";
+"titel.lorbeer" = "Lorbeerkranz-Träger";
+"titel.feige" = "Feigen-Filosoph";
+"titel.passionsblume" = "Passions-Profi";
+"titel.ingwer" = "Ingwer-Ikone";
+"titel.zimt" = "Zimt-Zampano";
+"titel.drachenpflanze" = "Drachen-Dompteur";
+"titel.edelweiss" = "Edelweiß-Elitesoldat";
+"titel.kirschlorbeer" = "Kirschlorbeer-Kaiser";
+"titel.bambusgras" = "Gras-Grandmaster";
+"titel.bodendecker" = "Bodendecker-Boss";
+"titel.seerose" = "Seerosenzauberer";
+
+"titel.standard" = "Standard-Titel";
+"titel.keiner" = "Noch kein Titel";
+"titel.auswahl.titel" = "Titel auswählen";
+"titel.section.gesperrt" = "Gesperrte Titel";
+"titel.gesperrt.hinweis" = "Bringe eine Pflanze auf Diamant";
+"titel.diamant.pflanze" = "Diamant-Pflanze";
+"titel.neu.freigeschaltet" = "Neuer Titel!";
+"titel.neu.untertitel" = "Du hast eine Pflanze auf Diamant gebracht!";
+
 
 // Buttons
 "button.delete" = "Entfernen";
@@ -374,9 +443,9 @@
 "shop.purchase_success.title" = "Gekauft! 🎉";
 "shop.purchase_success.awesome" = "Super!";
 
-"level_up.title" = "STUFEN-AUFSTIEG! 🎉";
-"level_up.subtitle" = "Dein Garten ist jetzt";
-"levelup.toast" = "Neue Stufe erreicht!";
+"level_up.title" = "LEVEL-UP! 🎉";
+"level_up.subtitle" = "Deine Pflanze ist jetzt";
+"levelup.toast" = "Neues Level erreicht!";
 
 "weather.new_event" = "Neues Wetter-Event!";
 "weather.today_is" = "Heute gilt";
@@ -449,18 +518,18 @@
 "dailyspin.powerup.button" = "Nutzen";
 
 // MARK: - Stufen Labels
-"stufe.bronze1" = "Bronze I";
-"stufe.bronze2" = "Bronze II";
-"stufe.bronze3" = "Bronze III";
-"stufe.silber1" = "Silber I";
-"stufe.silber2" = "Silber II";
-"stufe.silber3" = "Silber III";
-"stufe.gold1" = "Gold I";
-"stufe.gold2" = "Gold II";
-"stufe.gold3" = "Gold III";
-"stufe.diamant1" = "Diamant I";
-"stufe.diamant2" = "Diamant II";
-"stufe.diamant3" = "Diamant III";
+"stufe.bronze1" = "Bronze";
+"stufe.bronze2" = "Bronze";
+"stufe.bronze3" = "Bronze";
+"stufe.silber1" = "Silber";
+"stufe.silber2" = "Silber";
+"stufe.silber3" = "Silber";
+"stufe.gold1" = "Gold";
+"stufe.gold2" = "Gold";
+"stufe.gold3" = "Gold";
+"stufe.diamant1" = "Diamant";
+"stufe.diamant2" = "Diamant";
+"stufe.diamant3" = "Diamant";
 
 "stats.streak" = "Streak";
 "stats.coins"  = "Coins";
@@ -473,6 +542,13 @@
 "pass_naechstes_tier_hint" = "Nächste Stufe: %@";
 "pass_belohnung_coins" = "Pass-Belohnung";
 "pass_belohnung_paket" = "Meilenstein-Paket";
+"pass.xp" = "XP";
+"pass.next_tier_level" = "%@ (Level %d)";
+"pass.level_range" = "Level %@-%@";
+"reward.coins_format" = "%d Coins";
+"reward.seeds_format" = "%d Samen";
+"wheel.spins_label" = "%d Spins";
+"wheel.reward.deko" = "Deko";
 
 "tier_bronze" = "Bronze";
 "tier_silber" = "Silber";
@@ -488,18 +564,18 @@
 "profil_garten_level" = "Garten Level %d";
 
 // MARK: - Tier-Stufen (12 Stufen)
-"tier_stufe_bronze_1" = "Bronze I";
-"tier_stufe_bronze_2" = "Bronze II";
-"tier_stufe_bronze_3" = "Bronze III";
-"tier_stufe_silber_1" = "Silber I";
-"tier_stufe_silber_2" = "Silber II";
-"tier_stufe_silber_3" = "Silber III";
-"tier_stufe_gold_1" = "Gold I";
-"tier_stufe_gold_2" = "Gold II";
-"tier_stufe_gold_3" = "Gold III";
-"tier_stufe_diamant_1" = "Diamant I";
-"tier_stufe_diamant_2" = "Diamant II";
-"tier_stufe_diamant_3" = "Diamant III";
+"tier_stufe_bronze_1" = "Bronze";
+"tier_stufe_bronze_2" = "Bronze";
+"tier_stufe_bronze_3" = "Bronze";
+"tier_stufe_silber_1" = "Silber";
+"tier_stufe_silber_2" = "Silber";
+"tier_stufe_silber_3" = "Silber";
+"tier_stufe_gold_1" = "Gold";
+"tier_stufe_gold_2" = "Gold";
+"tier_stufe_gold_3" = "Gold";
+"tier_stufe_diamant_1" = "Diamant";
+"tier_stufe_diamant_2" = "Diamant";
+"tier_stufe_diamant_3" = "Diamant";
 
 "xp_bis_naechste" = "%d XP bis %@";
 "tier_maximum_erreicht" = "Maximale Stufe erreicht!";
@@ -633,3 +709,63 @@
 
 "spin_button_gratis" = "Gratis drehen!";
 "spin_button_keine" = "Keine Drehungen!";
+
+// MARK: - Pflanze Wiederbeleben
+"pflanze.tot.titel" = "Nicht gegossen";
+"pflanze.tot.seit" = "Seit %d Tag(en)";
+"pflanze.wiederbeleben.titel" = "Pflanze wiederbeleben?";
+"pflanze.wiederbeleben.beschreibung" = "Diese Pflanze war %d Tage nicht gegossen. Nach der Wiederbelebung erhältst du für 3 Tage weniger XP und Münzen beim Gießen.";
+"pflanze.wiederbeleben.button" = "Wiederbeleben";
+
+// MARK: - Retention Umfrage
+"retention.frage1.titel" = "Warum hast du aufgehört die App zu benutzen?";
+"retention.grund.vergessen" = "Ich hab die App vergessen";
+"retention.grund.keineZeit" = "Ich hatte keine Zeit";
+"retention.grund.keineLust" = "Ich hatte keine Lust";
+"retention.grund.nichtMehrNoetig" = "Ich brauch die App nicht mehr";
+"retention.grund.nichtMotiviert" = "Die App hat mich nicht motiviert";
+"retention.frage2.vergessen" = "Soll ich dich täglich erinnern?";
+"retention.notification.aktivieren" = "Erinnerungen aktivieren";
+"retention.frage2.keineZeit" = "Wie viele Pflanzen sind realistisch für dich?";
+"retention.pflanzen.anzahl" = "%d Pflanzen reichen mir";
+"retention.frage2.keineLust" = "Was hat dir am meisten Spaß gemacht?";
+"retention.spass.pflanzen" = "Die Pflanzen sammeln";
+"retention.spass.coins" = "Coins verdienen";
+"retention.spass.streak" = "Den Streak halten";
+"retention.spass.nichts" = "Ehrlich gesagt nichts";
+"retention.frage2.nichtMehrNoetig" = "Respekt — du hast dein Ziel erreicht! 🎉";
+"retention.frage2.nichtMehrNoetig.sub" = "Vielleicht gibt es neue Gewohnheiten die du aufbauen möchtest?";
+"retention.frage2.nichtMotiviert" = "Was würde dir helfen?";
+"retention.mehr.belohnungen" = "Mehr Belohnungen beim Gießen";
+"retention.mehr.pflanzen" = "Seltenere und schönere Pflanzen";
+"retention.mehr.erinnerungen" = "Bessere Erinnerungen";
+"retention.mehr.anderes" = "Etwas anderes";
+"retention.abschluss.titel" = "Danke für dein Feedback!";
+"retention.abschluss.sub" = "Möchtest du mit einem neuen Garten weitermachen?";
+"retention.abschluss.button" = "Neuen Garten starten";
+"retention.abschluss.nein" = "Nein, danke";
+"retention.weiter" = "Weiter";
+
+// Unkraut Detail
+"weed.detail.titel" = "Unkraut im Garten!";
+"weed.detail.beschreibung" = "Oh nein! In deinem Garten hat sich Unkraut ausgebreitet. Um es zu entfernen, musst du heute 3 Gewohnheiten abschließen.";
+"weed.detail.fortschritt" = "Fortschritt: %d von 3";
+"weed.detail.button" = "Verstanden";
+
+// Effekte
+"effekt.frostwarnung.titel" = "Frostwarnung";
+"effekt.frostwarnung.beschreibung" = "Heute gibt es nur 50% Coins und XP beim Gießen.";
+"effekt.sonnenschein.titel" = "Sonnenschein";
+"effekt.sonnenschein.beschreibung" = "Heute gibt es 150% Coins und XP beim Gießen!";
+"effekt.regen.titel" = "Regen";
+"effekt.regen.beschreibung" = "Pflanzen wachsen schneller — +25% XP heute.";
+"effekt.sturm.titel" = "Sturm";
+"effekt.sturm.beschreibung" = "Streak-Schutz aktiv — kein Streak-Verlust heute.";
+"effekt.typ.wetter" = "Wetter-Effekt";
+"effekt.typ.powerup" = "Power-Up";
+"effekt.typ.status" = "Pflanzen-Status";
+
+// Erholung (Schildkröte)
+"effekt.erholung.titel" = "Erholungsmodus";
+"effekt.erholung.beschreibung" = "Die Pflanze erholt sich nach der Wiederbelebung. Wachstum ist vorübergehend reduziert.";
+

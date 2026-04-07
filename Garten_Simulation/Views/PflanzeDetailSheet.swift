@@ -42,14 +42,28 @@ struct PflanzeDetailSheet: View {
                             .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
 
                         // 3D Pflanze Button
-                        PflanzenButton(
-                            symbolName: pflanze.symbolName,
-                            farbe: pflanze.color,
-                            sekundaerFarbe: pflanze.color.darker(),
-                            groesse: 140
-                        )
-                        .scaleEffect(pulsieren ? 1.03 : 1.0)
-                        .allowsHitTesting(false)
+                        if let basePlant = GameDatabase.shared.plant(for: pflanze.plantID) {
+                            PflanzenButton(
+                                plant: basePlant,
+                                seltenheit: pflanze.seltenheit,
+                                farbe: pflanze.color,
+                                sekundaerFarbe: pflanze.color.darker(),
+                                groesse: 140
+                            )
+                            .scaleEffect(pulsieren ? 1.03 : 1.0)
+                            .allowsHitTesting(false)
+                        } else {
+                            // Fallback if not found
+                            PflanzenButton(
+                                plant: Plant(id: "fallback", name: "Plant", symbolName: pflanze.symbolName, assetName: nil, symbol: "🌱", symbolColor: pflanze.symbolColor, habitCategories: pflanze.habitCategories, symbolism: ""),
+                                seltenheit: pflanze.seltenheit,
+                                farbe: pflanze.color,
+                                sekundaerFarbe: pflanze.color.darker(),
+                                groesse: 140
+                            )
+                            .scaleEffect(pulsieren ? 1.03 : 1.0)
+                            .allowsHitTesting(false)
+                        }
                     }
 
                     Text(settings.showHabitInsteadOfName 
@@ -95,14 +109,16 @@ struct PflanzeDetailSheet: View {
 
                         Divider().frame(height: 24)
 
-                        // 3. Stufe (Badge)
-                        VStack(spacing: 4) {
+                        // 3. Stufe (Clean Style)
+                        HStack(spacing: 4) {
                             Image(systemName: pflanze.stufe.sfSymbol)
-                                .font(.system(size: 12, weight: .bold))
-                            Text(settings.localizedString(for: pflanze.stufe.labelKey))
-                                .font(.system(size: 10, weight: .bold, design: .rounded))
+                                .font(.system(size: 14, weight: .bold))
+                            Text(pflanze.seltenheit.lokalisiertTitel)
+                                .font(.system(size: 15, weight: .bold, design: .rounded))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
                         }
-                        .foregroundStyle(pflanze.stufe.farbe)
+                        .foregroundStyle(pflanze.seltenheit.farbe)
                         .frame(maxWidth: .infinity)
 
                         Divider().frame(height: 24)
@@ -663,11 +679,7 @@ struct PlantWeeklyStreakView: View {
                         Circle()
                             .fill(dayXP > 0 ? Color.white : Color.white.opacity(0.15))
                             .frame(width: 38, height: 38)
-                            .overlay(
-                                Circle()
-                                    .stroke(dayXP > 0 ? Color.white.opacity(0.5) : .clear, lineWidth: 1.5)
-                            )
-                        
+            
                         if dayXP > 0 {
                             Image(systemName: "checkmark")
                                 .font(.system(size: 14, weight: .bold))

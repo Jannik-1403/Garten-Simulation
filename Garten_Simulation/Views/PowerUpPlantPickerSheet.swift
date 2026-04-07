@@ -15,14 +15,18 @@ struct PowerUpPlantPickerSheet: View {
                     onSelect(plant)
                 } label: {
                     HStack(spacing: 12) {
-                        // Pflanzenbild (grüner Kreis wie auf Gartenkarte)
-                        ZStack {
-                            Circle()
-                                .fill(plant.color.opacity(0.15))
-                                .frame(width: 44, height: 44)
-                            Image(systemName: plant.symbolName)
-                                .foregroundColor(plant.color) // Use plant.color
-                                .font(.system(size: 20))
+                        // Pflanzenbild (SVG or SF Symbol)
+                        if let basePlant = GameDatabase.shared.plant(for: plant.plantID) {
+                            PlantIconView(plant: basePlant, seltenheit: plant.seltenheit, size: 28)
+                        } else {
+                            ZStack {
+                                Circle()
+                                    .fill(plant.color.opacity(0.15))
+                                    .frame(width: 44, height: 44)
+                                Image(systemName: plant.symbolName)
+                                    .foregroundColor(plant.color)
+                                    .font(.system(size: 20))
+                            }
                         }
                         
                         VStack(alignment: .leading, spacing: 2) {

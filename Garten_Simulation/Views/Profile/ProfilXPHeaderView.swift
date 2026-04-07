@@ -54,35 +54,15 @@ struct ProfilXPHeaderView: View {
                         .foregroundColor(.secondary.opacity(0.5))
                 }
 
-                // XP-Balken
+                // XP-Line (Fortschrittsbalken als dünne Linie)
                 ZStack(alignment: .leading) {
                     Capsule()
-                        .fill(Color(.systemGray6))
-                        .frame(height: 12)
-                    
-                    Capsule()
-                        .fill(
-                            LinearGradient(
-                                colors: [farbe, farbe.opacity(0.8)],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                        .frame(width: max(12, CGFloat(fortschritt) * (UIScreen.main.bounds.width - 72)), height: 12) // Approximate width
-                        .shadow(color: farbe.opacity(0.3), radius: 4, x: 0, y: 2)
-                    
-                    // Glossy shine effect
-                    Capsule()
-                        .fill(
-                            LinearGradient(
-                                colors: [.white.opacity(0.3), .clear],
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        )
+                        .fill(Color(.systemGray6).opacity(0.5))
                         .frame(height: 6)
-                        .padding(.horizontal, 4)
-                        .padding(.top, 1)
+                    
+                    Capsule()
+                        .fill(farbe)
+                        .frame(width: max(6, CGFloat(fortschritt) * (UIScreen.main.bounds.width - 72)), height: 6)
                 }
                 .mask(Capsule())
                 .animation(.spring(response: 0.6, dampingFraction: 0.8), value: fortschritt)
@@ -129,20 +109,13 @@ struct ProfilTierBadgeView: View {
     var body: some View {
         HStack(spacing: 6) {
             Image(systemName: GartenLevel.symbol(fuerLevel: level))
-                .font(.system(size: 12, weight: .bold))
+                .font(.system(size: 11, weight: .bold))
                 .foregroundColor(GartenLevel.farbe(fuerLevel: level))
 
             Text("\(NSLocalizedString("level_up_label", comment: "")) \(level)")
-                .font(.system(size: 13, weight: .bold, design: .rounded))
+                .font(.system(size: 12, weight: .bold, design: .rounded))
                 .foregroundColor(GartenLevel.dunkelFarbe(fuerLevel: level))
         }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 6)
-        .background(GartenLevel.hellFarbe(fuerLevel: level))
-        .clipShape(Capsule())
-        .overlay(
-            Capsule()
-                .stroke(GartenLevel.farbe(fuerLevel: level).opacity(0.2), lineWidth: 1)
-        )
+        .padding(.vertical, 2)
     }
 }

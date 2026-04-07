@@ -20,7 +20,15 @@ class SettingsStore: ObservableObject {
 
     // MARK: - Localization
     func localizedString(for key: String) -> String {
-        AppStrings.get(key, language: appLanguage)
+        let appString = AppStrings.get(key, language: appLanguage)
+        
+        // Falls der Key in AppStrings nicht gefunden wurde (AppStrings gibt den Key selbst zurück),
+        // probieren wir es mit dem Standard NSLocalizedString Mechanismus.
+        if appString == key {
+            return NSLocalizedString(key, comment: "")
+        }
+        
+        return appString
     }
 
     // MARK: - Actions

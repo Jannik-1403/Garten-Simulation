@@ -56,9 +56,27 @@ enum PflanzenStufe: Int, CaseIterable, Codable {
         case .diamant1, .diamant2, .diamant3: return "diamond.fill"
         }
     }
+    var rarity: PflanzenSeltenheit {
+        switch self {
+        case .bronze1, .bronze2, .bronze3: return .bronze
+        case .silber1, .silber2, .silber3: return .silber
+        case .gold1, .gold2, .gold3:       return .gold
+        case .diamant1, .diamant2, .diamant3: return .diamant
+        }
+    }
     
     var naechste: PflanzenStufe? {
-        return PflanzenStufe(rawValue: self.rawValue + 1)
+        PflanzenStufe(rawValue: self.rawValue + 1)
+    }
+    
+    /// Returns the first stage of the next rarity
+    var naechsteRaritaetStufe: PflanzenStufe? {
+        switch self.rarity {
+        case .bronze:  return .silber1
+        case .silber:  return .gold1
+        case .gold:    return .diamant1
+        case .diamant: return nil
+        }
     }
     
     // MARK: - Level Detection from XP

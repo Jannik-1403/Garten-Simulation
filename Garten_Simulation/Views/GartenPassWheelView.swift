@@ -114,7 +114,7 @@ struct GartenPassWheelView: View {
                     HStack(spacing: 8) {
                         Image(systemName: "arrow.2.circlepath")
                             .font(.system(size: 16, weight: .bold))
-                        Text("\(gardenStore.gluecksradDrehungen) Spins")
+                        Text(String(format: settings.localizedString(for: "wheel.spins_label"), gardenStore.gluecksradDrehungen))
                             .font(.system(size: 16, weight: .bold))
                     }
                     .padding(.horizontal, 16)
@@ -393,12 +393,18 @@ struct IceRewardOverlay: View {
     
     private var rewardName: String {
         switch reward {
-        case .coins(let n): return "\(n) Coins"
-        case .powerUp(let id): return id.replacingOccurrences(of: "powerup.", with: "").capitalized
-        case .pflanze(let id): return id.capitalized
-        case .deko(_): return "Deko"
-        case .xp(let n): return "\(n) XP"
-        case .seeds(let n): return "\(n) \(n == 1 ? "Samen" : "Samen")"
+        case .coins(let n):
+            return String(format: settings.localizedString(for: "reward.coins_format"), n)
+        case .powerUp(let id):
+            return NSLocalizedString(id, comment: "")
+        case .pflanze(let id):
+            return NSLocalizedString(id + ".name", comment: "")
+        case .deko(_):
+            return settings.localizedString(for: "wheel.reward.deko")
+        case .xp(let n):
+            return "\(n) \(settings.localizedString(for: "pass.xp"))"
+        case .seeds(let n):
+            return String(format: settings.localizedString(for: "reward.seeds_format"), n)
         }
     }
 }

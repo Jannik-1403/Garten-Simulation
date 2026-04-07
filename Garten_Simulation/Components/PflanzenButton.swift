@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct PflanzenButton: View {
-    let symbolName: String
+    let plant: Plant
+    let seltenheit: PflanzenSeltenheit
     let farbe: Color
     let sekundaerFarbe: Color
     let groesse: CGFloat
@@ -14,18 +15,7 @@ struct PflanzenButton: View {
                 aktion?()
             }
         } label: {
-            Group {
-                if UIImage(named: symbolName) != nil {
-                    Image(symbolName)
-                        .resizable()
-                        .scaledToFit()
-                } else {
-                    Image(systemName: symbolName)
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundStyle(.white)
-                }
-            }
+            PlantIconView(plant: plant, seltenheit: seltenheit, size: groesse * 0.55)
         }
         .buttonStyle(PflanzenButtonStyle(
             farbe: farbe,
@@ -67,19 +57,25 @@ struct PflanzenButtonStyle: ButtonStyle {
 
 #Preview {
     VStack(spacing: 30) {
-        PflanzenButton(
-            symbolName: "bonsai_stufe1",
-            farbe: .gruenPrimary,
-            sekundaerFarbe: .gruenSecondary,
-            groesse: 100
-        )
+        if let plant1 = GameDatabase.allPlants.first {
+            PflanzenButton(
+                plant: plant1,
+                seltenheit: .bronze,
+                farbe: .gruenPrimary,
+                sekundaerFarbe: .gruenSecondary,
+                groesse: 100
+            )
+        }
         
-        PflanzenButton(
-            symbolName: "bonsai_stufe4",
-            farbe: .gruenPrimary,
-            sekundaerFarbe: .gruenSecondary,
-            groesse: 80
-        )
+        if GameDatabase.allPlants.count > 3 {
+            PflanzenButton(
+                plant: GameDatabase.allPlants[3],
+                seltenheit: .gold,
+                farbe: .gruenPrimary,
+                sekundaerFarbe: .gruenSecondary,
+                groesse: 80
+            )
+        }
     }
     .padding()
 }

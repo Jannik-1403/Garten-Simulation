@@ -6,6 +6,7 @@ struct SettingsView: View {
     @EnvironmentObject var shopStore: ShopStore
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var powerUpStore: PowerUpStore
+    @EnvironmentObject var titelStore: TitelStore
     @Environment(\.dismiss) var dismiss
     
     @State private var showResetAlert = false
@@ -177,6 +178,15 @@ struct SettingsView: View {
                                     Divider().padding(.leading, 44)
                                     
                                     Button {
+                                        gardenStore.xpHinzufuegen(amount: 500)
+                                        FeedbackManager.shared.playSuccess()
+                                    } label: {
+                                        settingRow(title: "+500 XP hinzufügen", icon: "star.fill", color: .orange)
+                                    }
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
+                                    Button {
                                         for p in gardenStore.pflanzen {
                                             p.istBewässert = false
                                         }
@@ -234,6 +244,35 @@ struct SettingsView: View {
                                 .buttonStyle(DangerButtonStyle())
                             }
                             .padding(.top, 16)
+
+                            #if DEBUG
+                            settingsSection(title: "Debug: Titel 👑") {
+                                VStack(spacing: 0) {
+                                    Button {
+                                        // Alle Titel freischalten
+                                        for titel in GameDatabase.allTitles {
+                                            titelStore.freigeschalteteTitelIDs.insert(titel.id)
+                                        }
+                                        titelStore.speichernPublic()
+                                        FeedbackManager.shared.playSuccess()
+                                    } label: {
+                                        settingRow(title: "Alle Titel freischalten", icon: "crown.fill", color: .goldPrimary)
+                                    }
+
+                                    Divider().padding(.leading, 44)
+
+                                    Button {
+                                        // Zurücksetzen (nur Anfänger-Titel)
+                                        titelStore.freigeschalteteTitelIDs = ["titel_anfaenger"]
+                                        titelStore.aktiverTitelID = "titel_anfaenger"
+                                        titelStore.speichernPublic()
+                                        FeedbackManager.shared.playError()
+                                    } label: {
+                                        settingRow(title: "Titel zurücksetzen", icon: "arrow.counterclockwise", color: .red)
+                                    }
+                                }
+                            }
+                            #endif
                         }
                         .padding(.horizontal, 16)
                         .padding(.bottom, 40)
