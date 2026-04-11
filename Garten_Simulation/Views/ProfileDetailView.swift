@@ -5,6 +5,7 @@ struct ProfileDetailView: View {
     let icon: String
     let value: String
     let color: Color
+    @EnvironmentObject var settings: SettingsStore
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -38,15 +39,15 @@ struct ProfileDetailView: View {
                     
                     // Detailed Stats / History
                     VStack(alignment: .leading, spacing: 20) {
-                        Text("DETAILS")
+                        Text(settings.localizedString(for: "common.details"))
                             .font(.system(size: 13, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                             .padding(.leading, 8)
                         
                         VStack(spacing: 12) {
-                            detailRow(label: "Gesamt", value: value)
-                            detailRow(label: "Diesen Monat", value: "+\(Int.random(in: 1...5))")
-                            detailRow(label: "Rekord", value: value)
+                            detailRow(label: settings.localizedString(for: "common.total"), value: value)
+                            detailRow(label: settings.localizedString(for: "common.this_month"), value: "+\(Int.random(in: 1...5))")
+                            detailRow(label: settings.localizedString(for: "common.record"), value: value)
                         }
                     }
                     .padding(.horizontal, 24)

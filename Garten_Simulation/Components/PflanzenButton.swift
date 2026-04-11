@@ -6,16 +6,15 @@ struct PflanzenButton: View {
     let farbe: Color
     let sekundaerFarbe: Color
     let groesse: CGFloat
+    var alwaysShowFullGrown: Bool = false
     var externerPress: Bool = false
     var aktion: (() -> Void)? = nil
     
     var body: some View {
         Button {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                aktion?()
-            }
+            aktion?()
         } label: {
-            PlantIconView(plant: plant, seltenheit: seltenheit, size: groesse * 0.55)
+            PlantIconView(plant: plant, seltenheit: seltenheit, size: groesse * 0.55, alwaysShowFullGrown: alwaysShowFullGrown)
         }
         .buttonStyle(PflanzenButtonStyle(
             farbe: farbe,

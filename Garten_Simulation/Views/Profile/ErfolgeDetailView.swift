@@ -113,12 +113,12 @@ struct ErfolgGridItem: View {
                 .opacity(isVisible ? 1.0 : 0.0)
             
             Text(LocalizedStringKey(erfolg.titelKey))
-                .font(.system(size: 11, weight: .bold, design: .rounded))
+                .font(.caption2.weight(.bold))
                 .multilineTextAlignment(.center)
                 .foregroundStyle(istFreigeschaltet ? .primary : .secondary)
                 .lineLimit(2)
                 .fixedSize(horizontal: false, vertical: true)
-                .frame(maxWidth: 90)  // Slightly wider for the new shield
+                .frame(maxWidth: 80)  // Minimum width for better layout
             
             // Fortschrittsbalken unter dem Badge
             if !istFreigeschaltet {

@@ -4,7 +4,9 @@ struct GartenStatsBar: View {
     let streak: Int
     let coins: Int
     let leben: Int
-    var onLebenTap: (() -> Void)? = nil // NEU
+    var onStreakTap: (() -> Void)? = nil
+    var onCoinsTap: (() -> Void)? = nil
+    var onLebenTap: (() -> Void)? = nil
 
     private let streakFarbe = Color(hex: "#D95F00")
     private let coinsFarbe  = Color.coinBlue
@@ -17,13 +19,25 @@ struct GartenStatsBar: View {
                 wert: "\(streak)",
                 farbe: streakFarbe
             )
+            .contentShape(Rectangle())
+            .onTapGesture {
+                onStreakTap?()
+            }
+            
             glasseDivider
+            
             statSektion(
                 assetName: "coin",
                 wert: coins.formatted(),
                 farbe: Color.coinBlue
             )
+            .contentShape(Rectangle())
+            .onTapGesture {
+                onCoinsTap?()
+            }
+            
             glasseDivider
+            
             statSektion(
                 assetName: leben <= 0 ? "Heart death" : (leben <= 3 ? "Heart half" : "Heart"),
                 wert: "\(leben)",
@@ -34,8 +48,18 @@ struct GartenStatsBar: View {
                 onLebenTap?()
             }
         }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(.ultraThinMaterial, in: Capsule())
+        .overlay(
+            Capsule()
+                .stroke(.white.opacity(0.15), lineWidth: 1)
+        )
+        .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
     }
 
+
+    @ScaledMetric(relativeTo: .subheadline) private var iconSize: CGFloat = 22
 
     private func statSektion(
         assetName: String,
@@ -47,11 +71,13 @@ struct GartenStatsBar: View {
                 .renderingMode(.original)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 22, height: 22)
+                .frame(width: iconSize, height: iconSize)
             Text(wert)
                 .font(.subheadline)
                 .fontWeight(.bold)
                 .foregroundStyle(farbe)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
                 .contentTransition(.numericText())
                 .animation(.spring(), value: wert)
         }

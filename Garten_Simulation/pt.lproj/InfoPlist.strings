@@ -1,0 +1,4 @@
+CFBundleDisplayName = "Garden Simulation";
+NSCameraUsageDescription = "A aplicação precisa de acesso à câmara para tirar fotos do teu progresso.";
+NSPhotoLibraryUsageDescription = "A aplicação precisa de acesso à tua galeria para guardar ou carregar imagens.";
+NSUserTrackingUsageDescription = "Isto ajuda-nos a melhorar a aplicação.";

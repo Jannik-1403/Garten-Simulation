@@ -12,8 +12,7 @@ struct TitelTextView: View {
         let baseColor = colorOverride ?? titel.titleColor
         
         Text(settings.localizedString(for: titel.displayName))
-            .font(.system(size: fontSize, weight: .bold, design: .rounded))
+            .font(.system(size: fontSize, weight: .black, design: .rounded))
             .foregroundStyle(baseColor)
-            .shadow(color: baseColor.opacity(0.4), radius: 4)
     }
 }

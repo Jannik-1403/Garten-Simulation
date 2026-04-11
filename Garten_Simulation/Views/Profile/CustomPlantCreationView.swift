@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CustomPlantCreationView: View {
     @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
     @Environment(\.dismiss) var dismiss
     
     @State private var plantName: String = ""
@@ -47,11 +48,11 @@ struct CustomPlantCreationView: View {
                             }
                             
                             VStack(spacing: 4) {
-                                Text(plantName.isEmpty ? "Deine Pflanze" : plantName)
+                                Text(plantName.isEmpty ? settings.localizedString(for: "plant.create.preview.name") : plantName)
                                     .font(.system(size: 24, weight: .black, design: .rounded))
                                     .foregroundStyle(.primary)
                                 
-                                Text(habitName.isEmpty ? "Deine Gewohnheit" : habitName)
+                                Text(habitName.isEmpty ? settings.localizedString(for: "plant.create.preview.habit") : habitName)
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
                             }
@@ -63,21 +64,21 @@ struct CustomPlantCreationView: View {
                             // Text Input Section
                             VStack(alignment: .leading, spacing: 20) {
                                 customTextField(
-                                    title: "Name der Pflanze", 
-                                    placeholder: "z.B. Glücksblatt", 
+                                    title: settings.localizedString(for: "plant.create.field.plant_name"), 
+                                    placeholder: settings.localizedString(for: "plant.create.placeholder.plant"), 
                                     text: $plantName
                                 )
                                 
                                 customTextField(
-                                    title: "Name der Gewohnheit", 
-                                    placeholder: "z.B. Täglich lesen", 
+                                    title: settings.localizedString(for: "plant.create.field.habit_name"), 
+                                    placeholder: settings.localizedString(for: "plant.create.placeholder.habit"), 
                                     text: $habitName
                                 )
                             }
                             
                             // Icon Picker
                             VStack(alignment: .leading, spacing: 12) {
-                                Text("Symbol wählen")
+                                Text(settings.localizedString(for: "plant.create.select_symbol"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .padding(.horizontal, 4)
                                 
@@ -103,7 +104,7 @@ struct CustomPlantCreationView: View {
                             
                             // Color Picker
                             VStack(alignment: .leading, spacing: 12) {
-                                Text("Farbe wählen")
+                                Text(settings.localizedString(for: "plant.create.select_color"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .padding(.horizontal, 4)
                                 
@@ -142,7 +143,7 @@ struct CustomPlantCreationView: View {
                             )
                             dismiss()
                         }) {
-                            Text("Speichern & Erstellen")
+                            Text(settings.localizedString(for: "button.save_create"))
                         }
                         .buttonStyle(DuolingoButtonStyle(
                             size: .large,
@@ -154,18 +155,18 @@ struct CustomPlantCreationView: View {
                         .padding(.horizontal, 24)
                         .padding(.top, 10)
                         
-                        Text("Kosten: 10 Samen")
+                        Text(String(format: settings.localizedString(for: "inventory.create_plant.cost_format"), 10))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                             .padding(.bottom, 40)
                     }
                 }
             }
-            .navigationTitle("Pflanze kreieren")
+            .navigationTitle(settings.localizedString(for: "inventory.create_plant"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Abbrechen") { dismiss() }
+                    Button(settings.localizedString(for: "button.cancel")) { dismiss() }
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                 }

@@ -222,7 +222,7 @@ struct DragToWater: View {
     ZStack {
         Color.appHintergrund.ignoresSafeArea()
         DragToWater(
-            onGiessen: { print("Gegossen!") },
+            onGiessen: { /* print("Gegossen!") */ },
             pflanzenPosition: CGPoint(x: 200, y: 300),
             istErledigt: false
         )

@@ -222,7 +222,7 @@ struct UnifiedShopView: View {
                                     Image(systemName: "magnifyingglass")
                                         .font(.system(size: 15))
                                         .foregroundColor(Color(UIColor.placeholderText))
-                                    TextField(settings.localizedString(for: "Suchen..."), text: $searchText)
+                                    TextField(settings.localizedString(for: "shop.search_placeholder"), text: $searchText)
                                         .font(.system(size: 16))
                                         .submitLabel(.search)
                                     if !searchText.isEmpty {
@@ -243,7 +243,7 @@ struct UnifiedShopView: View {
 
                                 if shopCategory == .gegenstande {
                                     // Power-Ups
-                                    sectionHeader(settings.localizedString(for: "Power-Ups"))
+                                    sectionHeader(settings.localizedString(for: "shop.category.powerups"))
                                     VStack(spacing: 12) {
                                         ForEach(gefiltertePowerUps) { item in
                                             let p = item.basePrice
@@ -280,11 +280,11 @@ struct UnifiedShopView: View {
                                     Spacer().frame(height: 28)
 
                                     // Dekorationen
-                                    sectionHeader(settings.localizedString(for: "Dekorationen"))
+                                    sectionHeader(settings.localizedString(for: "shop.category.decorations"))
                                     
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         HStack(spacing: 8) {
-                                            LiquidGlassFilterPill(title: settings.localizedString(for: "Alle"), isSelected: selectedDecorationCategory == nil) {
+                                            LiquidGlassFilterPill(title: settings.localizedString(for: "shop.filter.all"), isSelected: selectedDecorationCategory == nil) {
                                                 selectedDecorationCategory = nil
                                             }
                                             ForEach(DecorationCategory.allCases, id: \.self) { kat in
@@ -334,7 +334,7 @@ struct UnifiedShopView: View {
                                     // Pflanzen
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         HStack(spacing: 8) {
-                                            LiquidGlassFilterPill(title: settings.localizedString(for: "Alle"), isSelected: selectedHabitCategory == nil) {
+                                            LiquidGlassFilterPill(title: settings.localizedString(for: "shop.filter.all"), isSelected: selectedHabitCategory == nil) {
                                                 selectedHabitCategory = nil
                                             }
                                             ForEach(HabitCategory.allCases, id: \.self) { kat in
@@ -409,7 +409,7 @@ struct UnifiedShopView: View {
                 shopHeader
             }
             .navigationBarHidden(true)
-            .sheet(item: $detailPayload) { payload in
+            .fullScreenCover(item: $detailPayload) { payload in
                 ShopItemDetailView(payload: payload)
                     .environmentObject(shopStore)
                     .environmentObject(gardenStore)
@@ -420,7 +420,7 @@ struct UnifiedShopView: View {
     }
 
     private var shopSwitcher: some View {
-        Picker(settings.localizedString(for: "Kategorie"), selection: $shopCategory) {
+        Picker(settings.localizedString(for: "shop.category.label"), selection: $shopCategory) {
             Text(settings.localizedString(for: ShopCategory.gegenstande.rawValue)).tag(ShopCategory.gegenstande)
             Text(settings.localizedString(for: ShopCategory.pflanzen.rawValue)).tag(ShopCategory.pflanzen)
         }

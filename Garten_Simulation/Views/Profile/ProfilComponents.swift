@@ -22,11 +22,11 @@ struct ProfilXPBarView: View {
                 Spacer()
                 
                 if let naechste = seltenheit.naechste {
-                    Text("\(aktuelleXP) / \(naechste.xpSchwelle) XP")
+                    Text("\(aktuelleXP) / \(naechste.xpSchwelle) \(settings.localizedString(for: "common.xp"))")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 } else {
-                    Text("\(aktuelleXP) XP")
+                    Text("\(aktuelleXP) \(settings.localizedString(for: "common.xp"))")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

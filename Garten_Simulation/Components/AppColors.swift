@@ -74,3 +74,24 @@ extension Color {
         return Color(hue: h, saturation: s, brightness: max(0, b - amount), opacity: a)
     }
 }
+
+struct AppColors {
+    static func color(for name: String) -> Color {
+        switch name.lowercased() {
+        case "green", "gruen":   return .gruenPrimary
+        case "blue", "blau":     return .blauPrimary
+        case "orange":           return .orangePrimary
+        case "red", "rot":       return .rotPrimary
+        case "purple", "lila":   return .lilaPrimary
+        case "yellow", "gelb":   return .yellow
+        case "mint":             return .mint
+        case "teal":             return .teal
+        case "cyan":             return .cyan
+        case "pink":             return .pink
+        case "indigo":           return .indigo
+        case "brown":            return .brown
+        case "gray":             return .gray
+        default:                 return .gruenPrimary
+        }
+    }
+}

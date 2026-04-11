@@ -36,7 +36,7 @@ struct WasserDetailView: View {
                             }
                             
                             VStack(spacing: 8) {
-                                Text(String(key: "wasser.titel", value: "Gießwasser", comment: ""))
+                                Text(settings.localizedString(for: "wasser.titel"))
                                     .font(.title2)
                                     .fontWeight(.bold)
                                     .foregroundStyle(.primary)
@@ -46,7 +46,7 @@ struct WasserDetailView: View {
                                     .foregroundStyle(Color.blauPrimary)
                                     .contentTransition(.numericText())
                                 
-                                Text(String(format: String(key: "wasser.entspricht", value: "Das entspricht %d Gießvorgängen", comment: ""),
+                                Text(String(format: settings.localizedString(for: "wasser.entspricht"),
                                             Int(gardenStore.gesamtMlGegossen / 300)))
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
@@ -56,7 +56,7 @@ struct WasserDetailView: View {
                         
                         // Liste — "Meist gegossene Pflanzen"
                         VStack(alignment: .leading, spacing: 12) {
-                            Text(String(key: "wasser.meine.pflanzen", value: "Meine Pflanzen", comment: ""))
+                            Text(settings.localizedString(for: "wasser.meine.pflanzen"))
                                 .font(.footnote)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(.secondary)
@@ -76,9 +76,9 @@ struct WasserDetailView: View {
                                         .opacity(0.5)
                                     
                                     VStack(spacing: 4) {
-                                        Text(String(key: "wasser.leer.titel", value: "Noch nichts gegossen", comment: ""))
+                                        Text(settings.localizedString(for: "wasser.leer.titel"))
                                             .font(.system(size: 18, weight: .bold, design: .rounded))
-                                        Text(String(key: "wasser.leer.body", value: "Gieße deine erste Pflanze!", comment: ""))
+                                        Text(settings.localizedString(for: "wasser.leer.body"))
                                             .font(.system(size: 14))
                                             .foregroundStyle(.secondary)
                                     }
@@ -118,6 +118,7 @@ struct WasserDetailView: View {
 struct WasserRankingRow: View {
     let rank: Int
     let habit: HabitModel
+    @EnvironmentObject var settings: SettingsStore
     
     private var rankColor: Color {
         switch rank {
@@ -162,8 +163,8 @@ struct WasserRankingRow: View {
                 
                 let zyklen = Int(habit.totalMlGegossen / 300)
                 let cycleText = zyklen == 1 
-                    ? String(key: "wasser.zyklus.singular", value: "1 Gießvorgang", comment: "")
-                    : String(format: String(key: "wasser.zyklus.plural", value: "%d Gießvorgänge", comment: ""), zyklen)
+                    ? settings.localizedString(for: "wasser.zyklus.singular")
+                    : String(format: settings.localizedString(for: "wasser.zyklus.plural"), zyklen)
                 
                 Text(cycleText)
                     .font(.caption)
@@ -185,9 +186,9 @@ struct WasserRankingRow: View {
     private func formatVolume(_ ml: Double) -> String {
         let liter = ml / 1000
         if liter < 1 {
-            return String(format: "%.0f ml", ml)
+            return String(format: "%.0f %@", ml, settings.localizedString(for: "common.ml"))
         } else {
-            return String(format: "%.1f Liter", liter)
+            return String(format: "%.1f %@", liter, settings.localizedString(for: "common.liter"))
         }
     }
 }

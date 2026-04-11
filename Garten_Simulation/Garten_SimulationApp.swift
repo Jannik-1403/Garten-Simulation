@@ -1,4 +1,6 @@
 import SwiftUI
+import SwiftData
+import Combine
 
 @main
 struct Garten_SimulationApp: App {
@@ -9,6 +11,7 @@ struct Garten_SimulationApp: App {
     @StateObject private var achievementStore: AchievementStore
     @StateObject private var powerUpStore: PowerUpStore
     @StateObject private var titelStore: TitelStore
+    @StateObject private var gartenPfadStore: GartenPfadStore
     
     init() {
         let garden = GardenStore()
@@ -21,6 +24,7 @@ struct Garten_SimulationApp: App {
         self._achievementStore = StateObject(wrappedValue: AchievementStore(gardenStore: garden, streakStore: streak))
         self._powerUpStore = StateObject(wrappedValue: PowerUpStore())
         self._titelStore = StateObject(wrappedValue: titel)
+        self._gartenPfadStore = StateObject(wrappedValue: GartenPfadStore())
         
         garden.titelStore = titel
     }
@@ -35,15 +39,21 @@ struct Garten_SimulationApp: App {
                 .environmentObject(achievementStore)
                 .environmentObject(powerUpStore)
                 .environmentObject(titelStore)
+                .environmentObject(gartenPfadStore)
+                .modelContainer(for: PfadTag.self)
                 .environment(\.locale, Locale(identifier: settingsStore.appLanguage))
+                .preferredColorScheme(.light)
                 .onAppear {
                     // Link ShopStore coin closures to GardenStore (single source of truth)
                     shopStore.coinsProvider  = { [weak gardenStore] in gardenStore?.coins ?? 0 }
                     shopStore.coinsAbziehen  = { [weak gardenStore] amount in 
-                        gardenStore?.coinsAbziehen(amount: amount, beschreibung: "Shop-Kauf")
+                        let desc = settingsStore.localizedString(for: "transaction.shop_purchase")
+                        gardenStore?.coinsAbziehen(amount: amount, beschreibung: desc)
                     }
                     shopStore.coinsHinzufuegen = { [weak gardenStore] amount, title in
-                        gardenStore?.coinsGutschreiben(amount: amount, beschreibung: "Verkauf: \(title)")
+                        let format = settingsStore.localizedString(for: "transaction.sale_format")
+                        let desc = String(format: format, title)
+                        gardenStore?.coinsGutschreiben(amount: amount, beschreibung: desc)
                     }
                     
                     // Link GardenStore watering action to StreakStore
@@ -55,14 +65,25 @@ struct Garten_SimulationApp: App {
                     gardenStore.onItemClaimed = { [weak shopStore] id in
                         shopStore?.purchasedIDs.insert(id)
                     }
-
-
-                    // Onboarding: Gratis-Pflanzen beim ersten Start
-                    gardenStore.onboardingGratisPflanzen()
+                }
+                .fullScreenCover(isPresented: .init(
+                    get: { !settingsStore.onboardingAbgeschlossen },
+                    set: { _ in }
+                )) {
+                    OnboardingView()
+                        .environmentObject(gardenStore)
+                        .environmentObject(shopStore)
+                        .environmentObject(settingsStore)
+                        .environmentObject(gartenPfadStore)
                 }
                 .task {
                     await NotificationManager.shared.requestPermission()
                     NotificationManager.shared.scheduleAll(for: gardenStore.pflanzen)
+                }
+                .onOpenURL { url in
+                    if url.pathExtension == "gartensave" {
+                        gardenStore.pendingImportURL = url
+                    }
                 }
         }
     }

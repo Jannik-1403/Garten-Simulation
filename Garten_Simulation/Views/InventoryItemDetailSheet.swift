@@ -23,7 +23,9 @@ struct InventoryItemDetailSheet: View {
     }
 
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack(alignment: .topTrailing) {
+            Color.appHintergrund.ignoresSafeArea()
+            
             VStack(spacing: 32) {
                 // Icon Area
                 Group {
@@ -38,8 +40,9 @@ struct InventoryItemDetailSheet: View {
                             .foregroundStyle(item.color)
                     }
                 }
-                .frame(width: 120, height: 120)
-                .padding(.top, 40)
+                .frame(width: item.itemType == .decoration ? 240 : 120, height: item.itemType == .decoration ? 240 : 120)
+                .padding(.top, 60)
+                .shadow(color: item.itemType == .decoration ? .clear : item.color.opacity(0.3), radius: 20, x: 0, y: 10)
                 .scaleEffect(animateIcon ? 1.05 : 1.0)
                 
                 VStack(spacing: 8) {
@@ -141,19 +144,28 @@ struct InventoryItemDetailSheet: View {
             .padding(.horizontal)
             .blur(radius: showSuccessPill ? 2 : 0)
             
-            // Erfolgspille (Toast)
+            // Erfolgspille (Toast) - Zentriert
             if showSuccessPill {
-                Text(successMessage)
-                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 10)
-                    .background(Color.gruenPrimary, in: Capsule())
-                    .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
-                    .transition(.move(edge: .top).combined(with: .opacity))
-                    .padding(.top, 20)
-                    .zIndex(10)
+                VStack {
+                    Text(successMessage)
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                        .background(Color.gruenPrimary, in: Capsule())
+                        .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                        .padding(.top, 20)
+                }
+                .frame(maxWidth: .infinity, alignment: .top)
+                .zIndex(10)
             }
+            
+            LiquidGlassDismissButton {
+                dismiss()
+            }
+            .padding(.top, 24)
+            .padding(.trailing, 24)
         }
         .sheet(isPresented: $showPlantPicker) {
             if let p = powerUp {

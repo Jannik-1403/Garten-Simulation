@@ -5,6 +5,7 @@ struct Item3DButton: View {
     let farbe: Color
     let sekundaerFarbe: Color
     let groesse: CGFloat
+    var iconSkalierung: CGFloat = 0.7
     var aktion: (() -> Void)? = nil
     
     var body: some View {
@@ -35,7 +36,8 @@ struct Item3DButton: View {
         .buttonStyle(Item3DButtonStyle(
             farbe: farbe,
             sekundaerFarbe: sekundaerFarbe,
-            groesse: groesse
+            groesse: groesse,
+            iconSkalierung: iconSkalierung
         ))
     }
 }
@@ -45,6 +47,7 @@ struct Item3DButtonStyle: ButtonStyle {
     let farbe: Color
     let sekundaerFarbe: Color
     let groesse: CGFloat
+    var iconSkalierung: CGFloat = 0.7
 
     func makeBody(configuration: Configuration) -> some View {
         Item3DButtonVisualView(
@@ -52,6 +55,7 @@ struct Item3DButtonStyle: ButtonStyle {
             farbe: farbe,
             sekundaerFarbe: sekundaerFarbe,
             groesse: groesse,
+            iconSkalierung: iconSkalierung,
             isHapticEnabled: isHapticEnabled
         )
     }
@@ -63,6 +67,7 @@ private struct Item3DButtonVisualView: View {
     let farbe: Color
     let sekundaerFarbe: Color
     let groesse: CGFloat
+    var iconSkalierung: CGFloat = 0.7
     let isHapticEnabled: Bool
     
     @State private var isVisualPressed = false
@@ -80,7 +85,7 @@ private struct Item3DButtonVisualView: View {
                 .fill(farbe)
                 .overlay {
                     configuration.label
-                        .frame(width: groesse * 0.7, height: groesse * 0.7)
+                        .frame(width: groesse * iconSkalierung, height: groesse * iconSkalierung)
                 }
                 .offset(y: isVisualPressed ? 0 : -shadowDepth)
         }

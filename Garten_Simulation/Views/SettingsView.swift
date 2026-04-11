@@ -1,4 +1,6 @@
 import SwiftUI
+import UniformTypeIdentifiers
+import SwiftData
 
 struct SettingsView: View {
     @EnvironmentObject var settings: SettingsStore
@@ -7,9 +9,12 @@ struct SettingsView: View {
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var titelStore: TitelStore
+    @EnvironmentObject var achievementStore: AchievementStore
     @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) private var modelContext
     
     @State private var showResetAlert = false
+    @State private var showBackupSheet = false
     
     private var aktuelleTierStufe: GartenTierStufe {
         GartenTierStufe.fuer(level: gardenStore.gartenStufe)
@@ -44,7 +49,7 @@ struct SettingsView: View {
                                         Image(systemName: "star.fill")
                                             .font(.system(size: 10))
                                             .foregroundStyle(.yellow)
-                                        Text(aktuelleTierStufe.bezeichnung)
+                                        Text(aktuelleTierStufe.lokalisiertTitel(settings: settings))
                                             .font(.system(size: 12, weight: .bold, design: .rounded))
                                     }
                                     .padding(.horizontal, 8)
@@ -56,7 +61,7 @@ struct SettingsView: View {
                                         Image(systemName: "bitcoinsign.circle.fill")
                                             .font(.system(size: 10))
                                             .foregroundStyle(Color.coinBlue)
-                                        Text("\(gardenStore.coins) Coins")
+                                        Text(String(format: settings.localizedString(for: "shop.coins_format"), gardenStore.coins))
                                             .font(.system(size: 12, weight: .bold, design: .rounded))
                                     }
                                     .padding(.horizontal, 8)
@@ -70,6 +75,20 @@ struct SettingsView: View {
                         
                         // Sections
                         VStack(spacing: 32) {
+                            settingsSection(title: settings.localizedString(for: "settings.section.profile")) {
+                                Button {
+                                    settings.onboardingAbgeschlossen = false
+                                    FeedbackManager.shared.playSuccess()
+                                    dismiss()
+                                } label: {
+                                    settingRow(
+                                        title: settings.localizedString(for: "settings.onboarding.repeat"),
+                                        icon: "arrow.counterclockwise.circle.fill",
+                                        color: .orange
+                                    )
+                                }
+                            }
+
                             settingsSection(title: settings.localizedString(for: "settings.section.personalization")) {
                                 HStack(spacing: 12) {
                                     Image(systemName: "globe")
@@ -85,12 +104,16 @@ struct SettingsView: View {
                                     Picker("", selection: $settings.appLanguage) {
                                         Text(settings.localizedString(for: "settings.language.de")).tag("de")
                                         Text(settings.localizedString(for: "settings.language.en")).tag("en")
+                                        Text(settings.localizedString(for: "settings.language.es")).tag("es")
+                                        Text(settings.localizedString(for: "settings.language.fr")).tag("fr")
+                                        Text(settings.localizedString(for: "settings.language.pt")).tag("pt")
                                     }
                                     .pickerStyle(.menu)
                                 }
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 8)
                             }
+
 
                             settingsSection(title: settings.localizedString(for: "settings.section.general")) {
                                 VStack(spacing: 0) {
@@ -118,12 +141,16 @@ struct SettingsView: View {
                                     Divider().padding(.leading, 44)
                                     settingLink(title: settings.localizedString(for: "settings.terms"), description: settings.localizedString(for: "settings.terms.desc"), icon: "doc.text.fill", color: .gray)
                                     Divider().padding(.leading, 44)
-                                    NavigationLink(destination: SettingsDetailView(title: settings.localizedString(for: "settings.export"), description: settings.localizedString(for: "settings.export.desc"), actionTitle: settings.localizedString(for: "settings.export.action"), icon: "square.and.arrow.up.fill", iconColor: .orange, action: { settings.exportData() })) {
-                                        settingRow(title: settings.localizedString(for: "settings.export"), icon: "square.and.arrow.up.fill", color: .orange)
-                                    }
-                                    Divider().padding(.leading, 44)
-                                    NavigationLink(destination: SettingsDetailView(title: settings.localizedString(for: "settings.import"), description: settings.localizedString(for: "settings.import.desc"), actionTitle: settings.localizedString(for: "settings.import.action"), icon: "square.and.arrow.down.fill", iconColor: .blue, action: { settings.importData() })) {
-                                        settingRow(title: settings.localizedString(for: "settings.import"), icon: "square.and.arrow.down.fill", color: .blue)
+                                    
+                                    // Backup & Import
+                                    Button {
+                                        showBackupSheet = true
+                                    } label: {
+                                        settingRow(
+                                            title: settings.localizedString(for: "backup_profil_button"),
+                                            icon: "arrow.up.arrow.down.circle.fill",
+                                            color: .blue
+                                        )
                                     }
                                 }
                             }
@@ -214,7 +241,7 @@ struct SettingsView: View {
                                     Divider().padding(.leading, 44)
 
                                     VStack(spacing: 8) {
-                                        Text("ZEITSPRUNG-SIMULATION")
+                                        Text(settings.localizedString(for: "settings.timeskip_simulation"))
                                             .font(.system(size: 10, weight: .black))
                                             .foregroundStyle(.secondary)
                                             .padding(.top, 8)
@@ -296,7 +323,7 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(settings.localizedString(for: "settings.done")) {
+                    Button(settings.localizedString(for: "button.done")) {
                         dismiss()
                     }
                     .fontWeight(.bold)
@@ -305,6 +332,11 @@ struct SettingsView: View {
             }
             .tint(.primary)
             .foregroundStyle(.primary)
+            .sheet(isPresented: $showBackupSheet) {
+                ExportImportView()
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
+            }
         }
     }
     

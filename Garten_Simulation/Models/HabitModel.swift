@@ -28,6 +28,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     // Notizen & Timer
     @Published var notizen: [String] = []
     var timerDatum: Date? = nil
+    @Published var reminderTime: Date? = nil
     
     // XP Verlauf für die Wochenübersicht (Datum im Format "yyyy-MM-dd": XP an diesem Tag)
     @Published var xpHistory: [String: Int] = [:]
@@ -89,8 +90,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     }
 
     var timerLaeuftAb: Date? {
-        guard let letzte = letzteBewaesserung else { return nil }
-        return letzte.addingTimeInterval(GameConstants.streakTimerStunden * 3600)
+        // Find next 0:00:00 starting from today
+        Calendar.current.nextDate(after: Date(), matching: DateComponents(hour: 0, minute: 0, second: 0), matchingPolicy: .nextTime)
     }
 
     var streakAbgelaufen: Bool {
@@ -100,6 +101,10 @@ class HabitModel: Identifiable, ObservableObject, Codable {
 
     var isDead: Bool {
         missedCycles >= 2
+    }
+
+    var showWarning: Bool {
+        missedCycles == 1 && !isDead
     }
 
     var isPenaltyActive: Bool {
@@ -116,10 +121,13 @@ class HabitModel: Identifiable, ObservableObject, Codable {
 
     var formattedVolume: String {
         let liter = totalMlGegossen / 1000
+        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
         if liter < 1 {
-            return String(format: "%.0f ml", totalMlGegossen)
+            let unit = AppStrings.get("common.ml", language: lang)
+            return String(format: "%.0f %@", totalMlGegossen, unit)
         } else {
-            return String(format: "%.1f Liter", liter)
+            let unit = AppStrings.get("common.liter", language: lang)
+            return String(format: "%.1f %@", liter, unit)
         }
     }
 
@@ -136,9 +144,9 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     }
 
     var remainingHoursInCycle: Int {
-        let totalHours = hoursSinceWatering
-        let currentCycleHours = totalHours.truncatingRemainder(dividingBy: 24.0)
-        return max(0, Int(ceil(24.0 - currentCycleHours)))
+        guard let target = timerLaeuftAb else { return 24 }
+        let diff = target.timeIntervalSince(Date())
+        return max(0, Int(ceil(diff / 3600.0)))
     }
 
     var drynessSaturation: Double {
@@ -165,7 +173,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         decayDays: Int = 3,
         missedCycles: Int = 0,
         lastNotifiedCycle: Int = 0,
-        plantID: String? = nil
+        plantID: String? = nil,
+        reminderTime: Date? = nil
     ) {
         self.id = id
         self.name = name
@@ -182,6 +191,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.lastNotifiedCycle = lastNotifiedCycle
         self.wiederbelebtAm = nil
         self.strafTage = 3
+        self.reminderTime = reminderTime
         
         // Fallback für plantID falls nicht übergeben
         if let pid = plantID {
@@ -205,7 +215,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case currentXP, streak, letzteBewaesserung, gekauftAm, istBewässert
         case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays, missedCycles, lastNotifiedCycle
         case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned, totalMlGegossen, plantID
-        case wiederbelebtAm, strafTage
+        case wiederbelebtAm, strafTage, reminderTime
     }
 
     required init(from decoder: Decoder) throws {
@@ -269,6 +279,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         totalMlGegossen = try container.decodeIfPresent(Double.self, forKey: .totalMlGegossen) ?? 0
         wiederbelebtAm = try container.decodeIfPresent(Date.self, forKey: .wiederbelebtAm)
         strafTage = try container.decodeIfPresent(Int.self, forKey: .strafTage) ?? 3
+        reminderTime = try container.decodeIfPresent(Date.self, forKey: .reminderTime)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -303,6 +314,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(plantID, forKey: .plantID)
         try container.encodeIfPresent(wiederbelebtAm, forKey: .wiederbelebtAm)
         try container.encode(strafTage, forKey: .strafTage)
+        try container.encodeIfPresent(reminderTime, forKey: .reminderTime)
     }
 }
 

@@ -67,7 +67,7 @@ struct EffektDetailSheet: View {
                 .background(Capsule().fill(effekt.typ.hintergrundFarbe))
                 
                 if effekt.expiresAt != nil {
-                    Text("AKTIV")
+                    Text(NSLocalizedString("common.active", comment: ""))
                         .font(.system(size: 10, weight: .black))
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)

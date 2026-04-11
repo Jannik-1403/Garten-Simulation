@@ -15,12 +15,15 @@ class StreakStore: ObservableObject {
     
     // Flag for UI animation
     @Published var showingStreakIncrease: Bool = false
+    @Published var lastShownStreak: Int = 0 {
+        didSet { save() }
+    }
     
     private let calendar = Calendar.current
     
     init() {
         load()
-        calculateStreak()
+        calculateStreak(shouldAnimate: false)
     }
     
     func completeDay(date: Date = Date()) {
@@ -29,12 +32,12 @@ class StreakStore: ObservableObject {
         if !completedDates.contains(startOfDay) {
             withAnimation(.spring()) {
                 completedDates.insert(startOfDay)
-                calculateStreak()
+                calculateStreak(shouldAnimate: true)
             }
         }
     }
     
-    func calculateStreak() {
+    func calculateStreak(shouldAnimate: Bool = false) {
         let oldStreak = currentStreak
         var streak = 0
         var checkDate = calendar.startOfDay(for: Date())
@@ -60,9 +63,16 @@ class StreakStore: ObservableObject {
         
         currentStreak = streak
         
-        // Trigger animation if streak increased
-        if currentStreak > oldStreak && currentStreak > 0 {
+        // Trigger animation if streak increased beyond what was last shown
+        if currentStreak > lastShownStreak && currentStreak > 0 && shouldAnimate {
             showingStreakIncrease = true
+            lastShownStreak = currentStreak
+        } else if currentStreak > lastShownStreak {
+            // Keep numerical state in sync even if we don't animate
+            lastShownStreak = currentStreak
+        } else if currentStreak < lastShownStreak {
+            // Reset lastShownStreak if streak decreased so it can trigger again when it goes back up
+            lastShownStreak = currentStreak
         }
         
         // Update best streak
@@ -90,6 +100,7 @@ class StreakStore: ObservableObject {
         let timestamps = completedDates.map { $0.timeIntervalSince1970 }
         UserDefaults.standard.set(timestamps, forKey: "streak_completed_dates")
         UserDefaults.standard.set(bestStreak, forKey: "streak_best_streak")
+        UserDefaults.standard.set(lastShownStreak, forKey: "streak_last_shown")
     }
     
     private func load() {
@@ -97,6 +108,7 @@ class StreakStore: ObservableObject {
             completedDates = Set(timestamps.map { Date(timeIntervalSince1970: $0) })
         }
         bestStreak = UserDefaults.standard.integer(forKey: "streak_best_streak")
+        lastShownStreak = UserDefaults.standard.integer(forKey: "streak_last_shown")
         
         // Migration check for gardenStore.bestStreak (if StreakStore is new)
         if bestStreak == 0 {

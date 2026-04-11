@@ -70,8 +70,9 @@ struct DuolingoButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         let pressed = configuration.isPressed
-
-        configuration.label
+        let depth = size.shadowDepth
+        
+        return configuration.label
             .font(size.font)
             .textCase(.uppercase)
             .foregroundStyle(foregroundColor)
@@ -79,21 +80,19 @@ struct DuolingoButtonStyle: ButtonStyle {
             .padding(.horizontal, size.horizontalPadding)
             .frame(maxWidth: fillWidth ? .infinity : nil)
             .background(
-                RoundedRectangle(cornerRadius: size.cornerRadius, style: .continuous)
-                    .fill(backgroundColor)
-                    .shadow(
-                        color: shadowColor,
-                        radius: 0,
-                        y: pressed ? 0 : size.shadowDepth
-                    )
-            )
-            .offset(y: pressed ? size.shadowDepth : 0)
-            .animation(pressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: pressed)
-            .onChange(of: pressed) {
-                if pressed {
-                    FeedbackManager.shared.playTap()
+                ZStack {
+                    // Static Shadow (Bottom Layer)
+                    RoundedRectangle(cornerRadius: size.cornerRadius, style: .continuous)
+                        .fill(shadowColor)
+                    
+                    // Main face (Top Layer)
+                    RoundedRectangle(cornerRadius: size.cornerRadius, style: .continuous)
+                        .fill(backgroundColor)
+                        .offset(y: pressed ? 0 : -depth)
                 }
-            }
+            )
+            .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: pressed)
+            .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.8), trigger: pressed)
     }
 }
 

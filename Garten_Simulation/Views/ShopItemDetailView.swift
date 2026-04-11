@@ -23,10 +23,12 @@ struct ShopItemDetailView: View {
 
                     // MARK: Hero
                     ZStack(alignment: .top) {
-                        Circle()
-                            .fill(payload.color.opacity(0.12))
-                            .frame(width: 220, height: 220)
-                            .offset(y: 20)
+                        if payload.itemType != .decoration {
+                            Circle()
+                                .fill(payload.color.opacity(0.12))
+                                .frame(width: 220, height: 220)
+                                .offset(y: 20)
+                        }
 
                         VStack(spacing: 0) {
                             Spacer().frame(height: 60)
@@ -41,16 +43,17 @@ struct ShopItemDetailView: View {
                                     Image(payload.icon)
                                         .resizable()
                                         .scaledToFit()
+                                        .frame(width: payload.itemType == .decoration ? 180 : 150, height: payload.itemType == .decoration ? 180 : 150)
                                 } else {
                                     // SF Symbol fallback
                                     Image(systemName: payload.icon)
-                                        .font(.system(size: 100))
+                                        .font(.system(size: payload.itemType == .decoration ? 130 : 100))
                                         .foregroundStyle(payload.color)
                                 }
                             }
-                            .frame(width: 150, height: 150)
+                            .frame(width: payload.itemType == .decoration ? 240 : 150, height: payload.itemType == .decoration ? 240 : 150)
                             .shadow(
-                                color: payload.shadowColor.opacity(0.35),
+                                color: payload.itemType == .decoration ? .clear : payload.shadowColor.opacity(0.35),
                                 radius: 20, x: 0, y: 10
                             )
                             Spacer().frame(height: 24)
@@ -146,7 +149,7 @@ struct ShopItemDetailView: View {
                                     } label: {
                                         HStack(spacing: 8) {
                                             Image(systemName: "checkmark.seal.fill")
-                                            Text(settings.localizedString(for: "shop.already_owned"))
+                                            Text(settings.localizedString(for: "shop.owned"))
                                         }
                                     }
                                     .buttonStyle(DuolingoButtonStyle(

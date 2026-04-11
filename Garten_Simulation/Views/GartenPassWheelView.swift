@@ -27,11 +27,11 @@ struct GartenPassWheelView: View {
                         Button {
                             FeedbackManager.shared.playTap()
                         } label: {
-                            Text(NSLocalizedString("ice_wheel_title", comment: ""))
+                            Text(settings.localizedString(for: "ice_wheel_title"))
                         }
                         .buttonStyle(Pressed3DTextButtonStyle())
                         
-                        Text(NSLocalizedString("ice_wheel_subtitle", comment: ""))
+                        Text(settings.localizedString(for: "ice_wheel_subtitle"))
                             .font(.system(size: 15, weight: .regular))
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -65,7 +65,7 @@ struct GartenPassWheelView: View {
                                             .overlay(Circle().stroke(Color.black, lineWidth: 3))
                                         
                                         // Spinning Wheel (Using 12 segments)
-                                        IceWheelSlices(segments: GartenPassWheelLogic.segmente)
+                                        IceWheelSlices(segments: GartenPassWheelLogic.segmente(fuerDekorationen: gardenStore.placedDecorations.count))
                                             .frame(width: wheelSize, height: wheelSize)
                                             .clipShape(Circle())
                                             .overlay(Circle().stroke(Color.black, lineWidth: 2.5))
@@ -153,7 +153,7 @@ struct GartenPassWheelView: View {
                                 dismiss()
                             }
                         }) {
-                            Text(NSLocalizedString("ice_wheel_back_button", comment: "FERTIG"))
+                            Text(settings.localizedString(for: "ice_wheel_back_button"))
                                 .font(.system(size: 16, weight: .bold))
                         }
                         .buttonStyle(DuolingoButtonStyle(
@@ -188,7 +188,7 @@ struct GartenPassWheelView: View {
         isSpinning = true
         gardenStore.gluecksradDrehungen -= 1
         
-        let result = GartenPassWheelLogic.spin()
+        let result = GartenPassWheelLogic.spin(decorationCount: gardenStore.placedDecorations.count)
         wonReward = result.belohnung
         
         let segDeg = 360.0 / Double(totalSegments)
@@ -277,6 +277,10 @@ struct IceWheelSlices: View {
     
     func colorFor(_ index: Int) -> Color {
         // Alternating colors like original gold/safe/weed but using blues/purples
+        if index < segments.count && segments[index] == .weed {
+            return Color.orangePrimary.opacity(0.8)
+        }
+        
         if index == 11 { return Color.coinBlue } // Jackpot Mega
         if index % 4 == 0 { return Color.blauSecondary }
         if index % 2 == 0 { return Color.gruenPrimary }
@@ -308,6 +312,9 @@ struct IceWheelIcon: View {
             case .seeds(_):
                 Image(systemName: "leaf.fill")
                     .foregroundColor(.white)
+            case .weed:
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .foregroundColor(.white)
             }
         }
         .font(.system(size: 24, weight: .bold))
@@ -326,12 +333,11 @@ struct IceRewardOverlay: View {
     var body: some View {
         ZStack {
             // Confetti
-            DotLottieAnimation(
-                webURL: "https://lottie.host/e9ce3227-f1fc-4135-9b98-b1f578638775/77KBz7dIev.lottie",
-                config: AnimationConfig(autoplay: true, loop: false)
-            ).view()
-            .ignoresSafeArea()
-            .allowsHitTesting(false)
+            SafeDotLottieView(
+                url: "https://lottie.host/e9ce3227-f1fc-4135-9b98-b1f578638775/77KBz7dIev.lottie",
+                animationConfig: AnimationConfig(autoplay: true, loop: false),
+                fixedSize: UIScreen.main.bounds.size
+            )
             
             Color.black.opacity(0.45).ignoresSafeArea()
             
@@ -344,12 +350,12 @@ struct IceRewardOverlay: View {
                     
                     IceWheelIcon(reward: reward)
                         .font(.system(size: 60))
-                        .foregroundColor(Color.blauPrimary)
+                        .foregroundColor(reward == .weed ? .orangePrimary : Color.blauPrimary)
                 }
                 .scaleEffect(iconScale)
                 
                 VStack(spacing: 8) {
-                    Text(NSLocalizedString("ice_wheel_reward_title", comment: ""))
+                    Text(settings.localizedString(for: "ice_wheel_reward_title"))
                         .font(.title2.bold())
                     
                     Text(rewardName)
@@ -396,15 +402,17 @@ struct IceRewardOverlay: View {
         case .coins(let n):
             return String(format: settings.localizedString(for: "reward.coins_format"), n)
         case .powerUp(let id):
-            return NSLocalizedString(id, comment: "")
+            return settings.localizedString(for: id)
         case .pflanze(let id):
-            return NSLocalizedString(id + ".name", comment: "")
+            return settings.localizedString(for: id + ".name")
         case .deko(_):
             return settings.localizedString(for: "wheel.reward.deko")
         case .xp(let n):
             return "\(n) \(settings.localizedString(for: "pass.xp"))"
         case .seeds(let n):
             return String(format: settings.localizedString(for: "reward.seeds_format"), n)
+        case .weed:
+            return settings.localizedString(for: "wheel.reward.weed")
         }
     }
 }

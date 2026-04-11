@@ -67,7 +67,7 @@ struct InventoryDetailView: View {
                             )
                             
                             Inventory3DStat(
-                                titleKey: "Samen",
+                                titleKey: "inventory.seeds",
                                 count: gardenStore.seeds,
                                 icon: "leaf.arrow.triangle.circlepath",
                                 farbe: Color(hex: "#9B59B6"),
@@ -78,7 +78,7 @@ struct InventoryDetailView: View {
                         // MARK: - Seed Crafting Section
                         VStack(spacing: 16) {
                             HStack {
-                                Text("Samen-Sammlung")
+                                Text(settings.localizedString(for: "inventory.seeds_collection"))
                                     .font(.system(size: 20, weight: .bold, design: .rounded))
                                 Spacer()
                                 Text("\(gardenStore.seeds)/10")
@@ -104,7 +104,7 @@ struct InventoryDetailView: View {
                                 }) {
                                     HStack {
                                         Image(systemName: "magicmouse.fill")
-                                        Text("Pflanze kreieren")
+                                        Text(settings.localizedString(for: "inventory.create_plant"))
                                     }
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                 }

@@ -8,10 +8,34 @@ struct PowerUpPlantPickerSheet: View {
     @EnvironmentObject var settings: SettingsStore
     @Environment(\.dismiss) var dismiss
     
+    var selectablePlants: [HabitModel] {
+        if powerUp.id == "powerup.wunder_wasser" {
+            return gardenStore.pflanzen.filter { $0.isDead }
+        }
+        return gardenStore.pflanzen
+    }
+
     var body: some View {
         NavigationStack {
-            List(gardenStore.pflanzen) { plant in  // gardenStore.pflanzen = [HabitModel]
-                Button {
+            if selectablePlants.isEmpty {
+                VStack(spacing: 16) {
+                    Image(systemName: "leaf.arrow.circlepath")
+                        .font(.system(size: 60))
+                        .foregroundColor(.secondary)
+                    Text("Keine passenden Pflanzen gefunden.")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                }
+                .navigationTitle(settings.localizedString(for: "powerup.picker.title"))
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        LiquidGlassDismissButton { dismiss() }
+                    }
+                }
+            } else {
+                List(selectablePlants) { plant in  // gardenStore.pflanzen = [HabitModel]
+                    Button {
                     onSelect(plant)
                 } label: {
                     HStack(spacing: 12) {
@@ -56,7 +80,8 @@ struct PowerUpPlantPickerSheet: View {
                     LiquidGlassDismissButton { dismiss() }
                 }
             }
-        }
+            } // close else block
+        } // close NavigationStack
         .presentationDetents([.medium, .large])
         .presentationDragIndicator(.visible)
     }

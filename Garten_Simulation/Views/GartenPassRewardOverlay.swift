@@ -23,12 +23,11 @@ struct GartenPassRewardOverlay: View {
             
             // Celebration Lottie (Confetti) — covering the whole screen
             if showConfetti {
-                DotLottieAnimation(
-                    webURL: "https://lottie.host/e9ce3227-f1fc-4135-9b98-b1f578638775/77KBz7dIev.lottie",
-                    config: AnimationConfig(autoplay: true, loop: false)
-                ).view()
-                .ignoresSafeArea()
-                .allowsHitTesting(false)
+                SafeDotLottieView(
+                    url: "https://lottie.host/e9ce3227-f1fc-4135-9b98-b1f578638775/77KBz7dIev.lottie",
+                    animationConfig: AnimationConfig(autoplay: true, loop: false),
+                    fixedSize: UIScreen.main.bounds.size
+                )
             }
             
             VStack(spacing: 35) {

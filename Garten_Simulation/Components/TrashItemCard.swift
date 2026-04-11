@@ -9,15 +9,19 @@ struct DecorationCard: View {
         VStack(spacing: 8) {
             // MARK: Icon Container
             ZStack {
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(Color(UIColor.systemGroupedBackground))
-                    .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
-                
-                Image(systemName: decoration.sfSymbol)
-                    .font(.system(size: 30, weight: .bold))
-                    .foregroundStyle(.secondary)
+                if UIImage(named: decoration.sfSymbol) != nil {
+                    Image(decoration.sfSymbol)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                } else {
+                    Image(systemName: decoration.sfSymbol)
+                        .font(.system(size: 55, weight: .bold))
+                        .foregroundStyle(.secondary)
+                        .frame(width: 100, height: 100)
+                }
             }
-            .frame(width: 80, height: 80)
+            .frame(width: 110, height: 110)
             
             // MARK: Name
             Text(settings.localizedString(for: decoration.nameKey))

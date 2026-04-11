@@ -15,13 +15,14 @@ struct GartenView: View {
     @State private var ausgewaehltesAktivesPowerUp: ActivePowerUp? = nil
     @State private var zeigeUnkrautDetail = false
     @State private var zeigeLebenDetail = false
+    @State private var zeigeStreakDetail = false
+    @State private var zeigeCoinsDetail = false
     @State private var zeigeWetterDetails = false
     @State private var startAbstandAktiv = true
     @State private var timerAktuell = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     let columns = [
-        GridItem(.flexible(), spacing: 16),
-        GridItem(.flexible(), spacing: 16),
+        GridItem(.adaptive(minimum: 160), spacing: 16)
     ]
 
     var body: some View {
@@ -40,6 +41,12 @@ struct GartenView: View {
                             streak: streakStore.currentStreak,
                             coins: gardenStore.coins,
                             leben: gardenStore.leben,
+                            onStreakTap: {
+                                zeigeStreakDetail = true
+                            },
+                            onCoinsTap: {
+                                zeigeCoinsDetail = true
+                            },
                             onLebenTap: {
                                 zeigeLebenDetail = true
                             }
@@ -54,6 +61,8 @@ struct GartenView: View {
                                     Text(settings.localizedString(for: "garden.title"))
                                         .font(.system(size: 32, weight: .black, design: .rounded))
                                         .foregroundStyle(.primary)
+                                        .minimumScaleFactor(0.7)
+                                        .lineLimit(1)
                                     
                                     if gardenStore.globalXPMultiplier > 1.0 {
                                         HStack(spacing: 4) {
@@ -87,14 +96,14 @@ struct GartenView: View {
                                                 .foregroundStyle(.secondary)
                                         }
                                         .padding(.vertical, 2)
+                                    }
+                                    .buttonStyle(.plain)
+                                    .transition(.move(edge: .top).combined(with: .opacity))
                                 }
-                                .buttonStyle(.plain)
-                                .transition(.move(edge: .top).combined(with: .opacity))
                             }
+                            Spacer()
                         }
-                        Spacer()
-                    }
-                    .padding(.bottom, 10)
+                        .padding(.bottom, 10)
 
                         // MARK: - Sticky Wetter Banner
                         WetterBanner(event: aktivesEvent) {
@@ -241,44 +250,32 @@ struct GartenView: View {
         .onAppear {
             ladeTagesEvent()
             starteTageswechselTimer()
+            gardenStore.taeglicherStreakCheck() // Einmal beim Erscheinen prüfen
         }
-        .onReceive(timerAktuell) { _ in
-            gardenStore.taeglicherStreakCheck()
-        }
-        .sheet(item: $ausgewaehltePflanze) { pflanze in
+        .fullScreenCover(item: $ausgewaehltePflanze) { pflanze in
             PflanzeDetailSheet(
                 pflanze: pflanze,
+                wetterEvent: aktivesEvent,
                 onLoeschen: {
                     gardenStore.pflanzEntfernen(pflanze: pflanze)
                     ausgewaehltePflanze = nil
                 }
             )
-            .presentationDetents([.large])
-            .presentationDragIndicator(.visible)
-            .presentationCornerRadius(32)
-            .presentationBackground(.ultraThinMaterial)
             .environmentObject(gardenStore)
             .environmentObject(shopStore)
             .environmentObject(settings)
+            .environmentObject(powerUpStore)
         }
-        .sheet(item: $ausgewaehltesItem) { item in
+        .fullScreenCover(item: $ausgewaehltesItem) { item in
             InventoryItemDetailSheet(item: item)
                 .environmentObject(settings)
                 .environmentObject(gardenStore)
                 .environmentObject(powerUpStore)
                 .environmentObject(shopStore)
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
-                .presentationCornerRadius(32)
-                .presentationBackground(.ultraThinMaterial)
         }
-        .sheet(item: $ausgewaehltesAktivesPowerUp) { aktiv in
+        .fullScreenCover(item: $ausgewaehltesAktivesPowerUp) { aktiv in
             ActivePowerUpDetailSheet(aktiv: aktiv)
                 .environmentObject(settings)
-                .presentationDetents([.fraction(0.55), .medium])
-                .presentationDragIndicator(.visible)
-                .presentationCornerRadius(32)
-                .presentationBackground(.ultraThinMaterial)
         }
         .sheet(isPresented: $zeigeWetterDetails) {
             WetterDetailView(event: aktivesEvent)
@@ -291,20 +288,32 @@ struct GartenView: View {
                 .presentationCornerRadius(32)
                 .presentationBackground(.ultraThinMaterial)
         }
-        .sheet(isPresented: $zeigeLebenDetail) {
+        .fullScreenCover(isPresented: $zeigeLebenDetail) {
             LebenDetailView()
                 .environmentObject(gardenStore)
                 .environmentObject(settings)
-                .presentationDetents([.medium, .large])
-                .presentationDragIndicator(.visible)
-                .presentationCornerRadius(32)
-                .presentationBackground(.ultraThinMaterial)
+        }
+        .fullScreenCover(isPresented: $zeigeStreakDetail) {
+            NavigationStack {
+                StreakView()
+                    .environmentObject(streakStore)
+                    .environmentObject(settings)
+            }
+        }
+        .fullScreenCover(isPresented: $zeigeCoinsDetail) {
+            NavigationStack {
+                CoinsDetailView()
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+                    .environmentObject(shopStore)
+                    .environmentObject(powerUpStore)
+            }
         }
         .sheet(isPresented: $zeigeUnkrautDetail) {
             WeedDetailView()
                 .environmentObject(gardenStore)
                 .environmentObject(settings)
-                .presentationDetents([PresentationDetent.medium])
+                .presentationDetents([.medium, .large])
                 .presentationDragIndicator(Visibility.visible)
                 .presentationCornerRadius(32)
                 .presentationBackground(Material.ultraThinMaterial)
@@ -314,6 +323,31 @@ struct GartenView: View {
                 GameOverOverlayView()
                     .environmentObject(gardenStore)
                     .environmentObject(settings)
+            } else if let pflanze = gardenStore.plantToRescue {
+                WonderWaterRescueOverlay(pflanze: pflanze) { useWater in
+                    if useWater {
+                        gardenStore.reviveWithWonderWater(pflanze: pflanze)
+                    } else {
+                        gardenStore.declineRescue(pflanze: pflanze)
+                    }
+                }
+                .environmentObject(settings)
+            }
+        }
+        .overlay(alignment: .bottomTrailing) {
+            if gardenStore.isDailySpinAvailable {
+                Item3DButton(
+                    icon: "gift.fill",
+                    farbe: .rotPrimary,
+                    sekundaerFarbe: .rotSecondary,
+                    groesse: 64,
+                    iconSkalierung: 0.45
+                ) {
+                    gardenStore.checkDailySpin()
+                }
+                .padding(.trailing, 24)
+                .padding(.bottom, 32)
+                .transition(.scale.combined(with: .opacity))
             }
         }
     }
@@ -350,4 +384,77 @@ struct GartenView: View {
         .environmentObject(GardenStore())
         .environmentObject(StreakStore())
         .environmentObject(ShopStore())
+}
+
+struct WonderWaterRescueOverlay: View {
+    let pflanze: HabitModel
+    let onDecision: (Bool) -> Void
+    @EnvironmentObject var settings: SettingsStore
+    
+    var body: some View {
+        ZStack {
+            // Abdunklung
+            Color.black.opacity(0.6)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    // Kein Schließen durch Tippen auf Hintergrund
+                }
+            
+            VStack(spacing: 24) {
+                // Icon
+                Image("Powerup-Wunderwasser")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 80, height: 80)
+                    .shadow(color: .blue.opacity(0.3), radius: 10, y: 5)
+                
+                VStack(spacing: 8) {
+                    Text("Pflanzentod abwenden?")
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                        .foregroundColor(.primary)
+                        .multilineTextAlignment(.center)
+                    
+                    Text("Deine Pflanze '**\(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.habitName) : settings.localizedString(for: pflanze.name))**' ist vertrocknet und steht kurz davor zu sterben. Möchtest du dein Wunder-Wasser einsetzen, um sie sofort zu retten und den Lebenspunkte-Verlust zu verhindern?")
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(2)
+                }
+                
+                VStack(spacing: 12) {
+                    Button(action: {
+                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                        onDecision(true)
+                    }) {
+                        Text("\(settings.localizedString(for: "item.wunder_wasser.name")) nutzen")
+                            .font(.system(size: 16, weight: .bold))
+                    }
+                    .buttonStyle(DuolingoButtonStyle(
+                        backgroundColor: .blauPrimary,
+                        shadowColor: .blauPrimary.darker(),
+                        foregroundColor: .white
+                    ))
+                    
+                    Button(action: {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        onDecision(false)
+                    }) {
+                        Text("Sterben lassen")
+                            .font(.system(size: 16, weight: .bold))
+                    }
+                    .buttonStyle(DuolingoButtonStyle(
+                        backgroundColor: Color(UIColor.secondarySystemFill),
+                        shadowColor: Color(UIColor.systemGray4),
+                        foregroundColor: .secondary
+                    ))
+                }
+            }
+            .padding(32)
+            .background(Color(UIColor.systemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
+            .shadow(color: .black.opacity(0.2), radius: 20, y: 10)
+            .padding(24)
+        }
+        .zIndex(100)
+    }
 }

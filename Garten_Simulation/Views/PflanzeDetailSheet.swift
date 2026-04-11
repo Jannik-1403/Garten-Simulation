@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PflanzeDetailSheet: View {
     @ObservedObject var pflanze: HabitModel
+    let wetterEvent: WetterEvent
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var shopStore: ShopStore
@@ -14,142 +15,152 @@ struct PflanzeDetailSheet: View {
     @State private var zeigeTimerSheet = false
     @State private var pulsieren = false
 
-    // NEU: States für Dialoge & Bearbeitung
+    @State private var zeigeTimerAbbrechenDialog = false
     @State private var noteToEditIndex: Int? = nil
     @State private var noteToDeleteIndex: Int? = nil
-    @State private var zeigeTimerAbbrechenDialog = false
+    @State private var ausgewaehlterEffekt: PflanzenEffekt? = nil
+
+    private var activeStateID: String {
+        "\(pflanze.id)-\(pflanze.wiederbelebtAm?.description ?? "none")"
+    }
+
+    private var aktiveEffekte: [PflanzenEffekt] {
+        var effekte: [PflanzenEffekt] = []
+
+        // 1. Status-Effekte (Wichtigste Prio: z.B. Erholung nach Wiederbelebung)
+        if pflanze.isPenaltyActive {
+            let expiration = pflanze.wiederbelebtAm?.addingTimeInterval(Double(pflanze.strafTage) * 24 * 3600)
+            effekte.append(PflanzenEffekt(
+                id: UUID(uuidString: "77777777-7777-7777-7777-000000000001")!,
+                typ: .status,
+                ikonQuelle: .system("tortoise.fill"),
+                titel: settings.localizedString(for: "effekt.erholung.titel"),
+                beschreibung: settings.localizedString(for: "effekt.erholung.beschreibung"),
+                expiresAt: expiration
+            ))
+        }
+
+        // 2. Wetter
+        let endOfDay = Calendar.current.startOfDay(for: Date().addingTimeInterval(86400))
+        effekte.append(PflanzenEffekt(
+            id: UUID(),
+            typ: .wetter,
+            ikonQuelle: .system(wetterEvent.systemIcon),
+            titel: wetterEvent.titel,
+            beschreibung: wetterEvent.untertitel,
+            expiresAt: endOfDay
+        ))
+
+        // 3. Power-Ups
+        for aktiv in gardenStore.activePowerUps where aktiv.isActive {
+            if aktiv.targetPlantId == nil || aktiv.targetPlantId == pflanze.id {
+                if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }) {
+                    effekte.append(PflanzenEffekt(
+                        id: UUID(),
+                        typ: .powerUp,
+                        ikonQuelle: .asset(base.symbolName),
+                        titel: settings.localizedString(for: base.name),
+                        beschreibung: settings.localizedString(for: base.description),
+                        expiresAt: aktiv.expiresAt
+                    ))
+                }
+            }
+        }
+
+        return Array(effekte)
+    }
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: 28) {
-                // MARK: - HERO (Zone 1)
-                VStack(spacing: 12) {
-                    ZStack {
-                        // Hintergrund-Ring (grau)
-                        Circle()
-                            .stroke(Color.gray.opacity(0.15), lineWidth: 8)
-                            .frame(width: 180, height: 180)
+        ZStack(alignment: .topTrailing) {
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 28) {
+                    // MARK: - HERO (Zone 1)
+                    VStack(spacing: 12) {
+                        ZStack {
+                            // Hintergrund-Ring (grau)
+                            Circle()
+                                .stroke(Color.gray.opacity(0.15), lineWidth: 8)
+                                .frame(width: 180, height: 180)
 
-                        // Fortschritts-Ring (Seltenheits-Farbe)
-                        Circle()
-                            .trim(from: 0, to: pflanze.ringFortschritt)
-                            .stroke(
-                                pflanze.seltenheit.farbe,
-                                style: StrokeStyle(lineWidth: 8, lineCap: .round)
-                            )
-                            .frame(width: 180, height: 180)
-                            .rotationEffect(.degrees(-90))
-                            .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
+                            // Fortschritts-Ring (Seltenheits-Farbe)
+                            Circle()
+                                .trim(from: 0, to: pflanze.ringFortschritt)
+                                .stroke(
+                                    pflanze.seltenheit.farbe,
+                                    style: StrokeStyle(lineWidth: 8, lineCap: .round)
+                                )
+                                .frame(width: 180, height: 180)
+                                .rotationEffect(.degrees(-90))
+                                .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
 
-                        // 3D Pflanze Button
-                        if let basePlant = GameDatabase.shared.plant(for: pflanze.plantID) {
-                            PflanzenButton(
-                                plant: basePlant,
-                                seltenheit: pflanze.seltenheit,
-                                farbe: pflanze.color,
-                                sekundaerFarbe: pflanze.color.darker(),
-                                groesse: 140
-                            )
-                            .scaleEffect(pulsieren ? 1.03 : 1.0)
-                            .allowsHitTesting(false)
-                        } else {
-                            // Fallback if not found
-                            PflanzenButton(
-                                plant: Plant(id: "fallback", name: "Plant", symbolName: pflanze.symbolName, assetName: nil, symbol: "🌱", symbolColor: pflanze.symbolColor, habitCategories: pflanze.habitCategories, symbolism: ""),
-                                seltenheit: pflanze.seltenheit,
-                                farbe: pflanze.color,
-                                sekundaerFarbe: pflanze.color.darker(),
-                                groesse: 140
-                            )
-                            .scaleEffect(pulsieren ? 1.03 : 1.0)
-                            .allowsHitTesting(false)
+                            // 3D Pflanze Button
+                            if let basePlant = GameDatabase.shared.plant(for: pflanze.plantID) {
+                                PflanzenButton(
+                                    plant: basePlant,
+                                    seltenheit: pflanze.seltenheit,
+                                    farbe: pflanze.color,
+                                    sekundaerFarbe: pflanze.color.darker(),
+                                    groesse: 140
+                                )
+                                .scaleEffect(pulsieren ? 1.03 : 1.0)
+                                .allowsHitTesting(false)
+                            } else {
+                                // Fallback if not found
+                                PflanzenButton(
+                                    plant: Plant(id: "fallback", name: settings.localizedString(for: "common.plant_fallback"), symbolName: pflanze.symbolName, assetName: nil, symbol: "🌱", symbolColor: pflanze.symbolColor, habitCategories: pflanze.habitCategories, symbolism: ""),
+                                    seltenheit: pflanze.seltenheit,
+                                    farbe: pflanze.color,
+                                    sekundaerFarbe: pflanze.color.darker(),
+                                    groesse: 140
+                                )
+                                .scaleEffect(pulsieren ? 1.03 : 1.0)
+                                .allowsHitTesting(false)
+                            }
+                        }
+                        .scaleEffect(min(1.0, UIScreen.main.bounds.width / 390)) // Scale down on smaller iPhones
+
+                        Text(settings.showHabitInsteadOfName 
+                             ? settings.localizedString(for: pflanze.habitName)
+                             : settings.localizedString(for: pflanze.name))
+                            .font(.system(size: 34, weight: .black, design: .rounded))
+                            .minimumScaleFactor(0.6)
+                            .lineLimit(2)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 16)
+
+                        // Vier-Spalten Stats Header (In einer schwebenden Karte)
+                        ViewThatFits(in: .horizontal) {
+                            statsRow
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                statsRow.frame(minWidth: 400)
+                            }
+                        }
+                        .padding(.vertical, 14)
+                        .padding(.horizontal, 12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                .fill(Color.white)
+                                .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
+                        )
+                        .padding(.horizontal, 24)
+                        .padding(.top, 4)
+
+                        // NEU: Pflanzen-Effekte (Wetter, Power-Ups, Penalties)
+                        if !aktiveEffekte.isEmpty {
+                            HStack(spacing: 12) {
+                                ForEach(aktiveEffekte) { effekt in
+                                    EffektIkonButton(effekt: effekt) {
+                                        ausgewaehlterEffekt = effekt
+                                    }
+                                    .scaleEffect(1.4) // Etwas größer im Detail Sheet
+                                }
+                            }
+                            .padding(.top, 16)
+                            .padding(.bottom, 4)
+                            .id(activeStateID)
                         }
                     }
-
-                    Text(settings.showHabitInsteadOfName 
-                         ? settings.localizedString(for: pflanze.habitName)
-                         : settings.localizedString(for: pflanze.name))
-                        .font(.system(size: 34, weight: .bold, design: .rounded))
-
-                    // Vier-Spalten Stats Header (In einer schwebenden Karte)
-                    HStack(spacing: 0) {
-                        // 1. Streak
-                        VStack(spacing: 4) {
-                            HStack(spacing: 4) {
-                                Image("streak")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 18, height: 18)
-                                Text("\(pflanze.streak)")
-                                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                            }
-                            Text(settings.localizedString(for: "plant.detail.streak").uppercased())
-                                .font(.system(size: 8, weight: .bold))
-                                .foregroundStyle(.secondary)
-                        }
-                        .frame(maxWidth: .infinity)
-
-                        Divider().frame(height: 24)
-
-                        // 2. XP
-                        VStack(spacing: 4) {
-                            HStack(spacing: 4) {
-                                Image("XP")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 18, height: 18)
-                                Text("\(pflanze.currentXP)")
-                                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                            }
-                            Text(settings.localizedString(for: "plant.detail.xp").uppercased())
-                                .font(.system(size: 8, weight: .bold))
-                                .foregroundStyle(.secondary)
-                        }
-                        .frame(maxWidth: .infinity)
-
-                        Divider().frame(height: 24)
-
-                        // 3. Stufe (Clean Style)
-                        HStack(spacing: 4) {
-                            Image(systemName: pflanze.stufe.sfSymbol)
-                                .font(.system(size: 14, weight: .bold))
-                            Text(pflanze.seltenheit.lokalisiertTitel)
-                                .font(.system(size: 15, weight: .bold, design: .rounded))
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.8)
-                        }
-                        .foregroundStyle(pflanze.seltenheit.farbe)
-                        .frame(maxWidth: .infinity)
-
-                        Divider().frame(height: 24)
-
-                        // 4. Wasser (Drop)
-                        VStack(spacing: 4) {
-                            HStack(spacing: 4) {
-                                Image("Drop water")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 18, height: 18)
-                                Text(pflanze.formattedVolume)
-                                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                            }
-                            Text(settings.localizedString(for: "plant.detail.watered").uppercased())
-                                .font(.system(size: 8, weight: .bold))
-                                .foregroundStyle(.secondary)
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-                    .padding(.vertical, 14)
-                    .padding(.horizontal, 12)
-                    .background(
-                        RoundedRectangle(cornerRadius: 20, style: .continuous)
-                            .fill(Color.white)
-                            .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
-                    )
-                    .padding(.horizontal, 24)
-                    .padding(.top, 4)
-                }
-                .padding(.top, 24)
+                    .padding(.top, 40)
 
                 // MARK: - WEEKLY (Zone 2)
                 VStack(spacing: 0) {
@@ -223,7 +234,8 @@ struct PflanzeDetailSheet: View {
                             }
                             
                             VStack(alignment: .leading, spacing: 2) {
-                                Text("\(settings.localizedString(for: "plant.detail.note")) \(index + 1)")
+                                let noteLabel = settings.localizedString(for: "plant.detail.note")
+                                Text("\(noteLabel) \(index + 1)")
                                     .font(.system(size: 11, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
                                 Text(pflanze.notizen[index])
@@ -361,25 +373,32 @@ struct PflanzeDetailSheet: View {
                 Spacer().frame(height: 20)
             }
         }
-        .background(
-            ZStack {
-                Color.white.ignoresSafeArea()
-                
-                // Subtiler Verlauf im Hintergrund
-                LinearGradient(
-                    colors: [Color.orangePrimary.opacity(0.05), Color.white],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .ignoresSafeArea()
-            }
-        )
-        .onAppear {
-            withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
-                pulsieren = true
-            }
+        
+        LiquidGlassDismissButton {
+            dismiss()
         }
-        // MARK: - Verkaufen Dialog
+        .padding(.top, 24)
+        .padding(.trailing, 24)
+    }
+    .background(
+        ZStack {
+            Color.white.ignoresSafeArea()
+            
+            // Subtiler Verlauf im Hintergrund
+            LinearGradient(
+                colors: [Color.orangePrimary.opacity(0.05), Color.white],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+        }
+    )
+    .onAppear {
+        withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
+            pulsieren = true
+        }
+    }
+    // MARK: - Verkaufen Dialog
         .confirmationDialog(
             settings.localizedString(for: "plant.detail.sell.confirm"),
             isPresented: $zeigeVerkaufenDialog,
@@ -443,10 +462,84 @@ struct PflanzeDetailSheet: View {
             }
             Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
         }
+        // MARK: - Effekt Detail Sheet
+        .sheet(item: $ausgewaehlterEffekt) { effekt in
+            EffektDetailSheet(effekt: effekt)
+                .presentationDetents([.fraction(0.38)])
+                .presentationDragIndicator(.visible)
+                .presentationCornerRadius(28)
+        }
     }
 
-    
+    private var statsRow: some View {
+        HStack(spacing: 0) {
+            // 1. Streak
+            VStack(spacing: 4) {
+                HStack(spacing: 4) {
+                    Image("streak")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18, height: 18)
+                    Text("\(pflanze.streak)")
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                }
+                Text(settings.localizedString(for: "plant.detail.streak").uppercased())
+                    .font(.system(size: 8, weight: .bold))
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity)
 
+            Divider().frame(height: 24)
+
+            // 2. XP
+            VStack(spacing: 4) {
+                HStack(spacing: 4) {
+                    Image("XP")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18, height: 18)
+                    Text("\(pflanze.currentXP)")
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                }
+                Text(settings.localizedString(for: "plant.detail.xp").uppercased())
+                    .font(.system(size: 8, weight: .bold))
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity)
+
+            Divider().frame(height: 24)
+
+            // 3. Stufe (Clean Style)
+            HStack(spacing: 4) {
+                Image(systemName: pflanze.stufe.sfSymbol)
+                    .font(.system(size: 14, weight: .bold))
+                Text(pflanze.seltenheit.lokalisiertTitel)
+                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+            }
+            .foregroundStyle(pflanze.seltenheit.farbe)
+            .frame(maxWidth: .infinity)
+
+            Divider().frame(height: 24)
+
+            // 4. Wasser (Drop)
+            VStack(spacing: 4) {
+                HStack(spacing: 4) {
+                    Image("Drop water")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18, height: 18)
+                    Text(pflanze.formattedVolume)
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                }
+                Text(settings.localizedString(for: "plant.detail.watered").uppercased())
+                    .font(.system(size: 8, weight: .bold))
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity)
+        }
+    }
 }
 
 // MARK: - Notiz Sheet
@@ -653,11 +746,22 @@ struct StatLabelView: View {
 // MARK: - PlantWeeklyStreakView
 struct PlantWeeklyStreakView: View {
     @ObservedObject var pflanze: HabitModel
+    @EnvironmentObject var settings: SettingsStore
     private let calendar = Calendar.current
+    private var weekdays: [String] {
+        [
+            settings.localizedString(for: "common.mon"),
+            settings.localizedString(for: "common.tue"),
+            settings.localizedString(for: "common.wed"),
+            settings.localizedString(for: "common.thu"),
+            settings.localizedString(for: "common.fri"),
+            settings.localizedString(for: "common.sat"),
+            settings.localizedString(for: "common.sun")
+        ]
+    }
     
     var body: some View {
         HStack(spacing: 0) {
-            let weekdays = ["M", "D", "M", "D", "F", "S", "S"] // Mo, Di, Mi, Do, Fr, Sa, So
             ForEach(0..<7, id: \.self) { index in
                 VStack(spacing: 8) {
                     Text(weekdays[index])
@@ -688,7 +792,7 @@ struct PlantWeeklyStreakView: View {
                     }
                     .frame(width: 38, height: 41) // Platz für Schatten reservieren
                     
-                    Text(dayXP > 0 ? "+\(dayXP) XP" : " ")
+                    Text(dayXP > 0 ? "+\(dayXP) \(settings.localizedString(for: "common.xp"))" : " ")
                         .font(.system(size: 10, weight: .black, design: .rounded))
                         .foregroundStyle(dayXP > 0 ? .white : .clear)
                 }
@@ -700,11 +804,7 @@ struct PlantWeeklyStreakView: View {
     
     private func getXP(for index: Int) -> Int {
         let today = calendar.startOfDay(for: Date())
-        
-        // Calendar weekday: Sun=1, Mon=2, Tue=3, Wed=4, Thu=5, Fri=6, Sat=7
         let currentWeekday = calendar.component(.weekday, from: today)
-        
-        // Convert to Mon=0, Tue=1, ..., Sun=6
         var normalizedToday = currentWeekday - 2
         if normalizedToday < 0 { normalizedToday = 6 } 
         

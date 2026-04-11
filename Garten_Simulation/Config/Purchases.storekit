@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>identifier</key>
+	<string>76D0E9A9</string>
+	<key>nonRenewingSubscriptions</key>
+	<array/>
+	<key>products</key>
+	<array>
+		<dict>
+			<key>displayPrice</key>
+			<string>0.99</string>
+			<key>familyShareable</key>
+			<false/>
+			<key>internalID</key>
+			<string>A5B2C3D4</string>
+			<key>localizations</key>
+			<array>
+				<dict>
+					<key>description</key>
+					<string>Get 100 extra coins for your garden.</string>
+					<key>displayName</key>
+					<string>Small Coin Pack</string>
+					<key>locale</key>
+					<string>en_US</string>
+				</dict>
+				<dict>
+					<key>description</key>
+					<string>Erhalte 100 Münzen für deinen Garten.</string>
+					<key>displayName</key>
+					<string>Kleines Münzpaket</string>
+					<key>locale</key>
+					<string>de</string>
+				</dict>
+			</array>
+			<key>productID</key>
+			<string>com.gartenapp.coins.pack_small</string>
+			<key>referenceName</key>
+			<string>Small Coin Pack</string>
+			<key>type</key>
+			<string>Consumable</string>
+		</dict>
+		<dict>
+			<key>displayPrice</key>
+			<string>2.99</string>
+			<key>familyShareable</key>
+			<false/>
+			<key>internalID</key>
+			<string>B5B2C3D4</string>
+			<key>localizations</key>
+			<array>
+				<dict>
+					<key>description</key>
+					<string>Get 500 extra coins for your garden.</string>
+					<key>displayName</key>
+					<string>Medium Coin Pack</string>
+					<key>locale</key>
+					<string>en_US</string>
+				</dict>
+				<dict>
+					<key>description</key>
+					<string>Erhalte 500 Münzen für deinen Garten.</string>
+					<key>displayName</key>
+					<string>Mittleres Münzpaket</string>
+					<key>locale</key>
+					<string>de</string>
+				</dict>
+			</array>
+			<key>productID</key>
+			<string>com.gartenapp.coins.pack_medium</string>
+			<key>referenceName</key>
+			<string>Medium Coin Pack</string>
+			<key>type</key>
+			<string>Consumable</string>
+		</dict>
+		<dict>
+			<key>displayPrice</key>
+			<string>4.99</string>
+			<key>familyShareable</key>
+			<false/>
+			<key>internalID</key>
+			<string>C5B2C3D4</string>
+			<key>localizations</key>
+			<array>
+				<dict>
+					<key>description</key>
+					<string>Get 1200 extra coins for your garden.</string>
+					<key>displayName</key>
+					<string>Large Coin Pack</string>
+					<key>locale</key>
+					<string>en_US</string>
+				</dict>
+				<dict>
+					<key>description</key>
+					<string>Erhalte 1200 Münzen für deinen Garten.</string>
+					<key>displayName</key>
+					<string>Großes Münzpaket</string>
+					<key>locale</key>
+					<string>de</string>
+				</dict>
+			</array>
+			<key>productID</key>
+			<string>com.gartenapp.coins.pack_large</string>
+			<key>referenceName</key>
+			<string>Large Coin Pack</string>
+			<key>type</key>
+			<string>Consumable</string>
+		</dict>
+	</array>
+	<key>settings</key>
+	<dict/>
+	<key>subscriptionGroups</key>
+	<array/>
+	<key>version</key>
+	<dict>
+		<key>major</key>
+		<integer>1</integer>
+		<key>minor</key>
+		<integer>1</integer>
+	</dict>
+</dict>
+</plist>

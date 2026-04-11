@@ -27,39 +27,35 @@ struct ProfilView: View {
                 
                 ScrollView {
                     VStack(spacing: 32) {
-                        // User Profile Info (Name, Title, Level)
+                        // Flat Header Section (Name, Title, Level)
                         VStack(spacing: 8) {
-                            Text("Jannik Schill")
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
-                                .padding(.top, 24)
+                            Text(settings.localizedString(for: "profile.user.name.default"))
+                                .font(.system(size: 30, weight: .black, design: .rounded))
                             
-                            // 1. Name (above)
                             // Aktiver Titel
                             if let titel = titelStore.aktiverTitel() {
                                 Button {
                                     showTitelAuswahl = true
                                 } label: {
-                                    TitelTextView(titel: titel)
+                                    TitelTextView(titel: titel, fontSize: 18)
                                 }
                                 .buttonStyle(.plain)
-                                .transition(.scale.combined(with: .opacity))
                             } else {
                                 Button {
                                     showTitelAuswahl = true
                                 } label: {
                                     Text(settings.localizedString(for: "titel.keiner"))
-                                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                                        .font(.system(size: 14, weight: .black, design: .rounded))
                                         .foregroundStyle(.secondary)
-                                        .padding(.horizontal, 12)
-                                        .padding(.vertical, 4)
-                                        .background(Capsule().fill(Color.secondary.opacity(0.1)))
                                 }
                                 .buttonStyle(.plain)
                             }
 
-                            // 3. Level (now below Title, and without background via its own view)
                             ProfilTierBadgeView(level: gardenStore.gartenStufe)
+                                .padding(.top, 2)
                         }
+                        .padding(.top, 30)
+                        .padding(.horizontal, 20)
                         
                         // Anklickbarer XP-Header → öffnet GartenPassView
                         VStack(spacing: 12) {
@@ -89,6 +85,8 @@ struct ProfilView: View {
                         .padding(.horizontal, 32)
                         .padding(.top, 8)
                         
+                        
+
                         Spacer(minLength: 40)
                     }
                     .padding(.vertical, 16)
@@ -109,11 +107,11 @@ struct ProfilView: View {
                     }
                 }
             }
-            .sheet(isPresented: $showSettings) {
+            .fullScreenCover(isPresented: $showSettings) {
                 SettingsView()
                     .environmentObject(settings)
             }
-            .sheet(isPresented: $showWasserDetail) {
+            .fullScreenCover(isPresented: $showWasserDetail) {
                 WasserDetailView()
                     .environmentObject(gardenStore)
                     .environmentObject(settings)

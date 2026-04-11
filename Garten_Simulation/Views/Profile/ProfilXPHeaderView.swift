@@ -3,6 +3,7 @@ import SwiftUI
 // MARK: - Anklickbarer XP-Header (ersetzt alte XP-Bar + Garden Level-Karte)
 
 struct ProfilXPHeaderView: View {
+    @EnvironmentObject var settings: SettingsStore
     let gesamtXP: Int
     let onTippen: () -> Void   // öffnet GartenPassView
 
@@ -29,93 +30,123 @@ struct ProfilXPHeaderView: View {
     }
 
     var body: some View {
-        Button(action: onTippen) {
-            VStack(spacing: 12) {
-                // Obere Zeile: Level links, XP rechts, Chevron
-                HStack {
-                    HStack(spacing: 6) {
-                        Image(systemName: GartenLevel.symbol(fuerLevel: level))
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(farbe)
-                        
-                        Text("\(NSLocalizedString("level_up_label", comment: "")) \(level)")
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
-                            .foregroundColor(GartenLevel.dunkelFarbe(fuerLevel: level))
-                    }
+        Button(action: {
+            FeedbackManager.shared.playTap()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
+                onTippen()
+            }
+        }) {
+            ZStack(alignment: .top) {
+                // Background Layer (Depth/Shadow) - THE COLOR LAYER
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .fill(farbe)
+                    .offset(y: 8)
+                
+                // Content Layer - THE WHITE SURFACE
+                VStack(spacing: 12) {
+                    HStack {
+                        HStack(spacing: 6) {
+                            Image(systemName: GartenLevel.symbol(fuerLevel: level))
+                                .font(.system(size: 14, weight: .black))
+                                .foregroundColor(farbe)
+                            
+                            Text("\(GartenTierStufe.fuer(level: level).lokalisiertTitel(settings: settings)) · \(settings.localizedString(for: "level_up_label")) \(level)")
+                                .font(.system(size: 16, weight: .black, design: .rounded))
+                                .foregroundColor(GartenLevel.dunkelFarbe(fuerLevel: level))
+                        }
 
-                    Spacer()
+                        Spacer()
 
-                    Text("\(xpImLevel) / \(xpFuerNaechstenLevel) XP")
-                        .font(.system(size: 14, weight: .medium, design: .monospaced))
-                        .foregroundColor(.secondary)
-
-                    Image(systemName: "chevron.right")
-                        .font(.caption.weight(.bold))
-                        .foregroundColor(.secondary.opacity(0.5))
-                }
-
-                // XP-Line (Fortschrittsbalken als dünne Linie)
-                ZStack(alignment: .leading) {
-                    Capsule()
-                        .fill(Color(.systemGray6).opacity(0.5))
-                        .frame(height: 6)
-                    
-                    Capsule()
-                        .fill(farbe)
-                        .frame(width: max(6, CGFloat(fortschritt) * (UIScreen.main.bounds.width - 72)), height: 6)
-                }
-                .mask(Capsule())
-                .animation(.spring(response: 0.6, dampingFraction: 0.8), value: fortschritt)
-
-                // Hint-Text
-                HStack {
-                    if level < 50 {
-                        Text(String(format: NSLocalizedString("xp_bis_naechste", comment: ""),
-                                    xpFuerNaechstenLevel - xpImLevel, "Level \(level + 1)"))
-                            .font(.system(size: 11, weight: .medium))
+                        Text("\(xpImLevel) / \(xpFuerNaechstenLevel) \(settings.localizedString(for: "common.xp"))")
+                            .font(.system(size: 14, weight: .black, design: .rounded))
                             .foregroundColor(.secondary)
-                    } else {
-                        Text(NSLocalizedString("tier_maximum_erreicht", comment: ""))
-                            .font(.system(size: 11, weight: .bold))
+
+                        Image(systemName: "chevron.right")
+                            .font(.caption.weight(.black))
+                            .foregroundColor(.secondary.opacity(0.5))
+                    }
+
+                    ZStack(alignment: .leading) {
+                        Capsule()
+                            .fill(Color(.systemGray6).opacity(0.5))
+                            .frame(height: 8)
+                        
+                        Capsule()
+                            .fill(farbe)
+                            .frame(width: max(8, CGFloat(fortschritt) * (UIScreen.main.bounds.width - 76)), height: 8)
+                    }
+                    .mask(Capsule())
+                    .animation(.spring(response: 0.6, dampingFraction: 0.82), value: fortschritt)
+
+                    HStack {
+                        if level < 50 {
+                            Text(String(format: settings.localizedString(for: "xp_bis_naechste"),
+                                        xpFuerNaechstenLevel - xpImLevel, "\(settings.localizedString(for: "level_up_label")) \(level + 1)"))
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundColor(.secondary)
+                        } else {
+                            Text(settings.localizedString(for: "tier_maximum_erreicht"))
+                                .font(.system(size: 11, weight: .black))
+                                .foregroundColor(farbe)
+                        }
+                        Spacer()
+                        
+                        Text("\(Int(fortschritt * 100))%")
+                            .font(.system(size: 11, weight: .black))
                             .foregroundColor(farbe)
                     }
-                    Spacer()
-                    
-                    Text("\(Int(fortschritt * 100))%")
-                        .font(.system(size: 11, weight: .bold))
-                        .foregroundColor(farbe)
+                }
+                .padding(20)
+                .background(Color(UIColor.systemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .stroke(Color.black.opacity(0.08), lineWidth: 1)
+                )
+                .offset(y: isPressed ? 8 : 0)
+            }
+        }
+        .buttonStyle(Duo3DCardButtonStyle(isPressed: $isPressed))
+    }
+    
+    @State private var isPressed: Bool = false
+}
+
+// Custom ButtonStyle to track state and apply animation/haptics
+struct Duo3DCardButtonStyle: ButtonStyle {
+    @Binding var isPressed: Bool
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .onChange(of: configuration.isPressed) { old, newValue in
+                isPressed = newValue
+                if newValue {
+                    FeedbackManager.shared.playTap()
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 }
             }
-            .padding(18)
-            .background(
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .fill(Color(.systemBackground))
-                    .shadow(color: .black.opacity(0.04), radius: 15, x: 0, y: 8)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .stroke(farbe.opacity(0.15), lineWidth: 1.5)
-            )
-        }
-        .buttonStyle(PlainButtonStyle())
+            .animation(.spring(response: 0.22, dampingFraction: 0.52), value: configuration.isPressed)
     }
 }
 
 // MARK: - Level-Badge (über dem Namen)
 
 struct ProfilTierBadgeView: View {
+    @EnvironmentObject var settings: SettingsStore
     let level: Int
+    
+    private var farbe: Color { GartenLevel.farbe(fuerLevel: level) }
+    private var dunkelFarbe: Color { GartenLevel.dunkelFarbe(fuerLevel: level) }
 
     var body: some View {
-        HStack(spacing: 6) {
+        HStack(spacing: 8) {
             Image(systemName: GartenLevel.symbol(fuerLevel: level))
-                .font(.system(size: 11, weight: .bold))
-                .foregroundColor(GartenLevel.farbe(fuerLevel: level))
+                .font(.system(size: 14, weight: .black))
+                .foregroundColor(farbe)
 
-            Text("\(NSLocalizedString("level_up_label", comment: "")) \(level)")
-                .font(.system(size: 12, weight: .bold, design: .rounded))
-                .foregroundColor(GartenLevel.dunkelFarbe(fuerLevel: level))
+            Text("\(GartenTierStufe.fuer(level: level).lokalisiertTitel(settings: settings)) · \(level)")
+                .font(.system(size: 14, weight: .black, design: .rounded))
+                .foregroundColor(dunkelFarbe)
         }
-        .padding(.vertical, 2)
+        .padding(.vertical, 4)
     }
 }

@@ -35,11 +35,14 @@ struct SettingsDetailView: View {
                     Text(title)
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                     
-                    Text(description)
-                        .font(.system(size: 16))
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 40)
+                    ScrollView {
+                        Text(description)
+                            .font(.body)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.leading)
+                            .padding(.horizontal, 24)
+                            .padding(.top, 8)
+                    }
                 }
                 
                 Spacer()

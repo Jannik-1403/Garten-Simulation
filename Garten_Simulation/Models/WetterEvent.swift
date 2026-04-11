@@ -11,12 +11,25 @@ enum WetterEvent: String, CaseIterable {
     // MARK: - Texte
     var titel: String {
         let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
-        return AppStrings.get("weather.\(rawValue).title", language: lang)
+        return localize("weather.\(rawValue).title", language: lang)
     }
 
     var untertitel: String {
         let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
-        return AppStrings.get("weather.\(rawValue).subtitle", language: lang)
+        return localize("weather.\(rawValue).subtitle", language: lang)
+    }
+
+    private func localize(_ key: String, language: String) -> String {
+        // Preference 1: Try Localizable.strings bundle
+        if let path = Bundle.main.path(forResource: language, ofType: "lproj"),
+           let bundle = Bundle(path: path) {
+            let localized = NSLocalizedString(key, tableName: nil, bundle: bundle, value: key, comment: "")
+            if localized != key {
+                return localized
+            }
+        }
+        // Preference 2: AppStrings dictionary
+        return AppStrings.get(key, language: language)
     }
 
     var icon: String {

@@ -1,12 +1,25 @@
 import SwiftUI
 import DotLottie
 
+enum StreakMode: String, CaseIterable, Identifiable {
+    case week, month, year
+    var id: String { self.rawValue }
+    
+    func label(settings: SettingsStore) -> String {
+        switch self {
+        case .week: return settings.localizedString(for: "streak.mode.week")
+        case .month: return settings.localizedString(for: "streak.mode.month")
+        case .year: return settings.localizedString(for: "streak.mode.year")
+        }
+    }
+}
+
 struct StreakView: View {
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var settings: SettingsStore
     @Environment(\.dismiss) var dismiss
     
-    @State private var showFullCalendar = false
+    @State private var selectedMode: StreakMode = .week
     @State private var currentMonth: Date = Date()
     private let calendar = Calendar.current
     
@@ -17,34 +30,45 @@ struct StreakView: View {
             
             ScrollView {
                 VStack(spacing: 32) {
-                    // 1. Lottie Animation Section
-                    VStack(spacing: 16) {
-                        DotLottieAnimation(
-                            webURL: "https://lottie.host/b8842b8d-669c-45fe-a8cb-92cbd20903dc/9KcW3VdzUV.lottie",
-                            config: .init(autoplay: true, loop: true, speed: 0.7) // Even slower as requested
-                        ).view()
-                        .frame(width: 200, height: 200)
-                        .shadow(color: .orange.opacity(0.15), radius: 30)
-                        
-                        VStack(spacing: 0) {
-                            Text("\(streakStore.currentStreak)")
-                                .font(.system(size: 80, weight: .heavy, design: .rounded))
-                                .foregroundStyle(.orange)
-                        }
-                    }
-                    .padding(.top, 40)
-                    
                     // 2. Weekly & Monthly Progress Section
+                    if selectedMode != .year {
+                        VStack(spacing: 16) {
+                            SafeDotLottieView(
+                                url: "https://lottie.host/b8842b8d-669c-45fe-a8cb-92cbd20903dc/9KcW3VdzUV.lottie",
+                                animationConfig: .init(autoplay: true, loop: true, speed: 0.7),
+                                fixedSize: CGSize(width: 200, height: 200)
+                            )
+                            .shadow(color: .orange.opacity(0.15), radius: 30)
+                            
+                            VStack(spacing: 0) {
+                                Text("\(streakStore.currentStreak)")
+                                    .font(.system(size: 80, weight: .heavy, design: .rounded))
+                                    .foregroundStyle(.orange)
+                            }
+                        }
+                        .padding(.top, 40)
+                        .transition(.scale.combined(with: .opacity))
+                    }
+                    
                     VStack(spacing: 24) {
+                        // Segmented Picker
+                        Picker("", selection: $selectedMode) {
+                            ForEach(StreakMode.allCases) { mode in
+                                Text(mode.label(settings: settings)).tag(mode)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                        .padding(.horizontal, 4)
+
                         // Header for Card
                         HStack {
-                            Text(showFullCalendar ? monthYearString(from: currentMonth) : settings.localizedString(for: "streak.view.weekly_overview"))
+                            Text(headerTitle)
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                                 .foregroundStyle(.secondary)
                             
                             Spacer()
                             
-                            if showFullCalendar {
+                            if selectedMode == .month {
                                 // Month Navigation
                                 HStack(spacing: 16) {
                                     Button(action: { changeMonth(by: -1) }) {
@@ -58,28 +82,27 @@ struct StreakView: View {
                                 }
                                 .foregroundStyle(.orange)
                             }
-                            
-                            Button(action: { withAnimation(.spring()) { showFullCalendar.toggle() } }) {
-                                HStack(spacing: 4) {
-                                    Text(showFullCalendar ? settings.localizedString(for: "streak.view.see_less") : settings.localizedString(for: "streak.view.see_more"))
-                                    Image(systemName: showFullCalendar ? "chevron.up" : "chevron.right")
-                                }
-                            }
-                            .buttonStyle(Streak3DButtonStyle(color: .orange, isSmall: true))
                         }
                         .padding(.horizontal, 4)
                         
-                        if showFullCalendar {
-                            monthlyCalendarGrid
-                                .transition(.asymmetric(insertion: .push(from: .bottom).combined(with: .opacity), removal: .push(from: .top).combined(with: .opacity)))
-                        } else {
-                            weeklyProgressRow
-                                .transition(.opacity)
+                        Group {
+                            switch selectedMode {
+                            case .week:
+                                weeklyProgressRow
+                                    .transition(.opacity)
+                            case .month:
+                                monthlyCalendarGrid
+                                    .transition(.asymmetric(insertion: .push(from: .bottom).combined(with: .opacity), removal: .push(from: .top).combined(with: .opacity)))
+                            case .year:
+                                YearlyCalendarView(calendar: calendar, streakStore: streakStore, settings: settings)
+                                    .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity), removal: .move(edge: .top).combined(with: .opacity)))
+                            }
                         }
                     }
                     .padding(24)
                     .liquidGlass(opacity: 0.05)
                     .padding(.horizontal, 24)
+                    .animation(.spring(), value: selectedMode)
                     
                     Spacer()
                 }
@@ -99,6 +122,18 @@ struct StreakView: View {
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                     .foregroundStyle(.secondary)
             }
+        }
+    }
+    
+    private var headerTitle: String {
+        switch selectedMode {
+        case .week:
+            return settings.localizedString(for: "streak.view.weekly_overview")
+        case .month:
+            return monthYearString(from: currentMonth)
+        case .year:
+            let year = calendar.component(.year, from: currentMonth)
+            return String(format: settings.localizedString(for: "streak.view.year_format"), year)
         }
     }
     
@@ -183,21 +218,26 @@ struct StreakView: View {
     }
 
     private var localizedWeekdays: [String] {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: settings.appLanguage == "de" ? "de_DE" : "en_US")
-        if var symbols = formatter.veryShortWeekdaySymbols, symbols.count == 7 {
-            let sunday = symbols.removeFirst()
-            symbols.append(sunday)
+        let weekdayString = settings.localizedString(for: "streak.weekdays.short")
+        let symbols = weekdayString.components(separatedBy: ",")
+        if symbols.count == 7 {
             return symbols
         }
-        // Fallback (Monday start)
-        return settings.appLanguage == "de" ? ["M", "D", "M", "D", "F", "S", "S"] : ["M", "T", "W", "T", "F", "S", "S"]
+        
+        // Fallback
+        return ["M", "D", "M", "D", "F", "S", "S"]
     }
     
     private func monthYearString(from date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: settings.appLanguage == "de" ? "de_DE" : "en_US")
-        formatter.dateFormat = "MMMM yyyy"
+        let localeId: String
+        switch settings.appLanguage {
+        case "de": localeId = "de_DE"
+        case "es": localeId = "es_ES"
+        default:   localeId = "en_US"
+        }
+        formatter.locale = Locale(identifier: localeId)
+        formatter.dateFormat = settings.localizedString(for: "streak.format.month_year")
         return formatter.string(from: date)
     }
     
@@ -221,6 +261,70 @@ struct StreakView: View {
         }
         while days.count % 7 != 0 { days.append(nil) }
         return days
+    }
+}
+
+// MARK: - Yearly Calendar View
+struct YearlyCalendarView: View {
+    let calendar: Calendar
+    let streakStore: StreakStore
+    let settings: SettingsStore
+    
+    var body: some View {
+        let year = calendar.component(.year, from: Date())
+        let columns = [
+            GridItem(.flexible(), spacing: 10),
+            GridItem(.flexible(), spacing: 10),
+            GridItem(.flexible(), spacing: 10)
+        ]
+        
+        LazyVGrid(columns: columns, spacing: 20) {
+            ForEach(1...12, id: \.self) { month in
+                VStack(spacing: 8) {
+                    Text(monthName(for: month))
+                        .font(.system(size: 10, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                    
+                    miniMonthGrid(for: month, in: year)
+                }
+                .padding(8)
+                .background(Color.primary.opacity(0.03))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func miniMonthGrid(for month: Int, in year: Int) -> some View {
+        let components = DateComponents(year: year, month: month, day: 1)
+        if let firstDayOfMonth = calendar.date(from: components) {
+            let daysInMonth = calendar.range(of: .day, in: .month, for: firstDayOfMonth)!.count
+            let firstWeekday = calendar.component(.weekday, from: firstDayOfMonth) - 2 // Monday start
+            let adjustedFirstWeekday = firstWeekday < 0 ? 6 : firstWeekday
+            
+            let totalCells = adjustedFirstWeekday + daysInMonth
+            let columns = Array(repeating: GridItem(.fixed(6), spacing: 2), count: 7)
+            
+            LazyVGrid(columns: columns, spacing: 2) {
+                ForEach(0..<totalCells, id: \.self) { index in
+                    if index >= adjustedFirstWeekday {
+                        let day = index - adjustedFirstWeekday + 1
+                        let dateComponents = DateComponents(year: year, month: month, day: day)
+                        if let date = calendar.date(from: dateComponents) {
+                            Circle()
+                                .fill(streakStore.isDateCompleted(date) ? Color.orange : Color.gray.opacity(0.1))
+                                .frame(width: 6, height: 6)
+                        }
+                    } else {
+                        Color.clear.frame(width: 6, height: 6)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func monthName(for month: Int) -> String {
+        return settings.localizedString(for: "month.\(month)")
     }
 }
 

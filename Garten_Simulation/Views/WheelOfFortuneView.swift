@@ -1,10 +1,7 @@
 import SwiftUI
 import DotLottie
 
-// MARK: - Segment type for wheel layout
-enum SegmentKind: Equatable {
-    case weed, safe, gold
-}
+// SegmentKind now resides in DailyWheelComponents.swift
 
 struct WheelOfFortuneView: View {
     @EnvironmentObject var gardenStore: GardenStore
@@ -212,7 +209,7 @@ struct WheelOfFortuneView: View {
                         }) {
                             HStack {
                                 Image(systemName: "cpu")
-                                Text("Bot nutzen: Nochmal drehen!")
+                                Text(settings.localizedString(for: "wheel.bot_use"))
                             }
                         }
                         .buttonStyle(DuolingoButtonStyle(
@@ -265,7 +262,7 @@ struct WheelOfFortuneView: View {
                         finishSpin()
                     }
                 })
-                .transition(.opacity.combined(with: .scale(scale: 0.9)))
+                .transition(.opacity.combined(with: .scale(0.9)))
             }
         }
         .sheet(isPresented: $showPowerUpPicker) {
@@ -380,7 +377,7 @@ struct WheelOfFortuneView: View {
             gardenStore.isWeedActive = false
         case .coins(let amount):
             gardenStore.isWeedActive = false
-            gardenStore.coinsGutschreiben(amount: amount, beschreibung: "🎰 Daily Spin Jackpot")
+            gardenStore.coinsGutschreiben(amount: amount, beschreibung: settings.localizedString(for: "wheel.jackpot.desc"))
         case nil:
             break
         }
@@ -411,15 +408,7 @@ struct Pressed3DTextButtonStyle: ButtonStyle {
     }
 }
 
-// MARK: - Generic 3D Wrapper Button Style
-struct Press3DWrapperButtonStyle: ButtonStyle {
-    var depth: CGFloat = 6
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .offset(y: configuration.isPressed ? depth : 0)
-            .animation(.spring(response: 0.15, dampingFraction: 0.6), value: configuration.isPressed)
-    }
-}
+// Helper components (WheelRimDot, WheelTrianglePointer, etc.) now reside in DailyWheelComponents.swift
 
 // MARK: - SpinResultIconView
 private struct SpinResultIconView: View {
@@ -452,7 +441,6 @@ private struct SpinResultIconView: View {
 }
 
 // MARK: - SpinResultOverlay
-// MARK: - SpinResultOverlay
 struct SpinResultOverlay: View {
     let result: SpinResult
     let onDismiss: () -> Void
@@ -463,20 +451,20 @@ struct SpinResultOverlay: View {
 
     private var overlayTitel: String {
         switch result {
-        case .safe:     return NSLocalizedString("spin.result.nichts.titel", comment: "")
-        case .coins(_): return NSLocalizedString("spin.result.muenzen.titel", comment: "")
-        case .weed:     return NSLocalizedString("spin.result.unkraut.titel", comment: "")
+        case .safe:     return settings.localizedString(for: "dailyspin.result.safe.title")
+        case .coins(_): return settings.localizedString(for: "dailyspin.result.coins.title")
+        case .weed:     return settings.localizedString(for: "dailyspin.result.weed.title")
         }
     }
 
     private var overlayUntertitel: String {
         switch result {
         case .safe:
-            return NSLocalizedString("spin.result.nichts.untertitel", comment: "")
+            return settings.localizedString(for: "dailyspin.result.safe.subtitle")
         case .coins(let anzahl):
-            return String(format: NSLocalizedString("spin.result.muenzen.untertitel", comment: ""), anzahl)
+            return String(format: settings.localizedString(for: "dailyspin.result.coins.subtitle"), anzahl)
         case .weed:
-            return NSLocalizedString("spin.result.unkraut.untertitel", comment: "")
+            return settings.localizedString(for: "dailyspin.result.weed.subtitle")
         }
     }
 
@@ -484,12 +472,11 @@ struct SpinResultOverlay: View {
         ZStack {
             // Konfetti ganz unten, hinter allem
             if result == .safe {
-                DotLottieAnimation(
-                    webURL: "https://lottie.host/e9ce3227-f1fc-4135-9b98-b1f578638775/77KBz7dIev.lottie",
-                    config: AnimationConfig(autoplay: true, loop: false)
-                ).view()
-                .ignoresSafeArea()
-                .allowsHitTesting(false)
+                SafeDotLottieView(
+                    url: "https://lottie.host/e9ce3227-f1fc-4135-9b98-b1f578638775/77KBz7dIev.lottie",
+                    animationConfig: AnimationConfig(autoplay: true, loop: false),
+                    fixedSize: UIScreen.main.bounds.size
+                )
             }
 
             Color.black.opacity(0.45)
@@ -542,126 +529,10 @@ struct SpinResultOverlay: View {
     }
 }
 
-// MARK: - WheelSlices (Solid Color Segments)
-struct WheelSlices: View {
-    let layout: [SegmentKind]
-
-    var body: some View {
-        GeometryReader { geo in
-            let rect = geo.frame(in: .local)
-            let center = CGPoint(x: rect.midX, y: rect.midY)
-            let radius = min(rect.width, rect.height) / 2
-            let count = max(layout.count, 1)
-            let segDeg = 360.0 / Double(count)
-
-            ZStack {
-                ForEach(0..<count, id: \.self) { i in
-                    let kind = i < layout.count ? layout[i] : .safe
-                    let startDeg = -90.0 + Double(i) * segDeg
-                    let endDeg   = startDeg + segDeg
-                    let midDeg   = startDeg + segDeg / 2
-                    let midRad   = midDeg * .pi / 180
-                    let iconR = radius * 0.62
-                    
-                    let color = colorFor(kind)
-
-                    // Segment fill with solid color
-                    Path { path in
-                        path.move(to: center)
-                        path.addArc(center: center, radius: radius,
-                                    startAngle: .degrees(startDeg),
-                                    endAngle: .degrees(endDeg),
-                                    clockwise: false)
-                        path.closeSubpath()
-                    }
-                    .fill(color)
-
-                    // Segment divider
-                    Path { path in
-                        path.move(to: center)
-                        path.addArc(center: center, radius: radius,
-                                    startAngle: .degrees(startDeg),
-                                    endAngle: .degrees(endDeg),
-                                    clockwise: false)
-                        path.closeSubpath()
-                    }
-                    .stroke(Color.black.opacity(0.4), lineWidth: 2)
-
-                    // Per-segment icon — radially rotated
-                    WheelSegmentIcon(kind: kind)
-                        .rotationEffect(.degrees(midDeg + 90))
-                        .position(
-                            x: center.x + CGFloat(cos(midRad)) * iconR,
-                            y: center.y + CGFloat(sin(midRad)) * iconR
-                        )
-                }
-            }
-        }
-    }
-    
-    func colorFor(_ kind: SegmentKind) -> Color {
-        switch kind {
-        case .safe: return Color.gruenPrimary
-        case .weed: return Color.rotPrimary
-        case .gold: return Color.coinBlue
-        }
-    }
-}
-
-// MARK: - WheelRimDot (Rounded Rectangles)
-struct WheelRimDot: View {
-    let index: Int
-    let totalDots: Int
-    let rimRadius: CGFloat
-
-    var body: some View {
-        let angle = Double(index) * (360.0 / Double(totalDots)) * .pi / 180.0 - .pi / 2.0
-        let dx = CGFloat(cos(angle)) * rimRadius
-        let dy = CGFloat(sin(angle)) * rimRadius
-        RoundedRectangle(cornerRadius: 3)
-            .fill(Color.white.opacity(0.85))
-            .frame(width: 8, height: 8)
-            .offset(x: dx, y: dy)
-    }
-}
-
-// MARK: - WheelSegmentIcon
-struct WheelSegmentIcon: View {
-    let kind: SegmentKind
-
-    var body: some View {
-        switch kind {
-        case .gold:
-            Image(systemName: "dollarsign.circle.fill")
-                .font(.system(size: 24, weight: .bold))
-                .foregroundStyle(.white)
-        case .weed:
-            Image(systemName: "ant.fill")
-                .font(.system(size: 22, weight: .bold))
-                .foregroundStyle(.white)
-        case .safe:
-            Image(systemName: "leaf.fill")
-                .font(.system(size: 22, weight: .bold))
-                .foregroundStyle(.white)
-        }
-    }
-}
-
-// MARK: - WheelTrianglePointer
-struct WheelTrianglePointer: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: rect.midX, y: rect.maxY))  // tip pointing down
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
-        path.closeSubpath()
-        return path
-    }
-}
-
 // MARK: - WheelPowerUpPickerView
 struct WheelPowerUpPickerView: View {
     @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
     @Environment(\.dismiss) var dismiss
     var onPowerUpUsed: () -> Void
     
@@ -679,11 +550,11 @@ struct WheelPowerUpPickerView: View {
                         Image(systemName: "archivebox")
                             .font(.system(size: 60))
                             .foregroundColor(.gray)
-                        Text("Du hast noch keine Items.")
+                        Text(settings.localizedString(for: "wheel.no_items"))
                             .font(.headline)
                             .foregroundColor(.primary)
                             .padding(.top)
-                        Text("Gehe in den Shop und kaufe dir welche!")
+                        Text(settings.localizedString(for: "wheel.go_to_shop"))
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                             .padding(.top, 4)
@@ -721,10 +592,10 @@ struct WheelPowerUpPickerView: View {
                                         }
                                         
                                         VStack(alignment: .leading, spacing: 4) {
-                                            Text(NSLocalizedString(item.title, comment: ""))
+                                            Text(settings.localizedString(for: item.title))
                                                 .font(.headline)
                                                 .foregroundColor(.primary)
-                                            Text(NSLocalizedString(item.description, comment: ""))
+                                            Text(settings.localizedString(for: item.description))
                                                 .font(.caption)
                                                 .foregroundColor(.secondary)
                                                 .lineLimit(2)
@@ -732,7 +603,7 @@ struct WheelPowerUpPickerView: View {
                                         }
                                         Spacer()
                                         
-                                        Text("Nutzen")
+                                        Text(settings.localizedString(for: "wheel.use"))
                                             .font(.subheadline.bold())
                                             .foregroundColor(.white)
                                             .padding(.horizontal, 12)
@@ -751,19 +622,13 @@ struct WheelPowerUpPickerView: View {
                     }
                 }
             }
-            .navigationTitle("Power-Ups verwenden")
+            .navigationTitle(settings.localizedString(for: "wheel.powerups.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Fertig") { dismiss() }
+                    Button(settings.localizedString(for: "common.done_button")) { dismiss() }
                 }
             }
         }
     }
-}
-
-#Preview {
-    WheelOfFortuneView()
-        .environmentObject(GardenStore())
-        .environmentObject(SettingsStore())
 }

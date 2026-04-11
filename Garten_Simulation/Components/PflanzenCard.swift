@@ -11,63 +11,10 @@ struct PflanzenCard: View {
     @EnvironmentObject var powerUpStore: PowerUpStore
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
     @State private var pflanzenPosition: CGPoint = .zero
-    @State private var giessAnimation = false
     @State private var plantWobble: CGFloat = 1.0
     @State private var greenGlowOpacity: Double = 0
     @State private var wasserPressAktiv = false
     @State private var showReviveSheet = false
-    @State private var ausgewaehlterEffekt: PflanzenEffekt? = nil
-    
-    private var activeStateID: String {
-        "\(pflanze.id)-\(pflanze.wiederbelebtAm?.description ?? "none")"
-    }
-
-    private var aktiveEffekte: [PflanzenEffekt] {
-        var effekte: [PflanzenEffekt] = []
-
-        // 1. Status-Effekte (Wichtigste Prio: z.B. Erholung nach Wiederbelebung)
-        if pflanze.isPenaltyActive {
-            let expiration = pflanze.wiederbelebtAm?.addingTimeInterval(Double(pflanze.strafTage) * 24 * 3600)
-            effekte.append(PflanzenEffekt(
-                id: UUID(uuidString: "77777777-7777-7777-7777-000000000001")!, // Stabile ID für den Status-Botton
-                typ: .status,
-                ikonQuelle: .system("tortoise.fill"),
-                titel: NSLocalizedString("effekt.erholung.titel", comment: ""),
-                beschreibung: NSLocalizedString("effekt.erholung.beschreibung", comment: ""),
-                expiresAt: expiration
-            ))
-        }
-
-        // 2. Wetter (aus dem Property, wird von GartenView durchgereicht)
-        let endOfDay = Calendar.current.startOfDay(for: Date().addingTimeInterval(86400))
-        effekte.append(PflanzenEffekt(
-            id: UUID(),
-            typ: .wetter,
-            ikonQuelle: .system(wetterEvent.systemIcon),
-            titel: wetterEvent.titel,
-            beschreibung: wetterEvent.untertitel,
-            expiresAt: endOfDay
-        ))
-
-        // 3. Power-Ups (aus gardenStore, da hier die Quelle der Wahrheit liegt)
-        for aktiv in gardenStore.activePowerUps where aktiv.isActive {
-            // Global oder gezielt auf diese Pflanze
-            if aktiv.targetPlantId == nil || aktiv.targetPlantId == pflanze.id {
-                if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }) {
-                    effekte.append(PflanzenEffekt(
-                        id: UUID(),
-                        typ: .powerUp,
-                        ikonQuelle: .asset(base.symbolName),
-                        titel: NSLocalizedString(base.name, comment: ""),
-                        beschreibung: NSLocalizedString(base.description, comment: ""),
-                        expiresAt: aktiv.expiresAt
-                    ))
-                }
-            }
-        }
-
-        return Array(effekte)
-    }
 
     var body: some View {
         ZStack {
@@ -99,8 +46,10 @@ struct PflanzenCard: View {
                      : settings.localizedString(for: pflanze.name))
                     .font(.system(size: 16, weight: .black, design: .rounded))
                     .foregroundStyle(Color.primary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.8)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.7)
+                    .frame(height: 38, alignment: .center)
 
                     Text(pflanze.seltenheit.lokalisiertTitel)
                         .font(.appBadge)
@@ -112,104 +61,88 @@ struct PflanzenCard: View {
                                 .fill((pflanze.isDead ? Color.red : pflanze.seltenheit.farbe).opacity(0.15))
                         )
                     
-                    // MARK: Timer (24h-Countdown)
-                    HStack(spacing: 4) {
-                        Image(pflanze.timerIconName)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 14, height: 14)
-                        
-                        Text("\(pflanze.remainingHoursInCycle)h")
-                            .font(.system(size: 12, weight: .bold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                    }
-                    .padding(.top, 2)
-                }
-                .frame(maxWidth: .infinity)
-                .overlay(alignment: .topLeading) {
-                    if !aktiveEffekte.isEmpty {
-                        VStack(spacing: 3) {
-                            ForEach(aktiveEffekte) { effekt in
-                                EffektIkonButton(effekt: effekt) {
-                                    ausgewaehlterEffekt = effekt
-                                }
+                    // MARK: Timer (24h-Countdown) & Warning (!)
+                    if !pflanze.istBewässert && !pflanze.isDead {
+                        HStack(spacing: 6) {
+                            if pflanze.showWarning {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 14, height: 14)
+                                    .foregroundStyle(.orange)
+                                    .symbolEffect(.bounce, options: .repeating)
+                            }
+
+                            HStack(spacing: 4) {
+                                Image(pflanze.timerIconName)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 14, height: 14)
+                                
+                                Text("\(pflanze.remainingHoursInCycle)h")
+                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                    .foregroundStyle(pflanze.showWarning ? .orange : .secondary)
                             }
                         }
-                        .offset(x: -8, y: 16) // Angepasst für Header-Level
-                        .id(activeStateID)
+                        .padding(.top, 2)
                     }
                 }
+                .frame(maxWidth: .infinity)
 
-                // MARK: 3D Pflanzen-Button + Progress-Ring
-                ZStack {
-                    // Hintergrund-Ring (grau)
-                    Circle()
-                        .stroke(Color.gray.opacity(0.2), lineWidth: 5)
-                        .frame(width: 100, height: 100)
+                GeometryReader { geo in
+                    let scale = min(geo.size.width / 160, 1.2) // Scale base 160, max 1.2
+                    let baseDim: CGFloat = 100 * scale
 
-                    // Fortschritts-Ring (Seltenheits-Farbe)
-                    Circle()
-                        .trim(from: 0, to: pflanze.ringFortschritt)
-                        .stroke(
-                            pflanze.seltenheit.farbe,
-                            style: StrokeStyle(lineWidth: 5, lineCap: .round)
-                        )
-                        .frame(width: 100, height: 100)
-                        .rotationEffect(.degrees(-90))
-                        .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
+                    ZStack {
+                        // Hintergrund-Ring (grau)
+                        Circle()
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 5 * scale)
+                            .frame(width: baseDim, height: baseDim)
 
-                    // Hintergrund-Kreise
-                    Circle()
-                        .fill(pflanze.isDead ? Color.red.opacity(0.1) : Color.gruenPrimary.opacity(0.12))
-                        .frame(width: 104, height: 104)
-    
-                    Circle()
-                        .fill(pflanze.isDead ? Color.red.opacity(0.1) : Color.gruenPrimary.opacity(0.08))
-                        .frame(width: 118, height: 118)
-    
-                    // Wasser-Wellen (falls gegossen wird)
-                    Circle()
-                        .fill(Color.blue.opacity(0.3))
-                        .frame(width: giessAnimation ? 120 : 0, height: giessAnimation ? 120 : 0)
-                        .opacity(giessAnimation ? 0.7 : 0)
-                        .animation(.easeOut(duration: 0.65), value: giessAnimation)
-                        .allowsHitTesting(false)
-    
-                    // Grüner Glow wenn frisch gegossen
-                    Circle()
-                        .stroke(Color.gruenPrimary.opacity(greenGlowOpacity * 0.6), lineWidth: 6)
-                        .frame(width: 110, height: 110)
-                        .blur(radius: 1.5)
-                        .allowsHitTesting(false)
-    
-                    // Der 3D-Button (Jetzt Interaktiv!)
-                    if let basePlant = GameDatabase.shared.plant(for: pflanze.plantID) {
-                        PflanzenButton(
-                            plant: basePlant,
-                            seltenheit: pflanze.seltenheit,
-                            farbe: pflanze.color,
-                            sekundaerFarbe: pflanze.isDead ? .red : pflanze.color.darker(),
-                            groesse: 88,
-                            externerPress: wasserPressAktiv,
-                            aktion: {
-                                if pflanze.isDead {
-                                    showReviveSheet = true
-                                    FeedbackManager.shared.playTap()
-                                } else {
-                                    FeedbackManager.shared.playTap()
-                                    onTap()
+                        // Fortschritts-Ring (Seltenheits-Farbe)
+                        Circle()
+                            .trim(from: 0, to: pflanze.ringFortschritt)
+                            .stroke(
+                                pflanze.seltenheit.farbe,
+                                style: StrokeStyle(lineWidth: 5 * scale, lineCap: .round)
+                            )
+                            .frame(width: baseDim, height: baseDim)
+                            .rotationEffect(.degrees(-90))
+                            .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
+
+        
+                        // Grüner Glow wenn frisch gegossen
+                        Circle()
+                            .stroke(Color.gruenPrimary.opacity(greenGlowOpacity * 0.6), lineWidth: 6 * scale)
+                            .frame(width: baseDim * 1.1, height: baseDim * 1.1)
+                            .blur(radius: 1.5 * scale)
+                            .allowsHitTesting(false)
+        
+                        // Der 3D-Button (Jetzt Interaktiv!)
+                        if let basePlant = GameDatabase.shared.plant(for: pflanze.plantID) {
+                            PflanzenButton(
+                                plant: basePlant,
+                                seltenheit: pflanze.seltenheit,
+                                farbe: pflanze.color,
+                                sekundaerFarbe: pflanze.isDead ? .red : pflanze.color.darker(),
+                                groesse: 88 * scale,
+                                externerPress: wasserPressAktiv,
+                                aktion: {
+                                    if pflanze.isDead {
+                                        showReviveSheet = true
+                                        FeedbackManager.shared.playTap()
+                                    } else {
+                                        FeedbackManager.shared.playTap()
+                                        onTap()
+                                    }
                                 }
-                            }
-                        )
-                        .grayscale(pflanze.isDead ? 1.0 : 0.0)
-                        .opacity(pflanze.isDead ? 0.8 : 1.0)
+                            )
+                            .grayscale(pflanze.isDead ? 1.0 : 0.0)
+                            .opacity(pflanze.isDead ? 0.8 : 1.0)
+                        }
                     }
-                }
-                .padding(.vertical, 8)
-                .scaleEffect(plantWobble)
-                .animation(.spring(response: 0.3, dampingFraction: 0.4), value: plantWobble)
-                .background(
-                    GeometryReader { geo in
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(
                         Color.clear
                             .allowsHitTesting(false)
                             .onAppear { updatePflanzenPosition(from: geo) }
@@ -218,8 +151,12 @@ struct PflanzenCard: View {
                             } action: { _, newFrame in
                                 pflanzenPosition = CGPoint(x: newFrame.midX, y: newFrame.midY)
                             }
-                    }
-                )
+                    )
+                }
+                .frame(height: 120)
+                .padding(.vertical, 8)
+                .scaleEffect(plantWobble)
+                .animation(.spring(response: 0.3, dampingFraction: 0.4), value: plantWobble)
 
                 // MARK: Gieß-Slider, Erledigt-Badge oder Löschen-Button
                 Group {
@@ -261,16 +198,6 @@ struct PflanzenCard: View {
             .padding(.vertical, 16)
             .frame(maxWidth: .infinity, alignment: .center)
             .allowsHitTesting(true) // Crucial: enable touches for subviews
-            .overlay(alignment: .topLeading) {
-                VStack(alignment: .leading, spacing: 8) {
-                    // Aktive Power-Ups Badge
-                    let plantPowerUps = gardenStore.plantSpecificActivePowerUps(plantId: pflanze.id)
-                    if !plantPowerUps.isEmpty {
-                        PowerUpBadge(count: plantPowerUps.count)
-                    }
-                }
-                .padding(12)
-            }
             .overlay {
                 if pflanze.isDead {
                     RoundedRectangle(cornerRadius: 24, style: .continuous)
@@ -281,12 +208,6 @@ struct PflanzenCard: View {
             .sheet(isPresented: $showReviveSheet) {
                 RevivePlantSheet(pflanze: pflanze)
                     .presentationDetents([.medium])
-            }
-            .sheet(item: $ausgewaehlterEffekt) { effekt in
-                EffektDetailSheet(effekt: effekt)
-                    .presentationDetents([.fraction(0.38)])
-                    .presentationDragIndicator(.visible)
-                    .presentationCornerRadius(28)
             }
         }
     }
@@ -308,7 +229,6 @@ struct PflanzenCard: View {
             }
         }
         withAnimation {
-            giessAnimation = true
             wasserPressAktiv = true
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
@@ -317,7 +237,6 @@ struct PflanzenCard: View {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.65) {
-            giessAnimation = false
             FeedbackManager.shared.playWatering()
             onGiessen()
         }
@@ -422,27 +341,44 @@ struct RevivePlantSheet: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
             
-            // Price
-            GemsIcon(wert: GameConstants.wiederbelebungsKosten)
+            // Price or Wonder Water
+            let hasWunderWasser = gardenStore.gekaufteItems.contains(where: { $0.id == "powerup.wunder_wasser" })
+            if !hasWunderWasser {
+                GemsIcon(wert: GameConstants.wiederbelebungsKosten)
+            }
             
             Spacer()
             
             // Buttons
             VStack(spacing: 12) {
-                Button {
-                    gardenStore.revive(pflanze: pflanze)
-                    dismiss()
-                } label: {
-                    Text(settings.localizedString(for: "pflanze.wiederbeleben.button"))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                if hasWunderWasser {
+                    Button {
+                        gardenStore.reviveWithWonderWater(pflanze: pflanze)
+                        dismiss()
+                    } label: {
+                        Text("\(settings.localizedString(for: "item.wunder_wasser.name")) (Gratis)")
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                    }
+                    .buttonStyle(DuolingoButtonStyle(
+                        backgroundColor: .blauPrimary,
+                        shadowColor: Color.blauPrimary.darker(),
+                        foregroundColor: .white
+                    ))
+                } else {
+                    Button {
+                        gardenStore.revive(pflanze: pflanze)
+                        dismiss()
+                    } label: {
+                        Text(settings.localizedString(for: "pflanze.wiederbeleben.button"))
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                    }
+                    .buttonStyle(DuolingoButtonStyle(
+                        backgroundColor: .gruenPrimary,
+                        shadowColor: Color.gruenPrimary.darker(),
+                        foregroundColor: .white
+                    ))
+                    .disabled(gardenStore.coins < GameConstants.wiederbelebungsKosten)
                 }
-                .buttonStyle(DuolingoButtonStyle(
-                    backgroundColor: .gruenPrimary,
-                    shadowColor: Color.gruenPrimary.darker(),
-                    foregroundColor: .white
-                ))
-                .disabled(gardenStore.coins < GameConstants.wiederbelebungsKosten)
-                
 
                 Button(role: .destructive) {
                     gardenStore.loeschePflanze(pflanze: pflanze)

@@ -11,7 +11,7 @@ class NotificationManager: ObservableObject {
     
     // MARK: - Types
     private enum TriggerType {
-        case triggerA, triggerB, triggerC, triggerD
+        case triggerA, triggerB, triggerC, triggerD, triggerE
     }
     
     private struct NotificationCandidate {
@@ -24,14 +24,21 @@ class NotificationManager: ObservableObject {
     
     // MARK: - Public API
     
-    func requestPermission() async {
+    func requestPermission() async -> Bool {
         let center = UNUserNotificationCenter.current()
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
         do {
-            try await center.requestAuthorization(options: options)
+            let success = try await center.requestAuthorization(options: options)
+            return success
         } catch {
-            print("❌ Notification permission denied: \(error.localizedDescription)")
+            return false
         }
+    }
+    
+    func checkAuthorizationStatus() async -> UNAuthorizationStatus {
+        let center = UNUserNotificationCenter.current()
+        let settings = await center.notificationSettings()
+        return settings.authorizationStatus
     }
     
     func scheduleAll(for habits: [HabitModel]) {
@@ -103,6 +110,28 @@ class NotificationManager: ObservableObject {
                 time: dTime,
                 type: .triggerD,
                 count: unwateredCount
+            ))
+        }
+        
+        // 4. Trigger E: Individuelle Erinnerung (Pflanzenspezifisch)
+        for habit in habits {
+            // Nur wenn heute noch nicht gegossen und eine Zeit gesetzt ist
+            guard !habit.istBewässert, let reminderTime = habit.reminderTime else { continue }
+            
+            let reminderComponents = calendar.dateComponents([.hour, .minute], from: reminderTime)
+            var scheduledTime = calendar.date(bySettingHour: reminderComponents.hour ?? 8, 
+                                             minute: reminderComponents.minute ?? 0, 
+                                             second: 0, of: now) ?? now
+            
+            if scheduledTime < now {
+                scheduledTime = calendar.date(byAdding: .day, value: 1, to: scheduledTime) ?? scheduledTime
+            }
+            
+            candidates.append(NotificationCandidate(
+                id: "triggerE-\(habit.id)",
+                time: scheduledTime,
+                type: .triggerE,
+                habit: habit
             ))
         }
         
@@ -200,21 +229,28 @@ class NotificationManager: ObservableObject {
         
         let texts: (title: String, body: String)
         
+        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
+        
         switch candidate.type {
         case .triggerA:
             let name = candidate.habit?.habitName ?? candidate.habit?.name ?? "Pflanze"
             let h = Int(candidate.time.timeIntervalSince(candidate.habit?.letzteBewaesserung ?? Date()) / 3600)
-            texts = NotificationTexts.wartet(pflanzenName: name, stunden: h)
+            texts = NotificationTexts.wartet(pflanzenName: name, stunden: h, lang: lang)
             
         case .triggerB:
             let name = candidate.habit?.habitName ?? candidate.habit?.name ?? "Pflanze"
-            texts = NotificationTexts.streakGefahr(pflanzenName: name, streak: candidate.habit?.streak ?? 0)
+            texts = NotificationTexts.streakGefahr(pflanzenName: name, streak: candidate.habit?.streak ?? 0, lang: lang)
             
         case .triggerC:
-            texts = NotificationTexts.morgenMotivation(streak: candidate.count)
+            texts = NotificationTexts.morgenMotivation(streak: candidate.count, lang: lang)
             
         case .triggerD:
-            texts = NotificationTexts.stillerAbend(anzahlUngegossen: candidate.count)
+            texts = NotificationTexts.stillerAbend(anzahlUngegossen: candidate.count, lang: lang)
+            
+        case .triggerE:
+            let name = candidate.habit?.habitName ?? candidate.habit?.name ?? "Pflanze"
+            // Wir nutzen hier vorerst den TriggerA Text oder einen leicht angepassten
+            texts = NotificationTexts.wartet(pflanzenName: name, stunden: 0, lang: lang)
         }
         
         content.title = texts.title
@@ -227,7 +263,7 @@ class NotificationManager: ObservableObject {
         
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
-                print("❌ Error scheduling notification \(candidate.id): \(error.localizedDescription)")
+                // print("❌ Error scheduling notification \(candidate.id): \(error.localizedDescription)")
             }
         }
     }

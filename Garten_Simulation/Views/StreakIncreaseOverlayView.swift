@@ -87,12 +87,11 @@ struct StreakIncreaseOverlayView: View {
 
                             // Lottie Flame (after morph)
                             if showLottie {
-                                DotLottieAnimation(
-                                    webURL: "https://lottie.host/b8842b8d-669c-45fe-a8cb-92cbd20903dc/9KcW3VdzUV.lottie",
-                                    config: .init(autoplay: true, loop: true, speed: 0.8)
+                                SafeDotLottieView(
+                                    url: "https://lottie.host/b8842b8d-669c-45fe-a8cb-92cbd20903dc/9KcW3VdzUV.lottie",
+                                    animationConfig: .init(autoplay: true, loop: true, speed: 0.8),
+                                    fixedSize: CGSize(width: 200, height: 200)
                                 )
-                                .view()
-                                .frame(width: 200, height: 200)
                                 .scaleEffect(lottieScale)
                                 .scaleEffect(breathing ? 1.04 : 1.0)
                                 .animation(
@@ -101,7 +100,6 @@ struct StreakIncreaseOverlayView: View {
                                         : .default,
                                     value: breathing
                                 )
-                                .allowsHitTesting(false)
                                 .transition(.scale.combined(with: .opacity))
                             }
 
@@ -112,7 +110,7 @@ struct StreakIncreaseOverlayView: View {
                                 }
                             }
                         }
-                        .frame(width: 200, height: 200)
+                        .frame(width: min(200, geo.size.width * 0.5), height: min(200, geo.size.width * 0.5))
 
                         // ── Number (hard cut, no fade) ───────────────
                         Text("\(numberPopped ? streak : oldStreak)")
@@ -127,7 +125,7 @@ struct StreakIncreaseOverlayView: View {
 
                         // ── Subtext ──────────────────────────────────
                         if showSubtext {
-                            Text(settings.appLanguage == "de" ? "Tage Streak" : "day streak")
+                            Text(settings.localizedString(for: "streak.increase.days"))
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                                 .foregroundStyle(Color(hex: "#FF4B2B"))
                                 .transition(.opacity)
@@ -165,7 +163,7 @@ struct StreakIncreaseOverlayView: View {
                                         isVisible = false
                                     }
                                 } label: {
-                                    Text(settings.appLanguage == "de" ? "WEITER" : "CONTINUE")
+                                    Text(settings.localizedString(for: "button.continue"))
                                 }
                                 .buttonStyle(DuolingoButtonStyle(
                                     size: .large,
@@ -195,9 +193,15 @@ struct StreakIncreaseOverlayView: View {
     private var weeklyOverview: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                let labels = settings.appLanguage == "de"
-                    ? ["Mo","Di","Mi","Do","Fr","Sa","So"]
-                    : ["Mo","Tu","We","Th","Fr","Sa","Su"]
+                let labels = [
+                    settings.localizedString(for: "days.mo"),
+                    settings.localizedString(for: "days.tu"),
+                    settings.localizedString(for: "days.we"),
+                    settings.localizedString(for: "days.th"),
+                    settings.localizedString(for: "days.fr"),
+                    settings.localizedString(for: "days.sa"),
+                    settings.localizedString(for: "days.su")
+                ]
 
                 ForEach(0..<7, id: \.self) { index in
                     let isToday = index == todayIndex
@@ -381,38 +385,8 @@ struct StreakIncreaseOverlayView: View {
         }
     }
 
-    // MARK: - Motivational Quotes
-    private static let motivationsDe = [
-        "Bleib am Ball!",
-        "Jeden Tag ein kleines Stück besser.",
-        "Dranbleiben zahlt sich aus!",
-        "Du bist stärker als du denkst.",
-        "Unkraut wächst nicht in gepflegten Gärten.",
-        "Routine schlägt Motivation.",
-        "Kleine Schritte, große Wirkung.",
-        "Dein Garten wächst mit dir!",
-        "Konsistenz ist der Schlüssel.",
-        "Heute ist ein guter Tag für Fortschritt."
-    ]
-
-    private static let motivationsEn = [
-        "Keep it up!",
-        "A little better every single day.",
-        "Consistency pays off!",
-        "You are stronger than you think.",
-        "Weeds don't grow in well-kept gardens.",
-        "Routine beats motivation.",
-        "Small steps, big impact.",
-        "Your garden grows with you!",
-        "Consistency is key.",
-        "Today is a great day for progress."
-    ]
-
     private var motivationText: String {
-        let list = settings.appLanguage == "de"
-            ? Self.motivationsDe
-            : Self.motivationsEn
-        return list[motivationIndex % list.count]
+        return settings.localizedString(for: "streak.motivation.\(motivationIndex)")
     }
 
     // MARK: - Helper
