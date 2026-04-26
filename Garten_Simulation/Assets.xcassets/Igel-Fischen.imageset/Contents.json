@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Igel-Fischen.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

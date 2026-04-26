@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Igel-Musik.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

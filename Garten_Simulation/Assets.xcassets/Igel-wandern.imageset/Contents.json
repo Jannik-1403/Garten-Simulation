@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Igel-wandern.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
