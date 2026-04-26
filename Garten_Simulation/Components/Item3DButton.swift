@@ -6,39 +6,76 @@ struct Item3DButton: View {
     let sekundaerFarbe: Color
     let groesse: CGFloat
     var iconSkalierung: CGFloat = 0.7
+    var isRectangular: Bool = false // NEU: Unterstützung für eckige Buttons
+    var isPermanentlyPressed: Bool = false // NEU: Unterstützt dauerhaft gedrückte Zustände
     var aktion: (() -> Void)? = nil
+    
+    // New: Support for custom views
+    private var customLabel: AnyView? = nil
+
+    init(icon: String, farbe: Color, sekundaerFarbe: Color, groesse: CGFloat, iconSkalierung: CGFloat = 0.7, isRectangular: Bool = false, isPermanentlyPressed: Bool = false, aktion: (() -> Void)? = nil) {
+        self.icon = icon
+        self.farbe = farbe
+        self.sekundaerFarbe = sekundaerFarbe
+        self.groesse = groesse
+        self.iconSkalierung = iconSkalierung
+        self.isRectangular = isRectangular
+        self.isPermanentlyPressed = isPermanentlyPressed
+        self.aktion = aktion
+    }
+
+    init<V: View>(farbe: Color, sekundaerFarbe: Color, groesse: CGFloat, iconSkalierung: CGFloat = 0.7, isRectangular: Bool = false, isPermanentlyPressed: Bool = false, aktion: (() -> Void)? = nil, @ViewBuilder label: () -> V) {
+        self.icon = "" // Not used
+        self.farbe = farbe
+        self.sekundaerFarbe = sekundaerFarbe
+        self.groesse = groesse
+        self.iconSkalierung = iconSkalierung
+        self.isRectangular = isRectangular
+        self.isPermanentlyPressed = isPermanentlyPressed
+        self.aktion = aktion
+        self.customLabel = AnyView(label())
+    }
     
     var body: some View {
         Button {
             // Delay to allow the 3D "pop-back" animation to complete
-            // Increased to 0.22s for better visibility of the "up" motion
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
                 aktion?()
             }
         } label: {
-            Group {
-                if UIImage(named: icon) != nil {
-                    Image(icon)
-                        .resizable()
-                        .scaledToFit()
-                } else if let _ = UIImage(systemName: icon) {
-                    Image(systemName: icon)
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundStyle(.white)
-                } else {
-                    // Falls weder Asset noch SF Symbol, zeige es als Text (Emoji Support)
-                    Text(icon)
-                        .font(.system(size: groesse * 0.45))
-                }
+            if let customLabel = customLabel {
+                customLabel
+            } else {
+                defaultLabel
             }
         }
         .buttonStyle(Item3DButtonStyle(
             farbe: farbe,
             sekundaerFarbe: sekundaerFarbe,
             groesse: groesse,
-            iconSkalierung: iconSkalierung
+            iconSkalierung: iconSkalierung,
+            isRectangular: isRectangular,
+            isPermanentlyPressed: isPermanentlyPressed
         ))
+    }
+
+    @ViewBuilder
+    private var defaultLabel: some View {
+        Group {
+            if UIImage(named: icon) != nil {
+                Image(icon)
+                    .resizable()
+                    .scaledToFit()
+            } else if let _ = UIImage(systemName: icon) {
+                Image(systemName: icon)
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundStyle(.white)
+            } else {
+                Text(icon)
+                    .font(.system(size: groesse * 0.45))
+            }
+        }
     }
 }
 
@@ -48,6 +85,8 @@ struct Item3DButtonStyle: ButtonStyle {
     let sekundaerFarbe: Color
     let groesse: CGFloat
     var iconSkalierung: CGFloat = 0.7
+    var isRectangular: Bool = false
+    var isPermanentlyPressed: Bool = false
 
     func makeBody(configuration: Configuration) -> some View {
         Item3DButtonVisualView(
@@ -56,18 +95,21 @@ struct Item3DButtonStyle: ButtonStyle {
             sekundaerFarbe: sekundaerFarbe,
             groesse: groesse,
             iconSkalierung: iconSkalierung,
+            isRectangular: isRectangular,
+            isPermanentlyPressed: isPermanentlyPressed,
             isHapticEnabled: isHapticEnabled
         )
     }
 }
 
-/// A helper view to manage the visual "pressed" state, ensuring it lasts long enough to be seen.
 private struct Item3DButtonVisualView: View {
     let configuration: ButtonStyle.Configuration
     let farbe: Color
     let sekundaerFarbe: Color
     let groesse: CGFloat
     var iconSkalierung: CGFloat = 0.7
+    var isRectangular: Bool = false
+    var isPermanentlyPressed: Bool = false
     let isHapticEnabled: Bool
     
     @State private var isVisualPressed = false
@@ -77,27 +119,40 @@ private struct Item3DButtonVisualView: View {
         
         ZStack {
             // Shadow / Base
-            Circle()
-                .fill(sekundaerFarbe)
+            if isRectangular {
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(sekundaerFarbe)
+            } else {
+                Circle()
+                    .fill(sekundaerFarbe)
+            }
             
             // Top Layer
-            Circle()
-                .fill(farbe)
-                .overlay {
-                    configuration.label
-                        .frame(width: groesse * iconSkalierung, height: groesse * iconSkalierung)
-                }
-                .offset(y: isVisualPressed ? 0 : -shadowDepth)
+            if isRectangular {
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(farbe)
+                    .overlay {
+                        configuration.label
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 20)
+                    }
+                    .offset(y: (isVisualPressed || isPermanentlyPressed) ? 0 : -shadowDepth)
+            } else {
+                Circle()
+                    .fill(farbe)
+                    .overlay {
+                        configuration.label
+                            .frame(width: groesse * iconSkalierung, height: groesse * iconSkalierung)
+                    }
+                    .offset(y: (isVisualPressed || isPermanentlyPressed) ? 0 : -shadowDepth)
+            }
         }
-        .frame(width: groesse, height: groesse)
+        .frame(width: isRectangular ? nil : groesse, height: groesse)
         .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: isVisualPressed)
         .onChange(of: configuration.isPressed) { oldValue, newValue in
             if newValue {
-                // Instantly show pressed state
                 isVisualPressed = true
             } else {
-                // On release, ensure the "down" state was held for a minimum duration
-                // so the animation is visible even for ultra-fast taps.
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     isVisualPressed = false
                 }
@@ -105,24 +160,4 @@ private struct Item3DButtonVisualView: View {
         }
         .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.8), trigger: configuration.isPressed)
     }
-}
-
-#Preview {
-    HStack(spacing: 20) {
-        Item3DButton(
-            icon: "wunder-box", // Use actual asset if available
-            farbe: .white,
-            sekundaerFarbe: .gray.opacity(0.2),
-            groesse: 80
-        )
-        
-        Item3DButton(
-            icon: "epische-samen", 
-            farbe: .lilaPrimary.opacity(0.1),
-            sekundaerFarbe: .lilaPrimary.opacity(0.3),
-            groesse: 80
-        )
-    }
-    .padding()
-    .background(Color.blue.opacity(0.05))
 }

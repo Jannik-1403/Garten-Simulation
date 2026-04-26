@@ -10,14 +10,14 @@ class AchievementStore: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private var unlockDates: [String: TimeInterval] = [:] {
         didSet {
-            UserDefaults.standard.set(unlockDates, forKey: "achievement_unlock_dates")
+            SharedUserDefaults.suite.set(unlockDates, forKey: "achievement_unlock_dates")
         }
     }
     
     init(gardenStore: GardenStore, streakStore: StreakStore) {
         self.gardenStore = gardenStore
         self.streakStore = streakStore
-        self.unlockDates = UserDefaults.standard.dictionary(forKey: "achievement_unlock_dates") as? [String: TimeInterval] ?? [:]
+        self.unlockDates = SharedUserDefaults.suite.dictionary(forKey: "achievement_unlock_dates") as? [String: TimeInterval] ?? [:]
         
         // Observe relevant changes in GardenStore to refresh achievements
         gardenStore.$gesamtXP

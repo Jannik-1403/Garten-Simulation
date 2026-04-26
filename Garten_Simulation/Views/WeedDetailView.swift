@@ -3,6 +3,7 @@ import SwiftUI
 struct WeedDetailView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
         VStack(spacing: 32) {
@@ -19,11 +20,11 @@ struct WeedDetailView: View {
             .padding(.top, 40)
             
             VStack(spacing: 16) {
-                Text(NSLocalizedString("weed.detail.titel", comment: ""))
+                Text(settings.localizedString(for: "weed.detail.titel"))
                     .font(.system(size: 28, weight: .black, design: .rounded))
                     .multilineTextAlignment(.center)
                 
-                Text(NSLocalizedString("weed.detail.beschreibung", comment: ""))
+                Text(settings.localizedString(for: "weed.detail.beschreibung"))
                     .font(.system(size: 17, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -44,7 +45,7 @@ struct WeedDetailView: View {
                     }
                 }
                 
-                Text(String(format: NSLocalizedString("weed.detail.fortschritt", comment: ""), gardenStore.dailyQuestsCompletedSinceWeed))
+                Text(String(format: settings.localizedString(for: "weed.detail.fortschritt"), gardenStore.dailyQuestsCompletedSinceWeed))
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundStyle(.primary)
             }
@@ -62,7 +63,7 @@ struct WeedDetailView: View {
             Button {
                 dismiss()
             } label: {
-                Text(NSLocalizedString("weed.detail.button", comment: ""))
+                Text(settings.localizedString(for: "weed.detail.button"))
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(DuolingoButtonStyle(
@@ -73,11 +74,12 @@ struct WeedDetailView: View {
             .padding(.horizontal, 32)
             .padding(.bottom, 40)
         }
-        .background(Color.appHintergrund)
+        .background(.ultraThinMaterial)
     }
 }
 
 #Preview {
     WeedDetailView()
         .environmentObject(GardenStore())
+        .environmentObject(SettingsStore())
 }

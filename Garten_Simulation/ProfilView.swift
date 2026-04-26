@@ -154,6 +154,18 @@ struct ProfilView: View {
                     .zIndex(100)
                 }
             }
+            .onChange(of: gardenStore.triggerStreakDetail) { _, newValue in
+                if newValue {
+                    showStreakDetail = true
+                    gardenStore.triggerStreakDetail = false
+                }
+            }
+            .onChange(of: gardenStore.triggerWaterDetail) { _, newValue in
+                if newValue {
+                    showWasserDetail = true
+                    gardenStore.triggerWaterDetail = false
+                }
+            }
         }
     }
     

@@ -14,6 +14,12 @@ struct GartenPassBelohnung: Identifiable {
     let id: Int          // = Level-Nummer
     let typ: BelohnungsTyp
     let istMeilenstein: Bool   // true bei Level 10, 20, 30, 40, 50
+
+    init(id: Int = 0, typ: BelohnungsTyp, istMeilenstein: Bool = false) {
+        self.id = id
+        self.typ = typ
+        self.istMeilenstein = istMeilenstein
+    }
     
     var symbolName: String {
         switch typ {

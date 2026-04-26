@@ -6,10 +6,12 @@ struct ShopItemDetailView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var powerUpStore: PowerUpStore
+    @EnvironmentObject var gartenPfadStore: GartenPfadStore
 
     @Environment(\.dismiss) private var dismiss
     @State private var showSuccess = false
     @State private var showInsufficientCoins = false
+    @State private var showDifficultySelect = false
 
     private var isOwned: Bool { shopStore.isPurchased(payload.id) }
     private var canAfford: Bool { shopStore.canAfford(payload.price) }
@@ -217,18 +219,16 @@ struct ShopItemDetailView: View {
                                 DuolingoKaufButton(
                                     color: payload.color
                                 ) {
-                                    FeedbackManager.shared.playSuccess()
-                                    shopStore.buy(id: payload.id, price: payload.price)
-                                    
                                     if payload.itemType == .plant {
-                                        gardenStore.pflanzHinzufuegen(shopItem: payload)
-                                    } else if payload.itemType == .powerUp || payload.itemType == .decoration {
-                                        // Power-Up oder Dekoration
+                                        showDifficultySelect = true
+                                    } else {
+                                        FeedbackManager.shared.playSuccess()
+                                        shopStore.buy(id: payload.id, price: payload.price)
                                         gardenStore.itemHinzufuegen(shopItem: payload)
-                                    }
 
-                                    withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
-                                        showSuccess = true
+                                        withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
+                                            showSuccess = true
+                                        }
                                     }
                                 }
                             }
@@ -282,6 +282,26 @@ struct ShopItemDetailView: View {
             Button(settings.localizedString(for: "button.ok"), role: .cancel) { FeedbackManager.shared.playTap() }
         } message: {
             Text(String(format: settings.localizedString(for: "shop.need_more_coins"), payload.price - gardenStore.coins))
+        }
+        .sheet(isPresented: $showDifficultySelect) {
+            PlantDifficultySelectView(payload: payload) { difficulty in
+                showDifficultySelect = false
+                
+                FeedbackManager.shared.playSuccess()
+                shopStore.buy(id: payload.id, price: payload.price)
+                
+                // 1. Pflanze in den Garten
+                gardenStore.pflanzHinzufuegen(shopItem: payload)
+                
+                // 2. Pfad für diese Pflanze generieren mit der gewählten Schwierigkeit
+                if let neuePflanze = gardenStore.pflanzen.last(where: { $0.plantID == payload.id }) {
+                    gartenPfadStore.pflanzeHinzufuegen(neuePflanze, ziel: settings.ausgewaehltesZiel, schwierigkeit: difficulty)
+                }
+
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
+                    showSuccess = true
+                }
+            }
         }
     }
 }

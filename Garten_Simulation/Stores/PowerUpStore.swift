@@ -58,7 +58,7 @@ class PowerUpStore: ObservableObject {
     }
 
     private func ladeAktivePowerUps() {
-        if let data = UserDefaults.standard.data(forKey: "aktive_powerups"),
+        if let data = SharedUserDefaults.suite.data(forKey: "aktive_powerups"),
            let decoded = try? JSONDecoder().decode([ActivePowerUp].self, from: data) {
             aktivePowerUps = decoded
         }
@@ -96,14 +96,21 @@ class PowerUpStore: ObservableObject {
 
     private func speichereAktivePowerUps() {
         if let encoded = try? JSONEncoder().encode(aktivePowerUps) {
-            UserDefaults.standard.set(encoded, forKey: "aktive_powerups")
+            SharedUserDefaults.suite.set(encoded, forKey: "aktive_powerups")
         }
     }
 
     func reset() {
         withAnimation {
             aktivePowerUps.removeAll()
-            UserDefaults.standard.removeObject(forKey: "aktive_powerups")
+            SharedUserDefaults.suite.removeObject(forKey: "aktive_powerups")
+        }
+    }
+
+    func zufaelligesPowerUpHinzufuegen() {
+        // TODO: Zufälliges Power-Up aus PowerUpStore gutschreiben
+        if let randomPU = GameDatabase.allPowerUps.randomElement() {
+            aktivierePowerUp(randomPU)
         }
     }
 }

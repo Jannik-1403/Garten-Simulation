@@ -72,11 +72,13 @@ struct PurchaseSuccessOverlay: View {
                 ))
             }
             .padding(28)
-            .background(
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
+            .overlay(
                 RoundedRectangle(cornerRadius: 26, style: .continuous)
-                    .fill(Color(UIColor.systemBackground))
-                    .shadow(color: .black.opacity(0.15), radius: 30, x: 0, y: 12)
+                    .stroke(.white.opacity(0.3), lineWidth: 1)
             )
+            .shadow(color: .black.opacity(0.15), radius: 30, x: 0, y: 12)
             .padding(.horizontal, 32)
             .opacity(contentOpacity)
         }

@@ -7,6 +7,7 @@ struct PflanzeDetailSheet: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var shopStore: ShopStore
     @EnvironmentObject var powerUpStore: PowerUpStore
+    @EnvironmentObject var pfadStore: GartenPfadStore
     @Environment(\.dismiss) private var dismiss
     var onLoeschen: (() -> Void)? = nil
 
@@ -14,11 +15,16 @@ struct PflanzeDetailSheet: View {
     @State private var zeigeNotizSheet = false
     @State private var zeigeTimerSheet = false
     @State private var pulsieren = false
-
     @State private var zeigeTimerAbbrechenDialog = false
     @State private var noteToEditIndex: Int? = nil
     @State private var noteToDeleteIndex: Int? = nil
     @State private var ausgewaehlterEffekt: PflanzenEffekt? = nil
+    @State private var selectedTab: DetailTab = .uebersicht
+
+    enum DetailTab: String, CaseIterable {
+        case uebersicht
+        case verlauf
+    }
 
     private var activeStateID: String {
         "\(pflanze.id)-\(pflanze.wiederbelebtAm?.description ?? "none")"
@@ -119,14 +125,20 @@ struct PflanzeDetailSheet: View {
                         }
                         .scaleEffect(min(1.0, UIScreen.main.bounds.width / 390)) // Scale down on smaller iPhones
 
-                        Text(settings.showHabitInsteadOfName 
-                             ? settings.localizedString(for: pflanze.habitName)
-                             : settings.localizedString(for: pflanze.name))
-                            .font(.system(size: 34, weight: .black, design: .rounded))
-                            .minimumScaleFactor(0.6)
+                        Text(settings.localizedString(for: pflanze.displayedHabitName))
+                            .font(.system(size: 36, weight: .black, design: .rounded))
+                            .minimumScaleFactor(0.5)
                             .lineLimit(2)
                             .multilineTextAlignment(.center)
-                            .padding(.horizontal, 16)
+                            .padding(.horizontal, 20)
+
+                        if !pflanze.habitCategories.isEmpty {
+                            Text(settings.localizedString(for: pflanze.habitCategories.first?.localizationKey ?? ""))
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .textCase(.uppercase)
+                                .tracking(1.5)
+                        }
 
                         // Vier-Spalten Stats Header (In einer schwebenden Karte)
                         ViewThatFits(in: .horizontal) {
@@ -162,7 +174,18 @@ struct PflanzeDetailSheet: View {
                     }
                     .padding(.top, 40)
 
-                // MARK: - WEEKLY (Zone 2)
+                // MARK: - TAB PICKER
+                Picker("", selection: $selectedTab) {
+                    Text(settings.localizedString(for: "tab.uebersicht")).tag(DetailTab.uebersicht)
+                    Text(settings.localizedString(for: "tab.verlauf")).tag(DetailTab.verlauf)
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal, 24)
+                .padding(.top, 8)
+
+                // MARK: - TAB CONTENT
+                if selectedTab == .uebersicht {
+
                 VStack(spacing: 0) {
                     PlantWeeklyStreakView(pflanze: pflanze)
                         .padding(.vertical, 16)
@@ -357,6 +380,8 @@ struct PflanzeDetailSheet: View {
                     }
                     .padding(.horizontal, 24)
 
+
+
                     // Verkaufen-Button (Roter Text)
                     Button {
                         zeigeVerkaufenDialog = true
@@ -369,6 +394,16 @@ struct PflanzeDetailSheet: View {
                     .padding(.bottom, 24)
                 }
 
+                } // end uebersicht tab
+
+                if selectedTab == .verlauf {
+                    MultiStrangPfadView(filterHabit: pflanze)
+                        .frame(height: UIScreen.main.bounds.height * 0.72)
+                        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                        .padding(.horizontal, 8)
+                        .padding(.top, 8)
+                        .animation(.easeInOut, value: selectedTab)
+                }
 
                 Spacer().frame(height: 20)
             }
@@ -380,19 +415,7 @@ struct PflanzeDetailSheet: View {
         .padding(.top, 24)
         .padding(.trailing, 24)
     }
-    .background(
-        ZStack {
-            Color.white.ignoresSafeArea()
-            
-            // Subtiler Verlauf im Hintergrund
-            LinearGradient(
-                colors: [Color.orangePrimary.opacity(0.05), Color.white],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
-        }
-    )
+    .background(.ultraThinMaterial)
     .onAppear {
         withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
             pulsieren = true

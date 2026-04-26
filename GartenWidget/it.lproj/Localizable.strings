@@ -1,0 +1,23 @@
+"widget_title" = "Giardino Grovy";
+"widget_description" = "Tieni d'occhio le tue piante";
+"widget_my_garden" = "Il mio Giardino";
+"widget_streak_days" = "Giorni consecutivi";
+"widget_no_plants" = "Nessuna pianta";
+"widget_tap_to_water" = "Tocca per innaffiare";
+"widget_add_plant" = "Acquista pianta";
+
+"widget_water_title"            = "Acqua utilizzata";
+"widget_water_description"      = "Vedi quanta acqua hanno usato le tue piante.";
+"widget_water_today"            = "Oggi";
+"widget_water_week"             = "Questa settimana";
+"widget_water_month"            = "Questo mese";
+"widget_water_alltime"          = "Totale";
+"widget_water_times"            = "%d volte annaffiato";
+"widget_streak_title"           = "Serie";
+"widget_streak_description"     = "La tua serie attuale nel giardino.";
+"widget_streak_current"         = "Serie attuale";
+"widget_verlauf_week_title"     = "Storia settimanale";
+"widget_verlauf_week_description" = "I tuoi ultimi 7 giorni in sintesi.";
+"widget_verlauf_month_title"    = "Storia mensile";
+"widget_verlauf_month_description" = "I tuoi ultimi 30 giorni in sintesi.";
+"widget_verlauf_last30"         = "Ultimi 30 giorni";

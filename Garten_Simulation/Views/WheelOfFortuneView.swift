@@ -139,7 +139,7 @@ struct WheelOfFortuneView: View {
                                 .offset(y: -6) // 3D depth offset pushes the whole interactive layer up
                             }
                             .buttonStyle(Press3DWrapperButtonStyle(depth: 6))
-                            .disabled(isSpinning || (!gardenStore.isDailySpinAvailable && gardenStore.gluecksradDrehungen <= 0))
+                            .disabled(isSpinning || (!gardenStore.pendingDailySpin && gardenStore.gluecksradDrehungen <= 0))
                         }
                         .frame(width: wheelSize + 38, height: wheelSize + 38 + 6)
                     }
@@ -223,7 +223,7 @@ struct WheelOfFortuneView: View {
                     
                     // Main Action Button
                     Button(action: handleSpinAction) {
-                        if gardenStore.isDailySpinAvailable {
+                        if gardenStore.pendingDailySpin {
                             Text(settings.localizedString(for: "spin_button_gratis"))
                         } else if gardenStore.gluecksradDrehungen > 0 {
                             Text(String(format: settings.localizedString(for: "spin_button_mit_anzahl"), gardenStore.gluecksradDrehungen))
@@ -233,13 +233,13 @@ struct WheelOfFortuneView: View {
                     }
                     .buttonStyle(DuolingoButtonStyle(
                         size: .large,
-                        backgroundColor: (gardenStore.isDailySpinAvailable || gardenStore.gluecksradDrehungen > 0) ? .blauPrimary : .secondary,
-                        shadowColor: (gardenStore.isDailySpinAvailable || gardenStore.gluecksradDrehungen > 0) ? .blauSecondary : .secondary.darker()
+                        backgroundColor: (gardenStore.pendingDailySpin || gardenStore.gluecksradDrehungen > 0) ? .blauPrimary : .secondary,
+                        shadowColor: (gardenStore.pendingDailySpin || gardenStore.gluecksradDrehungen > 0) ? .blauSecondary : .secondary.darker()
                     ))
-                    .disabled(isSpinning || (!gardenStore.isDailySpinAvailable && gardenStore.gluecksradDrehungen <= 0))
+                    .disabled(isSpinning || (!gardenStore.pendingDailySpin && gardenStore.gluecksradDrehungen <= 0))
                     .padding(.horizontal, 30)
                     
-                    if !gardenStore.isDailySpinAvailable && gardenStore.gluecksradDrehungen <= 0 {
+                    if !gardenStore.pendingDailySpin && gardenStore.gluecksradDrehungen <= 0 {
                         Text(settings.localizedString(for: "dailyspin.no_spins_hint"))
                             .font(.system(size: 13, weight: .medium))
                             .foregroundStyle(.secondary)
@@ -280,13 +280,20 @@ struct WheelOfFortuneView: View {
                 segmentLayout = generateLayout()
             }
         }
+        .onDisappear {
+            // Wenn der User das Rad schließt, ohne den Pending-Spin zu nutzen, ist er weg ("Funktion drei weg")
+            if gardenStore.pendingDailySpin {
+                gardenStore.pendingDailySpin = false
+            }
+        }
     }
 
     private func handleSpinAction() {
         guard !isSpinning else { return }
         
-        if gardenStore.isDailySpinAvailable {
+        if gardenStore.pendingDailySpin {
             // Kostenlose tägliche Drehung
+            gardenStore.pendingDailySpin = false
             FeedbackManager.shared.playTap()
             spinWheel()
         } else if gardenStore.gluecksradDrehungen > 0 {

@@ -22,7 +22,7 @@ struct OnboardingInteractiveTutorialView: View {
             VStack(spacing: 0) {
                 OnboardingIgelView(
                     pose: innerPose,
-                    sprechblasenText: gegossen ? "Super, deine Gewohnheit für diesen Tag erledigt!" : settings.localizedString(for: "onboarding_tutorial_giessen_blase")
+                    sprechblasenText: gegossen ? settings.localizedString(for: "onboarding_tutorial_giessen_erfolg") : settings.localizedString(for: "onboarding_tutorial_giessen_blase")
                 )
                 .padding(.top, 20)
                 

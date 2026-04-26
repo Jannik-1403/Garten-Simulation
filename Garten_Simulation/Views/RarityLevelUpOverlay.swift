@@ -63,11 +63,13 @@ struct RarityLevelUpOverlay: View {
                 ))
             }
             .padding(32)
-            .background(
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
+            .overlay(
                 RoundedRectangle(cornerRadius: 32, style: .continuous)
-                    .fill(Color(UIColor.systemBackground))
-                    .shadow(color: .black.opacity(0.2), radius: 40, x: 0, y: 20)
+                    .stroke(.white.opacity(0.3), lineWidth: 1)
             )
+            .shadow(color: .black.opacity(0.2), radius: 40, x: 0, y: 20)
             .padding(.horizontal, 30)
             .offset(y: cardOffset)
             .opacity(opacity)

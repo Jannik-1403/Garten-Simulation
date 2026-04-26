@@ -83,12 +83,12 @@ struct CustomHabitCard: View {
         HStack(spacing: 16) {
             ZStack {
                 Circle()
-                    .fill(Color.fromHex(habit.farbe).opacity(0.1))
+                    .fill(AppColors.color(for: habit.farbe).opacity(0.1))
                     .frame(width: 50, height: 50)
                 
                 Image(systemName: habit.sfSymbol)
                     .font(.system(size: 24))
-                    .foregroundStyle(Color.fromHex(habit.farbe))
+                    .foregroundStyle(AppColors.color(for: habit.farbe))
             }
             
             Text(habit.name)
@@ -216,9 +216,5 @@ struct ColorCircle: View {
     }
 }
 
-// Helper to bridge AppColors
-extension Color {
-    static func fromHex(_ name: String) -> Color {
-        AppColors.color(for: name)
-    }
-}
+
+

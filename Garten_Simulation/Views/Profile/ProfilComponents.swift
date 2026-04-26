@@ -229,3 +229,287 @@ struct WasserStatButton: View {
         }
     }
 }
+import SwiftUI
+import Charts
+
+struct StatisticsDashboard: View {
+    @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var streakStore: StreakStore
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 24) {
+                consistencySection
+                plantsAnalysisSection
+                coinIncomeSection
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 24)
+            .padding(.bottom, 40)
+        }
+        .background(Color.appHintergrund.ignoresSafeArea())
+        .navigationTitle(settings.localizedString(for: "stats.title"))
+        .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    // MARK: - Consistency (30 Days)
+    
+    private var consistencySection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(settings.localizedString(for: "stats.consistency.title").uppercased())
+                .font(.system(size: 13, weight: .bold, design: .rounded))
+                .foregroundStyle(.secondary)
+            
+            HStack(spacing: 20) {
+                ZStack {
+                    Circle()
+                        .stroke(Color.blauPrimary.opacity(0.15), lineWidth: 12)
+                    
+                    Circle()
+                        .trim(from: 0, to: consistencyRatio)
+                        .stroke(Color.blauPrimary, style: StrokeStyle(lineWidth: 12, lineCap: .round))
+                        .rotationEffect(.degrees(-90))
+                        .animation(.spring(response: 1.0, dampingFraction: 0.8), value: consistencyRatio)
+                    
+                    VStack(spacing: 2) {
+                        Text("\(Int(consistencyRatio * 100))%")
+                            .font(.system(size: 24, weight: .heavy, design: .rounded))
+                        Text("30d")
+                            .font(.system(size: 10, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .frame(width: 80, height: 80)
+                
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(String(format: settings.localizedString(for: "stats.consistency.desc"), daysCompleted))
+                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    
+                    if daysCompleted == 30 {
+                        Text("Perfekt! 🔥")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundStyle(.orange)
+                    } else if daysCompleted >= 20 {
+                        Text("Starke Leistung! 🌱")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundStyle(Color.gruenPrimary)
+                    } else {
+                        Text("Bleib dran! 💧")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundStyle(.blue)
+                    }
+                }
+                Spacer()
+            }
+            .padding(16)
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color(UIColor.secondarySystemGroupedBackground)))
+        }
+    }
+    
+    // MARK: - Plants Analysis
+    
+    private var plantsAnalysisSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 12) {
+                // Top Plant
+                if let best = gardenStore.pflanzen.max(by: { $0.streak < $1.streak }) {
+                    PlantStatCard(
+                        title: settings.localizedString(for: "stats.plants.top"),
+                        plant: best,
+                        icon: "trophy.fill",
+                        color: .goldPrimary,
+                        subtitle: "\(best.streak) Tage"
+                    )
+                }
+                
+                // Needs Love
+                if let worst = gardenStore.pflanzen.min(by: { ($0.istBewässert ? 1 : 0) > ($1.istBewässert ? 1 : 0) || $0.streak > $1.streak }) {
+                    PlantStatCard(
+                        title: settings.localizedString(for: "stats.plants.worst"),
+                        plant: worst,
+                        icon: "heart.slash.fill",
+                        color: .red,
+                        subtitle: worst.istBewässert ? "Zufrieden" : "Durstig"
+                    )
+                }
+            }
+        }
+    }
+    
+    // MARK: - Coin Income
+    
+    private var coinIncomeSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(settings.localizedString(for: "stats.coins.income").uppercased())
+                .font(.system(size: 13, weight: .bold, design: .rounded))
+                .foregroundStyle(.secondary)
+            
+            VStack {
+                if monthlyCoinData.isEmpty {
+                    Text(settings.localizedString(for: "stats.coins.empty"))
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.vertical, 40)
+                } else {
+                    Chart {
+                        ForEach(monthlyCoinData) { data in
+                            BarMark(
+                                x: .value("Monat", data.monthString),
+                                y: .value("Münzen", data.amount)
+                            )
+                            .foregroundStyle(Color.coinBlue.gradient)
+                            .cornerRadius(4)
+                        }
+                    }
+                    .chartYAxis {
+                        AxisMarks(position: .leading) { value in
+                            AxisGridLine()
+                            AxisValueLabel() {
+                                if let intValue = value.as(Int.self) {
+                                    Text("\(intValue)")
+                                        .font(.system(size: 10, weight: .bold, design: .rounded))
+                                }
+                            }
+                        }
+                    }
+                    .chartXAxis {
+                        AxisMarks { value in
+                            AxisValueLabel() {
+                                if let strValue = value.as(String.self) {
+                                    Text(strValue)
+                                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                                }
+                            }
+                        }
+                    }
+                    .frame(height: 200)
+                    .padding(.top, 16)
+                }
+            }
+            .padding(16)
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color(UIColor.secondarySystemGroupedBackground)))
+        }
+    }
+    
+    // MARK: - Computeds
+    
+    private var daysCompleted: Int {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        var count = 0
+        for i in 0..<30 {
+            if let d = calendar.date(byAdding: .day, value: -i, to: today),
+               streakStore.isDateCompleted(d) {
+                count += 1
+            }
+        }
+        return count
+    }
+    
+    private var consistencyRatio: Double {
+        return Double(daysCompleted) / 30.0
+    }
+    
+    private struct MonthlyCoin: Identifiable {
+        let id = UUID()
+        let date: Date
+        let amount: Int
+        
+        var monthString: String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM"
+            return formatter.string(from: date)
+        }
+    }
+    
+    private var monthlyCoinData: [MonthlyCoin] {
+        var grouped: [Date: Int] = [:]
+        let calendar = Calendar.current
+        
+        // Filter out expenses, only take income
+        let incomeTransactions = gardenStore.transactions.filter { $0.betrag > 0 }
+        
+        for t in incomeTransactions {
+            let components = calendar.dateComponents([.year, .month], from: t.datum)
+            if let startOfMonth = calendar.date(from: components) {
+                grouped[startOfMonth, default: 0] += t.betrag
+            }
+        }
+        
+        // Create array and sort chronologically (oldest first for chart)
+        var result = grouped.map { MonthlyCoin(date: $0.key, amount: $0.value) }
+        result.sort { $0.date < $1.date }
+        
+        // Limit to last 6 months
+        if result.count > 6 {
+            result = Array(result.suffix(6))
+        }
+        
+        return result
+    }
+}
+
+// MARK: - Subcomponents
+
+struct PlantStatCard: View {
+    let title: String
+    let plant: HabitModel
+    let icon: String
+    let color: Color
+    let subtitle: String
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            Text(title.uppercased())
+                .font(.system(size: 10, weight: .bold, design: .rounded))
+                .foregroundStyle(.secondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            HStack(spacing: 12) {
+                ZStack {
+                    Circle()
+                        .fill(color.opacity(0.15))
+                        .frame(width: 44, height: 44)
+                    Image(systemName: plant.symbolName)
+                        .font(.system(size: 20))
+                        .foregroundStyle(plant.color)
+                }
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(plant.displayedHabitName)
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .lineLimit(1)
+                    
+                    HStack(spacing: 4) {
+                        Image(systemName: icon)
+                            .font(.system(size: 10))
+                        Text(subtitle)
+                            .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    }
+                    .foregroundStyle(color)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(16)
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color(UIColor.secondarySystemGroupedBackground)))
+    }
+}
+
+// For Preview
+#Preview {
+    let settings = SettingsStore()
+    // Mock the data
+    let store = GardenStore()
+    let sStore = StreakStore()
+    
+    NavigationStack {
+        StatisticsDashboard()
+            .environmentObject(settings)
+            .environmentObject(store)
+            .environmentObject(sStore)
+    }
+}

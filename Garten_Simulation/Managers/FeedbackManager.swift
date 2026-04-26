@@ -53,7 +53,7 @@ class FeedbackManager {
     private func triggerHaptic(style: UIImpactFeedbackGenerator.FeedbackStyle) {
         // Refresh settings from UserDefaults
         // If the key doesn't exist yet, we default to 'true' (matching SettingsStore)
-        let hapticOn = UserDefaults.standard.object(forKey: "isHapticEnabled") as? Bool ?? true
+        let hapticOn = SharedUserDefaults.suite.object(forKey: "isHapticEnabled") as? Bool ?? true
         
         if hapticOn {
             let generator = UIImpactFeedbackGenerator(style: style)

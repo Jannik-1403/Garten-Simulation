@@ -10,6 +10,7 @@ struct PflanzenCard: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var powerUpStore: PowerUpStore
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
+    @State private var isVisualPressed = false
     @State private var pflanzenPosition: CGPoint = .zero
     @State private var plantWobble: CGFloat = 1.0
     @State private var greenGlowOpacity: Double = 0
@@ -20,78 +21,91 @@ struct PflanzenCard: View {
         ZStack {
             // MARK: - Layer 0: Visual Card Background (3D Button)
             Button {
-                if pflanze.isDead {
-                    showReviveSheet = true
-                } else {
-                    onTap()
+                isVisualPressed = true
+                FeedbackManager.shared.playTap()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                    isVisualPressed = false
+                    if pflanze.isDead {
+                        showReviveSheet = true
+                    } else {
+                        onTap()
+                    }
                 }
             } label: {
                 // Invisible rectangle to define the button's shape/size
                 Rectangle().fill(Color.clear)
                     .frame(maxWidth: .infinity)
-                    .frame(minHeight: 280)
+                    .frame(minHeight: 320)
             }
             .buttonStyle(PflanzenCardButtonStyle(
-                seltenheitFarbe: pflanze.isDead ? .red : pflanze.seltenheit.farbe,
-                isDead: pflanze.isDead,
-                isPhase2: false
+                isVisualPressed: isVisualPressed,
+                isDead: pflanze.isDead
             ))
+            .background(
+                GeometryReader { proxy in
+                    Color.clear
+                        .preference(key: CardPositionPreferenceKey.self, value: [
+                            CardPositionData(id: pflanze.id, center: proxy.frame(in: .named("GartenGrid")).center)
+                        ])
+                }
+            )
             
             // MARK: - Layer 1: Interactive Card Content
-            VStack(spacing: 14) {
-                // MARK: Name + Seltenheit
-                VStack(spacing: 6) {
-                    Text(settings.showHabitInsteadOfName 
-                     ? settings.localizedString(for: pflanze.habitName)
-                     : settings.localizedString(for: pflanze.name))
-                    .font(.system(size: 16, weight: .black, design: .rounded))
-                    .foregroundStyle(Color.primary)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.center)
-                    .minimumScaleFactor(0.7)
-                    .frame(height: 38, alignment: .center)
+            VStack(spacing: 16) {
+                // MARK: Timer (24h-Countdown) & Warning (!)
+                if !pflanze.istBewässert && !pflanze.isDead {
+                    HStack(spacing: 6) {
+                        if pflanze.showWarning {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 14, height: 14)
+                                .foregroundStyle(.orange)
+                                .symbolEffect(.bounce, options: .repeating)
+                        }
+
+                        HStack(spacing: 4) {
+                            Image(pflanze.timerIconName)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 14, height: 14)
+                            
+                            Text("\(pflanze.remainingHoursInCycle)h")
+                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .foregroundStyle(pflanze.showWarning ? .orange : .secondary)
+                        }
+                    }
+                } else {
+                    // Empty spacer to keep layout consistent if nothing to show
+                    Color.clear.frame(height: 14)
+                }
+
+                // MARK: Habit Name + Seltenheit
+                VStack(spacing: 4) {
+                    Text(settings.localizedString(for: pflanze.displayedHabitName))
+                        .font(.system(size: 18, weight: .black, design: .rounded))
+                        .foregroundStyle(Color.primary)
+                        .lineLimit(1)
+                        .multilineTextAlignment(.center)
+                        .minimumScaleFactor(0.6)
+                        .padding(.horizontal, 4)
 
                     Text(pflanze.seltenheit.lokalisiertTitel)
-                        .font(.appBadge)
+                        .font(.system(size: 10, weight: .bold, design: .rounded))
                         .foregroundStyle(pflanze.isDead ? .red : pflanze.seltenheit.farbe)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 2)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
                         .background(
                             Capsule()
-                                .fill((pflanze.isDead ? Color.red : pflanze.seltenheit.farbe).opacity(0.15))
+                                .fill((pflanze.isDead ? Color.red : pflanze.seltenheit.farbe).opacity(0.12))
                         )
-                    
-                    // MARK: Timer (24h-Countdown) & Warning (!)
-                    if !pflanze.istBewässert && !pflanze.isDead {
-                        HStack(spacing: 6) {
-                            if pflanze.showWarning {
-                                Image(systemName: "exclamationmark.triangle.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 14, height: 14)
-                                    .foregroundStyle(.orange)
-                                    .symbolEffect(.bounce, options: .repeating)
-                            }
-
-                            HStack(spacing: 4) {
-                                Image(pflanze.timerIconName)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 14, height: 14)
-                                
-                                Text("\(pflanze.remainingHoursInCycle)h")
-                                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                                    .foregroundStyle(pflanze.showWarning ? .orange : .secondary)
-                            }
-                        }
-                        .padding(.top, 2)
-                    }
                 }
                 .frame(maxWidth: .infinity)
+                .padding(.top, 4)
 
                 GeometryReader { geo in
                     let scale = min(geo.size.width / 160, 1.2) // Scale base 160, max 1.2
-                    let baseDim: CGFloat = 100 * scale
+                    let baseDim: CGFloat = 135 * scale
 
                     ZStack {
                         // Hintergrund-Ring (grau)
@@ -124,8 +138,8 @@ struct PflanzenCard: View {
                                 plant: basePlant,
                                 seltenheit: pflanze.seltenheit,
                                 farbe: pflanze.color,
-                                sekundaerFarbe: pflanze.isDead ? .red : pflanze.color.darker(),
-                                groesse: 88 * scale,
+                                 sekundaerFarbe: pflanze.isDead ? .red : pflanze.color.darker(),
+                                groesse: 110 * scale,
                                 externerPress: wasserPressAktiv,
                                 aktion: {
                                     if pflanze.isDead {
@@ -153,7 +167,7 @@ struct PflanzenCard: View {
                             }
                     )
                 }
-                .frame(height: 120)
+                .frame(height: 150)
                 .padding(.vertical, 8)
                 .scaleEffect(plantWobble)
                 .animation(.spring(response: 0.3, dampingFraction: 0.4), value: plantWobble)
@@ -170,7 +184,7 @@ struct PflanzenCard: View {
                                 .foregroundStyle(.secondary)
                         }
                         .frame(maxWidth: .infinity)
-                        .frame(height: 72)
+                        .frame(height: 80)
                     } else if !pflanze.istBewässert {
                         DragToWater(
                             onGiessen: { handleWatering() },
@@ -178,7 +192,7 @@ struct PflanzenCard: View {
                             istErledigt: pflanze.istBewässert
                         )
                         .allowsHitTesting(true)
-                        .frame(height: 72)
+                        .frame(height: 80)
                     } else {
                         HStack(spacing: 8) {
                             Image(systemName: "checkmark.circle.fill")
@@ -195,7 +209,8 @@ struct PflanzenCard: View {
                 }
             }
             .padding(.horizontal, 16)
-            .padding(.vertical, 16)
+            .padding(.top, 24)
+            .padding(.bottom, 16)
             .frame(maxWidth: .infinity, alignment: .center)
             .allowsHitTesting(true) // Crucial: enable touches for subviews
             .overlay {
@@ -251,39 +266,39 @@ struct PflanzenCard: View {
 // MARK: - Button Style für die gesamte Karte
 struct PflanzenCardButtonStyle: ButtonStyle {
     @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
-    let seltenheitFarbe: Color
+    let isVisualPressed: Bool
     let isDead: Bool
-    let isPhase2: Bool
-    private let depth: CGFloat = 8
-    private let cornerRadius: CGFloat = 24
+    private let depth: CGFloat = 5
+    private let cornerRadius: CGFloat = 20
 
     func makeBody(configuration: Configuration) -> some View {
-        let isPressed = configuration.isPressed
-        let baseColor = isDead ? Color.red : (isPhase2 ? Color.orange : seltenheitFarbe)
+        let isPressed = configuration.isPressed || isVisualPressed
+        let baseColor = isDead ? Color.red.opacity(0.8) : Color(white: 0.7)
 
-        ZStack(alignment: .top) {
+        ZStack(alignment: .bottom) {
+            // Shadow Layer (Base) - Truncated on sides to ensure no side-shadow
+            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                .fill(baseColor)
+                .padding(.horizontal, 1)
+                .frame(maxWidth: .infinity)
+                .frame(minHeight: 320)
+            
+            // Top White Surface
             configuration.label
-                .hidden()
-                .background(
-                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                        .fill(baseColor)
-                )
-                .offset(y: depth)
-
-            configuration.label
+                .frame(maxWidth: .infinity)
+                .frame(minHeight: 320)
                 .background(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
                 .overlay(
                     RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                        .stroke(Color.black.opacity(0.12), lineWidth: 1)
+                        .stroke(Color.black.opacity(0.15), lineWidth: 1.2)
                 )
-                .offset(y: isPressed ? depth : 0)
+                .offset(y: isPressed ? 0 : -depth)
         }
-        .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
-        .onChange(of: isPressed) {
-            if isPressed {
-                FeedbackManager.shared.playTap()
-            }
+        .scaleEffect(isPressed ? 0.98 : 1.0)
+        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
+        .sensoryFeedback(trigger: isPressed) { _, newValue in
+            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
         }
     }
 }

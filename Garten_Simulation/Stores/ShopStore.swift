@@ -20,11 +20,11 @@ class ShopStore: ObservableObject {
 
     private func savePurchasedIDs() {
         let array = Array(purchasedIDs)
-        UserDefaults.standard.set(array, forKey: "shop_purchased_ids")
+        SharedUserDefaults.suite.set(array, forKey: "shop_purchased_ids")
     }
 
     private func loadPurchasedIDs() {
-        if let array = UserDefaults.standard.stringArray(forKey: "shop_purchased_ids") {
+        if let array = SharedUserDefaults.suite.stringArray(forKey: "shop_purchased_ids") {
             purchasedIDs = Set(array)
         }
     }
@@ -67,6 +67,6 @@ class ShopStore: ObservableObject {
 
     func reset() {
         purchasedIDs.removeAll()
-        UserDefaults.standard.removeObject(forKey: "shop_purchased_ids")
+        SharedUserDefaults.suite.removeObject(forKey: "shop_purchased_ids")
     }
 }

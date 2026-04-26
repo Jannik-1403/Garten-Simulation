@@ -1,0 +1,910 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild build -project Garten_Simulation.xcodeproj -scheme Garten_Simulation -destination generic/platform=iOS
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  DotLottie: https://github.com/LottieFiles/dotlottie-ios.git @ main (0f01462)
+  RiveRuntime: https://github.com/rive-app/rive-ios @ 6.17.0
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (4 targets)
+    Target 'Garten_Simulation' in project 'Garten_Simulation'
+        ➜ Explicit dependency on target 'RiveRuntime' in project 'RiveRuntime'
+        ➜ Explicit dependency on target 'DotLottie' in project 'DotLottie'
+    Target 'DotLottie' in project 'DotLottie'
+        ➜ Explicit dependency on target 'DotLottie' in project 'DotLottie'
+    Target 'DotLottie' in project 'DotLottie' (no dependencies)
+    Target 'RiveRuntime' in project 'RiveRuntime' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+Build description signature: d3eff4196bbc70a1eb20b6e62f871114
+Build description path: /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/XCBuildData/d3eff4196bbc70a1eb20b6e62f871114.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk /Users/jannikschill/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.4-23E252-688ef53f1462e2c8f657fdc38a81448f68a138bb55de9ba35ce6c8c40d12849e.sdkstatcache
+    cd /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk -o /Users/jannikschill/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.4-23E252-688ef53f1462e2c8f657fdc38a81448f68a138bb55de9ba35ce6c8c40d12849e.sdkstatcache
+Base directory status changed. Regenerating...
+
+WriteAuxiliaryFile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.SwiftFileList (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    write-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.SwiftFileList
+
+WriteAuxiliaryFile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.SwiftConstValuesFileList (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    write-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Garten_Simulation-OutputFileMap.json (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    write-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Garten_Simulation-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.LinkFileList (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    write-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.LinkFileList
+
+Ld /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/DotLottie.o normal (in target 'DotLottie' from project 'DotLottie')
+    cd /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/SourcePackages/checkouts/dotlottie-ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios13.0 -r -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk -O0 -w -F/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos -F/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk/Developer/Library/Frameworks -filelist /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/Objects-normal/arm64/DotLottie.LinkFileList -nostdlib -Xlinker -object_path_lto -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/Objects-normal/arm64/DotLottie_lto.o -Xlinker -no_deduplicate -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/Objects-normal/arm64/DotLottie_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/Objects-normal/arm64/DotLottie.swiftmodule @/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/Objects-normal/arm64/DotLottie-linker-args.resp -o /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/DotLottie.o
+
+ProcessProductPackaging /Users/jannikschill/Library/Developer/Xcode/UserData/Provisioning\ Profiles/e1a3b7c8-a65d-499f-b49e-d3abe468869b.mobileprovision /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/embedded.mobileprovision (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-productPackagingUtility /Users/jannikschill/Library/Developer/Xcode/UserData/Provisioning\ Profiles/e1a3b7c8-a65d-499f-b49e-d3abe468869b.mobileprovision -o /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/embedded.mobileprovision
+
+GenerateAssetSymbols /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Assets.xcassets (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Assets.xcassets --compile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app --output-format human-readable-text --notices --warnings --export-dependency-info /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_dependencies --output-partial-info-plist /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_generated_info.plist --app-icon AppIcon --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 26.2 --platform iphoneos --bundle-identifier com.jannik.grovy --generate-swift-asset-symbols /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/* com.apple.actool.compilation-results */
+/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources/GeneratedAssetSymbols.h
+/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources/GeneratedAssetSymbols.swift
+
+
+CompileAssetCatalogVariant thinned /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Assets.xcassets (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Assets.xcassets --compile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_dependencies_thinned --output-partial-info-plist /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --accent-color AccentColor --compress-pngs --enable-on-demand-resources YES --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 26.2 --platform iphoneos
+/* com.apple.actool.compilation-results */
+/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_generated_info.plist_thinned
+/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_output/thinned/AppIcon60x60@2x.png
+/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_output/thinned/AppIcon76x76@2x~ipad.png
+/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_output/thinned/Assets.car
+
+
+ExtractAppIntentsMetadata (in target 'DotLottie' from project 'DotLottie')
+    cd /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/SourcePackages/checkouts/dotlottie-ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.5.188.0.a6r6X0/Metal.xctoolchain --module-name DotLottie --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk --xcode-version 17E202 --platform-family iOS --deployment-target 13.0 --bundle-identifier dotlottie-ios.DotLottie --output /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/DotLottie.appintents --target-triple arm64-apple-ios13.0 --binary-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/DotLottie.o --dependency-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/Objects-normal/arm64/DotLottie_dependency_info.dat --stringsdata-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/Objects-normal/arm64/DotLottie.SwiftFileList --metadata-file-list /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/DotLottie.DependencyMetadataFileList --static-metadata-file-list /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/DotLottie.DependencyStaticMetadataFileList --swift-const-vals-list /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/Objects-normal/arm64/DotLottie.SwiftConstValuesFileList --force --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-04-24 21:08:51.321 appintentsmetadataprocessor[6710:132758] Starting appintentsmetadataprocessor export
+2026-04-24 21:08:51.339 appintentsmetadataprocessor[6710:132758] Extracted no relevant App Intents symbols, skipping writing output
+
+SwiftDriver Garten_Simulation normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Grovy -Onone @/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.SwiftFileList -DDEBUG -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk -target arm64-apple-ios26.2 -g -module-cache-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -F /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/PackageFrameworks -F /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -emit-localized-strings -emit-localized-strings-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jannikschill/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.4-23E252-688ef53f1462e2c8f657fdc38a81448f68a138bb55de9ba35ce6c8c40d12849e.sdkstatcache -output-file-map /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Garten_Simulation-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Garten_Simulation_const_extract_protocols.json -Xcc -iquote -Xcc /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-generated-files.hmap -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-own-target-headers.hmap -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation-49394399678d88b76108bd64d45cffb0-VFS-iphoneos/all-product-headers.yaml -Xcc -iquote -Xcc /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-project-headers.hmap -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/include -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources-normal/arm64 -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources/arm64 -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy-Swift.h -working-directory /Users/jannikschill/Documents/Garten-Simulation -experimental-emit-module-separately -disable-cmo
+
+RegisterExecutionPolicyException /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/DotLottie.o (in target 'DotLottie' from project 'DotLottie')
+    cd /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/SourcePackages/checkouts/dotlottie-ios
+    builtin-RegisterExecutionPolicyException /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/DotLottie.o
+
+Ld /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/__preview.dylib normal (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios26.2 -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk -O0 -L/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -F/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/PackageFrameworks -F/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -install_name @rpath/Grovy.debug.dylib -Xlinker -dead_strip -rdynamic -Xlinker -no_deduplicate -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy_dependency_info.dat -Xlinker -no_adhoc_codesign -o /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/__preview.dylib
+
+CopyStringsFile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/en.lproj/Localizable.strings /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/en.lproj/Localizable.strings (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/en.lproj -- /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/en.lproj/Localizable.strings
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/en.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+CopyStringsFile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/fr.lproj/Localizable.strings /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/fr.lproj/Localizable.strings (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/fr.lproj -- /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/fr.lproj/Localizable.strings
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/fr.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+CopyStringsFile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/de.lproj/Localizable.strings /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/de.lproj/Localizable.strings (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/de.lproj -- /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/de.lproj/Localizable.strings
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/de.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+CompileStoryboard /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/LaunchScreen.storyboard (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --module Grovy --output-partial-info-plist /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/LaunchScreen-SBPartialInfo.plist --auto-activate-custom-fonts --target-device iphone --target-device ipad --minimum-deployment-target 26.2 --output-format human-readable-text /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/LaunchScreen.storyboard --compilation-directory /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build
+
+CopyStringsFile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/pt.lproj/Localizable.strings /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/pt.lproj/Localizable.strings (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/pt.lproj -- /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/pt.lproj/Localizable.strings
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/pt.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+CopyStringsFile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/es.lproj/Localizable.strings /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/es.lproj/Localizable.strings (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-copyStrings --validate --outputencoding binary --outfilename Localizable.strings --outdir /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/es.lproj -- /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/es.lproj/Localizable.strings
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/es.lproj/Localizable.strings:1:1: note: detected encoding of input file as Unicode (UTF-8) (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ Item3DButton.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/Item3DButton.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/Item3DButton.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 Compiling\ GameDatabase.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Models/GameDatabase.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Models/GameDatabase.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 Compiling\ SingleHabitNode.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/SingleHabitNode.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/SingleHabitNode.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 Compiling\ PfadEinstellungenView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PfadEinstellungenView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PfadEinstellungenView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 Compiling\ MultiStrangCanvas.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/MultiStrangCanvas.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/MultiStrangCanvas.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/MultiStrangCanvas.swift:266:16: warning: switch condition evaluates to a constant
+        switch diff {
+               ^
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/MultiStrangCanvas.swift:268:9: note: will never be executed
+        case .fortgeschritten: thresholds = [1, 14, 30, 50, 70, 91]
+        ^
+
+SwiftCompile normal arm64 Compiling\ GartenPfadStore.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/GartenPfadStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/GartenPfadStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/GartenPfadStore.swift:99:17: warning: initialization of immutable value 'heute' was never used; consider replacing with assignment to '_' or removing it
+            let heute = Calendar.current.startOfDay(for: Date())
+            ~~~~^~~~~
+            _
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/GartenPfadStore.swift:101:18: warning: immutable value 'i' was never used; consider replacing with '_' or removing it
+            for (i, vorlage) in tagVorlagen.enumerated() {
+                 ^
+                 _
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/GartenPfadStore.swift:270:13: warning: initialization of immutable value 'heute' was never used; consider replacing with assignment to '_' or removing it
+        let heute = Calendar.current.startOfDay(for: Date())
+        ~~~~^~~~~
+        _
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/GartenPfadStore.swift:272:14: warning: immutable value 'i' was never used; consider replacing with '_' or removing it
+        for (i, vorlage) in tagVorlagen.enumerated() {
+             ^
+             _
+
+SwiftCompile normal arm64 Compiling\ SettingsStore.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/SettingsStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/SettingsStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/SettingsStore.swift:29:87: warning: result of operator '??' is unused
+            Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date()) ?? Date()
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~
+
+SwiftCompile normal arm64 Compiling\ PlantDifficultySelectView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PlantDifficultySelectView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PlantDifficultySelectView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 Compiling\ PfadTagDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PfadTagDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PfadTagDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 Compiling\ PfadSchwierigkeitsView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PfadSchwierigkeitsView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PfadSchwierigkeitsView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ Grovy (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+EmitSwiftModule normal arm64 (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/ContentView.swift:8:20: warning: property 'modelContext' is not available due to missing import of defining module 'SwiftData'
+    @Environment(\.modelContext) private var modelContext
+                   ^
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/ContentView.swift:2:1: note: add import of module 'SwiftData'
+
+^
+
+SwiftDriverJobDiscovery normal arm64 Compiling Item3DButton.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ ShopItemDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/ShopItemDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/ShopItemDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling PlantDifficultySelectView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ EffektIkonButton.swift,\ KombinierterStrangNode.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/EffektIkonButton.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/KombinierterStrangNode.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/EffektIkonButton.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/KombinierterStrangNode.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling PfadSchwierigkeitsView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ HabitStackConfigView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/HabitStackConfigView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/HabitStackConfigView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling SettingsStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ OnboardingPowerUpTutorialView.swift,\ OnboardingZielView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingPowerUpTutorialView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingZielView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingPowerUpTutorialView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingZielView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling GameDatabase.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ PowerUpPlantPickerSheet.swift,\ ProfileDetailView.swift,\ PurchaseSuccessOverlay.swift,\ RarityLevelUpOverlay.swift,\ SettingsDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PowerUpPlantPickerSheet.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/ProfileDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PurchaseSuccessOverlay.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/RarityLevelUpOverlay.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/SettingsDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PowerUpPlantPickerSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/ProfileDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PurchaseSuccessOverlay.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/RarityLevelUpOverlay.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/SettingsDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling SingleHabitNode.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ WeedDetailView.swift,\ ContentView.swift,\ Garten_SimulationApp.swift,\ ProfilView.swift,\ SeltenheitProgressRing.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/WeedDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/ContentView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Garten_SimulationApp.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/ProfilView.swift /Users/jannikschill/Documents/Garten-Simulation/SeltenheitProgressRing.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/WeedDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/ContentView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/ContentView.swift:8:20: warning: property 'modelContext' is not available due to missing import of defining module 'SwiftData'
+    @Environment(\.modelContext) private var modelContext
+                   ^
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/ContentView.swift:2:1: note: add import of module 'SwiftData'
+
+^
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Garten_SimulationApp.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Garten_SimulationApp.swift:81:54: warning: result of call to 'requestPermission()' is unused
+                    await NotificationManager.shared.requestPermission()
+                                                     ^                ~~
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/ProfilView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/SeltenheitProgressRing.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling PfadEinstellungenView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ StreakIcon.swift,\ TitelTextView.swift,\ TrashItemCard.swift,\ WetterBanner.swift,\ WetterPopup.swift,\ XPIcon.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/StreakIcon.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/TitelTextView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/TrashItemCard.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/WetterBanner.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/WetterPopup.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/XPIcon.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/StreakIcon.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/TitelTextView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/TrashItemCard.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/WetterBanner.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/WetterPopup.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/XPIcon.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling PfadTagDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ GesamtXPDetailView.swift,\ PflanzenDetailView.swift,\ ProfilXPHeaderView.swift,\ WasserDetailView.swift,\ ActivePowerUpDetailSheet.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/GesamtXPDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/PflanzenDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/ProfilXPHeaderView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/WasserDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/ActivePowerUpDetailSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/GesamtXPDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/PflanzenDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/ProfilXPHeaderView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/ProfilXPHeaderView.swift:76:83: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                            .frame(width: max(8, CGFloat(fortschritt) * (UIScreen.main.bounds.width - 76)), height: 8)
+                                                                                  ^
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/WasserDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/ActivePowerUpDetailSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling GartenPfadStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ ShopDetailPayload.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Models/ShopDetailPayload.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Models/ShopDetailPayload.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling ShopItemDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ PowerUpStore.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/PowerUpStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/PowerUpStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 Compiling\ OnboardingInteractiveTutorialView.swift,\ OnboardingPflanzenView.swift,\ OnboardingPowerUpDetailSheet.swift,\ OnboardingTutorialWeedView.swift,\ OnboardingView.swift,\ OnboardingWillkommenView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingInteractiveTutorialView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingPflanzenView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingPowerUpDetailSheet.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingTutorialWeedView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingWillkommenView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingInteractiveTutorialView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingPflanzenView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingPowerUpDetailSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingTutorialWeedView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingView.swift:70:32: warning: value 'ziel' was defined but never used; consider replacing with boolean test
+                        if let ziel = data.gewaehltesZiel {
+                           ~~~~^~~~~~~
+                                                          != nil
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingWillkommenView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling HabitStackConfigView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ GeneratedAssetSymbols.swift /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling EffektIkonButton.swift, KombinierterStrangNode.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+LinkStoryboards (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --module Grovy --target-device iphone --target-device ipad --minimum-deployment-target 26.2 --output-format human-readable-text --link /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/LaunchScreen.storyboardc
+
+SwiftDriverJobDiscovery normal arm64 Compiling OnboardingPowerUpTutorialView.swift, OnboardingZielView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ SettingsView.swift,\ StreakIncreaseOverlayView.swift,\ StreakView.swift,\ TitelAuswahlSheet.swift,\ UnifiedShopView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/SettingsView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/StreakIncreaseOverlayView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/StreakView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/TitelAuswahlSheet.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/UnifiedShopView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/SettingsView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/StreakIncreaseOverlayView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/StreakView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/TitelAuswahlSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/TitelAuswahlSheet.swift:48:13: warning: initialization of immutable value 'textColor' was never used; consider replacing with assignment to '_' or removing it
+        let textColor = istAktiv ? Color.white : Color.primary
+        ~~~~^~~~~~~~~
+        _
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/UnifiedShopView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 Compiling\ MultiStrangPfadView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/MultiStrangPfadView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/MultiStrangPfadView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling ShopDetailPayload.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ WheelOfFortuneView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/WheelOfFortuneView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/WheelOfFortuneView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/WheelOfFortuneView.swift:478:41: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                    fixedSize: UIScreen.main.bounds.size
+                                        ^
+
+SwiftDriverJobDiscovery normal arm64 Compiling PowerUpStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ GartenLevelUpOverlay.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenLevelUpOverlay.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenLevelUpOverlay.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenLevelUpOverlay.swift:33:63: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                            fixedSize: CGSize(width: UIScreen.main.bounds.width * 1.4, height: UIScreen.main.bounds.width * 1.2)
+                                                              ^
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenLevelUpOverlay.swift:33:105: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                            fixedSize: CGSize(width: UIScreen.main.bounds.width * 1.4, height: UIScreen.main.bounds.width * 1.2)
+                                                                                                        ^
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenLevelUpOverlay.swift:35:46: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                        .offset(x: -UIScreen.main.bounds.width * 0.05, y: -UIScreen.main.bounds.width * 0.30)
+                                             ^
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenLevelUpOverlay.swift:35:85: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                        .offset(x: -UIScreen.main.bounds.width * 0.05, y: -UIScreen.main.bounds.width * 0.30)
+                                                                                    ^
+
+SwiftDriverJobDiscovery normal arm64 Compiling GeneratedAssetSymbols.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ DayPickerView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/DayPickerView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/DayPickerView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling MultiStrangPfadView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ ProfilComponents.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/ProfilComponents.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/ProfilComponents.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling StreakIcon.swift, TitelTextView.swift, TrashItemCard.swift, WetterBanner.swift, WetterPopup.swift, XPIcon.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ GameOverOverlayView.swift,\ GartenPassRewardOverlay.swift,\ GartenPassView.swift,\ GartenPassWheelView.swift,\ HabitVerlaufView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GameOverOverlayView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenPassRewardOverlay.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenPassView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenPassWheelView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/HabitVerlaufView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GameOverOverlayView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenPassRewardOverlay.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenPassRewardOverlay.swift:29:41: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                    fixedSize: UIScreen.main.bounds.size
+                                        ^
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenPassView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenPassWheelView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenPassWheelView.swift:339:37: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                fixedSize: UIScreen.main.bounds.size
+                                    ^
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/HabitVerlaufView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling PowerUpPlantPickerSheet.swift, ProfileDetailView.swift, PurchaseSuccessOverlay.swift, RarityLevelUpOverlay.swift, SettingsDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ PlantIconView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PlantIconView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PlantIconView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 Compiling\ RitualPlantPickerSheet.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/RitualPlantPickerSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/RitualPlantPickerSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling DayPickerView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriverJobDiscovery normal arm64 Compiling GartenLevelUpOverlay.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ OnboardingZeitView.swift,\ CustomPlantCreationView.swift,\ ErfolgDetailSheet.swift,\ ErfolgeDetailView.swift,\ ExportImportView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingZeitView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/CustomPlantCreationView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/ErfolgDetailSheet.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/ErfolgeDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/ExportImportView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingZeitView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/CustomPlantCreationView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/ErfolgDetailSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/ErfolgeDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/ExportImportView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling WeedDetailView.swift, ContentView.swift, Garten_SimulationApp.swift, ProfilView.swift, SeltenheitProgressRing.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ WetterDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/WetterDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/WetterDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling ProfilComponents.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ DragToWater.swift,\ DuolingoButton.swift,\ DuolingoKaufButton.swift,\ GartenStatsBar.swift,\ GemsIcon.swift,\ GruenerBanner.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/DragToWater.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/DuolingoButton.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/DuolingoKaufButton.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/GartenStatsBar.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/GemsIcon.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/GruenerBanner.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/DragToWater.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/DuolingoButton.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/DuolingoKaufButton.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/GartenStatsBar.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/GemsIcon.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/GruenerBanner.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling PlantIconView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ GardenStore.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/GardenStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/GardenStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/GardenStore.swift:710:22: warning: call to main actor-isolated instance method 'ladeTagesWetter()' in a synchronous nonisolated context
+                self.ladeTagesWetter()
+                     ^
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/GardenStore.swift:681:10: note: calls to instance method 'ladeTagesWetter()' from outside of its actor context are implicitly asynchronous
+    func ladeTagesWetter() {
+         ^
+
+SwiftDriverJobDiscovery normal arm64 Compiling WheelOfFortuneView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ HerzenIcon.swift,\ PfadTorView.swift,\ PflanzenButton.swift,\ PflanzenCard.swift,\ PlantSelectionSheet.swift,\ SeltenheitsBadge.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/HerzenIcon.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/PfadTorView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/PflanzenButton.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/PflanzenCard.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/PlantSelectionSheet.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/SeltenheitsBadge.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/HerzenIcon.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/PfadTorView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/PflanzenButton.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/PflanzenCard.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/PlantSelectionSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Components/SeltenheitsBadge.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling GesamtXPDetailView.swift, PflanzenDetailView.swift, ProfilXPHeaderView.swift, WasserDetailView.swift, ActivePowerUpDetailSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ DataExportImportManager.swift,\ GartenPassBelohnung.swift,\ GartenTierStufe.swift,\ OnboardingCustomPlantView.swift,\ OnboardingFertigView.swift,\ OnboardingIgelView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Managers/DataExportImportManager.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Models/GartenPassBelohnung.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Models/GartenTierStufe.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingCustomPlantView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingFertigView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingIgelView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Managers/DataExportImportManager.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Managers/DataExportImportManager.swift:170:16: warning: value 'context' was defined but never used; consider replacing with boolean test
+        if let context = modelContext {
+           ~~~~^~~~~~~~~~
+                                      != nil
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Models/GartenPassBelohnung.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Models/GartenTierStufe.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingCustomPlantView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingFertigView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Onboarding/OnboardingIgelView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling RitualPlantPickerSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ CoinsDetailView.swift,\ InventoryDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/CoinsDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/InventoryDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/CoinsDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/InventoryDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/Profile/InventoryDetailView.swift:98:119: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                                        .frame(width: CGFloat(min(Double(gardenStore.seeds) / 10.0, 1.0)) * (UIScreen.main.bounds.width - 80), height: 12)
+                                                                                                                      ^
+
+SwiftDriverJobDiscovery normal arm64 Compiling OnboardingInteractiveTutorialView.swift, OnboardingPflanzenView.swift, OnboardingPowerUpDetailSheet.swift, OnboardingTutorialWeedView.swift, OnboardingView.swift, OnboardingWillkommenView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ GartenView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/GartenView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling WetterDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ HabitModel.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Models/HabitModel.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Models/HabitModel.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling MultiStrangCanvas.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ TitelStore.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/TitelStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Stores/TitelStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling GardenStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 Compiling\ InventoryItemDetailSheet.swift,\ LebenDetailView.swift,\ NeuerTitelOverlay.swift,\ PfadMeilensteinOverlay.swift,\ PflanzeDetailSheet.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/InventoryItemDetailSheet.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/LebenDetailView.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/NeuerTitelOverlay.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PfadMeilensteinOverlay.swift /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PflanzeDetailSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/InventoryItemDetailSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/LebenDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/NeuerTitelOverlay.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PfadMeilensteinOverlay.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PfadMeilensteinOverlay.swift:23:55: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                    fixedSize: CGSize(width: UIScreen.main.bounds.width * 1.2, height: UIScreen.main.bounds.width)
+                                                      ^
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PfadMeilensteinOverlay.swift:23:97: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                    fixedSize: CGSize(width: UIScreen.main.bounds.width * 1.2, height: UIScreen.main.bounds.width)
+                                                                                                ^
+
+SwiftCompile normal arm64 /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PflanzeDetailSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PflanzeDetailSheet.swift:126:56: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                        .scaleEffect(min(1.0, UIScreen.main.bounds.width / 390)) // Scale down on smaller iPhones
+                                                       ^
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PflanzeDetailSheet.swift:438:49: warning: 'main' was deprecated in iOS 26.0: Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
+                        .frame(height: UIScreen.main.bounds.height * 0.72)
+                                                ^
+/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Views/PflanzeDetailSheet.swift:768:54: warning: result of call to 'requestPermission()' is unused
+                    await NotificationManager.shared.requestPermission()
+                                                     ^                ~~
+
+SwiftDriverJobDiscovery normal arm64 Compiling DragToWater.swift, DuolingoButton.swift, DuolingoKaufButton.swift, GartenStatsBar.swift, GemsIcon.swift, GruenerBanner.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriverJobDiscovery normal arm64 Compiling TitelStore.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriverJobDiscovery normal arm64 Compiling HabitModel.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriverJobDiscovery normal arm64 Compiling GameOverOverlayView.swift, GartenPassRewardOverlay.swift, GartenPassView.swift, GartenPassWheelView.swift, HabitVerlaufView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriverJobDiscovery normal arm64 Compiling CoinsDetailView.swift, InventoryDetailView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriverJobDiscovery normal arm64 Compiling HerzenIcon.swift, PfadTorView.swift, PflanzenButton.swift, PflanzenCard.swift, PlantSelectionSheet.swift, SeltenheitsBadge.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriverJobDiscovery normal arm64 Compiling OnboardingZeitView.swift, CustomPlantCreationView.swift, ErfolgDetailSheet.swift, ErfolgeDetailView.swift, ExportImportView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for Grovy (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriver\ Compilation\ Requirements Garten_Simulation normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Grovy -Onone @/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.SwiftFileList -DDEBUG -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk -target arm64-apple-ios26.2 -g -module-cache-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -F /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/PackageFrameworks -F /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -emit-localized-strings -emit-localized-strings-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jannikschill/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.4-23E252-688ef53f1462e2c8f657fdc38a81448f68a138bb55de9ba35ce6c8c40d12849e.sdkstatcache -output-file-map /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Garten_Simulation-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Garten_Simulation_const_extract_protocols.json -Xcc -iquote -Xcc /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-generated-files.hmap -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-own-target-headers.hmap -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation-49394399678d88b76108bd64d45cffb0-VFS-iphoneos/all-product-headers.yaml -Xcc -iquote -Xcc /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-project-headers.hmap -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/include -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources-normal/arm64 -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources/arm64 -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy-Swift.h -working-directory /Users/jannikschill/Documents/Garten-Simulation -experimental-emit-module-separately -disable-cmo
+
+Copy /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.swiftmodule/arm64-apple-ios.swiftmodule /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.swiftmodule (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.swiftmodule /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.swiftmodule/arm64-apple-ios.swiftmodule
+
+Copy /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.swiftmodule/arm64-apple-ios.abi.json /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.abi.json (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.abi.json /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.swiftmodule/arm64-apple-ios.abi.json
+
+Copy /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.swiftsourceinfo (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.swiftsourceinfo /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo
+
+SwiftDriverJobDiscovery normal arm64 Compiling GartenView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriverJobDiscovery normal arm64 Compiling DataExportImportManager.swift, GartenPassBelohnung.swift, GartenTierStufe.swift, OnboardingCustomPlantView.swift, OnboardingFertigView.swift, OnboardingIgelView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriverJobDiscovery normal arm64 Compiling SettingsView.swift, StreakIncreaseOverlayView.swift, StreakView.swift, TitelAuswahlSheet.swift, UnifiedShopView.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriverJobDiscovery normal arm64 Compiling InventoryItemDetailSheet.swift, LebenDetailView.swift, NeuerTitelOverlay.swift, PfadMeilensteinOverlay.swift, PflanzeDetailSheet.swift (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+SwiftDriver\ Compilation Garten_Simulation normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Grovy -Onone @/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.SwiftFileList -DDEBUG -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk -target arm64-apple-ios26.2 -g -module-cache-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -index-store-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -F /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/PackageFrameworks -F /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -emit-localized-strings -emit-localized-strings-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/jannikschill/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.4-23E252-688ef53f1462e2c8f657fdc38a81448f68a138bb55de9ba35ce6c8c40d12849e.sdkstatcache -output-file-map /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Garten_Simulation-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Garten_Simulation_const_extract_protocols.json -Xcc -iquote -Xcc /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-generated-files.hmap -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-own-target-headers.hmap -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation-49394399678d88b76108bd64d45cffb0-VFS-iphoneos/all-product-headers.yaml -Xcc -iquote -Xcc /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-project-headers.hmap -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/include -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources-normal/arm64 -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources/arm64 -Xcc -I/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy-Swift.h -working-directory /Users/jannikschill/Documents/Garten-Simulation -experimental-emit-module-separately -disable-cmo
+
+Ld /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Grovy.debug.dylib normal (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios26.2 -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk -O0 -L/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos -L/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -F/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos -F/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/PackageFrameworks -F/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -filelist /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.LinkFileList -install_name @rpath/Grovy.debug.dylib -Xlinker -rpath -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy_dependency_info.dat -fobjc-link-runtime -fprofile-instr-generate -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.swiftmodule @/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy-linker-args.resp -Wl,-no_warn_duplicate_libraries -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -framework RiveRuntime -framework DotLottiePlayer -framework DotLottiePlayer -Xlinker -no_adhoc_codesign -o /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Grovy.debug.dylib -Xlinker -add_ast_path -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/Objects-normal/arm64/DotLottie.swiftmodule @/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/DotLottie.build/Debug-iphoneos/DotLottie.build/Objects-normal/arm64/DotLottie-linker-args.resp
+
+ConstructStubExecutorLinkFileList /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-ExecutorLinkFileList-normal-arm64.txt (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    construct-stub-executor-link-file-list /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Grovy.debug.dylib /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+Ld /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Grovy normal (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios26.2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk -O0 -L/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -F/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/PackageFrameworks -F/Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -rdynamic -Xlinker -no_deduplicate -Xlinker -debug_variant -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy-ExecutorLinkFileList-normal-arm64.txt /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Grovy.debug.dylib -Xlinker -no_adhoc_codesign -o /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Grovy
+
+LinkAssetCatalog /Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Assets.xcassets (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-linkAssetCatalog --thinned /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_output/thinned --thinned-dependencies /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_generated_info.plist_thinned --unthinned /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_output/unthinned --unthinned-dependencies /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_generated_info.plist_unthinned --output /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app --plist-output /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_generated_info.plist
+note: Emplaced /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/AppIcon60x60@2x.png (in target 'Garten_Simulation' from project 'Garten_Simulation')
+note: Emplaced /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Assets.car (in target 'Garten_Simulation' from project 'Garten_Simulation')
+note: Emplaced /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/AppIcon76x76@2x~ipad.png (in target 'Garten_Simulation' from project 'Garten_Simulation')
+
+ProcessInfoPlistFile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Info.plist /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/empty-Grovy.plist (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-infoPlistUtility /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/empty-Grovy.plist -producttype com.apple.product-type.application -genpkginfo /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/PkgInfo -expandbuildsettings -format binary -platform iphoneos -additionalcontentfile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/LaunchScreen-SBPartialInfo.plist -additionalcontentfile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/assetcatalog_generated_info.plist -scanforprivacyfile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Frameworks/DotLottiePlayer.framework -scanforprivacyfile /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Frameworks/RiveRuntime.framework -requiredArchitecture arm64 -o /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Info.plist
+
+ExtractAppIntentsMetadata (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.5.188.0.a6r6X0/Metal.xctoolchain --module-name Grovy --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk --xcode-version 17E202 --platform-family iOS --deployment-target 26.2 --bundle-identifier com.jannik.grovy --output /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app --target-triple arm64-apple-ios26.2 --binary-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Grovy --dependency-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy_dependency_info.dat --stringsdata-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.SwiftFileList --metadata-file-list /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy.DependencyMetadataFileList --static-metadata-file-list /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy.DependencyStaticMetadataFileList --swift-const-vals-list /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Objects-normal/arm64/Grovy.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-04-24 21:09:08.973 appintentsmetadataprocessor[6816:133449] Starting appintentsmetadataprocessor export
+2026-04-24 21:09:08.974 appintentsmetadataprocessor[6816:133449] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-swiftStdLibTool --copy --verbose --sign 8102FDB7D060355F2112EF227766019935B0F9B4 --scan-executable /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Grovy.debug.dylib --scan-folder /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Frameworks --scan-folder /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/PlugIns --scan-folder /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/SystemExtensions --scan-folder /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Extensions --platform iphoneos --toolchain /var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v17.5.188.0.a6r6X0/Metal.xctoolchain --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+AppIntentsSSUTraining (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Info.plist --temp-dir-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/ssu --bundle-id com.jannik.grovy --product-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app --extracted-metadata-path /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Metadata.appintents --metadata-file-list /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy.DependencyMetadataFileList --source-file /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Info.plist --archive-ssu-assets
+2026-04-24 21:09:08.991 appintentsnltrainingprocessor[6817:133455] Parsing options for appintentsnltrainingprocessor
+2026-04-24 21:09:08.991 appintentsnltrainingprocessor[6817:133455] Starting AppIntents SSU YAML Generation
+2026-04-24 21:09:08.995 appintentsnltrainingprocessor[6817:133455] No AppShortcuts found - Skipping.
+
+CodeSign /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Grovy.debug.dylib (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+    Signing Identity:     "Apple Development: jannik.schill.2010@gmail.com (Y3TPBQ8BW8)"
+    Provisioning Profile: "iOS Team Provisioning Profile: com.jannik.grovy"
+                          (e1a3b7c8-a65d-499f-b49e-d3abe468869b)
+    
+    /usr/bin/codesign --force --sign 8102FDB7D060355F2112EF227766019935B0F9B4 --timestamp\=none --generate-entitlement-der /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/Grovy.debug.dylib
+
+CodeSign /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/__preview.dylib (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+    Signing Identity:     "Apple Development: jannik.schill.2010@gmail.com (Y3TPBQ8BW8)"
+    Provisioning Profile: "iOS Team Provisioning Profile: com.jannik.grovy"
+                          (e1a3b7c8-a65d-499f-b49e-d3abe468869b)
+    
+    /usr/bin/codesign --force --sign 8102FDB7D060355F2112EF227766019935B0F9B4 --timestamp\=none --generate-entitlement-der /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app/__preview.dylib
+
+CodeSign /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    
+    Signing Identity:     "Apple Development: jannik.schill.2010@gmail.com (Y3TPBQ8BW8)"
+    Provisioning Profile: "iOS Team Provisioning Profile: com.jannik.grovy"
+                          (e1a3b7c8-a65d-499f-b49e-d3abe468869b)
+    
+    /usr/bin/codesign --force --sign 8102FDB7D060355F2112EF227766019935B0F9B4 --entitlements /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Intermediates.noindex/Garten_Simulation.build/Debug-iphoneos/Garten_Simulation.build/Grovy.app.xcent --timestamp\=none --generate-entitlement-der /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app
+
+Validate /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app (in target 'Garten_Simulation' from project 'Garten_Simulation')
+    cd /Users/jannikschill/Documents/Garten-Simulation
+    builtin-validationUtility /Users/jannikschill/Library/Developer/Xcode/DerivedData/Garten_Simulation-eroxfyrnurmsaraojtkexlvtomxb/Build/Products/Debug-iphoneos/Grovy.app -shallow-bundle -infoplist-subpath Info.plist
+
+** BUILD SUCCEEDED **
+

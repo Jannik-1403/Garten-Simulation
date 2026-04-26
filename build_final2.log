@@ -1,0 +1,45 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild build -project Garten_Simulation.xcodeproj -scheme Garten_Simulation -destination "platform=iOS Simulator,name=iPhone 16 Pro Max"
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  DotLottie: https://github.com/LottieFiles/dotlottie-ios.git @ main (0f01462)
+  RiveRuntime: https://github.com/rive-app/rive-ios @ 6.17.0
+
+2026-04-24 21:08:38.965 xcodebuild[6583:131160] Writing error result bundle to /var/folders/37/0ww3b7713871x_rly7sf27hr0000gn/T/ResultBundle_2026-24-04_21-08-0038.xcresult
+xcodebuild: error: Unable to find a device matching the provided destination specifier:
+		{ platform:iOS Simulator, OS:latest, name:iPhone 16 Pro Max }
+
+	The requested device could not be found because no available devices matched the request.
+
+	Available destinations for the "Garten_Simulation" scheme:
+		{ platform:iOS, arch:arm64, id:00008110-000138D82609A01E, name:iPhone von Jannik }
+		{ platform:iOS, id:dvtdevice-DVTiPhonePlaceholder-iphoneos:placeholder, name:Any iOS Device }
+		{ platform:iOS Simulator, id:dvtdevice-DVTiOSDeviceSimulatorPlaceholder-iphonesimulator:placeholder, name:Any iOS Simulator Device }
+		{ platform:iOS Simulator, arch:arm64, id:284773C1-0A83-4B40-9F70-28EFCEA2EAB5, OS:26.3.1, name:iPad (A16) }
+		{ platform:iOS Simulator, arch:arm64, id:2E00218E-AB0B-41CB-B3AC-73C244975560, OS:26.4.1, name:iPad (A16) }
+		{ platform:iOS Simulator, arch:arm64, id:071167AF-49B5-4422-99CA-D87AEAF1B937, OS:26.3.1, name:iPad Air 11-inch (M3) }
+		{ platform:iOS Simulator, arch:arm64, id:FE293E0B-9583-42D9-9103-9D9BF07F7883, OS:26.3.1, name:iPad Air 11-inch (M4) }
+		{ platform:iOS Simulator, arch:arm64, id:0ADEA842-027A-4DBB-9204-F138B3DC9255, OS:26.4.1, name:iPad Air 11-inch (M4) }
+		{ platform:iOS Simulator, arch:arm64, id:F05F14D2-4C84-46AF-AC20-4869763F7FD0, OS:26.3.1, name:iPad Air 13-inch (M3) }
+		{ platform:iOS Simulator, arch:arm64, id:D362D0B5-B238-47B0-9FB3-8E2DAD317949, OS:26.3.1, name:iPad Air 13-inch (M4) }
+		{ platform:iOS Simulator, arch:arm64, id:FC071DD2-BDA5-4B90-B942-84F07D2BB3DF, OS:26.4.1, name:iPad Air 13-inch (M4) }
+		{ platform:iOS Simulator, arch:arm64, id:AF516EC6-6AC2-4D3E-AD12-ED69770A1BD4, OS:26.3.1, name:iPad Pro 11-inch (M5) }
+		{ platform:iOS Simulator, arch:arm64, id:4A32B41A-1D7E-4746-8359-E6D803AE6D02, OS:26.4.1, name:iPad Pro 11-inch (M5) }
+		{ platform:iOS Simulator, arch:arm64, id:969CCB34-36E9-4B9E-842C-C2B3D22B90BB, OS:26.3.1, name:iPad Pro 13-inch (M5) }
+		{ platform:iOS Simulator, arch:arm64, id:BD08057A-74C5-4C90-B08B-A5F94A49567F, OS:26.4.1, name:iPad Pro 13-inch (M5) }
+		{ platform:iOS Simulator, arch:arm64, id:2757003E-B225-4456-898F-FA4364EFCB48, OS:26.3.1, name:iPad mini (A17 Pro) }
+		{ platform:iOS Simulator, arch:arm64, id:15BB9645-3817-4BD3-A15E-1E955EBCDA24, OS:26.4.1, name:iPad mini (A17 Pro) }
+		{ platform:iOS Simulator, arch:arm64, id:B86FA4BE-DE12-44B7-BFBB-F71447389132, OS:26.3.1, name:iPhone 16e }
+		{ platform:iOS Simulator, arch:arm64, id:D0C93963-179C-4950-AA35-F5791CE61F09, OS:26.3.1, name:iPhone 17 }
+		{ platform:iOS Simulator, arch:arm64, id:85A45710-4ABB-405B-9076-A06255D112F1, OS:26.4.1, name:iPhone 17 }
+		{ platform:iOS Simulator, arch:arm64, id:4C2D7B8D-D99D-4E0F-A182-87914353DB71, OS:26.3.1, name:iPhone 17 Pro }
+		{ platform:iOS Simulator, arch:arm64, id:3A2F384D-20E9-430C-A282-452F86B2D33E, OS:26.4.1, name:iPhone 17 Pro }
+		{ platform:iOS Simulator, arch:arm64, id:7C0B851B-8DEA-4EFC-8369-8EFB333A225C, OS:26.3.1, name:iPhone 17 Pro Max }
+		{ platform:iOS Simulator, arch:arm64, id:16DE1F65-D798-4DB0-BD84-7FD60EA51E07, OS:26.4.1, name:iPhone 17 Pro Max }
+		{ platform:iOS Simulator, arch:arm64, id:AA30E032-2692-46FF-8437-43F00A1F32DF, OS:26.3.1, name:iPhone 17e }
+		{ platform:iOS Simulator, arch:arm64, id:56323041-0A16-4EF4-9A9D-B18CDB94F578, OS:26.4.1, name:iPhone 17e }
+		{ platform:iOS Simulator, arch:arm64, id:29E88AAA-D98D-4BD7-9D61-D49EF893EB53, OS:26.3.1, name:iPhone Air }
+		{ platform:iOS Simulator, arch:arm64, id:DA7BDA90-F3F2-4339-80A6-6583399CD9B5, OS:26.4.1, name:iPhone Air }

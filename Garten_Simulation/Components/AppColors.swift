@@ -66,12 +66,34 @@ extension Color {
             opacity: Double(a) / 255
         )
     }
+    
+    static func fromHexString(_ hex: String) -> Color {
+        return Color(hex: hex)
+    }
 
     func darker(by amount: Double) -> Color {
         let uiColor = UIColor(self)
         var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
         uiColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
         return Color(hue: h, saturation: s, brightness: max(0, b - amount), opacity: a)
+    }
+
+    func lighter(by amount: Double) -> Color {
+        let uiColor = UIColor(self)
+        var h: CGFloat = 0, s: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        uiColor.getHue(&h, saturation: &s, brightness: &b, alpha: &a)
+        return Color(hue: h, saturation: s, brightness: min(1, b + amount), opacity: a)
+    }
+
+    // Helper to mix two colors
+    static func mix(_ c1: Color, with c2: Color, pct: Double = 0.5) -> Color {
+        let u1 = UIColor(c1)
+        let u2 = UIColor(c2)
+        var r1: CGFloat = 0, g1: CGFloat = 0, b1: CGFloat = 0, a1: CGFloat = 0
+        var r2: CGFloat = 0, g2: CGFloat = 0, b2: CGFloat = 0, a2: CGFloat = 0
+        u1.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
+        u2.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
+        return Color(red: r1 + (r2 - r1) * pct, green: g1 + (g2 - g1) * pct, blue: b1 + (b2 - b1) * pct, opacity: a1 + (a2 - a1) * pct)
     }
 }
 

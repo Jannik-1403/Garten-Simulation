@@ -27,11 +27,7 @@ struct ContentView: View {
                         Label(settings.localizedString(for: "tab.profil"), systemImage: "person.fill")
                     }
 
-                GartenPfadView()
-                    .tag(3)
-                    .tabItem {
-                        Label(settings.localizedString(for: "tab_pfad"), systemImage: "map.fill")
-                    }
+
             }
             .tint(.green)
             .onAppear {

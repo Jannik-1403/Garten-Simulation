@@ -52,7 +52,7 @@ struct OnboardingZeitView: View {
                     } else {
                         Image(systemName: data.customPflanzen[currentIndex].sfSymbol)
                             .font(.system(size: 32, weight: .bold))
-                            .foregroundStyle(Color.fromHex(data.customPflanzen[currentIndex].farbe))
+                            .foregroundStyle(AppColors.color(for: data.customPflanzen[currentIndex].farbe))
                     }
                     
                     Text(currentPlantName)

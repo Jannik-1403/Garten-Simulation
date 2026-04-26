@@ -1,0 +1,23 @@
+"widget_title" = "Grovy Garten";
+"widget_description" = "Deine Pflanzen immer im Blick";
+"widget_my_garden" = "Mein Garten";
+"widget_streak_days" = "Tage Streak";
+"widget_no_plants" = "Noch keine Pflanzen";
+"widget_tap_to_water" = "Tippen zum Gießen";
+"widget_add_plant" = "Pflanze kaufen";
+
+"widget_water_title"            = "Wasserverbrauch";
+"widget_water_description"      = "Sieh wie viel Wasser deine Pflanzen verbraucht haben.";
+"widget_water_today"            = "Heute";
+"widget_water_week"             = "Diese Woche";
+"widget_water_month"            = "Dieser Monat";
+"widget_water_alltime"          = "Gesamt";
+"widget_water_times"            = "%d × gegossen";
+"widget_streak_title"           = "Streak";
+"widget_streak_description"     = "Dein aktueller Garten-Streak.";
+"widget_streak_current"         = "Aktueller Streak";
+"widget_verlauf_week_title"     = "Wochenverlauf";
+"widget_verlauf_week_description" = "Deine letzten 7 Tage auf einen Blick.";
+"widget_verlauf_month_title"    = "Monatsverlauf";
+"widget_verlauf_month_description" = "Deine letzten 30 Tage auf einen Blick.";
+"widget_verlauf_last30"         = "Letzte 30 Tage";

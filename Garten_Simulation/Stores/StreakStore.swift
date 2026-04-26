@@ -98,25 +98,25 @@ class StreakStore: ObservableObject {
 
     private func save() {
         let timestamps = completedDates.map { $0.timeIntervalSince1970 }
-        UserDefaults.standard.set(timestamps, forKey: "streak_completed_dates")
-        UserDefaults.standard.set(bestStreak, forKey: "streak_best_streak")
-        UserDefaults.standard.set(lastShownStreak, forKey: "streak_last_shown")
+        SharedUserDefaults.suite.set(timestamps, forKey: "streak_completed_dates")
+        SharedUserDefaults.suite.set(bestStreak, forKey: "streak_best_streak")
+        SharedUserDefaults.suite.set(lastShownStreak, forKey: "streak_last_shown")
     }
     
     private func load() {
-        if let timestamps = UserDefaults.standard.array(forKey: "streak_completed_dates") as? [TimeInterval] {
+        if let timestamps = SharedUserDefaults.suite.array(forKey: "streak_completed_dates") as? [TimeInterval] {
             completedDates = Set(timestamps.map { Date(timeIntervalSince1970: $0) })
         }
-        bestStreak = UserDefaults.standard.integer(forKey: "streak_best_streak")
-        lastShownStreak = UserDefaults.standard.integer(forKey: "streak_last_shown")
+        bestStreak = SharedUserDefaults.suite.integer(forKey: "streak_best_streak")
+        lastShownStreak = SharedUserDefaults.suite.integer(forKey: "streak_last_shown")
         
         // Migration check for gardenStore.bestStreak (if StreakStore is new)
         if bestStreak == 0 {
-            let oldBest = UserDefaults.standard.integer(forKey: "stats_best_streak")
+            let oldBest = SharedUserDefaults.suite.integer(forKey: "stats_best_streak")
             if oldBest > 0 {
                 bestStreak = oldBest
                 // Try to migrate current streak too if possible
-                let oldCurrent = UserDefaults.standard.integer(forKey: "stats_gesamt_streak")
+                let oldCurrent = SharedUserDefaults.suite.integer(forKey: "stats_gesamt_streak")
                 if oldCurrent > 0 {
                     currentStreak = oldCurrent
                     // We can't easily recreate the dates, so we'll just set today as completed to keep some logic working

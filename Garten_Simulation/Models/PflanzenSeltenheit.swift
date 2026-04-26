@@ -7,7 +7,7 @@ enum PflanzenSeltenheit: String, Codable, CaseIterable {
     case diamant = "diamant"
 
     var lokalisiertTitel: String {
-        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
+        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
         return AppStrings.get("rarity.\(rawValue)", language: lang)
     }
 

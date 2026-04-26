@@ -10,6 +10,6 @@ struct PlayerTitle: Identifiable, Codable, Equatable {
 
 extension PlayerTitle {
     var titleColor: Color {
-        Color(hex: color)
+        Color.fromHexString(color)
     }
 }

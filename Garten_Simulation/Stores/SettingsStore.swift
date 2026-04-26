@@ -8,6 +8,18 @@ class SettingsStore: ObservableObject {
     @AppStorage("showHabitInsteadOfName") var showHabitInsteadOfName: Bool = false
     @AppStorage("onboardingAbgeschlossen") var onboardingAbgeschlossen: Bool = false
     @AppStorage("ausgewaehltesZiel")       var ausgewaehltesZiel: String = ""
+    
+    @Published var habitStartStunde: Int {
+        didSet { SharedUserDefaults.suite.set(habitStartStunde, forKey: "habitStartStunde") }
+    }
+    
+    // NEU: Speichert die IDs der Gewohnheiten in der gewählten Ritual-Reihenfolge
+    @AppStorage("ritualReihenfolgeIDs")    var ritualReihenfolgeIDsRaw: String = ""
+    
+    var ritualReihenfolgeIDs: [String] {
+        get { ritualReihenfolgeIDsRaw.split(separator: ",").map(String.init) }
+        set { ritualReihenfolgeIDsRaw = newValue.joined(separator: ",") }
+    }
 
     // Default 8:00 AM
     @AppStorage("erinnerungsZeit") private var erinnerungsZeitInternal: Double = 8 * 3600
@@ -32,13 +44,15 @@ class SettingsStore: ObservableObject {
     // Published so every View re-renders when language changes
     @Published var appLanguage: String {
         didSet {
-            UserDefaults.standard.set(appLanguage, forKey: "appLanguage")
+            SharedUserDefaults.suite.set(appLanguage, forKey: "appLanguage")
         }
     }
 
 
     init() {
-        if let saved = UserDefaults.standard.string(forKey: "appLanguage") {
+        self.habitStartStunde = SharedUserDefaults.suite.object(forKey: "habitStartStunde") as? Int ?? 7
+
+        if let saved = SharedUserDefaults.suite.string(forKey: "appLanguage") {
             self.appLanguage = saved
         } else {
             // Detect system language on first start
@@ -51,7 +65,7 @@ class SettingsStore: ObservableObject {
             } else {
                 self.appLanguage = "en"
             }
-            UserDefaults.standard.set(self.appLanguage, forKey: "appLanguage")
+            SharedUserDefaults.suite.set(self.appLanguage, forKey: "appLanguage")
         }
         
         Task {
@@ -92,7 +106,7 @@ class SettingsStore: ObservableObject {
     func importData()        { /* print("Importing data...") */ }
     func deleteAccount()     { /* print("Deleting account...") */ }
     func shareApp() {
-        let text = "Schau dir meine Garten-Simulation an! 🌿 Ich baue gerade einen wunderschönen Garten auf."
+        let text = localizedString(for: "settings.share_text")
         let url = URL(string: "https://apps.apple.com/app/garten-simulation")!
         
         let activityVC = UIActivityViewController(activityItems: [text, url], applicationActivities: nil)
@@ -120,5 +134,13 @@ class SettingsStore: ObservableObject {
             UIApplication.shared.open(url)
         }
     }
+    
+    static let alleIgelAssets: [String] = [
+        "Igel-Sport", "Igel-PflanzeGießen", "Igel-Backen", "Igel-Schach", "Igel-Foto", 
+        "Igel-Kochen", "Igel-Golf", "Igel-Welttraum", "Igel-Schlagzeug", "Igel-Meditieren", 
+        "Igel-König", "Igel-Malen", "Igel-Schlafen", "Igel-Lesen", "Igel-Schreiben", 
+        "Igel-Fischen", "Igel-Zelten", "Igel-Duschen", "Igel-rennen", "Igel-Musik", 
+        "Igel-Surfen", "Igel-Skatboard", "Igel-Töpfern", "Igel-Code", "Igel-Essen", 
+        "Igel-wandern"
+    ]
 }
-

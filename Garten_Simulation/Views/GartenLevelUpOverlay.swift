@@ -16,7 +16,9 @@ struct GartenLevelUpOverlay: View {
     var body: some View {
         ZStack {
             // 1. Dunkler Hintergrund
-            Color.black.opacity(0.85)
+            // 1. Dunkler Glass-Hintergrund
+            Color.black.opacity(0.4)
+                .background(.ultraThinMaterial)
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {

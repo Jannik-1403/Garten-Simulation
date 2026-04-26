@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import Combine
+import ActivityKit
 
 @MainActor
 class GardenStore: ObservableObject {
@@ -14,6 +15,8 @@ class GardenStore: ObservableObject {
     @Published var zeigeGameOverOverlay: Bool = false
     @Published var plantToRescue: HabitModel? = nil
     @Published var selectedTab: Int = 0
+    @Published var triggerStreakDetail: Bool = false
+    @Published var triggerWaterDetail: Bool = false
     @Published var gluecksradDrehungen: Int = 0 {
         didSet { saveStats() }
     }
@@ -59,6 +62,9 @@ class GardenStore: ObservableObject {
     
     // Daily Spin States
     @Published var showDailySpinOverlay: Bool = false
+    @Published var pendingDailySpin: Bool = false {
+        didSet { saveStats() }
+    }
     @Published var lastSpinTimestamp: Date? {
         didSet { saveStats() }
     }
@@ -71,7 +77,14 @@ class GardenStore: ObservableObject {
     @Published var aktivesWetter: WetterEvent = .normal
     @Published var pendingImportURL: URL? = nil
     
+    private var isLoading = false
+    
+    // Für UI Feedback wenn eine Pflanze schon vorhanden war und durch Coins ersetzt wurde
+    @Published var letzteErsatzCoins: Int? = nil
+    
     var titelStore: TitelStore? = nil
+
+    private var gardenActivity: Activity<GardenActivityAttributes>? = nil
 
 
     var totalItemsCount: Int {
@@ -92,7 +105,7 @@ class GardenStore: ObservableObject {
 
     var gesamtLiterFormatiert: String {
         let liter = gesamtMlGegossen / 1000
-        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
+        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
         
         if liter < 1 {
             let unit = AppStrings.get("common.ml", language: lang)
@@ -121,6 +134,7 @@ class GardenStore: ObservableObject {
         ladeAbgeholte()
         updateTageAktiv()
         pruefePflanzenStatus()
+        updateWidgetData()
     }
 
     func debugLevelUp() {
@@ -205,6 +219,7 @@ class GardenStore: ObservableObject {
         
         pflanze.istBewässert = true
         pflanze.letzteBewaesserung = Date()
+        pflanze.wateringDates.append(Date()) // Log für Verlauf-Tab
         pflanze.streak += 1
         pflanze.missedCycles = 0 // Reset Gesundheit
         pflanze.lastNotifiedCycle = 0 // Reset Herz-Abzug-Trigger
@@ -219,7 +234,7 @@ class GardenStore: ObservableObject {
             gesamtVerdient += coinsGewonnen
             
             // Add real transaction
-            let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
+            let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
             let transaction = CoinTransaction(
                 datum: Date(),
                 beschreibung: AppStrings.get("profile.coins.tip.watering", language: lang),
@@ -258,6 +273,9 @@ class GardenStore: ObservableObject {
 
         // Neue Benachrichtigungs-Logik
         NotificationManager.shared.rescheduleAfterWatering(habit: pflanze, allHabits: pflanzen)
+        
+        // Live Activity aktualisieren
+        updateLiveActivity()
     }
 
     // MARK: Pflanze entfernen
@@ -272,7 +290,7 @@ class GardenStore: ObservableObject {
     func revive(pflanze: HabitModel) {
         guard coins >= GameConstants.wiederbelebungsKosten else { return }
         
-        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
+        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
         coinsAbziehen(amount: GameConstants.wiederbelebungsKosten, beschreibung: AppStrings.get("transaction.revive", language: lang))
         
         objectWillChange.send()
@@ -349,6 +367,15 @@ class GardenStore: ObservableObject {
             logPurchase(shopItem: shopItem, isFree: isFree)
             savePlants()
             NotificationManager.shared.scheduleAll(for: pflanzen)
+            updateLiveActivity()
+        }
+    }
+
+    func pflanzeHinzufuegen(id: String) {
+        // TODO: Pflanze zum GardenStore hinzufügen
+        if let pl = GameDatabase.allPlants.first(where: { $0.id == id }) {
+            let payload = ShopDetailPayload.from(plant: pl)
+            pflanzHinzufuegen(shopItem: payload, isFree: true)
         }
     }
 
@@ -468,7 +495,7 @@ class GardenStore: ObservableObject {
 
     private func logPurchase(shopItem: ShopDetailPayload, isFree: Bool = false) {
         if !isFree && shopItem.price > 0 {
-            let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
+            let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
             let desc = "\(AppStrings.get("shop.buy.success", language: lang)) \(shopItem.title)"
             coinsAbziehen(amount: shopItem.price, beschreibung: desc)
         }
@@ -505,15 +532,22 @@ class GardenStore: ObservableObject {
     }
 
     var isDailySpinAvailable: Bool {
-        let heute = Calendar.current.startOfDay(for: Date())
         if let lastSpin = lastSpinTimestamp {
-            return Calendar.current.startOfDay(for: lastSpin) < heute
+            // New logic: Check if the last spin was on a previous calendar day
+            return !Calendar.current.isDateInToday(lastSpin)
         }
         return true
     }
 
     // MARK: Daily Spin Check
     func checkDailySpin() {
+        // Mark as used – update the timestamp to now which will trigger saveStats via didSet
+        lastSpinTimestamp = Date()
+        
+        // Gratis-Spin bereitstellen
+        pendingDailySpin = true
+        
+        // Rad öffnen
         withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
             self.showDailySpinOverlay = true
         }
@@ -550,6 +584,7 @@ class GardenStore: ObservableObject {
             pflanzen.append(neue)
             savePlants()
             NotificationManager.shared.scheduleAll(for: pflanzen)
+            updateLiveActivity()
         }
     }
 
@@ -620,7 +655,7 @@ class GardenStore: ObservableObject {
         var mult = 1.0
         
         // 1. Wetter
-        mult *= aktivesWetter.gemMultiplikator
+        mult *= aktivesWetter.xpMultiplikator
         
         // 2. Penalty (Revive)
         if let start = pflanze.wiederbelebtAm {
@@ -706,7 +741,9 @@ class GardenStore: ObservableObject {
             
             // Um Mitternacht Wetter aktualisieren
             if stunde == 0 && minute == 0 {
-                self.ladeTagesWetter()
+                Task { @MainActor in
+                    self.ladeTagesWetter()
+                }
             }
         }
     }
@@ -741,8 +778,16 @@ class GardenStore: ObservableObject {
             }
         case .pflanze(let id):
             if let pl = GameDatabase.allPlants.first(where: { $0.id == id }) {
-                let payload = ShopDetailPayload.from(plant: pl)
-                pflanzHinzufuegen(shopItem: payload, isFree: true)
+                // Prüfen ob der User diese Pflanze schon hat
+                if pflanzen.contains(where: { $0.plantID == id }) {
+                    // Pflanze schon vorhanden → 150 Coins als Ersatz
+                    letzteErsatzCoins = 150
+                    coinsGutschreiben(amount: 150, beschreibung: NSLocalizedString("pass_belohnung_ersatz_coins", comment: ""))
+                } else {
+                    letzteErsatzCoins = nil
+                    let payload = ShopDetailPayload.from(plant: pl)
+                    pflanzHinzufuegen(shopItem: payload, isFree: true)
+                }
                 onItemClaimed?(pl.id) // Sync mit Shop
             }
         case .dekoration(let id):
@@ -839,11 +884,15 @@ class GardenStore: ObservableObject {
     }
     
     private func speichereAbgeholte() {
-        UserDefaults.standard.set(Array(abgeholtePassLevel), forKey: "abgeholtePassLevel")
+        guard !isLoading else { return }
+        SharedUserDefaults.suite.set(Array(abgeholtePassLevel), forKey: "abgeholtePassLevel")
+        SharedUserDefaults.suite.synchronize()
     }
     
     func ladeAbgeholte() {
-        let gespeichert = UserDefaults.standard.array(forKey: "abgeholtePassLevel") as? [Int] ?? []
+        isLoading = true
+        defer { isLoading = false }
+        let gespeichert = SharedUserDefaults.suite.array(forKey: "abgeholtePassLevel") as? [Int] ?? []
         abgeholtePassLevel = Set(gespeichert)
     }
 
@@ -888,71 +937,117 @@ class GardenStore: ObservableObject {
     }
 
     private func saveActivePowerUps() {
+        guard !isLoading else { return }
         if let encoded = try? JSONEncoder().encode(activePowerUps) {
-            UserDefaults.standard.set(encoded, forKey: "active_powerups_garden")
+            SharedUserDefaults.suite.set(encoded, forKey: "active_powerups_garden")
+            SharedUserDefaults.suite.synchronize()
         }
     }
 
     private func loadActivePowerUps() {
-        if let data = UserDefaults.standard.data(forKey: "active_powerups_garden"),
+        if let data = SharedUserDefaults.suite.data(forKey: "active_powerups_garden"),
            let decoded = try? JSONDecoder().decode([ActivePowerUp].self, from: data) {
             activePowerUps = decoded
         }
     }
 
     private func saveDecorations() {
+        guard !isLoading else { return }
         if let encoded = try? JSONEncoder().encode(placedDecorations) {
-            UserDefaults.standard.set(encoded, forKey: "garden_decorations")
+            SharedUserDefaults.suite.set(encoded, forKey: "garden_decorations")
+            SharedUserDefaults.suite.synchronize()
         }
     }
 
     private func loadDecorations() {
-        if let data = UserDefaults.standard.data(forKey: "garden_decorations"),
+        if let data = SharedUserDefaults.suite.data(forKey: "garden_decorations"),
            let decoded = try? JSONDecoder().decode([DecorationItem].self, from: data) {
             placedDecorations = decoded
         }
     }
 
     func saveStats() {
-        UserDefaults.standard.set(coins, forKey: "stats_coins")
-        UserDefaults.standard.set(gesamtXP, forKey: "stats_gesamt_xp")
-        UserDefaults.standard.set(leben, forKey: "stats_leben")
-        UserDefaults.standard.set(gluecksradDrehungen, forKey: "stats_gluecksrad_drehungen")
-        UserDefaults.standard.set(gesamtGekaufteItemsCount, forKey: "stats_gesamt_gekaufte_items_count")
-        UserDefaults.standard.set(gesamtGegossen, forKey: "stats_gesamt_gegossen")
-        UserDefaults.standard.set(tageAktiv, forKey: "stats_tage_aktiv")
-        UserDefaults.standard.set(gesamtVerdient, forKey: "stats_gesamt_verdient")
-        UserDefaults.standard.set(gesamtAusgegeben, forKey: "stats_gesamt_ausgegeben")
-        UserDefaults.standard.set(lastSpinTimestamp, forKey: "last_spin_timestamp")
-        UserDefaults.standard.set(isWeedActive, forKey: "is_weed_active")
-        UserDefaults.standard.set(dailyQuestsCompletedSinceWeed, forKey: "daily_quests_completed_since_weed")
-        UserDefaults.standard.set(seeds, forKey: "stats_seeds")
+        guard !isLoading else { return }
+        SharedUserDefaults.suite.set(coins, forKey: "stats_coins")
+        SharedUserDefaults.suite.set(gesamtXP, forKey: "stats_gesamt_xp")
+        SharedUserDefaults.suite.set(leben, forKey: "stats_leben")
+        SharedUserDefaults.suite.set(gluecksradDrehungen, forKey: "stats_gluecksrad_drehungen")
+        SharedUserDefaults.suite.set(gesamtGekaufteItemsCount, forKey: "stats_gesamt_gekaufte_items_count")
+        SharedUserDefaults.suite.set(gesamtGegossen, forKey: "stats_gesamt_gegossen")
+        SharedUserDefaults.suite.set(tageAktiv, forKey: "stats_tage_aktiv")
+        SharedUserDefaults.suite.set(gesamtVerdient, forKey: "stats_gesamt_verdient")
+        SharedUserDefaults.suite.set(gesamtAusgegeben, forKey: "stats_gesamt_ausgegeben")
+        
+        if let spinDate = lastSpinTimestamp {
+            SharedUserDefaults.suite.set(spinDate.timeIntervalSince1970, forKey: "last_spin_timestamp_double")
+        } else {
+            SharedUserDefaults.suite.removeObject(forKey: "last_spin_timestamp_double")
+        }
+        
+        SharedUserDefaults.suite.set(pendingDailySpin, forKey: "pending_daily_spin")
+        SharedUserDefaults.suite.set(isWeedActive, forKey: "is_weed_active")
+        SharedUserDefaults.suite.set(dailyQuestsCompletedSinceWeed, forKey: "daily_quests_completed_since_weed")
+        SharedUserDefaults.suite.set(seeds, forKey: "stats_seeds")
+        
+        SharedUserDefaults.suite.synchronize()
+        updateWidgetData()
     }
 
     private func loadStats() {
-        coins = UserDefaults.standard.object(forKey: "stats_coins") != nil ? UserDefaults.standard.integer(forKey: "stats_coins") : GameConstants.startCoins
-        gesamtXP = UserDefaults.standard.integer(forKey: "stats_gesamt_xp")
-        leben = UserDefaults.standard.object(forKey: "stats_leben") != nil ? UserDefaults.standard.integer(forKey: "stats_leben") : 5
-        gluecksradDrehungen = UserDefaults.standard.integer(forKey: "stats_gluecksrad_drehungen")
-        gesamtGekaufteItemsCount = UserDefaults.standard.integer(forKey: "stats_gesamt_gekaufte_items_count")
-        gesamtGegossen = UserDefaults.standard.integer(forKey: "stats_gesamt_gegossen")
-        tageAktiv = UserDefaults.standard.integer(forKey: "stats_tage_aktiv")
-        gesamtVerdient = UserDefaults.standard.integer(forKey: "stats_gesamt_verdient")
-        gesamtAusgegeben = UserDefaults.standard.integer(forKey: "stats_gesamt_ausgegeben")
-        lastSpinTimestamp = UserDefaults.standard.object(forKey: "last_spin_timestamp") as? Date
-        isWeedActive = UserDefaults.standard.bool(forKey: "is_weed_active")
-        dailyQuestsCompletedSinceWeed = UserDefaults.standard.integer(forKey: "daily_quests_completed_since_weed")
-        seeds = UserDefaults.standard.integer(forKey: "stats_seeds")
+        isLoading = true
+        defer { isLoading = false }
+        
+        coins = SharedUserDefaults.suite.object(forKey: "stats_coins") != nil ? SharedUserDefaults.suite.integer(forKey: "stats_coins") : GameConstants.startCoins
+        gesamtXP = SharedUserDefaults.suite.integer(forKey: "stats_gesamt_xp")
+        leben = SharedUserDefaults.suite.object(forKey: "stats_leben") != nil ? SharedUserDefaults.suite.integer(forKey: "stats_leben") : 5
+        gluecksradDrehungen = SharedUserDefaults.suite.integer(forKey: "stats_gluecksrad_drehungen")
+        gesamtGekaufteItemsCount = SharedUserDefaults.suite.integer(forKey: "stats_gesamt_gekaufte_items_count")
+        gesamtGegossen = SharedUserDefaults.suite.integer(forKey: "stats_gesamt_gegossen")
+        tageAktiv = SharedUserDefaults.suite.integer(forKey: "stats_tage_aktiv")
+        gesamtVerdient = SharedUserDefaults.suite.integer(forKey: "stats_gesamt_verdient")
+        gesamtAusgegeben = SharedUserDefaults.suite.integer(forKey: "stats_gesamt_ausgegeben")
+        
+        let spinDouble = SharedUserDefaults.suite.double(forKey: "last_spin_timestamp_double")
+        if spinDouble > 0 {
+            lastSpinTimestamp = Date(timeIntervalSince1970: spinDouble)
+        } else {
+            // Check fallback for old users
+            lastSpinTimestamp = SharedUserDefaults.suite.object(forKey: "last_spin_timestamp") as? Date
+        }
+        
+        pendingDailySpin = SharedUserDefaults.suite.bool(forKey: "pending_daily_spin")
+        isWeedActive = SharedUserDefaults.suite.bool(forKey: "is_weed_active")
+        dailyQuestsCompletedSinceWeed = SharedUserDefaults.suite.integer(forKey: "daily_quests_completed_since_weed")
+        seeds = SharedUserDefaults.suite.integer(forKey: "stats_seeds")
     }
 
     func savePlants() {
+        guard !isLoading else { return }
         if let encoded = try? JSONEncoder().encode(pflanzen) {
-            UserDefaults.standard.set(encoded, forKey: "garden_plants")
+            SharedUserDefaults.suite.set(encoded, forKey: "garden_plants")
+            SharedUserDefaults.suite.synchronize()
         }
+        updateWidgetData()
+    }
+
+    func updateWidgetData() {
+        let totalStreak = SharedUserDefaults.suite.integer(forKey: "streak_last_shown")
+        let timestamps = SharedUserDefaults.suite.array(forKey: "streak_completed_dates") as? [TimeInterval] ?? []
+        let dates = Set(timestamps.map { Date(timeIntervalSince1970: $0) })
+        
+        GroovyWidgetDataProvider.write(
+            habits: pflanzen,
+            totalStreak: totalStreak,
+            gems: coins,
+            streakCompletedDates: dates
+        )
     }
 
     private func loadPlants() {
-        if let data = UserDefaults.standard.data(forKey: "garden_plants"),
+        isLoading = true
+        defer { isLoading = false }
+        
+        if let data = SharedUserDefaults.suite.data(forKey: "garden_plants"),
            let decoded = try? JSONDecoder().decode([HabitModel].self, from: data) {
             
             // Sync with Database to apply balance changes (like XP 10 -> 100)
@@ -980,46 +1075,61 @@ class GardenStore: ObservableObject {
     }
 
     private func saveTransactions() {
+        guard !isLoading else { return }
         if let encoded = try? JSONEncoder().encode(transactions) {
-            UserDefaults.standard.set(encoded, forKey: "garden_transactions")
+            SharedUserDefaults.suite.set(encoded, forKey: "garden_transactions")
+            SharedUserDefaults.suite.synchronize()
         }
     }
 
     private func loadTransactions() {
-        if let data = UserDefaults.standard.data(forKey: "garden_transactions"),
+        isLoading = true
+        defer { isLoading = false }
+        
+        if let data = SharedUserDefaults.suite.data(forKey: "garden_transactions"),
            let decoded = try? JSONDecoder().decode([CoinTransaction].self, from: data) {
             transactions = decoded
         }
     }
 
     private func saveInventory() {
+        guard !isLoading else { return }
         if let encoded = try? JSONEncoder().encode(gekaufteItems) {
-            UserDefaults.standard.set(encoded, forKey: "garden_inventory")
+            SharedUserDefaults.suite.set(encoded, forKey: "garden_inventory")
+            SharedUserDefaults.suite.synchronize()
         }
     }
 
     private func loadInventory() {
-        if let data = UserDefaults.standard.data(forKey: "garden_inventory"),
+        isLoading = true
+        defer { isLoading = false }
+        
+        if let data = SharedUserDefaults.suite.data(forKey: "garden_inventory"),
            let decoded = try? JSONDecoder().decode([ShopDetailPayload].self, from: data) {
             gekaufteItems = decoded
         }
     }
 
     private func updateTageAktiv() {
+        isLoading = true
+        defer { isLoading = false }
+        
         let lastActiveKey = "last_active_date"
         let today = Calendar.current.startOfDay(for: Date())
         
-        if let lastActive = UserDefaults.standard.object(forKey: lastActiveKey) as? Date {
+        if let lastActive = SharedUserDefaults.suite.object(forKey: lastActiveKey) as? Date {
             let lastActiveDay = Calendar.current.startOfDay(for: lastActive)
             if lastActiveDay < today {
                 tageAktiv += 1
-                UserDefaults.standard.set(today, forKey: lastActiveKey)
+                SharedUserDefaults.suite.set(today, forKey: lastActiveKey)
+                SharedUserDefaults.suite.synchronize()
                 saveStats()
             }
         } else {
             // Erstmaliger Start
             tageAktiv = 1
-            UserDefaults.standard.set(today, forKey: lastActiveKey)
+            SharedUserDefaults.suite.set(today, forKey: lastActiveKey)
+            SharedUserDefaults.suite.synchronize()
             saveStats()
         }
     }
@@ -1056,11 +1166,11 @@ class GardenStore: ObservableObject {
                 "daily_quests_completed_since_weed", "abgeholtePassLevel",
                 "stats_gluecksrad_drehungen", "daily_spin_last_shown_day_string"
             ]
-            keys.forEach { UserDefaults.standard.removeObject(forKey: $0) }
+            keys.forEach { SharedUserDefaults.suite.removeObject(forKey: $0) }
             
             // Set today as last active immediately after reset
             let today = Calendar.current.startOfDay(for: Date())
-            UserDefaults.standard.set(today, forKey: "last_active_date")
+            SharedUserDefaults.suite.set(today, forKey: "last_active_date")
             
             savePlants()
             saveStats()
@@ -1147,5 +1257,95 @@ class GardenStore: ObservableObject {
             }
         }
         pruefePflanzenStatus()
+    }
+
+    // MARK: - Live Activity Management
+    
+    func checkAndStartLiveActivity() {
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
+        
+        // Falls wir nach einem Neustart sind, prüfen ob noch eine Aktivität läuft
+        if gardenActivity == nil {
+            gardenActivity = Activity<GardenActivityAttributes>.activities.first
+        }
+        
+        let gesamt = pflanzen.count
+        
+        // Nur starten, wenn noch etwas zu tun ist ODER wenn wir die Island als Status-Monitor nutzen wollen
+        if gardenActivity == nil && gesamt > 0 {
+            startLiveActivity()
+        } else {
+            updateLiveActivity()
+        }
+    }
+    
+    private func startLiveActivity() {
+        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
+        let attributes = GardenActivityAttributes(gartenName: AppStrings.get("garden.title", language: lang))
+        
+        let state = createActivityState()
+        
+        do {
+            print("DEBUG: Versuche Live Activity zu starten...")
+            gardenActivity = try Activity.request(attributes: attributes, content: .init(state: state, staleDate: nil))
+            print("DEBUG: ✅ Live Activity erfolgreich gestartet! ID: \(gardenActivity?.id ?? "unknown")")
+        } catch {
+            let errStr = "\(error)"
+            if errStr.contains("visibility") {
+                print("DEBUG: ⚠️ Sichtbarkeits-Fehler (visibility). Apple verlangt, dass der User die App gerade ansieht.")
+            } else {
+                print("DEBUG: ❌ Fehler beim Starten: \(error)")
+            }
+        }
+    }
+    
+    func updateLiveActivity() {
+        guard let activity = gardenActivity else {
+            // Falls keine Aktivität läuft, aber Pflanzen da sind -> Neu starten?
+            if !pflanzen.isEmpty {
+                startLiveActivity()
+            }
+            return
+        }
+        
+        let state = createActivityState()
+        
+        Task {
+            await activity.update(.init(state: state, staleDate: nil))
+        }
+    }
+    
+    func stopLiveActivity() {
+        guard let activity = gardenActivity else { return }
+        
+        let finalState = createActivityState()
+        
+        Task {
+            await activity.end(.init(state: finalState, staleDate: nil), dismissalPolicy: .default)
+            self.gardenActivity = nil
+        }
+    }
+    
+    private func createActivityState() -> GardenActivityAttributes.ContentState {
+        let gegossen = pflanzen.filter { $0.istBewässert }.count
+        let gesamt = pflanzen.count
+        let streak = SharedUserDefaults.suite.integer(forKey: "streak_last_shown")
+        
+        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
+        var msg = ""
+        if gegossen == gesamt && gesamt > 0 {
+            msg = AppStrings.get("activity.all_done", language: lang)
+        } else {
+            msg = String(format: AppStrings.get("common.remaining_format", language: lang), "\(gesamt - gegossen)")
+        }
+        
+        return GardenActivityAttributes.ContentState(
+            gegossenePflanzen: gegossen,
+            gesamtPflanzen: gesamt,
+            wetterIcon: aktivesWetter.systemIcon,
+            wetterName: aktivesWetter.titel,
+            streakTage: streak,
+            nachricht: msg
+        )
     }
 }

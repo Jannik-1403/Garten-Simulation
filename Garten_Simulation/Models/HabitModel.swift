@@ -12,6 +12,10 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     var habitName: String
     var plantID: String // Link zur GameDatabase
     
+    var plantImageName: String {
+        "plant_\(plantID)"
+    }
+    
     @Published var currentXP: Int
     @Published var streak: Int
     var letzteBewaesserung: Date?
@@ -29,9 +33,13 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var notizen: [String] = []
     var timerDatum: Date? = nil
     @Published var reminderTime: Date? = nil
+    @Published var individualSchwierigkeit: String? = nil // NEU: Individueller Pfad-Level
     
     // XP Verlauf für die Wochenübersicht (Datum im Format "yyyy-MM-dd": XP an diesem Tag)
     @Published var xpHistory: [String: Int] = [:]
+    
+    // Gieß-Log: jeder Gießvorgang wird mit Zeitstempel gespeichert
+    @Published var wateringDates: [Date] = []
     
     // Lebenslange Einnahmen durch diese Pflanze
     @Published var totalCoinsEarned: Int = 0
@@ -48,8 +56,24 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         return basis + levelBonus
     }
 
-    // MARK: - Computed Properties
-    
+    var displayedHabitName: String {
+        if !habitName.isEmpty { return habitName }
+        
+        // 1. Suche den Standard-Gewohnheitsnamen in der Datenbank (z.B. habit.meditieren)
+        if let dbPlant = GameDatabase.allPlants.first(where: { $0.id.lowercased() == plantID.lowercased() }) {
+            // Höchste Priorität: Der Standard-Name der Gewohnheit
+            if !dbPlant.habitName.isEmpty {
+                return dbPlant.habitName
+            }
+            // Zweite Priorität: Die Kategorie (z.B. category.mental)
+            if let catKey = dbPlant.habitCategories.first?.localizationKey {
+                return catKey
+            }
+        }
+        
+        return "common.habit" 
+    }
+
     var color: Color {
         // Here we can use the same logic as GameDatabase helper
         switch symbolColor {
@@ -121,7 +145,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
 
     var formattedVolume: String {
         let liter = totalMlGegossen / 1000
-        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
+        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
         if liter < 1 {
             let unit = AppStrings.get("common.ml", language: lang)
             return String(format: "%.0f %@", totalMlGegossen, unit)
@@ -215,7 +239,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case currentXP, streak, letzteBewaesserung, gekauftAm, istBewässert
         case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays, missedCycles, lastNotifiedCycle
         case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned, totalMlGegossen, plantID
-        case wiederbelebtAm, strafTage, reminderTime
+        case wiederbelebtAm, strafTage, reminderTime, wateringDates
     }
 
     required init(from decoder: Decoder) throws {
@@ -280,6 +304,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         wiederbelebtAm = try container.decodeIfPresent(Date.self, forKey: .wiederbelebtAm)
         strafTage = try container.decodeIfPresent(Int.self, forKey: .strafTage) ?? 3
         reminderTime = try container.decodeIfPresent(Date.self, forKey: .reminderTime)
+        wateringDates = try container.decodeIfPresent([Date].self, forKey: .wateringDates) ?? []
     }
 
     func encode(to encoder: Encoder) throws {
@@ -315,6 +340,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encodeIfPresent(wiederbelebtAm, forKey: .wiederbelebtAm)
         try container.encode(strafTage, forKey: .strafTage)
         try container.encodeIfPresent(reminderTime, forKey: .reminderTime)
+        try container.encode(wateringDates, forKey: .wateringDates)
     }
 }
 

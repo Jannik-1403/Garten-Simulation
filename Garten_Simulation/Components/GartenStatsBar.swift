@@ -50,12 +50,6 @@ struct GartenStatsBar: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
-        .background(.ultraThinMaterial, in: Capsule())
-        .overlay(
-            Capsule()
-                .stroke(.white.opacity(0.15), lineWidth: 1)
-        )
-        .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
     }
 
 

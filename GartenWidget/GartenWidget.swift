@@ -1,84 +1,81 @@
-//
-//  GartenWidget.swift
-//  GartenWidget
-//
-//  Created by Jannik Schill on 25.04.26.
-//
-
 import WidgetKit
 import SwiftUI
 
-struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
-    }
-
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
-        completion(entry)
-    }
-
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
-    }
-
-//    func relevances() async -> WidgetRelevances<Void> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
-}
-
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let emoji: String
-}
-
-struct GartenWidgetEntryView : View {
-    var entry: Provider.Entry
-
-    var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
-        }
+@main
+struct GroovyWidgetBundle: WidgetBundle {
+    var body: some Widget {
+        // Neue Widgets:
+        GroovyWaterWidget()
+        GroovyStreakWidget()
+        GroovyVerlaufMediumWidget()
+        GroovyVerlaufLargeWidget()
+        
+        // Live Activities:
+        GardenLiveActivity()
     }
 }
 
-struct GartenWidget: Widget {
-    let kind: String = "GartenWidget"
 
+// MARK: - Wasser-Widget (Small, konfigurierbar)
+struct GroovyWaterWidget: Widget {
+    let kind = "GroovyWaterWidget"
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            if #available(iOS 17.0, *) {
-                GartenWidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
-            } else {
-                GartenWidgetEntryView(entry: entry)
-                    .padding()
-                    .background()
-            }
+        AppIntentConfiguration(kind: kind, intent: SelectWaterPeriodIntent.self, provider: WaterTimelineProvider()) { entry in
+            WaterWidgetView(entry: entry)
+                .containerBackground(for: .widget) {
+                    DuoStyle.backgroundView(for: entry.backgroundStyle, defaultGradient: DuoStyle.blueGradient)
+                }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName(NSLocalizedString("widget_water_title", comment: ""))
+        .description(NSLocalizedString("widget_water_description", comment: ""))
+        .supportedFamilies([.systemSmall])
     }
 }
 
-#Preview(as: .systemSmall) {
-    GartenWidget()
-} timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+// MARK: - Streak-Widget (Small, nicht konfigurierbar)
+struct GroovyStreakWidget: Widget {
+    let kind = "GroovyStreakWidget"
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: kind, intent: SelectStreakIntent.self, provider: StreakSmallTimelineProvider()) { entry in
+            StreakSmallWidgetView(entry: entry)
+                .containerBackground(for: .widget) {
+                    DuoStyle.backgroundView(for: entry.backgroundStyle, defaultGradient: DuoStyle.orangeGradient)
+                }
+        }
+        .configurationDisplayName(NSLocalizedString("widget_streak_title", comment: ""))
+        .description(NSLocalizedString("widget_streak_description", comment: ""))
+        .supportedFamilies([.systemSmall])
+    }
+}
+
+// MARK: - Verlauf Medium (7 Tage)
+struct GroovyVerlaufMediumWidget: Widget {
+    let kind = "GroovyVerlaufMedium"
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: kind, intent: SelectHistoryIntent.self, provider: VerlaufMediumTimelineProvider()) { entry in
+            VerlaufMediumWidgetView(entry: entry)
+                .containerBackground(for: .widget) {
+                    DuoStyle.backgroundView(for: entry.backgroundStyle, defaultGradient: DuoStyle.orangeGradient)
+                }
+        }
+        .configurationDisplayName(NSLocalizedString("widget_verlauf_week_title", comment: ""))
+        .description(NSLocalizedString("widget_verlauf_week_description", comment: ""))
+        .supportedFamilies([.systemMedium])
+    }
+}
+
+// MARK: - Verlauf Large (Aktueller Monat)
+struct GroovyVerlaufLargeWidget: Widget {
+    let kind = "GroovyVerlaufLarge"
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: kind, intent: SelectHistoryIntent.self, provider: VerlaufLargeTimelineProvider()) { entry in
+            VerlaufLargeWidgetView(entry: entry)
+                .containerBackground(for: .widget) {
+                    DuoStyle.backgroundView(for: entry.backgroundStyle, defaultGradient: DuoStyle.orangeGradient)
+                }
+        }
+        .configurationDisplayName(NSLocalizedString("widget_verlauf_month_title", comment: ""))
+        .description(NSLocalizedString("widget_verlauf_month_description", comment: ""))
+        .supportedFamilies([.systemLarge])
+    }
 }

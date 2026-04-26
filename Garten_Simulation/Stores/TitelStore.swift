@@ -12,11 +12,11 @@ class TitelStore: ObservableObject {
 
     init() {
         // UserDefaults laden
-        if let data = UserDefaults.standard.data(forKey: freigeschaltetKey),
+        if let data = SharedUserDefaults.suite.data(forKey: freigeschaltetKey),
            let ids = try? JSONDecoder().decode(Set<String>.self, from: data) {
             freigeschalteteTitelIDs = ids
         }
-        aktiverTitelID = UserDefaults.standard.string(forKey: aktivKey)
+        aktiverTitelID = SharedUserDefaults.suite.string(forKey: aktivKey)
 
         // Anfänger-Titel immer verfügbar + Standard wenn noch nichts aktiv
         freigeschalteteTitelIDs.insert("titel_anfaenger")
@@ -38,7 +38,7 @@ class TitelStore: ObservableObject {
             // Ersten Titel automatisch aktivieren falls noch keiner aktiv
             if aktiverTitelID == nil {
                 aktiverTitelID = titel.id
-                UserDefaults.standard.set(aktiverTitelID, forKey: aktivKey)
+                SharedUserDefaults.suite.set(aktiverTitelID, forKey: aktivKey)
             }
 
             neuerTitelZumAnzeigen = titel  // triggert Overlay
@@ -47,7 +47,7 @@ class TitelStore: ObservableObject {
 
     func setzeAktivenTitel(_ titel: PlayerTitle) {
         aktiverTitelID = titel.id
-        UserDefaults.standard.set(titel.id, forKey: aktivKey)
+        SharedUserDefaults.suite.set(titel.id, forKey: aktivKey)
         objectWillChange.send()
     }
 
@@ -70,8 +70,8 @@ class TitelStore: ObservableObject {
 
     func speichernPublic() {
         if let data = try? JSONEncoder().encode(freigeschalteteTitelIDs) {
-            UserDefaults.standard.set(data, forKey: freigeschaltetKey)
+            SharedUserDefaults.suite.set(data, forKey: freigeschaltetKey)
         }
-        UserDefaults.standard.set(aktiverTitelID, forKey: aktivKey)
+        SharedUserDefaults.suite.set(aktiverTitelID, forKey: aktivKey)
     }
 }

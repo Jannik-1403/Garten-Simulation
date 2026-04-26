@@ -3,7 +3,7 @@ import DotLottie
 
 struct GartenPassWheelView: View {
     @EnvironmentObject var gardenStore: GardenStore
-    @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var gartenPfadStore: GartenPfadStore
     @Environment(\.dismiss) var dismiss
     
     @State private var rotation: Double = 0
@@ -27,11 +27,11 @@ struct GartenPassWheelView: View {
                         Button {
                             FeedbackManager.shared.playTap()
                         } label: {
-                            Text(settings.localizedString(for: "ice_wheel_title"))
+                            Text(NSLocalizedString("ice_wheel_title", comment: ""))
                         }
                         .buttonStyle(Pressed3DTextButtonStyle())
                         
-                        Text(settings.localizedString(for: "ice_wheel_subtitle"))
+                        Text(NSLocalizedString("ice_wheel_subtitle", comment: ""))
                             .font(.system(size: 15, weight: .regular))
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -48,11 +48,11 @@ struct GartenPassWheelView: View {
                             
                             // === 3D TOP LAYER & POINTER (clickable and moves) ===
                             Button {
+                                guard !isSpinning && gartenPfadStore.verfuegbareSpins > 0 else { return }
+                                
                                 // Delay for premium 3D feeling (pop-back animation)
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
-                                    if !isSpinning && gardenStore.gluecksradDrehungen > 0 {
-                                        spinWheel()
-                                    }
+                                    spinWheel()
                                 }
                             } label: {
                                 ZStack {
@@ -114,7 +114,7 @@ struct GartenPassWheelView: View {
                     HStack(spacing: 8) {
                         Image(systemName: "arrow.2.circlepath")
                             .font(.system(size: 16, weight: .bold))
-                        Text(String(format: settings.localizedString(for: "wheel.spins_label"), gardenStore.gluecksradDrehungen))
+                        Text(String(format: NSLocalizedString("wheel.spins_label", comment: ""), gartenPfadStore.verfuegbareSpins))
                             .font(.system(size: 16, weight: .bold))
                     }
                     .padding(.horizontal, 16)
@@ -124,36 +124,38 @@ struct GartenPassWheelView: View {
                     
                     // Main Action Button (Exactly like original style)
                     Button(action: {
+                        guard !isSpinning && gartenPfadStore.verfuegbareSpins > 0 else { return }
+                        
+                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                        
                         // Delay for premium 3D feeling (pop-back animation)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
-                            if !isSpinning && gardenStore.gluecksradDrehungen > 0 {
-                                spinWheel()
-                            }
+                            spinWheel()
                         }
                     }) {
-                        if gardenStore.gluecksradDrehungen > 0 {
-                            Text(String(format: settings.localizedString(for: "spin_button_mit_anzahl"), gardenStore.gluecksradDrehungen))
+                        if gartenPfadStore.verfuegbareSpins > 0 {
+                            Text(String(format: NSLocalizedString("wheel_drehen_format", comment: ""), gartenPfadStore.verfuegbareSpins))
                         } else {
-                            Text(settings.localizedString(for: "spin_button_keine"))
+                            Text(NSLocalizedString("wheel_keine_spins", comment: ""))
                         }
                     }
                     .buttonStyle(DuolingoButtonStyle(
                         size: .large,
-                        backgroundColor: gardenStore.gluecksradDrehungen > 0 ? Color.blauPrimary : Color.gray,
-                        shadowColor: gardenStore.gluecksradDrehungen > 0 ? Color.blauSecondary : Color.gray.darker()
+                        backgroundColor: gartenPfadStore.verfuegbareSpins > 0 ? Color.blauPrimary : Color.gray,
+                        shadowColor: gartenPfadStore.verfuegbareSpins > 0 ? Color.blauSecondary : Color.gray.darker()
                     ))
-                    .disabled(isSpinning || gardenStore.gluecksradDrehungen == 0)
+                    .disabled(isSpinning || gartenPfadStore.verfuegbareSpins == 0)
                     .padding(.horizontal, 30)
                     
                     // Back to Pass Button (3D) - Only show when NO SPINS LEFT
-                    if !isSpinning && gardenStore.gluecksradDrehungen == 0 {
+                    if !isSpinning && gartenPfadStore.verfuegbareSpins == 0 {
                         Button(action: {
                             // Delay for premium 3D feeling (pop-back animation)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
                                 dismiss()
                             }
                         }) {
-                            Text(settings.localizedString(for: "ice_wheel_back_button"))
+                            Text(NSLocalizedString("ice_wheel_back_button", comment: ""))
                                 .font(.system(size: 16, weight: .bold))
                         }
                         .buttonStyle(DuolingoButtonStyle(
@@ -185,8 +187,10 @@ struct GartenPassWheelView: View {
     }
     
     private func spinWheel() {
+        guard !isSpinning && gartenPfadStore.verfuegbareSpins > 0 else { return }
         isSpinning = true
-        gardenStore.gluecksradDrehungen -= 1
+        gartenPfadStore.spinVerbrauchen()
+        gardenStore.gluecksradDrehungen = gartenPfadStore.verfuegbareSpins // Keep in sync optionally or stick to PfadStore
         
         let result = GartenPassWheelLogic.spin(decorationCount: gardenStore.placedDecorations.count)
         wonReward = result.belohnung
@@ -295,11 +299,20 @@ struct IceWheelIcon: View {
         Group {
             switch reward {
             case .coins(_):
-                Image(systemName: "dollarsign.circle.fill")
-                    .foregroundColor(.white)
-            case .powerUp(_):
-                Image(systemName: "bolt.fill")
-                    .foregroundColor(.white)
+                Image("coin")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 24, height: 24)
+            case .powerUp(let id):
+                if let pu = GameDatabase.allPowerUps.first(where: { $0.id == id }) {
+                    Image(pu.symbolName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 26, height: 26)
+                } else {
+                    Image(systemName: "bolt.fill")
+                        .foregroundColor(.white)
+                }
             case .pflanze(_):
                 Image(systemName: "leaf.fill")
                     .foregroundColor(.white)
@@ -313,7 +326,7 @@ struct IceWheelIcon: View {
                 Image(systemName: "leaf.fill")
                     .foregroundColor(.white)
             case .weed:
-                Image(systemName: "exclamationmark.triangle.fill")
+                Image(systemName: "ant.fill")
                     .foregroundColor(.white)
             }
         }
@@ -325,70 +338,84 @@ struct IceWheelIcon: View {
 struct IceRewardOverlay: View {
     let reward: GartenPassSpinBelohnung
     let onDismiss: () -> Void
-    @EnvironmentObject var settings: SettingsStore
     
     @State private var contentOpacity: Double = 0
     @State private var iconScale: CGFloat = 0.5
     
     var body: some View {
         ZStack {
-            // Confetti
-            SafeDotLottieView(
-                url: "https://lottie.host/e9ce3227-f1fc-4135-9b98-b1f578638775/77KBz7dIev.lottie",
-                animationConfig: AnimationConfig(autoplay: true, loop: false),
-                fixedSize: UIScreen.main.bounds.size
-            )
+            // Dunkles Dimming
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
             
-            Color.black.opacity(0.45).ignoresSafeArea()
-            
-            VStack(spacing: 20) {
-                // Reward Icon
+            // schwebende Card
+            VStack(spacing: 16) {
+                // Icon in blauem Kreis
                 ZStack {
                     Circle()
-                        .fill(Color.blauPrimary.opacity(0.1))
-                        .frame(width: 100, height: 100)
+                        .fill(Color.blauPrimary.opacity(0.15))
+                        .frame(width: 88, height: 88)
                     
                     IceWheelIcon(reward: reward)
-                        .font(.system(size: 60))
-                        .foregroundColor(reward == .weed ? .orangePrimary : Color.blauPrimary)
+                        .scaleEffect(1.5)
+                        .foregroundColor(Color.blauPrimary)
                 }
                 .scaleEffect(iconScale)
                 
-                VStack(spacing: 8) {
-                    Text(settings.localizedString(for: "ice_wheel_reward_title"))
-                        .font(.title2.bold())
-                    
-                    Text(rewardName)
-                        .font(.title3.bold())
-                        .foregroundStyle(.secondary)
-                }
+                // Titel
+                Text(NSLocalizedString("wheel_gewonnen", comment: ""))
+                    .font(.title2.bold())
+                    .foregroundColor(.primary)
                 
-                Button(action: {
+                // Gewinn-Text
+                Text(rewardName)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                
+                // 3D Button - Weiter
+                Button {
                     // Delay for premium 3D feeling (pop-back animation)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
                         onDismiss()
                     }
-                }) {
-                    Text(settings.localizedString(for: "dailyspin.button.continue"))
-                        .font(.system(size: 17, weight: .bold, design: .rounded))
+                } label: {
+                    Text(NSLocalizedString("wheel_weiter", comment: ""))
+                        .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(DuolingoButtonStyle(
-                    size: .large,
-                    fillWidth: true,
-                    backgroundColor: .gruenPrimary,
-                    shadowColor: Color.gruenPrimary.darker(),
-                    foregroundColor: .white
-                ))
+                .buttonStyle(DuolingoButtonStyle(size: .large))
+                .padding(.top, 8)
             }
             .padding(28)
             .background(
-                RoundedRectangle(cornerRadius: 32, style: .continuous)
-                    .fill(Color(UIColor.systemBackground))
-                    .shadow(color: .black.opacity(0.15), radius: 32, x: 0, y: 16)
+                ZStack(alignment: .bottom) {
+                    // 3D Shadow Layer (Base)
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .fill(Color(hex: "#E0E0E0"))
+                        .offset(y: 8)
+                    
+                    // Main White Surface
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .fill(Color(UIColor.systemBackground))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                .stroke(Color.black.opacity(0.1), lineWidth: 1.5)
+                        )
+                }
             )
-            .padding(.horizontal, 32)
+            .padding(.horizontal, 28)
             .opacity(contentOpacity)
         }
+        .overlay(
+            SafeDotLottieView(
+                url: "https://lottie.host/e9ce3227-f1fc-4135-9b98-b1f578638775/77KBz7dIev.lottie",
+                animationConfig: AnimationConfig(autoplay: true, loop: false),
+                fixedSize: CGSize(width: 800, height: 800)
+            )
+            .frame(width: 800, height: 800)
+            .allowsHitTesting(false)
+            .opacity(contentOpacity)
+        )
         .onAppear {
             withAnimation(.spring(response: 0.45, dampingFraction: 0.7)) {
                 contentOpacity = 1.0
@@ -400,19 +427,19 @@ struct IceRewardOverlay: View {
     private var rewardName: String {
         switch reward {
         case .coins(let n):
-            return String(format: settings.localizedString(for: "reward.coins_format"), n)
+            return String(format: NSLocalizedString("reward.coins_format", comment: ""), n)
         case .powerUp(let id):
-            return settings.localizedString(for: id)
+            return NSLocalizedString(id, comment: "")
         case .pflanze(let id):
-            return settings.localizedString(for: id + ".name")
+            return NSLocalizedString(id + ".name", comment: "")
         case .deko(_):
-            return settings.localizedString(for: "wheel.reward.deko")
+            return NSLocalizedString("wheel.reward.deko", comment: "")
         case .xp(let n):
-            return "\(n) \(settings.localizedString(for: "pass.xp"))"
+            return "\(n) \(NSLocalizedString("pass.xp", comment: ""))"
         case .seeds(let n):
-            return String(format: settings.localizedString(for: "reward.seeds_format"), n)
+            return String(format: NSLocalizedString("reward.seeds_format", comment: ""), n)
         case .weed:
-            return settings.localizedString(for: "wheel.reward.weed")
+            return NSLocalizedString("wheel.reward.weed", comment: "")
         }
     }
 }

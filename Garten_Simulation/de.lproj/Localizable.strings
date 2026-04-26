@@ -77,9 +77,11 @@
 "button.delete" = "Entfernen";
 "button.done" = "Fertig";
 "button.ok" = "OK";
+"button.edit" = "Bearbeiten";
 "button.restart" = "Neustarten";
 "button.save_create" = "Speichern & Erstellen";
 "button.use" = "Einsetzen";
+"button.view_90_day_path" = "90-Tage Pfad ansehen";
 "button.water" = "Gießen";
 "category.coins" = "Coins";
 "category.daytime" = "Tageszeit";
@@ -105,8 +107,10 @@
 "common.active" = "Aktiv";
 "common.active_until_format" = "Aktiv bis: %@";
 "common.details" = "DETAILS";
+"common.close" = "Schließen";
 "common.done" = "FERTIG";
 "common.done_button" = "Fertig";
+"common.habit" = "GEWOHNHEIT";
 "common.fri" = "F";
 "common.history" = "VERLAUF";
 "common.liter" = "Liter";
@@ -116,6 +120,7 @@
 "common.plant_fallback" = "Pflanze";
 "common.remaining_format" = "Noch %@";
 "common.sat" = "S";
+"common.select_day" = "Tag auswählen";
 "common.sun" = "S";
 "common.thu" = "D";
 "common.total" = "Gesamt";
@@ -144,6 +149,7 @@
 "days.th" = "Do";
 "days.tu" = "Di";
 "days.we" = "Mi";
+"onboarding_tutorial_giessen_erfolg" = "Super, deine Gewohnheit für diesen Tag erledigt!";
 "onboarding_custom_1_blase" = "Perfekt! Erstelle jetzt deine allererste eigene Gewohnheit. Welchen Namen soll sie haben?";
 "onboarding_custom_2_blase" = "Hervorragend! Und nun die zweite Gewohnheit. Du kannst sie ganz nach deinen Wünschen gestalten!";
 "deco.brunnen.desc" = "Beruhigendes Wassergeplätscher.";
@@ -670,6 +676,7 @@
 "settings.share" = "App weiterempfehlen";
 "settings.share.action" = "App teilen";
 "settings.share.desc" = "Gefällt Ihnen die Garten-Simulation? Teilen Sie sie mit Ihren Freunden!";
+"settings.share_text" = "Schau dir meine Garten-Simulation an! 🌿 Ich baue gerade einen wunderschönen Garten auf.";
 "settings.terms" = "Nutzungsbedingungen";
 "settings.terms.desc" = "Durch die Nutzung von Grovy stimmst du folgenden Bedingungen zu:\n\n1. Nutzung\nDie App ist ausschließlich für den privaten Gebrauch bestimmt.\n\n2. Inhalte\nAlle Spielinhalte, Designs und Texte sind Eigentum des Entwicklers.\n\n3. Haftung\nDie App wird ohne Gewährleistung bereitgestellt. Der Entwickler übernimmt keine Haftung für Datenverlust.\n\n4. Änderungen\nDer Entwickler behält sich vor, die App und diese Bedingungen jederzeit zu aktualisieren.\n\n5. Kontakt\nBei Fragen erreichst du uns über den Support in den Einstellungen.";
 "settings.timeskip_simulation" = "ZEITSPRUNG-SIMULATION";
@@ -859,10 +866,16 @@
 "titel.wildgras" = "Wildgras-Großmeister";
 "titel.wisteria" = "Wisteria-Weise";
 "titel.zimt" = "Zimt-Zampano";
-"titel.zitronenbaum" = "Zitronen-Zar";
+"titel.zl_meister" = "Meister-Gärtner";
 "transaction.revive" = "Pflanze wiederbelebt";
 "transaction.sale_format" = "Verkauf: %@";
 "transaction.shop_purchase" = "Shop-Kauf";
+
+/* Ritual Architect */
+"ritual_config_add_habit" = "Gewohnheit hinzufügen";
+"ritual_config_edit" = "Bearbeiten";
+"ritual_config_done" = "Fertig";
+
 "trash.alkohol_flatrate.desc" = "Ein Hauch von Kunst und Zeitlosigkeit.";
 "trash.alkohol_flatrate.name" = "Steinstatue";
 "trash.binge_streaming.desc" = "Perfekt für ein kleines Schläfchen.";
@@ -913,29 +926,31 @@
 "wasser.titel" = "Gießwasser";
 "wasser.zyklus.plural" = "%d Gießvorgänge";
 "wasser.zyklus.singular" = "1 Gießvorgang";
-"weather.detail.difficult" = "Erschwert";
-"weather.detail.double" = "2x";
-"weather.detail.gems" = "COINS";
-"weather.detail.half" = "0.5x";
+"weather.regen.title" = "Regen";
+"weather.regen.subtitle" = "Deine Pflanzen wachsen schneller!";
+"weather.rule.regen" = "Heute bekommst du 50% mehr XP für jede gegossene Pflanze. Nutze den Regen!";
+
+"weather.normal.title" = "Sonnig";
+"weather.normal.subtitle" = "Ein normaler Tag im Garten.";
+"weather.rule.normal" = "Alles läuft wie gewohnt. Gieße deine Pflanzen und sammle Gems und XP.";
+
+"weather.schnee.title" = "Schnee";
+"weather.schnee.subtitle" = "Die Kälte bremst deinen Garten.";
+"weather.rule.schnee" = "Du bekommst heute 30% weniger Gems. Außerdem verlieren Pflanzen etwas schneller Gesundheit.";
+
+"weather.sturm.title" = "Sturm";
+"weather.sturm.subtitle" = "Deine Pflanzen sind in Gefahr!";
+"weather.rule.sturm" = "Sturm schadet deinen Pflanzen stark. Sie verlieren heute dreimal so schnell Gesundheit. Gieße sie rechtzeitig!";
+
+"weather.perfekt.title" = "Regenbogen";
+"weather.perfekt.subtitle" = "Perfektes Wetter für deinen Garten!";
+"weather.rule.perfekt" = "Heute ist alles doppelt so gut! Du bekommst 50% mehr Gems und 50% mehr XP für jede gegossene Pflanze.";
+
+"weather.detail.gems" = "Gems";
+"weather.detail.xp" = "XP";
 "weather.detail.normal" = "Normal";
-"weather.detail.watering" = "GIESSEN";
-"weather.duerre.subtitle" = "Doppeltes Gießen erforderlich!";
-"weather.duerre.title" = "Dürre-Alarm!";
-"weather.new_event" = "Neues Wetter-Event!";
-"weather.normal.subtitle" = "Alles wächst wie geplant";
-"weather.normal.title" = "Ruhiger Tag";
-"weather.perfekt.subtitle" = "Heute doppelte Belohnung!";
-"weather.perfekt.title" = "Perfektes Wetter!";
-"weather.rule.duerre" = "Dürre-Alarm: Heute zweimal gießen.";
-"weather.rule.normal" = "Alles normal. Einmal gießen.";
-"weather.rule.perfekt" = "Perfektes Wetter: Heute doppelte Coins.";
-"weather.rule.schnee" = "Frost: Nur die Hälfte der Coins erhalten.";
-"weather.rule.sturm" = "Sturm: Empfindliche Pflanzen verlieren schneller Level.";
-"weather.schnee.subtitle" = "Heute nur 50% Belohnung";
-"weather.schnee.title" = "Frostwarnung";
-"weather.sturm.subtitle" = "Schwache Pflanzen in Gefahr!";
-"weather.sturm.title" = "Sturm im Anmarsch";
-"weather.today_is" = "Heute gilt";
+"weather.detail.more" = "+50%";
+"weather.detail.less" = "-30%";
 "weed.detail.beschreibung" = "Oh nein! In deinem Garten hat sich Unkraut ausgebreitet. Um es zu entfernen, musst du heute 3 Gewohnheiten abschließen.";
 "weed.detail.button" = "Verstanden";
 "weed.detail.fortschritt" = "Fortschritt: %d von 3";
@@ -1007,28 +1022,15 @@
 "onboarding_tutorial_interaction_success" = "Super gemacht! So wächst dein Garten jeden Tag.";
 
 "tab_pfad" = "Pfad";
-"pfad_phase_einstieg" = "Einstieg";
-"pfad_phase_aufbau" = "Aufbau";
-"pfad_phase_vertiefung" = "Vertiefung";
-"pfad_phase_meisterschaft" = "Meisterschaft";
 "pfad_leer_titel" = "Dein Pfad";
 "pfad_leer_beschreibung" = "Dein Pfad beginnt beim ersten Start der App.";
-"pfad_meilenstein_titel" = "Meilenstein erreicht!";
 "pfad_tag_erledigen" = "Heute erledigen";
 "pfad_tag_erledigt" = "Erledigt";
-"pfad_tag_gesperrt" = "Noch gesperrt";
-"pfad_pflanze_kaufen" = "Pflanze kaufen";
 
 /* Pfad - Timer */
 "pfad_tag_verfuegbar_morgen" = "Morgen verfügbar";
-"pfad_tag_verfuegbar_in" = "Verfügbar in %@";
-"pfad_tag_heute" = "Heute";
 
 /* Pfad - Phasen-Fallback Titel (für Tage ohne eigenen Key) */
-"pfad_phase_tag_titel_einstieg" = "Tagesaufgabe";
-"pfad_phase_tag_titel_aufbau" = "Aufbau-Tag";
-"pfad_phase_tag_titel_vertiefung" = "Vertiefungs-Tag";
-"pfad_phase_tag_titel_meisterschaft" = "Meisterschafts-Tag";
 
 /* Pfad - Fit (alle Phasen-Beschreibungen + Meilensteine) */
 "pfad_fit_day_1_title" = "Der erste Schritt";
@@ -1243,6 +1245,1515 @@
 "pfad_meilenstein_belohnung" = "Pfad-Meilenstein!";
 "pfad_abgeschlossen_belohnung" = "Pfad-Meisterschaft!";
 "pfad_pflanze_kaufen" = "Pflanze kaufen";
-"pfad_tag_gesperrt" = "Noch gesperrt";
 "pfad_tag_verfuegbar_in" = "Verfügbar in %@";
+"pfad_phase_einstieg" = "Einstieg";
+"pfad_phase_aufbau" = "Aufbau";
+"pfad_phase_vertiefung" = "Vertiefung";
+"pfad_phase_meisterschaft" = "Meisterschaft";
+"pfad_tag_heute" = "Heute";
 "common_continue" = "Weiter";
+
+"pfad_schwierigkeit_titel" = "Wie fit bist du schon?";
+"pfad_schwierigkeit_untertitel" = "Wir passen deinen Pfad an dein Level an.";
+"pfad_schwierigkeit_anfaenger" = "Anfänger";
+"pfad_schwierigkeit_anfaenger_desc" = "Ich fange gerade erst an. Schritt für Schritt.";
+"pfad_schwierigkeit_fortgeschritten" = "Fortgeschritten";
+"pfad_schwierigkeit_fortgeschritten_desc" = "Ich hab schon etwas Erfahrung, aber noch keine feste Routine.";
+"pfad_schwierigkeit_experte" = "Experte";
+"pfad_schwierigkeit_experte_desc" = "Ich mache das schon, will aber strukturierter werden.";
+"pfad_schwierigkeit_starten" = "WEITER";
+
+// Ritual Config
+"ritual_config_title" = "Ritual anpassen";
+"ritual_config_headline" = "Baue deine Gewohnheits-Kette";
+"ritual_config_subheadline" = "Ordne deine Gewohnheiten in der Reihenfolge, in der du sie ausführst. Das hilft dir beim Habit Stacking!";
+"ritual_config_start" = "Ritual & Pfad starten";
+"common_abbrechen" = "Abbrechen";
+
+"pfad_igel_titel" = "Pfad-Figuren";
+"pfad_igel_erklaerung" = "Wähle für jede Phase deinen Begleiter aus.";
+"pfad_igel_section_titel" = "Igel pro Phase";
+"pfad_igel_picker_titel" = "Igel für %@";
+
+"pfad_einstellungen_titel" = "Pfad-Einstellungen";
+"pfad_einstellungen_schwierigkeit" = "Schwierigkeitsgrad";
+"pfad_schwierigkeit_hinweis" = "Änderungen gelten nur für zukünftige, noch nicht erledigte Tage.";
+"settings.section.pfad" = "PFAD";
+
+/* Schwierigkeits-Varianten — Fit */
+
+/* Gesund */
+
+/* Produktiv */
+
+/* Mental */
+
+/* Lernen */
+
+"pfad_zuruecksetzen_button" = "Pfad neu starten";
+"pfad_zuruecksetzen_titel" = "Pfad zurücksetzen?";
+"pfad_zuruecksetzen_nachricht" = "Du startest wieder bei Tag 1. Dein bisheriger Fortschritt wird gelöscht.";
+"pfad_zuruecksetzen_bestaetigen" = "Neu starten";
+
+/* ==================== PFAD SCHWIERIGKEIT — DEUTSCH ==================== */
+
+/* Phasen-Fallbacks — fit */
+"pfad_fit_phase_einstieg_desc_anfaenger" = "Halte dein Training aufrecht. Heute: 12 Liegestütze.";
+"pfad_fit_phase_einstieg_desc_fortgeschritten" = "Steigere die Intensität. Heute: 18 Liegestütze + 10 Kniebeugen.";
+"pfad_fit_phase_einstieg_desc_experte" = "Kraft + Ausdauer kombiniert. Heute: 25 Liegestütze + 15 Kniebeugen + 1 Min Plank.";
+"pfad_fit_phase_aufbau_desc_anfaenger" = "Beide Gewohnheiten heute. Sport + bewusst essen.";
+"pfad_fit_phase_aufbau_desc_fortgeschritten" = "Sport vor dem Essen + keine verarbeiteten Lebensmittel.";
+"pfad_fit_phase_aufbau_desc_experte" = "Sport + Ernährung + kalt duschen nach dem Training. Alles verknüpft.";
+"pfad_fit_phase_vertiefung_desc_anfaenger" = "Alle Gewohnheiten kombinieren. Sport direkt vor dem Essen.";
+"pfad_fit_phase_vertiefung_desc_fortgeschritten" = "Vollständige Morgenroutine: Sport → Kalt duschen → gesund essen.";
+"pfad_fit_phase_vertiefung_desc_experte" = "Maximale Routine: Aufstehen → Sport → Kalt duschen → gesund essen → Bewegungsziel.";
+"pfad_fit_phase_meisterschaft_desc_anfaenger" = "Du weißt was zu tun ist. Maximale Leistung heute.";
+"pfad_fit_phase_meisterschaft_desc_fortgeschritten" = "Ganzkörper-Workout + Ernährung perfekt. Kein Kompromiss.";
+"pfad_fit_phase_meisterschaft_desc_experte" = "Elite-Routine: Alles auf höchstem Niveau. Du bist bereit.";
+
+/* Bekannte Tage — fit */
+"pfad_fit_day_1_desc_anfaenger" = "Mach heute 10 Liegestütze. Nicht mehr, nicht weniger.";
+"pfad_fit_day_1_desc_fortgeschritten" = "15 Liegestütze heute. Du weißt wie es geht — leg los.";
+"pfad_fit_day_1_desc_experte" = "20 Liegestütze + direkt danach gesund frühstücken. Beide Gewohnheiten von Tag 1 an.";
+"pfad_fit_day_2_desc_anfaenger" = "Wieder 10 Liegestütze. Konstanz ist alles.";
+"pfad_fit_day_2_desc_fortgeschritten" = "15 Liegestütze + heute bewusst essen — kein Fast Food.";
+"pfad_fit_day_2_desc_experte" = "20 Liegestütze + gesundes Essen + 10.000 Schritte heute.";
+"pfad_fit_day_7_desc_anfaenger" = "20 Liegestütze heute. Eine Woche geschafft!";
+"pfad_fit_day_7_desc_fortgeschritten" = "30 Liegestütze + 1 Minute Plank. Du bist bereit für mehr.";
+"pfad_fit_day_7_desc_experte" = "40 Liegestütze + Plank + Sport direkt vor dem Frühstück. Stack it!";
+"pfad_fit_day_14_desc_anfaenger" = "25 Liegestütze + 2 Minuten Plank. Zwei Wochen!";
+"pfad_fit_day_14_desc_fortgeschritten" = "35 Liegestütze + 3 Minuten Plank + kein Fast Food heute.";
+"pfad_fit_day_14_desc_experte" = "Vollständiges Workout: Kraft + Cardio + beide Gewohnheiten fest verknüpft.";
+"pfad_fit_day_21_desc_anfaenger" = "Sport direkt vor dem Essen — heute zum ersten Mal verknüpfen.";
+"pfad_fit_day_21_desc_fortgeschritten" = "Sport + Essen verknüpft + kalt duschen nach dem Training.";
+"pfad_fit_day_21_desc_experte" = "Morgenroutine: Aufstehen → Sport → Kalt duschen → gesund essen. Alles in einem Block.";
+"pfad_fit_day_30_desc_anfaenger" = "30 Tage Fitness! Heute: so viele Liegestütze wie möglich.";
+"pfad_fit_day_30_desc_fortgeschritten" = "Ein Monat! Heute: maximales Workout + perfekte Ernährung.";
+"pfad_fit_day_30_desc_experte" = "30 Tage Elite-Routine. Heute: alles auf Maximum. Du bist ein anderer Mensch.";
+"pfad_fit_day_45_desc_anfaenger" = "Halbzeit! Kraft + 20 Min Cardio heute.";
+"pfad_fit_day_45_desc_fortgeschritten" = "Halbzeit! Ganzkörper-Workout + Ernährung + kalt duschen.";
+"pfad_fit_day_45_desc_experte" = "Halbzeit! Maximale Leistung heute — zeig was 45 Tage bewirkt haben.";
+"pfad_fit_day_60_desc_anfaenger" = "Zwei Monate! Dein Körper hat sich verändert. Feier das mit einem starken Training.";
+"pfad_fit_day_60_desc_fortgeschritten" = "Zwei Monate! Ganzkörper-Workout ohne Pause + perfekte Ernährung.";
+"pfad_fit_day_60_desc_experte" = "Zwei Monate Elite. Heute: alles was du gelernt hast in einem einzigen Tag.";
+"pfad_fit_day_90_desc_anfaenger" = "90 Tage! Du bist nicht mehr derselbe Mensch. Das ist dein neues Normal.";
+"pfad_fit_day_90_desc_fortgeschritten" = "90 Tage Fortschritt. Du hast Fitness zur Gewohnheit gemacht. Weiter so.";
+"pfad_fit_day_90_desc_experte" = "90 Tage Meisterschaft. Du bist jetzt jemand der das einfach macht.";
+
+/* Phasen-Fallbacks — gesund */
+"pfad_gesund_phase_einstieg_desc_anfaenger" = "Wasser trinken + eine Portion Obst heute.";
+"pfad_gesund_phase_einstieg_desc_fortgeschritten" = "Wasser + Obst + kein Zucker heute.";
+"pfad_gesund_phase_einstieg_desc_experte" = "Wasser + Obst + Gemüse bei jeder Mahlzeit + 10 Min Bewegung.";
+"pfad_gesund_phase_aufbau_desc_anfaenger" = "Wasser + Gemüse + kurzer Spaziergang nach dem Essen.";
+"pfad_gesund_phase_aufbau_desc_fortgeschritten" = "Wasser + Gemüse + 20 Min Bewegung + früh ins Bett.";
+"pfad_gesund_phase_aufbau_desc_experte" = "Vollständige Gesundheitsroutine: Wasser + Ernährung + Bewegung + Schlaf optimiert.";
+"pfad_gesund_phase_vertiefung_desc_anfaenger" = "Alle Gesundheitsgewohnheiten heute kombinieren.";
+"pfad_gesund_phase_vertiefung_desc_fortgeschritten" = "Perfekter Gesundheitstag: Wasser + Ernährung + Bewegung + Schlaf.";
+"pfad_gesund_phase_vertiefung_desc_experte" = "Maximaler Gesundheitstag. Kein Kompromiss bei Ernährung, Bewegung und Schlaf.";
+"pfad_gesund_phase_meisterschaft_desc_anfaenger" = "Gesundheit ist dein Alltag. Heute alles zusammen.";
+"pfad_gesund_phase_meisterschaft_desc_fortgeschritten" = "Meisterschaft der Gesundheit. Dein bester Tag heute.";
+"pfad_gesund_phase_meisterschaft_desc_experte" = "Elite-Gesundheit. Du lebst es — heute auf höchstem Niveau.";
+
+/* Bekannte Tage — gesund */
+"pfad_gesund_day_1_desc_anfaenger" = "Ein großes Glas Wasser direkt nach dem Aufwachen.";
+
+/* Generische Vorlagen für sonstige Gewohnheiten */
+
+/* Detail-Ansicht Kategorien */
+"pfad_symbolik_titel" = "Symbolik der Pflanze";
+"pfad_detail_fitness_title" = "Körperlicher Fokus";
+"pfad_detail_fitness_subtitle" = "Diese Gewohnheit stärkt deine physische Präsenz.";
+"pfad_detail_mental_title" = "Mentale Stärke";
+"pfad_detail_mental_subtitle" = "Ruhe und Fokus sind deine stärksten Werkzeuge.";
+"pfad_detail_growth_title" = "Wachstum & Lernen";
+"pfad_detail_growth_subtitle" = "Dein Wissen ist die wertvollste Investition.";
+"pfad_detail_health_title" = "Vitalität & Wohlbefinden";
+"pfad_detail_health_subtitle" = "Dein Körper ist dein Tempel. Pflege ihn.";
+"pfad_detail_lifestyle_title" = "Routine & Alltag";
+"pfad_detail_lifestyle_subtitle" = "Kleine tägliche Schritte führen zu großen Zielen.";
+
+/* ROUTINE SEQUENZ */
+"pfad_routine_step_first" = "Zuerst: %@";
+"pfad_routine_step_next" = "Danach: %@";
+"pfad_routine_step_last" = "Zum Abschluss: %@";
+"pfad_routine_context_before" = "Davor hast du %@ gemacht.";
+"pfad_routine_context_after" = "Als Nächstes folgt %@.";
+"pfad_routine_plan_header" = "Dein heutiger Plan";
+"pfad_detail_time_label" = "%@ Uhr";
+"pfad_detail_next_step" = "Nächster Schritt";
+"pfad_detail_previous_step" = "Vorheriger Schritt";
+
+/* PFAD — LOTUS (MEDITATION) */
+
+/* PFAD — APFELBAUM (GESUND KOCHEN) */
+
+/* PFAD — WILDGRAS (LAUFEN/WALKEN) */
+
+/* PFAD — KAKTUS (KALT DUSCHEN) */
+
+/* PFAD — SONNENBLUME (DER FRÜHE VOGEL) */
+
+/* PFAD — ZITRONENBAUM (WASSER TRINKEN) */
+
+/* PFAD — KLEE (DANKBARKEIT) */
+
+/* PFAD — WEIZENFELD (FOKUS & DEEP WORK) */
+
+/* Pflanzenspezifische Pfade — Beispiele */
+/* PFAD — BAMBUS (KRAFTTRAINING) */
+
+/* PFAD — WEINREBE (KEIN ALKOHOL) */
+
+/* PFAD — MINZPFLANZE (ZAHNPFLEGE) */
+
+/* PFAD — MANDELBAUM (FINANZEN) */
+
+/* PFAD — LAVENDEL (SCHLAFROUTINE) */
+
+/* PFAD — EFEU (DEHNEN/FLEXIBILITÄT) */
+
+/* PFAD — ALOE VERA (BILDSCHIRMZEIT) */
+
+/* PFAD — ERDBEERPFLANZE (ERNÄHRUNG) */
+
+/* PFAD — CHRYSANTHEME (AUFRÄUMEN) */
+
+/* PFAD — MYSTIC SEED (ATEMARBEIT) */
+
+"pfad_gesund_day_1_desc_fortgeschritten" = "Wasser nach dem Aufwachen + kein Zucker beim Frühstück.";
+"pfad_gesund_day_1_desc_experte" = "Wasser + Obst + 10 Minuten Spaziergang — alles direkt am Morgen.";
+"pfad_gesund_day_2_desc_anfaenger" = "Wieder Wasser nach dem Aufwachen. Dazu ein Stück Obst.";
+"pfad_gesund_day_2_desc_fortgeschritten" = "Wasser + Obst + heute keine verarbeiteten Lebensmittel.";
+"pfad_gesund_day_2_desc_experte" = "Wasser + vollständig gesundes Frühstück + 15 Min Bewegung.";
+"pfad_gesund_day_7_desc_anfaenger" = "Eine Woche Morgen-Wasser! Heute zusätzlich Gemüse zum Mittag.";
+"pfad_gesund_day_7_desc_fortgeschritten" = "Eine Woche! Wasser + Gemüse + 20 Min Spaziergang.";
+"pfad_gesund_day_7_desc_experte" = "Eine Woche Vollprogramm! Wasser + Ernährung + Bewegung + früh schlafen.";
+"pfad_gesund_day_14_desc_anfaenger" = "Zwei Wochen! Gemüse bei jeder Mahlzeit heute.";
+"pfad_gesund_day_14_desc_fortgeschritten" = "Zwei Wochen! Perfekte Ernährung + 30 Min Bewegung.";
+"pfad_gesund_day_14_desc_experte" = "Zwei Wochen Elite-Gesundheit. Heute alles perfekt.";
+"pfad_gesund_day_21_desc_anfaenger" = "Nach jedem Essen kurz spazieren — 10 Minuten reichen.";
+"pfad_gesund_day_21_desc_fortgeschritten" = "Essen + Bewegung direkt verknüpft + kein Alkohol heute.";
+"pfad_gesund_day_21_desc_experte" = "Perfekter Gesundheitstag: Wasser + Ernährung + Bewegung + Schlaf alles optimiert.";
+"pfad_gesund_day_30_desc_anfaenger" = "Ein Monat gesund! Heute: bewusst genießen ohne schlechtes Gewissen.";
+"pfad_gesund_day_30_desc_fortgeschritten" = "Ein Monat! Heute: perfekter Ernährungstag + 45 Min Bewegung.";
+"pfad_gesund_day_30_desc_experte" = "Ein Monat Elite-Gesundheit. Heute: alles auf Maximum.";
+"pfad_gesund_day_45_desc_anfaenger" = "Halbzeit! Gesundheit ist Gewohnheit geworden. Weiter so.";
+"pfad_gesund_day_45_desc_fortgeschritten" = "Halbzeit! Füge heute Krafttraining zur Ernährungsroutine hinzu.";
+"pfad_gesund_day_45_desc_experte" = "Halbzeit! Maximaler Gesundheitstag — dein bisher bester.";
+"pfad_gesund_day_60_desc_anfaenger" = "Zwei Monate! Dein Körper dankt es dir.";
+"pfad_gesund_day_60_desc_fortgeschritten" = "Zwei Monate! Heute: perfekter Tag — Ernährung + Bewegung + Schlaf.";
+"pfad_gesund_day_60_desc_experte" = "Zwei Monate Elite. Heute: alles zusammen auf höchstem Niveau.";
+"pfad_gesund_day_90_desc_anfaenger" = "90 Tage! Gesundheit ist dein Leben geworden.";
+"pfad_gesund_day_90_desc_fortgeschritten" = "90 Tage Gesundheit. Du hast es zur Gewohnheit gemacht.";
+"pfad_gesund_day_90_desc_experte" = "90 Tage Elite-Gesundheit. Du bist jetzt jemand der gesund lebt.";
+
+/* Phasen-Fallbacks — produktiv */
+"pfad_produktiv_phase_einstieg_desc_anfaenger" = "Eine Pomodoro-Einheit heute. Handy weg für 25 Minuten.";
+"pfad_produktiv_phase_einstieg_desc_fortgeschritten" = "Zwei Pomodoro-Einheiten + To-Do-Liste für morgen.";
+"pfad_produktiv_phase_einstieg_desc_experte" = "90 Minuten Deep Work + Tagesplanung + Reflexion am Abend.";
+"pfad_produktiv_phase_aufbau_desc_anfaenger" = "Fokus-Block + wichtigste Aufgabe zuerst erledigen.";
+"pfad_produktiv_phase_aufbau_desc_fortgeschritten" = "Zwei Fokus-Blöcke + Benachrichtigungen aus + Tagesplanung.";
+"pfad_produktiv_phase_aufbau_desc_experte" = "Maximale Tiefarbeit + Morgenplanung + Abend-Reflexion.";
+"pfad_produktiv_phase_vertiefung_desc_anfaenger" = "Fokus direkt nach dem Frühstück — bevor Ablenkungen kommen.";
+"pfad_produktiv_phase_vertiefung_desc_fortgeschritten" = "Morgenroutine: Plan → Fokus → keine Unterbrechungen.";
+"pfad_produktiv_phase_vertiefung_desc_experte" = "Elite-Produktivität: Morgenplanung + 3h Deep Work + Abend-Review.";
+"pfad_produktiv_phase_meisterschaft_desc_anfaenger" = "Produktivität ist Gewohnheit. Heute alles zusammen.";
+"pfad_produktiv_phase_meisterschaft_desc_fortgeschritten" = "Maximale Fokus-Session heute. Dein bisher produktivster Tag.";
+"pfad_produktiv_phase_meisterschaft_desc_experte" = "Elite-Tag: Tiefarbeit auf höchstem Niveau. Kein Kompromiss.";
+
+/* Bekannte Tage — produktiv */
+"pfad_produktiv_day_1_desc_anfaenger" = "25 Minuten ohne Ablenkung arbeiten (Pomodoro).";
+"pfad_produktiv_day_1_desc_fortgeschritten" = "45 Minuten Deep Work — Handy in einem anderen Raum.";
+"pfad_produktiv_day_1_desc_experte" = "90 Minuten Tiefarbeit am Stück + To-Do-Liste abends für morgen.";
+"pfad_produktiv_day_2_desc_anfaenger" = "Wieder 25 Minuten Fokus. Gleiche Zeit wie gestern.";
+"pfad_produktiv_day_2_desc_fortgeschritten" = "45 Minuten + heute die wichtigste Aufgabe zuerst.";
+"pfad_produktiv_day_2_desc_experte" = "90 Minuten + Morgenplanung: 3 Aufgaben aufschreiben bevor du anfängst.";
+"pfad_produktiv_day_7_desc_anfaenger" = "Steigere auf 45 Minuten. Du hast eine Woche Fokus bewiesen.";
+"pfad_produktiv_day_7_desc_fortgeschritten" = "60 Minuten Deep Work + To-Do-Liste + keine Social Media am Morgen.";
+"pfad_produktiv_day_7_desc_experte" = "2 Stunden Tiefarbeit + vollständige Tagesplanung + Abend-Reflexion.";
+"pfad_produktiv_day_14_desc_anfaenger" = "To-Do-Liste mit max. 3 Aufgaben + 45 Min Fokus.";
+"pfad_produktiv_day_14_desc_fortgeschritten" = "90 Minuten Deep Work + Prioritäten-System einführen.";
+"pfad_produktiv_day_14_desc_experte" = "3 Stunden Tiefarbeit + Wochenplanung + Abend-Review.";
+"pfad_produktiv_day_21_desc_anfaenger" = "Kaffee trinken → sofort mit wichtigster Aufgabe starten. Verknüpfen.";
+"pfad_produktiv_day_21_desc_fortgeschritten" = "Morgenroutine: Planen → Fokus-Block → keine Unterbrechungen bis Mittag.";
+"pfad_produktiv_day_21_desc_experte" = "Elite-Morgen: Aufstehen → Planung → 3h Tiefarbeit → Review. Kein Handy bis 12 Uhr.";
+"pfad_produktiv_day_30_desc_anfaenger" = "30 Tage Fokus! Heute: 60 Minuten Deep Work in einem Block.";
+"pfad_produktiv_day_30_desc_fortgeschritten" = "Ein Monat! 90 Minuten Tiefarbeit + perfekte Tagesplanung.";
+"pfad_produktiv_day_30_desc_experte" = "30 Tage Elite-Produktivität. Heute: dein produktivster Tag.";
+"pfad_produktiv_day_45_desc_anfaenger" = "Halbzeit! Fokus ist zur Gewohnheit geworden.";
+"pfad_produktiv_day_45_desc_fortgeschritten" = "Halbzeit! 2 Stunden Deep Work + vollständige Tagesplanung.";
+"pfad_produktiv_day_45_desc_experte" = "Halbzeit! Maximale Tiefarbeit — zeig was 45 Tage bewirkt haben.";
+"pfad_produktiv_day_60_desc_anfaenger" = "Zwei Monate Fokus! Heute ohne Timer — du weißt selbst wann du fokussiert bist.";
+"pfad_produktiv_day_60_desc_fortgeschritten" = "Zwei Monate! Heute: dein bisher produktivster Tag.";
+"pfad_produktiv_day_60_desc_experte" = "Zwei Monate Elite. Heute: Tiefarbeit auf absolutem Maximum.";
+"pfad_produktiv_day_90_desc_anfaenger" = "90 Tage Fokus. Du hast Tiefarbeit zur Gewohnheit gemacht.";
+"pfad_produktiv_day_90_desc_fortgeschritten" = "90 Tage! Das unterscheidet dich von 95% aller Menschen.";
+"pfad_produktiv_day_90_desc_experte" = "90 Tage Elite-Produktivität. Du bist jetzt jemand der einfach tief arbeitet.";
+
+/* Phasen-Fallbacks — mental */
+"pfad_mental_phase_einstieg_desc_anfaenger" = "2 Minuten Atmen. Einfach nur atmen.";
+"pfad_mental_phase_einstieg_desc_fortgeschritten" = "5 Minuten Meditation + 3 Dankbarkeits-Punkte.";
+"pfad_mental_phase_einstieg_desc_experte" = "10 Minuten Meditation + Journaling + kein Social Media vor 10 Uhr.";
+"pfad_mental_phase_aufbau_desc_anfaenger" = "Meditation + kurz draußen ohne Handy.";
+"pfad_mental_phase_aufbau_desc_fortgeschritten" = "Meditation + Journaling + Digital Detox für 2 Stunden.";
+"pfad_mental_phase_aufbau_desc_experte" = "Tiefe Meditation + Journaling + kein Social Media vor Mittag + Naturzeit.";
+"pfad_mental_phase_vertiefung_desc_anfaenger" = "Meditation direkt nach dem Aufwachen + Dankbarkeit.";
+"pfad_mental_phase_vertiefung_desc_fortgeschritten" = "Morgen-Meditation + Journaling + Abend-Reflexion.";
+"pfad_mental_phase_vertiefung_desc_experte" = "Morgen-Meditation + Journaling + Mittagspause draußen + Abend-Reflexion.";
+"pfad_mental_phase_meisterschaft_desc_anfaenger" = "Mentale Stärke ist Gewohnheit. Heute alles zusammen.";
+"pfad_mental_phase_meisterschaft_desc_fortgeschritten" = "Maximale mentale Routine. Dein stärkster Tag.";
+"pfad_mental_phase_meisterschaft_desc_experte" = "Elite-Mentalität. Heute auf absolutem Niveau.";
+
+/* Bekannte Tage — mental */
+"pfad_mental_day_1_desc_anfaenger" = "2 Minuten nur atmen. Nichts anderes heute.";
+"pfad_mental_day_1_desc_fortgeschritten" = "5 Minuten Meditation + 3 Dankbarkeits-Punkte aufschreiben.";
+"pfad_mental_day_1_desc_experte" = "10 Minuten Meditation + Journaling + kein Social Media vor 10 Uhr.";
+"pfad_mental_day_2_desc_anfaenger" = "Wieder 2 Minuten atmen. Zur gleichen Zeit wie gestern.";
+"pfad_mental_day_2_desc_fortgeschritten" = "5 Minuten Meditation + heute abend 5 Minuten Journaling.";
+"pfad_mental_day_2_desc_experte" = "10 Minuten Meditation + Journaling + Digital Detox für 1 Stunde.";
+"pfad_mental_day_7_desc_anfaenger" = "5 Minuten in absoluter Stille meditieren.";
+"pfad_mental_day_7_desc_fortgeschritten" = "10 Minuten Meditation + Journaling + kein Social Media am Morgen.";
+"pfad_mental_day_7_desc_experte" = "15 Minuten Meditation + Journaling + 30 Min draußen ohne Handy.";
+"pfad_mental_day_14_desc_anfaenger" = "3 Dinge aufschreiben für die du heute dankbar bist.";
+"pfad_mental_day_14_desc_fortgeschritten" = "10 Minuten Meditation + Dankbarkeit + Journaling.";
+"pfad_mental_day_14_desc_experte" = "20 Minuten Meditation + vollständiges Journaling + Digital Detox heute.";
+"pfad_mental_day_21_desc_anfaenger" = "Meditieren direkt nach dem Aufwachen — bevor du das Handy anschaust.";
+"pfad_mental_day_21_desc_fortgeschritten" = "Morgen-Meditation + Journaling + kein Social Media vor Mittag.";
+"pfad_mental_day_21_desc_experte" = "Elite-Morgen: Meditation → Journaling → Natur → kein Handy bis 12 Uhr.";
+"pfad_mental_day_30_desc_anfaenger" = "15 Minuten Meditation + Journaling. Ein Monat!";
+"pfad_mental_day_30_desc_fortgeschritten" = "Ein Monat! 20 Minuten Meditation + vollständiges Journaling.";
+"pfad_mental_day_30_desc_experte" = "30 Tage Elite-Mentalität. Heute: dein stärkster Tag.";
+"pfad_mental_day_45_desc_anfaenger" = "Halbzeit! Lass heute einen schwierigen Gedanken los.";
+"pfad_mental_day_45_desc_fortgeschritten" = "Halbzeit! Tiefe Meditation + Journaling + Naturzeit.";
+"pfad_mental_day_45_desc_experte" = "Halbzeit! Maximale mentale Stärke heute.";
+"pfad_mental_day_60_desc_anfaenger" = "Zwei Monate! 20 Minuten Meditation heute.";
+"pfad_mental_day_60_desc_fortgeschritten" = "Zwei Monate! Tiefe Meditation + Journaling + Digital Detox.";
+"pfad_mental_day_60_desc_experte" = "Zwei Monate Elite-Mentalität. Heute alles auf Maximum.";
+"pfad_mental_day_90_desc_anfaenger" = "90 Tage! Dein Geist ist ruhiger und stärker geworden.";
+"pfad_mental_day_90_desc_fortgeschritten" = "90 Tage! Du hast gelernt deinen Geist zu benutzen.";
+"pfad_mental_day_90_desc_experte" = "90 Tage Elite-Mentalität. Dein Geist ist dein stärkstes Werkzeug.";
+
+/* Phasen-Fallbacks — lernen */
+"pfad_lernen_phase_einstieg_desc_anfaenger" = "5 Seiten lesen heute.";
+"pfad_lernen_phase_einstieg_desc_fortgeschritten" = "10 Seiten lesen + 3 wichtige Punkte notieren.";
+"pfad_lernen_phase_einstieg_desc_experte" = "15 Seiten + Notizen + das Gelesene mit eigenen Worten zusammenfassen.";
+"pfad_lernen_phase_aufbau_desc_anfaenger" = "Täglich lesen + Notizen machen.";
+"pfad_lernen_phase_aufbau_desc_fortgeschritten" = "Lesen + Notizen + Podcast zu einem relevanten Thema.";
+"pfad_lernen_phase_aufbau_desc_experte" = "Lesen + Notizen + Podcast + Erkläre jemandem was du gelernt hast.";
+"pfad_lernen_phase_vertiefung_desc_anfaenger" = "Lesen direkt nach dem Frühstück als feste Routine.";
+"pfad_lernen_phase_vertiefung_desc_fortgeschritten" = "Lesen + Notizen + aktives Wiederholen von gestern.";
+"pfad_lernen_phase_vertiefung_desc_experte" = "Lesen + Notizen + Wiederholung + Anwendung des Gelernten heute.";
+"pfad_lernen_phase_meisterschaft_desc_anfaenger" = "Tägliches Lernen ist Gewohnheit. Heute alles zusammen.";
+"pfad_lernen_phase_meisterschaft_desc_fortgeschritten" = "Maximales Lernen heute. Dein wissensstärkster Tag.";
+"pfad_lernen_phase_meisterschaft_desc_experte" = "Elite-Lernen. Heute auf absolutem Niveau.";
+
+/* Bekannte Tage — lernen */
+"pfad_lernen_day_1_desc_anfaenger" = "5 Seiten in einem Buch deiner Wahl lesen.";
+"pfad_lernen_day_1_desc_fortgeschritten" = "10 Seiten lesen + 3 wichtige Punkte notieren.";
+"pfad_lernen_day_1_desc_experte" = "15 Seiten lesen + Notizen + das Gelesene jemandem erklären.";
+"pfad_lernen_day_2_desc_anfaenger" = "Wieder 5 Seiten. Gleiche Zeit wie gestern — Ritual aufbauen.";
+"pfad_lernen_day_2_desc_fortgeschritten" = "10 Seiten + Notizen + Gestern kurz wiederholen.";
+"pfad_lernen_day_2_desc_experte" = "15 Seiten + Notizen + Gestern wiederholen + Zusammenfassung schreiben.";
+"pfad_lernen_day_7_desc_anfaenger" = "Eine Woche täglich gelesen! Erhöhe auf 10 Seiten.";
+"pfad_lernen_day_7_desc_fortgeschritten" = "Eine Woche! 15 Seiten + vollständige Notizen.";
+"pfad_lernen_day_7_desc_experte" = "Eine Woche Elite-Lernen! 20 Seiten + Notizen + Wochenzusammenfassung.";
+"pfad_lernen_day_14_desc_anfaenger" = "Notizen zu den wichtigsten Punkten deines Lesestoffs.";
+"pfad_lernen_day_14_desc_fortgeschritten" = "Zwei Wochen! 15 Seiten + Notizen + Podcast heute.";
+"pfad_lernen_day_14_desc_experte" = "Zwei Wochen Elite! 20 Seiten + Notizen + erkläre jemandem was du weißt.";
+"pfad_lernen_day_21_desc_anfaenger" = "Lesen direkt nach dem Frühstück — bevor der Tag beginnt.";
+"pfad_lernen_day_21_desc_fortgeschritten" = "Lesen + Notizen + Podcast + aktives Wiederholen verknüpft.";
+"pfad_lernen_day_21_desc_experte" = "Elite-Lern-Routine: Lesen → Notizen → Wiederholen → Anwenden. Alles heute.";
+"pfad_lernen_day_30_desc_anfaenger" = "Ein Monat täglich gelernt! Schreibe eine Zusammenfassung.";
+"pfad_lernen_day_30_desc_fortgeschritten" = "Ein Monat! 20 Seiten + vollständige Zusammenfassung des Monats.";
+"pfad_lernen_day_30_desc_experte" = "30 Tage Elite-Lernen. Heute: dein wissensstärkster Tag.";
+"pfad_lernen_day_45_desc_anfaenger" = "Halbzeit! Wissen ist zur Gewohnheit geworden.";
+"pfad_lernen_day_45_desc_fortgeschritten" = "Halbzeit! 20 Seiten am Stück + Notizen + Wiederholung.";
+"pfad_lernen_day_45_desc_experte" = "Halbzeit! Maximales Lernen heute.";
+"pfad_lernen_day_60_desc_anfaenger" = "Zwei Monate täglich gelernt! Erkläre jemandem etwas das du gelernt hast.";
+"pfad_lernen_day_60_desc_fortgeschritten" = "Zwei Monate! Dein Wissen wächst täglich. Heute: 25 Seiten.";
+"pfad_lernen_day_60_desc_experte" = "Zwei Monate Elite-Lernen. Heute alles auf Maximum.";
+"pfad_lernen_day_90_desc_anfaenger" = "90 Tage täglich gelernt. Eine der wertvollsten Gewohnheiten der Welt.";
+"pfad_lernen_day_90_desc_fortgeschritten" = "90 Tage! Du hast tägliches Lernen zur Gewohnheit gemacht.";
+"pfad_lernen_day_90_desc_experte" = "90 Tage Elite-Lernen. Du bist jetzt jemand der täglich wächst.";
+
+/* Phasen-Fallbacks — fehlt */
+"pfad_fehlt_phase_einstieg_desc_anfaenger" = "Dein eigener Weg. Kleiner Schritt heute.";
+"pfad_fehlt_phase_einstieg_desc_fortgeschritten" = "Dein Weg. Heute etwas mehr als gestern.";
+"pfad_fehlt_phase_einstieg_desc_experte" = "Dein Weg auf höchstem Niveau. Heute maximaler Einsatz.";
+"pfad_fehlt_phase_aufbau_desc_anfaenger" = "Beide Gewohnheiten heute kombinieren.";
+"pfad_fehlt_phase_aufbau_desc_fortgeschritten" = "Gewohnheiten verknüpfen und steigern.";
+"pfad_fehlt_phase_aufbau_desc_experte" = "Alle Gewohnheiten auf höchstem Niveau verknüpft.";
+"pfad_fehlt_phase_vertiefung_desc_anfaenger" = "Gewohnheiten in den Alltag integrieren.";
+"pfad_fehlt_phase_vertiefung_desc_fortgeschritten" = "Gewohnheiten als feste Routine verankern.";
+"pfad_fehlt_phase_vertiefung_desc_experte" = "Elite-Routine: Alle Gewohnheiten automatisch und auf Maximum.";
+"pfad_fehlt_phase_meisterschaft_desc_anfaenger" = "Meisterschaft deines eigenen Ziels. Heute alles.";
+"pfad_fehlt_phase_meisterschaft_desc_fortgeschritten" = "Dein persönliches Maximum heute.";
+"pfad_fehlt_phase_meisterschaft_desc_experte" = "Elite deines eigenen Weges. Kein Kompromiss heute.";
+
+/* Bekannte Tage — fehlt */
+"pfad_fehlt_day_1_desc_anfaenger" = "Erster Tag deines Ziels. Kleinster möglicher Schritt heute.";
+"pfad_fehlt_day_1_desc_fortgeschritten" = "Du kennst dein Ziel. Heute direkt mit mittlerer Intensität starten.";
+"pfad_fehlt_day_1_desc_experte" = "Du bist erfahren. Heute sofort auf hohem Niveau starten.";
+"pfad_fehlt_day_2_desc_anfaenger" = "Wieder der kleinste Schritt. Konstanz vor Intensität.";
+"pfad_fehlt_day_2_desc_fortgeschritten" = "Tag 2. Etwas mehr als gestern.";
+"pfad_fehlt_day_2_desc_experte" = "Tag 2. Volles Programm.";
+"pfad_fehlt_day_7_desc_anfaenger" = "Eine Woche deines eigenen Weges. Bleib treu.";
+"pfad_fehlt_day_7_desc_fortgeschritten" = "Eine Woche! Erhöhe die Intensität leicht.";
+"pfad_fehlt_day_7_desc_experte" = "Eine Woche Elite. Heute auf Maximum.";
+"pfad_fehlt_day_14_desc_anfaenger" = "14 Tage Konstanz. Erhöhe heute die Intensität leicht.";
+"pfad_fehlt_day_14_desc_fortgeschritten" = "Zwei Wochen! Gewohnheiten verknüpfen heute.";
+"pfad_fehlt_day_14_desc_experte" = "Zwei Wochen Elite. Alle Gewohnheiten heute verknüpft.";
+"pfad_fehlt_day_21_desc_anfaenger" = "21 Tage — die Gewohnheit beginnt sich zu festigen.";
+"pfad_fehlt_day_21_desc_fortgeschritten" = "21 Tage! Alle Gewohnheiten direkt hintereinander heute.";
+"pfad_fehlt_day_21_desc_experte" = "21 Tage Elite. Maximale Verknüpfung aller Gewohnheiten.";
+"pfad_fehlt_day_30_desc_anfaenger" = "Ein Monat! Das ist außergewöhnlich.";
+"pfad_fehlt_day_30_desc_fortgeschritten" = "Ein Monat! Heute: dein bisher intensivster Tag.";
+"pfad_fehlt_day_30_desc_experte" = "30 Tage Elite deines Ziels. Heute alles auf Maximum.";
+"pfad_fehlt_day_45_desc_anfaenger" = "Halbzeit! Was hat sich seit Tag 1 verändert?";
+"pfad_fehlt_day_45_desc_fortgeschritten" = "Halbzeit! Maximaler Einsatz heute.";
+"pfad_fehlt_day_45_desc_experte" = "Halbzeit Elite. Dein persönliches Maximum heute.";
+"pfad_fehlt_day_60_desc_anfaenger" = "Zwei Monate! Deine Gewohnheit ist fast automatisch.";
+"pfad_fehlt_day_60_desc_fortgeschritten" = "Zwei Monate! Heute alles zusammen auf hohem Niveau.";
+"pfad_fehlt_day_60_desc_experte" = "Zwei Monate Elite. Heute auf absolutem Maximum.";
+"pfad_fehlt_day_90_desc_anfaenger" = "90 Tage! Du hast durchgehalten. Das ist echte Stärke.";
+"pfad_fehlt_day_90_desc_fortgeschritten" = "90 Tage! Du hast dein Ziel gemeistert.";
+"pfad_fehlt_day_90_desc_experte" = "90 Tage Elite deines eigenen Weges. Außergewöhnlich.";
+"plant.detail.path_subtitle" = "Dein Fortschritt der letzten 90 Tage";
+"tab.uebersicht" = "Übersicht";
+"tab.verlauf" = "Verlauf";
+"verlauf.empty.title" = "Noch keine Daten";
+"verlauf.empty.subtitle" = "Gieße deine Pflanze, um deinen Verlauf aufzuzeichnen.";
+"verlauf.stat.days" = "Tage aktiv";
+"verlauf.stat.streak" = "Aktuell";
+"verlauf.stat.rate" = "Quote";
+"verlauf.title" = "Deine 90 Tage";
+"verlauf.weeks" = "KW";
+"verlauf.leer.titel" = "Kein Pfad aktiv";
+"verlauf.leer.beschreibung" = "Starte deinen 90-Tage-Pfad, um den Verlauf dieser Gewohnheit zu sehen.";
+
+"pfad_phase_beschreibung_einstieg" = "Basis schaffen: Fokus auf Regelmäßigkeit.";
+"pfad_phase_beschreibung_aufbau" = "Gewohnheit festigen: Dein Gehirn lernt jetzt.";
+"pfad_phase_beschreibung_vertiefung" = "Identität formen: Es wird Teil von dir.";
+"pfad_phase_beschreibung_meisterschaft" = "Automatisierung: Du lebst die Veränderung.";
+
+/* Autogenerated Generic Path Translations */
+
+"pfad_generic_day_1_title" = "Dein Start";
+"pfad_generic_day_2_title" = "Tag Zwei";
+"pfad_generic_day_7_title" = "Eine Woche!";
+"pfad_generic_day_14_title" = "Zwei Wochen!";
+"pfad_generic_day_21_title" = "Drei Wochen!";
+"pfad_generic_day_30_title" = "Ein Monat!";
+"pfad_generic_day_45_title" = "Halbzeit!";
+"pfad_generic_day_60_title" = "Zwei Monate!";
+"pfad_generic_day_90_title" = "Meisterschaft!";
+"pfad_generic_day_1_desc_anfaenger" = "Wir starten klein. Reserviere heute 5 Minuten exklusiv für [HABIT].";
+"pfad_generic_day_1_desc_fortgeschritten" = "Ein solider Start. Plane heute 15 Minuten konzentriert für [HABIT] ein.";
+"pfad_generic_day_1_desc_experte" = "Ein intensiver Start. Heute gibt es 30 Minuten puren Fokus auf [HABIT].";
+"pfad_generic_day_2_desc_anfaenger" = "Wiederhole deinen kleinen Sieg von gestern. 5 Minuten [HABIT].";
+"pfad_generic_day_2_desc_fortgeschritten" = "Bleib im Rhythmus. Wieder 15 Minuten [HABIT] heute.";
+"pfad_generic_day_2_desc_experte" = "Der zweite Tag festigt den Fokus. Ziehe heute deine 30 Minuten [HABIT] durch.";
+"pfad_generic_day_7_desc_anfaenger" = "Eine Woche geschafft! Du gewöhnst dich langsam an [HABIT]. Heute 10 Minuten.";
+"pfad_generic_day_7_desc_fortgeschritten" = "Erste Woche gemeistert. Zeit, die Qualität von [HABIT] leicht zu steigern.";
+"pfad_generic_day_7_desc_experte" = "Sieben Tage Exzellenz. Bleibe bei deinen 45 Minuten intensivstem [HABIT].";
+"pfad_generic_day_14_desc_anfaenger" = "Zwei Wochen! [HABIT] wird langsam normal. Konzentriere dich heute besonders auf die Ausführung.";
+"pfad_generic_day_14_desc_fortgeschritten" = "Zwei Wochen Fokus auf [HABIT]. Versuche heute, Ablenkungen vollständig auszublenden.";
+"pfad_generic_day_14_desc_experte" = "14 Tage auf Elite-Niveau. Mache [HABIT] heute zu deinem Prioritäts-Thema.";
+"pfad_generic_day_21_desc_anfaenger" = "Forscher sagen, nach 21 Tagen entsteht eine Gewohnheit. Genieße heute dein [HABIT] Training.";
+"pfad_generic_day_21_desc_fortgeschritten" = "21 Tage durchgezogen. [HABIT] entwickelt sich zu einer festen Konstante in deinem Leben.";
+"pfad_generic_day_21_desc_experte" = "Drei Wochen kompromisslos. Du hast [HABIT] in dein Meister-Repertoire aufgenommen.";
+"pfad_generic_day_30_desc_anfaenger" = "Ein ganzer Monat! Belohne dich, indem du [HABIT] heute besonders achtsam angehst.";
+"pfad_generic_day_30_desc_fortgeschritten" = "30 Tage für [HABIT]. Das Fundament steht stabil. Lass uns weiter darauf bauen.";
+"pfad_generic_day_30_desc_experte" = "Ein Monat Meisterklasse in [HABIT]. Du setzt den Standard für dich selbst.";
+"pfad_generic_day_45_desc_anfaenger" = "Halbzeit der 90-Tage-Reise. Du hast [HABIT] nicht aufgegeben. Weiter so!";
+"pfad_generic_day_45_desc_fortgeschritten" = "Du hast die Hälfte erreicht. [HABIT] fordert dich jetzt vermutlich anders als an Tag 1.";
+"pfad_generic_day_45_desc_experte" = "Halbzeit. Bleib wachsam, rutsche bei [HABIT] nicht in bloße Routine ab – suche die Verbesserung.";
+"pfad_generic_day_60_desc_anfaenger" = "Zwei Monate unermüdlich dabei. Lass [HABIT] heute entspannt, aber bestimmt ablaufen.";
+"pfad_generic_day_60_desc_fortgeschritten" = "Zwei Monate! [HABIT] ist fester Bestandteil deiner Identität geworden.";
+"pfad_generic_day_60_desc_experte" = "60 Tage [HABIT] auf diesem Level verändern Menschen. Erkenne deine Entwicklung.";
+"pfad_generic_day_90_desc_anfaenger" = "Du hast es geschafft! 90 Tage [HABIT]. Es ist jetzt ein Teil von dir.";
+"pfad_generic_day_90_desc_fortgeschritten" = "90 Tage Disziplin! Du kannst unglaublich stolz auf dein [HABIT] Engagement sein.";
+"pfad_generic_day_90_desc_experte" = "Du bist am Ziel. 90 Tage [HABIT] in Perfektion. Was ist dein nächster Gipfel?";
+"pfad_generic_phase_einstieg_desc_anfaenger" = "Jede Minute zählt. Etabliere [HABIT] langsam und ohne Stress in deinen Alltag.";
+"pfad_generic_phase_einstieg_desc_fortgeschritten" = "Achte auf eine saubere Ausführung von [HABIT] in dieser frühen Phase.";
+"pfad_generic_phase_einstieg_desc_experte" = "Du weißt wie es geht. Setze sofort den höchsten Standard für [HABIT].";
+"pfad_generic_phase_aufbau_desc_anfaenger" = "Wir steigern uns ganz allmählich. Konzentriere dich nur auf den heutigen Schritt für [HABIT].";
+"pfad_generic_phase_aufbau_desc_fortgeschritten" = "Die Widerstände könnten wachsen. Bleib bei deiner [HABIT] Routine.";
+"pfad_generic_phase_aufbau_desc_experte" = "Beseitige jegliche Reibung. Dein [HABIT] Training muss absolute Priorität haben.";
+"pfad_generic_phase_vertiefung_desc_anfaenger" = "[HABIT] fühlt sich hoffentlich schon natürlicher an. Bleib dran am Ball.";
+"pfad_generic_phase_vertiefung_desc_fortgeschritten" = "Verfeinere jetzt die Details deiner [HABIT] Umsetzung.";
+"pfad_generic_phase_vertiefung_desc_experte" = "Du suchst nach den kleinen Prozentpunkten der Verbesserung bei [HABIT].";
+"pfad_generic_phase_meisterschaft_desc_anfaenger" = "Die Zielgerade! Du denkst kaum noch darüber nach, [HABIT] zu machen, du machst es einfach.";
+"pfad_generic_phase_meisterschaft_desc_fortgeschritten" = "Fast am Ziel. Dein [HABIT] Level ist beeindruckend konstant.";
+"pfad_generic_phase_meisterschaft_desc_experte" = "Es gibt keinen Tag mehr ohne [HABIT]. Dein Engagement ist auf Spitzenniveau.";
+
+/* === Auto-generated Path Translations (DE) === */
+
+"erledigt_status" = "Erledigt";
+"heute_status" = "Heute";
+"pfad_tag_gesperrt" = "Gesperrt";
+"pfad_morgen_verfuegbar" = "Ab morgen verfügbar";
+"pfad_meilenstein_titel" = "Meilenstein erreicht!";
+"pfad_aufgabe_titel" = "Deine Aufgabe";
+"routine_titel" = "Tagesroutine";
+
+/* === Plant-specific: sonnenblume === */
+
+"pfad_sonnenblume_day_1_title" = "Erste Stille";
+"pfad_sonnenblume_day_2_title" = "Atem finden";
+"pfad_sonnenblume_day_7_title" = "Eine Woche Ruhe";
+"pfad_sonnenblume_day_14_title" = "Innere Klarheit";
+"pfad_sonnenblume_day_21_title" = "Gewohnheit Meditation";
+"pfad_sonnenblume_day_30_title" = "Ein Monat Achtsamkeit";
+"pfad_sonnenblume_day_45_title" = "Tiefere Stille";
+"pfad_sonnenblume_day_60_title" = "Meditationsmeister";
+"pfad_sonnenblume_day_90_title" = "Erleuchtung";
+"pfad_sonnenblume_day_1_desc_anfaenger" = "Setz dich 2 Minuten hin und atme bewusst ein und aus. Mehr ist heute nicht nötig.";
+"pfad_sonnenblume_day_1_desc_fortgeschritten" = "5 Minuten stille Meditation. Fokus auf den Atem. Gedanken ziehen lassen.";
+"pfad_sonnenblume_day_1_desc_experte" = "10 Minuten tiefe Atemmeditation. Keine Ablenkung, kein Handy in Reichweite.";
+"pfad_sonnenblume_day_2_desc_anfaenger" = "Wieder 2 Minuten atmen. Gleiche Uhrzeit wie gestern.";
+"pfad_sonnenblume_day_2_desc_fortgeschritten" = "5 Minuten Meditation. Versuche heute, die Gedanken nicht zu bewerten.";
+"pfad_sonnenblume_day_2_desc_experte" = "10 Minuten. Heute mit geschlossenen Augen und Fokus auf den Herzschlag.";
+"pfad_sonnenblume_day_7_desc_anfaenger" = "Steigere auf 5 Minuten. Du hast eine ganze Woche meditiert!";
+"pfad_sonnenblume_day_7_desc_fortgeschritten" = "10 Minuten heute. Probiere eine geführte Meditation.";
+"pfad_sonnenblume_day_7_desc_experte" = "15 Minuten in absoluter Stille. Kein Timer-Geräusch, keine Musik.";
+"pfad_sonnenblume_day_14_desc_anfaenger" = "5 Minuten Meditation + danach 3 Dinge aufschreiben, für die du dankbar bist.";
+"pfad_sonnenblume_day_14_desc_fortgeschritten" = "10 Minuten Meditation + 5 Minuten Journaling über deine Gedanken.";
+"pfad_sonnenblume_day_14_desc_experte" = "20 Minuten tiefe Meditation. Beobachte, wie sich dein Geist verändert hat.";
+"pfad_sonnenblume_day_21_desc_anfaenger" = "Meditiere direkt nach dem Aufwachen – bevor du das Handy anschaust.";
+"pfad_sonnenblume_day_21_desc_fortgeschritten" = "Morgen-Meditation + eine Abend-Reflexion von 3 Minuten.";
+"pfad_sonnenblume_day_21_desc_experte" = "Meditation morgens UND abends. Jeweils 10 Minuten. Dein Ritual.";
+"pfad_sonnenblume_day_30_desc_anfaenger" = "Ein Monat Meditation! Heute: 10 Minuten achtsames Atmen.";
+"pfad_sonnenblume_day_30_desc_fortgeschritten" = "30 Tage! Heute: 15 Minuten + schreibe auf, was sich verändert hat.";
+"pfad_sonnenblume_day_30_desc_experte" = "Ein Monat auf Elite-Niveau. Heute: 25 Minuten Vipassana-Meditation.";
+"pfad_sonnenblume_day_45_desc_anfaenger" = "Halbzeit! Versuche heute eine neue Meditationsform (z.B. Body Scan).";
+"pfad_sonnenblume_day_45_desc_fortgeschritten" = "Halbzeit! 15 Minuten Meditation + bewusster Naturspaziergang.";
+"pfad_sonnenblume_day_45_desc_experte" = "Halbzeit. 30 Minuten Meditation. Du bist jetzt fortgeschritten.";
+"pfad_sonnenblume_day_60_desc_anfaenger" = "Zwei Monate! Dein Geist ist merklich ruhiger geworden.";
+"pfad_sonnenblume_day_60_desc_fortgeschritten" = "Zwei Monate! Heute: 20 Minuten + Dankbarkeitsliste.";
+"pfad_sonnenblume_day_60_desc_experte" = "60 Tage. Meditiere heute 30 Minuten und reflektiere deine gesamte Reise.";
+"pfad_sonnenblume_day_90_desc_anfaenger" = "90 Tage Meditation! Du hast innere Ruhe zur Gewohnheit gemacht.";
+"pfad_sonnenblume_day_90_desc_fortgeschritten" = "90 Tage! Dein Geist ist dein stärkstes Werkzeug geworden.";
+"pfad_sonnenblume_day_90_desc_experte" = "90 Tage Meisterschaft. Du lebst Achtsamkeit. Was ist dein nächstes Ziel?";
+"pfad_sonnenblume_phase_einstieg_desc_anfaenger" = "Atme bewusst. Jede Minute zählt auf dem Weg zur inneren Ruhe.";
+"pfad_sonnenblume_phase_einstieg_desc_fortgeschritten" = "Baue deine tägliche Meditationspraxis sorgfältig auf.";
+"pfad_sonnenblume_phase_einstieg_desc_experte" = "Setze sofort den höchsten Standard für deine Meditationssitzung.";
+"pfad_sonnenblume_phase_aufbau_desc_anfaenger" = "Verlängere deine Sitzung um 1 Minute. Schritt für Schritt.";
+"pfad_sonnenblume_phase_aufbau_desc_fortgeschritten" = "Experimentiere mit verschiedenen Meditationstechniken.";
+"pfad_sonnenblume_phase_aufbau_desc_experte" = "Meditation ist jetzt Priorität Nr. 1. Keine Ausreden.";
+"pfad_sonnenblume_phase_vertiefung_desc_anfaenger" = "Meditation fühlt sich natürlicher an. Erkunde tiefere Atemtechniken.";
+"pfad_sonnenblume_phase_vertiefung_desc_fortgeschritten" = "Verfeinere deine Technik. Achte auf Haltung und Atemrhythmus.";
+"pfad_sonnenblume_phase_vertiefung_desc_experte" = "Suche nach den feinen Nuancen deiner Meditationserfahrung.";
+"pfad_sonnenblume_phase_meisterschaft_desc_anfaenger" = "Du meditierst ohne nachzudenken. Es ist Teil von dir.";
+"pfad_sonnenblume_phase_meisterschaft_desc_fortgeschritten" = "Beeindruckende Konstanz. Bleib auf diesem Niveau.";
+"pfad_sonnenblume_phase_meisterschaft_desc_experte" = "Du bist ein Vorbild in Achtsamkeit. Lebe es weiter.";
+
+/* === Plant-specific: lavendel === */
+
+"pfad_lavendel_day_1_title" = "Erste Ruhe";
+"pfad_lavendel_day_2_title" = "Abendritual";
+"pfad_lavendel_day_7_title" = "Eine Woche guter Schlaf";
+"pfad_lavendel_day_14_title" = "Schlafrhythmus";
+"pfad_lavendel_day_21_title" = "Gewohnheit Schlaf";
+"pfad_lavendel_day_30_title" = "Ein Monat Erholung";
+"pfad_lavendel_day_45_title" = "Tiefschlaf-Routine";
+"pfad_lavendel_day_60_title" = "Schlafmeister";
+"pfad_lavendel_day_90_title" = "Perfekter Schlaf";
+"pfad_lavendel_day_1_desc_anfaenger" = "Lege dein Handy 30 Minuten vor dem Schlafen weg. Das ist dein einziger Auftrag.";
+"pfad_lavendel_day_1_desc_fortgeschritten" = "Kein Bildschirm 1 Stunde vor dem Schlafen. Lies stattdessen ein Buch.";
+"pfad_lavendel_day_1_desc_experte" = "Erstelle ein vollständiges Abendritual: Kein Bildschirm, Tee, Lesen, feste Uhrzeit.";
+"pfad_lavendel_day_2_desc_anfaenger" = "Wieder Handy weg vor dem Schlafen. Gleiche Uhrzeit wie gestern.";
+"pfad_lavendel_day_2_desc_fortgeschritten" = "Gleiche Routine wie gestern. Achte auf die gleiche Schlafenszeit.";
+"pfad_lavendel_day_2_desc_experte" = "Abendritual durchziehen. Heute zusätzlich: Zimmer komplett abdunkeln.";
+"pfad_lavendel_day_7_desc_anfaenger" = "Eine Woche! Merkst du schon einen Unterschied? Notiere deine Schlafqualität.";
+"pfad_lavendel_day_7_desc_fortgeschritten" = "Woche 1 geschafft! Gehe heute zur exakt gleichen Zeit ins Bett.";
+"pfad_lavendel_day_7_desc_experte" = "7 Tage Elite-Schlaf. Heute: Optimiere deine Schlaftemperatur (16-18°C).";
+"pfad_lavendel_day_14_desc_anfaenger" = "Zwei Wochen! Trinke heute Abend einen beruhigenden Tee vor dem Schlafen.";
+"pfad_lavendel_day_14_desc_fortgeschritten" = "Zwei Wochen perfekter Rhythmus. Heute: 10 Minuten Dehnübungen vor dem Bett.";
+"pfad_lavendel_day_14_desc_experte" = "14 Tage. Heute: Reflektiere, wie sich deine Energie tagsüber verändert hat.";
+"pfad_lavendel_day_21_desc_anfaenger" = "21 Tage! Dein Körper kennt jetzt deine Schlafenszeit.";
+"pfad_lavendel_day_21_desc_fortgeschritten" = "Die Gewohnheit steht. Heute: Gratitude Journaling vor dem Einschlafen.";
+"pfad_lavendel_day_21_desc_experte" = "21 Tage Perfektion. Heute: Messung deiner Schlafqualität (Subjektiv 1-10).";
+"pfad_lavendel_day_30_desc_anfaenger" = "Ein Monat besserer Schlaf! Du bist erholter als je zuvor.";
+"pfad_lavendel_day_30_desc_fortgeschritten" = "30 Tage Schlaf-Routine. Belohne dich mit neuer, bequemer Bettwäsche.";
+"pfad_lavendel_day_30_desc_experte" = "Ein Monat Schlaf-Elite. Dein Körper ist vollständig synchronisiert.";
+"pfad_lavendel_day_45_desc_anfaenger" = "Halbzeit! Probiere heute eine Entspannungsübung vor dem Schlafen.";
+"pfad_lavendel_day_45_desc_fortgeschritten" = "Halbzeit! Dein Schlaf beeinflusst jetzt alles andere positiv.";
+"pfad_lavendel_day_45_desc_experte" = "Halbzeit. Optimiere heute ein weiteres Detail deiner Schlafumgebung.";
+"pfad_lavendel_day_60_desc_anfaenger" = "Zwei Monate! Guter Schlaf ist jetzt dein Superkraft.";
+"pfad_lavendel_day_60_desc_fortgeschritten" = "Zwei Monate! Dein Abendritual ist unerschütterlich.";
+"pfad_lavendel_day_60_desc_experte" = "60 Tage Schlaf-Meisterschaft. Du schläfst wie ein Champion.";
+"pfad_lavendel_day_90_desc_anfaenger" = "90 Tage! Guter Schlaf ist jetzt Teil deiner Identität.";
+"pfad_lavendel_day_90_desc_fortgeschritten" = "90 Tage Schlaf-Perfektion. Du hast dein Leben verändert.";
+"pfad_lavendel_day_90_desc_experte" = "90 Tage Elite-Schlaf. Du bist ein Vorbild für gesunde Erholung.";
+"pfad_lavendel_phase_einstieg_desc_anfaenger" = "Handy weg, Licht aus. Schritt für Schritt zu besserem Schlaf.";
+"pfad_lavendel_phase_einstieg_desc_fortgeschritten" = "Baue dein Abendritual konsequent auf. Jeden Abend.";
+"pfad_lavendel_phase_einstieg_desc_experte" = "Vollständiges Schlafprotokoll ab Tag 1. Keine halben Sachen.";
+"pfad_lavendel_phase_aufbau_desc_anfaenger" = "Füge eine kleine Entspannungsübung zu deinem Abendritual hinzu.";
+"pfad_lavendel_phase_aufbau_desc_fortgeschritten" = "Verfeinere dein Timing. Immer zur gleichen Zeit ins Bett.";
+"pfad_lavendel_phase_aufbau_desc_experte" = "Optimiere jeden Aspekt: Licht, Temperatur, Geräusche, Matratze.";
+"pfad_lavendel_phase_vertiefung_desc_anfaenger" = "Dein Körper erwartet jetzt die Routine. Halte sie ein.";
+"pfad_lavendel_phase_vertiefung_desc_fortgeschritten" = "Experimentiere mit Sleep-Stacking: Meditation + Lesen + Schlaf.";
+"pfad_lavendel_phase_vertiefung_desc_experte" = "Du suchst nach den letzten 5% Verbesserung deines Schlafs.";
+"pfad_lavendel_phase_meisterschaft_desc_anfaenger" = "Schlaf ist jetzt automatisch. Du legst dich hin und schläfst.";
+"pfad_lavendel_phase_meisterschaft_desc_fortgeschritten" = "Dein Schlaf ist auf konstantem Top-Niveau.";
+"pfad_lavendel_phase_meisterschaft_desc_experte" = "Schlaf-Elite. Dein Körper ist dein bester Freund geworden.";
+
+/* === Plant-specific: eiche === */
+
+"pfad_eiche_day_1_title" = "Erstes Kapitel";
+"pfad_eiche_day_2_title" = "Weiterlesen";
+"pfad_eiche_day_7_title" = "Leseratte!";
+"pfad_eiche_day_14_title" = "Wissensdurst";
+"pfad_eiche_day_21_title" = "Lesegewohnheit";
+"pfad_eiche_day_30_title" = "Ein Monat Bücher";
+"pfad_eiche_day_45_title" = "Halbzeit Wissen";
+"pfad_eiche_day_60_title" = "Bücherwurm";
+"pfad_eiche_day_90_title" = "Gelehrsamkeit";
+"pfad_eiche_day_1_desc_anfaenger" = "Lies heute 5 Seiten in einem Buch deiner Wahl. Nur 5!";
+"pfad_eiche_day_1_desc_fortgeschritten" = "Lies 15 Seiten und notiere dir einen Gedanken, der hängen bleibt.";
+"pfad_eiche_day_1_desc_experte" = "Lies 30 Minuten konzentriert. Kein Handy in Sichtweite.";
+"pfad_eiche_day_2_desc_anfaenger" = "Wieder 5 Seiten. Am besten zur gleichen Uhrzeit.";
+"pfad_eiche_day_2_desc_fortgeschritten" = "15 Seiten + ein Satz, den du dir merkst.";
+"pfad_eiche_day_2_desc_experte" = "30 Minuten Lesen + 5 Minuten Notizen machen.";
+"pfad_eiche_day_7_desc_anfaenger" = "Eine Woche Lesen! Steigere auf 10 Seiten heute.";
+"pfad_eiche_day_7_desc_fortgeschritten" = "Wie viele Seiten hast du diese Woche geschafft? Notiere es!";
+"pfad_eiche_day_7_desc_experte" = "Diese Woche: Starte ein zweites Buch parallel (Sach + Belletristik).";
+"pfad_eiche_day_14_desc_anfaenger" = "Zwei Wochen! Hast du schon ein Buch beendet? Falls ja, feiere es!";
+"pfad_eiche_day_14_desc_fortgeschritten" = "Zwei Wochen Lese-Routine! Heute: Teile ein Zitat mit jemandem.";
+"pfad_eiche_day_14_desc_experte" = "14 Tage Elite-Lesen. Heute: Schreibe eine Mini-Zusammenfassung.";
+"pfad_eiche_day_21_desc_anfaenger" = "21 Tage! Lesen fühlt sich jetzt normal an. Genieße es.";
+"pfad_eiche_day_21_desc_fortgeschritten" = "Die Gewohnheit steht! Probiere heute ein neues Genre.";
+"pfad_eiche_day_21_desc_experte" = "21 Tage. Du liest jetzt schneller und tiefer als je zuvor.";
+"pfad_eiche_day_30_desc_anfaenger" = "Ein Monat Lesen! Du hast Hunderte Seiten gelesen.";
+"pfad_eiche_day_30_desc_fortgeschritten" = "30 Tage! Erstelle eine Liste: Was hast du gelernt?";
+"pfad_eiche_day_30_desc_experte" = "Ein Monat Elite-Lesen. Starte ein Lesetagebuch.";
+"pfad_eiche_day_45_desc_anfaenger" = "Halbzeit! Empfiehl jemandem ein Buch, das dich bewegt hat.";
+"pfad_eiche_day_45_desc_fortgeschritten" = "Halbzeit! Reflektiere: Wie hat Lesen dein Denken verändert?";
+"pfad_eiche_day_45_desc_experte" = "Halbzeit. Du hast wahrscheinlich schon mehrere Bücher beendet.";
+"pfad_eiche_day_60_desc_anfaenger" = "Zwei Monate! Lesen ist jetzt ein fester Teil deines Tages.";
+"pfad_eiche_day_60_desc_fortgeschritten" = "Zwei Monate! Dein Wissen wächst jeden Tag.";
+"pfad_eiche_day_60_desc_experte" = "60 Tage. Du bist der smarteste Mensch im Raum – wegen deiner Disziplin.";
+"pfad_eiche_day_90_desc_anfaenger" = "90 Tage Lesen! Du hast dich selbst gebildet. Respekt.";
+"pfad_eiche_day_90_desc_fortgeschritten" = "90 Tage! Bücher sind jetzt dein Lebensbegleiter.";
+"pfad_eiche_day_90_desc_experte" = "90 Tage Elite-Lesen. Wissen ist deine Superkraft.";
+"pfad_eiche_phase_einstieg_desc_anfaenger" = "Jede Seite zählt. Lies heute ein kleines Stück.";
+"pfad_eiche_phase_einstieg_desc_fortgeschritten" = "Etabliere feste Lesezeiten in deinem Alltag.";
+"pfad_eiche_phase_einstieg_desc_experte" = "Lesen ist ab jetzt Priorität. Setze den höchsten Standard.";
+"pfad_eiche_phase_aufbau_desc_anfaenger" = "Steigere langsam. Heute vielleicht eine Seite mehr als gestern.";
+"pfad_eiche_phase_aufbau_desc_fortgeschritten" = "Vertiefe dich in den Stoff. Mache dir Notizen.";
+"pfad_eiche_phase_aufbau_desc_experte" = "Lesen auf höchstem Niveau. Verknüpfe das Gelesene mit deinem Leben.";
+"pfad_eiche_phase_vertiefung_desc_anfaenger" = "Lesen fühlt sich natürlich an. Bleib dran.";
+"pfad_eiche_phase_vertiefung_desc_fortgeschritten" = "Verfeinere deine Lesetechnik. Fokus und Tiefe.";
+"pfad_eiche_phase_vertiefung_desc_experte" = "Du suchst nach den Büchern, die dein Denken grundlegend verändern.";
+"pfad_eiche_phase_meisterschaft_desc_anfaenger" = "Du greifst automatisch zum Buch. Es ist Teil von dir.";
+"pfad_eiche_phase_meisterschaft_desc_fortgeschritten" = "Dein Leselevel ist beeindruckend konstant.";
+"pfad_eiche_phase_meisterschaft_desc_experte" = "Lesen ist nicht mehr Gewohnheit, es ist Identität.";
+
+/* === Plant-specific: efeu === */
+
+"pfad_efeu_day_1_title" = "Erste Dehnung";
+"pfad_efeu_day_2_title" = "Locker bleiben";
+"pfad_efeu_day_7_title" = "Bewegliche Woche";
+"pfad_efeu_day_14_title" = "Flexibilität";
+"pfad_efeu_day_21_title" = "Stretching-Routine";
+"pfad_efeu_day_30_title" = "Ein Monat Bewegung";
+"pfad_efeu_day_45_title" = "Geschmeidigkeit";
+"pfad_efeu_day_60_title" = "Dehn-Meister";
+"pfad_efeu_day_90_title" = "Volle Flexibilität";
+"pfad_efeu_day_1_desc_anfaenger" = "3 Minuten Dehnen: Nacken, Schultern, Hüfte. Das reicht für heute.";
+"pfad_efeu_day_1_desc_fortgeschritten" = "10 Minuten Stretching: Ganzkörper. Achte auf die Atmung.";
+"pfad_efeu_day_1_desc_experte" = "20 Minuten dynamisches + statisches Stretching. Vollprogramm.";
+"pfad_efeu_day_2_desc_anfaenger" = "Gleiche 3 Dehnübungen wie gestern. Merkst du schon etwas?";
+"pfad_efeu_day_2_desc_fortgeschritten" = "10 Minuten. Heute Fokus auf den Unterkörper.";
+"pfad_efeu_day_2_desc_experte" = "20 Minuten. Heute: PNF-Stretching für maximale Fortschritte.";
+"pfad_efeu_day_7_desc_anfaenger" = "Eine Woche! Steigere auf 5 Minuten. Füge Bein-Dehnungen hinzu.";
+"pfad_efeu_day_7_desc_fortgeschritten" = "Erste Woche! Teste heute eine Yoga-Sequenz (z.B. Sonnengruß).";
+"pfad_efeu_day_7_desc_experte" = "7 Tage! Heute: Teste deine Fortschritte. Kommst du näher zum Boden?";
+"pfad_efeu_day_14_desc_anfaenger" = "Zwei Wochen! Dein Körper wird merklich geschmeidiger.";
+"pfad_efeu_day_14_desc_fortgeschritten" = "14 Tage! Heute: Stretching + 5 Minuten Mobility-Training.";
+"pfad_efeu_day_14_desc_experte" = "14 Tage Elite. Heute: Deep Stretching mit Faszienrolle.";
+"pfad_efeu_day_21_desc_anfaenger" = "21 Tage! Stretching ist jetzt automatisch. Weiter so!";
+"pfad_efeu_day_21_desc_fortgeschritten" = "Die Routine steht! Probiere heute eine neue Übung.";
+"pfad_efeu_day_21_desc_experte" = "21 Tage. Dein Körper bedankt sich. Teste neue Grenzen.";
+"pfad_efeu_day_30_desc_anfaenger" = "Ein Monat Stretching! Vergleiche deine Flexibilität mit Tag 1.";
+"pfad_efeu_day_30_desc_fortgeschritten" = "30 Tage! Mache ein Vorher-Nachher-Foto deiner Dehnung.";
+"pfad_efeu_day_30_desc_experte" = "Ein Monat Elite-Stretching. Dein Körper ist eine Maschine.";
+"pfad_efeu_day_45_desc_anfaenger" = "Halbzeit! Wie weit kommst du jetzt bei der Vorwärtsbeuge?";
+"pfad_efeu_day_45_desc_fortgeschritten" = "Halbzeit! Deine Beweglichkeit beeinflusst alles positiv.";
+"pfad_efeu_day_45_desc_experte" = "Halbzeit. Optimiere die schwächsten Muskelgruppen.";
+"pfad_efeu_day_60_desc_anfaenger" = "Zwei Monate! Dein Körper fühlt sich jünger an.";
+"pfad_efeu_day_60_desc_fortgeschritten" = "Zwei Monate! Flexibilität ist jetzt Teil deiner Identität.";
+"pfad_efeu_day_60_desc_experte" = "60 Tage. Du dehnst dich wie ein Profi-Athlet.";
+"pfad_efeu_day_90_desc_anfaenger" = "90 Tage! Dein Körper ist flexibler als je zuvor.";
+"pfad_efeu_day_90_desc_fortgeschritten" = "90 Tage! Stretching ist jetzt Lebensqualität.";
+"pfad_efeu_day_90_desc_experte" = "90 Tage Elite-Stretching. Volle Flexibilität erreicht.";
+"pfad_efeu_phase_einstieg_desc_anfaenger" = "Dehne dich sanft. Jede Bewegung zählt.";
+"pfad_efeu_phase_einstieg_desc_fortgeschritten" = "Baue eine vollständige Stretching-Routine auf.";
+"pfad_efeu_phase_einstieg_desc_experte" = "Maximale Intensität von Anfang an. Dein Körper kann das.";
+"pfad_efeu_phase_aufbau_desc_anfaenger" = "Füge eine neue Übung pro Woche hinzu.";
+"pfad_efeu_phase_aufbau_desc_fortgeschritten" = "Steigere die Haltezeit deiner Dehnungen.";
+"pfad_efeu_phase_aufbau_desc_experte" = "Kombiniere Stretching mit Mobility und Faszienarbeit.";
+"pfad_efeu_phase_vertiefung_desc_anfaenger" = "Stretching ist jetzt Routine. Genieße die Beweglichkeit.";
+"pfad_efeu_phase_vertiefung_desc_fortgeschritten" = "Verfeinere jede einzelne Position.";
+"pfad_efeu_phase_vertiefung_desc_experte" = "Du suchst nach den letzten Zentimetern Bewegungsfreiheit.";
+"pfad_efeu_phase_meisterschaft_desc_anfaenger" = "Dein Körper fordert das Stretching ein. Es gehört zu dir.";
+"pfad_efeu_phase_meisterschaft_desc_fortgeschritten" = "Konstant auf hohem Niveau. Respekt.";
+"pfad_efeu_phase_meisterschaft_desc_experte" = "Dein Körper ist ein Meisterwerk der Flexibilität.";
+
+/* === Plant-specific: klee === */
+
+"pfad_klee_day_1_title" = "Erster Dank";
+"pfad_klee_day_2_title" = "Dankbar sein";
+"pfad_klee_day_7_title" = "Woche der Dankbarkeit";
+"pfad_klee_day_14_title" = "Dankbarkeits-Routine";
+"pfad_klee_day_21_title" = "Gewohnheit Dankbarkeit";
+"pfad_klee_day_30_title" = "Ein Monat Wertschätzung";
+"pfad_klee_day_45_title" = "Tiefe Dankbarkeit";
+"pfad_klee_day_60_title" = "Dankbarkeitsmeister";
+"pfad_klee_day_90_title" = "Gelebte Dankbarkeit";
+"pfad_klee_day_1_desc_anfaenger" = "Schreibe 1 Sache auf, für die du heute dankbar bist.";
+"pfad_klee_day_1_desc_fortgeschritten" = "Schreibe 3 Dinge auf, für die du dankbar bist. Sei spezifisch.";
+"pfad_klee_day_1_desc_experte" = "3 Dankbarkeits-Punkte + eine kurze Reflexion: Warum genau diese?";
+"pfad_klee_day_2_desc_anfaenger" = "Wieder 1 Sache. Versuche etwas Neues zu finden.";
+"pfad_klee_day_2_desc_fortgeschritten" = "3 neue Dinge. Wiederhole nichts von gestern.";
+"pfad_klee_day_2_desc_experte" = "3 Dankbarkeits-Punkte + schicke einer Person eine Dankes-Nachricht.";
+"pfad_klee_day_7_desc_anfaenger" = "Steigere auf 3 Dinge pro Tag. Du wirst kreativer!";
+"pfad_klee_day_7_desc_fortgeschritten" = "Eine Woche! Schreibe heute 5 Dinge auf.";
+"pfad_klee_day_7_desc_experte" = "7 Tage! Heute: Schreibe einen ausführlichen Dankbarkeitsbrief.";
+"pfad_klee_day_14_desc_anfaenger" = "Zwei Wochen! Merkst du, wie sich dein Blickwinkel verändert?";
+"pfad_klee_day_14_desc_fortgeschritten" = "14 Tage! Heute: Teile deine Dankbarkeit mit jemandem persönlich.";
+"pfad_klee_day_14_desc_experte" = "14 Tage. Starte ein Dankbarkeits-Journal mit täglichen Einträgen.";
+"pfad_klee_day_21_desc_anfaenger" = "21 Tage! Dankbarkeit wird zur zweiten Natur.";
+"pfad_klee_day_21_desc_fortgeschritten" = "Die Gewohnheit steht! Du siehst das Positive automatisch.";
+"pfad_klee_day_21_desc_experte" = "21 Tage. Du bist ein Magnet für positive Energie.";
+"pfad_klee_day_30_desc_anfaenger" = "Ein Monat! Du bist nachweislich glücklicher als vor 30 Tagen.";
+"pfad_klee_day_30_desc_fortgeschritten" = "30 Tage Dankbarkeit. Deine Ausstrahlung hat sich verändert.";
+"pfad_klee_day_30_desc_experte" = "Ein Monat Elite-Dankbarkeit. Du inspirierst andere.";
+"pfad_klee_day_45_desc_anfaenger" = "Halbzeit! Wofür bist du am meisten dankbar auf dieser Reise?";
+"pfad_klee_day_45_desc_fortgeschritten" = "Halbzeit! Lies deine ersten Einträge nochmal. Wie fühlst du dich?";
+"pfad_klee_day_45_desc_experte" = "Halbzeit. Dankbarkeit ist jetzt dein Fundament für alles.";
+"pfad_klee_day_60_desc_anfaenger" = "Zwei Monate! Dankbarkeit verändert alles zum Positiven.";
+"pfad_klee_day_60_desc_fortgeschritten" = "Zwei Monate! Du strahlst Positivität aus.";
+"pfad_klee_day_60_desc_experte" = "60 Tage. Du lebst Dankbarkeit in jedem Moment.";
+"pfad_klee_day_90_desc_anfaenger" = "90 Tage Dankbarkeit! Du hast dein Glückslevel dauerhaft erhöht.";
+"pfad_klee_day_90_desc_fortgeschritten" = "90 Tage! Dankbarkeit ist jetzt Teil deiner DNA.";
+"pfad_klee_day_90_desc_experte" = "90 Tage Meister der Dankbarkeit. Du lebst ein erfülltes Leben.";
+"pfad_klee_phase_einstieg_desc_anfaenger" = "Finde täglich mindestens eine Sache, die dich dankbar macht.";
+"pfad_klee_phase_einstieg_desc_fortgeschritten" = "Notiere jeden Tag bewusst, wofür du dankbar bist.";
+"pfad_klee_phase_einstieg_desc_experte" = "Dankbarkeit als tägliche Praxis. Schreibe, reflektiere, teile.";
+"pfad_klee_phase_aufbau_desc_anfaenger" = "Vertiefe deine Dankbarkeits-Praxis. Sei spezifischer.";
+"pfad_klee_phase_aufbau_desc_fortgeschritten" = "Teile deine Dankbarkeit aktiv mit anderen.";
+"pfad_klee_phase_aufbau_desc_experte" = "Dankbarkeit auf jeder Ebene: Morgens, mittags, abends.";
+"pfad_klee_phase_vertiefung_desc_anfaenger" = "Du siehst das Gute überall. Das ist echte Veränderung.";
+"pfad_klee_phase_vertiefung_desc_fortgeschritten" = "Verfeinere: Dankbarkeit auch in schwierigen Momenten.";
+"pfad_klee_phase_vertiefung_desc_experte" = "Selbst in Herausforderungen findest du Gründe zur Dankbarkeit.";
+"pfad_klee_phase_meisterschaft_desc_anfaenger" = "Dankbarkeit ist automatisch. Du bist ein glücklicherer Mensch.";
+"pfad_klee_phase_meisterschaft_desc_fortgeschritten" = "Dein Niveau an Wertschätzung ist beeindruckend.";
+"pfad_klee_phase_meisterschaft_desc_experte" = "Du lebst Dankbarkeit auf höchstem Niveau. Ein Vorbild.";
+
+/* === Plant-specific: zitronenbaum === */
+
+"pfad_zitronenbaum_day_1_title" = "Erstes Glas";
+"pfad_zitronenbaum_day_2_title" = "Hydration";
+"pfad_zitronenbaum_day_7_title" = "Wasser-Woche";
+"pfad_zitronenbaum_day_14_title" = "Trink-Routine";
+"pfad_zitronenbaum_day_21_title" = "Gewohnheit Wasser";
+"pfad_zitronenbaum_day_30_title" = "Ein Monat Hydration";
+"pfad_zitronenbaum_day_45_title" = "Halbzeit Hydration";
+"pfad_zitronenbaum_day_60_title" = "Wasser-Champion";
+"pfad_zitronenbaum_day_90_title" = "Hydrations-Meister";
+"pfad_zitronenbaum_day_1_desc_anfaenger" = "Trinke heute ein großes Glas Wasser direkt nach dem Aufstehen.";
+"pfad_zitronenbaum_day_1_desc_fortgeschritten" = "Trinke 1,5 Liter Wasser heute. Stelle dir eine Flasche bereit.";
+"pfad_zitronenbaum_day_1_desc_experte" = "2,5 Liter heute. Tracke jedes Glas. Starte mit 500ml morgens.";
+"pfad_zitronenbaum_day_2_desc_anfaenger" = "Wieder ein Glas nach dem Aufstehen. Stelle es schon abends bereit.";
+"pfad_zitronenbaum_day_2_desc_fortgeschritten" = "Wieder 1,5 Liter. Verteile es gleichmäßig über den Tag.";
+"pfad_zitronenbaum_day_2_desc_experte" = "2,5 Liter. Heute: Trinkpausen alle 45 Minuten einplanen.";
+"pfad_zitronenbaum_day_7_desc_anfaenger" = "Eine Woche! Merkst du schon, dass deine Haut besser aussieht?";
+"pfad_zitronenbaum_day_7_desc_fortgeschritten" = "Erste Woche! Dein Körper beginnt, sich an die Hydration zu gewöhnen.";
+"pfad_zitronenbaum_day_7_desc_experte" = "7 Tage Hydrations-Elite. Heute: Messe, ob du dein Ziel erreichst.";
+"pfad_zitronenbaum_day_14_desc_anfaenger" = "Zwei Wochen! Trinke heute zusätzlich einen Kräutertee.";
+"pfad_zitronenbaum_day_14_desc_fortgeschritten" = "14 Tage! Dein Körper dankt dir. Mehr Energie, bessere Haut.";
+"pfad_zitronenbaum_day_14_desc_experte" = "14 Tage. Heute: Ersetze ein Softdrink durch Wasser mit Zitrone.";
+"pfad_zitronenbaum_day_21_desc_anfaenger" = "21 Tage! Wasser trinken ist jetzt ganz natürlich für dich.";
+"pfad_zitronenbaum_day_21_desc_fortgeschritten" = "Die Gewohnheit sitzt! Du greifst automatisch zur Flasche.";
+"pfad_zitronenbaum_day_21_desc_experte" = "21 Tage. Du bist ein Hydrations-Profi.";
+"pfad_zitronenbaum_day_30_desc_anfaenger" = "Ein Monat! Dein Körper liebt dich für diese Gewohnheit.";
+"pfad_zitronenbaum_day_30_desc_fortgeschritten" = "30 Tage! Hast du Unterschiede in Energie und Fokus bemerkt?";
+"pfad_zitronenbaum_day_30_desc_experte" = "Ein Monat Elite-Hydration. Dein Körper funktioniert optimal.";
+"pfad_zitronenbaum_day_45_desc_anfaenger" = "Halbzeit! Probiere heute aromatisiertes Wasser (Gurke, Minze).";
+"pfad_zitronenbaum_day_45_desc_fortgeschritten" = "Halbzeit! Deine Hydration beeinflusst Schlaf und Konzentration.";
+"pfad_zitronenbaum_day_45_desc_experte" = "Halbzeit. Optimiere: Trinkst du genug VOR dem Training?";
+"pfad_zitronenbaum_day_60_desc_anfaenger" = "Zwei Monate! Wasser ist dein bester Freund.";
+"pfad_zitronenbaum_day_60_desc_fortgeschritten" = "Zwei Monate Hydration! Dein Wohlbefinden ist auf einem Hoch.";
+"pfad_zitronenbaum_day_60_desc_experte" = "60 Tage. Du trinkst perfekt. Dein Körper dankt es dir täglich.";
+"pfad_zitronenbaum_day_90_desc_anfaenger" = "90 Tage! Hydration ist jetzt so natürlich wie Atmen.";
+"pfad_zitronenbaum_day_90_desc_fortgeschritten" = "90 Tage Disziplin beim Trinken. Dein Körper ist Top-Form.";
+"pfad_zitronenbaum_day_90_desc_experte" = "90 Tage Hydrations-Meisterschaft. Vorbildlich und inspirierend.";
+"pfad_zitronenbaum_phase_einstieg_desc_anfaenger" = "Trinke jedes Mal bewusst. Genieße jeden Schluck.";
+"pfad_zitronenbaum_phase_einstieg_desc_fortgeschritten" = "Baue feste Trinkzeiten in deinen Alltag ein.";
+"pfad_zitronenbaum_phase_einstieg_desc_experte" = "Hydration auf höchstem Niveau ab Tag 1. Keine Kompromisse.";
+"pfad_zitronenbaum_phase_aufbau_desc_anfaenger" = "Steigere langsam die Menge. Ein Glas mehr pro Tag.";
+"pfad_zitronenbaum_phase_aufbau_desc_fortgeschritten" = "Achte auf gleichmäßige Verteilung über den ganzen Tag.";
+"pfad_zitronenbaum_phase_aufbau_desc_experte" = "Optimiere Timing und Menge für maximale Leistung.";
+"pfad_zitronenbaum_phase_vertiefung_desc_anfaenger" = "Dein Körper verlangt jetzt nach Wasser. Gutes Zeichen!";
+"pfad_zitronenbaum_phase_vertiefung_desc_fortgeschritten" = "Verfeinere: Temperatur, Timing, Qualität des Wassers.";
+"pfad_zitronenbaum_phase_vertiefung_desc_experte" = "Du suchst nach den letzten Details für perfekte Hydration.";
+"pfad_zitronenbaum_phase_meisterschaft_desc_anfaenger" = "Du trinkst automatisch genug. Es ist Teil von dir.";
+"pfad_zitronenbaum_phase_meisterschaft_desc_fortgeschritten" = "Dein Hydrations-Niveau ist konstant auf Spitzenlevel.";
+"pfad_zitronenbaum_phase_meisterschaft_desc_experte" = "Du bist ein Hydrations-Champion. Dein Körper ist dankbar.";
+
+/* Plant: bambus (DE) */
+
+"pfad_bambus_day_1_title" = "Erste Kraft";
+"pfad_bambus_day_2_title" = "Muskeln wecken";
+"pfad_bambus_day_7_title" = "Eine Woche Stärke";
+"pfad_bambus_day_14_title" = "Grundlagen stehen";
+"pfad_bambus_day_21_title" = "Trainingsgewohnheit";
+"pfad_bambus_day_30_title" = "Ein Monat Power";
+"pfad_bambus_day_45_title" = "Halbzeit Kraft";
+"pfad_bambus_day_60_title" = "Kraftpaket";
+"pfad_bambus_day_90_title" = "Maximale Stärke";
+"pfad_bambus_day_1_desc_anfaenger" = "10 Liegestütze oder Kniebeugen. Das reicht für heute.";
+"pfad_bambus_day_1_desc_fortgeschritten" = "20 Minuten Bodyweight-Training: Liegestütze, Kniebeugen, Plank.";
+"pfad_bambus_day_1_desc_experte" = "30 Minuten intensives Krafttraining. Aufwärmen nicht vergessen!";
+"pfad_bambus_day_2_desc_anfaenger" = "Wieder 10 Wiederholungen. Gleiche Übung, gleiche Zeit.";
+"pfad_bambus_day_2_desc_fortgeschritten" = "20 Minuten Training. Heute Fokus auf den Oberkörper.";
+"pfad_bambus_day_2_desc_experte" = "30 Minuten. Heute: Beine und Core. Volle Intensität.";
+"pfad_bambus_day_7_desc_anfaenger" = "Eine Woche! Steigere auf 15 Wiederholungen.";
+"pfad_bambus_day_7_desc_fortgeschritten" = "Erste Woche! Erstelle einen festen Trainingsplan.";
+"pfad_bambus_day_7_desc_experte" = "7 Tage! Teste dein 1RM oder steigere das Gewicht.";
+"pfad_bambus_day_14_desc_anfaenger" = "Zwei Wochen! Füge eine neue Übung hinzu.";
+"pfad_bambus_day_14_desc_fortgeschritten" = "14 Tage! Achte heute besonders auf die Technik.";
+"pfad_bambus_day_14_desc_experte" = "14 Tage Elite. Progressive Overload: Mehr Gewicht oder Wiederholungen.";
+"pfad_bambus_day_21_desc_anfaenger" = "21 Tage! Training fühlt sich normal an.";
+"pfad_bambus_day_21_desc_fortgeschritten" = "Die Routine steht! Probiere eine Superset-Technik.";
+"pfad_bambus_day_21_desc_experte" = "21 Tage. Dein Körper verändert sich sichtbar.";
+"pfad_bambus_day_30_desc_anfaenger" = "Ein Monat! Vergleiche deine Kraft mit Tag 1.";
+"pfad_bambus_day_30_desc_fortgeschritten" = "30 Tage! Mache ein Fortschrittsfoto.";
+"pfad_bambus_day_30_desc_experte" = "Ein Monat Elite-Training. Deine Disziplin ist beeindruckend.";
+"pfad_bambus_day_45_desc_anfaenger" = "Halbzeit! Wie viele Liegestütze schaffst du jetzt?";
+"pfad_bambus_day_45_desc_fortgeschritten" = "Halbzeit! Variiere dein Training für neue Reize.";
+"pfad_bambus_day_45_desc_experte" = "Halbzeit. Deload-Woche? Dann nächste Woche mit neuer Energie.";
+"pfad_bambus_day_60_desc_anfaenger" = "Zwei Monate! Dein Körper ist deutlich stärker.";
+"pfad_bambus_day_60_desc_fortgeschritten" = "Zwei Monate! Kraft ist jetzt Teil deiner Identität.";
+"pfad_bambus_day_60_desc_experte" = "60 Tage. Du trainierst wie ein Athlet.";
+"pfad_bambus_day_90_desc_anfaenger" = "90 Tage! Du bist stärker als je zuvor.";
+"pfad_bambus_day_90_desc_fortgeschritten" = "90 Tage Disziplin! Dein Kraftlevel ist beeindruckend.";
+"pfad_bambus_day_90_desc_experte" = "90 Tage Elite-Krafttraining. Du bist eine Maschine.";
+"pfad_bambus_phase_einstieg_desc_anfaenger" = "Jede Wiederholung zählt. Starte leicht.";
+"pfad_bambus_phase_einstieg_desc_fortgeschritten" = "Baue eine solide Trainingsroutine auf.";
+"pfad_bambus_phase_einstieg_desc_experte" = "Maximale Intensität von Tag 1.";
+"pfad_bambus_phase_aufbau_desc_anfaenger" = "Steigere langsam Gewicht oder Wiederholungen.";
+"pfad_bambus_phase_aufbau_desc_fortgeschritten" = "Progressive Overload ist der Schlüssel.";
+"pfad_bambus_phase_aufbau_desc_experte" = "Trainiere wie ein Profi. Keine Kompromisse.";
+"pfad_bambus_phase_vertiefung_desc_anfaenger" = "Training ist Routine. Genieße die Fortschritte.";
+"pfad_bambus_phase_vertiefung_desc_fortgeschritten" = "Verfeinere Technik und Ausführung.";
+"pfad_bambus_phase_vertiefung_desc_experte" = "Suche nach den letzten Prozent Verbesserung.";
+"pfad_bambus_phase_meisterschaft_desc_anfaenger" = "Dein Körper fordert das Training ein.";
+"pfad_bambus_phase_meisterschaft_desc_fortgeschritten" = "Konstant stark. Beeindruckend.";
+"pfad_bambus_phase_meisterschaft_desc_experte" = "Du bist eine Kraftmaschine.";
+
+/* Plant: apfelbaum (DE) */
+
+"pfad_apfelbaum_day_1_title" = "Erste Mahlzeit";
+"pfad_apfelbaum_day_2_title" = "Frisch kochen";
+"pfad_apfelbaum_day_7_title" = "Eine Woche gesund";
+"pfad_apfelbaum_day_14_title" = "Koch-Routine";
+"pfad_apfelbaum_day_21_title" = "Gesunde Gewohnheit";
+"pfad_apfelbaum_day_30_title" = "Ein Monat Ernährung";
+"pfad_apfelbaum_day_45_title" = "Halbzeit Küche";
+"pfad_apfelbaum_day_60_title" = "Ernährungsprofi";
+"pfad_apfelbaum_day_90_title" = "Meisterkoch";
+"pfad_apfelbaum_day_1_desc_anfaenger" = "Koche heute eine einfache, gesunde Mahlzeit. Nur eine!";
+"pfad_apfelbaum_day_1_desc_fortgeschritten" = "Koche frisch und plane die Zutaten bewusst. Kein Fertiggericht.";
+"pfad_apfelbaum_day_1_desc_experte" = "Bereite alle 3 Mahlzeiten heute selbst zu. Meal Prep startet jetzt.";
+"pfad_apfelbaum_day_2_desc_anfaenger" = "Wieder eine frische Mahlzeit. Probiere ein neues Gemüse.";
+"pfad_apfelbaum_day_2_desc_fortgeschritten" = "Frisch kochen + ein neues Rezept ausprobieren.";
+"pfad_apfelbaum_day_2_desc_experte" = "3 Mahlzeiten + tracke deine Makros heute.";
+"pfad_apfelbaum_day_7_desc_anfaenger" = "Eine Woche! Erstelle eine simple Einkaufsliste für nächste Woche.";
+"pfad_apfelbaum_day_7_desc_fortgeschritten" = "Erste Woche! Plane deine Mahlzeiten für die nächsten 3 Tage.";
+"pfad_apfelbaum_day_7_desc_experte" = "7 Tage! Meal Prep für die komplette Woche.";
+"pfad_apfelbaum_day_14_desc_anfaenger" = "Zwei Wochen! Koche heute dein Lieblings-Gesundrezept.";
+"pfad_apfelbaum_day_14_desc_fortgeschritten" = "14 Tage! Experimentiere mit Gewürzen statt Salz.";
+"pfad_apfelbaum_day_14_desc_experte" = "14 Tage Elite. Heute: Optimiere deine Protein-Quellen.";
+"pfad_apfelbaum_day_21_desc_anfaenger" = "21 Tage! Gesund kochen ist jetzt normal für dich.";
+"pfad_apfelbaum_day_21_desc_fortgeschritten" = "Die Routine steht! Teile ein Rezept mit Freunden.";
+"pfad_apfelbaum_day_21_desc_experte" = "21 Tage. Deine Ernährung ist auf Top-Niveau.";
+"pfad_apfelbaum_day_30_desc_anfaenger" = "Ein Monat! Du ernährst dich bewusster als je zuvor.";
+"pfad_apfelbaum_day_30_desc_fortgeschritten" = "30 Tage! Erstelle dein persönliches Kochbuch.";
+"pfad_apfelbaum_day_30_desc_experte" = "Ein Monat Elite-Ernährung. Dein Körper dankt es dir.";
+"pfad_apfelbaum_day_45_desc_anfaenger" = "Halbzeit! Was ist dein Lieblings-Gesundrezept geworden?";
+"pfad_apfelbaum_day_45_desc_fortgeschritten" = "Halbzeit! Probiere eine neue Küche aus (asiatisch, mediterran...).";
+"pfad_apfelbaum_day_45_desc_experte" = "Halbzeit. Optimiere deine Makro-Verteilung.";
+"pfad_apfelbaum_day_60_desc_anfaenger" = "Zwei Monate! Gesund essen ist jetzt Lebensqualität.";
+"pfad_apfelbaum_day_60_desc_fortgeschritten" = "Zwei Monate! Du kochst besser als die meisten Restaurants.";
+"pfad_apfelbaum_day_60_desc_experte" = "60 Tage. Ernährung ist dein Fundament für alles.";
+"pfad_apfelbaum_day_90_desc_anfaenger" = "90 Tage! Gesunde Ernährung ist Teil deiner Identität.";
+"pfad_apfelbaum_day_90_desc_fortgeschritten" = "90 Tage Disziplin! Du bist ein Ernährungsprofi.";
+"pfad_apfelbaum_day_90_desc_experte" = "90 Tage Elite-Ernährung. Dein Körper ist eine Festung.";
+"pfad_apfelbaum_phase_einstieg_desc_anfaenger" = "Eine gesunde Mahlzeit pro Tag. Schritt für Schritt.";
+"pfad_apfelbaum_phase_einstieg_desc_fortgeschritten" = "Plane deine Mahlzeiten bewusst.";
+"pfad_apfelbaum_phase_einstieg_desc_experte" = "Volle Kontrolle über deine Ernährung von Tag 1.";
+"pfad_apfelbaum_phase_aufbau_desc_anfaenger" = "Probiere jede Woche ein neues Rezept.";
+"pfad_apfelbaum_phase_aufbau_desc_fortgeschritten" = "Steigere den Anteil frischer Zutaten.";
+"pfad_apfelbaum_phase_aufbau_desc_experte" = "Optimiere Makros und Mikronährstoffe.";
+"pfad_apfelbaum_phase_vertiefung_desc_anfaenger" = "Kochen fühlt sich natürlich an. Genieße es.";
+"pfad_apfelbaum_phase_vertiefung_desc_fortgeschritten" = "Verfeinere deine Rezepte und Techniken.";
+"pfad_apfelbaum_phase_vertiefung_desc_experte" = "Du kochst auf Profi-Niveau. Experimentiere weiter.";
+"pfad_apfelbaum_phase_meisterschaft_desc_anfaenger" = "Du greifst automatisch zu gesundem Essen.";
+"pfad_apfelbaum_phase_meisterschaft_desc_fortgeschritten" = "Dein Ernährungs-Level ist beeindruckend.";
+"pfad_apfelbaum_phase_meisterschaft_desc_experte" = "Du bist ein Meister der gesunden Küche.";
+
+/* Plant: wildgras (DE) */
+
+"pfad_wildgras_day_1_title" = "Erste Schritte";
+"pfad_wildgras_day_2_title" = "Weiterlaufen";
+"pfad_wildgras_day_7_title" = "Eine Woche Laufen";
+"pfad_wildgras_day_14_title" = "Lauf-Routine";
+"pfad_wildgras_day_21_title" = "Jogger-Gewohnheit";
+"pfad_wildgras_day_30_title" = "Ein Monat Ausdauer";
+"pfad_wildgras_day_45_title" = "Halbzeit Laufen";
+"pfad_wildgras_day_60_title" = "Läufer";
+"pfad_wildgras_day_90_title" = "Marathon-Mentalität";
+"pfad_wildgras_day_1_desc_anfaenger" = "Geh heute 10 Minuten flott spazieren. Das ist dein Start.";
+"pfad_wildgras_day_1_desc_fortgeschritten" = "15 Minuten leichtes Joggen. Tempo ist egal, Bewegung zählt.";
+"pfad_wildgras_day_1_desc_experte" = "30 Minuten Dauerlauf im angenehmen Tempo.";
+"pfad_wildgras_day_2_desc_anfaenger" = "Wieder 10 Minuten flott gehen. Gleiche Route wie gestern.";
+"pfad_wildgras_day_2_desc_fortgeschritten" = "15 Minuten Joggen. Versuche gleichmäßig zu atmen.";
+"pfad_wildgras_day_2_desc_experte" = "30 Minuten. Heute: Intervalle einbauen (2 Min schnell, 1 Min langsam).";
+"pfad_wildgras_day_7_desc_anfaenger" = "Eine Woche! Steigere auf 15 Minuten. Trab zwischendurch.";
+"pfad_wildgras_day_7_desc_fortgeschritten" = "Erste Woche! Laufe heute eine neue Route.";
+"pfad_wildgras_day_7_desc_experte" = "7 Tage! Teste deine 5K-Zeit.";
+"pfad_wildgras_day_14_desc_anfaenger" = "Zwei Wochen! Versuche heute 5 Minuten am Stück zu joggen.";
+"pfad_wildgras_day_14_desc_fortgeschritten" = "14 Tage! Steigere auf 20 Minuten heute.";
+"pfad_wildgras_day_14_desc_experte" = "14 Tage Elite. Intervalltraining für Speed.";
+"pfad_wildgras_day_21_desc_anfaenger" = "21 Tage! Laufen wird zur Gewohnheit.";
+"pfad_wildgras_day_21_desc_fortgeschritten" = "Die Routine steht! Probiere Trail-Running.";
+"pfad_wildgras_day_21_desc_experte" = "21 Tage. Steigere deine Distanz um 10%.";
+"pfad_wildgras_day_30_desc_anfaenger" = "Ein Monat! Deine Ausdauer hat sich verdoppelt.";
+"pfad_wildgras_day_30_desc_fortgeschritten" = "30 Tage! Wie weit läufst du jetzt? Vergleiche mit Tag 1.";
+"pfad_wildgras_day_30_desc_experte" = "Ein Monat Elite. Trainiere heute für dein nächstes Ziel-Rennen.";
+"pfad_wildgras_day_45_desc_anfaenger" = "Halbzeit! Melde dich für einen 5K-Lauf an.";
+"pfad_wildgras_day_45_desc_fortgeschritten" = "Halbzeit! Dein Körper verlangt nach dem Laufen.";
+"pfad_wildgras_day_45_desc_experte" = "Halbzeit. Periodisierung: Diese Woche Regeneration.";
+"pfad_wildgras_day_60_desc_anfaenger" = "Zwei Monate! Du bist ein Läufer.";
+"pfad_wildgras_day_60_desc_fortgeschritten" = "Zwei Monate! Laufen ist jetzt Therapie.";
+"pfad_wildgras_day_60_desc_experte" = "60 Tage. Du läufst wie ein Profi.";
+"pfad_wildgras_day_90_desc_anfaenger" = "90 Tage! Vom Spaziergänger zum Läufer. Unglaublich.";
+"pfad_wildgras_day_90_desc_fortgeschritten" = "90 Tage! Joggen ist jetzt Teil deiner DNA.";
+"pfad_wildgras_day_90_desc_experte" = "90 Tage Elite-Laufen. Marathon-Mentalität erreicht.";
+"pfad_wildgras_phase_einstieg_desc_anfaenger" = "Jeder Schritt zählt. Geh oder lauf – Hauptsache Bewegung.";
+"pfad_wildgras_phase_einstieg_desc_fortgeschritten" = "Baue eine regelmäßige Laufroutine auf.";
+"pfad_wildgras_phase_einstieg_desc_experte" = "Laufe mit Plan und Ziel.";
+"pfad_wildgras_phase_aufbau_desc_anfaenger" = "Steigere langsam die Dauer.";
+"pfad_wildgras_phase_aufbau_desc_fortgeschritten" = "Erhöhe Tempo oder Distanz.";
+"pfad_wildgras_phase_aufbau_desc_experte" = "Trainingsplan mit Intervallen und Tempoläufen.";
+"pfad_wildgras_phase_vertiefung_desc_anfaenger" = "Laufen fühlt sich natürlich an.";
+"pfad_wildgras_phase_vertiefung_desc_fortgeschritten" = "Verfeinere dein Tempo und deine Technik.";
+"pfad_wildgras_phase_vertiefung_desc_experte" = "Optimiere VO2max und Laufökonomie.";
+"pfad_wildgras_phase_meisterschaft_desc_anfaenger" = "Du lischst automatisch die Schuhe. Laufen gehört zu dir.";
+"pfad_wildgras_phase_meisterschaft_desc_fortgeschritten" = "Konstant hohe Leistung.";
+"pfad_wildgras_phase_meisterschaft_desc_experte" = "Elite-Läufer-Mentalität. Respekt.";
+
+/* Plant: lotus (DE) */
+
+"pfad_lotus_day_1_title" = "Atemzug";
+"pfad_lotus_day_2_title" = "Innere Ruhe";
+"pfad_lotus_day_7_title" = "Stille Woche";
+"pfad_lotus_day_14_title" = "Meditation Routine";
+"pfad_lotus_day_21_title" = "Achtsamkeit";
+"pfad_lotus_day_30_title" = "Ein Monat Meditation";
+"pfad_lotus_day_45_title" = "Tiefe Praxis";
+"pfad_lotus_day_60_title" = "Bewusstseins-Meister";
+"pfad_lotus_day_90_title" = "Erleuchtung";
+"pfad_lotus_day_1_desc_anfaenger" = "Sitz 3 Minuten still. Beobachte deinen Atem.";
+"pfad_lotus_day_1_desc_fortgeschritten" = "7 Minuten Achtsamkeitsmeditation. Fokus auf den Moment.";
+"pfad_lotus_day_1_desc_experte" = "15 Minuten Vipassana. Tiefe Beobachtung ohne Bewertung.";
+"pfad_lotus_day_2_desc_anfaenger" = "Wieder 3 Minuten. Lass alle Gedanken ziehen.";
+"pfad_lotus_day_2_desc_fortgeschritten" = "7 Minuten. Heute: Body-Scan von Kopf bis Fuß.";
+"pfad_lotus_day_2_desc_experte" = "15 Minuten. Metta-Meditation: Sende Liebe an dich und andere.";
+"pfad_lotus_day_7_desc_anfaenger" = "Steigere auf 5 Minuten. Eine Woche Meditation!";
+"pfad_lotus_day_7_desc_fortgeschritten" = "10 Minuten heute. Probiere Gehmeditation.";
+"pfad_lotus_day_7_desc_experte" = "20 Minuten in absoluter Stille. Kein Timer.";
+"pfad_lotus_day_14_desc_anfaenger" = "5 Minuten Meditation + 2 Minuten Dankbarkeit.";
+"pfad_lotus_day_14_desc_fortgeschritten" = "10 Minuten + Journaling über innere Erkenntnisse.";
+"pfad_lotus_day_14_desc_experte" = "25 Minuten. Beobachte die Lücke zwischen Gedanken.";
+"pfad_lotus_day_21_desc_anfaenger" = "Meditiere direkt nach dem Aufwachen.";
+"pfad_lotus_day_21_desc_fortgeschritten" = "Morgens + abends je 7 Minuten.";
+"pfad_lotus_day_21_desc_experte" = "Meditation als festes Morgen-Abend-Ritual. Je 15 Min.";
+"pfad_lotus_day_30_desc_anfaenger" = "Ein Monat! 10 Minuten achtsames Atmen.";
+"pfad_lotus_day_30_desc_fortgeschritten" = "30 Tage! 15 Minuten + Reflexion.";
+"pfad_lotus_day_30_desc_experte" = "Ein Monat Tiefenpraxis. 30 Minuten heute.";
+"pfad_lotus_day_45_desc_anfaenger" = "Halbzeit! Versuche Gehmeditation.";
+"pfad_lotus_day_45_desc_fortgeschritten" = "Halbzeit! Stille Retreat zu Hause: 20 Minuten.";
+"pfad_lotus_day_45_desc_experte" = "Halbzeit. 45 Minuten Sitzmeditation.";
+"pfad_lotus_day_60_desc_anfaenger" = "Zwei Monate innerer Frieden.";
+"pfad_lotus_day_60_desc_fortgeschritten" = "Zwei Monate! Meditation ist dein Anker.";
+"pfad_lotus_day_60_desc_experte" = "60 Tage. Du bist tief verbunden mit dir selbst.";
+"pfad_lotus_day_90_desc_anfaenger" = "90 Tage! Du hast innere Stille gemeistert.";
+"pfad_lotus_day_90_desc_fortgeschritten" = "90 Tage! Bewusstheit ist deine Natur.";
+"pfad_lotus_day_90_desc_experte" = "90 Tage Tiefenpraxis. Erleuchtung ist der Weg.";
+"pfad_lotus_phase_einstieg_desc_anfaenger" = "Atme. Beobachte. Mehr brauchst du nicht.";
+"pfad_lotus_phase_einstieg_desc_fortgeschritten" = "Baue eine tägliche Meditationspraxis auf.";
+"pfad_lotus_phase_einstieg_desc_experte" = "Tiefe Praxis von Anfang an.";
+"pfad_lotus_phase_aufbau_desc_anfaenger" = "Verlängere jede Woche um 1 Minute.";
+"pfad_lotus_phase_aufbau_desc_fortgeschritten" = "Experimentiere mit verschiedenen Stilen.";
+"pfad_lotus_phase_aufbau_desc_experte" = "Vertiefe deine Praxis mit Retreats und Stille.";
+"pfad_lotus_phase_vertiefung_desc_anfaenger" = "Meditation ist natürlich geworden.";
+"pfad_lotus_phase_vertiefung_desc_fortgeschritten" = "Feintuning der Aufmerksamkeit.";
+"pfad_lotus_phase_vertiefung_desc_experte" = "Jenseits der Technik: Einfach sein.";
+"pfad_lotus_phase_meisterschaft_desc_anfaenger" = "Du bist ruhig, egal was kommt.";
+"pfad_lotus_phase_meisterschaft_desc_fortgeschritten" = "Tiefe innere Balance.";
+"pfad_lotus_phase_meisterschaft_desc_experte" = "Meditation und Leben sind eins.";
+
+/* Plant: kaktus (DE) */
+
+"pfad_kaktus_day_1_title" = "Erster Schock";
+"pfad_kaktus_day_2_title" = "Kälte-Challenge";
+"pfad_kaktus_day_7_title" = "Kalte Woche";
+"pfad_kaktus_day_14_title" = "Abhärtung";
+"pfad_kaktus_day_21_title" = "Kälte-Routine";
+"pfad_kaktus_day_30_title" = "Ein Monat Eis";
+"pfad_kaktus_day_45_title" = "Kälte-Meister";
+"pfad_kaktus_day_60_title" = "Unerschütterlich";
+"pfad_kaktus_day_90_title" = "Eiskönig";
+"pfad_kaktus_day_1_desc_anfaenger" = "Drehe am Ende deiner Dusche 10 Sekunden auf kalt.";
+"pfad_kaktus_day_1_desc_fortgeschritten" = "30 Sekunden kaltes Wasser am Ende der Dusche.";
+"pfad_kaktus_day_1_desc_experte" = "1 Minute volle Kälte. Atme bewusst durch.";
+"pfad_kaktus_day_2_desc_anfaenger" = "Wieder 10 Sekunden. Du schaffst das!";
+"pfad_kaktus_day_2_desc_fortgeschritten" = "30 Sekunden. Kontrolliere deine Atmung.";
+"pfad_kaktus_day_2_desc_experte" = "1 Minute. Heute: Konzentriere dich auf langsames Ausatmen.";
+"pfad_kaktus_day_7_desc_anfaenger" = "Eine Woche! Steigere auf 20 Sekunden.";
+"pfad_kaktus_day_7_desc_fortgeschritten" = "Erste Woche! 45 Sekunden heute.";
+"pfad_kaktus_day_7_desc_experte" = "7 Tage! 2 Minuten kalt. Wim-Hof-Atmung vorher.";
+"pfad_kaktus_day_14_desc_anfaenger" = "Zwei Wochen! 30 Sekunden kalt.";
+"pfad_kaktus_day_14_desc_fortgeschritten" = "14 Tage! 1 Minute. Es wird leichter.";
+"pfad_kaktus_day_14_desc_experte" = "14 Tage. 3 Minuten kalt. Dein Körper passt sich an.";
+"pfad_kaktus_day_21_desc_anfaenger" = "21 Tage! Kalt duschen schockt dich nicht mehr.";
+"pfad_kaktus_day_21_desc_fortgeschritten" = "Die Routine steht! Starte die Dusche komplett kalt.";
+"pfad_kaktus_day_21_desc_experte" = "21 Tage. Du freust dich auf die Kälte.";
+"pfad_kaktus_day_30_desc_anfaenger" = "Ein Monat! Dein Immunsystem dankt dir.";
+"pfad_kaktus_day_30_desc_fortgeschritten" = "30 Tage! Mehr Energie, bessere Laune.";
+"pfad_kaktus_day_30_desc_experte" = "Ein Monat Kälte-Elite. Dein Körper ist abgehärtet.";
+"pfad_kaktus_day_45_desc_anfaenger" = "Halbzeit! Versuch heute die ganze Dusche kalt.";
+"pfad_kaktus_day_45_desc_fortgeschritten" = "Halbzeit! Kälte ist jetzt Komfort.";
+"pfad_kaktus_day_45_desc_experte" = "Halbzeit. Probiere ein Eisbad.";
+"pfad_kaktus_day_60_desc_anfaenger" = "Zwei Monate! Du bist härter als die meisten.";
+"pfad_kaktus_day_60_desc_fortgeschritten" = "Zwei Monate! Kälte ist dein Verbündeter.";
+"pfad_kaktus_day_60_desc_experte" = "60 Tage. Kälte ist deine Superkraft.";
+"pfad_kaktus_day_90_desc_anfaenger" = "90 Tage! Kalt duschen ist jetzt normal.";
+"pfad_kaktus_day_90_desc_fortgeschritten" = "90 Tage! Du bist abgehärtet.";
+"pfad_kaktus_day_90_desc_experte" = "90 Tage Kälte-Meister. Du bist unerschütterlich.";
+"pfad_kaktus_phase_einstieg_desc_anfaenger" = "Nur ein paar Sekunden kalt. Mehr nicht.";
+"pfad_kaktus_phase_einstieg_desc_fortgeschritten" = "Baue die Kältetoleranz langsam auf.";
+"pfad_kaktus_phase_einstieg_desc_experte" = "Volle Kälte-Exposition von Tag 1.";
+"pfad_kaktus_phase_aufbau_desc_anfaenger" = "Steigere alle paar Tage um 5 Sekunden.";
+"pfad_kaktus_phase_aufbau_desc_fortgeschritten" = "Verlängere die Kältephase konsequent.";
+"pfad_kaktus_phase_aufbau_desc_experte" = "Kälte-Protokoll mit Atemtechnik kombinieren.";
+"pfad_kaktus_phase_vertiefung_desc_anfaenger" = "Kälte schreckt dich nicht mehr.";
+"pfad_kaktus_phase_vertiefung_desc_fortgeschritten" = "Genieße den Endorphin-Rush.";
+"pfad_kaktus_phase_vertiefung_desc_experte" = "Kälte als Meditationspraxis nutzen.";
+"pfad_kaktus_phase_meisterschaft_desc_anfaenger" = "Kalt duschen ist automatisch.";
+"pfad_kaktus_phase_meisterschaft_desc_fortgeschritten" = "Dein Körper liebt die Kälte.";
+"pfad_kaktus_phase_meisterschaft_desc_experte" = "Du bist der Kälte-Meister.";
+
+/* Plant: weinrebe (DE) */
+
+"pfad_weinrebe_day_1_title" = "Tag Eins Nüchtern";
+"pfad_weinrebe_day_2_title" = "Klar bleiben";
+"pfad_weinrebe_day_7_title" = "Nüchterne Woche";
+"pfad_weinrebe_day_14_title" = "Bewusste Wahl";
+"pfad_weinrebe_day_21_title" = "Alkoholfrei-Routine";
+"pfad_weinrebe_day_30_title" = "Ein Monat Klarheit";
+"pfad_weinrebe_day_45_title" = "Halbzeit Nüchtern";
+"pfad_weinrebe_day_60_title" = "Nüchtern-Champion";
+"pfad_weinrebe_day_90_title" = "Freiheit";
+"pfad_weinrebe_day_1_desc_anfaenger" = "Heute kein Alkohol. Trink stattdessen was Leckeres ohne.";
+"pfad_weinrebe_day_1_desc_fortgeschritten" = "Kein Alkohol. Notiere, wie du dich abends fühlst.";
+"pfad_weinrebe_day_1_desc_experte" = "Null Alkohol. Ersetze das Ritual (z.B. Tee statt Wein).";
+"pfad_weinrebe_day_2_desc_anfaenger" = "Tag 2 ohne Alkohol. Du schaffst das!";
+"pfad_weinrebe_day_2_desc_fortgeschritten" = "Wieder nüchtern. Wie ist dein Schlaf?";
+"pfad_weinrebe_day_2_desc_experte" = "Tag 2. Beobachte: Weniger Verlangen als gestern?";
+"pfad_weinrebe_day_7_desc_anfaenger" = "Eine Woche! Fühlst du dich ausgeruhter?";
+"pfad_weinrebe_day_7_desc_fortgeschritten" = "Erste Woche! Dein Körper beginnt sich zu regenerieren.";
+"pfad_weinrebe_day_7_desc_experte" = "7 Tage! Deine Leber dankt dir. Mehr Energie spürbar.";
+"pfad_weinrebe_day_14_desc_anfaenger" = "Zwei Wochen! Deine Haut sieht besser aus.";
+"pfad_weinrebe_day_14_desc_fortgeschritten" = "14 Tage! Besserer Schlaf, mehr Fokus.";
+"pfad_weinrebe_day_14_desc_experte" = "14 Tage. Dein Körper regeneriert sich spürbar.";
+"pfad_weinrebe_day_21_desc_anfaenger" = "21 Tage! Es wird immer leichter.";
+"pfad_weinrebe_day_21_desc_fortgeschritten" = "Die Routine steht! Genieße Social Events nüchtern.";
+"pfad_weinrebe_day_21_desc_experte" = "21 Tage. Du brauchst keinen Alkohol mehr zur Entspannung.";
+"pfad_weinrebe_day_30_desc_anfaenger" = "Ein Monat! Du hast bewiesen, dass du es kannst.";
+"pfad_weinrebe_day_30_desc_fortgeschritten" = "30 Tage! Reflektiere: Was hat sich verbessert?";
+"pfad_weinrebe_day_30_desc_experte" = "Ein Monat Klarheit. Dein Leben ist besser ohne.";
+"pfad_weinrebe_day_45_desc_anfaenger" = "Halbzeit! Du bist ein Vorbild für andere.";
+"pfad_weinrebe_day_45_desc_fortgeschritten" = "Halbzeit! Klarheit ist jetzt dein Normalzustand.";
+"pfad_weinrebe_day_45_desc_experte" = "Halbzeit. Du hast echte innere Stärke bewiesen.";
+"pfad_weinrebe_day_60_desc_anfaenger" = "Zwei Monate! Nüchternheit fühlt sich frei an.";
+"pfad_weinrebe_day_60_desc_fortgeschritten" = "Zwei Monate! Dein Körper und Geist sind auf einem Hoch.";
+"pfad_weinrebe_day_60_desc_experte" = "60 Tage. Du lebst bewusster als je zuvor.";
+"pfad_weinrebe_day_90_desc_anfaenger" = "90 Tage! Alkoholfreiheit ist jetzt Freiheit.";
+"pfad_weinrebe_day_90_desc_fortgeschritten" = "90 Tage Klarheit! Unglaubliche Leistung.";
+"pfad_weinrebe_day_90_desc_experte" = "90 Tage. Du hast dein Leben transformiert.";
+"pfad_weinrebe_phase_einstieg_desc_anfaenger" = "Ein Tag nach dem anderen. Du schaffst das.";
+"pfad_weinrebe_phase_einstieg_desc_fortgeschritten" = "Ersetze das Alkohol-Ritual durch etwas Gesundes.";
+"pfad_weinrebe_phase_einstieg_desc_experte" = "Volle Nüchternheit. Keine Ausnahmen.";
+"pfad_weinrebe_phase_aufbau_desc_anfaenger" = "Finde Alternativen für soziale Situationen.";
+"pfad_weinrebe_phase_aufbau_desc_fortgeschritten" = "Genieße Social Events bewusst nüchtern.";
+"pfad_weinrebe_phase_aufbau_desc_experte" = "Nüchternheit als Lifestyle etablieren.";
+"pfad_weinrebe_phase_vertiefung_desc_anfaenger" = "Es wird natürlicher. Das Verlangen lässt nach.";
+"pfad_weinrebe_phase_vertiefung_desc_fortgeschritten" = "Du merkst den Unterschied in Gesundheit und Klarheit.";
+"pfad_weinrebe_phase_vertiefung_desc_experte" = "Alkohol hat keinen Platz mehr in deinem Leben.";
+"pfad_weinrebe_phase_meisterschaft_desc_anfaenger" = "Du denkst gar nicht mehr an Alkohol.";
+"pfad_weinrebe_phase_meisterschaft_desc_fortgeschritten" = "Dein Lebensstil ist inspirierend.";
+"pfad_weinrebe_phase_meisterschaft_desc_experte" = "Volle Freiheit. Du bist der Meister deiner Entscheidungen.";
+
+/* Plant: kirschbaum (DE) */
+
+"pfad_kirschbaum_day_1_title" = "Selfcare-Start";
+"pfad_kirschbaum_day_2_title" = "Für dich";
+"pfad_kirschbaum_day_7_title" = "Woche der Selbstliebe";
+"pfad_kirschbaum_day_14_title" = "Selfcare-Routine";
+"pfad_kirschbaum_day_21_title" = "Selbstfürsorge";
+"pfad_kirschbaum_day_30_title" = "Ein Monat für mich";
+"pfad_kirschbaum_day_45_title" = "Halbzeit Selfcare";
+"pfad_kirschbaum_day_60_title" = "Selfcare-Pro";
+"pfad_kirschbaum_day_90_title" = "Selbstliebe-Meister";
+"pfad_kirschbaum_day_1_desc_anfaenger" = "Tu heute eine kleine Sache nur für dich. 5 Minuten.";
+"pfad_kirschbaum_day_1_desc_fortgeschritten" = "15 Minuten Selfcare: Hautpflege, Bad, oder einfach Stille.";
+"pfad_kirschbaum_day_1_desc_experte" = "30 Minuten volles Selfcare-Ritual. Du bist es wert.";
+"pfad_kirschbaum_day_2_desc_anfaenger" = "Wieder 5 Minuten nur für dich.";
+"pfad_kirschbaum_day_2_desc_fortgeschritten" = "15 Minuten. Heute etwas anderes als gestern.";
+"pfad_kirschbaum_day_2_desc_experte" = "30 Minuten. Heute: Körperpflege + mentale Pause.";
+"pfad_kirschbaum_day_7_desc_anfaenger" = "Eine Woche! Erstelle eine Selfcare-Liste für diese Woche.";
+"pfad_kirschbaum_day_7_desc_fortgeschritten" = "Erste Woche! Blockiere Selfcare-Zeit im Kalender.";
+"pfad_kirschbaum_day_7_desc_experte" = "7 Tage! Dein Selfcare-Ritual ist eine heilige Zeit.";
+"pfad_kirschbaum_day_14_desc_anfaenger" = "Zwei Wochen Selbstfürsorge! Du siehst besser aus.";
+"pfad_kirschbaum_day_14_desc_fortgeschritten" = "14 Tage! Probiere eine Gesichtsmaske oder Massage.";
+"pfad_kirschbaum_day_14_desc_experte" = "14 Tage. Dein Selfcare beeinflusst alles positiv.";
+"pfad_kirschbaum_day_21_desc_anfaenger" = "21 Tage! Selfcare ist jetzt Gewohnheit.";
+"pfad_kirschbaum_day_21_desc_fortgeschritten" = "Die Routine steht! Du priorisierst dich selbst.";
+"pfad_kirschbaum_day_21_desc_experte" = "21 Tage. Du strahlst von innen.";
+"pfad_kirschbaum_day_30_desc_anfaenger" = "Ein Monat! Du behandelst dich mit mehr Respekt.";
+"pfad_kirschbaum_day_30_desc_fortgeschritten" = "30 Tage! Dein Wohlbefinden ist auf einem Hoch. ";
+"pfad_kirschbaum_day_30_desc_experte" = "Ein Monat Elite-Selfcare. Du inspirierst andere.";
+"pfad_kirschbaum_day_45_desc_anfaenger" = "Halbzeit! Gönn dir heute etwas Besonderes.";
+"pfad_kirschbaum_day_45_desc_fortgeschritten" = "Halbzeit! Selfcare ist jetzt nicht-verhandelbar.";
+"pfad_kirschbaum_day_45_desc_experte" = "Halbzeit. Du lebst Selbstliebe auf höchstem Niveau.";
+"pfad_kirschbaum_day_60_desc_anfaenger" = "Zwei Monate! Selfcare ist Lebensqualität.";
+"pfad_kirschbaum_day_60_desc_fortgeschritten" = "Zwei Monate! Du bist ein Vorbild für Selbstfürsorge.";
+"pfad_kirschbaum_day_60_desc_experte" = "60 Tage. Selbstliebe ist dein Fundament.";
+"pfad_kirschbaum_day_90_desc_anfaenger" = "90 Tage! Selfcare ist Teil deiner Identität.";
+"pfad_kirschbaum_day_90_desc_fortgeschritten" = "90 Tage! Du hast gelernt, dich selbst zu lieben.";
+"pfad_kirschbaum_day_90_desc_experte" = "90 Tage Meister der Selbstliebe. Wunderschön.";
+"pfad_kirschbaum_phase_einstieg_desc_anfaenger" = "Eine kleine Sache für dich pro Tag.";
+"pfad_kirschbaum_phase_einstieg_desc_fortgeschritten" = "Etabliere ein tägliches Selfcare-Ritual.";
+"pfad_kirschbaum_phase_einstieg_desc_experte" = "Selfcare ist ab sofort Priorität Nr. 1.";
+"pfad_kirschbaum_phase_aufbau_desc_anfaenger" = "Erweitere dein Repertoire.";
+"pfad_kirschbaum_phase_aufbau_desc_fortgeschritten" = "Vertiefe deine Selfcare-Praxis.";
+"pfad_kirschbaum_phase_aufbau_desc_experte" = "Selfcare auf allen Ebenen: Körper, Geist, Seele.";
+"pfad_kirschbaum_phase_vertiefung_desc_anfaenger" = "Selfcare fühlt sich natürlich an.";
+"pfad_kirschbaum_phase_vertiefung_desc_fortgeschritten" = "Verfeinere deine Rituale.";
+"pfad_kirschbaum_phase_vertiefung_desc_experte" = "Du suchst nach den tieferen Schichten der Selbstliebe.";
+"pfad_kirschbaum_phase_meisterschaft_desc_anfaenger" = "Du sorgst automatisch für dich.";
+"pfad_kirschbaum_phase_meisterschaft_desc_fortgeschritten" = "Dein Selfcare-Level ist inspirierend.";
+"pfad_kirschbaum_phase_meisterschaft_desc_experte" = "Du lebst Selbstliebe in Perfektion.";
+
+/* Plant: minzpflanze (DE) */
+
+"pfad_minzpflanze_day_1_title" = "Frischer Start";
+"pfad_minzpflanze_day_2_title" = "Routine";
+"pfad_minzpflanze_day_7_title" = "Minzige Woche";
+"pfad_minzpflanze_day_14_title" = "Zahnpflege-Profi";
+"pfad_minzpflanze_day_21_title" = "Gewohnheit Hygiene";
+"pfad_minzpflanze_day_30_title" = "Ein Monat Frische";
+"pfad_minzpflanze_day_45_title" = "Halbzeit Zahnpflege";
+"pfad_minzpflanze_day_60_title" = "Strahlendes Lächeln";
+"pfad_minzpflanze_day_90_title" = "Perfekte Zahnpflege";
+"pfad_minzpflanze_day_1_desc_anfaenger" = "Putze heute Abend 2 Minuten gründlich die Zähne.";
+"pfad_minzpflanze_day_1_desc_fortgeschritten" = "2 Minuten putzen + Zahnseide. Morgens und abends.";
+"pfad_minzpflanze_day_1_desc_experte" = "Volle Routine: Putzen + Zahnseide + Mundspülung. 2x täglich.";
+"pfad_minzpflanze_day_2_desc_anfaenger" = "Wieder 2 Minuten. Timer stellen!";
+"pfad_minzpflanze_day_2_desc_fortgeschritten" = "Morgens und abends. Technik beachten: Kreisende Bewegungen.";
+"pfad_minzpflanze_day_2_desc_experte" = "Volle Routine. Heute: Achte besonders auf die hinteren Zähne.";
+"pfad_minzpflanze_day_7_desc_anfaenger" = "Eine Woche! Füge Zahnseide hinzu.";
+"pfad_minzpflanze_day_7_desc_fortgeschritten" = "Erste Woche perfekte Zahnhygiene!";
+"pfad_minzpflanze_day_7_desc_experte" = "7 Tage! Dein Zahnfleisch wird es dir danken.";
+"pfad_minzpflanze_day_14_desc_anfaenger" = "Zwei Wochen! Deine Zähne fühlen sich sauberer an.";
+"pfad_minzpflanze_day_14_desc_fortgeschritten" = "14 Tage! Wechsle heute deine Zahnbürste.";
+"pfad_minzpflanze_day_14_desc_experte" = "14 Tage. Perfekte Technik ist jetzt selbstverständlich.";
+"pfad_minzpflanze_day_21_desc_anfaenger" = "21 Tage! Zähneputzen ist automatisch.";
+"pfad_minzpflanze_day_21_desc_fortgeschritten" = "Gewohnheit steht! Dein Zahnarzt wird beeindruckt sein.";
+"pfad_minzpflanze_day_21_desc_experte" = "21 Tage Perfektion. Dein Lächeln strahlt.";
+"pfad_minzpflanze_day_30_desc_anfaenger" = "Ein Monat! Zahngesundheit ist Life.";
+"pfad_minzpflanze_day_30_desc_fortgeschritten" = "30 Tage! Saubere Zähne, gesundes Zahnfleisch.";
+"pfad_minzpflanze_day_30_desc_experte" = "Ein Monat perfekte Zahnpflege.";
+"pfad_minzpflanze_day_45_desc_anfaenger" = "Halbzeit! Gönn dir eine Zungenreinigung.";
+"pfad_minzpflanze_day_45_desc_fortgeschritten" = "Halbzeit! Deine Zahnhygiene ist vorbildlich.";
+"pfad_minzpflanze_day_45_desc_experte" = "Halbzeit. Du bist ein Zahnpflege-Profi.";
+"pfad_minzpflanze_day_60_desc_anfaenger" = "Zwei Monate perfekte Zähne!";
+"pfad_minzpflanze_day_60_desc_fortgeschritten" = "Zwei Monate! Dein Zahnarzt wird staunen.";
+"pfad_minzpflanze_day_60_desc_experte" = "60 Tage. Strahlendes Lächeln garantiert.";
+"pfad_minzpflanze_day_90_desc_anfaenger" = "90 Tage! Perfekte Zahnhygiene für immer.";
+"pfad_minzpflanze_day_90_desc_fortgeschritten" = "90 Tage! Ein strahlendes Lächeln.";
+"pfad_minzpflanze_day_90_desc_experte" = "90 Tage Zahnpflege-Perfektion.";
+"pfad_minzpflanze_phase_einstieg_desc_anfaenger" = "2 Minuten putzen. Das ist alles.";
+"pfad_minzpflanze_phase_einstieg_desc_fortgeschritten" = "Baue eine vollständige Zahnpflege-Routine auf.";
+"pfad_minzpflanze_phase_einstieg_desc_experte" = "Perfekte Zahnhygiene von Tag 1.";
+"pfad_minzpflanze_phase_aufbau_desc_anfaenger" = "Füge Zahnseide hinzu.";
+"pfad_minzpflanze_phase_aufbau_desc_fortgeschritten" = "Technik optimieren und Timer nutzen.";
+"pfad_minzpflanze_phase_aufbau_desc_experte" = "Interdentalreinigung und Zungenreinigung ergänzen.";
+"pfad_minzpflanze_phase_vertiefung_desc_anfaenger" = "Es ist automatisch. Gut gemacht.";
+"pfad_minzpflanze_phase_vertiefung_desc_fortgeschritten" = "Verfeinere die Putztechnik.";
+"pfad_minzpflanze_phase_vertiefung_desc_experte" = "Perfektion in jedem Detail.";
+"pfad_minzpflanze_phase_meisterschaft_desc_anfaenger" = "Dein Lächeln strahlt.";
+"pfad_minzpflanze_phase_meisterschaft_desc_fortgeschritten" = "Vorbildliche Zahnhygiene.";
+"pfad_minzpflanze_phase_meisterschaft_desc_experte" = "Du bist ein Zahnpflege-Champion.";
+
+/* Plant: mandelbaum (DE) */
+
+"pfad_mandelbaum_day_1_title" = "Erster Euro";
+"pfad_mandelbaum_day_2_title" = "Sparfuchs";
+"pfad_mandelbaum_day_7_title" = "Spar-Woche";
+"pfad_mandelbaum_day_14_title" = "Finanz-Routine";
+"pfad_mandelbaum_day_21_title" = "Spar-Gewohnheit";
+"pfad_mandelbaum_day_30_title" = "Ein Monat Sparen";
+"pfad_mandelbaum_day_45_title" = "Halbzeit Finanzen";
+"pfad_mandelbaum_day_60_title" = "Finanz-Profi";
+"pfad_mandelbaum_day_90_title" = "Finanzielle Freiheit";
+"pfad_mandelbaum_day_1_desc_anfaenger" = "Spare heute 1€. Lege es separat weg.";
+"pfad_mandelbaum_day_1_desc_fortgeschritten" = "Tracke heute ALLE Ausgaben. Jeder Cent zählt.";
+"pfad_mandelbaum_day_1_desc_experte" = "Erstelle ein detailliertes Budget für diesen Monat.";
+"pfad_mandelbaum_day_2_desc_anfaenger" = "Wieder 1€ sparen. Es summiert sich!";
+"pfad_mandelbaum_day_2_desc_fortgeschritten" = "Tracke wieder alle Ausgaben. Siehst du Muster?";
+"pfad_mandelbaum_day_2_desc_experte" = "Budget überprüfen. Wo kannst du heute sparen?";
+"pfad_mandelbaum_day_7_desc_anfaenger" = "Eine Woche! Du hast 7€ gespart. Notiere es.";
+"pfad_mandelbaum_day_7_desc_fortgeschritten" = "Erste Woche! Analysiere: Wo gibst du am meisten aus?";
+"pfad_mandelbaum_day_7_desc_experte" = "7 Tage! Automatisierten Sparplan einrichten (z.B. 50€/Monat).";
+"pfad_mandelbaum_day_14_desc_anfaenger" = "Zwei Wochen! Steigere auf 2€ pro Tag.";
+"pfad_mandelbaum_day_14_desc_fortgeschritten" = "14 Tage! Kündige ein Abo, das du nicht nutzt.";
+"pfad_mandelbaum_day_14_desc_experte" = "14 Tage. Investitions-Recherche starten.";
+"pfad_mandelbaum_day_21_desc_anfaenger" = "21 Tage! Sparen ist jetzt Gewohnheit.";
+"pfad_mandelbaum_day_21_desc_fortgeschritten" = "Die Routine steht! 30-Tage-Warte-Regel für große Käufe.";
+"pfad_mandelbaum_day_21_desc_experte" = "21 Tage. Dein Notgroschen wächst.";
+"pfad_mandelbaum_day_30_desc_anfaenger" = "Ein Monat! Zähle, wie viel du gespart hast.";
+"pfad_mandelbaum_day_30_desc_fortgeschritten" = "30 Tage! Erstelle dein persönliches Finanz-Dashboard.";
+"pfad_mandelbaum_day_30_desc_experte" = "Ein Monat Elite-Sparen. Investiere den Überschuss.";
+"pfad_mandelbaum_day_45_desc_anfaenger" = "Halbzeit! Setze dir ein konkretes Sparziel.";
+"pfad_mandelbaum_day_45_desc_fortgeschritten" = "Halbzeit! Dein Verhältnis zu Geld hat sich verändert.";
+"pfad_mandelbaum_day_45_desc_experte" = "Halbzeit. Diversifiziere deine Investments.";
+"pfad_mandelbaum_day_60_desc_anfaenger" = "Zwei Monate! Du denkst bewusster über Geld nach.";
+"pfad_mandelbaum_day_60_desc_fortgeschritten" = "Zwei Monate! Finanzielle Kontrolle fühlt sich gut an.";
+"pfad_mandelbaum_day_60_desc_experte" = "60 Tage. Du baust echten Wohlstand auf.";
+"pfad_mandelbaum_day_90_desc_anfaenger" = "90 Tage! Du bist ein bewusster Sparer.";
+"pfad_mandelbaum_day_90_desc_fortgeschritten" = "90 Tage Disziplin! Finanzielle Sicherheit wächst.";
+"pfad_mandelbaum_day_90_desc_experte" = "90 Tage. Auf dem Weg zur finanziellen Freiheit.";
+"pfad_mandelbaum_phase_einstieg_desc_anfaenger" = "Jeder Euro zählt. Lege täglich etwas weg.";
+"pfad_mandelbaum_phase_einstieg_desc_fortgeschritten" = "Tracke alle Ausgaben bewusst.";
+"pfad_mandelbaum_phase_einstieg_desc_experte" = "Volles Finanz-Management von Tag 1.";
+"pfad_mandelbaum_phase_aufbau_desc_anfaenger" = "Steigere deinen Sparbetrag langsam.";
+"pfad_mandelbaum_phase_aufbau_desc_fortgeschritten" = "Optimiere deine Ausgaben aktiv.";
+"pfad_mandelbaum_phase_aufbau_desc_experte" = "Budget, Sparen und Investieren im Einklang.";
+"pfad_mandelbaum_phase_vertiefung_desc_anfaenger" = "Sparen ist natürlich geworden.";
+"pfad_mandelbaum_phase_vertiefung_desc_fortgeschritten" = "Verfeinere deine Finanzstrategie.";
+"pfad_mandelbaum_phase_vertiefung_desc_experte" = "Langfristiger Vermögensaufbau.";
+"pfad_mandelbaum_phase_meisterschaft_desc_anfaenger" = "Du sparst automatisch.";
+"pfad_mandelbaum_phase_meisterschaft_desc_fortgeschritten" = "Finanzielle Disziplin auf hohem Niveau.";
+"pfad_mandelbaum_phase_meisterschaft_desc_experte" = "Du bist finanziell souverän.";
+
+/* Plant: aloe_vera (DE) */
+
+"pfad_aloe_vera_day_1_title" = "Digital Detox";
+"pfad_aloe_vera_day_2_title" = "Bewusst online";
+"pfad_aloe_vera_day_7_title" = "Bildschirm-fasten Woche";
+"pfad_aloe_vera_day_14_title" = "Digital Balance";
+"pfad_aloe_vera_day_21_title" = "Bildschirm-Gewohnheit";
+"pfad_aloe_vera_day_30_title" = "Ein Monat Freiheit";
+"pfad_aloe_vera_day_45_title" = "Halbzeit Detox";
+"pfad_aloe_vera_day_60_title" = "Digital-Profi";
+"pfad_aloe_vera_day_90_title" = "Digitale Meisterschaft";
+"pfad_aloe_vera_day_1_desc_anfaenger" = "Reduziere Social Media um 30 Minuten heute.";
+"pfad_aloe_vera_day_1_desc_fortgeschritten" = "Kein Social Media nach 20 Uhr.";
+"pfad_aloe_vera_day_1_desc_experte" = "Maximale Bildschirmzeit: 2 Stunden heute (außer Arbeit).";
+"pfad_aloe_vera_day_2_desc_anfaenger" = "Wieder 30 Min weniger Social Media.";
+"pfad_aloe_vera_day_2_desc_fortgeschritten" = "Kein Social Media nach 20 Uhr. Wie war der Abend?";
+"pfad_aloe_vera_day_2_desc_experte" = "2 Stunden Maximum. Tracke deine Bildschirmzeit.";
+"pfad_aloe_vera_day_7_desc_anfaenger" = "Eine Woche! Deinstalliere eine ablenkende App.";
+"pfad_aloe_vera_day_7_desc_fortgeschritten" = "Erste Woche! Schalte alle unnötigen Notifications aus.";
+"pfad_aloe_vera_day_7_desc_experte" = "7 Tage! Grayscale-Modus auf dem Handy aktivieren.";
+"pfad_aloe_vera_day_14_desc_anfaenger" = "Zwei Wochen! Lies statt zu scrollen.";
+"pfad_aloe_vera_day_14_desc_fortgeschritten" = "14 Tage! Handy-freie Zone im Schlafzimmer einrichten.";
+"pfad_aloe_vera_day_14_desc_experte" = "14 Tage. Erste Stunde des Tages komplett ohne Handy.";
+"pfad_aloe_vera_day_21_desc_anfaenger" = "21 Tage! Weniger Bildschirm fühlt sich gut an.";
+"pfad_aloe_vera_day_21_desc_fortgeschritten" = "Die Routine steht! Du greifst seltener zum Handy.";
+"pfad_aloe_vera_day_21_desc_experte" = "21 Tage. Du kontrollierst die Technik, nicht umgekehrt.";
+"pfad_aloe_vera_day_30_desc_anfaenger" = "Ein Monat! Mehr Freizeit, besserer Schlaf.";
+"pfad_aloe_vera_day_30_desc_fortgeschritten" = "30 Tage! Dein Verhältnis zu Technik ist gesünder.";
+"pfad_aloe_vera_day_30_desc_experte" = "Ein Monat Digital-Disziplin. Du bist frei.";
+"pfad_aloe_vera_day_45_desc_anfaenger" = "Halbzeit! Handy-freier Nachmittag heute.";
+"pfad_aloe_vera_day_45_desc_fortgeschritten" = "Halbzeit! Du bist präsenter im echten Leben.";
+"pfad_aloe_vera_day_45_desc_experte" = "Halbzeit. Digitales Minimalis­mus als Lifestyle.";
+"pfad_aloe_vera_day_60_desc_anfaenger" = "Zwei Monate! Du lebst bewusster.";
+"pfad_aloe_vera_day_60_desc_fortgeschritten" = "Zwei Monate! Mehr echte Verbindungen.";
+"pfad_aloe_vera_day_60_desc_experte" = "60 Tage. Digitale Souveränität erreicht.";
+"pfad_aloe_vera_day_90_desc_anfaenger" = "90 Tage! Du kontrollierst dein digitales Leben.";
+"pfad_aloe_vera_day_90_desc_fortgeschritten" = "90 Tage Digital Balance! Beeindruckend.";
+"pfad_aloe_vera_day_90_desc_experte" = "90 Tage. Du bist ein digitaler Meister.";
+"pfad_aloe_vera_phase_einstieg_desc_anfaenger" = "Ein bisschen weniger Bildschirm pro Tag.";
+"pfad_aloe_vera_phase_einstieg_desc_fortgeschritten" = "Setze klare Grenzen für deine Bildschirmzeit.";
+"pfad_aloe_vera_phase_einstieg_desc_experte" = "Radikale Reduktion von Tag 1.";
+"pfad_aloe_vera_phase_aufbau_desc_anfaenger" = "Finde Alternativen zum Scrollen.";
+"pfad_aloe_vera_phase_aufbau_desc_fortgeschritten" = "Eliminiere unnötige Apps und Notifications.";
+"pfad_aloe_vera_phase_aufbau_desc_experte" = "Minimalistisches Digital-Setup.";
+"pfad_aloe_vera_phase_vertiefung_desc_anfaenger" = "Weniger Bildschirm ist normal geworden.";
+"pfad_aloe_vera_phase_vertiefung_desc_fortgeschritten" = "Du genießt die analoge Welt mehr.";
+"pfad_aloe_vera_phase_vertiefung_desc_experte" = "Optimiere: Nur noch intentionale Nutzung.";
+"pfad_aloe_vera_phase_meisterschaft_desc_anfaenger" = "Du greifst nicht mehr unbewusst zum Handy.";
+"pfad_aloe_vera_phase_meisterschaft_desc_fortgeschritten" = "Digitale Balance auf hohem Niveau.";
+"pfad_aloe_vera_phase_meisterschaft_desc_experte" = "Du bist frei von digitaler Abhängigkeit.";
+
+/* Plant: erdbeerpflanze (DE) */
+
+"pfad_erdbeerpflanze_day_1_title" = "Erste Vitamine";
+"pfad_erdbeerpflanze_day_2_title" = "Frisch essen";
+"pfad_erdbeerpflanze_day_7_title" = "Bunte Woche";
+"pfad_erdbeerpflanze_day_14_title" = "Vitamin-Routine";
+"pfad_erdbeerpflanze_day_21_title" = "Obst-Gewohnheit";
+"pfad_erdbeerpflanze_day_30_title" = "Ein Monat Vitamine";
+"pfad_erdbeerpflanze_day_45_title" = "Halbzeit Frische";
+"pfad_erdbeerpflanze_day_60_title" = "Vitamin-Champion";
+"pfad_erdbeerpflanze_day_90_title" = "Voll vitaminisiert";
+"pfad_erdbeerpflanze_day_1_desc_anfaenger" = "Iss heute eine Portion Obst. Apfel, Banane, egal was!";
+"pfad_erdbeerpflanze_day_1_desc_fortgeschritten" = "3 Portionen Obst und Gemüse heute.";
+"pfad_erdbeerpflanze_day_1_desc_experte" = "5 Portionen Obst und Gemüse. Verschiedene Farben!";
+"pfad_erdbeerpflanze_day_2_desc_anfaenger" = "Wieder eine Portion Obst heute.";
+"pfad_erdbeerpflanze_day_2_desc_fortgeschritten" = "3 Portionen. Probiere eine neue Frucht.";
+"pfad_erdbeerpflanze_day_2_desc_experte" = "5 Portionen. Heute: Smoothie mit Spinat und Beeren.";
+"pfad_erdbeerpflanze_day_7_desc_anfaenger" = "Eine Woche! Steigere auf 2 Portionen.";
+"pfad_erdbeerpflanze_day_7_desc_fortgeschritten" = "Erste Woche! Erstelle eine bunte Einkaufsliste.";
+"pfad_erdbeerpflanze_day_7_desc_experte" = "7 Tage! Regenbogen-Essen: jede Farbe heute.";
+"pfad_erdbeerpflanze_day_14_desc_anfaenger" = "Zwei Wochen! Probiere ein Gemüse, das du noch nie hattest.";
+"pfad_erdbeerpflanze_day_14_desc_fortgeschritten" = "14 Tage! Meal Prep mit viel Gemüse.";
+"pfad_erdbeerpflanze_day_14_desc_experte" = "14 Tage. Dein Körper strotzt vor Vitaminen.";
+"pfad_erdbeerpflanze_day_21_desc_anfaenger" = "21 Tage! Obst greifen ist automatisch.";
+"pfad_erdbeerpflanze_day_21_desc_fortgeschritten" = "Die Routine steht! Gemüse zu jeder Mahlzeit.";
+"pfad_erdbeerpflanze_day_21_desc_experte" = "21 Tage. Du isst vielfältiger als die meisten.";
+"pfad_erdbeerpflanze_day_30_desc_anfaenger" = "Ein Monat! Mehr Energie durch Vitamine.";
+"pfad_erdbeerpflanze_day_30_desc_fortgeschritten" = "30 Tage! Deine Haut und Haare sehen besser aus.";
+"pfad_erdbeerpflanze_day_30_desc_experte" = "Ein Monat Elite-Ernährung. Dein Immunsystem ist stark.";
+"pfad_erdbeerpflanze_day_45_desc_anfaenger" = "Halbzeit! Probiere heute ein neues Rezept mit Gemüse.";
+"pfad_erdbeerpflanze_day_45_desc_fortgeschritten" = "Halbzeit! Vitamine sind dein Treibstoff.";
+"pfad_erdbeerpflanze_day_45_desc_experte" = "Halbzeit. Ernährung auf Champions-Level.";
+"pfad_erdbeerpflanze_day_60_desc_anfaenger" = "Zwei Monate! Vitamine sind Alltag.";
+"pfad_erdbeerpflanze_day_60_desc_fortgeschritten" = "Zwei Monate! Dein Körper dankt es dir.";
+"pfad_erdbeerpflanze_day_60_desc_experte" = "60 Tage. Du bist ein Ernährungs-Vorbild.";
+"pfad_erdbeerpflanze_day_90_desc_anfaenger" = "90 Tage! Gesundes Essen ist jetzt du.";
+"pfad_erdbeerpflanze_day_90_desc_fortgeschritten" = "90 Tage Vitamin-Power! Beeindruckend.";
+"pfad_erdbeerpflanze_day_90_desc_experte" = "90 Tage. Perfekte Vitamin-Versorgung.";
+"pfad_erdbeerpflanze_phase_einstieg_desc_anfaenger" = "Eine Portion Obst pro Tag. So einfach ist das.";
+"pfad_erdbeerpflanze_phase_einstieg_desc_fortgeschritten" = "Integriere Obst und Gemüse in jede Mahlzeit.";
+"pfad_erdbeerpflanze_phase_einstieg_desc_experte" = "5 Portionen täglich. Von Anfang an.";
+"pfad_erdbeerpflanze_phase_aufbau_desc_anfaenger" = "Steigere langsam die Menge.";
+"pfad_erdbeerpflanze_phase_aufbau_desc_fortgeschritten" = "Variiere: neue Sorten und Farben.";
+"pfad_erdbeerpflanze_phase_aufbau_desc_experte" = "Optimiere die Nährstoffdichte.";
+"pfad_erdbeerpflanze_phase_vertiefung_desc_anfaenger" = "Greifen zum Obst ist automatisch.";
+"pfad_erdbeerpflanze_phase_vertiefung_desc_fortgeschritten" = "Verfeinere deine Vitamin-Quellen.";
+"pfad_erdbeerpflanze_phase_vertiefung_desc_experte" = "Maximale Vielfalt bei Obst und Gemüse.";
+"pfad_erdbeerpflanze_phase_meisterschaft_desc_anfaenger" = "Vitamine sind Teil deines Lebens.";
+"pfad_erdbeerpflanze_phase_meisterschaft_desc_fortgeschritten" = "Vorbildliche Ernährung.";
+"pfad_erdbeerpflanze_phase_meisterschaft_desc_experte" = "Du bist der Vitamin-Champion.";
+
+/* Plant: weizenfeld (DE) */
+
+"pfad_weizenfeld_day_1_title" = "Erster Fokus";
+"pfad_weizenfeld_day_2_title" = "Konzentration";
+"pfad_weizenfeld_day_7_title" = "Fokus-Woche";
+"pfad_weizenfeld_day_14_title" = "Deep Work Routine";
+"pfad_weizenfeld_day_21_title" = "Fokus-Gewohnheit";
+"pfad_weizenfeld_day_30_title" = "Ein Monat Deep Work";
+"pfad_weizenfeld_day_45_title" = "Halbzeit Fokus";
+"pfad_weizenfeld_day_60_title" = "Produktivitäts-Pro";
+"pfad_weizenfeld_day_90_title" = "Deep Work Meister";
+"pfad_weizenfeld_day_1_desc_anfaenger" = "25 Minuten fokussierte Arbeit ohne Ablenkung. Ein Pomodoro.";
+"pfad_weizenfeld_day_1_desc_fortgeschritten" = "45 Minuten Deep Work. Handy auf Flugmodus.";
+"pfad_weizenfeld_day_1_desc_experte" = "90 Minuten ununterbrochener Deep Work. Keine Unterbrechungen.";
+"pfad_weizenfeld_day_2_desc_anfaenger" = "Wieder ein Pomodoro. Gleiche Uhrzeit.";
+"pfad_weizenfeld_day_2_desc_fortgeschritten" = "45 Minuten. Schließe alle Tabs außer dem Wichtigen.";
+"pfad_weizenfeld_day_2_desc_experte" = "90 Minuten. Heute: Die schwierigste Aufgabe zuerst.";
+"pfad_weizenfeld_day_7_desc_anfaenger" = "Eine Woche! Steigere auf 2 Pomodoros.";
+"pfad_weizenfeld_day_7_desc_fortgeschritten" = "Erste Woche! Blocke Deep-Work-Zeit im Kalender.";
+"pfad_weizenfeld_day_7_desc_experte" = "7 Tage! 2x 90 Minuten heute. Du bist eine Maschine.";
+"pfad_weizenfeld_day_14_desc_anfaenger" = "Zwei Wochen! Finde deine beste Tageszeit für Fokus.";
+"pfad_weizenfeld_day_14_desc_fortgeschritten" = "14 Tage! Ritualisiere den Start deiner Deep-Work-Session.";
+"pfad_weizenfeld_day_14_desc_experte" = "14 Tage Elite. Du produzierst mehr als andere in einer Woche.";
+"pfad_weizenfeld_day_21_desc_anfaenger" = "21 Tage! Fokus ist jetzt Gewohnheit.";
+"pfad_weizenfeld_day_21_desc_fortgeschritten" = "Die Routine steht! Tiefe Arbeit ist dein Wettbewerbsvorteil.";
+"pfad_weizenfeld_day_21_desc_experte" = "21 Tage. Du arbeitest auf einem anderen Level.";
+"pfad_weizenfeld_day_30_desc_anfaenger" = "Ein Monat! Du bist produktiver als je zuvor.";
+"pfad_weizenfeld_day_30_desc_fortgeschritten" = "30 Tage! Deep Work hat deine Karriere verändert.";
+"pfad_weizenfeld_day_30_desc_experte" = "Ein Monat Elite-Fokus. Deine Ergebnisse sprechen für sich.";
+"pfad_weizenfeld_day_45_desc_anfaenger" = "Halbzeit! Probiere eine Doppel-Session.";
+"pfad_weizenfeld_day_45_desc_fortgeschritten" = "Halbzeit! Dein Fokus ist dein Superkraft.";
+"pfad_weizenfeld_day_45_desc_experte" = "Halbzeit. Optimiere dein Deep-Work-Environment.";
+"pfad_weizenfeld_day_60_desc_anfaenger" = "Zwei Monate! Fokus ist Lebensqualität.";
+"pfad_weizenfeld_day_60_desc_fortgeschritten" = "Zwei Monate! Du bist der Produktivste im Raum.";
+"pfad_weizenfeld_day_60_desc_experte" = "60 Tage Deep Work. Elite-Produktivität.";
+"pfad_weizenfeld_day_90_desc_anfaenger" = "90 Tage! Du bist ein Fokus-Meister.";
+"pfad_weizenfeld_day_90_desc_fortgeschritten" = "90 Tage Deep Work! Unglaubliche Disziplin.";
+"pfad_weizenfeld_day_90_desc_experte" = "90 Tage. Du bist ein Deep-Work-Meister. Cal Newport wäre stolz.";
+"pfad_weizenfeld_phase_einstieg_desc_anfaenger" = "25 Minuten fokussiert. Mehr brauchst du nicht.";
+"pfad_weizenfeld_phase_einstieg_desc_fortgeschritten" = "Etabliere feste Deep-Work-Blöcke.";
+"pfad_weizenfeld_phase_einstieg_desc_experte" = "Maximaler Fokus von Tag 1.";
+"pfad_weizenfeld_phase_aufbau_desc_anfaenger" = "Steigere auf 2 Sessions pro Tag.";
+"pfad_weizenfeld_phase_aufbau_desc_fortgeschritten" = "Verlängere deine Sessions schrittweise.";
+"pfad_weizenfeld_phase_aufbau_desc_experte" = "Deep Work ist dein Lebensstil.";
+"pfad_weizenfeld_phase_vertiefung_desc_anfaenger" = "Fokus kommt natürlich. Genieße die Produktivität.";
+"pfad_weizenfeld_phase_vertiefung_desc_fortgeschritten" = "Verfeinere dein Fokus-Ritual.";
+"pfad_weizenfeld_phase_vertiefung_desc_experte" = "Suche nach den letzten Prozent Effizienz.";
+"pfad_weizenfeld_phase_meisterschaft_desc_anfaenger" = "Du fokussierst automatisch. Beeindruckend.";
+"pfad_weizenfeld_phase_meisterschaft_desc_fortgeschritten" = "Elite-Produktivität auf konstantem Niveau.";
+"pfad_weizenfeld_phase_meisterschaft_desc_experte" = "Deep Work Meister. Deine Arbeit ist Kunst.";
+
+/* Plant: chrysantheme (DE) */
+
+"pfad_chrysantheme_day_1_title" = "Erster Griff";
+"pfad_chrysantheme_day_2_title" = "Ordnung schaffen";
+"pfad_chrysantheme_day_7_title" = "Aufgeräumte Woche";
+"pfad_chrysantheme_day_14_title" = "Ordnungs-Routine";
+"pfad_chrysantheme_day_21_title" = "Aufräum-Gewohnheit";
+"pfad_chrysantheme_day_30_title" = "Ein Monat Ordnung";
+"pfad_chrysantheme_day_45_title" = "Halbzeit Klarheit";
+"pfad_chrysantheme_day_60_title" = "Ordnungs-Profi";
+"pfad_chrysantheme_day_90_title" = "Perfekte Ordnung";
+"pfad_chrysantheme_day_1_desc_anfaenger" = "Räume heute 5 Minuten einen Bereich auf. Schreibtisch, Regal, egal.";
+"pfad_chrysantheme_day_1_desc_fortgeschritten" = "15 Minuten gezieltes Aufräumen. Ein Raum, ein Fokus.";
+"pfad_chrysantheme_day_1_desc_experte" = "30 Minuten Marie-Kondo-Style: Sortiere eine Kategorie komplett.";
+"pfad_chrysantheme_day_2_desc_anfaenger" = "Wieder 5 Minuten. Anderer Bereich als gestern.";
+"pfad_chrysantheme_day_2_desc_fortgeschritten" = "15 Minuten. Heute: Kleiderschrank oder Küche.";
+"pfad_chrysantheme_day_2_desc_experte" = "30 Minuten. Heute: Digitales Aufräumen (E-Mails, Desktop).";
+"pfad_chrysantheme_day_7_desc_anfaenger" = "Eine Woche! Dein Raum sieht besser aus.";
+"pfad_chrysantheme_day_7_desc_fortgeschritten" = "Erste Woche! Spende 3 Dinge, die du nicht brauchst.";
+"pfad_chrysantheme_day_7_desc_experte" = "7 Tage! Minimalisiere: Wenn du es 6 Monate nicht benutzt hast, weg damit.";
+"pfad_chrysantheme_day_14_desc_anfaenger" = "Zwei Wochen! Weniger Zeug = weniger Stress.";
+"pfad_chrysantheme_day_14_desc_fortgeschritten" = "14 Tage! Erstelle ein System für tägliches Aufräumen.";
+"pfad_chrysantheme_day_14_desc_experte" = "14 Tage. Dein Zuhause ist ein Ort der Ruhe.";
+"pfad_chrysantheme_day_21_desc_anfaenger" = "21 Tage! Aufräumen ist automatisch.";
+"pfad_chrysantheme_day_21_desc_fortgeschritten" = "Die Routine steht! Alles hat seinen Platz.";
+"pfad_chrysantheme_day_21_desc_experte" = "21 Tage. Du lebst minimalistisch und liebst es.";
+"pfad_chrysantheme_day_30_desc_anfaenger" = "Ein Monat! Dein Zuhause ist ordentlicher als je zuvor.";
+"pfad_chrysantheme_day_30_desc_fortgeschritten" = "30 Tage! Ordnung beeinflusst deine mentale Klarheit.";
+"pfad_chrysantheme_day_30_desc_experte" = "Ein Monat Ordnung. Dein Raum spiegelt deinen Geist wider.";
+"pfad_chrysantheme_day_45_desc_anfaenger" = "Halbzeit! Räume heute eine Schublade aus, die du vermeidest.";
+"pfad_chrysantheme_day_45_desc_fortgeschritten" = "Halbzeit! Dein Zuhause ist ein Vorbild.";
+"pfad_chrysantheme_day_45_desc_experte" = "Halbzeit. Optimiere dein Ordnungssystem.";
+"pfad_chrysantheme_day_60_desc_anfaenger" = "Zwei Monate! Ordnung ist Lebensqualität.";
+"pfad_chrysantheme_day_60_desc_fortgeschritten" = "Zwei Monate! Minimalismus fühlt sich frei an.";
+"pfad_chrysantheme_day_60_desc_experte" = "60 Tage. Dein Raum ist perfekt organisiert.";
+"pfad_chrysantheme_day_90_desc_anfaenger" = "90 Tage! Ordnung ist jetzt Teil deiner Identität.";
+"pfad_chrysantheme_day_90_desc_fortgeschritten" = "90 Tage! Du lebst bewusster und aufgeräumter.";
+"pfad_chrysantheme_day_90_desc_experte" = "90 Tage Ordnungsmeister. Perfektion erreicht.";
+"pfad_chrysantheme_phase_einstieg_desc_anfaenger" = "5 Minuten aufräumen. So simpel ist das.";
+"pfad_chrysantheme_phase_einstieg_desc_fortgeschritten" = "Jeden Tag einen Bereich in Angriff nehmen.";
+"pfad_chrysantheme_phase_einstieg_desc_experte" = "Radikales Ausmisten von Tag 1.";
+"pfad_chrysantheme_phase_aufbau_desc_anfaenger" = "Erweitere auf 10 Minuten pro Tag.";
+"pfad_chrysantheme_phase_aufbau_desc_fortgeschritten" = "Systeme schaffen: Alles hat seinen Platz.";
+"pfad_chrysantheme_phase_aufbau_desc_experte" = "Minimalismus als Philosophie leben.";
+"pfad_chrysantheme_phase_vertiefung_desc_anfaenger" = "Aufräumen ist natürlich. Weniger ist mehr.";
+"pfad_chrysantheme_phase_vertiefung_desc_fortgeschritten" = "Verfeinere dein Ordnungssystem.";
+"pfad_chrysantheme_phase_vertiefung_desc_experte" = "Perfektion in jedem Raum.";
+"pfad_chrysantheme_phase_meisterschaft_desc_anfaenger" = "Du räumst automatisch auf. Es gehört zu dir.";
+"pfad_chrysantheme_phase_meisterschaft_desc_fortgeschritten" = "Vorbildliche Ordnung.";
+"pfad_chrysantheme_phase_meisterschaft_desc_experte" = "Dein Raum ist dein Meisterwerk.";
+
+/* Plant: mystic_seed (DE) */
+
+"pfad_mystic_seed_day_1_title" = "Erster Atemzug";
+"pfad_mystic_seed_day_2_title" = "Bewusstes Atmen";
+"pfad_mystic_seed_day_7_title" = "Atem-Woche";
+"pfad_mystic_seed_day_14_title" = "Breathwork Routine";
+"pfad_mystic_seed_day_21_title" = "Atem-Gewohnheit";
+"pfad_mystic_seed_day_30_title" = "Ein Monat Breathwork";
+"pfad_mystic_seed_day_45_title" = "Halbzeit Atem";
+"pfad_mystic_seed_day_60_title" = "Atem-Meister";
+"pfad_mystic_seed_day_90_title" = "Pranayama-Meister";
+"pfad_mystic_seed_day_1_desc_anfaenger" = "3 Minuten Box-Breathing: 4 Sekunden ein, 4 halten, 4 aus, 4 halten.";
+"pfad_mystic_seed_day_1_desc_fortgeschritten" = "5 Minuten Wim-Hof-Atmung: 30 tiefe Atemzüge + Retention.";
+"pfad_mystic_seed_day_1_desc_experte" = "10 Minuten Pranayama: Wechselatmung (Nadi Shodhana).";
+"pfad_mystic_seed_day_2_desc_anfaenger" = "Wieder Box-Breathing. 3 Minuten.";
+"pfad_mystic_seed_day_2_desc_fortgeschritten" = "5 Minuten Wim-Hof. Wie lange kannst du die Luft halten?";
+"pfad_mystic_seed_day_2_desc_experte" = "10 Minuten. Heute: Kapalabhati (Feueratmung).";
+"pfad_mystic_seed_day_7_desc_anfaenger" = "Eine Woche! Steigere auf 5 Minuten.";
+"pfad_mystic_seed_day_7_desc_fortgeschritten" = "Erste Woche! Probiere 4-7-8 Atmung zum Einschlafen.";
+"pfad_mystic_seed_day_7_desc_experte" = "7 Tage! Kombiniere Atemarbeit mit Kälte (kalte Dusche).";
+"pfad_mystic_seed_day_14_desc_anfaenger" = "Zwei Wochen! Merkst du weniger Stress?";
+"pfad_mystic_seed_day_14_desc_fortgeschritten" = "14 Tage! Integriere Atemarbeit in stressige Momente.";
+"pfad_mystic_seed_day_14_desc_experte" = "14 Tage. Dein Nervensystem ist regulierter.";
+"pfad_mystic_seed_day_21_desc_anfaenger" = "21 Tage! Bewusstes Atmen ist Gewohnheit.";
+"pfad_mystic_seed_day_21_desc_fortgeschritten" = "Die Routine steht! Ateme vor jeder wichtigen Entscheidung.";
+"pfad_mystic_seed_day_21_desc_experte" = "21 Tage. Du kontrollierst dein Nervensystem.";
+"pfad_mystic_seed_day_30_desc_anfaenger" = "Ein Monat! Du bist ruhiger und fokussierter.";
+"pfad_mystic_seed_day_30_desc_fortgeschritten" = "30 Tage! Dein Atem ist dein stärkstes Werkzeug.";
+"pfad_mystic_seed_day_30_desc_experte" = "Ein Monat Elite-Breathwork. Transformative Kraft.";
+"pfad_mystic_seed_day_45_desc_anfaenger" = "Halbzeit! Probiere Holotropes Atmen (sanfte Version).";
+"pfad_mystic_seed_day_45_desc_fortgeschritten" = "Halbzeit! Atemarbeit beeinflusst alles positiv.";
+"pfad_mystic_seed_day_45_desc_experte" = "Halbzeit. Vertiefte Pranayama-Praxis.";
+"pfad_mystic_seed_day_60_desc_anfaenger" = "Zwei Monate! Dein Atem ist dein Anker.";
+"pfad_mystic_seed_day_60_desc_fortgeschritten" = "Zwei Monate! Breathwork ist dein Geheimnis.";
+"pfad_mystic_seed_day_60_desc_experte" = "60 Tage. Du atmest auf Meister-Niveau.";
+"pfad_mystic_seed_day_90_desc_anfaenger" = "90 Tage! Bewusstes Atmen ist deine Superpower.";
+"pfad_mystic_seed_day_90_desc_fortgeschritten" = "90 Tage Breathwork! Beeindruckende Praxis.";
+"pfad_mystic_seed_day_90_desc_experte" = "90 Tage Pranayama-Meister. Dein Atem ist Kunst.";
+"pfad_mystic_seed_phase_einstieg_desc_anfaenger" = "Atme bewusst. 3 Minuten am Tag reichen.";
+"pfad_mystic_seed_phase_einstieg_desc_fortgeschritten" = "Feste Atemübung täglich einplanen.";
+"pfad_mystic_seed_phase_einstieg_desc_experte" = "Pranayama-Praxis von Tag 1.";
+"pfad_mystic_seed_phase_aufbau_desc_anfaenger" = "Verlängere die Sessions langsam.";
+"pfad_mystic_seed_phase_aufbau_desc_fortgeschritten" = "Experimentiere mit verschiedenen Techniken.";
+"pfad_mystic_seed_phase_aufbau_desc_experte" = "Tiefe Atemarbeit mit Meditation kombinieren.";
+"pfad_mystic_seed_phase_vertiefung_desc_anfaenger" = "Atemarbeit ist natürlich geworden.";
+"pfad_mystic_seed_phase_vertiefung_desc_fortgeschritten" = "Verfeinere Rhythmus und Technik.";
+"pfad_mystic_seed_phase_vertiefung_desc_experte" = "Pranayama als spirituelle Praxis.";
+"pfad_mystic_seed_phase_meisterschaft_desc_anfaenger" = "Du atmest bewusst, wann immer du willst.";
+"pfad_mystic_seed_phase_meisterschaft_desc_fortgeschritten" = "Meisterhafte Atemkontrolle.";
+"pfad_mystic_seed_phase_meisterschaft_desc_experte" = "Dein Atem ist dein mächtigstes Instrument.";
+
+
+// GartenPass Reward Overlay
+"reward_button_super" = "Super!";
+"reward_coins_title" = "+{n} Coins erhalten!";
+"reward_coins_subtitle" = "Du hast neue Coins für den Shop erhalten.";
+"reward_powerup_title" = "Power-Up erhalten!";
+"reward_powerup_subtitle" = "Neue Kräfte für deinen Garten.";
+"reward_plant_title" = "Pflanze erhalten!";
+"reward_plant_subtitle" = "Ein neuer Setzling für deine Sammlung.";
+"reward_spin_title" = "+{n} Drehung(en) erhalten!";
+"reward_spin_subtitle" = "Versuche dein Glück am Rad.";
+"reward_deco_title" = "Dekoration erhalten!";
+"reward_deco_subtitle" = "Verschönere deinen Garten.";
+"reward_paket_title" = "Paket erhalten!";
+"reward_paket_subtitle" = "Du hast ein tolles Meilenstein-Paket erhalten.";
+"reward_seeds_title" = "+{n} Samen erhalten!";
+"reward_seeds_subtitle" = "Pflanze neue Gewohnheiten.";
+
+// GartenPass Wheel
+"wheel_drehen_format" = "DREHEN (%d)";
+"wheel_keine_spins" = "Keine Drehungen mehr";
+"wheel_gewonnen" = "Gewonnen!";
+"wheel_weiter" = "Weiter";
+
+// GartenPass Reward Selection
+"pflanze_auswahl_titel" = "Wähle deine Belohnung";
+"pflanze_auswahl_untertitel" = "Du hast eine neue Stufe erreicht!";
+"pflanze_auswahl_option_pflanze" = "Pflanze annehmen";
+"pflanze_auswahl_option_pflanze_sub" = "Neue Gewohnheit starten";
+"pflanze_auswahl_option_spins" = "2 Gratis-Drehungen";
+"pflanze_auswahl_option_spins_sub" = "Beim Eis-Glücksrad einlösen";
+"pflanze_auswahl_option_coins" = "150 Coins";
+"pflanze_auswahl_option_coins_sub" = "Im Shop ausgeben";
+"pflanze_auswahl_option_powerup" = "Zufälliges Power-Up";
+"pflanze_auswahl_option_powerup_sub" = "Sofort aktiviert";
+
+"powerup_wheel_title" = "Power-Up Glücksrad";
+"powerup_wheel_subtitle" = "Drehe für dein Power-Up!";
+"powerup_wheel_win" = "GEWONNEN!";
+

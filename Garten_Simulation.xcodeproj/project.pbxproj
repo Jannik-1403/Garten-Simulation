@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142BB4432F9CA800002CDBD0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142BB4422F9CA800002CDBD0 /* WidgetKit.framework */; };
+		142BB4452F9CA800002CDBD0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142BB4442F9CA800002CDBD0 /* SwiftUI.framework */; };
+		142BB4502F9CA800002CDBD0 /* GartenWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 142BB4412F9CA800002CDBD0 /* GartenWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		14595B622F9E6A9E00C69460 /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14595B612F9E6A9E00C69460 /* ActivityKit.framework */; };
 		1470B3D42F77100D00FBAB1D /* DotLottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1470B3D32F77100D00FBAB1D /* DotLottie */; };
 		1473815F2F73A8470070F455 /* SeltenheitProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */; };
 		147B21B22F6F269C00741BF8 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 147B21B12F6F269C00741BF8 /* RiveRuntime */; };
@@ -27,16 +31,86 @@
 			remoteGlobalIDString = 1424D41B2F6EA14200908588;
 			remoteInfo = Garten_Simulation;
 		};
+		142BB44E2F9CA800002CDBD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1424D4142F6EA14200908588 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 142BB4402F9CA800002CDBD0;
+			remoteInfo = GartenWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		142BB4552F9CA800002CDBD0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				142BB4502F9CA800002CDBD0 /* GartenWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1424D41C2F6EA14200908588 /* Grovy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grovy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1424D4292F6EA14300908588 /* Garten_SimulationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Garten_SimulationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1424D4332F6EA14300908588 /* Garten_SimulationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Garten_SimulationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		142BB4412F9CA800002CDBD0 /* GartenWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GartenWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		142BB4422F9CA800002CDBD0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		142BB4442F9CA800002CDBD0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		142BB4602F9CABC8002CDBD0 /* GartenWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GartenWidgetExtension.entitlements; sourceTree = "<group>"; };
+		14595B612F9E6A9E00C69460 /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActivityKit.framework; path = System/Library/Frameworks/ActivityKit.framework; sourceTree = SDKROOT; };
 		1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeltenheitProgressRing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		142BB4542F9CA800002CDBD0 /* Exceptions for "GartenWidget" folder in "GartenWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				GroovyTimelineProvider.swift,
+				GroovyWidgetEntryView.swift,
+				GroovyWidgetViews.swift,
+				Info.plist,
+			);
+			target = 142BB4402F9CA800002CDBD0 /* GartenWidgetExtension */;
+		};
+		142BB4582F9CA919002CDBD0 /* Exceptions for "Garten_Simulation" folder in "GartenWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				Components/AppColors.swift,
+				Config/GameConstants.swift,
+				Intents/WaterPlantIntent.swift,
+				Localization/AppStrings.swift,
+				Managers/SharedUserDefaults.swift,
+				Models/DecorationModels.swift,
+				Models/GameDatabase.swift,
+				Models/GardenActivityAttributes.swift,
+				Models/GroovyWidgetDataProvider.swift,
+				Models/HabitModel.swift,
+				Models/PflanzenEffekt.swift,
+				Models/PflanzenSeltenheit.swift,
+				Models/PflanzenStufe.swift,
+				Models/PlayerTitle.swift,
+			);
+			target = 142BB4402F9CA800002CDBD0 /* GartenWidgetExtension */;
+		};
+		142BB4802F9CC208002CDBD0 /* Exceptions for "GartenWidget" folder in "Garten_Simulation" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				GardenLiveActivity.swift,
+				GroovyNewWidgetViews.swift,
+				GroovyTimelineProvider.swift,
+				GroovyTimelineProviders.swift,
+				GroovyWidgetEntryView.swift,
+				GroovyWidgetIntent.swift,
+				GroovyWidgetViews.swift,
+			);
+			target = 1424D41B2F6EA14200908588 /* Garten_Simulation */;
+		};
 		145797CC2F6FED1A00C51D53 /* Exceptions for "Garten_Simulation" folder in "Garten_Simulation" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -56,14 +130,18 @@
 				Components/EffektDetailSheet.swift,
 				Components/EffektIkonButton.swift,
 				Components/ErfolgBadgeView.swift,
+				Components/GartenIgelView.swift,
 				Components/GartenStatsBar.swift,
 				Components/GemsIcon.swift,
 				Components/GruenerBanner.swift,
 				Components/HerzenIcon.swift,
 				Components/Item3DButton.swift,
+				Components/KombinierterStrangNode.swift,
 				Components/LiquidGlass.swift,
 				Components/LiquidGlassDismissButton.swift,
 				Components/LiquidGlassFilterPill.swift,
+				Components/PfadIgelView.swift,
+				Components/PfadTorView.swift,
 				Components/PflanzenButton.swift,
 				Components/PflanzenCard.swift,
 				Components/PlantSelectionSheet.swift,
@@ -71,16 +149,20 @@
 				Components/ScrollToTopButton.swift,
 				Components/SeltenheitsBadge.swift,
 				Components/ShareSheet.swift,
+				Components/SingleHabitNode.swift,
 				Components/StreakIcon.swift,
 				Components/TitelTextView.swift,
 				Components/TrashItemCard.swift,
+				Components/VerschmelzungsEffektView.swift,
 				Components/WetterBanner.swift,
 				Components/WetterPopup.swift,
 				Components/XPIcon.swift,
+				Components/ZoomIndikatorView.swift,
 				Config/GameConstants.swift,
 				Config/Purchases.storekit,
 				ContentView.swift,
 				Garten_SimulationApp.swift,
+				Intents/WaterPlantIntent.swift,
 				LaunchScreen.storyboard,
 				Localization/AppStrings.swift,
 				"Localization/Int+Streak.swift",
@@ -88,17 +170,24 @@
 				Managers/DataExportImportManager.swift,
 				Managers/FeedbackManager.swift,
 				Managers/NotificationManager.swift,
+				Managers/SharedUserDefaults.swift,
 				Models/ActivePowerUp.swift,
 				Models/CoinTransaction.swift,
+				Models/DecorationModels.swift,
 				Models/ErfolgModel.swift,
 				Models/GameDatabase.swift,
+				Models/GardenActivityAttributes.swift,
 				Models/GartenLevel.swift,
 				Models/GartenPassBelohnung.swift,
 				Models/GartenPassSpinBelohnung.swift,
 				Models/GartenTierStufe.swift,
+				Models/GroovyWidgetDataProvider.swift,
 				Models/HabitModel.swift,
 				Models/PfadDatenbank.swift,
-				Models/PfadTag.swift,
+				Models/PfadSchwierigkeit.swift,
+				Models/PfadStrang.swift,
+				Models/PfadStrangTag.swift,
+				Models/PfadVerschmelzung.swift,
 				Models/PflanzenEffekt.swift,
 				Models/PflanzenSeltenheit.swift,
 				Models/PflanzenStufe.swift,
@@ -137,21 +226,28 @@
 				Stores/TitelStore.swift,
 				Views/ActivePowerUpDetailSheet.swift,
 				Views/DailyWheelComponents.swift,
+				Views/DayPickerView.swift,
 				Views/GameOverOverlayView.swift,
 				Views/GartenLevelUpOverlay.swift,
+				Views/GartenPassPowerUpWheelView.swift,
 				Views/GartenPassRewardOverlay.swift,
 				Views/GartenPassView.swift,
 				Views/GartenPassWheelView.swift,
-				Views/GartenPfadView.swift,
 				Views/GartenView.swift,
+				Views/HabitStackConfigView.swift,
+				Views/HabitVerlaufView.swift,
 				Views/InventoryItemDetailSheet.swift,
 				Views/LebenDetailView.swift,
+				Views/MultiStrangCanvas.swift,
+				Views/MultiStrangPfadView.swift,
 				Views/NeuerTitelOverlay.swift,
+				Views/PfadEinstellungenView.swift,
 				Views/PfadMeilensteinOverlay.swift,
-				Views/PfadNodeView.swift,
-				Views/PfadSchlangeView.swift,
+				Views/PfadSchwierigkeitsView.swift,
 				Views/PfadTagDetailView.swift,
 				Views/PflanzeDetailSheet.swift,
+				Views/PflanzeOderAlternativeView.swift,
+				Views/PlantDifficultySelectView.swift,
 				Views/PlantIconView.swift,
 				Views/PowerUpPlantPickerSheet.swift,
 				Views/Profile/CoinsDetailView.swift,
@@ -169,6 +265,7 @@
 				Views/PurchaseSuccessOverlay.swift,
 				Views/RarityLevelUpOverlay.swift,
 				Views/RetentionSurveyView.swift,
+				Views/RitualPlantPickerSheet.swift,
 				Views/SettingsDetailView.swift,
 				Views/SettingsView.swift,
 				Views/ShopItemDetailView.swift,
@@ -200,11 +297,15 @@
 				Components/EffektDetailSheet.swift,
 				Components/EffektIkonButton.swift,
 				Components/ErfolgBadgeView.swift,
+				Components/GartenIgelView.swift,
 				Components/GartenStatsBar.swift,
 				Components/Item3DButton.swift,
+				Components/KombinierterStrangNode.swift,
 				Components/LiquidGlass.swift,
 				Components/LiquidGlassDismissButton.swift,
 				Components/LiquidGlassFilterPill.swift,
+				Components/PfadIgelView.swift,
+				Components/PfadTorView.swift,
 				Components/PflanzenButton.swift,
 				Components/PflanzenCard.swift,
 				Components/PlantSelectionSheet.swift,
@@ -212,10 +313,13 @@
 				Components/ScrollToTopButton.swift,
 				Components/SeltenheitsBadge.swift,
 				Components/ShareSheet.swift,
+				Components/SingleHabitNode.swift,
 				Components/StreakIcon.swift,
 				Components/TitelTextView.swift,
 				Components/TrashItemCard.swift,
+				Components/VerschmelzungsEffektView.swift,
 				Components/XPIcon.swift,
+				Components/ZoomIndikatorView.swift,
 				Config/GameConstants.swift,
 				ContentView.swift,
 				Garten_SimulationApp.swift,
@@ -226,17 +330,24 @@
 				Managers/DataExportImportManager.swift,
 				Managers/FeedbackManager.swift,
 				Managers/NotificationManager.swift,
+				Managers/SharedUserDefaults.swift,
 				Models/ActivePowerUp.swift,
 				Models/CoinTransaction.swift,
+				Models/DecorationModels.swift,
 				Models/ErfolgModel.swift,
 				Models/GameDatabase.swift,
+				Models/GardenActivityAttributes.swift,
 				Models/GartenLevel.swift,
 				Models/GartenPassBelohnung.swift,
 				Models/GartenPassSpinBelohnung.swift,
 				Models/GartenTierStufe.swift,
+				Models/GroovyWidgetDataProvider.swift,
 				Models/HabitModel.swift,
 				Models/PfadDatenbank.swift,
-				Models/PfadTag.swift,
+				Models/PfadSchwierigkeit.swift,
+				Models/PfadStrang.swift,
+				Models/PfadStrangTag.swift,
+				Models/PfadVerschmelzung.swift,
 				Models/PflanzenEffekt.swift,
 				Models/PflanzenSeltenheit.swift,
 				Models/PflanzenStufe.swift,
@@ -275,21 +386,28 @@
 				Stores/TitelStore.swift,
 				Views/ActivePowerUpDetailSheet.swift,
 				Views/DailyWheelComponents.swift,
+				Views/DayPickerView.swift,
 				Views/GameOverOverlayView.swift,
 				Views/GartenLevelUpOverlay.swift,
+				Views/GartenPassPowerUpWheelView.swift,
 				Views/GartenPassRewardOverlay.swift,
 				Views/GartenPassView.swift,
 				Views/GartenPassWheelView.swift,
-				Views/GartenPfadView.swift,
 				Views/GartenView.swift,
+				Views/HabitStackConfigView.swift,
+				Views/HabitVerlaufView.swift,
 				Views/InventoryItemDetailSheet.swift,
 				Views/LebenDetailView.swift,
+				Views/MultiStrangCanvas.swift,
+				Views/MultiStrangPfadView.swift,
 				Views/NeuerTitelOverlay.swift,
+				Views/PfadEinstellungenView.swift,
 				Views/PfadMeilensteinOverlay.swift,
-				Views/PfadNodeView.swift,
-				Views/PfadSchlangeView.swift,
+				Views/PfadSchwierigkeitsView.swift,
 				Views/PfadTagDetailView.swift,
 				Views/PflanzeDetailSheet.swift,
+				Views/PflanzeOderAlternativeView.swift,
+				Views/PlantDifficultySelectView.swift,
 				Views/PlantIconView.swift,
 				Views/PowerUpPlantPickerSheet.swift,
 				Views/Profile/CoinsDetailView.swift,
@@ -307,6 +425,7 @@
 				Views/PurchaseSuccessOverlay.swift,
 				Views/RarityLevelUpOverlay.swift,
 				Views/RetentionSurveyView.swift,
+				Views/RitualPlantPickerSheet.swift,
 				Views/SettingsDetailView.swift,
 				Views/SettingsView.swift,
 				Views/ShopItemDetailView.swift,
@@ -333,11 +452,21 @@
 			path = Garten_SimulationUITests;
 			sourceTree = "<group>";
 		};
+		142BB4462F9CA800002CDBD0 /* GartenWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				142BB4802F9CC208002CDBD0 /* Exceptions for "GartenWidget" folder in "Garten_Simulation" target */,
+				142BB4542F9CA800002CDBD0 /* Exceptions for "GartenWidget" folder in "GartenWidgetExtension" target */,
+			);
+			path = GartenWidget;
+			sourceTree = "<group>";
+		};
 		145797BB2F6FED1A00C51D53 /* Garten_Simulation */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				145797CC2F6FED1A00C51D53 /* Exceptions for "Garten_Simulation" folder in "Garten_Simulation" target */,
 				145797CD2F6FED1A00C51D53 /* Exceptions for "Garten_Simulation" folder in "Garten_SimulationTests" target */,
+				142BB4582F9CA919002CDBD0 /* Exceptions for "Garten_Simulation" folder in "GartenWidgetExtension" target */,
 			);
 			path = Garten_Simulation;
 			sourceTree = "<group>";
@@ -368,15 +497,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		142BB43E2F9CA800002CDBD0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14595B622F9E6A9E00C69460 /* ActivityKit.framework in Frameworks */,
+				142BB4452F9CA800002CDBD0 /* SwiftUI.framework in Frameworks */,
+				142BB4432F9CA800002CDBD0 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		1424D4132F6EA14200908588 = {
 			isa = PBXGroup;
 			children = (
+				142BB4602F9CABC8002CDBD0 /* GartenWidgetExtension.entitlements */,
 				145797BB2F6FED1A00C51D53 /* Garten_Simulation */,
 				1424D42C2F6EA14300908588 /* Garten_SimulationTests */,
 				1424D4362F6EA14300908588 /* Garten_SimulationUITests */,
+				142BB4462F9CA800002CDBD0 /* GartenWidget */,
 				147B21B02F6F269C00741BF8 /* Frameworks */,
 				1424D41D2F6EA14200908588 /* Products */,
 				1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */,
@@ -389,6 +530,7 @@
 				1424D41C2F6EA14200908588 /* Grovy.app */,
 				1424D4292F6EA14300908588 /* Garten_SimulationTests.xctest */,
 				1424D4332F6EA14300908588 /* Garten_SimulationUITests.xctest */,
+				142BB4412F9CA800002CDBD0 /* GartenWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -396,6 +538,9 @@
 		147B21B02F6F269C00741BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14595B612F9E6A9E00C69460 /* ActivityKit.framework */,
+				142BB4422F9CA800002CDBD0 /* WidgetKit.framework */,
+				142BB4442F9CA800002CDBD0 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -410,10 +555,12 @@
 				1424D4182F6EA14200908588 /* Sources */,
 				1424D4192F6EA14200908588 /* Frameworks */,
 				1424D41A2F6EA14200908588 /* Resources */,
+				142BB4552F9CA800002CDBD0 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				142BB44F2F9CA800002CDBD0 /* PBXTargetDependency */,
 			);
 			name = Garten_Simulation;
 			packageProductDependencies = (
@@ -471,6 +618,28 @@
 			productReference = 1424D4332F6EA14300908588 /* Garten_SimulationUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		142BB4402F9CA800002CDBD0 /* GartenWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 142BB4512F9CA800002CDBD0 /* Build configuration list for PBXNativeTarget "GartenWidgetExtension" */;
+			buildPhases = (
+				142BB43D2F9CA800002CDBD0 /* Sources */,
+				142BB43E2F9CA800002CDBD0 /* Frameworks */,
+				142BB43F2F9CA800002CDBD0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				142BB4462F9CA800002CDBD0 /* GartenWidget */,
+			);
+			name = GartenWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = GartenWidgetExtension;
+			productReference = 142BB4412F9CA800002CDBD0 /* GartenWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -478,7 +647,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2630;
+				LastSwiftUpdateCheck = 2640;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					1424D41B2F6EA14200908588 = {
@@ -491,6 +660,9 @@
 					1424D4322F6EA14300908588 = {
 						CreatedOnToolsVersion = 26.3;
 						TestTargetID = 1424D41B2F6EA14200908588;
+					};
+					142BB4402F9CA800002CDBD0 = {
+						CreatedOnToolsVersion = 26.4.1;
 					};
 				};
 			};
@@ -520,6 +692,7 @@
 				1424D41B2F6EA14200908588 /* Garten_Simulation */,
 				1424D4282F6EA14300908588 /* Garten_SimulationTests */,
 				1424D4322F6EA14300908588 /* Garten_SimulationUITests */,
+				142BB4402F9CA800002CDBD0 /* GartenWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -540,6 +713,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1424D4312F6EA14300908588 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		142BB43F2F9CA800002CDBD0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -571,6 +751,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		142BB43D2F9CA800002CDBD0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -583,6 +770,11 @@
 			isa = PBXTargetDependency;
 			target = 1424D41B2F6EA14200908588 /* Garten_Simulation */;
 			targetProxy = 1424D4342F6EA14300908588 /* PBXContainerItemProxy */;
+		};
+		142BB44F2F9CA800002CDBD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 142BB4402F9CA800002CDBD0 /* GartenWidgetExtension */;
+			targetProxy = 142BB44E2F9CA800002CDBD0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -715,13 +907,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Garten_Simulation/Garten_Simulation.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Garten-Simulation-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Grovy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -734,6 +930,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jannik.grovy;
 				PRODUCT_NAME = Grovy;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -753,13 +950,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Garten_Simulation/Garten_Simulation.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Garten-Simulation-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Grovy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -882,6 +1082,78 @@
 			};
 			name = Release;
 		};
+		142BB4522F9CA800002CDBD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = GartenWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GartenWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GartenWidget;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jannik.grovy.GartenWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		142BB4532F9CA800002CDBD0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = GartenWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GartenWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GartenWidget;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = (
+					framework,
+					"\"ActivityKit\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jannik.grovy.GartenWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -917,6 +1189,15 @@
 			buildConfigurations = (
 				1424D4442F6EA14300908588 /* Debug */,
 				1424D4452F6EA14300908588 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		142BB4512F9CA800002CDBD0 /* Build configuration list for PBXNativeTarget "GartenWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				142BB4522F9CA800002CDBD0 /* Debug */,
+				142BB4532F9CA800002CDBD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

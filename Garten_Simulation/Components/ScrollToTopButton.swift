@@ -25,22 +25,20 @@ struct ScrollToTopButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         let isPressed = configuration.isPressed
         
-        ZStack {
-            // Unterer Layer
+        ZStack(alignment: .bottom) {
+            // Unterer Layer (Shadow)
             Circle()
                 .fill(Color.blauSecondary)
                 .frame(width: size, height: size)
-                .offset(y: depth)
 
-            // Oberer Layer
+            // Oberer Layer (Action Surface)
             configuration.label
                 .frame(width: size, height: size)
                 .background(Circle().fill(Color.blauPrimary))
-                .offset(y: isPressed ? depth : 0)
+                .offset(y: isPressed ? 0 : -depth)
         }
-        .frame(width: size, height: size + depth)
-        .scaleEffect(isPressed ? 0.96 : 1.0)
-        .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
+        .frame(width: size, height: size)
+        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
         .sensoryFeedback(trigger: isPressed) { _, newValue in
             (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
         }

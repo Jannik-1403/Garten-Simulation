@@ -10,6 +10,7 @@ struct SettingsView: View {
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var titelStore: TitelStore
     @EnvironmentObject var achievementStore: AchievementStore
+    @EnvironmentObject var pfadStore: GartenPfadStore
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
     
@@ -76,16 +77,33 @@ struct SettingsView: View {
                         // Sections
                         VStack(spacing: 32) {
                             settingsSection(title: settings.localizedString(for: "settings.section.profile")) {
-                                Button {
-                                    settings.onboardingAbgeschlossen = false
-                                    FeedbackManager.shared.playSuccess()
-                                    dismiss()
-                                } label: {
-                                    settingRow(
-                                        title: settings.localizedString(for: "settings.onboarding.repeat"),
-                                        icon: "arrow.counterclockwise.circle.fill",
-                                        color: .orange
-                                    )
+                                VStack(spacing: 0) {
+                                    NavigationLink {
+                                        StatisticsDashboard()
+                                            .environmentObject(settings)
+                                            .environmentObject(gardenStore)
+                                            .environmentObject(streakStore)
+                                    } label: {
+                                        settingRow(
+                                            title: settings.localizedString(for: "settings.stats_button"),
+                                            icon: "chart.bar.fill",
+                                            color: .purple
+                                        )
+                                    }
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
+                                    Button {
+                                        settings.onboardingAbgeschlossen = false
+                                        FeedbackManager.shared.playSuccess()
+                                        dismiss()
+                                    } label: {
+                                        settingRow(
+                                            title: settings.localizedString(for: "settings.onboarding.repeat"),
+                                            icon: "arrow.counterclockwise.circle.fill",
+                                            color: .orange
+                                        )
+                                    }
                                 }
                             }
 
@@ -132,6 +150,35 @@ struct SettingsView: View {
                                         .foregroundStyle(.secondary)
                                         .padding(.horizontal, 16)
                                         .padding(.bottom, 12)
+                                }
+                            }
+
+                            settingsSection(title: settings.localizedString(for: "settings.section.pfad")) {
+                                VStack(spacing: 0) {
+                                    NavigationLink {
+                                        PfadEinstellungenView()
+                                            .environmentObject(settings)
+                                            .environmentObject(pfadStore)
+                                            .environmentObject(gardenStore)
+                                    } label: {
+                                        settingRow(
+                                            title: settings.localizedString(for: "pfad_einstellungen_titel"),
+                                            icon: "map.fill",
+                                            color: .blue
+                                        )
+                                    }
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
+                                    Button {
+                                        pfadStore.zeigeRitualAnpassen = true
+                                    } label: {
+                                        settingRow(
+                                            title: settings.localizedString(for: "ritual_config_title"),
+                                            icon: "link.circle.fill",
+                                            color: .goldPrimary
+                                        )
+                                    }
                                 }
                             }
                             
@@ -477,5 +524,14 @@ struct DangerButtonStyle: ButtonStyle {
 }
 
 #Preview {
-    SettingsView().environmentObject(SettingsStore())
+    let settings = SettingsStore()
+    SettingsView()
+        .environmentObject(settings)
+        .environmentObject(GardenStore())
+        .environmentObject(ShopStore())
+        .environmentObject(StreakStore())
+        .environmentObject(PowerUpStore())
+        .environmentObject(TitelStore())
+        .environmentObject(AchievementStore(gardenStore: GardenStore(), streakStore: StreakStore()))
+        .environmentObject(GartenPfadStore(settings: settings))
 }

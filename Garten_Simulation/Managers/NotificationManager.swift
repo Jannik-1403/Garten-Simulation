@@ -168,7 +168,7 @@ class NotificationManager: ObservableObject {
         let today = calendar.startOfDay(for: Date())
         guard let yesterday = calendar.date(byAdding: .day, value: -1, to: today) else { return false }
         
-        if let timestamps = UserDefaults.standard.array(forKey: "streak_completed_dates") as? [TimeInterval] {
+        if let timestamps = SharedUserDefaults.suite.array(forKey: "streak_completed_dates") as? [TimeInterval] {
             let dates = Set(timestamps.map { calendar.startOfDay(for: Date(timeIntervalSince1970: $0)) })
             return dates.contains(yesterday)
         }
@@ -229,7 +229,7 @@ class NotificationManager: ObservableObject {
         
         let texts: (title: String, body: String)
         
-        let lang = UserDefaults.standard.string(forKey: "appLanguage") ?? "de"
+        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
         
         switch candidate.type {
         case .triggerA:

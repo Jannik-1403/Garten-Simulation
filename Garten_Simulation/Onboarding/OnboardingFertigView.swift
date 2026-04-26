@@ -37,7 +37,7 @@ struct OnboardingFertigView: View {
                             ForEach(data.customPflanzen) { custom in
                                 Image(systemName: custom.sfSymbol)
                                     .font(.system(size: 50))
-                                    .foregroundStyle(Color.fromHex(custom.farbe))
+                                    .foregroundStyle(AppColors.color(for: custom.farbe))
                             }
                         }
                     }
@@ -99,8 +99,7 @@ struct OnboardingFertigView: View {
         // Start Path
         gartenPfadStore.pfadStarten(
             ziel: data.gewaehltesZiel?.rawValue ?? "gesund",
-            pflanzeEins: data.gewaehltePflanzenIDs.first ?? "plant.apfelbaum",
-            pflanzeZwei: data.gewaehltePflanzenIDs.count > 1 ? data.gewaehltePflanzenIDs[1] : (data.gewaehltePflanzenIDs.first ?? "plant.zitronenbaum")
+            pflanzen: gardenStore.pflanzen
         )
         
         withAnimation {

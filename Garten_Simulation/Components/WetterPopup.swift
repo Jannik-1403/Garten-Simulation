@@ -61,9 +61,9 @@ struct WetterPopup: View {
                         )
 
                         EffektBadge(
-                            icon: "drop.fill",
-                            text: giessText,
-                            farbe: event.bannerFarbe
+                            icon: "star.fill",
+                            text: xpText,
+                            farbe: .orange
                         )
                     }
 
@@ -76,7 +76,7 @@ struct WetterPopup: View {
                             .fill(event.bannerFarbe)
                             .frame(height: 56)
                             .overlay {
-                                Text(settings.localizedString(for: "settings.understood"))
+                                Text(NSLocalizedString("settings.understood", comment: ""))
                                     .font(.appButton)
                                     .foregroundStyle(.white)
                             }
@@ -127,17 +127,16 @@ struct WetterPopup: View {
     // MARK: - Helper Texte
     var gemsText: String {
         switch event {
-        case .perfekt: return "2x Gems"
-        case .schnee: return "0.5x Gems"
-        default: return "1x Gems"
+        case .perfekt: return "+50% Gems"
+        case .schnee: return "-30% Gems"
+        default: return "Normal"
         }
     }
 
-    var giessText: String {
+    var xpText: String {
         switch event {
-        case .duerre: return "2x Gießen"
-        case .schnee: return "Eingefroren"
-        case .perfekt: return "Bonus XP"
+        case .regen: return "+50% XP"
+        case .perfekt: return "+50% XP"
         default: return "Normal"
         }
     }
@@ -181,5 +180,5 @@ struct EffektBadge: View {
 }
 
 #Preview {
-    WetterPopup(event: .duerre) {}
+    WetterPopup(event: .regen) {}
 }

@@ -222,7 +222,7 @@ final class DataExportImportManager: ObservableObject {
                 newUnlockDates[e.id] = am.timeIntervalSince1970
             }
         }
-        UserDefaults.standard.set(newUnlockDates, forKey: "achievement_unlock_dates")
+        SharedUserDefaults.suite.set(newUnlockDates, forKey: "achievement_unlock_dates")
         achievementStore.refresh()
         
         // Einstellungen

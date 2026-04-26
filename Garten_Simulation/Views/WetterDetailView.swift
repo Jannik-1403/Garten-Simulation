@@ -35,15 +35,15 @@ struct WetterDetailView: View {
                     weatherInfoBlock(
                         icon: "coin",
                         isAsset: true,
-                        title: settings.localizedString(for: "weather.detail.gems"),
+                        title: NSLocalizedString("weather.detail.gems", comment: ""),
                         value: gemsText
                     )
                     
                     weatherInfoBlock(
-                        icon: "Drop water",
-                        isAsset: true,
-                        title: settings.localizedString(for: "weather.detail.watering"),
-                        value: giessText
+                        icon: "star.fill",
+                        isAsset: false,
+                        title: NSLocalizedString("weather.detail.xp", comment: ""),
+                        value: xpText
                     )
                 }
                 .padding(.horizontal, 16)
@@ -54,7 +54,7 @@ struct WetterDetailView: View {
                         Image(systemName: "info.circle.fill")
                             .font(.system(size: 18))
                             .foregroundStyle(event.bannerFarbe)
-                        Text(settings.localizedString(for: "weather.today_is").uppercased())
+                        Text(NSLocalizedString("weather.today_is", comment: "").uppercased())
                             .font(.system(size: 12, weight: .black, design: .rounded))
                             .tracking(1.2)
                             .foregroundStyle(.secondary)
@@ -85,18 +85,7 @@ struct WetterDetailView: View {
             .padding(.horizontal, 24)
             .padding(.bottom, 40)
         }
-        .background(
-            ZStack {
-                event.hintergrundFarbe.ignoresSafeArea()
-                
-                // Subtile Glow-Spheres im Hintergrund
-                Circle()
-                    .fill(event.bannerFarbe.opacity(0.08))
-                    .frame(width: 300)
-                    .blur(radius: 60)
-                    .offset(x: -150, y: -200)
-            }
-        )
+        .background(.ultraThinMaterial)
     }
 
     private func handleIconPress() {
@@ -109,22 +98,22 @@ struct WetterDetailView: View {
 
     private var gemsText: String {
         switch event {
-        case .perfekt: return settings.localizedString(for: "weather.detail.double")
-        case .schnee: return settings.localizedString(for: "weather.detail.half")
-        default: return settings.localizedString(for: "weather.detail.normal")
+        case .perfekt: return NSLocalizedString("weather.detail.more", comment: "")   // +50%
+        case .schnee: return NSLocalizedString("weather.detail.less", comment: "")    // -30%
+        default: return NSLocalizedString("weather.detail.normal", comment: "")
         }
     }
 
-    private var giessText: String {
+    private var xpText: String {
         switch event {
-        case .duerre: return settings.localizedString(for: "weather.detail.double")
-        case .schnee: return settings.localizedString(for: "weather.detail.difficult")
-        default: return settings.localizedString(for: "weather.detail.normal")
+        case .regen: return NSLocalizedString("weather.detail.more", comment: "")     // +50%
+        case .perfekt: return NSLocalizedString("weather.detail.more", comment: "")   // +50%
+        default: return NSLocalizedString("weather.detail.normal", comment: "")
         }
     }
 
     private var ruleText: String {
-        settings.localizedString(for: "weather.rule.\(event.rawValue)")
+        NSLocalizedString("weather.rule.\(event.rawValue)", comment: "")
     }
 
     private func weatherInfoBlock(icon: String, isAsset: Bool, title: String, value: String) -> some View {

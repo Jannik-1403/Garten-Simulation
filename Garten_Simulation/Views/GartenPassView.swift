@@ -6,8 +6,12 @@ struct GartenPassView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var zeigeWheelSheet = false
-    @State private var zeigeRewardOverlay = false
-    @State private var aktuelleBelohnung: GartenPassBelohnung? = nil
+    @State private var zeigePowerUpWheel = false
+    @State private var claimedReward: GartenPassBelohnung? = nil
+    @State private var pflanzeAuswahlBelohnung: GartenPassBelohnung? = nil
+    
+    @EnvironmentObject var gartenPfadStore: GartenPfadStore
+    @EnvironmentObject var powerUpStore: PowerUpStore
     
     private var aktuellerLevel: Int {
         GartenLevel.level(fuerXP: gardenStore.gesamtXP)
@@ -41,22 +45,18 @@ struct GartenPassView: View {
                                 aktuellerLevel: aktuellerLevel,
                                 abgeholte: gardenStore.abgeholtePassLevel,
                                 onAbholen: { belohnung in
-                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                        gardenStore.belohnungAbholen(belohnung: belohnung)
+                                    if case .pflanze = belohnung.typ {
+                                        // Level als abgeholt markieren
+                                        gardenStore.abgeholtePassLevel.insert(belohnung.id)
+                                        pflanzeAuswahlBelohnung = belohnung
+                                    } else {
+                                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                            gardenStore.abgeholtePassLevel.insert(belohnung.id)
+                                            gartenPfadStore.belohnungGutschreiben(belohnung, gardenStore: gardenStore, powerUpStore: powerUpStore)
+                                        }
+                                        claimedReward = belohnung
                                     }
                                     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                                    
-                                    // DIREKT-FLOW: Bei Drehungen direkt zum Rad, sonst Overlay
-                                    if case .gluecksradDrehung = belohnung.typ {
-                                        withAnimation {
-                                            zeigeWheelSheet = true
-                                        }
-                                    } else {
-                                        aktuelleBelohnung = belohnung
-                                        withAnimation(.spring(response: 0.45, dampingFraction: 0.72)) {
-                                            zeigeRewardOverlay = true
-                                        }
-                                    }
                                 }
                             )
                         }
@@ -88,41 +88,60 @@ struct GartenPassView: View {
             }
             .fullScreenCover(isPresented: $zeigeWheelSheet) {
                 GartenPassWheelView()
+                    .environmentObject(gartenPfadStore)
                     .environmentObject(gardenStore)
-                    .environmentObject(settings)
             }
-            .fullScreenCover(isPresented: $zeigeRewardOverlay) {
-                if let belohnung = aktuelleBelohnung {
+            .fullScreenCover(isPresented: $zeigePowerUpWheel) {
+                GartenPassPowerUpWheelView(onRewardClaimed: { puReward in
+                    // No automatic popper here, as the wheel has its own result screen
+                })
+                .environmentObject(gartenPfadStore)
+                .environmentObject(gardenStore)
+                .environmentObject(powerUpStore)
+            }
+            .overlay {
+                if let reward = claimedReward {
                     GartenPassRewardOverlay(
-                        belohnung: belohnung,
-                        onSpinNow: {
-                            withAnimation {
-                                zeigeRewardOverlay = false
-                                // Ein kleiner Delay bevor das Rad öffnet
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        belohnung: reward,
+                        onDismiss: {
+                            claimedReward = nil
+                            
+                            // Feature 2: Wenn es eine Drehung war -> Wheel öffnen
+                            if case .gluecksradDrehung = reward.typ {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                                     zeigeWheelSheet = true
-                                }
-                            }
-                        },
-                        onContinue: {
-                            withAnimation {
-                                zeigeRewardOverlay = false
-                                // Belohnung verarbeiten (nur einmalig)
-                                let typ = belohnung.typ
-                                aktuelleBelohnung = nil
-                                
-                                // Wenn es kein Spin war -> zum Garten wechseln und Pass schließen
-                                if case .gluecksradDrehung = typ {
-                                    // Bei Spin später -> nur Pass schließen (wird durch Dismiss geregelt)
-                                    dismiss()
-                                } else {
-                                    gardenStore.selectedTab = 0
-                                    dismiss()
                                 }
                             }
                         }
                     )
                 }
+            }
+            .sheet(item: $pflanzeAuswahlBelohnung) { belohnung in
+                PflanzeOderAlternativeView(
+                    pflanzeBelohnung: belohnung,
+                    onWahl: { gewaehlte in
+                        if case .powerUp(let id) = gewaehlte.typ, id == "random" {
+                            // SONDERFALL: Power-Up Wheel öffnen
+                            pflanzeAuswahlBelohnung = nil
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                zeigePowerUpWheel = true
+                            }
+                        } else {
+                            // NORMALFALL: Direkt einlösen und Popper zeigen
+                            gartenPfadStore.belohnungGutschreiben(gewaehlte, gardenStore: gardenStore, powerUpStore: powerUpStore)
+                            pflanzeAuswahlBelohnung = nil
+                            
+                            // Zeige den "Popo" (Overlay) nach der Auswahl
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                claimedReward = gewaehlte
+                            }
+                            
+                            // Falls es eine Drehung war, wird nach dem Overlay das Wheel geöffnet (siehe Overlay onDismiss)
+                        }
+                    }
+                )
+                .environmentObject(gardenStore)
+                .environmentObject(gartenPfadStore)
             }
         }
     }
