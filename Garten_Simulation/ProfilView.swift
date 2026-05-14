@@ -116,12 +116,6 @@ struct ProfilView: View {
                     .environmentObject(gardenStore)
                     .environmentObject(settings)
             }
-            // Navigation Destinations
-            .navigationDestination(isPresented: $showXPDetail) {
-                GesamtXPDetailView()
-                    .environmentObject(gardenStore)
-                    .environmentObject(settings)
-            }
             .navigationDestination(isPresented: $showPflanzenDetail) {
                 InventoryDetailView()
                     .environmentObject(gardenStore)
@@ -139,6 +133,12 @@ struct ProfilView: View {
             .fullScreenCover(isPresented: $zeigeGartenPass) {
                 GartenPassView()
                     .environmentObject(gardenStore)
+            }
+            .sheet(isPresented: $showXPDetail) {
+                XPInfoSheet()
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+                    .presentationDetents([.medium])
             }
             .sheet(isPresented: $showTitelAuswahl) {
                 TitelAuswahlSheet()

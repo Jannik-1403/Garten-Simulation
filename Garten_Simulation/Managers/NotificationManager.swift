@@ -262,7 +262,7 @@ class NotificationManager: ObservableObject {
         let request = UNNotificationRequest(identifier: candidate.id, content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
+            if error != nil {
                 // print("❌ Error scheduling notification \(candidate.id): \(error.localizedDescription)")
             }
         }

@@ -22,7 +22,7 @@ struct PowerUpPlantPickerSheet: View {
                     Image(systemName: "leaf.arrow.circlepath")
                         .font(.system(size: 60))
                         .foregroundColor(.secondary)
-                    Text("Keine passenden Pflanzen gefunden.")
+                    Text(settings.localizedString(for: "powerup.picker.no_plants"))
                         .font(.headline)
                         .foregroundColor(.secondary)
                 }

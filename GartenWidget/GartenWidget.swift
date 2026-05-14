@@ -23,7 +23,7 @@ struct GroovyWaterWidget: Widget {
         AppIntentConfiguration(kind: kind, intent: SelectWaterPeriodIntent.self, provider: WaterTimelineProvider()) { entry in
             WaterWidgetView(entry: entry)
                 .containerBackground(for: .widget) {
-                    DuoStyle.backgroundView(for: entry.backgroundStyle, defaultGradient: DuoStyle.blueGradient)
+                    WaterBackgroundView(style: entry.backgroundStyle)
                 }
         }
         .configurationDisplayName(NSLocalizedString("widget_water_title", comment: ""))
@@ -39,7 +39,7 @@ struct GroovyStreakWidget: Widget {
         AppIntentConfiguration(kind: kind, intent: SelectStreakIntent.self, provider: StreakSmallTimelineProvider()) { entry in
             StreakSmallWidgetView(entry: entry)
                 .containerBackground(for: .widget) {
-                    DuoStyle.backgroundView(for: entry.backgroundStyle, defaultGradient: DuoStyle.orangeGradient)
+                    StreakBackgroundView(style: entry.backgroundStyle)
                 }
         }
         .configurationDisplayName(NSLocalizedString("widget_streak_title", comment: ""))

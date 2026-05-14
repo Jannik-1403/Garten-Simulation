@@ -48,6 +48,9 @@ struct Garten_SimulationApp: App {
                 .environment(\.locale, Locale(identifier: settingsStore.appLanguage))
                 .preferredColorScheme(.light)
                 .onChange(of: scenePhase) { oldPhase, newPhase in
+                    if newPhase == .active {
+                        gardenStore.reloadData()
+                    }
                     if newPhase == .inactive || newPhase == .background {
                         gardenStore.checkAndStartLiveActivity()
                     }
@@ -86,7 +89,7 @@ struct Garten_SimulationApp: App {
                         .environmentObject(gartenPfadStore)
                 }
                 .task {
-                    await NotificationManager.shared.requestPermission()
+                    _ = await NotificationManager.shared.requestPermission()
                     NotificationManager.shared.scheduleAll(for: gardenStore.pflanzen)
                 }
                 .onOpenURL { url in

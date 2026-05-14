@@ -12,7 +12,7 @@ struct ZoomIndikatorView: View {
             .padding(.vertical, 5)
             .background(.regularMaterial, in: Capsule())
             .opacity(sichtbar ? 1 : 0)
-            .onChange(of: zoom) { _ in
+            .onChange(of: zoom) { _, _ in
                 sichtbar = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     withAnimation { sichtbar = false }

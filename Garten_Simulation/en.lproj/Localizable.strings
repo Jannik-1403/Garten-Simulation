@@ -5,6 +5,14 @@
   Generated from AppStrings.swift
 */
 
+"xp_info.title" = "XP Progress";
+"xp_info.current_label" = "Your current balance:";
+"xp_info.description" = "You earn XP by watering your plants daily, completing milestones, and keeping your garden healthy!";
+"inventory.empty" = "Nothing to see here yet.";
+"inventory.seeds.info.title" = "Seed Balance";
+"inventory.seeds.info.body" = "You currently have %d seeds. Creating a custom plant costs 10 seeds.";
+"verlauf.custom_plant.message" = "There is no history for this plant because it was custom created.";
+
 "Alle" = "All";
 "DEKO" = "DECOR";
 "Dekorationen" = "Decorations";
@@ -112,7 +120,8 @@
 "common.habit" = "HABIT";
 "common.fri" = "F";
 "common.history" = "HISTORY";
-"common.liter" = "Liter";
+"common.liter" = "Liters";
+"bonus_text" = "+2× XP · +1 Gem";
 "common.ml" = "ml";
 "common.mon" = "M";
 "common.of" = "of";
@@ -266,7 +275,7 @@
 "ice_wheel_back_button" = "DONE";
 "ice_wheel_button_no_spins" = "No spins";
 "ice_wheel_button_spin" = "Spin";
-"ice_wheel_reward" = "🎰 Ice Wheel Reward";
+"ice_wheel_reward" = "Ice Wheel Reward";
 "ice_wheel_reward_title" = "You won!";
 "ice_wheel_subtitle" = "Collect milestone rewards";
 "ice_wheel_title" = "Ice Luck Wheel";
@@ -360,7 +369,7 @@
 "level_unlock_spin_bonus_desc" = "Bonus: +2 wheel spins";
 "level_unlock_spin_titel" = "Spin the Wheel";
 "level_up.subtitle" = "Your garden is now";
-"level_up.title" = "LEVEL UP! 🎉";
+"level_up.title" = "LEVEL UP!";
 "level_up_button_gluecksrad" = "SPIN NOW";
 "level_up_button_weiter" = "CONTINUE";
 "level_up_freigeschaltet" = "Newly unlocked";
@@ -594,7 +603,7 @@
 "retention.frage1.titel" = "Why did you stop using the app?";
 "retention.frage2.keineLust" = "What did you enjoy the most?";
 "retention.frage2.keineZeit" = "How many plants are realistic for you?";
-"retention.frage2.nichtMehrNoetig" = "Respect — you reached your goal! 🎉";
+"retention.frage2.nichtMehrNoetig" = "Respect — you reached your goal!";
 "retention.frage2.nichtMehrNoetig.sub" = "Maybe there are new habits you'd like to build?";
 "retention.frage2.nichtMotiviert" = "What would help you?";
 "retention.frage2.vergessen" = "Should I remind you daily?";
@@ -675,7 +684,7 @@
 "settings.share" = "Recommend App";
 "settings.share.action" = "Share App";
 "settings.share.desc" = "Do you like the Garden Simulation? Share it with your friends!";
-"settings.share_text" = "Check out my Garden Simulation! 🌿 I'm building a beautiful garden right now.";
+"settings.share_text" = "Check out my Garden Simulation! I'm building a beautiful garden right now.";
 "settings.terms" = "Terms of Service";
 "settings.terms.desc" = "By using Garten Simulation, you agree to the following terms:\n\n1. Usage\nThe app is intended for personal use only.\n\n2. Content\nAll game content, designs, and texts are the property of the developer.\n\n3. Liability\nThe app is provided without warranty. The developer assumes no liability for data loss.\n\n4. Changes\nThe developer reserves the right to update the app and these terms at any time.\n\n5. Contact\nFor questions, reach us via Support in the settings.";
 "settings.timeskip_simulation" = "TIME SKIP SIMULATION";
@@ -702,7 +711,7 @@
 "shop.not_enough_coins" = "Not Enough Coins";
 "shop.owned" = "Already owned";
 "shop.purchase_success.awesome" = "Awesome!";
-"shop.purchase_success.title" = "Purchased! 🎉";
+"shop.purchase_success.title" = "Purchased!";
 "shop.purchases.count" = "Shop Purchases";
 "shop.search_placeholder" = "Search...";
 "shop.tab.items" = "Items";
@@ -1231,7 +1240,7 @@
 "pfad_phase_tag_titel_vertiefung" = "Deepening";
 "pfad_phase_tag_titel_meisterschaft" = "Mastery";
 "pfad_fortschritt" = "%d of 90 days";
-"pfad_abgeschlossen" = "Path completed! 🎉";
+"pfad_abgeschlossen" = "Path completed!";
 "pfad_belohnung_meilenstein" = "+50 Coins · +100 XP";
 "pfad_belohnung_meisterschaft" = "+100 Coins · +500 XP";
 "pfad_tag_header" = "DAY %d";
@@ -2738,3 +2747,145 @@
 "powerup_wheel_title" = "Power-Up Wheel";
 "powerup_wheel_subtitle" = "Spin for your Power-Up!";
 "powerup_wheel_win" = "WINNER!";
+
+// Added for Siri Intents
+"intent_water_title" = "Water plant";
+"intent_water_desc" = "Water one of your plants.";
+"shortcut_gießen_titel" = "Water plant";
+"intent_water_already_done" = "%@ has already been watered today.";
+"intent_water_success" = "%@ was successfully watered! Your streak has increased.";
+"intent_water_fail" = "Plant not found.";
+"plant.mystic_seed.name" = "Mystic Seed";
+"plant.mystic_seed.symbolism" = "A rare seed with mysterious power.";
+"habit.atemarbeit" = "Breathwork";
+
+// Statistics Dashboard
+"stats.activity.title" = "Activity";
+"stats.activity.subtitle" = "Waterings over the last 14 days";
+"stats.xp.title" = "Experience (XP)";
+"stats.xp.total" = "Total Experience";
+"stats.coins.title" = "Coin Balance";
+"stats.coins.available" = "Available Coins";
+"stats.distribution.title" = "Rarity Mix";
+"stats.distribution.subtitle" = "Plants in Garden";
+"stats.succeeded" = "Succeeded";
+"stats.missed" = "Missed";
+"stats.total" = "Total";
+"stats.level" = "Level";
+"stats.plants" = "Plants";
+"stats.days_active" = "Days active";
+"stats.earned" = "Earned";
+"stats.spent" = "Spent";
+"stats.today" = "TODAY";
+
+// Balance Chart
+"stats.balance.title" = "Life Balance";
+"stats.balance.subtitle" = "Life Balance Score";
+"stats.balance.desc.low" = "Your foundation is still shaky. Time for action!";
+"stats.balance.desc.mid" = "You're on the right track. Close the gaps in your net!";
+"stats.balance.desc.high" = "Your balance is impressive! A strong net for a strong life.";
+"stats.balance.desc.dynamic" = "Your %@ is pulling you up, but %@ is holding you back. Focus on the gaps!";
+"stats.trend.vs_yesterday" = "vs. yesterday";
+"stats.xp.to_level" = "to Level %d";
+"stats.balance.empty" = "Something great is growing here...";
+"stats.timeframe.week" = "Week";
+"stats.timeframe.month" = "Month";
+"stats.timeframe.year" = "Year";
+"stats.coins.no_data" = "No transactions yet.";
+"stats.balance.day1" = "Day 1: Your foundation is being laid.";
+"stats.category.no_plants" = "No active habits in this category.";
+"stats.category.plants_count" = "%d active habits";
+
+
+"stats.coach.title" = "Analysis & Coaching";
+"stats.coach.bullet1" = "The center is the zero point. A point here means total failure in this category.";
+"stats.coach.bullet2" = "The outer ring is your goal (100%). It represents absolute perfection and consistency.";
+"stats.coach.bullet3" = "Inward dents are warning signs. They show weaknesses in your foundation.";
+"stats.coach.bullet4" = "A smooth, wide net means your life foundation is stable.";
+
+"stats.tile.waterings" = "Watered";
+"stats.tile.streak" = "Streak";
+"stats.tile.plants" = "Plants";
+"stats.tile.gems" = "Gems";
+"stats.legend.current" = "Current";
+"stats.legend.previous" = "Previous";
+
+"statistik_titel" = "Statistics";
+"statistik_life_balance" = "Life Balance";
+"statistik_life_balance_score" = "Life Balance Score";
+"statistik_periode_woche" = "Week";
+"statistik_periode_monat" = "Month";
+"statistik_periode_jahr" = "Year";
+"statistik_legend_aktuell" = "Current";
+"statistik_legend_vorherig" = "Previous";
+"statistik_kachel_gewaessert" = "Watered";
+"statistik_kachel_streak" = "Streak";
+"statistik_kachel_pflanzen" = "Plants";
+"statistik_kachel_gems" = "Gems";
+"statistik_popup_erreicht" = "Achieved";
+"statistik_popup_gewohnheiten" = "Habits";
+"statistik_popup_giessungen" = "Waterings";
+
+"statistik_share_letzte_woche" = "Last Week";
+"statistik_share_letzter_monat" = "Last Month";
+"statistik_share_letztes_jahr" = "Last Year";
+
+"stats.score.label" = "Score";
+"stats.score.konsistenz" = "Consistency";
+"stats.score.streak" = "Streak";
+"stats.score.seltenheit" = "Rarity";
+"stats.score.msg.excellent" = "Your garden is thriving!";
+"stats.score.msg.good" = "On a good path";
+"stats.score.msg.ok" = "Room to grow";
+"stats.score.msg.low" = "Your garden needs care";
+"stats.starplant.title" = "Plant of the Period";
+"stats.milestone.remaining" = "%lld XP until %@";
+"stats.heatmap.subtitle" = "%lld watering days in 84 days";
+"stats.heatmap.title" = "Activity";
+"stats.milestone.title" = "Next Milestones";
+"stats.score.card.title" = "Garden Score";
+"stats.score.konsistenz.sub" = "Watering rate this period";
+"stats.score.streak.sub" = "Best streak this period";
+"stats.score.seltenheit.sub" = "Avg. rarity of your plants";
+"stats.period.this_week" = "This week";
+"stats.period.this_month" = "This month";
+"stats.period.this_year" = "This year";
+"stats.period.this_week_simple" = "this week";
+"stats.period.this_month_simple" = "this month";
+"stats.period.this_year_simple" = "this year";
+"stats.score.konsistenz.period_format" = "Watering rate %@";
+"stats.score.streak.period_format" = "Best streak %@";
+
+"stats.share.choose_style" = "Choose Style";
+"stats.share.style.vibrant" = "Vibrant (Luxurious)";
+"stats.share.style.light" = "Light (Clean)";
+"stats.share.style.dark" = "Dark (Elegant)";
+"stats.share.style.transparent" = "Transparent (Pro)";
+
+"stats.share.preview_title" = "Preview";
+"stats.share.preview_hint" = "This is how your statistics will be shared";
+"stats.share.swipe_hint" = "Swipe for more styles";
+
+// MARK: - PowerUp Picker
+"powerup.picker.no_plants" = "No matching plants found.";
+
+// MARK: - Wonder Water Rescue Overlay
+"wonder_water.rescue.title" = "Save your plant?";
+"wonder_water.rescue.body_format" = "Your plant '%@' has withered and is about to die. Do you want to use your Wonder Water to save it and prevent the loss of life points?";
+"wonder_water.rescue.action_format" = "Use %@";
+"wonder_water.rescue.decline" = "Let it die";
+
+// MARK: - Purchase Overlay
+"purchase.coins_deducted_format" = "−%d Coins";
+
+"pfad_tag_erledigt" = "Done";
+"button.view_90_day_path" = "View 90-Day Path";
+"plant.detail.path_subtitle" = "Your progress over the last 90 days";
+"lucky_wheel_locked_hint" = "Water a plant today to spin";
+
+"weed_banner_title" = "Weeds!";
+"weed_banner_subtitle" = "Water 3× to remove them";
+"weed_popup_title" = "Weeds in your garden!";
+"weed_popup_body" = "Your garden is suffering. Water 3 days in a row to remove the weeds.";
+"weed_progress_label" = "Progress: {count} of 3";
+"weed_popup_button" = "GOT IT";

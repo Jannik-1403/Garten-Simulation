@@ -35,14 +35,14 @@ struct WetterDetailView: View {
                     weatherInfoBlock(
                         icon: "coin",
                         isAsset: true,
-                        title: NSLocalizedString("weather.detail.gems", comment: ""),
+                        title: settings.localizedString(for: "weather.detail.gems"),
                         value: gemsText
                     )
                     
                     weatherInfoBlock(
                         icon: "star.fill",
                         isAsset: false,
-                        title: NSLocalizedString("weather.detail.xp", comment: ""),
+                        title: settings.localizedString(for: "weather.detail.xp"),
                         value: xpText
                     )
                 }
@@ -54,7 +54,7 @@ struct WetterDetailView: View {
                         Image(systemName: "info.circle.fill")
                             .font(.system(size: 18))
                             .foregroundStyle(event.bannerFarbe)
-                        Text(NSLocalizedString("weather.today_is", comment: "").uppercased())
+                        Text(settings.localizedString(for: "weather.today_is").uppercased())
                             .font(.system(size: 12, weight: .black, design: .rounded))
                             .tracking(1.2)
                             .foregroundStyle(.secondary)
@@ -98,22 +98,22 @@ struct WetterDetailView: View {
 
     private var gemsText: String {
         switch event {
-        case .perfekt: return NSLocalizedString("weather.detail.more", comment: "")   // +50%
-        case .schnee: return NSLocalizedString("weather.detail.less", comment: "")    // -30%
-        default: return NSLocalizedString("weather.detail.normal", comment: "")
+        case .perfekt: return settings.localizedString(for: "weather.detail.more")   // +50%
+        case .schnee: return settings.localizedString(for: "weather.detail.less")    // -30%
+        default: return settings.localizedString(for: "weather.detail.normal")
         }
     }
 
     private var xpText: String {
         switch event {
-        case .regen: return NSLocalizedString("weather.detail.more", comment: "")     // +50%
-        case .perfekt: return NSLocalizedString("weather.detail.more", comment: "")   // +50%
-        default: return NSLocalizedString("weather.detail.normal", comment: "")
+        case .regen: return settings.localizedString(for: "weather.detail.more")     // +50%
+        case .perfekt: return settings.localizedString(for: "weather.detail.more")   // +50%
+        default: return settings.localizedString(for: "weather.detail.normal")
         }
     }
 
     private var ruleText: String {
-        NSLocalizedString("weather.rule.\(event.rawValue)", comment: "")
+        settings.localizedString(for: "weather.rule.\(event.rawValue)")
     }
 
     private func weatherInfoBlock(icon: String, isAsset: Bool, title: String, value: String) -> some View {

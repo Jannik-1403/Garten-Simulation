@@ -21,10 +21,10 @@ struct Erfolg: Identifiable {
 }
 
 enum ErfolgKategorie: String, CaseIterable, Identifiable {
-    case streak      = "🔥 Streak"
-    case garten      = "🌿 Garten"
-    case shop        = "🛒 Shop"
-    case sammler     = "⭐ Sammler"
+    case streak      = "Streak"
+    case garten      = "Garten"
+    case shop        = "Shop"
+    case sammler     = "Sammler"
     
     var id: String { self.rawValue }
 }

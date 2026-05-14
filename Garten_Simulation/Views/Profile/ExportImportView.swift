@@ -9,6 +9,7 @@ struct ExportImportView: View {
     @EnvironmentObject var achievementStore: AchievementStore
     @EnvironmentObject var settingsStore: SettingsStore
     @EnvironmentObject var streakStore: StreakStore
+    @EnvironmentObject var pfadStore: GartenPfadStore
     
     // SwiftData context (optional if used)
     @Environment(\.modelContext) private var modelContext

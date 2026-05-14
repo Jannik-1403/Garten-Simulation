@@ -5,7 +5,7 @@ import SwiftUI
 
 /// Segment types for the wheel layout
 enum SegmentKind: Equatable {
-    case weed, safe, gold
+    case klein, mittel, gross, xpBoost, jackpot
 }
 
 
@@ -54,19 +54,49 @@ struct WheelSegmentIcon: View {
     let kind: SegmentKind
 
     var body: some View {
+        VStack(spacing: 0) {
+            Text(amountText)
+                .font(.system(size: 16, weight: .black, design: .rounded))
+                .foregroundStyle(textColor)
+                .padding(.bottom, 2)
+            
+            Image(iconName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 30, height: 30)
+        }
+    }
+
+    private var textColor: Color {
+        let baseColor = colorFor(kind)
+        // Aggressive darkening for better contrast on colorful backgrounds
+        return baseColor.darker().darker()
+    }
+
+    private func colorFor(_ kind: SegmentKind) -> Color {
         switch kind {
-        case .gold:
-            Image(systemName: "dollarsign.circle.fill")
-                .font(.system(size: 24, weight: .bold))
-                .foregroundStyle(.white)
-        case .weed:
-            Image(systemName: "ant.fill")
-                .font(.system(size: 22, weight: .bold))
-                .foregroundStyle(.white)
-        case .safe:
-            Image(systemName: "leaf.fill")
-                .font(.system(size: 22, weight: .bold))
-                .foregroundStyle(.white)
+        case .klein:   return Color(hex: "#5BA8D4")
+        case .mittel:  return Color.blauPrimary
+        case .gross:   return Color.indigo
+        case .xpBoost: return Color.orange
+        case .jackpot: return Color(hex: "#C8960C")
+        }
+    }
+
+    private var amountText: String {
+        switch kind {
+        case .klein:   return "10"
+        case .mittel:  return "25"
+        case .gross:   return "50"
+        case .jackpot: return "150"
+        case .xpBoost: return "100"
+        }
+    }
+
+    private var iconName: String {
+        switch kind {
+        case .xpBoost: return "XP"
+        default:       return "coin"
         }
     }
 }
@@ -84,7 +114,7 @@ struct WheelSlices: View {
 
             ZStack {
                 ForEach(0..<count, id: \.self) { i in
-                    let kind = i < layout.count ? layout[i] : .safe
+                    let kind = i < layout.count ? layout[i] : .klein
                     let startDeg = -90.0 + Double(i) * segDeg
                     let endDeg   = startDeg + segDeg
                     let midDeg   = startDeg + segDeg / 2
@@ -129,9 +159,11 @@ struct WheelSlices: View {
     
     func colorFor(_ kind: SegmentKind) -> Color {
         switch kind {
-        case .safe: return Color.gruenPrimary
-        case .weed: return Color.rotPrimary
-        case .gold: return Color.coinBlue
+        case .klein:   return Color(hex: "#5BA8D4") // Hellblau
+        case .mittel:  return Color.blauPrimary
+        case .gross:   return Color.indigo
+        case .xpBoost: return Color.orange
+        case .jackpot: return Color(hex: "#C8960C") // Gold
         }
     }
 }

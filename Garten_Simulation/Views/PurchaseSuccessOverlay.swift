@@ -17,68 +17,63 @@ struct PurchaseSuccessOverlay: View {
                 .ignoresSafeArea()
 
             // Popup-Karte
-            VStack(spacing: 22) {
-
-                // Animierter Checkmark
-                ZStack {
-                    Circle()
-                        .fill(Color.green.opacity(0.12))
-                        .frame(width: 100, height: 100)
-
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 64))
-                        .foregroundStyle(.green)
-                        .scaleEffect(checkScale)
-                        .rotationEffect(.degrees(checkRotation))
-                }
+            VStack(spacing: 32) {
 
                 // Text
-                VStack(spacing: 6) {
-                    Text(settings.localizedString(for: "shop.purchase_success.title"))
-                        .font(.system(size: 22, weight: .bold, design: .rounded))
+                VStack(spacing: 12) {
+                    ZStack {
+                        // 3D Shadow (Secondary green)
+                        Text(settings.localizedString(for: "shop.purchase_success.title").uppercased())
+                            .font(.system(size: 42, weight: .black, design: .rounded))
+                            .foregroundStyle(Color.gruenSecondary)
+                            .offset(y: 6)
+
+                        // Main Text (Primary green)
+                        Text(settings.localizedString(for: "shop.purchase_success.title").uppercased())
+                            .font(.system(size: 42, weight: .black, design: .rounded))
+                            .foregroundStyle(Color.gruenPrimary)
+                    }
+                    .scaleEffect(checkScale)
+                    
                     Text(settings.localizedString(for: itemName))
-                        .font(.system(size: 15))
-                        .foregroundStyle(Color.secondary)
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
                 }
 
                 // Coin-Abzug
-                HStack(spacing: 5) {
+                HStack(spacing: 8) {
                     Image("coin")
                         .resizable().scaledToFit()
-                        .frame(width: 16, height: 16)
-                    Text("−\(price) Coins")
-                        .font(.system(size: 14, weight: .semibold))
+                        .frame(width: 20, height: 20)
+                    Text(String(format: settings.localizedString(for: "purchase.coins_deducted_format"), price))
+                        .font(.system(size: 16, weight: .heavy))
                         .foregroundStyle(Color.coinBlue)
                 }
-                .padding(.horizontal, 14)
-                .padding(.vertical, 7)
+                .padding(.horizontal, 18)
+                .padding(.vertical, 10)
                 .background(
                     Capsule()
-                        .fill(Color(UIColor.secondarySystemBackground))
+                        .fill(Color.coinBlue.opacity(0.1))
                 )
 
                 // Super-Button — DuolingoButtonStyle
                 Button(action: onDismiss) {
                     Text(settings.localizedString(for: "shop.purchase_success.awesome"))
-                        .font(.system(size: 17, weight: .bold, design: .rounded))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
                 }
                 .buttonStyle(DuolingoButtonStyle(
                     size: .large,
                     fillWidth: true,
-                    backgroundColor: .green,
-                    shadowColor: Color.green.darker(),
+                    backgroundColor: .gruenPrimary,
+                    shadowColor: .gruenSecondary,
                     foregroundColor: .white
                 ))
             }
             .padding(28)
-            .background(.ultraThinMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 26, style: .continuous))
-            .overlay(
-                RoundedRectangle(cornerRadius: 26, style: .continuous)
-                    .stroke(.white.opacity(0.3), lineWidth: 1)
-            )
-            .shadow(color: .black.opacity(0.15), radius: 30, x: 0, y: 12)
+            .background(Color(UIColor.systemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
+            .shadow(color: .black.opacity(0.2), radius: 40, x: 0, y: 20)
             .padding(.horizontal, 32)
             .opacity(contentOpacity)
         }
@@ -87,10 +82,12 @@ struct PurchaseSuccessOverlay: View {
             withAnimation(.spring(response: 0.42, dampingFraction: 0.65)) {
                 contentOpacity = 1.0
             }
-            // Checkmark mit Federdrehung
-            withAnimation(.spring(response: 0.48, dampingFraction: 0.52).delay(0.14)) {
+            // Text-Pop-Animation
+            withAnimation(.spring(response: 0.48, dampingFraction: 0.52).delay(0.1)) {
+                checkScale = 1.1 // Leichtes Übersteuern für 3D-Effekt
+            }
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.6).delay(0.25)) {
                 checkScale = 1.0
-                checkRotation = 0
             }
         }
     }

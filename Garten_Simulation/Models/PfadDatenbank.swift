@@ -103,7 +103,7 @@ class PfadDatenbank {
             let bekannteTage = [1, 2, 7, 14, 21, 30, 45, 60, 90]
 
             // Prüfen ob Tag verschmolzen ist
-            let istVerschmolzen = (verschmelzungTag != nil && i >= (verschmelzungTag ?? 999))
+            _ = (verschmelzungTag != nil && i >= (verschmelzungTag ?? 999))
             
             let titelKey: String
             let beschreibungKey: String

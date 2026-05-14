@@ -5,6 +5,14 @@
   Generated from AppStrings.swift
 */
 
+"xp_info.title" = "XP-Fortschritt";
+"xp_info.current_label" = "Dein aktueller Stand:";
+"xp_info.description" = "XP kannst du verdienen, indem du deine Pflanzen täglich gießt, Meilensteine erreichst und deinen Garten pflegst!";
+"inventory.empty" = "Hier gibt es noch nichts zu sehen.";
+"inventory.seeds.info.title" = "Samen-Vorrat";
+"inventory.seeds.info.body" = "Du hast momentan %d Samen. Pro Pflanze, die du erstellst, werden 10 Samen benötigt.";
+"verlauf.custom_plant.message" = "Für diese Pflanze gibt es keinen Verlauf da sie selber erstellt worden ist.";
+
 "Alle" = "Alle";
 "DEKO" = "DEKO";
 "Dekorationen" = "Dekorationen";
@@ -114,6 +122,9 @@
 "common.fri" = "F";
 "common.history" = "VERLAUF";
 "common.liter" = "Liter";
+"bonus_text" = "+2× XP · +1 Edelstein";
+
+// --- ONBOARDING ---
 "common.ml" = "ml";
 "common.mon" = "M";
 "common.of" = "von";
@@ -267,7 +278,7 @@
 "ice_wheel_back_button" = "FERTIG";
 "ice_wheel_button_no_spins" = "Kein Versuch";
 "ice_wheel_button_spin" = "Drehen";
-"ice_wheel_reward" = "🎰 Eis-Glücksrad Belohnung";
+"ice_wheel_reward" = "Eis-Glücksrad Belohnung";
 "ice_wheel_reward_title" = "Gewonnen!";
 "ice_wheel_subtitle" = "Meilenstein-Belohnungen sammeln";
 "ice_wheel_title" = "Eis-Glücksrad";
@@ -361,7 +372,7 @@
 "level_unlock_spin_bonus_desc" = "Bonus: +2 Glücksrad-Drehungen";
 "level_unlock_spin_titel" = "Glücksrad-Drehung";
 "level_up.subtitle" = "Deine Pflanze ist jetzt";
-"level_up.title" = "LEVEL-UP! 🎉";
+"level_up.title" = "LEVEL-UP!";
 "level_up_button_gluecksrad" = "JETZT DREHEN";
 "level_up_button_weiter" = "WEITER";
 "level_up_freigeschaltet" = "Neu freigeschaltet";
@@ -595,7 +606,7 @@
 "retention.frage1.titel" = "Warum hast du aufgehört die App zu benutzen?";
 "retention.frage2.keineLust" = "Was hat dir am meisten Spaß gemacht?";
 "retention.frage2.keineZeit" = "Wie viele Pflanzen sind realistisch für dich?";
-"retention.frage2.nichtMehrNoetig" = "Respekt — du hast dein Ziel erreicht! 🎉";
+"retention.frage2.nichtMehrNoetig" = "Respekt — du hast dein Ziel erreicht!";
 "retention.frage2.nichtMehrNoetig.sub" = "Vielleicht gibt es neue Gewohnheiten die du aufbauen möchtest?";
 "retention.frage2.nichtMotiviert" = "Was würde dir helfen?";
 "retention.frage2.vergessen" = "Soll ich dich täglich erinnern?";
@@ -676,7 +687,7 @@
 "settings.share" = "App weiterempfehlen";
 "settings.share.action" = "App teilen";
 "settings.share.desc" = "Gefällt Ihnen die Garten-Simulation? Teilen Sie sie mit Ihren Freunden!";
-"settings.share_text" = "Schau dir meine Garten-Simulation an! 🌿 Ich baue gerade einen wunderschönen Garten auf.";
+"settings.share_text" = "Schau dir meine Garten-Simulation an! Ich baue gerade einen wunderschönen Garten auf.";
 "settings.terms" = "Nutzungsbedingungen";
 "settings.terms.desc" = "Durch die Nutzung von Grovy stimmst du folgenden Bedingungen zu:\n\n1. Nutzung\nDie App ist ausschließlich für den privaten Gebrauch bestimmt.\n\n2. Inhalte\nAlle Spielinhalte, Designs und Texte sind Eigentum des Entwicklers.\n\n3. Haftung\nDie App wird ohne Gewährleistung bereitgestellt. Der Entwickler übernimmt keine Haftung für Datenverlust.\n\n4. Änderungen\nDer Entwickler behält sich vor, die App und diese Bedingungen jederzeit zu aktualisieren.\n\n5. Kontakt\nBei Fragen erreichst du uns über den Support in den Einstellungen.";
 "settings.timeskip_simulation" = "ZEITSPRUNG-SIMULATION";
@@ -703,7 +714,7 @@
 "shop.not_enough_coins" = "Zu wenig Coins";
 "shop.owned" = "Bereits im Besitz";
 "shop.purchase_success.awesome" = "Super!";
-"shop.purchase_success.title" = "Gekauft! 🎉";
+"shop.purchase_success.title" = "Gekauft!";
 "shop.purchases.count" = "Käufe im Shop";
 "shop.search_placeholder" = "Suche nach Pflanzen oder Items...";
 "shop.tab.items" = "Gegenstände";
@@ -1231,7 +1242,7 @@
 "pfad_phase_tag_titel_meisterschaft" = "Meisterschaft";
 "pfad_phase_banner_tage" = "Tag %d–%d";
 "pfad_fortschritt" = "%d von 90 Tagen";
-"pfad_abgeschlossen" = "Pfad abgeschlossen! 🎉";
+"pfad_abgeschlossen" = "Pfad abgeschlossen!";
 "pfad_belohnung_meilenstein" = "+50 Coins · +100 XP";
 "pfad_belohnung_meisterschaft" = "+100 Coins · +500 XP";
 "pfad_tag_header" = "TAG %d";
@@ -2757,3 +2768,140 @@
 "powerup_wheel_subtitle" = "Drehe für dein Power-Up!";
 "powerup_wheel_win" = "GEWONNEN!";
 
+
+// Added for Siri Intents
+"intent_water_title" = "Pflanze gießen";
+"intent_water_desc" = "Gieße eine deiner Pflanzen.";
+"shortcut_gießen_titel" = "Pflanze gießen";
+"intent_water_already_done" = "%@ wurde heute schon gegossen.";
+"intent_water_success" = "%@ wurde erfolgreich gegossen! Dein Streak wurde erhöht.";
+"intent_water_fail" = "Pflanze nicht gefunden.";
+"plant.mystic_seed.name" = "Mystischer Samen";
+"plant.mystic_seed.symbolism" = "Ein seltener Samen mit geheimnisvoller Kraft.";
+"habit.atemarbeit" = "Atemarbeit";
+
+// Statistics Dashboard
+"stats.activity.title" = "Aktivität";
+"stats.activity.subtitle" = "Gießvorgänge der letzten 14 Tage";
+"stats.xp.title" = "Erfahrung (XP)";
+"stats.xp.total" = "Gesamt Erfahrung";
+"stats.coins.title" = "Münz-Bestand";
+"stats.coins.available" = "Verfügbare Münzen";
+"stats.distribution.title" = "Seltenheits-Mix";
+"stats.distribution.subtitle" = "Pflanzen im Garten";
+"stats.succeeded" = "Erfolgreich";
+"stats.missed" = "Verpasst";
+"stats.total" = "Gesamt";
+"stats.level" = "Level";
+"stats.plants" = "Pflanzen";
+"stats.days_active" = "Tage aktiv";
+"stats.earned" = "Verdient";
+"stats.spent" = "Ausgegeben";
+"stats.today" = "HEUTE";
+
+// Balance Chart
+"stats.balance.title" = "Life Balance";
+"stats.balance.subtitle" = "Life Balance Score";
+"stats.balance.desc.low" = "Dein Fundament ist noch wackelig. Zeit für Action!";
+"stats.balance.desc.mid" = "Du bist auf dem richtigen Weg. Schließe die Lücken in deinem Netz!";
+"stats.balance.desc.high" = "Deine Balance ist beeindruckend! Ein starkes Netz für ein starkes Leben.";
+"stats.balance.desc.dynamic" = "Dein %@ zieht dich gerade hoch, aber %@ bremst dich aus. Schließe die Lücken!";
+"stats.trend.vs_yesterday" = "vs. gestern";
+"stats.xp.to_level" = "bis Level %d";
+"stats.balance.empty" = "Hier wächst etwas Großes...";
+"stats.timeframe.week" = "Woche";
+"stats.timeframe.month" = "Monat";
+"stats.timeframe.year" = "Jahr";
+"stats.coins.no_data" = "Noch keine Transaktionen vorhanden.";
+"stats.balance.day1" = "Tag 1: Dein Fundament wird gelegt.";
+"stats.category.no_plants" = "Keine aktiven Gewohnheiten in dieser Kategorie.";
+"stats.category.plants_count" = "%d aktive Gewohnheiten";
+
+
+"stats.coach.title" = "Analyse & Coaching";
+"stats.coach.bullet1" = "Das Zentrum ist der Nullpunkt. Ein Punkt hier bedeutet kompletten Ausfall in dieser Kategorie.";
+"stats.coach.bullet2" = "Der äußere Ring ist dein Ziel (100%). Er steht für absolute Perfektion und Konstanz.";
+"stats.coach.bullet3" = "Dellen nach innen sind Warnsignale. Sie zeigen Schwachstellen in deinem Fundament.";
+"stats.coach.bullet4" = "Ein gleichmäßiges, weites Netz bedeutet, dass dein Lebens-Fundament stabil ist.";
+
+"stats.tile.waterings" = "Gewässert";
+"stats.tile.streak" = "Streak";
+"stats.tile.plants" = "Pflanzen";
+"stats.tile.gems" = "Gems";
+"stats.legend.current" = "Aktuell";
+"stats.legend.previous" = "Vorherig";
+
+"statistik_titel" = "Statistiken";
+"statistik_life_balance" = "Life Balance";
+"statistik_life_balance_score" = "Life-Balance-Score";
+"statistik_periode_woche" = "Woche";
+"statistik_periode_monat" = "Monat";
+"statistik_periode_jahr" = "Jahr";
+"statistik_legend_aktuell" = "Aktuell";
+"statistik_legend_vorherig" = "Vorherig";
+"statistik_kachel_gewaessert" = "Gewässert";
+"statistik_kachel_streak" = "Streak";
+"statistik_kachel_pflanzen" = "Pflanzen";
+"statistik_kachel_gems" = "Gems";
+"statistik_popup_erreicht" = "Erreicht";
+"statistik_popup_gewohnheiten" = "Gewohnheiten";
+"statistik_popup_giessungen" = "Gießungen";
+
+"statistik_share_letzte_woche" = "Letzte Woche";
+"statistik_share_letzter_monat" = "Letzter Monat";
+"statistik_share_letztes_jahr" = "Letztes Jahr";
+
+"stats.score.label" = "Score";
+"stats.score.konsistenz" = "Konstanz";
+"stats.score.streak" = "Streak";
+"stats.score.seltenheit" = "Seltenheit";
+"stats.score.msg.excellent" = "Dein Garten blüht auf!";
+"stats.score.msg.good" = "Auf einem guten Weg";
+"stats.score.msg.ok" = "Noch Luft nach oben";
+"stats.score.msg.low" = "Dein Garten braucht Pflege";
+"stats.starplant.title" = "Pflanze des Zeitraums";
+"stats.milestone.remaining" = "Noch %lld XP bis %@";
+"stats.heatmap.subtitle" = "%lld Gießtage in 84 Tagen";
+"stats.heatmap.title" = "Aktivität";
+"stats.milestone.title" = "Nächste Meilensteine";
+"stats.score.card.title" = "Garten-Score";
+"stats.score.konsistenz.sub" = "Gießquote im Zeitraum";
+"stats.score.streak.sub" = "Bester Streak im Zeitraum";
+"stats.score.seltenheit.sub" = "Ø Seltenheit deiner Pflanzen";
+"stats.period.this_week" = "In dieser Woche";
+"stats.period.this_month" = "In diesem Monat";
+"stats.period.this_year" = "In diesem Jahr";
+"stats.period.this_week_simple" = "dieser Woche";
+"stats.period.this_month_simple" = "diesem Monat";
+"stats.period.this_year_simple" = "diesem Jahr";
+"stats.score.konsistenz.period_format" = "Gießquote in %@";
+"stats.score.streak.period_format" = "Bester Streak in %@";
+
+"stats.share.choose_style" = "Stil wählen";
+"stats.share.style.vibrant" = "Vibrant (Luxuriös)";
+"stats.share.style.light" = "Hell (Clean)";
+"stats.share.style.dark" = "Dunkel (Elegant)";
+"stats.share.style.transparent" = "Transparent (Pro)";
+
+"stats.share.preview_title" = "Vorschau";
+"stats.share.preview_hint" = "So wird deine Statistik geteilt";
+"stats.share.swipe_hint" = "Wische für andere Stile";
+
+// MARK: - PowerUp Picker
+"powerup.picker.no_plants" = "Keine passenden Pflanzen gefunden.";
+
+// MARK: - Wonder Water Rescue Overlay
+"wonder_water.rescue.title" = "Pflanzentod abwenden?";
+"wonder_water.rescue.body_format" = "Deine Pflanze '%@' ist vertrocknet und steht kurz davor zu sterben. Möchtest du dein Wunder-Wasser einsetzen, um sie sofort zu retten und den Lebenspunkte-Verlust zu verhindern?";
+"wonder_water.rescue.action_format" = "%@ nutzen";
+"wonder_water.rescue.decline" = "Sterben lassen";
+
+// MARK: - Purchase Overlay
+"purchase.coins_deducted_format" = "−%d Coins";
+"lucky_wheel_locked_hint" = "Gieße heute eine Pflanze um zu drehen";
+"weed_banner_title" = "Unkraut!";
+"weed_banner_subtitle" = "Gieße 3× um es zu entfernen";
+"weed_popup_title" = "Unkraut im Garten!";
+"weed_popup_body" = "Dein Garten leidet. Gieße 3 Tage hintereinander um das Unkraut zu entfernen.";
+"weed_progress_label" = "Fortschritt: {count} von 3";
+"weed_popup_button" = "VERSTANDEN";

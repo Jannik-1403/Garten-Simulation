@@ -2,39 +2,7 @@ import AppIntents
 import WidgetKit
 import Foundation
 
-// MARK: - Plant Entity für die Auswahl
-struct PlantEntity: AppEntity {
-    let id: String
-    let name: String
-    let imageAsset: String
-
-    static var typeDisplayRepresentation: TypeDisplayRepresentation = "Pflanze"
-    static var defaultQuery = PlantQuery()
-
-    var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(title: "\(name)")
-    }
-}
-
-struct PlantQuery: EntityQuery {
-    func entities(for identifiers: [String]) async throws -> [PlantEntity] {
-        return try await allEntities().filter { identifiers.contains($0.id) }
-    }
-
-    func suggestedEntities() async throws -> [PlantEntity] {
-        return try await allEntities()
-    }
-
-    private func allEntities() async throws -> [PlantEntity] {
-        let appGroupID = "group.com.jannik.grovy"
-        guard let defaults = UserDefaults(suiteName: appGroupID),
-              let data = defaults.data(forKey: "groovyWidgetData"),
-              let appData = try? JSONDecoder().decode(WidgetAppData.self, from: data) else {
-            return []
-        }
-        return appData.plants.map { PlantEntity(id: $0.id, name: $0.name, imageAsset: $0.imageName) }
-    }
-}
+// PlantEntity and PlantQuery are defined in PlantEntity.swift
 
 // MARK: - Neu: Hintergrund-Stil
 enum WidgetBackgroundStyle: String, AppEnum {

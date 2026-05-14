@@ -44,7 +44,7 @@ class ShopStore: ObservableObject {
 
     func buy(id: String, price: Int) {
         guard canAfford(price), !isPurchased(id) else { return }
-        withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+        _ = withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
             // Note: Deduction is handled by GardenStore via logPurchase to avoid double deduction
             purchasedIDs.insert(id)
         }

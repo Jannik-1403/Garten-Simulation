@@ -20,7 +20,7 @@ struct PfadMeilensteinOverlay: View {
                 SafeDotLottieView(
                     url: "https://lottie.host/bd7993da-11cc-4e38-8b7c-5eba53dd788b/zVMrBPKTNT.lottie",
                     animationConfig: .init(autoplay: true, loop: false, speed: 0.8),
-                    fixedSize: CGSize(width: UIScreen.main.bounds.width * 1.2, height: UIScreen.main.bounds.width)
+                    fixedSize: CGSize(width: ScreenSize.width * 1.2, height: ScreenSize.width)
                 )
                 .overlay(
                     VStack(spacing: 8) {

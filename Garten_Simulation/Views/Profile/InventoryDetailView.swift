@@ -3,7 +3,13 @@ import SwiftUI
 struct InventoryDetailView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var shopStore: ShopStore
+    @EnvironmentObject var powerUpStore: PowerUpStore
+    @EnvironmentObject var pfadStore: GartenPfadStore
     @State private var showCreationSheet = false
+    @State private var showPlants = false
+    @State private var showPowerUps = false
+    @State private var showDecorations = false
     
     var body: some View {
         ZStack {
@@ -23,11 +29,6 @@ struct InventoryDetailView: View {
                         VStack(spacing: 4) {
                             Text("\(gardenStore.totalItemsCount)")
                                 .font(.system(size: 56, weight: .black, design: .rounded))
-                            
-                            Text(settings.localizedString(for: "profile.inventory").uppercased())
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
-                                .tracking(2.0)
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -47,7 +48,8 @@ struct InventoryDetailView: View {
                                 count: gardenStore.pflanzen.count,
                                 icon: "leaf.fill",
                                 farbe: Color(hex: "#2ECC71"),
-                                sekundaerFarbe: Color(hex: "#27AE60")
+                                sekundaerFarbe: Color(hex: "#27AE60"),
+                                aktion: { showPlants = true }
                             )
                             
                             Inventory3DStat(
@@ -55,7 +57,8 @@ struct InventoryDetailView: View {
                                 count: gardenStore.gekauftePowerUps.count,
                                 icon: "Powerup",
                                 farbe: Color(hex: "#FFD000"),
-                                sekundaerFarbe: Color(hex: "#D9A300")
+                                sekundaerFarbe: Color(hex: "#D9A300"),
+                                aktion: { showPowerUps = true }
                             )
                             
                             Inventory3DStat(
@@ -63,7 +66,8 @@ struct InventoryDetailView: View {
                                 count: gardenStore.placedDecorations.count,
                                 icon: "lamp.table.fill",
                                 farbe: Color(hex: "#FF4B00"),
-                                sekundaerFarbe: Color(hex: "#C43D00")
+                                sekundaerFarbe: Color(hex: "#C43D00"),
+                                aktion: { showDecorations = true }
                             )
                             
                             Inventory3DStat(
@@ -71,60 +75,11 @@ struct InventoryDetailView: View {
                                 count: gardenStore.seeds,
                                 icon: "leaf.arrow.triangle.circlepath",
                                 farbe: Color(hex: "#9B59B6"),
-                                sekundaerFarbe: Color(hex: "#8E44AD")
+                                sekundaerFarbe: Color(hex: "#8E44AD"),
+                                aktion: { showCreationSheet = true }
                             )
                         }
                         
-                        // MARK: - Seed Crafting Section
-                        VStack(spacing: 16) {
-                            HStack {
-                                Text(settings.localizedString(for: "inventory.seeds_collection"))
-                                    .font(.system(size: 20, weight: .bold, design: .rounded))
-                                Spacer()
-                                Text("\(gardenStore.seeds)/10")
-                                    .font(.system(size: 16, weight: .bold, design: .monospaced))
-                                    .foregroundStyle(.secondary)
-                            }
-                            .padding(.horizontal, 8)
-                            
-                            VStack(spacing: 20) {
-                                ZStack(alignment: .leading) {
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .fill(Color.gray.opacity(0.1))
-                                        .frame(height: 12)
-                                    
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .fill(LinearGradient(colors: [Color(hex: "#9B59B6"), Color(hex: "#8E44AD")], startPoint: .leading, endPoint: .trailing))
-                                        .frame(width: CGFloat(min(Double(gardenStore.seeds) / 10.0, 1.0)) * (UIScreen.main.bounds.width - 80), height: 12)
-                                }
-                                
-                                Button(action: {
-                                    FeedbackManager.shared.playTap()
-                                    showCreationSheet = true
-                                }) {
-                                    HStack {
-                                        Image(systemName: "magicmouse.fill")
-                                        Text(settings.localizedString(for: "inventory.create_plant"))
-                                    }
-                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                }
-                                .buttonStyle(DuolingoButtonStyle(
-                                    size: .medium,
-                                    fillWidth: true,
-                                    backgroundColor: gardenStore.seeds >= 10 ? Color(hex: "#9B59B6") : Color.gray.opacity(0.3),
-                                    shadowColor: gardenStore.seeds >= 10 ? Color(hex: "#8E44AD") : Color.gray.opacity(0.5),
-                                    foregroundColor: gardenStore.seeds >= 10 ? .white : .secondary
-                                ))
-                                .disabled(gardenStore.seeds < 10)
-                            }
-                            .padding(20)
-                            .background(
-                                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                    .fill(Color(UIColor.secondarySystemGroupedBackground))
-                                    .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
-                            )
-                        }
-                        .padding(.top, 16)
                     }
                     .padding(.horizontal, 24)
                     
@@ -135,9 +90,32 @@ struct InventoryDetailView: View {
         }
         .navigationTitle(settings.localizedString(for: "profile.inventory"))
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $showCreationSheet) {
+        .fullScreenCover(isPresented: $showCreationSheet) {
             CustomPlantCreationView()
                 .environmentObject(gardenStore)
+                .environmentObject(settings)
+        }
+        .navigationDestination(isPresented: $showPlants) {
+            PflanzenDetailView()
+                .environmentObject(gardenStore)
+                .environmentObject(settings)
+                .environmentObject(shopStore)
+                .environmentObject(powerUpStore)
+                .environmentObject(pfadStore)
+        }
+        .navigationDestination(isPresented: $showPowerUps) {
+            InventoryListView(category: .powerUps)
+                .environmentObject(gardenStore)
+                .environmentObject(settings)
+                .environmentObject(shopStore)
+                .environmentObject(powerUpStore)
+        }
+        .navigationDestination(isPresented: $showDecorations) {
+            InventoryListView(category: .decorations)
+                .environmentObject(gardenStore)
+                .environmentObject(settings)
+                .environmentObject(shopStore)
+                .environmentObject(powerUpStore)
         }
     }
 }
@@ -148,6 +126,7 @@ struct Inventory3DStat: View {
     let icon: String
     let farbe: Color
     let sekundaerFarbe: Color
+    var aktion: (() -> Void)? = nil
     
     @EnvironmentObject var settings: SettingsStore
     
@@ -157,7 +136,8 @@ struct Inventory3DStat: View {
                 icon: icon,
                 farbe: farbe,
                 sekundaerFarbe: sekundaerFarbe,
-                groesse: 80
+                groesse: 80,
+                aktion: aktion
             )
             
             Text("\(count)")

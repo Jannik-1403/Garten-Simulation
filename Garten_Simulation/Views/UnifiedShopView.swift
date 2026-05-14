@@ -106,19 +106,20 @@ struct ShopItemCard: View {
                                 .scaledToFit()
                         } else {
                             Image(systemName: icon)
-                                .font(.system(size: 80)) // Erhöht von 50
+                                .font(.system(size: 80))
                                 .foregroundStyle(accentColor)
                         }
                     }
                 }
-                .frame(width: 110, height: 110) // Erhöht von 80x80
+                .frame(width: 110, height: 110)
 
                 VStack(alignment: .center, spacing: 4) {
                     Text(settings.localizedString(for: name))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(Color.primary)
                         .multilineTextAlignment(.center)
-                        .lineLimit(1)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.8)
                     Text(settings.localizedString(for: subtitle))
                         .font(.system(size: 14))
                         .foregroundStyle(Color.secondary)
@@ -159,14 +160,14 @@ struct UnifiedShopView: View {
     var powerUps: [PowerUpItem] { GameDatabase.allPowerUps }
 
     var relevantHabitCategories: [HabitCategory] {
-        let allUsedCats = Set(GameDatabase.allPlants.flatMap { $0.habitCategories })
+        let allUsedCats = Set(GameDatabase.allPlants.map { $0.habitCategory })
         return HabitCategory.allCases.filter { allUsedCats.contains($0) }
     }
     
     var gefiltertePflanzen: [Plant] {
         var base = pflanzen
         if let kat = selectedHabitCategory {
-            base = base.filter { $0.habitCategories.contains(kat) }
+            base = base.filter { $0.habitCategory == kat }
         }
         if !searchText.isEmpty {
             base = base.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
@@ -267,7 +268,7 @@ struct UnifiedShopView: View {
                                                         shadowColorHex: "#1A7493", // dark blue
                                                         tag: item.rarity.rawValue,
                                                         itemType: .powerUp,
-                                                        habitCategories: nil,
+                                                        habitCategory: nil,
                                                         symbolism: nil,
                                                         howToUse: item.howToUse
                                                     )
@@ -316,12 +317,12 @@ struct UnifiedShopView: View {
                                                         description: item.descriptionKey,
                                                         price: item.price,
                                                         icon: item.sfSymbol,
-                                                        colorHex: "#FF991A", // orange
+                                                        colorHex: "#FF991A", // orangePrimary
                                                         symbolColor: "orange",
-                                                        shadowColorHex: "#D98216", // dark orange
+                                                        shadowColorHex: "#D9660D", // orangeSecondary
                                                         tag: "DEKO",
                                                         itemType: .decoration,
-                                                        habitCategories: nil,
+                                                        habitCategory: nil,
                                                         symbolism: nil,
                                                         howToUse: nil
                                                     )
@@ -375,7 +376,7 @@ struct UnifiedShopView: View {
                                                         shadowColorHex: "#3F9922", // dark green
                                                         tag: "PLANT",
                                                         itemType: .plant,
-                                                        habitCategories: plant.habitCategories,
+                                                        habitCategory: plant.habitCategory,
                                                         symbolism: plant.symbolism,
                                                         howToUse: nil,
                                                         habitName: plant.habitName

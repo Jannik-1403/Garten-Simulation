@@ -153,34 +153,6 @@ struct SettingsView: View {
                                 }
                             }
 
-                            settingsSection(title: settings.localizedString(for: "settings.section.pfad")) {
-                                VStack(spacing: 0) {
-                                    NavigationLink {
-                                        PfadEinstellungenView()
-                                            .environmentObject(settings)
-                                            .environmentObject(pfadStore)
-                                            .environmentObject(gardenStore)
-                                    } label: {
-                                        settingRow(
-                                            title: settings.localizedString(for: "pfad_einstellungen_titel"),
-                                            icon: "map.fill",
-                                            color: .blue
-                                        )
-                                    }
-                                    
-                                    Divider().padding(.leading, 44)
-                                    
-                                    Button {
-                                        pfadStore.zeigeRitualAnpassen = true
-                                    } label: {
-                                        settingRow(
-                                            title: settings.localizedString(for: "ritual_config_title"),
-                                            icon: "link.circle.fill",
-                                            color: .goldPrimary
-                                        )
-                                    }
-                                }
-                            }
                             
                             settingsSection(title: settings.localizedString(for: "settings.section.privacy")) {
                                 VStack(spacing: 0) {
@@ -223,7 +195,7 @@ struct SettingsView: View {
                             .padding(.top, 16)
 
                             // MARK: Developer / Debug Section
-                            settingsSection(title: "Developer / Debug 🛠️") {
+                            settingsSection(title: "Developer / Debug") {
                                 VStack(spacing: 0) {
                                     Button {
                                         gardenStore.debugLevelUp()
@@ -320,7 +292,7 @@ struct SettingsView: View {
                             .padding(.top, 16)
 
                             #if DEBUG
-                            settingsSection(title: "Debug: Titel 👑") {
+                            settingsSection(title: "Debug: Titel") {
                                 VStack(spacing: 0) {
                                     Button {
                                         // Alle Titel freischalten
@@ -343,6 +315,32 @@ struct SettingsView: View {
                                         FeedbackManager.shared.playError()
                                     } label: {
                                         settingRow(title: "Titel zurücksetzen", icon: "arrow.counterclockwise", color: .red)
+                                    }
+                                }
+                            }
+
+                            settingsSection(title: "Debug: Leben-System") {
+                                VStack(spacing: 0) {
+                                    Button {
+                                        let vierTageZurueck = Calendar.current.date(byAdding: .day, value: -4, to: Date())!
+                                        for pflanze in gardenStore.pflanzen {
+                                            pflanze.letzteBewaesserung = vierTageZurueck
+                                            pflanze.lebenBereitsAbgezogen = false
+                                        }
+                                        gardenStore.checkUngegossenePflanzen()
+                                    } label: {
+                                        settingRow(title: "⚠️ Leben-System testen", icon: "heart.slash.fill", color: .red)
+                                    }
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
+                                    Button {
+                                        for pflanze in gardenStore.pflanzen {
+                                            pflanze.letzteBewaesserung = Date()
+                                            pflanze.lebenBereitsAbgezogen = false
+                                        }
+                                    } label: {
+                                        settingRow(title: "↩️ Test zurücksetzen", icon: "arrow.counterclockwise", color: .orange)
                                     }
                                 }
                             }

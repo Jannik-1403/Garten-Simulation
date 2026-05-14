@@ -1,7 +1,7 @@
 import Foundation
 import WidgetKit
 
-struct WidgetPlantData: Codable {
+struct WidgetPlantData: Codable, Sendable {
     let id: String
     let name: String
     let imageName: String
@@ -12,7 +12,7 @@ struct WidgetPlantData: Codable {
     let xpForNextRarity: Int
 }
 
-struct WidgetAppData: Codable {
+struct WidgetAppData: Codable, Sendable {
     let plants: [WidgetPlantData]
     let totalStreak: Int
     let gems: Int
@@ -38,7 +38,6 @@ struct GroovyWidgetDataProvider {
     ) {
         let cal = Calendar.current
         let now = Date()
-        let startOfToday = cal.startOfDay(for: now)
         let startOfWeek = cal.date(from: cal.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now))!
         let startOfMonth = cal.date(from: cal.dateComponents([.year, .month], from: now))!
 

@@ -38,7 +38,6 @@ class StreakStore: ObservableObject {
     }
     
     func calculateStreak(shouldAnimate: Bool = false) {
-        let oldStreak = currentStreak
         var streak = 0
         var checkDate = calendar.startOfDay(for: Date())
         

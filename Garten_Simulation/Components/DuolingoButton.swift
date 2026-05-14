@@ -37,7 +37,7 @@ enum DuoButtonSize {
         }
     }
 
-    var shadowDepth: CGFloat { 4 }
+    var shadowDepth: CGFloat { 6 }
 }
 
 // MARK: - Color Tokens
@@ -67,6 +67,7 @@ struct DuolingoButtonStyle: ButtonStyle {
     var backgroundColor: Color = .duoGreenFace
     var shadowColor: Color = .duoGreenShadow
     var foregroundColor: Color = .white
+    var isPermanentlyPressed: Bool = false
 
     func makeBody(configuration: Configuration) -> some View {
         let pressed = configuration.isPressed
@@ -88,10 +89,10 @@ struct DuolingoButtonStyle: ButtonStyle {
                     // Main face (Top Layer)
                     RoundedRectangle(cornerRadius: size.cornerRadius, style: .continuous)
                         .fill(backgroundColor)
-                        .offset(y: pressed ? 0 : -depth)
+                        .offset(y: (pressed || isPermanentlyPressed) ? 0 : -depth)
                 }
             )
-            .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: pressed)
+            .animation(pressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: pressed)
             .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.8), trigger: pressed)
     }
 }
@@ -100,10 +101,10 @@ struct DuolingoButtonStyle: ButtonStyle {
 
 #Preview {
     VStack(spacing: 20) {
-        Button("Weiter") {}
+        Button("Continue") {}
             .buttonStyle(DuolingoButtonStyle(size: .large))
 
-        Button("Speichern") {}
+        Button("Save") {}
             .buttonStyle(DuolingoButtonStyle())
 
         Button("OK") {}

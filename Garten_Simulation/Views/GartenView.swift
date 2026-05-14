@@ -35,6 +35,15 @@ struct GartenView: View {
     @State private var startAbstandAktiv = true
     @State private var timerAktuell = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var cardPositions: [CardPositionData] = []
+    
+    // Fly-in Animationen
+    @State private var flyingCoins: [FlyingCoinItem] = []
+    @State private var coinHeaderPosition: CGPoint = .zero
+    @State private var streakHeaderPosition: CGPoint = .zero
+    
+    // Bonus-Text
+    @State private var zeigeBonusText: Bool = false
+    @State private var bonusText: String = ""
 
     let columns = [
         GridItem(.adaptive(minimum: 160), spacing: 16)
@@ -42,7 +51,7 @@ struct GartenView: View {
 
     var body: some View {
         ZStack {
-            aktivesEvent.hintergrundFarbe
+            Color.appHintergrund
                 .ignoresSafeArea()
                 .animation(.easeInOut(duration: 0.8), value: aktivesEvent)
 
@@ -138,8 +147,8 @@ struct GartenView: View {
                                                 ForEach(gardenStore.placedDecorations) { deko in
                                                     Item3DButton(
                                                         icon: deko.sfSymbol,
-                                                        farbe: .orange,
-                                                        sekundaerFarbe: .orange.darker(),
+                                                        farbe: .orangePrimary,
+                                                        sekundaerFarbe: .orangeSecondary,
                                                         groesse: 90
                                                     ) {
                                                         ausgewaehltesItem = ShopDetailPayload(
@@ -154,7 +163,7 @@ struct GartenView: View {
                                                             shadowColorHex: "#D98216",
                                                             tag: "DEKO",
                                                             itemType: .decoration,
-                                                            habitCategories: nil,
+                                                            habitCategory: nil,
                                                             symbolism: nil,
                                                             howToUse: nil
                                                         )
@@ -212,8 +221,8 @@ struct GartenView: View {
                                     Text(settings.localizedString(for: "garden.title"))
                                         .font(.system(size: 32, weight: .black, design: .rounded))
                                         .foregroundStyle(.primary)
-                                        .minimumScaleFactor(0.7)
-                                        .lineLimit(1)
+                                        .minimumScaleFactor(0.5)
+                                        .lineLimit(2)
                                     
                                     if gardenStore.globalXPMultiplier > 1.0 {
                                         HStack(spacing: 4) {
@@ -229,25 +238,58 @@ struct GartenView: View {
                                     }
                                 }
                                 
-                                if gardenStore.isWeedActive {
-                                    Button { zeigeUnkrautDetail = true } label: {
-                                        HStack(spacing: 6) {
-                                            Image(systemName: "exclamationmark.triangle.fill").font(.system(size: 14, weight: .bold)).foregroundStyle(Color.orangePrimary)
-                                            Text("\(gardenStore.dailyQuestsCompletedSinceWeed)/3").font(.system(size: 15, weight: .black, design: .rounded)).foregroundStyle(.secondary)
-                                        }
-                                        .padding(.vertical, 2)
-                                    }
-                                    .buttonStyle(.plain)
-                                }
                             }
                             Spacer()
                         }
                         .padding(.bottom, 10)
 
-                        WetterBanner(event: aktivesEvent) { zeigeWetterDetails = true }
+                        VStack(spacing: 10) {
+                            WetterBanner(event: aktivesEvent) { zeigeWetterDetails = true }
+                            
+                            if gardenStore.isWeedActive {
+                                Item3DButton(
+                                    farbe: Color(red: 0.72, green: 0.35, blue: 0.15),
+                                    sekundaerFarbe: Color(red: 0.72, green: 0.35, blue: 0.15).darker(),
+                                    groesse: 66,
+                                    isRectangular: true,
+                                    aktion: { zeigeUnkrautDetail = true }
+                                ) {
+                                    HStack(spacing: 12) {
+                                        Image(systemName: "exclamationmark.triangle.fill")
+                                            .font(.system(size: 24, weight: .semibold))
+
+                                        VStack(alignment: .leading, spacing: 0) {
+                                            Text(settings.localizedString(for: "weed_banner_subtitle"))
+                                                .font(.caption)
+                                                .opacity(0.85)
+                                                .lineLimit(1)
+                                            Text(settings.localizedString(for: "weed_banner_title"))
+                                                .font(.subheadline)
+                                                .fontWeight(.bold)
+                                                .lineLimit(1)
+                                        }
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                                        // Fortschrittsanzeige
+                                        Text("\(gardenStore.dailyQuestsCompletedSinceWeed)/3")
+                                            .font(.system(size: 16, weight: .black, design: .rounded))
+
+                                        Rectangle()
+                                            .fill(Color.white.opacity(0.3))
+                                            .frame(width: 1, height: 28)
+
+                                        Image(systemName: "chevron.right")
+                                            .font(.system(size: 11, weight: .semibold))
+                                            .opacity(0.7)
+                                    }
+                                    .foregroundStyle(.white)
+                                    .padding(.horizontal, 16)
+                                }
+                            }
+                        }
                     }
                     .padding(.horizontal, 16)
-                    .background(aktivesEvent.hintergrundFarbe.ignoresSafeArea(edges: .top))
+                    .background(Color.appHintergrund.ignoresSafeArea(edges: .top))
                     .overlay(alignment: .bottom) {
                         Divider()
                             .opacity(0.12)
@@ -328,12 +370,6 @@ struct GartenView: View {
                 .presentationCornerRadius(32)
                 .presentationBackground(Material.ultraThinMaterial)
         }
-        .sheet(isPresented: $pfadStore.zeigeRitualAnpassen) {
-            HabitStackConfigView()
-                .environmentObject(pfadStore)
-                .environmentObject(gardenStore)
-                .environmentObject(settings)
-        }
         .overlay {
             if gardenStore.zeigeGameOverOverlay {
                 GameOverOverlayView()
@@ -365,6 +401,61 @@ struct GartenView: View {
                 .padding(.bottom, 32)
                 .transition(.scale.combined(with: .opacity))
             }
+        }
+        .overlay(alignment: .topLeading) {
+            GeometryReader { overlayGeo in
+                let overlayOrigin = overlayGeo.frame(in: .global).origin
+                let startPoint = CGPoint(x: overlayGeo.size.width / 2, y: overlayGeo.size.height * 0.8) // Weiter unten (80% der Bildschirmhöhe)
+                
+                ZStack {
+                    ForEach(flyingCoins) { item in
+                        FlyingCoinView(
+                            startPosition: item.start == .zero ? startPoint : CGPoint(x: item.start.x - overlayOrigin.x, y: item.start.y - overlayOrigin.y),
+                            endPosition: CGPoint(x: item.end.x - overlayOrigin.x, y: item.end.y - overlayOrigin.y)
+                        ) {
+                            flyingCoins.removeAll { $0.id == item.id }
+                        }
+                    }
+                }
+            }
+            .ignoresSafeArea()
+            .allowsHitTesting(false)
+        }
+        .overlay {
+            if zeigeBonusText {
+                BonusFloatingTextView(text: bonusText, isVisible: $zeigeBonusText)
+                    .zIndex(300)
+            }
+        }
+        .onPreferenceChange(HeaderPositionPreferenceKey.self) { prefs in
+            if let c = prefs.first(where: { $0.id == "coins" }) { coinHeaderPosition = c.center }
+            if let s = prefs.first(where: { $0.id == "streak" }) { streakHeaderPosition = s.center }
+        }
+        .onChange(of: gardenStore.giessTriggerID) { _, _ in
+            let now = Date()
+            if let p = gardenStore.pflanzen.min(by: { 
+                abs(($0.letzteBewaesserung ?? .distantPast).timeIntervalSince(now)) < 
+                abs(($1.letzteBewaesserung ?? .distantPast).timeIntervalSince(now)) 
+            }) {
+                // Anzahl der Münzen basierend auf dem Gewinn (z.B. 1 Münze pro 5 Coins, min 2, max 8)
+                let coinsEarned = gardenStore.letzteGiessCoins
+                let coinCount = min(8, max(2, coinsEarned / 5))
+                
+                for i in 0..<coinCount {
+                    let delay = Double(i) * 0.08 + Double.random(in: 0...0.05)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                        flyingCoins.append(FlyingCoinItem(
+                            start: .zero, // Signal für "Screen Center"
+                            end: coinHeaderPosition
+                        ))
+                    }
+                }
+            }
+        }
+        .onChange(of: gardenStore.letzterBonus) { _, bonus in
+            guard let bonus = bonus else { return }
+            bonusText = settings.localizedString(for: "bonus_text")
+            zeigeBonusText = true
         }
     }
 
@@ -444,6 +535,13 @@ struct GartenView: View {
     }
 }
 
+// MARK: - Flying Coin Model
+struct FlyingCoinItem: Identifiable {
+    let id = UUID()
+    let start: CGPoint
+    let end: CGPoint
+}
+
 #Preview {
     GartenView()
         .environmentObject(GardenStore())
@@ -470,12 +568,13 @@ struct WonderWaterRescueOverlay: View {
                     .shadow(color: .blue.opacity(0.3), radius: 10, y: 5)
                 
                 VStack(spacing: 8) {
-                    Text("Pflanzentod abwenden?")
+                    Text(settings.localizedString(for: "wonder_water.rescue.title"))
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.center)
                     
-                    Text("Deine Pflanze '**\(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.habitName) : settings.localizedString(for: pflanze.name))**' ist vertrocknet und steht kurz davor zu sterben. Möchtest du dein Wunder-Wasser einsetzen, um sie sofort zu retten und den Lebenspunkte-Verlust zu verhindern?")
+                    Text(String(format: settings.localizedString(for: "wonder_water.rescue.body_format"),
+                        settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.habitName) : settings.localizedString(for: pflanze.name)))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -487,7 +586,7 @@ struct WonderWaterRescueOverlay: View {
                         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         onDecision(true)
                     }) {
-                        Text("\(settings.localizedString(for: "item.wunder_wasser.name")) nutzen")
+                        Text(String(format: settings.localizedString(for: "wonder_water.rescue.action_format"), settings.localizedString(for: "item.wunder_wasser.name")))
                             .font(.system(size: 16, weight: .bold))
                     }
                     .buttonStyle(DuolingoButtonStyle(
@@ -500,7 +599,7 @@ struct WonderWaterRescueOverlay: View {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         onDecision(false)
                     }) {
-                        Text("Sterben lassen")
+                        Text(settings.localizedString(for: "wonder_water.rescue.decline"))
                             .font(.system(size: 16, weight: .bold))
                     }
                     .buttonStyle(DuolingoButtonStyle(

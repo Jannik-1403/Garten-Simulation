@@ -4,6 +4,7 @@ import DotLottie
 struct GartenPassWheelView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var gartenPfadStore: GartenPfadStore
+    @EnvironmentObject var settings: SettingsStore
     @Environment(\.dismiss) var dismiss
     
     @State private var rotation: Double = 0
@@ -27,11 +28,11 @@ struct GartenPassWheelView: View {
                         Button {
                             FeedbackManager.shared.playTap()
                         } label: {
-                            Text(NSLocalizedString("ice_wheel_title", comment: ""))
+                            Text(settings.localizedString(for: "ice_wheel_title"))
                         }
                         .buttonStyle(Pressed3DTextButtonStyle())
                         
-                        Text(NSLocalizedString("ice_wheel_subtitle", comment: ""))
+                        Text(settings.localizedString(for: "ice_wheel_subtitle"))
                             .font(.system(size: 15, weight: .regular))
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -114,7 +115,7 @@ struct GartenPassWheelView: View {
                     HStack(spacing: 8) {
                         Image(systemName: "arrow.2.circlepath")
                             .font(.system(size: 16, weight: .bold))
-                        Text(String(format: NSLocalizedString("wheel.spins_label", comment: ""), gartenPfadStore.verfuegbareSpins))
+                        Text(String(format: settings.localizedString(for: "wheel.spins_label"), gartenPfadStore.verfuegbareSpins))
                             .font(.system(size: 16, weight: .bold))
                     }
                     .padding(.horizontal, 16)
@@ -134,9 +135,9 @@ struct GartenPassWheelView: View {
                         }
                     }) {
                         if gartenPfadStore.verfuegbareSpins > 0 {
-                            Text(String(format: NSLocalizedString("wheel_drehen_format", comment: ""), gartenPfadStore.verfuegbareSpins))
+                            Text(String(format: settings.localizedString(for: "wheel_drehen_format"), gartenPfadStore.verfuegbareSpins))
                         } else {
-                            Text(NSLocalizedString("wheel_keine_spins", comment: ""))
+                            Text(settings.localizedString(for: "wheel_keine_spins"))
                         }
                     }
                     .buttonStyle(DuolingoButtonStyle(
@@ -155,7 +156,7 @@ struct GartenPassWheelView: View {
                                 dismiss()
                             }
                         }) {
-                            Text(NSLocalizedString("ice_wheel_back_button", comment: ""))
+                            Text(settings.localizedString(for: "ice_wheel_back_button"))
                                 .font(.system(size: 16, weight: .bold))
                         }
                         .buttonStyle(DuolingoButtonStyle(
@@ -336,6 +337,7 @@ struct IceWheelIcon: View {
 
 // MARK: - Reward Overlay (Matches original SpinResultOverlay style)
 struct IceRewardOverlay: View {
+    @EnvironmentObject var settings: SettingsStore
     let reward: GartenPassSpinBelohnung
     let onDismiss: () -> Void
     
@@ -363,7 +365,7 @@ struct IceRewardOverlay: View {
                 .scaleEffect(iconScale)
                 
                 // Titel
-                Text(NSLocalizedString("wheel_gewonnen", comment: ""))
+                Text(settings.localizedString(for: "wheel_gewonnen"))
                     .font(.title2.bold())
                     .foregroundColor(.primary)
                 
@@ -380,7 +382,7 @@ struct IceRewardOverlay: View {
                         onDismiss()
                     }
                 } label: {
-                    Text(NSLocalizedString("wheel_weiter", comment: ""))
+                    Text(settings.localizedString(for: "wheel_weiter"))
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(DuolingoButtonStyle(size: .large))
@@ -427,19 +429,19 @@ struct IceRewardOverlay: View {
     private var rewardName: String {
         switch reward {
         case .coins(let n):
-            return String(format: NSLocalizedString("reward.coins_format", comment: ""), n)
+            return String(format: settings.localizedString(for: "reward.coins_format"), n)
         case .powerUp(let id):
-            return NSLocalizedString(id, comment: "")
+            return settings.localizedString(for: id)
         case .pflanze(let id):
-            return NSLocalizedString(id + ".name", comment: "")
+            return settings.localizedString(for: id + ".name")
         case .deko(_):
-            return NSLocalizedString("wheel.reward.deko", comment: "")
+            return settings.localizedString(for: "wheel.reward.deko")
         case .xp(let n):
-            return "\(n) \(NSLocalizedString("pass.xp", comment: ""))"
+            return "\(n) \(settings.localizedString(for: "pass.xp"))"
         case .seeds(let n):
-            return String(format: NSLocalizedString("reward.seeds_format", comment: ""), n)
+            return String(format: settings.localizedString(for: "reward.seeds_format"), n)
         case .weed:
-            return NSLocalizedString("wheel.reward.weed", comment: "")
+            return settings.localizedString(for: "wheel.reward.weed")
         }
     }
 }

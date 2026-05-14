@@ -1,158 +1,135 @@
 import SwiftUI
 
 struct PfadSchwierigkeitsView: View {
-    @EnvironmentObject var pfadStore: GartenPfadStore
-    @EnvironmentObject var gardenStore: GardenStore
-    @EnvironmentObject var settingsStore: SettingsStore
+    let pflanze: HabitModel
+    let onAuswahl: (PfadSchwierigkeit) -> Void
 
-    @State private var ausgewaehlt: PfadSchwierigkeit = .anfaenger
-    @State private var zeigeRitualConfig: Bool = false
+    @State private var ausgewaehlt: PfadSchwierigkeit? = nil
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         ZStack {
             Color.appHintergrund.ignoresSafeArea()
 
             VStack(spacing: 0) {
-                Spacer()
-
-                // Igel oben
-                Text("🦔")
-                    .font(.system(size: 72))
-                    .padding(.bottom, 8)
-
-                // Titel
-                Text(NSLocalizedString("pfad_schwierigkeit_titel", comment: ""))
-                    .font(.system(size: 26, weight: .bold))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 32)
-
-                Text(NSLocalizedString("pfad_schwierigkeit_untertitel", comment: ""))
-                    .font(.system(size: 15))
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 40)
-                    .padding(.top, 8)
-
-                Spacer().frame(height: 36)
-
-                // Drei Auswahl-Cards
+                // Header
                 VStack(spacing: 12) {
+                    Text(NSLocalizedString("schwierigkeit.titel", comment: ""))
+                        .font(.system(size: 26, weight: .black, design: .rounded))
+                        .multilineTextAlignment(.center)
+
+                    Text(NSLocalizedString("schwierigkeit.untertitel", comment: ""))
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                }
+                .padding(.top, 36)
+                .padding(.bottom, 32)
+
+                // Drei Karten
+                VStack(spacing: 14) {
                     ForEach(PfadSchwierigkeit.allCases, id: \.self) { stufe in
-                        Button {
+                        SchwierigkeitKarte(
+                            stufe: stufe,
+                            istAusgewaehlt: ausgewaehlt == stufe
+                        ) {
                             withAnimation(.bouncy(duration: 0.2)) {
                                 ausgewaehlt = stufe
                             }
-                        } label: {
-                            SchwierigkeitsCard(
-                                stufe: stufe,
-                                istAusgewaehlt: ausgewaehlt == stufe
-                            )
                         }
-                        .buttonStyle(Card3DButtonStyle())
                     }
                 }
-                .padding(.horizontal, 24)
+                .padding(.horizontal, 20)
 
                 Spacer()
 
-                // Start-Button
+                // Bestätigen-Button
                 Button {
-                    zeigeRitualConfig = true
+                    guard let wahl = ausgewaehlt else { return }
+                    onAuswahl(wahl)
+                    dismiss()
                 } label: {
-                    Text(NSLocalizedString("pfad_schwierigkeit_starten", comment: ""))
+                    Text(NSLocalizedString("schwierigkeit.bestaetigen", comment: ""))
+                        .font(.system(size: 17, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
                 }
-                .buttonStyle(DuolingoButtonStyle(size: .large, backgroundColor: ausgewaehlt.farbe, shadowColor: ausgewaehlt.farbe.darker()))
-                .padding(.horizontal, 24)
-                .padding(.bottom, 48)
+                .buttonStyle(DuolingoButtonStyle(
+                    size: .large,
+                    backgroundColor: ausgewaehlt != nil ? .gruenPrimary : .gray,
+                    shadowColor: ausgewaehlt != nil ? .gruenSecondary : .gray.opacity(0.6),
+                    foregroundColor: .white
+                ))
+                .disabled(ausgewaehlt == nil)
+                .padding(.horizontal, 20)
+                .padding(.bottom, 40)
             }
         }
-        .sheet(isPresented: $zeigeRitualConfig) {
-            HabitStackConfigView()
-        }
+        .presentationDetents([.height(520)])
+        .presentationDragIndicator(.visible)
     }
 }
 
-struct Card3DButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
-            .offset(y: configuration.isPressed ? 3 : 0)
-            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: configuration.isPressed)
-    }
-}
+// MARK: - Einzelne Schwierigkeits-Karte
 
-struct SchwierigkeitsCard: View {
+private struct SchwierigkeitKarte: View {
     let stufe: PfadSchwierigkeit
     let istAusgewaehlt: Bool
-
-    private var iconName: String {
-        switch stufe {
-        case .anfaenger: return "leaf.fill"
-        case .fortgeschritten: return "shield.fill"
-        case .experte: return "flame.fill"
-        }
-    }
+    let onTap: () -> Void
 
     var body: some View {
-        ZStack {
-            // 3D Shadow/Depth
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(stufe.farbe.darker(by: 0.15))
-                .frame(maxWidth: .infinity)
-                .frame(height: 84)
-                .offset(y: 4)
-
-            // Main Face
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(
-                    LinearGradient(
-                        colors: [stufe.farbe.lighter(by: 0.1), stufe.farbe],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-                .frame(maxWidth: .infinity)
-                .frame(height: 84)
-
-            // Content
+        Button(action: onTap) {
             HStack(spacing: 16) {
-                // System-Icon
-                Image(systemName: iconName)
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(.white)
-                    .frame(width: 52, height: 52)
-                    .background(.white.opacity(0.15), in: Circle())
-                    .shadow(color: .black.opacity(0.1), radius: 2, y: 1)
+                // Icon
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .fill(stufe.farbe.opacity(0.15))
+                        .frame(width: 52, height: 52)
+                    Text(stufe.icon)
+                        .font(.system(size: 28))
+                }
 
-                VStack(alignment: .leading, spacing: 3) {
+                VStack(alignment: .leading, spacing: 4) {
                     Text(NSLocalizedString(stufe.titelKey, comment: ""))
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.white)
+                        .font(.system(size: 17, weight: .bold, design: .rounded))
+                        .foregroundStyle(.primary)
                     Text(NSLocalizedString(stufe.beschreibungKey, comment: ""))
-                        .font(.system(size: 13))
-                        .foregroundColor(.white.opacity(0.85))
+                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
                         .lineLimit(2)
                 }
 
                 Spacer()
 
-                // Checkmark for Selection
-                if istAusgewaehlt {
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 26))
-                        .foregroundColor(.white)
-                        .background(Circle().fill(stufe.farbe.darker(by: 0.2)))
-                } else {
+                // Checkmark
+                ZStack {
                     Circle()
-                        .strokeBorder(Color.white.opacity(0.5), lineWidth: 2)
-                        .frame(width: 26, height: 26)
+                        .stroke(istAusgewaehlt ? stufe.farbe : Color.gray.opacity(0.3), lineWidth: 2)
+                        .frame(width: 24, height: 24)
+                    if istAusgewaehlt {
+                        Circle()
+                            .fill(stufe.farbe)
+                            .frame(width: 16, height: 16)
+                    }
                 }
             }
-            .padding(.horizontal, 16)
+            .padding(16)
+            .background(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(Color(UIColor.systemBackground))
+                    .shadow(
+                        color: istAusgewaehlt ? stufe.farbe.opacity(0.3) : .black.opacity(0.05),
+                        radius: istAusgewaehlt ? 8 : 4,
+                        x: 0, y: 2
+                    )
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .stroke(istAusgewaehlt ? stufe.farbe : Color.clear, lineWidth: 2)
+            )
         }
-        .scaleEffect(istAusgewaehlt ? 1.02 : 1.0)
-        .opacity(istAusgewaehlt ? 1.0 : 0.7)
-        .animation(.bouncy(duration: 0.2), value: istAusgewaehlt)
+        .buttonStyle(.plain)
     }
 }

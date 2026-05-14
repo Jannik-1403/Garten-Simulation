@@ -44,18 +44,19 @@ struct PlantDifficultySelectView: View {
                         .frame(width: 80, height: 80)
                         .padding(.bottom, 8)
                 } else {
-                    Text("🦔")
+                    Image(systemName: "leaf.fill")
                         .font(.system(size: 80))
+                        .foregroundStyle(.green)
                         .padding(.bottom, 8)
                 }
 
                 // Titel
-                Text(NSLocalizedString("pfad_schwierigkeit_titel", comment: ""))
+                Text(settings.localizedString(for: "pfad_schwierigkeit_titel"))
                     .font(.system(size: 26, weight: .bold))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
 
-                Text(NSLocalizedString("pfad_schwierigkeit_untertitel", comment: ""))
+                Text(settings.localizedString(for: "pfad_schwierigkeit_untertitel"))
                     .font(.system(size: 15))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -67,10 +68,39 @@ struct PlantDifficultySelectView: View {
                 // Drei Auswahl-Cards
                 VStack(spacing: 12) {
                     ForEach(PfadSchwierigkeit.allCases, id: \.self) { stufe in
-                        SchwierigkeitsCard(
-                            stufe: stufe,
-                            istAusgewaehlt: ausgewaehlt == stufe
-                        )
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color(.secondarySystemGroupedBackground))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .stroke(ausgewaehlt == stufe ? stufe.farbe : Color.clear, lineWidth: 2)
+                                )
+                            
+                            HStack(spacing: 16) {
+                                Text(stufe.icon)
+                                    .font(.system(size: 32))
+                                    .frame(width: 44, height: 44)
+                                    .background(Circle().fill(stufe.farbe.opacity(0.1)))
+                                
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(settings.localizedString(for: stufe.titelKey))
+                                        .font(.system(size: 17, weight: .bold, design: .rounded))
+                                    Text(settings.localizedString(for: stufe.beschreibungKey))
+                                        .font(.system(size: 13))
+                                        .foregroundStyle(.secondary)
+                                }
+                                
+                                Spacer()
+                                
+                                if ausgewaehlt == stufe {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundStyle(stufe.farbe)
+                                        .font(.system(size: 22))
+                                }
+                            }
+                            .padding(.horizontal, 16)
+                        }
+                        .frame(height: 80)
                         .onTapGesture {
                             withAnimation(.bouncy(duration: 0.2)) {
                                 ausgewaehlt = stufe
@@ -86,7 +116,7 @@ struct PlantDifficultySelectView: View {
                 Button {
                     onStart(ausgewaehlt)
                 } label: {
-                    Text(NSLocalizedString("pfad_schwierigkeit_starten", comment: ""))
+                    Text(settings.localizedString(for: "pfad_schwierigkeit_starten"))
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(DuolingoButtonStyle(size: .large, backgroundColor: ausgewaehlt.farbe, shadowColor: ausgewaehlt.farbe.darker()))

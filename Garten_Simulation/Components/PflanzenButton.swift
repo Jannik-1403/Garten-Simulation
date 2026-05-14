@@ -1,11 +1,12 @@
 import SwiftUI
 
 struct PflanzenButton: View {
-    let plant: Plant
+    let plant: Plant?
     let seltenheit: PflanzenSeltenheit
     let farbe: Color
     let sekundaerFarbe: Color
     let groesse: CGFloat
+    var fallbackIcon: String = "leaf.fill"
     var alwaysShowFullGrown: Bool = false
     var externerPress: Bool = false
     var aktion: (() -> Void)? = nil
@@ -14,7 +15,15 @@ struct PflanzenButton: View {
         Button {
             aktion?()
         } label: {
-            PlantIconView(plant: plant, seltenheit: seltenheit, size: groesse * 0.55, alwaysShowFullGrown: alwaysShowFullGrown)
+            if let plant = plant {
+                PlantIconView(plant: plant, seltenheit: seltenheit, size: groesse * 0.55, alwaysShowFullGrown: alwaysShowFullGrown)
+            } else {
+                Image(systemName: fallbackIcon)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: groesse * 0.55, height: groesse * 0.55)
+                    .foregroundStyle(.white)
+            }
         }
         .buttonStyle(PflanzenButtonStyle(
             farbe: farbe,

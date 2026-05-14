@@ -1,0 +1,6 @@
+"Plant in \(.applicationName) done" = "Plant in \(.applicationName) done";
+"\(.applicationName) water plant" = "\(.applicationName) water plant";
+"Water my plant in \(.applicationName)" = "Water my plant in \(.applicationName)";
+"Water my plant with \(.applicationName)" = "Water my plant with \(.applicationName)";
+"In \(.applicationName) a plant done" = "In \(.applicationName) a plant done";
+"This plant in \(.applicationName)" = "This plant in \(.applicationName)";

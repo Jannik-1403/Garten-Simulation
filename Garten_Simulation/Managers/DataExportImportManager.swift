@@ -167,7 +167,7 @@ final class DataExportImportManager: ObservableObject {
         
         // 1. Reset all data
         // SwiftData deletion (optional if used)
-        if let context = modelContext {
+        if modelContext != nil {
              // In current app, HabitModel is NOT @Model, so this might be empty
              // but we'll include it for future-proofing as requested.
         }
@@ -190,7 +190,7 @@ final class DataExportImportManager: ObservableObject {
                 name: dbPlant?.name ?? settingsStore.localizedString(for: "common.plant_fallback"), // Or keep localized name if available
                 symbolName: dbPlant?.symbolName ?? "leaf",
                 symbolColor: dbPlant?.symbolColor ?? "green",
-                habitCategories: dbPlant?.habitCategories ?? [.lifestyle],
+                habitCategory: dbPlant?.habitCategory ?? .lifestyle,
                 symbolism: dbPlant?.symbolism ?? "",
                 habitName: data.customName ?? "",
                 maxLevel: dbPlant?.maxLevel ?? 10,

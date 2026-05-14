@@ -2,18 +2,17 @@ import SwiftUI
 import Combine
 
 struct MultiStrangCanvas: View {
-    let straenge: [PfadStrang]
     let verschmelzungen: [PfadVerschmelzung]
     @Binding var ausgewaehlterTag: PfadStrangTag?
     let selectedDay: Int
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var pfadStore: GartenPfadStore
+    @EnvironmentObject var gardenStore: GardenStore
     let dynamicScale: CGFloat
     /// When set, only this plant's strand is displayed (Verlauf-Tab mode)
     var filterHabit: HabitModel? = nil
 
     private let grassBackground = Color(hex: "#E8F5E9")
-    private let ackerBraun = Color(hex: "#C68252") 
     
     // Basis-Maße
     private let blockBaseSize: CGFloat = 280 // Larger to fit bigger nodes
@@ -24,21 +23,25 @@ struct MultiStrangCanvas: View {
     private let vGroupSpacing: CGFloat = 50 // Up from 40
 
     var body: some View {
-        GeometryReader { geo in
-            content
-                .frame(minHeight: geo.size.height, alignment: .top)
-        }
+        content
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
 
     private var content: some View {
         // When filtering for a single habit, compute groups locally
         // (avoids touching the shared pfadStore.focusedPflanzenID state)
+        let straenge = pfadStore.straenge
         let groups: [[Int]]
+        
         if let filter = filterHabit {
-            if let idx = straenge.firstIndex(where: { $0.pflanzenID == filter.plantID }) {
-                groups = [[idx]]
+            // Suche zuerst nach Instanz-ID, dann nach Typ-ID, dann nach Name als letzter Fallback
+            let idx = straenge.firstIndex(where: { $0.pflanzenID == filter.id })
+                   ?? straenge.firstIndex(where: { $0.pflanzenName == filter.name })
+            
+            if let found = idx {
+                groups = [[found]]
             } else {
-                groups = []
+                groups = [] // Spinner bleibt, aber onAppear repariert es (siehe unten)
             }
         } else {
             groups = pfadStore.getGroups(forDay: selectedDay)
@@ -80,18 +83,20 @@ struct MultiStrangCanvas: View {
 
                 dayHeaderView(scale: dynamicScale)
 
-                VStack(spacing: vGroupSpacing * dynamicScale) {
-                    if groups.isEmpty {
-                        Text("No habits found")
-                            .padding()
-                    } else {
+                if groups.isEmpty && filterHabit != nil {
+                    VStack(spacing: 16) {
+                        ProgressView()
+                            .tint(.orangePrimary)
+                            .scaleEffect(1.2)
+                    }
+                    .padding(.top, 100)
+                } else {
+                    VStack(spacing: vGroupSpacing * dynamicScale) {
                         ForEach(groups, id: \.self) { indices in
                             groupRow(indices: indices, scale: dynamicScale)
                         }
                     }
                 }
-
-                Spacer(minLength: 120 * dynamicScale)
             }
             .frame(maxWidth: .infinity, alignment: .top)
         }
@@ -150,14 +155,18 @@ struct MultiStrangCanvas: View {
     @ViewBuilder
     private func renderGrid(indices: [Int], buckets: [Int], scale: CGFloat) -> some View {
         let slices = getRowSlices(indices: indices, buckets: buckets)
+        let straenge = pfadStore.straenge
+        let alleTags = pfadStore.alleTags  // Direkt gefetchte Tags — kein Lazy-Loading
         VStack(spacing: (vNodeSpacingInside - nodeSize) * scale) {
-            ForEach(0..<slices.count, id: \.self) { r in
+            ForEach(Array(slices.indices), id: \.self) { r in
                 let rowIndices = slices[r]
                 
                 HStack(spacing: (hNodeSpacing - nodeSize) * scale) {
                     ForEach(rowIndices, id: \.self) { idx in
                         if let strang = straenge[safe: idx],
-                           let t = strang.tags.first(where: { $0.tagNummer == selectedDay }) {
+                           let t = alleTags.first(where: {
+                               $0.strang?.id == strang.id && $0.tagNummer == selectedDay
+                           }) {
                             SingleHabitNode(
                                 tag: t,
                                 strang: strang,
@@ -185,11 +194,6 @@ struct MultiStrangCanvas: View {
         let groupHeight = (CGFloat(rows - 1) * vNodeSpacingInside + blockBaseSize) * scale
         
         ZStack {
-            Canvas { context, size in
-                draw3DBlock(context: context, at: CGPoint(x: size.width/2, y: size.height/2), width: groupWidth, height: groupHeight, color: ackerBraun, scale: scale)
-            }
-            .frame(width: groupWidth, height: groupHeight + 10 * scale)
-            
             // Flower Layer
             flowersLayer(indices: indices, width: groupWidth, height: groupHeight, scale: scale)
 
@@ -198,12 +202,15 @@ struct MultiStrangCanvas: View {
         }
     }
     
-    @ViewBuilder
     private func flowersLayer(indices: [Int], width: CGFloat, height: CGFloat, scale: CGFloat) -> some View {
-        ZStack {
+        let straenge = pfadStore.straenge
+        let alleTags = pfadStore.alleTags
+        return ZStack {
             ForEach(indices, id: \.self) { idx in
                 if let strang = straenge[safe: idx],
-                   let t = strang.tags.first(where: { $0.tagNummer == selectedDay }),
+                   let t = alleTags.first(where: {
+                       $0.strang?.id == strang.id && $0.tagNummer == selectedDay
+                   }),
                    t.istErledigt {
                     // Sprout flowers around the completed plant
                     ForEach(0..<3, id: \.self) { fIdx in
@@ -246,11 +253,14 @@ struct MultiStrangCanvas: View {
 
     private func isTagActionable(tag: PfadStrangTag, strang: PfadStrang) -> Bool {
         if tag.istErledigt { return false }
-        let alleTags = strang.tags.sorted(by: { $0.tagNummer < $1.tagNummer })
-        guard let firstIncomplete = alleTags.first(where: { !$0.istErledigt }) else { return false }
+        let strangTags = pfadStore.alleTags
+            .filter { $0.strang?.id == strang.id }
+            .sorted(by: { $0.tagNummer < $1.tagNummer })
+        guard let firstIncomplete = strangTags.first(where: { !$0.istErledigt }) else { return false }
         
         if tag.id == firstIncomplete.id {
-            if tag.tagNummer > 1, let prevTag = alleTags.first(where: { $0.tagNummer == tag.tagNummer - 1 }) {
+            if tag.tagNummer > 1,
+               let prevTag = strangTags.first(where: { $0.tagNummer == tag.tagNummer - 1 }) {
                 if let cd = prevTag.datum, Calendar.current.isDateInToday(cd) {
                     return false
                 }
@@ -261,13 +271,9 @@ struct MultiStrangCanvas: View {
     }
 
     private func calculateProgress(for day: Int) -> Double {
-        let diff = PfadSchwierigkeit.anfaenger
         let thresholds: [Int]
-        switch diff {
-        case .anfaenger:       thresholds = [1, 20, 45, 65, 80, 91]
-        case .fortgeschritten: thresholds = [1, 14, 30, 50, 70, 91]
-        case .experte:         thresholds = [1, 7, 21, 35, 50, 91]
-        }
+        // Default to anfaenger for this calculation to avoid fixed switch warning
+        thresholds = [1, 20, 45, 65, 80, 91]
         
         var start = 1
         var end = 90
@@ -281,33 +287,6 @@ struct MultiStrangCanvas: View {
         return Double(day - start) / Double(max(1, end - start))
     }
 
-    private func draw3DBlock(context: GraphicsContext, at: CGPoint, width: CGFloat, height: CGFloat, color: Color, scale: CGFloat) {
-        let depth: CGFloat = 8 * scale
-        let radius: CGFloat = 20 * scale // Merging nodes, so we need more roundness
-        
-        // Organic uneven path instead of RoundedRectangle
-        var path = Path()
-        let rect = CGRect(x: at.x - width/2, y: at.y - height/2, width: width, height: height)
-        
-        // Custom 'Wobble' for organic look
-        path.addRoundedRect(in: rect, cornerSize: CGSize(width: radius, height: radius))
-        
-        // Shadow / Depth
-        context.fill(path.offsetBy(dx: 0, dy: depth), with: .color(color.darker(by: 0.2)))
-        
-        // Main Surface
-        context.fill(path, with: .color(color))
-        
-        // Soil Texture (Grain)
-        for _ in 0..<Int(width * height / 100) {
-            let px = CGFloat.random(in: rect.minX...rect.maxX)
-            let py = CGFloat.random(in: rect.minY...rect.maxY)
-            let size = CGFloat.random(in: 1...2) * scale
-            context.fill(Path(ellipseIn: CGRect(x: px, y: py, width: size, height: size)), with: .color(Color.black.opacity(0.08)))
-        }
-        
-        context.stroke(path, with: .color(Color.black.opacity(0.1)), style: StrokeStyle(lineWidth: 1))
-    }
 
 
 }

@@ -133,8 +133,7 @@ private struct Item3DButtonVisualView: View {
                     .fill(farbe)
                     .overlay {
                         configuration.label
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, 10)
                     }
                     .offset(y: (isVisualPressed || isPermanentlyPressed) ? 0 : -shadowDepth)
             } else {

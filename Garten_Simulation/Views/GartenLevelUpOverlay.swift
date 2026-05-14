@@ -32,9 +32,9 @@ struct GartenLevelUpOverlay: View {
                         SafeDotLottieView(
                             url: "https://lottie.host/bd7993da-11cc-4e38-8b7c-5eba53dd788b/zVMrBPKTNT.lottie",
                             animationConfig: .init(autoplay: true, loop: false, speed: 0.7),
-                            fixedSize: CGSize(width: UIScreen.main.bounds.width * 1.4, height: UIScreen.main.bounds.width * 1.2)
+                            fixedSize: CGSize(width: ScreenSize.width * 1.4, height: ScreenSize.width * 1.2)
                         )
-                        .offset(x: -UIScreen.main.bounds.width * 0.05, y: -UIScreen.main.bounds.width * 0.30)
+                        .offset(x: -ScreenSize.width * 0.05, y: -ScreenSize.width * 0.30)
                         .opacity(zeigeInhalt ? 1.0 : 0.0)
 
                         // Level Button

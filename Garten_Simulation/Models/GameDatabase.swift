@@ -33,13 +33,24 @@ enum HabitCategory: String, CaseIterable, Codable {
 
     var localizationKey: String { "category.\(self.rawValue)" }
     
+    var color: Color {
+        switch self {
+        case .fitness:   return .orangePrimary
+        case .health:    return .rotPrimary
+        case .mental:    return .lilaPrimary
+        case .growth:    return .gruenPrimary
+        case .lifestyle: return .blauPrimary
+        case .finance:   return .coinBlue
+        }
+    }
+    
     var icon: String {
         switch self {
         case .fitness:   return "figure.run"
-        case .health:    return "fork.knife"
+        case .health:    return "heart.fill"
         case .mental:    return "brain.head.profile"
-        case .growth:    return "book.fill"
-        case .lifestyle: return "sun.max.fill"
+        case .growth:    return "leaf.fill"
+        case .lifestyle: return "star.fill"
         case .finance:   return "banknote.fill"
         }
     }
@@ -65,7 +76,7 @@ struct Plant: Identifiable, Codable {
     let symbolName: String
     let symbol: String // Neu: Emoji-Symbol
     let symbolColor: String
-    let habitCategories: [HabitCategory]
+    let habitCategory: HabitCategory
     let symbolism: String
     let habitName: String
     let maxLevel: Int
@@ -76,14 +87,14 @@ struct Plant: Identifiable, Codable {
     let minGartenLevel: Int
     let igelAsset: String
 
-    init(id: String, name: String, symbolName: String, assetName: String? = nil, symbol: String = "🌱", symbolColor: String, habitCategories: [HabitCategory], symbolism: String, habitName: String = "", maxLevel: Int = 10, xpPerCompletion: Int = 10, waterNeedPerDay: Int = 1, decayDays: Int = 3, minGartenLevel: Int = 1, igelAsset: String = "Igel-PflanzeGießen") {
+    init(id: String, name: String, symbolName: String, assetName: String? = nil, symbol: String = "🌱", symbolColor: String, habitCategory: HabitCategory, symbolism: String, habitName: String = "", maxLevel: Int = 10, xpPerCompletion: Int = 10, waterNeedPerDay: Int = 1, decayDays: Int = 3, minGartenLevel: Int = 1, igelAsset: String = "Igel-PflanzeGießen") {
         self.id = id
         self.name = name
         self.symbolName = symbolName
         self.assetName = assetName
         self.symbol = symbol
         self.symbolColor = symbolColor
-        self.habitCategories = habitCategories
+        self.habitCategory = habitCategory
         self.symbolism = symbolism
         self.habitName = habitName
         self.maxLevel = maxLevel
@@ -203,27 +214,27 @@ struct GameDatabase {
 
     // MARK: Pflanzen (20 Stück)
     static let allPlants: [Plant] = [
-        Plant(id: "plant.bambus",           name: "plant.bambus.name",             symbolName: "leaf.fill",                     assetName: "plant_bambus",    symbol: "🎋", symbolColor: "green",   habitCategories: [.fitness],      symbolism: "plant.bambus.symbolism",           habitName: "habit.krafttraining",          xpPerCompletion: 120, decayDays: 2, minGartenLevel: 3, igelAsset: "Igel-Sport"),
-        Plant(id: "plant.apfelbaum",        name: "plant.apfelbaum.name",          symbolName: "heart.circle.fill",             assetName: "plant_apfelbaum", symbol: "🍎", symbolColor: "red",     habitCategories: [.health, .lifestyle],    symbolism: "plant.apfelbaum.symbolism",        habitName: "habit.gesund_kochen",          xpPerCompletion: 100, decayDays: 3, minGartenLevel: 1, igelAsset: "Igel-Essen"),
-        Plant(id: "plant.wildgras",         name: "plant.wildgras.name",           symbolName: "wind",                          assetName: "plant_wildgras",  symbol: "🌿", symbolColor: "mint",    habitCategories: [.fitness],    symbolism: "plant.wildgras.symbolism",         habitName: "habit.joggen",                xpPerCompletion: 80,  decayDays: 2, minGartenLevel: 1, igelAsset: "Igel-Sport"),
-        Plant(id: "plant.lotus",            name: "plant.lotus.name",              symbolName: "sparkles",                      assetName: "plant_lotus",     symbol: "🪷", symbolColor: "pink",    habitCategories: [.mental], symbolism: "plant.lotus.symbolism",            habitName: "habit.meditieren",            xpPerCompletion: 100, decayDays: 3, minGartenLevel: 1, igelAsset: "Igel-Meditieren"),
-        Plant(id: "plant.sonnenblume",      name: "plant.sonnenblume.name",        symbolName: "sun.max.fill",                  assetName: "plant_sonnenblume",      symbol: "🌻", symbolColor: "yellow",  habitCategories: [.lifestyle, .mental],    symbolism: "plant.sonnenblume.symbolism",      habitName: "habit.frueh_aufstehen",       xpPerCompletion: 80,  decayDays: 2, minGartenLevel: 1),
-        Plant(id: "plant.kaktus",           name: "plant.kaktus.name",             symbolName: "thermometer.sun.fill",          assetName: "plant_kaktus",           symbol: "🌵", symbolColor: "orange",  habitCategories: [.fitness, .health],      symbolism: "plant.kaktus.symbolism",           habitName: "habit.kalt_duschen",          xpPerCompletion: 120, decayDays: 5, minGartenLevel: 8, igelAsset: "Igel-Duschen"),
-        Plant(id: "plant.weinrebe",         name: "plant.weinrebe.name",           symbolName: "drop.fill",                     assetName: "plant_weintraube",       symbol: "🍇", symbolColor: "purple",  habitCategories: [.lifestyle, .health],  symbolism: "plant.weinrebe.symbolism",         habitName: "habit.kein_alkohol",          xpPerCompletion: 100, decayDays: 3, minGartenLevel: 1),
-        Plant(id: "plant.kirschbaum",       name: "plant.kirschbaum.name",         symbolName: "camera.macro",                  assetName: "plant_kirschbaum",       symbol: "🍒", symbolColor: "pink",    habitCategories: [.health, .mental],      symbolism: "plant.kirschbaum.symbolism",       habitName: "habit.selfcare",              xpPerCompletion: 80,  decayDays: 3, minGartenLevel: 1),
-        Plant(id: "plant.minzpflanze",      name: "plant.minzpflanze.name",       symbolName: "aqi.low",                       assetName: "plant_minzpflanze",      symbol: "🌱", symbolColor: "mint",    habitCategories: [.health],      symbolism: "plant.minzpflanze.symbolism",      habitName: "habit.zaehneputzen",          xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1, igelAsset: "Igel-Backen"),
-        Plant(id: "plant.mandelbaum",       name: "plant.mandelbaum.name",        symbolName: "banknote.fill",                 assetName: "Mandelbaum",             symbol: "🪵", symbolColor: "green",   habitCategories: [.finance, .growth],      symbolism: "plant.mandelbaum.symbolism",       habitName: "habit.geld_sparen",           maxLevel: 12, xpPerCompletion: 100, decayDays: 5, minGartenLevel: 10, igelAsset: "Igel-Golf"),
-        Plant(id: "plant.lavendel",         name: "plant.lavendel.name",          symbolName: "moon.stars.fill",               assetName: "Lavendel",               symbol: "🪻", symbolColor: "purple",  habitCategories: [.health, .mental],        symbolism: "plant.lavendel.symbolism",         habitName: "habit.schlafroutine",         xpPerCompletion: 80,  decayDays: 3, minGartenLevel: 12, igelAsset: "Igel-Schlafen"),
-        Plant(id: "plant.efeu",             name: "plant.efeu.name",              symbolName: "figure.flexibility",            assetName: "Efeu",                   symbol: "🍃", symbolColor: "green",   habitCategories: [.fitness, .health],             symbolism: "plant.efeu.symbolism",             habitName: "habit.stretching",            xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1),
-        Plant(id: "plant.aloe_vera",        name: "plant.aloe_vera.name",         symbolName: "iphone.slash",                  assetName: "Aloe",                   symbol: "🪴", symbolColor: "mint",    habitCategories: [.lifestyle, .mental],    symbolism: "plant.aloe_vera.symbolism",        habitName: "habit.bildschirmzeit",        xpPerCompletion: 80,  decayDays: 4, minGartenLevel: 15),
-        Plant(id: "plant.erdbeerpflanze",   name: "plant.erdbeerpflanze.name",    symbolName: "heart.fill",                    assetName: "Erdbeerpflanze",         symbol: "🍓", symbolColor: "red",     habitCategories: [.health, .lifestyle],    symbolism: "plant.erdbeerpflanze.symbolism",   habitName: "habit.obst_gemuese",          xpPerCompletion: 80,  decayDays: 2, minGartenLevel: 1),
-        Plant(id: "plant.zitronenbaum",     name: "plant.zitronenbaum.name",      symbolName: "bolt.circle.fill",              assetName: "Zitronenbaum",           symbol: "🍋", symbolColor: "yellow",  habitCategories: [.health, .lifestyle],    symbolism: "plant.zitronenbaum.symbolism",     habitName: "habit.wasser_trinken",        xpPerCompletion: 80,  decayDays: 3, minGartenLevel: 18, igelAsset: "Igel-Essen"),
-        Plant(id: "plant.weizenfeld",       name: "plant.weizenfeld.name",        symbolName: "chart.bar.fill",                assetName: "Weizenfeld",             symbol: "🌾", symbolColor: "orange",  habitCategories: [.growth], symbolism: "plant.weizenfeld.symbolism",       habitName: "habit.deep_work",             xpPerCompletion: 120, decayDays: 2, minGartenLevel: 20, igelAsset: "Igel-Schreiben"),
-        Plant(id: "plant.chrysantheme",     name: "plant.chrysantheme.name",      symbolName: "house.fill",                    assetName: "Chrysantheme",           symbol: "🌼", symbolColor: "yellow",  habitCategories: [.health, .lifestyle],      symbolism: "plant.chrysantheme.symbolism",     habitName: "habit.aufraeumen",            xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1),
-        Plant(id: "plant.klee",             name: "plant.klee.name",              symbolName: "star.fill",                     assetName: "Klee",                   symbol: "🍀", symbolColor: "green",   habitCategories: [.mental, .lifestyle],  symbolism: "plant.klee.symbolism",             habitName: "habit.dankbarkeit",           xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1, igelAsset: "Igel-Musik"),
+        Plant(id: "plant.bambus",           name: "plant.bambus.name",             symbolName: "leaf.fill",                     assetName: "plant_bambus",    symbol: "🎋", symbolColor: "green",   habitCategory: .fitness,      symbolism: "plant.bambus.symbolism",           habitName: "habit.krafttraining",          xpPerCompletion: 120, decayDays: 2, minGartenLevel: 3, igelAsset: "Igel-Sport"),
+        Plant(id: "plant.apfelbaum",        name: "plant.apfelbaum.name",          symbolName: "heart.circle.fill",             assetName: "plant_apfelbaum", symbol: "🍎", symbolColor: "red",     habitCategory: .health,    symbolism: "plant.apfelbaum.symbolism",        habitName: "habit.gesund_kochen",          xpPerCompletion: 100, decayDays: 3, minGartenLevel: 1, igelAsset: "Igel-Essen"),
+        Plant(id: "plant.wildgras",         name: "plant.wildgras.name",           symbolName: "wind",                          assetName: "plant_wildgras",  symbol: "🌿", symbolColor: "mint",    habitCategory: .fitness,    symbolism: "plant.wildgras.symbolism",         habitName: "habit.joggen",                xpPerCompletion: 80,  decayDays: 2, minGartenLevel: 1, igelAsset: "Igel-Sport"),
+        Plant(id: "plant.lotus",            name: "plant.lotus.name",              symbolName: "sparkles",                      assetName: "plant_lotus",     symbol: "🪷", symbolColor: "pink",    habitCategory: .mental, symbolism: "plant.lotus.symbolism",            habitName: "habit.meditieren",            xpPerCompletion: 100, decayDays: 3, minGartenLevel: 1, igelAsset: "Igel-Meditieren"),
+        Plant(id: "plant.sonnenblume",      name: "plant.sonnenblume.name",        symbolName: "sun.max.fill",                  assetName: "plant_sonnenblume",      symbol: "🌻", symbolColor: "yellow",  habitCategory: .lifestyle,    symbolism: "plant.sonnenblume.symbolism",      habitName: "habit.frueh_aufstehen",       xpPerCompletion: 80,  decayDays: 2, minGartenLevel: 1),
+        Plant(id: "plant.kaktus",           name: "plant.kaktus.name",             symbolName: "thermometer.sun.fill",          assetName: "plant_kaktus",           symbol: "🌵", symbolColor: "orange",  habitCategory: .health,      symbolism: "plant.kaktus.symbolism",           habitName: "habit.kalt_duschen",          xpPerCompletion: 120, decayDays: 5, minGartenLevel: 8, igelAsset: "Igel-Duschen"),
+        Plant(id: "plant.weinrebe",         name: "plant.weinrebe.name",           symbolName: "drop.fill",                     assetName: "plant_weintraube",       symbol: "🍇", symbolColor: "purple",  habitCategory: .health,  symbolism: "plant.weinrebe.symbolism",         habitName: "habit.kein_alkohol",          xpPerCompletion: 100, decayDays: 3, minGartenLevel: 1),
+        Plant(id: "plant.kirschbaum",       name: "plant.kirschbaum.name",         symbolName: "camera.macro",                  assetName: "plant_kirschbaum",       symbol: "🍒", symbolColor: "pink",    habitCategory: .mental,      symbolism: "plant.kirschbaum.symbolism",       habitName: "habit.selfcare",              xpPerCompletion: 80,  decayDays: 3, minGartenLevel: 1),
+        Plant(id: "plant.minzpflanze",      name: "plant.minzpflanze.name",       symbolName: "aqi.low",                       assetName: "plant_minzpflanze",      symbol: "🌱", symbolColor: "mint",    habitCategory: .health,      symbolism: "plant.minzpflanze.symbolism",      habitName: "habit.zaehneputzen",          xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1, igelAsset: "Igel-Backen"),
+        Plant(id: "plant.mandelbaum",       name: "plant.mandelbaum.name",        symbolName: "banknote.fill",                 assetName: "Mandelbaum",             symbol: "🪵", symbolColor: "green",   habitCategory: .finance,      symbolism: "plant.mandelbaum.symbolism",       habitName: "habit.geld_sparen",           maxLevel: 12, xpPerCompletion: 100, decayDays: 5, minGartenLevel: 10, igelAsset: "Igel-Golf"),
+        Plant(id: "plant.lavendel",         name: "plant.lavendel.name",          symbolName: "moon.stars.fill",               assetName: "Lavendel",               symbol: "🪻", symbolColor: "purple",  habitCategory: .health,        symbolism: "plant.lavendel.symbolism",         habitName: "habit.schlafroutine",         xpPerCompletion: 80,  decayDays: 3, minGartenLevel: 12, igelAsset: "Igel-Schlafen"),
+        Plant(id: "plant.efeu",             name: "plant.efeu.name",              symbolName: "figure.flexibility",            assetName: "Efeu",                   symbol: "🍃", symbolColor: "green",   habitCategory: .fitness,             symbolism: "plant.efeu.symbolism",             habitName: "habit.stretching",            xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1),
+        Plant(id: "plant.aloe_vera",        name: "plant.aloe_vera.name",         symbolName: "iphone.slash",                  assetName: "Aloe",                   symbol: "🪴", symbolColor: "mint",    habitCategory: .mental,    symbolism: "plant.aloe_vera.symbolism",        habitName: "habit.bildschirmzeit",        xpPerCompletion: 80,  decayDays: 4, minGartenLevel: 15),
+        Plant(id: "plant.erdbeerpflanze",   name: "plant.erdbeerpflanze.name",    symbolName: "heart.fill",                    assetName: "Erdbeerpflanze",         symbol: "🍓", symbolColor: "red",     habitCategory: .health,    symbolism: "plant.erdbeerpflanze.symbolism",   habitName: "habit.obst_gemuese",          xpPerCompletion: 80,  decayDays: 2, minGartenLevel: 1),
+        Plant(id: "plant.zitronenbaum",     name: "plant.zitronenbaum.name",      symbolName: "bolt.circle.fill",              assetName: "Zitronenbaum",           symbol: "🍋", symbolColor: "yellow",  habitCategory: .health,    symbolism: "plant.zitronenbaum.symbolism",     habitName: "habit.wasser_trinken",        xpPerCompletion: 80,  decayDays: 3, minGartenLevel: 18, igelAsset: "Igel-Essen"),
+        Plant(id: "plant.weizenfeld",       name: "plant.weizenfeld.name",        symbolName: "chart.bar.fill",                assetName: "Weizenfeld",             symbol: "🌾", symbolColor: "orange",  habitCategory: .growth, symbolism: "plant.weizenfeld.symbolism",       habitName: "habit.deep_work",             xpPerCompletion: 120, decayDays: 2, minGartenLevel: 20, igelAsset: "Igel-Schreiben"),
+        Plant(id: "plant.chrysantheme",     name: "plant.chrysantheme.name",      symbolName: "house.fill",                    assetName: "Chrysantheme",           symbol: "🌼", symbolColor: "yellow",  habitCategory: .lifestyle,      symbolism: "plant.chrysantheme.symbolism",     habitName: "habit.aufraeumen",            xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1),
+        Plant(id: "plant.klee",             name: "plant.klee.name",              symbolName: "star.fill",                     assetName: "Klee",                   symbol: "🍀", symbolColor: "green",   habitCategory: .mental,  symbolism: "plant.klee.symbolism",             habitName: "habit.dankbarkeit",           xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1, igelAsset: "Igel-Musik"),
         
         // MARK: Spezial-Pflanzen (Durch Samen freischaltbar)
-        Plant(id: "plant.mystic_seed",      name: "plant.mystic_seed.name",       symbolName: "leaf.arrow.triangle.circlepath", assetName: "plant_lotus", symbolColor: "indigo", habitCategories: [.mental], symbolism: "plant.mystic_seed.symbolism",    habitName: "habit.atemarbeit",            xpPerCompletion: 250, decayDays: 5, minGartenLevel: 25)
+        Plant(id: "plant.mystic_seed",      name: "plant.mystic_seed.name",       symbolName: "leaf.arrow.triangle.circlepath", assetName: "plant_lotus", symbolColor: "indigo", habitCategory: .mental, symbolism: "plant.mystic_seed.symbolism",    habitName: "habit.atemarbeit",            xpPerCompletion: 250, decayDays: 5, minGartenLevel: 25)
     ]
 
     // MARK: Müll-Items (20 Stück, Re-branded IDs)

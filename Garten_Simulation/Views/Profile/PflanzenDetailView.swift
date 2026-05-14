@@ -8,9 +8,10 @@ struct PflanzenDetailView: View {
 
     var gesamtXP: Int { gardenStore.gesamtXP }
 
-    var seltenste: HabitModel? {
-        pflanzen.max(by: { $0.currentXP < $1.currentXP })
-    }
+    @State private var ausgewaehltePflanze: HabitModel? = nil
+    @EnvironmentObject var powerUpStore: PowerUpStore
+    @EnvironmentObject var shopStore: ShopStore
+    @EnvironmentObject var pfadStore: GartenPfadStore
 
     var body: some View {
         ZStack {
@@ -18,82 +19,7 @@ struct PflanzenDetailView: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 24) {
-
-                    // MARK: Hero-Karte — Zusammenfassung
-                    VStack(spacing: 16) {
-                        ZStack {
-                            Circle()
-                                .fill(Color.green.opacity(0.15))
-                                .frame(width: 90, height: 90)
-                            Image(systemName: "leaf.fill")
-                                .font(.system(size: 44))
-                                .foregroundStyle(.green)
-                        }
-
-                        Text("\(pflanzen.count)")
-                            .font(.system(size: 48, weight: .bold, design: .rounded))
-
-                        Text(settings.localizedString(for: "profile.plants.subtitle"))
-                            .font(.system(size: 15))
-                            .foregroundStyle(.secondary)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 28)
-                    .background(Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                    .shadow(color: .black.opacity(0.04), radius: 8, x: 0, y: 2)
-                    .padding(.horizontal, 20)
-
-                    // MARK: Stats-Reihe
-                    sectionHeader(settings.localizedString(for: "common.details"))
-
-                    VStack(spacing: 0) {
-                        detailRow(
-                            labelKey: "common.total",
-                            value: "\(pflanzen.count)",
-                            icon: "leaf.fill",
-                            color: .green
-                        )
-                        Divider().padding(.leading, 52)
-
-                        detailRow(
-                            labelKey: "profile.xp.earned",
-                            value: "\(gesamtXP) XP",
-                            icon: "XP",
-                            color: .orange,
-                            isAsset: true
-                        )
-                        Divider().padding(.leading, 52)
-
-                        detailRow(
-                            labelKey: "common.active",
-                            value: "\(pflanzen.filter { $0.istBewässert }.count)",
-                            icon: "Drop water",
-                            color: .blauPrimary,
-                            isAsset: true
-                        )
-                        Divider().padding(.leading, 52)
-
-                        if let beste = seltenste {
-                            let displayName = settings.showHabitInsteadOfName 
-                                ? settings.localizedString(for: beste.habitName)
-                                : settings.localizedString(for: beste.name)
-                            detailRow(
-                                labelKey: "profile.xp.max",
-                                value: displayName,
-                                icon: "crown.fill",
-                                color: .goldPrimary
-                            )
-                        }
-                    }
-                    .background(Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                    .shadow(color: .black.opacity(0.03), radius: 6, x: 0, y: 1)
-                    .padding(.horizontal, 20)
-
                     // MARK: Pflanzen-Grid
-                    sectionHeader(settings.localizedString(for: "profile.plants.list"))
-
                     LazyVGrid(
                         columns: [
                             GridItem(.flexible(), spacing: 12),
@@ -103,18 +29,35 @@ struct PflanzenDetailView: View {
                         spacing: 12
                     ) {
                         ForEach(pflanzen) { pflanze in
-                            PflanzenGridCell(pflanze: pflanze)
+                            PflanzenGridCell(pflanze: pflanze) {
+                                ausgewaehltePflanze = pflanze
+                            }
                         }
                     }
                     .padding(.horizontal, 20)
+                    .padding(.top, 24)
 
                     Spacer(minLength: 40)
                 }
-                .padding(.top, 20)
+            }
+            .navigationTitle(settings.localizedString(for: "profile.plants"))
+            .navigationBarTitleDisplayMode(.inline)
+            .fullScreenCover(item: $ausgewaehltePflanze) { pflanze in
+                PflanzeDetailSheet(
+                    pflanze: pflanze,
+                    wetterEvent: .normal, // Default for inventory view
+                    onLoeschen: {
+                        gardenStore.pflanzEntfernen(pflanze: pflanze)
+                        ausgewaehltePflanze = nil
+                    }
+                )
+                .environmentObject(gardenStore)
+                .environmentObject(shopStore)
+                .environmentObject(settings)
+                .environmentObject(powerUpStore)
+                .environmentObject(pfadStore)
             }
         }
-        .navigationTitle(settings.localizedString(for: "profile.plants"))
-        .navigationBarTitleDisplayMode(.inline)
     }
 
     private func sectionHeader(_ title: String) -> some View {
@@ -162,46 +105,37 @@ struct PflanzenDetailView: View {
 
 struct PflanzenGridCell: View {
     let pflanze: HabitModel
+    var action: (() -> Void)? = nil
     @EnvironmentObject var settings: SettingsStore
 
     var body: some View {
         VStack(spacing: 8) {
-            ZStack {
-                Circle()
-                    .fill(Color.gray.opacity(0.1))
-                    .frame(width: 72, height: 72)
-
-                Circle()
-                    .fill(pflanze.color)
-                    .frame(width: 68, height: 68)
-
-                if let basePlant = GameDatabase.shared.plant(for: pflanze.plantID) {
-                    PlantIconView(plant: basePlant, seltenheit: pflanze.seltenheit, size: 44)
-                } else {
-                    Image(systemName: pflanze.symbolName)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 44, height: 44)
-                        .foregroundStyle(.white)
-                }
-            }
+            Item3DButton(
+                icon: pflanze.plantImageName,
+                farbe: pflanze.color,
+                sekundaerFarbe: pflanze.color.darker(),
+                groesse: 80,
+                iconSkalierung: 0.65,
+                aktion: action
+            )
 
             Text(settings.showHabitInsteadOfName 
                 ? settings.localizedString(for: pflanze.habitName)
                 : settings.localizedString(for: pflanze.name))
                 .font(.system(size: 12, weight: .semibold, design: .rounded))
                 .foregroundStyle(.primary)
-                .lineLimit(1)
+                .lineLimit(2)
+                .minimumScaleFactor(0.8)
 
             Text(pflanze.seltenheit.lokalisiertTitel)
                 .font(.system(size: 10, weight: .bold))
-                .foregroundStyle(pflanze.seltenheit.farbe)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 3)
-                .background(
-                    Capsule()
-                        .fill(pflanze.seltenheit.farbe.opacity(0.1))
-                )
+            .foregroundStyle(pflanze.seltenheit.farbe)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 3)
+            .background(
+                Capsule()
+                    .fill(pflanze.seltenheit.farbe.opacity(0.1))
+            )
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 14)

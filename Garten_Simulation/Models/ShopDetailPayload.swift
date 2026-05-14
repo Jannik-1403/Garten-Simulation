@@ -18,7 +18,7 @@ struct ShopDetailPayload: Identifiable, Codable {
     let minGartenLevel: Int
     
     let itemType: ShopItemType
-    let habitCategories: [HabitCategory]?
+    let habitCategory: HabitCategory?
     let symbolism: String?
     let howToUse: String?
     let habitName: String?
@@ -39,7 +39,7 @@ struct ShopDetailPayload: Identifiable, Codable {
         tag: String? = nil,
         minGartenLevel: Int = 1,
         itemType: ShopItemType,
-        habitCategories: [HabitCategory]? = nil,
+        habitCategory: HabitCategory? = nil,
         symbolism: String? = nil,
         howToUse: String? = nil,
         habitName: String? = nil
@@ -56,7 +56,7 @@ struct ShopDetailPayload: Identifiable, Codable {
         self.tag = tag
         self.minGartenLevel = minGartenLevel
         self.itemType = itemType
-        self.habitCategories = habitCategories
+        self.habitCategory = habitCategory
         self.symbolism = symbolism
         self.howToUse = howToUse
         self.habitName = habitName
@@ -77,7 +77,7 @@ extension ShopDetailPayload {
             shadowColorHex: "#1E8449",
             minGartenLevel: plant.minGartenLevel,
             itemType: .plant,
-            habitCategories: plant.habitCategories,
+            habitCategory: plant.habitCategory,
             symbolism: plant.symbolism,
             habitName: plant.habitName
         )

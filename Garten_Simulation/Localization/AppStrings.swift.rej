@@ -1,0 +1,9 @@
+@@ -888,6 +888,8 @@
+         "settings.share.action": ["de": "App teilen", "en": "Share App", "es": "Compartir App", "fr": "Partager l'application", "it": "Share App", "pt": "Partilhar aplicação"],
+         "settings.share.desc": ["de": "Gefällt Ihnen die Garten-Simulation? Teilen Sie sie mit Ihren Freunden!", "en": "Do you like the Garden Simulation? Share it with your friends!", "es": "¿Te gusta Grovy? ¡Compártelo con tus amigos!", "fr": "Tu aimes Garten Simulation ? Partage-la avec tes amis !", "it": "Do you like the Garden Simulation? Share it with your friends!", "pt": "Gostas do Garten Simulation? Partilha com os teus amigos!"],
+         "settings.terms": ["de": "Nutzungsbedingungen", "en": "Terms of Service", "es": "Términos de Uso", "fr": "Conditions d'utilisation", "it": "Terms of Service", "pt": "Termos de utilização"],
++        "schwierigkeit.titel": ["de": "Schwierigkeit", "en": "Difficulty", "es": "Dificultad", "fr": "Difficulté", "it": "Difficoltà", "pt": "Dificuldade"],
++        "schwierigkeit.waehlen_hinweis": ["de": "Bitte wähle eine Schwierigkeit", "en": "Please select a difficulty", "es": "Por favor selecciona una dificultad", "fr": "Veuillez sélectionner une difficulté", "it": "Seleziona una difficoltà", "pt": "Por favor selecione uma dificuldade"],
+ 
+ 
+ 

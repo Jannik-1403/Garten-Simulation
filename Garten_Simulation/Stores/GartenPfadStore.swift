@@ -7,6 +7,7 @@ import Combine
 class GartenPfadStore: ObservableObject {
     @Published var straenge: [PfadStrang] = []
     @Published var verschmelzungen: [PfadVerschmelzung] = []
+    @Published var alleTags: [PfadStrangTag] = []
     @Published var istPfadAktiv: Bool = false
     @Published var zoomSkala: CGFloat = 1.0
     @Published var focusedPflanzenID: String? = nil // Neu: Filter für einen spezifischen Habit-Pfad
@@ -15,14 +16,16 @@ class GartenPfadStore: ObservableObject {
     @Published var zeigeMeilensteinOverlay: Bool = false
     @Published var letzterMeilensteinTitel: String = ""
     @Published var belohnungsText: String = ""
-    @Published var zeigeSchwierigkeitsScreen: Bool = false
-    @Published var zeigeRitualAnpassen: Bool = false
     @Published var verfuegbareSpins: Int {
         didSet { UserDefaults.standard.set(verfuegbareSpins, forKey: "gartenpass_spins") }
     }
     
     private var modelContext: ModelContext?
     private var settings: SettingsStore
+    private(set) var gardenStore: GardenStore?
+    private var gardenCancellable: AnyCancellable?
+    
+    private var isSyncingEveryPlant = false
 
     init(modelContext: ModelContext? = nil, settings: SettingsStore) {
         self.modelContext = modelContext
@@ -34,7 +37,19 @@ class GartenPfadStore: ObservableObject {
     func setContext(_ context: ModelContext, settings: SettingsStore, gardenStore: GardenStore) {
         self.modelContext = context
         self.settings = settings
+        self.gardenStore = gardenStore
         ladePfad()
+        
+        // Initial sync handled by the sink below or manually if needed
+        // self.ensureEveryPlantHasPath(gardenStore: gardenStore)
+        
+        // Auto-sync when plants change (ensures paths are created after GardenStore finishes loading)
+        gardenCancellable = gardenStore.$pflanzen
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.ensureEveryPlantHasPath(gardenStore: gardenStore)
+            }
         
         // Migration: Alte Kalender-basierte Daten bereinigen
         migrateToTrueJourney()
@@ -45,7 +60,43 @@ class GartenPfadStore: ObservableObject {
         }
         
         // Jetzt wo Context da ist, Nachholen prüfen
+        ensureEveryPlantHasPath(gardenStore: gardenStore)
         pfadNachholenFallsNoetig(settings: settings, gardenStore: gardenStore)
+    }
+    
+    /// Stellt sicher, dass jede physische Pflanze im Garten einen Pfad-Strang hat
+    func ensureEveryPlantHasPath(gardenStore: GardenStore) {
+        guard let context = modelContext, !isSyncingEveryPlant else { return }
+        isSyncingEveryPlant = true
+        
+        defer { isSyncingEveryPlant = false }
+        
+        var hasChanges = false
+        for pflanze in gardenStore.pflanzen {
+            let pflanzeID = pflanze.id
+            // Check if ANY strand belongs to this plant instance
+            let existing = straenge.first(where: { $0.pflanzenID == pflanzeID })
+            
+            if existing == nil || (existing?.tags.count ?? 0) == 0 {
+                // Completely missing or broken (no tags)
+                print("[PfadStore] Erstelle/Repariere Pfad für: \(pflanze.name) (\(pflanzeID))")
+                let ziel = settings.ausgewaehltesZiel.isEmpty ? "fit" : settings.ausgewaehltesZiel
+                let sRaw = pflanze.individualSchwierigkeit ?? PfadSchwierigkeit.anfaenger.rawValue
+                let difficulty = PfadSchwierigkeit(rawValue: sRaw) ?? .anfaenger
+                pflanzeHinzufuegen(pflanze, ziel: ziel, schwierigkeit: difficulty)
+                hasChanges = true
+            }
+        }
+        
+        if hasChanges {
+            do {
+                try context.save()
+                ladePfad()
+                objectWillChange.send()
+            } catch {
+                print("[PfadStore] Fehler beim Speichern der neuen Pfade: \(error)")
+            }
+        }
     }
     
     /// Migration: Alte Pfade hatten für jeden Tag ein geplantes Kalender-Datum.
@@ -53,13 +104,11 @@ class GartenPfadStore: ObservableObject {
     /// Diese Funktion räumt alte `datum`-Werte bei nicht erledigten Tags auf.
     private func migrateToTrueJourney() {
         var didMigrate = false
-        for strang in straenge {
-            for tag in strang.tags {
-                if !tag.istErledigt && tag.datum != nil {
-                    // Nicht erledigter Tag hatte ein altes geplantes Datum → löschen
-                    tag.datum = nil
-                    didMigrate = true
-                }
+        for tag in alleTags {
+            if !tag.istErledigt && tag.datum != nil {
+                // Nicht erledigter Tag hatte ein altes geplantes Datum → löschen
+                tag.datum = nil
+                didMigrate = true
             }
         }
         if didMigrate {
@@ -73,11 +122,22 @@ class GartenPfadStore: ObservableObject {
         
         let strangDescriptor = FetchDescriptor<PfadStrang>(sortBy: [SortDescriptor(\.reihenfolgeIndex)])
         let mergeDescriptor = FetchDescriptor<PfadVerschmelzung>(sortBy: [SortDescriptor(\.tagNummer)])
+        let tagDescriptor = FetchDescriptor<PfadStrangTag>(sortBy: [SortDescriptor(\.tagNummer)])
         
         do {
             straenge = try context.fetch(strangDescriptor)
             verschmelzungen = try context.fetch(mergeDescriptor)
+            alleTags = try context.fetch(tagDescriptor)
             istPfadAktiv = !straenge.isEmpty
+            
+            // Tags den Strängen zuweisen (umgeht SwiftData Lazy-Loading)
+            for strang in straenge {
+                let zugehoerigeTags = alleTags.filter { $0.strang?.id == strang.id }
+                if strang.tags.count != zugehoerigeTags.count {
+                    // SwiftData hat die Relationship nicht geladen — manuell erzwingen
+                    _ = strang.tags // access triggert lazy load
+                }
+            }
         } catch {
             print("Fehler beim Laden des Pfads: \(error)")
         }
@@ -87,10 +147,20 @@ class GartenPfadStore: ObservableObject {
     func pfadStarten(ziel: String, pflanzen: [HabitModel]) {
         guard let context = modelContext else { return }
         
-        // Alten Pfad löschen
-        try? context.delete(model: PfadStrang.self)
-        try? context.delete(model: PfadStrangTag.self)
-        try? context.delete(model: PfadVerschmelzung.self)
+        // Alten Pfad sauber löschen
+        do {
+            let sFetch = FetchDescriptor<PfadStrang>()
+            let allStraenge = try context.fetch(sFetch)
+            for s in allStraenge { context.delete(s) }
+            
+            let vFetch = FetchDescriptor<PfadVerschmelzung>()
+            let allMerges = try context.fetch(vFetch)
+            for m in allMerges { context.delete(m) }
+            
+            try context.save()
+        } catch {
+            print("[PfadStore] Fehler bei Initialisierung: \(error)")
+        }
 
         let zielSchluessel = PfadDatenbank.zielZuSchluessel(ziel)
 
@@ -103,7 +173,7 @@ class GartenPfadStore: ObservableObject {
             
             let strang = PfadStrang(
                 id: UUID(),
-                pflanzenID: pflanze.plantID,
+                pflanzenID: pflanze.id, // Instanz-ID
                 pflanzenName: pflanze.habitName,
                 pflanzenSymbol: pflanze.symbolName,
                 farbe: strangFarbe(index: index),
@@ -122,9 +192,8 @@ class GartenPfadStore: ObservableObject {
                 verschmelzungTag: strang.verschmelzungTag
             )
 
-            let heute = Calendar.current.startOfDay(for: Date())
-
-            for (i, vorlage) in tagVorlagen.enumerated() {
+            context.insert(strang)   // ← VOR den Tags
+            for vorlage in tagVorlagen {
                 let strangTag = PfadStrangTag(
                     tagNummer: vorlage.tagNummer,
                     titelKey: vorlage.titelKey,
@@ -138,7 +207,6 @@ class GartenPfadStore: ObservableObject {
                 strangTag.strang = strang
                 context.insert(strangTag)
             }
-            context.insert(strang)
             neueStraenge.append(strang)
         }
 
@@ -152,7 +220,7 @@ class GartenPfadStore: ObservableObject {
             if !bereitsVorhanden {
                 let gesperrterStrang = PfadStrang(
                     id: UUID(),
-                    pflanzenID: empfohlenePflanzenID,
+                    pflanzenID: "locked_\(empfohlenePflanzenID)",
                     pflanzenName: empfohlenePflanzenID, // Wird lokalisiert
                     pflanzenSymbol: "leaf.fill",
                     farbe: "#AAAAAA",
@@ -190,6 +258,8 @@ class GartenPfadStore: ObservableObject {
         
         let totalCount = aktuelleStraenge.count
         let maxTiers = Int(ceil(log2(Double(totalCount))))
+        
+        guard maxTiers >= 1 else { return }
         
         for tier in 1...maxTiers {
             let groupSize = Int(pow(2.0, Double(tier)))
@@ -276,7 +346,7 @@ class GartenPfadStore: ObservableObject {
 
         let strang = PfadStrang(
             id: UUID(),
-            pflanzenID: pflanze.plantID,
+            pflanzenID: pflanze.id,
             pflanzenName: pflanze.name,
             pflanzenSymbol: pflanze.symbolName,
             farbe: strangFarbe(index: neuerIndex),
@@ -293,9 +363,10 @@ class GartenPfadStore: ObservableObject {
             schwierigkeit: schwierigkeit,
             verschmelzungTag: strang.verschmelzungTag
         )
-        let heute = Calendar.current.startOfDay(for: Date())
+        // Strang ZUERST inserieren, damit SwiftData die inverse Relationship aufbauen kann
+        context.insert(strang)
 
-        for (i, vorlage) in tagVorlagen.enumerated() {
+        for vorlage in tagVorlagen {
             let strangTag = PfadStrangTag(
                 tagNummer: vorlage.tagNummer,
                 titelKey: vorlage.titelKey,
@@ -309,8 +380,6 @@ class GartenPfadStore: ObservableObject {
             strangTag.strang = strang
             context.insert(strangTag)
         }
-
-        context.insert(strang)
         try? context.save()
         ladePfad()
     }
@@ -321,15 +390,17 @@ class GartenPfadStore: ObservableObject {
     }
 
     func tagHeute() -> Int {
-        // Gibt den am weitesten zurückliegenden nicht-erledigten Tag zurück
-        // (damit die Scrollview dort aufschlägt, wo es Arbeit gibt)
-        let offeneTags = straenge.flatMap { $0.tags }.filter { !$0.istErledigt }
-        return offeneTags.map { $0.tagNummer }.min() ?? 90
+        // alleTags direkt nutzen — kein Lazy-Loading Problem
+        let aktiveStraengeIDs = Set(straenge.filter { $0.istAktiv }.map { $0.id })
+        let offeneTags = alleTags.filter { tag in
+            !tag.istErledigt && (tag.strang.map { aktiveStraengeIDs.contains($0.id) } ?? false)
+        }
+        return offeneTags.map { $0.tagNummer }.min() ?? 1
     }
 
     func istTagVollstaendigErledigt(tagNummer: Int) -> Bool {
         // Ein Tag ist vollständig erledigt, wenn JEDER aktive Strang an diesem Tag 'istErledigt' ist
-        let relevanteTags = straenge.flatMap { $0.tags }.filter { $0.tagNummer == tagNummer }
+        let relevanteTags = alleTags.filter { $0.tagNummer == tagNummer }
         if relevanteTags.isEmpty { return false }
         return relevanteTags.allSatisfy { $0.istErledigt }
     }
@@ -388,12 +459,14 @@ class GartenPfadStore: ObservableObject {
         let ziel = settings.ausgewaehltesZiel.isEmpty ? "fit" : settings.ausgewaehltesZiel
 
         for strang in straenge {
-            let sRaw = pflanzen.first(where: { $0.plantID == strang.pflanzenID })?.individualSchwierigkeit ?? PfadSchwierigkeit.anfaenger.rawValue
+            // Wir suchen die Pflanze anhand ihrer Instanz-ID (pflanzenID)
+            let matchingPlant = pflanzen.first(where: { $0.id == strang.pflanzenID })
+            let sRaw = matchingPlant?.individualSchwierigkeit ?? PfadSchwierigkeit.anfaenger.rawValue
             let schwierigkeit = PfadSchwierigkeit(rawValue: sRaw) ?? .anfaenger
 
             let tagVorlagen = PfadDatenbank.strangTagsGenerieren(
                 ziel: ziel,
-                pflanzenID: strang.pflanzenID,
+                pflanzenID: matchingPlant?.plantID ?? "",
                 strangIndex: strang.reihenfolgeIndex,
                 schwierigkeit: schwierigkeit,
                 verschmelzungTag: strang.verschmelzungTag
@@ -418,24 +491,37 @@ class GartenPfadStore: ObservableObject {
     func pfadNachholenFallsNoetig(settings: SettingsStore, gardenStore: GardenStore) {
         guard !istPfadAktiv,
               settings.onboardingAbgeschlossen,
-              gardenStore.pflanzen.count >= 2 else { return }
+              gardenStore.pflanzen.count >= 1 else { return }
         
-        self.zeigeSchwierigkeitsScreen = true
+        // Statt den Screen zu zeigen, starten wir den Pfad einfach automatisch mit Standardwerten
+        pfadZuruecksetzen(settings: settings, gardenStore: gardenStore)
     }
 
     func pfadZuruecksetzen(settings: SettingsStore, gardenStore: GardenStore) {
         guard let context = modelContext else { return }
-        try? context.delete(model: PfadStrang.self)
-        try? context.delete(model: PfadStrangTag.self)
-        try? context.delete(model: PfadVerschmelzung.self)
-        try? context.save()
+        
+        do {
+            // Delete Straenge (Tags will be deleted via cascade)
+            let sFetch = FetchDescriptor<PfadStrang>()
+            let allStraenge = try context.fetch(sFetch)
+            for s in allStraenge { context.delete(s) }
+            
+            // Delete Verschmelzungen
+            let vFetch = FetchDescriptor<PfadVerschmelzung>()
+            let allMerges = try context.fetch(vFetch)
+            for m in allMerges { context.delete(m) }
+            
+            try context.save()
+        } catch {
+            print("[PfadStore] Fehler beim Zurücksetzen: \(error)")
+        }
 
         straenge = []
         verschmelzungen = []
         istPfadAktiv = false
 
         let ziel = settings.ausgewaehltesZiel.isEmpty ? "fit" : settings.ausgewaehltesZiel
-        guard gardenStore.pflanzen.count >= 2 else { return }
+        guard gardenStore.pflanzen.count >= 1 else { return }
 
         pfadStarten(ziel: ziel, pflanzen: gardenStore.pflanzen)
     }
@@ -463,7 +549,7 @@ class GartenPfadStore: ObservableObject {
     var connectedPlantPairs: [(String, String)] {
         var pairs: [(String, String)] = []
         for merge in verschmelzungen {
-            // Find the pflanzenIDs for the stränge in this merge
+            // Find the ID for the stränge in this merge
             let plantIDs = straenge.filter { s in merge.strangIDs.contains(s.id.uuidString) }.map { $0.pflanzenID }
             // If we have at least 2, create pairs (usually it's 2 or more merging into one path)
             if plantIDs.count >= 2 {
@@ -537,9 +623,12 @@ class GartenPfadStore: ObservableObject {
             self.spinsHinzufuegen(n)
             gardenStore.gluecksradDrehungen += n
         case .pflanze(let id):
-            // TODO: Pflanze zum GardenStore hinzufügen
             gardenStore.pflanzeHinzufuegen(id: id)
-        case .powerUp(let id):
+            // NEU: Pfad direkt mit hinzufügen
+            if let neuePflanze = gardenStore.pflanzen.last(where: { $0.plantID == id }) {
+                self.pflanzeHinzufuegen(neuePflanze, ziel: settings.ausgewaehltesZiel, schwierigkeit: .anfaenger)
+            }
+        case .powerUp(_):
             // TODO: Zufälliges Power-Up aus PowerUpStore gutschreiben
             powerUpStore.zufaelligesPowerUpHinzufuegen()
         case .dekoration(let id):
@@ -549,7 +638,7 @@ class GartenPfadStore: ObservableObject {
             }
         case .paket(let titel, let coins, let puID):
             gardenStore.addCoins(coins, reason: titel)
-            if let puID = puID {
+            if puID != nil {
                 powerUpStore.zufaelligesPowerUpHinzufuegen() // Simplified for random
             }
         case .seeds(let n):

@@ -55,24 +55,7 @@ enum GartenTierStufe: CaseIterable {
         }
     }
 
-    /// Alt-Property (Fallback auf System-Sprache), sollte in SwiftUI Views durch lokalisiertTitel ersetzt werden.
-    @available(*, deprecated, message: "Nutze lokalisiertTitel(settings:) für korrekte In-App Sprachwahl")
-    var bezeichnung: String {
-        switch self {
-        case .bronzeI:    return NSLocalizedString("tier_stufe_bronze_1", comment: "")
-        case .bronzeII:   return NSLocalizedString("tier_stufe_bronze_2", comment: "")
-        case .bronzeIII:  return NSLocalizedString("tier_stufe_bronze_3", comment: "")
-        case .silberI:    return NSLocalizedString("tier_stufe_silber_1", comment: "")
-        case .silberII:   return NSLocalizedString("tier_stufe_silber_2", comment: "")
-        case .silberIII:  return NSLocalizedString("tier_stufe_silber_3", comment: "")
-        case .goldI:      return NSLocalizedString("tier_stufe_gold_1", comment: "")
-        case .goldII:     return NSLocalizedString("tier_stufe_gold_2", comment: "")
-        case .goldIII:    return NSLocalizedString("tier_stufe_gold_3", comment: "")
-        case .diamantI:   return NSLocalizedString("tier_stufe_diamant_1", comment: "")
-        case .diamantII:  return NSLocalizedString("tier_stufe_diamant_2", comment: "")
-        case .diamantIII: return NSLocalizedString("tier_stufe_diamant_3", comment: "")
-        }
-    }
+
 
     /// Kurz-Label für den Balken (I / II / III)
     var kurzLabel: String {

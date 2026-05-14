@@ -67,16 +67,22 @@ struct OnboardingView: View {
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
                     case 3:
-                        if let ziel = data.gewaehltesZiel {
-                            OnboardingPflanzenView()
-                            .transition(AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                        } else {
-                            OnboardingCustomPlantView()
-                            .transition(AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                        Group {
+                            if data.gewaehltesZiel != nil {
+                                OnboardingPflanzenView()
+                            } else {
+                                OnboardingCustomPlantView()
+                            }
                         }
+                        .transition(AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
                     case 4:
                         OnboardingInteractiveTutorialView()
+                        .onAppear {
+                            Task {
+                                _ = await NotificationManager.shared.requestPermission()
+                            }
+                        }
                         .transition(AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
                     case 5:

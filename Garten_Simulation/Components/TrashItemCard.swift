@@ -28,7 +28,8 @@ struct DecorationCard: View {
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.primary)
                 .multilineTextAlignment(.center)
-                .lineLimit(1)
+                .lineLimit(2)
+                .minimumScaleFactor(0.8)
         }
         .padding(12)
         .background(

@@ -14,7 +14,7 @@ struct SingleHabitNode: View {
 
     private var displayedName: String {
         // 1. Versuche die aktive Gewohnheit des Nutzers zu finden
-        if let habit = gardenStore.pflanzen.first(where: { $0.plantID == strang.pflanzenID }) {
+        if let habit = gardenStore.pflanzen.first(where: { $0.id == strang.pflanzenID }) {
             return settings.localizedString(for: habit.displayedHabitName)
         }
         
@@ -25,9 +25,7 @@ struct SingleHabitNode: View {
                 return settings.localizedString(for: plant.habitName)
             }
             // Wenn der fehlt, die Kategorie (z.B. category.mental)
-            if let catKey = plant.habitCategories.first?.localizationKey {
-                return settings.localizedString(for: catKey)
-            }
+            return settings.localizedString(for: plant.habitCategory.localizationKey)
         }
         
         // 3. Letzter Fallback (sollte eigentlich nie erreicht werden)
@@ -56,7 +54,7 @@ struct SingleHabitNode: View {
     }
 
     private var scheduledTime: String {
-        if let habit = gardenStore.pflanzen.first(where: { $0.plantID == strang.pflanzenID }),
+        if let habit = gardenStore.pflanzen.first(where: { $0.id == strang.pflanzenID }),
            let reminder = habit.reminderTime {
             let formatter = DateFormatter()
             formatter.timeStyle = .short
@@ -74,53 +72,56 @@ struct SingleHabitNode: View {
     var body: some View {
         VStack(spacing: 6) {
             ZStack {
-                // Main Pedestal Button (Stays pressed when done)
-                Item3DButton(
-                    farbe: obereFarbe,
-                    sekundaerFarbe: untereFarbe,
-                    groesse: groesse * scale,
-                    isPermanentlyPressed: tag.istErledigt,
-                    aktion: action
-                ) {
+                // Background Circle for the Day Number
+                Circle()
+                    .fill(obereFarbe.opacity(0.15))
+                    .frame(width: groesse * 1.1, height: groesse * 1.1)
+                
+                VStack(spacing: 8) {
+                    // 1. Task Name (What to do)
+                    Text(displayedName.uppercased())
+                        .font(.system(size: groesse * 0.2, weight: .black, design: .rounded))
+                        .foregroundColor(Color.black.opacity(0.8))
+                        .lineLimit(2)
+                        .multilineTextAlignment(.center)
+                        .frame(width: groesse * 1.5)
+                    
+                    // 2. Day Number ("The One")
                     ZStack {
-                        iconImage(for: strang, size: groesse * 0.6 * scale)
-                        overlayIndicators(size: groesse * scale)
+                        Circle()
+                            .fill(obereFarbe)
+                            .frame(width: groesse * 0.6, height: groesse * 0.6)
+                            .shadow(color: obereFarbe.opacity(0.3), radius: 10, y: 5)
+                        
+                        Text("\(tag.tagNummer)")
+                            .font(.system(size: groesse * 0.28, weight: .black, design: .rounded))
+                            .foregroundColor(.white)
                     }
+                    
+                    // 3. Progress Bar (Balken)
+                    VStack(spacing: 4) {
+                        GeometryReader { geo in
+                            ZStack(alignment: .leading) {
+                                Capsule().fill(Color.black.opacity(0.1))
+                                Capsule()
+                                    .fill(obereFarbe)
+                                    .frame(width: geo.size.width * CGFloat(tag.tagNummer) / 90.0)
+                            }
+                        }
+                        .frame(width: groesse * 1.2, height: 6)
+                        
+                        Text("\(Int((Double(tag.tagNummer) / 90.0) * 100))%")
+                            .font(.system(size: groesse * 0.16, weight: .bold, design: .rounded))
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    action?()
                 }
                 .opacity(tag.istErledigt ? 0.6 : 1.0)
             }
-            
-            // Labels
-            if strang.istAktiv {
-                VStack(spacing: 4) { // Increased distance
-                    // Time Badge
-                    Button {
-                        if let habit = gardenStore.pflanzen.first(where: { $0.plantID == strang.pflanzenID }) {
-                            tempTime = habit.reminderTime ?? Date()
-                            showTimePicker = true
-                        }
-                    } label: {
-                        Text(scheduledTime)
-                            .font(.system(size: groesse * 0.22, weight: .black, design: .rounded)) // Larger Font
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 3)
-                            .background(Color.black.opacity(0.35), in: Capsule())
-                            .shadow(color: .black.opacity(0.1), radius: 2)
-                    }
-                    .buttonStyle(.plain)
-                    
-                    // Habit Name
-                    Text(displayedName.uppercased())
-                        .font(.system(size: groesse * 0.22, weight: .black, design: .rounded)) // Larger Font
-                        .foregroundColor(Color.black.opacity(0.7)) // Slightly darker for contrast
-                        .lineLimit(1)
-                        .multilineTextAlignment(.center)
-                        .minimumScaleFactor(0.4)
-                        .frame(maxWidth: groesse * 2.2) 
-                }
-                .offset(y: 5) // Shifted down
-            }
+            .offset(y: 10)
         }
         .sheet(isPresented: $showTimePicker) {
             timePickerSheet
@@ -129,7 +130,7 @@ struct SingleHabitNode: View {
 
     @ViewBuilder
     private var timePickerSheet: some View {
-        if let habit = gardenStore.pflanzen.first(where: { $0.plantID == strang.pflanzenID }) {
+        if let habit = gardenStore.pflanzen.first(where: { $0.id == strang.pflanzenID }) {
             NavigationStack {
                 VStack(spacing: 20) {
                     Text(settings.localizedString(for: habit.displayedHabitName))
@@ -170,16 +171,34 @@ struct SingleHabitNode: View {
 
     @ViewBuilder
     private func iconImage(for s: PfadStrang, size: CGFloat) -> some View {
-        let assetName = GameDatabase.allPlants.first(where: { $0.id == s.pflanzenID })?.assetName
-        Group {
-            if let asset = assetName {
-                Image(asset)
+        // FIXED: Use s.pflanzenID to find the plant asset
+        let plant = GameDatabase.allPlants.first(where: { $0.id == s.pflanzenID })
+        let assetName = plant?.assetName
+        
+        ZStack {
+            // 1. Die Pflanze als Haupt-Icon
+            Group {
+                if let asset = assetName {
+                    Image(asset)
+                        .resizable()
+                        .scaledToFit()
+                } else {
+                    Image(systemName: s.pflanzenSymbol)
+                        .font(.system(size: size * 0.6, weight: .bold))
+                        .foregroundColor(.white)
+                }
+            }
+            .frame(width: size * 0.8, height: size * 0.8)
+            .offset(y: -size * 0.05)
+            
+            // 2. Der Igel (Ersatz/Freund) als kleiner Overlay-Begleiter
+            if !tag.igelAsset.isEmpty {
+                Image(tag.igelAsset)
                     .resizable()
                     .scaledToFit()
-            } else {
-                Image(systemName: s.pflanzenSymbol)
-                    .font(.system(size: size * 0.6, weight: .bold))
-                    .foregroundColor(.white)
+                    .frame(width: size * 0.5, height: size * 0.5)
+                    .offset(x: size * 0.25, y: size * 0.2)
+                    .shadow(color: .black.opacity(0.15), radius: 2, x: 1, y: 1)
             }
         }
         .frame(width: size, height: size)

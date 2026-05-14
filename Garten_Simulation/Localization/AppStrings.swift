@@ -7,19 +7,34 @@ enum AppStrings {
 
     // MARK: - Lookup
     static func get(_ key: String, language: String) -> String {
-        guard let entry = all[key] else { return key }
-        return entry[language] ?? entry["de"] ?? key
+        // 1. Check the static dictionary first
+        if let entry = all[key] {
+            return entry[language] ?? entry["de"] ?? key
+        }
+        
+        // 2. Fallback to system localization (Localizable.strings)
+        // We try to find the bundle for the specific language
+        if let path = Bundle.main.path(forResource: language, ofType: "lproj"),
+           let bundle = Bundle(path: path) {
+            let localized = bundle.localizedString(forKey: key, value: key, table: nil)
+            if localized != key {
+                return localized
+            }
+        }
+        
+        // Final fallback to standard NSLocalizedString
+        return NSLocalizedString(key, comment: "")
     }
 
     // MARK: - All Strings
     static let all: [String: [String: String]] = [
         "activity.all_done": [
-            "de": "Du hast alle Pflanzen gegossen! 🌿",
-            "en": "You've watered all plants! 🌿",
-            "es": "¡Has regado todas las plantas! 🌿",
-            "fr": "Tu as arrosé toutes les plantes ! 🌿",
-            "it": "Hai annaffiato tutte le piante! 🌿",
-            "pt": "Regaste todas as plantas! 🌿"
+            "de": "Du hast alle Pflanzen gegossen!",
+            "en": "You've watered all plants!",
+            "es": "¡Has regado todas las plantas!",
+            "fr": "Tu as arrosé toutes les plantes !",
+            "it": "Hai annaffiato tutte le piante!",
+            "pt": "Regaste todas as plantas!"
         ],
         "Alle": ["de": "Alle", "en": "All", "es": "Todos", "fr": "Tous", "it": "Tutti", "pt": "Todos"],
         "DEKO": ["de": "DEKO", "en": "DECOR", "es": "DECO", "fr": "DÉCO", "it": "DECO", "pt": "DECO"],
@@ -241,9 +256,14 @@ enum AppStrings {
         "pfad_phase_tag_titel_vertiefung": ["de": "Vertiefung", "en": "Refinement", "es": "Profundización", "fr": "Approfondissement", "it": "Approfondimento", "pt": "Aprofundamento"],
         "pfad_phase_tag_titel_meisterschaft": ["de": "Meisterschaft", "en": "Mastery", "es": "Maestría", "fr": "Maîtrise", "it": "Maestria", "pt": "Maestria"],
         "pfad_tag_header": ["de": "Tag %d", "en": "Day %d", "es": "Día %d", "fr": "Jour %d", "it": "Giorno %d", "pt": "Dia %d"],
+        "pfad_tag_von": ["de": "Tag %d von %d", "en": "Day %d of %d", "es": "Día %d de %d", "fr": "Jour %d sur %d", "it": "Giorno %d di %d", "pt": "Dia %d de %d"],
+        "pfad_erledigen_btn": ["de": "ERLEDIGEN", "en": "COMPLETE", "es": "COMPLETAR", "fr": "TERMINER", "it": "COMPLETA", "pt": "CONCLUIR"],
         "pfad_aktive_pflanzen": ["de": "Aktive Pflanzen", "en": "Active Plants", "es": "Plantas activas", "fr": "Plantes actives", "it": "Piante attive", "pt": "Plantas ativas"],
         "pfad_pflanze_kaufen": ["de": "Pflanze kaufen", "en": "Buy plant", "es": "Comprar planta", "fr": "Acheter une plante", "it": "Compra pianta", "pt": "Comprar planta"],
         "pfad_tag_verfuegbar_in": ["de": "Verfügbar in %@", "en": "Available in %@", "es": "Disponible en %@", "fr": "Disponible dans %@", "it": "Disponibile in %@", "pt": "Disponível em %@"],
+        "pfad_done_prefix": ["de": "✓ %@", "en": "✓ %@", "es": "✓ %@", "fr": "✓ %@", "it": "✓ %@", "pt": "✓ %@"],
+        "pfad_generic_description_fallback": ["de": "Bleib konzentriert auf deine Aufgabe: [HABIT]. Jeder Tag zählt auf deiner Reise.", "en": "Stay focused on your task: [HABIT]. Every day counts on your journey.", "es": "Mantente enfocado en tu tarea: [HABIT]. Cada día cuenta en tu viaje.", "fr": "Reste concentré sur ta tâche : [HABIT]. Chaque jour compte dans ton voyage.", "it": "Resta concentrato sul tuo compito: [HABIT]. Ogni giorno conta nel tuo viaggio.", "pt": "Mantém o foco na tua tarefa: [HABIT]. Cada dia conta na tua jornada."],
+        "pfad_progress_format": ["de": "Tag %d / 90", "en": "Day %d / 90", "es": "Día %d / 90", "fr": "Jour %d / 90", "it": "Giorno %d / 90", "pt": "Dia %d / 90"],
         "pfad_mental_day_7_title": ["de": "Eine Woche Achtsamkeit", "en": "One Week of Mindfulness", "es": "Una semana de atención plena", "fr": "Une semaine de pleine conscience", "it": "Una settimana di consapevolezza", "pt": "Uma semana de consciência"],
         "pfad_mental_day_7_desc": ["de": "Du hast 7 Tage lang bewusst geatmet. Spürst du die Ruhe?", "en": "You have breathed consciously for 7 days. Do you feel the peace?", "es": "Has respirado conscientemente durante 7 días. ¿Sientes la paz?", "fr": "Tu as respiré consciemment pendant 7 jours. Sens-tu le calme ?", "it": "Hai respirato consapevolmente per 7 giorni. Senti la pace?", "pt": "Respiraste conscientemente durante 7 dias. Sentes a paz?"],
         "pfad_lernen_day_7_title": ["de": "Wissens-Woche", "en": "Knowledge Week", "es": "Semana del conocimiento", "fr": "Semaine du savoir", "it": "Settimana della conoscenza", "pt": "Semana do conhecimento"],
@@ -359,7 +379,7 @@ enum AppStrings {
         "ice_wheel_back_button": ["de": "FERTIG", "en": "DONE", "es": "LISTO", "fr": "TERMINÉ", "it": "DONE", "pt": "CONCLUÍDO"],
         "ice_wheel_button_no_spins": ["de": "Kein Versuch", "en": "No spins", "es": "Sin giros", "fr": "Pas de tours", "it": "No spins", "pt": "Sem rotações"],
         "ice_wheel_button_spin": ["de": "Drehen", "en": "Spin", "es": "Girar", "fr": "Tourner", "it": "Spin", "pt": "Girar"],
-        "ice_wheel_reward": ["de": "🎰 Eis-Glücksrad Belohnung", "en": "🎰 Ice Wheel Reward", "es": "🎰 Recompensa Ruleta de Hielo", "fr": "🎰 Récompense roue de glace", "it": "🎰 Ice Wheel Reward", "pt": "🎰 Recompensa da roda de gelo"],
+        "ice_wheel_reward": ["de": "Eis-Glücksrad Belohnung", "en": "Ice Wheel Reward", "es": "Recompensa Ruleta de Hielo", "fr": "Récompense roue de glace", "it": "Ice Wheel Reward", "pt": "Recompensa da roda de gelo"],
         "ice_wheel_reward_title": ["de": "Gewonnen!", "en": "You won!", "es": "¡Has ganado!", "fr": "Gagné !", "it": "You won!", "pt": "Ganhaste!"],
         "ice_wheel_subtitle": ["de": "Meilenstein-Belohnungen sammeln", "en": "Collect milestone rewards", "es": "Recoge recompensas hito", "fr": "Collecte des récompenses jalons", "it": "Collect milestone rewards", "pt": "Recolhe recompensas de marcos"],
         "ice_wheel_title": ["de": "Eis-Glücksrad", "en": "Ice Luck Wheel", "es": "Ruleta de Hielo", "fr": "Roue de chance glacée", "it": "Ice Luck Wheel", "pt": "Roda da sorte gelada"],
@@ -453,7 +473,7 @@ enum AppStrings {
         "level_unlock_spin_bonus_desc": ["de": "Bonus: +2 Glücksrad-Drehungen", "en": "Bonus: +2 wheel spins", "es": "Bonus: +2 giros de ruleta", "fr": "Bonus : +2 tours de roue", "it": "Bonus: +2 wheel spins", "pt": "Bónus: +2 rotações da roda"],
         "level_unlock_spin_titel": ["de": "Glücksrad-Drehung", "en": "Spin the Wheel", "es": "Girar la Ruleta", "fr": "Tour de roue", "it": "Spin the Wheel", "pt": "Rotação da roda"],
         "level_up.subtitle": ["de": "Deine Pflanze ist jetzt", "en": "Your garden is now", "es": "Tu jardín ahora es", "fr": "Ton jardin est maintenant", "it": "Your garden is now", "pt": "O teu jardim é agora"],
-        "level_up.title": ["de": "LEVEL-UP! 🎉", "en": "LEVEL UP! 🎉", "es": "¡SUBIDA DE NIVEL! 🎉", "fr": "NIVEAU SUPÉRIEUR ! 🎉", "it": "LEVEL UP! 🎉", "pt": "SUBIU DE NÍVEL! 🎉"],
+        "level_up.title": ["de": "LEVEL-UP!", "en": "LEVEL UP!", "es": "¡SUBIDA DE NIVEL!", "fr": "NIVEAU SUPÉRIEUR !", "it": "LEVEL UP!", "pt": "SUBIU DE NÍVEL!"],
         "level_up_button_gluecksrad": ["de": "JETZT DREHEN", "en": "SPIN NOW", "es": "GIRAR AHORA", "fr": "TOURNER MAINTENANT", "it": "SPIN NOW", "pt": "GIRAR AGORA"],
         "level_up_button_weiter": ["de": "WEITER", "en": "CONTINUE", "es": "CONTINUAR", "fr": "CONTINUER", "it": "CONTINUE", "pt": "CONTINUAR"],
         "level_up_freigeschaltet": ["de": "Neu freigeschaltet", "en": "Newly unlocked", "es": "Recién desbloqueado", "fr": "Nouvellement débloqué", "it": "Newly unlocked", "pt": "Recentemente desbloqueado"],
@@ -482,29 +502,29 @@ enum AppStrings {
         "onboarding_benachrichtigung_erlauben": ["de": "ERLAUBEN", "en": "ALLOW", "es": "PERMITIR", "fr": "AUTORISER", "it": "ALLOW", "pt": "PERMITIR"],
         "onboarding_benachrichtigung_spaeter": ["de": "Später vielleicht", "en": "Maybe later", "es": "Tal vez más tarde", "fr": "Plus tard peut-être", "it": "Maybe later", "pt": "Talvez mais tarde"],
         "notification.evening.1.body": ["de": "Du hast noch %d %@! Komm vorbei, bevor der Tag endet.", "en": "You still have %d %@! Stop by before the day ends.", "es": "¡Aún tienes %d %@! Pasa por aquí antes de que acabe el día.", "fr": "Tu as encore %d %@ ! Viens avant la fin de la journée.", "it": "Hai ancora %d %@! Passa prima che finisca la giornata.", "pt": "Ainda tens %d %@! Aparece antes que o dia acabe."],
-        "notification.evening.1.title": ["de": "Dein Garten wartet 🌱", "en": "Your garden is waiting 🌱", "es": "Tu jardín te espera 🌱", "fr": "Ton jardin t'attend 🌱", "it": "Il tuo giardino ti aspetta 🌱", "pt": "O teu jardim espera por ti 🌱"],
+        "notification.evening.1.title": ["de": "Dein Garten wartet", "en": "Your garden is waiting", "es": "Tu jardín te espera", "fr": "Ton jardin t'attend", "it": "Il tuo giardino ti aspetta", "pt": "O teu jardim espera por ti"],
         "notification.evening.2.body": ["de": "Vergiss nicht auf deine Pflanzen! %d %@ braucht heute noch Wasser.", "en": "Don't forget your plants! %d %@ still needs water today.", "es": "¡No olvides tus plantas! %d %@ todavía necesita agua hoy.", "fr": "N'oublie pas tes plantes ! %d %@ a encore besoin d'eau aujourd'hui.", "it": "Non dimenticare le tue piante! %d %@ ha ancora bisogno d'acqua oggi.", "pt": "Não te esqueças das tuas plantas! %d %@ ainda precisa de água hoje."],
-        "notification.evening.2.title": ["de": "Ein letzter Blick? 🌙", "en": "One last look? 🌙", "es": "¿Un último vistazo? 🌙", "fr": "Un dernier coup d'œil ? 🌙", "it": "Un'ultima occhiata? 🌙", "pt": "Um último olhar? 🌙"],
+        "notification.evening.2.title": ["de": "Ein letzter Blick?", "en": "One last look?", "es": "¿Un último vistazo?", "fr": "Un dernier coup d'œil ?", "it": "Un'ultima occhiata?", "pt": "Um último olhar?"],
         "notification.evening.3.body": ["de": "Der Abend bricht an... und %d %@ rufen nach dir!", "en": "Evening falls... and %d %@ are calling for you!", "es": "Cae la noche... ¡y %d %@ te están llamando!", "fr": "Le soir tombe... et %d %@ t'appellent !", "it": "Scende la sera... e %d %@ ti chiamano!", "pt": "A noite cai... e %d %@ chamam por ti!"],
-        "notification.evening.3.title": ["de": "Stille im Garten ✨", "en": "Silence in the garden ✨", "es": "Silencio en el jardín ✨", "fr": "Silence dans le jardin ✨", "it": "Silenzio nel giardino ✨", "pt": "Silêncio no jardim ✨"],
+        "notification.evening.3.title": ["de": "Stille im Garten", "en": "Silence in the garden", "es": "Silencio en el jardín", "fr": "Silence dans le jardin", "it": "Silenzio nel giardino", "pt": "Silêncio no jardim"],
         "notification.morning.1.body": ["de": "Zeit für Gewohnheiten! Dein höchster Streak ist %d. Lass uns weiter wachsen!", "en": "Time for habits! Your highest streak is %d. Let's keep growing!", "es": "¡Hora de los hábitos! Tu mejor racha es %d. ¡Sigamos creciendo!", "fr": "L'heure des habitudes ! Ta meilleure série est %d. Continuons à grandir !", "it": "È l'ora delle abitudini! La tua serie migliore è %d. Continuiamo a crescere!", "pt": "Hora dos hábitos! O teu melhor streak é %d. Vamos continuar a crescer!"],
-        "notification.morning.1.title": ["de": "Guten Morgen! ☀️", "en": "Good morning! ☀️", "es": "¡Buenos días! ☀️", "fr": "Bonjour ! ☀️", "it": "Buongiorno! ☀️", "pt": "Bom dia! ☀️"],
+        "notification.morning.1.title": ["de": "Guten Morgen!", "en": "Good morning!", "es": "¡Buenos días!", "fr": "Bonjour !", "it": "Buongiorno!", "pt": "Bom dia!"],
         "notification.morning.2.body": ["de": "Ein neuer Start! Baue deinen Streak von %d weiter aus.", "en": "A fresh start! Keep building your streak of %d.", "es": "¡Un nuevo comienzo! Sigue aumentando tu racha de %d.", "fr": "Un nouveau départ ! Continue de construire ta série de %d.", "it": "Un nuovo inizio! Continua a costruire la tua serie di %d.", "pt": "Um novo começo! Continua a aumentar o teu streak de %d."],
-        "notification.morning.2.title": ["de": "Erfrischt aufwachen ☕️", "en": "Wake up refreshed ☕️", "es": "Despierta con energía ☕️", "fr": "Réveille-toi en forme ☕️", "it": "Svegliati rinfrescato ☕️", "pt": "Acorda revigorado ☕️"],
+        "notification.morning.2.title": ["de": "Erfrischt aufwachen", "en": "Wake up refreshed", "es": "Despierta con energía", "fr": "Réveille-toi en forme", "it": "Svegliati rinfrescato", "pt": "Acorda revigorado"],
         "notification.morning.3.body": ["de": "Dein Garten gedeiht! %d Tage harte Arbeit warten auf Fortsetzung.", "en": "Your garden thrives! %d days of hard work await continuation.", "es": "¡Tu jardín prospera! %d días de duro trabajo esperan continuar.", "fr": "Ton jardin prospère ! %d jours de dur labeur t'attendent.", "it": "Il tuo giardino prospera! %d giorni di duro lavoro aspettano di essere continuati.", "pt": "O teu jardim prospera! %d dias de trabalho árduo aguardam continuação."],
-        "notification.morning.3.title": ["de": "Neuer Tag, neues Glück 🌿", "en": "New day, new luck 🌿", "es": "Nuevo día, nueva suerte 🌿", "fr": "Nouveau jour, nouvelle chance 🌿", "it": "Nuovo giorno, nuova fortuna 🌿", "pt": "Novo dia, nova sorte 🌿"],
+        "notification.morning.3.title": ["de": "Neuer Tag, neues Glück", "en": "New day, new luck", "es": "Nuevo día, nueva suerte", "fr": "Nouveau jour, nouvelle chance", "it": "Nuovo giorno, nuova fortuna", "pt": "Novo dia, nova sorte"],
         "notification.streak.1.body": ["de": "Ohje! Wenn du jetzt nachlässt, stirbt die Pflanze und du verlierst %d Tage Streak.", "en": "Oh dear! If you slack now, the plant dies and you lose a %d-day streak.", "es": "¡Oh no! Si aflojas ahora, la planta muere y pierdes una racha de %d días.", "fr": "Oh là là ! Si tu relâches maintenant, la plante meurt et tu perds %d jours de série.", "it": "Oh no! Se ti arrendi ora, la pianta muore e perdi %d giorni di serie.", "pt": "Oh não! Se vacilares agora, a planta morre e perdes um streak de %d dias."],
-        "notification.streak.1.title": ["de": "Achtung, Streak in Gefahr! 🛑", "en": "Watch out, streak in danger! 🛑", "es": "¡Cuidado, racha en peligro! 🛑", "fr": "Attention, série en danger ! 🛑", "it": "Attenzione, serie in pericolo! 🛑", "pt": "Cuidado, streak em perigo! 🛑"],
+        "notification.streak.1.title": ["de": "Achtung, Streak in Gefahr!", "en": "Watch out, streak in danger!", "es": "¡Cuidado, racha en peligro!", "fr": "Attention, série en danger !", "it": "Attenzione, serie in pericolo!", "pt": "Cuidado, streak em perigo!"],
         "notification.streak.2.body": ["de": "Deine Gewohnheit steht auf der Kippe. Rette jetzt deine %d-Tage harte Arbeit!", "en": "Your habit is on the brink. Save your %d days of hard work now!", "es": "Tu hábito está en peligro. ¡Salva ahora tus %d días de duro trabajo!", "fr": "Ton habitude est en péril. Sauve maintenant tes %d jours de dur labeur !", "it": "La tua abitudine è a rischio. Salva ora i tuoi %d giorni di duro lavoro!", "pt": "O teu hábito corre perigo. Salva agora os teus %d dias de trabalho árduo!"],
-        "notification.streak.2.title": ["de": "%@ welkt gleich... 🥀", "en": "%@ is about to wither... 🥀", "es": "%@ está a punto de marchitarse... 🥀", "fr": "%@ est sur le point de faner... 🥀", "it": "%@ sta per appassire... 🥀", "pt": "%@ está quase a murchar... 🥀"],
+        "notification.streak.2.title": ["de": "%@ welkt gleich...", "en": "%@ is about to wither...", "es": "%@ está a punto de marchitarse...", "fr": "%@ est sur le point de faner...", "it": "%@ sta per appassire...", "pt": "%@ está quase a murchar..."],
         "notification.streak.3.body": ["de": "Du bist schon %d Tage dabei! Lass es nicht umsonst gewesen sein.", "en": "You've been at it for %d days! Don't let it be for nothing.", "es": "¡Llevas %d días en esto! No dejes que sea en vano.", "fr": "Ça fait déjà %d jours ! Ne laisse pas ça être pour rien.", "it": "Sei già a %d giorni! Non far sì che sia tutto inutile.", "pt": "Já estás nisto há %d dias! Não deixes que seja em vão."],
-        "notification.streak.3.title": ["de": "Bleib dran für %@! 🚨", "en": "Keep it up for %@! 🚨", "es": "¡Sigue así por %@! 🚨", "fr": "Continue pour %@ ! 🚨", "it": "Continua così per %@! 🚨", "pt": "Continua por %@! 🚨"],
+        "notification.streak.3.title": ["de": "Bleib dran für %@!", "en": "Keep it up for %@!", "es": "¡Sigue así por %@!", "fr": "Continue pour %@ !", "it": "Continua così per %@!", "pt": "Continua por %@!"],
         "notification.wait.1.body": ["de": "Schon %d Stunden ohne Pflege. Schau doch kurz im Garten vorbei!", "en": "Already %d hours without care. Just drop by the garden briefly!", "es": "Ya van %d horas sin cuidados. ¡Pasa un momento por el jardín!", "fr": "Déjà %d heures sans soins. Fais un petit tour dans le jardin !", "it": "Già %d ore senza cure. Fai un salto nel giardino!", "pt": "Já %d horas sem cuidados. Dá um salto ao jardim!"],
         "notification.wait.1.title": ["de": "%@ vermisst dich!", "en": "%@ misses you!", "es": "¡%@ te echa de menos!", "fr": "%@ s'ennuie de toi !", "it": "%@ sente la tua mancanza!", "pt": "%@ tem saudades tuas!"],
         "notification.wait.2.body": ["de": "Die Zeit rennt! Erledige deine Gewohnheit (%d Stunden vergangen).", "en": "Time is flying! Complete your habit (%d hours passed).", "es": "¡El tiempo vuela! Completa tu hábito (han pasado %d horas).", "fr": "Le temps file ! Complète ton habitude (%d heures écoulées).", "it": "Il tempo vola! Completa la tua abitudine (%d ore passate).", "pt": "O tempo voa! Completa o teu hábito (%d horas passadas)."],
-        "notification.wait.2.title": ["de": "Hallo? Zeit für %@! 🔔", "en": "Hello? Time for %@! 🔔", "es": "¿Hola? ¡Hora de %@! 🔔", "fr": "Allô ? C'est l'heure de %@ ! 🔔", "it": "Ciao? È l'ora di %@! 🔔", "pt": "Olá? Hora de %@! 🔔"],
+        "notification.wait.2.title": ["de": "Hallo? Zeit für %@!", "en": "Hello? Time for %@!", "es": "¿Hola? ¡Hora de %@!", "fr": "Allô ? C'est l'heure de %@ !", "it": "Ciao? È l'ora di %@!", "pt": "Olá? Hora de %@!"],
         "notification.wait.3.body": ["de": "Du hast noch %d Stunden Zeit, dich um deine Pflanze zu kümmern.", "en": "You have %d hours left to take care of your plant.", "es": "Aún tienes %d horas para cuidar de tu planta.", "fr": "Il te reste %d heures pour t'occuper de ta plante.", "it": "Hai ancora %d ore per prenderti cura della tua pianta.", "pt": "Ainda tens %d horas para cuidar da tua planta."],
-        "notification.wait.3.title": ["de": "Vergiss \"%@\" nicht! 🌱", "en": "Don't forget \"%@\"!  🌱", "es": "¡No olvides \"%@\"!  🌱", "fr": "N'oublie pas \"%@\" !  🌱", "it": "Non dimenticare \"%@\"!  🌱", "pt": "Não te esqueças de \"%@\"!  🌱"],
+        "notification.wait.3.title": ["de": "Vergiss \"%@\" nicht!", "en": "Don't forget \"%@\"! ", "es": "¡No olvides \"%@\"! ", "fr": "N'oublie pas \"%@\" ! ", "it": "Non dimenticare \"%@\"! ", "pt": "Não te esqueças de \"%@\"! "],
         "onboarding_benachrichtigung_status_abgelehnt": ["de": "Hinweis: Du hast Mitteilungen bereits deaktiviert. Um sie zu nutzen, musst du sie in den iOS-Einstellungen aktivieren.", "en": "Note: You have already disabled notifications. To use them, you must re-enable them in the iOS settings.", "es": "Nota: Ya has desactivado las notificaciones. Para usarlas, debes volver a activarlas en los ajustes de iOS.", "fr": "Note : tu as déjà désactivé les notifications. Pour les utiliser, tu dois les réactiver dans les réglages iOS.", "it": "Note: You have already disabled notifications. To use them, you must re-enable them in the iOS settings.", "pt": "Nota: Já desativaste as notificações. Para as usares, tens de as reativar nas definições do iOS."],
         "onboarding_benachrichtigung_text": ["de": "Aktiviere Mitteilungen, um deinen Garten am Leben zu erhalten.", "en": "Enable notifications to keep your garden alive.", "es": "Activa las notificaciones para mantener vivo tu jardín.", "fr": "Active les notifications pour garder ton jardin en vie.", "it": "Enable notifications to keep your garden alive.", "pt": "Ativa as notificações para manter o teu jardim vivo."],
         "onboarding_benachrichtigung_titel": ["de": "Erinnerungen", "en": "Reminders", "es": "Recordatorios", "fr": "Rappels", "it": "Reminders", "pt": "Lembretes"],
@@ -788,7 +808,7 @@ enum AppStrings {
         "retention.frage1.titel": ["de": "Warum hast du aufgehört die App zu benutzen?", "en": "Why did you stop using the app?", "es": "¿Por qué dejaste de usar la app?", "fr": "Pourquoi as-tu arrêté d'utiliser l'application ?", "it": "Why did you stop using the app?", "pt": "Porque paraste de usar a aplicação?"],
         "retention.frage2.keineLust": ["de": "Was hat dir am meisten Spaß gemacht?", "en": "What did you enjoy the most?", "es": "¿Qué fue lo que más disfrutaste?", "fr": "Qu'est-ce qui t'a le plus plu ?", "it": "What did you enjoy the most?", "pt": "O que mais gostaste?"],
         "retention.frage2.keineZeit": ["de": "Wie viele Pflanzen sind realistisch für dich?", "en": "How many plants are realistic for you?", "es": "¿Cuántas plantas son realistas para ti?", "fr": "Combien de plantes est réaliste pour toi ?", "it": "How many plants are realistic for you?", "pt": "Quantas plantas são realistas para ti?"],
-        "retention.frage2.nichtMehrNoetig": ["de": "Respekt — du hast dein Ziel erreicht! 🎉", "en": "Respect — you reached your goal! 🎉", "es": "¡Respeto — alcanzaste tu objetivo! 🎉", "fr": "Respect — tu as atteint ton objectif ! 🎉", "it": "Respect — you reached your goal! 🎉", "pt": "Respeito — atingiste o teu objetivo! 🎉"],
+        "retention.frage2.nichtMehrNoetig": ["de": "Respekt — du hast dein Ziel erreicht!", "en": "Respect — you reached your goal!", "es": "¡Respeto — alcanzaste tu objetivo!", "fr": "Respect — tu as atteint ton objectif !", "it": "Respect — you reached your goal!", "pt": "Respeito — atingiste o teu objetivo!"],
         "retention.frage2.nichtMehrNoetig.sub": ["de": "Vielleicht gibt es neue Gewohnheiten die du aufbauen möchtest?", "en": "Maybe there are new habits you'd like to build?", "es": "¿Quizás hay nuevos hábitos que te gustaría construir?", "fr": "Peut-être y a-t-il de nouvelles habitudes que tu voudrais développer ?", "it": "Maybe there are new habits you'd like to build?", "pt": "Talvez haja novos hábitos que gostasses de desenvolver?"],
         "retention.frage2.nichtMotiviert": ["de": "Was würde dir helfen?", "en": "What would help you?", "es": "¿Qué te ayudaría?", "fr": "Qu'est-ce qui t'aiderait ?", "it": "What would help you?", "pt": "O que te ajudaria?"],
         "retention.frage2.vergessen": ["de": "Soll ich dich täglich erinnern?", "en": "Should I remind you daily?", "es": "¿Quieres que te recuerde diariamente?", "fr": "Dois-je te rappeler quotidiennement ?", "it": "Should I remind you daily?", "pt": "Devo lembrar-te diariamente?"],
@@ -874,6 +894,11 @@ enum AppStrings {
         "settings.share.desc": ["de": "Gefällt Ihnen die Garten-Simulation? Teilen Sie sie mit Ihren Freunden!", "en": "Do you like the Garden Simulation? Share it with your friends!", "es": "¿Te gusta Grovy? ¡Compártelo con tus amigos!", "fr": "Tu aimes Garten Simulation ? Partage-la avec tes amis !", "it": "Do you like the Garden Simulation? Share it with your friends!", "pt": "Gostas do Garten Simulation? Partilha com os teus amigos!"],
         "settings.terms": ["de": "Nutzungsbedingungen", "en": "Terms of Service", "es": "Términos de Uso", "fr": "Conditions d'utilisation", "it": "Terms of Service", "pt": "Termos de utilização"],
         "settings.terms.desc": ["de": "Durch die Nutzung von Garten Simulation stimmst du folgenden Bedingungen zu:\n\n1. Nutzung\nDie App ist ausschließlich für den privaten Gebrauch bestimmt.\n\n2. Inhalte\nAlle Spielinhalte, Designs und Texte sind Eigentum des Entwicklers.\n\n3. Haftung\nDie App wird ohne Gewährleistung bereitgestellt. Der Entwickler übernimmt keine Haftung für Datenverlust.\n\n4. Änderungen\nDer Entwickler behält sich vor, die App und diese Bedingungen jederzeit zu aktualisieren.\n\n5. Kontakt\nBei Fragen erreichst du uns über den Support in den Einstellungen.", "en": "By using Garten Simulation, you agree to the following terms:\n\n1. Usage\nThe app is intended for personal use only.\n\n2. Content\nAll game content, designs, and texts are the property of the developer.\n\n3. Liability\nThe app is provided without warranty. The developer assumes no liability for data loss.\n\n4. Changes\nThe developer reserves the right to update the app and these terms at any time.\n\n5. Contact\nFor questions, reach us via Support in the settings.", "es": "Al usar Grovy, aceptas los siguientes términos:\n\n1. Uso\nLa app está destinada únicamente al uso personal.\n\n2. Contenido\nTodo el contenido del juego, diseños y textos son propiedad del desarrollador.\n\n3. Responsabilidad\nLa app se proporciona sin garantía. El desarrollador no asume ninguna responsabilidad por pérdida de datos.\n\n4. Cambios\nEl desarrollador se reserva el derecho de actualizar la app y estos términos en cualquier momento.\n\n5. Contacto\nPara preguntas, contáctanos a través del Soporte en los ajustes.", "fr": "En utilisant Garten Simulation, tu acceptes les conditions suivantes :\n\n1. Utilisation\nL’application est destinée à un usage personnel uniquement.\n\n2. Contenu\nTout le contenu du jeu, les designs et les textes appartiennent au développeur.\n\n3. Responsabilité\nL’application est fournie sans garantie. Le développeur n’assume aucune responsabilité pour les pertes de données.\n\n4. Modifications\nLe développeur se réserve le droit de mettre à jour l’application et ces conditions à tout moment.\n\n5. Contact\nPour toute question, contacte-nous via le support dans les paramètres.", "it": "By using Garten Simulation, you agree to the following terms:\n\n1. Usage\nThe app is intended for personal use only.\n\n2. Content\nAll game content, designs, and texts are the property of the developer.\n\n3. Liability\nThe app is provided without warranty. The developer assumes no liability for data loss.\n\n4. Changes\nThe developer reserves the right to update the app and these terms at any time.\n\n5. Contact\nFor questions, reach us via Support in the settings.", "pt": "Ao usar o Garten Simulation, concordas com os seguintes termos:\n\n1. Utiliza\u{00E7}\u{00E3}o\nA aplica\u{00E7}\u{00E3}o destina-se exclusivamente a uso pessoal.\n\n2. Conte\u{00FA}do\nTodo o conte\u{00FA}do do jogo, designs e textos s\u{00E3}o propriedade do programador.\n\n3. Responsabilidade\nA aplica\u{00E7}\u{00E3}o \u{00E9} fornecida sem garantia. O programador n\u{00E3}o assume qualquer responsabilidade por perda de dados.\n\n4. Altera\u{00E7}\u{00F5}es\nO programador reserva-se o direito de atualizar a aplica\u{00E7}\u{00E3}o e estes termos a qualquer momento.\n\n5. Contacto\nPara quest\u{00F5}es, contacta-nos atrav\u{00E9}s do Suporte nas defini\u{00E7}\u{00F5}es."],
+        "schwierigkeit.titel": ["de": "Schwierigkeit", "en": "Difficulty", "es": "Dificultad", "fr": "Difficulté", "it": "Difficoltà", "pt": "Dificuldade"],
+        "schwierigkeit.waehlen_hinweis": ["de": "Bitte wähle eine Schwierigkeit", "en": "Please select a difficulty", "es": "Por favor selecciona una dificultad", "fr": "Veuillez sélectionner une difficulté", "it": "Seleziona una difficoltà", "pt": "Por favor selecione uma dificuldade"],
+        "pfad_schwierigkeit_titel": ["de": "Wie fit bist du schon?", "en": "How fit are you already?", "es": "¿Qué tan en forma estás ya?", "fr": "À quel point es-tu déjà en forme ?", "it": "Quanto sei già in forma?", "pt": "Quão em forma já estás?"],
+        "pfad_schwierigkeit_untertitel": ["de": "Wir passen deinen Pfad an dein Level an.", "en": "We adapt your path to your level.", "es": "Adaptamos tu camino a tu nivel.", "fr": "Nous adaptons ton parcours à ton niveau.", "it": "Adattiamo il tuo percorso al tuo livello.", "pt": "Adaptamos o teu percurso ao teu nível."],
+        "pfad_schwierigkeit_starten": ["de": "Abenteuer beginnen", "en": "Start Adventure", "es": "Iniciar aventura", "fr": "Commencer l'aventure", "it": "Inizia l'avventura", "pt": "Começar aventura"],
         "settings.timeskip_simulation": ["de": "ZEITSPRUNG-SIMULATION", "en": "TIME SKIP SIMULATION", "es": "SIMULACIÓN DE SALTO EN EL TIEMPO", "fr": "SIMULATION DE SAUT TEMPOREL", "it": "TIME SKIP SIMULATION", "pt": "SIMULAÇÃO DE SALTO TEMPORAL"],
         "settings.title": ["de": "Einstellungen", "en": "Settings", "es": "Ajustes", "fr": "Paramètres", "it": "Settings", "pt": "Definições"],
         "settings.understood": ["de": "Verstanden", "en": "Understood", "es": "Entendido", "fr": "Compris", "it": "Understood", "pt": "Entendido"],
@@ -894,11 +919,14 @@ enum AppStrings {
         "shop.item.description": ["de": "Beschreibung", "en": "Description", "es": "Descripción", "fr": "Description", "it": "Description", "pt": "Descrição"],
         "shop.item.sell": ["de": "Gegenstand verkaufen", "en": "Sell Item", "es": "Vender objeto", "fr": "Vendre l'objet", "it": "Sell Item", "pt": "Vender item"],
         "shop.item.usage": ["de": "Benutzung", "en": "Usage", "es": "Uso", "fr": "Utilisation", "it": "Usage", "pt": "Utilização"],
+        "powerup.active_until": ["de": "Aktiv bis:", "en": "Active until:", "es": "Activo hasta:", "fr": "Actif jusqu'à:", "it": "Attivo fino a:", "pt": "Ativo até:"],
+        "powerup.remaining": ["de": "Noch %@", "en": "Remaining: %@", "es": "Quedan %@", "fr": "Encore %@", "it": "Ancora %@", "pt": "Ainda %@"],
+        "powerup.permanent": ["de": "Permanent", "en": "Permanent", "es": "Permanente", "fr": "Permanente", "it": "Permanente", "pt": "Permanente"],
         "shop.need_more_coins": ["de": "Du brauchst noch %d Coins mehr.", "en": "You need %d more coins.", "es": "Necesitas %d monedas más.", "fr": "Il te manque encore %d pièces.", "it": "You need %d more coins.", "pt": "Ainda precisas de %d moedas."],
         "shop.not_enough_coins": ["de": "Zu wenig Coins", "en": "Not Enough Coins", "es": "Monedas Insuficientes", "fr": "Pas assez de pièces", "it": "Not Enough Coins", "pt": "Moedas insuficientes"],
         "shop.owned": ["de": "Bereits im Besitz", "en": "Already owned", "es": "Ya adquirido", "fr": "Déjà possédé", "it": "Already owned", "pt": "Já possui"],
         "shop.purchase_success.awesome": ["de": "Super!", "en": "Awesome!", "es": "¡Genial!", "fr": "Super !", "it": "Awesome!", "pt": "Ótimo!"],
-        "shop.purchase_success.title": ["de": "Gekauft! 🎉", "en": "Purchased! 🎉", "es": "¡Comprado! 🎉", "fr": "Acheté ! 🎉", "it": "Purchased! 🎉", "pt": "Comprado! 🎉"],
+        "shop.purchase_success.title": ["de": "Gekauft!", "en": "Purchased!", "es": "¡Comprado!", "fr": "Acheté !", "it": "Purchased!", "pt": "Comprado!"],
         "shop.purchases.count": ["de": "Käufe im Shop", "en": "Shop Purchases", "es": "Compras en la tienda", "fr": "Achats en boutique", "it": "Shop Purchases", "pt": "Compras na loja"],
         "shop.search_placeholder": ["de": "Suche nach Pflanzen oder Items...", "en": "Search...", "es": "Buscar...", "fr": "Rechercher des plantes ou des objets...", "it": "Search...", "pt": "Search..."],
         "shop.tab.items": ["de": "Gegenstände", "en": "Items", "es": "Objetos", "fr": "Objets", "it": "Items", "pt": "Itens"],
@@ -1124,6 +1152,10 @@ enum AppStrings {
         "weather.duerre.subtitle": ["de": "Doppeltes Gießen erforderlich!", "en": "Double watering required!", "es": "¡Se requiere doble riego!", "fr": "Double arrosage requis !", "it": "Double watering required!", "pt": "Rega dupla necessária!"],
         "weather.duerre.title": ["de": "Dürre-Alarm!", "en": "Drought Alert!", "es": "¡Alarma de sequía!", "fr": "Alerte sécheresse !", "it": "Drought Alert!", "pt": "Alerta de seca!"],
         "weather.new_event": ["de": "Neues Wetter-Event!", "en": "New Weather Event!", "es": "¡Nuevo Evento Meteorológico!", "fr": "Nouvel événement météo !", "it": "New Weather Event!", "pt": "Novo evento meteorológico!"],
+        "weather.effect.gems_plus": ["de": "+50% Gems", "en": "+50% Gems", "es": "+50% Gemas", "fr": "+50% gemmes", "it": "+50% Gems", "pt": "+50% gemas"],
+        "weather.effect.gems_minus": ["de": "-30% Gems", "en": "-30% Gems", "es": "-30% Gemas", "fr": "-30% gemmes", "it": "-30% Gems", "pt": "-30% gemas"],
+        "weather.effect.xp_plus": ["de": "+50% XP", "en": "+50% XP", "es": "+50% XP", "fr": "+50% XP", "it": "+50% XP", "pt": "+50% XP"],
+        "weather.effect.normal": ["de": "Normal", "en": "Normal", "es": "Normal", "fr": "Normal", "it": "Normal", "pt": "Normal"],
         "weather.normal.subtitle": ["de": "Alles wächst wie geplant", "en": "Everything grows as planned", "es": "Todo crece según lo previsto", "fr": "Tout pousse comme prévu", "it": "Everything grows as planned", "pt": "Tudo cresce como planeado"],
         "weather.normal.title": ["de": "Ruhiger Tag", "en": "Calm Day", "es": "Día tranquilo", "fr": "Journée calme", "it": "Calm Day", "pt": "Dia calmo"],
         "weather.perfekt.subtitle": ["de": "Heute doppelte Belohnung!", "en": "Double rewards today!", "es": "¡Doble recompensa hoy!", "fr": "Double récompense aujourd'hui !", "it": "Double rewards today!", "pt": "Recompensa dupla hoje!"],
@@ -1158,6 +1190,33 @@ enum AppStrings {
         "wheel.reward.deko": ["de": "Déco", "en": "Déco", "fr": "Déco"],
         "wheel.spins_label": ["de": "%d Drehs", "en": "%d Spins", "es": "%d Giros", "fr": "%d tours", "it": "%d Spins", "pt": "%d rotações"],
         "wheel.use": ["de": "Nutzen", "en": "Use", "es": "Usar", "fr": "Utiliser", "it": "Use", "pt": "Usar"],
-        "xp_bis_naechste": ["de": "%d XP bis %@", "en": "%d XP until %@", "es": "%d XP hasta %@", "fr": "%d XP jusqu'à %@", "it": "%d XP until %@", "pt": "%d XP até %@"]
+        "xp_bis_naechste": ["de": "%d XP bis %@", "en": "%d XP until %@", "es": "%d XP hasta %@", "fr": "%d XP jusqu'à %@", "it": "%d XP until %@", "pt": "%d XP até %@"],
+        "plant.mystic_seed.name": ["de": "Mystischer Samen", "en": "Mystic Seed", "es": "Semilla Mística", "fr": "Graine Mystique", "it": "Seme Mistico", "pt": "Semente Mística"],
+        "plant.mystic_seed.symbolism": ["de": "Ein seltener Samen mit geheimnisvoller Kraft.", "en": "A rare seed with mysterious power.", "es": "Una semilla rara con un poder misterioso.", "fr": "Une graine rare au pouvoir mystérieux.", "it": "Un seme raro con un potere misterioso.", "pt": "Uma semente rara com um poder misterioso."],
+        "habit.atemarbeit": ["de": "Atemarbeit", "en": "Breathwork", "es": "Respiración consciente", "fr": "Travail respiratoire", "it": "Respirazione consapevole", "pt": "Respiração consciente"],
+        "stats.consistency.perfect": ["de": "Perfekt!", "en": "Perfect!", "es": "¡Perfecto!", "fr": "Parfait !", "it": "Perfetto!", "pt": "Perfeito!"],
+        "stats.consistency.good": ["de": "Starke Leistung!", "en": "Great job!", "es": "¡Buen trabajo!", "fr": "Beau travail !", "it": "Ottimo lavoro!", "pt": "Bom trabalho!"],
+        "stats.consistency.keepgoing": ["de": "Bleib dran!", "en": "Keep it up!", "es": "¡Sigue así!", "fr": "Continue !", "it": "Continua così!", "pt": "Continua assim!"],
+        
+        // Share & Analytics Keys
+        "statistik_life_balance": ["de": "Life Balance", "en": "Life Balance", "es": "Equilibrio", "fr": "Équilibre", "it": "Equilibrio", "pt": "Equilíbrio"],
+        "statistik_share_letzte_woche": ["de": "Letzte Woche", "en": "Last Week", "es": "Última semana", "fr": "Semaine dernière", "it": "Ultima settimana", "pt": "Última semana"],
+        "statistik_share_letzter_monat": ["de": "Letzter Monat", "en": "Last Month", "es": "Último mes", "fr": "Mois dernier", "it": "Ultimo mese", "pt": "Último mês"],
+        "statistik_share_letztes_jahr": ["de": "Letztes Jahr", "en": "Last Year", "es": "Último año", "fr": "Année dernière", "it": "Ultimo anno", "pt": "Último ano"],
+        "statistik_share_status": ["de": "Mein Status", "en": "My Status", "es": "Mi estado", "fr": "Mon statut", "it": "Il mio stato", "pt": "Meu estado"],
+        "stats.milestone.title": ["de": "Nächste Meilensteine", "en": "Next Milestones", "es": "Próximos hitos", "fr": "Prochains jalons", "it": "Prossimi traguardi", "pt": "Próximos marcos"],
+        "stats.score.card.title": ["de": "Garten-Score", "en": "Garden Score", "es": "Puntuación", "fr": "Score du jardin", "it": "Punteggio", "pt": "Pontuação do jardim"],
+        "stats.score.konsistenz": ["de": "Konstanz", "en": "Consistency", "es": "Consistencia", "fr": "Constance", "it": "Costanza", "pt": "Consistência"],
+        "stats.score.streak": ["de": "Streak", "en": "Streak", "es": "Racha", "fr": "Série", "it": "Streak", "pt": "Sequência"],
+        "stats.score.seltenheit": ["de": "Seltenheit", "en": "Rarity", "es": "Rareza", "fr": "Rareté", "it": "Rarità", "pt": "Raridade"],
+        "stats.share.preview_title": ["de": "Vorschau", "en": "Preview", "es": "Vista previa", "fr": "Aperçu", "it": "Anteprima", "pt": "Vorschau"],
+        "stats.share.hint": ["de": "Wähle ein Design für dein Bild", "en": "Choose a design for your image", "es": "Elige un diseño", "fr": "Choisis un design", "it": "Scegli un design", "pt": "Escolha um design"],
+        "stats.score.konsistenz.period_format": ["de": "Gießquote in %@", "en": "Watering rate in %@", "es": "Tasa en %@", "fr": "Taux en %@", "it": "Tasso in %@", "pt": "Taxa em %@"],
+        "stats.score.streak.period_format": ["de": "Bester Streak in %@", "en": "Best streak in %@", "es": "Mejor racha en %@", "fr": "Meilleure série en %@", "it": "Miglior streak in %@", "pt": "Melhor sequência em %@"],
+        "stats.succeeded": ["de": "Erledigt", "en": "Succeeded", "es": "Logrado", "fr": "Réussi", "it": "Riuscito", "pt": "Concluído"],
+        "stats.missed": ["de": "Verpasst", "en": "Missed", "es": "Perdido", "fr": "Raté", "it": "Perso", "pt": "Perdido"],
+        "stats.period.this_week": ["de": "diese Woche", "en": "this week", "es": "esta semana", "fr": "cette semaine", "it": "questa settimana", "pt": "esta semana"],
+        "stats.period.this_month": ["de": "diesen Monat", "en": "this month", "es": "este mes", "fr": "ce mois", "it": "questo mese", "pt": "este mês"],
+        "stats.period.this_year": ["de": "dieses Jahr", "en": "this year", "es": "este año", "fr": "cette année", "it": "quest'anno", "pt": "este ano"]
     ]
 }

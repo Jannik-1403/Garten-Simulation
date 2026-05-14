@@ -73,7 +73,7 @@ struct ProfilXPHeaderView: View {
                         
                         Capsule()
                             .fill(farbe)
-                            .frame(width: max(8, CGFloat(fortschritt) * (UIScreen.main.bounds.width - 76)), height: 8)
+                            .frame(width: max(8, CGFloat(fortschritt) * (ScreenSize.width - 76)), height: 8)
                     }
                     .mask(Capsule())
                     .animation(.spring(response: 0.6, dampingFraction: 0.82), value: fortschritt)

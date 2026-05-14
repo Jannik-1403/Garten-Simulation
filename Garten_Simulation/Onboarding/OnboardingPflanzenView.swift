@@ -109,14 +109,14 @@ struct PlantSelectionCard: View {
                     .font(.system(size: 18, weight: .black, design: .rounded))
                     .foregroundStyle(.primary)
                     .multilineTextAlignment(.center)
-                    .lineLimit(1)
+                    .lineLimit(2)
                     .minimumScaleFactor(0.8)
                 
                 Text(settings.localizedString(for: plant.localizedName))
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
-                    .lineLimit(1)
+                    .lineLimit(2)
                     .minimumScaleFactor(0.8)
             }
         }

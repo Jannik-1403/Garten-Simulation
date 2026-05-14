@@ -8,11 +8,49 @@ private let igelAssets: [String] = [
     "Igel-Backen", "Igel-Code", "Igel-Duschen", "Igel-Essen", "Igel-Fischen",
     "Igel-Foto", "Igel-Golf", "Igel-Kochen", "Igel-König", "Igel-Lesen",
     "Igel-Malen", "Igel-Meditieren", "Igel-Musik", "Igel-Schach", "Igel-Schlafen",
-    "Igel-Sport", "Igel-Surfen", "Igel-Welttraum", "Igel-wandern"
+    "Igel-Sport", "Igel-Surfen", "Igel-Welttraum", "Igel-wandern", "Igel-Schlagzeug",
+    "Igel-Schreiben", "Igel-Zelten", "Igel-rennen", "Igel-Skatboard", "Igel-Töpfern"
 ]
+
 private func igelForToday() -> String {
     let day = Calendar.current.ordinality(of: .day, in: .era, for: .now) ?? 0
     return igelAssets[day % igelAssets.count]
+}
+
+// MARK: - PNG Image Helper
+private var appBundle: Bundle {
+    // Der zuverlässigste Weg, den "App Ordner" aus einem Widget zu finden:
+    // Wir gehen vom Widget-Bundle (.../App.app/PlugIns/Widget.appex) zwei Ebenen hoch.
+    let pluginURL = Bundle.main.bundleURL
+    let appURL = pluginURL.deletingLastPathComponent().deletingLastPathComponent()
+    if let bundle = Bundle(url: appURL) {
+        return bundle
+    }
+    // Fallback auf Identifier
+    if let bundle = Bundle(identifier: "com.jannik.grovy") ?? Bundle(identifier: "de.jannik.gartensimulation") {
+        return bundle
+    }
+    return .main
+}
+
+@ViewBuilder
+private func PNGImage(_ name: String) -> some View {
+    // Widgets müssen explizit auf das Bundle der Haupt-App verlinkt werden
+    Group {
+        if let uiImage = UIImage(named: name, in: appBundle, with: nil) ?? 
+           UIImage(named: name.precomposedStringWithCanonicalMapping, in: appBundle, with: nil) ??
+           UIImage(named: name.decomposedStringWithCanonicalMapping, in: appBundle, with: nil) ??
+           UIImage(named: name.replacingOccurrences(of: " ", with: "_"), in: appBundle, with: nil) {
+            Image(uiImage: uiImage)
+                .renderingMode(.original)
+                .resizable()
+        } else {
+            // Letzter Versuch: Direktes Laden über SwiftUI im Widget-Bundle
+            Image(name)
+                .renderingMode(.original)
+                .resizable()
+        }
+    }
 }
 
 // MARK: - UI Constants für Duolingo-Stil
@@ -81,6 +119,162 @@ enum DuoStyle {
     }
 }
 
+// MARK: - PREMIUM STREAK BACKGROUND
+struct StreakBackgroundView: View {
+    let style: WidgetBackgroundStyle
+    
+    var body: some View {
+        ZStack {
+            if style == .colorful {
+                // 1. Dynamischer Verlauf (Bernstein zu Goldgelb)
+                RadialGradient(
+                    stops: [
+                        .init(color: Color(red: 1.0, green: 0.95, blue: 0.4), location: 0.0), // Strahlendes Gold
+                        .init(color: Color(red: 1.0, green: 0.6, blue: 0.0), location: 0.4),  // Sattes Orange
+                        .init(color: Color(red: 0.6, green: 0.2, blue: 0.0), location: 1.0)   // Dunkles Bernstein
+                    ],
+                    center: UnitPoint(x: 0.85, y: 0.85), // Hinter dem Igel unten rechts
+                    startRadius: 10,
+                    endRadius: 220
+                )
+                
+                // 2. Volumetrisches Licht (Strahlen)
+                GeometryReader { geo in
+                    ZStack {
+                        ForEach(0..<6) { i in
+                            Rectangle()
+                                .fill(
+                                    LinearGradient(
+                                        colors: [.white.opacity(0.12), .clear],
+                                        startPoint: .bottomTrailing,
+                                        endPoint: .topLeading
+                                    )
+                                )
+                                .frame(width: geo.size.width * 1.5, height: 30)
+                                .rotationEffect(.degrees(Double(i) * 15 - 45), anchor: .bottomTrailing)
+                                .offset(x: geo.size.width * 0.2, y: geo.size.height * 0.2)
+                                .blur(radius: 15)
+                        }
+                    }
+                }
+                
+                // 3. Partikel / Bokeh (Glühende Funken)
+                Canvas { context, size in
+                    for i in 0..<18 {
+                        let seed = Double(i)
+                        let x = (sin(seed * 123.45) * 0.5 + 0.5) * size.width
+                        let y = (cos(seed * 678.90) * 0.5 + 0.5) * size.height
+                        let s = (sin(seed * 99.9) * 0.5 + 0.5) * 4 + 2
+                        
+                        let rect = CGRect(x: x, y: y, width: s, height: s)
+                        let color = Color.white.opacity((sin(seed) * 0.5 + 0.5) * 0.3 + 0.1)
+                        
+                        context.addFilter(.blur(radius: 0.5))
+                        context.fill(Path(ellipseIn: rect), with: .color(color))
+                    }
+                }
+            } else if style == .light {
+                Color.white
+            } else {
+                Color.black
+            }
+            
+            // 4. Beleuchteter Rahmen (Rim Light / Edge Highlight)
+            RoundedRectangle(cornerRadius: 24) // Widget-Radius Annäherung
+                .strokeBorder(
+                    LinearGradient(
+                        stops: [
+                            .init(color: .white.opacity(0.7), location: 0.0),
+                            .init(color: .white.opacity(0.1), location: 0.2),
+                            .init(color: .clear, location: 0.5),
+                            .init(color: .white.opacity(0.3), location: 1.0)
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    lineWidth: 2.5
+                )
+                .blendMode(.overlay)
+        }
+    }
+}
+
+// MARK: - PREMIUM WATER BACKGROUND
+struct WaterBackgroundView: View {
+    let style: WidgetBackgroundStyle
+    
+    var body: some View {
+        ZStack {
+            if style == .colorful {
+                // 1. Tiefsee-Verlauf (Cyan zu Marineblau)
+                RadialGradient(
+                    stops: [
+                        .init(color: Color(red: 0.4, green: 0.9, blue: 1.0), location: 0.0), // Helles Türkis/Cyan
+                        .init(color: Color(red: 0.1, green: 0.5, blue: 0.9), location: 0.5), // Sattes Blau
+                        .init(color: Color(red: 0.0, green: 0.2, blue: 0.5), location: 1.0)  // Dunkles Navy
+                    ],
+                    center: .center,
+                    startRadius: 5,
+                    endRadius: 200
+                )
+                
+                // 2. Unterwasser-Lichtstrahlen
+                GeometryReader { geo in
+                    ZStack {
+                        ForEach(0..<4) { i in
+                            Rectangle()
+                                .fill(
+                                    LinearGradient(
+                                        colors: [.white.opacity(0.1), .clear],
+                                        startPoint: .top,
+                                        endPoint: .bottom
+                                    )
+                                )
+                                .frame(width: geo.size.width * 1.2, height: 40)
+                                .rotationEffect(.degrees(Double(i) * 20 - 30))
+                                .offset(y: -20)
+                                .blur(radius: 25)
+                        }
+                    }
+                }
+                
+                // 3. Blasen (Water Bubbles)
+                Canvas { context, size in
+                    for i in 0..<12 {
+                        let seed = Double(i)
+                        let x = (sin(seed * 432.1) * 0.5 + 0.5) * size.width
+                        let y = (cos(seed * 123.4) * 0.5 + 0.5) * size.height
+                        let s = (sin(seed * 77.7) * 0.5 + 0.5) * 8 + 4
+                        
+                        let rect = CGRect(x: x, y: y, width: s, height: s)
+                        let color = Color.white.opacity(0.15)
+                        
+                        context.stroke(Path(ellipseIn: rect), with: .color(color), lineWidth: 1)
+                        context.addFilter(.blur(radius: 0.5))
+                    }
+                }
+            } else if style == .light {
+                Color.white
+            } else {
+                Color.black
+            }
+            
+            // 4. Rim Light
+            RoundedRectangle(cornerRadius: 24)
+                .strokeBorder(
+                    LinearGradient(
+                        colors: [.white.opacity(0.6), .clear, .white.opacity(0.2)],
+                        startPoint: .topLeading, endPoint: .bottomTrailing
+                    ),
+                    lineWidth: 2
+                )
+                .blendMode(.screen)
+        }
+    }
+}
+
+
+
 // MARK: - SMALL: Wasser-Widget (Duolingo Stil)
 
 struct WaterWidgetView: View {
@@ -103,8 +297,7 @@ struct WaterWidgetView: View {
     var body: some View {
         Link(destination: URL(string: "grovy://water")!) {
             VStack(spacing: 2) {
-                Image("Drop water")
-                    .resizable()
+                PNGImage("Drop water")
                     .scaledToFit()
                     .frame(width: 42, height: 42)
                     .padding(.bottom, 2)
@@ -140,33 +333,35 @@ struct StreakSmallWidgetView: View {
 
     var body: some View {
         Link(destination: URL(string: "grovy://streak")!) {
-            VStack(spacing: 2) {
-                Image(igelForToday())
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 62)
-                    .padding(.top, 4)
-                
-                HStack(spacing: 4) {
-                    Image("streak")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 28, height: 28)
-                    
+            ZStack(alignment: .bottomTrailing) {
+                // Text pushed to the absolute top left
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text("\(streak)")
                         .font(.system(size: 38, weight: .black, design: .rounded))
-                        .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
+                    
+                    Text(NSLocalizedString("widget_streak_days", comment: "").uppercased())
+                        .font(.system(size: 12, weight: .black))
+                        .opacity(0.7)
                 }
+                .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                .padding(.top, 2)
+                .padding(.leading, 10)
                 
-                Text(NSLocalizedString("widget_streak_days", comment: "").uppercased())
-                    .font(.system(size: 10, weight: .black))
-                    .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.7))
-                    .tracking(1.2)
+                // Extremely large Igel-Streak pushed way into the corner
+                PNGImage("Igel-Streak")
+                    .scaledToFit()
+                    .frame(width: 160, height: 160)
+                    .offset(x: 35, y: 30)
             }
-            .padding(10)
         }
     }
 }
+
+
+
+
+
 
 // MARK: - MEDIUM: Streak-Verlauf 7 Tage (Duolingo Stil)
 
@@ -202,8 +397,7 @@ struct VerlaufMediumWidgetView: View {
                     }
                     Spacer()
                     HStack(spacing: 5) {
-                        Image("streak")
-                            .resizable()
+                        PNGImage("streak")
                             .scaledToFit()
                             .frame(width: 20, height: 20)
                         
@@ -254,6 +448,7 @@ struct VerlaufLargeWidgetView: View {
     var currentMonthName: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM"
+        formatter.locale = .current
         return formatter.string(from: Date()).uppercased()
     }
 
@@ -303,8 +498,7 @@ struct VerlaufLargeWidgetView: View {
                     }
                     Spacer()
                     HStack(spacing: 6) {
-                        Image("streak")
-                            .resizable()
+                        PNGImage("streak")
                             .scaledToFit()
                             .frame(width: 26, height: 26)
                         

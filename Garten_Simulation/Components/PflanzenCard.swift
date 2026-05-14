@@ -16,7 +16,7 @@ struct PflanzenCard: View {
     @State private var greenGlowOpacity: Double = 0
     @State private var wasserPressAktiv = false
     @State private var showReviveSheet = false
-
+    
     var body: some View {
         ZStack {
             // MARK: - Layer 0: Visual Card Background (3D Button)
@@ -45,7 +45,7 @@ struct PflanzenCard: View {
                 GeometryReader { proxy in
                     Color.clear
                         .preference(key: CardPositionPreferenceKey.self, value: [
-                            CardPositionData(id: pflanze.id, center: proxy.frame(in: .named("GartenGrid")).center)
+                            CardPositionData(id: pflanze.id, center: proxy.frame(in: .global).center)
                         ])
                 }
             )
@@ -56,12 +56,20 @@ struct PflanzenCard: View {
                 if !pflanze.istBewässert && !pflanze.isDead {
                     HStack(spacing: 6) {
                         if pflanze.showWarning {
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 14, height: 14)
-                                .foregroundStyle(.orange)
-                                .symbolEffect(.bounce, options: .repeating)
+                            if #available(iOS 18.0, *) {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 14, height: 14)
+                                    .foregroundStyle(.orange)
+                                    .symbolEffect(.bounce, options: .repeating)
+                            } else {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 14, height: 14)
+                                    .foregroundStyle(.orange)
+                            }
                         }
 
                         HStack(spacing: 4) {
@@ -82,10 +90,10 @@ struct PflanzenCard: View {
 
                 // MARK: Habit Name + Seltenheit
                 VStack(spacing: 4) {
-                    Text(settings.localizedString(for: pflanze.displayedHabitName))
+                    Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
                         .font(.system(size: 18, weight: .black, design: .rounded))
                         .foregroundStyle(Color.primary)
-                        .lineLimit(1)
+                        .lineLimit(2)
                         .multilineTextAlignment(.center)
                         .minimumScaleFactor(0.6)
                         .padding(.horizontal, 4)
@@ -133,38 +141,32 @@ struct PflanzenCard: View {
                             .allowsHitTesting(false)
         
                         // Der 3D-Button (Jetzt Interaktiv!)
-                        if let basePlant = GameDatabase.shared.plant(for: pflanze.plantID) {
-                            PflanzenButton(
-                                plant: basePlant,
-                                seltenheit: pflanze.seltenheit,
-                                farbe: pflanze.color,
-                                 sekundaerFarbe: pflanze.isDead ? .red : pflanze.color.darker(),
-                                groesse: 110 * scale,
-                                externerPress: wasserPressAktiv,
-                                aktion: {
-                                    if pflanze.isDead {
-                                        showReviveSheet = true
-                                        FeedbackManager.shared.playTap()
-                                    } else {
-                                        FeedbackManager.shared.playTap()
-                                        onTap()
-                                    }
+                        PflanzenButton(
+                            plant: GameDatabase.shared.plant(for: pflanze.plantID),
+                            seltenheit: pflanze.seltenheit,
+                            farbe: pflanze.color,
+                            sekundaerFarbe: pflanze.isDead ? .red : pflanze.color.darker(),
+                            groesse: 110 * scale,
+                            fallbackIcon: pflanze.symbolName,
+                            externerPress: wasserPressAktiv,
+                            aktion: {
+                                if pflanze.isDead {
+                                    showReviveSheet = true
+                                    FeedbackManager.shared.playTap()
+                                } else {
+                                    FeedbackManager.shared.playTap()
+                                    onTap()
                                 }
-                            )
-                            .grayscale(pflanze.isDead ? 1.0 : 0.0)
-                            .opacity(pflanze.isDead ? 0.8 : 1.0)
-                        }
+                            }
+                        )
+                        .grayscale(pflanze.isDead ? 1.0 : 0.0)
+                        .opacity(pflanze.isDead ? 0.8 : 1.0)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(
                         Color.clear
                             .allowsHitTesting(false)
                             .onAppear { updatePflanzenPosition(from: geo) }
-                            .onGeometryChange(for: CGRect.self) { proxy in
-                                proxy.frame(in: .global)
-                            } action: { _, newFrame in
-                                pflanzenPosition = CGPoint(x: newFrame.midX, y: newFrame.midY)
-                            }
                     )
                 }
                 .frame(height: 150)
@@ -416,14 +418,14 @@ struct RevivePlantSheet: View {
 #Preview {
     HStack(spacing: 16) {
         PflanzenCard(
-            pflanze: HabitModel(id: "1", name: "Gym", symbolName: "figure.run", symbolColor: "orange", habitCategories: [.fitness]),
+            pflanze: HabitModel(id: "1", name: "Gym", symbolName: "figure.run", symbolColor: "orange", habitCategory: .fitness),
             wetterEvent: .normal,
             onGiessen: {},
             onTap: {}
         )
         PflanzenCard(
             pflanze: {
-                let p = HabitModel(id: "2", name: "Lesen", symbolName: "book.fill", symbolColor: "blue", habitCategories: [.growth])
+                let p = HabitModel(id: "2", name: "Lesen", symbolName: "book.fill", symbolColor: "blue", habitCategory: .growth)
                 p.currentXP = 200
                 p.istBewässert = true
                 return p

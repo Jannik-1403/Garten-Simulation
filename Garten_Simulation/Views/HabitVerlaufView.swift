@@ -60,19 +60,38 @@ struct HabitVerlaufView: View {
     }
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: 24) {
-                // MARK: Stats Row
-                statsRow
-
-                // MARK: Heatmap
-                heatmapSection
-
-                // MARK: Legend
-                legendRow
+        if pflanze.plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: pflanze.plantID) == nil {
+            VStack(spacing: 20) {
+                Spacer()
+                
+                Image(systemName: "clock.badge.exclamationmark")
+                    .font(.system(size: 60))
+                    .foregroundStyle(.secondary.opacity(0.3))
+                
+                Text(settings.localizedString(for: "verlauf.custom_plant.message"))
+                    .font(.system(size: 17, weight: .semibold, design: .rounded))
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 40)
+                
+                Spacer()
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 16)
+            .frame(maxWidth: .infinity)
+        } else {
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 24) {
+                    // MARK: Stats Row
+                    statsRow
+
+                    // MARK: Heatmap
+                    heatmapSection
+
+                    // MARK: Legend
+                    legendRow
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 16)
+            }
         }
     }
 

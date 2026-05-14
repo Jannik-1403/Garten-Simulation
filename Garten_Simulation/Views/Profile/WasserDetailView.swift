@@ -156,10 +156,11 @@ struct WasserRankingRow: View {
                 let plant = GameDatabase.shared.plant(for: habit.plantID)
                 let name = plant?.localizedName ?? habit.name
                 
-                Text(name)
+                Text(settings.localizedString(for: name))
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .lineLimit(1)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
                 
                 let zyklen = Int(habit.totalMlGegossen / 300)
                 let cycleText = zyklen == 1 

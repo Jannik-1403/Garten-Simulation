@@ -45,7 +45,6 @@ struct TitelZeile: View {
         
         let bgColor = istAktiv ? titel.titleColor : Color(.secondarySystemGroupedBackground)
         let shadowColor = istAktiv ? titel.titleColor.darker(by: 0.3) : Color(.systemGray4)
-        let textColor = istAktiv ? Color.white : Color.primary
         
         Button {
             // Kurze Verzögerung für die Animation

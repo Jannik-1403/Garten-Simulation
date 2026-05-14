@@ -1,6 +1,16 @@
 import SwiftUI
 import Combine
 
+enum ScreenSize {
+    static var width: CGFloat {
+        (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen.bounds.width ?? 390
+    }
+    
+    static var height: CGFloat {
+        (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen.bounds.height ?? 844
+    }
+}
+
 class SettingsStore: ObservableObject {
     @AppStorage("isHapticEnabled")        var isHapticEnabled: Bool = true
     @AppStorage("isNotificationsEnabled") var isNotificationsEnabled: Bool = true
@@ -13,20 +23,16 @@ class SettingsStore: ObservableObject {
         didSet { SharedUserDefaults.suite.set(habitStartStunde, forKey: "habitStartStunde") }
     }
     
-    // NEU: Speichert die IDs der Gewohnheiten in der gewählten Ritual-Reihenfolge
-    @AppStorage("ritualReihenfolgeIDs")    var ritualReihenfolgeIDsRaw: String = ""
-    
-    var ritualReihenfolgeIDs: [String] {
-        get { ritualReihenfolgeIDsRaw.split(separator: ",").map(String.init) }
-        set { ritualReihenfolgeIDsRaw = newValue.joined(separator: ",") }
+    @Published var ritualReihenfolgeIDs: [String] {
+        didSet { SharedUserDefaults.suite.set(ritualReihenfolgeIDs, forKey: "ritualReihenfolgeIDs") }
     }
+    
 
     // Default 8:00 AM
     @AppStorage("erinnerungsZeit") private var erinnerungsZeitInternal: Double = 8 * 3600
 
     var erinnerungsZeit: Date {
         get {
-            Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date()) ?? Date()
             // We use the internal double (seconds from midnight) to reconstruct a Date for the picker
             let totalSeconds = Int(erinnerungsZeitInternal)
             let hours = totalSeconds / 3600
@@ -51,6 +57,7 @@ class SettingsStore: ObservableObject {
 
     init() {
         self.habitStartStunde = SharedUserDefaults.suite.object(forKey: "habitStartStunde") as? Int ?? 7
+        self.ritualReihenfolgeIDs = SharedUserDefaults.suite.stringArray(forKey: "ritualReihenfolgeIDs") ?? []
 
         if let saved = SharedUserDefaults.suite.string(forKey: "appLanguage") {
             self.appLanguage = saved

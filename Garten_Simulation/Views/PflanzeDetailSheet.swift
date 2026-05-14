@@ -20,6 +20,7 @@ struct PflanzeDetailSheet: View {
     @State private var noteToDeleteIndex: Int? = nil
     @State private var ausgewaehlterEffekt: PflanzenEffekt? = nil
     @State private var selectedTab: DetailTab = .uebersicht
+    @State private var pfadBereit: Bool = false
 
     enum DetailTab: String, CaseIterable {
         case uebersicht
@@ -33,7 +34,7 @@ struct PflanzeDetailSheet: View {
     private var aktiveEffekte: [PflanzenEffekt] {
         var effekte: [PflanzenEffekt] = []
 
-        // 1. Status-Effekte (Wichtigste Prio: z.B. Erholung nach Wiederbelebung)
+        // 1. Status-Effekte (Stable ID)
         if pflanze.isPenaltyActive {
             let expiration = pflanze.wiederbelebtAm?.addingTimeInterval(Double(pflanze.strafTage) * 24 * 3600)
             effekte.append(PflanzenEffekt(
@@ -46,10 +47,10 @@ struct PflanzeDetailSheet: View {
             ))
         }
 
-        // 2. Wetter
+        // 2. Wetter (Stable ID)
         let endOfDay = Calendar.current.startOfDay(for: Date().addingTimeInterval(86400))
         effekte.append(PflanzenEffekt(
-            id: UUID(),
+            id: UUID(uuidString: "88888888-8888-8888-8888-000000000002")!,
             typ: .wetter,
             ikonQuelle: .system(wetterEvent.systemIcon),
             titel: wetterEvent.titel,
@@ -57,12 +58,12 @@ struct PflanzeDetailSheet: View {
             expiresAt: endOfDay
         ))
 
-        // 3. Power-Ups
+        // 3. Power-Ups (Stable ID from Activity ID)
         for aktiv in gardenStore.activePowerUps where aktiv.isActive {
             if aktiv.targetPlantId == nil || aktiv.targetPlantId == pflanze.id {
                 if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }) {
                     effekte.append(PflanzenEffekt(
-                        id: UUID(),
+                        id: aktiv.id, // Nutze die stabile ID des Power-Ups!
                         typ: .powerUp,
                         ikonQuelle: .asset(base.symbolName),
                         titel: settings.localizedString(for: base.name),
@@ -113,7 +114,7 @@ struct PflanzeDetailSheet: View {
                             } else {
                                 // Fallback if not found
                                 PflanzenButton(
-                                    plant: Plant(id: "fallback", name: settings.localizedString(for: "common.plant_fallback"), symbolName: pflanze.symbolName, assetName: nil, symbol: "🌱", symbolColor: pflanze.symbolColor, habitCategories: pflanze.habitCategories, symbolism: ""),
+                                    plant: Plant(id: "fallback", name: settings.localizedString(for: "common.plant_fallback"), symbolName: pflanze.symbolName, assetName: nil, symbol: "🌱", symbolColor: pflanze.symbolColor, habitCategory: pflanze.habitCategory, symbolism: ""),
                                     seltenheit: pflanze.seltenheit,
                                     farbe: pflanze.color,
                                     sekundaerFarbe: pflanze.color.darker(),
@@ -123,22 +124,20 @@ struct PflanzeDetailSheet: View {
                                 .allowsHitTesting(false)
                             }
                         }
-                        .scaleEffect(min(1.0, UIScreen.main.bounds.width / 390)) // Scale down on smaller iPhones
+                        .scaleEffect(min(1.0, ScreenSize.width / 390)) // Scale down on smaller iPhones
 
-                        Text(settings.localizedString(for: pflanze.displayedHabitName))
+                        Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
                             .font(.system(size: 36, weight: .black, design: .rounded))
                             .minimumScaleFactor(0.5)
                             .lineLimit(2)
                             .multilineTextAlignment(.center)
                             .padding(.horizontal, 20)
 
-                        if !pflanze.habitCategories.isEmpty {
-                            Text(settings.localizedString(for: pflanze.habitCategories.first?.localizationKey ?? ""))
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
-                                .textCase(.uppercase)
-                                .tracking(1.5)
-                        }
+                        Text(settings.localizedString(for: pflanze.habitCategory.localizationKey))
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .textCase(.uppercase)
+                            .tracking(1.5)
 
                         // Vier-Spalten Stats Header (In einer schwebenden Karte)
                         ViewThatFits(in: .horizontal) {
@@ -397,12 +396,18 @@ struct PflanzeDetailSheet: View {
                 } // end uebersicht tab
 
                 if selectedTab == .verlauf {
-                    MultiStrangPfadView(filterHabit: pflanze)
-                        .frame(height: UIScreen.main.bounds.height * 0.72)
-                        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                        .padding(.horizontal, 8)
-                        .padding(.top, 8)
-                        .animation(.easeInOut, value: selectedTab)
+                    if pflanze.plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: pflanze.plantID) == nil {
+                        HabitVerlaufView(pflanze: pflanze)
+                            .frame(maxWidth: .infinity)
+                            .padding(.top, 8)
+                    } else {
+                        IsometricPathView(habit: pflanze)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(IsometricGrassBackground())
+                            .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
+                            .padding(.horizontal, 16)
+                            .padding(.top, 8)
+                    }
                 }
 
                 Spacer().frame(height: 20)
@@ -494,6 +499,31 @@ struct PflanzeDetailSheet: View {
         }
     }
 
+    private func sicherstellenDassPfadExistiert() {
+        let strangExistiert = pfadStore.straenge.contains(where: {
+            $0.pflanzenID == pflanze.id
+        })
+        
+        if strangExistiert {
+            pfadBereit = true
+            return
+        }
+        
+        // Kein Strang → jetzt synchron erstellen
+        let ziel = settings.ausgewaehltesZiel.isEmpty ? "fitness" : settings.ausgewaehltesZiel
+        let sRaw = pflanze.individualSchwierigkeit ?? PfadSchwierigkeit.anfaenger.rawValue
+        let schwierigkeit = PfadSchwierigkeit(rawValue: sRaw) ?? .anfaenger
+        
+        pfadStore.pflanzeHinzufuegen(pflanze, ziel: ziel, schwierigkeit: schwierigkeit)
+        
+        // Kurze Pause damit SwiftData committen kann, dann bereit melden
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            pfadBereit = pfadStore.straenge.contains(where: {
+                $0.pflanzenID == pflanze.id
+            })
+        }
+    }
+
     private var statsRow: some View {
         HStack(spacing: 0) {
             // 1. Streak
@@ -532,16 +562,11 @@ struct PflanzeDetailSheet: View {
 
             Divider().frame(height: 24)
 
-            // 3. Stufe (Clean Style)
-            HStack(spacing: 4) {
-                Image(systemName: pflanze.stufe.sfSymbol)
-                    .font(.system(size: 14, weight: .bold))
-                Text(pflanze.seltenheit.lokalisiertTitel)
-                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.8)
-            }
-            .foregroundStyle(pflanze.seltenheit.farbe)
+            Text(pflanze.seltenheit.lokalisiertTitel)
+                .font(.system(size: 15, weight: .bold, design: .rounded))
+                .lineLimit(2)
+                .minimumScaleFactor(0.7)
+                .foregroundStyle(pflanze.seltenheit.farbe)
             .frame(maxWidth: .infinity)
 
             Divider().frame(height: 24)
@@ -716,7 +741,7 @@ struct TimerSheetView: View {
             // Timer setzen Button
             Button {
                 Task {
-                    await NotificationManager.shared.requestPermission()
+                    _ = await NotificationManager.shared.requestPermission()
                     gardenStore.timerSetzen(pflanze: pflanze, datum: ausgewaehltesDatum)
                     dismiss()
                 }

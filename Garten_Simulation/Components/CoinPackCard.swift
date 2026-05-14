@@ -44,7 +44,8 @@ struct CoinPackCard: View {
             VStack(alignment: .leading, spacing: 3) {
                 Text(product.displayName)
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
-                    .lineLimit(1)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
                 Text(product.description)
                     .font(.system(size: 13))
                     .foregroundStyle(.secondary)

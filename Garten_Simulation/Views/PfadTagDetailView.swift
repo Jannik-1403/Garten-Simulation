@@ -43,7 +43,9 @@ struct PfadTagDetailView: View {
                     VStack(alignment: .center, spacing: 24) {
                         
                         // Hero Plant Display
-                        if let s = tag.strang, let plant = GameDatabase.allPlants.first(where: { $0.id == s.pflanzenID }) {
+                        if let s = tag.strang, 
+                           let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }),
+                           let plant = GameDatabase.shared.plant(for: habit.plantID) {
                             heroPlantImage(plant: plant, isDone: tag.istErledigt)
                                 .frame(width: 140, height: 140)
                                 .padding(.top, 24)
@@ -58,7 +60,7 @@ struct PfadTagDetailView: View {
 
                         // Status Badge
                         if tag.istErledigt {
-                            Text("✓ " + settings.localizedString(for: "erledigt_status"))
+                            Text(String(format: settings.localizedString(for: "pfad_done_prefix"), settings.localizedString(for: "erledigt_status")))
                                 .font(.system(size: 14, weight: .bold))
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 6)
@@ -221,17 +223,12 @@ struct PfadTagDetailView: View {
     private func habitName(for t: PfadStrangTag) -> String {
         guard let s = t.strang else { return "" }
         // 1. User habit
-        if let habit = gardenStore.pflanzen.first(where: { $0.plantID == s.pflanzenID }) {
+        if let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
             return settings.localizedString(for: habit.displayedHabitName)
         }
         // 2. GameDatabase fallback
-        if let plant = GameDatabase.allPlants.first(where: { $0.id == s.pflanzenID }) {
-            if let catKey = plant.habitCategories.first?.localizationKey {
-                return settings.localizedString(for: catKey)
-            }
-            if !plant.habitName.isEmpty {
-                return settings.localizedString(for: plant.habitName)
-            }
+        if let plant = GameDatabase.shared.plant(for: s.pflanzenID) {
+            return settings.localizedString(for: plant.habitCategory.localizationKey)
         }
         return settings.localizedString(for: s.pflanzenName)
     }
@@ -273,7 +270,7 @@ struct PfadTagDetailView: View {
                 raw = fallbackRaw
             } else {
                 // Letzter Ausweg: generische Beschreibung
-                raw = settings.localizedString(for: "Bleib konzentriert auf deine Aufgabe: [HABIT]. Jeder Tag zählt auf deiner Reise.")
+                raw = settings.localizedString(for: "pfad_generic_description_fallback")
             }
         }
         
@@ -285,7 +282,7 @@ struct PfadTagDetailView: View {
     private var journeyProgressBar: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text(String(format: settings.localizedString(for: "Tag %d / 90"), tag.tagNummer))
+                Text(String(format: settings.localizedString(for: "pfad_progress_format"), tag.tagNummer))
                     .font(.system(size: 14, weight: .black, design: .rounded))
                     .foregroundStyle(.primary)
                 
@@ -322,7 +319,7 @@ struct PfadTagDetailView: View {
     }
     
     private var journeyPhaseDescription: String {
-        NSLocalizedString("pfad_phase_beschreibung_\(tag.phase.rawValue)", comment: "")
+        settings.localizedString(for: "pfad_phase_beschreibung_\(tag.phase.rawValue)")
     }
     
 

@@ -38,7 +38,7 @@ struct GartenPassView: View {
                         )
                         
                         // Tier-Sektionen
-                        ForEach(gruppiertNachTier, id: \.tier.bezeichnung) { gruppe in
+                        ForEach(gruppiertNachTier, id: \.tier.bezeichnungKey) { gruppe in
                             TierSektionView(
                                 tier: gruppe.tier,
                                 belohnungen: gruppe.belohnungen,

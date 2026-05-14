@@ -118,7 +118,7 @@ struct ErfolgDetailSheet: View {
                                     .font(.headline.weight(.bold))
                                     .foregroundStyle(.primary)
                             }
-                            .frame(width: 280)
+                            .frame(maxWidth: 280)
                             
                             GeometryReader { geo in
                                 ZStack(alignment: .leading) {
@@ -131,7 +131,8 @@ struct ErfolgDetailSheet: View {
                                         .shadow(color: erfolg.farbe.opacity(0.3), radius: 4, x: 0, y: 0)
                                 }
                             }
-                            .frame(width: 280, height: 14)
+                            .frame(maxWidth: 280)
+                            .frame(height: 14)
                         }
                     }
                 }

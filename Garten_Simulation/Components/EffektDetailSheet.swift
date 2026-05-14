@@ -2,16 +2,17 @@ import SwiftUI
 
 struct EffektDetailSheet: View {
     let effekt: PflanzenEffekt
+    @EnvironmentObject var settings: SettingsStore
 
     var body: some View {
         let (typeTitle, typeIcon): (String, String) = {
             switch effekt.typ {
             case .wetter:  
-                return (NSLocalizedString("effekt.typ.wetter", comment: ""), "cloud.fill")
+                return (settings.localizedString(for: "effekt.typ.wetter"), "cloud.fill")
             case .powerUp: 
-                return (NSLocalizedString("effekt.typ.powerup", comment: ""), "bolt.fill")
+                return (settings.localizedString(for: "effekt.typ.powerup"), "bolt.fill")
             case .status:  
-                return (NSLocalizedString("effekt.typ.status", comment: ""), "info.circle.fill")
+                return (settings.localizedString(for: "effekt.typ.status"), "info.circle.fill")
             }
         }()
 
@@ -67,7 +68,7 @@ struct EffektDetailSheet: View {
                 .background(Capsule().fill(effekt.typ.hintergrundFarbe))
                 
                 if effekt.expiresAt != nil {
-                    Text(NSLocalizedString("common.active", comment: ""))
+                    Text(settings.localizedString(for: "common.active"))
                         .font(.system(size: 10, weight: .black))
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)

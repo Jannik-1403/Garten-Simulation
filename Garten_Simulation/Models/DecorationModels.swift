@@ -40,4 +40,16 @@ enum DecorationCategory: String, CaseIterable, Codable {
     var localizationKey: String {
         "decoration.category.\(self.rawValue)"
     }
+
+    var icon: String {
+        switch self {
+        case .moebel: return "chair.lounge.fill"
+        case .wasser: return "drop.fill"
+        case .tiere: return "bird.fill"
+        case .pfade: return "point.topleft.down.curvedto.point.bottomright.up"
+        case .beleuchtung: return "lightbulb.fill"
+        case .deko: return "sparkles"
+        case .pflanzen: return "leaf.fill"
+        }
+    }
 }

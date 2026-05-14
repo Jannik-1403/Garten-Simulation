@@ -29,10 +29,16 @@ struct WetterPopup: View {
                             .fill(event.bannerFarbe.opacity(0.25))
                             .frame(width: 75, height: 75)
 
-                        Image(systemName: event.systemIcon)
-                            .font(.system(size: 36))
-                            .foregroundStyle(event.bannerFarbe)
-                            .symbolEffect(.bounce, value: erschienen)
+                        if #available(iOS 18.0, *) {
+                            Image(systemName: event.systemIcon)
+                                .font(.system(size: 36))
+                                .foregroundStyle(event.bannerFarbe)
+                                .symbolEffect(.bounce, value: erschienen)
+                        } else {
+                            Image(systemName: event.systemIcon)
+                                .font(.system(size: 36))
+                                .foregroundStyle(event.bannerFarbe)
+                        }
                     }
 
                     VStack(spacing: 8) {
@@ -76,7 +82,7 @@ struct WetterPopup: View {
                             .fill(event.bannerFarbe)
                             .frame(height: 56)
                             .overlay {
-                                Text(NSLocalizedString("settings.understood", comment: ""))
+                                Text(settings.localizedString(for: "settings.understood"))
                                     .font(.appButton)
                                     .foregroundStyle(.white)
                             }
@@ -127,17 +133,17 @@ struct WetterPopup: View {
     // MARK: - Helper Texte
     var gemsText: String {
         switch event {
-        case .perfekt: return "+50% Gems"
-        case .schnee: return "-30% Gems"
-        default: return "Normal"
+        case .perfekt: return settings.localizedString(for: "weather.effect.gems_plus")
+        case .schnee: return settings.localizedString(for: "weather.effect.gems_minus")
+        default: return settings.localizedString(for: "weather.effect.normal")
         }
     }
 
     var xpText: String {
         switch event {
-        case .regen: return "+50% XP"
-        case .perfekt: return "+50% XP"
-        default: return "Normal"
+        case .regen: return settings.localizedString(for: "weather.effect.xp_plus")
+        case .perfekt: return settings.localizedString(for: "weather.effect.xp_plus")
+        default: return settings.localizedString(for: "weather.effect.normal")
         }
     }
 

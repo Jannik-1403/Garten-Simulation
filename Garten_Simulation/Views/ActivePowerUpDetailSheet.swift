@@ -65,7 +65,7 @@ struct ActivePowerUpDetailSheet: View {
                 
                 // MARK: - Timer
                 VStack(spacing: 4) {
-                    Text("Aktiv bis:") // Could be localized
+                    Text(settings.localizedString(for: "powerup.active_until")) // Could be localized
                         .font(.system(size: 12, weight: .bold))
                         .foregroundStyle(.tertiary)
                         .textCase(.uppercase)
@@ -75,12 +75,12 @@ struct ActivePowerUpDetailSheet: View {
                             .font(.system(size: 18, weight: .bold))
                             .foregroundStyle(powerUpBase?.color ?? .green)
                         
-                        Text("Noch \(aktiv.timeRemainingFormatted)")
+                        Text(String(format: settings.localizedString(for: "powerup.remaining"), aktiv.timeRemainingFormatted))
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundStyle(.secondary)
                             .padding(.top, 4)
                     } else {
-                        Text("Permanent")
+                        Text(settings.localizedString(for: "powerup.permanent"))
                             .font(.system(size: 18, weight: .bold))
                             .foregroundStyle(powerUpBase?.color ?? .green)
                             

@@ -40,7 +40,7 @@ for lang in languages:
     strings_file_path = os.path.join(lproj_path, "Localizable.strings")
     
     with open(strings_file_path, "w", encoding="utf-8") as f:
-        f.write(f"/* \n  Localizable.strings\n  Garten Simulation\n\n  Generated from AppStrings.swift\n*/\n\n")
+        f.write(f"// Generated from AppStrings.swift\n\n")
         
         for key in sorted_keys:
             val = all_entries[key].get(lang)
@@ -49,11 +49,15 @@ for lang in languages:
                 val = all_entries[key].get("en", all_entries[key].get("de", ""))
             
             # Clean up the value for .strings format (escapes)
-            # 1. Handle Swift Unicode escapes \u{XXXX} -> actual char
-            val = re.sub(r'\\u\{([0-9A-Fa-f]{4})\}', lambda m: chr(int(m.group(1), 16)), val)
+            # 1. Escape backslashes first
+            clean_val = val.replace('\\', '\\\\')
             
             # 2. Escape double quotes
-            clean_val = val.replace('"', '\\"')
+            clean_val = clean_val.replace('"', '\\"')
+            
+            # 3. Escape newlines
+            clean_val = clean_val.replace('\n', '\\n')
+            
             f.write(f'"{key}" = "{clean_val}";\n')
 
     print(f"Synchronized {lang}.lproj/Localizable.strings")

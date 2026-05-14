@@ -171,7 +171,6 @@ struct HabitStackConfigView: View {
             ziel: settingsStore.ausgewaehltesZiel.isEmpty ? "fit" : settingsStore.ausgewaehltesZiel,
             pflanzen: orderedHabits
         )
-        pfadStore.zeigeRitualAnpassen = false
         dismiss()
     }
     
@@ -179,7 +178,7 @@ struct HabitStackConfigView: View {
     
     private var headerSection: some View {
         VStack(spacing: 8) {
-            Text("⚙️")
+            Image(systemName: "gearshape.fill")
                 .font(.system(size: 40))
                 .shadow(radius: 4)
             Text(settingsStore.localizedString(for: "ritual_config_headline"))

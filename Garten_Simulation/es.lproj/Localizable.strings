@@ -5,6 +5,14 @@
   Generated from AppStrings.swift
 */
 
+"xp_info.title" = "Progreso de XP";
+"xp_info.current_label" = "Tu saldo actual:";
+"xp_info.description" = "¡Ganas XP regando tus plantas a diario, completando hitos y manteniendo tu jardín saludable!";
+"inventory.empty" = "No hay nada que ver aquí todavía.";
+"inventory.seeds.info.title" = "Saldo de semillas";
+"inventory.seeds.info.body" = "Actualmente tienes %d semillas. Crear una planta personalizada cuesta 10 semillas.";
+"verlauf.custom_plant.message" = "No hay historial para esta planta porque fue creada a medida.";
+
 "Alle" = "Todos";
 "DEKO" = "DECO";
 "Dekorationen" = "Decoraciones";
@@ -110,6 +118,7 @@
 "common.fri" = "V";
 "common.history" = "HISTORIAL";
 "common.liter" = "Litros";
+"bonus_text" = "+2× XP · +1 Gema";
 "common.ml" = "ml";
 "common.mon" = "L";
 "common.of" = "de";
@@ -240,7 +249,7 @@
 "pfad_gesund_day_3_desc" = "No comas comida procesada hoy — solo ingredientes reales.";
 
 /* Pfad - Struktur */
-"pfad_abgeschlossen" = "¡Camino completado! 🎉";
+"pfad_abgeschlossen" = "¡Camino completado!";
 "pfad_fortschritt" = "%d de 90 días";
 "pfad_belohnung_meilenstein" = "+50 monedas · +100 XP";
 "pfad_belohnung_meisterschaft" = "+100 monedas · +500 XP";
@@ -445,7 +454,7 @@
 "ice_wheel_back_button" = "LISTO";
 "ice_wheel_button_no_spins" = "Sin giros";
 "ice_wheel_button_spin" = "Girar";
-"ice_wheel_reward" = "🎰 Recompensa Ruleta de Hielo";
+"ice_wheel_reward" = "Recompensa Ruleta de Hielo";
 "ice_wheel_reward_title" = "¡Has ganado!";
 "ice_wheel_subtitle" = "Recoge recompensas hito";
 "ice_wheel_title" = "Ruleta de Hielo";
@@ -539,7 +548,7 @@
 "level_unlock_spin_bonus_desc" = "Bonus: +2 giros de ruleta";
 "level_unlock_spin_titel" = "Girar la Ruleta";
 "level_up.subtitle" = "Tu jardín ahora es";
-"level_up.title" = "¡SUBIDA DE NIVEL! 🎉";
+"level_up.title" = "¡SUBIDA DE NIVEL!";
 "level_up_button_gluecksrad" = "GIRAR AHORA";
 "level_up_button_weiter" = "CONTINUAR";
 "level_up_freigeschaltet" = "Recién desbloqueado";
@@ -564,7 +573,7 @@
 "month.7" = "Julio";
 "month.8" = "Agosto";
 "month.9" = "Septiembre";
-"onboarding_benachrichtigung_blase" = "¿Puedo recordarte cuando tus plantas necesiten agua? 🔔";
+"onboarding_benachrichtigung_blase" = "¿Puedo recordarte cuando tus plantas necesiten agua?";
 "onboarding_benachrichtigung_einstellungen" = "Abrir en Ajustes";
 "onboarding_benachrichtigung_erlauben" = "Permitir notificaciones";
 "onboarding_benachrichtigung_spaeter" = "Quizás más tarde";
@@ -580,16 +589,16 @@
 "onboarding_custom_name" = "Nombre del hábito";
 "onboarding_custom_placeholder" = "ej. Leer 10 min";
 "onboarding_custom_title" = "Hábito personalizado";
-"onboarding_fertig_blase" = "¡Tu jardín te espera! ¡Diviértete! 🎉";
-"onboarding_fertig_button" = "Entrar al jardín 🌱";
+"onboarding_fertig_blase" = "¡Tu jardín te espera! ¡Diviértete!";
+"onboarding_fertig_button" = "Entrar al jardín";
 "onboarding_fertig_startcoins" = "+100 monedas iniciales 🪙";
 "onboarding_fertig_titel" = "¡Todo listo!";
 "onboarding_fertig_untertitel" = "Tus 2 plantas iniciales han sido plantadas en tu jardín.";
-"onboarding_los_gehts" = "¡Vamos! 🌱";
+"onboarding_los_gehts" = "¡Vamos!";
 "onboarding_pflanzen_blase" = "¡Elige 2 plantas que se adapten a tu objetivo!";
 "onboarding_pflanzen_hinweis" = "Puedes comprar más en la tienda más tarde.";
 "onboarding_pflanzen_weiter" = "Elegir estas 2 ✓";
-"onboarding_shop_blase" = "¡Has ganado monedas! Compra algo en la tienda 🛒";
+"onboarding_shop_blase" = "¡Has ganado monedas! Compra algo en la tienda";
 "onboarding_shop_erfolg" = "¡Bien hecho! Ahora puedes usar el fertilizante. ⚠️ Pero cuidado...";
 "onboarding_shop_item_beschreibung" = "Hace que tu planta crezca el doble de rápido.";
 "onboarding_shop_item_name" = "Fertilizante";
@@ -606,7 +615,7 @@
 "onboarding_tutorial_5_titel" = "¡Cuidado con las malas hierbas!";
 "onboarding_tutorial_blase" = "¡Así funciona tu jardín!";
 "onboarding_tutorial_giessen_blase" = "¡Arrastra la gota a la planta!";
-"onboarding_tutorial_giessen_erfolg" = "¡Genial! ¡Es así de sencillo! 🎉";
+"onboarding_tutorial_giessen_erfolg" = "¡Genial! ¡Es así de sencillo!";
 "onboarding_tutorial_giessen_test" = "Planta de prueba";
 "onboarding_tutorial_interaction_bubble" = "¡Pruébalo ahora! Arrastra la gota de agua para regar la planta.";
 "onboarding_tutorial_interaction_hint" = "¡Arrastra y suelta";
@@ -618,11 +627,11 @@
 "onboarding_tutorial_interactive_weed_warning" = "Las malas hierbas bloquean tu crecimiento hasta que las elimines. ¡Usa los objetos con sabiduría!";
 "onboarding_tutorial_interactive_xp_bubble" = "¡Toca la planta arriba para regarla y ganar XP!";
 "onboarding_tutorial_interactive_xp_success" = "¡Genial! Cuando el círculo esté lleno, tu planta subirá de nivel.";
-"onboarding_unkraut_blase" = "Los objetos dan bonificaciones — ¡pero también traen malas hierbas! 🌿";
-"onboarding_unkraut_erklaerung" = "¡Las malas hierbas bloquean tu progreso! Arráncalas regularmente para que tu planta siga creciendo. 🌱";
+"onboarding_unkraut_blase" = "Los objetos dan bonificaciones — ¡pero también traen malas hierbas!";
+"onboarding_unkraut_erklaerung" = "¡Las malas hierbas bloquean tu progreso! Arráncalas regularmente para que tu planta siga creciendo.";
 "onboarding_unkraut_tipp" = "Objetos: +Bonus, pero ↑ Riesgo de maleza.\nEliminar maleza: Desbloquea progreso.";
 "onboarding_weiter" = "Continuar";
-"onboarding_willkommen_blase" = "¡Hola! Soy Erizo 🦔 ¡Bienvenido a tu jardín!";
+"onboarding_willkommen_blase" = "¡Hola! Soy Erizo ¡Bienvenido a tu jardín!";
 "onboarding_willkommen_titel" = "Simulación de Jardín";
 "onboarding_willkommen_untertitel" = "Crea hábitos. Haz crecer tu jardín.";
 "onboarding_xp_blase" = "¡Toca la planta para recoger XP!";
@@ -863,7 +872,7 @@
 "retention.frage1.titel" = "¿Por qué dejaste de usar la app?";
 "retention.frage2.keineLust" = "¿Qué fue lo que más disfrutaste?";
 "retention.frage2.keineZeit" = "¿Cuántas plantas son realistas para ti?";
-"retention.frage2.nichtMehrNoetig" = "¡Respeto — alcanzaste tu objetivo! 🎉";
+"retention.frage2.nichtMehrNoetig" = "¡Respeto — alcanzaste tu objetivo!";
 "retention.frage2.nichtMehrNoetig.sub" = "¿Quizás hay nuevos hábitos que te gustaría construir?";
 "retention.frage2.nichtMotiviert" = "¿Qué te ayudaría?";
 "retention.frage2.vergessen" = "¿Quieres que te recuerde diariamente?";
@@ -970,7 +979,7 @@
 "shop.not_enough_coins" = "Monedas Insuficientes";
 "shop.owned" = "Ya adquirido";
 "shop.purchase_success.awesome" = "¡Genial!";
-"shop.purchase_success.title" = "¡Comprado! 🎉";
+"shop.purchase_success.title" = "¡Comprado!";
 "shop.purchases.count" = "Compras en la tienda";
 "shop.search_placeholder" = "Buscar...";
 "shop.tab.items" = "Objetos";
@@ -2638,3 +2647,249 @@ Nessuna annaffiatura registrata.";
 "powerup_wheel_subtitle" = "¡Gira para tu Power-Up!";
 "powerup_wheel_win" = "¡GANASTE!";
 
+
+// Added for Siri Intents
+"intent_water_title" = "Regar planta";
+"intent_water_desc" = "Riega una de tus plantas.";
+"shortcut_gießen_titel" = "Regar planta";
+"intent_water_already_done" = "%@ ya ha sido regado hoy.";
+"intent_water_success" = "¡%@ ha sido regado con éxito! Tu racha ha aumentado.";
+"intent_water_fail" = "Planta no encontrada.";
+"plant.mystic_seed.name" = "Semilla Mística";
+"plant.mystic_seed.symbolism" = "Una semilla rara con un poder misterioso.";
+"habit.atemarbeit" = "Respiración consciente";
+
+// Statistics
+"stats.balance.title" = "Balance de Vida";
+"stats.balance.subtitle" = "Puntuación de Balance";
+"stats.balance.desc.low" = "Tus cimientos aún son inestables. ¡Es hora de actuar!";
+"stats.balance.desc.mid" = "Vas por el buen camino. ¡Cierra las brechas en tu red!";
+"stats.balance.desc.high" = "¡Tu equilibrio es impresionante! Una red fuerte para una vida fuerte.";
+"stats.balance.desc.dynamic" = "Tu %@ te está impulsando, pero %@ te está frenando. ¡Enfócate en las brechas!";
+"stats.balance.empty" = "Algo grande está creciendo aquí...";
+"stats.balance.day1" = "Día 1: Tus cimientos se están construyendo.";
+"stats.category.no_plants" = "No hay hábitos activos en esta categoría.";
+"stats.category.plants_count" = "%d hábitos activos";
+"stats.timeframe.week" = "Semana";
+"stats.timeframe.month" = "Mes";
+"stats.timeframe.year" = "Año";
+"stats.title" = "Estadísticas";
+"stats.level" = "Nivel";
+"stats.days_active" = "Días activos";
+"stats.succeeded" = "Completado";
+"stats.missed" = "Perdido";
+"stats.total" = "Total";
+
+"stats.coach.title" = "Análisis y Coaching";
+"stats.coach.bullet1" = "El centro es el punto cero. Un punto aquí significa un fallo total en esta categoría.";
+"stats.coach.bullet2" = "El anillo exterior es tu objetivo (100%). Representa la perfección y consistencia absoluta.";
+"stats.coach.bullet3" = "Las abolladuras hacia adentro son señales de advertencia. Muestran debilidades en tus cimientos.";
+"stats.coach.bullet4" = "Una red suave y amplia significa que los cimientos de tu vida son estables.";
+
+"stats.tile.waterings" = "Regado";
+"stats.tile.streak" = "Racha";
+"stats.tile.plants" = "Plantas";
+"stats.tile.gems" = "Gemas";
+"stats.legend.current" = "Actual";
+"stats.legend.previous" = "Anterior";
+
+"statistik_titel" = "Estadísticas";
+"statistik_life_balance" = "Equilibrio vital";
+"statistik_life_balance_score" = "Puntuación de equilibrio";
+"statistik_periode_woche" = "Semana";
+"statistik_periode_monat" = "Mes";
+"statistik_periode_jahr" = "Año";
+"statistik_legend_aktuell" = "Actual";
+"statistik_legend_vorherig" = "Anterior";
+"statistik_kachel_gewaessert" = "Regado";
+"statistik_kachel_streak" = "Racha";
+"statistik_kachel_pflanzen" = "Plantas";
+"statistik_kachel_gems" = "Gemas";
+"statistik_popup_erreicht" = "Logrado";
+"statistik_popup_gewohnheiten" = "Hábitos";
+"statistik_popup_giessungen" = "Riegos";
+
+"statistik_share_letzte_woche" = "Última semana";
+"statistik_share_letzter_monat" = "Último mes";
+"statistik_share_letztes_jahr" = "Último año";
+
+"stats.score.label" = "Puntuación";
+"stats.score.konsistenz" = "Constancia";
+"stats.score.streak" = "Racha";
+"stats.score.seltenheit" = "Rareza";
+"stats.score.msg.excellent" = "¡Tu jardín florece!";
+"stats.score.msg.good" = "Buen camino";
+"stats.score.msg.ok" = "Aún hay margen";
+"stats.score.msg.low" = "Tu jardín necesita cuidado";
+"stats.starplant.title" = "Planta del período";
+"stats.milestone.remaining" = "%lld XP para %@";
+"stats.heatmap.subtitle" = "%lld días de riego en 84 días";
+"stats.heatmap.title" = "Actividad";
+"stats.milestone.title" = "Próximos hitos";
+"stats.score.card.title" = "Puntuación del jardín";
+"stats.score.konsistenz.sub" = "Tasa de riego en el período";
+"stats.score.streak.sub" = "Mejor racha del período";
+"stats.score.seltenheit.sub" = "Rareza media de tus plantas";
+"stats.period.this_week" = "Esta semana";
+"stats.period.this_month" = "Este mes";
+"stats.period.this_year" = "Este año";
+"stats.period.this_week_simple" = "esta semana";
+"stats.period.this_month_simple" = "este mes";
+"stats.period.this_year_simple" = "este año";
+"stats.score.konsistenz.period_format" = "Tasa de riego en %@";
+"stats.score.streak.period_format" = "Mejor racha en %@";
+
+"stats.share.choose_style" = "Elegir estilo";
+"stats.share.style.vibrant" = "Vibrante (Lujoso)";
+"stats.share.style.light" = "Claro (Limpio)";
+"stats.share.style.dark" = "Oscuro (Elegante)";
+"stats.share.style.transparent" = "Transparente (Pro)";
+
+// MARK: - PowerUp Picker
+"powerup.picker.no_plants" = "No se encontraron plantas compatibles.";
+
+// MARK: - Wonder Water Rescue Overlay
+"wonder_water.rescue.title" = "¿Salvar tu planta?";
+"wonder_water.rescue.body_format" = "Tu planta '%@' se ha marchitado y está a punto de morir. ¿Quieres usar tu Agua Milagrosa para salvarla y evitar la pérdida de puntos de vida?";
+"wonder_water.rescue.action_format" = "Usar %@";
+"wonder_water.rescue.decline" = "Dejar morir";
+
+// MARK: - Purchase Overlay
+"purchase.coins_deducted_format" = "−%d monedas";
+
+// MARK: - Missing Keys (added 2026-05-14)
+
+"bonus_text" = "+2× XP · +1 Gema";
+"button.edit" = "Editar";
+"button.view_90_day_path" = "Ver el camino de 90 días";
+"common.close" = "Cerrar";
+"common.habit" = "HÁBITO";
+"common.select_day" = "Seleccionar día";
+"common_abbrechen" = "Cancelar";
+"onboarding_tutorial_blase" = "¡Toca la gota de agua para regar tu planta!";
+"onboarding_tutorial_giessen_erfolg" = "¡Genial! ¡Es muy fácil!";
+"onboarding_tutorial_interaction_bubble" = "¡Pruébalo ahora! Arrastra la gota para regar la planta.";
+"onboarding_tutorial_interaction_hint" = "¡Arrastra la gota de agua!";
+"pfad_detail_fitness_subtitle" = "Este hábito fortalece tu presencia física.";
+"pfad_detail_fitness_title" = "Enfoque físico";
+"pfad_detail_growth_subtitle" = "Tu conocimiento es la inversión más valiosa.";
+"pfad_detail_growth_title" = "Crecimiento & Aprendizaje";
+"pfad_detail_health_subtitle" = "Tu cuerpo es tu templo. Cuídalo.";
+"pfad_detail_health_title" = "Vitalidad & Bienestar";
+"pfad_detail_lifestyle_subtitle" = "Pequeños pasos diarios llevan a grandes metas.";
+"pfad_detail_lifestyle_title" = "Rutina & Vida cotidiana";
+"pfad_detail_mental_subtitle" = "La calma y el enfoque son tus herramientas más poderosas.";
+"pfad_detail_mental_title" = "Fuerza mental";
+"pfad_detail_next_step" = "Siguiente paso";
+"pfad_detail_previous_step" = "Paso anterior";
+"pfad_detail_time_label" = "%@ h";
+"pfad_fit_day_3_title" = "Tercer día";
+"pfad_fit_day_3_desc" = "Hoy 12 flexiones. Tu cuerpo se está acostumbrando poco a poco.";
+"pfad_fit_day_4_title" = "Construir el ritmo";
+"pfad_fit_day_4_desc" = "Añade hoy 10 sentadillas. Las piernas no deben olvidarse.";
+"pfad_fit_day_5_title" = "Mitad de la primera semana";
+"pfad_fit_day_5_desc" = "15 flexiones + 10 sentadillas. Siente cómo tu cuerpo se vuelve más fuerte.";
+"pfad_fit_day_6_title" = "Casi lo logras";
+"pfad_fit_day_6_desc" = "Día de descanso activo: 20 minutos caminando. El movimiento es movimiento.";
+"pfad_fit_day_8_title" = "Nueva semana";
+"pfad_fit_day_8_desc" = "La alimentación entra en juego. Hoy sin dulces — solo hoy.";
+"pfad_fit_day_9_title" = "Combinación";
+"pfad_fit_day_9_desc" = "20 flexiones + comer conscientemente. Las dos cosas van juntas.";
+"pfad_fit_day_10_title" = "Diez días";
+"pfad_fit_day_10_desc" = "Doble esfuerzo: 20 flexiones + 15 sentadillas + sin comida rápida.";
+"pfad_fit_day_11_title" = "Momentum";
+"pfad_fit_day_11_desc" = "Ya llevás 10 días. Hoy 25 flexiones.";
+"pfad_fit_day_12_title" = "Profundizar la alimentación";
+"pfad_fit_day_12_desc" = "Cocina hoy una comida tú mismo — sin importar qué tan simple sea.";
+"pfad_fit_day_13_title" = "Víspera del hito";
+"pfad_fit_day_13_desc" = "25 flexiones + 20 sentadillas. Mañana celebramos dos semanas.";
+"pfad_gesund_day_3_title" = "Alimentación consciente";
+"pfad_gesund_day_3_desc" = "Hoy no comas alimentos procesados — solo ingredientes reales.";
+"pfad_gesund_day_4_title" = "Movimiento";
+"pfad_gesund_day_4_desc" = "10.000 pasos hoy. Suena mucho, es factible.";
+"pfad_gesund_day_5_title" = "Sueño";
+"pfad_gesund_day_5_desc" = "Ve a dormir 30 minutos antes de lo habitual hoy.";
+"pfad_gesund_day_6_title" = "Sin dulces";
+"pfad_gesund_day_6_desc" = "Un día sin azúcar. Solo hoy — tú puedes.";
+"pfad_lernen_day_3_title" = "Comprender";
+"pfad_lernen_day_3_desc" = "Explícale a alguien (o a ti mismo) lo que leíste ayer.";
+"pfad_lernen_day_4_title" = "Notas";
+"pfad_lernen_day_4_desc" = "Mientras lees, anota 3 pensamientos importantes.";
+"pfad_lernen_day_5_title" = "Nuevo tema";
+"pfad_lernen_day_5_desc" = "Escucha hoy un podcast de 15 minutos sobre un tema que te interese.";
+"pfad_lernen_day_6_title" = "Repaso";
+"pfad_lernen_day_6_desc" = "Lee los apuntes de los últimos 5 días. La repetición consolida el conocimiento.";
+"pfad_mental_day_3_title" = "Gratitud";
+"pfad_mental_day_3_desc" = "Esta noche escribe 3 cosas por las que estás agradecido.";
+"pfad_mental_day_4_title" = "Digital Detox";
+"pfad_mental_day_4_desc" = "Sin redes sociales durante 3 horas hoy. ¿Cómo se siente?";
+"pfad_mental_day_5_title" = "Naturaleza";
+"pfad_mental_day_5_desc" = "15 minutos al aire libre — sin teléfono. Solo naturaleza y pensamientos.";
+"pfad_mental_day_6_title" = "Journaling";
+"pfad_mental_day_6_desc" = "Escribe 5 minutos todo lo que te ronda por la cabeza. Sin filtro.";
+"pfad_phase_beschreibung_aufbau" = "Consolidar el hábito: tu cerebro está aprendiendo.";
+"pfad_phase_beschreibung_einstieg" = "Crear la base: enfoque en la regularidad.";
+"pfad_phase_beschreibung_meisterschaft" = "Automatización: estás viviendo el cambio.";
+"pfad_phase_beschreibung_vertiefung" = "Formar la identidad: se convierte en parte de ti.";
+"pfad_produktiv_day_3_title" = "Planificación matutina";
+"pfad_produktiv_day_3_desc" = "Esta mañana escribe 3 tareas que quieres completar hoy.";
+"pfad_produktiv_day_4_title" = "Trabajo profundo";
+"pfad_produktiv_day_4_desc" = "Dos sesiones Pomodoro de 25 minutos. Sin redes sociales entre medio.";
+"pfad_produktiv_day_5_title" = "Bloquear distracciones";
+"pfad_produktiv_day_5_desc" = "Desactiva las notificaciones durante 2 horas mientras trabajas.";
+"pfad_produktiv_day_6_title" = "Reflexión";
+"pfad_produktiv_day_6_desc" = "¿Qué aprendiste esta semana? Escribe 5 minutos.";
+"pfad_routine_context_after" = "A continuación viene %@.";
+"pfad_routine_context_before" = "Antes hiciste %@.";
+"pfad_routine_plan_header" = "Tu plan de hoy";
+"pfad_routine_step_first" = "Primero: %@";
+"pfad_routine_step_last" = "Para finalizar: %@";
+"pfad_routine_step_next" = "Luego: %@";
+"pfad_symbolik_titel" = "Simbolismo de la planta";
+"plant.detail.path_subtitle" = "Tu progreso de los últimos 90 días";
+"ritual_config_add_habit" = "Añadir hábito";
+"ritual_config_done" = "Listo";
+"ritual_config_edit" = "Editar";
+"ritual_config_headline" = "Construye tu cadena de hábitos";
+"ritual_config_start" = "Iniciar ritual & camino";
+"ritual_config_subheadline" = "Ordena tus hábitos en el orden en que los realizas. ¡Esto te ayuda con el Habit Stacking!";
+"ritual_config_title" = "Personalizar ritual";
+"settings.share_text" = "¡Mira mi Garden Simulation! Estoy construyendo un jardín precioso.";
+"stats.activity.subtitle" = "Riegos de los últimos 14 días";
+"stats.activity.title" = "Actividad";
+"stats.coins.available" = "Monedas disponibles";
+"stats.coins.no_data" = "Aún no hay transacciones.";
+"stats.coins.title" = "Balance de monedas";
+"stats.distribution.subtitle" = "Plantas en el jardín";
+"stats.distribution.title" = "Mix de rareza";
+"stats.earned" = "Ganado";
+"stats.plants" = "Plantas";
+"stats.share.preview_hint" = "Así se compartirá tu estadística";
+"stats.share.preview_title" = "Vista previa";
+"stats.share.swipe_hint" = "Desliza para otros estilos";
+"stats.spent" = "Gastado";
+"stats.today" = "HOY";
+"stats.trend.vs_yesterday" = "vs. ayer";
+"stats.xp.title" = "Experiencia (XP)";
+"stats.xp.to_level" = "hasta nivel %d";
+"stats.xp.total" = "Experiencia total";
+"tab_pfad" = "Camino";
+"titel.zl_meister" = "Jardinero Maestro";
+"verlauf.empty.subtitle" = "Riega tu planta para registrar tu historial.";
+"verlauf.empty.title" = "Aún sin datos";
+"verlauf.leer.beschreibung" = "Inicia tu camino de 90 días para ver el historial de este hábito.";
+"verlauf.leer.titel" = "Ningún camino activo";
+"verlauf.stat.days" = "Días activos";
+"verlauf.stat.rate" = "Tasa";
+"verlauf.stat.streak" = "Actual";
+"verlauf.title" = "Tus 90 días";
+"verlauf.weeks" = "Sem";
+"waechter_gerettet_beschreibung" = "La torre guardiana salvó a \"%@\" de la muerte. Se sacrificó en el proceso.";
+"lucky_wheel_locked_hint" = "Riega una planta hoy para girar";
+
+"weed_banner_title" = "¡Malas hierbas!";
+"weed_banner_subtitle" = "Riega 3× para eliminarlas";
+"weed_popup_title" = "¡Malas hierbas en tu jardín!";
+"weed_popup_body" = "Tu jardín está sufriendo. Riega 3 días seguidos para eliminar las malas hierbas.";
+"weed_progress_label" = "Progreso: {count} de 3";
+"weed_popup_button" = "ENTENDIDO";

@@ -6,6 +6,11 @@ enum GameConstants {
     static let coinsProGiessen: Int = 10
     static let xpProGiessen: Int = 100
     static let mlProGiessen: Double = 300
+    static let gemsProGiessen: Int = 1
+ 
+    static let bonusChance: Double = 0.15          // 15% Wahrscheinlichkeit
+    static let bonusXPMultiplier: Double = 2.0     // Bonus: doppelte XP
+    static let bonusGemAmount: Int = 1             // Bonus: +1 Gem
  
     // MARK: XP-Schwellen für Pflanzen-Seltenheit
     // Bronze ist der Startzustand (0 XP)

@@ -15,49 +15,48 @@ struct WheelOfFortuneView: View {
     @State private var showPowerUpPicker = false
     @State private var segmentLayout: [SegmentKind] = []
     @State private var showResultOverlay = false
-    @State private var powerUpActivated: Bool = false
     
     // UI Layout Config
     private let wheelSize: CGFloat = 310
-    private let totalSegments = 12
+    private let totalSegments = 10
     
-    var probWeed: Double {
-        return DailySpinLogic.currentWeedProbability(ownedItemsCount: gardenStore.totalItemsCount)
-    }
-    
-    /// Generate an evenly-distributed segment layout with 1 gold, N weed, rest safe.
-    /// Segments of the same kind are spaced as far apart as possible.
+    /// Generate a randomized layout with exactly two of each reward type, ensuring no duplicates are adjacent.
     func generateLayout() -> [SegmentKind] {
-        let weedCount = min(totalSegments - 1, max(0, Int(round(probWeed * Double(totalSegments - 1)))))
-        _ = totalSegments - 1 - weedCount
-        
-        // Start with all safe slots
-        var slots: [SegmentKind] = Array(repeating: .safe, count: totalSegments)
-        
-        // Place gold at a random position first
-        let goldIndex = Int.random(in: 0..<totalSegments)
-        slots[goldIndex] = .gold
-        
-        // Collect non-gold indices
-        let freeIndices = (0..<totalSegments).filter { $0 != goldIndex }
-        
-        // Distribute weed segments evenly among the free slots
-        if weedCount > 0 && !freeIndices.isEmpty {
-            let step = Double(freeIndices.count) / Double(weedCount)
-            let offset = Int.random(in: 0..<max(1, Int(step)))
-            for w in 0..<weedCount {
-                let freeIdx = min(freeIndices.count - 1, Int(Double(w) * step) + offset)
-                slots[freeIndices[freeIdx]] = .weed
-            }
-        }
-        
-        return slots
+        let base: [SegmentKind] = [.klein, .mittel, .gross, .xpBoost, .jackpot].shuffled()
+        // Shuffling the base and repeating it ensures an alternating pattern A,B,C,D,E,A,B,C,D,E
+        // This guarantees no identical segments are adjacent, even when looping.
+        return base + base
     }
     
     var body: some View {
         ZStack {
             // Background
             Color(UIColor.systemBackground).ignoresSafeArea()
+            
+            // Close Button
+            VStack {
+                HStack {
+                    Button {
+                        FeedbackManager.shared.playTap()
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.primary)
+                            .padding(12)
+                            .background(Color(UIColor.secondarySystemBackground).opacity(0.8))
+                            .clipShape(Circle())
+                    }
+                    .padding(.leading, 20)
+                    .padding(.top, 20)
+                    
+                    Spacer()
+                }
+                Spacer()
+            }
+            .opacity(isSpinning ? 0 : 1)
+            .animation(.easeInOut, value: isSpinning)
+            .zIndex(10)
             
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 30) {
@@ -77,7 +76,7 @@ struct WheelOfFortuneView: View {
                     }
                     .padding(.bottom, 4)
                     
-                    // Wheel Assembly — 3D Two-Layer Effect (like Item3DButton)
+                    // Wheel Assembly — 3D Two-Layer Effect
                     VStack(spacing: 0) {
                         ZStack {
                             // === 3D BASE LAYER (darker, sits behind) ===
@@ -139,117 +138,46 @@ struct WheelOfFortuneView: View {
                                 .offset(y: -6) // 3D depth offset pushes the whole interactive layer up
                             }
                             .buttonStyle(Press3DWrapperButtonStyle(depth: 6))
-                            .disabled(isSpinning || (!gardenStore.pendingDailySpin && gardenStore.gluecksradDrehungen <= 0))
+                            .disabled(isSpinning || (!gardenStore.pendingDailySpin && gardenStore.gluecksradDrehungen <= 0) || !gardenStore.heuteGegossen)
                         }
                         .frame(width: wheelSize + 38, height: wheelSize + 38 + 6)
                     }
                     .padding(.vertical, 10)
                     
-                    // Unkraut-Gefahr / Probability Info
-                    if !showResult {
-                        VStack(spacing: 8) {
-                            if powerUpActivated {
-                                HStack(spacing: 6) {
-                                    Image(systemName: "shield.checkered")
-                                        .foregroundStyle(.green)
-                                    Text(String(format: settings.localizedString(for: "dailyspin.weed.danger"), 0))
-                                        .font(.system(size: 16, weight: .bold))
-                                        .foregroundStyle(.green)
-                                }
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 8)
-                                .background(Color.green.opacity(0.12), in: Capsule())
+                    // Main Action Button
+                    VStack(spacing: 12) {
+                        Button(action: handleSpinAction) {
+                            if gardenStore.pendingDailySpin {
+                                Text(settings.localizedString(for: "spin_button_gratis"))
+                            } else if gardenStore.gluecksradDrehungen > 0 {
+                                Text(String(format: settings.localizedString(for: "spin_button_mit_anzahl"), gardenStore.gluecksradDrehungen))
                             } else {
-                                HStack(spacing: 6) {
-                                    Image(systemName: "exclamationmark.triangle.fill")
-                                        .foregroundStyle(Color.orange)
-                                    Text(String(format: settings.localizedString(for: "dailyspin.weed.danger"), Int(probWeed * 100)))
-                                        .font(.system(size: 16, weight: .bold))
-                                        .foregroundStyle(Color.orange)
-                                }
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 8)
-                                .background(Color.orange.opacity(0.12), in: Capsule())
-                            }
-                        }
-                        .opacity(isSpinning ? 0 : 1)
-                    }
-                    
-                    // Power-Up Button (3D Item Button)
-                    if !isSpinning, !powerUpActivated,
-                       gardenStore.gekaufteItems.contains(where: { $0.id == "powerup.zauberstab" }) {
-                        
-                        Item3DButton(
-                            icon: "backpack.fill",
-                            farbe: .gruenPrimary,
-                            sekundaerFarbe: .gruenSecondary,
-                            groesse: 56
-                        ) {
-                            FeedbackManager.shared.playSuccess()
-                            powerUpActivated = true
-                            if let item = gardenStore.gekaufteItems.first(where: { $0.id == "powerup.zauberstab" }) {
-                                if let p = GameDatabase.allPowerUps.first(where: { $0.id == item.id }) {
-                                    gardenStore.applyPowerUp(p)
-                                    gardenStore.itemVerbrauchen(shopItem: item)
-                                }
-                            }
-                        }
-                        .padding(.top, 4)
-                    }
-                    
-                    // MARK: Actions
-                    
-                    // Unkraut-Bot re-spin button
-                    if showResult, spinResult == .weed, gardenStore.hasActivePowerUp(powerUpId: "powerup.zauberstab") {
-                        Button(action: {
-                            FeedbackManager.shared.playSuccess()
-                            showResult = false
-                            spinResult = nil
-                            spinWheel()
-                        }) {
-                            HStack {
-                                Image(systemName: "cpu")
-                                Text(settings.localizedString(for: "wheel.bot_use"))
+                                Text(settings.localizedString(for: "spin_button_keine"))
                             }
                         }
                         .buttonStyle(DuolingoButtonStyle(
                             size: .large,
-                            backgroundColor: .orange,
-                            shadowColor: .orange.darker()
+                            backgroundColor: (gardenStore.pendingDailySpin || gardenStore.gluecksradDrehungen > 0) && gardenStore.heuteGegossen ? .blauPrimary : .secondary,
+                            shadowColor: (gardenStore.pendingDailySpin || gardenStore.gluecksradDrehungen > 0) && gardenStore.heuteGegossen ? .blauSecondary : .secondary.darker()
                         ))
+                        .disabled(isSpinning || (!gardenStore.pendingDailySpin && gardenStore.gluecksradDrehungen <= 0) || !gardenStore.heuteGegossen)
                         .padding(.horizontal, 30)
-                        .padding(.bottom, 12)
-                    }
-                    
-                    // Main Action Button
-                    Button(action: handleSpinAction) {
-                        if gardenStore.pendingDailySpin {
-                            Text(settings.localizedString(for: "spin_button_gratis"))
-                        } else if gardenStore.gluecksradDrehungen > 0 {
-                            Text(String(format: settings.localizedString(for: "spin_button_mit_anzahl"), gardenStore.gluecksradDrehungen))
-                        } else {
-                            Text(settings.localizedString(for: "spin_button_keine"))
+                        
+                        if !gardenStore.heuteGegossen {
+                            Text(settings.localizedString(for: "lucky_wheel_locked_hint"))
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                        } else if !gardenStore.pendingDailySpin && gardenStore.gluecksradDrehungen <= 0 {
+                            Text(settings.localizedString(for: "dailyspin.no_spins_hint"))
+                                .font(.system(size: 13, weight: .medium))
+                                .foregroundStyle(.secondary)
                         }
-                    }
-                    .buttonStyle(DuolingoButtonStyle(
-                        size: .large,
-                        backgroundColor: (gardenStore.pendingDailySpin || gardenStore.gluecksradDrehungen > 0) ? .blauPrimary : .secondary,
-                        shadowColor: (gardenStore.pendingDailySpin || gardenStore.gluecksradDrehungen > 0) ? .blauSecondary : .secondary.darker()
-                    ))
-                    .disabled(isSpinning || (!gardenStore.pendingDailySpin && gardenStore.gluecksradDrehungen <= 0))
-                    .padding(.horizontal, 30)
-                    
-                    if !gardenStore.pendingDailySpin && gardenStore.gluecksradDrehungen <= 0 {
-                        Text(settings.localizedString(for: "dailyspin.no_spins_hint"))
-                            .font(.system(size: 13, weight: .medium))
-                            .foregroundStyle(.secondary)
-                            .padding(.top, -10)
                     }
                     
                     Spacer().frame(height: 40)
                 }
                 .padding(.top, 40)
-                .frame(minHeight: 800) // Avoid deprecated UIScreen.main.bounds.height for minHeight
+                .frame(minHeight: 800)
             }
             
             // Result Overlay
@@ -265,39 +193,21 @@ struct WheelOfFortuneView: View {
                 .transition(.opacity.combined(with: .scale(0.9)))
             }
         }
-        .sheet(isPresented: $showPowerUpPicker) {
-            WheelPowerUpPickerView(onPowerUpUsed: {
-                if showResult && spinResult == .weed {
-                    showResult = false
-                    spinResult = nil
-                    spinWheel()
-                }
-            })
-            .presentationDetents([.medium, .large])
-        }
         .onAppear {
             if segmentLayout.isEmpty {
                 segmentLayout = generateLayout()
             }
         }
-        .onDisappear {
-            // Wenn der User das Rad schließt, ohne den Pending-Spin zu nutzen, ist er weg ("Funktion drei weg")
-            if gardenStore.pendingDailySpin {
-                gardenStore.pendingDailySpin = false
-            }
-        }
     }
 
     private func handleSpinAction() {
-        guard !isSpinning else { return }
+        guard !isSpinning && gardenStore.heuteGegossen else { return }
         
         if gardenStore.pendingDailySpin {
-            // Kostenlose tägliche Drehung
             gardenStore.pendingDailySpin = false
             FeedbackManager.shared.playTap()
             spinWheel()
         } else if gardenStore.gluecksradDrehungen > 0 {
-            // Bezahlte/Gearned Drehung
             FeedbackManager.shared.playTap()
             _ = gardenStore.gluecksradDrehungVerbrauchen()
             spinWheel()
@@ -309,21 +219,19 @@ struct WheelOfFortuneView: View {
     private func spinWheel() {
         isSpinning = true
 
-        let result: SpinResult
-        if powerUpActivated {
-            result = .safe
-        } else {
-            result = DailySpinLogic.spin(ownedItemsCount: gardenStore.totalItemsCount)
-        }
+        let result = DailySpinLogic.spin(ownedItemsCount: gardenStore.totalItemsCount)
         spinResult = result
 
         // Find matching segment indices in the shuffled layout
         let targetKind: SegmentKind
         switch result {
-        case .weed:   targetKind = .weed
-        case .safe:   targetKind = .safe
-        case .coins:  targetKind = .gold
+        case .klein:   targetKind = .klein
+        case .mittel:  targetKind = .mittel
+        case .gross:   targetKind = .gross
+        case .xpBoost: targetKind = .xpBoost
+        case .jackpot: targetKind = .jackpot
         }
+        
         let matchingIndices = segmentLayout.enumerated().compactMap { $0.element == targetKind ? $0.offset : nil }
         let segDeg = 360.0 / Double(totalSegments)
         
@@ -335,12 +243,10 @@ struct WheelOfFortuneView: View {
         let fullSpins = 5.0 * 360.0
         let targetRotation = rotation + fullSpins + (360.0 - sliceAngle)
         
-        // Tick haptics during spin
         let tickCount = Int(fullSpins / segDeg) + totalSegments
         let spinDuration: Double = 3.5
         for tick in 0..<tickCount {
             let progress = Double(tick) / Double(tickCount)
-            // Ease-out timing: ticks slow down toward the end
             let easedTime = progress * spinDuration * (2.0 - progress)
             let delay = min(easedTime, spinDuration - 0.1)
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
@@ -350,7 +256,6 @@ struct WheelOfFortuneView: View {
             }
         }
 
-        // Improved spin physics: fast start, smooth deceleration
         withAnimation(
             .timingCurve(0.15, 0.85, 0.35, 1.0, duration: spinDuration)
         ) {
@@ -360,15 +265,8 @@ struct WheelOfFortuneView: View {
             withAnimation(.spring(response: 0.4)) {
                 showResult = true
             }
-            // Show the result overlay after a brief delay
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                let res = result
-                if res == .weed {
-                    FeedbackManager.shared.playError()
-                } else {
-                    FeedbackManager.shared.playSuccess()
-                }
-                
+                FeedbackManager.shared.playSuccess()
                 withAnimation(.spring(response: 0.42, dampingFraction: 0.65)) {
                     showResultOverlay = true
                 }
@@ -377,20 +275,30 @@ struct WheelOfFortuneView: View {
     }
 
     private func finishSpin() {
-        switch spinResult {
-        case .weed:
-            gardenStore.isWeedActive = true
-        case .safe:
-            gardenStore.isWeedActive = false
-        case .coins(let amount):
-            gardenStore.isWeedActive = false
-            gardenStore.coinsGutschreiben(amount: amount, beschreibung: settings.localizedString(for: "wheel.jackpot.desc"))
-        case nil:
-            break
+        guard let result = spinResult else { return }
+        
+        switch result {
+        case .klein:
+            gardenStore.coins += 10
+        case .mittel:
+            gardenStore.coins += 25
+        case .gross:
+            gardenStore.coins += 50
+        case .xpBoost:
+            if let lowest = gardenStore.pflanzen.sorted(by: { $0.currentXP < $1.currentXP }).first {
+                lowest.currentXP += 100
+            }
+            gardenStore.xpHinzufuegen(amount: 50)
+        case .jackpot:
+            gardenStore.coins += 150
         }
-        gardenStore.dailyQuestsCompletedSinceWeed = 0
+        
+        gardenStore.saveStats()
         gardenStore.lastSpinTimestamp = Date()
         gardenStore.showDailySpinOverlay = false
+        
+        // Regenerate layout for next time
+        segmentLayout = generateLayout()
     }
 }
 
@@ -415,8 +323,6 @@ struct Pressed3DTextButtonStyle: ButtonStyle {
     }
 }
 
-// Helper components (WheelRimDot, WheelTrianglePointer, etc.) now reside in DailyWheelComponents.swift
-
 // MARK: - SpinResultIconView
 private struct SpinResultIconView: View {
     let result: SpinResult
@@ -424,23 +330,18 @@ private struct SpinResultIconView: View {
     var body: some View {
         ZStack {
             switch result {
-            case .safe:
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 72, weight: .bold))
-                    .foregroundStyle(Color.gruenPrimary)
-                    .shadow(color: .green.opacity(0.25), radius: 8, x: 0, y: 4)
-
-            case .coins(_):
-                Image(systemName: "dollarsign.circle.fill")
-                    .font(.system(size: 72, weight: .bold))
-                    .foregroundStyle(Color.coinBlue)
-                    .shadow(color: Color.coinBlue.opacity(0.25), radius: 8, x: 0, y: 4)
-
-            case .weed:
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.system(size: 72, weight: .bold))
-                    .foregroundStyle(Color.red)
-                    .shadow(color: .red.opacity(0.25), radius: 8, x: 0, y: 4)
+            case .klein, .mittel, .gross, .jackpot:
+                Image("coin")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 72, height: 72)
+                    .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 4)
+            case .xpBoost:
+                Image("XP")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 72, height: 72)
+                    .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 4)
             }
         }
         .frame(height: 140)
@@ -458,45 +359,33 @@ struct SpinResultOverlay: View {
 
     private var overlayTitel: String {
         switch result {
-        case .safe:     return settings.localizedString(for: "dailyspin.result.safe.title")
-        case .coins(_): return settings.localizedString(for: "dailyspin.result.coins.title")
-        case .weed:     return settings.localizedString(for: "dailyspin.result.weed.title")
+        case .klein:   return "+10 Coins"
+        case .mittel:  return "+25 Coins"
+        case .gross:   return "+50 Coins"
+        case .xpBoost: return "+100 XP"
+        case .jackpot: return "+150 Coins"
         }
     }
 
     private var overlayUntertitel: String {
         switch result {
-        case .safe:
-            return settings.localizedString(for: "dailyspin.result.safe.subtitle")
-        case .coins(let anzahl):
-            return String(format: settings.localizedString(for: "dailyspin.result.coins.subtitle"), anzahl)
-        case .weed:
-            return settings.localizedString(for: "dailyspin.result.weed.subtitle")
+        case .xpBoost: return settings.localizedString(for: "dailyspin.result.xp.subtitle")
+        default:       return settings.localizedString(for: "dailyspin.result.coins.subtitle")
         }
     }
 
     var body: some View {
         ZStack {
-            // Konfetti ganz unten, hinter allem
-            if result == .safe {
-                SafeDotLottieView(
-                    url: "https://lottie.host/e9ce3227-f1fc-4135-9b98-b1f578638775/77KBz7dIev.lottie",
-                    animationConfig: AnimationConfig(autoplay: true, loop: false),
-                    fixedSize: UIScreen.main.bounds.size
-                )
-            }
-
             Color.black.opacity(0.45)
                 .ignoresSafeArea()
 
             VStack(spacing: 20) {
-                // Icon (kein Lottie hier)
                 SpinResultIconView(result: result)
                     .scaleEffect(iconScale)
 
                 VStack(spacing: 8) {
                     Text(overlayTitel)
-                        .font(.title2.bold())
+                        .font(.system(size: 32, weight: .black, design: .rounded))
                         .multilineTextAlignment(.center)
 
                     Text(overlayUntertitel)
@@ -505,7 +394,6 @@ struct SpinResultOverlay: View {
                         .multilineTextAlignment(.center)
                 }
 
-                // Button bei allen drei Zuständen
                 Button(action: onDismiss) {
                     Text(settings.localizedString(for: "dailyspin.button.continue"))
                         .font(.system(size: 17, weight: .bold, design: .rounded))
@@ -513,8 +401,8 @@ struct SpinResultOverlay: View {
                 .buttonStyle(DuolingoButtonStyle(
                     size: .large,
                     fillWidth: true,
-                    backgroundColor: result == .weed ? .red : .gruenPrimary,
-                    shadowColor: (result == .weed ? Color.red : Color.gruenPrimary).darker(),
+                    backgroundColor: .gruenPrimary,
+                    shadowColor: Color.gruenPrimary.darker(),
                     foregroundColor: .white
                 ))
             }
@@ -531,110 +419,6 @@ struct SpinResultOverlay: View {
             withAnimation(.spring(response: 0.45, dampingFraction: 0.7)) {
                 contentOpacity = 1.0
                 iconScale = 1.0
-            }
-        }
-    }
-}
-
-// MARK: - WheelPowerUpPickerView
-struct WheelPowerUpPickerView: View {
-    @EnvironmentObject var gardenStore: GardenStore
-    @EnvironmentObject var settings: SettingsStore
-    @Environment(\.dismiss) var dismiss
-    var onPowerUpUsed: () -> Void
-    
-    var usableItems: [ShopDetailPayload] {
-        gardenStore.gekaufteItems.filter { $0.id == "powerup.zauberstab" }
-    }
-    
-    var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.appHintergrund.ignoresSafeArea()
-                
-                if usableItems.isEmpty {
-                    VStack {
-                        Image(systemName: "archivebox")
-                            .font(.system(size: 60))
-                            .foregroundColor(.gray)
-                        Text(settings.localizedString(for: "wheel.no_items"))
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                            .padding(.top)
-                        Text(settings.localizedString(for: "wheel.go_to_shop"))
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                            .padding(.top, 4)
-                    }
-                } else {
-                    ScrollView {
-                        VStack(spacing: 16) {
-                            ForEach(usableItems) { item in
-                                Button {
-                                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                                    if let p = GameDatabase.allPowerUps.first(where: { $0.id == item.id }) {
-                                        gardenStore.applyPowerUp(p)
-                                        gardenStore.itemVerbrauchen(shopItem: item)
-                                    }
-                                    dismiss()
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                        onPowerUpUsed()
-                                    }
-                                } label: {
-                                    HStack(spacing: 16) {
-                                        ZStack {
-                                            Circle()
-                                                .fill(item.color.opacity(0.2))
-                                                .frame(width: 50, height: 50)
-                                            if UIImage(named: item.icon) != nil {
-                                                Image(item.icon)
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 30, height: 30)
-                                            } else {
-                                                Image(systemName: item.icon)
-                                                    .font(.system(size: 24))
-                                                    .foregroundColor(item.color)
-                                            }
-                                        }
-                                        
-                                        VStack(alignment: .leading, spacing: 4) {
-                                            Text(settings.localizedString(for: item.title))
-                                                .font(.headline)
-                                                .foregroundColor(.primary)
-                                            Text(settings.localizedString(for: item.description))
-                                                .font(.caption)
-                                                .foregroundColor(.secondary)
-                                                .lineLimit(2)
-                                                .multilineTextAlignment(.leading)
-                                        }
-                                        Spacer()
-                                        
-                                        Text(settings.localizedString(for: "wheel.use"))
-                                            .font(.subheadline.bold())
-                                            .foregroundColor(.white)
-                                            .padding(.horizontal, 12)
-                                            .padding(.vertical, 6)
-                                            .background(item.color)
-                                            .clipShape(Capsule())
-                                    }
-                                    .padding()
-                                    .background(Color(UIColor.secondarySystemGroupedBackground))
-                                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                                }
-                                .buttonStyle(.plain)
-                            }
-                        }
-                        .padding()
-                    }
-                }
-            }
-            .navigationTitle(settings.localizedString(for: "wheel.powerups.title"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(settings.localizedString(for: "common.done_button")) { dismiss() }
-                }
             }
         }
     }
