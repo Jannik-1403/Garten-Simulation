@@ -1,5 +1,4 @@
 import SwiftUI
-import DotLottie
 
 // SegmentKind now resides in DailyWheelComponents.swift
 
@@ -36,21 +35,18 @@ struct WheelOfFortuneView: View {
             // Close Button
             VStack {
                 HStack {
+                    Spacer()
                     Button {
                         FeedbackManager.shared.playTap()
                         dismiss()
                     } label: {
                         Image(systemName: "xmark")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.primary)
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundStyle(.primary)
                             .padding(12)
-                            .background(Color(UIColor.secondarySystemBackground).opacity(0.8))
-                            .clipShape(Circle())
                     }
-                    .padding(.leading, 20)
+                    .padding(.trailing, 8)
                     .padding(.top, 20)
-                    
-                    Spacer()
                 }
                 Spacer()
             }

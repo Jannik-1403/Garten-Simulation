@@ -4,6 +4,7 @@ struct GartenPassPowerUpWheelView: View {
     @EnvironmentObject var gartenPfadStore: GartenPfadStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var powerUpStore: PowerUpStore
+    @EnvironmentObject var settings: SettingsStore
     @Environment(\.dismiss) var dismiss
     
     var onRewardClaimed: (GartenPassBelohnung) -> Void
@@ -33,11 +34,11 @@ struct GartenPassPowerUpWheelView: View {
                     Button {
                         FeedbackManager.shared.playTap()
                     } label: {
-                        Text(NSLocalizedString("powerup_wheel_title", comment: "Power-Up Glücksrad"))
+                        Text(settings.localizedString(for: "powerup_wheel_title"))
                     }
                     .buttonStyle(PowerUpWheelTitleStyle())
                     
-                    Text(NSLocalizedString("powerup_wheel_subtitle", comment: "Drehe für dein Power-Up!"))
+                    Text(settings.localizedString(for: "powerup_wheel_subtitle"))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundColor(.secondary)
                 }
@@ -103,7 +104,7 @@ struct GartenPassPowerUpWheelView: View {
                 // Spin/Dismiss Button
                 if !isSpinning && !showResultOverlay {
                     Button(action: spinWheel) {
-                        Text(NSLocalizedString("wheel_drehen", comment: "DREHEN"))
+                        Text(settings.localizedString(for: "wheel_drehen"))
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(DuolingoButtonStyle(size: .large, backgroundColor: .orange, shadowColor: .orange.darker()))
@@ -236,6 +237,7 @@ struct PowerUpWheelSlices: View {
 struct PowerUpResultView: View {
     let powerUp: PowerUpItem
     let onContinue: () -> Void
+    @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
         VStack(spacing: 24) {
@@ -251,15 +253,15 @@ struct PowerUpResultView: View {
             }
             
             VStack(spacing: 8) {
-                Text(NSLocalizedString("powerup_wheel_win", comment: "GEWONNEN!"))
+                Text(settings.localizedString(for: "powerup_wheel_win"))
                     .font(.system(size: 24, weight: .black, design: .rounded))
                     .foregroundColor(.primary)
                 
-                Text(NSLocalizedString(powerUp.name, comment: ""))
+                Text(settings.localizedString(for: powerUp.name))
                     .font(.title3.bold())
                     .foregroundColor(powerUp.color)
                 
-                Text(NSLocalizedString(powerUp.description, comment: ""))
+                Text(settings.localizedString(for: powerUp.description))
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -267,7 +269,7 @@ struct PowerUpResultView: View {
             }
             
             Button(action: onContinue) {
-                Text(NSLocalizedString("wheel_weiter", comment: "Weiter"))
+                Text(settings.localizedString(for: "wheel_weiter"))
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(DuolingoButtonStyle(size: .large))

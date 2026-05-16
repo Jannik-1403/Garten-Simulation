@@ -58,12 +58,13 @@ struct HabitStackConfigView: View {
             .navigationTitle(settingsStore.localizedString(for: "ritual_config_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                // ABBRECHEN (Links)
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(settingsStore.localizedString(for: "button.cancel")) {
-                        dismiss()
+                // X (Schließen, Rechts)
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button { dismiss() } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundStyle(.primary)
                     }
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
                 }
                 
                 // GLOBAL MENU (Rechts - FIX LOKALISIERUNG)

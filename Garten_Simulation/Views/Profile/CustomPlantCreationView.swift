@@ -9,6 +9,7 @@ struct CustomPlantCreationView: View {
     @State private var habitName: String = ""
     @State private var selectedIcon: String = "leaf.fill"
     @State private var selectedColor: String = "green"
+    @State private var selectedCategory: HabitCategory = .fitness
     @State private var showSeedInfo = false
     @State private var showAllIcons = false
     
@@ -66,6 +67,14 @@ struct CustomPlantCreationView: View {
                                 Text(habitName.isEmpty ? settings.localizedString(for: "plant.create.preview.habit") : habitName)
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
+                                
+                                HStack(spacing: 4) {
+                                    Image(systemName: selectedCategory.icon)
+                                    Text(settings.localizedString(for: selectedCategory.localizationKey))
+                                }
+                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .foregroundStyle(.primary)
+                                .padding(.top, 2)
                             }
                         }
                         .padding(.top, 20)
@@ -85,6 +94,57 @@ struct CustomPlantCreationView: View {
                                     placeholder: settings.localizedString(for: "plant.create.placeholder.habit"), 
                                     text: $habitName
                                 )
+                            }
+                            
+                            // Category Picker (iOS Menu Style)
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(settings.localizedString(for: "shop.category.label"))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .padding(.horizontal, 4)
+                                
+                                Menu {
+                                    ForEach(HabitCategory.allCases, id: \.self) { cat in
+                                        Button {
+                                            selectedCategory = cat
+                                            FeedbackManager.shared.playTap()
+                                        } label: {
+                                            Label(
+                                                settings.localizedString(for: cat.localizationKey),
+                                                systemImage: cat.icon
+                                            )
+                                        }
+                                    }
+                                } label: {
+                                    HStack {
+                                        Image(systemName: selectedCategory.icon)
+                                            .font(.system(size: 20, weight: .bold))
+                                            .foregroundStyle(.primary)
+                                            .frame(width: 32, height: 32)
+                                        
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            Text(settings.localizedString(for: selectedCategory.localizationKey))
+                                                .font(.system(size: 17, weight: .bold, design: .rounded))
+                                                .foregroundStyle(.primary)
+                                            Text(settings.localizedString(for: "category.selection_hint"))
+                                                .font(.system(size: 13))
+                                                .foregroundStyle(.secondary)
+                                        }
+                                        
+                                        Spacer()
+                                        
+                                        Image(systemName: "chevron.up.chevron.down")
+                                            .font(.system(size: 14, weight: .bold))
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 12)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .fill(Color(UIColor.secondarySystemGroupedBackground))
+                                            .shadow(color: .black.opacity(0.04), radius: 5, x: 0, y: 2)
+                                    )
+                                }
+                                .tint(.primary)
                             }
                             
                             // Icon Picker
@@ -167,7 +227,8 @@ struct CustomPlantCreationView: View {
                                 name: plantName, 
                                 habit: habitName, 
                                 icon: selectedIcon, 
-                                color: selectedColor
+                                color: selectedColor,
+                                category: selectedCategory
                             )
                             dismiss()
                         }) {
@@ -193,10 +254,12 @@ struct CustomPlantCreationView: View {
             .navigationTitle(settings.localizedString(for: "inventory.create_plant"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(settings.localizedString(for: "button.cancel")) { dismiss() }
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundStyle(.black)
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { dismiss() } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundStyle(.primary)
+                    }
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {

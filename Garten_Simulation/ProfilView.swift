@@ -9,6 +9,7 @@ struct ProfilView: View {
     @State private var showWasserDetail = false
     @State private var zeigeGartenPass = false
     @State private var showTitelAuswahl = false
+    @State private var zeigeIgelCustomizer = false
     
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
@@ -27,45 +28,147 @@ struct ProfilView: View {
                 
                 ScrollView {
                     VStack(spacing: 32) {
-                        // Flat Header Section (Name, Title, Level)
-                        VStack(spacing: 8) {
-                            Text(settings.localizedString(for: "profile.user.name.default"))
-                                .font(.system(size: 30, weight: .black, design: .rounded))
-                            
-                            // Aktiver Titel
-                            if let titel = titelStore.aktiverTitel() {
-                                Button {
-                                    showTitelAuswahl = true
-                                } label: {
-                                    TitelTextView(titel: titel, fontSize: 18)
+                        VStack(spacing: 28) {
+                            // 1. Igel-Charakter Portrait (At the top)
+                            Button(action: { zeigeIgelCustomizer = true }) {
+                                VStack(spacing: 16) {
+                                    ZStack {
+                                        let istStehend = settings.igelCustomization.pose == .stehend
+                                        RoundedRectangle(cornerRadius: 60, style: .continuous)
+                                            .fill(settings.igelCustomization.background.color)
+                                            .frame(width: 320, height: 320)
+                                            .shadow(color: .black.opacity(0.06), radius: 20, x: 0, y: 12)
+                                        
+                                        // Centered Igel View (Maximum zoom as requested)
+                                        IgelView(customization: settings.igelCustomization, size: istStehend ? 500 : 300)
+                                            .frame(width: 320, height: 320)
+                                            .clipShape(RoundedRectangle(cornerRadius: 60, style: .continuous))
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 60, style: .continuous)
+                                                    .stroke(Color.black.opacity(0.08), lineWidth: 2)
+                                            )
+                                    }
+                                    
+                                    VStack(spacing: 4) {
+                                        // 2. Igel-Name (Groß)
+                                        Text(settings.igelCustomization.name.isEmpty 
+                                             ? settings.localizedString(for: "igel_name_placeholder") 
+                                             : settings.igelCustomization.name)
+                                            .font(.system(size: 32, weight: .black, design: .rounded))
+                                            .foregroundStyle(.primary)
+                                        
+                                        // 3. Spieler-Titel (Interaktiv, Grauer Text-Stil mit Icons)
+                                        Button(action: { showTitelAuswahl = true }) {
+                                            HStack(spacing: 8) {
+                                                Image("Spieler_Title")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 20, height: 20)
+                                                
+                                                Text(titelStore.aktiverTitel().map { settings.localizedString(for: $0.displayName) } ?? settings.localizedString(for: "titel.anfaenger"))
+                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                    .foregroundStyle(Color.blauPrimary)
+                                                    .textCase(.uppercase)
+                                                    .tracking(1)
+                                                
+                                                Image("Spieler_Title")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 20, height: 20)
+                                            }
+                                            .padding(.top, 2)
+                                        }
+                                        .buttonStyle(.plain)
+                                    }
                                 }
-                                .buttonStyle(.plain)
-                            } else {
-                                Button {
-                                    showTitelAuswahl = true
-                                } label: {
-                                    Text(settings.localizedString(for: "titel.keiner"))
-                                        .font(.system(size: 14, weight: .black, design: .rounded))
-                                        .foregroundStyle(.secondary)
+                            }
+                            .buttonStyle(.plain)
+                            
+                            // 3. Garten-Pass Banner (Moved below Igel and Title)
+                            VStack(spacing: 16) {
+                                // 2. Garten-Pass Banner (3D Button)
+                                Button(action: { zeigeGartenPass = true }) {
+                                    HStack(spacing: 14) {
+                                        // Trophy Icon
+                                        Image("Erfolg")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 36, height: 36)
+                                            .frame(width: 48, height: 48)
+                                            .background(
+                                                Circle()
+                                                    .fill(.white.opacity(0.15))
+                                            )
+
+                                        // Text Links
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            Text(settings.localizedString(for: "garten_pass_level_label"))
+                                                .font(.caption)
+                                                .fontWeight(.semibold)
+                                                .foregroundStyle(.white.opacity(0.8))
+                                                .textCase(.uppercase)
+                                                .tracking(1)
+
+                                            Text("\(tierTitel) · \(settings.localizedString(for: "level_up_label")) \(level)")
+                                                .font(.title3)
+                                                .fontWeight(.bold)
+                                                .foregroundStyle(.white)
+
+                                            // Fortschrittsbalken
+                                            GeometryReader { geo in
+                                                ZStack(alignment: .leading) {
+                                                    RoundedRectangle(cornerRadius: 4)
+                                                        .fill(.white.opacity(0.2))
+                                                        .frame(height: 6)
+                                                    RoundedRectangle(cornerRadius: 4)
+                                                        .fill(.white)
+                                                        .frame(width: geo.size.width * CGFloat(fortschritt), height: 6)
+                                                }
+                                            }
+                                            .frame(height: 6)
+
+                                            Text("\(xpImLevel) / \(xpFuerNaechstenLevel) XP")
+                                                .font(.caption2)
+                                                .foregroundStyle(.white.opacity(0.7))
+                                        }
+
+                                        Spacer()
+
+                                        Image(systemName: "chevron.right")
+                                            .font(.system(size: 14, weight: .semibold))
+                                            .foregroundStyle(.white.opacity(0.6))
+                                    }
+                                    .padding(.horizontal, 18)
+                                    .padding(.vertical, 16)
+                                    .background(
+                                        ZStack {
+                                            // Untere Schicht — 3D Effekt
+                                            RoundedRectangle(cornerRadius: 18)
+                                                .fill(Color(red: 0.55, green: 0.35, blue: 0.1))
+                                                .offset(y: 4)
+                                            // Obere Schicht
+                                            RoundedRectangle(cornerRadius: 18)
+                                                .fill(
+                                                    LinearGradient(
+                                                        colors: [
+                                                            Color(red: 0.78, green: 0.52, blue: 0.2),
+                                                            Color(red: 0.65, green: 0.4, blue: 0.12)
+                                                        ],
+                                                        startPoint: .topLeading,
+                                                        endPoint: .bottomTrailing
+                                                    )
+                                                )
+                                        }
+                                    )
+                                    .padding(.horizontal, 16)
                                 }
                                 .buttonStyle(.plain)
                             }
+                            .padding(.horizontal, 20)
+                            
 
-                            ProfilTierBadgeView(level: gardenStore.gartenStufe)
-                                .padding(.top, 2)
                         }
                         .padding(.top, 30)
-                        .padding(.horizontal, 20)
-                        
-                        // Anklickbarer XP-Header → öffnet GartenPassView
-                        VStack(spacing: 12) {
-                            ProfilXPHeaderView(
-                                gesamtXP: gardenStore.gesamtXP,
-                                onTippen: { zeigeGartenPass = true }
-                            )
-                            
-                        }
-                        .padding(.horizontal, 20)
                         
                         // --- 3D STAT BUTTONS GRID ---
                         LazyVGrid(columns: [
@@ -92,9 +195,11 @@ struct ProfilView: View {
                     .padding(.vertical, 16)
                 }
             }
-            .navigationTitle(settings.localizedString(for: "profile.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("") // Hidden title
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: { 
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
@@ -143,6 +248,11 @@ struct ProfilView: View {
             .sheet(isPresented: $showTitelAuswahl) {
                 TitelAuswahlSheet()
             }
+            .sheet(isPresented: $zeigeIgelCustomizer) {
+                IgelCustomizerView()
+                    .environmentObject(settings)
+                    .environmentObject(gardenStore)
+            }
             .overlay {
                 if let neuerTitel = titelStore.neuerTitelZumAnzeigen {
                     NeuerTitelOverlay(titel: neuerTitel) {
@@ -170,6 +280,15 @@ struct ProfilView: View {
     }
     
     // MARK: - Computed Properties
+    private var level: Int { GartenLevel.level(fuerXP: gardenStore.gesamtXP) }
+    private var xpImLevel: Int { GartenLevel.xpImLevel(gesamtXP: gardenStore.gesamtXP) }
+    private var xpFuerNaechstenLevel: Int { GartenLevel.xpFuerNaechstenLevel(gesamtXP: gardenStore.gesamtXP) }
+    private var fortschritt: Double {
+        let maxXP = xpFuerNaechstenLevel
+        guard maxXP > 0 else { return 1.0 }
+        return Double(xpImLevel) / Double(maxXP)
+    }
+    private var tierTitel: String { GartenTierStufe.fuer(level: level).lokalisiertTitel(settings: settings) }
 }
 
 #Preview { 

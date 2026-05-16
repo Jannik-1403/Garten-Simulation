@@ -4,7 +4,7 @@ struct OnboardingPowerUpTutorialView: View {
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
     
-    @State private var innerPose: IgelPose = .erklaert
+    @State private var innerPose: OnboardingIgelPose = .erklaert
     @State private var itemVerwendet = false
     @State private var showNext = false
     @State private var zeigeDetail = false

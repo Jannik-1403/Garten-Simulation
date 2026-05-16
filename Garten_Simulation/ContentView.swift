@@ -30,7 +30,7 @@ struct ContentView: View {
 
 
             }
-            .tint(.green)
+            .tint(.primary)
             .onAppear {
                 gartenPfadStore.setContext(modelContext, settings: settings, gardenStore: gardenStore)
             }

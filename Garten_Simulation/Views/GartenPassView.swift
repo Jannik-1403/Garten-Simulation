@@ -9,6 +9,7 @@ struct GartenPassView: View {
     @State private var zeigePowerUpWheel = false
     @State private var claimedReward: GartenPassBelohnung? = nil
     @State private var pflanzeAuswahlBelohnung: GartenPassBelohnung? = nil
+    @State private var pendingGluecksradBelohnung: GartenPassBelohnung? = nil
     
     @EnvironmentObject var gartenPfadStore: GartenPfadStore
     @EnvironmentObject var powerUpStore: PowerUpStore
@@ -46,9 +47,11 @@ struct GartenPassView: View {
                                 abgeholte: gardenStore.abgeholtePassLevel,
                                 onAbholen: { belohnung in
                                     if case .pflanze = belohnung.typ {
-                                        // Level als abgeholt markieren
-                                        gardenStore.abgeholtePassLevel.insert(belohnung.id)
+                                        // Level wird ERST in onWahl als abgeholt markiert!
                                         pflanzeAuswahlBelohnung = belohnung
+                                    } else if case .gluecksradDrehung = belohnung.typ {
+                                        // Level wird ERST beim Spin als abgeholt markiert!
+                                        pendingGluecksradBelohnung = belohnung
                                     } else {
                                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                                             gardenStore.abgeholtePassLevel.insert(belohnung.id)
@@ -80,9 +83,9 @@ struct GartenPassView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.secondary)
-                            .font(.title2)
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundStyle(.primary)
                     }
                 }
             }
@@ -116,10 +119,30 @@ struct GartenPassView: View {
                     )
                 }
             }
+            .fullScreenCover(item: $pendingGluecksradBelohnung) { belohnung in
+                if case .gluecksradDrehung(let n) = belohnung.typ {
+                    GartenPassWheelView(
+                        pendingSpins: n,
+                        onSpinStarted: {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                _ = gardenStore.abgeholtePassLevel.insert(belohnung.id)
+                            }
+                        }
+                    )
+                    .environmentObject(gartenPfadStore)
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+                }
+            }
             .sheet(item: $pflanzeAuswahlBelohnung) { belohnung in
                 PflanzeOderAlternativeView(
                     pflanzeBelohnung: belohnung,
                     onWahl: { gewaehlte in
+                        // Erst HIER wird der Node als gesammelt markiert
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            _ = gardenStore.abgeholtePassLevel.insert(belohnung.id)
+                        }
+                        
                         if case .powerUp(let id) = gewaehlte.typ, id == "random" {
                             // SONDERFALL: Power-Up Wheel öffnen
                             pflanzeAuswahlBelohnung = nil

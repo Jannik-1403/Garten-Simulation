@@ -280,7 +280,7 @@ struct GameDatabase {
     
     // MARK: - Alle 45 Titel (Spieler-Titel System)
     static let allTitles: [PlayerTitle] = [
-        PlayerTitle(id: "titel_anfaenger",     plantID: nil,                      displayName: "titel.anfaenger",     color: "#4CAF50", isBonus: false),
+        PlayerTitle(id: "titel_anfaenger",     plantID: nil,                      displayName: "titel.anfaenger",     color: "#4ECDC4", isBonus: false),
         PlayerTitle(id: "titel_bambus",          plantID: "plant.bambus",           displayName: "titel.bambus",        color: "#4ECDC4", isBonus: false),
         PlayerTitle(id: "titel_eiche",          plantID: "plant.eiche",            displayName: "titel.eiche",         color: "#4ECDC4", isBonus: false),
         PlayerTitle(id: "titel_bonsai",         plantID: nil,                      displayName: "titel.bonsai",        color: "#4ECDC4", isBonus: false),

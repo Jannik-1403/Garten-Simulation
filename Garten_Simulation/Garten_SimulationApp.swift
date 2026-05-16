@@ -29,6 +29,9 @@ struct Garten_SimulationApp: App {
         self._gartenPfadStore = StateObject(wrappedValue: GartenPfadStore(settings: settings))
         
         garden.titelStore = titel
+        
+        // Ensure standard iOS navigation elements (back chevrons, texts) are black
+        UINavigationBar.appearance().tintColor = UIColor.label
     }
 
     @Environment(\.scenePhase) private var scenePhase
@@ -50,6 +53,7 @@ struct Garten_SimulationApp: App {
                 .onChange(of: scenePhase) { oldPhase, newPhase in
                     if newPhase == .active {
                         gardenStore.reloadData()
+                        streakStore.checkForMissedDays()
                     }
                     if newPhase == .inactive || newPhase == .background {
                         gardenStore.checkAndStartLiveActivity()
@@ -113,6 +117,7 @@ struct Garten_SimulationApp: App {
                         gardenStore.pendingImportURL = url
                     }
                 }
+                .tint(.primary)
         }
     }
 }

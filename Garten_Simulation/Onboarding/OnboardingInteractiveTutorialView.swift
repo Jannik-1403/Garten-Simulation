@@ -4,7 +4,7 @@ struct OnboardingInteractiveTutorialView: View {
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
     
-    @State private var innerPose: IgelPose = .giesst
+    @State private var innerPose: OnboardingIgelPose = .giesst
     @State private var gegossen = false
     @State private var ringProgress: CGFloat = 0.0
     @State private var showNext = false

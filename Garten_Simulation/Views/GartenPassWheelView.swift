@@ -1,11 +1,13 @@
 import SwiftUI
-import DotLottie
 
 struct GartenPassWheelView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var gartenPfadStore: GartenPfadStore
     @EnvironmentObject var settings: SettingsStore
     @Environment(\.dismiss) var dismiss
+    
+    @State var pendingSpins: Int = 0
+    var onSpinStarted: (() -> Void)? = nil
     
     @State private var rotation: Double = 0
     @State private var isSpinning = false
@@ -15,6 +17,10 @@ struct GartenPassWheelView: View {
     // UI Layout Config (Exactly like original)
     private let wheelSize: CGFloat = 310
     private let totalSegments = 12
+    
+    private var totalSpins: Int {
+        pendingSpins + gartenPfadStore.verfuegbareSpins
+    }
     
     var body: some View {
         ZStack {
@@ -49,7 +55,7 @@ struct GartenPassWheelView: View {
                             
                             // === 3D TOP LAYER & POINTER (clickable and moves) ===
                             Button {
-                                guard !isSpinning && gartenPfadStore.verfuegbareSpins > 0 else { return }
+                                guard !isSpinning && totalSpins > 0 else { return }
                                 
                                 // Delay for premium 3D feeling (pop-back animation)
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
@@ -115,7 +121,7 @@ struct GartenPassWheelView: View {
                     HStack(spacing: 8) {
                         Image(systemName: "arrow.2.circlepath")
                             .font(.system(size: 16, weight: .bold))
-                        Text(String(format: settings.localizedString(for: "wheel.spins_label"), gartenPfadStore.verfuegbareSpins))
+                        Text(String(format: settings.localizedString(for: "wheel.spins_label"), totalSpins))
                             .font(.system(size: 16, weight: .bold))
                     }
                     .padding(.horizontal, 16)
@@ -125,7 +131,7 @@ struct GartenPassWheelView: View {
                     
                     // Main Action Button (Exactly like original style)
                     Button(action: {
-                        guard !isSpinning && gartenPfadStore.verfuegbareSpins > 0 else { return }
+                        guard !isSpinning && totalSpins > 0 else { return }
                         
                         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         
@@ -134,22 +140,22 @@ struct GartenPassWheelView: View {
                             spinWheel()
                         }
                     }) {
-                        if gartenPfadStore.verfuegbareSpins > 0 {
-                            Text(String(format: settings.localizedString(for: "wheel_drehen_format"), gartenPfadStore.verfuegbareSpins))
+                        if totalSpins > 0 {
+                            Text(String(format: settings.localizedString(for: "wheel_drehen_format"), totalSpins))
                         } else {
                             Text(settings.localizedString(for: "wheel_keine_spins"))
                         }
                     }
                     .buttonStyle(DuolingoButtonStyle(
                         size: .large,
-                        backgroundColor: gartenPfadStore.verfuegbareSpins > 0 ? Color.blauPrimary : Color.gray,
-                        shadowColor: gartenPfadStore.verfuegbareSpins > 0 ? Color.blauSecondary : Color.gray.darker()
+                        backgroundColor: totalSpins > 0 ? Color.blauPrimary : Color.gray,
+                        shadowColor: totalSpins > 0 ? Color.blauSecondary : Color.gray.darker()
                     ))
-                    .disabled(isSpinning || gartenPfadStore.verfuegbareSpins == 0)
+                    .disabled(isSpinning || totalSpins == 0)
                     .padding(.horizontal, 30)
                     
                     // Back to Pass Button (3D) - Only show when NO SPINS LEFT
-                    if !isSpinning && gartenPfadStore.verfuegbareSpins == 0 {
+                    if !isSpinning && totalSpins == 0 {
                         Button(action: {
                             // Delay for premium 3D feeling (pop-back animation)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
@@ -188,10 +194,22 @@ struct GartenPassWheelView: View {
     }
     
     private func spinWheel() {
-        guard !isSpinning && gartenPfadStore.verfuegbareSpins > 0 else { return }
+        guard !isSpinning && totalSpins > 0 else { return }
+        
+        // Consume spin logic
+        if pendingSpins > 0 {
+            let remaining = pendingSpins - 1
+            pendingSpins = 0
+            if remaining > 0 {
+                gartenPfadStore.spinsHinzufuegen(remaining)
+            }
+            onSpinStarted?()
+        } else {
+            gartenPfadStore.spinVerbrauchen()
+        }
+        
         isSpinning = true
-        gartenPfadStore.spinVerbrauchen()
-        gardenStore.gluecksradDrehungen = gartenPfadStore.verfuegbareSpins // Keep in sync optionally or stick to PfadStore
+        gardenStore.gluecksradDrehungen = totalSpins // Keep in sync optionally or stick to PfadStore
         
         let result = GartenPassWheelLogic.spin(decorationCount: gardenStore.placedDecorations.count)
         wonReward = result.belohnung
@@ -408,16 +426,7 @@ struct IceRewardOverlay: View {
             .padding(.horizontal, 28)
             .opacity(contentOpacity)
         }
-        .overlay(
-            SafeDotLottieView(
-                url: "https://lottie.host/e9ce3227-f1fc-4135-9b98-b1f578638775/77KBz7dIev.lottie",
-                animationConfig: AnimationConfig(autoplay: true, loop: false),
-                fixedSize: CGSize(width: 800, height: 800)
-            )
-            .frame(width: 800, height: 800)
-            .allowsHitTesting(false)
-            .opacity(contentOpacity)
-        )
+        // Lottie Confetti removed due to crashes
         .onAppear {
             withAnimation(.spring(response: 0.45, dampingFraction: 0.7)) {
                 contentOpacity = 1.0

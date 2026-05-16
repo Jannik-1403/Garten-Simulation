@@ -29,46 +29,32 @@ struct SettingsView: View {
                 ScrollView {
                     VStack(spacing: 24) {
                         // Profile Header (Real Garden Stats)
-                        VStack(spacing: 12) {
-                            ZStack {
-                                Circle()
-                                    .fill(Color.blauPrimary.opacity(0.1))
-                                    .frame(width: 80, height: 80)
-                                Image(systemName: "person.crop.circle.fill")
-                                    .font(.system(size: 80))
-                                    .foregroundStyle(
-                                        LinearGradient(colors: [.blauPrimary, .blauPrimary.darker()], startPoint: .top, endPoint: .bottom)
-                                    )
-                            }
+                        VStack(spacing: 8) {
+                            IgelView(customization: settings.igelCustomization, size: 110)
                             
                             VStack(spacing: 4) {
-                                Text(settings.localizedString(for: "profile.user.name"))
+                                Text(settings.igelCustomization.name.isEmpty 
+                                     ? settings.localizedString(for: "profile.user.name") 
+                                     : settings.igelCustomization.name)
                                     .font(.system(size: 22, weight: .black, design: .rounded))
+                                    .foregroundStyle(.primary)
                                 
-                                HStack(spacing: 8) {
-                                    HStack(spacing: 4) {
-                                        Image(systemName: "star.fill")
-                                            .font(.system(size: 10))
-                                            .foregroundStyle(.yellow)
-                                        Text(aktuelleTierStufe.lokalisiertTitel(settings: settings))
-                                            .font(.system(size: 12, weight: .bold, design: .rounded))
-                                    }
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .background(Capsule().fill(aktuelleTierStufe.farbe.opacity(0.15)))
-                                    .foregroundStyle(aktuelleTierStufe.farbe)
+                                HStack(spacing: 16) {
+                                    // League / Tier
+                                    Text(aktuelleTierStufe.lokalisiertTitel(settings: settings))
+                                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                                        .foregroundStyle(aktuelleTierStufe.farbe)
                                     
-                                    HStack(spacing: 4) {
-                                        Image(systemName: "bitcoinsign.circle.fill")
-                                            .font(.system(size: 10))
-                                            .foregroundStyle(Color.coinBlue)
-                                        Text(String(format: settings.localizedString(for: "shop.coins_format"), gardenStore.coins))
-                                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                                    // Coins
+                                    HStack(spacing: 6) {
+                                        Image("coin")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 18, height: 18)
+                                        Text("\(gardenStore.coins)")
+                                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                                            .foregroundStyle(.primary)
                                     }
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .background(Capsule().fill(Color.coinBlue.opacity(0.15)))
-                                    .foregroundStyle(Color.coinBlue)
                                 }
                             }
                         }
@@ -368,11 +354,13 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(settings.localizedString(for: "button.done")) {
+                    Button {
                         dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundStyle(.primary)
                     }
-                    .fontWeight(.bold)
-                    .foregroundStyle(.primary)
                 }
             }
             .tint(.primary)

@@ -903,32 +903,32 @@ class GardenStore: ObservableObject {
         }
     }
 
-    func addCustomPlant(name: String, habit: String, icon: String, color: String) {
+    func addCustomPlant(name: String, habit: String, icon: String, color: String, category: HabitCategory) {
         guard seeds >= 10 else { return }
         seeds -= 10
         saveStats()
         
-        createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color)
+        createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category)
     }
     
     // Non-billed version for Onboarding
-    func addCustomPlantFromOnboarding(name: String, habit: String, icon: String, color: String, reminderTime: Date? = nil) {
-        createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, reminderTime: reminderTime)
+    func addCustomPlantFromOnboarding(name: String, habit: String, icon: String, color: String, category: HabitCategory, reminderTime: Date? = nil) {
+        createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category, reminderTime: reminderTime)
     }
     
     // Backwards compatibility for older onboarding code calling a German-named API
-    func pflanzeHinzufuegenCustom(name: String, habit: String, icon: String, color: String, reminderTime: Date? = nil) {
-        addCustomPlantFromOnboarding(name: name, habit: habit, icon: icon, color: color, reminderTime: reminderTime)
+    func pflanzeHinzufuegenCustom(name: String, habit: String, icon: String, color: String, category: HabitCategory = .fitness, reminderTime: Date? = nil) {
+        addCustomPlantFromOnboarding(name: name, habit: habit, icon: icon, color: color, category: category, reminderTime: reminderTime)
     }
     
-    private func createAndAddCustomPlant(name: String, habit: String, icon: String, color: String, reminderTime: Date? = nil) {
+    private func createAndAddCustomPlant(name: String, habit: String, icon: String, color: String, category: HabitCategory, reminderTime: Date? = nil) {
         let newCustomID = "custom_\(UUID().uuidString)"
         let customPlant = HabitModel(
             id: UUID().uuidString,
             name: name,
             symbolName: icon,
             symbolColor: color,
-            habitCategory: .mental,
+            habitCategory: category,
             symbolism: "plant.create.custom_symbolism",
             habitName: habit,
             maxLevel: 10,

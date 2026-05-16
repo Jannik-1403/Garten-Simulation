@@ -91,13 +91,7 @@ struct LebenDetailView: View {
             }
             .navigationTitle(settings.localizedString(for: "leben.titel"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    LiquidGlassDismissButton {
-                        dismiss()
-                    }
-                }
-            }
+            .standardNavigationX()
             .background(Color.appHintergrund.ignoresSafeArea())
         }
     }

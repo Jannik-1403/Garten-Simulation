@@ -23,7 +23,8 @@ struct InventoryItemDetailSheet: View {
     }
 
     var body: some View {
-        ZStack(alignment: .topTrailing) {
+        NavigationStack {
+            ZStack(alignment: .topTrailing) {
             Color.appHintergrund.ignoresSafeArea()
             
             VStack(spacing: 32) {
@@ -160,13 +161,11 @@ struct InventoryItemDetailSheet: View {
                 .frame(maxWidth: .infinity, alignment: .top)
                 .zIndex(10)
             }
-            
-            LiquidGlassDismissButton {
-                dismiss()
             }
-            .padding(.top, 24)
-            .padding(.trailing, 24)
         }
+        .navigationTitle(settings.localizedString(for: item.title))
+        .navigationBarTitleDisplayMode(.inline)
+        .standardNavigationX()
         .sheet(isPresented: $showPlantPicker) {
             if let p = powerUp {
                 PowerUpPlantPickerSheet(

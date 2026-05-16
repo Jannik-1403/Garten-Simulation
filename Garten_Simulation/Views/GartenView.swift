@@ -32,6 +32,7 @@ struct GartenView: View {
     @State private var zeigeStreakDetail = false
     @State private var zeigeCoinsDetail = false
     @State private var zeigeWetterDetails = false
+    @State private var zeigeStatistiken = false
     @State private var startAbstandAktiv = true
     @State private var timerAktuell = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var cardPositions: [CardPositionData] = []
@@ -44,6 +45,17 @@ struct GartenView: View {
     // Bonus-Text
     @State private var zeigeBonusText: Bool = false
     @State private var bonusText: String = ""
+
+    var wateredCount: Int { gardenStore.pflanzen.filter { $0.istBewässert }.count }
+    var totalPlants: Int { gardenStore.pflanzen.count }
+    var wateringProgress: Double {
+        guard totalPlants > 0 else { return 0 }
+        return Double(wateredCount) / Double(totalPlants)
+    }
+    
+    var headerSpacerHeight: CGFloat {
+        gardenStore.pflanzen.isEmpty ? 190 : 310 // Erhöht auf 310 für mehr Atempause
+    }
 
     let columns = [
         GridItem(.adaptive(minimum: 160), spacing: 16)
@@ -63,7 +75,7 @@ struct GartenView: View {
                         
                         VStack(spacing: 0) {
                             // Spacer for Header (since it's now an overlay)
-                            Spacer().frame(height: 190)
+                            Spacer().frame(height: headerSpacerHeight)
 
                             // MARK: - Pflanzen Grid
                             if gardenStore.pflanzen.isEmpty {
@@ -215,15 +227,20 @@ struct GartenView: View {
                         .padding(.top, 16)
                         .padding(.bottom, 10)
 
+                        if !gardenStore.pflanzen.isEmpty {
+                            DailyWateringRingView(
+                                progress: wateringProgress,
+                                count: wateredCount,
+                                total: totalPlants,
+                                onTap: { zeigeStatistiken = true }
+                            )
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                        }
+
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
-                                HStack(alignment: .firstTextBaseline, spacing: 12) {
-                                    Text(settings.localizedString(for: "garden.title"))
-                                        .font(.system(size: 32, weight: .black, design: .rounded))
-                                        .foregroundStyle(.primary)
-                                        .minimumScaleFactor(0.5)
-                                        .lineLimit(2)
-                                    
+                                HStack(alignment: .center, spacing: 12) {
                                     if gardenStore.globalXPMultiplier > 1.0 {
                                         HStack(spacing: 4) {
                                             Image("XP").resizable().scaledToFit().frame(width: 20, height: 20)
@@ -237,7 +254,6 @@ struct GartenView: View {
                                         .clipShape(Capsule())
                                     }
                                 }
-                                
                             }
                             Spacer()
                         }
@@ -361,6 +377,17 @@ struct GartenView: View {
                     .environmentObject(powerUpStore)
             }
         }
+        .sheet(isPresented: $zeigeStatistiken) {
+            NavigationStack {
+                StatisticsDashboard()
+                    .environmentObject(settings)
+                    .environmentObject(gardenStore)
+                    .environmentObject(streakStore)
+            }
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
+            .presentationCornerRadius(32)
+        }
         .sheet(isPresented: $zeigeUnkrautDetail) {
             WeedDetailView()
                 .environmentObject(gardenStore)
@@ -382,6 +409,13 @@ struct GartenView: View {
                     } else {
                         gardenStore.declineRescue(pflanze: pflanze)
                     }
+                }
+                .environmentObject(settings)
+            }
+            
+            if streakStore.showingFreezeUsed {
+                StreakFreezeRescueOverlay {
+                    streakStore.showingFreezeUsed = false
                 }
                 .environmentObject(settings)
             }
@@ -618,6 +652,72 @@ struct WonderWaterRescueOverlay: View {
             )
             .shadow(color: .black.opacity(0.15), radius: 30, y: 15)
             .padding(24)
+        }
+    }
+}
+
+struct StreakFreezeRescueOverlay: View {
+    let onDismiss: () -> Void
+    @EnvironmentObject var settings: SettingsStore
+    
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.6)
+                .ignoresSafeArea()
+                .onTapGesture { 
+                    withAnimation { onDismiss() }
+                }
+            
+            VStack(spacing: 24) {
+                ZStack {
+                    Circle()
+                        .fill(.blue.opacity(0.15))
+                        .frame(width: 100, height: 100)
+                    
+                    Image(systemName: "snowflake")
+                        .font(.system(size: 50, weight: .bold))
+                        .foregroundStyle(.blue)
+                        .shadow(color: .blue.opacity(0.3), radius: 10, y: 5)
+                }
+                
+                VStack(spacing: 12) {
+                    Text(settings.localizedString(for: "streak.freeze.used.title"))
+                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .foregroundColor(.primary)
+                        .multilineTextAlignment(.center)
+                    
+                    Text(settings.localizedString(for: "streak.freeze.used.message"))
+                        .font(.system(size: 17, weight: .medium, design: .rounded))
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(4)
+                }
+                
+                Button(action: {
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    withAnimation { onDismiss() }
+                }) {
+                    Text(settings.localizedString(for: "common.done_button"))
+                        .font(.system(size: 18, weight: .bold))
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(DuolingoButtonStyle(
+                    backgroundColor: .blue,
+                    shadowColor: .blue.darker(),
+                    foregroundColor: .white
+                ))
+                .padding(.top, 8)
+            }
+            .padding(32)
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 32, style: .continuous)
+                    .stroke(.white.opacity(0.25), lineWidth: 1)
+            )
+            .shadow(color: .black.opacity(0.15), radius: 30, y: 15)
+            .padding(24)
+            .transition(.scale.combined(with: .opacity))
         }
     }
 }

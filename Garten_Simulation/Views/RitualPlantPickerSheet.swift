@@ -106,9 +106,11 @@ struct RitualPlantPickerSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(settings.localizedString(for: "button.done")) { dismiss() }
-                        .fontWeight(.black)
-                        .font(.system(size: 16, design: .rounded))
+                    Button { dismiss() } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundStyle(.primary)
+                    }
                 }
             }
         }

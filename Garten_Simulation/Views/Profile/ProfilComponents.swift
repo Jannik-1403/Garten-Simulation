@@ -177,17 +177,20 @@ struct StatisticsDashboard: View {
         let days = selectedPeriod.days
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
+        let now = Date()
         let startDate = calendar.date(byAdding: .day, value: -days, to: today)!
 
-        let totalPossible = habits.count * days
+        // +1 to include today in the possible count
+        let totalPossible = habits.count * (days + 1)
         let totalDone = habits.reduce(0) { count, habit in
-            count + habit.wateringDates.filter { $0 >= startDate && $0 < today }.count
+            // Use `now` as upper bound so today's waterings are counted
+            count + habit.wateringDates.filter { $0 >= startDate && $0 <= now }.count
         }
         let konsistenz = totalPossible > 0 ? Double(totalDone) / Double(totalPossible) : 0.0
 
         let bestStreakInPeriod = habits.map { habit -> Int in
             let datesInPeriod = habit.wateringDates
-                .filter { $0 >= startDate && $0 < today }
+                .filter { $0 >= startDate && $0 <= now }
                 .map { calendar.startOfDay(for: $0) }
             
             let uniqueDays = Set(datesInPeriod).sorted()
@@ -208,7 +211,7 @@ struct StatisticsDashboard: View {
             return best
         }.max() ?? 0
 
-        let streakScore = min(1.0, Double(bestStreakInPeriod) / Double(days))
+        let streakScore = min(1.0, Double(bestStreakInPeriod) / Double(days + 1))
 
         let scoreValue = Int((konsistenz * 0.6 + streakScore * 0.4) * 100)
         
@@ -314,7 +317,8 @@ struct StatisticsDashboard: View {
         let currentStart = calendar.date(byAdding: .day, value: -days, to: today)!
         let prevStart = calendar.date(byAdding: .day, value: -days * 2, to: today)!
         
-        let currentWaterings = habits.reduce(0) { $0 + $1.wateringDates.filter { $0 >= currentStart && $0 < today }.count }
+        let now = Date()
+        let currentWaterings = habits.reduce(0) { $0 + $1.wateringDates.filter { $0 >= currentStart && $0 <= now }.count }
         let prevWaterings = habits.reduce(0) { $0 + $1.wateringDates.filter { $0 >= prevStart && $0 < currentStart }.count }
         let wateringsDelta = currentWaterings - prevWaterings
         let currentPlants = habits.count
@@ -613,10 +617,9 @@ struct StatDetailFullscreenView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .symbolRenderingMode(.hierarchical)
-                            .font(.title2)
-                            .foregroundStyle(.secondary)
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundStyle(.primary)
                     }
                 }
             }
@@ -1111,13 +1114,13 @@ struct SharePreviewSheet: View {
             .navigationTitle(settings.localizedString(for: "stats.share.preview_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         dismiss()
                     } label: {
                         Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundStyle(.secondary)
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundStyle(.primary)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -1278,15 +1281,16 @@ struct SharePreviewSheet: View {
         let days = period.days
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
+        let now = Date()
         let dayOffset = -Int(days)
         let startDate = calendar.date(byAdding: .day, value: dayOffset, to: today)!
-        let totalPossible = habits.count * days
+        let totalPossible = habits.count * (days + 1)
         let totalDone = habits.reduce(0) { count, habit in
-            count + habit.wateringDates.filter { $0 >= startDate && $0 < today }.count
+            count + habit.wateringDates.filter { $0 >= startDate && $0 <= now }.count
         }
         let konsistenz = totalPossible > 0 ? Double(totalDone) / Double(totalPossible) : 0.0
         let bestStreakInPeriod = habits.map { habit -> Int in
-            let datesInPeriod = habit.wateringDates.filter { $0 >= startDate && $0 < today }.map { calendar.startOfDay(for: $0) }
+            let datesInPeriod = habit.wateringDates.filter { $0 >= startDate && $0 <= now }.map { calendar.startOfDay(for: $0) }
             let uniqueDays = Set(datesInPeriod).sorted()
             var best = 0, current = 0, lastDay: Date? = nil
             for day in uniqueDays {
@@ -1295,7 +1299,7 @@ struct SharePreviewSheet: View {
             }
             return best
         }.max() ?? 0
-        let streakScore = min(1.0, Double(bestStreakInPeriod) / Double(days))
+        let streakScore = min(1.0, Double(bestStreakInPeriod) / Double(days + 1))
         let scoreValue = Int((konsistenz * 0.6 + streakScore * 0.4) * 100)
         return (scoreValue, konsistenz, streakScore, "", bestStreakInPeriod)
     }

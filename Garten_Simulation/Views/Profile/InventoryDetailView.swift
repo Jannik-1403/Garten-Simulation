@@ -90,6 +90,7 @@ struct InventoryDetailView: View {
         }
         .navigationTitle(settings.localizedString(for: "profile.inventory"))
         .navigationBarTitleDisplayMode(.inline)
+        .standardNavigationX()
         .fullScreenCover(isPresented: $showCreationSheet) {
             CustomPlantCreationView()
                 .environmentObject(gardenStore)

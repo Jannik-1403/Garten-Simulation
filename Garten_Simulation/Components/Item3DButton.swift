@@ -8,6 +8,7 @@ struct Item3DButton: View {
     var iconSkalierung: CGFloat = 0.7
     var isRectangular: Bool = false // NEU: Unterstützung für eckige Buttons
     var isPermanentlyPressed: Bool = false // NEU: Unterstützt dauerhaft gedrückte Zustände
+    var shadowDepthFactor: CGFloat = 0.08 // NEU: Anpassbare Schattentiefe
     var aktion: (() -> Void)? = nil
     
     // New: Support for custom views
@@ -24,12 +25,13 @@ struct Item3DButton: View {
         self.aktion = aktion
     }
 
-    init<V: View>(farbe: Color, sekundaerFarbe: Color, groesse: CGFloat, iconSkalierung: CGFloat = 0.7, isRectangular: Bool = false, isPermanentlyPressed: Bool = false, aktion: (() -> Void)? = nil, @ViewBuilder label: () -> V) {
+    init<V: View>(farbe: Color, sekundaerFarbe: Color, groesse: CGFloat, iconSkalierung: CGFloat = 0.7, shadowDepthFactor: CGFloat = 0.08, isRectangular: Bool = false, isPermanentlyPressed: Bool = false, aktion: (() -> Void)? = nil, @ViewBuilder label: () -> V) {
         self.icon = "" // Not used
         self.farbe = farbe
         self.sekundaerFarbe = sekundaerFarbe
         self.groesse = groesse
         self.iconSkalierung = iconSkalierung
+        self.shadowDepthFactor = shadowDepthFactor
         self.isRectangular = isRectangular
         self.isPermanentlyPressed = isPermanentlyPressed
         self.aktion = aktion
@@ -54,6 +56,7 @@ struct Item3DButton: View {
             sekundaerFarbe: sekundaerFarbe,
             groesse: groesse,
             iconSkalierung: iconSkalierung,
+            shadowDepthFactor: shadowDepthFactor,
             isRectangular: isRectangular,
             isPermanentlyPressed: isPermanentlyPressed
         ))
@@ -85,6 +88,7 @@ struct Item3DButtonStyle: ButtonStyle {
     let sekundaerFarbe: Color
     let groesse: CGFloat
     var iconSkalierung: CGFloat = 0.7
+    var shadowDepthFactor: CGFloat = 0.08
     var isRectangular: Bool = false
     var isPermanentlyPressed: Bool = false
 
@@ -95,6 +99,7 @@ struct Item3DButtonStyle: ButtonStyle {
             sekundaerFarbe: sekundaerFarbe,
             groesse: groesse,
             iconSkalierung: iconSkalierung,
+            shadowDepthFactor: shadowDepthFactor,
             isRectangular: isRectangular,
             isPermanentlyPressed: isPermanentlyPressed,
             isHapticEnabled: isHapticEnabled
@@ -108,6 +113,7 @@ private struct Item3DButtonVisualView: View {
     let sekundaerFarbe: Color
     let groesse: CGFloat
     var iconSkalierung: CGFloat = 0.7
+    var shadowDepthFactor: CGFloat = 0.08
     var isRectangular: Bool = false
     var isPermanentlyPressed: Bool = false
     let isHapticEnabled: Bool
@@ -115,7 +121,7 @@ private struct Item3DButtonVisualView: View {
     @State private var isVisualPressed = false
     
     var body: some View {
-        let shadowDepth: CGFloat = groesse * 0.08
+        let shadowDepth: CGFloat = groesse * shadowDepthFactor
         
         ZStack {
             // Shadow / Base

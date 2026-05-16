@@ -4,15 +4,16 @@ struct PflanzeOderAlternativeView: View {
     let pflanzeBelohnung: GartenPassBelohnung  // der originale .pflanze(...) Case
     let onWahl: (GartenPassBelohnung) -> Void
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var settings: SettingsStore
 
     var body: some View {
         VStack(spacing: 0) {
             // Header
             VStack(spacing: 8) {
-                Text(NSLocalizedString("pflanze_auswahl_titel", comment: ""))
+                Text(settings.localizedString(for: "pflanze_auswahl_titel"))
                     .font(.title2.bold())
                     .foregroundColor(.primary)
-                Text(NSLocalizedString("pflanze_auswahl_untertitel", comment: ""))
+                Text(settings.localizedString(for: "pflanze_auswahl_untertitel"))
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -30,8 +31,8 @@ struct PflanzeOderAlternativeView: View {
                             .font(.system(size: 28))
                             .foregroundColor(.gruenPrimary)
                     ),
-                    titel: NSLocalizedString("pflanze_auswahl_option_pflanze", comment: ""),
-                    untertitel: NSLocalizedString("pflanze_auswahl_option_pflanze_sub", comment: "")
+                    titel: settings.localizedString(for: "pflanze_auswahl_option_pflanze"),
+                    untertitel: settings.localizedString(for: "pflanze_auswahl_option_pflanze_sub")
                 ) {
                     onWahl(pflanzeBelohnung)
                     dismiss()
@@ -44,8 +45,8 @@ struct PflanzeOderAlternativeView: View {
                             .font(.system(size: 28))
                             .foregroundColor(.blauPrimary)
                     ),
-                    titel: NSLocalizedString("pflanze_auswahl_option_spins", comment: ""),
-                    untertitel: NSLocalizedString("pflanze_auswahl_option_spins_sub", comment: "")
+                    titel: settings.localizedString(for: "pflanze_auswahl_option_spins"),
+                    untertitel: settings.localizedString(for: "pflanze_auswahl_option_spins_sub")
                 ) {
                     onWahl(GartenPassBelohnung(typ: .gluecksradDrehung(2)))
                     dismiss()
@@ -59,8 +60,8 @@ struct PflanzeOderAlternativeView: View {
                             .scaledToFit()
                             .frame(width: 32, height: 32)
                     ),
-                    titel: NSLocalizedString("pflanze_auswahl_option_coins", comment: ""),
-                    untertitel: NSLocalizedString("pflanze_auswahl_option_coins_sub", comment: "")
+                    titel: settings.localizedString(for: "pflanze_auswahl_option_coins"),
+                    untertitel: settings.localizedString(for: "pflanze_auswahl_option_coins_sub")
                 ) {
                     onWahl(GartenPassBelohnung(typ: .coins(150)))
                     dismiss()
@@ -73,8 +74,8 @@ struct PflanzeOderAlternativeView: View {
                             .font(.system(size: 32))
                             .foregroundColor(.goldPrimary)
                     ),
-                    titel: NSLocalizedString("pflanze_auswahl_option_powerup", comment: ""),
-                    untertitel: NSLocalizedString("pflanze_auswahl_option_powerup_sub", comment: "")
+                    titel: settings.localizedString(for: "pflanze_auswahl_option_powerup"),
+                    untertitel: settings.localizedString(for: "pflanze_auswahl_option_powerup_sub")
                 ) {
                     onWahl(GartenPassBelohnung(typ: .powerUp(id: "random")))
                     dismiss()

@@ -1,5 +1,4 @@
 import SwiftUI
-import DotLottie
 
 // MARK: - Main Overlay
 struct StreakIncreaseOverlayView: View {
@@ -87,20 +86,20 @@ struct StreakIncreaseOverlayView: View {
 
                             // Lottie Flame (after morph)
                             if showLottie {
-                                SafeDotLottieView(
-                                    url: "https://lottie.host/b8842b8d-669c-45fe-a8cb-92cbd20903dc/9KcW3VdzUV.lottie",
-                                    animationConfig: .init(autoplay: true, loop: true, speed: 0.8),
-                                    fixedSize: CGSize(width: 200, height: 200)
-                                )
-                                .scaleEffect(lottieScale)
-                                .scaleEffect(breathing ? 1.04 : 1.0)
-                                .animation(
-                                    breathing
-                                        ? .easeInOut(duration: 1.8).repeatForever(autoreverses: true)
-                                        : .default,
-                                    value: breathing
-                                )
-                                .transition(.scale.combined(with: .opacity))
+                                Image("streak")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 140, height: 140)
+                                    .scaleEffect(lottieScale)
+                                    .scaleEffect(breathing ? 1.04 : 1.0)
+                                    .animation(
+                                        breathing
+                                            ? .easeInOut(duration: 1.8).repeatForever(autoreverses: true)
+                                            : .default,
+                                        value: breathing
+                                    )
+                                    .transition(.scale.combined(with: .opacity))
+                                    .shadow(color: .orangePrimary.opacity(0.5), radius: 20)
                             }
 
                             // Particles
@@ -110,7 +109,7 @@ struct StreakIncreaseOverlayView: View {
                                 }
                             }
                         }
-                        .frame(width: min(200, geo.size.width * 0.5), height: min(200, geo.size.width * 0.5))
+                        .frame(width: 200, height: 200)
 
                         // ── Number (hard cut, no fade) ───────────────
                         Text("\(numberPopped ? streak : oldStreak)")

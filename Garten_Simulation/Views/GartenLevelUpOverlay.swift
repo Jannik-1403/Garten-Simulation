@@ -1,5 +1,4 @@
 import SwiftUI
-import DotLottie
 
 struct GartenLevelUpOverlay: View {
     @EnvironmentObject var settings: SettingsStore
@@ -28,14 +27,7 @@ struct GartenLevelUpOverlay: View {
                 // 2. Lottie Banner + Level-Kreis übereinander
                 GeometryReader { geo in
                     ZStack(alignment: .bottom) {
-                        // Lottie Animation (roter Banner mit Trompeten)
-                        SafeDotLottieView(
-                            url: "https://lottie.host/bd7993da-11cc-4e38-8b7c-5eba53dd788b/zVMrBPKTNT.lottie",
-                            animationConfig: .init(autoplay: true, loop: false, speed: 0.7),
-                            fixedSize: CGSize(width: ScreenSize.width * 1.4, height: ScreenSize.width * 1.2)
-                        )
-                        .offset(x: -ScreenSize.width * 0.05, y: -ScreenSize.width * 0.30)
-                        .opacity(zeigeInhalt ? 1.0 : 0.0)
+                        // Lottie Animation entfernt wegen Abstürzen
 
                         // Level Button
                         Button(action: {
@@ -59,7 +51,7 @@ struct GartenLevelUpOverlay: View {
                         .shadow(color: Color(hex: "#FFC800").opacity(leuchtet ? 0.9 : 0.3), radius: leuchtet ? 30 : 10)
                         .offset(y: 30)
                     }
-                    .frame(width: geo.size.width, height: geo.size.height)
+                    .frame(width: ScreenSize.width, height: ScreenSize.width * 1.2)
                 }
                 .aspectRatio(1, contentMode: .fit)
                 .padding(.horizontal, 20)

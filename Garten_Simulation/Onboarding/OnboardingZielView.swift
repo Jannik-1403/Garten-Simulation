@@ -3,7 +3,7 @@ import SwiftUI
 struct OnboardingZielView: View {
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
-    @State private var innerPose: IgelPose = .fragt
+    @State private var innerPose: OnboardingIgelPose = .fragt
 
     var body: some View {
         VStack(spacing: 0) {

@@ -27,6 +27,14 @@ class SettingsStore: ObservableObject {
         didSet { SharedUserDefaults.suite.set(ritualReihenfolgeIDs, forKey: "ritualReihenfolgeIDs") }
     }
     
+    @Published var igelCustomization: IgelCustomization {
+        didSet {
+            if let encoded = try? JSONEncoder().encode(igelCustomization) {
+                SharedUserDefaults.suite.set(encoded, forKey: "igelCustomization")
+            }
+        }
+    }
+    
 
     // Default 8:00 AM
     @AppStorage("erinnerungsZeit") private var erinnerungsZeitInternal: Double = 8 * 3600
@@ -58,6 +66,13 @@ class SettingsStore: ObservableObject {
     init() {
         self.habitStartStunde = SharedUserDefaults.suite.object(forKey: "habitStartStunde") as? Int ?? 7
         self.ritualReihenfolgeIDs = SharedUserDefaults.suite.stringArray(forKey: "ritualReihenfolgeIDs") ?? []
+
+        if let data = SharedUserDefaults.suite.data(forKey: "igelCustomization"),
+           let decoded = try? JSONDecoder().decode(IgelCustomization.self, from: data) {
+            self.igelCustomization = decoded
+        } else {
+            self.igelCustomization = IgelCustomization()
+        }
 
         if let saved = SharedUserDefaults.suite.string(forKey: "appLanguage") {
             self.appLanguage = saved

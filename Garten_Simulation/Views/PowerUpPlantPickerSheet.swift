@@ -29,8 +29,12 @@ struct PowerUpPlantPickerSheet: View {
                 .navigationTitle(settings.localizedString(for: "powerup.picker.title"))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        LiquidGlassDismissButton { dismiss() }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button { dismiss() } label: {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 16, weight: .black))
+                                .foregroundStyle(.primary)
+                        }
                     }
                 }
             } else {
@@ -76,8 +80,12 @@ struct PowerUpPlantPickerSheet: View {
             .navigationTitle(settings.localizedString(for: "powerup.picker.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    LiquidGlassDismissButton { dismiss() }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { dismiss() } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundStyle(.primary)
+                    }
                 }
             }
             } // close else block

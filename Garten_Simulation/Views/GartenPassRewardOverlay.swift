@@ -3,6 +3,7 @@ import SwiftUI
 struct GartenPassRewardOverlay: View {
     let belohnung: GartenPassBelohnung
     let onDismiss: () -> Void
+    @EnvironmentObject var settings: SettingsStore
     
     @State private var visible = false
     @State private var cardOffset: CGFloat = 300
@@ -40,7 +41,7 @@ struct GartenPassRewardOverlay: View {
                     Button(action: {
                         safeDismiss()
                     }) {
-                        Text(NSLocalizedString("reward_button_super", comment: ""))
+                        Text(settings.localizedString(for: "reward_button_super"))
                             .font(.system(size: 20, weight: .bold, design: .rounded))
                     }
                     .buttonStyle(DuolingoButtonStyle(
@@ -101,21 +102,21 @@ struct GartenPassRewardOverlay: View {
     private var rewardTitle: String {
         switch belohnung.typ {
         case .coins(let n):
-            let template = NSLocalizedString("reward_coins_title", comment: "")
+            let template = settings.localizedString(for: "reward_coins_title")
             return template.replacingOccurrences(of: "{n}", with: "\(n)")
         case .powerUp:
-            return NSLocalizedString("reward_powerup_title", comment: "")
+            return settings.localizedString(for: "reward_powerup_title")
         case .pflanze:
-            return NSLocalizedString("reward_plant_title", comment: "")
+            return settings.localizedString(for: "reward_plant_title")
         case .gluecksradDrehung(let n):
-            let template = NSLocalizedString("reward_spin_title", comment: "")
+            let template = settings.localizedString(for: "reward_spin_title")
             return template.replacingOccurrences(of: "{n}", with: "\(n)")
         case .dekoration:
-            return NSLocalizedString("reward_deco_title", comment: "")
+            return settings.localizedString(for: "reward_deco_title")
         case .paket:
-            return NSLocalizedString("reward_paket_title", comment: "")
+            return settings.localizedString(for: "reward_paket_title")
         case .seeds(let n):
-            let template = NSLocalizedString("reward_seeds_title", comment: "")
+            let template = settings.localizedString(for: "reward_seeds_title")
             return template.replacingOccurrences(of: "{n}", with: "\(n)")
         }
     }
@@ -123,19 +124,19 @@ struct GartenPassRewardOverlay: View {
     private var rewardSubtitle: String {
         switch belohnung.typ {
         case .coins:
-            return NSLocalizedString("reward_coins_subtitle", comment: "")
+            return settings.localizedString(for: "reward_coins_subtitle")
         case .powerUp:
-            return NSLocalizedString("reward_powerup_subtitle", comment: "")
+            return settings.localizedString(for: "reward_powerup_subtitle")
         case .pflanze:
-            return NSLocalizedString("reward_plant_subtitle", comment: "")
+            return settings.localizedString(for: "reward_plant_subtitle")
         case .gluecksradDrehung:
-            return NSLocalizedString("reward_spin_subtitle", comment: "")
+            return settings.localizedString(for: "reward_spin_subtitle")
         case .dekoration:
-            return NSLocalizedString("reward_deco_subtitle", comment: "")
+            return settings.localizedString(for: "reward_deco_subtitle")
         case .paket:
-            return NSLocalizedString("reward_paket_subtitle", comment: "")
+            return settings.localizedString(for: "reward_paket_subtitle")
         case .seeds:
-            return NSLocalizedString("reward_seeds_subtitle", comment: "")
+            return settings.localizedString(for: "reward_seeds_subtitle")
         }
     }
     

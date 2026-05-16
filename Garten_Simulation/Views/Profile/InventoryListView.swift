@@ -79,6 +79,7 @@ struct InventoryListView: View {
         }
         .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
+        .standardNavigationX()
         .sheet(item: $selectedItem) { item in
             InventoryItemDetailSheet(item: item)
                 .environmentObject(gardenStore)

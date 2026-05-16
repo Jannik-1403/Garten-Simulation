@@ -78,9 +78,10 @@ struct PflanzeDetailSheet: View {
     }
 
     var body: some View {
-        ZStack(alignment: .topTrailing) {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 28) {
+        NavigationStack {
+            ZStack(alignment: .topTrailing) {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 28) {
                     // MARK: - HERO (Zone 1)
                     VStack(spacing: 12) {
                         ZStack {
@@ -217,32 +218,6 @@ struct PflanzeDetailSheet: View {
                 // MARK: - ACTIONS (Zone 3)
                 VStack(spacing: 12) {
                     
-                    // Gießen Button (Primary Action)
-                    if !pflanze.istBewässert {
-                        Button {
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                            gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
-                        } label: {
-                            HStack(spacing: 10) {
-                                Image("Drop water")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24, height: 24)
-                                Text(settings.localizedString(for: "button.water").uppercased())
-                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                            }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 30)
-                        }
-                        .buttonStyle(DuolingoButtonStyle(
-                            size: .large,
-                            fillWidth: true,
-                            backgroundColor: .blauPrimary,
-                            shadowColor: .blauPrimary.darker()
-                        ))
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 8)
-                    }
 
                     // Notizen Liste
                     ForEach(pflanze.notizen.indices, id: \.self) { index in
@@ -409,24 +384,19 @@ struct PflanzeDetailSheet: View {
                             .padding(.top, 8)
                     }
                 }
-
-                Spacer().frame(height: 20)
             }
         }
-        
-        LiquidGlassDismissButton {
-            dismiss()
-        }
-        .padding(.top, 24)
-        .padding(.trailing, 24)
     }
-    .background(.ultraThinMaterial)
-    .onAppear {
-        withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
-            pulsieren = true
+        .navigationTitle(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
+        .navigationBarTitleDisplayMode(.inline)
+        .standardNavigationX()
+        .background(.ultraThinMaterial)
+        .onAppear {
+            withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
+                pulsieren = true
+            }
         }
-    }
-    // MARK: - Verkaufen Dialog
+        // MARK: - Verkaufen Dialog
         .confirmationDialog(
             settings.localizedString(for: "plant.detail.sell.confirm"),
             isPresented: $zeigeVerkaufenDialog,
@@ -479,6 +449,26 @@ struct PflanzeDetailSheet: View {
             }
             Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
         }
+        // MARK: - Notiz Bearbeiten Dialog
+        .confirmationDialog(
+            settings.localizedString(for: "plant.detail.note.edit.options"),
+            isPresented: Binding(
+                get: { noteToEditIndex != nil },
+                set: { if !$0 { noteToEditIndex = nil } }
+            ),
+            titleVisibility: .visible
+        ) {
+            Button(settings.localizedString(for: "button.edit")) {
+                zeigeNotizSheet = true
+            }
+            Button(settings.localizedString(for: "button.delete"), role: .destructive) {
+                noteToDeleteIndex = noteToEditIndex
+                noteToEditIndex = nil
+            }
+            Button(settings.localizedString(for: "button.cancel"), role: .cancel) {
+                noteToEditIndex = nil
+            }
+        }
         // MARK: - Timer Abbrechen Dialog
         .confirmationDialog(
             settings.localizedString(for: "plant.detail.timer.cancel.confirm"),
@@ -495,9 +485,9 @@ struct PflanzeDetailSheet: View {
             EffektDetailSheet(effekt: effekt)
                 .presentationDetents([.fraction(0.38)])
                 .presentationDragIndicator(.visible)
-                .presentationCornerRadius(28)
         }
     }
+}
 
     private func sicherstellenDassPfadExistiert() {
         let strangExistiert = pfadStore.straenge.contains(where: {

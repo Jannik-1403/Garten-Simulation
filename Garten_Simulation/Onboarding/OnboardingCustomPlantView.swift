@@ -81,18 +81,23 @@ struct CustomHabitCard: View {
     
     var body: some View {
         HStack(spacing: 16) {
-            ZStack {
-                Circle()
-                    .fill(AppColors.color(for: habit.farbe).opacity(0.1))
-                    .frame(width: 50, height: 50)
-                
-                Image(systemName: habit.sfSymbol)
-                    .font(.system(size: 24))
-                    .foregroundStyle(AppColors.color(for: habit.farbe))
-            }
+            Image(systemName: habit.sfSymbol)
+                .font(.system(size: 24))
+                .foregroundStyle(.primary)
+                .frame(width: 50, height: 50)
             
-            Text(habit.name)
-                .font(.system(.body, design: .rounded, weight: .bold))
+            VStack(alignment: .leading, spacing: 4) {
+                Text(habit.name)
+                    .font(.system(.body, design: .rounded, weight: .bold))
+                
+                HStack(spacing: 4) {
+                    Image(systemName: habit.habitCategory.icon)
+                        .font(.system(size: 10, weight: .bold))
+                    Text(settings.localizedString(for: habit.habitCategory.localizationKey))
+                        .font(.system(size: 10, weight: .bold, design: .rounded))
+                }
+                .foregroundStyle(.primary)
+            }
             
             Spacer()
             
@@ -125,6 +130,7 @@ struct AddCustomHabitSheet: View {
     @State private var name = ""
     @State private var selectedSymbol = "figure.walk"
     @State private var selectedColor = "green"
+    @State private var selectedCategory: HabitCategory = .fitness
     
     private let symbols = ["figure.walk", "book", "fork.knife", "moon", "heart", "brain.head.profile", "music.note", "paintbrush", "bicycle", "leaf", "flame", "drop"]
     private let colors = ["green", "blue", "orange", "purple", "red", "yellow"]
@@ -163,6 +169,20 @@ struct AddCustomHabitSheet: View {
                     }
                     .padding(.vertical, 8)
                 }
+                
+                Section(header: Text(settings.localizedString(for: "shop.category.label"))) {
+                    Picker(settings.localizedString(for: "shop.category.label"), selection: $selectedCategory) {
+                        ForEach(HabitCategory.allCases, id: \.self) { cat in
+                            Label(
+                                settings.localizedString(for: cat.localizationKey),
+                                systemImage: cat.icon
+                            )
+                            .tag(cat)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    .tint(.primary)
+                }
             }
             .navigationTitle(settings.localizedString(for: "onboarding_custom_title"))
             .navigationBarTitleDisplayMode(.inline)
@@ -174,7 +194,12 @@ struct AddCustomHabitSheet: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button(settings.localizedString(for: "common.add")) {
-                        let new = CustomOnboardingPflanze(name: name, sfSymbol: selectedSymbol, farbe: selectedColor)
+                        let new = CustomOnboardingPflanze(
+                            name: name, 
+                            sfSymbol: selectedSymbol, 
+                            farbe: selectedColor,
+                            habitCategory: selectedCategory
+                        )
                         onAdd(new)
                     }
                     .disabled(name.isEmpty)
@@ -213,6 +238,33 @@ struct ColorCircle: View {
             .frame(width: 30, height: 30)
             .overlay(Circle().stroke(isSelected ? Color.primary : Color.clear, lineWidth: 2))
             .onTapGesture(perform: action)
+    }
+}
+
+struct CategoryCircle: View {
+    let category: HabitCategory
+    let isSelected: Bool
+    let action: () -> Void
+    @EnvironmentObject var settings: SettingsStore
+    
+    var body: some View {
+        VStack(spacing: 6) {
+            ZStack {
+                Circle()
+                    .fill(isSelected ? category.color.opacity(0.2) : Color.clear)
+                    .frame(width: 44, height: 44)
+                
+                Image(systemName: category.icon)
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundStyle(isSelected ? category.color : .secondary)
+            }
+            .overlay(Circle().stroke(isSelected ? category.color : Color.clear, lineWidth: 2))
+            
+            Text(settings.localizedString(for: category.localizationKey))
+                .font(.system(size: 10, weight: .bold, design: .rounded))
+                .foregroundStyle(isSelected ? .primary : .secondary)
+        }
+        .onTapGesture(perform: action)
     }
 }
 

@@ -89,6 +89,7 @@ struct ErfolgeDetailView: View {
         }
         .navigationTitle(LocalizedStringKey("erfolge.titel"))
         .navigationBarTitleDisplayMode(.inline)
+        .standardNavigationX()
         .background(Color.appHintergrund)
         .sheet(item: $ausgewaehlterErfolg) { erfolg in
             ErfolgDetailSheet(erfolg: erfolg, istFreigeschaltet: erfolg.istFreigeschaltet)

@@ -20,6 +20,7 @@ enum GameConstants {
  
     // MARK: Streak
     static let streakTimerStunden: Double = 24  // Timer-Fenster in Stunden
+    static let streakLottieURL = "https://lottie.host/b8842b8d-669c-45fe-a8cb-92cbd20903dc/9KcW3VdzUV.lottie"
  
     // MARK: Onboarding
     static let startCoins: Int = 1000

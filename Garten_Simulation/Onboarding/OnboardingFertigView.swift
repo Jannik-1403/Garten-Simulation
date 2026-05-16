@@ -6,7 +6,7 @@ struct OnboardingFertigView: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gartenPfadStore: GartenPfadStore
     
-    @State private var innerPose: IgelPose = .feiert
+    @State private var innerPose: OnboardingIgelPose = .feiert
     
     var body: some View {
         VStack(spacing: 0) {
@@ -117,6 +117,7 @@ struct OnboardingFertigView: View {
                     habit: custom.name, // Using name as habit name for custom
                     icon: custom.sfSymbol,
                     color: custom.farbe,
+                    category: custom.habitCategory,
                     reminderTime: data.erinnerungsZeiten[custom.id.uuidString]
                 )
             }

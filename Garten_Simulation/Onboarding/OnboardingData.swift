@@ -6,6 +6,7 @@ struct CustomOnboardingPflanze: Identifiable, Codable {
     var name: String
     var sfSymbol: String
     var farbe: String
+    var habitCategory: HabitCategory = .lifestyle
 }
 
 class OnboardingData: ObservableObject {

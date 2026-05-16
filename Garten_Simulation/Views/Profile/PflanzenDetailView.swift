@@ -42,6 +42,7 @@ struct PflanzenDetailView: View {
             }
             .navigationTitle(settings.localizedString(for: "profile.plants"))
             .navigationBarTitleDisplayMode(.inline)
+            .standardNavigationX()
             .fullScreenCover(item: $ausgewaehltePflanze) { pflanze in
                 PflanzeDetailSheet(
                     pflanze: pflanze,

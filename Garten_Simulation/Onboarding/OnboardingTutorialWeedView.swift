@@ -5,7 +5,7 @@ struct OnboardingTutorialWeedView: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     
-    @State private var innerPose: IgelPose = .erklaert
+    @State private var innerPose: OnboardingIgelPose = .erklaert
     @State private var step: WeedTutorialStep = .intro
     @State private var rotation: Double = 0
     @State private var isSpinning = false

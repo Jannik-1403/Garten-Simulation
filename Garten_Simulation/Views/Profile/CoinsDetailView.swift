@@ -112,12 +112,6 @@ struct CoinsDetailView: View {
         }
         .navigationTitle(settings.localizedString(for: "coin_shop_nav_title"))
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                LiquidGlassDismissButton {
-                    dismiss()
-                }
-            }
-        }
+        .standardNavigationX()
     }
 }

@@ -216,11 +216,9 @@ struct IsometricPathView: View {
                 Spacer()
                 Button(action: { selectedDay = nil }) {
                     Image(systemName: "xmark")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.gray)
+                        .font(.system(size: 16, weight: .black))
+                        .foregroundStyle(.primary)
                         .padding(12)
-                        .background(Color.gray.opacity(0.1))
-                        .clipShape(Circle())
                 }
             }
             .padding(.horizontal, 24)

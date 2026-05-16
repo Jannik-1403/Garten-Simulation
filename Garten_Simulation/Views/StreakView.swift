@@ -1,5 +1,4 @@
 import SwiftUI
-import DotLottie
 
 enum StreakMode: String, CaseIterable, Identifiable {
     case week, month, year
@@ -17,28 +16,27 @@ enum StreakMode: String, CaseIterable, Identifiable {
 struct StreakView: View {
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var gardenStore: GardenStore
     @Environment(\.dismiss) var dismiss
     
     @State private var selectedMode: StreakMode = .week
     @State private var currentMonth: Date = Date()
+    @State private var showFreezeDetail = false
     private let calendar = Calendar.current
     
     var body: some View {
         ZStack {
-            // Background - Clean and White
-            Color.white.ignoresSafeArea()
+            // Background - Same as Shop
+            Color.appHintergrund.ignoresSafeArea()
             
             ScrollView {
                 VStack(spacing: 32) {
                     // 2. Weekly & Monthly Progress Section
                     if selectedMode != .year {
                         VStack(spacing: 16) {
-                            SafeDotLottieView(
-                                url: "https://lottie.host/b8842b8d-669c-45fe-a8cb-92cbd20903dc/9KcW3VdzUV.lottie",
-                                animationConfig: .init(autoplay: true, loop: true, speed: 0.7),
-                                fixedSize: CGSize(width: 200, height: 200)
-                            )
-                            .shadow(color: .orange.opacity(0.15), radius: 30)
+                            LottieView(name: GameConstants.streakLottieURL)
+                                .frame(width: 140, height: 140)
+                                .shadow(color: .orangePrimary.opacity(0.3), radius: 30)
                             
                             VStack(spacing: 0) {
                                 Text("\(streakStore.currentStreak)")
@@ -104,25 +102,25 @@ struct StreakView: View {
                     .padding(.horizontal, 24)
                     .animation(.spring(), value: selectedMode)
                     
+                    streakFreezeCard
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 40)
+                    
                     Spacer()
                 }
             }
         }
-        .navigationBarBackButtonHidden()
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button(action: { dismiss() }) {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundStyle(.secondary)
-                }
-            }
-            ToolbarItem(placement: .principal) {
-                Text(settings.localizedString(for: "streak.view.title"))
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundStyle(.secondary)
-            }
+        .sheet(isPresented: $showFreezeDetail) {
+            StreakFreezeDetailSheet()
+                .environmentObject(streakStore)
+                .environmentObject(gardenStore)
+                .environmentObject(settings)
+                .presentationDetents([.medium])
+                .presentationCornerRadius(32)
         }
+        .navigationTitle(settings.localizedString(for: "streak.view.title"))
+        .navigationBarTitleDisplayMode(.inline)
+        .standardNavigationX()
     }
     
     private var headerTitle: String {
@@ -158,8 +156,8 @@ struct StreakView: View {
                         }
                         .frame(width: 40, height: 40)
                     }
-                    .buttonStyle(Streak3DButtonStyle(color: isWeekdayCompleted(index) ? .orange : Color.primary.opacity(0.1), isCircle: true))
-                    .disabled(true)
+                        .buttonStyle(Streak3DButtonStyle(color: isWeekdayFrozen(index) ? .blue : (isWeekdayCompleted(index) ? .orange : Color.primary.opacity(0.1)), isCircle: true))
+                        .disabled(true)
                 }
             }
         }
@@ -188,13 +186,14 @@ struct StreakView: View {
                         ForEach(rows[rowIndex], id: \.self) { date in
                             if let date = date {
                                 let isCompleted = streakStore.isDateCompleted(date)
+                                let isFrozen = streakStore.isDateFrozen(date)
                                 Button(action: {}) {
                                     Text("\(calendar.component(.day, from: date))")
                                         .font(.system(size: 12, weight: .bold))
                                         .foregroundStyle(isCompleted ? .white : .secondary)
                                         .frame(width: 32, height: 32)
                                 }
-                                .buttonStyle(Streak3DButtonStyle(color: isCompleted ? .orange : Color.primary.opacity(0.05), isCircle: true))
+                                .buttonStyle(Streak3DButtonStyle(color: isFrozen ? .blue : (isCompleted ? .orange : Color.primary.opacity(0.05)), isCircle: true))
                                 .disabled(true)
                                 .frame(maxWidth: .infinity)
                             } else {
@@ -215,6 +214,15 @@ struct StreakView: View {
         let daysToSubtract = currentDayInOurMapping - index
         guard let dateToCheck = calendar.date(byAdding: .day, value: -daysToSubtract, to: today) else { return false }
         return streakStore.isDateCompleted(dateToCheck)
+    }
+
+    private func isWeekdayFrozen(_ index: Int) -> Bool {
+        let today = calendar.startOfDay(for: Date())
+        let weekdayOfToday = calendar.component(.weekday, from: today)
+        let currentDayInOurMapping = (weekdayOfToday + 5) % 7
+        let daysToSubtract = currentDayInOurMapping - index
+        guard let dateToCheck = calendar.date(byAdding: .day, value: -daysToSubtract, to: today) else { return false }
+        return streakStore.isDateFrozen(dateToCheck)
     }
 
     private var localizedWeekdays: [String] {
@@ -261,6 +269,139 @@ struct StreakView: View {
         }
         while days.count % 7 != 0 { days.append(nil) }
         return days
+    }
+    
+    // MARK: - Streak Freeze Card (Screenshot 1)
+    private var streakFreezeCard: some View {
+        DuolingoCard(action: { showFreezeDetail = true }) {
+            VStack(spacing: 16) {
+                ZStack {
+                    Image("Streak_Eis")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 60, height: 60)
+                }
+                .padding(.top, 8)
+                
+                VStack(spacing: 4) {
+                    Text(settings.localizedString(for: "streak.freeze.title"))
+                        .font(.system(size: 22, weight: .bold, design: .rounded))
+                        .foregroundStyle(.primary)
+                    
+                    Text(String(format: settings.localizedString(for: "streak.freeze.unit"), streakStore.streakFreezes))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .foregroundStyle(.blue)
+                }
+                .padding(.bottom, 8)
+            }
+            .frame(maxWidth: .infinity)
+        }
+    }
+}
+
+// MARK: - Streak Freeze Detail Sheet (Screenshot 2)
+struct StreakFreezeDetailSheet: View {
+    @EnvironmentObject var streakStore: StreakStore
+    @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        VStack(spacing: 32) {
+            // Icon(s)
+            HStack(spacing: -20) {
+                ForEach(0..<max(1, streakStore.streakFreezes), id: \.self) { _ in
+                    ZStack {
+                        Image("Streak_Eis")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 60, height: 60)
+                    }
+                    .scaleEffect(streakStore.streakFreezes > 1 ? 0.9 : 1.0)
+                }
+            }
+            .padding(.top, 20)
+            
+            VStack(spacing: 12) {
+                Text(settings.localizedString(for: "streak.freeze.description"))
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 20)
+                
+                let countText: Text = {
+                    let fullString = String(format: settings.localizedString(for: "streak.freeze.count_format"), streakStore.streakFreezes)
+                    let highlight = "\(streakStore.streakFreezes) \(settings.localizedString(for: "common.of") == "common.of" ? "von" : settings.localizedString(for: "common.of")) 2 \(settings.localizedString(for: "common.in_stock") == "common.in_stock" ? "auf Vorrat" : settings.localizedString(for: "common.in_stock"))"
+                    
+                    // Simple approach: split the string and color the dynamic part
+                    // Or just recreate it manually for better control
+                    return Text(settings.localizedString(for: "common.you_have") == "common.you_have" ? "Du hast " : settings.localizedString(for: "common.you_have"))
+                        .foregroundColor(.primary)
+                        + Text(highlight)
+                        .foregroundColor(.blue)
+                        + Text(".")
+                        .foregroundColor(.primary)
+                }()
+                
+                countText
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+            }
+            
+            Spacer()
+            
+            if streakStore.streakFreezes >= 2 {
+                Item3DButton(
+                    farbe: .blauPrimary,
+                    sekundaerFarbe: .blauPrimary.darker(),
+                    groesse: 60,
+                    isRectangular: true,
+                    aktion: { dismiss() }
+                ) {
+                    Text(settings.localizedString(for: "streak.freeze.understand"))
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                }
+            } else {
+                Item3DButton(
+                    farbe: .blauPrimary,
+                    sekundaerFarbe: .blauPrimary.darker(),
+                    groesse: 60,
+                    isRectangular: true,
+                    aktion: buyStreakFreeze
+                ) {
+                    HStack(spacing: 8) {
+                        Text(settings.localizedString(for: "streak.freeze.buy").replacingOccurrences(of: "(100 Coins)", with: ""))
+                            .font(.system(size: 18, weight: .bold))
+                        
+                        HStack(spacing: 4) {
+                            Image("coin")
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                            Text("100")
+                                .font(.system(size: 18, weight: .bold))
+                        }
+                    }
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                }
+                .disabled(gardenStore.coins < 100)
+                .opacity(gardenStore.coins < 100 ? 0.6 : 1.0)
+            }
+        }
+        .padding(32)
+    }
+    
+    private func buyStreakFreeze() {
+        guard gardenStore.coins >= 100 && streakStore.streakFreezes < 2 else { return }
+        
+        withAnimation(.spring()) {
+            gardenStore.coins -= 100
+            streakStore.streakFreezes += 1
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            if streakStore.streakFreezes >= 2 {
+                // optional: auto dismiss or keep showing the "understand" state
+            }
+        }
     }
 }
 
@@ -311,8 +452,10 @@ struct YearlyCalendarView: View {
                         let day = index - adjustedFirstWeekday + 1
                         let dateComponents = DateComponents(year: year, month: month, day: day)
                         if let date = calendar.date(from: dateComponents) {
+                            let isCompleted = streakStore.isDateCompleted(date)
+                            let isFrozen = streakStore.isDateFrozen(date)
                             Circle()
-                                .fill(streakStore.isDateCompleted(date) ? Color.orange : Color.gray.opacity(0.1))
+                                .fill(isFrozen ? Color.blue : (isCompleted ? Color.orange : Color.gray.opacity(0.1)))
                                 .frame(width: 6, height: 6)
                         }
                     } else {

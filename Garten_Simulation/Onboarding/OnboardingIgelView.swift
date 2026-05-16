@@ -2,7 +2,7 @@ import SwiftUI
 
 struct OnboardingIgelView: View {
     @EnvironmentObject var settings: SettingsStore
-    let pose: IgelPose
+    let pose: OnboardingIgelPose
     let sprechblasenText: String
 
     // Backwards-compat initializer (old API)
@@ -12,7 +12,7 @@ struct OnboardingIgelView: View {
     }
     
     // Primary initializer (new API)
-    init(pose: IgelPose, sprechblasenText: String) {
+    init(pose: OnboardingIgelPose, sprechblasenText: String) {
         self.pose = pose
         self.sprechblasenText = sprechblasenText
     }
@@ -79,7 +79,7 @@ struct OnboardingIgelView: View {
 }
 
 // MARK: - Pose Enum used across Onboarding
-enum IgelPose {
+enum OnboardingIgelPose {
     case neutral
     case erklaert
     case fragt

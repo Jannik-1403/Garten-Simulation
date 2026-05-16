@@ -189,14 +189,16 @@ struct RadarChartView: View {
     private func getStats(for category: HabitCategory) -> (percentage: Double, habitsCount: Int, waterings: Int) {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
+        let now = Date()
         let days = selectedPeriod.days
         let startDate = calendar.date(byAdding: .day, value: -days, to: today)!
         
         let catHabits = habits.filter { $0.habitCategory == category }
         let habitsCount = catHabits.count
-        let totalWaterings = catHabits.reduce(0) { $0 + $1.wateringDates.filter { $0 >= startDate && $0 < today }.count }
+        // Use `now` as upper bound so today's waterings are included
+        let totalWaterings = catHabits.reduce(0) { $0 + $1.wateringDates.filter { $0 >= startDate && $0 <= now }.count }
         
-        let maxPossible = Double(max(1, habitsCount * days))
+        let maxPossible = Double(max(1, habitsCount * (days + 1)))
         let percentage = Double(totalWaterings) / maxPossible
         
         return (min(1.0, percentage), habitsCount, totalWaterings)
@@ -206,6 +208,7 @@ struct RadarChartView: View {
         var results: [HabitCategory: Double] = [:]
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
+        let now = Date()
         
         let days = selectedPeriod.days
         let startDate: Date
@@ -216,7 +219,8 @@ struct RadarChartView: View {
             endDate = calendar.date(byAdding: .day, value: -days, to: today)!
         } else {
             startDate = calendar.date(byAdding: .day, value: -days, to: today)!
-            endDate = today
+            // Use `now` so today's waterings are included, not cut off at midnight
+            endDate = now
         }
         
         for category in categories {
@@ -226,8 +230,9 @@ struct RadarChartView: View {
                 continue
             }
             
-            let totalWaterings = catHabits.reduce(0) { $0 + $1.wateringDates.filter { $0 >= startDate && $0 < endDate }.count }
-            let maxWaterings = Double(catHabits.count * days)
+            let totalWaterings = catHabits.reduce(0) { $0 + $1.wateringDates.filter { $0 >= startDate && $0 <= endDate }.count }
+            // +1 day to account for today being included
+            let maxWaterings = Double(catHabits.count * (days + 1))
             results[category] = min(1.0, Double(totalWaterings) / maxWaterings)
         }
         

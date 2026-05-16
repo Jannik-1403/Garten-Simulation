@@ -128,10 +128,12 @@ struct ExportImportView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(settingsStore.localizedString(for: "button.cancel")) {
-                        withAnimation {
-                            dismiss()
-                        }
+                    Button {
+                        withAnimation { dismiss() }
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundStyle(.primary)
                     }
                 }
             }

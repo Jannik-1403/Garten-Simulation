@@ -11,19 +11,52 @@ class StreakStore: ObservableObject {
         didSet { save() }
     }
     @Published var streakGoal: Int = 100
-    @Published var streakProtectionActive: Bool = false
+    @Published var streakFreezes: Int = 0 {
+        didSet { save() }
+    }
+    @Published var frozenDates: Set<Date> = [] {
+        didSet { save() }
+    }
     
     // Flag for UI animation
     @Published var showingStreakIncrease: Bool = false
     @Published var lastShownStreak: Int = 0 {
         didSet { save() }
     }
+    @Published var showingFreezeUsed: Bool = false
     
     private let calendar = Calendar.current
     
     init() {
         load()
+        checkForMissedDays()
         calculateStreak(shouldAnimate: false)
+    }
+    
+    func checkForMissedDays() {
+        let today = calendar.startOfDay(for: Date())
+        
+        // Check backwards to see if we missed a day that could be frozen
+        // Usually we only care about yesterday if today isn't done yet, 
+        // or today if it's already late (but here we just check if yesterday was missed)
+        
+        guard let yesterday = calendar.date(byAdding: .day, value: -1, to: today) else { return }
+        
+        // If yesterday was NOT completed AND NOT frozen
+        if !completedDates.contains(yesterday) && !frozenDates.contains(yesterday) {
+            // Was there a streak ending on day before yesterday?
+            if let dayBeforeYesterday = calendar.date(byAdding: .day, value: -1, to: yesterday) {
+                if (completedDates.contains(dayBeforeYesterday) || frozenDates.contains(dayBeforeYesterday)) && streakFreezes > 0 {
+                    // Use a freeze for yesterday!
+                    withAnimation(.spring()) {
+                        streakFreezes -= 1
+                        frozenDates.insert(yesterday)
+                        showingFreezeUsed = true
+                        calculateStreak(shouldAnimate: false)
+                    }
+                }
+            }
+        }
     }
     
     func completeDay(date: Date = Date()) {
@@ -42,17 +75,17 @@ class StreakStore: ObservableObject {
         var checkDate = calendar.startOfDay(for: Date())
         
         // Count backwards from today
-        while completedDates.contains(checkDate) {
+        while completedDates.contains(checkDate) || frozenDates.contains(checkDate) {
             streak += 1
             guard let yesterday = calendar.date(byAdding: .day, value: -1, to: checkDate) else { break }
             checkDate = yesterday
         }
         
-        // If today is not completed, check if yesterday was part of a streak
+        // If today is not completed/frozen, check if yesterday was part of a streak
         if streak == 0 {
             if let yesterday = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date())) {
                 checkDate = yesterday
-                while completedDates.contains(checkDate) {
+                while completedDates.contains(checkDate) || frozenDates.contains(checkDate) {
                     streak += 1
                     guard let prev = calendar.date(byAdding: .day, value: -1, to: checkDate) else { break }
                     checkDate = prev
@@ -81,7 +114,12 @@ class StreakStore: ObservableObject {
     }
     
     func isDateCompleted(_ date: Date) -> Bool {
-        completedDates.contains(calendar.startOfDay(for: date))
+        let startOfDay = calendar.startOfDay(for: date)
+        return completedDates.contains(startOfDay) || frozenDates.contains(startOfDay)
+    }
+    
+    func isDateFrozen(_ date: Date) -> Bool {
+        frozenDates.contains(calendar.startOfDay(for: date))
     }
     
     func hasConnection(from date: Date, to otherDate: Date) -> Bool {
@@ -96,8 +134,12 @@ class StreakStore: ObservableObject {
     }
 
     private func save() {
-        let timestamps = completedDates.map { $0.timeIntervalSince1970 }
-        SharedUserDefaults.suite.set(timestamps, forKey: "streak_completed_dates")
+        let completedTimestamps = completedDates.map { $0.timeIntervalSince1970 }
+        let frozenTimestamps = frozenDates.map { $0.timeIntervalSince1970 }
+        
+        SharedUserDefaults.suite.set(completedTimestamps, forKey: "streak_completed_dates")
+        SharedUserDefaults.suite.set(frozenTimestamps, forKey: "streak_frozen_dates")
+        SharedUserDefaults.suite.set(streakFreezes, forKey: "streak_freezes_count")
         SharedUserDefaults.suite.set(bestStreak, forKey: "streak_best_streak")
         SharedUserDefaults.suite.set(lastShownStreak, forKey: "streak_last_shown")
     }
@@ -106,6 +148,10 @@ class StreakStore: ObservableObject {
         if let timestamps = SharedUserDefaults.suite.array(forKey: "streak_completed_dates") as? [TimeInterval] {
             completedDates = Set(timestamps.map { Date(timeIntervalSince1970: $0) })
         }
+        if let timestamps = SharedUserDefaults.suite.array(forKey: "streak_frozen_dates") as? [TimeInterval] {
+            frozenDates = Set(timestamps.map { Date(timeIntervalSince1970: $0) })
+        }
+        streakFreezes = SharedUserDefaults.suite.integer(forKey: "streak_freezes_count")
         bestStreak = SharedUserDefaults.suite.integer(forKey: "streak_best_streak")
         lastShownStreak = SharedUserDefaults.suite.integer(forKey: "streak_last_shown")
         

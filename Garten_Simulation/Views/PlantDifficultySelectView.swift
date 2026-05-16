@@ -22,13 +22,12 @@ struct PlantDifficultySelectView: View {
                         dismiss() 
                     } label: {
                         Image(systemName: "xmark")
-                            .font(.system(size: 15, weight: .bold))
-                            .foregroundStyle(.secondary)
-                            .frame(width: 36, height: 36)
-                            .background(Circle().fill(.regularMaterial))
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundStyle(.primary)
+                            .padding(12)
                     }
                     .buttonStyle(.plain)
-                    .padding(.trailing, 24)
+                    .padding(.trailing, 16)
                 }
 
                 Spacer()

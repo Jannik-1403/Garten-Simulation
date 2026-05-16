@@ -21,22 +21,12 @@ struct PurchaseSuccessOverlay: View {
 
                 // Text
                 VStack(spacing: 12) {
-                    ZStack {
-                        // 3D Shadow (Secondary green)
-                        Text(settings.localizedString(for: "shop.purchase_success.title").uppercased())
-                            .font(.system(size: 42, weight: .black, design: .rounded))
-                            .foregroundStyle(Color.gruenSecondary)
-                            .offset(y: 6)
-
-                        // Main Text (Primary green)
-                        Text(settings.localizedString(for: "shop.purchase_success.title").uppercased())
-                            .font(.system(size: 42, weight: .black, design: .rounded))
-                            .foregroundStyle(Color.gruenPrimary)
-                    }
-                    .scaleEffect(checkScale)
+                    Text(settings.localizedString(for: "shop.purchase_success.title"))
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundStyle(.primary)
                     
                     Text(settings.localizedString(for: itemName))
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .font(.system(size: 18, weight: .medium, design: .rounded))
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
                 }
@@ -79,14 +69,8 @@ struct PurchaseSuccessOverlay: View {
         }
         .onAppear {
             // Popup einblenden
-            withAnimation(.spring(response: 0.42, dampingFraction: 0.65)) {
+            withAnimation(.spring(response: 0.42, dampingFraction: 0.8)) {
                 contentOpacity = 1.0
-            }
-            // Text-Pop-Animation
-            withAnimation(.spring(response: 0.48, dampingFraction: 0.52).delay(0.1)) {
-                checkScale = 1.1 // Leichtes Übersteuern für 3D-Effekt
-            }
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.6).delay(0.25)) {
                 checkScale = 1.0
             }
         }
