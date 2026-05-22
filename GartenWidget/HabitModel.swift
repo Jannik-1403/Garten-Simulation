@@ -127,7 +127,7 @@ public class HabitModel: Identifiable, ObservableObject, Codable {
 
 
     public var showWarning: Bool {
-        missedCycles == 1 && !isDead
+        (missedCycles == 1 && !isDead) || isDead
     }
 
     public var isPenaltyActive: Bool {

@@ -6,15 +6,16 @@ struct Item3DButton: View {
     let sekundaerFarbe: Color
     let groesse: CGFloat
     var iconSkalierung: CGFloat = 0.7
-    var isRectangular: Bool = false // NEU: Unterstützung für eckige Buttons
-    var isPermanentlyPressed: Bool = false // NEU: Unterstützt dauerhaft gedrückte Zustände
-    var shadowDepthFactor: CGFloat = 0.08 // NEU: Anpassbare Schattentiefe
+    var isRectangular: Bool = false
+    var isPermanentlyPressed: Bool = false
+    var shadowDepthFactor: CGFloat = 0.08
+    var isDisabled: Bool = false // NEU: Deaktivierter Zustand in Graustufen
     var aktion: (() -> Void)? = nil
     
     // New: Support for custom views
     private var customLabel: AnyView? = nil
 
-    init(icon: String, farbe: Color, sekundaerFarbe: Color, groesse: CGFloat, iconSkalierung: CGFloat = 0.7, isRectangular: Bool = false, isPermanentlyPressed: Bool = false, aktion: (() -> Void)? = nil) {
+    init(icon: String, farbe: Color, sekundaerFarbe: Color, groesse: CGFloat, iconSkalierung: CGFloat = 0.7, isRectangular: Bool = false, isPermanentlyPressed: Bool = false, isDisabled: Bool = false, aktion: (() -> Void)? = nil) {
         self.icon = icon
         self.farbe = farbe
         self.sekundaerFarbe = sekundaerFarbe
@@ -22,10 +23,11 @@ struct Item3DButton: View {
         self.iconSkalierung = iconSkalierung
         self.isRectangular = isRectangular
         self.isPermanentlyPressed = isPermanentlyPressed
+        self.isDisabled = isDisabled
         self.aktion = aktion
     }
 
-    init<V: View>(farbe: Color, sekundaerFarbe: Color, groesse: CGFloat, iconSkalierung: CGFloat = 0.7, shadowDepthFactor: CGFloat = 0.08, isRectangular: Bool = false, isPermanentlyPressed: Bool = false, aktion: (() -> Void)? = nil, @ViewBuilder label: () -> V) {
+    init<V: View>(farbe: Color, sekundaerFarbe: Color, groesse: CGFloat, iconSkalierung: CGFloat = 0.7, shadowDepthFactor: CGFloat = 0.08, isRectangular: Bool = false, isPermanentlyPressed: Bool = false, isDisabled: Bool = false, aktion: (() -> Void)? = nil, @ViewBuilder label: () -> V) {
         self.icon = "" // Not used
         self.farbe = farbe
         self.sekundaerFarbe = sekundaerFarbe
@@ -34,6 +36,7 @@ struct Item3DButton: View {
         self.shadowDepthFactor = shadowDepthFactor
         self.isRectangular = isRectangular
         self.isPermanentlyPressed = isPermanentlyPressed
+        self.isDisabled = isDisabled
         self.aktion = aktion
         self.customLabel = AnyView(label())
     }
@@ -52,14 +55,16 @@ struct Item3DButton: View {
             }
         }
         .buttonStyle(Item3DButtonStyle(
-            farbe: farbe,
-            sekundaerFarbe: sekundaerFarbe,
+            farbe: isDisabled ? Color(hex: "#E5E5EA") : farbe,
+            sekundaerFarbe: isDisabled ? Color(hex: "#C7C7CC") : sekundaerFarbe,
             groesse: groesse,
             iconSkalierung: iconSkalierung,
             shadowDepthFactor: shadowDepthFactor,
             isRectangular: isRectangular,
-            isPermanentlyPressed: isPermanentlyPressed
+            isPermanentlyPressed: isPermanentlyPressed,
+            isDisabled: isDisabled
         ))
+        .disabled(isDisabled)
     }
 
     @ViewBuilder
@@ -69,14 +74,17 @@ struct Item3DButton: View {
                 Image(icon)
                     .resizable()
                     .scaledToFit()
+                    .grayscale(isDisabled ? 1.0 : 0.0)
+                    .opacity(isDisabled ? 0.5 : 1.0)
             } else if let _ = UIImage(systemName: icon) {
                 Image(systemName: icon)
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(.white)
+                    .foregroundStyle(isDisabled ? Color(hex: "#AEAEB2") : .white)
             } else {
                 Text(icon)
                     .font(.system(size: groesse * 0.45))
+                    .foregroundStyle(isDisabled ? Color(hex: "#AEAEB2") : .white)
             }
         }
     }
@@ -91,6 +99,7 @@ struct Item3DButtonStyle: ButtonStyle {
     var shadowDepthFactor: CGFloat = 0.08
     var isRectangular: Bool = false
     var isPermanentlyPressed: Bool = false
+    var isDisabled: Bool = false
 
     func makeBody(configuration: Configuration) -> some View {
         Item3DButtonVisualView(

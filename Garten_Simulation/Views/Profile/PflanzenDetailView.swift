@@ -44,19 +44,21 @@ struct PflanzenDetailView: View {
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
             .fullScreenCover(item: $ausgewaehltePflanze) { pflanze in
-                PflanzeDetailSheet(
-                    pflanze: pflanze,
-                    wetterEvent: .normal, // Default for inventory view
-                    onLoeschen: {
-                        gardenStore.pflanzEntfernen(pflanze: pflanze)
-                        ausgewaehltePflanze = nil
-                    }
-                )
-                .environmentObject(gardenStore)
-                .environmentObject(shopStore)
-                .environmentObject(settings)
-                .environmentObject(powerUpStore)
-                .environmentObject(pfadStore)
+                NavigationStack {
+                    PflanzeDetailSheet(
+                        pflanze: pflanze,
+                        wetterEvent: .normal, // Default for inventory view
+                        onLoeschen: {
+                            gardenStore.pflanzEntfernen(pflanze: pflanze)
+                            ausgewaehltePflanze = nil
+                        }
+                    )
+                    .environmentObject(gardenStore)
+                    .environmentObject(shopStore)
+                    .environmentObject(settings)
+                    .environmentObject(powerUpStore)
+                    .environmentObject(pfadStore)
+                }
             }
         }
     }

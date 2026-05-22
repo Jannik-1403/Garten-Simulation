@@ -11,6 +11,7 @@ struct InventoryItemDetailSheet: View {
     @State private var showPlantPicker = false
     @State private var showSuccessPill = false
     @State private var successMessage = ""
+    @State private var showNeedsWeedForPowerUpAlert = false
 
     private var powerUp: PowerUpItem? {
         GameDatabase.allPowerUps.first(where: { $0.id == item.id })
@@ -23,8 +24,7 @@ struct InventoryItemDetailSheet: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .topTrailing) {
+        ZStack {
             Color.appHintergrund.ignoresSafeArea()
             
             VStack(spacing: 32) {
@@ -77,32 +77,8 @@ struct InventoryItemDetailSheet: View {
                 } else {
                     // Normal: Verwenden-Button
                     Button {
-                        // 3D-Animation läuft, dann nach 0.20s Aktion
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {
-                            if let p = powerUp {
-                                if p.target == .plant {
-                                    showPlantPicker = true
-                                } else {
-                                    // Sofort auf Garten anwenden
-                                    gardenStore.applyPowerUp(p)
-                                    gardenStore.itemVerbrauchen(shopItem: item)
-                                    shopStore.removeFromPurchased(id: item.id)
-                                    
-                                    let duration = Int(p.durationHours ?? 24)
-                                    successMessage = String(format: settings.localizedString(for: "powerup.active.garden"), duration)
-                                    
-                                    withAnimation(.spring()) {
-                                        showSuccessPill = true
-                                    }
-                                    
-                                    // Kurze Verzögerung zum Anzeigen, dann Schließen
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
-                                        dismiss()
-                                    }
-                                }
-                            } else {
-                                dismiss()
-                            }
+                            handleUseTap()
                         }
                     } label: {
                         Text(item.itemType == .powerUp ? settings.localizedString(for: "button.use") : settings.localizedString(for: "button.ok"))
@@ -161,11 +137,8 @@ struct InventoryItemDetailSheet: View {
                 .frame(maxWidth: .infinity, alignment: .top)
                 .zIndex(10)
             }
-            }
         }
-        .navigationTitle(settings.localizedString(for: item.title))
-        .navigationBarTitleDisplayMode(.inline)
-        .standardNavigationX()
+        .glassDismissOverlay()
         .sheet(isPresented: $showPlantPicker) {
             if let p = powerUp {
                 PowerUpPlantPickerSheet(
@@ -200,6 +173,55 @@ struct InventoryItemDetailSheet: View {
             withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
                 animateIcon = true
             }
+        }
+        .alert(
+            settings.localizedString(for: "powerup.weed_shield.needs_weed.title"),
+            isPresented: $showNeedsWeedForPowerUpAlert
+        ) {
+            Button(settings.localizedString(for: "button.ok"), role: .cancel) {}
+        } message: {
+            Text(settings.localizedString(for: "powerup.weed_shield.needs_weed.message"))
+        }
+    }
+
+    private func handleUseTap() {
+        guard let p = powerUp else {
+            dismiss()
+            return
+        }
+
+        if p.target == .plant {
+            showPlantPicker = true
+            return
+        }
+
+        if PowerUpWeedSupport.isWeedPowerUp(item.id) {
+            guard gardenStore.isWeedActive else {
+                showNeedsWeedForPowerUpAlert = true
+                return
+            }
+            gardenStore.pendingWeedPowerUpForRitual = item
+            dismiss()
+            return
+        }
+
+        applyGardenPowerUp(p)
+    }
+
+    private func applyGardenPowerUp(_ p: PowerUpItem) {
+        gardenStore.applyPowerUp(p)
+        gardenStore.itemVerbrauchen(shopItem: item)
+        shopStore.removeFromPurchased(id: item.id)
+
+        let duration = Int(p.durationHours ?? 24)
+        successMessage = String(format: settings.localizedString(for: "powerup.active.garden"), duration)
+
+        withAnimation(.spring()) {
+            showSuccessPill = true
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
+            dismiss()
         }
     }
 }

@@ -67,14 +67,17 @@ struct IgelView: View {
         switch customization.pose {
         case .schlafen: return 0.45
         case .stehend:  return 0.28
-        default:        return 0.42 // Noch größer für rennen, winken, liegen
+        case .astronaut, .ninja, .sportler: return 0.35 // Kleiner für Helm/Maske/Sportler
+        case .schlafanzug: return 0.30 // Noch kleiner für den Schlafanzug
+        case .rennen: return 0.35 // Auch für die Renn-Pose kleiner
+        default:        return 0.42 // Für winken, liegen
         }
     }
 
     var gesichtRotation: Double {
         switch customization.pose {
         case .schlafen: return 35
-        case .liegen:   return 0
+        case .schlafanzug: return -65 // Wieder ein Stück zurück gedreht
         default:        return 0
         }
     }
@@ -82,17 +85,24 @@ struct IgelView: View {
     var gesichtOffset: CGPoint {
         var baseOffset = CGPoint(x: 0, y: -size * 0.05)
         
-        // Pose-spezifische Korrekturen für das Gesicht
         switch customization.pose {
         case .schlafen:
-            // Kopf ist im eingerollten Zustand oben rechts vom Zentrum aus gesehen
             baseOffset.x += size * 0.10
             baseOffset.y -= size * 0.06
-        case .liegen, .rennen, .winken:
-            // Deutlich höher positioniert für alle außer stehend/schlafen
+        case .stehend:
+            break
+        case .astronaut:
+            baseOffset.y -= size * 0.09 // Noch höher
+        case .ninja:
+            baseOffset.y -= size * 0.11 // Deutlich höher für die Maske
+        case .schlafanzug:
+            baseOffset.x -= size * 0.17 // Ein kleines Stück nach links
+            baseOffset.y += size * 0.11 // Ein kleines Stück nach oben
+        case .rennen:
             baseOffset.y -= size * 0.05
         default:
-            break
+            // Für liegen, winken, sportler
+            baseOffset.y -= size * 0.05
         }
         
         return baseOffset
@@ -102,11 +112,7 @@ struct IgelView: View {
     var accessoireScale: CGFloat {
         switch customization.accessoire {
         case .hut:
-            switch customization.pose {
-            case .stehend:  return 0.85
-            case .schlafen: return 1.1
-            default:        return 0.95
-            }
+            return 0.85
         case .brille: 
             return 0.38
         default:      
@@ -126,14 +132,9 @@ struct IgelView: View {
             // Pose-spezifische Korrekturen für den Hut
             switch customization.pose {
             case .schlafen:
-                // Viel größer und weiter rechts für den eingerollten Kopf
                 offset.x += size * 0.08
                 offset.y += size * 0.01
-            case .rennen:
-                offset.y += size * 0.02
-            case .winken:
-                offset.y += size * 0.02
-            case .liegen:
+            case .rennen, .winken, .liegen:
                 offset.y += size * 0.02
             default:
                 break

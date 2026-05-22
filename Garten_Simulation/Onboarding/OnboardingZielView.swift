@@ -3,31 +3,34 @@ import SwiftUI
 struct OnboardingZielView: View {
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
-    @State private var innerPose: OnboardingIgelPose = .fragt
+
+    private let maxAuswahl = 3
 
     var body: some View {
         VStack(spacing: 0) {
             OnboardingIgelView(
-                pose: innerPose,
-                sprechblasenText: settings.localizedString(for: "onboarding_ziel_blase")
+                pose: data.gewaehltesZiele.isEmpty ? .fragt : .daumenHoch,
+                sprechblasenText: NSLocalizedString("onboarding_ziel_blase", comment: "")
             )
             .padding(.top, 20)
-            
+
             ScrollView(showsIndicators: false) {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 24) {
+                LazyVGrid(
+                    columns: [GridItem(.flexible()), GridItem(.flexible())],
+                    spacing: 24
+                ) {
                     ForEach(OnboardingZiel.allCases) { ziel in
+                        let isSelected = data.gewaehltesZiele.contains(ziel)
                         VStack(spacing: 12) {
                             Item3DButton(
                                 icon: ziel.iconName,
-                                farbe: ziel.color,
-                                sekundaerFarbe: ziel.color.darker(),
+                                farbe: isSelected ? ziel.color : Color(.systemGray4),
+                                sekundaerFarbe: isSelected ? ziel.color.darker() : Color(.systemGray5),
                                 groesse: 100,
-                                aktion: {
-                                    selectZiel(ziel)
-                                }
+                                aktion: { toggleZiel(ziel) }
                             )
                             .overlay(alignment: .topTrailing) {
-                                if data.gewaehltesZiel == ziel {
+                                if isSelected {
                                     Image(systemName: "checkmark.circle.fill")
                                         .foregroundStyle(Color.green)
                                         .background(Circle().fill(.white))
@@ -35,68 +38,67 @@ struct OnboardingZielView: View {
                                         .offset(x: 10, y: -10)
                                 }
                             }
-                            
-                            Text(settings.localizedString(for: ziel.labelKey))
+
+                            Text(NSLocalizedString(ziel.labelKey, comment: ""))
                                 .font(.system(size: 15, weight: .bold, design: .rounded))
                                 .multilineTextAlignment(.center)
-                                .foregroundStyle(data.gewaehltesZiel == ziel ? .primary : .secondary)
+                                .foregroundStyle(isSelected ? .primary : .secondary)
                         }
-                        .scaleEffect(data.gewaehltesZiel == ziel ? 1.05 : 1.0)
-                        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: data.gewaehltesZiel)
+                        .scaleEffect(isSelected ? 1.05 : 1.0)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isSelected)
                     }
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 24)
-                
+
+                // "Nicht dabei" → zeigt alle Pflanzen
                 Button {
-                    selectZielMissing()
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    withAnimation {
+                        data.gewaehltesZiele = []
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        withAnimation(.easeInOut(duration: 0.35)) {
+                            data.currentStep += 1
+                        }
+                    }
                 } label: {
-                    Text(settings.localizedString(for: "onboarding_ziel_fehlt"))
+                    Text(NSLocalizedString("onboarding_ziel_fehlt", comment: ""))
                         .font(.system(.subheadline, design: .rounded, weight: .bold))
                         .foregroundStyle(.secondary)
                 }
                 .padding(.top, 24)
                 .padding(.bottom, 20)
             }
-            
-            // Fixed Bottom Button
-            if data.gewaehltesZiel != nil || data.zielFehlt {
-                Button {
-                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                    withAnimation(.easeInOut(duration: 0.35)) {
-                        data.currentStep += 1
-                    }
-                } label: {
-                    Text(settings.localizedString(for: "onboarding_weiter"))
+
+            Button {
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                withAnimation(.easeInOut(duration: 0.35)) {
+                    data.currentStep += 1
                 }
-                .buttonStyle(DuolingoButtonStyle(
-                    size: .large,
-                    backgroundColor: Color.blauPrimary,
-                    shadowColor: Color.blauPrimary.darker(),
-                    foregroundColor: .white
-                ))
-                .padding(.horizontal, 24)
-                .padding(.bottom, 40)
-                .transition(.move(edge: .bottom).combined(with: .opacity))
+            } label: {
+                Text(NSLocalizedString("onboarding_weiter", comment: ""))
             }
+            .buttonStyle(DuolingoButtonStyle(
+                size: .large,
+                backgroundColor: Color.blauPrimary,
+                shadowColor: Color.blauPrimary.darker(),
+                foregroundColor: .white
+            ))
+            .disabled(data.gewaehltesZiele.isEmpty)
+            .padding(.horizontal, 24)
+            .padding(.bottom, 40)
         }
     }
 
-    private func selectZiel(_ ziel: OnboardingZiel) {
+    private func toggleZiel(_ ziel: OnboardingZiel) {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         withAnimation(.spring()) {
-            data.gewaehltesZiel = ziel
-            data.zielFehlt = false
-            innerPose = .daumenHoch
-        }
-    }
-
-    private func selectZielMissing() {
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
-        withAnimation {
-            data.gewaehltesZiel = nil
-            data.zielFehlt = true
-            innerPose = .fragt
+            if data.gewaehltesZiele.contains(ziel) {
+                data.gewaehltesZiele.removeAll { $0 == ziel }
+            } else if data.gewaehltesZiele.count < maxAuswahl {
+                data.gewaehltesZiele.append(ziel)
+            }
         }
     }
 }

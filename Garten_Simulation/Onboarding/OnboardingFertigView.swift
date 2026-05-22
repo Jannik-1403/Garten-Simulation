@@ -27,18 +27,10 @@ struct OnboardingFertigView: View {
                 VStack(spacing: 20) {
                     // Plants
                     HStack(spacing: 20) {
-                        if !data.gewaehltePflanzenIDs.isEmpty {
-                            ForEach(data.gewaehltePflanzenIDs, id: \.self) { id in
-                                let plant = GameDatabase.allPlants.first { $0.id == id }
-                                Text(plant?.symbol ?? "🌱")
-                                    .font(.system(size: 50))
-                            }
-                        } else {
-                            ForEach(data.customPflanzen) { custom in
-                                Image(systemName: custom.sfSymbol)
-                                    .font(.system(size: 50))
-                                    .foregroundStyle(AppColors.color(for: custom.farbe))
-                            }
+                        ForEach(data.gewaehltePflanzenIDs, id: \.self) { id in
+                            let plant = GameDatabase.allPlants.first { $0.id == id }
+                            Text(plant?.symbol ?? "🌱")
+                                .font(.system(size: 50))
                         }
                     }
                     
@@ -98,44 +90,21 @@ struct OnboardingFertigView: View {
         
         // Start Path
         gartenPfadStore.pfadStarten(
-            ziel: data.gewaehltesZiel?.rawValue ?? "gesund",
+            ziel: data.gewaehltesZiele.first?.rawValue ?? "gesund",
             pflanzen: gardenStore.pflanzen
         )
         
         withAnimation {
-            settings.ausgewaehltesZiel = data.gewaehltesZiel?.rawValue ?? "gesund"
+            settings.ausgewaehltesZiel = data.gewaehltesZiele.first?.rawValue ?? "gesund"
             settings.onboardingAbgeschlossen = true
         }
     }
     
     private func onboardingAbschliessen() {
-        // 1. Pflanzen anlegen
-        if data.zielFehlt {
-            for custom in data.customPflanzen {
-                gardenStore.pflanzeHinzufuegenCustom(
-                    name: custom.name,
-                    habit: custom.name, // Using name as habit name for custom
-                    icon: custom.sfSymbol,
-                    color: custom.farbe,
-                    category: custom.habitCategory,
-                    reminderTime: data.erinnerungsZeiten[custom.id.uuidString]
-                )
-            }
-        } else {
-            for plantID in data.gewaehltePflanzenIDs {
-                let time = data.erinnerungsZeiten[plantID]
-                gardenStore.pflanzeHinzufuegenAusOnboarding(plantID: plantID, reminderTime: time)
-            }
+        for plantID in data.gewaehltePflanzenIDs {
+            let time = data.erinnerungsZeiten[plantID]
+            gardenStore.pflanzeHinzufuegenAusOnboarding(plantID: plantID, reminderTime: time)
         }
-        
-        // 2. Start-Setup (Coins etc)
         gardenStore.onboardingSetup()
-        
-        // 3. Power-Up Übernahme (Goldener Schlüssel)
-        if data.globalXPMultiplier > 1.0 {
-            if let key = GameDatabase.allPowerUps.first(where: { $0.id == "powerup.goldener_schluessel" }) {
-                gardenStore.applyPowerUp(key)
-            }
-        }
     }
 }

@@ -10,8 +10,6 @@ struct OnboardingZeitView: View {
     var currentPlantId: String? {
         if !data.gewaehltePflanzenIDs.isEmpty {
             return data.gewaehltePflanzenIDs[currentIndex]
-        } else if !data.customPflanzen.isEmpty {
-            return data.customPflanzen[currentIndex].id.uuidString
         }
         return nil
     }
@@ -21,14 +19,12 @@ struct OnboardingZeitView: View {
             let id = data.gewaehltePflanzenIDs[currentIndex]
             let plant = GameDatabase.allPlants.first { $0.id == id }
             return settings.localizedString(for: plant?.localizedName ?? "")
-        } else if !data.customPflanzen.isEmpty {
-            return data.customPflanzen[currentIndex].name
         }
         return ""
     }
     
     var totalPlants: Int {
-        !data.gewaehltePflanzenIDs.isEmpty ? data.gewaehltePflanzenIDs.count : data.customPflanzen.count
+        data.gewaehltePflanzenIDs.count
     }
 
     var body: some View {
@@ -41,34 +37,46 @@ struct OnboardingZeitView: View {
             
             Spacer()
             
-            VStack(spacing: 24) {
-                // Mini Plant Card (No Emojis)
+            // Clean Apple-like Card
+            VStack(spacing: 0) {
+                // Header of the card (Plant info)
                 HStack(spacing: 16) {
                     if !data.gewaehltePflanzenIDs.isEmpty {
                         let id = data.gewaehltePflanzenIDs[currentIndex]
                         if let plant = GameDatabase.allPlants.first(where: { $0.id == id }) {
-                            PlantIconView(plant: plant, seltenheit: .bronze, size: 48, alwaysShowFullGrown: true)
+                            PlantIconView(plant: plant, seltenheit: .bronze, size: 44, alwaysShowFullGrown: true)
                         }
-                    } else {
-                        Image(systemName: data.customPflanzen[currentIndex].sfSymbol)
-                            .font(.system(size: 32, weight: .bold))
-                            .foregroundStyle(AppColors.color(for: data.customPflanzen[currentIndex].farbe))
                     }
                     
                     Text(currentPlantName)
-                        .font(.system(.title3, design: .rounded, weight: .black))
+                        .font(.system(.title3, design: .rounded, weight: .bold))
+                        .foregroundStyle(.primary)
+                    
+                    Spacer()
                 }
-                .padding(.horizontal, 24)
+                .padding(.horizontal, 20)
                 .padding(.vertical, 16)
-                .background(Color(.systemBackground))
-                .clipShape(Capsule())
-                .shadow(color: .black.opacity(0.05), radius: 10, y: 5)
                 
-                DatePicker("", selection: $selectedTime, displayedComponents: .hourAndMinute)
-                    .datePickerStyle(.wheel)
-                    .labelsHidden()
+                Divider()
+                    .padding(.leading, 80) // Aligned with the text start
+                
+                // Content of the card (Time picker)
+                HStack {
+                    Text(settings.localizedString(for: "onboarding_zeit_picker_label")) // e.g. "Erinnerung"
+                        .font(.system(size: 17, weight: .regular))
+                    Spacer()
+                    DatePicker("", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                        .labelsHidden()
+                        // Using default style which is the nice compact gray button on iOS 14+
+                        // .datePickerStyle(.compact) is default
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 12)
             }
-            .frame(maxWidth: .infinity)
+            .background(Color(.systemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .padding(.horizontal, 24)
+            .shadow(color: .black.opacity(0.04), radius: 8, y: 4)
             
             Spacer()
             
@@ -78,19 +86,30 @@ struct OnboardingZeitView: View {
                 .foregroundStyle(.secondary)
                 .padding(.bottom, 12)
             
-            Button {
-                saveAndNext()
-            } label: {
-                Text(settings.localizedString(for: "onboarding_zeit_weiter"))
+            VStack(spacing: 12) {
+                Button {
+                    saveAndNext()
+                } label: {
+                    Text(settings.localizedString(for: "onboarding_zeit_weiter"))
+                }
+                .buttonStyle(DuolingoButtonStyle(
+                    size: .large,
+                    backgroundColor: Color.blauPrimary,
+                    shadowColor: Color.blauPrimary.darker(),
+                    foregroundColor: .white
+                ))
+                
+                Button {
+                    skipAndNext()
+                } label: {
+                    Text(settings.localizedString(for: "onboarding_zeit_skip"))
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .padding(.vertical, 8)
+                }
             }
-            .buttonStyle(DuolingoButtonStyle(
-                size: .large,
-                backgroundColor: Color.blauPrimary,
-                shadowColor: Color.blauPrimary.darker(),
-                foregroundColor: .white
-            ))
             .padding(.horizontal, 24)
-            .padding(.bottom, 40)
+            .padding(.bottom, 30)
         }
     }
     
@@ -101,13 +120,30 @@ struct OnboardingZeitView: View {
             data.erinnerungsZeiten[id] = selectedTime
         }
         
+        moveToNextStep()
+    }
+    
+    private func skipAndNext() {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
+        if let id = currentPlantId {
+            data.erinnerungsZeiten[id] = nil
+        }
+        
+        moveToNextStep()
+    }
+    
+    private func moveToNextStep() {
         if currentIndex < totalPlants - 1 {
             withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                 currentIndex += 1
             }
         } else {
-            // Request Notification Permissions directly from Apple before moving to next step
-            requestNotificationPermissions()
+            // Request Notification Permissions if at least one plant has a reminder set
+            let hasReminders = !data.erinnerungsZeiten.isEmpty
+            if hasReminders {
+                requestNotificationPermissions()
+            }
             
             withAnimation(.easeInOut(duration: 0.35)) {
                 data.currentStep += 1
@@ -127,3 +163,4 @@ struct OnboardingZeitView: View {
         }
     }
 }
+

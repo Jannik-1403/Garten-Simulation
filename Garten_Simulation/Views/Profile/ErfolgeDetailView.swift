@@ -4,9 +4,10 @@ struct ErfolgeDetailView: View {
     @EnvironmentObject var achievementStore: AchievementStore
     @EnvironmentObject var settings: SettingsStore
     @State private var ausgewaehlterErfolg: Erfolg? = nil
+    @State private var showInfoSheet = false
     
-    // Grid: 3 Spalten
-    let columns = Array(repeating: GridItem(.flexible(), spacing: 16), count: 3)
+    // Grid: 2 Spalten für größere, tiefere Darstellung
+    let columns = Array(repeating: GridItem(.flexible(), spacing: 20), count: 2)
     
     var alleErfolge: [Erfolg] {
         achievementStore.alleErfolge
@@ -19,38 +20,10 @@ struct ErfolgeDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 
-                // MARK: - Hero Header
-                VStack(spacing: 16) {
-                    ZStack {
-                        Circle()
-                            .fill(Color.purple.opacity(0.15))
-                            .frame(width: 110, height: 110)
-                        Image("Erfolg")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 70, height: 70)
-                            .shadow(color: Color.purple.opacity(0.3), radius: 10, x: 0, y: 5)
-                    }
-                    
-                    Text("\(freigeschaltet.count)/\(alleErfolge.count)")
-                        .font(.system(size: 48, weight: .black, design: .rounded))
-                    
-                    Text(settings.localizedString(for: "profile.achievements"))
-                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(.secondary)
-                        .tracking(1.0)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 32)
-                .background(Color(UIColor.systemBackground))
-                .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
-                .padding(.horizontal, 20)
-                
                 // Freigeschaltete Erfolge
                 if !freigeschaltet.isEmpty {
                     VStack(alignment: .leading, spacing: 12) {
-                        Text(LocalizedStringKey("erfolge.freigeschaltet"))
+                        Text(settings.localizedString(for: "erfolge.freigeschaltet"))
                             .font(.headline.weight(.bold))
                             .padding(.horizontal)
                         
@@ -69,7 +42,7 @@ struct ErfolgeDetailView: View {
                 // Gesperrte Erfolge
                 if !gesperrt.isEmpty {
                     VStack(alignment: .leading, spacing: 12) {
-                        Text(LocalizedStringKey("erfolge.gesperrt"))
+                        Text(settings.localizedString(for: "erfolge.gesperrt"))
                             .font(.headline.weight(.bold))
                             .padding(.horizontal)
                         
@@ -87,14 +60,26 @@ struct ErfolgeDetailView: View {
             }
             .padding(.vertical)
         }
-        .navigationTitle(LocalizedStringKey("erfolge.titel"))
+        .navigationTitle(settings.localizedString(for: "erfolge.titel"))
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    showInfoSheet = true
+                } label: {
+                    Image(systemName: "info")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundStyle(.primary)
+                }
+            }
+        }
         .standardNavigationX()
         .background(Color.appHintergrund)
-        .sheet(item: $ausgewaehlterErfolg) { erfolg in
+        .fullScreenCover(item: $ausgewaehlterErfolg) { erfolg in
             ErfolgDetailSheet(erfolg: erfolg, istFreigeschaltet: erfolg.istFreigeschaltet)
-                .presentationDetents([.medium, .large])
-                .presentationDragIndicator(.visible)
+        }
+        .sheet(isPresented: $showInfoSheet) {
+            ErfolgeInfoSheet()
         }
     }
 }
@@ -102,24 +87,46 @@ struct ErfolgeDetailView: View {
 // Grid-Item mit Badge + Label
 struct ErfolgGridItem: View {
     @EnvironmentObject var achievementStore: AchievementStore
+    @EnvironmentObject var settings: SettingsStore
     let erfolg: Erfolg
     let istFreigeschaltet: Bool
     
     @State private var isVisible = false
     
+    var tierLabel: String {
+        switch erfolg.tier {
+        case .bronze: return "Bronze"
+        case .silber: return "Silber"
+        case .gold: return "Gold"
+        case .diamant: return "Diamant"
+        case .master, .max: return "Master"
+        }
+    }
+    
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 0) {
+            // Tier Label clearly visible at the top!
+            Text(tierLabel.uppercased())
+                .font(.system(size: 9, weight: .black, design: .rounded))
+                .foregroundStyle(erfolg.tier.color)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 3)
+                .background(erfolg.tier.color.opacity(0.12))
+                .clipShape(Capsule())
+                .opacity(istFreigeschaltet ? 1.0 : 0.6)
+                .offset(y: erfolg.tier != .bronze ? 4 : 0) // Visual offset adjustment for flat-winged badges (silver/gold/diamond)
+            
             ErfolgBadgeView(erfolg: erfolg, istFreigeschaltet: istFreigeschaltet)
                 .scaleEffect(isVisible ? 1.0 : 0.5)
                 .opacity(isVisible ? 1.0 : 0.0)
             
-            Text(LocalizedStringKey(erfolg.titelKey))
-                .font(.caption2.weight(.bold))
+            Text(settings.localizedString(for: erfolg.titelKey))
+                .font(.caption.weight(.bold))
                 .multilineTextAlignment(.center)
                 .foregroundStyle(istFreigeschaltet ? .primary : .secondary)
                 .lineLimit(2)
                 .fixedSize(horizontal: false, vertical: true)
-                .frame(maxWidth: 80)  // Minimum width for better layout
+                .frame(maxWidth: 110)  // Minimum width for better layout
             
             // Fortschrittsbalken unter dem Badge
             if !istFreigeschaltet {
@@ -129,7 +136,7 @@ struct ErfolgGridItem: View {
                             .fill(Color.secondary.opacity(0.2))
                             .frame(height: 4)
                         Capsule()
-                            .fill(erfolg.farbe)
+                            .fill(erfolg.tier.color)
                             .frame(
                                 width: geo.size.width * min(Double(erfolg.aktuellerWert) / Double(erfolg.zielWert), 1.0),
                                 height: 4

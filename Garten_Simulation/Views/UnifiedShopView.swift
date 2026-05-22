@@ -139,7 +139,7 @@ struct UnifiedShopView: View {
                     ZStack {
                         ScrollView(showsIndicators: false) {
                             VStack(alignment: .leading, spacing: 0) {
-                                Spacer().frame(height: 60).id("top")
+                                Spacer().frame(height: 16).id("top")
 
                                 shopSwitcher
                                     .padding(.bottom, 8)
@@ -332,10 +332,19 @@ struct UnifiedShopView: View {
                         }
                     }
                 }
-
-                shopHeader
             }
-            .navigationBarHidden(true)
+            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    GemsIcon(wert: coins)
+                        .fixedSize()
+                }
+                ToolbarItem(placement: .principal) {
+                    Text(settings.localizedString(for: "shop.title"))
+                        .font(.headline)
+                        .fontWeight(.bold)
+                }
+            }
             .fullScreenCover(item: $detailPayload) { payload in
                 ShopItemDetailView(payload: payload)
                     .environmentObject(shopStore)
@@ -360,23 +369,5 @@ struct UnifiedShopView: View {
             .font(.system(size: 19, weight: .bold, design: .rounded))
             .padding(.horizontal, 16)
             .padding(.bottom, 10)
-    }
-
-    private var shopHeader: some View {
-        HStack {
-            GemsIcon(wert: coins)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 7)
-                .background(Capsule().fill(Color(UIColor.systemBackground)).shadow(radius: 2))
-
-            Spacer()
-            Text(settings.localizedString(for: "shop.title")).font(.headline)
-            Spacer()
-            
-            Color.clear.frame(width: 80, height: 20)
-        }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 10)
-        .background(.regularMaterial)
     }
 }

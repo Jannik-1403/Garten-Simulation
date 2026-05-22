@@ -440,6 +440,9 @@ struct IceRewardOverlay: View {
         case .coins(let n):
             return String(format: settings.localizedString(for: "reward.coins_format"), n)
         case .powerUp(let id):
+            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == id }) {
+                return settings.localizedString(for: pu.name)
+            }
             return settings.localizedString(for: id)
         case .pflanze(let id):
             return settings.localizedString(for: id + ".name")

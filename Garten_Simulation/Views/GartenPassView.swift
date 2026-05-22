@@ -27,6 +27,12 @@ struct GartenPassView: View {
         }
     }
     
+    private var fortschrittInLevel: Double {
+        let xpImLevel = GartenLevel.xpImLevel(gesamtXP: gardenStore.gesamtXP)
+        let xpZiel = GartenLevel.xpFuerNaechstenLevel(gesamtXP: gardenStore.gesamtXP)
+        return xpZiel > 0 ? min(Double(xpImLevel) / Double(xpZiel), 1.0) : 1.0
+    }
+    
     var body: some View {
         NavigationStack {
             ScrollViewReader { proxy in
@@ -44,6 +50,7 @@ struct GartenPassView: View {
                                 tier: gruppe.tier,
                                 belohnungen: gruppe.belohnungen,
                                 aktuellerLevel: aktuellerLevel,
+                                fortschritt: fortschrittInLevel,
                                 abgeholte: gardenStore.abgeholtePassLevel,
                                 onAbholen: { belohnung in
                                     if case .pflanze = belohnung.typ {
@@ -64,9 +71,13 @@ struct GartenPassView: View {
                             )
                         }
                         
+                        // Master Abschluss-Icon ganz unten
+                        MasterEndCapView(aktuellerLevel: aktuellerLevel)
+                        
                         Spacer(minLength: 40)
                     }
                 }
+                .background(Color(.systemBackground).ignoresSafeArea())
                 .onAppear {
                     // Zum aktuellen Level scrollen
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -78,17 +89,6 @@ struct GartenPassView: View {
             }
             .navigationTitle(settings.localizedString(for: "pass_titel"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.primary)
-                    }
-                }
-            }
             .fullScreenCover(isPresented: $zeigeWheelSheet) {
                 GartenPassWheelView()
                     .environmentObject(gartenPfadStore)
@@ -181,10 +181,10 @@ struct PassHeaderView: View {
         GartenPassBelohnung.alle.first { $0.id == aktuellerLevel }?.tier ?? .bronze
     }
     
-    private var xpImLevel: Int { GartenLevel.xpImLevel(gesamtXP: gesamtXP) }
-    private var xpZiel: Int { GartenLevel.xpFuerNaechstenLevel(gesamtXP: gesamtXP) }
+    private var aktuellesLevel: Int { GartenLevel.level(fuerXP: gesamtXP) }
+    private var xpZielKumuliert: Int { GameConstants.xpFuerLevel(aktuellesLevel + 1) }
     private var fortschritt: Double {
-        xpZiel > 0 ? min(Double(xpImLevel) / Double(xpZiel), 1.0) : 1.0
+        xpZielKumuliert > 0 ? min(Double(gesamtXP) / Double(xpZielKumuliert), 1.0) : 1.0
     }
     
     var body: some View {
@@ -192,11 +192,13 @@ struct PassHeaderView: View {
             HStack {
                 // Tier-Badge
                 HStack(spacing: 6) {
-                    Circle()
-                        .fill(tierAktuell.farbe)
-                        .frame(width: 10, height: 10)
+                    Image("Achievment_Gold")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 14, height: 14)
+                        .applyErfolgFarbe(for: tierAktuell.asErfolgTier)
                     Text(settings.localizedString(for: tierAktuell.bezeichnungKey))
-                        .font(.caption.weight(.semibold))
+                        .font(.caption.weight(.bold))
                         .foregroundColor(tierAktuell.dunkelFarbe)
                 }
                 .padding(.horizontal, 10)
@@ -204,15 +206,14 @@ struct PassHeaderView: View {
                 .background(tierAktuell.hellFarbe)
                 .clipShape(Capsule())
                 
-                
                 Text(String(format: settings.localizedString(for: "pass_level_label"), aktuellerLevel))
-                    .font(.subheadline)
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundColor(.secondary)
                 
                 Spacer()
                 
-                Text("\(xpImLevel) / \(xpZiel) \(settings.localizedString(for: "pass.xp"))")
-                    .font(.caption)
+                Text("\(gesamtXP) / \(xpZielKumuliert) \(settings.localizedString(for: "pass.xp"))")
+                    .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .foregroundColor(.secondary)
             }
             
@@ -232,12 +233,18 @@ struct PassHeaderView: View {
             if aktuellerLevel < 50 {
                 Text(String(format: settings.localizedString(for: "pass_naechstes_tier_hint"),
                             naechstesTierName()))
-                    .font(.caption)
+                    .font(.system(size: 11, weight: .medium, design: .rounded))
                     .foregroundColor(.secondary)
             }
         }
         .padding(16)
-        .background(Color(.systemBackground))
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color(UIColor.secondarySystemGroupedBackground))
+                .shadow(color: .black.opacity(0.04), radius: 10, x: 0, y: 4)
+        )
+        .padding(.horizontal, 16)
+        .padding(.top, 16)
     }
     
     private func naechstesTierName() -> String {
@@ -257,6 +264,7 @@ struct TierSektionView: View {
     let tier: GartenTier
     let belohnungen: [GartenPassBelohnung]
     let aktuellerLevel: Int
+    let fortschritt: Double
     let abgeholte: Set<Int>
     let onAbholen: (GartenPassBelohnung) -> Void
     
@@ -270,6 +278,7 @@ struct TierSektionView: View {
                 PassZeileView(
                     belohnung: belohnung,
                     aktuellerLevel: aktuellerLevel,
+                    fortschritt: fortschritt,
                     istAbgeholt: abgeholte.contains(belohnung.id),
                     onAbholen: { onAbholen(belohnung) }
                 )
@@ -296,30 +305,35 @@ struct TierTrennerView: View {
     }
     
     var body: some View {
-        HStack(spacing: 8) {
-            Rectangle()
-                .fill(referenzStufe.farbe.opacity(0.3))
-                .frame(height: 1)
+        HStack {
+            Spacer()
             
-            HStack(spacing: 6) {
-                Circle()
-                    .fill(referenzStufe.farbe)
-                    .frame(width: 8, height: 8)
-                Text("\(settings.localizedString(for: tier.bezeichnungKey)) · \(tier.levelRange(settings: settings))")
-                    .font(.caption.weight(.semibold))
+            HStack(spacing: 8) {
+                Image("Achievment_Gold")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 16, height: 16)
+                    .applyErfolgFarbe(for: tier.asErfolgTier)
+                
+                Text("\(settings.localizedString(for: tier.bezeichnungKey).uppercased()) · \(tier.levelRange(settings: settings))")
+                    .font(.system(size: 11, weight: .black, design: .rounded))
                     .foregroundColor(referenzStufe.dunkelFarbe)
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 5)
-            .background(referenzStufe.hellFarbe)
-            .clipShape(Capsule())
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+            .background(
+                Capsule()
+                    .fill(Color(.systemBackground))
+            )
+            .overlay(
+                Capsule()
+                    .stroke(tier.farbe.opacity(0.35), lineWidth: 1.5)
+            )
+            .shadow(color: Color.black.opacity(0.04), radius: 4, x: 0, y: 2)
             
-            Rectangle()
-                .fill(referenzStufe.farbe.opacity(0.3))
-                .frame(height: 1)
+            Spacer()
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 10)
+        .padding(.vertical, 20)
     }
 }
 
@@ -329,6 +343,7 @@ struct PassZeileView: View {
     @EnvironmentObject var settings: SettingsStore
     let belohnung: GartenPassBelohnung
     let aktuellerLevel: Int
+    let fortschritt: Double
     let istAbgeholt: Bool
     let onAbholen: () -> Void
     
@@ -370,7 +385,9 @@ struct PassZeileView: View {
                 istAktuell: istAktuell,
                 istAbgeholt: istAbgeholt,
                 istGesperrt: istGesperrt,
-                istMeilenstein: belohnung.istMeilenstein
+                istMeilenstein: belohnung.istMeilenstein,
+                aktuellerLevel: aktuellerLevel,
+                fortschritt: fortschritt
             )
             
             if !zeigeLinks {
@@ -390,7 +407,7 @@ struct PassZeileView: View {
             }
         }
         .frame(minHeight: belohnung.istMeilenstein ? 110 : 96)
-        .background(belohnung.id % 2 == 0 ? belohnung.tier.kontrastFarbe : Color(.systemBackground))
+        .background(Color.clear)
     }
 }
 
@@ -403,27 +420,51 @@ struct SpineView: View {
     let istAbgeholt: Bool
     let istGesperrt: Bool
     let istMeilenstein: Bool
+    let aktuellerLevel: Int
+    let fortschritt: Double
     
     private var nodeGroesse: CGFloat { istMeilenstein ? 44 : 38 }
     
     var body: some View {
-        ZStack {
-            // Vertikale Linie — HINTER den Knoten
-            Rectangle()
-                .fill(tier.farbe.opacity(0.4))
-                .frame(width: 4)
+        GeometryReader { geo in
+            let rowHeight = geo.size.height
             
-            // 3D-Node (Rund statt Raute)
-            GartenPassNodeView(
-                level: level,
-                tier: tier,
-                istAktuell: istAktuell,
-                istAbgeholt: istAbgeholt,
-                istGesperrt: istGesperrt,
-                groesse: nodeGroesse
-            )
+            ZStack {
+                // Einzelne durchgehende vertikale Linie über die gesamte Zeilenhöhe
+                ZStack(alignment: .top) {
+                    Rectangle()
+                        .fill(Color(.systemGray4))
+                        .frame(width: 4)
+                    
+                    Rectangle()
+                        .fill(tier.farbe)
+                        .frame(width: 4, height: rowHeight * aktivierterAnteil())
+                }
+                
+                // 3D-Node (Rund statt Raute), exakt vertikal zentriert
+                GartenPassNodeView(
+                    level: level,
+                    tier: tier,
+                    istAktuell: istAktuell,
+                    istAbgeholt: istAbgeholt,
+                    istGesperrt: istGesperrt,
+                    groesse: nodeGroesse
+                )
+                .position(x: geo.size.width / 2, y: geo.size.height / 2)
+            }
         }
         .frame(width: 52)
+    }
+    
+    /// Berechnet den aktiven Anteil der gesamten Linie in diesem Level-Abschnitt (von 0.0 bis 1.0)
+    private func aktivierterAnteil() -> CGFloat {
+        if level < aktuellerLevel {
+            return 1.0
+        } else if level == aktuellerLevel {
+            return CGFloat(fortschritt)
+        } else {
+            return 0.0
+        }
     }
 }
 
@@ -437,8 +478,23 @@ struct GartenPassNodeView: View {
     
     private var schattenTiefe: CGFloat { groesse * 0.08 }
     
+    @State private var auraScale: CGFloat = 1.0
+    
     var body: some View {
         ZStack {
+            // Pulsierender Ring für das aktive Level (Duolingo-Style)
+            if istAktuell {
+                Circle()
+                    .stroke(tier.farbe.opacity(0.35), lineWidth: 3)
+                    .frame(width: groesse + 8, height: groesse + 8)
+                    .scaleEffect(auraScale)
+                    .onAppear {
+                        withAnimation(.easeInOut(duration: 1.2).repeatForever(autoreverses: true)) {
+                            auraScale = 1.15
+                        }
+                    }
+            }
+            
             // 3D-Schatten (Unten)
             Circle()
                 .fill(schattenFarbe)
@@ -475,27 +531,23 @@ struct GartenPassNodeView: View {
     }
     
     private var schattenFarbe: Color {
-        if istGesperrt { return tier.farbe.opacity(0.15) }
+        if istGesperrt { return Color(.systemGray4) }
         return tier.dunkelFarbe
     }
     
     private var oberflaechenFarbe: Color {
-        if istAbgeholt { return tier.farbe }
-        if istGesperrt { return Color(.systemGray6) }
-        if istAktuell  { return tier.farbe }
-        return tier.hellFarbe
-    }
-    
-    private var randFarbe: Color {
-        if istGesperrt { return tier.farbe.opacity(0.2) }
+        if istGesperrt { return Color(.systemGray5) }
         return tier.farbe
     }
     
+    private var randFarbe: Color {
+        if istGesperrt { return Color(.systemGray4) }
+        return tier.dunkelFarbe.opacity(0.25)
+    }
+    
     private var textFarbe: Color {
-        if istAbgeholt { return .white }
-        if istGesperrt { return .secondary.opacity(0.5) }
-        if istAktuell  { return .white }
-        return tier.dunkelFarbe
+        if istGesperrt { return .secondary.opacity(0.6) }
+        return .white
     }
 }
 
@@ -512,49 +564,77 @@ struct GartenPassReward3DButton: View {
     private var groesse: CGFloat { belohnung.istMeilenstein ? 84 : 74 }
     private var shadowDepth: CGFloat { groesse * 0.08 }
     
+    @State private var pulseScale: CGFloat = 1.0
+    
     /// Die Grundfarbe basierend auf Kategorie
     private var buttonFarbe: Color {
-        if istGesperrt { return Color(.systemGray4) } // Inaktives Grau
+        if istGesperrt { return Color(hex: "#E5E5EA") } // Grauer Hintergrund
         return belohnung.kategorieFarbe
+    }
+
+    private var buttonSekundaerFarbe: Color {
+        if istGesperrt { return Color(hex: "#C7C7CC") } // Grauer Schatten
+        return belohnung.kategorieFarbe.darker()
     }
     
     var body: some View {
         VStack(spacing: 12) {
-            Button {
-                // Die Aktion wird mit einem Delay ausgeführt, damit die Animation sichtbar ist
-                // Genau wie im Shop bei den 3D-Buttons.
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
-                    onAbholen()
+            ZStack {
+                // Aura-Glow für abholbare Belohnungen
+                if kannAbholen {
+                    Circle()
+                        .fill(belohnung.kategorieFarbe.opacity(0.25))
+                        .frame(width: groesse + 14, height: groesse + 14)
+                        .blur(radius: 6)
+                        .scaleEffect(pulseScale)
                 }
-            } label: {
-                let info = belohnung.getDisplayInfo(settings: settings)
-                Group {
-                    if case .pflanze(let id) = belohnung.typ, 
-                       let pl = GameDatabase.shared.plant(for: id) {
-                        PlantIconView(plant: pl, seltenheit: .bronze, size: groesse * 0.6, alwaysShowFullGrown: true)
-                    } else if info.isAsset {
-                        Image(info.icon)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: groesse * 0.6, height: groesse * 0.6)
-                            .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
-                    } else {
-                        Image(systemName: info.icon)
-                            .font(.system(size: groesse * 0.45, weight: .black))
-                            .foregroundColor(.white)
-                            .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
+                
+                Button {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
+                        onAbholen()
+                    }
+                } label: {
+                    let info = belohnung.getDisplayInfo(settings: settings)
+                    Group {
+                        if case .pflanze(let id) = belohnung.typ, 
+                           let pl = GameDatabase.shared.plant(for: id) {
+                            PlantIconView(plant: pl, seltenheit: .bronze, size: groesse * 0.6, alwaysShowFullGrown: true)
+                                .grayscale(istGesperrt ? 1.0 : 0.0)
+                                .opacity(istGesperrt ? 0.5 : 1.0)
+                        } else if info.isAsset {
+                            Image(info.icon)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: groesse * 0.6, height: groesse * 0.6)
+                                .grayscale(istGesperrt ? 1.0 : 0.0)
+                                .opacity(istGesperrt ? 0.5 : 1.0)
+                                .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
+                        } else {
+                            Image(systemName: info.icon)
+                                .font(.system(size: groesse * 0.45, weight: .black))
+                                .foregroundColor(istGesperrt ? Color(hex: "#AEAEB2") : .white)
+                                .shadow(color: .black.opacity(istGesperrt ? 0 : 0.1), radius: 2, x: 0, y: 1)
+                        }
+                    }
+                }
+                .buttonStyle(GartenPassButtonStyle(
+                    farbe: buttonFarbe,
+                    sekundaerFarbe: buttonSekundaerFarbe,
+                    groesse: groesse,
+                    istAbgeholt: istAbgeholt,
+                    istGesperrt: istGesperrt,
+                    kannAbholen: kannAbholen
+                ))
+                .disabled(istAbgeholt || istGesperrt)
+                .scaleEffect(kannAbholen ? pulseScale : 1.0)
+            }
+            .onAppear {
+                if kannAbholen {
+                    withAnimation(.easeInOut(duration: 1.2).repeatForever(autoreverses: true)) {
+                        pulseScale = 1.06
                     }
                 }
             }
-            .buttonStyle(GartenPassButtonStyle(
-                farbe: buttonFarbe,
-                sekundaerFarbe: buttonFarbe.darker(),
-                groesse: groesse,
-                istAbgeholt: istAbgeholt,
-                istGesperrt: istGesperrt,
-                kannAbholen: kannAbholen
-            ))
-            .disabled(istAbgeholt || istGesperrt)
             
             // Label
             Text(belohnung.beschriftung(settings: settings))
@@ -620,8 +700,7 @@ private struct GartenPassButtonVisualView: View {
                 .offset(y: isVisualPressed ? shadowDepth : 0)
         }
         .frame(width: groesse, height: groesse)
-        .opacity(istGesperrt ? 0.7 : 1.0)
-        .saturation(istGesperrt ? 0.2 : 1.0)
+        // Keine Opacity oder Saturation mehr, das wird direkt über die grauen Farben geregelt
         .overlay(alignment: .bottomTrailing) {
             if istAbgeholt {
                 ZStack {
@@ -663,5 +742,45 @@ private struct GartenPassButtonVisualView: View {
             }
         }
         .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.8), trigger: configuration.isPressed)
+    }
+}
+
+extension GartenTier {
+    var asErfolgTier: ErfolgTier {
+        switch self {
+        case .bronze: return .bronze
+        case .silber: return .silber
+        case .gold: return .gold
+        case .diamant: return .diamant
+        }
+    }
+}
+
+// MARK: - Master End Cap
+struct MasterEndCapView: View {
+    @EnvironmentObject var settings: SettingsStore
+    let aktuellerLevel: Int
+    
+    private var istPassFertig: Bool {
+        aktuellerLevel >= 50
+    }
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            Image("Achievment_Rot")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 150, height: 150)
+                .applyErfolgFarbe(for: .master)
+                .grayscale(istPassFertig ? 0.0 : 1.0)
+                .opacity(istPassFertig ? 1.0 : 0.4)
+                .shadow(color: istPassFertig ? Color(hex: "#FF3B30").opacity(0.4) : .clear, radius: 15, x: 0, y: 8)
+            
+            Text(settings.localizedString(for: "tier_stufe_master_1").uppercased())
+                .font(.system(size: 20, weight: .black, design: .rounded))
+                .foregroundColor(istPassFertig ? Color(hex: "#FF3B30") : .secondary.opacity(0.5))
+        }
+        .padding(.top, 10)
+        .padding(.bottom, 40)
     }
 }

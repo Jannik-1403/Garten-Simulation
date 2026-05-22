@@ -9,11 +9,28 @@ struct OnboardingPflanzenView: View {
         GridItem(.flexible(), spacing: 16)
     ]
     
-    var filteredPlants: [Plant] {
-        guard let ziel = data.gewaehltesZiel else { return [] }
-        return ziel.pflanzenIDs.compactMap { id in
-            GameDatabase.allPlants.first { $0.id == id }
+    struct PlantCategoryGroup: Identifiable {
+        var id: String { category.id }
+        let category: OnboardingZiel
+        let plants: [Plant]
+    }
+    
+    var groupedPlants: [PlantCategoryGroup] {
+        let categoriesToUse = data.gewaehltesZiele.isEmpty ? OnboardingZiel.allCases : data.gewaehltesZiele
+        
+        var seen = Set<String>()
+        var groups: [PlantCategoryGroup] = []
+        
+        for category in categoriesToUse {
+            let categoryPlants = category.pflanzenIDs.compactMap { id in
+                GameDatabase.allPlants.first { $0.id == id }
+            }.filter { seen.insert($0.id).inserted }
+            
+            if !categoryPlants.isEmpty {
+                groups.append(PlantCategoryGroup(category: category, plants: categoryPlants))
+            }
         }
+        return groups
     }
 
     var body: some View {
@@ -30,14 +47,24 @@ struct OnboardingPflanzenView: View {
                 .padding(.top, 8)
             
             ScrollView(showsIndicators: false) {
-                LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(filteredPlants) { plant in
-                        PlantSelectionCard(plant: plant, isSelected: data.gewaehltePflanzenIDs.contains(plant.id)) {
-                            toggleSelection(plant.id)
+                VStack(spacing: 8) {
+                    ForEach(groupedPlants) { group in
+                        VStack(alignment: .leading, spacing: 0) {
+                            CategoryHeaderView(category: group.category)
+                            
+                            LazyVGrid(columns: columns, spacing: 16) {
+                                ForEach(group.plants) { plant in
+                                    PlantSelectionCard(plant: plant, isSelected: data.gewaehltePflanzenIDs.contains(plant.id)) {
+                                        toggleSelection(plant.id)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 16)
                         }
                     }
                 }
-                .padding(24)
+                .padding(.vertical, 8)
             }
             
             Spacer()
@@ -57,7 +84,6 @@ struct OnboardingPflanzenView: View {
                 foregroundColor: .white
             ))
             .disabled(data.gewaehltePflanzenIDs.count != 2)
-            .opacity(data.gewaehltePflanzenIDs.count == 2 ? 1.0 : 0.6)
             .padding(.horizontal, 24)
             .padding(.bottom, 40)
         }
@@ -83,54 +109,41 @@ struct PlantSelectionCard: View {
     @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
-        VStack(spacing: 16) {
-            PflanzenButton(
-                plant: plant,
-                seltenheit: .bronze,
+        VStack(spacing: 12) {
+            Item3DButton(
                 farbe: isSelected ? Color.gruenPrimary : Color(.systemGray6),
                 sekundaerFarbe: isSelected ? Color.gruenPrimary.darker() : Color(.systemGray4),
                 groesse: 100,
-                alwaysShowFullGrown: true,
                 aktion: action
-            )
+            ) {
+                PlantIconView(plant: plant, seltenheit: .bronze, size: 55, alwaysShowFullGrown: true)
+            }
             .overlay(alignment: .topTrailing) {
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 24))
+                        .font(.title)
                         .foregroundStyle(Color.green)
                         .background(Circle().fill(.white))
                         .offset(x: 10, y: -10)
-                        .transition(.scale.combined(with: .opacity))
                 }
             }
             
-            VStack(spacing: 4) {
+            VStack(spacing: 2) {
                 Text(settings.localizedString(for: plant.habitName))
-                    .font(.system(size: 18, weight: .black, design: .rounded))
-                    .foregroundStyle(.primary)
+                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                    .foregroundStyle(isSelected ? .primary : .secondary)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .minimumScaleFactor(0.8)
                 
                 Text(settings.localizedString(for: plant.localizedName))
-                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                    .foregroundStyle(.secondary)
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                    .foregroundStyle(isSelected ? .secondary : Color(.systemGray3))
                     .multilineTextAlignment(.center)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.8)
             }
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 12)
-        .background(
-            RoundedRectangle(cornerRadius: 30, style: .continuous)
-                .fill(isSelected ? Color.gruenPrimary.opacity(0.05) : Color.clear)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 30, style: .continuous)
-                .stroke(isSelected ? Color.gruenPrimary.opacity(0.3) : Color.clear, lineWidth: 2)
-        )
-        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isSelected)
+        .scaleEffect(isSelected ? 1.05 : 1.0)
+        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isSelected)
     }
 }
 
@@ -161,5 +174,33 @@ struct SelectionCardButtonStyle: ButtonStyle {
         }
         .animation(.spring(response: 0.2, dampingFraction: 0.7), value: isPressed)
         .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isSelected)
+    }
+}
+
+struct CategoryHeaderView: View {
+    let category: OnboardingZiel
+    @EnvironmentObject var settings: SettingsStore
+    
+    var body: some View {
+        HStack(spacing: 12) {
+            ZStack {
+                Circle()
+                    .fill(category.color.opacity(0.15))
+                    .frame(width: 36, height: 36)
+                
+                Image(systemName: category.iconName)
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundStyle(category.color)
+            }
+            
+            Text(settings.localizedString(for: category.labelKey))
+                .font(.system(size: 20, weight: .black, design: .rounded))
+                .foregroundStyle(.primary)
+            
+            Spacer()
+        }
+        .padding(.horizontal, 24)
+        .padding(.top, 16)
+        .padding(.bottom, 8)
     }
 }

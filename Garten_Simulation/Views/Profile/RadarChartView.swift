@@ -62,8 +62,8 @@ struct RadarChartView: View {
                 
                 // 6. Legend
                 HStack(spacing: 20) {
-                    legendItem(label: NSLocalizedString("statistik_legend_aktuell", comment: ""), color: .blauPrimary)
-                    legendItem(label: NSLocalizedString("statistik_legend_vorherig", comment: ""), color: .gray)
+                    legendItem(label: settings.localizedString(for: "statistik_legend_aktuell"), color: .blauPrimary)
+                    legendItem(label: settings.localizedString(for: "statistik_legend_vorherig"), color: .gray)
                 }
             }
             
@@ -93,16 +93,16 @@ struct RadarChartView: View {
                 .font(.system(size: 28, weight: .black, design: .rounded))
                 .foregroundStyle(Color.blauPrimary)
             
-            Text(NSLocalizedString("statistik_popup_erreicht", comment: "").uppercased())
+            Text(settings.localizedString(for: "statistik_popup_erreicht").uppercased())
                 .font(.system(size: 9, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
             
             Divider()
             
             HStack {
-                Label("\(stats.habitsCount) \(NSLocalizedString("statistik_popup_gewohnheiten", comment: ""))", systemImage: "leaf.fill")
+                Label("\(stats.habitsCount) \(settings.localizedString(for: "statistik_popup_gewohnheiten"))", systemImage: "leaf.fill")
                 Spacer()
-                Label("\(stats.waterings) \(NSLocalizedString("statistik_popup_giessungen", comment: ""))", systemImage: "drop.fill")
+                Label("\(stats.waterings) \(settings.localizedString(for: "statistik_popup_giessungen"))", systemImage: "drop.fill")
             }
             .font(.system(size: 10, weight: .medium, design: .rounded))
             .foregroundStyle(.secondary)

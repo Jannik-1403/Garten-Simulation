@@ -6,22 +6,13 @@ struct WasserDetailView: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        ZStack {
-            Color.appHintergrund.ignoresSafeArea()
-            
-            VStack(spacing: 0) {
-                // Header mit LiquidGlassDismissButton oben rechts
-                HStack {
-                    Spacer()
-                    LiquidGlassDismissButton {
-                        dismiss()
-                    }
-                    .padding(.trailing, 20)
-                    .padding(.top, 20)
-                }
+        NavigationStack {
+            ZStack {
+                Color.appHintergrund.ignoresSafeArea()
                 
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 32) {
+                VStack(spacing: 0) {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 32) {
                         // Header-Bereich
                         VStack(spacing: 16) {
                             ZStack {
@@ -107,13 +98,15 @@ struct WasserDetailView: View {
                         }
                         
                         Spacer().frame(height: 32)
-                    }
-                }
-            }
-        }
+                    } // closes VStack
+                } // closes ScrollView
+            } // closes VStack
+        } // closes ZStack
+        .standardNavigationX()
+        } // closes NavigationStack
         .presentationDetents([.large])
-    }
-}
+    } // closes body
+} // closes struct
 
 struct WasserRankingRow: View {
     let rank: Int

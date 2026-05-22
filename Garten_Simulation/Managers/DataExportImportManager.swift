@@ -17,6 +17,10 @@ struct GartenSaveFile: Codable {
     let gekaufteItemIDs: [String]
     let erfolge: [ErfolgSaveData]
     let einstellungen: EinstellungenSaveData
+    
+    // Progressive achievements support
+    let achievementTiers: [String: Int]?
+    let achievementUnlockDatesV2: [String: TimeInterval]?
 }
 
 struct PflanzenSaveData: Codable {
@@ -107,7 +111,9 @@ final class DataExportImportManager: ObservableObject {
             einstellungen: EinstellungenSaveData(
                 sprache: settingsStore.appLanguage,
                 benachrichtigungenAktiv: settingsStore.isNotificationsEnabled
-            )
+            ),
+            achievementTiers: achievementStore.achievementTiers,
+            achievementUnlockDatesV2: SharedUserDefaults.suite.dictionary(forKey: "achievement_unlock_dates_v2") as? [String: TimeInterval]
         )
         
         // Serialize
@@ -213,16 +219,23 @@ final class DataExportImportManager: ObservableObject {
         saveFile.gekaufteItemIDs.forEach { allPurchased.insert($0) }
         shopStore.purchasedIDs = allPurchased
         
-        // Erfolge syncen (über unlockDates in AchievementStore falls möglich)
-        // Note: AchievementStore uses its own refresh() logic, so we need a way to set the unlock dates manually.
-        // For now, we'll try to reach into the persistence layer or assume refresh() will handle it if we set UserDefaults.
-        var newUnlockDates: [String: TimeInterval] = [:]
-        for e in saveFile.erfolge {
-            if e.freigeschaltet, let am = e.freigeschaltetAm {
-                newUnlockDates[e.id] = am.timeIntervalSince1970
+        // Sync Achievements
+        if let tiers = saveFile.achievementTiers, let dates = saveFile.achievementUnlockDatesV2 {
+            SharedUserDefaults.suite.set(tiers, forKey: "achievement_tiers_v2")
+            SharedUserDefaults.suite.set(dates, forKey: "achievement_unlock_dates_v2")
+            SharedUserDefaults.suite.set(true, forKey: "did_migrate_achievements_v2")
+            achievementStore.achievementTiers = tiers
+        } else {
+            // Force re-migration on next refresh
+            SharedUserDefaults.suite.set(false, forKey: "did_migrate_achievements_v2")
+            var newUnlockDates: [String: TimeInterval] = [:]
+            for e in saveFile.erfolge {
+                if e.freigeschaltet, let am = e.freigeschaltetAm {
+                    newUnlockDates[e.id] = am.timeIntervalSince1970
+                }
             }
+            SharedUserDefaults.suite.set(newUnlockDates, forKey: "achievement_unlock_dates")
         }
-        SharedUserDefaults.suite.set(newUnlockDates, forKey: "achievement_unlock_dates")
         achievementStore.refresh()
         
         // Einstellungen

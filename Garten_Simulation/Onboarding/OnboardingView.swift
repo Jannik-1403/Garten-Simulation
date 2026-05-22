@@ -3,10 +3,11 @@ import SwiftUI
 struct OnboardingView: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var garden: GardenStore
+    @EnvironmentObject var gartenPfadStore: GartenPfadStore
     
     @StateObject var data = OnboardingData()
     
-    private let totalSteps = 8
+    private let totalSteps = 6
     
     var body: some View {
         ZStack {
@@ -15,7 +16,7 @@ struct OnboardingView: View {
             VStack(spacing: 0) {
                 // Header: Back & Progress
                 HStack(spacing: 16) {
-                    if data.currentStep > 1 && data.currentStep < totalSteps {
+                    if data.currentStep > 1 && data.currentStep <= totalSteps {
                         Button {
                             withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
                                 data.currentStep -= 1
@@ -44,7 +45,7 @@ struct OnboardingView: View {
                                         endPoint: .trailing
                                     )
                                 )
-                                .frame(width: geo.size.width * CGFloat(data.currentStep) / CGFloat(totalSteps), height: 12)
+                                .frame(width: geo.size.width * CGFloat(min(data.currentStep, totalSteps)) / CGFloat(totalSteps), height: 12)
                         }
                     }
                     .frame(height: 12)
@@ -67,14 +68,11 @@ struct OnboardingView: View {
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
                     case 3:
-                        Group {
-                            if data.gewaehltesZiel != nil {
-                                OnboardingPflanzenView()
-                            } else {
-                                OnboardingCustomPlantView()
-                            }
-                        }
-                        .transition(AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                        OnboardingPflanzenView()
+                            .transition(AnyTransition.asymmetric(
+                                insertion: .move(edge: .trailing),
+                                removal: .move(edge: .leading)
+                            ))
                         
                     case 4:
                         OnboardingInteractiveTutorialView()
@@ -90,15 +88,7 @@ struct OnboardingView: View {
                         .transition(AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
                     case 6:
-                        OnboardingPowerUpTutorialView()
-                        .transition(AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                        
-                    case 7:
-                        OnboardingTutorialWeedView()
-                        .transition(AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                        
-                    case 8:
-                        OnboardingFertigView()
+                        OnboardingLegalView()
                         .transition(AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
                     default:
@@ -109,5 +99,31 @@ struct OnboardingView: View {
             }
             .environmentObject(data)
         }
+        .onChange(of: data.currentStep) { _, newStep in
+            if newStep > totalSteps {
+                finishOnboarding()
+            }
+        }
+    }
+    
+    private func finishOnboarding() {
+        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        
+        for plantID in data.gewaehltePflanzenIDs {
+            let time = data.erinnerungsZeiten[plantID]
+            garden.pflanzeHinzufuegenAusOnboarding(plantID: plantID, reminderTime: time)
+        }
+        garden.onboardingSetup()
+        
+        gartenPfadStore.pfadStarten(
+            ziel: data.gewaehltesZiele.first?.rawValue ?? "gesund",
+            pflanzen: garden.pflanzen
+        )
+        
+        withAnimation {
+            settings.ausgewaehltesZiel = data.gewaehltesZiele.first?.rawValue ?? "gesund"
+            settings.onboardingAbgeschlossen = true
+        }
     }
 }
+

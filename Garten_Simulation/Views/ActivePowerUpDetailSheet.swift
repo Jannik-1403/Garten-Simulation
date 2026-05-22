@@ -11,8 +11,7 @@ struct ActivePowerUpDetailSheet: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .topTrailing) {
+        ZStack {
             Color.appHintergrund.ignoresSafeArea()
             
             VStack(spacing: 32) {
@@ -113,9 +112,7 @@ struct ActivePowerUpDetailSheet: View {
                 .padding(.bottom, 32)
             }
             .padding(.horizontal)
-            
         }
-        .standardNavigationX()
-    }
+        .glassDismissOverlay()
     }
 }

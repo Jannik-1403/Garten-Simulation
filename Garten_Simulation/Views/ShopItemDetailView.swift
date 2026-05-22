@@ -17,20 +17,16 @@ struct ShopItemDetailView: View {
     private var canAfford: Bool { shopStore.canAfford(payload.price) }
 
     var body: some View {
-        ZStack {
-            Color.appHintergrund.ignoresSafeArea()
+        NavigationStack {
+            ZStack {
+                Color.appHintergrund.ignoresSafeArea()
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 0) {
 
                     // MARK: Hero
                     ZStack(alignment: .top) {
-                        if payload.itemType != .decoration {
-                            Circle()
-                                .fill(payload.color.opacity(0.12))
-                                .frame(width: 220, height: 220)
-                                .offset(y: 20)
-                        }
+
 
                         VStack(spacing: 0) {
                             Spacer().frame(height: 60)
@@ -49,10 +45,6 @@ struct ShopItemDetailView: View {
                                 }
                             }
                             .frame(width: payload.itemType == .decoration ? 240 : 150, height: payload.itemType == .decoration ? 240 : 150)
-                            .shadow(
-                                color: payload.itemType == .decoration ? .clear : payload.shadowColor.opacity(0.35),
-                                radius: 20, x: 0, y: 10
-                            )
                             Spacer().frame(height: 24)
                         }
                     }
@@ -259,7 +251,7 @@ struct ShopItemDetailView: View {
                             } else {
                                 // Zustand 3: Kaufen möglich — Animation DANN Aktion
                                 let isLocked = payload.itemType == .plant && selectedDifficulty == nil
-                                
+
                                 DuolingoKaufButton(
                                     color: isLocked ? Color.gray : payload.color
                                 ) {
@@ -304,32 +296,14 @@ struct ShopItemDetailView: View {
                 }
             }
 
-            // X Button
-            VStack {
-                HStack {
-                    Spacer()
-                    Button { 
-                        FeedbackManager.shared.playTap()
-                        dismiss() 
-                    } label: {
-                        Text("✕")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.secondary)
-                            .frame(width: 32, height: 32)
-                            .background(Circle().fill(.regularMaterial))
-                    }
-                    .buttonStyle(.plain)
-                    .padding(.top, 16)
-                    .padding(.trailing, 20)
-                }
-                Spacer()
-            }
-
             // Erfolg-Overlay
             if showSuccess {
                 PurchaseSuccessOverlay(
                     itemName: payload.title,
-                    price: payload.price
+                    price: payload.price,
+                    subtitle: payload.itemType == .powerUp
+                        ? settings.localizedString(for: "shop.purchase_success.powerup_hint")
+                        : nil
                 ) {
                     FeedbackManager.shared.playTap()
                     showSuccess = false
@@ -337,6 +311,8 @@ struct ShopItemDetailView: View {
                 }
                 .transition(.opacity.combined(with: .scale(scale: 0.92)))
             }
+        }
+        .standardNavigationX()
         }
         .animation(.spring(response: 0.4, dampingFraction: 0.72), value: showSuccess)
         .alert(settings.localizedString(for: "shop.not_enough_coins"), isPresented: $showInsufficientCoins) {

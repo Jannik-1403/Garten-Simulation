@@ -4,6 +4,7 @@ struct OnboardingCustomPlantView: View {
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var settings: SettingsStore
     @State private var showingAddSheet = false
+    @State private var customPflanzen: [CustomOnboardingPflanze] = []
     
     var body: some View {
         VStack(spacing: 0) {
@@ -15,15 +16,15 @@ struct OnboardingCustomPlantView: View {
             
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 24) {
-                    ForEach(data.customPflanzen) { habit in
+                    ForEach(customPflanzen) { habit in
                         CustomHabitCard(habit: habit) {
                             withAnimation(.spring()) {
-                                data.customPflanzen.removeAll { $0.id == habit.id }
+                                customPflanzen.removeAll { $0.id == habit.id }
                             }
                         }
                     }
                     
-                    if data.customPflanzen.count < 2 {
+                    if customPflanzen.count < 2 {
                         Button {
                             showingAddSheet = true
                         } label: {
@@ -59,14 +60,14 @@ struct OnboardingCustomPlantView: View {
                 shadowColor: Color.blauPrimary.darker(),
                 foregroundColor: .white
             ))
-            .disabled(data.customPflanzen.isEmpty)
-            .opacity(data.customPflanzen.isEmpty ? 0.6 : 1.0)
+            .disabled(customPflanzen.isEmpty)
+            .opacity(customPflanzen.isEmpty ? 0.6 : 1.0)
             .padding(.horizontal, 24)
             .padding(.bottom, 40)
         }
         .sheet(isPresented: $showingAddSheet) {
             AddCustomHabitSheet { newHabit in
-                data.customPflanzen.append(newHabit)
+                customPflanzen.append(newHabit)
                 showingAddSheet = false
             }
             .environmentObject(settings)

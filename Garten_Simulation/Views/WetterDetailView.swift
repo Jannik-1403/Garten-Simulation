@@ -42,7 +42,7 @@ struct WetterDetailView: View {
                     weatherInfoBlock(
                         icon: "star.fill",
                         isAsset: false,
-                        title: settings.localizedString(for: "weather.detail.xp"),
+                        title: settings.localizedString(for: "common.xp"),
                         value: xpText
                     )
                 }
@@ -98,16 +98,16 @@ struct WetterDetailView: View {
 
     private var gemsText: String {
         switch event {
-        case .perfekt: return settings.localizedString(for: "weather.detail.more")   // +50%
-        case .schnee: return settings.localizedString(for: "weather.detail.less")    // -30%
+        case .perfekt: return settings.localizedString(for: "weather.detail.double")   // +50%
+        case .schnee: return settings.localizedString(for: "weather.detail.half")    // -30%
         default: return settings.localizedString(for: "weather.detail.normal")
         }
     }
 
     private var xpText: String {
         switch event {
-        case .regen: return settings.localizedString(for: "weather.detail.more")     // +50%
-        case .perfekt: return settings.localizedString(for: "weather.detail.more")   // +50%
+        case .regen: return settings.localizedString(for: "weather.detail.double")     // +50%
+        case .perfekt: return settings.localizedString(for: "weather.detail.double")   // +50%
         default: return settings.localizedString(for: "weather.detail.normal")
         }
     }

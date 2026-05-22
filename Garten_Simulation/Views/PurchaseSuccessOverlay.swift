@@ -3,6 +3,7 @@ import SwiftUI
 struct PurchaseSuccessOverlay: View {
     let itemName: String
     let price: Int
+    var subtitle: String? = nil
     let onDismiss: () -> Void
     @EnvironmentObject var settings: SettingsStore
 
@@ -29,6 +30,14 @@ struct PurchaseSuccessOverlay: View {
                         .font(.system(size: 18, weight: .medium, design: .rounded))
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
+
+                    if let subtitle {
+                        Text(subtitle)
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.top, 4)
+                    }
                 }
 
                 // Coin-Abzug

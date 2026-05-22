@@ -1,5 +1,6 @@
 import SwiftUI
 import Charts
+import Photos
 
 
 // MARK: - ProfilHeaderView
@@ -285,7 +286,10 @@ struct StatisticsDashboard: View {
                     type: type,
                     period: selectedPeriod,
                     habits: gardenStore.pflanzen,
-                    username: settings.localizedString(for: "profile.user.name.default")
+                    username: {
+                        let name = settings.igelCustomization.name.trimmingCharacters(in: .whitespacesAndNewlines)
+                        return name.isEmpty ? settings.localizedString(for: "profile.user.name.default") : name
+                    }()
                 )
                 .environmentObject(settings)
                 .environmentObject(gardenStore)
@@ -962,15 +966,6 @@ struct StatShareImage<Content: View>: View {
                             .frame(width: 44, height: 44)
                             .cornerRadius(12)
                             .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 4)
-                        
-                        VStack(alignment: .leading, spacing: 1) {
-                            Text("Grovy")
-                                .font(.system(size: 24, weight: .black, design: .rounded))
-                                .foregroundColor(textColor)
-                            Text("Garden Simulation")
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                .foregroundColor(textColor.opacity(0.6))
-                        }
                     }
                     
                     Spacer()
@@ -987,7 +982,7 @@ struct StatShareImage<Content: View>: View {
             }
         }
         .frame(width: 500, height: height)
-        .clipShape(RoundedRectangle(cornerRadius: 52, style: .continuous))
+        // Kein clipShape – Hintergrundfarbe füllt das volle rechteckige Bild
         .environment(\.colorScheme, theme == .light ? .light : .dark)
     }
     
@@ -1068,6 +1063,7 @@ struct SharePreviewSheet: View {
     
     @State private var selectedTheme: ShareImageTheme = .light
     @State private var isExporting = false
+    @State private var savedToPhotos = false
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
@@ -1078,7 +1074,6 @@ struct SharePreviewSheet: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Simplified background (removed systemGroupedBackground)
                 Color.white.ignoresSafeArea()
                 
                 VStack(spacing: 0) {
@@ -1094,12 +1089,10 @@ struct SharePreviewSheet: View {
                     .indexViewStyle(.page(backgroundDisplayMode: .always))
                     .frame(maxHeight: .infinity)
                     .onAppear {
-                        // Ensure dots are visible on white background
                         UIPageControl.appearance().currentPageIndicatorTintColor = .black
                         UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
                     }
                     
-                    // Style Indicator / Hint
                     VStack(spacing: 8) {
                         Text(settings.localizedString(for: themeNameKey(for: selectedTheme)))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
@@ -1107,23 +1100,22 @@ struct SharePreviewSheet: View {
                         Text(settings.localizedString(for: "stats.share.swipe_hint"))
                             .font(.system(size: 13, weight: .medium, design: .rounded))
                             .foregroundColor(.secondary)
+                        
+                        if savedToPhotos {
+                            Label("In Fotos gespeichert", systemImage: "checkmark.circle.fill")
+                                .font(.system(size: 13, weight: .semibold, design: .rounded))
+                                .foregroundColor(.green)
+                                .transition(.opacity.combined(with: .scale))
+                        }
                     }
-                    .padding(.bottom, 60) // Moved hint area (and dots) further down
+                    .animation(.spring(), value: savedToPhotos)
+                    .padding(.bottom, 60)
                 }
             }
             .navigationTitle(settings.localizedString(for: "stats.share.preview_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.primary)
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         exportSelectedTheme()
                     } label: {
@@ -1134,12 +1126,46 @@ struct SharePreviewSheet: View {
                     .disabled(isExporting)
                     .buttonStyle(.plain)
                 }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button { saveToPhotos() } label: {
+                        if savedToPhotos {
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(.green)
+                        } else {
+                            Image(systemName: "photo.badge.arrow.down")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundStyle(.primary)
+                        }
+                    }
+                    .disabled(isExporting)
+                    .animation(.spring(response: 0.3, dampingFraction: 0.6), value: savedToPhotos)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button { dismiss() } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16, weight: .black))
+                            .foregroundStyle(.primary)
+                    }
+                }
             }
         }
     }
     
+    // Vorschau-Karte (klein, mit abgerundeten Ecken nur in der Vorschau)
     @ViewBuilder
     private func previewCard(for theme: ShareImageTheme) -> some View {
+        VStack {
+            renderView(for: theme)
+                .clipShape(RoundedRectangle(cornerRadius: 36, style: .continuous))
+                .shadow(color: .black.opacity(0.15), radius: 30, x: 0, y: 15)
+        }
+        .scaleEffect(0.7)
+    }
+    
+    // Das eigentliche Bild ohne Rundungen (für Export)
+    @ViewBuilder
+    private func renderView(for theme: ShareImageTheme) -> some View {
         let data = gardenScoreData
         let periodLabel: String = {
             switch period {
@@ -1149,94 +1175,90 @@ struct SharePreviewSheet: View {
             }
         }()
         
-        VStack {
-            Group {
-                switch type {
-                case .lifeBalance:
-                    RadarChartShareImage(
-                        habits: habits,
-                        selectedPeriod: period,
-                        username: username,
-                        theme: theme,
-                        vibrantColor: .blauPrimary
-                    )
-                case .consistency:
-                    StatShareImage(
-                        title: settings.localizedString(for: "stats.score.konsistenz"),
-                        subtitle: periodLabel,
-                        username: username,
-                        height: 520,
-                        theme: theme,
-                        vibrantColor: .orangePrimary
-                    ) {
-                        VStack(spacing: 28) {
-                            GardenFactorRow(
-                                icon: "checkmark.circle.fill",
-                                color: Color.orangePrimary,
-                                label: settings.localizedString(for: "stats.score.konsistenz"),
-                                sublabel: String(format: settings.localizedString(for: "stats.score.konsistenz.period_format"), settings.localizedString(for: period.thisPeriodKey)),
-                                value: data.konsistenz
-                            )
-                            .padding(.horizontal, 8)
-                            
-                            HStack(spacing: 20) {
-                                DetailInfoBox(title: settings.localizedString(for: "stats.succeeded"), value: "\(habits.filter { $0.istBewässert }.count)")
-                                DetailInfoBox(title: settings.localizedString(for: "stats.missed"), value: "\(habits.filter { !$0.istBewässert }.count)")
-                            }
+        Group {
+            switch type {
+            case .lifeBalance:
+                RadarChartShareImage(
+                    habits: habits,
+                    selectedPeriod: period,
+                    username: username,
+                    theme: theme,
+                    vibrantColor: .blauPrimary
+                )
+            case .consistency:
+                StatShareImage(
+                    title: settings.localizedString(for: "stats.score.konsistenz"),
+                    subtitle: periodLabel,
+                    username: username,
+                    height: 520,
+                    theme: theme,
+                    vibrantColor: .orangePrimary
+                ) {
+                    VStack(spacing: 28) {
+                        GardenFactorRow(
+                            icon: "checkmark.circle.fill",
+                            color: Color.orangePrimary,
+                            label: settings.localizedString(for: "stats.score.konsistenz"),
+                            sublabel: String(format: settings.localizedString(for: "stats.score.konsistenz.period_format"), settings.localizedString(for: period.thisPeriodKey)),
+                            value: data.konsistenz
+                        )
+                        .padding(.horizontal, 8)
+                        
+                        HStack(spacing: 20) {
+                            DetailInfoBox(title: settings.localizedString(for: "stats.succeeded"), value: "\(habits.filter { $0.istBewässert }.count)")
+                            DetailInfoBox(title: settings.localizedString(for: "stats.missed"), value: "\(habits.filter { !$0.istBewässert }.count)")
                         }
-                        .padding(32)
                     }
-                case .streak:
-                    StatShareImage(
-                        title: settings.localizedString(for: "stats.score.streak"),
-                        subtitle: periodLabel,
-                        username: username,
-                        height: 520,
-                        theme: theme,
-                        vibrantColor: .orangePrimary
-                    ) {
-                        VStack(spacing: 28) {
-                            GardenFactorRow(
-                                icon: "flame.fill",
-                                color: Color.orangePrimary,
-                                label: settings.localizedString(for: "stats.score.streak"),
-                                sublabel: String(format: settings.localizedString(for: "stats.score.streak.period_format"), settings.localizedString(for: period.thisPeriodKey)),
-                                value: data.streakScore,
-                                valueText: "\(data.bestStreakInPeriod)d · \(Int(data.streakScore * 100))%"
-                            )
-                            .padding(.horizontal, 8)
-                            
-                            HStack {
-                                Image(systemName: "crown.fill")
-                                    .font(.system(size: 22))
-                                    .foregroundStyle(Color.orange)
-                                
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(settings.localizedString(for: "stats.streak.best"))
-                                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                                        .foregroundStyle(.secondary)
-                                    Text("\(data.bestStreakInPeriod) " + settings.localizedString(for: "common.days"))
-                                        .font(.system(size: 20, weight: .black, design: .rounded))
-                                }
-                                Spacer()
-                            }
-                            .padding()
-                            .background(Color.orange.opacity(0.1), in: RoundedRectangle(cornerRadius: 20))
-                        }
-                        .padding(32)
-                    }
-                case .milestones:
-                    MilestonesShareImage(
-                        milestones: closestToLevelUp,
-                        username: username,
-                        theme: theme
-                    )
+                    .padding(32)
                 }
+            case .streak:
+                StatShareImage(
+                    title: settings.localizedString(for: "stats.score.streak"),
+                    subtitle: periodLabel,
+                    username: username,
+                    height: 520,
+                    theme: theme,
+                    vibrantColor: .orangePrimary
+                ) {
+                    VStack(spacing: 28) {
+                        GardenFactorRow(
+                            icon: "flame.fill",
+                            color: Color.orangePrimary,
+                            label: settings.localizedString(for: "stats.score.streak"),
+                            sublabel: String(format: settings.localizedString(for: "stats.score.streak.period_format"), settings.localizedString(for: period.thisPeriodKey)),
+                            value: data.streakScore,
+                            valueText: "\(data.bestStreakInPeriod)d · \(Int(data.streakScore * 100))%"
+                        )
+                        .padding(.horizontal, 8)
+                        
+                        HStack {
+                            Image(systemName: "crown.fill")
+                                .font(.system(size: 22))
+                                .foregroundStyle(Color.orange)
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(settings.localizedString(for: "stats.streak.best"))
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                                let dayKey = data.bestStreakInPeriod == 1 ? "common.day" : "common.days"
+                                Text("\(data.bestStreakInPeriod) " + settings.localizedString(for: dayKey))
+                                    .font(.system(size: 20, weight: .black, design: .rounded))
+                            }
+                            Spacer()
+                        }
+                        .padding()
+                        .background(Color.orange.opacity(0.1), in: RoundedRectangle(cornerRadius: 20))
+                    }
+                    .padding(32)
+                }
+            case .milestones:
+                MilestonesShareImage(
+                    milestones: closestToLevelUp,
+                    username: username,
+                    theme: theme
+                )
             }
-            .clipShape(RoundedRectangle(cornerRadius: 52, style: .continuous))
-            .shadow(color: .black.opacity(0.15), radius: 30, x: 0, y: 15)
         }
-        .scaleEffect(0.7) // Reduced size as requested
     }
     
     private func themeNameKey(for theme: ShareImageTheme) -> String {
@@ -1247,30 +1269,50 @@ struct SharePreviewSheet: View {
         }
     }
     
+    private func makeImage() -> UIImage? {
+        let view = AnyView(
+            renderView(for: selectedTheme)
+                .environmentObject(settings)
+                .environmentObject(gardenStore)
+                .environmentObject(streakStore)
+        )
+        let renderer = ImageRenderer(content: view)
+        renderer.scale = 3.0
+        return renderer.uiImage
+    }
+    
+    private func saveToPhotos() {
+        isExporting = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            guard let image = makeImage() else { isExporting = false; return }
+            PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
+                DispatchQueue.main.async {
+                    if status == .authorized || status == .limited {
+                        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                        withAnimation { savedToPhotos = true }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation { savedToPhotos = false }
+                        }
+                    }
+                    isExporting = false
+                }
+            }
+        }
+    }
+    
     private func exportSelectedTheme() {
         isExporting = true
-        
-        // Generate the final high-res image
-        let shareView = previewCard(for: selectedTheme).scaleEffect(1.0) // Render at full scale
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            let renderer = ImageRenderer(content: AnyView(shareView.environmentObject(settings).environmentObject(gardenStore).environmentObject(streakStore)))
-            renderer.scale = 3.0
-            
-            if let uiImage = renderer.uiImage {
-                let activityVC = UIActivityViewController(
-                    activityItems: [uiImage],
-                    applicationActivities: nil
-                )
-                
-                if let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
-                   let window = windowScene.windows.first(where: { $0.isKeyWindow }) {
-                    var topVC = window.rootViewController
-                    while let presented = topVC?.presentedViewController {
-                        topVC = presented
-                    }
-                    topVC?.present(activityVC, animated: true)
-                }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            guard let image = makeImage() else { isExporting = false; return }
+            let activityVC = UIActivityViewController(
+                activityItems: [image],
+                applicationActivities: nil
+            )
+            if let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+               let window = windowScene.windows.first(where: { $0.isKeyWindow }) {
+                var topVC = window.rootViewController
+                while let presented = topVC?.presentedViewController { topVC = presented }
+                topVC?.present(activityVC, animated: true)
             }
             isExporting = false
         }

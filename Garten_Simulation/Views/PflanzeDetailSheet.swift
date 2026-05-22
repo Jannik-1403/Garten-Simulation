@@ -8,12 +8,14 @@ struct PflanzeDetailSheet: View {
     @EnvironmentObject var shopStore: ShopStore
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var pfadStore: GartenPfadStore
+    @EnvironmentObject var streakStore: StreakStore
     @Environment(\.dismiss) private var dismiss
     var onLoeschen: (() -> Void)? = nil
 
     @State private var zeigeVerkaufenDialog = false
     @State private var zeigeNotizSheet = false
     @State private var zeigeTimerSheet = false
+    @State private var zeigeTimerEditSheet = false
     @State private var pulsieren = false
     @State private var zeigeTimerAbbrechenDialog = false
     @State private var noteToEditIndex: Int? = nil
@@ -186,32 +188,39 @@ struct PflanzeDetailSheet: View {
                 // MARK: - TAB CONTENT
                 if selectedTab == .uebersicht {
 
-                VStack(spacing: 0) {
-                    PlantWeeklyStreakView(pflanze: pflanze)
-                        .padding(.vertical, 16)
-                }
-                .background(
-                    ZStack {
-                        // 3D Shadow
-                        RoundedRectangle(cornerRadius: 24, style: .continuous)
-                            .fill(Color.orangeSecondary)
-                            .offset(y: 4)
-                        
-                        // Main Orange Surface
-                        RoundedRectangle(cornerRadius: 24, style: .continuous)
-                            .fill(
-                                LinearGradient(
-                                    colors: [.orangePrimary, .orangePrimary.opacity(0.9)],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
+                NavigationLink(destination: StreakView(selectedPlant: pflanze)
+                    .environmentObject(streakStore)
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+                ) {
+                    VStack(spacing: 0) {
+                        PlantWeeklyStreakView(pflanze: pflanze)
+                            .padding(.vertical, 16)
                     }
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 24, style: .continuous)
-                        .stroke(Color.white.opacity(0.2), lineWidth: 1.5)
-                )
+                    .background(
+                        ZStack {
+                            // 3D Shadow
+                            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                .fill(Color.orangeSecondary)
+                                .offset(y: 4)
+                            
+                            // Main Orange Surface
+                            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                .fill(
+                                    LinearGradient(
+                                        colors: [.orangePrimary, .orangePrimary.opacity(0.9)],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
+                        }
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+                            .stroke(Color.white.opacity(0.2), lineWidth: 1.5)
+                    )
+                }
+                .buttonStyle(PlainButtonStyle())
                 .padding(.horizontal, 24)
                 .padding(.vertical, 8)
 
@@ -267,7 +276,7 @@ struct PflanzeDetailSheet: View {
                     }
 
                     // Timer Vorschau
-                    if let timerDate = pflanze.timerDatum, timerDate > Date() {
+                    if let timerDate = pflanze.reminderTime {
                         HStack(spacing: 12) {
                             ZStack {
                                 Circle().fill(Color.orangePrimary.opacity(0.1))
@@ -281,7 +290,7 @@ struct PflanzeDetailSheet: View {
                                 Text(settings.localizedString(for: "plant.detail.timer.active"))
                                     .font(.system(size: 12, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
-                                Text("\(timerDate, style: .date) · \(timerDate, style: .time)")
+                                Text("\(timerDate, style: .time)")
                                     .font(.system(size: 14, weight: .semibold, design: .rounded))
                             }
                             Spacer()
@@ -301,6 +310,10 @@ struct PflanzeDetailSheet: View {
                         )
                         .padding(.horizontal, 24)
                         .padding(.bottom, 8)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            zeigeTimerEditSheet = true
+                        }
                     }
 
                     // 3D Buttons nebeneinander
@@ -423,15 +436,23 @@ struct PflanzeDetailSheet: View {
                 .presentationCornerRadius(32)
                 .presentationBackground(.ultraThinMaterial)
         }
-        // MARK: - Timer Sheet
+        // MARK: - Timer Create Sheet
         .sheet(isPresented: $zeigeTimerSheet) {
-            TimerSheetView(pflanze: pflanze)
+            TimerCreateSheetView(pflanze: pflanze)
                 .environmentObject(gardenStore)
                 .environmentObject(settings)
-                .presentationDetents([.medium])
+                .presentationDetents([.fraction(0.4)])
                 .presentationDragIndicator(.visible)
                 .presentationCornerRadius(32)
                 .presentationBackground(.ultraThinMaterial)
+        }
+        // MARK: - Timer Edit Sheet
+        .fullScreenCover(isPresented: $zeigeTimerEditSheet) {
+            NavigationStack {
+                TimerEditSheetView(pflanze: pflanze)
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+            }
         }
         // MARK: - Notiz Löschen Dialog
         .confirmationDialog(
@@ -667,97 +688,304 @@ struct NotizSheetView: View {
     }
 }
 
-// MARK: - Timer Sheet
-struct TimerSheetView: View {
+// MARK: - Timer Edit Sheet
+struct TimerEditSheetView: View {
     @ObservedObject var pflanze: HabitModel
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
     @Environment(\.dismiss) private var dismiss
 
-    @State private var ausgewaehltesDatum: Date = Date().addingTimeInterval(3600) // +1h default
+    @State private var ausgewaehlteZeit: Date
+    @State private var customMessage: String
+    @FocusState private var isEditingText: Bool
+
+    init(pflanze: HabitModel) {
+        self.pflanze = pflanze
+        if let existing = pflanze.reminderTime {
+            self._ausgewaehlteZeit = State(initialValue: existing)
+        } else {
+            var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+            components.hour = 8
+            components.minute = 0
+            self._ausgewaehlteZeit = State(initialValue: Calendar.current.date(from: components) ?? Date())
+        }
+        
+        if let customMsg = pflanze.customReminderMessage, !customMsg.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            self._customMessage = State(initialValue: customMsg)
+        } else {
+            self._customMessage = State(initialValue: "")
+        }
+    }
+
+    private var pflanzName: String {
+        settings.showHabitInsteadOfName
+            ? settings.localizedString(for: pflanze.habitName)
+            : settings.localizedString(for: pflanze.name)
+    }
+
+    private var defaultBodyText: String {
+        String(format: settings.localizedString(for: "timer.preview.body.example"), pflanzName)
+    }
+
+    private var zeitFormatted: String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .none
+        return formatter.string(from: ausgewaehlteZeit)
+    }
+
+    private var previewTitle: String {
+        if !customMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return "\(pflanzName)"
+        }
+        return "\(settings.localizedString(for: "timer.preview.title.example"))"
+    }
+
+    private var hasUnsavedChanges: Bool {
+        let currentCustomMsg = customMessage.trimmingCharacters(in: .whitespacesAndNewlines)
+        let savedCustomMsg = (pflanze.customReminderMessage ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        var timeChanged = false
+        if let savedTime = pflanze.reminderTime {
+            let savedH = Calendar.current.component(.hour, from: savedTime)
+            let savedM = Calendar.current.component(.minute, from: savedTime)
+            let curH = Calendar.current.component(.hour, from: ausgewaehlteZeit)
+            let curM = Calendar.current.component(.minute, from: ausgewaehlteZeit)
+            timeChanged = (savedH != curH || savedM != curM)
+        }
+        
+        return currentCustomMsg != savedCustomMsg || timeChanged
+    }
 
     var body: some View {
-        VStack(spacing: 24) {
-            // Header
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(settings.localizedString(for: "plant.detail.timer"))
-                        .font(.system(size: 24, weight: .black, design: .rounded))
-                        Text(settings.showHabitInsteadOfName 
-                             ? settings.localizedString(for: pflanze.habitName)
-                             : settings.localizedString(for: pflanze.name))
-                            .font(.system(size: 14, weight: .medium, design: .rounded))
-                            .foregroundStyle(.secondary)
+        NavigationStack {
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 0) {
+                    // MARK: Header
+                    HStack(alignment: .center) {
+                        VStack(alignment: .leading, spacing: 3) {
+                            Text(settings.localizedString(for: "plant.detail.timer"))
+                                .font(.system(size: 22, weight: .black, design: .rounded))
+                            Text(pflanzName)
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.top, 16)
+                    .padding(.bottom, 16)
+
+                    // MARK: Time Picker
+                    DatePicker(
+                        "",
+                        selection: $ausgewaehlteZeit,
+                        displayedComponents: .hourAndMinute
+                    )
+                    .datePickerStyle(.wheel)
+                    .labelsHidden()
+                    .padding(.horizontal, 8)
+                    .padding(.bottom, 16)
+
+                    // MARK: Notification Preview Card
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack(spacing: 6) {
+                            Image(systemName: "eye")
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundStyle(.secondary)
+                            Text(settings.localizedString(for: "timer.preview.label"))
+                                .font(.system(size: 11, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .textCase(.uppercase)
+                                .tracking(0.8)
+                        }
+
+                        // Mock-Notification
+                        HStack(spacing: 12) {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(previewTitle)
+                                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                                    .lineLimit(1)
+                                
+                                TextField(defaultBodyText, text: $customMessage, axis: .vertical)
+                                    .focused($isEditingText)
+                                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(2...4)
+                            }
+
+                            Spacer(minLength: 0)
+
+                            if !isEditingText {
+                                Button {
+                                    isEditingText = true
+                                } label: {
+                                    Image(systemName: "pencil")
+                                        .font(.system(size: 14, weight: .bold))
+                                        .foregroundStyle(.primary)
+                                        .padding(.horizontal, 4)
+                                }
+                                .transition(.opacity)
+                            }
+
+                            Text(zeitFormatted)
+                                .font(.system(size: 11, weight: .semibold, design: .rounded))
+                                .foregroundStyle(.tertiary)
+                        }
+                        .animation(.easeInOut(duration: 0.2), value: isEditingText)
+                        .padding(18)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                .fill(Color.white)
+                                .shadow(color: Color.black.opacity(0.08), radius: 12, y: 6)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                .stroke(Color.primary.opacity(0.05), lineWidth: 1)
+                        )
+
+
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 24)
+
+
                 }
-                Spacer()
-                Image(systemName: "bell.badge")
-                    .font(.system(size: 28, weight: .semibold))
-                    .foregroundStyle(Color.orangePrimary)
             }
-            .padding(.top, 20)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    ZStack {
+                        if hasUnsavedChanges || isEditingText {
+                            Button {
+                                isEditingText = false
+                                autoSave()
+                            } label: {
+                                Image(systemName: "checkmark")
+                                    .font(.system(size: 18, weight: .heavy))
+                                    .foregroundStyle(Color(red: 1.0, green: 0.85, blue: 0.7)) // hellorange
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .buttonBorderShape(.circle)
+                            .tint(Color.orangePrimary)
+                            .transition(.opacity)
+                        } else {
+                            Button {
+                                dismiss()
+                            } label: {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 16, weight: .black))
+                                    .foregroundStyle(.primary)
+                                    .padding(8)
+                            }
+                            .transition(.opacity)
+                        }
+                    }
+                    .animation(.easeInOut(duration: 0.2), value: hasUnsavedChanges || isEditingText)
+                }
 
-            // DatePicker
-            DatePicker(
-                "",
-                selection: $ausgewaehltesDatum,
-                in: Date()...,
-                displayedComponents: [.date, .hourAndMinute]
-            )
-            .datePickerStyle(.wheel)
-            .labelsHidden()
+                ToolbarItem(placement: .topBarLeading) {
+                    Menu {
+                        Button(role: .destructive) {
+                            gardenStore.timerEntfernen(pflanze: pflanze)
+                            dismiss()
+                        } label: {
+                            Label(settings.localizedString(for: "plant.detail.timer.delete"), systemImage: "trash")
+                        }
+                        
+                        Menu {
+                            if pflanze.notizen.isEmpty {
+                                Text(settings.localizedString(for: "plant.detail.note.empty"))
+                            } else {
+                                ForEach(pflanze.notizen, id: \.self) { notiz in
+                                    Button(notiz) {
+                                        withAnimation {
+                                            customMessage = notiz
+                                        }
+                                    }
+                                }
+                            }
+                        } label: {
+                            Label(settings.localizedString(for: "timer.note.link"), systemImage: "link")
+                        }
+                        
+                        if !customMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                            Button {
+                                withAnimation {
+                                    customMessage = ""
+                                }
+                            } label: {
+                                Label(settings.localizedString(for: "timer.note.unlink"), systemImage: "link.badge.minus")
+                            }
+                        }
 
-            Spacer()
-
-            // Aktiven Timer löschen (wenn vorhanden)
-            if let existing = pflanze.timerDatum, existing > Date() {
-                Button {
-                    gardenStore.timerEntfernen(pflanze: pflanze)
-                    dismiss()
-                } label: {
-                    HStack(spacing: 6) {
-                        Image(systemName: "trash")
-                            .font(.system(size: 14, weight: .bold))
-                        Text(settings.localizedString(for: "plant.detail.timer.delete"))
+                        NavigationLink {
+                            PlantTimelineView(onClose: { dismiss() })
+                                .environmentObject(gardenStore)
+                                .environmentObject(settings)
+                        } label: {
+                            Label("Andere Pflanzen", systemImage: "list.bullet")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .font(.system(size: 20))
+                            .foregroundStyle(.primary)
                     }
                 }
-                .buttonStyle(DuolingoButtonStyle(
-                    size: .medium,
-                    fillWidth: true,
-                    backgroundColor: .rotPrimary,
-                    shadowColor: .rotPrimary.darker()
-                ))
-            }
-
-            // Timer setzen Button
-            Button {
-                Task {
-                    _ = await NotificationManager.shared.requestPermission()
-                    gardenStore.timerSetzen(pflanze: pflanze, datum: ausgewaehltesDatum)
-                    dismiss()
-                }
-            } label: {
-                HStack(spacing: 6) {
-                    Image(systemName: "bell.badge")
-                        .font(.system(size: 14, weight: .bold))
-                    Text(settings.localizedString(for: "plant.detail.timer.set"))
-                }
-            }
-            .buttonStyle(DuolingoButtonStyle(
-                size: .large,
-                fillWidth: true,
-                backgroundColor: .orangePrimary,
-                shadowColor: .orangePrimary.darker()
-            ))
-        }
-        .padding(.horizontal, 24)
-        .padding(.bottom, 32)
-        .onAppear {
-            if let existing = pflanze.timerDatum, existing > Date() {
-                ausgewaehltesDatum = existing
             }
         }
     }
+
+    private func autoSave() {
+        Task {
+            _ = await NotificationManager.shared.requestPermission()
+            let finalMsg = customMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : customMessage
+            gardenStore.timerSetzen(pflanze: pflanze, datum: ausgewaehlteZeit, customMessage: finalMsg)
+        }
+    }
 }
+
+// MARK: - Timer Create Sheet
+struct TimerCreateSheetView: View {
+    @ObservedObject var pflanze: HabitModel
+    @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
+    @Environment(\.dismiss) private var dismiss
+
+    @State private var ausgewaehlteZeit: Date = {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+        components.hour = 8
+        components.minute = 0
+        return Calendar.current.date(from: components) ?? Date()
+    }()
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Text(settings.localizedString(for: "plant.detail.timer.set"))
+                .font(.system(size: 20, weight: .bold, design: .rounded))
+                .padding(.top, 24)
+
+            DatePicker("", selection: $ausgewaehlteZeit, displayedComponents: .hourAndMinute)
+                .datePickerStyle(.wheel)
+                .labelsHidden()
+
+            Button {
+                Task {
+                    _ = await NotificationManager.shared.requestPermission()
+                    gardenStore.timerSetzen(pflanze: pflanze, datum: ausgewaehlteZeit)
+                    dismiss()
+                }
+            } label: {
+                Text(settings.localizedString(for: "plant.detail.timer.set"))
+            }
+            .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: .orangePrimary, shadowColor: .orangePrimary.darker()))
+            .padding(.horizontal, 24)
+            .padding(.bottom, 32)
+        }
+    }
+}
+
+
 
 // MARK: - StatLabelView
 struct StatLabelView: View {

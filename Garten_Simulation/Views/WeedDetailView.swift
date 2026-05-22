@@ -4,85 +4,319 @@ struct WeedDetailView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
-    
+    @EnvironmentObject var shopStore: ShopStore
+
+    @State private var selectedPowerUp: ShopDetailPayload?
+    @State private var shieldedDotIndices: Set<Int> = []
+    @State private var showInfoPopover = false
+
+    private var stylizedBodyText: AttributedString {
+        let raw = settings.localizedFormat(
+            "weed_popup_body",
+            gardenStore.weedEffectiveRewardPercent,
+            GameConstants.habitsRequiredPerWeed
+        )
+        var attr = AttributedString(raw)
+        
+        let terms = [
+            "\(gardenStore.weedEffectiveRewardPercent)% XP",
+            "\(gardenStore.weedEffectiveRewardPercent)%",
+            "\(GameConstants.habitsRequiredPerWeed) Gewohnheiten",
+            "\(GameConstants.habitsRequiredPerWeed) habits",
+            "\(GameConstants.habitsRequiredPerWeed) hábitos",
+            "\(GameConstants.habitsRequiredPerWeed) abitudini",
+            "\(GameConstants.habitsRequiredPerWeed) habitudes",
+            "Coins", "coins", "pièces", "monedas", "monete"
+        ]
+        
+        for term in terms {
+            if let range = attr.range(of: term, options: .caseInsensitive) {
+                attr[range].font = .system(size: 16, weight: .black, design: .rounded)
+                attr[range].foregroundColor = .orange
+            }
+        }
+        
+        return attr
+    }
+
+    /// Inventar-Power-up gewählt oder Schutz läuft bereits (Deko-Schutz etc.)
+    private var canUseShieldDrag: Bool {
+        selectedPowerUp != nil || gardenStore.blocksNewWeedSpawns
+    }
+
+    private var ritualComplete: Bool {
+        shieldedDotIndices.count >= GameConstants.habitsRequiredPerWeed
+    }
+
+    private var hasWeedPowerUpsInInventory: Bool {
+        !gardenStore.availableWeedPowerUpItems.isEmpty
+    }
+
     var body: some View {
-        VStack(spacing: 24) {
+        NavigationStack {
+            ZStack(alignment: .topTrailing) {
+                Color.clear.background(.ultraThinMaterial).ignoresSafeArea()
+                
+                ScrollView {
+                    VStack(spacing: 24) {
+                        Spacer().frame(height: 40)
+                        headerSection
 
-            // Titel & Text
-            VStack(spacing: 8) {
+                        if gardenStore.hasWeedShieldOption {
+                            shieldDragSection
+                        } else {
+                            wateringProgressSection
+                        }
+
+                        if hasWeedPowerUpsInInventory {
+                            WeedPowerUpSection(selectedPowerUp: $selectedPowerUp)
+                                .onChange(of: selectedPowerUp?.id) { _, _ in
+                                    if !ritualComplete {
+                                        shieldedDotIndices.removeAll()
+                                    }
+                                }
+                        }
+                        
+                        if !canUseShieldDrag && gardenStore.weedRemovalCost > 0 {
+                            Button(action: {
+                                if gardenStore.removeFrontWeedWithCoins() {
+                                    dismiss()
+                                }
+                            }) {
+                                HStack {
+                                    Text(settings.localizedString(for: "weed_popup_pay"))
+                                        .font(.system(size: 15, weight: .bold))
+                                    Image("coin")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 16, height: 16)
+                                    Text("\(gardenStore.weedRemovalCost)")
+                                        .font(.system(size: 15, weight: .black))
+                                }
+                            }
+                            .buttonStyle(DuolingoButtonStyle(
+                                size: .large,
+                                backgroundColor: gardenStore.coins >= gardenStore.weedRemovalCost ? .orange : Color(uiColor: .systemGray4),
+                                shadowColor: gardenStore.coins >= gardenStore.weedRemovalCost ? .orange.darker() : Color(uiColor: .systemGray3),
+                                foregroundColor: .white
+                            ))
+                            .disabled(gardenStore.coins < gardenStore.weedRemovalCost)
+                        }
+                    }
+                    .padding(24)
+                    .padding(.top, 40)
+                }
+            }
+            .standardNavigationX()
+        }
+        .onAppear {
+            shieldedDotIndices.removeAll()
+            applyPendingPowerUpSelection()
+            preselectWeedPowerUpIfNeeded()
+        }
+        .onChange(of: gardenStore.gekaufteItems.count) { _, _ in
+            preselectWeedPowerUpIfNeeded()
+        }
+        .onChange(of: ritualComplete) { _, complete in
+            if complete { finishShieldRitual() }
+        }
+    }
+
+    private func applyPendingPowerUpSelection() {
+        guard let pending = gardenStore.pendingWeedPowerUpForRitual else { return }
+        selectedPowerUp = pending
+        gardenStore.pendingWeedPowerUpForRitual = nil
+    }
+
+    /// Beim Öffnen direkt Zauberstab/Gartenschutz wählen – kein Extra-Tap nötig.
+    private func preselectWeedPowerUpIfNeeded() {
+        guard selectedPowerUp == nil else { return }
+        let items = gardenStore.availableWeedPowerUpItems
+        guard !items.isEmpty else { return }
+
+        if let wand = items.first(where: { $0.id == PowerUpWeedSupport.zauberstabID }) {
+            selectedPowerUp = wand
+        } else if let shield = items.first(where: { $0.id == PowerUpWeedSupport.gartenschutzID }) {
+            selectedPowerUp = shield
+        } else {
+            selectedPowerUp = items.first
+        }
+    }
+
+    // MARK: - Header
+
+    private var headerSection: some View {
+        VStack(spacing: 10) {
+            Button {
+                showInfoPopover.toggle()
+            } label: {
                 Text(settings.localizedString(for: "weed_popup_title"))
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
+                    .font(.system(size: 32, weight: .black, design: .rounded))
+                    .foregroundStyle(.primary)
+            }
+            .popover(isPresented: $showInfoPopover) {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 20) {
+                        Text(stylizedBodyText)
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
+                            .multilineTextAlignment(.center)
+                            .lineSpacing(4)
+                        
+                        if gardenStore.hasWeedShieldOption {
+                            Text(
+                                gardenStore.blocksNewWeedSpawns && selectedPowerUp == nil
+                                    ? settings.localizedString(for: "weed.shield.ritual.drag_active")
+                                    : settings.localizedString(for: "weed.shield.ritual.drag")
+                            )
+                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                        }
+            
+                        if gardenStore.isComebackBoostActive {
+                            Label(
+                                settings.localizedFormat(
+                                    "weed.comeback.banner",
+                                    gardenStore.comebackBoostRewardPercent
+                                ),
+                                systemImage: "bolt.fill"
+                            )
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.gruenPrimary)
+                        }
+            
+                        if gardenStore.weedCount > 1 {
+                            Text(
+                                settings.localizedFormat(
+                                    "weed_queue_position",
+                                    1,
+                                    gardenStore.weedCount
+                                )
+                            )
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.orange)
+                            .multilineTextAlignment(.center)
+                        }
+                    }
+                    .padding(24)
+                }
+                .frame(minWidth: 280, idealWidth: 320, maxWidth: 320)
+                .frame(minHeight: 200, idealHeight: 220, maxHeight: 300)
+                .presentationCompactAdaptation(.popover)
+            }
 
-                Text(settings.localizedString(for: "weed_popup_body"))
-                    .font(.body)
+            if gardenStore.weedCount > 1 {
+                WeedQueueStrip(weeds: gardenStore.activeWeeds)
+                    .padding(.horizontal, 4)
+                    .padding(.top, 8)
+            }
+        }
+    }
+
+    // MARK: - Shield drag (wie Wassertropfen)
+
+    private var shieldDragSection: some View {
+        VStack(spacing: 8) {
+            if !canUseShieldDrag && hasWeedPowerUpsInInventory {
+                Text(settings.localizedString(for: "weed.shield.ritual.pick_first"))
+                    .font(.caption)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, 8)
             }
-            .padding(.top, 20)
 
-            // Fortschritts-Dots
-            VStack(spacing: 12) {
-                HStack(spacing: 16) {
-                    ForEach(0..<3) { index in
-                        let isCompleted = index < gardenStore.dailyQuestsCompletedSinceWeed
+            DragShieldToWeed(
+                shieldedIndices: shieldedDotIndices,
+                onShieldApplied: { index in
+                    withAnimation(.spring(response: 0.28, dampingFraction: 0.65)) {
+                        _ = shieldedDotIndices.insert(index)
+                    }
+                },
+                isDisabled: !canUseShieldDrag
+            )
+            .opacity(canUseShieldDrag ? 1 : 0.4)
 
-                        ZStack {
-                            // Untere Schicht (3D-Schatten)
-                            RoundedRectangle(cornerRadius: 14)
-                                .fill(isCompleted
-                                      ? Color(red: 0.1, green: 0.6, blue: 0.2)   // dunkles Grün
-                                      : Color(red: 0.6, green: 0.6, blue: 0.6))  // dunkles Grau
-                                .frame(width: 52, height: 52)
-                                .offset(y: 4)
+            if canUseShieldDrag {
+                Text(
+                    settings.localizedFormat(
+                        "weed.shield.ritual.progress",
+                        shieldedDotIndices.count,
+                        GameConstants.habitsRequiredPerWeed
+                    )
+                )
+                .font(.caption2)
+                .foregroundStyle(.tertiary)
+            }
+        }
+    }
 
-                            // Obere Schicht
-                            RoundedRectangle(cornerRadius: 14)
-                                .fill(isCompleted
-                                      ? Color(red: 0.2, green: 0.78, blue: 0.35)  // helles Grün
-                                      : Color(red: 0.82, green: 0.82, blue: 0.82)) // helles Grau
-                                .frame(width: 52, height: 52)
-                                .offset(y: isCompleted ? 2 : 0) // gedrückt wenn erledigt
+    // MARK: - Normaler Gieß-Fortschritt (ohne Schutz)
 
-                            // Checkmark oder Nummer
-                            if isCompleted {
-                                Image(systemName: "checkmark")
-                                    .font(.system(size: 20, weight: .bold))
-                                    .foregroundStyle(.white)
-                                    .offset(y: isCompleted ? 2 : 0)
-                            } else {
-                                Text("\(index + 1)")
-                                    .font(.system(size: 18, weight: .bold))
-                                    .foregroundStyle(.white.opacity(0.6))
-                            }
+    private var wateringProgressSection: some View {
+        VStack(spacing: 12) {
+            HStack(spacing: 16) {
+                ForEach(0..<GameConstants.habitsRequiredPerWeed, id: \.self) { index in
+                    let isCompleted = index < gardenStore.dailyQuestsCompletedSinceWeed
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 14)
+                            .fill(isCompleted
+                                  ? Color(red: 0.1, green: 0.6, blue: 0.2)
+                                  : Color(red: 0.6, green: 0.6, blue: 0.6))
+                            .frame(width: 52, height: 52)
+                            .offset(y: 4)
+
+                        RoundedRectangle(cornerRadius: 14)
+                            .fill(isCompleted
+                                  ? Color(red: 0.2, green: 0.78, blue: 0.35)
+                                  : Color(red: 0.82, green: 0.82, blue: 0.82))
+                            .frame(width: 52, height: 52)
+                            .offset(y: isCompleted ? 2 : 0)
+
+                        if isCompleted {
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundStyle(.white)
+                                .offset(y: 2)
+                        } else {
+                            Text("\(index + 1)")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundStyle(.white.opacity(0.6))
                         }
-                        .animation(.spring(duration: 0.3), value: gardenStore.dailyQuestsCompletedSinceWeed)
                     }
                 }
-
-                Text(settings.localizedString(for: "weed_progress_label")
-                    .replacingOccurrences(of: "{count}", with: "\(gardenStore.dailyQuestsCompletedSinceWeed)"))
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.secondary)
             }
-            .padding(.vertical, 16)
-            .padding(.horizontal, 24)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color(.systemGroupedBackground))
+
+            Text(
+                settings.localizedFormat(
+                    "weed_progress_label",
+                    gardenStore.dailyQuestsCompletedSinceWeed,
+                    GameConstants.habitsRequiredPerWeed
+                )
             )
-
-            // Verstanden-Button
-            Button(settings.localizedString(for: "weed_popup_button")) {
-                dismiss()
-            }
-            .buttonStyle(DuolingoButtonStyle(size: .large, backgroundColor: .gruenPrimary, shadowColor: .gruenSecondary))
+            .font(.subheadline)
+            .fontWeight(.semibold)
+            .foregroundStyle(.secondary)
         }
-        .padding(24)
-        .background(.ultraThinMaterial)
+        .padding(.vertical, 16)
+        .padding(.horizontal, 20)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.systemGroupedBackground))
+        )
+    }
+
+    // MARK: - Bottom
+    // Bottom actions removed per user request
+
+    private func finishShieldRitual() {
+        if let item = selectedPowerUp {
+            guard gardenStore.applyWeedPowerUpAfterRitual(item: item) else { return }
+            shopStore.removeFromPurchased(id: item.id)
+            selectedPowerUp = nil
+        } else {
+            gardenStore.completeShieldRitualUsingActiveProtection()
+        }
     }
 }
 
@@ -90,4 +324,5 @@ struct WeedDetailView: View {
     WeedDetailView()
         .environmentObject(GardenStore())
         .environmentObject(SettingsStore())
+        .environmentObject(ShopStore())
 }

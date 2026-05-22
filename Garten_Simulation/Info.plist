@@ -69,5 +69,7 @@
 			</dict>
 		</dict>
 	</array>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Grovy möchte dein exportiertes Statistik- oder Erfolgsbild direkt in deiner Fotogalerie speichern.</string>
 </dict>
 </plist>

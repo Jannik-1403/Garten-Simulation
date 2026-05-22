@@ -12,6 +12,8 @@ enum ScreenSize {
 }
 
 class SettingsStore: ObservableObject {
+    static let shared = SettingsStore()
+    
     @AppStorage("isHapticEnabled")        var isHapticEnabled: Bool = true
     @AppStorage("isNotificationsEnabled") var isNotificationsEnabled: Bool = true
     @AppStorage("isAnalyticsEnabled")     var isAnalyticsEnabled: Bool = true
@@ -121,6 +123,11 @@ class SettingsStore: ObservableObject {
         
         // Priority 3: Ultimate fallback to system language default NSLocalizedString
         return NSLocalizedString(key, comment: "")
+    }
+
+    func localizedFormat(_ key: String, _ args: CVarArg...) -> String {
+        let format = localizedString(for: key)
+        return String(format: format, locale: Locale.current, arguments: args)
     }
 
     // MARK: - Actions

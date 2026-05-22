@@ -16,6 +16,7 @@ struct DragToWater: View {
     let onGiessen: () -> Void
     let pflanzenPosition: CGPoint
     let istErledigt: Bool
+    var coordinateSpace: CoordinateSpace = .global
 
     @State private var dragOffset = CGSize.zero
     @State private var isDragging = false
@@ -42,60 +43,13 @@ struct DragToWater: View {
 
     var body: some View {
         GeometryReader { geo in
-            let stripGlobal = geo.frame(in: .global)
+            let stripGlobal = geo.frame(in: coordinateSpace)
             let plantLocal = CGPoint(
                 x: pflanzenPosition.x - stripGlobal.minX,
                 y: pflanzenPosition.y - stripGlobal.minY
             )
 
-            ZStack {
-                ForEach(partikel) { p in
-                    let rad = p.winkel * .pi / 180
-                    let dx = cos(rad) * p.distanz
-                    let dy = sin(rad) * p.distanz
-                    let h = p.groesse
-                    let w = h * (tropfenBreite / tropfenHoehe)
-
-                    Image("Drop water")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: w, height: h)
-                        .rotationEffect(.degrees(winkelZuRotation(p.winkel)))
-                        .position(x: plantLocal.x + dx, y: plantLocal.y + dy)
-                        .opacity(p.opazitaet)
-                }
-
-                if !istVerschwunden {
-                    Image("Drop water")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: tropfenBreite * 1.2, height: tropfenHoehe * 1.2) // Scaling slightly for asset
-                        .brightness(treffer ? 0.12 : 0)
-                        .scaleEffect(tropfenSkalierung)
-                        .opacity(tropfenOpazitaet)
-                        .rotationEffect(.degrees(isDragging ? tropfenKippWinkel : 0))
-                        .offset(dragOffset)
-                        .animation(
-                            .spring(response: 0.3, dampingFraction: 0.5),
-                            value: treffer
-                        )
-                        .animation(
-                            .spring(response: 0.15, dampingFraction: 0.6),
-                            value: tropfenSkalierung
-                        )
-                        .animation(
-                            .easeIn(duration: 0.2),
-                            value: tropfenOpazitaet
-                        )
-                }
-            }
-            .frame(width: geo.size.width, height: geo.size.height)
-        }
-        .frame(maxWidth: .infinity, minHeight: 72, maxHeight: 72)
-        .contentShape(Rectangle())
-        .allowsHitTesting(!istVerschwunden)
-        .simultaneousGesture(
-            DragGesture(coordinateSpace: .global)
+            let dragGesture = DragGesture(coordinateSpace: coordinateSpace)
                 .onChanged { value in
                     guard !istErledigt, !istVerschwunden else { return }
 
@@ -170,7 +124,55 @@ struct DragToWater: View {
                         }
                     }
                 }
-        )
+
+            ZStack {
+                ForEach(partikel) { p in
+                    let rad = p.winkel * .pi / 180
+                    let dx = cos(rad) * p.distanz
+                    let dy = sin(rad) * p.distanz
+                    let h = p.groesse
+                    let w = h * (tropfenBreite / tropfenHoehe)
+
+                    Image("Drop water")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: w, height: h)
+                        .rotationEffect(.degrees(winkelZuRotation(p.winkel)))
+                        .position(x: plantLocal.x + dx, y: plantLocal.y + dy)
+                        .opacity(p.opazitaet)
+                }
+
+                if !istVerschwunden {
+                    Image("Drop water")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: tropfenBreite * 1.2, height: tropfenHoehe * 1.2) // Scaling slightly for asset
+                        .padding(20) // Give it a generous touch area
+                        .contentShape(Rectangle()) // Make the padded area touchable
+                        .simultaneousGesture(dragGesture)
+                        .brightness(treffer ? 0.12 : 0)
+                        .scaleEffect(tropfenSkalierung)
+                        .opacity(tropfenOpazitaet)
+                        .rotationEffect(.degrees(isDragging ? tropfenKippWinkel : 0))
+                        .offset(dragOffset)
+                        .animation(
+                            .spring(response: 0.3, dampingFraction: 0.5),
+                            value: treffer
+                        )
+                        .animation(
+                            .spring(response: 0.15, dampingFraction: 0.6),
+                            value: tropfenSkalierung
+                        )
+                        .animation(
+                            .easeIn(duration: 0.2),
+                            value: tropfenOpazitaet
+                        )
+                }
+            }
+            .frame(width: geo.size.width, height: geo.size.height)
+        }
+        .frame(maxWidth: .infinity, minHeight: 72, maxHeight: 72)
+        .allowsHitTesting(!istVerschwunden)
         .sensoryFeedback(.impact, trigger: treffer)
         .sensoryFeedback(.success, trigger: hapticTrigger)
         .onChange(of: istErledigt) { _, erledigt in

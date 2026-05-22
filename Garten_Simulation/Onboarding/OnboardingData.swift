@@ -11,10 +11,8 @@ struct CustomOnboardingPflanze: Identifiable, Codable {
 
 class OnboardingData: ObservableObject {
     @Published var currentStep: Int = 1
-    @Published var gewaehltesZiel: OnboardingZiel? = nil
+    @Published var gewaehltesZiele: [OnboardingZiel] = []
     @Published var gewaehltePflanzenIDs: [String] = []
-    @Published var customPflanzen: [CustomOnboardingPflanze] = []
-    @Published var zielFehlt: Bool = false
     @Published var tutorialMuenzen: Int = 0
     @Published var erinnerungsZeiten: [String: Date] = [:]
     @Published var globalXPMultiplier: Double = 1.0

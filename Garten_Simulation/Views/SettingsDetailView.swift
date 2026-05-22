@@ -10,111 +10,41 @@ struct SettingsDetailView: View {
     var isDestructive: Bool = false
     let action: () -> Void
     
-    @Environment(\.dismiss) var dismiss
-    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
-    
     var body: some View {
-        ZStack {
-            Color.appHintergrund.ignoresSafeArea()
-            
-            VStack(spacing: 40) {
-                Spacer()
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 16) {
+                // Große Überschrift direkt über dem Text
+                Text(title)
+                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                    .foregroundColor(.primary)
+                    .padding(.top, 16)
                 
-                // Icon Header
-                ZStack {
-                    Circle()
-                        .fill(iconColor.opacity(0.1))
-                        .frame(width: 120, height: 120)
-                    
-                    Image(systemName: icon)
-                        .font(.system(size: 50))
-                        .foregroundStyle(iconColor)
-                }
-                
-                VStack(spacing: 16) {
-                    Text(title)
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
-                    
-                    ScrollView {
-                        Text(description)
-                            .font(.body)
-                            .foregroundStyle(.secondary)
-                            .multilineTextAlignment(.leading)
-                            .padding(.horizontal, 24)
-                            .padding(.top, 8)
-                    }
-                }
-                
-                Spacer()
-                
-                // Action Button
-                VStack(spacing: 12) {
-                    Button(action: {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                            action()
-                            dismiss()
-                        }
-                    }) {
-                        Text(actionTitle.uppercased())
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
-                            .foregroundStyle(.white)
-                            .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(SettingsActionButtonStyle(color: isDestructive ? .red : .blauPrimary))
-                    .padding(.horizontal, 24)
-                    
-                    if isDestructive {
-                        Text(settings.localizedString(for: "settings.action.irreversible"))
-                            .font(.system(size: 12))
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .padding(.bottom, 40)
+                // Beschreibungstext direkt darunter
+                Text(description)
+                    .font(.system(size: 16, weight: .regular))
+                    .foregroundColor(.secondary)
+                    .lineSpacing(6)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .padding(.horizontal, 24)
+            .padding(.bottom, 24)
         }
-        .navigationTitle(title)
+        .background(Color(.systemBackground).ignoresSafeArea())
+        .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
-struct SettingsActionButtonStyle: ButtonStyle {
-    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
-    let color: Color
-    private let depth: CGFloat = 6
-    
-    func makeBody(configuration: Configuration) -> some View {
-        let isPressed = configuration.isPressed
-        
-        ZStack {
-            // Shadow
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(color.opacity(0.3))
-                .offset(y: depth)
-            
-            // Base
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(color)
-                .overlay(
-                    configuration.label
-                )
-                .offset(y: isPressed ? depth : 0)
-        }
-        .frame(height: 56)
-        .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
-        .sensoryFeedback(trigger: isPressed) { _, newValue in
-            (isHapticEnabled && newValue) ? .impact(flexibility: .rigid, intensity: 0.8) : nil
-        }
+        .standardNavigationX()
     }
 }
 
 #Preview {
     NavigationStack {
         SettingsDetailView(
-            title: "Daten exportieren",
-            description: "Möchten Sie alle Ihre Daten exportieren? Sie erhalten eine Datei mit allen Ihren Pflanzen und Fortschritten.",
-            actionTitle: "Export starten",
-            icon: "square.and.arrow.up.fill",
-            iconColor: .orange,
+            title: "Nutzungsbedingungen",
+            description: "Dies sind die Nutzungsbedingungen für die Garten-Simulation...",
+            actionTitle: "Verstanden",
+            icon: "doc.text.fill",
+            iconColor: .gray,
             action: {}
         )
     }

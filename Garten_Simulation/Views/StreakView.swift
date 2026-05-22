@@ -24,6 +24,12 @@ struct StreakView: View {
     @State private var showFreezeDetail = false
     private let calendar = Calendar.current
     
+    @State var selectedPlant: HabitModel? = nil
+    
+    init(selectedPlant: HabitModel? = nil) {
+        _selectedPlant = State(initialValue: selectedPlant)
+    }
+    
     var body: some View {
         ZStack {
             // Background - Same as Shop
@@ -39,7 +45,7 @@ struct StreakView: View {
                                 .shadow(color: .orangePrimary.opacity(0.3), radius: 30)
                             
                             VStack(spacing: 0) {
-                                Text("\(streakStore.currentStreak)")
+                                Text("\(selectedPlant?.streak ?? streakStore.currentStreak)")
                                     .font(.system(size: 80, weight: .heavy, design: .rounded))
                                     .foregroundStyle(.orange)
                             }
@@ -92,7 +98,7 @@ struct StreakView: View {
                                 monthlyCalendarGrid
                                     .transition(.asymmetric(insertion: .push(from: .bottom).combined(with: .opacity), removal: .push(from: .top).combined(with: .opacity)))
                             case .year:
-                                YearlyCalendarView(calendar: calendar, streakStore: streakStore, settings: settings)
+                                YearlyCalendarView(calendar: calendar, streakStore: streakStore, settings: settings, selectedPlant: selectedPlant)
                                     .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity), removal: .move(edge: .top).combined(with: .opacity)))
                             }
                         }
@@ -118,9 +124,49 @@ struct StreakView: View {
                 .presentationDetents([.medium])
                 .presentationCornerRadius(32)
         }
-        .navigationTitle(settings.localizedString(for: "streak.view.title"))
+        .navigationTitle(selectedPlant == nil
+            ? settings.localizedString(for: "streak.view.title")
+            : (settings.showHabitInsteadOfName ? settings.localizedString(for: selectedPlant!.displayedHabitName) : settings.localizedString(for: selectedPlant!.name)))
         .navigationBarTitleDisplayMode(.inline)
         .standardNavigationX()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Menu {
+                    Button(action: {
+                        withAnimation {
+                            selectedPlant = nil
+                        }
+                    }) {
+                        HStack {
+                            Text(settings.localizedString(for: "Alle") == "Alle" ? "Alle" : settings.localizedString(for: "Alle"))
+                            if selectedPlant == nil {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                    
+                    ForEach(gardenStore.pflanzen) { pflanze in
+                        Button(action: {
+                            withAnimation {
+                                selectedPlant = pflanze
+                            }
+                        }) {
+                            HStack {
+                                Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
+                                if selectedPlant?.id == pflanze.id {
+                                    Image(systemName: "checkmark")
+                                }
+                            }
+                        }
+                    }
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundStyle(.primary)
+                        .padding(8)
+                }
+            }
+        }
     }
     
     private var headerTitle: String {
@@ -185,8 +231,8 @@ struct StreakView: View {
                     HStack(spacing: 10) {
                         ForEach(rows[rowIndex], id: \.self) { date in
                             if let date = date {
-                                let isCompleted = streakStore.isDateCompleted(date)
-                                let isFrozen = streakStore.isDateFrozen(date)
+                                let isCompleted = isDateCompleted(date)
+                                let isFrozen = isDateFrozen(date)
                                 Button(action: {}) {
                                     Text("\(calendar.component(.day, from: date))")
                                         .font(.system(size: 12, weight: .bold))
@@ -213,7 +259,7 @@ struct StreakView: View {
         let currentDayInOurMapping = (weekdayOfToday + 5) % 7
         let daysToSubtract = currentDayInOurMapping - index
         guard let dateToCheck = calendar.date(byAdding: .day, value: -daysToSubtract, to: today) else { return false }
-        return streakStore.isDateCompleted(dateToCheck)
+        return isDateCompleted(dateToCheck)
     }
 
     private func isWeekdayFrozen(_ index: Int) -> Bool {
@@ -222,7 +268,22 @@ struct StreakView: View {
         let currentDayInOurMapping = (weekdayOfToday + 5) % 7
         let daysToSubtract = currentDayInOurMapping - index
         guard let dateToCheck = calendar.date(byAdding: .day, value: -daysToSubtract, to: today) else { return false }
-        return streakStore.isDateFrozen(dateToCheck)
+        return isDateFrozen(dateToCheck)
+    }
+
+    private func isDateCompleted(_ date: Date) -> Bool {
+        if let selectedPlant = selectedPlant {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let key = formatter.string(from: date)
+            return (selectedPlant.xpHistory[key] ?? 0) > 0
+        } else {
+            return streakStore.isDateCompleted(date)
+        }
+    }
+
+    private func isDateFrozen(_ date: Date) -> Bool {
+        return streakStore.isDateFrozen(date)
     }
 
     private var localizedWeekdays: [String] {
@@ -410,6 +471,7 @@ struct YearlyCalendarView: View {
     let calendar: Calendar
     let streakStore: StreakStore
     let settings: SettingsStore
+    let selectedPlant: HabitModel?
     
     var body: some View {
         let year = calendar.component(.year, from: Date())
@@ -452,8 +514,8 @@ struct YearlyCalendarView: View {
                         let day = index - adjustedFirstWeekday + 1
                         let dateComponents = DateComponents(year: year, month: month, day: day)
                         if let date = calendar.date(from: dateComponents) {
-                            let isCompleted = streakStore.isDateCompleted(date)
-                            let isFrozen = streakStore.isDateFrozen(date)
+                            let isCompleted = isDateCompleted(date)
+                            let isFrozen = isDateFrozen(date)
                             Circle()
                                 .fill(isFrozen ? Color.blue : (isCompleted ? Color.orange : Color.gray.opacity(0.1)))
                                 .frame(width: 6, height: 6)
@@ -464,6 +526,21 @@ struct YearlyCalendarView: View {
                 }
             }
         }
+    }
+    
+    private func isDateCompleted(_ date: Date) -> Bool {
+        if let selectedPlant = selectedPlant {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let key = formatter.string(from: date)
+            return (selectedPlant.xpHistory[key] ?? 0) > 0
+        } else {
+            return streakStore.isDateCompleted(date)
+        }
+    }
+    
+    private func isDateFrozen(_ date: Date) -> Bool {
+        return streakStore.isDateFrozen(date)
     }
     
     private func monthName(for month: Int) -> String {

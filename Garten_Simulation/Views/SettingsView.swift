@@ -22,8 +22,7 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            ZStack {
+        ZStack {
                 Color.appHintergrund.ignoresSafeArea()
                 
                 ScrollView {
@@ -180,88 +179,6 @@ struct SettingsView: View {
                             
                             .padding(.top, 16)
 
-                            // MARK: Developer / Debug Section
-                            settingsSection(title: "Developer / Debug") {
-                                VStack(spacing: 0) {
-                                    Button {
-                                        gardenStore.debugLevelUp()
-                                    } label: {
-                                        settingRow(title: "Level Up (+1)", icon: "sparkles", color: .yellow)
-                                    }
-                                    
-                                    Divider().padding(.leading, 44)
-                                    
-                                    Button {
-                                        gardenStore.taeglicherStreakCheck()
-                                        FeedbackManager.shared.playSuccess()
-                                    } label: {
-                                        settingRow(title: "Simulations-Tag (Reset)", icon: "clock.arrow.circlepath", color: .indigo)
-                                    }
-                                    
-                                    Divider().padding(.leading, 44)
-                                    
-                                    Button {
-                                        gardenStore.coinsGutschreiben(amount: 1000, beschreibung: "Debug: Coins erhalten")
-                                        FeedbackManager.shared.playCoins()
-                                    } label: {
-                                        settingRow(title: "1000 Coins hinzufügen", icon: "plus.circle.fill", color: .coinBlue)
-                                    }
-                                    
-                                    Divider().padding(.leading, 44)
-                                    
-                                    Button {
-                                        gardenStore.xpHinzufuegen(amount: 500)
-                                        FeedbackManager.shared.playSuccess()
-                                    } label: {
-                                        settingRow(title: "+500 XP hinzufügen", icon: "star.fill", color: .orange)
-                                    }
-                                    
-                                    Divider().padding(.leading, 44)
-                                    
-                                    Button {
-                                        for p in gardenStore.pflanzen {
-                                            p.istBewässert = false
-                                        }
-                                        FeedbackManager.shared.playTap()
-                                    } label: {
-                                        settingRow(title: "Alle Pflanzen durstig machen", icon: "Drop water", color: .blue, isAsset: true)
-                                    }
-
-                                    Divider().padding(.leading, 44)
-
-                                    Button {
-                                        gardenStore.showDailySpinOverlay = true
-                                        FeedbackManager.shared.playSuccess()
-                                    } label: {
-                                        settingRow(title: "Unkraut-Glücksrad testen", icon: "asterisk.circle.fill", color: .orange)
-                                    }
-                                    
-                                    Button {
-                                        gardenStore.seeds += 10
-                                        FeedbackManager.shared.playSuccess()
-                                    } label: {
-                                        settingRow(title: "10 Samen hinzufügen", icon: "leaf.arrow.triangle.circlepath", color: .purple)
-                                    }
-                                    
-                                    Divider().padding(.leading, 44)
-
-                                    VStack(spacing: 8) {
-                                        Text(settings.localizedString(for: "settings.timeskip_simulation"))
-                                            .font(.system(size: 10, weight: .black))
-                                            .foregroundStyle(.secondary)
-                                            .padding(.top, 8)
-                                        
-                                        HStack(spacing: 12) {
-                                            debugTimeButton(title: "12h", hours: 12)
-                                            debugTimeButton(title: "24h", hours: 24)
-                                            debugTimeButton(title: "48h", hours: 48)
-                                        }
-                                        .padding(.bottom, 12)
-                                    }
-                                    .padding(.horizontal, 16)
-                                }
-                            }
-
                             // MARK: - Danger Zone
                             settingsSection(title: settings.localizedString(for: "settings.section.danger")) {
                                 Button {
@@ -277,60 +194,27 @@ struct SettingsView: View {
                             }
                             .padding(.top, 16)
 
-                            #if DEBUG
-                            settingsSection(title: "Debug: Titel") {
-                                VStack(spacing: 0) {
-                                    Button {
-                                        // Alle Titel freischalten
-                                        for titel in GameDatabase.allTitles {
-                                            titelStore.freigeschalteteTitelIDs.insert(titel.id)
-                                        }
-                                        titelStore.speichernPublic()
-                                        FeedbackManager.shared.playSuccess()
-                                    } label: {
-                                        settingRow(title: "Alle Titel freischalten", icon: "crown.fill", color: .goldPrimary)
-                                    }
-
-                                    Divider().padding(.leading, 44)
-
-                                    Button {
-                                        // Zurücksetzen (nur Anfänger-Titel)
-                                        titelStore.freigeschalteteTitelIDs = ["titel_anfaenger"]
-                                        titelStore.aktiverTitelID = "titel_anfaenger"
-                                        titelStore.speichernPublic()
-                                        FeedbackManager.shared.playError()
-                                    } label: {
-                                        settingRow(title: "Titel zurücksetzen", icon: "arrow.counterclockwise", color: .red)
-                                    }
+                            // MARK: - Developer Menu (Clean & at the bottom)
+                            settingsSection(title: "Developer") {
+                                NavigationLink {
+                                    DeveloperView()
+                                        .environmentObject(settings)
+                                        .environmentObject(gardenStore)
+                                        .environmentObject(shopStore)
+                                        .environmentObject(streakStore)
+                                        .environmentObject(powerUpStore)
+                                        .environmentObject(titelStore)
+                                        .environmentObject(achievementStore)
+                                        .environmentObject(pfadStore)
+                                } label: {
+                                    settingRow(
+                                        title: "Developer / Debug Menu",
+                                        icon: "ladybug.fill",
+                                        color: .orange
+                                    )
                                 }
                             }
-
-                            settingsSection(title: "Debug: Leben-System") {
-                                VStack(spacing: 0) {
-                                    Button {
-                                        let vierTageZurueck = Calendar.current.date(byAdding: .day, value: -4, to: Date())!
-                                        for pflanze in gardenStore.pflanzen {
-                                            pflanze.letzteBewaesserung = vierTageZurueck
-                                            pflanze.lebenBereitsAbgezogen = false
-                                        }
-                                        gardenStore.checkUngegossenePflanzen()
-                                    } label: {
-                                        settingRow(title: "⚠️ Leben-System testen", icon: "heart.slash.fill", color: .red)
-                                    }
-                                    
-                                    Divider().padding(.leading, 44)
-                                    
-                                    Button {
-                                        for pflanze in gardenStore.pflanzen {
-                                            pflanze.letzteBewaesserung = Date()
-                                            pflanze.lebenBereitsAbgezogen = false
-                                        }
-                                    } label: {
-                                        settingRow(title: "↩️ Test zurücksetzen", icon: "arrow.counterclockwise", color: .orange)
-                                    }
-                                }
-                            }
-                            #endif
+                            .padding(.top, 16)
                         }
                         .padding(.horizontal, 16)
                         .padding(.bottom, 40)
@@ -350,15 +234,14 @@ struct SettingsView: View {
             } message: {
                 Text(settings.localizedString(for: "settings.reset.alert.message"))
             }
-            .navigationTitle(settings.localizedString(for: "settings.title"))
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         dismiss()
                     } label: {
                         Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
+                            .font(.system(size: 20, weight: .black))
                             .foregroundStyle(.primary)
                     }
                 }
@@ -371,7 +254,6 @@ struct SettingsView: View {
                     .presentationDragIndicator(.visible)
             }
         }
-    }
     
     // MARK: - Helpers
     

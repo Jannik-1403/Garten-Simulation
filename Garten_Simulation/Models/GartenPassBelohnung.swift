@@ -84,7 +84,8 @@ struct GartenPassBelohnung: Identifiable {
             
         case .dekoration(let id):
             if let dk = GameDatabase.allDecorations.first(where: { $0.id == id }) {
-                return (localized(dk.nameKey), dk.sfSymbol, false)
+                let isCustomAsset = UIImage(named: dk.sfSymbol) != nil
+                return (localized(dk.nameKey), dk.sfSymbol, isCustomAsset)
             }
             return (localized("reward_type_decoration"), "sparkles", false)
             

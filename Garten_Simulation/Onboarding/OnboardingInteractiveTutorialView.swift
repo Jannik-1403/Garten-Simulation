@@ -9,6 +9,7 @@ struct OnboardingInteractiveTutorialView: View {
     @State private var ringProgress: CGFloat = 0.0
     @State private var showNext = false
     @State private var plantPosition: CGPoint = .zero
+    @State private var showWaterDrop = false
     
     var tutorialPlant: Plant? {
         guard let firstID = data.gewaehltePflanzenIDs.first else {
@@ -121,7 +122,7 @@ struct OnboardingInteractiveTutorialView: View {
             }
             
             // Interaction Layer
-            if !gegossen && plantPosition != .zero {
+            if !gegossen && showWaterDrop && plantPosition != .zero {
                 VStack {
                     Spacer()
                     DragToWater(
@@ -134,10 +135,18 @@ struct OnboardingInteractiveTutorialView: View {
                     .frame(height: 100)
                     .padding(.bottom, 60) // Moved significantly lower
                 }
+                .transition(.opacity)
             }
         }
         .animation(.spring(), value: gegossen)
         .animation(.spring(), value: showNext)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                withAnimation(.easeIn(duration: 0.3)) {
+                    showWaterDrop = true
+                }
+            }
+        }
     }
     
     private func handleWateringSuccess() {

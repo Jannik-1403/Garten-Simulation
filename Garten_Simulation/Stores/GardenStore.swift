@@ -74,12 +74,50 @@ class GardenStore: ObservableObject {
     @Published var lastSpinTimestamp: Date? {
         didSet { saveStats() }
     }
-    @Published var isWeedActive: Bool = false {
+    @Published var activeWeeds: [WeedPatch] = [] {
         didSet { saveStats() }
     }
-    @Published var dailyQuestsCompletedSinceWeed: Int = 0 {
+    @Published var weedCrisis: WeedCrisisState = WeedCrisisState() {
         didSet { saveStats() }
     }
+    @Published var comebackBoostExpiresAt: Date? = nil {
+        didSet { saveStats() }
+    }
+    @Published var zeigeComebackBoostOverlay: Bool = false
+
+    var isWeedActive: Bool { !activeWeeds.isEmpty }
+    var isComebackBoostActive: Bool {
+        guard let expires = comebackBoostExpiresAt else { return false }
+        return Date() < expires
+    }
+    var comebackBoostRewardPercent: Int {
+        Int((GameConstants.comebackXPMultiplier * 100).rounded())
+    }
+    var dailyQuestsCompletedSinceWeed: Int { activeWeeds.first?.habitsCompleted ?? 0 }
+    var weedRemovalCost: Int { activeWeeds.first?.removalCost ?? 0 }
+    var weedSpawnDate: Date? { activeWeeds.map(\.spawnDate).min() }
+    var weedCount: Int { activeWeeds.count }
+    var habitsRequiredForCurrentWeed: Int { GameConstants.habitsRequiredPerWeed }
+    var weedEffectiveRewardPercent: Int {
+        WeedMechanics.effectiveRewardPercent(weedCount: activeWeeds.count)
+    }
+
+    var blocksNewWeedSpawns: Bool {
+        hasActivePowerUp(powerUpId: PowerUpWeedSupport.gartenschutzID)
+            || hasActivePowerUp(powerUpId: PowerUpWeedSupport.zauberstabID)
+    }
+
+    var availableWeedPowerUpItems: [ShopDetailPayload] {
+        gekaufteItems.filter { PowerUpWeedSupport.isWeedPowerUp($0.id) }
+    }
+
+    /// Inventar-Power-up oder laufender Gartenschutz/Zauberstab – Schild-Ritual möglich
+    var hasWeedShieldOption: Bool {
+        !availableWeedPowerUpItems.isEmpty || blocksNewWeedSpawns
+    }
+
+    /// Aus Inventar „Verwenden“ → Unkraut-Sheet mit vorausgewähltem Power-up
+    @Published var pendingWeedPowerUpForRitual: ShopDetailPayload?
     @Published var aktivesWetter: WetterEvent = .normal
     @Published var pendingImportURL: URL? = nil
     
@@ -117,7 +155,7 @@ class GardenStore: ObservableObject {
     }
 
     var gesamtMlGegossen: Double {
-        pflanzen.reduce(0) { $0 + $1.totalMlGegossen }
+        Double(gesamtGegossen) * GameConstants.mlProGiessen
     }
 
     var gesamtLiterFormatiert: String {
@@ -177,6 +215,60 @@ class GardenStore: ObservableObject {
         pruefePflanzenStatus()
         checkUngegossenePflanzen()
         updateWidgetData()
+    }
+
+    /// Öffnet das Unkraut-Sheet im Garten (z. B. aus Einstellungen → Debug).
+    @Published var debugRequestWeedSheet = false
+
+    func debugSpawnWeed() {
+        spawnWeed(removalCost: GameConstants.weedRemovalCostSpin, source: .plantDeath)
+    }
+
+    func debugClearWeeds() {
+        withAnimation {
+            activeWeeds.removeAll()
+        }
+        saveStats()
+    }
+
+    func debugAddWeedPowerUpToInventory(powerUpId: String) {
+        guard let powerUp = GameDatabase.allPowerUps.first(where: { $0.id == powerUpId }) else { return }
+        let payload = ShopDetailPayload.from(powerUp: powerUp)
+        guard !gekaufteItems.contains(where: { $0.id == powerUpId }) else { return }
+        itemHinzufuegen(shopItem: payload, isFree: true)
+    }
+
+    func debugActivateGardenPowerUp(powerUpId: String) {
+        guard let powerUp = GameDatabase.allPowerUps.first(where: { $0.id == powerUpId }) else { return }
+        applyPowerUp(powerUp)
+    }
+
+    func debugClearWeedProtection() {
+        activePowerUps.removeAll { PowerUpWeedSupport.isWeedPowerUp($0.powerUpId) }
+        saveActivePowerUps()
+    }
+
+    func debugRequestOpenWeedSheet() {
+        if !isWeedActive { debugSpawnWeed() }
+        debugRequestWeedSheet = true
+    }
+
+    func debugOpenWeedSheetWithShieldPreselected() {
+        debugAddWeedPowerUpToInventory(powerUpId: PowerUpWeedSupport.gartenschutzID)
+        if !isWeedActive { debugSpawnWeed() }
+        if let item = gekaufteItems.first(where: { $0.id == PowerUpWeedSupport.gartenschutzID }) {
+            pendingWeedPowerUpForRitual = item
+        }
+        debugRequestWeedSheet = true
+    }
+
+    func debugGrantComebackBoost() {
+        comebackBoostExpiresAt = Date().addingTimeInterval(
+            GameConstants.comebackBoostDurationHours * 3600
+        )
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+            zeigeComebackBoostOverlay = true
+        }
     }
 
     func debugLevelUp() {
@@ -247,9 +339,12 @@ class GardenStore: ObservableObject {
         var coinsGewonnen = Int(Double(GameConstants.coinsProGiessen) * coinMult)
         var finalXPGewonnen = xpGewonnen
         
-        if isWeedActive {
-            coinsGewonnen = max(1, coinsGewonnen - 5)
-            finalXPGewonnen = Int(Double(finalXPGewonnen) * 0.5)
+        let weedPenaltiesApply = isWeedActive && !hasActivePowerUp(powerUpId: PowerUpWeedSupport.zauberstabID)
+        let weedCoinDeduction = weedPenaltiesApply
+            ? WeedMechanics.appliedCoinPenalty(currentCoins: coins, weedCount: activeWeeds.count)
+            : 0
+        if weedPenaltiesApply {
+            finalXPGewonnen = Int(Double(finalXPGewonnen) * WeedMechanics.xpMultiplier(weedCount: activeWeeds.count))
         }
 
         pflanze.currentXP += finalXPGewonnen
@@ -288,6 +383,9 @@ class GardenStore: ObservableObject {
 
         // Globale Stats
         withAnimation(.spring(response: 0.4)) {
+            if weedCoinDeduction > 0 {
+                coins = max(0, coins - weedCoinDeduction)
+            }
             coins    += coinsGewonnen
             seeds    += gemsGewonnen // Gems werden hier in 'seeds' gespeichert
             // gesamtXP ist bereits oben addiert
@@ -320,16 +418,8 @@ class GardenStore: ObservableObject {
             onWatering?()
         }
         
-        // Cure Condition für Unkraut
         if isWeedActive {
-            dailyQuestsCompletedSinceWeed += 1
-            if dailyQuestsCompletedSinceWeed >= 3 {
-                withAnimation {
-                    isWeedActive = false
-                    dailyQuestsCompletedSinceWeed = 0
-                }
-            }
-            saveStats() // Speichert den Status der Quests/Weed
+            advanceWeedRemovalProgress()
         }
         
 
@@ -364,6 +454,7 @@ class GardenStore: ObservableObject {
             pflanze.letzteBewaesserung = Date() // Reset the watering timer
             pflanze.missedCycles = 0
             pflanze.lastNotifiedCycle = 0
+            pflanze.isDead = false
             savePlants()
         }
     }
@@ -380,6 +471,7 @@ class GardenStore: ObservableObject {
                 pflanze.letzteBewaesserung = Date()
                 pflanze.missedCycles = 0
                 pflanze.lastNotifiedCycle = 0
+                pflanze.isDead = false
                 savePlants()
             }
             if plantToRescue?.id == pflanze.id {
@@ -480,6 +572,13 @@ class GardenStore: ObservableObject {
                 if let base = GameDatabase.allDecorations.first(where: { $0.id == shopItem.id }) {
                     placedDecorations.append(base)
                 }
+                
+                // Jedes Deko-Kauf spawnt ein eigenes Unkraut mit eigenen Kosten
+                spawnWeed(
+                    removalCost: shopItem.price * GameConstants.weedRemovalCostMultiplier,
+                    source: .decoration
+                )
+                
             } else {
                 gekaufteItems.append(shopItem)
                 saveInventory()
@@ -592,6 +691,17 @@ class GardenStore: ObservableObject {
             }
         }
         
+        // Unkraut Ausbreitung (ältestes Unkraut zählt)
+        if isWeedActive, let spawnDate = weedSpawnDate {
+            let daysActive = Calendar.current.dateComponents([.day], from: spawnDate, to: Date()).day ?? 0
+            if daysActive >= GameConstants.weedSpreadDays {
+                // Infiziert gesunde Pflanzen (sie kränkeln / Health sinkt künstlich)
+                for pflanze in pflanzen {
+                    pflanze.missedCycles = min(2, pflanze.missedCycles + 1)
+                }
+            }
+        }
+        
         objectWillChange.send() // UI-Update erzwingen
         savePlants()
     }
@@ -660,6 +770,11 @@ class GardenStore: ObservableObject {
 
     // MARK: Power-Up Management
     func applyPowerUp(_ powerUp: PowerUpItem, targetPlantId: String? = nil) {
+        if powerUp.id == PowerUpWeedSupport.zauberstabID {
+            applyZauberstabPowerUp(powerUp)
+            return
+        }
+
         // Sofortige Ausführung für Tier-Freund
         if powerUp.id == "powerup.tier_freund" {
             let targets = pflanzen.shuffled().prefix(3)
@@ -739,6 +854,11 @@ class GardenStore: ObservableObject {
             if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }) {
                 mult *= base.effectMultiplier
             }
+        }
+
+        // 5. Comeback-Wachstumsschub (nach überstandener Unkraut-Krise)
+        if isComebackBoostActive {
+            mult *= GameConstants.comebackXPMultiplier
         }
         
         return mult
@@ -896,10 +1016,8 @@ class GardenStore: ObservableObject {
             }
         case .weed:
             withAnimation(.spring()) {
-                isWeedActive = true
-                dailyQuestsCompletedSinceWeed = 0
+                spawnWeed(removalCost: GameConstants.weedRemovalCostSpin, source: .dailySpin)
             }
-            saveStats()
         }
     }
 
@@ -983,17 +1101,19 @@ class GardenStore: ObservableObject {
     }
 
     // MARK: Timer setzen
-    func timerSetzen(pflanze: HabitModel, datum: Date) {
-        pflanze.timerDatum = datum
+    func timerSetzen(pflanze: HabitModel, datum: Date, customMessage: String? = nil) {
+        pflanze.reminderTime = datum
+        pflanze.customReminderMessage = customMessage
+        self.objectWillChange.send()
         savePlants()
-        // Wir planen alles neu, damit der Timer (falls wir ihn unterstützen wollen) berücksichtigt wird.
-        // Aktuell basiert das System auf lastWatered, aber wir halten uns an scheduleAll.
+        // Wir planen alles neu, damit der Timer berücksichtigt wird.
         NotificationManager.shared.scheduleAll(for: pflanzen)
     }
 
     // MARK: Timer entfernen
     func timerEntfernen(pflanze: HabitModel) {
-        pflanze.timerDatum = nil
+        pflanze.reminderTime = nil
+        self.objectWillChange.send()
         savePlants()
         NotificationManager.shared.cancelAll(for: pflanze)
         NotificationManager.shared.scheduleAll(for: pflanzen)
@@ -1029,6 +1149,189 @@ class GardenStore: ObservableObject {
         }
     }
 
+    // MARK: - Unkraut
+
+    func spawnWeed(removalCost: Int, source: WeedSource) {
+        if source != .decoration && blocksNewWeedSpawns { return }
+
+        if isComebackBoostActive {
+            comebackBoostExpiresAt = nil
+        }
+
+        if weedCrisis.startedAt == nil {
+            weedCrisis.startedAt = Date()
+        }
+        if source == .decoration {
+            weedCrisis.decorationSpawnsDuringCrisis += 1
+        }
+
+        let cost = max(removalCost, GameConstants.weedRemovalCostSpin)
+        let patch = WeedPatch(removalCost: cost, source: source)
+        activeWeeds.append(patch)
+        weedCrisis.peakWeedCount = max(weedCrisis.peakWeedCount, activeWeeds.count)
+        saveStats()
+    }
+
+    private func advanceWeedRemovalProgress() {
+        guard let index = activeWeeds.firstIndex(where: { !$0.isCleared }) else { return }
+        activeWeeds[index].habitsCompleted += 1
+        if activeWeeds[index].isCleared {
+            withAnimation {
+                activeWeeds.remove(at: index)
+            }
+            handleWeedQueueEmptied(clearedByHabits: true)
+        }
+        saveStats()
+    }
+
+    @discardableResult
+    func removeFrontWeedWithCoins() -> Bool {
+        guard let front = activeWeeds.first, coins >= front.removalCost else { return false }
+        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
+        coinsAbziehen(
+            amount: front.removalCost,
+            beschreibung: AppStrings.get("weed_popup_pay", language: lang)
+        )
+        withAnimation {
+            activeWeeds.removeFirst()
+        }
+        handleWeedQueueEmptied(clearedByHabits: false)
+        saveStats()
+        return true
+    }
+
+    private func handleWeedQueueEmptied(clearedByHabits: Bool, allowComeback: Bool = true) {
+        if clearedByHabits {
+            weedCrisis.weedsClearedByHabits += 1
+        } else {
+            weedCrisis.weedsClearedByCoins += 1
+        }
+
+        guard activeWeeds.isEmpty else { return }
+
+        var preservedLastGranted = weedCrisis.lastComebackGrantedAt
+        if allowComeback && ComebackBonusLogic.isEligible(crisis: weedCrisis) {
+            grantComebackBoost()
+            preservedLastGranted = Date()
+        }
+        weedCrisis = WeedCrisisState(lastComebackGrantedAt: preservedLastGranted)
+    }
+
+    private func applyZauberstabPowerUp(_ powerUp: PowerUpItem) {
+        clearAllWeedsForShield(allowComeback: false)
+        activateGardenPowerUp(powerUp, durationHours: GameConstants.zauberstabDurationHours)
+        FeedbackManager.shared.playSuccess()
+    }
+
+    private func activateGardenPowerUp(_ powerUp: PowerUpItem, durationHours: Double) {
+        activePowerUps.removeAll { !$0.isActive }
+        let active = ActivePowerUp(
+            id: UUID(),
+            powerUpId: powerUp.id,
+            appliedAt: Date(),
+            durationHours: durationHours,
+            targetPlantId: nil
+        )
+        withAnimation {
+            activePowerUps.append(active)
+        }
+        saveStats()
+    }
+
+    private func clearFrontWeedForShield(allowComeback: Bool) {
+        guard !activeWeeds.isEmpty else { return }
+        withAnimation {
+            activeWeeds.removeFirst()
+        }
+        handleWeedQueueEmptied(clearedByHabits: true, allowComeback: allowComeback)
+        saveStats()
+    }
+
+    private func clearAllWeedsForShield(allowComeback: Bool) {
+        guard !activeWeeds.isEmpty else { return }
+        withAnimation {
+            activeWeeds.removeAll()
+        }
+        handleWeedQueueEmptied(clearedByHabits: false, allowComeback: allowComeback)
+        saveStats()
+    }
+
+    /// Schutzschild-Ritual mit bereits aktivem Gartenschutz/Zauberstab (ohne Inventar-Verbrauch).
+    func completeShieldRitualUsingActiveProtection() {
+        if hasActivePowerUp(powerUpId: PowerUpWeedSupport.zauberstabID) {
+            clearAllWeedsForShield(allowComeback: false)
+        } else {
+            clearFrontWeedForShield(allowComeback: false)
+        }
+        FeedbackManager.shared.playSuccess()
+    }
+
+    /// Nach Schutzschild-Ritual: Unkraut entfernen + Power-Up aktivieren.
+    @discardableResult
+    func applyWeedPowerUpAfterRitual(item: ShopDetailPayload) -> Bool {
+        guard let powerUp = GameDatabase.allPowerUps.first(where: { $0.id == item.id }),
+              PowerUpWeedSupport.isWeedPowerUp(item.id) else { return false }
+        guard !hasActivePowerUp(powerUpId: item.id) else { return false }
+
+        switch powerUp.id {
+        case PowerUpWeedSupport.zauberstabID:
+            clearAllWeedsForShield(allowComeback: false)
+            activateGardenPowerUp(powerUp, durationHours: GameConstants.zauberstabDurationHours)
+        case PowerUpWeedSupport.gartenschutzID:
+            clearFrontWeedForShield(allowComeback: false)
+            activateGardenPowerUp(powerUp, durationHours: powerUp.durationHours ?? 24)
+        default:
+            return false
+        }
+
+        itemVerbrauchen(shopItem: item)
+        FeedbackManager.shared.playSuccess()
+        return true
+    }
+
+    private func grantComebackBoost() {
+        comebackBoostExpiresAt = Date().addingTimeInterval(
+            GameConstants.comebackBoostDurationHours * 3600
+        )
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+            zeigeComebackBoostOverlay = true
+        }
+    }
+
+    func refreshComebackBoostIfExpired() {
+        guard let expires = comebackBoostExpiresAt, Date() >= expires else { return }
+        comebackBoostExpiresAt = nil
+    }
+
+    private func loadWeedsFromStorage() {
+        if let data = SharedUserDefaults.suite.data(forKey: "active_weeds"),
+           let decoded = try? JSONDecoder().decode([WeedPatch].self, from: data) {
+            activeWeeds = decoded.filter { !$0.isCleared }
+            return
+        }
+
+        guard SharedUserDefaults.suite.bool(forKey: "is_weed_active") else {
+            activeWeeds = []
+            return
+        }
+
+        let habits = SharedUserDefaults.suite.integer(forKey: "daily_quests_completed_since_weed")
+        let cost = SharedUserDefaults.suite.integer(forKey: "weed_removal_cost")
+        let spawnTimestamp = SharedUserDefaults.suite.double(forKey: "weed_spawn_date")
+        let spawnDate = spawnTimestamp > 0 ? Date(timeIntervalSince1970: spawnTimestamp) : Date()
+        let resolvedCost = cost > 0 ? cost : GameConstants.weedRemovalCostPlantDeath
+
+        activeWeeds = [
+            WeedPatch(
+                spawnDate: spawnDate,
+                removalCost: resolvedCost,
+                habitsCompleted: habits,
+                source: .decoration
+            )
+        ]
+        saveStats()
+    }
+
     func saveStats() {
         guard !isLoading else { return }
         SharedUserDefaults.suite.set(coins, forKey: "stats_coins")
@@ -1048,8 +1351,19 @@ class GardenStore: ObservableObject {
         }
         
         SharedUserDefaults.suite.set(pendingDailySpin, forKey: "pending_daily_spin")
-        SharedUserDefaults.suite.set(isWeedActive, forKey: "is_weed_active")
-        SharedUserDefaults.suite.set(dailyQuestsCompletedSinceWeed, forKey: "daily_quests_completed_since_weed")
+        if let encoded = try? JSONEncoder().encode(activeWeeds) {
+            SharedUserDefaults.suite.set(encoded, forKey: "active_weeds")
+        } else {
+            SharedUserDefaults.suite.removeObject(forKey: "active_weeds")
+        }
+        if let crisisData = try? JSONEncoder().encode(weedCrisis) {
+            SharedUserDefaults.suite.set(crisisData, forKey: "weed_crisis_state")
+        }
+        if let expires = comebackBoostExpiresAt {
+            SharedUserDefaults.suite.set(expires.timeIntervalSince1970, forKey: "comeback_boost_expires_at")
+        } else {
+            SharedUserDefaults.suite.removeObject(forKey: "comeback_boost_expires_at")
+        }
         SharedUserDefaults.suite.set(seeds, forKey: "stats_seeds")
         
         if let skillData = try? JSONEncoder().encode(skillXP) {
@@ -1083,8 +1397,16 @@ class GardenStore: ObservableObject {
         }
         
         pendingDailySpin = SharedUserDefaults.suite.bool(forKey: "pending_daily_spin")
-        isWeedActive = SharedUserDefaults.suite.bool(forKey: "is_weed_active")
-        dailyQuestsCompletedSinceWeed = SharedUserDefaults.suite.integer(forKey: "daily_quests_completed_since_weed")
+        loadWeedsFromStorage()
+        if let crisisData = SharedUserDefaults.suite.data(forKey: "weed_crisis_state"),
+           let decodedCrisis = try? JSONDecoder().decode(WeedCrisisState.self, from: crisisData) {
+            weedCrisis = decodedCrisis
+        }
+        let comebackExpiry = SharedUserDefaults.suite.double(forKey: "comeback_boost_expires_at")
+        if comebackExpiry > 0 {
+            comebackBoostExpiresAt = Date(timeIntervalSince1970: comebackExpiry)
+        }
+        refreshComebackBoostIfExpired()
         seeds = SharedUserDefaults.suite.integer(forKey: "stats_seeds")
         
         if let skillData = SharedUserDefaults.suite.data(forKey: "stats_skill_xp"),
@@ -1242,8 +1564,10 @@ class GardenStore: ObservableObject {
             abgeholtePassLevel.removeAll()
             
             lastSpinTimestamp = nil
-            isWeedActive = false
-            dailyQuestsCompletedSinceWeed = 0
+            activeWeeds.removeAll()
+            weedCrisis = WeedCrisisState()
+            comebackBoostExpiresAt = nil
+            zeigeComebackBoostOverlay = false
             
             let keys = [
                 "garden_plants", "stats_coins", "stats_gesamt_xp", "stats_gesamt_streak",
@@ -1252,7 +1576,9 @@ class GardenStore: ObservableObject {
                 "stats_gesamt_ausgegeben", "coin_transactions", "garden_transactions",
                 "garden_inventory", "active_powerups_garden", "garden_decorations",
                 "last_active_date", "last_spin_timestamp", "is_weed_active",
-                "daily_quests_completed_since_weed", "abgeholtePassLevel",
+                "daily_quests_completed_since_weed", "active_weeds",
+                "weed_removal_cost", "weed_spawn_date", "weed_crisis_state",
+                "comeback_boost_expires_at", "abgeholtePassLevel",
                 "stats_gluecksrad_drehungen", "daily_spin_last_shown_day_string"
             ]
             keys.forEach { SharedUserDefaults.suite.removeObject(forKey: $0) }
@@ -1309,10 +1635,11 @@ class GardenStore: ObservableObject {
                         pflanze.lastNotifiedCycle = 2
                         pflanzeGestorben(pflanze)
                         
-                        // Unkraut aktivieren bei Tod
                         withAnimation {
-                            isWeedActive = true
-                            dailyQuestsCompletedSinceWeed = 0
+                            spawnWeed(
+                                removalCost: GameConstants.weedRemovalCostPlantDeath,
+                                source: .plantDeath
+                            )
                         }
                         changed = true
                     }

@@ -22,12 +22,17 @@ struct ContentView: View {
                     .tabItem {
                         Label(settings.localizedString(for: "tab.shop"), systemImage: "cart.fill")
                     }
-                ProfilView()
+                GartenPassView()
                     .tag(2)
+                    .tabItem {
+                        Label(settings.localizedString(for: "tab.pass"), systemImage: "star.fill")
+                    }
+
+                ProfilView()
+                    .tag(3)
                     .tabItem {
                         Label(settings.localizedString(for: "tab.profil"), systemImage: "person.fill")
                     }
-
 
             }
             .tint(.primary)
@@ -49,6 +54,16 @@ struct ContentView: View {
                 .zIndex(9999)
             }
             
+            if gardenStore.zeigeComebackBoostOverlay {
+                ComebackBoostOverlayView(
+                    isVisible: $gardenStore.zeigeComebackBoostOverlay,
+                    rewardPercent: gardenStore.comebackBoostRewardPercent
+                )
+                .environmentObject(settings)
+                .ignoresSafeArea()
+                .zIndex(10000)
+            }
+
             // Globaler Level-Up Overlay
             if gardenStore.zeigeGartenLevelUpOverlay {
                 GartenLevelUpOverlay(

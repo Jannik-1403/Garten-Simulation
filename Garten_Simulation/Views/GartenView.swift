@@ -70,9 +70,6 @@ struct GartenView: View {
             ZStack(alignment: .top) {
                 ScrollView {
                     ZStack(alignment: .top) {
-                        // Connection Lines Layer
-                        connectionLinesLayer
-                        
                         VStack(spacing: 0) {
                             // Spacer for Header (since it's now an overlay)
                             Spacer().frame(height: headerSpacerHeight)
@@ -261,6 +258,29 @@ struct GartenView: View {
 
                         VStack(spacing: 10) {
                             WetterBanner(event: aktivesEvent) { zeigeWetterDetails = true }
+
+                            if gardenStore.isComebackBoostActive {
+                                HStack(spacing: 8) {
+                                    Image(systemName: "bolt.fill")
+                                        .foregroundStyle(.yellow)
+                                    Text(
+                                        settings.localizedFormat(
+                                            "weed.comeback.banner",
+                                            gardenStore.comebackBoostRewardPercent
+                                        )
+                                    )
+                                    .font(.subheadline)
+                                    .fontWeight(.bold)
+                                }
+                                .foregroundStyle(Color.gruenPrimary)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 14)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .fill(Color.gruenPrimary.opacity(0.12))
+                                )
+                            }
                             
                             if gardenStore.isWeedActive {
                                 Item3DButton(
@@ -271,23 +291,30 @@ struct GartenView: View {
                                     aktion: { zeigeUnkrautDetail = true }
                                 ) {
                                     HStack(spacing: 12) {
-                                        Image(systemName: "exclamationmark.triangle.fill")
-                                            .font(.system(size: 24, weight: .semibold))
+                                        WeedStackIndicator(count: gardenStore.weedCount, iconSize: 20)
 
                                         VStack(alignment: .leading, spacing: 0) {
-                                            Text(settings.localizedString(for: "weed_banner_subtitle"))
+                                            Text(
+                                                settings.localizedFormat(
+                                                    "weed_banner_subtitle",
+                                                    gardenStore.weedEffectiveRewardPercent
+                                                )
+                                            )
                                                 .font(.caption)
                                                 .opacity(0.85)
                                                 .lineLimit(1)
-                                            Text(settings.localizedString(for: "weed_banner_title"))
+                                            Text(
+                                                gardenStore.weedCount > 1
+                                                    ? settings.localizedFormat("weed_banner_title_multi", gardenStore.weedCount)
+                                                    : settings.localizedString(for: "weed_banner_title")
+                                            )
                                                 .font(.subheadline)
                                                 .fontWeight(.bold)
                                                 .lineLimit(1)
                                         }
                                         .frame(maxWidth: .infinity, alignment: .leading)
 
-                                        // Fortschrittsanzeige
-                                        Text("\(gardenStore.dailyQuestsCompletedSinceWeed)/3")
+                                        Text("\(gardenStore.dailyQuestsCompletedSinceWeed)/\(gardenStore.habitsRequiredForCurrentWeed)")
                                             .font(.system(size: 16, weight: .black, design: .rounded))
 
                                         Rectangle()
@@ -320,19 +347,21 @@ struct GartenView: View {
             gardenStore.taeglicherStreakCheck()
         }
         .fullScreenCover(item: $ausgewaehltePflanze) { pflanze in
-            PflanzeDetailSheet(
-                pflanze: pflanze,
-                wetterEvent: aktivesEvent,
-                onLoeschen: {
-                    gardenStore.pflanzEntfernen(pflanze: pflanze)
-                    ausgewaehltePflanze = nil
-                }
-            )
-            .environmentObject(gardenStore)
-            .environmentObject(shopStore)
-            .environmentObject(settings)
-            .environmentObject(powerUpStore)
-            .environmentObject(pfadStore)
+            NavigationStack {
+                PflanzeDetailSheet(
+                    pflanze: pflanze,
+                    wetterEvent: aktivesEvent,
+                    onLoeschen: {
+                        gardenStore.pflanzEntfernen(pflanze: pflanze)
+                        ausgewaehltePflanze = nil
+                    }
+                )
+                .environmentObject(gardenStore)
+                .environmentObject(shopStore)
+                .environmentObject(settings)
+                .environmentObject(powerUpStore)
+                .environmentObject(pfadStore)
+            }
         }
         .fullScreenCover(item: $ausgewaehltesItem) { item in
             InventoryItemDetailSheet(item: item)
@@ -388,14 +417,21 @@ struct GartenView: View {
             .presentationDragIndicator(.visible)
             .presentationCornerRadius(32)
         }
-        .sheet(isPresented: $zeigeUnkrautDetail) {
+        .fullScreenCover(isPresented: $zeigeUnkrautDetail) {
             WeedDetailView()
                 .environmentObject(gardenStore)
                 .environmentObject(settings)
-                .presentationDetents([.medium, .large])
-                .presentationDragIndicator(Visibility.visible)
-                .presentationCornerRadius(32)
-                .presentationBackground(Material.ultraThinMaterial)
+                .environmentObject(shopStore)
+        }
+        .onChange(of: gardenStore.pendingWeedPowerUpForRitual?.id) { _, newValue in
+            if newValue != nil {
+                zeigeUnkrautDetail = true
+            }
+        }
+        .onChange(of: gardenStore.debugRequestWeedSheet) { _, open in
+            guard open else { return }
+            zeigeUnkrautDetail = true
+            gardenStore.debugRequestWeedSheet = false
         }
         .overlay {
             if gardenStore.zeigeGameOverOverlay {
@@ -493,54 +529,7 @@ struct GartenView: View {
         }
     }
 
-    // MARK: - Connection Lines
-    private var connectionLinesLayer: some View {
-        Canvas { context, size in
-            let pairs = pfadStore.connectedPlantPairs
-            
-            for (id1, id2) in pairs {
-                if let pos1 = cardPositions.first(where: { $0.id == id1 })?.center,
-                   let pos2 = cardPositions.first(where: { $0.id == id2 })?.center {
-                    
-                    var path = Path()
-                    path.move(to: pos1)
-                    
-                    let midX = (pos1.x + pos2.x) / 2
-                    let midY = (pos1.y + pos2.y) / 2
-                    let dx = pos2.x - pos1.x
-                    let dy = pos2.y - pos1.y
-                    
-                    let curvature: CGFloat = 60
-                    let cp = CGPoint(
-                        x: midX + (dy > 100 ? curvature : 0),
-                        y: midY + (dx > 50 ? -curvature / 2 : curvature / 2)
-                    )
-                    
-                    path.addQuadCurve(to: pos2, control: cp)
-                    
-                    // Glow effect
-                    context.stroke(
-                        path,
-                        with: .color(.goldPrimary.opacity(0.2)),
-                        style: StrokeStyle(lineWidth: 8, lineCap: .round, lineJoin: .round)
-                    )
-                    
-                    // Main gradient line
-                    let gradient = Gradient(colors: [.orangePrimary.opacity(0.8), .goldPrimary.opacity(0.8)])
-                    context.stroke(
-                        path,
-                        with: .linearGradient(gradient, startPoint: pos1, endPoint: pos2),
-                        style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round, dash: [10, 15])
-                    )
-                    
-                    // Glow dots at endpoints
-                    let dotSize: CGFloat = 10
-                    context.fill(Path(ellipseIn: CGRect(x: pos1.x - dotSize/2, y: pos1.y - dotSize/2, width: dotSize, height: dotSize)), with: .color(.orangePrimary))
-                    context.fill(Path(ellipseIn: CGRect(x: pos2.x - dotSize/2, y: pos2.y - dotSize/2, width: dotSize, height: dotSize)), with: .color(.goldPrimary))
-                }
-            }
-        }
-    }
+
 
     // MARK: - Tages-Event
     func ladeTagesEvent() {

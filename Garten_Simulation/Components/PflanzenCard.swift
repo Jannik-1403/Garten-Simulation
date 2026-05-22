@@ -53,7 +53,7 @@ struct PflanzenCard: View {
             // MARK: - Layer 1: Interactive Card Content
             VStack(spacing: 16) {
                 // MARK: Timer (24h-Countdown) & Warning (!)
-                if !pflanze.istBewässert && !pflanze.isDead {
+                if !pflanze.istBewässert {
                     HStack(spacing: 6) {
                         if pflanze.showWarning {
                             if #available(iOS 18.0, *) {
@@ -80,7 +80,7 @@ struct PflanzenCard: View {
                             
                             Text("\(pflanze.remainingHoursInCycle)h")
                                 .font(.system(size: 12, weight: .bold, design: .rounded))
-                                .foregroundStyle(pflanze.showWarning ? .orange : .secondary)
+                                .foregroundStyle((pflanze.showWarning || pflanze.isDead) ? .orange : .secondary)
                         }
                     }
                 } else {
@@ -100,12 +100,12 @@ struct PflanzenCard: View {
 
                     Text(pflanze.seltenheit.lokalisiertTitel)
                         .font(.system(size: 10, weight: .bold, design: .rounded))
-                        .foregroundStyle(pflanze.isDead ? .red : pflanze.seltenheit.farbe)
+                        .foregroundStyle(pflanze.seltenheit.farbe)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 4)
                         .background(
                             Capsule()
-                                .fill((pflanze.isDead ? Color.red : pflanze.seltenheit.farbe).opacity(0.12))
+                                .fill(pflanze.seltenheit.farbe.opacity(0.12))
                         )
                 }
                 .frame(maxWidth: .infinity)
@@ -145,7 +145,7 @@ struct PflanzenCard: View {
                             plant: GameDatabase.shared.plant(for: pflanze.plantID),
                             seltenheit: pflanze.seltenheit,
                             farbe: pflanze.color,
-                            sekundaerFarbe: pflanze.isDead ? .red : pflanze.color.darker(),
+                            sekundaerFarbe: pflanze.color.darker(),
                             groesse: 110 * scale,
                             fallbackIcon: pflanze.symbolName,
                             externerPress: wasserPressAktiv,
@@ -159,8 +159,6 @@ struct PflanzenCard: View {
                                 }
                             }
                         )
-                        .grayscale(pflanze.isDead ? 1.0 : 0.0)
-                        .opacity(pflanze.isDead ? 0.8 : 1.0)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(
@@ -180,7 +178,7 @@ struct PflanzenCard: View {
                         VStack(spacing: 2) {
                             Text(settings.localizedString(for: "pflanze.tot.titel"))
                                 .font(.system(size: 14, weight: .semibold, design: .rounded))
-                                .foregroundStyle(.red)
+                                .foregroundStyle(.orange)
                             Text(String(format: settings.localizedString(for: "pflanze.tot.seit"), pflanze.missedCycles))
                                 .font(.system(size: 12, weight: .regular, design: .rounded))
                                 .foregroundStyle(.secondary)
@@ -191,7 +189,8 @@ struct PflanzenCard: View {
                         DragToWater(
                             onGiessen: { handleWatering() },
                             pflanzenPosition: pflanzenPosition,
-                            istErledigt: pflanze.istBewässert
+                            istErledigt: pflanze.istBewässert,
+                            coordinateSpace: .named("PflanzenCardSpace")
                         )
                         .allowsHitTesting(true)
                         .frame(height: 80)
@@ -215,18 +214,12 @@ struct PflanzenCard: View {
             .padding(.bottom, 16)
             .frame(maxWidth: .infinity, alignment: .center)
             .allowsHitTesting(true) // Crucial: enable touches for subviews
-            .overlay {
-                if pflanze.isDead {
-                    RoundedRectangle(cornerRadius: 24, style: .continuous)
-                        .stroke(.red, lineWidth: 2)
-                        .allowsHitTesting(false)
-                }
-            }
             .sheet(isPresented: $showReviveSheet) {
                 RevivePlantSheet(pflanze: pflanze)
                     .presentationDetents([.medium])
             }
         }
+        .coordinateSpace(name: "PflanzenCardSpace")
     }
 
     // MARK: - Gieß Animation
@@ -260,7 +253,7 @@ struct PflanzenCard: View {
     }
 
     private func updatePflanzenPosition(from geo: GeometryProxy) {
-        let frame = geo.frame(in: .global)
+        let frame = geo.frame(in: .named("PflanzenCardSpace"))
         pflanzenPosition = CGPoint(x: frame.midX, y: frame.midY)
     }
 }
@@ -275,7 +268,7 @@ struct PflanzenCardButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         let isPressed = configuration.isPressed || isVisualPressed
-        let baseColor = isDead ? Color.red.opacity(0.8) : Color(white: 0.7)
+        let baseColor = Color(white: 0.7)
 
         ZStack(alignment: .bottom) {
             // Shadow Layer (Base) - Truncated on sides to ensure no side-shadow

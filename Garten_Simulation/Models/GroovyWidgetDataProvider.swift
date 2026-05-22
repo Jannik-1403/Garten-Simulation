@@ -44,7 +44,7 @@ struct GroovyWidgetDataProvider {
         // Alle wateringDates aller Pflanzen zusammensammeln
         let allDates: [Date] = habits.flatMap { $0.wateringDates }
 
-        let totalCount      = allDates.count
+        let totalCount      = SharedUserDefaults.suite.integer(forKey: "stats_gesamt_gegossen")
         let todayCount      = allDates.filter { cal.isDate($0, inSameDayAs: now) }.count
         let weekCount       = allDates.filter { $0 >= startOfWeek }.count
         let monthCount      = allDates.filter { $0 >= startOfMonth }.count

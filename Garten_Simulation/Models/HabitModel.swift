@@ -38,6 +38,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var notizen: [String] = []
     var timerDatum: Date? = nil
     @Published var reminderTime: Date? = nil
+    @Published var customReminderMessage: String? = nil
     @Published var individualSchwierigkeit: String? = nil // NEU: Individueller Pfad-Level
     
     // XP Verlauf für die Wochenübersicht (Datum im Format "yyyy-MM-dd": XP an diesem Tag)
@@ -115,7 +116,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
 
 
     var showWarning: Bool {
-        missedCycles == 1 && !isDead
+        (missedCycles == 1 && !isDead) || isDead
     }
 
     var isPenaltyActive: Bool {
@@ -193,7 +194,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         missedCycles: Int = 0,
         lastNotifiedCycle: Int = 0,
         plantID: String? = nil,
-        reminderTime: Date? = nil
+        reminderTime: Date? = nil,
+        customReminderMessage: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -211,6 +213,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.wiederbelebtAm = nil
         self.strafTage = 3
         self.reminderTime = reminderTime
+        self.customReminderMessage = customReminderMessage
         
         // Fallback für plantID falls nicht übergeben
         if let pid = plantID {
@@ -236,7 +239,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case currentXP, streak, letzteBewaesserung, gekauftAm, istBewässert
         case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays, missedCycles, lastNotifiedCycle
         case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned, totalMlGegossen, plantID
-        case wiederbelebtAm, strafTage, reminderTime, wateringDates
+        case wiederbelebtAm, strafTage, reminderTime, customReminderMessage, wateringDates
         case lebenBereitsAbgezogen, isDead
     }
 
@@ -302,6 +305,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         wiederbelebtAm = try container.decodeIfPresent(Date.self, forKey: .wiederbelebtAm)
         strafTage = try container.decodeIfPresent(Int.self, forKey: .strafTage) ?? 3
         reminderTime = try container.decodeIfPresent(Date.self, forKey: .reminderTime)
+        customReminderMessage = try container.decodeIfPresent(String.self, forKey: .customReminderMessage)
         wateringDates = try container.decodeIfPresent([Date].self, forKey: .wateringDates) ?? []
         lebenBereitsAbgezogen = try container.decodeIfPresent(Bool.self, forKey: .lebenBereitsAbgezogen) ?? false
         isDead = try container.decodeIfPresent(Bool.self, forKey: .isDead) ?? false
@@ -340,6 +344,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encodeIfPresent(wiederbelebtAm, forKey: .wiederbelebtAm)
         try container.encode(strafTage, forKey: .strafTage)
         try container.encodeIfPresent(reminderTime, forKey: .reminderTime)
+        try container.encodeIfPresent(customReminderMessage, forKey: .customReminderMessage)
         try container.encode(wateringDates, forKey: .wateringDates)
         try container.encode(lebenBereitsAbgezogen, forKey: .lebenBereitsAbgezogen)
         try container.encode(isDead, forKey: .isDead)

@@ -9,9 +9,9 @@ enum GameConstants {
  
     // MARK: XP-Schwellen für Pflanzen-Seltenheit
     // Bronze ist der Startzustand (0 XP)
-    static let xpFuerSilber: Int  = 800
-    static let xpFuerGold: Int    = 2500
-    static let xpFuerDiamant: Int = 7500
+    static let xpFuerSilber: Int  = 250
+    static let xpFuerGold: Int    = 750
+    static let xpFuerDiamant: Int = 2000
  
     // MARK: Streak
     static let streakTimerStunden: Double = 24  // Timer-Fenster in Stunden
@@ -27,17 +27,17 @@ enum GameConstants {
     static func xpSchwelle(fuer stufe: PflanzenStufe) -> Int {
         switch stufe {
         case .bronze1:  return 0
-        case .bronze2:  return 200
-        case .bronze3:  return 400
-        case .silber1:  return 800
-        case .silber2:  return 1200
-        case .silber3:  return 1600
-        case .gold1:    return 2500
-        case .gold2:    return 3500
-        case .gold3:    return 5000
-        case .diamant1: return 7500
-        case .diamant2: return 10000
-        case .diamant3: return 15000
+        case .bronze2:  return 80
+        case .bronze3:  return 160
+        case .silber1:  return 250
+        case .silber2:  return 400
+        case .silber3:  return 550
+        case .gold1:    return 750
+        case .gold2:    return 1100
+        case .gold3:    return 1500
+        case .diamant1: return 2000
+        case .diamant2: return 2750
+        case .diamant3: return 4000
         }
     }
 

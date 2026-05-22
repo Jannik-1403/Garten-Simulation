@@ -355,11 +355,11 @@ struct SpinResultOverlay: View {
 
     private var overlayTitel: String {
         switch result {
-        case .klein:   return "+10 Coins"
-        case .mittel:  return "+25 Coins"
-        case .gross:   return "+50 Coins"
-        case .xpBoost: return "+100 XP"
-        case .jackpot: return "+150 Coins"
+        case .klein:   return settings.localizedFormat("dailyspin.result.wheel.coins", 10)
+        case .mittel:  return settings.localizedFormat("dailyspin.result.wheel.coins", 25)
+        case .gross:   return settings.localizedFormat("dailyspin.result.wheel.coins", 50)
+        case .xpBoost: return settings.localizedFormat("dailyspin.result.wheel.xp", 100)
+        case .jackpot: return settings.localizedFormat("dailyspin.result.wheel.coins", 150)
         }
     }
 

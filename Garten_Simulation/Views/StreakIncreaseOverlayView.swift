@@ -86,9 +86,7 @@ struct StreakIncreaseOverlayView: View {
 
                             // Lottie Flame (after morph)
                             if showLottie {
-                                Image("streak")
-                                    .resizable()
-                                    .scaledToFit()
+                                LottieView(name: GameConstants.streakLottieURL)
                                     .frame(width: 140, height: 140)
                                     .scaleEffect(lottieScale)
                                     .scaleEffect(breathing ? 1.04 : 1.0)

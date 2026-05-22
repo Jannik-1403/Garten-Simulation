@@ -66,7 +66,7 @@ struct IgelCustomizerView: View {
                             // Responsive Preview
                             IgelView(
                                 customization: settings.igelCustomization, 
-                                size: geo.size.width * (settings.igelCustomization.pose == .stehend ? 1.35 : 1.1)
+                                size: geo.size.width * (isLargePose(settings.igelCustomization.pose) ? 1.35 : 1.1)
                             )
                             .offset(y: 40)
                             .padding(.bottom, 60)
@@ -387,7 +387,7 @@ struct IgelCustomizerView: View {
                         gesicht: settings.igelCustomization.gesicht,
                         background: settings.igelCustomization.background
                     ),
-                    size: pose == .stehend ? 280 : 160
+                    size: isLargePose(pose) ? 280 : 160
                 )
                 .offset(y: 0)
             }
@@ -419,7 +419,7 @@ struct IgelCustomizerView: View {
                         gesicht: settings.igelCustomization.gesicht,
                         background: settings.igelCustomization.background
                     ),
-                    size: settings.igelCustomization.pose == .stehend ? 280 : 160
+                    size: isLargePose(settings.igelCustomization.pose) ? 280 : 160
                 )
                 .offset(y: 0)
             }
@@ -451,7 +451,7 @@ struct IgelCustomizerView: View {
                         gesicht: gesicht,
                         background: settings.igelCustomization.background
                     ),
-                    size: settings.igelCustomization.pose == .stehend ? 280 : 160
+                    size: isLargePose(settings.igelCustomization.pose) ? 280 : 160
                 )
                 .offset(y: 0)
             }
@@ -483,7 +483,7 @@ struct IgelCustomizerView: View {
                         gesicht: settings.igelCustomization.gesicht,
                         background: bg
                     ),
-                    size: settings.igelCustomization.pose == .stehend ? 280 : 160
+                    size: isLargePose(settings.igelCustomization.pose) ? 280 : 160
                 )
                 .offset(y: 0)
             }
@@ -496,5 +496,14 @@ struct IgelCustomizerView: View {
             )
         }
         .buttonStyle(.plain)
+    }
+    
+    private func isLargePose(_ pose: IgelPose) -> Bool {
+        switch pose {
+        case .stehend:
+            return true
+        default:
+            return false
+        }
     }
 }

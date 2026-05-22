@@ -14,9 +14,9 @@ enum GameConstants {
  
     // MARK: XP-Schwellen für Pflanzen-Seltenheit
     // Bronze ist der Startzustand (0 XP)
-    static let xpFuerSilber: Int  = 800
-    static let xpFuerGold: Int    = 2500
-    static let xpFuerDiamant: Int = 7500
+    static let xpFuerSilber: Int  = 250
+    static let xpFuerGold: Int    = 750
+    static let xpFuerDiamant: Int = 2000
  
     // MARK: Streak
     static let streakTimerStunden: Double = 24  // Timer-Fenster in Stunden
@@ -33,17 +33,17 @@ enum GameConstants {
     static func xpSchwelle(fuer stufe: PflanzenStufe) -> Int {
         switch stufe {
         case .bronze1:  return 0
-        case .bronze2:  return 200
-        case .bronze3:  return 400
-        case .silber1:  return 800
-        case .silber2:  return 1200
-        case .silber3:  return 1600
-        case .gold1:    return 2500
-        case .gold2:    return 3500
-        case .gold3:    return 5000
-        case .diamant1: return 7500
-        case .diamant2: return 10000
-        case .diamant3: return 15000
+        case .bronze2:  return 80
+        case .bronze3:  return 160
+        case .silber1:  return 250
+        case .silber2:  return 400
+        case .silber3:  return 550
+        case .gold1:    return 750
+        case .gold2:    return 1100
+        case .gold3:    return 1500
+        case .diamant1: return 2000
+        case .diamant2: return 2750
+        case .diamant3: return 4000
         }
     }
 
@@ -89,6 +89,42 @@ enum GameConstants {
     
     /// Kosten für die Wiederbelebung einer toten Pflanze
     static let wiederbelebungsKosten: Int = 50
+
+    // MARK: - Unkraut
+    /// Gewohnheiten (Gießvorgänge), um ein einzelnes Unkraut zu entfernen
+    static let habitsRequiredPerWeed: Int = 3
+    /// XP-Multiplikator pro aktivem Unkraut (0.5 = 50 %)
+    static let weedXPMultiplierPerPatch: Double = 0.5
+    /// Untergrenze: selbst bei vielen Unkräutern mindestens 25 % XP
+    static let weedMinimumXPMultiplier: Double = 0.25
+    /// Coin-Abzug pro aktivem Unkraut beim Gießen
+    static let weedCoinPenaltyPerPatch: Int = 5
+    /// Münzkosten = Dekopreis × dieser Faktor
+    static let weedRemovalCostMultiplier: Int = 3
+    /// Fallback-Kosten, wenn Unkraut durch Pflanzentod entsteht
+    static let weedRemovalCostPlantDeath: Int = 500
+    /// Fallback-Kosten für Unkraut aus dem Glücksrad
+    static let weedRemovalCostSpin: Int = 150
+    /// Tage bis Unkraut Pflanzen schwächt
+    static let weedSpreadDays: Int = 3
+    /// Max. Coin-Strafe pro Gießen: Anteil am aktuellen Guthaben (0.5 = 50 %)
+    static let weedCoinPenaltyMaxWalletFraction: Double = 0.5
+
+    // MARK: - Comeback-Bonus (nach schwerer Unkraut-Krise)
+    static let comebackMinimumPeakWeeds: Int = 3
+    static let comebackMinimumHabitClears: Int = 2
+    static let comebackMinimumCrisisHours: Double = 24
+    /// Rein-Deko-Krisen müssen länger „reifen“, bevor der Boost auslöst
+    static let comebackDecorationOnlyMinHours: Double = 72
+    static let comebackCooldownDays: Int = 7
+    static let comebackXPMultiplier: Double = 1.2
+    static let comebackBoostDurationHours: Double = 24
+
+    /// Zauberstab: sofort alle Unkräuter weg + Schutz vor neuem Unkraut
+    static let zauberstabDurationHours: Double = 72
+
+    // MARK: - Streak-Schutz-Blüte (Vorleistung)
+    static let disciplineBloomStreakDays: Int = 7
     
     /// Coin-Bonus pro Stufe (kumulativ, in Prozent)
     static let coinBonusProLevel: [Int: Int] = [

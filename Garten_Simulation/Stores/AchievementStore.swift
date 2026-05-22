@@ -1,23 +1,94 @@
 import SwiftUI
 import Combine
 
+struct AchievementConfig {
+    let key: String
+    let titleKey: String
+    let baseDescriptionKey: String
+    let sfSymbol: String
+    let farbe: Color
+    let kategorie: ErfolgKategorie
+    let imageName: String
+    let targets: [Int] // Size 5 for Bronze, Silber, Gold, Diamant, Master
+}
+
 @MainActor
 class AchievementStore: ObservableObject {
     @Published var alleErfolge: [Erfolg] = []
     
+    // Kept for backup/export manager compatibility
+    @Published var achievementTiers: [String: Int] = [:]
+    
     private var gardenStore: GardenStore
     private var streakStore: StreakStore
     private var cancellables = Set<AnyCancellable>()
-    private var unlockDates: [String: TimeInterval] = [:] {
-        didSet {
-            SharedUserDefaults.suite.set(unlockDates, forKey: "achievement_unlock_dates")
-        }
-    }
+    
+    private let configs: [AchievementConfig] = [
+        AchievementConfig(
+            key: "pflanzen",
+            titleKey: "erfolg.pflanzen.name",
+            baseDescriptionKey: "erfolg.pflanzen.tier",
+            sfSymbol: "leaf.fill",
+            farbe: Color(hex: "#34C759"),
+            kategorie: .sammler,
+            imageName: "ErstePflanze",
+            targets: [1, 3, 7, 13, 19]
+        ),
+        AchievementConfig(
+            key: "streak",
+            titleKey: "erfolg.streak.name",
+            baseDescriptionKey: "erfolg.streak.tier",
+            sfSymbol: "flame.fill",
+            farbe: Color(hex: "#FF6B35"),
+            kategorie: .streak,
+            imageName: "Erste Woche",
+            targets: [3, 7, 14, 30, 365]
+        ),
+        AchievementConfig(
+            key: "giessen",
+            titleKey: "erfolg.giessen.name",
+            baseDescriptionKey: "erfolg.giessen.tier",
+            sfSymbol: "drop.fill",
+            farbe: Color(hex: "#007AFF"),
+            kategorie: .garten,
+            imageName: "Wassermann",
+            targets: [5, 15, 50, 150, 5000]
+        ),
+        AchievementConfig(
+            key: "xp",
+            titleKey: "erfolg.xp.name",
+            baseDescriptionKey: "erfolg.xp.tier",
+            sfSymbol: "star.fill",
+            farbe: Color(hex: "#FF9F0A"),
+            kategorie: .garten,
+            imageName: "XP-Sammler",
+            targets: [100, 250, 500, 1000, 100000]
+        ),
+        AchievementConfig(
+            key: "coins",
+            titleKey: "erfolg.coins.name",
+            baseDescriptionKey: "erfolg.coins.tier",
+            sfSymbol: "dollarsign.circle.fill",
+            farbe: Color(hex: "#FFD60A"),
+            kategorie: .shop,
+            imageName: "ErsteMünze",
+            targets: [50, 150, 500, 1000, 40000]
+        ),
+        AchievementConfig(
+            key: "kauf",
+            titleKey: "erfolg.kauf.name",
+            baseDescriptionKey: "erfolg.kauf.tier",
+            sfSymbol: "cart.fill",
+            farbe: Color(hex: "#AF52DE"),
+            kategorie: .shop,
+            imageName: "ErsterEinkauf",
+            targets: [1, 10, 25, 40, 48]
+        )
+    ]
     
     init(gardenStore: GardenStore, streakStore: StreakStore) {
         self.gardenStore = gardenStore
         self.streakStore = streakStore
-        self.unlockDates = SharedUserDefaults.suite.dictionary(forKey: "achievement_unlock_dates") as? [String: TimeInterval] ?? [:]
         
         // Observe relevant changes in GardenStore to refresh achievements
         gardenStore.$gesamtXP
@@ -48,150 +119,168 @@ class AchievementStore: ObservableObject {
             .sink { [weak self] _ in self?.refresh() }
             .store(in: &cancellables)
             
+        gardenStore.$gesamtGekaufteItemsCount
+            .sink { [weak self] _ in self?.refresh() }
+            .store(in: &cancellables)
+            
+        gardenStore.$gekaufteItems
+            .sink { [weak self] _ in self?.refresh() }
+            .store(in: &cancellables)
+            
+        gardenStore.$placedDecorations
+            .sink { [weak self] _ in self?.refresh() }
+            .store(in: &cancellables)
+            
         refresh()
     }
     
+    func valueForAchievement(key: String) -> Int {
+        switch key {
+        case "pflanzen":
+            return gardenStore.pflanzen.count
+        case "streak":
+            return streakStore.currentStreak
+        case "giessen":
+            return gardenStore.gesamtGegossen
+        case "xp":
+            return gardenStore.gesamtXP
+        case "coins":
+            return max(gardenStore.gesamtVerdient, gardenStore.coins)
+        case "kauf":
+            return gardenStore.totalItemsCount
+        default:
+            return 0
+        }
+    }
+    
+    // Obsolete in automatic progression mode, but kept for compilation safety
+    func upgradeAchievement(key: String) {}
+    
     func refresh() {
-        var updatedErfolge = [
-            // STREAK
-            Erfolg(id: "streak_7",
-                   titelKey: "erfolg.erstewoche.name",
-                   beschreibungKey: "erfolg.erstewoche.beschreibung",
-                   sfSymbol: "flame.fill",
-                   farbe: Color(hex: "#FF6B35"),
-                   zielWert: 7,
-                   aktuellerWert: streakStore.currentStreak,
-                   kategorie: .streak,
-                   imageName: "Erste Woche"),
-            
-            Erfolg(id: "streak_100",
-                   titelKey: "erfolg.legende.name",
-                   beschreibungKey: "erfolg.legende.beschreibung",
-                   sfSymbol: "crown.fill",
-                   farbe: Color(hex: "#FFD700"),
-                   zielWert: 100,
-                   aktuellerWert: streakStore.currentStreak,
-                   kategorie: .streak,
-                   imageName: "Legende"),
-            
-            Erfolg(id: "streak_365",
-                   titelKey: "erfolg.jahresring.name",
-                   beschreibungKey: "erfolg.jahresring.beschreibung",
-                   sfSymbol: "sun.max.fill",
-                   farbe: Color(hex: "#FF9500"),
-                   zielWert: 365,
-                   aktuellerWert: streakStore.currentStreak,
-                   kategorie: .streak,
-                   imageName: "Jahresring"),
-            
-            // GARTEN
-            Erfolg(id: "giessen_100",
-                   titelKey: "erfolg.wassermeister.name",
-                   beschreibungKey: "erfolg.wassermeister.beschreibung",
-                   sfSymbol: "drop.fill",
-                   farbe: Color(hex: "#007AFF"),
-                   zielWert: 100,
-                   aktuellerWert: gardenStore.gesamtGegossen,
-                   kategorie: .garten,
-                   imageName: "Wassermann"),
-            
-            Erfolg(id: "xp_500",
-                   titelKey: "erfolg.xpsammler.name",
-                   beschreibungKey: "erfolg.xpsammler.beschreibung",
-                   sfSymbol: "star.fill",
-                   farbe: Color(hex: "#FF9F0A"),
-                   zielWert: 500,
-                   aktuellerWert: gardenStore.gesamtXP,
-                   kategorie: .garten,
-                   imageName: "XP-Sammler"),
-            
-            // SAMMLER
-            Erfolg(id: "pflanzen_1",
-                   titelKey: "erfolg.ersterpflanze.name",
-                   beschreibungKey: "erfolg.ersterpflanze.beschreibung",
-                   sfSymbol: "leaf.fill",
-                   farbe: Color(hex: "#34C759"),
-                   zielWert: 1,
-                   aktuellerWert: gardenStore.pflanzen.count,
-                   kategorie: .sammler,
-                   imageName: "ErstePflanze"),
-            
-            Erfolg(id: "pflanzen_3",
-                   titelKey: "erfolg.pflanzensammler.name",
-                   beschreibungKey: "erfolg.pflanzensammler.beschreibung",
-                   sfSymbol: "leaf.fill",
-                   farbe: Color(hex: "#34C759"),
-                   zielWert: 3,
-                   aktuellerWert: gardenStore.pflanzen.count,
-                   kategorie: .sammler,
-                   imageName: "Pflanzensammler"),
-            
-            Erfolg(id: "pflanzen_10",
-                   titelKey: "erfolg.gruenerDaumen.name",
-                   beschreibungKey: "erfolg.gruenerDaumen.beschreibung",
-                   sfSymbol: "leaf.fill",
-                   farbe: Color(hex: "#248A3D"),
-                   zielWert: 10,
-                   aktuellerWert: gardenStore.pflanzen.count,
-                   kategorie: .sammler,
-                   imageName: "Grünerdaumen"),
-            
-            Erfolg(id: "pflanzen_20",
-                   titelKey: "erfolg.gartenprofi.name",
-                   beschreibungKey: "erfolg.gartenprofi.beschreibung",
-                   sfSymbol: "diamond.fill",
-                   farbe: Color(hex: "#1A9FE0"),
-                   zielWert: 20,
-                   aktuellerWert: gardenStore.pflanzen.count,
-                   kategorie: .sammler,
-                   imageName: "Gartenprofil"),
-            
-            // SHOP / COINS
-            Erfolg(id: "coins_1",
-                   titelKey: "erfolg.ersteMuenze.name",
-                   beschreibungKey: "erfolg.ersteMuenze.beschreibung",
-                   sfSymbol: "dollarsign.circle.fill",
-                   farbe: Color(hex: "#FFD60A"),
-                   zielWert: 1,
-                   aktuellerWert: gardenStore.gesamtVerdient,
-                   kategorie: .shop,
-                   imageName: "ErsteMünze"),
-            
-            Erfolg(id: "coins_50",
-                   titelKey: "erfolg.muenzmeister.name",
-                   beschreibungKey: "erfolg.muenzmeister.beschreibung",
-                   sfSymbol: "dollarsign.circle.fill",
-                   farbe: Color(hex: "#FFD60A"),
-                   zielWert: 50,
-                   aktuellerWert: gardenStore.gesamtVerdient,
-                   kategorie: .shop,
-                   imageName: "Münzmeister"),
-            
-            Erfolg(id: "ersterkauf",
-                   titelKey: "erfolg.ersterkauf.name",
-                   beschreibungKey: "erfolg.ersterkauf.beschreibung",
-                   sfSymbol: "cart.fill",
-                   farbe: Color(hex: "#AF52DE"),
-                   zielWert: 1,
-                   aktuellerWert: gardenStore.gekauftePflanzenAnzahl,
-                   kategorie: .shop,
-                   imageName: "ErsterEinkauf"),
-        ]
+        var updatedErfolge: [Erfolg] = []
+        var dates = SharedUserDefaults.suite.dictionary(forKey: "achievement_unlock_dates_v2") as? [String: TimeInterval] ?? [:]
+        var datesChanged = false
+        var computedTiers: [String: Int] = [:]
         
-        // Apply persisted dates
-        for i in 0..<updatedErfolge.count {
-            let id = updatedErfolge[i].id
-            if updatedErfolge[i].istFreigeschaltet {
-                if let timestamp = unlockDates[id] {
-                    updatedErfolge[i].freigeschaltetAm = Date(timeIntervalSince1970: timestamp)
-                } else {
-                    let now = Date()
-                    unlockDates[id] = now.timeIntervalSince1970
-                    updatedErfolge[i].freigeschaltetAm = now
+        for config in configs {
+            let currentVal = valueForAchievement(key: config.key)
+            
+            // Determine active/completed tier dynamically
+            var activeTier: ErfolgTier = .bronze
+            var nextTarget = config.targets[0]
+            var isMax = false
+            var isFreigeschaltet = false
+            
+            if currentVal >= config.targets[4] { // Completed Master
+                activeTier = .master
+                nextTarget = config.targets[4]
+                isMax = true
+                isFreigeschaltet = true
+                
+                if dates["\(config.key)_tier_4"] == nil {
+                    dates["\(config.key)_tier_4"] = Date().timeIntervalSince1970
+                    datesChanged = true
+                }
+            } else if currentVal >= config.targets[3] { // Completed Diamant, working towards Master
+                activeTier = .diamant
+                nextTarget = config.targets[4]
+                isFreigeschaltet = true
+                
+                if dates["\(config.key)_tier_3"] == nil {
+                    dates["\(config.key)_tier_3"] = Date().timeIntervalSince1970
+                    datesChanged = true
+                }
+            } else if currentVal >= config.targets[2] { // Completed Gold, working towards Diamant
+                activeTier = .gold
+                nextTarget = config.targets[3]
+                isFreigeschaltet = true
+                
+                if dates["\(config.key)_tier_2"] == nil {
+                    dates["\(config.key)_tier_2"] = Date().timeIntervalSince1970
+                    datesChanged = true
+                }
+            } else if currentVal >= config.targets[1] { // Completed Silver, working towards Gold
+                activeTier = .silber
+                nextTarget = config.targets[2]
+                isFreigeschaltet = true
+                
+                if dates["\(config.key)_tier_1"] == nil {
+                    dates["\(config.key)_tier_1"] = Date().timeIntervalSince1970
+                    datesChanged = true
+                }
+            } else if currentVal >= config.targets[0] { // Completed Bronze, working towards Silver
+                activeTier = .bronze
+                nextTarget = config.targets[1]
+                isFreigeschaltet = true
+                
+                if dates["\(config.key)_tier_0"] == nil {
+                    dates["\(config.key)_tier_0"] = Date().timeIntervalSince1970
+                    datesChanged = true
+                }
+            } else {
+                // Not even Bronze completed yet
+                activeTier = .bronze
+                nextTarget = config.targets[0]
+                isFreigeschaltet = false
+            }
+            
+            computedTiers[config.key] = isMax ? 5 : (isFreigeschaltet ? activeTier.rawValue + 1 : 0)
+            
+            // Unlocked Date extraction
+            var freigeschaltetAm: Date? = nil
+            if isMax {
+                if let ts = dates["\(config.key)_tier_4"] {
+                    freigeschaltetAm = Date(timeIntervalSince1970: ts)
+                }
+            } else {
+                let completedTierIndex: Int
+                if currentVal >= config.targets[3] { completedTierIndex = 3 }
+                else if currentVal >= config.targets[2] { completedTierIndex = 2 }
+                else if currentVal >= config.targets[1] { completedTierIndex = 1 }
+                else if currentVal >= config.targets[0] { completedTierIndex = 0 }
+                else { completedTierIndex = -1 }
+                
+                if completedTierIndex >= 0 {
+                    if let ts = dates["\(config.key)_tier_\(completedTierIndex)"] {
+                        freigeschaltetAm = Date(timeIntervalSince1970: ts)
+                    }
                 }
             }
+            
+            // Description index matches active target they are working towards
+            let descIndex: Int
+            if isMax { descIndex = 4 }
+            else if currentVal >= config.targets[3] { descIndex = 4 }
+            else if currentVal >= config.targets[2] { descIndex = 3 }
+            else if currentVal >= config.targets[1] { descIndex = 2 }
+            else if currentVal >= config.targets[0] { descIndex = 1 }
+            else { descIndex = 0 }
+            
+            let descKey = "\(config.baseDescriptionKey)\(descIndex)"
+            
+            let e = Erfolg(
+                id: config.key,
+                titelKey: config.titleKey,
+                beschreibungKey: descKey,
+                sfSymbol: config.sfSymbol,
+                farbe: config.farbe,
+                zielWert: nextTarget,
+                aktuellerWert: currentVal,
+                kategorie: config.kategorie,
+                imageName: config.imageName,
+                tier: isMax ? .max : activeTier,
+                freigeschaltet: isFreigeschaltet,
+                freigeschaltetAm: freigeschaltetAm
+            )
+            updatedErfolge.append(e)
         }
         
+        if datesChanged {
+            SharedUserDefaults.suite.set(dates, forKey: "achievement_unlock_dates_v2")
+        }
+        
+        self.achievementTiers = computedTiers
         self.alleErfolge = updatedErfolge
     }
 }
+

@@ -1,15 +1,17 @@
 import SwiftUI
 
 struct ProfilView: View {
-    @State private var showSettings = false
+    @State private var zeigeEinstellungen = false
     @State private var showXPDetail = false
     @State private var showPflanzenDetail = false
     @State private var showErfolgeDetail = false
     @State private var showStreakDetail = false
     @State private var showWasserDetail = false
-    @State private var zeigeGartenPass = false
     @State private var showTitelAuswahl = false
+    @State private var showSettings = false
     @State private var zeigeIgelCustomizer = false
+    @State private var ausgewaehlterErfolg: Erfolg? = nil
+    @State private var navBarIsWhite = false
     
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
@@ -21,154 +23,49 @@ struct ProfilView: View {
         achievementStore.alleErfolge.filter { $0.istFreigeschaltet }.count
     }
 
+    private var spielerTitel: String {
+        titelStore.aktiverTitel().map { settings.localizedString(for: $0.displayName) } ?? settings.localizedString(for: "titel.anfaenger")
+    }
+
     var body: some View {
         NavigationStack {
-            ZStack {
-                Color.appHintergrund.ignoresSafeArea()
+            ZStack(alignment: .top) {
+                Color.white.ignoresSafeArea()
                 
-                ScrollView {
-                    VStack(spacing: 32) {
-                        VStack(spacing: 28) {
-                            // 1. Igel-Charakter Portrait (At the top)
-                            Button(action: { zeigeIgelCustomizer = true }) {
-                                VStack(spacing: 16) {
-                                    ZStack {
-                                        let istStehend = settings.igelCustomization.pose == .stehend
-                                        RoundedRectangle(cornerRadius: 60, style: .continuous)
-                                            .fill(settings.igelCustomization.background.color)
-                                            .frame(width: 320, height: 320)
-                                            .shadow(color: .black.opacity(0.06), radius: 20, x: 0, y: 12)
-                                        
-                                        // Centered Igel View (Maximum zoom as requested)
-                                        IgelView(customization: settings.igelCustomization, size: istStehend ? 500 : 300)
-                                            .frame(width: 320, height: 320)
-                                            .clipShape(RoundedRectangle(cornerRadius: 60, style: .continuous))
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 60, style: .continuous)
-                                                    .stroke(Color.black.opacity(0.08), lineWidth: 2)
-                                            )
-                                    }
-                                    
-                                    VStack(spacing: 4) {
-                                        // 2. Igel-Name (Groß)
-                                        Text(settings.igelCustomization.name.isEmpty 
-                                             ? settings.localizedString(for: "igel_name_placeholder") 
-                                             : settings.igelCustomization.name)
-                                            .font(.system(size: 32, weight: .black, design: .rounded))
-                                            .foregroundStyle(.primary)
-                                        
-                                        // 3. Spieler-Titel (Interaktiv, Grauer Text-Stil mit Icons)
-                                        Button(action: { showTitelAuswahl = true }) {
-                                            HStack(spacing: 8) {
-                                                Image("Spieler_Title")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 20, height: 20)
-                                                
-                                                Text(titelStore.aktiverTitel().map { settings.localizedString(for: $0.displayName) } ?? settings.localizedString(for: "titel.anfaenger"))
-                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                    .foregroundStyle(Color.blauPrimary)
-                                                    .textCase(.uppercase)
-                                                    .tracking(1)
-                                                
-                                                Image("Spieler_Title")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 20, height: 20)
-                                            }
-                                            .padding(.top, 2)
-                                        }
-                                        .buttonStyle(.plain)
-                                    }
-                                }
-                            }
-                            .buttonStyle(.plain)
-                            
-                            // 3. Garten-Pass Banner (Moved below Igel and Title)
-                            VStack(spacing: 16) {
-                                // 2. Garten-Pass Banner (3D Button)
-                                Button(action: { zeigeGartenPass = true }) {
-                                    HStack(spacing: 14) {
-                                        // Trophy Icon
-                                        Image("Erfolg")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 36, height: 36)
-                                            .frame(width: 48, height: 48)
-                                            .background(
-                                                Circle()
-                                                    .fill(.white.opacity(0.15))
-                                            )
+                if !navBarIsWhite {
+                    settings.igelCustomization.background.color
+                        .frame(height: 0)
+                        .frame(maxWidth: .infinity)
+                        .ignoresSafeArea(edges: .top)
+                }
+                
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 0) {
+                    
+                    // MARK: - Top Bounce Filler (Blau)
+                    // Dieser Bereich ist normalerweise unsichtbar, wird aber beim Runterziehen sichtbar
+                    settings.igelCustomization.background.color
+                        .frame(height: 1000)
+                        .offset(y: -1000)
+                        .padding(.bottom, -1000)
 
-                                        // Text Links
-                                        VStack(alignment: .leading, spacing: 4) {
-                                            Text(settings.localizedString(for: "garten_pass_level_label"))
-                                                .font(.caption)
-                                                .fontWeight(.semibold)
-                                                .foregroundStyle(.white.opacity(0.8))
-                                                .textCase(.uppercase)
-                                                .tracking(1)
-
-                                            Text("\(tierTitel) · \(settings.localizedString(for: "level_up_label")) \(level)")
-                                                .font(.title3)
-                                                .fontWeight(.bold)
-                                                .foregroundStyle(.white)
-
-                                            // Fortschrittsbalken
-                                            GeometryReader { geo in
-                                                ZStack(alignment: .leading) {
-                                                    RoundedRectangle(cornerRadius: 4)
-                                                        .fill(.white.opacity(0.2))
-                                                        .frame(height: 6)
-                                                    RoundedRectangle(cornerRadius: 4)
-                                                        .fill(.white)
-                                                        .frame(width: geo.size.width * CGFloat(fortschritt), height: 6)
-                                                }
-                                            }
-                                            .frame(height: 6)
-
-                                            Text("\(xpImLevel) / \(xpFuerNaechstenLevel) XP")
-                                                .font(.caption2)
-                                                .foregroundStyle(.white.opacity(0.7))
-                                        }
-
-                                        Spacer()
-
-                                        Image(systemName: "chevron.right")
-                                            .font(.system(size: 14, weight: .semibold))
-                                            .foregroundStyle(.white.opacity(0.6))
-                                    }
-                                    .padding(.horizontal, 18)
-                                    .padding(.vertical, 16)
-                                    .background(
-                                        ZStack {
-                                            // Untere Schicht — 3D Effekt
-                                            RoundedRectangle(cornerRadius: 18)
-                                                .fill(Color(red: 0.55, green: 0.35, blue: 0.1))
-                                                .offset(y: 4)
-                                            // Obere Schicht
-                                            RoundedRectangle(cornerRadius: 18)
-                                                .fill(
-                                                    LinearGradient(
-                                                        colors: [
-                                                            Color(red: 0.78, green: 0.52, blue: 0.2),
-                                                            Color(red: 0.65, green: 0.4, blue: 0.12)
-                                                        ],
-                                                        startPoint: .topLeading,
-                                                        endPoint: .bottomTrailing
-                                                    )
-                                                )
-                                        }
-                                    )
-                                    .padding(.horizontal, 16)
-                                }
-                                .buttonStyle(.plain)
-                            }
-                            .padding(.horizontal, 20)
-                            
-
+                    // 1. Top-Bereich (scrollt mit dem Igel)
+                    VStack(spacing: 0) {
+                        // Igel
+                        Button(action: { zeigeIgelCustomizer = true }) {
+                            IgelView(customization: settings.igelCustomization, size: 200)
                         }
-                        .padding(.top, 30)
+                        .buttonStyle(.plain)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 280)
+                    }
+                    .background(settings.igelCustomization.background.color)
+                    
+                    // 2. Weißer Content-Bereich
+                    VStack(spacing: 24) {
+                        // --- TOP 3 ACHIEVEMENTS ---
+                        topAchievementsSection
+                            .padding(.top, 8)
                         
                         // --- 3D STAT BUTTONS GRID ---
                         LazyVGrid(columns: [
@@ -182,40 +79,76 @@ struct ProfilView: View {
                                 bestStreak: streakStore.bestStreak,
                                 aktion: { showStreakDetail = true }
                             )
-                            ErfolgeStatButton(count: freigeschalteteErfolgeAnzahl, showDetail: $showErfolgeDetail)
                             WasserStatButton(liter: gardenStore.gesamtLiterFormatiert, showDetail: $showWasserDetail)
                         }
                         .padding(.horizontal, 32)
                         .padding(.top, 8)
-                        
-                        
 
-                        Spacer(minLength: 40)
+                        // Bottom Bounce Filler (Weiß)
+                        Color.white
+                            .frame(height: 1000)
                     }
-                    .padding(.vertical, 16)
+                    .padding(.top, 24)
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 24))
+                    .offset(y: -24)
+                    .padding(.bottom, -24)
+                }
+                .background(
+                    GeometryReader { proxy in
+                        Color.clear.preference(key: ProfilScrollOffsetKey.self, value: proxy.frame(in: .named("profilScroll")).minY)
+                    }
+                )
+            } // closes ScrollView
+            } // closes ZStack
+            .coordinateSpace(name: "profilScroll")
+            .onPreferenceChange(ProfilScrollOffsetKey.self) { offset in
+                let shouldBeWhite = offset < -240
+                if navBarIsWhite != shouldBeWhite {
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        navBarIsWhite = shouldBeWhite
+                    }
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarHidden(false)
+            .toolbarBackground(navBarIsWhite ? .visible : .hidden, for: .navigationBar)
+            .toolbarBackground(Color.white, for: .navigationBar)
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("") // Hidden title
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        zeigeIgelCustomizer = true
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.system(size: 20, weight: .black))
+                            .foregroundStyle(.primary)
+                    }
                 }
+                
+                ToolbarItem(placement: .principal) {
+                    VStack(spacing: 0) {
+                        Text(settings.igelCustomization.name.isEmpty
+                             ? settings.localizedString(for: "igel_name_placeholder")
+                             : settings.igelCustomization.name)
+                            .font(.title3)
+                            .fontWeight(.bold)
+                        Text(spielerTitel.uppercased())
+                            .font(.system(size: 11, weight: .black))
+                    }
+                    .fixedSize()
+                    .allowsHitTesting(false)
+                }
+                
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: { 
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                            showSettings = true 
-                        }
-                    }) {
-                        Image(systemName: "gearshape.fill")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundStyle(Color.primary)
+                    Button {
+                        showSettings = true
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 20, weight: .black))
+                            .foregroundStyle(.primary)
                     }
                 }
             }
-            .fullScreenCover(isPresented: $showSettings) {
-                SettingsView()
-                    .environmentObject(settings)
-            }
+
             .fullScreenCover(isPresented: $showWasserDetail) {
                 WasserDetailView()
                     .environmentObject(gardenStore)
@@ -235,10 +168,6 @@ struct ProfilView: View {
                 StreakView()
                     .environmentObject(streakStore)
             }
-            .fullScreenCover(isPresented: $zeigeGartenPass) {
-                GartenPassView()
-                    .environmentObject(gardenStore)
-            }
             .sheet(isPresented: $showXPDetail) {
                 XPInfoSheet()
                     .environmentObject(gardenStore)
@@ -247,11 +176,23 @@ struct ProfilView: View {
             }
             .sheet(isPresented: $showTitelAuswahl) {
                 TitelAuswahlSheet()
+                    .environmentObject(settings)
+                    .presentationDetents([.medium, .large])
+            }
+            .navigationDestination(isPresented: $showSettings) {
+                SettingsView()
+                    .environmentObject(settings)
             }
             .sheet(isPresented: $zeigeIgelCustomizer) {
                 IgelCustomizerView()
                     .environmentObject(settings)
                     .environmentObject(gardenStore)
+            }
+            .fullScreenCover(item: $ausgewaehlterErfolg) { erfolg in
+                ErfolgDetailSheet(erfolg: erfolg, istFreigeschaltet: erfolg.istFreigeschaltet)
+                    .environmentObject(settings)
+                    .environmentObject(gardenStore)
+                    .environmentObject(streakStore)
             }
             .overlay {
                 if let neuerTitel = titelStore.neuerTitelZumAnzeigen {
@@ -279,16 +220,79 @@ struct ProfilView: View {
         }
     }
     
-    // MARK: - Computed Properties
-    private var level: Int { GartenLevel.level(fuerXP: gardenStore.gesamtXP) }
-    private var xpImLevel: Int { GartenLevel.xpImLevel(gesamtXP: gardenStore.gesamtXP) }
-    private var xpFuerNaechstenLevel: Int { GartenLevel.xpFuerNaechstenLevel(gesamtXP: gardenStore.gesamtXP) }
-    private var fortschritt: Double {
-        let maxXP = xpFuerNaechstenLevel
-        guard maxXP > 0 else { return 1.0 }
-        return Double(xpImLevel) / Double(maxXP)
+    // MARK: - Achievements Section
+    private var topAchievementsSection: some View {
+        VStack(spacing: 0) {
+            // Horizontal Scroll List
+            let unlockedAchievements = getUnlockedErfolge()
+            if unlockedAchievements.isEmpty {
+                Text(settings.localizedString(for: "profile.achievements.empty"))
+                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 20)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16) {
+                        ForEach(unlockedAchievements) { erfolg in
+                            Button(action: { ausgewaehlterErfolg = erfolg }) {
+                                VStack(spacing: 12) {
+                                    ErfolgBadgeView(erfolg: erfolg, istFreigeschaltet: true)
+                                        .scaleEffect(1.25)
+                                        .frame(width: 120, height: 120)
+                                    
+                                    Text(settings.localizedString(for: erfolg.titelKey))
+                                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.primary)
+                                        .multilineTextAlignment(.center)
+                                        .lineLimit(2)
+                                        .frame(width: 120, height: 36, alignment: .top)
+                                }
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        
+                        // "Mehr ansehen" Button at the end
+                        Button(action: { showErfolgeDetail = true }) {
+                            VStack(spacing: 12) {
+                                ZStack {
+                                    Image(systemName: "chevron.right")
+                                        .font(.system(size: 24, weight: .bold))
+                                        .foregroundStyle(.primary)
+                                }
+                                .frame(width: 120, height: 120) // Match height of badge container
+                                
+                                Text("Alle Erfolge")
+                                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.primary)
+                                    .multilineTextAlignment(.center)
+                                    .frame(width: 100, height: 36, alignment: .top)
+                            }
+                        }
+                        .buttonStyle(.plain)
+                        .padding(.leading, 8)
+                    }
+                    .padding(.horizontal, 24)
+                }
+            }
+        }
     }
-    private var tierTitel: String { GartenTierStufe.fuer(level: level).lokalisiertTitel(settings: settings) }
+    
+    private func getUnlockedErfolge() -> [Erfolg] {
+        return achievementStore.alleErfolge
+            .filter { $0.istFreigeschaltet }
+            .sorted(by: { 
+                if $0.tier != $1.tier { return $0.tier.rawValue > $1.tier.rawValue }
+                return ($0.freigeschaltetAm ?? Date.distantPast) > ($1.freigeschaltetAm ?? Date.distantPast)
+            })
+    }
+}
+
+struct ProfilScrollOffsetKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
 }
 
 #Preview { 

@@ -70,13 +70,41 @@ struct DuolingoButtonStyle: ButtonStyle {
     var isPermanentlyPressed: Bool = false
 
     func makeBody(configuration: Configuration) -> some View {
+        DuolingoButtonVisualView(
+            configuration: configuration,
+            size: size,
+            fillWidth: fillWidth,
+            backgroundColor: backgroundColor,
+            shadowColor: shadowColor,
+            foregroundColor: foregroundColor,
+            isPermanentlyPressed: isPermanentlyPressed
+        )
+    }
+}
+
+private struct DuolingoButtonVisualView: View {
+    let configuration: ButtonStyle.Configuration
+    let size: DuoButtonSize
+    let fillWidth: Bool
+    let backgroundColor: Color
+    let shadowColor: Color
+    let foregroundColor: Color
+    let isPermanentlyPressed: Bool
+
+    @Environment(\.isEnabled) private var isEnabled
+
+    var body: some View {
         let pressed = configuration.isPressed
         let depth = size.shadowDepth
+        
+        let actualBackground = isEnabled ? backgroundColor : Color(hex: "#E5E5EA")
+        let actualShadow = isEnabled ? shadowColor : Color(hex: "#C7C7CC")
+        let actualForeground = isEnabled ? foregroundColor : Color(hex: "#AEAEB2")
         
         return configuration.label
             .font(size.font)
             .textCase(.uppercase)
-            .foregroundStyle(foregroundColor)
+            .foregroundStyle(actualForeground)
             .padding(.vertical, size.verticalPadding)
             .padding(.horizontal, size.horizontalPadding)
             .frame(maxWidth: fillWidth ? .infinity : nil)
@@ -84,11 +112,11 @@ struct DuolingoButtonStyle: ButtonStyle {
                 ZStack {
                     // Static Shadow (Bottom Layer)
                     RoundedRectangle(cornerRadius: size.cornerRadius, style: .continuous)
-                        .fill(shadowColor)
+                        .fill(actualShadow)
                     
                     // Main face (Top Layer)
                     RoundedRectangle(cornerRadius: size.cornerRadius, style: .continuous)
-                        .fill(backgroundColor)
+                        .fill(actualBackground)
                         .offset(y: (pressed || isPermanentlyPressed) ? 0 : -depth)
                 }
             )
