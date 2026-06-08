@@ -77,6 +77,14 @@ class GartenPfadStore: ObservableObject {
             // Check if ANY strand belongs to this plant instance
             let existing = straenge.first(where: { $0.pflanzenID == pflanzeID })
             
+            if pflanze.plantID.hasPrefix("custom_") {
+                if let existingStrang = existing {
+                    context.delete(existingStrang)
+                    hasChanges = true
+                }
+                continue
+            }
+            
             if existing == nil || (existing?.tags.count ?? 0) == 0 {
                 // Completely missing or broken (no tags)
                 print("[PfadStore] Erstelle/Repariere Pfad für: \(pflanze.name) (\(pflanzeID))")

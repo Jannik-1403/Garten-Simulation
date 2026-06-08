@@ -36,26 +36,31 @@ class StreakStore: ObservableObject {
     func checkForMissedDays() {
         let today = calendar.startOfDay(for: Date())
         
-        // Check backwards to see if we missed a day that could be frozen
-        // Usually we only care about yesterday if today isn't done yet, 
-        // or today if it's already late (but here we just check if yesterday was missed)
+        let allValidDates = completedDates.union(frozenDates)
+        guard let lastValidDate = allValidDates.max() else { return }
         
-        guard let yesterday = calendar.date(byAdding: .day, value: -1, to: today) else { return }
+        // Loop from the day after lastValidDate up to yesterday
+        guard var checkDate = calendar.date(byAdding: .day, value: 1, to: lastValidDate) else { return }
         
-        // If yesterday was NOT completed AND NOT frozen
-        if !completedDates.contains(yesterday) && !frozenDates.contains(yesterday) {
-            // Was there a streak ending on day before yesterday?
-            if let dayBeforeYesterday = calendar.date(byAdding: .day, value: -1, to: yesterday) {
-                if (completedDates.contains(dayBeforeYesterday) || frozenDates.contains(dayBeforeYesterday)) && streakFreezes > 0 {
-                    // Use a freeze for yesterday!
-                    withAnimation(.spring()) {
-                        streakFreezes -= 1
-                        frozenDates.insert(yesterday)
-                        showingFreezeUsed = true
-                        calculateStreak(shouldAnimate: false)
-                    }
+        var usedFreeze = false
+        while checkDate < today {
+            if streakFreezes > 0 {
+                // Use a freeze!
+                withAnimation(.spring()) {
+                    streakFreezes -= 1
+                    frozenDates.insert(checkDate)
+                    usedFreeze = true
                 }
+            } else {
+                // No more freezes, the streak is broken here.
+                break
             }
+            checkDate = calendar.date(byAdding: .day, value: 1, to: checkDate)!
+        }
+        
+        if usedFreeze {
+            showingFreezeUsed = true
+            calculateStreak(shouldAnimate: false)
         }
     }
     
@@ -142,6 +147,7 @@ class StreakStore: ObservableObject {
         SharedUserDefaults.suite.set(streakFreezes, forKey: "streak_freezes_count")
         SharedUserDefaults.suite.set(bestStreak, forKey: "streak_best_streak")
         SharedUserDefaults.suite.set(lastShownStreak, forKey: "streak_last_shown")
+        SharedUserDefaults.suite.synchronize()
     }
     
     private func load() {

@@ -4,35 +4,14 @@ import SwiftUI
 struct WeedStackIndicator: View {
     let count: Int
     var iconSize: CGFloat = 22
-    var maxVisibleLayers: Int = 3
-
-    private var visibleLayers: Int {
-        min(max(count, 1), maxVisibleLayers)
-    }
-
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             ZStack {
-                ForEach(0..<visibleLayers, id: \.self) { layer in
-                    Image(systemName: "leaf.fill")
-                        .font(.system(size: iconSize - CGFloat(layer) * 3, weight: .bold))
-                        .foregroundStyle(.white.opacity(0.95 - Double(layer) * 0.12))
-                        .rotationEffect(.degrees(Double(layer - 1) * 14))
-                        .offset(x: CGFloat(layer) * 3, y: CGFloat(-layer) * 2)
-                }
+                Image(systemName: "leaf.fill")
+                    .font(.system(size: iconSize, weight: .bold))
+                    .foregroundStyle(.white.opacity(0.95))
             }
             .frame(width: iconSize + 10, height: iconSize + 6)
-
-            if count > 1 {
-                Text("×\(count)")
-                    .font(.system(size: 11, weight: .black, design: .rounded))
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 5)
-                    .padding(.vertical, 2)
-                    .background(Color.black.opacity(0.22))
-                    .clipShape(Capsule())
-                    .offset(x: 8, y: 4)
-            }
         }
         .accessibilityLabel(Text("\(count) Unkraut"))
     }

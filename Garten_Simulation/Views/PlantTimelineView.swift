@@ -34,8 +34,9 @@ struct PlantTimelineView: View {
     ]
     
     var body: some View {
-        ZStack {
-            Color.appHintergrund.ignoresSafeArea()
+        NavigationStack {
+            ZStack {
+                Color.white.ignoresSafeArea()
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 32) {
@@ -51,9 +52,7 @@ struct PlantTimelineView: View {
                             VStack(spacing: 0) {
                                 ForEach(Array(timelinePlants.enumerated()), id: \.element.id) { index, pflanze in
                                     NavigationLink {
-                                        TimerEditSheetView(pflanze: pflanze)
-                                            .environmentObject(gardenStore)
-                                            .environmentObject(settings)
+                                        PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter)
                                     } label: {
                                         TimelineRow(pflanze: pflanze, isLast: index == timelinePlants.count - 1)
                                     }
@@ -76,9 +75,7 @@ struct PlantTimelineView: View {
                             LazyVGrid(columns: columns, spacing: 16) {
                                 ForEach(otherPlants) { pflanze in
                                     NavigationLink {
-                                        TimerEditSheetView(pflanze: pflanze)
-                                            .environmentObject(gardenStore)
-                                            .environmentObject(settings)
+                                        PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter)
                                     } label: {
                                         SimplePlantCell(pflanze: pflanze)
                                     }
@@ -125,6 +122,7 @@ struct PlantTimelineView: View {
                         .padding(8)
                 }
             }
+        }
         }
     }
 }

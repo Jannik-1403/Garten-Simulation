@@ -177,52 +177,19 @@ struct PflanzeDetailSheet: View {
                     .padding(.top, 40)
 
                 // MARK: - TAB PICKER
-                Picker("", selection: $selectedTab) {
-                    Text(settings.localizedString(for: "tab.uebersicht")).tag(DetailTab.uebersicht)
-                    Text(settings.localizedString(for: "tab.verlauf")).tag(DetailTab.verlauf)
+                if !(pflanze.plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: pflanze.plantID) == nil) {
+                    Picker("", selection: $selectedTab) {
+                        Text(settings.localizedString(for: "tab.uebersicht")).tag(DetailTab.uebersicht)
+                        Text(settings.localizedString(for: "tab.verlauf")).tag(DetailTab.verlauf)
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(.horizontal, 24)
+                    .padding(.top, 8)
                 }
-                .pickerStyle(.segmented)
-                .padding(.horizontal, 24)
-                .padding(.top, 8)
 
                 // MARK: - TAB CONTENT
                 if selectedTab == .uebersicht {
-
-                NavigationLink(destination: StreakView(selectedPlant: pflanze)
-                    .environmentObject(streakStore)
-                    .environmentObject(gardenStore)
-                    .environmentObject(settings)
-                ) {
-                    VStack(spacing: 0) {
-                        PlantWeeklyStreakView(pflanze: pflanze)
-                            .padding(.vertical, 16)
-                    }
-                    .background(
-                        ZStack {
-                            // 3D Shadow
-                            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                .fill(Color.orangeSecondary)
-                                .offset(y: 4)
-                            
-                            // Main Orange Surface
-                            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                .fill(
-                                    LinearGradient(
-                                        colors: [.orangePrimary, .orangePrimary.opacity(0.9)],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    )
-                                )
-                        }
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 24, style: .continuous)
-                            .stroke(Color.white.opacity(0.2), lineWidth: 1.5)
-                    )
-                }
-                .buttonStyle(PlainButtonStyle())
-                .padding(.horizontal, 24)
-                .padding(.vertical, 8)
+                    streakCardView
 
                 // MARK: - ACTIONS (Zone 3)
                 VStack(spacing: 12) {
@@ -241,7 +208,8 @@ struct PflanzeDetailSheet: View {
                             
                             VStack(alignment: .leading, spacing: 2) {
                                 let noteLabel = settings.localizedString(for: "plant.detail.note")
-                                Text("\(noteLabel) \(index + 1)")
+                                let noteText = noteLabel + " " + String(index + 1)
+                                Text(noteText)
                                     .font(.system(size: 11, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
                                 Text(pflanze.notizen[index])
@@ -276,12 +244,12 @@ struct PflanzeDetailSheet: View {
                     }
 
                     // Timer Vorschau
-                    if let timerDate = pflanze.reminderTime {
+                    if pflanze.hasActiveReminder {
                         HStack(spacing: 12) {
                             ZStack {
                                 Circle().fill(Color.orangePrimary.opacity(0.1))
                                     .frame(width: 36, height: 36)
-                                Image(systemName: "bell.fill")
+                                Image(systemName: pflanze.reminderSchedule?.weekdays.first(where: { $0.isEnabled })?.repeatMode.sfSymbol ?? "bell.fill")
                                     .font(.system(size: 16))
                                     .foregroundStyle(Color.orangePrimary)
                             }
@@ -290,8 +258,13 @@ struct PflanzeDetailSheet: View {
                                 Text(settings.localizedString(for: "plant.detail.timer.active"))
                                     .font(.system(size: 12, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
-                                Text("\(timerDate, style: .time)")
-                                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                if let today = pflanze.todaysReminder {
+                                    Text("\(today.time, style: .time)")
+                                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                } else {
+                                    Text(settings.localizedString(for: "timer.weekday.title"))
+                                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                }
                             }
                             Spacer()
                             Button {
@@ -599,6 +572,45 @@ struct PflanzeDetailSheet: View {
             .frame(maxWidth: .infinity)
         }
     }
+    
+    @ViewBuilder
+    private var streakCardView: some View {
+        NavigationLink(destination: StreakView(selectedPlant: pflanze)
+            .environmentObject(streakStore)
+            .environmentObject(gardenStore)
+            .environmentObject(settings)
+        ) {
+            VStack(spacing: 0) {
+                PlantWeeklyStreakView(pflanze: pflanze)
+                    .padding(.vertical, 16)
+            }
+            .background(
+                ZStack {
+                    // 3D Shadow
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .fill(Color.orangeSecondary)
+                        .offset(y: 4)
+                    
+                    // Main Orange Surface
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .fill(
+                            LinearGradient(
+                                colors: [.orangePrimary, .orangePrimary.opacity(0.9)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                }
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .stroke(Color.white.opacity(0.2), lineWidth: 1.5)
+            )
+        }
+        .buttonStyle(PlainButtonStyle())
+        .padding(.horizontal, 24)
+        .padding(.vertical, 8)
+    }
 }
 
 // MARK: - Notiz Sheet
@@ -693,254 +705,395 @@ struct TimerEditSheetView: View {
     @ObservedObject var pflanze: HabitModel
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var shopStore: ShopStore
+    @EnvironmentObject var powerUpStore: PowerUpStore
+    @EnvironmentObject var pfadStore: GartenPfadStore
+    @EnvironmentObject var streakStore: StreakStore
     @Environment(\.dismiss) private var dismiss
 
-    @State private var ausgewaehlteZeit: Date
-    @State private var customMessage: String
-    @FocusState private var isEditingText: Bool
+    @State private var schedule: ReminderSchedule
+    
+    // UI States
+    @State private var expandedDay: Int? = nil
+    @State private var isLinkingNotes: Bool = false
+    @State private var selectedDaysForLinking: Set<Int> = []
+    @State private var selectedNoteForLinking: String? = nil
+    @State private var showTimeline = false
+    
+    // Focus
+    @FocusState private var focusedDay: Int?
+
+    let daysKeys = ["days.monday", "days.tuesday", "days.wednesday", "days.thursday", "days.friday", "days.saturday", "days.sunday"]
 
     init(pflanze: HabitModel) {
         self.pflanze = pflanze
-        if let existing = pflanze.reminderTime {
-            self._ausgewaehlteZeit = State(initialValue: existing)
+        
+        let initialSchedule: ReminderSchedule
+        if let existing = pflanze.reminderSchedule {
+            initialSchedule = existing
+        } else if let legacyTime = pflanze.reminderTime {
+            initialSchedule = ReminderSchedule.defaultSchedule(time: legacyTime, customMessage: pflanze.customReminderMessage)
         } else {
             var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
             components.hour = 8
             components.minute = 0
-            self._ausgewaehlteZeit = State(initialValue: Calendar.current.date(from: components) ?? Date())
+            let defaultTime = Calendar.current.date(from: components) ?? Date()
+            initialSchedule = ReminderSchedule.defaultSchedule(time: defaultTime)
         }
         
-        if let customMsg = pflanze.customReminderMessage, !customMsg.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            self._customMessage = State(initialValue: customMsg)
-        } else {
-            self._customMessage = State(initialValue: "")
-        }
+        self._schedule = State(initialValue: initialSchedule)
     }
-
+    
     private var pflanzName: String {
         settings.showHabitInsteadOfName
             ? settings.localizedString(for: pflanze.habitName)
             : settings.localizedString(for: pflanze.name)
     }
 
-    private var defaultBodyText: String {
-        String(format: settings.localizedString(for: "timer.preview.body.example"), pflanzName)
-    }
-
-    private var zeitFormatted: String {
-        let formatter = DateFormatter()
-        formatter.timeStyle = .short
-        formatter.dateStyle = .none
-        return formatter.string(from: ausgewaehlteZeit)
-    }
-
-    private var previewTitle: String {
-        if !customMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            return "\(pflanzName)"
-        }
-        return "\(settings.localizedString(for: "timer.preview.title.example"))"
-    }
-
-    private var hasUnsavedChanges: Bool {
-        let currentCustomMsg = customMessage.trimmingCharacters(in: .whitespacesAndNewlines)
-        let savedCustomMsg = (pflanze.customReminderMessage ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        var timeChanged = false
-        if let savedTime = pflanze.reminderTime {
-            let savedH = Calendar.current.component(.hour, from: savedTime)
-            let savedM = Calendar.current.component(.minute, from: savedTime)
-            let curH = Calendar.current.component(.hour, from: ausgewaehlteZeit)
-            let curM = Calendar.current.component(.minute, from: ausgewaehlteZeit)
-            timeChanged = (savedH != curH || savedM != curM)
-        }
-        
-        return currentCustomMsg != savedCustomMsg || timeChanged
-    }
-
     var body: some View {
         NavigationStack {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 0) {
-                    // MARK: Header
-                    HStack(alignment: .center) {
-                        VStack(alignment: .leading, spacing: 3) {
-                            Text(settings.localizedString(for: "plant.detail.timer"))
-                                .font(.system(size: 22, weight: .black, design: .rounded))
-                            Text(pflanzName)
-                                .font(.system(size: 14, weight: .medium, design: .rounded))
-                                .foregroundStyle(.secondary)
-                        }
-                        Spacer()
+            VStack(spacing: 0) {
+                // Header
+                HStack {
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(settings.localizedString(for: "plant.detail.timer"))
+                            .font(.system(size: 22, weight: .black, design: .rounded))
+                        Text(pflanzName)
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
                     }
-                    .padding(.horizontal, 24)
-                    .padding(.top, 16)
-                    .padding(.bottom, 16)
-
-                    // MARK: Time Picker
-                    DatePicker(
-                        "",
-                        selection: $ausgewaehlteZeit,
-                        displayedComponents: .hourAndMinute
-                    )
-                    .datePickerStyle(.wheel)
-                    .labelsHidden()
-                    .padding(.horizontal, 8)
-                    .padding(.bottom, 16)
-
-                    // MARK: Notification Preview Card
-                    VStack(alignment: .leading, spacing: 10) {
-                        HStack(spacing: 6) {
-                            Image(systemName: "eye")
-                                .font(.system(size: 11, weight: .bold))
-                                .foregroundStyle(.secondary)
-                            Text(settings.localizedString(for: "timer.preview.label"))
-                                .font(.system(size: 11, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
-                                .textCase(.uppercase)
-                                .tracking(0.8)
-                        }
-
-                        // Mock-Notification
-                        HStack(spacing: 12) {
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(previewTitle)
-                                    .font(.system(size: 13, weight: .bold, design: .rounded))
-                                    .lineLimit(1)
-                                
-                                TextField(defaultBodyText, text: $customMessage, axis: .vertical)
-                                    .focused($isEditingText)
-                                    .font(.system(size: 12, weight: .medium, design: .rounded))
-                                    .foregroundStyle(.secondary)
-                                    .lineLimit(2...4)
-                            }
-
-                            Spacer(minLength: 0)
-
-                            if !isEditingText {
-                                Button {
-                                    isEditingText = true
-                                } label: {
-                                    Image(systemName: "pencil")
-                                        .font(.system(size: 14, weight: .bold))
-                                        .foregroundStyle(.primary)
-                                        .padding(.horizontal, 4)
-                                }
-                                .transition(.opacity)
-                            }
-
-                            Text(zeitFormatted)
-                                .font(.system(size: 11, weight: .semibold, design: .rounded))
-                                .foregroundStyle(.tertiary)
-                        }
-                        .animation(.easeInOut(duration: 0.2), value: isEditingText)
-                        .padding(18)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .fill(Color.white)
-                                .shadow(color: Color.black.opacity(0.08), radius: 12, y: 6)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .stroke(Color.primary.opacity(0.05), lineWidth: 1)
-                        )
-
-
-                    }
-                    .padding(.horizontal, 24)
-                    .padding(.bottom, 24)
-
-
+                    Spacer()
                 }
+                .padding(.horizontal, 24)
+                .padding(.top, 16)
+                .padding(.bottom, 16)
+                
+                if isLinkingNotes, let note = selectedNoteForLinking {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Notiz zuweisen: \(note)")
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                        Text("Wähle die Tage aus, an denen diese Notiz erscheinen soll.")
+                            .font(.system(size: 12, weight: .regular, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                    .background(Color.orangePrimary.opacity(0.1))
+                    .cornerRadius(12)
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 8)
+                }
+
+                // Days List
+                List {
+                    Section {
+                        ForEach(1...7, id: \.self) { day in
+                            dayRow(for: day)
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    if schedule.weekdays[dayIndex(for: day)].isEnabled {
+                                        Button(role: .destructive) {
+                                            withAnimation {
+                                                schedule.weekdays[dayIndex(for: day)].isEnabled = false
+                                                if expandedDay == day {
+                                                    expandedDay = nil
+                                                }
+                                            }
+                                        } label: {
+                                            Label(settings.localizedString(for: "plant.detail.note.delete.action"), systemImage: "trash")
+                                        }
+                                    }
+                                }
+                        }
+                    }
+                }
+                .listStyle(.insetGrouped)
+                .scrollDismissesKeyboard(.interactively)
+                .scrollContentBackground(.hidden)
+                .background(Color.white)
             }
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    ZStack {
-                        if hasUnsavedChanges || isEditingText {
-                            Button {
-                                isEditingText = false
-                                autoSave()
-                            } label: {
-                                Image(systemName: "checkmark")
-                                    .font(.system(size: 18, weight: .heavy))
-                                    .foregroundStyle(Color(red: 1.0, green: 0.85, blue: 0.7)) // hellorange
+                    if isLinkingNotes {
+                        Button {
+                            // Bestätigen der Verknüpfung
+                            withAnimation {
+                                for day in selectedDaysForLinking {
+                                    schedule.weekdays[dayIndex(for: day)].customMessage = selectedNoteForLinking
+                                }
+                                isLinkingNotes = false
+                                selectedDaysForLinking.removeAll()
+                                selectedNoteForLinking = nil
                             }
-                            .buttonStyle(.borderedProminent)
-                            .buttonBorderShape(.circle)
-                            .tint(Color.orangePrimary)
-                            .transition(.opacity)
-                        } else {
-                            Button {
-                                dismiss()
-                            } label: {
-                                Image(systemName: "xmark")
-                                    .font(.system(size: 16, weight: .black))
-                                    .foregroundStyle(.primary)
-                                    .padding(8)
-                            }
-                            .transition(.opacity)
+                        } label: {
+                            Text(settings.localizedString(for: "common.done_button"))
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                        }
+                        .disabled(selectedDaysForLinking.isEmpty)
+                    } else if focusedDay != nil {
+                        Button {
+                            focusedDay = nil
+                        } label: {
+                            Image(systemName: "keyboard.chevron.compact.down")
+                        }
+                    } else {
+                        Button {
+                            autoSave()
+                            dismiss()
+                        } label: {
+                            Text(settings.localizedString(for: "common.done_button"))
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
                         }
                     }
-                    .animation(.easeInOut(duration: 0.2), value: hasUnsavedChanges || isEditingText)
                 }
 
                 ToolbarItem(placement: .topBarLeading) {
-                    Menu {
-                        Button(role: .destructive) {
-                            gardenStore.timerEntfernen(pflanze: pflanze)
-                            dismiss()
+                    if isLinkingNotes {
+                        Button {
+                            withAnimation {
+                                isLinkingNotes = false
+                                selectedDaysForLinking.removeAll()
+                                selectedNoteForLinking = nil
+                            }
                         } label: {
-                            Label(settings.localizedString(for: "plant.detail.timer.delete"), systemImage: "trash")
+                            Text(settings.localizedString(for: "common.cancel"))
+                                .font(.system(size: 16, weight: .regular))
+                                .foregroundStyle(.red)
                         }
-                        
+                    } else {
                         Menu {
-                            if pflanze.notizen.isEmpty {
-                                Text(settings.localizedString(for: "plant.detail.note.empty"))
-                            } else {
-                                ForEach(pflanze.notizen, id: \.self) { notiz in
-                                    Button(notiz) {
-                                        withAnimation {
-                                            customMessage = notiz
+                            // 1. Notizen verknüpfen Sub-Menu
+                            Menu {
+                                if pflanze.notizen.isEmpty {
+                                    Text(settings.localizedString(for: "plant.detail.note.empty"))
+                                } else {
+                                    ForEach(pflanze.notizen, id: \.self) { notiz in
+                                        Button(notiz) {
+                                            withAnimation {
+                                                selectedNoteForLinking = notiz
+                                                isLinkingNotes = true
+                                                expandedDay = nil
+                                            }
                                         }
                                     }
                                 }
+                            } label: {
+                                Label(settings.localizedString(for: "timer.note.link"), systemImage: "link")
                             }
-                        } label: {
-                            Label(settings.localizedString(for: "timer.note.link"), systemImage: "link")
-                        }
-                        
-                        if !customMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                            Button {
-                                withAnimation {
-                                    customMessage = ""
+                            
+                            // 2. Wiederholung für alle Sub-Menu
+                            Menu {
+                                ForEach(ReminderRepeatMode.allCases, id: \.self) { mode in
+                                    Button {
+                                        withAnimation {
+                                            for i in 0..<schedule.weekdays.count {
+                                                if schedule.weekdays[i].isEnabled {
+                                                    schedule.weekdays[i].repeatMode = mode
+                                                }
+                                            }
+                                        }
+                                    } label: {
+                                        Label(settings.localizedString(for: mode.localizationKey), systemImage: mode.sfSymbol)
+                                    }
                                 }
                             } label: {
-                                Label(settings.localizedString(for: "timer.note.unlink"), systemImage: "link.badge.minus")
+                                Label(settings.localizedString(for: "timer.repeat.title"), systemImage: "repeat")
                             }
-                        }
-
-                        NavigationLink {
-                            PlantTimelineView(onClose: { dismiss() })
-                                .environmentObject(gardenStore)
-                                .environmentObject(settings)
+                            
+                            // 3. Zeitleiste (Alle Benachrichtigungen)
+                            Button {
+                                showTimeline = true
+                            } label: {
+                                Label("Zeitleiste", systemImage: "list.bullet.rectangle.portrait")
+                            }
+                            
+                            // 4. Löschen
+                            Button(role: .destructive) {
+                                gardenStore.timerEntfernen(pflanze: pflanze)
+                                dismiss()
+                            } label: {
+                                Label(settings.localizedString(for: "plant.detail.timer.delete"), systemImage: "trash")
+                            }
                         } label: {
-                            Label("Andere Pflanzen", systemImage: "list.bullet")
+                            Image(systemName: "ellipsis")
+                                .font(.system(size: 20))
+                                .foregroundStyle(.primary)
                         }
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .font(.system(size: 20))
-                            .foregroundStyle(.primary)
                     }
                 }
             }
+            .fullScreenCover(isPresented: $showTimeline) {
+                PlantTimelineView()
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+                    .environmentObject(shopStore)
+                    .environmentObject(powerUpStore)
+                    .environmentObject(pfadStore)
+                    .environmentObject(streakStore)
+            }
         }
+    }
+    
+    private func dayIndex(for day: Int) -> Int {
+        schedule.weekdays.firstIndex(where: { $0.weekday == day }) ?? 0
+    }
+    
+    @ViewBuilder
+    private func dayRow(for day: Int) -> some View {
+        let index = dayIndex(for: day)
+        let isEnabled = schedule.weekdays[index].isEnabled
+        let isExpanded = expandedDay == day && !isLinkingNotes
+        let isSelectedForLinking = selectedDaysForLinking.contains(day)
+        
+        VStack(spacing: 0) {
+            // Header Row (Tap to expand/link)
+            Button {
+                if isLinkingNotes {
+                    if isEnabled {
+                        withAnimation {
+                            if isSelectedForLinking {
+                                selectedDaysForLinking.remove(day)
+                            } else {
+                                selectedDaysForLinking.insert(day)
+                            }
+                        }
+                    }
+                } else {
+                    withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                        if !isEnabled {
+                            schedule.weekdays[index].isEnabled = true
+                            expandedDay = day
+                        } else {
+                            if expandedDay == day {
+                                expandedDay = nil
+                                focusedDay = nil
+                            } else {
+                                expandedDay = day
+                            }
+                        }
+                    }
+                }
+            } label: {
+                HStack(spacing: 12) {
+                    if isLinkingNotes {
+                        Image(systemName: isSelectedForLinking ? "checkmark.circle.fill" : "circle")
+                            .font(.system(size: 20))
+                            .foregroundStyle(isSelectedForLinking ? Color.orangePrimary : Color.secondary.opacity(0.3))
+                    }
+                    
+                    Text(settings.localizedString(for: daysKeys[day-1]))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .foregroundStyle(isEnabled ? Color.primary : Color.secondary.opacity(0.5))
+                    
+                    Spacer()
+                    
+                    if isEnabled {
+                        if !isLinkingNotes {
+                            Text(timeFormatted(schedule.weekdays[index].time))
+                                .font(.system(size: 16, weight: isExpanded ? .bold : .semibold, design: .rounded))
+                                .foregroundStyle(Color.primary)
+                            
+                            Image(systemName: "chevron.down")
+                                .rotationEffect(.degrees(isExpanded ? 180 : 0))
+                                .foregroundStyle(.secondary)
+                                .font(.system(size: 14, weight: isExpanded ? .bold : .medium))
+                        }
+                    } else {
+                        Text("Ausgeschaltet")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary.opacity(0.6))
+                        Image(systemName: "plus.circle.fill")
+                            .foregroundStyle(.secondary.opacity(0.3))
+                            .font(.system(size: 18))
+                    }
+                }
+                .padding(.vertical, 12)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            
+            // Expanded Content
+            if isExpanded {
+                expandedContent(for: index, day: day)
+                    .transition(.opacity)
+            }
+        }
+        .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+        .listRowBackground(
+            isLinkingNotes && isSelectedForLinking
+                ? Color.orangePrimary.opacity(0.1)
+                : nil
+        )
+    }
+    
+    @ViewBuilder
+    private func expandedContent(for index: Int, day: Int) -> some View {
+        VStack(spacing: 16) {
+            Divider()
+                .padding(.horizontal, 16)
+            
+            DatePicker(
+                "",
+                selection: $schedule.weekdays[index].time,
+                displayedComponents: .hourAndMinute
+            )
+            .datePickerStyle(.wheel)
+            .labelsHidden()
+            .frame(height: 150)
+            .clipped()
+            
+            // Message Field
+            VStack(alignment: .leading, spacing: 6) {
+                Text(settings.localizedString(for: "timer.notification.title"))
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                    .foregroundStyle(.secondary)
+                    .textCase(.uppercase)
+                
+                TextField(String(format: settings.localizedString(for: "timer.preview.body.example"), pflanzName),
+                          text: Binding(
+                              get: { schedule.weekdays[index].customMessage ?? "" },
+                              set: { schedule.weekdays[index].customMessage = $0.isEmpty ? nil : $0 }
+                          ),
+                          axis: .vertical)
+                    .focused($focusedDay, equals: day)
+                    .font(.system(size: 15, weight: .medium, design: .rounded))
+                    .padding(12)
+                    .background(Color(UIColor.secondarySystemBackground))
+                    .cornerRadius(12)
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 8)
+            
+            // Repeat Mode
+            VStack(alignment: .leading, spacing: 6) {
+                Text(settings.localizedString(for: "timer.repeat.title"))
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                    .foregroundStyle(.secondary)
+                    .textCase(.uppercase)
+                    
+                Picker("", selection: $schedule.weekdays[index].repeatMode) {
+                    ForEach(ReminderRepeatMode.allCases, id: \.self) { mode in
+                        Text(settings.localizedString(for: mode.localizationKey)).tag(mode)
+                    }
+                }
+                .pickerStyle(.segmented)
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 16)
+        }
+    }
+    
+    private func timeFormatted(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .none
+        return formatter.string(from: date)
     }
 
     private func autoSave() {
         Task {
             _ = await NotificationManager.shared.requestPermission()
-            let finalMsg = customMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : customMessage
-            gardenStore.timerSetzen(pflanze: pflanze, datum: ausgewaehlteZeit, customMessage: finalMsg)
+            gardenStore.timerScheduleSetzen(pflanze: pflanze, schedule: schedule)
         }
     }
 }

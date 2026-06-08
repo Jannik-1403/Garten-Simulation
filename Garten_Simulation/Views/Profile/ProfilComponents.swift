@@ -32,19 +32,21 @@ struct XPStatButton: View {
     @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
-        VStack(spacing: 6) {
-            Item3DButton(
-                icon: "XP",
-                farbe: Color(hex: "#FFD000"),          // Blitzgelb
-                sekundaerFarbe: Color(hex: "#D9A300"), // dunkles Gelb
-                groesse: 80,
-                aktion: { showDetail = true }
-            )
-            Text("\(xp)")
-                .font(.system(size: 22, weight: .black, design: .rounded))
-            Text(settings.localizedString(for: "profile.xp.total"))
-                .font(.caption)
-                .foregroundStyle(.secondary)
+        DuolingoCard(action: { showDetail = true }) {
+            VStack(spacing: 12) {
+                Item3DButton(icon: "XP", farbe: Color(hex: "#FFD000"), sekundaerFarbe: Color(hex: "#D9A300"), groesse: 65, aktion: nil)
+                    .allowsHitTesting(false)
+                
+                VStack(spacing: 2) {
+                    Text("\(xp)")
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                        .foregroundStyle(.primary)
+                    Text(settings.localizedString(for: "profile.xp.total"))
+                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity)
         }
     }
 }
@@ -55,19 +57,25 @@ struct InventoryStatButton: View {
     @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
-        VStack(spacing: 6) {
-            Item3DButton(
-                icon: "Inventar",
-                farbe: Color(hex: "#8B4513"),          // Holz-Braun
-                sekundaerFarbe: Color(hex: "#5D2E0C"), // dunkles Braun
-                groesse: 80,
-                aktion: { showDetail = true }
-            )
-            Text("\(count)")
-                .font(.system(size: 22, weight: .black, design: .rounded))
-            Text(settings.localizedString(for: "profile.inventory"))
-                .font(.caption)
-                .foregroundStyle(.secondary)
+        DuolingoCard(action: { showDetail = true }) {
+            HStack(spacing: 20) {
+                Item3DButton(icon: "Inventar", farbe: Color(hex: "#8B4513"), sekundaerFarbe: Color(hex: "#5D2E0C"), groesse: 70, aktion: nil)
+                    .allowsHitTesting(false)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(settings.localizedString(for: "profile.inventory"))
+                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                    
+                    Text("\(count)")
+                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .foregroundStyle(.primary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundStyle(.quaternary)
+            }
         }
     }
 }
@@ -79,23 +87,21 @@ struct StreakStatButton: View {
     @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
-        VStack(spacing: 6) {
-            Item3DButton(
-                icon: "streak",
-                farbe: Color(hex: "#FF4B00"),          // Flammen-Rot/Orange
-                sekundaerFarbe: Color(hex: "#C43D00"), // dunkles Rot
-                groesse: 80,
-                aktion: aktion
-            )
-            
-            HStack(alignment: .lastTextBaseline, spacing: 4) {
-                Text("\(bestStreak)")
-                    .font(.system(size: 22, weight: .black, design: .rounded))
+        DuolingoCard(action: { aktion?() }) {
+            VStack(spacing: 12) {
+                Item3DButton(icon: "streak", farbe: Color(hex: "#FF4B00"), sekundaerFarbe: Color(hex: "#C43D00"), groesse: 65, aktion: nil)
+                    .allowsHitTesting(false)
+                
+                VStack(spacing: 2) {
+                    Text("\(bestStreak)")
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                        .foregroundStyle(.primary)
+                    Text(settings.localizedString(for: "profile.streak.best"))
+                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                }
             }
-            
-            Text(settings.localizedString(for: "profile.streak.best"))
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            .frame(maxWidth: .infinity)
         }
     }
 }
@@ -106,21 +112,21 @@ struct ErfolgeStatButton: View {
     @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
-        VStack(spacing: 6) {
-            Item3DButton(
-                icon: "Erfolg",
-                farbe: Color(hex: "#FFB800"),          // Trophäen-Gold
-                sekundaerFarbe: Color(hex: "#C5A000"), // dunkles Gold
-                groesse: 80,
-                aktion: { showDetail = true }
-            )
-            
-            Text("\(count)")
-                .font(.system(size: 22, weight: .black, design: .rounded))
-
-            Text(settings.localizedString(for: "profile.achievements"))
-                .font(.caption)
-                .foregroundStyle(.secondary)
+        DuolingoCard(action: { showDetail = true }) {
+            VStack(spacing: 12) {
+                Item3DButton(icon: "Erfolg", farbe: Color(hex: "#FFB800"), sekundaerFarbe: Color(hex: "#C5A000"), groesse: 65, aktion: nil)
+                    .allowsHitTesting(false)
+                
+                VStack(spacing: 2) {
+                    Text("\(count)")
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                        .foregroundStyle(.primary)
+                    Text(settings.localizedString(for: "profile.achievements"))
+                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity)
         }
     }
 }
@@ -131,27 +137,133 @@ struct WasserStatButton: View {
     @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
-        VStack(spacing: 6) {
-            Item3DButton(
-                icon: "Drop water",
-                farbe: .blauPrimary,
-                sekundaerFarbe: .blauSecondary,
-                groesse: 80,
-                aktion: { showDetail = true }
-            )
-            
-            VStack(spacing: 0) {
-                Text(settings.localizedString(for: "wasser.karte.titel"))
-                    .font(.system(size: 10, weight: .bold, design: .rounded))
-                    .foregroundStyle(.secondary)
+        DuolingoCard(action: { showDetail = true }) {
+            HStack(spacing: 20) {
+                Item3DButton(icon: "Drop water", farbe: .blauPrimary, sekundaerFarbe: .blauSecondary, groesse: 70, aktion: nil)
+                    .allowsHitTesting(false)
                 
-                Text(liter)
-                    .font(.system(size: 22, weight: .black, design: .rounded))
-                
-                Text(settings.localizedString(for: "wasser.gesamt"))
-                    .font(.system(size: 10, weight: .medium, design: .rounded))
-                    .foregroundStyle(.secondary)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(settings.localizedString(for: "wasser.karte.titel"))
+                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                    
+                    Text(liter)
+                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .foregroundStyle(.primary)
+                    
+                    Text(settings.localizedString(for: "wasser.gesamt"))
+                        .font(.system(size: 10, weight: .medium, design: .rounded))
+                        .foregroundStyle(.tertiary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundStyle(.quaternary)
             }
+        }
+    }
+}
+
+// MARK: - NameEditSheet
+struct NameEditSheet: View {
+    @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var gardenStore: GardenStore
+    @Environment(\.dismiss) var dismiss
+    
+    @State private var tempName: String = ""
+    @State private var zeigeZweiteBestaetigung = false
+    
+    var nameChangeCost: Int {
+        let count = settings.igelCustomization.nameChangeCount
+        if count == 0 { return 0 }
+        var cost = 100.0
+        for _ in 1..<count { cost *= 1.5 }
+        return Int(cost)
+    }
+    
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 24) {
+                if !zeigeZweiteBestaetigung {
+                    VStack(spacing: 8) {
+                        Text(settings.localizedString(for: "igel_name_edit_title"))
+                            .font(.system(size: 24, weight: .black, design: .rounded))
+                        
+                        Text(settings.localizedString(for: settings.igelCustomization.nameChangeCount == 0 ? "igel_name_edit_hint_free" : "igel_name_edit_hint_paid"))
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    
+                    TextField(settings.localizedString(for: "igel_name_placeholder"), text: $tempName)
+                        .font(.headline)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 12).fill(Color(.secondarySystemGroupedBackground)))
+                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.blauPrimary.opacity(0.2), lineWidth: 1))
+                    
+                    Button(action: {
+                        withAnimation { zeigeZweiteBestaetigung = true }
+                    }) {
+                        Text(settings.localizedString(for: "common_continue"))
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(DuolingoButtonStyle(backgroundColor: .blauPrimary, shadowColor: .blauSecondary, foregroundColor: .white))
+                    .disabled(tempName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                } else {
+                    VStack(spacing: 16) {
+                        Image("coin").resizable().scaledToFit().frame(width: 60, height: 60)
+                        Text(settings.localizedString(for: "igel_name_confirm_title"))
+                            .font(.system(size: 24, weight: .black, design: .rounded))
+                            .multilineTextAlignment(.center)
+                        
+                        Text(String(format: settings.localizedString(for: "igel_name_confirm_hint"), tempName))
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    
+                    let cost = nameChangeCost
+                    let canAfford = gardenStore.coins >= cost
+                    
+                    Button(action: {
+                        if canAfford {
+                            if cost > 0 { gardenStore.coins -= cost }
+                            settings.igelCustomization.name = tempName
+                            settings.igelCustomization.nameChangeCount += 1
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            dismiss()
+                        }
+                    }) {
+                        HStack(spacing: 12) {
+                            if cost == 0 {
+                                Text(settings.localizedString(for: "igel_name_edit_button_free"))
+                            } else {
+                                Image("coin").resizable().scaledToFit().frame(width: 22, height: 22)
+                                Text("\(cost)")
+                            }
+                        }
+                        .font(.headline)
+                        .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(DuolingoButtonStyle(backgroundColor: canAfford ? .blauPrimary : .gray, shadowColor: canAfford ? .blauSecondary : .gray.darker(), foregroundColor: .white))
+                    .disabled(!canAfford)
+                }
+                Spacer()
+            }
+            .padding(24)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    if zeigeZweiteBestaetigung {
+                        Button { withAnimation { zeigeZweiteBestaetigung = false } } label: { Image(systemName: "chevron.left").foregroundStyle(.primary) }
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { dismiss() } label: { Image(systemName: "xmark").foregroundStyle(.primary) }
+                }
+            }
+            .onAppear { tempName = settings.igelCustomization.name }
         }
     }
 }
@@ -961,7 +1073,7 @@ struct StatShareImage<Content: View>: View {
                 // Footer
                 HStack(spacing: 16) {
                     HStack(spacing: 12) {
-                        Image("AppIcon")
+                        Image("Appicon")
                             .resizable()
                             .frame(width: 44, height: 44)
                             .cornerRadius(12)

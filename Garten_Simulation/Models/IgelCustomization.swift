@@ -14,8 +14,8 @@ enum IgelPose: String, CaseIterable, Codable {
     var assetName: String {
         switch self {
         case .stehend:     return "Igel_Stehend"
-        case .rennen:      return "Igel_Rennen"
-        case .schlafen:    return "Igel_Schlafen"
+        case .rennen:      return "Igel-rennen"
+        case .schlafen:    return "Igel-Schlafen"
         case .winken:      return "Igel_Winken"
         case .liegen:      return "Igel_Liegen"
         case .astronaut:   return "Igel_Outfit_Astronaut"

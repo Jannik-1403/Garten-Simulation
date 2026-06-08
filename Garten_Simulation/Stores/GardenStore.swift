@@ -199,6 +199,7 @@ class GardenStore: ObservableObject {
         ladeAbgeholte()
         updateTageAktiv()
         pruefePflanzenStatus()
+        taeglicherStreakCheck()
         checkUngegossenePflanzen()
         updateWidgetData()
     }
@@ -213,6 +214,7 @@ class GardenStore: ObservableObject {
         ladeAbgeholte()
         updateTageAktiv()
         pruefePflanzenStatus()
+        taeglicherStreakCheck()
         checkUngegossenePflanzen()
         updateWidgetData()
     }
@@ -336,7 +338,7 @@ class GardenStore: ObservableObject {
         let xpGewonnen = bonusAusgeloest ? Int(Double(xpBasis) * GameConstants.bonusXPMultiplier) : xpBasis
         let gemsGewonnen = bonusAusgeloest ? GameConstants.bonusGemAmount : 0
         
-        var coinsGewonnen = Int(Double(GameConstants.coinsProGiessen) * coinMult)
+        let coinsGewonnen = Int(Double(GameConstants.coinsProGiessen) * coinMult)
         var finalXPGewonnen = xpGewonnen
         
         let weedPenaltiesApply = isWeedActive && !hasActivePowerUp(powerUpId: PowerUpWeedSupport.zauberstabID)
@@ -678,7 +680,8 @@ class GardenStore: ObservableObject {
     // MARK: Streak-Check (täglich aufrufen, z.B. in .onReceive(timer))
     func taeglicherStreakCheck() {
         for pflanze in pflanzen {
-            if pflanze.streakAbgelaufen && !hatZeitkapsel {
+            let isProtected = activePowerUps.contains(where: { $0.powerUpId == "powerup.zeitkapsel" && $0.targetPlantId == pflanze.id && $0.isActive })
+            if pflanze.streakAbgelaufen && !isProtected {
                 pflanze.streak = 0
             }
         }
@@ -1100,8 +1103,23 @@ class GardenStore: ObservableObject {
         }
     }
 
+    // MARK: Timer setzen (neues System)
+    func timerScheduleSetzen(pflanze: HabitModel, schedule: ReminderSchedule) {
+        pflanze.reminderSchedule = schedule
+        // Legacy-Felder synchron halten für Rückwärtskompatibilität
+        pflanze.reminderTime = schedule.weekdays.first(where: { $0.isEnabled })?.time
+        self.objectWillChange.send()
+        savePlants()
+        NotificationManager.shared.scheduleAll(for: pflanzen)
+    }
+
     // MARK: Timer setzen
     func timerSetzen(pflanze: HabitModel, datum: Date, customMessage: String? = nil) {
+        let weekdays = (1...7).map { day in
+            WeekdayReminder(weekday: day, time: datum, customMessage: customMessage, isEnabled: true)
+        }
+        let schedule = ReminderSchedule(weekdays: weekdays)
+        pflanze.reminderSchedule = schedule
         pflanze.reminderTime = datum
         pflanze.customReminderMessage = customMessage
         self.objectWillChange.send()
@@ -1113,6 +1131,7 @@ class GardenStore: ObservableObject {
     // MARK: Timer entfernen
     func timerEntfernen(pflanze: HabitModel) {
         pflanze.reminderTime = nil
+        pflanze.reminderSchedule = nil
         self.objectWillChange.send()
         savePlants()
         NotificationManager.shared.cancelAll(for: pflanze)

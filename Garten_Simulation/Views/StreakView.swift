@@ -38,21 +38,23 @@ struct StreakView: View {
             ScrollView {
                 VStack(spacing: 32) {
                     // 2. Weekly & Monthly Progress Section
-                    if selectedMode != .year {
-                        VStack(spacing: 16) {
-                            LottieView(name: GameConstants.streakLottieURL)
-                                .frame(width: 140, height: 140)
-                                .shadow(color: .orangePrimary.opacity(0.3), radius: 30)
-                            
-                            VStack(spacing: 0) {
-                                Text("\(selectedPlant?.streak ?? streakStore.currentStreak)")
-                                    .font(.system(size: 80, weight: .heavy, design: .rounded))
-                                    .foregroundStyle(.orange)
-                            }
+                    // 2. Weekly & Monthly Progress Section
+                    VStack(spacing: 16) {
+                        LottieView(name: GameConstants.streakLottieURL)
+                            .frame(width: 140, height: 140)
+                            .shadow(color: .orangePrimary.opacity(0.3), radius: 30)
+                        
+                        VStack(spacing: 0) {
+                            Text("\(selectedPlant?.streak ?? streakStore.currentStreak)")
+                                .font(.system(size: 80, weight: .heavy, design: .rounded))
+                                .foregroundStyle(.orange)
                         }
-                        .padding(.top, 40)
-                        .transition(.scale.combined(with: .opacity))
                     }
+                    .padding(.top, 40)
+                    .opacity(selectedMode != .year ? 1.0 : 0.0)
+                    .frame(height: selectedMode != .year ? nil : 0)
+                    .clipped()
+                    .animation(.spring(), value: selectedMode)
                     
                     VStack(spacing: 24) {
                         // Segmented Picker
@@ -428,6 +430,7 @@ struct StreakFreezeDetailSheet: View {
                     sekundaerFarbe: .blauPrimary.darker(),
                     groesse: 60,
                     isRectangular: true,
+                    isDisabled: gardenStore.coins < 100,
                     aktion: buyStreakFreeze
                 ) {
                     HStack(spacing: 8) {
@@ -445,8 +448,6 @@ struct StreakFreezeDetailSheet: View {
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
                 }
-                .disabled(gardenStore.coins < 100)
-                .opacity(gardenStore.coins < 100 ? 0.6 : 1.0)
             }
         }
         .padding(32)

@@ -203,12 +203,62 @@ struct IsometricPathView: View {
         let phaseName = AppStrings.get("pfad_phase_\(phaseKey)", language: lang)
         let plantID = habit.plantID.lowercased().replacingOccurrences(of: "plant.", with: "")
         
-        // Lokalisierte Texte
-        let title = AppStrings.get("pfad_\(plantID)_day_\(dayNum)_title", language: lang)
-        let displayTitle = title.contains("pfad_") ? String(format: AppStrings.get("pfad_tag_header", language: lang), dayNum) : title
+        let zielSchluessel: String = {
+            switch settings.ausgewaehltesZiel {
+            case "gesund":    return "gesund"
+            case "produktiv": return "produktiv"
+            case "mental":    return "mental"
+            case "fit":       return "fit"
+            case "lernen":    return "lernen"
+            default:          return "fehlt"
+            }
+        }()
         
-        let dayDesc = AppStrings.get("pfad_\(plantID)_day_\(dayNum)_desc_\(diff)", language: lang)
-        let displayDesc = dayDesc.contains("pfad_") ? AppStrings.get("pfad_\(plantID)_phase_\(phaseKey)_desc_\(diff)", language: lang) : dayDesc
+        // Lokalisierte Texte (Titel)
+        var title = AppStrings.get("pfad_\(plantID)_day_\(dayNum)_title", language: lang)
+        if title.contains("pfad_") {
+            let generic = AppStrings.get("pfad_generic_day_\(dayNum)_title", language: lang)
+            if !generic.contains("pfad_") { title = generic }
+            else {
+                let goal = AppStrings.get("pfad_\(zielSchluessel)_day_\(dayNum)_title", language: lang)
+                if !goal.contains("pfad_") { title = goal }
+                else { title = String(format: AppStrings.get("pfad_tag_header", language: lang), dayNum) }
+            }
+        }
+        let displayTitle = title
+        
+        // Lokalisierte Texte (Beschreibung)
+        var dayDesc = ""
+        if let dynamicDesc = HabitProgressionGenerator.generateDescription(for: habit.plantID, dayNum: dayNum, difficulty: diff, language: lang) {
+            dayDesc = dynamicDesc
+        } else {
+            dayDesc = AppStrings.get("pfad_\(plantID)_day_\(dayNum)_desc_\(diff)", language: lang)
+            if dayDesc.contains("pfad_") {
+                let generic = AppStrings.get("pfad_generic_day_\(dayNum)_desc_\(diff)", language: lang)
+                if !generic.contains("pfad_") { dayDesc = generic }
+                else {
+                    let goal = AppStrings.get("pfad_\(zielSchluessel)_day_\(dayNum)_desc_\(diff)", language: lang)
+                    if !goal.contains("pfad_") { dayDesc = goal }
+                    else {
+                        let plantPhase = AppStrings.get("pfad_\(plantID)_phase_\(phaseKey)_desc_\(diff)", language: lang)
+                        if !plantPhase.contains("pfad_") { dayDesc = plantPhase }
+                        else {
+                            let genericPhase = AppStrings.get("pfad_generic_phase_\(phaseKey)_desc_\(diff)", language: lang)
+                            if !genericPhase.contains("pfad_") { dayDesc = genericPhase }
+                            else {
+                                let goalPhase = AppStrings.get("pfad_\(zielSchluessel)_phase_\(phaseKey)_desc_\(diff)", language: lang)
+                                if !goalPhase.contains("pfad_") { dayDesc = goalPhase }
+                                else {
+                                    let fallback = AppStrings.get("pfad_schwierigkeit_\(diff)_desc", language: lang)
+                                    dayDesc = fallback.contains("pfad_") ? "" : fallback
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        let displayDesc = dayDesc.replacingOccurrences(of: "[HABIT]", with: habit.displayedHabitName)
         
         return VStack(spacing: 0) {
             // Header / Close

@@ -8,10 +8,9 @@ struct ProfilView: View {
     @State private var showStreakDetail = false
     @State private var showWasserDetail = false
     @State private var showTitelAuswahl = false
+    @State private var zeigeNameEdit = false
     @State private var showSettings = false
-    @State private var zeigeIgelCustomizer = false
     @State private var ausgewaehlterErfolg: Erfolg? = nil
-    @State private var navBarIsWhite = false
     
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
@@ -30,112 +29,62 @@ struct ProfilView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
-                Color.white.ignoresSafeArea()
-                
-                if !navBarIsWhite {
-                    settings.igelCustomization.background.color
-                        .frame(height: 0)
-                        .frame(maxWidth: .infinity)
-                        .ignoresSafeArea(edges: .top)
-                }
+                Color.appHintergrund.ignoresSafeArea()
                 
                 ScrollView(showsIndicators: false) {
-                    VStack(spacing: 0) {
-                    
-                    // MARK: - Top Bounce Filler (Blau)
-                    // Dieser Bereich ist normalerweise unsichtbar, wird aber beim Runterziehen sichtbar
-                    settings.igelCustomization.background.color
-                        .frame(height: 1000)
-                        .offset(y: -1000)
-                        .padding(.bottom, -1000)
-
-                    // 1. Top-Bereich (scrollt mit dem Igel)
-                    VStack(spacing: 0) {
-                        // Igel
-                        Button(action: { zeigeIgelCustomizer = true }) {
-                            IgelView(customization: settings.igelCustomization, size: 200)
-                        }
-                        .buttonStyle(.plain)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 280)
-                    }
-                    .background(settings.igelCustomization.background.color)
-                    
-                    // 2. Weißer Content-Bereich
                     VStack(spacing: 24) {
                         // --- TOP 3 ACHIEVEMENTS ---
                         topAchievementsSection
                             .padding(.top, 8)
                         
-                        // --- 3D STAT BUTTONS GRID ---
-                        LazyVGrid(columns: [
-                            GridItem(.flexible(), spacing: 20),
-                            GridItem(.flexible(), spacing: 20)
-                        ], spacing: 24) {
-                            XPStatButton(xp: gardenStore.gesamtXP, showDetail: $showXPDetail)
-                            InventoryStatButton(count: gardenStore.totalItemsCount, showDetail: $showPflanzenDetail)
-                            StreakStatButton(
-                                currentStreak: streakStore.currentStreak,
-                                bestStreak: streakStore.bestStreak,
-                                aktion: { showStreakDetail = true }
-                            )
+                        // --- 3D STAT BUTTONS DASHBOARD ---
+                        VStack(spacing: 20) {
                             WasserStatButton(liter: gardenStore.gesamtLiterFormatiert, showDetail: $showWasserDetail)
+                            
+                            HStack(spacing: 20) {
+                                XPStatButton(xp: gardenStore.gesamtXP, showDetail: $showXPDetail)
+                                StreakStatButton(
+                                    currentStreak: streakStore.currentStreak,
+                                    bestStreak: streakStore.bestStreak,
+                                    aktion: { showStreakDetail = true }
+                                )
+                            }
+                            
+                            InventoryStatButton(count: gardenStore.totalItemsCount, showDetail: $showPflanzenDetail)
                         }
-                        .padding(.horizontal, 32)
-                        .padding(.top, 8)
-
-                        // Bottom Bounce Filler (Weiß)
-                        Color.white
-                            .frame(height: 1000)
+                        .padding(.horizontal, 24)
+                        
+                        // Bottom Bounce Filler
+                        Color.clear
+                            .frame(height: 100)
                     }
-                    .padding(.top, 24)
-                    .background(Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 24))
-                    .offset(y: -24)
-                    .padding(.bottom, -24)
-                }
-                .background(
-                    GeometryReader { proxy in
-                        Color.clear.preference(key: ProfilScrollOffsetKey.self, value: proxy.frame(in: .named("profilScroll")).minY)
-                    }
-                )
-            } // closes ScrollView
+                } // closes ScrollView
             } // closes ZStack
-            .coordinateSpace(name: "profilScroll")
-            .onPreferenceChange(ProfilScrollOffsetKey.self) { offset in
-                let shouldBeWhite = offset < -240
-                if navBarIsWhite != shouldBeWhite {
-                    withAnimation(.easeInOut(duration: 0.2)) {
-                        navBarIsWhite = shouldBeWhite
-                    }
-                }
-            }
             .navigationBarHidden(false)
-            .toolbarBackground(navBarIsWhite ? .visible : .hidden, for: .navigationBar)
-            .toolbarBackground(Color.white, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(Color.appHintergrund, for: .navigationBar)
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        zeigeIgelCustomizer = true
-                    } label: {
-                        Image(systemName: "plus")
-                            .font(.system(size: 20, weight: .black))
-                            .foregroundStyle(.primary)
-                    }
-                }
-                
                 ToolbarItem(placement: .principal) {
                     VStack(spacing: 0) {
-                        Text(settings.igelCustomization.name.isEmpty
-                             ? settings.localizedString(for: "igel_name_placeholder")
-                             : settings.igelCustomization.name)
-                            .font(.title3)
-                            .fontWeight(.bold)
-                        Text(spielerTitel.uppercased())
-                            .font(.system(size: 11, weight: .black))
+                        Button {
+                            zeigeNameEdit = true
+                        } label: {
+                            Text(settings.igelCustomization.name.isEmpty
+                                 ? settings.localizedString(for: "igel_name_placeholder")
+                                 : settings.igelCustomization.name)
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundStyle(.primary)
+                        }
+                        
+                        Button {
+                            showTitelAuswahl = true
+                        } label: {
+                            Text(spielerTitel.uppercased())
+                                .font(.system(size: 11, weight: .black))
+                                .foregroundStyle(.secondary)
+                        }
                     }
-                    .fixedSize()
-                    .allowsHitTesting(false)
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
@@ -183,10 +132,11 @@ struct ProfilView: View {
                 SettingsView()
                     .environmentObject(settings)
             }
-            .sheet(isPresented: $zeigeIgelCustomizer) {
-                IgelCustomizerView()
+            .sheet(isPresented: $zeigeNameEdit) {
+                NameEditSheet()
                     .environmentObject(settings)
                     .environmentObject(gardenStore)
+                    .presentationDetents([.medium])
             }
             .fullScreenCover(item: $ausgewaehlterErfolg) { erfolg in
                 ErfolgDetailSheet(erfolg: erfolg, istFreigeschaltet: erfolg.istFreigeschaltet)
@@ -236,40 +186,24 @@ struct ProfilView: View {
                     HStack(spacing: 16) {
                         ForEach(unlockedAchievements) { erfolg in
                             Button(action: { ausgewaehlterErfolg = erfolg }) {
-                                VStack(spacing: 12) {
-                                    ErfolgBadgeView(erfolg: erfolg, istFreigeschaltet: true)
-                                        .scaleEffect(1.25)
-                                        .frame(width: 120, height: 120)
-                                    
-                                    Text(settings.localizedString(for: erfolg.titelKey))
-                                        .font(.system(size: 13, weight: .bold, design: .rounded))
-                                        .foregroundStyle(.primary)
-                                        .multilineTextAlignment(.center)
-                                        .lineLimit(2)
-                                        .frame(width: 120, height: 36, alignment: .top)
-                                }
+                                ErfolgBadgeView(erfolg: erfolg, istFreigeschaltet: true)
+                                    .frame(width: 100, height: 100)
                             }
-                            .buttonStyle(.plain)
+                            .buttonStyle(BadgeBounceButtonStyle())
                         }
                         
                         // "Mehr ansehen" Button at the end
                         Button(action: { showErfolgeDetail = true }) {
-                            VStack(spacing: 12) {
-                                ZStack {
-                                    Image(systemName: "chevron.right")
-                                        .font(.system(size: 24, weight: .bold))
-                                        .foregroundStyle(.primary)
-                                }
-                                .frame(width: 120, height: 120) // Match height of badge container
-                                
-                                Text("Alle Erfolge")
-                                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                            ZStack {
+                                Circle()
+                                    .fill(Color(UIColor.systemGray5))
+                                    .frame(width: 80, height: 80)
+                                Image(systemName: "chevron.right")
+                                    .font(.system(size: 32, weight: .bold))
                                     .foregroundStyle(.primary)
-                                    .multilineTextAlignment(.center)
-                                    .frame(width: 100, height: 36, alignment: .top)
                             }
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(BadgeBounceButtonStyle())
                         .padding(.leading, 8)
                     }
                     .padding(.horizontal, 24)
@@ -292,6 +226,14 @@ struct ProfilScrollOffsetKey: PreferenceKey {
     static var defaultValue: CGFloat = 0
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value = nextValue()
+    }
+}
+
+struct BadgeBounceButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+            .animation(.spring(response: 0.2, dampingFraction: 0.6), value: configuration.isPressed)
     }
 }
 

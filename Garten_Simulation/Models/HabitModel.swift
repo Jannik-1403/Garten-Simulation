@@ -1,6 +1,146 @@
 import SwiftUI
 import Combine
 
+// MARK: - Reminder Schedule Types
+
+struct WeekdayReminder: Codable, Identifiable {
+    var id: Int { weekday }
+    var weekday: Int              // 1=Mo, 2=Di, 3=Mi, 4=Do, 5=Fr, 6=Sa, 7=So
+    var time: Date                // Nur Stunde:Minute relevant
+    var customMessage: String?    // Individueller Benachrichtigungstext pro Tag
+    var isEnabled: Bool = true
+    var repeatMode: ReminderRepeatMode = .forever // NEU
+    
+    /// Konvertiert unseren Wochentag (Mo=1...So=7) zu Apples DateComponents.weekday (So=1...Sa=7)
+    var appleWeekday: Int {
+        weekday == 7 ? 1 : weekday + 1  // So(7)→1, Mo(1)→2, Di(2)→3, ...
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case weekday, time, customMessage, isEnabled, repeatMode
+    }
+    
+    init(weekday: Int, time: Date, customMessage: String? = nil, isEnabled: Bool = true, repeatMode: ReminderRepeatMode = .forever) {
+        self.weekday = weekday
+        self.time = time
+        self.customMessage = customMessage
+        self.isEnabled = isEnabled
+        self.repeatMode = repeatMode
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        weekday = try container.decode(Int.self, forKey: .weekday)
+        time = try container.decode(Date.self, forKey: .time)
+        customMessage = try container.decodeIfPresent(String.self, forKey: .customMessage)
+        isEnabled = try container.decodeIfPresent(Bool.self, forKey: .isEnabled) ?? true
+        repeatMode = try container.decodeIfPresent(ReminderRepeatMode.self, forKey: .repeatMode) ?? .forever
+    }
+    
+    func isExpired(startDate: Date) -> Bool {
+        switch repeatMode {
+        case .forever:
+            return false
+        case .once:
+            return Date().timeIntervalSince(startDate) > 7 * 24 * 3600
+        case .month:
+            return Date().timeIntervalSince(startDate) > 30 * 24 * 3600
+        case .year:
+            return Date().timeIntervalSince(startDate) > 365 * 24 * 3600
+        }
+    }
+}
+
+enum ReminderRepeatMode: String, Codable, CaseIterable {
+    case once    = "once"     // Einmalig
+    case month   = "month"    // 1 Monat
+    case year    = "year"     // 1 Jahr
+    case forever = "forever"  // Unbegrenzt (Standard)
+    
+    var localizationKey: String {
+        switch self {
+        case .once:    return "timer.repeat.once"
+        case .month:   return "timer.repeat.month"
+        case .year:    return "timer.repeat.year"
+        case .forever: return "timer.repeat.forever"
+        }
+    }
+    
+    var sfSymbol: String {
+        switch self {
+        case .once:    return "1.circle"
+        case .month:   return "calendar"
+        case .year:    return "calendar.badge.clock"
+        case .forever: return "infinity"
+        }
+    }
+}
+
+struct ReminderSchedule: Codable {
+    var weekdays: [WeekdayReminder]         // 7 Einträge (Mo-So)
+    var startDate: Date = Date()            // Wann der Timer begonnen hat
+    
+    private enum CodingKeys: String, CodingKey {
+        case weekdays, startDate, repeatMode
+    }
+    
+    init(weekdays: [WeekdayReminder], startDate: Date = Date()) {
+        self.weekdays = weekdays
+        self.startDate = startDate
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        var decodedWeekdays = try container.decode([WeekdayReminder].self, forKey: .weekdays)
+        startDate = try container.decodeIfPresent(Date.self, forKey: .startDate) ?? Date()
+        
+        // MIGRATION: Alte repeatMode übernehmen
+        if let oldRepeatMode = try container.decodeIfPresent(ReminderRepeatMode.self, forKey: .repeatMode) {
+            for i in 0..<decodedWeekdays.count {
+                decodedWeekdays[i].repeatMode = oldRepeatMode
+            }
+        }
+        self.weekdays = decodedWeekdays
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(weekdays, forKey: .weekdays)
+        try container.encode(startDate, forKey: .startDate)
+    }
+    
+    /// Erstellt einen Standard-Schedule mit gleicher Zeit an allen Tagen
+    static func defaultSchedule(time: Date, customMessage: String? = nil) -> ReminderSchedule {
+        let weekdays = (1...7).map { day in
+            WeekdayReminder(weekday: day, time: time, customMessage: customMessage, isEnabled: true, repeatMode: .forever)
+        }
+        return ReminderSchedule(weekdays: weekdays)
+    }
+    
+    /// Prüft ob der Schedule abgelaufen ist
+    var isExpired: Bool {
+        let enabledDays = weekdays.filter { $0.isEnabled }
+        if enabledDays.isEmpty { return true }
+        return enabledDays.allSatisfy { $0.isExpired(startDate: startDate) }
+    }
+    
+    /// Gibt den Eintrag für den aktuellen Wochentag zurück (falls aktiviert und nicht abgelaufen)
+    var todaysReminder: WeekdayReminder? {
+        let calendar = Calendar.current
+        let appleWeekday = calendar.component(.weekday, from: Date()) // So=1...Sa=7
+        let ourWeekday = appleWeekday == 1 ? 7 : appleWeekday - 1    // Mo=1...So=7
+        guard let reminder = weekdays.first(where: { $0.weekday == ourWeekday && $0.isEnabled }) else { return nil }
+        
+        if reminder.isExpired(startDate: startDate) { return nil }
+        return reminder
+    }
+    
+    /// Anzahl aktiver Tage
+    var enabledDaysCount: Int {
+        weekdays.filter(\.isEnabled).count
+    }
+}
+
 // MARK: - HabitModel (plain class — kein SwiftData benötigt)
 class HabitModel: Identifiable, ObservableObject, Codable {
     let id: String
@@ -39,7 +179,22 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     var timerDatum: Date? = nil
     @Published var reminderTime: Date? = nil
     @Published var customReminderMessage: String? = nil
+    @Published var reminderSchedule: ReminderSchedule? = nil  // Wochentag-basierter Timer
     @Published var individualSchwierigkeit: String? = nil // NEU: Individueller Pfad-Level
+    
+    /// Hat die Pflanze einen aktiven (nicht abgelaufenen) Erinnerungs-Schedule?
+    var hasActiveReminder: Bool {
+        guard let schedule = reminderSchedule else {
+            return reminderTime != nil  // Legacy-Fallback
+        }
+        return !schedule.isExpired && schedule.enabledDaysCount > 0
+    }
+    
+    /// Gibt den heutigen WeekdayReminder zurück (falls vorhanden und aktiv)
+    var todaysReminder: WeekdayReminder? {
+        guard let schedule = reminderSchedule, !schedule.isExpired else { return nil }
+        return schedule.todaysReminder
+    }
     
     // XP Verlauf für die Wochenübersicht (Datum im Format "yyyy-MM-dd": XP an diesem Tag)
     @Published var xpHistory: [String: Int] = [:]
@@ -110,8 +265,13 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     }
 
     var streakAbgelaufen: Bool {
-        guard let ablauf = timerLaeuftAb else { return false }
-        return Date() > ablauf
+        guard let letzte = letzteBewaesserung else { return false }
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let letzteDay = calendar.startOfDay(for: letzte)
+        
+        let daysPassed = calendar.dateComponents([.day], from: letzteDay, to: today).day ?? 0
+        return daysPassed > 1
     }
 
 
@@ -215,6 +375,11 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.reminderTime = reminderTime
         self.customReminderMessage = customReminderMessage
         
+        // Wenn reminderTime gesetzt → automatisch Schedule erstellen
+        if let rt = reminderTime {
+            self.reminderSchedule = ReminderSchedule.defaultSchedule(time: rt, customMessage: customReminderMessage)
+        }
+        
         // Fallback für plantID falls nicht übergeben
         if let pid = plantID {
             self.plantID = pid
@@ -241,6 +406,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned, totalMlGegossen, plantID
         case wiederbelebtAm, strafTage, reminderTime, customReminderMessage, wateringDates
         case lebenBereitsAbgezogen, isDead
+        case reminderSchedule
     }
 
     required init(from decoder: Decoder) throws {
@@ -309,6 +475,14 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         wateringDates = try container.decodeIfPresent([Date].self, forKey: .wateringDates) ?? []
         lebenBereitsAbgezogen = try container.decodeIfPresent(Bool.self, forKey: .lebenBereitsAbgezogen) ?? false
         isDead = try container.decodeIfPresent(Bool.self, forKey: .isDead) ?? false
+        
+        // Migration: reminderSchedule laden oder aus Legacy-Feldern erstellen
+        if let schedule = try container.decodeIfPresent(ReminderSchedule.self, forKey: .reminderSchedule) {
+            reminderSchedule = schedule
+        } else if let legacyTime = reminderTime {
+            // Automatische Migration: alter Timer → Schedule mit gleicher Zeit an allen Tagen
+            reminderSchedule = ReminderSchedule.defaultSchedule(time: legacyTime, customMessage: customReminderMessage)
+        }
     }
 
     func encode(to encoder: Encoder) throws {
@@ -348,6 +522,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(wateringDates, forKey: .wateringDates)
         try container.encode(lebenBereitsAbgezogen, forKey: .lebenBereitsAbgezogen)
         try container.encode(isDead, forKey: .isDead)
+        try container.encodeIfPresent(reminderSchedule, forKey: .reminderSchedule)
     }
 }
 

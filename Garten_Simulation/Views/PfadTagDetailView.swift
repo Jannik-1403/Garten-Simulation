@@ -258,6 +258,18 @@ struct PfadTagDetailView: View {
     }
 
     private func localizedDescription(for tag: PfadStrangTag) -> String {
+        let diff: String = {
+            if let s = tag.strang, let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
+                return habit.individualSchwierigkeit ?? "anfaenger"
+            }
+            return "anfaenger"
+        }()
+        
+        if let plantID = tag.strang?.pflanzenID,
+           let dynamicDesc = HabitProgressionGenerator.generateDescription(for: plantID, dayNum: tag.tagNummer, difficulty: diff, language: settings.appLanguage) {
+            return dynamicDesc.replacingOccurrences(of: "[HABIT]", with: habitName(for: tag))
+        }
+
         var raw = settings.localizedString(for: tag.beschreibungKey)
         
         // Failsafe: Wenn der Key roh zurückkommt, generischen probieren
@@ -269,8 +281,7 @@ struct PfadTagDetailView: View {
             if fallbackRaw != fallbackKey {
                 raw = fallbackRaw
             } else {
-                // Letzter Ausweg: generische Beschreibung
-                raw = settings.localizedString(for: "pfad_generic_description_fallback")
+                raw = settings.localizedString(for: "pfad_schwierigkeit_\(diff)_desc")
             }
         }
         
