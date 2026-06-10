@@ -47,7 +47,7 @@ struct GartenPassBelohnung: Identifiable {
         case .gluecksradDrehung:   return Color(hex: "#5BA8D4") // Hellblau (Diamant)
         case .powerUp:             return Color(hex: "#A855F7") // Lila
         case .pflanze:             return .gruenPrimary         // Grün
-        case .dekoration:          return .orange              // Orange
+        case .dekoration:          return .orangePrimary       // Premium Orange
         case .paket:               return .pink                 // Meilenstein-Paket
         case .seeds:               return .purple               // Samen (Lila)
         }
@@ -83,10 +83,9 @@ struct GartenPassBelohnung: Identifiable {
             return (localized("reward_type_plant"), "leaf.fill", false)
             
         case .dekoration(let id):
-            if let dk = GameDatabase.allDecorations.first(where: { $0.id == id }) {
-                return (localized(dk.nameKey), dk.sfSymbol, false)
-            }
-            return (localized("reward_type_decoration"), "sparkles", false)
+            let dk = GameDatabase.allDecorations.first { $0.id == id } ?? DecorationItem(id: "", objectNameKey: "", objectDescriptionKey: "", habitNameKey: "", habitDescriptionKey: "", sfSymbol: "cube.box", price: 0, category: .deko, minGartenLevel: 1)
+            let isCustomAsset = UIImage(named: dk.sfSymbol) != nil
+            return (localized(dk.objectNameKey), dk.sfSymbol, isCustomAsset)
             
         case .paket(let titel, _, _):
             return (localized(titel), "reward_type_paket", false)
@@ -154,11 +153,9 @@ enum GartenTier {
         }
     }
     
-    var bezeichnung: String {
-        NSLocalizedString(bezeichnungKey, comment: "")
-    }
+
     
-    func getLevelRange(settings: SettingsStore? = nil) -> String {
+    func levelRange(settings: SettingsStore? = nil) -> String {
         let localized: (String) -> String = { key in
             if let settings = settings {
                 return settings.localizedString(for: key)
@@ -174,9 +171,7 @@ enum GartenTier {
         }
     }
     
-    var levelRange: String {
-        getLevelRange(settings: nil)
-    }
+
 }
 
 // MARK: - Alle Belohnungen

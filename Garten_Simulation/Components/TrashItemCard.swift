@@ -24,7 +24,7 @@ struct DecorationCard: View {
             .frame(width: 110, height: 110)
             
             // MARK: Name
-            Text(settings.localizedString(for: decoration.nameKey))
+            Text(settings.localizedString(for: decoration.objectNameKey))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.primary)
                 .multilineTextAlignment(.center)
@@ -50,8 +50,10 @@ struct DecorationCard: View {
         DecorationCard(
             decoration: DecorationItem(
                 id: "test",
-                nameKey: "deko.bank.name",
-                descriptionKey: "deko.bank.desc",
+                objectNameKey: "deko.bank.name",
+                objectDescriptionKey: "deko.bank.desc",
+                habitNameKey: "deko.bank.name",
+                habitDescriptionKey: "deko.bank.desc",
                 sfSymbol: "chair.fill",
                 price: 15,
                 category: .moebel

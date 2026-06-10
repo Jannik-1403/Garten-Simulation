@@ -112,7 +112,8 @@ struct GartenView: View {
                                 .padding(.bottom, 40)
                                 
                                 // MARK: - Power-Ups Lager
-                                if !gardenStore.gekaufteItems.filter({ $0.itemType == .powerUp }).isEmpty {
+                                let powerUps = gardenStore.gekaufteItems.filter { $0.itemType == .powerUp }
+                                if !powerUps.isEmpty {
                                     VStack(alignment: .leading, spacing: 12) {
                                         Text(settings.localizedString(for: "garden.powerups"))
                                             .font(.system(size: 20, weight: .bold, design: .rounded))
@@ -121,11 +122,11 @@ struct GartenView: View {
                                         
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             HStack(spacing: 16) {
-                                                ForEach(gardenStore.gekaufteItems.filter { $0.itemType == .powerUp }) { item in
+                                                ForEach(powerUps) { item in
                                                     Item3DButton(
                                                         icon: item.icon,
                                                         farbe: item.color,
-                                                        sekundaerFarbe: item.color.darker(),
+                                                        sekundaerFarbe: item.color.darker(by: 0.2),
                                                         groesse: 90
                                                     ) {
                                                         ausgewaehltesItem = item
@@ -158,22 +159,7 @@ struct GartenView: View {
                                                         sekundaerFarbe: .orangeSecondary,
                                                         groesse: 90
                                                     ) {
-                                                        ausgewaehltesItem = ShopDetailPayload(
-                                                            id: deko.id,
-                                                            title: deko.nameKey,
-                                                            subtitle: deko.category.localizationKey,
-                                                            description: deko.descriptionKey,
-                                                            price: deko.price,
-                                                            icon: deko.sfSymbol,
-                                                            colorHex: "#FF991A",
-                                                            symbolColor: "orange",
-                                                            shadowColorHex: "#D98216",
-                                                            tag: "DEKO",
-                                                            itemType: .decoration,
-                                                            habitCategory: nil,
-                                                            symbolism: nil,
-                                                            howToUse: nil
-                                                        )
+                                                        ausgewaehltesItem = ShopDetailPayload.from(decoration: deko)
                                                     }
                                                 }
                                             }

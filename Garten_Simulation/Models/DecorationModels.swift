@@ -2,8 +2,10 @@ import Foundation
 
 struct DecorationItem: Identifiable, Codable {
     let id: String
-    let nameKey: String
-    let descriptionKey: String
+    let objectNameKey: String
+    let objectDescriptionKey: String
+    let habitNameKey: String
+    let habitDescriptionKey: String
     let sfSymbol: String
     let price: Int
     let category: DecorationCategory
@@ -11,16 +13,20 @@ struct DecorationItem: Identifiable, Codable {
 
     init(
         id: String,
-        nameKey: String,
-        descriptionKey: String,
+        objectNameKey: String,
+        objectDescriptionKey: String,
+        habitNameKey: String,
+        habitDescriptionKey: String,
         sfSymbol: String,
         price: Int,
         category: DecorationCategory,
         minGartenLevel: Int = 1
     ) {
         self.id = id
-        self.nameKey = nameKey
-        self.descriptionKey = descriptionKey
+        self.objectNameKey = objectNameKey
+        self.objectDescriptionKey = objectDescriptionKey
+        self.habitNameKey = habitNameKey
+        self.habitDescriptionKey = habitDescriptionKey
         self.sfSymbol = sfSymbol
         self.price = price
         self.category = category

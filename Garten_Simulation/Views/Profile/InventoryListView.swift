@@ -20,9 +20,9 @@ struct InventoryListView: View {
             return gardenStore.placedDecorations.map { deco in
                 ShopDetailPayload(
                     id: deco.id,
-                    title: deco.nameKey,
+                    titleKey: deco.objectNameKey,
                     subtitle: deco.category.localizationKey,
-                    description: deco.descriptionKey,
+                    descriptionKey: deco.habitDescriptionKey,
                     price: deco.price,
                     icon: deco.sfSymbol,
                     colorHex: "#FF991A", // orangePrimary
@@ -32,7 +32,10 @@ struct InventoryListView: View {
                     itemType: .decoration,
                     habitCategory: nil,
                     symbolism: "",
-                    howToUse: ""
+                    howToUse: "",
+                    habitName: "",
+                    habitTitleKey: deco.habitNameKey,
+                    habitDescriptionKey: deco.habitDescriptionKey
                 )
             }
         }
@@ -106,7 +109,7 @@ struct InventoryItemCard: View {
             )
             
             VStack(spacing: 4) {
-                Text(settings.localizedString(for: item.title))
+                Text(settings.localizedString(for: item.titleKey))
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .lineLimit(1)

@@ -510,7 +510,7 @@ class GardenStore: ObservableObject {
     func pflanzHinzufuegen(shopItem: ShopDetailPayload, isFree: Bool = false) {
         // Sicherstellen, dass wir den echten Pflanzennamen aus der DB nehmen (nicht den Payload-Titel, der evtl. die Gewohnheit ist)
         let dbPlant = GameDatabase.allPlants.first(where: { $0.id == shopItem.id })
-        let dbName = dbPlant?.name ?? shopItem.title
+        let dbName = dbPlant?.name ?? shopItem.titleKey
         
         let neue = HabitModel(
             id: UUID().uuidString,
@@ -518,7 +518,7 @@ class GardenStore: ObservableObject {
             symbolName: shopItem.icon,
             symbolColor: shopItem.colorHex,
             habitCategory: shopItem.habitCategory ?? .lifestyle,
-            symbolism: shopItem.description,
+            symbolism: shopItem.descriptionKey,
             habitName: shopItem.habitName ?? "",
             maxLevel: dbPlant?.maxLevel ?? 10,
             xpPerCompletion: dbPlant?.xpPerCompletion ?? 100,
@@ -668,7 +668,7 @@ class GardenStore: ObservableObject {
     private func logPurchase(shopItem: ShopDetailPayload, isFree: Bool = false) {
         if !isFree && shopItem.price > 0 {
             let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
-            let desc = "\(AppStrings.get("shop.buy.success", language: lang)) \(shopItem.title)"
+            let desc = "\(AppStrings.get("shop.buy.success", language: lang)) \(shopItem.titleKey)"
             coinsAbziehen(amount: shopItem.price, beschreibung: desc)
         }
         // Count all shop exchanges

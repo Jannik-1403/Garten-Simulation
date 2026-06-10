@@ -47,16 +47,15 @@ struct InventoryItemDetailSheet: View {
                 .scaleEffect(animateIcon ? 1.05 : 1.0)
                 
                 VStack(spacing: 8) {
-                    Text(settings.localizedString(for: item.title))
+                    let currentTitleKey = (settings.showHabitInsteadOfName && item.habitTitleKey != nil) ? item.habitTitleKey! : item.titleKey
+                    Text(settings.localizedString(for: currentTitleKey))
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                     
-                    Text(settings.localizedString(for: item.description))
+                    Text(settings.localizedString(for: item.descriptionKey))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .lineSpacing(4)
                         .padding(.horizontal, 40)
                 }
-                
-
                 
                 Spacer()
                 
@@ -95,7 +94,7 @@ struct InventoryItemDetailSheet: View {
                     let sellPrice = Int(Double(item.price) * 0.5)
                     Button {
                         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                        shopStore.sell(id: item.id, price: item.price, title: settings.localizedString(for: item.title))
+                        shopStore.sell(id: item.id, price: item.price, title: settings.localizedString(for: item.titleKey))
                         gardenStore.itemEntfernen(id: item.id)
                         dismiss()
                     } label: {
@@ -230,9 +229,9 @@ struct InventoryItemDetailSheet: View {
     InventoryItemDetailSheet(
         item: ShopDetailPayload(
             id: "test",
-            title: "Super-Dünger",
+            titleKey: "Super-Dünger",
             subtitle: "Wachstums-Boost",
-            description: "Beschleunigt das Wachstum deiner Pflanzen um 50% für die nächsten 24 Stunden.",
+            descriptionKey: "Beschleunigt das Wachstum deiner Pflanzen um 50% für die nächsten 24 Stunden.",
             price: 500,
             icon: "Powerup",
             colorHex: "#FFD000", // yellow

@@ -1,56 +1,217 @@
 import SwiftUI
 import Combine
 
-// MARK: - HabitModel (plain class — kein SwiftData benötigt)
-public class HabitModel: Identifiable, ObservableObject, Codable {
-    public let id: String
-    public var name: String
-    public var symbolName: String          // SF Symbol Name z.B. "leaf.fill"
-    public var symbolColor: String         // z.B. "green"
-    public var habitCategories: [HabitCategory]
-    public var symbolism: String
-    public var habitName: String
-    public var plantID: String // Link zur GameDatabase
+// MARK: - Reminder Schedule Types
+
+struct WeekdayReminder: Codable, Identifiable {
+    var id: Int { weekday }
+    var weekday: Int              // 1=Mo, 2=Di, 3=Mi, 4=Do, 5=Fr, 6=Sa, 7=So
+    var time: Date                // Nur Stunde:Minute relevant
+    var customMessage: String?    // Individueller Benachrichtigungstext pro Tag
+    var isEnabled: Bool = true
+    var repeatMode: ReminderRepeatMode = .forever // NEU
     
-    public var plantImageName: String {
-        "plant_\(plantID)"
+    /// Konvertiert unseren Wochentag (Mo=1...So=7) zu Apples DateComponents.weekday (So=1...Sa=7)
+    var appleWeekday: Int {
+        weekday == 7 ? 1 : weekday + 1  // So(7)→1, Mo(1)→2, Di(2)→3, ...
     }
     
-    @Published public var currentXP: Int
-    @Published public var streak: Int
-    public var letzteBewaesserung: Date?
-    public var gekauftAm: Date
-    @Published public var istBewässert: Bool  // heute schon gegossen?
-    @Published public var missedCycles: Int   // Wie viele 24h-Fenster verpasst?
-    @Published public var lastNotifiedCycle: Int // Welcher Zyklus wurde bereits "bestraft" (Herz-Abzug)?
-    @Published public var totalMlGegossen: Double = 0
-    @Published public var lebenBereitsAbgezogen: Bool = false
-    @Published public var isDead: Bool = false
+    enum CodingKeys: String, CodingKey {
+        case weekday, time, customMessage, isEnabled, repeatMode
+    }
+    
+    init(weekday: Int, time: Date, customMessage: String? = nil, isEnabled: Bool = true, repeatMode: ReminderRepeatMode = .forever) {
+        self.weekday = weekday
+        self.time = time
+        self.customMessage = customMessage
+        self.isEnabled = isEnabled
+        self.repeatMode = repeatMode
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        weekday = try container.decode(Int.self, forKey: .weekday)
+        time = try container.decode(Date.self, forKey: .time)
+        customMessage = try container.decodeIfPresent(String.self, forKey: .customMessage)
+        isEnabled = try container.decodeIfPresent(Bool.self, forKey: .isEnabled) ?? true
+        repeatMode = try container.decodeIfPresent(ReminderRepeatMode.self, forKey: .repeatMode) ?? .forever
+    }
+    
+    func isExpired(startDate: Date) -> Bool {
+        switch repeatMode {
+        case .forever:
+            return false
+        case .once:
+            return Date().timeIntervalSince(startDate) > 7 * 24 * 3600
+        case .month:
+            return Date().timeIntervalSince(startDate) > 30 * 24 * 3600
+        case .year:
+            return Date().timeIntervalSince(startDate) > 365 * 24 * 3600
+        }
+    }
+}
+
+enum ReminderRepeatMode: String, Codable, CaseIterable {
+    case once    = "once"     // Einmalig
+    case month   = "month"    // 1 Monat
+    case year    = "year"     // 1 Jahr
+    case forever = "forever"  // Unbegrenzt (Standard)
+    
+    var localizationKey: String {
+        switch self {
+        case .once:    return "timer.repeat.once"
+        case .month:   return "timer.repeat.month"
+        case .year:    return "timer.repeat.year"
+        case .forever: return "timer.repeat.forever"
+        }
+    }
+    
+    var sfSymbol: String {
+        switch self {
+        case .once:    return "1.circle"
+        case .month:   return "calendar"
+        case .year:    return "calendar.badge.clock"
+        case .forever: return "infinity"
+        }
+    }
+}
+
+struct ReminderSchedule: Codable {
+    var weekdays: [WeekdayReminder]         // 7 Einträge (Mo-So)
+    var startDate: Date = Date()            // Wann der Timer begonnen hat
+    
+    private enum CodingKeys: String, CodingKey {
+        case weekdays, startDate, repeatMode
+    }
+    
+    init(weekdays: [WeekdayReminder], startDate: Date = Date()) {
+        self.weekdays = weekdays
+        self.startDate = startDate
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        var decodedWeekdays = try container.decode([WeekdayReminder].self, forKey: .weekdays)
+        startDate = try container.decodeIfPresent(Date.self, forKey: .startDate) ?? Date()
+        
+        // MIGRATION: Alte repeatMode übernehmen
+        if let oldRepeatMode = try container.decodeIfPresent(ReminderRepeatMode.self, forKey: .repeatMode) {
+            for i in 0..<decodedWeekdays.count {
+                decodedWeekdays[i].repeatMode = oldRepeatMode
+            }
+        }
+        self.weekdays = decodedWeekdays
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(weekdays, forKey: .weekdays)
+        try container.encode(startDate, forKey: .startDate)
+    }
+    
+    /// Erstellt einen Standard-Schedule mit gleicher Zeit an allen Tagen
+    static func defaultSchedule(time: Date, customMessage: String? = nil) -> ReminderSchedule {
+        let weekdays = (1...7).map { day in
+            WeekdayReminder(weekday: day, time: time, customMessage: customMessage, isEnabled: true, repeatMode: .forever)
+        }
+        return ReminderSchedule(weekdays: weekdays)
+    }
+    
+    /// Prüft ob der Schedule abgelaufen ist
+    var isExpired: Bool {
+        let enabledDays = weekdays.filter { $0.isEnabled }
+        if enabledDays.isEmpty { return true }
+        return enabledDays.allSatisfy { $0.isExpired(startDate: startDate) }
+    }
+    
+    /// Gibt den Eintrag für den aktuellen Wochentag zurück (falls aktiviert und nicht abgelaufen)
+    var todaysReminder: WeekdayReminder? {
+        let calendar = Calendar.current
+        let appleWeekday = calendar.component(.weekday, from: Date()) // So=1...Sa=7
+        let ourWeekday = appleWeekday == 1 ? 7 : appleWeekday - 1    // Mo=1...So=7
+        guard let reminder = weekdays.first(where: { $0.weekday == ourWeekday && $0.isEnabled }) else { return nil }
+        
+        if reminder.isExpired(startDate: startDate) { return nil }
+        return reminder
+    }
+    
+    /// Anzahl aktiver Tage
+    var enabledDaysCount: Int {
+        weekdays.filter(\.isEnabled).count
+    }
+}
+
+// MARK: - HabitModel (plain class — kein SwiftData benötigt)
+class HabitModel: Identifiable, ObservableObject, Codable {
+    let id: String
+    var name: String
+    var symbolName: String          // SF Symbol Name z.B. "leaf.fill"
+    var symbolColor: String         // z.B. "green"
+    var habitCategory: HabitCategory
+    var symbolism: String
+    var habitName: String
+    var plantID: String // Link zur GameDatabase
+    
+    var plantImageName: String {
+        if let plant = GameDatabase.shared.plant(for: plantID), let asset = plant.assetName {
+            return asset
+        }
+        return symbolName
+    }
+    
+    @Published var currentXP: Int
+    @Published var streak: Int
+    var letzteBewaesserung: Date?
+    var gekauftAm: Date
+    @Published var istBewässert: Bool  // heute schon gegossen?
+    @Published var missedCycles: Int   // Wie viele 24h-Fenster verpasst?
+    @Published var lastNotifiedCycle: Int // Welcher Zyklus wurde bereits "bestraft" (Herz-Abzug)?
+    @Published var totalMlGegossen: Double = 0
+    @Published var lebenBereitsAbgezogen: Bool = false
+    @Published var isDead: Bool = false
     
     // Wiederbelebungs-System
-    @Published public var wiederbelebtAm: Date? = nil
-    public var strafTage: Int = 3
+    @Published var wiederbelebtAm: Date? = nil
+    var strafTage: Int = 3
     
     // Notizen & Timer
-    @Published public var notizen: [String] = []
-    public var timerDatum: Date? = nil
-    @Published public var reminderTime: Date? = nil
-    @Published public var individualSchwierigkeit: String? = nil // NEU: Individueller Pfad-Level
+    @Published var notizen: [String] = []
+    var timerDatum: Date? = nil
+    @Published var reminderTime: Date? = nil
+    @Published var customReminderMessage: String? = nil
+    @Published var reminderSchedule: ReminderSchedule? = nil  // Wochentag-basierter Timer
+    @Published var individualSchwierigkeit: String? = nil // NEU: Individueller Pfad-Level
+    @Published var pfadAktiviertAm: Date? = nil
+    @Published var pfadCheckedDates: [Date] = []
+    
+    /// Hat die Pflanze einen aktiven (nicht abgelaufenen) Erinnerungs-Schedule?
+    var hasActiveReminder: Bool {
+        guard let schedule = reminderSchedule else {
+            return reminderTime != nil  // Legacy-Fallback
+        }
+        return !schedule.isExpired && schedule.enabledDaysCount > 0
+    }
+    
+    /// Gibt den heutigen WeekdayReminder zurück (falls vorhanden und aktiv)
+    var todaysReminder: WeekdayReminder? {
+        guard let schedule = reminderSchedule, !schedule.isExpired else { return nil }
+        return schedule.todaysReminder
+    }
     
     // XP Verlauf für die Wochenübersicht (Datum im Format "yyyy-MM-dd": XP an diesem Tag)
-    @Published public var xpHistory: [String: Int] = [:]
+    @Published var xpHistory: [String: Int] = [:]
     
     // Gieß-Log: jeder Gießvorgang wird mit Zeitstempel gespeichert
-    @Published public var wateringDates: [Date] = []
+    @Published var wateringDates: [Date] = []
     
     // Lebenslange Einnahmen durch diese Pflanze
-    @Published public var totalCoinsEarned: Int = 0
+    @Published var totalCoinsEarned: Int = 0
     
     // Performance / Growth Parameters from Database
-    public var maxLevel: Int
-    public var xpPerCompletion: Int
-    public var waterNeedPerDay: Int
-    public var decayDays: Int
+    var maxLevel: Int
+    var xpPerCompletion: Int
+    var waterNeedPerDay: Int
+    var decayDays: Int
 
     var basePrice: Int {
         let basis = xpPerCompletion * 10
@@ -58,7 +219,7 @@ public class HabitModel: Identifiable, ObservableObject, Codable {
         return basis + levelBonus
     }
 
-    public var displayedHabitName: String {
+    var displayedHabitName: String {
         if !habitName.isEmpty { return habitName }
         
         // 1. Suche den Standard-Gewohnheitsnamen in der Datenbank (z.B. habit.meditieren)
@@ -68,35 +229,20 @@ public class HabitModel: Identifiable, ObservableObject, Codable {
                 return dbPlant.habitName
             }
             // Zweite Priorität: Die Kategorie (z.B. category.mental)
-            if let catKey = dbPlant.habitCategories.first?.localizationKey {
-                return catKey
-            }
+            return dbPlant.habitCategory.localizationKey
         }
         
         return "common.habit" 
     }
 
-    public var color: Color {
-        // Here we can use the same logic as GameDatabase helper
-        switch symbolColor {
-        case "green":   return .green
-        case "mint":    return .mint
-        case "teal":    return .teal
-        case "cyan":    return .cyan
-        case "yellow":  return .yellow
-        case "orange":  return .orange
-        case "red":     return .red
-        case "pink":    return .pink
-        case "purple":  return .purple
-        case "blue":    return .blue
-        case "indigo":  return .indigo
-        case "brown":   return .brown
-        case "gray":    return .gray
-        default:        return .green
+    var color: Color {
+        if plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: plantID) == nil {
+            return AppColors.color(for: symbolColor)
         }
+        return habitCategory.color
     }
 
-    public var seltenheit: PflanzenSeltenheit {
+    var seltenheit: PflanzenSeltenheit {
         if currentXP >= GameConstants.xpFuerDiamant { return .diamant }
         if currentXP >= GameConstants.xpFuerGold    { return .gold }
         if currentXP >= GameConstants.xpFuerSilber  { return .silber }
@@ -104,33 +250,38 @@ public class HabitModel: Identifiable, ObservableObject, Codable {
     }
 
 
-    public var stufe: PflanzenStufe {
+    var stufe: PflanzenStufe {
         PflanzenStufe.allCases.last { GameConstants.xpSchwelle(fuer: $0) <= self.currentXP } ?? .bronze1
     }
 
-    public var fortschrittZurNaechstenStufe: Double {
+    var fortschrittZurNaechstenStufe: Double {
         guard let naechste = stufe.naechste else { return 1.0 }
         let aktuelleMin = GameConstants.xpSchwelle(fuer: stufe)
         let naechsteMin = GameConstants.xpSchwelle(fuer: naechste)
         return Double(currentXP - aktuelleMin) / Double(naechsteMin - aktuelleMin)
     }
 
-    public var timerLaeuftAb: Date? {
+    var timerLaeuftAb: Date? {
         // Find next 0:00:00 starting from today
         Calendar.current.nextDate(after: Date(), matching: DateComponents(hour: 0, minute: 0, second: 0), matchingPolicy: .nextTime)
     }
 
-    public var streakAbgelaufen: Bool {
-        guard let ablauf = timerLaeuftAb else { return false }
-        return Date() > ablauf
+    var streakAbgelaufen: Bool {
+        guard let letzte = letzteBewaesserung else { return false }
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let letzteDay = calendar.startOfDay(for: letzte)
+        
+        let daysPassed = calendar.dateComponents([.day], from: letzteDay, to: today).day ?? 0
+        return daysPassed > 1
     }
 
 
-    public var showWarning: Bool {
+    var showWarning: Bool {
         (missedCycles == 1 && !isDead) || isDead
     }
 
-    public var isPenaltyActive: Bool {
+    var isPenaltyActive: Bool {
         if let start = wiederbelebtAm {
             let tage = Calendar.current.dateComponents([.day], from: start, to: Date()).day ?? 0
             return tage < strafTage
@@ -138,11 +289,11 @@ public class HabitModel: Identifiable, ObservableObject, Codable {
         return false
     }
 
-    public var ringFortschritt: Double {
+    var ringFortschritt: Double {
         seltenheit.fortschritt(aktuelleXP: currentXP)
     }
 
-    public var formattedVolume: String {
+    var formattedVolume: String {
         let liter = totalMlGegossen / 1000
         let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
         if liter < 1 {
@@ -154,40 +305,48 @@ public class HabitModel: Identifiable, ObservableObject, Codable {
         }
     }
 
-    public var timerIconName: String {
+    var timerIconName: String {
         let h = remainingHoursInCycle
-        if h > 16 { return "Timer full" }
-        if h > 8  { return "Timer half" }
+        if h > 36 { return "Timer full" }
+        if h > 0  { return "Timer half" }
         return "Timer empty"
     }
 
-    public var hoursSinceWatering: Double {
-        guard let letzte = letzteBewaesserung else { return 0 }
-        return Date().timeIntervalSince(letzte) / 3600.0
+    var hoursSinceThirstStarted: Double {
+        let reference = letzteBewaesserung ?? gekauftAm
+        let calendar = Calendar.current
+        // Der Countdown beginnt erst ab der nächsten Mitternacht nach der letzten Aktion
+        guard let naechsteMitternacht = calendar.nextDate(after: reference, matching: DateComponents(hour: 0, minute: 0, second: 0), matchingPolicy: .nextTime) else {
+            return 0
+        }
+        let diff = Date().timeIntervalSince(naechsteMitternacht) / 3600.0
+        return max(0, diff)
     }
 
-    public var remainingHoursInCycle: Int {
-        guard let target = timerLaeuftAb else { return 24 }
-        let diff = target.timeIntervalSince(Date())
-        return max(0, Int(ceil(diff / 3600.0)))
+    var remainingHoursInCycle: Int {
+        let maxHours: Double = 72.0
+        let elapsed = hoursSinceThirstStarted
+        let diff = maxHours - elapsed
+        return max(0, Int(ceil(diff)))
     }
 
-    public var drynessSaturation: Double {
+    var drynessSaturation: Double {
         if isDead { return 0.0 }
-        // 0h: 1.0 -> 48h: 0.0
-        let s = 1.0 - (hoursSinceWatering / 48.0)
-        // Clamp between 0.2 and 1.0 so it's never fully black before death, or keep it 0.0 for dead.
+        // Optische Sättigung basiert weiterhin auf der Gesamtzeit seit dem Gießen
+        let reference = letzteBewaesserung ?? gekauftAm
+        let totalElapsed = Date().timeIntervalSince(reference) / 3600.0
+        let s = 1.0 - (totalElapsed / 72.0)
         return max(0.0, min(1.0, s))
     }
 
     // MARK: - Init
 
-    public init(
+    init(
         id: String = UUID().uuidString,
         name: String,
         symbolName: String,
         symbolColor: String = "green",
-        habitCategories: [HabitCategory] = [.lifestyle],
+        habitCategory: HabitCategory = .lifestyle,
         symbolism: String = "",
         habitName: String = "",
         maxLevel: Int = 10,
@@ -197,15 +356,16 @@ public class HabitModel: Identifiable, ObservableObject, Codable {
         missedCycles: Int = 0,
         lastNotifiedCycle: Int = 0,
         plantID: String? = nil,
-        reminderTime: Date? = nil
+        reminderTime: Date? = nil,
+        customReminderMessage: String? = nil
     ) {
         self.id = id
         self.name = name
         self.symbolName = symbolName
         self.symbolColor = symbolColor
-        self.habitCategories = habitCategories
+        self.habitCategory = habitCategory
         self.symbolism = symbolism
-        self.habitName = habitName.isEmpty ? (habitCategories.first?.localizationKey ?? "category.lifestyle") : habitName
+        self.habitName = habitName.isEmpty ? (habitCategory.localizationKey) : habitName
         self.maxLevel = maxLevel
         self.xpPerCompletion = xpPerCompletion
         self.waterNeedPerDay = waterNeedPerDay
@@ -215,6 +375,14 @@ public class HabitModel: Identifiable, ObservableObject, Codable {
         self.wiederbelebtAm = nil
         self.strafTage = 3
         self.reminderTime = reminderTime
+        self.customReminderMessage = customReminderMessage
+        self.pfadAktiviertAm = nil
+        self.pfadCheckedDates = []
+        
+        // Wenn reminderTime gesetzt → automatisch Schedule erstellen
+        if let rt = reminderTime {
+            self.reminderSchedule = ReminderSchedule.defaultSchedule(time: rt, customMessage: customReminderMessage)
+        }
         
         // Fallback für plantID falls nicht übergeben
         if let pid = plantID {
@@ -236,15 +404,17 @@ public class HabitModel: Identifiable, ObservableObject, Codable {
     // MARK: - Codable
     
     enum CodingKeys: String, CodingKey {
-        case id, name, symbolName, symbolColor, habitCategories, habitCategory, symbolism, habitName
+        case id, name, symbolName, symbolColor, habitCategory, habitCategories, symbolism, habitName
         case currentXP, streak, letzteBewaesserung, gekauftAm, istBewässert
         case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays, missedCycles, lastNotifiedCycle
         case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned, totalMlGegossen, plantID
-        case wiederbelebtAm, strafTage, reminderTime, wateringDates
+        case wiederbelebtAm, strafTage, reminderTime, customReminderMessage, wateringDates
         case lebenBereitsAbgezogen, isDead
+        case reminderSchedule
+        case pfadAktiviertAm, pfadCheckedDates
     }
 
-    public required init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         id = try container.decode(String.self, forKey: .id)
@@ -263,21 +433,21 @@ public class HabitModel: Identifiable, ObservableObject, Codable {
 
         // Migration für habitCategories
         if let cats = try container.decodeIfPresent([HabitCategory].self, forKey: .habitCategories) {
-            habitCategories = cats
+            habitCategory = cats.first ?? .lifestyle
         } else if let single = try container.decodeIfPresent(HabitCategory.self, forKey: .habitCategory) {
-            // Wenn möglich, echte Kategorien aus DB holen, sonst Fallback auf das gespeicherte
-            if let dbPlant = GameDatabase.allPlants.first(where: { $0.id == decodedPlantID }) {
-                habitCategories = dbPlant.habitCategories
-            } else {
-                habitCategories = [single]
-            }
+            habitCategory = single
         } else {
-            habitCategories = [.lifestyle]
+            // Wenn möglich, echte Kategorien aus DB holen, sonst Fallback
+            if let dbPlant = GameDatabase.allPlants.first(where: { $0.id == decodedPlantID }) {
+                habitCategory = dbPlant.habitCategory
+            } else {
+                habitCategory = .lifestyle
+            }
         }
         
         symbolism = try container.decode(String.self, forKey: .symbolism)
         let savedHabitName = try container.decodeIfPresent(String.self, forKey: .habitName) ?? ""
-        habitName = savedHabitName.isEmpty ? (habitCategories.first?.localizationKey ?? "category.lifestyle") : savedHabitName
+        habitName = savedHabitName.isEmpty ? (habitCategory.localizationKey) : savedHabitName
         
         currentXP = try container.decode(Int.self, forKey: .currentXP)
         streak = try container.decode(Int.self, forKey: .streak)
@@ -306,19 +476,30 @@ public class HabitModel: Identifiable, ObservableObject, Codable {
         wiederbelebtAm = try container.decodeIfPresent(Date.self, forKey: .wiederbelebtAm)
         strafTage = try container.decodeIfPresent(Int.self, forKey: .strafTage) ?? 3
         reminderTime = try container.decodeIfPresent(Date.self, forKey: .reminderTime)
+        customReminderMessage = try container.decodeIfPresent(String.self, forKey: .customReminderMessage)
         wateringDates = try container.decodeIfPresent([Date].self, forKey: .wateringDates) ?? []
         lebenBereitsAbgezogen = try container.decodeIfPresent(Bool.self, forKey: .lebenBereitsAbgezogen) ?? false
         isDead = try container.decodeIfPresent(Bool.self, forKey: .isDead) ?? false
+        pfadAktiviertAm = try container.decodeIfPresent(Date.self, forKey: .pfadAktiviertAm)
+        pfadCheckedDates = try container.decodeIfPresent([Date].self, forKey: .pfadCheckedDates) ?? []
+        
+        // Migration: reminderSchedule laden oder aus Legacy-Feldern erstellen
+        if let schedule = try container.decodeIfPresent(ReminderSchedule.self, forKey: .reminderSchedule) {
+            reminderSchedule = schedule
+        } else if let legacyTime = reminderTime {
+            // Automatische Migration: alter Timer → Schedule mit gleicher Zeit an allen Tagen
+            reminderSchedule = ReminderSchedule.defaultSchedule(time: legacyTime, customMessage: customReminderMessage)
+        }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
         try container.encode(symbolName, forKey: .symbolName)
         try container.encode(symbolColor, forKey: .symbolColor)
-        try container.encode(habitCategories, forKey: .habitCategories)
+        try container.encode(habitCategory, forKey: .habitCategory)
         try container.encode(symbolism, forKey: .symbolism)
         try container.encode(habitName, forKey: .habitName)
         
@@ -344,15 +525,19 @@ public class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encodeIfPresent(wiederbelebtAm, forKey: .wiederbelebtAm)
         try container.encode(strafTage, forKey: .strafTage)
         try container.encodeIfPresent(reminderTime, forKey: .reminderTime)
+        try container.encodeIfPresent(customReminderMessage, forKey: .customReminderMessage)
         try container.encode(wateringDates, forKey: .wateringDates)
         try container.encode(lebenBereitsAbgezogen, forKey: .lebenBereitsAbgezogen)
         try container.encode(isDead, forKey: .isDead)
+        try container.encodeIfPresent(reminderSchedule, forKey: .reminderSchedule)
+        try container.encodeIfPresent(pfadAktiviertAm, forKey: .pfadAktiviertAm)
+        try container.encode(pfadCheckedDates, forKey: .pfadCheckedDates)
     }
 }
 
 // MARK: - Equatable
 extension HabitModel: Equatable {
-    public static func == (lhs: HabitModel, rhs: HabitModel) -> Bool {
+    static func == (lhs: HabitModel, rhs: HabitModel) -> Bool {
         lhs.id == rhs.id
     }
 }

@@ -60,7 +60,7 @@ struct WeedPowerUpSection: View {
                 )
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(settings.localizedString(for: item.title))
+                    Text(settings.localizedString(for: item.titleKey))
                         .font(.subheadline)
                         .fontWeight(.bold)
                         .foregroundStyle(.primary)

@@ -112,7 +112,7 @@ struct UnifiedShopView: View {
         }
         if !searchText.isEmpty {
             let lang = settings.appLanguage
-            base = base.filter { AppStrings.get($0.nameKey, language: lang).localizedCaseInsensitiveContains(searchText) }
+            base = base.filter { AppStrings.get(settings.showHabitInsteadOfName ? $0.habitNameKey : $0.objectNameKey, language: lang).localizedCaseInsensitiveContains(searchText) }
         }
         return base.filter { !shopStore.isPurchased($0.id) }
     }
@@ -184,9 +184,9 @@ struct UnifiedShopView: View {
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: item.id,
-                                                        title: item.name,
+                                                        titleKey: item.name,
                                                         subtitle: item.rarity.rawValue,
-                                                        description: item.description,
+                                                        descriptionKey: item.description,
                                                         price: p,
                                                         icon: item.symbolName,
                                                         colorHex: "#2BC1F5", // blue
@@ -231,16 +231,16 @@ struct UnifiedShopView: View {
                                                 icon: item.sfSymbol,
                                                 accentColor: .orange,
                                                 shadowColor: .orange.darker(),
-                                                name: item.nameKey,
-                                                subtitle: item.descriptionKey,
+                                                name: settings.showHabitInsteadOfName ? item.habitNameKey : item.objectNameKey,
+                                                subtitle: item.habitDescriptionKey,
                                                 price: item.price,
                                                 badgeText: isOwned ? settings.localizedString(for: "shop.owned") : nil,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: item.id,
-                                                        title: item.nameKey,
-                                                        subtitle: "shop.trash_item_subtitle",
-                                                        description: item.descriptionKey,
+                                                        titleKey: item.objectNameKey,
+                                                        subtitle: item.habitNameKey,
+                                                        descriptionKey: item.habitDescriptionKey,
                                                         price: item.price,
                                                         icon: item.sfSymbol,
                                                         colorHex: "#FF991A", // orangePrimary
@@ -248,9 +248,8 @@ struct UnifiedShopView: View {
                                                         shadowColorHex: "#D9660D", // orangeSecondary
                                                         tag: "DEKO",
                                                         itemType: .decoration,
-                                                        habitCategory: nil,
-                                                        symbolism: nil,
-                                                        howToUse: nil
+                                                        habitTitleKey: item.habitNameKey,
+                                                        habitDescriptionKey: item.habitDescriptionKey
                                                     )
                                                 }
                                             )
@@ -277,7 +276,7 @@ struct UnifiedShopView: View {
                                     VStack(spacing: 12) {
                                         ForEach(gefiltertePflanzen) { plant in
                                             let p = plant.basePrice
-                                            let displayName = plant.name
+                                            let displayName = settings.showHabitInsteadOfName ? plant.habitName : plant.name
                                             let isOwned = shopStore.isPurchased(plant.id)
                                             
                                             ShopItemCard(
@@ -285,16 +284,16 @@ struct UnifiedShopView: View {
                                                 accentColor: plant.color,
                                                 shadowColor: plant.color.darker(),
                                                 name: displayName,
-                                                subtitle: plant.habitName,
+                                                subtitle: plant.symbolism,
                                                 price: p,
                                                 badgeText: isOwned ? settings.localizedString(for: "shop.owned") : nil,
                                                 plant: plant,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: plant.id,
-                                                        title: plant.name,
+                                                        titleKey: plant.name,
                                                         subtitle: plant.habitName,
-                                                        description: plant.symbolism,
+                                                        descriptionKey: plant.symbolism,
                                                         price: p,
                                                         icon: plant.symbolName,
                                                         colorHex: "#59CC33", // green
@@ -304,8 +303,9 @@ struct UnifiedShopView: View {
                                                         itemType: .plant,
                                                         habitCategory: plant.habitCategory,
                                                         symbolism: plant.symbolism,
-                                                        howToUse: nil,
-                                                        habitName: plant.habitName
+                                                        habitName: plant.habitName,
+                                                        habitTitleKey: plant.habitName,
+                                                        habitDescriptionKey: plant.symbolism
                                                     )
                                                 }
                                             )

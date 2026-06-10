@@ -6,9 +6,9 @@ enum ShopItemType: String, Codable {
 
 struct ShopDetailPayload: Identifiable, Codable {
     let id: String
-    let title: String
+    let titleKey: String
     let subtitle: String
-    let description: String
+    let descriptionKey: String
     let price: Int
     let icon: String        // SF Symbol Name
     let colorHex: String    // Persistent hex string
@@ -22,15 +22,17 @@ struct ShopDetailPayload: Identifiable, Codable {
     let symbolism: String?
     let howToUse: String?
     let habitName: String?
+    let habitTitleKey: String?
+    let habitDescriptionKey: String?
     
     var color: Color { Color(hex: colorHex) }
     var shadowColor: Color { Color(hex: shadowColorHex) }
 
     init(
         id: String,
-        title: String,
+        titleKey: String,
         subtitle: String,
-        description: String,
+        descriptionKey: String,
         price: Int,
         icon: String,
         colorHex: String,
@@ -42,12 +44,14 @@ struct ShopDetailPayload: Identifiable, Codable {
         habitCategory: HabitCategory? = nil,
         symbolism: String? = nil,
         howToUse: String? = nil,
-        habitName: String? = nil
+        habitName: String? = nil,
+        habitTitleKey: String? = nil,
+        habitDescriptionKey: String? = nil
     ) {
         self.id = id
-        self.title = title
+        self.titleKey = titleKey
         self.subtitle = subtitle
-        self.description = description
+        self.descriptionKey = descriptionKey
         self.price = price
         self.icon = icon
         self.colorHex = colorHex
@@ -60,6 +64,8 @@ struct ShopDetailPayload: Identifiable, Codable {
         self.symbolism = symbolism
         self.howToUse = howToUse
         self.habitName = habitName
+        self.habitTitleKey = habitTitleKey
+        self.habitDescriptionKey = habitDescriptionKey
     }
 }
 
@@ -67,9 +73,9 @@ extension ShopDetailPayload {
     static func from(plant: Plant) -> ShopDetailPayload {
         ShopDetailPayload(
             id: plant.id,
-            title: plant.name,
+            titleKey: plant.name,
             subtitle: "Exklusive Pflanze",
-            description: plant.symbolism,
+            descriptionKey: plant.symbolism,
             price: plant.basePrice,
             icon: plant.assetName ?? plant.symbolName,
             colorHex: "#27AE60", // Default green
@@ -79,16 +85,18 @@ extension ShopDetailPayload {
             itemType: .plant,
             habitCategory: plant.habitCategory,
             symbolism: plant.symbolism,
-            habitName: plant.habitName
+            habitName: plant.habitName,
+            habitTitleKey: plant.habitName,
+            habitDescriptionKey: plant.symbolism
         )
     }
     
     static func from(powerUp: PowerUpItem) -> ShopDetailPayload {
         ShopDetailPayload(
             id: powerUp.id,
-            title: powerUp.name,
+            titleKey: powerUp.name,
             subtitle: "Power-Up",
-            description: powerUp.description,
+            descriptionKey: powerUp.description,
             price: powerUp.basePrice,
             icon: powerUp.symbolName,
             colorHex: "#3498DB", // Default blue
@@ -103,16 +111,18 @@ extension ShopDetailPayload {
     static func from(decoration: DecorationItem) -> ShopDetailPayload {
         ShopDetailPayload(
             id: decoration.id,
-            title: decoration.nameKey,
+            titleKey: decoration.objectNameKey,
             subtitle: "Dekoration",
-            description: decoration.descriptionKey,
+            descriptionKey: decoration.habitDescriptionKey,
             price: decoration.price,
             icon: decoration.sfSymbol,
             colorHex: "#9B59B6", // Default purple
             symbolColor: "purple",
             shadowColorHex: "#8E44AD",
             minGartenLevel: decoration.minGartenLevel,
-            itemType: .decoration
+            itemType: .decoration,
+            habitTitleKey: decoration.habitNameKey,
+            habitDescriptionKey: decoration.habitDescriptionKey
         )
     }
 }

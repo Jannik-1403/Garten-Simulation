@@ -83,11 +83,9 @@ struct GartenPassBelohnung: Identifiable {
             return (localized("reward_type_plant"), "leaf.fill", false)
             
         case .dekoration(let id):
-            if let dk = GameDatabase.allDecorations.first(where: { $0.id == id }) {
-                let isCustomAsset = UIImage(named: dk.sfSymbol) != nil
-                return (localized(dk.nameKey), dk.sfSymbol, isCustomAsset)
-            }
-            return (localized("reward_type_decoration"), "sparkles", false)
+            let dk = GameDatabase.allDecorations.first { $0.id == id } ?? DecorationItem(id: "", objectNameKey: "", objectDescriptionKey: "", habitNameKey: "", habitDescriptionKey: "", sfSymbol: "cube.box", price: 0, category: .deko, minGartenLevel: 1)
+            let isCustomAsset = UIImage(named: dk.sfSymbol) != nil
+            return (localized(dk.objectNameKey), dk.sfSymbol, isCustomAsset)
             
         case .paket(let titel, _, _):
             return (localized(titel), "reward_type_paket", false)

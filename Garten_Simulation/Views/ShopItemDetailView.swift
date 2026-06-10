@@ -61,9 +61,12 @@ struct ShopItemDetailView: View {
                                     .foregroundStyle(payload.color)
                                     .kerning(1.4)
                             }
-                            Text(settings.localizedString(for: payload.title))
+                            let currentTitleKey = (settings.showHabitInsteadOfName && payload.habitTitleKey != nil) ? payload.habitTitleKey! : payload.titleKey
+                            Text(settings.localizedString(for: currentTitleKey))
                                 .font(.system(size: 26, weight: .bold, design: .rounded))
-                            Text(settings.localizedString(for: payload.subtitle))
+                            
+                            let currentSubtitleKey = (settings.showHabitInsteadOfName && payload.habitTitleKey != nil) ? payload.titleKey : payload.subtitle
+                            Text(settings.localizedString(for: currentSubtitleKey))
                                 .font(.system(size: 15))
                                 .foregroundStyle(.secondary)
                         }
@@ -76,7 +79,7 @@ struct ShopItemDetailView: View {
                                 .font(.system(size: 12, weight: .bold))
                                 .foregroundStyle(.secondary)
                                 .kerning(1.2)
-                            Text(settings.localizedString(for: payload.description))
+                            Text(settings.localizedString(for: payload.descriptionKey))
                                 .font(.system(size: 15))
                                 .lineSpacing(4)
                         }
@@ -209,7 +212,7 @@ struct ShopItemDetailView: View {
                                         FeedbackManager.shared.playTap()
                                         
                                         // Aktion
-                                        shopStore.sell(id: payload.id, price: payload.price, title: settings.localizedString(for: payload.title))
+                                        shopStore.sell(id: payload.id, price: payload.price, title: settings.localizedString(for: payload.titleKey))
                                         
                                         if payload.itemType == .decoration {
                                             gardenStore.itemEntfernen(id: payload.id)
@@ -303,7 +306,7 @@ struct ShopItemDetailView: View {
             // Erfolg-Overlay
             if showSuccess {
                 PurchaseSuccessOverlay(
-                    itemName: payload.title,
+                    itemName: settings.localizedString(for: payload.titleKey),
                     price: payload.price,
                     subtitle: payload.itemType == .powerUp
                         ? settings.localizedString(for: "shop.purchase_success.powerup_hint")

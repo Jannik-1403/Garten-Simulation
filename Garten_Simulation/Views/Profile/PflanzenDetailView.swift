@@ -19,23 +19,44 @@ struct PflanzenDetailView: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 24) {
-                    // MARK: Pflanzen-Grid
-                    LazyVGrid(
-                        columns: [
-                            GridItem(.flexible(), spacing: 12),
-                            GridItem(.flexible(), spacing: 12),
-                            GridItem(.flexible(), spacing: 12)
-                        ],
-                        spacing: 12
-                    ) {
-                        ForEach(pflanzen) { pflanze in
-                            PflanzenGridCell(pflanze: pflanze) {
-                                ausgewaehltePflanze = pflanze
+                    if pflanzen.isEmpty {
+                        VStack(spacing: 20) {
+                            Image(systemName: "leaf.fill")
+                                .font(.system(size: 60))
+                                .foregroundStyle(.secondary.opacity(0.3))
+                            
+                            VStack(spacing: 8) {
+                                Text(settings.localizedString(for: "garden.empty.title"))
+                                    .font(.headline)
+                                    .foregroundStyle(.primary)
+                                
+                                Text(settings.localizedString(for: "garden.empty.subtitle"))
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                                    .multilineTextAlignment(.center)
                             }
                         }
+                        .padding(.top, 60)
+                        .padding(.horizontal, 20)
+                    } else {
+                        // MARK: Pflanzen-Grid
+                        LazyVGrid(
+                            columns: [
+                                GridItem(.flexible(), spacing: 12),
+                                GridItem(.flexible(), spacing: 12),
+                                GridItem(.flexible(), spacing: 12)
+                            ],
+                            spacing: 12
+                        ) {
+                            ForEach(pflanzen) { pflanze in
+                                PflanzenGridCell(pflanze: pflanze) {
+                                    ausgewaehltePflanze = pflanze
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.top, 24)
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 24)
 
                     Spacer(minLength: 40)
                 }
