@@ -20,16 +20,7 @@ struct GardenLiveActivity: Widget {
                     
                     Spacer()
                     
-                    // Weather Icon with Gradient Background
-                    ZStack {
-                        Circle()
-                            .fill(LinearGradient(colors: [.blue.opacity(0.1), .white.opacity(0.1)], startPoint: .topLeading, endPoint: .bottomTrailing))
-                            .frame(width: 44, height: 44)
-                        
-                        Image(systemName: context.state.wetterIcon)
-                            .font(.system(size: 20))
-                            .foregroundStyle(.white)
-                    }
+                    // Wetter-Icon entfernt auf Nutzer-Wunsch
                 }
                 
                 // Progress Bar (Duo-Style)
@@ -81,10 +72,6 @@ struct GardenLiveActivity: Widget {
                         Text(context.attributes.gartenName)
                             .font(.system(size: 10, weight: .black, design: .rounded))
                             .foregroundStyle(.secondary)
-                        Image(systemName: context.state.wetterIcon)
-                            .font(.title2)
-                        Text(context.state.wetterName)
-                            .font(.system(size: 8, weight: .bold))
                     }
                 }
                 DynamicIslandExpandedRegion(.trailing) {
@@ -122,8 +109,8 @@ struct GardenLiveActivity: Widget {
                     .padding(.bottom, 8)
                 }
             } compactLeading: {
-                Image(systemName: context.state.wetterIcon)
-                    .foregroundStyle(.yellow)
+                Image(systemName: "leaf.fill")
+                    .foregroundStyle(.green)
             } compactTrailing: {
                 HStack(spacing: 2) {
                     Image(systemName: "drop.fill")

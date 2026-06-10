@@ -61,6 +61,22 @@
       "promotionalImageID" : "72B43FF1",
       "referenceName" : "1200 Münzen",
       "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "A1B2C3D4",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Sonnenbrille",
+          "locale" : "de"
+        }
+      ],
+      "productID" : "com.gartenapp.cosmetics.glasses",
+      "promotionalImageID" : "11A22B33",
+      "referenceName" : "Premium Sonnenbrille",
+      "type" : "NonConsumable"
     }
   ],
   "settings" : {

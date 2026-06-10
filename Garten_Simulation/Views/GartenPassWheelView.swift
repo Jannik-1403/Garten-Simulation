@@ -219,8 +219,17 @@ struct GartenPassWheelView: View {
         let rf = Double.random(in: 0.15...0.85)
         let sliceAngle = Double(targetIndex) * segDeg + rf * segDeg
         
+        var currentNormalized = rotation.truncatingRemainder(dividingBy: 360.0)
+        if currentNormalized < 0 { currentNormalized += 360.0 }
+        
+        let targetNormalized = 360.0 - sliceAngle
+        var angleDiff = targetNormalized - currentNormalized
+        if angleDiff < 0 {
+            angleDiff += 360.0
+        }
+        
         let fullSpins = 5.0 * 360.0
-        let targetRotation = rotation + fullSpins + (360.0 - sliceAngle)
+        let targetRotation = rotation + fullSpins + angleDiff
         
         // Tick haptics during spin
         let tickCount = Int(fullSpins / segDeg) + totalSegments
@@ -332,17 +341,31 @@ struct IceWheelIcon: View {
                     Image(systemName: "bolt.fill")
                         .foregroundColor(.white)
                 }
-            case .pflanze(_):
-                Image(systemName: "leaf.fill")
-                    .foregroundColor(.white)
+            case .pflanze(let id):
+                if let plant = GameDatabase.shared.plant(for: id) {
+                    if let asset = plant.assetName {
+                        Image(asset)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 26, height: 26)
+                    } else {
+                        Image(systemName: plant.symbolName)
+                            .foregroundColor(.white)
+                    }
+                } else {
+                    Image(systemName: "leaf.fill")
+                        .foregroundColor(.white)
+                }
             case .deko(_):
                 Image(systemName: "sparkles")
                     .foregroundColor(.white)
             case .xp(_):
-                Image(systemName: "star.fill")
-                    .foregroundColor(.white)
+                Image("XP")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 24, height: 24)
             case .seeds(_):
-                Image(systemName: "leaf.fill")
+                Image(systemName: "leaf.arrow.triangle.circlepath")
                     .foregroundColor(.white)
             case .weed:
                 Image(systemName: "ant.fill")

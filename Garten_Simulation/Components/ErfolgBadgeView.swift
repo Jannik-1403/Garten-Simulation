@@ -41,7 +41,6 @@ struct ErfolgBadgeView: View {
                 .applyErfolgFarbe(for: erfolg.tier)
                 .grayscale(istFreigeschaltet ? 0 : 1)
                 .opacity(istFreigeschaltet ? 1 : 0.5)
-                .shadow(color: istFreigeschaltet ? erfolg.tier.color.opacity(0.6) : .clear, radius: 8, y: 4)
 
             // Icon (ONLY if LOCKED)
             if !istFreigeschaltet {

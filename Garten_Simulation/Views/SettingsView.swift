@@ -11,10 +11,12 @@ struct SettingsView: View {
     @EnvironmentObject var titelStore: TitelStore
     @EnvironmentObject var achievementStore: AchievementStore
     @EnvironmentObject var pfadStore: GartenPfadStore
+    @EnvironmentObject var characterStore: CharacterStore
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
     
     @State private var showResetAlert = false
+    @State private var showFinalResetAlert = false
     @State private var showBackupSheet = false
     
     private var aktuelleTierStufe: GartenTierStufe {
@@ -27,38 +29,7 @@ struct SettingsView: View {
                 
                 ScrollView {
                     VStack(spacing: 24) {
-                        // Profile Header (Real Garden Stats)
-                        VStack(spacing: 8) {
-                            IgelView(customization: settings.igelCustomization, size: 110)
-                            
-                            VStack(spacing: 4) {
-                                Text(settings.igelCustomization.name.isEmpty 
-                                     ? settings.localizedString(for: "profile.user.name") 
-                                     : settings.igelCustomization.name)
-                                    .font(.system(size: 22, weight: .black, design: .rounded))
-                                    .foregroundStyle(.primary)
-                                
-                                HStack(spacing: 16) {
-                                    // League / Tier
-                                    Text(aktuelleTierStufe.lokalisiertTitel(settings: settings))
-                                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                                        .foregroundStyle(aktuelleTierStufe.farbe)
-                                    
-                                    // Coins
-                                    HStack(spacing: 6) {
-                                        Image("coin")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 18, height: 18)
-                                        Text("\(gardenStore.coins)")
-                                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                                            .foregroundStyle(.primary)
-                                    }
-                                }
-                            }
-                        }
-                        .padding(.top, 20)
-                        
+
                         // Sections
                         VStack(spacing: 32) {
                             settingsSection(title: settings.localizedString(for: "settings.section.profile")) {
@@ -101,6 +72,8 @@ struct SettingsView: View {
                                     
                                     Text(settings.localizedString(for: "settings.language"))
                                         .font(.system(size: 16, weight: .medium, design: .rounded))
+                                        .lineLimit(1)
+                                        .minimumScaleFactor(0.5)
                                     
                                     Spacer()
                                     
@@ -109,9 +82,16 @@ struct SettingsView: View {
                                         Text(settings.localizedString(for: "settings.language.en")).tag("en")
                                         Text(settings.localizedString(for: "settings.language.es")).tag("es")
                                         Text(settings.localizedString(for: "settings.language.fr")).tag("fr")
+                                        Text(settings.localizedString(for: "settings.language.it")).tag("it")
                                         Text(settings.localizedString(for: "settings.language.pt")).tag("pt")
+                                        Text(settings.localizedString(for: "settings.language.ja")).tag("ja")
+                                        Text(settings.localizedString(for: "settings.language.ko")).tag("ko")
+                                        Text(settings.localizedString(for: "settings.language.nl")).tag("nl")
+                                        Text(settings.localizedString(for: "settings.language.pl")).tag("pl")
+                                        Text(settings.localizedString(for: "settings.language.tr")).tag("tr")
                                     }
                                     .pickerStyle(.menu)
+                                    .fixedSize(horizontal: true, vertical: false)
                                 }
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 8)
@@ -170,7 +150,14 @@ struct SettingsView: View {
                                     Divider().padding(.leading, 44)
                                     
                                     Button {
-                                        settings.shareApp()
+                                        let viewToRender = GrovyShareCardView(settings: settings).environmentObject(settings)
+                                        let renderer = ImageRenderer(content: viewToRender)
+                                        renderer.scale = UIScreen.main.scale
+                                        if let image = renderer.uiImage {
+                                            settings.shareApp(image: image)
+                                        } else {
+                                            settings.shareApp()
+                                        }
                                     } label: {
                                         settingRow(title: settings.localizedString(for: "settings.share"), icon: "heart.fill", color: .pink)
                                     }
@@ -195,6 +182,7 @@ struct SettingsView: View {
                             .padding(.top, 16)
 
                             // MARK: - Developer Menu (Clean & at the bottom)
+                            #if DEBUG
                             settingsSection(title: "Developer") {
                                 NavigationLink {
                                     DeveloperView()
@@ -215,6 +203,7 @@ struct SettingsView: View {
                                 }
                             }
                             .padding(.top, 16)
+                            #endif
                         }
                         .padding(.horizontal, 16)
                         .padding(.bottom, 40)
@@ -223,16 +212,36 @@ struct SettingsView: View {
             }
             .alert(settings.localizedString(for: "settings.reset.alert.title"), isPresented: $showResetAlert) {
                 Button(settings.localizedString(for: "settings.reset.confirm"), role: .destructive) {
+                    showFinalResetAlert = true
+                }
+                Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
+            } message: {
+                Text(settings.localizedString(for: "settings.reset.alert.message"))
+            }
+            .alert(settings.localizedString(for: "settings.reset.final.title"), isPresented: $showFinalResetAlert) {
+                Button(settings.localizedString(for: "settings.reset.confirm"), role: .destructive) {
                     gardenStore.resetAllData()
                     shopStore.reset()
                     streakStore.reset()
                     powerUpStore.reset()
+                    characterStore.reset()
+                    achievementStore.reset()
+                    titelStore.reset()
+                    pfadStore.pfadZuruecksetzen(settings: settings, gardenStore: gardenStore)
+                    settings.onboardingAbgeschlossen = false
                     FeedbackManager.shared.playError()
                     dismiss()
                 }
                 Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
             } message: {
-                Text(settings.localizedString(for: "settings.reset.alert.message"))
+                Text(settings.localizedString(for: "settings.reset.final.message"))
+            }
+            .onChange(of: settings.isNotificationsEnabled) { newValue in
+                if newValue {
+                    NotificationManager.shared.scheduleAll(for: gardenStore.pflanzen)
+                } else {
+                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                }
             }
             .navigationBarBackButtonHidden(true)
             .toolbar {
@@ -402,4 +411,37 @@ struct DangerButtonStyle: ButtonStyle {
         .environmentObject(TitelStore())
         .environmentObject(AchievementStore(gardenStore: GardenStore(), streakStore: StreakStore()))
         .environmentObject(GartenPfadStore(settings: settings))
+        .environmentObject(CharacterStore())
+}
+
+struct GrovyShareCardView: View {
+    @ObservedObject var settings: SettingsStore
+    
+    var body: some View {
+        VStack(spacing: 32) {
+            if let appIcon = UIImage(named: "Splash_Screenicon") ?? UIImage(named: "AppIcon") {
+                Image(uiImage: appIcon)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 160, height: 160)
+                    .cornerRadius(36)
+                    .shadow(color: .black.opacity(0.15), radius: 15, y: 5)
+            } else {
+                RoundedRectangle(cornerRadius: 36)
+                    .fill(Color(hex: "#40E0D0"))
+                    .frame(width: 160, height: 160)
+                    .overlay(
+                        Image(systemName: "leaf.fill")
+                            .font(.system(size: 70))
+                            .foregroundColor(.white)
+                    )
+            }
+            
+            Text("Improve your life")
+                .font(.system(size: 42, weight: .black, design: .rounded))
+                .foregroundColor(.black)
+        }
+        .frame(width: 400, height: 400)
+        .background(Color.white)
+    }
 }

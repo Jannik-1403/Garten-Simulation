@@ -4,6 +4,7 @@ import SwiftUI
 // PfadIgelView.swift scheint der aktuelle Ersatz zu sein.
 struct GartenIgelView: View {
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var characterStore: CharacterStore
     let text: String
     var daumenHoch: Bool = false
     
@@ -29,8 +30,9 @@ struct GartenIgelView: View {
                 )
                 .shadow(color: .black.opacity(0.05), radius: 5, y: 2)
 
-            // Igel Image
-            IgelView(customization: settings.igelCustomization, size: 100)
+            // Avatar Image
+            AvatarView(profile: characterStore.profile)
+                .frame(width: 100, height: 100)
                 .shadow(color: .black.opacity(0.05), radius: 5, y: 3)
         }
     }

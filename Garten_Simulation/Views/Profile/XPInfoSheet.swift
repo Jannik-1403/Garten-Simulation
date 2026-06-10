@@ -15,16 +15,13 @@ struct XPInfoSheet: View {
                         // Header
                         VStack(spacing: 16) {
                             ZStack {
-                                Circle()
-                                    .fill(Color(hex: "#FFD000").opacity(0.15))
-                                    .frame(width: 100, height: 100)
-                                
                                 Image("XP")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 60, height: 60)
                                     .shadow(color: Color(hex: "#FFD000").opacity(0.3), radius: 10, x: 0, y: 5)
                             }
+
                             
                             Text(settings.localizedString(for: "xp_info.title"))
                                 .font(.system(size: 26, weight: .black, design: .rounded))

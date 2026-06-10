@@ -13,6 +13,9 @@ import SwiftUI
 struct IsometricPathView: View {
     @ObservedObject var habit: HabitModel
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var pfadStore: GartenPfadStore
+    @Environment(\.dismiss) var dismiss
     
     // Konstanten für den Schlangenpfad
     private let totalDays = 90
@@ -39,35 +42,15 @@ struct IsometricPathView: View {
     }()
 
 
-    private let decorations: [IsoDecoration] = [
-        IsoDecoration(
-            col: 8, row: 10,
-            imageName: "deko_busch",
-            widthPt: 250, heightPt: 250,
-            yOffset: -20
-        ),
-
-
-        // Baum: nach dem Busch (gr\u00f6\u00dfere row-Zahl = weiter unten)
-        IsoDecoration(
-            col: 12, row: 10,
-            imageName: "deko_baum",
-            widthPt: 220, heightPt: 220,
-            yOffset: -20
-        )
-
-
-
-
-
-
-
-
-
-
-
-
-    ]
+    private let decorations: [IsoDecoration] = {
+        var decos: [IsoDecoration] = []
+        for i in 0..<8 {
+            let offset = i * 6
+            decos.append(IsoDecoration(col: 8 + offset, row: 10 + offset, imageName: "deko_busch", widthPt: 250, heightPt: 250, yOffset: -20))
+            decos.append(IsoDecoration(col: 12 + offset, row: 10 + offset, imageName: "deko_baum", widthPt: 220, heightPt: 220, yOffset: -20))
+        }
+        return decos
+    }()
 
 
 
@@ -100,8 +83,11 @@ struct IsometricPathView: View {
     @State private var contentHeight: CGFloat = UIScreen.main.bounds.height * 2
 
     var body: some View {
-        ZStack {
-            ScrollViewReader { proxy in
+        if habit.pfadAktiviertAm == nil {
+            PfadActivationOverlay(habit: habit)
+        } else {
+            ZStack {
+                ScrollViewReader { proxy in
                 ScrollView(.vertical, showsIndicators: false) {
                     ZStack(alignment: .top) {
                         IsometricGrassBackground(
@@ -117,7 +103,7 @@ struct IsometricPathView: View {
                             // Berechne den Fortschritt
                             let firstUnwateredIndex = (0..<totalDays).first { i in
                                 let date = dayAt(index: i)
-                                return !habit.wateringDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
+                                return !habit.pfadCheckedDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
                             } ?? totalDays
 
                             // Alle Elemente (Tiles + Dekorationen) zusammen nach Z-Order sortieren
@@ -150,10 +136,51 @@ struct IsometricPathView: View {
                 .onPreferenceChange(ContentHeightKey.self) { height in
                     contentHeight = max(height, UIScreen.main.bounds.height)
                 }
+                .overlay(alignment: .top) {
+                    if selectedDay == nil {
+                        let firstUnwateredIndex = (0..<totalDays).first { i in
+                            let date = dayAt(index: i)
+                            return !habit.pfadCheckedDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
+                        } ?? totalDays
+                        let currentDay = min(firstUnwateredIndex + 1, totalDays)
+                        let diffEnum = PfadSchwierigkeit(rawValue: habit.individualSchwierigkeit ?? "") ?? .anfaenger
+                        
+                        HStack {
+                            // Current Day Badge
+                            Text(String(format: settings.localizedString(for: "pfad_tag_header"), currentDay))
+                                .font(.system(size: 20, weight: .black, design: .rounded))
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                                .background(Color.orange)
+                                .cornerRadius(16)
+                                .shadow(color: Color(hex: "#E65100"), radius: 0, x: 0, y: 4)
+                            
+                            Spacer()
+                            
+                            // Difficulty Badge
+                            HStack(spacing: 6) {
+                                Image(systemName: diffEnum.icon)
+                                    .font(.system(size: 16, weight: .bold))
+                                Text(settings.localizedString(for: diffEnum.titelKey))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                            }
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(diffEnum.farbe)
+                            .cornerRadius(16)
+                            .shadow(color: diffEnum.farbe.darker(), radius: 0, x: 0, y: 4)
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.top, 16)
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                    }
+                }
                 .onAppear {
                     let firstUnwateredIndex = (0..<totalDays).first { i in
                         let date = dayAt(index: i)
-                        return !habit.wateringDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
+                        return !habit.pfadCheckedDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
                     } ?? (totalDays - 1)
 
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -167,6 +194,7 @@ struct IsometricPathView: View {
         .fullScreenCover(item: $selectedDay) { item in
             detailOverlay(for: item.index)
         }
+        } // End of else
     }
     
     // MARK: - Components
@@ -177,13 +205,13 @@ struct IsometricPathView: View {
         // Berechne erneut den aktuellen freigeschalteten Index
         let firstUnwateredIndex = (0..<totalDays).first { i in
             let d = dayAt(index: i)
-            return !habit.wateringDates.contains { Calendar.current.isDate($0, inSameDayAs: d) }
+            return !habit.pfadCheckedDates.contains { Calendar.current.isDate($0, inSameDayAs: d) }
         } ?? totalDays
         
         let isUnlockedStump = (index == firstUnwateredIndex)
         let dateOfTile = dayAt(index: index)
         let isFuture = Calendar.current.compare(dateOfTile, to: Date(), toGranularity: .day) == .orderedDescending
-        let canBeCompleted = isUnlockedStump && !isFuture && !habit.istBewässert
+        let canBeCompleted = isUnlockedStump && !isFuture
         
         let lang = settings.appLanguage
         let diff = habit.individualSchwierigkeit ?? "anfaenger"
@@ -311,7 +339,7 @@ struct IsometricPathView: View {
                 
                 // 4. Datum & Status
                 HStack(spacing: 10) {
-                    let isWatered = habit.wateringDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
+                    let isWatered = habit.pfadCheckedDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
                     Image(systemName: isWatered ? "checkmark.circle.fill" : "clock.fill")
                         .foregroundColor(isWatered ? .green : .orange)
                         .font(.body)
@@ -334,10 +362,24 @@ struct IsometricPathView: View {
                         isRectangular: true,
                         aktion: {
                             withAnimation {
-                                habit.wateringDates.append(date)
-                                habit.istBewässert = true
-                                habit.streak += 1
+                                habit.pfadCheckedDates.append(date)
+                                
+                                if let strang = pfadStore.straenge.first(where: { $0.pflanzenID == habit.id }),
+                                   let tag = strang.tags.first(where: { $0.tagNummer == dayNum }) {
+                                    pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings, pflanzenID: habit.id)
+                                } else {
+                                    gardenStore.xpHinzufuegen(amount: 50)
+                                    gardenStore.coinsGutschreiben(amount: 20, beschreibung: settings.localizedString(for: "pfad_tag_erledigt_belohnung"))
+                                    FeedbackManager.shared.playSuccess()
+                                }
+                                
                                 selectedDay = nil
+                                
+                                if dayNum == 90 {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        dismiss()
+                                    }
+                                }
                             }
                         }
                     ) {
@@ -379,8 +421,9 @@ struct IsometricPathView: View {
 
     
     private func dayAt(index i: Int) -> Date {
-        // Tag 1 (index 0) ist das Kaufdatum
-        return Calendar.current.date(byAdding: .day, value: i, to: habit.gekauftAm) ?? habit.gekauftAm
+        // Tag 1 (index 0) ist das Aktivierungsdatum (oder Fallback auf gekauftAm)
+        let referenceDate = habit.pfadAktiviertAm ?? habit.gekauftAm
+        return Calendar.current.date(byAdding: .day, value: i, to: referenceDate) ?? referenceDate
     }
 
     // --- RENDER HELPERS ---
@@ -432,7 +475,7 @@ struct IsometricPathView: View {
         let status: PathTileView.TileStatus = {
             if i < firstUnwateredIndex { return .erledigt }
             else if i == firstUnwateredIndex {
-                if !isFuture && !habit.istBewässert { return .freigeschalten }
+                if !isFuture { return .freigeschalten }
                 else { return .nichtFreigeschalten }
             } else { return .nichtFreigeschalten }
         }()
@@ -489,3 +532,84 @@ struct ContentHeightKey: PreferenceKey {
     }
 }
 
+// MARK: - PfadActivationOverlay
+struct PfadActivationOverlay: View {
+    @ObservedObject var habit: HabitModel
+    @EnvironmentObject var settings: SettingsStore
+    
+    @State private var ausgewaehlt: PfadSchwierigkeit = .anfaenger
+    @State private var isAnimating = false
+    @State private var isChangingDifficulty = false
+    
+    var body: some View {
+        ZStack {
+            Color.appHintergrund.ignoresSafeArea()
+            
+            VStack(spacing: 24) {
+                Spacer()
+                
+                // 90 Tage 3D Button + Belohnungstext
+                VStack(spacing: 12) {
+                    Button(action: { FeedbackManager.shared.playTap() }) {
+                        Text(settings.localizedString(for: "pfad_activation_90_tage"))
+                            .font(.system(size: 42, weight: .black, design: .rounded))
+                    }
+                    .buttonStyle(Pressed3DTextButtonStyle())
+                    .padding(.bottom, 12)
+                }
+                
+                Spacer()
+                
+                // Reward Area
+                VStack(spacing: 12) {
+                    Image("coin")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 60, height: 60)
+                        .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 4)
+                        
+                    Text(settings.localizedString(for: "pfad_activation_belohnung"))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                }
+                .opacity(isAnimating ? 1.0 : 0.0)
+                .offset(y: isAnimating ? 0 : 20)
+                
+                Spacer()
+                
+                // Activate Button
+                Item3DButton(
+                    farbe: .orange,
+                    sekundaerFarbe: Color(hex: "#E65100"),
+                    groesse: 60,
+                    isRectangular: true,
+                    aktion: {
+                        FeedbackManager.shared.playSuccess()
+                        withAnimation(.easeInOut) {
+                            habit.pfadAktiviertAm = Date()
+                        }
+                    }
+                ) {
+                    Text(settings.localizedString(for: "pfad_activation_btn"))
+                        .font(.system(size: 20, weight: .black, design: .rounded))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 40)
+                .opacity(isAnimating ? 1.0 : 0.0)
+                .offset(y: isAnimating ? 0 : 20)
+            }
+        }
+        .onAppear {
+            if let existingDiff = habit.individualSchwierigkeit, let diffEnum = PfadSchwierigkeit(rawValue: existingDiff) {
+                ausgewaehlt = diffEnum
+            }
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.7, blendDuration: 0).delay(0.1)) {
+                isAnimating = true
+            }
+        }
+    }
+}

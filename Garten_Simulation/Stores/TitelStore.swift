@@ -74,4 +74,12 @@ class TitelStore: ObservableObject {
         }
         SharedUserDefaults.suite.set(aktiverTitelID, forKey: aktivKey)
     }
+
+    func reset() {
+        freigeschalteteTitelIDs.removeAll()
+        freigeschalteteTitelIDs.insert("titel_anfaenger")
+        aktiverTitelID = "titel_anfaenger"
+        neuerTitelZumAnzeigen = nil
+        speichernPublic()
+    }
 }

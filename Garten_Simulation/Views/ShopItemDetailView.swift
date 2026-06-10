@@ -296,6 +296,10 @@ struct ShopItemDetailView: View {
                 }
             }
 
+        }
+        .standardNavigationX()
+        }
+        .overlay {
             // Erfolg-Overlay
             if showSuccess {
                 PurchaseSuccessOverlay(
@@ -311,8 +315,6 @@ struct ShopItemDetailView: View {
                 }
                 .transition(.opacity.combined(with: .scale(scale: 0.92)))
             }
-        }
-        .standardNavigationX()
         }
         .animation(.spring(response: 0.4, dampingFraction: 0.72), value: showSuccess)
         .alert(settings.localizedString(for: "shop.not_enough_coins"), isPresented: $showInsufficientCoins) {

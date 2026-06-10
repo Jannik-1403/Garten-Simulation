@@ -34,8 +34,13 @@ struct XPStatButton: View {
     var body: some View {
         DuolingoCard(action: { showDetail = true }) {
             VStack(spacing: 12) {
-                Item3DButton(icon: "XP", farbe: Color(hex: "#FFD000"), sekundaerFarbe: Color(hex: "#D9A300"), groesse: 65, aktion: nil)
-                    .allowsHitTesting(false)
+                Item3DButton(
+                    icon: "XP",
+                    farbe: Color(hex: "#FFD000"),
+                    sekundaerFarbe: Color(hex: "#D9A300"),
+                    groesse: 60,
+                    aktion: nil
+                )
                 
                 VStack(spacing: 2) {
                     Text("\(xp)")
@@ -59,8 +64,13 @@ struct InventoryStatButton: View {
     var body: some View {
         DuolingoCard(action: { showDetail = true }) {
             HStack(spacing: 20) {
-                Item3DButton(icon: "Inventar", farbe: Color(hex: "#8B4513"), sekundaerFarbe: Color(hex: "#5D2E0C"), groesse: 70, aktion: nil)
-                    .allowsHitTesting(false)
+                Item3DButton(
+                    icon: "Inventar",
+                    farbe: Color(hex: "#8B4513"),
+                    sekundaerFarbe: Color(hex: "#5C2E0B"),
+                    groesse: 60,
+                    aktion: nil
+                )
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(settings.localizedString(for: "profile.inventory"))
@@ -89,8 +99,13 @@ struct StreakStatButton: View {
     var body: some View {
         DuolingoCard(action: { aktion?() }) {
             VStack(spacing: 12) {
-                Item3DButton(icon: "streak", farbe: Color(hex: "#FF4B00"), sekundaerFarbe: Color(hex: "#C43D00"), groesse: 65, aktion: nil)
-                    .allowsHitTesting(false)
+                Item3DButton(
+                    icon: "streak",
+                    farbe: Color(hex: "#FF4B00"),
+                    sekundaerFarbe: Color(hex: "#C43D00"),
+                    groesse: 60,
+                    aktion: nil
+                )
                 
                 VStack(spacing: 2) {
                     Text("\(bestStreak)")
@@ -114,8 +129,13 @@ struct ErfolgeStatButton: View {
     var body: some View {
         DuolingoCard(action: { showDetail = true }) {
             VStack(spacing: 12) {
-                Item3DButton(icon: "Erfolg", farbe: Color(hex: "#FFB800"), sekundaerFarbe: Color(hex: "#C5A000"), groesse: 65, aktion: nil)
-                    .allowsHitTesting(false)
+                Item3DButton(
+                    icon: "Erfolg",
+                    farbe: Color(hex: "#FFB800"),
+                    sekundaerFarbe: Color(hex: "#D99A00"),
+                    groesse: 60,
+                    aktion: nil
+                )
                 
                 VStack(spacing: 2) {
                     Text("\(count)")
@@ -139,8 +159,13 @@ struct WasserStatButton: View {
     var body: some View {
         DuolingoCard(action: { showDetail = true }) {
             HStack(spacing: 20) {
-                Item3DButton(icon: "Drop water", farbe: .blauPrimary, sekundaerFarbe: .blauSecondary, groesse: 70, aktion: nil)
-                    .allowsHitTesting(false)
+                Item3DButton(
+                    icon: "Drop water",
+                    farbe: .blauPrimary,
+                    sekundaerFarbe: Color(hex: "#005EB8"),
+                    groesse: 60,
+                    aktion: nil
+                )
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(settings.localizedString(for: "wasser.karte.titel"))
@@ -389,6 +414,18 @@ struct StatisticsDashboard: View {
         .background(Color.appHintergrund.ignoresSafeArea())
         .navigationTitle(settings.localizedString(for: "statistik_titel"))
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundStyle(.primary)
+                }
+            }
+        }
         .fullScreenCover(item: $expandedStat) { detail in
             StatDetailFullscreenView(detail: detail, selectedPeriod: selectedPeriod)
         }
@@ -397,11 +434,7 @@ struct StatisticsDashboard: View {
                 SharePreviewSheet(
                     type: type,
                     period: selectedPeriod,
-                    habits: gardenStore.pflanzen,
-                    username: {
-                        let name = settings.igelCustomization.name.trimmingCharacters(in: .whitespacesAndNewlines)
-                        return name.isEmpty ? settings.localizedString(for: "profile.user.name.default") : name
-                    }()
+                    habits: gardenStore.pflanzen
                 )
                 .environmentObject(settings)
                 .environmentObject(gardenStore)
@@ -1171,15 +1204,20 @@ struct SharePreviewSheet: View {
     let type: StatisticsDashboard.ShareCardType
     let period: StatsPeriod
     let habits: [HabitModel]
-    let username: String
     
     @State private var selectedTheme: ShareImageTheme = .light
     @State private var isExporting = false
     @State private var savedToPhotos = false
     @Environment(\.dismiss) var dismiss
+    
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var streakStore: StreakStore
+    
+    private var username: String {
+        let name = settings.igelCustomization.name.trimmingCharacters(in: .whitespacesAndNewlines)
+        return name.isEmpty ? settings.localizedString(for: "profile.user.name.default") : name
+    }
     
     private let themes: [ShareImageTheme] = [.light, .dark, .vibrant]
     

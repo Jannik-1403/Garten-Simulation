@@ -16,6 +16,11 @@ class GartenPfadStore: ObservableObject {
     @Published var zeigeMeilensteinOverlay: Bool = false
     @Published var letzterMeilensteinTitel: String = ""
     @Published var belohnungsText: String = ""
+    
+    // Pfad 90 Tage Abschluss
+    @Published var zeigePfadAbschlussOverlay: Bool = false
+    @Published var letzteAbschlussPflanzeID: String? = nil
+    @Published var letzterAbschlussCoins: Int = 0
     @Published var verfuegbareSpins: Int {
         didSet { UserDefaults.standard.set(verfuegbareSpins, forKey: "gartenpass_spins") }
     }
@@ -415,7 +420,7 @@ class GartenPfadStore: ObservableObject {
 
     // MARK: - Tag erledigen (Adapted for Multi-Strand)
 
-    func tagErledigen(tag: PfadStrangTag, gardenStore: GardenStore, settings: SettingsStore) {
+    func tagErledigen(tag: PfadStrangTag, gardenStore: GardenStore, settings: SettingsStore, pflanzenID: String? = nil) {
         guard !tag.istErledigt else { return }
 
         tag.istErledigt = true
@@ -431,24 +436,40 @@ class GartenPfadStore: ObservableObject {
         gardenStore.coinsGutschreiben(amount: 20, beschreibung: settings.localizedString(for: "pfad_tag_erledigt_belohnung"))
 
         if tag.istMeilenstein {
-            meilensteinBelohnungAusloesen(tag: tag, gardenStore: gardenStore, settings: settings)
+            meilensteinBelohnungAusloesen(tag: tag, gardenStore: gardenStore, settings: settings, pflanzenID: pflanzenID)
         }
 
         try? modelContext?.save()
         objectWillChange.send()
     }
 
-    private func meilensteinBelohnungAusloesen(tag: PfadStrangTag, gardenStore: GardenStore, settings: SettingsStore) {
+    private func meilensteinBelohnungAusloesen(tag: PfadStrangTag, gardenStore: GardenStore, settings: SettingsStore, pflanzenID: String? = nil) {
         let coins: Int
         let xp: Int
         
+        let resolvedPflanzenID = pflanzenID ?? tag.strang?.pflanzenID
+        
         if tag.tagNummer == 90 {
-            coins = 100
-            xp = 500
-            gardenStore.coinsGutschreiben(amount: coins, beschreibung: settings.localizedString(for: "pfad_abgeschlossen_belohnung"))
-            gardenStore.xpHinzufuegen(amount: xp)
-            let pattern = settings.localizedString(for: "pfad_belohnung_meisterschaft")
-            belohnungsText = String(format: pattern, coins, xp)
+            if let pid = resolvedPflanzenID, let habit = gardenStore.pflanzen.first(where: { $0.id == pid }) {
+                let schwierigkeit = PfadSchwierigkeit(rawValue: habit.individualSchwierigkeit ?? "") ?? .anfaenger
+                switch schwierigkeit {
+                case .anfaenger: coins = 2500
+                case .fortgeschritten: coins = 5000
+                case .experte: coins = 10000
+                }
+                self.letzterAbschlussCoins = coins
+                self.letzteAbschlussPflanzeID = habit.id
+                self.zeigePfadAbschlussOverlay = true
+                return
+            } else {
+                // Fallback
+                coins = 100
+                xp = 500
+                gardenStore.coinsGutschreiben(amount: coins, beschreibung: settings.localizedString(for: "pfad_abgeschlossen_belohnung"))
+                gardenStore.xpHinzufuegen(amount: xp)
+                let pattern = settings.localizedString(for: "pfad_belohnung_meisterschaft")
+                belohnungsText = String(format: pattern, coins, xp)
+            }
         } else {
             coins = 50
             xp = 100
@@ -460,6 +481,68 @@ class GartenPfadStore: ObservableObject {
         
         letzterMeilensteinTitel = settings.localizedString(for: tag.titelKey)
         zeigeMeilensteinOverlay = true
+    }
+
+    func restartPath(habit: HabitModel, newDifficulty: String) {
+        guard let strang = straenge.first(where: { $0.pflanzenID == habit.id }) else { return }
+        
+        // SwiftData Modelle zurücksetzen
+        for t in strang.tags {
+            t.istErledigt = false
+            t.datum = nil
+        }
+        
+        // HabitModel aktualisieren
+        habit.pfadCheckedDates = []
+        habit.individualSchwierigkeit = newDifficulty
+        habit.pfadAktiviertAm = Date() // Setzt es auf 'heute' aktiv
+        
+        // Speichern
+        try? modelContext?.save()
+        gardenStore?.savePlants()
+        
+        // UI aktualisieren
+        pfadInhaltAktualisieren(pflanzen: gardenStore?.pflanzen ?? [])
+        objectWillChange.send()
+    }
+
+    func debugJumpToDay89() {
+        for strang in straenge {
+            guard let habit = gardenStore?.pflanzen.first(where: { $0.id == strang.pflanzenID }) else {
+                print("Pfad: Pflanze nicht gefunden für Strang \(strang.pflanzenID)")
+                continue
+            }
+            
+            // Setze das Startdatum der Pflanze so weit zurück, dass Tag 90 "heute" ist
+            habit.pfadAktiviertAm = Date().addingTimeInterval(-89 * 24 * 3600)
+            
+            let sortedTags = strang.tags.sorted(by: { $0.tagNummer < $1.tagNummer })
+            for tag in sortedTags {
+                if tag.tagNummer < 90 {
+                    tag.istErledigt = true
+                    // Tag 89 war "gestern", Tag 88 war "vorgestern", etc.
+                    let daysAgo = 90 - tag.tagNummer
+                    tag.datum = Date().addingTimeInterval(-TimeInterval(daysAgo) * 24 * 3600)
+                    
+                    if let datum = tag.datum, !habit.pfadCheckedDates.contains(where: { Calendar.current.isDate($0, inSameDayAs: datum) }) {
+                        habit.pfadCheckedDates.append(datum)
+                    }
+                } else {
+                    tag.istErledigt = false
+                    tag.datum = nil
+                }
+            }
+            
+            // Ganz wichtig: alle heutigen Check-Ins entfernen, damit Tag 90 heute klickbar ist
+            habit.pfadCheckedDates.removeAll(where: { Calendar.current.isDateInToday($0) })
+        }
+        
+        try? modelContext?.save()
+        gardenStore?.savePlants()
+        
+        // Neu laden aus der DB, um UI Updates zu erzwingen
+        ladePfad()
+        objectWillChange.send()
     }
 
     func pfadInhaltAktualisieren(pflanzen: [HabitModel]) {
@@ -637,7 +720,6 @@ class GartenPfadStore: ObservableObject {
                 self.pflanzeHinzufuegen(neuePflanze, ziel: settings.ausgewaehltesZiel, schwierigkeit: .anfaenger)
             }
         case .powerUp(_):
-            // TODO: Zufälliges Power-Up aus PowerUpStore gutschreiben
             powerUpStore.zufaelligesPowerUpHinzufuegen()
         case .dekoration(let id):
             if let dk = GameDatabase.allDecorations.first(where: { $0.id == id }) {

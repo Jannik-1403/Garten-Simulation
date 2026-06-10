@@ -23,9 +23,9 @@ enum PfadSchwierigkeit: String, Codable, CaseIterable {
 
     var icon: String {
         switch self {
-        case .anfaenger:       return "🌱"
-        case .fortgeschritten: return "🔥"
-        case .experte:         return "⚡"
+        case .anfaenger:       return "leaf.fill"
+        case .fortgeschritten: return "flame.fill"
+        case .experte:         return "bolt.fill"
         }
     }
 

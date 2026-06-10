@@ -3,11 +3,13 @@ import SwiftUI
 struct DuolingoCard<Content: View>: View {
     let action: () -> Void
     let badgeText: String?
+    let tier: ErfolgTier?
     @ViewBuilder let content: Content
     
-    init(action: @escaping () -> Void, badgeText: String? = nil, @ViewBuilder content: () -> Content) {
+    init(action: @escaping () -> Void, badgeText: String? = nil, tier: ErfolgTier? = nil, @ViewBuilder content: () -> Content) {
         self.action = action
         self.badgeText = badgeText
+        self.tier = tier
         self.content = content()
     }
     
@@ -41,7 +43,7 @@ struct DuolingoCard<Content: View>: View {
                 }
             }
         }
-        .buttonStyle(DuolingoCardButtonStyle())
+        .buttonStyle(DuolingoCardButtonStyle(tier: tier))
     }
 }
 
@@ -49,19 +51,28 @@ struct DuolingoCardButtonStyle: ButtonStyle {
     @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
     private let shadowDepth: CGFloat = 4
     private let cornerRadius: CGFloat = 12
+    var tier: ErfolgTier? = nil
 
     func makeBody(configuration: Configuration) -> some View {
         let isPressed = configuration.isPressed
         
         configuration.label
             .background(
-                RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                    .fill(Color(UIColor.systemBackground))
-                    .shadow(
-                        color: Color.gray.opacity(0.3),
-                        radius: 0,
-                        y: isPressed ? 0 : shadowDepth
-                    )
+                ZStack {
+                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                        .fill(Color(UIColor.systemBackground))
+                        
+                    if let tier = tier {
+                        CardParticleEmitterView(tier: tier)
+                            .opacity(0.9)
+                            .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+                    }
+                }
+                .shadow(
+                    color: Color.gray.opacity(0.3),
+                    radius: 0,
+                    y: isPressed ? 0 : shadowDepth
+                )
             )
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)

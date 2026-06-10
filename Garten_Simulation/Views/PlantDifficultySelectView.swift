@@ -67,43 +67,42 @@ struct PlantDifficultySelectView: View {
                 // Drei Auswahl-Cards
                 VStack(spacing: 12) {
                     ForEach(PfadSchwierigkeit.allCases, id: \.self) { stufe in
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 16)
-                                .fill(Color(.secondarySystemGroupedBackground))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .stroke(ausgewaehlt == stufe ? stufe.farbe : Color.clear, lineWidth: 2)
-                                )
-                            
+                        let isSelected = (ausgewaehlt == stufe)
+                        Item3DButton(
+                            farbe: isSelected ? stufe.farbe : Color(.secondarySystemGroupedBackground),
+                            sekundaerFarbe: isSelected ? stufe.farbe.darker() : Color(.systemGray4),
+                            groesse: 80,
+                            isRectangular: true,
+                            aktion: {
+                                FeedbackManager.shared.playTap()
+                                withAnimation { ausgewaehlt = stufe }
+                            }
+                        ) {
                             HStack(spacing: 16) {
-                                Text(stufe.icon)
-                                    .font(.system(size: 32))
+                                Image(systemName: stufe.icon)
+                                    .font(.system(size: 24))
                                     .frame(width: 44, height: 44)
-                                    .background(Circle().fill(stufe.farbe.opacity(0.1)))
+                                    .background(Circle().fill(isSelected ? Color.white.opacity(0.2) : stufe.farbe.opacity(0.1)))
+                                    .foregroundColor(isSelected ? .white : stufe.farbe)
                                 
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(settings.localizedString(for: stufe.titelKey))
                                         .font(.system(size: 17, weight: .bold, design: .rounded))
+                                        .foregroundColor(isSelected ? .white : .primary)
                                     Text(settings.localizedString(for: stufe.beschreibungKey))
                                         .font(.system(size: 13))
-                                        .foregroundStyle(.secondary)
+                                        .foregroundStyle(isSelected ? Color.white.opacity(0.8) : .secondary)
                                 }
                                 
                                 Spacer()
                                 
-                                if ausgewaehlt == stufe {
+                                if isSelected {
                                     Image(systemName: "checkmark.circle.fill")
-                                        .foregroundStyle(stufe.farbe)
+                                        .foregroundStyle(.white)
                                         .font(.system(size: 22))
                                 }
                             }
                             .padding(.horizontal, 16)
-                        }
-                        .frame(height: 80)
-                        .onTapGesture {
-                            withAnimation(.bouncy(duration: 0.2)) {
-                                ausgewaehlt = stufe
-                            }
                         }
                     }
                 }

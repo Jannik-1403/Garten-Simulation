@@ -108,7 +108,6 @@ class PowerUpStore: ObservableObject {
     }
 
     func zufaelligesPowerUpHinzufuegen() {
-        // TODO: Zufälliges Power-Up aus PowerUpStore gutschreiben
         if let randomPU = GameDatabase.allPowerUps.randomElement() {
             aktivierePowerUp(randomPU)
         }

@@ -12,7 +12,8 @@ final class IAPStore: ObservableObject {
     static let productIDs = [
         "com.gartenapp.coins.pack_small",
         "com.gartenapp.coins.pack_medium",
-        "com.gartenapp.coins.pack_large"
+        "com.gartenapp.coins.pack_large",
+        "com.gartenapp.cosmetics.glasses"
     ]
 
     static let coinAmounts: [String: Int] = [
@@ -55,7 +56,7 @@ final class IAPStore: ObservableObject {
 
     // MARK: - Purchase
 
-    func purchase(_ product: Product, gardenStore: GardenStore) async {
+    func purchase(_ product: Product, gardenStore: GardenStore, characterStore: CharacterStore? = nil) async {
         isPurchasing = true
         purchaseError = nil
         defer { isPurchasing = false }
@@ -71,6 +72,8 @@ final class IAPStore: ObservableObject {
                         coins,
                         reason: product.displayName
                     )
+                } else if product.id == "com.gartenapp.cosmetics.glasses" {
+                    characterStore?.unlockedGlasses = true
                 }
                 await transaction.finish()
 

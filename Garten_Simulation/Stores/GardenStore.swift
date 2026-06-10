@@ -22,6 +22,7 @@ class GardenStore: ObservableObject {
     @Published var selectedTab: Int = 0
     @Published var triggerStreakDetail: Bool = false
     @Published var triggerWaterDetail: Bool = false
+    @Published var liveActivityDebugLog: String = ""
     @Published var gluecksradDrehungen: Int = 0 {
         didSet { saveStats() }
     }
@@ -45,6 +46,7 @@ class GardenStore: ObservableObject {
     @Published var gesamtGegossen: Int = 0
     @Published var tageAktiv: Int = 0
     @Published var skillXP: [String: Int] = [:]
+    @Published var completed90DayChallenges: Int = 0
     
     var gekauftePflanzenAnzahl: Int { pflanzen.count }
     
@@ -128,6 +130,7 @@ class GardenStore: ObservableObject {
     
     // Gieß-Bonus & Feedback
     @Published var letzterBonus: GiessBonus? = nil
+    @Published var letzteBonusPflanzeID: String? = nil
     @Published var letzteGiessXP: Int = 0
     @Published var letzteGiessCoins: Int = 0
     @Published var giessTriggerID = UUID()
@@ -353,9 +356,11 @@ class GardenStore: ObservableObject {
         
         // Bonus-Info kommunizieren
         if bonusAusgeloest {
+            self.letzteBonusPflanzeID = pflanze.id
             self.letzterBonus = GiessBonus(xp: xpGewonnen, gems: gemsGewonnen)
         } else {
             self.letzterBonus = nil
+            self.letzteBonusPflanzeID = nil
         }
         self.letzteGiessXP = finalXPGewonnen
         self.letzteGiessCoins = coinsGewonnen
@@ -526,12 +531,12 @@ class GardenStore: ObservableObject {
             logPurchase(shopItem: shopItem, isFree: isFree)
             savePlants()
             NotificationManager.shared.scheduleAll(for: pflanzen)
-            updateLiveActivity()
+            updateWidgetData() // Update Home-Screen Widget
+            updateLiveActivity() // Update Live Activity
         }
     }
 
     func pflanzeHinzufuegen(id: String) {
-        // TODO: Pflanze zum GardenStore hinzufügen
         if let pl = GameDatabase.allPlants.first(where: { $0.id == id }) {
             let payload = ShopDetailPayload.from(plant: pl)
             pflanzHinzufuegen(shopItem: payload, isFree: true)
@@ -541,7 +546,8 @@ class GardenStore: ObservableObject {
     // MARK: - Leben System
     func pflanzeGestorben(_ habit: HabitModel) {
         withAnimation(.spring) {
-            leben = max(0, leben - 1)
+            let damage = aktivesWetter == .sturm ? 2 : 1
+            leben = max(0, leben - damage)
             gestorbenePflanzenLog.append(habit.name)
         }
         
@@ -775,6 +781,16 @@ class GardenStore: ObservableObject {
     func applyPowerUp(_ powerUp: PowerUpItem, targetPlantId: String? = nil) {
         if powerUp.id == PowerUpWeedSupport.zauberstabID {
             applyZauberstabPowerUp(powerUp)
+            return
+        }
+
+        // Sofortige Ausführung für Herz-Auffüller
+        if powerUp.id == "powerup.herz_auffueller" {
+            if leben < 5 {
+                leben += 1
+                FeedbackManager.shared.playSuccess()
+                saveStats()
+            }
             return
         }
 
@@ -1362,6 +1378,7 @@ class GardenStore: ObservableObject {
         SharedUserDefaults.suite.set(tageAktiv, forKey: "stats_tage_aktiv")
         SharedUserDefaults.suite.set(gesamtVerdient, forKey: "stats_gesamt_verdient")
         SharedUserDefaults.suite.set(gesamtAusgegeben, forKey: "stats_gesamt_ausgegeben")
+        SharedUserDefaults.suite.set(completed90DayChallenges, forKey: "stats_completed_90day_challenges")
         
         if let spinDate = lastSpinTimestamp {
             SharedUserDefaults.suite.set(spinDate.timeIntervalSince1970, forKey: "last_spin_timestamp_double")
@@ -1406,6 +1423,7 @@ class GardenStore: ObservableObject {
         tageAktiv = SharedUserDefaults.suite.integer(forKey: "stats_tage_aktiv")
         gesamtVerdient = SharedUserDefaults.suite.integer(forKey: "stats_gesamt_verdient")
         gesamtAusgegeben = SharedUserDefaults.suite.integer(forKey: "stats_gesamt_ausgegeben")
+        completed90DayChallenges = SharedUserDefaults.suite.integer(forKey: "stats_completed_90day_challenges")
         
         let spinDouble = SharedUserDefaults.suite.double(forKey: "last_spin_timestamp_double")
         if spinDouble > 0 {
@@ -1471,6 +1489,11 @@ class GardenStore: ObservableObject {
             gems: coins,
             streakCompletedDates: dates
         )
+        
+        // Live Activity immer direkt mitaktualisieren / starten, falls nötig
+        DispatchQueue.main.async {
+            self.checkAndStartLiveActivity()
+        }
     }
 
     private func loadPlants() {
@@ -1719,8 +1742,9 @@ class GardenStore: ObservableObject {
         guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
         
         // Falls wir nach einem Neustart sind, prüfen ob noch eine Aktivität läuft
-        if gardenActivity == nil {
-            gardenActivity = Activity<GardenActivityAttributes>.activities.first
+        let activities = Activity<GardenActivityAttributes>.activities
+        if !activities.isEmpty {
+            gardenActivity = activities.first
         }
         
         let gesamt = pflanzen.count
@@ -1728,27 +1752,29 @@ class GardenStore: ObservableObject {
         // Nur starten, wenn noch etwas zu tun ist ODER wenn wir die Island als Status-Monitor nutzen wollen
         if gardenActivity == nil && gesamt > 0 {
             startLiveActivity()
-        } else {
+        } else if gardenActivity != nil {
             updateLiveActivity()
         }
     }
     
     private func startLiveActivity() {
-        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
-        let attributes = GardenActivityAttributes(gartenName: AppStrings.get("garden.title", language: lang))
+        // Alte Activities beenden, um Duplikate zu verhindern
+        Task {
+            for activity in Activity<GardenActivityAttributes>.activities {
+                await activity.end(nil, dismissalPolicy: .immediate)
+            }
+        }
         
-        let state = createActivityState()
-        
-        do {
-            print("DEBUG: Versuche Live Activity zu starten...")
-            gardenActivity = try Activity.request(attributes: attributes, content: .init(state: state, staleDate: nil))
-            print("DEBUG: ✅ Live Activity erfolgreich gestartet! ID: \(gardenActivity?.id ?? "unknown")")
-        } catch {
-            let errStr = "\(error)"
-            if errStr.contains("visibility") {
-                print("DEBUG: ⚠️ Sichtbarkeits-Fehler (visibility). Apple verlangt, dass der User die App gerade ansieht.")
-            } else {
-                print("DEBUG: ❌ Fehler beim Starten: \(error)")
+        // Verzögerung, um den Sichtbarkeits-Fehler (visibility) beim App-Start zu vermeiden
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            let attributes = GardenActivityAttributes(gartenName: "Noch offene Gewohnheiten")
+            
+            let state = self.createActivityState()
+            
+            do {
+                self.gardenActivity = try Activity.request(attributes: attributes, content: .init(state: state, staleDate: nil))
+            } catch {
+                print("Live Activity Fehler: \(error.localizedDescription)")
             }
         }
     }
@@ -1785,13 +1811,7 @@ class GardenStore: ObservableObject {
         let gesamt = pflanzen.count
         let streak = SharedUserDefaults.suite.integer(forKey: "streak_last_shown")
         
-        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
-        var msg = ""
-        if gegossen == gesamt && gesamt > 0 {
-            msg = AppStrings.get("activity.all_done", language: lang)
-        } else {
-            msg = String(format: AppStrings.get("common.remaining_format", language: lang), "\(gesamt - gegossen)")
-        }
+        let msg = "\(gesamt - gegossen)"
         
         return GardenActivityAttributes.ContentState(
             gegossenePflanzen: gegossen,

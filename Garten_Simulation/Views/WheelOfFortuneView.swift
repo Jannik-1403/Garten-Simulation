@@ -404,9 +404,21 @@ struct SpinResultOverlay: View {
             }
             .padding(28)
             .background(
-                RoundedRectangle(cornerRadius: 32, style: .continuous)
-                    .fill(Color(UIColor.systemBackground))
-                    .shadow(color: .black.opacity(0.15), radius: 32, x: 0, y: 16)
+                ZStack(alignment: .bottom) {
+                    // 3D Shadow Layer (Base)
+                    RoundedRectangle(cornerRadius: 32, style: .continuous)
+                        .fill(Color(hex: "#E0E0E0"))
+                        .offset(y: 8)
+                    
+                    // Main White Surface
+                    RoundedRectangle(cornerRadius: 32, style: .continuous)
+                        .fill(Color.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 32, style: .continuous)
+                                .stroke(Color.black.opacity(0.1), lineWidth: 1.5)
+                        )
+                }
+                .shadow(color: .black.opacity(0.15), radius: 32, x: 0, y: 16)
             )
             .padding(.horizontal, 32)
             .opacity(contentOpacity)

@@ -252,9 +252,10 @@ struct GameDatabase {
     // MARK: Decorations (modern API)
     static let allDecorations: [DecorationItem] = allTrashItems
 
-    // MARK: Power-Up Items (15 Stück)
+    // MARK: Power-Up Items (16 Stück)
     static let allPowerUps: [PowerUpItem] = [
-        PowerUpItem(id: "powerup.gartenschutz",      name: "item.unkraut_schild.name",        symbolName: "Unkraut_Schild", symbolColor: "green", description: "item.unkraut_schild.description", unlockMethod: .streak7, rarity: .common, durationHours: 24.0, effectMultiplier: 1.0, howToUse: "item.unkraut_schild.usage", target: .garden),
+        PowerUpItem(id: "powerup.herz_auffueller",   name: "item.herz_auffueller.name",       symbolName: "Heart",              symbolColor: "red",    description: "item.herz_auffueller.description",unlockMethod: .streak7,        rarity: .common,    durationHours: nil,   effectMultiplier: 1.0, howToUse: "item.herz_auffueller.usage", target: .garden),
+        PowerUpItem(id: "powerup.gartenschutz",      name: "item.unkraut_schild.name",        symbolName: PowerUpWeedSupport.unkrautSchildAssetName, symbolColor: "green", description: "item.unkraut_schild.description", unlockMethod: .streak7, rarity: .common, durationHours: 24.0, effectMultiplier: 1.0, howToUse: "item.unkraut_schild.usage", target: .garden),
         PowerUpItem(id: "powerup.wunder_wasser",      name: "item.wunder_wasser.name",         symbolName: "Powerup-Wunderwasser",  symbolColor: "blue",   description: "item.wunder_wasser.description",                 unlockMethod: .levelUp,        rarity: .rare,      durationHours: 24.0,  effectMultiplier: 1.0, howToUse: "item.wunder_wasser.usage", target: .plant),
         PowerUpItem(id: "powerup.sturmfest",         name: "item.waechter_turm.name",          symbolName: "Powerup-WächterTurm",   symbolColor: "orange", description: "item.waechter_turm.description",unlockMethod: .streak14,       rarity: .rare,      durationHours: nil,  effectMultiplier: 1.0, howToUse: "item.waechter_turm.usage",   target: .plant),
         PowerUpItem(id: "powerup.duenger_blitz",      name: "item.duenger_blitz.name",          symbolName: "Powerup-Düngerblitz",   symbolColor: "yellow", description: "item.duenger_blitz.description",           unlockMethod: .streak7,        rarity: .common,    durationHours: 24.0,  effectMultiplier: 2.0, howToUse: "item.duenger_blitz.usage",   target: .plant),

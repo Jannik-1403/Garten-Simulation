@@ -39,12 +39,21 @@ struct WetterDetailView: View {
                         value: gemsText
                     )
                     
-                    weatherInfoBlock(
-                        icon: "star.fill",
-                        isAsset: false,
-                        title: settings.localizedString(for: "common.xp"),
-                        value: xpText
-                    )
+                    if event == .sturm {
+                        weatherInfoBlock(
+                            icon: "Heart",
+                            isAsset: true,
+                            title: settings.localizedString(for: "leben.titel"),
+                            value: "-2"
+                        )
+                    } else {
+                        weatherInfoBlock(
+                            icon: "star.fill",
+                            isAsset: false,
+                            title: settings.localizedString(for: "common.xp"),
+                            value: xpText
+                        )
+                    }
                 }
                 .padding(.horizontal, 16)
 

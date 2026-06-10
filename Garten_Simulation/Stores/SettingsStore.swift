@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import LinkPresentation
 
 enum ScreenSize {
     static var width: CGFloat {
@@ -17,7 +18,7 @@ class SettingsStore: ObservableObject {
     @AppStorage("isHapticEnabled")        var isHapticEnabled: Bool = true
     @AppStorage("isNotificationsEnabled") var isNotificationsEnabled: Bool = true
     @AppStorage("isAnalyticsEnabled")     var isAnalyticsEnabled: Bool = true
-    @AppStorage("showHabitInsteadOfName") var showHabitInsteadOfName: Bool = false
+    @AppStorage("showHabitInsteadOfName") var showHabitInsteadOfName: Bool = true
     @AppStorage("onboardingAbgeschlossen") var onboardingAbgeschlossen: Bool = false
     @AppStorage("ausgewaehltesZiel")       var ausgewaehltesZiel: String = ""
     
@@ -101,7 +102,9 @@ class SettingsStore: ObservableObject {
     func refreshNotificationStatus() async {
         let center = UNUserNotificationCenter.current()
         let settings = await center.notificationSettings()
-        isNotificationsEnabled = settings.authorizationStatus == .authorized
+        if settings.authorizationStatus != .authorized {
+            isNotificationsEnabled = false
+        }
     }
 
     // MARK: - Localization
@@ -134,11 +137,17 @@ class SettingsStore: ObservableObject {
     func exportData()        { /* print("Exporting data...") */ }
     func importData()        { /* print("Importing data...") */ }
     func deleteAccount()     { /* print("Deleting account...") */ }
-    func shareApp() {
-        let text = localizedString(for: "settings.share_text")
-        let url = URL(string: "https://apps.apple.com/app/garten-simulation")!
+    func shareApp(image: UIImage? = nil) {
+        let text = localizedString(for: "settings.share.desc")
+        let urlString = "https://apps.apple.com/app/grovy"
         
-        let activityVC = UIActivityViewController(activityItems: [text, url], applicationActivities: nil)
+        let itemSource = GrovyShareItemSource(title: text, urlString: urlString, image: image)
+        var items: [Any] = [itemSource]
+        if let img = image {
+            items.append(img)
+        }
+        
+        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
         
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let rootVC = windowScene.windows.first?.rootViewController {
@@ -155,8 +164,8 @@ class SettingsStore: ObservableObject {
     }
     
     func contactSupport() {
-        let email = "jannik.schill.2010@gmail.com"
-        let subject = "Support: Garten-Simulation"
+        let email = "grovy.support@gmail.com"
+        let subject = "Support: Grovy"
         let mailto = "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
         
         if let url = URL(string: mailto) {
@@ -172,4 +181,43 @@ class SettingsStore: ObservableObject {
         "Igel-Surfen", "Igel-Skatboard", "Igel-Töpfern", "Igel-Code", "Igel-Essen", 
         "Igel-wandern"
     ]
+}
+
+class GrovyShareItemSource: NSObject, UIActivityItemSource {
+    let title: String
+    let urlString: String
+    let image: UIImage?
+    
+    init(title: String, urlString: String, image: UIImage?) {
+        self.title = title
+        self.urlString = urlString
+        self.image = image
+    }
+    
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return title
+    }
+    
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        return "\(title)\n\n\(urlString)"
+    }
+    
+    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+        let metadata = LPLinkMetadata()
+        metadata.title = title
+        if let url = URL(string: urlString) {
+            metadata.originalURL = url
+            metadata.url = url
+        }
+        
+        if let appIcon = UIImage(named: "Splash_Screenicon") ?? UIImage(named: "AppIcon") {
+            metadata.iconProvider = NSItemProvider(object: appIcon)
+        }
+        
+        if let img = image {
+            metadata.imageProvider = NSItemProvider(object: img)
+        }
+        
+        return metadata
+    }
 }

@@ -42,9 +42,6 @@ struct GartenView: View {
     @State private var coinHeaderPosition: CGPoint = .zero
     @State private var streakHeaderPosition: CGPoint = .zero
     
-    // Bonus-Text
-    @State private var zeigeBonusText: Bool = false
-    @State private var bonusText: String = ""
 
     var wateredCount: Int { gardenStore.pflanzen.filter { $0.istBewässert }.count }
     var totalPlants: Int { gardenStore.pflanzen.count }
@@ -108,6 +105,7 @@ struct GartenView: View {
                                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                                         }
                                     }
+                                    .frame(maxWidth: .infinity)
                                 }
                                 .padding(.horizontal, 8)
                                 .padding(.top, 60)
@@ -223,6 +221,7 @@ struct GartenView: View {
                         )
                         .padding(.top, 16)
                         .padding(.bottom, 10)
+                        .frame(maxWidth: 600)
 
                         if !gardenStore.pflanzen.isEmpty {
                             DailyWateringRingView(
@@ -233,6 +232,7 @@ struct GartenView: View {
                             )
                             .padding(.vertical, 8)
                             .padding(.horizontal, 16)
+                            .frame(maxWidth: 600)
                         }
 
                         HStack {
@@ -330,6 +330,7 @@ struct GartenView: View {
                                 }
                             }
                         }
+                        .frame(maxWidth: 600)
                     }
                     .padding(.horizontal, 16)
                     .background(Color.appHintergrund.ignoresSafeArea(edges: .top))
@@ -455,6 +456,30 @@ struct GartenView: View {
                 }
                 .environmentObject(settings)
             }
+            
+            if pfadStore.zeigePfadAbschlussOverlay,
+               let habitId = pfadStore.letzteAbschlussPflanzeID,
+               let habit = gardenStore.pflanzen.first(where: { $0.id == habitId }) {
+                PfadCompletedOverlay(
+                    habit: habit,
+                    coinsEarned: pfadStore.letzterAbschlussCoins,
+                    onCollect: {
+                        gardenStore.coinsGutschreiben(amount: pfadStore.letzterAbschlussCoins, beschreibung: settings.localizedString(for: "pfad_abgeschlossen_belohnung"))
+                        gardenStore.completed90DayChallenges += 1
+                        gardenStore.saveStats()
+                        
+                        gardenStore.letzteGiessCoins = pfadStore.letzterAbschlussCoins
+                        gardenStore.giessTriggerID = UUID()
+                        pfadStore.zeigePfadAbschlussOverlay = false
+                        pfadStore.letzteAbschlussPflanzeID = nil
+                    },
+                    onDismiss: {
+                        pfadStore.zeigePfadAbschlussOverlay = false
+                        pfadStore.letzteAbschlussPflanzeID = nil
+                    }
+                )
+                .environmentObject(settings)
+            }
         }
         .overlay(alignment: .bottomTrailing) {
             if gardenStore.isDailySpinAvailable {
@@ -491,12 +516,7 @@ struct GartenView: View {
             .ignoresSafeArea()
             .allowsHitTesting(false)
         }
-        .overlay {
-            if zeigeBonusText {
-                BonusFloatingTextView(text: bonusText, isVisible: $zeigeBonusText)
-                    .zIndex(300)
-            }
-        }
+
         .onPreferenceChange(HeaderPositionPreferenceKey.self) { prefs in
             if let c = prefs.first(where: { $0.id == "coins" }) { coinHeaderPosition = c.center }
             if let s = prefs.first(where: { $0.id == "streak" }) { streakHeaderPosition = s.center }
@@ -522,11 +542,7 @@ struct GartenView: View {
                 }
             }
         }
-        .onChange(of: gardenStore.letzterBonus) { _, bonus in
-            guard let bonus = bonus else { return }
-            bonusText = settings.localizedString(for: "bonus_text")
-            zeigeBonusText = true
-        }
+
     }
 
 

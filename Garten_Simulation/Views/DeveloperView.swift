@@ -221,6 +221,17 @@ struct DeveloperView: View {
                         }
                     }
                     
+                    // Section: Pfad-System Debug
+                    settingsSection(title: "Pfad-System") {
+                        VStack(spacing: 0) {
+                            Button {
+                                pfadStore.debugJumpToDay89()
+                                FeedbackManager.shared.playSuccess()
+                            } label: {
+                                settingRow(title: "Zu Tag 89 springen", icon: "forward.end.fill", color: .purple)
+                            }
+                        }
+                    }
                     // Section 5: Lives System Debug
                     settingsSection(title: "Leben-System") {
                         VStack(spacing: 0) {

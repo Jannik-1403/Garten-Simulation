@@ -33,6 +33,9 @@ class NotificationManager {
     func scheduleAll(for habits: [HabitModel]) {
         let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
+        
+        let isNotificationsEnabled = SharedUserDefaults.suite.object(forKey: "isNotificationsEnabled") as? Bool ?? true
+        guard isNotificationsEnabled else { return }
 
         let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
         let calendar = Calendar.current

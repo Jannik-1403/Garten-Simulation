@@ -109,6 +109,15 @@ public struct WaterPlantIntent: AppIntent {
             if transactionsData.count > 100 { transactionsData.removeLast() }
             shared.set(transactionsData, forKey: "stats_transactions")
 
+            // Update widget data directly so the widget reflects the change immediately
+            let totalStreak = shared.integer(forKey: "streak_last_shown")
+            GroovyWidgetDataProvider.write(
+                habits: pflanzen,
+                totalStreak: totalStreak,
+                gems: currentCoins + coinsGewonnen,
+                streakCompletedDates: completedDates
+            )
+
             // Refresh UI components
             WidgetCenter.shared.reloadAllTimelines()
             shared.synchronize()

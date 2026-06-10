@@ -16,10 +16,6 @@ struct WasserDetailView: View {
                         // Header-Bereich
                         VStack(spacing: 16) {
                             ZStack {
-                                Circle()
-                                    .fill(Color.blauPrimary.opacity(0.15))
-                                    .frame(width: 100, height: 100)
-                                
                                 Image("Drop water")
                                     .resizable()
                                     .scaledToFit()

@@ -29,12 +29,10 @@ struct EffektDetailSheet: View {
                     Image(name)
                         .resizable()
                         .scaledToFit()
-                        .padding(14)
+                        .frame(width: 76, height: 76)
                 }
             }
             .frame(width: 76, height: 76)
-            .background(Circle().fill(effekt.typ.hintergrundFarbe))
-            .overlay(Circle().stroke(effekt.typ.rahmenFarbe, lineWidth: 1.5))
 
             Text(effekt.titel)
                 .font(.title2.bold())
@@ -47,7 +45,10 @@ struct EffektDetailSheet: View {
 
             if let expiresAt = effekt.expiresAt {
                 HStack(spacing: 6) {
-                    Image(systemName: "timer")
+                    Image("Timer half")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18, height: 18)
                     Text(expiresAt, style: .timer)
                         .font(.system(.subheadline, design: .monospaced).bold())
                 }
@@ -65,16 +66,13 @@ struct EffektDetailSheet: View {
                 .foregroundStyle(effekt.typ.ikonFarbe)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 7)
-                .background(Capsule().fill(effekt.typ.hintergrundFarbe))
                 
                 if effekt.expiresAt != nil {
                     Text(settings.localizedString(for: "common.active"))
                         .font(.system(size: 10, weight: .black))
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
-                        .background(effekt.typ.ikonFarbe)
-                        .foregroundStyle(.white)
-                        .clipShape(Capsule())
+                        .foregroundStyle(effekt.typ.ikonFarbe)
                 }
             }
 

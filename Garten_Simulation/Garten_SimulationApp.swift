@@ -12,6 +12,7 @@ struct Garten_SimulationApp: App {
     @StateObject private var powerUpStore: PowerUpStore
     @StateObject private var titelStore: TitelStore
     @StateObject private var gartenPfadStore: GartenPfadStore
+    @StateObject private var characterStore: CharacterStore
     
     init() {
         SharedUserDefaults.migrateIfNeeded()
@@ -27,6 +28,7 @@ struct Garten_SimulationApp: App {
         self._powerUpStore = StateObject(wrappedValue: PowerUpStore())
         self._titelStore = StateObject(wrappedValue: titel)
         self._gartenPfadStore = StateObject(wrappedValue: GartenPfadStore(settings: settings))
+        self._characterStore = StateObject(wrappedValue: CharacterStore())
         
         garden.titelStore = titel
         
@@ -35,10 +37,12 @@ struct Garten_SimulationApp: App {
     }
 
     @Environment(\.scenePhase) private var scenePhase
+    @State private var showSplash = true
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ZStack {
+                ContentView()
                 .environmentObject(gardenStore)
                 .environmentObject(shopStore)
                 .environmentObject(settingsStore)
@@ -47,6 +51,7 @@ struct Garten_SimulationApp: App {
                 .environmentObject(powerUpStore)
                 .environmentObject(titelStore)
                 .environmentObject(gartenPfadStore)
+                .environmentObject(characterStore)
                 .modelContainer(for: [PfadStrang.self, PfadStrangTag.self, PfadVerschmelzung.self])
                 .environment(\.locale, Locale(identifier: settingsStore.appLanguage))
                 .preferredColorScheme(.light)
@@ -54,9 +59,10 @@ struct Garten_SimulationApp: App {
                     if newPhase == .active {
                         gardenStore.reloadData()
                         streakStore.checkForMissedDays()
+                        gardenStore.checkAndStartLiveActivity()
                     }
                     if newPhase == .inactive || newPhase == .background {
-                        gardenStore.checkAndStartLiveActivity()
+                        gardenStore.updateLiveActivity()
                     }
                 }
                 .onAppear {
@@ -83,7 +89,7 @@ struct Garten_SimulationApp: App {
                     }
                 }
                 .fullScreenCover(isPresented: .init(
-                    get: { !settingsStore.onboardingAbgeschlossen },
+                    get: { !settingsStore.onboardingAbgeschlossen && !showSplash },
                     set: { _ in }
                 )) {
                     OnboardingView()
@@ -91,6 +97,7 @@ struct Garten_SimulationApp: App {
                         .environmentObject(shopStore)
                         .environmentObject(settingsStore)
                         .environmentObject(gartenPfadStore)
+                        .environmentObject(characterStore)
                 }
                 .task {
                     _ = await NotificationManager.shared.requestPermission()
@@ -118,6 +125,20 @@ struct Garten_SimulationApp: App {
                     }
                 }
                 .tint(.primary)
+                
+                if showSplash {
+                    SplashScreenView()
+                        .transition(.opacity)
+                        .zIndex(100)
+                }
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                    withAnimation(.easeInOut(duration: 0.4)) {
+                        showSplash = false
+                    }
+                }
+            }
         }
     }
 }

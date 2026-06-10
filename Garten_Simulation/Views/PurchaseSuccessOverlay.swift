@@ -22,14 +22,21 @@ struct PurchaseSuccessOverlay: View {
 
                 // Text
                 VStack(spacing: 12) {
-                    Text(settings.localizedString(for: "shop.purchase_success.title"))
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
-                        .foregroundStyle(.primary)
+                    VStack(spacing: 6) {
+                        Text(settings.localizedString(for: "shop.purchase_success.title"))
+                            .font(.system(size: 26, weight: .black, design: .rounded))
+                            .foregroundStyle(.primary)
+                        
+                        Text(settings.localizedString(for: "shop.purchase_success.subtitle"))
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
                     
                     Text(settings.localizedString(for: itemName))
-                        .font(.system(size: 18, weight: .medium, design: .rounded))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
+                        .padding(.top, 4)
 
                     if let subtitle {
                         Text(subtitle)
@@ -70,9 +77,22 @@ struct PurchaseSuccessOverlay: View {
                 ))
             }
             .padding(28)
-            .background(Color(UIColor.systemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
-            .shadow(color: .black.opacity(0.2), radius: 40, x: 0, y: 20)
+            .background(
+                ZStack(alignment: .bottom) {
+                    // 3D Shadow Layer (Base)
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .fill(Color(hex: "#E0E0E0"))
+                        .offset(y: 8)
+                    
+                    // Main White Surface
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .fill(Color.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                .stroke(Color.black.opacity(0.1), lineWidth: 1.5)
+                        )
+                }
+            )
             .padding(.horizontal, 32)
             .opacity(contentOpacity)
         }

@@ -16,6 +16,8 @@ struct PflanzenCard: View {
     @State private var greenGlowOpacity: Double = 0
     @State private var wasserPressAktiv = false
     @State private var showReviveSheet = false
+    @State private var zeigeBonusText: Bool = false
+    @State private var bonusText: String = ""
     
     var body: some View {
         ZStack {
@@ -217,6 +219,17 @@ struct PflanzenCard: View {
             .sheet(isPresented: $showReviveSheet) {
                 RevivePlantSheet(pflanze: pflanze)
                     .presentationDetents([.medium])
+            }
+            
+            if zeigeBonusText {
+                BonusFloatingTextView(text: bonusText, isVisible: $zeigeBonusText)
+                    .zIndex(300)
+            }
+        }
+        .onChange(of: gardenStore.letzterBonus) { _, bonus in
+            if let bonus = bonus, gardenStore.letzteBonusPflanzeID == pflanze.id {
+                bonusText = settings.localizedString(for: "bonus_text")
+                zeigeBonusText = true
             }
         }
         .coordinateSpace(name: "PflanzenCardSpace")

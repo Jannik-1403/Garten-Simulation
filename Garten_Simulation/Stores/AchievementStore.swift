@@ -83,6 +83,16 @@ class AchievementStore: ObservableObject {
             kategorie: .shop,
             imageName: "ErsterEinkauf",
             targets: [1, 10, 25, 40, 48]
+        ),
+        AchievementConfig(
+            key: "challenge",
+            titleKey: "erfolg.challenge.name",
+            baseDescriptionKey: "erfolg.challenge.tier",
+            sfSymbol: "star.circle.fill",
+            farbe: Color(hex: "#FF2D55"),
+            kategorie: .garten,
+            imageName: "Meilenstein",
+            targets: [1, 3, 5, 10, 25]
         )
     ]
     
@@ -131,6 +141,10 @@ class AchievementStore: ObservableObject {
             .sink { [weak self] _ in self?.refresh() }
             .store(in: &cancellables)
             
+        gardenStore.$completed90DayChallenges
+            .sink { [weak self] _ in self?.refresh() }
+            .store(in: &cancellables)
+            
         refresh()
     }
     
@@ -148,6 +162,8 @@ class AchievementStore: ObservableObject {
             return max(gardenStore.gesamtVerdient, gardenStore.coins)
         case "kauf":
             return gardenStore.totalItemsCount
+        case "challenge":
+            return gardenStore.completed90DayChallenges
         default:
             return 0
         }
@@ -282,5 +298,10 @@ class AchievementStore: ObservableObject {
         self.achievementTiers = computedTiers
         self.alleErfolge = updatedErfolge
     }
+    
+    func reset() {
+        SharedUserDefaults.suite.removeObject(forKey: "achievement_unlock_dates_v2")
+        self.achievementTiers = [:]
+        self.refresh()
+    }
 }
-

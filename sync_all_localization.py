@@ -4,7 +4,7 @@ import os
 
 app_strings_path = "/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation/Localization/AppStrings.swift"
 base_path = "/Users/jannikschill/Documents/Garten-Simulation/Garten_Simulation"
-languages = ["de", "en", "es", "fr", "pt", "it"]
+languages = ["de", "en", "es", "fr", "pt", "it", "ja", "ko", "pl", "nl", "tr"]
 
 def parse_app_strings(content):
     match = re.search(r'static let all: \[String: \[String: String\]\] = \[(.*?)\]\s*\}', content, re.DOTALL)

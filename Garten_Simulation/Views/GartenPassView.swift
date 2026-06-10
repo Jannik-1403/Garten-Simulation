@@ -77,7 +77,7 @@ struct GartenPassView: View {
                         Spacer(minLength: 40)
                     }
                 }
-                .background(Color(.systemBackground).ignoresSafeArea())
+                .background(Color.appHintergrund.ignoresSafeArea())
                 .onAppear {
                     // Zum aktuellen Level scrollen
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -461,7 +461,9 @@ struct SpineView: View {
         if level < aktuellerLevel {
             return 1.0
         } else if level == aktuellerLevel {
-            return CGFloat(fortschritt)
+            // The line must always reach the center node (0.5) if we are at this level.
+            // The actual progress towards the next level fills the bottom half (0.5 to 1.0)
+            return 0.5 + (CGFloat(fortschritt) * 0.5)
         } else {
             return 0.0
         }

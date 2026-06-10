@@ -10,6 +10,7 @@ struct ProfilView: View {
     @State private var showTitelAuswahl = false
     @State private var zeigeNameEdit = false
     @State private var showSettings = false
+    @State private var showCharacterCustomization = false
     @State private var ausgewaehlterErfolg: Erfolg? = nil
     
     @EnvironmentObject var settings: SettingsStore
@@ -17,6 +18,7 @@ struct ProfilView: View {
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var achievementStore: AchievementStore
     @EnvironmentObject var titelStore: TitelStore
+    @EnvironmentObject var characterStore: CharacterStore
     
     private var freigeschalteteErfolgeAnzahl: Int {
         achievementStore.alleErfolge.filter { $0.istFreigeschaltet }.count
@@ -33,9 +35,44 @@ struct ProfilView: View {
                 
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 24) {
+                        // --- AVATAR PREVIEW ---
+                        Item3DButton(
+                            farbe: Color.characterBackground(for: characterStore.profile.backgroundIndex),
+                            sekundaerFarbe: Color.secondaryCharacterBackground(for: characterStore.profile.backgroundIndex),
+                            groesse: 250,
+                            shadowDepthFactor: 0.02,
+                            aktion: { showCharacterCustomization = true }
+                        ) {
+                            AvatarView(profile: characterStore.profile)
+                                .frame(width: 250, height: 250, alignment: .top)
+                                .clipShape(Circle())
+                        }
+                        .padding(.top, 16)
+                        
+                        // --- PLAYER NAME & TITLE ---
+                        VStack(spacing: 4) {
+                            Button {
+                                zeigeNameEdit = true
+                            } label: {
+                                Text(settings.igelCustomization.name.isEmpty
+                                     ? settings.localizedString(for: "igel_name_placeholder")
+                                     : settings.igelCustomization.name)
+                                    .font(.title2)
+                                    .fontWeight(.heavy)
+                                    .foregroundStyle(.primary)
+                            }
+                            
+                            Button {
+                                showTitelAuswahl = true
+                            } label: {
+                                Text(spielerTitel.uppercased())
+                            }
+                            .buttonStyle(ProfilTitle3DStyle())
+                        }
+                        .padding(.bottom, 8)
+                        
                         // --- TOP 3 ACHIEVEMENTS ---
                         topAchievementsSection
-                            .padding(.top, 8)
                         
                         // --- 3D STAT BUTTONS DASHBOARD ---
                         VStack(spacing: 20) {
@@ -64,29 +101,6 @@ struct ProfilView: View {
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarBackground(Color.appHintergrund, for: .navigationBar)
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    VStack(spacing: 0) {
-                        Button {
-                            zeigeNameEdit = true
-                        } label: {
-                            Text(settings.igelCustomization.name.isEmpty
-                                 ? settings.localizedString(for: "igel_name_placeholder")
-                                 : settings.igelCustomization.name)
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .foregroundStyle(.primary)
-                        }
-                        
-                        Button {
-                            showTitelAuswahl = true
-                        } label: {
-                            Text(spielerTitel.uppercased())
-                                .font(.system(size: 11, weight: .black))
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                }
-                
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         showSettings = true
@@ -107,6 +121,16 @@ struct ProfilView: View {
                 InventoryDetailView()
                     .environmentObject(gardenStore)
                     .environmentObject(settings)
+            }
+            .fullScreenCover(isPresented: $showCharacterCustomization) {
+                CharacterCustomizationView()
+                    .environmentObject(characterStore)
+                    .environmentObject(settings)
+            }
+            .sheet(isPresented: $zeigeEinstellungen) {
+                HabitStackConfigView()
+                    .environmentObject(achievementStore)
+                    .environmentObject(gardenStore)
             }
             .navigationDestination(isPresented: $showErfolgeDetail) {
                 ErfolgeDetailView()
@@ -185,18 +209,28 @@ struct ProfilView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 16) {
                         ForEach(unlockedAchievements) { erfolg in
-                            Button(action: { ausgewaehlterErfolg = erfolg }) {
-                                ErfolgBadgeView(erfolg: erfolg, istFreigeschaltet: true)
-                                    .frame(width: 100, height: 100)
+                            DuolingoCard(action: { ausgewaehlterErfolg = erfolg }, tier: erfolg.tier) {
+                                VStack(spacing: 8) {
+                                    ErfolgBadgeView(erfolg: erfolg, istFreigeschaltet: true)
+                                        .frame(width: 60, height: 60)
+                                    
+                                    Text(settings.localizedString(for: erfolg.titelKey))
+                                        .font(.system(size: 11, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.primary)
+                                        .multilineTextAlignment(.center)
+                                        .lineLimit(2)
+                                        .minimumScaleFactor(0.7)
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .frame(width: 90)
                             }
-                            .buttonStyle(BadgeBounceButtonStyle())
+                            .frame(height: 125)
                         }
                         
                         // "Mehr ansehen" Button at the end
                         Button(action: { showErfolgeDetail = true }) {
                             ZStack {
-                                Circle()
-                                    .fill(Color(UIColor.systemGray5))
+                                Color.clear
                                     .frame(width: 80, height: 80)
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 32, weight: .bold))
@@ -207,6 +241,7 @@ struct ProfilView: View {
                         .padding(.leading, 8)
                     }
                     .padding(.horizontal, 24)
+                    .padding(.vertical, 8)
                 }
             }
         }
@@ -228,6 +263,77 @@ struct ProfilScrollOffsetKey: PreferenceKey {
         value = nextValue()
     }
 }
+
+struct ProfilTitle3DStyle: ButtonStyle {
+    @State private var shimmerOffset: CGFloat = -150
+    
+    func makeBody(configuration: Configuration) -> some View {
+        let isPressed = configuration.isPressed
+        ZStack {
+            // Lower layer (shadow)
+            configuration.label
+                .font(.system(size: 18, weight: .black, design: .rounded))
+                .foregroundStyle(Color.blauPrimary.opacity(0.35))
+                .offset(y: 4)
+
+            // Upper layer (visible text)
+            ZStack {
+                configuration.label
+                    .font(.system(size: 18, weight: .black, design: .rounded))
+                    .foregroundStyle(Color.blauPrimary)
+                
+                // Shimmer Effect
+                LinearGradient(
+                    gradient: Gradient(colors: [.clear, Color.white.opacity(0.8), .clear]),
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+                .frame(width: 80)
+                .offset(x: shimmerOffset)
+                .mask(
+                    configuration.label
+                        .font(.system(size: 18, weight: .black, design: .rounded))
+                )
+            }
+            .offset(y: isPressed ? 4 : 0)
+            .overlay(alignment: .topTrailing) {
+                TitleGlitterView()
+                    .offset(x: 12, y: -8)
+            }
+        }
+        .onAppear {
+            // Shimmer moves left to right, then restarts
+            withAnimation(.linear(duration: 2.0).repeatForever(autoreverses: false)) {
+                shimmerOffset = 150
+            }
+        }
+        .animation(.spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
+    }
+}
+
+struct TitleGlitterView: View {
+    @State private var isAnimating = false
+    
+    var body: some View {
+        Image(systemName: "sparkle")
+            .foregroundStyle(Color.blauPrimary)
+            .font(.system(size: 14))
+            .opacity(isAnimating ? 1.0 : 0.0)
+            .scaleEffect(isAnimating ? 1.2 : 0.2)
+            .rotationEffect(Angle(degrees: isAnimating ? 45 : 0))
+            .animation(
+                .easeInOut(duration: 1.5)
+                .repeatForever(autoreverses: true)
+                .delay(0.5),
+                value: isAnimating
+            )
+            .allowsHitTesting(false)
+            .onAppear {
+                isAnimating = true
+            }
+    }
+}
+
 
 struct BadgeBounceButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {

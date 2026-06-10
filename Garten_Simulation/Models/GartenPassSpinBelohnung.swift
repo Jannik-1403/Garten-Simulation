@@ -18,15 +18,15 @@ struct GartenPassWheelLogic {
         .coins(50),      // 0
         .xp(100),        // 1
         .seeds(2),       // 2
-        .powerUp(id: "powerup.duenger_blitz"), // 3
+        .coins(100),     // 3 (war PowerUp)
         .coins(150),     // 4
         .xp(250),        // 5
         .seeds(1),       // 6
-        .powerUp(id: "powerup.goldener_schluessel"), // 7
+        .xp(150),        // 7 (war PowerUp)
         .coins(500),     // 8 (Jackpot)
         .xp(500),        // 9 (XP Jackpot)
         .seeds(5),       // 10 (Samen Jackpot)
-        .powerUp(id: "powerup.gluecks_segen") // 11 (Ultimate Item)
+        .coins(250)      // 11 (war PowerUp)
     ]
     
     /// Berechnet die Segmente basierend auf der Anzahl der Dekorationen

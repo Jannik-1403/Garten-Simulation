@@ -217,9 +217,9 @@ struct ParticleEmitterView: View {
                     c3 = Color(red: 0.85, green: 0.9, blue: 0.95) // Light Blue/Silver
                     c4 = Color(white: 0.95)                       // White/Silver Accent
                 case .gold:
-                    c1 = Color(red: 0.1, green: 0.75, blue: 0.35) // Emerald Green
+                    c1 = Color(red: 1.0, green: 0.84, blue: 0.0)  // Pure Gold
                     c2 = Color(red: 0.95, green: 0.85, blue: 0.1) // Vibrant Gold
-                    c3 = Color(red: 0.2, green: 0.85, blue: 0.5)  // Mint Green
+                    c3 = Color(red: 0.85, green: 0.65, blue: 0.13)// Dark Gold
                     c4 = Color(red: 1.0, green: 0.9, blue: 0.3)   // Pale Gold
                 case .diamant:
                     c1 = Color(red: 0.1, green: 0.8, blue: 0.9)   // Bright Cyan

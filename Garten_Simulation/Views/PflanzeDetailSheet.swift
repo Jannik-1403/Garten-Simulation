@@ -407,7 +407,7 @@ struct PflanzeDetailSheet: View {
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
                 .presentationCornerRadius(32)
-                .presentationBackground(.ultraThinMaterial)
+                .presentationBackground(Color(UIColor.systemBackground))
         }
         // MARK: - Timer Create Sheet
         .sheet(isPresented: $zeigeTimerSheet) {
@@ -417,7 +417,7 @@ struct PflanzeDetailSheet: View {
                 .presentationDetents([.fraction(0.4)])
                 .presentationDragIndicator(.visible)
                 .presentationCornerRadius(32)
-                .presentationBackground(.ultraThinMaterial)
+                .presentationBackground(Color(UIColor.systemBackground))
         }
         // MARK: - Timer Edit Sheet
         .fullScreenCover(isPresented: $zeigeTimerEditSheet) {
@@ -1214,6 +1214,8 @@ struct PlantWeeklyStreakView: View {
                     Text(dayXP > 0 ? "+\(dayXP) \(settings.localizedString(for: "common.xp"))" : " ")
                         .font(.system(size: 10, weight: .black, design: .rounded))
                         .foregroundStyle(dayXP > 0 ? .white : .clear)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                 }
                 .frame(maxWidth: .infinity)
             }

@@ -72,10 +72,25 @@ struct GroovyWidgetDataProvider {
         let weekCount       = allDates.filter { $0 >= startOfWeek }.count
         let monthCount      = allDates.filter { $0 >= startOfMonth }.count
 
+        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? Locale.current.language.languageCode?.identifier ?? "de"
+
         let plants: [WidgetPlantData] = habits.prefix(4).map { habit in
-            WidgetPlantData(
+            var finalName = habit.displayedHabitName
+            
+            if finalName.contains(".") {
+                finalName = AppStrings.get(finalName, language: lang)
+            }
+            
+            // Fallback: If it's still a raw key (e.g. translation failed), use the plant's actual display name
+            if finalName.isEmpty || finalName.contains(".") {
+                if let dbPlant = GameDatabase.allPlants.first(where: { $0.id.lowercased() == habit.plantID.lowercased() }) {
+                    finalName = AppStrings.get(dbPlant.name, language: lang)
+                }
+            }
+            
+            return WidgetPlantData(
                 id: habit.id,
-                name: habit.displayedHabitName,
+                name: finalName,
                 imageName: habit.plantImageName,
                 streak: habit.streak,
                 isWateredToday: habit.istBewässert,
