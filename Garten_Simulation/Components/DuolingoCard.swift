@@ -61,12 +61,7 @@ struct DuolingoCardButtonStyle: ButtonStyle {
                 ZStack {
                     RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                         .fill(Color(UIColor.systemBackground))
-                        
-                    if let tier = tier {
-                        CardParticleEmitterView(tier: tier)
-                            .opacity(0.9)
-                            .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-                    }
+                    // CardParticleEmitterView removed as requested
                 }
                 .shadow(
                     color: Color.gray.opacity(0.3),

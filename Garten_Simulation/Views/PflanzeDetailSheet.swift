@@ -13,6 +13,7 @@ struct PflanzeDetailSheet: View {
     var onLoeschen: (() -> Void)? = nil
 
     @State private var zeigeVerkaufenDialog = false
+    @State private var zeigeFocusSession = false
     @State private var zeigeNotizSheet = false
     @State private var zeigeTimerSheet = false
     @State private var zeigeTimerEditSheet = false
@@ -340,6 +341,33 @@ struct PflanzeDetailSheet: View {
                     }
                     .padding(.horizontal, 24)
 
+                    // Focus Session Button
+                    Item3DButton(
+                        farbe: .orangePrimary,
+                        sekundaerFarbe: .orangePrimary.darker(),
+                        groesse: 50,
+                        isRectangular: true,
+                        aktion: { zeigeFocusSession = true }
+                    ) {
+                        ZStack {
+                            HStack {
+                                Spacer()
+                                Image(systemName: "timer")
+                                    .font(.system(size: 32))
+                                    .foregroundStyle(.white.opacity(0.12))
+                                    .offset(x: 35, y: 15)
+                            }
+                            Text("Fokus-Session starten").textCase(.uppercase)
+                                .font(.system(size: 16, weight: .black, design: .rounded))
+                                .foregroundStyle(.white)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .clipped()
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.top, 8)
+
 
 
                     // Verkaufen-Button (Roter Text)
@@ -480,9 +508,14 @@ struct PflanzeDetailSheet: View {
                 .presentationDetents([.fraction(0.38)])
                 .presentationDragIndicator(.visible)
         }
+        .fullScreenCover(isPresented: $zeigeFocusSession) {
+            FocusSessionView(pflanze: pflanze)
+                .environmentObject(gardenStore)
+                .environmentObject(settings)
+                .environmentObject(powerUpStore)
+        }
     }
 }
-
     private func sicherstellenDassPfadExistiert() {
         let strangExistiert = pfadStore.straenge.contains(where: {
             $0.pflanzenID == pflanze.id

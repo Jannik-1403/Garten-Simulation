@@ -73,6 +73,7 @@ struct UnifiedShopView: View {
     @State private var shopCategory: ShopCategory = .gegenstande
     @State private var selectedHabitCategory: HabitCategory? = nil
     @State private var selectedDecorationCategory: DecorationCategory? = nil
+    @State private var showDecorationInfo = false
 
     enum ShopCategory: String, CaseIterable {
         case pflanzen    = "shop.tab.plants"
@@ -207,7 +208,9 @@ struct UnifiedShopView: View {
                                     Spacer().frame(height: 28)
 
                                     // Dekorationen
-                                    sectionHeader(settings.localizedString(for: "shop.category.decorations"))
+                                    sectionHeader(settings.localizedString(for: "shop.category.decorations")) {
+                                        showDecorationInfo = true
+                                    }
                                     
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         HStack(spacing: 8) {
@@ -352,6 +355,10 @@ struct UnifiedShopView: View {
                     .environmentObject(settings)
                     .environmentObject(powerUpStore)
             }
+            .sheet(isPresented: $showDecorationInfo) {
+                DecorationInfoSheet()
+                    .environmentObject(settings)
+            }
         }
     }
 
@@ -364,10 +371,20 @@ struct UnifiedShopView: View {
         .padding(.horizontal, 16)
     }
 
-    private func sectionHeader(_ title: String) -> some View {
-        Text(title)
-            .font(.system(size: 19, weight: .bold, design: .rounded))
-            .padding(.horizontal, 16)
-            .padding(.bottom, 10)
+    private func sectionHeader(_ title: String, infoAction: (() -> Void)? = nil) -> some View {
+        HStack {
+            Text(title)
+                .font(.system(size: 19, weight: .bold, design: .rounded))
+            
+            if let action = infoAction {
+                Button(action: action) {
+                    Image(systemName: "info.circle")
+                        .foregroundStyle(.secondary)
+                }
+            }
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .padding(.bottom, 10)
     }
 }
