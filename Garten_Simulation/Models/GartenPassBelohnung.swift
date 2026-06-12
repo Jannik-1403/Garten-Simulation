@@ -29,7 +29,7 @@ struct GartenPassBelohnung: Identifiable {
         case .pflanze:             return "leaf.fill"
         case .dekoration:          return "sparkles"
         case .paket:               return "giftcard.fill"
-        case .seeds:               return "leaf.arrow.triangle.circlepath"
+        case .seeds:               return "Samen"
         }
     }
     
@@ -91,7 +91,7 @@ struct GartenPassBelohnung: Identifiable {
             return (localized(titel), "reward_type_paket", false)
             
         case .seeds(let n):
-            return (String(format: localized("reward.seeds_format"), n), "leaf.arrow.triangle.circlepath", false)
+            return (String(format: localized("reward.seeds_format"), n), "Samen", true)
         }
     }
     

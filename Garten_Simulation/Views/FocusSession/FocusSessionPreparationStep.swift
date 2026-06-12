@@ -1,9 +1,67 @@
 import SwiftUI
 
-struct FocusGoal: Identifiable, Equatable {
+enum GoalPriority: String, CaseIterable, Equatable {
+    case low = "Niedrig"
+    case medium = "Mittel"
+    case high = "Hoch"
+    
+    var color: Color {
+        switch self {
+        case .low: return .green
+        case .medium: return .orangePrimary
+        case .high: return .red
+        }
+    }
+}
+
+struct FocusSubtask: Identifiable, Equatable {
     let id = UUID()
     var text: String
     var isCompleted: Bool = false
+}
+
+struct FocusGoal: Identifiable, Equatable {
+    let id = UUID()
+    var text: String
+    var priority: GoalPriority = .medium
+    var subtasks: [FocusSubtask] = []
+    
+    var _isCompleted: Bool = false
+    
+    var isCompleted: Bool {
+        get {
+            if subtasks.isEmpty { return _isCompleted }
+            return subtasks.allSatisfy { $0.isCompleted }
+        }
+        set {
+            if subtasks.isEmpty { _isCompleted = newValue }
+        }
+    }
+}
+
+struct SubtaskInputField: View {
+    @Binding var goal: FocusGoal
+    @State private var text: String = ""
+    @EnvironmentObject var settings: SettingsStore
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "plus")
+                .foregroundStyle(.secondary)
+                .padding(.leading, 8)
+            TextField(settings.localizedString(for: "Unterziel hinzufügen..."), text: $text)
+                .font(.system(size: 14, weight: .medium, design: .rounded))
+                .submitLabel(.done)
+                .onSubmit {
+                    if !text.trimmingCharacters(in: .whitespaces).isEmpty {
+                        withAnimation {
+                            goal.subtasks.append(FocusSubtask(text: text.trimmingCharacters(in: .whitespaces)))
+                            text = ""
+                        }
+                    }
+                }
+        }
+    }
 }
 
 struct FocusSessionPreparationStep: View {
@@ -12,130 +70,193 @@ struct FocusSessionPreparationStep: View {
     let description: String
     let buttonText: String
     let isLastStep: Bool
-    let showTextInput: Bool
+    var showTextInput: Bool = false
+    var habitCategory: HabitCategory? = nil
     @Binding var textInput: String
     @Binding var goals: [FocusGoal]
     let action: () -> Void
     
-    init(
-        iconName: String,
-        title: String,
-        description: String,
-        buttonText: String,
-        isLastStep: Bool,
-        showTextInput: Bool = false,
-        textInput: Binding<String> = .constant(""),
-        goals: Binding<[FocusGoal]> = .constant([]),
-        action: @escaping () -> Void
-    ) {
-        self.iconName = iconName
-        self.title = title
-        self.description = description
-        self.buttonText = buttonText
-        self.isLastStep = isLastStep
-        self.showTextInput = showTextInput
-        self._textInput = textInput
-        self._goals = goals
-        self.action = action
+    @EnvironmentObject var settings: SettingsStore
+    
+    private func suggestions(for category: HabitCategory?) -> [String] {
+        switch category {
+        case .fitness: return ["10 Min Dehnen", "Workout aufwärmen", "Ausrüstung richten"]
+        case .health: return ["Wasser trinken", "Gesundes Rezept planen", "Ernährungstagebuch"]
+        case .mental: return ["Tiefes Atmen", "Journaling", "Meditation starten"]
+        case .growth: return ["1 Kapitel lesen", "Vokabeln wiederholen", "Zusammenfassung schreiben"]
+        case .lifestyle: return ["Zimmer aufräumen", "Pflanzen gießen", "Wochenplan erstellen"]
+        case .finance: return ["Ausgaben tracken", "Budget überprüfen", "Rechnungen bezahlen"]
+        case .none: return ["Fokus setzen", "Handy weglegen", "Ablenkungen blockieren"]
+        }
     }
     
     var body: some View {
-        VStack(spacing: 40) {
-            Spacer()
-            
-            // Icon mit Hintergrund-Kreis
-            ZStack {
-                Circle()
-                    .fill(Color.blauPrimary.opacity(0.1))
-                    .frame(width: 100, height: 100)
-                
-                Image(systemName: iconName)
-                    .font(.system(size: 50))
-                    .foregroundStyle(Color.blauPrimary)
-            }
+        VStack(spacing: 0) {
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 32) {
+                    Image(iconName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .padding(.top, 40)
             
             // Texte
             VStack(spacing: 16) {
-                Text(title)
+                Text(settings.localizedString(for: title))
                     .font(.system(size: 28, weight: .black, design: .rounded))
                     .multilineTextAlignment(.center)
                 
-                Text(description)
+                Text(settings.localizedString(for: description))
                     .font(.system(size: 16, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
                 
                 if showTextInput {
-                    HStack {
-                        TextField("Neues Ziel...", text: $textInput)
-                            .padding()
-                            .background(Color.gray.opacity(0.1))
-                            .cornerRadius(12)
-                            .submitLabel(.done)
-                            .onSubmit {
-                                addGoal()
-                            }
-                        
-                        Button(action: addGoal) {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.system(size: 32))
-                                .foregroundStyle(textInput.isEmpty ? Color.gray : Color.blauPrimary)
-                        }
-                        .disabled(textInput.isEmpty)
-                    }
-                    .padding(.horizontal, 32)
-                    .padding(.top, 8)
-                    
-                    if !goals.isEmpty {
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: 8) {
-                                ForEach(goals) { goal in
-                                    HStack {
-                                        Image(systemName: "circle")
-                                            .foregroundStyle(.secondary)
-                                        Text(goal.text)
-                                            .font(.system(size: 16, weight: .medium, design: .rounded))
-                                        Spacer()
-                                        Button {
-                                            if let index = goals.firstIndex(where: { $0.id == goal.id }) {
-                                                withAnimation {
-                                                    goals.remove(at: index)
-                                                }
-                                            }
-                                        } label: {
-                                            Image(systemName: "xmark")
-                                                .foregroundStyle(.red.opacity(0.7))
+                    VStack(spacing: 16) {
+                        // Vorschläge Chips (ABOVE text input)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 10) {
+                                let unusedSuggestions = suggestions(for: habitCategory).filter { suggestion in
+                                    !goals.contains(where: { $0.text == suggestion })
+                                }
+                                ForEach(unusedSuggestions, id: \.self) { suggestion in
+                                    Button {
+                                        withAnimation {
+                                            goals.append(FocusGoal(text: suggestion))
                                         }
+                                    } label: {
+                                        Text(settings.localizedString(for: suggestion))
+                                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                                            .padding(.horizontal, 16)
+                                            .padding(.vertical, 8)
+                                            .background(.ultraThinMaterial)
+                                            .foregroundStyle(Color.goldPrimary)
+                                            .cornerRadius(20)
                                     }
-                                    .padding()
-                                    .background(Color.gray.opacity(0.05))
-                                    .cornerRadius(12)
                                 }
                             }
                             .padding(.horizontal, 32)
-                            .padding(.top, 8)
                         }
-                        .frame(maxHeight: 150)
+                        
+                        // Eingabefeld
+                        HStack {
+                            TextField(settings.localizedString(for: "Neues Hauptziel..."), text: $textInput)
+                                .padding()
+                                .background(.ultraThinMaterial)
+                                .cornerRadius(12)
+                                .submitLabel(.done)
+                                .onSubmit {
+                                    addGoal()
+                                }
+                            
+                            Button(action: addGoal) {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.system(size: 32))
+                                    .foregroundStyle(textInput.isEmpty ? Color.gray : Color.goldPrimary)
+                            }
+                            .disabled(textInput.isEmpty)
+                        }
+                        .padding(.horizontal, 32)
+                        
+                        // Aktuelle Ziele
+                        if !goals.isEmpty {
+                            VStack(alignment: .leading, spacing: 12) {
+                                    ForEach($goals) { $goal in
+                                        VStack(alignment: .leading, spacing: 12) {
+                                            HStack {
+                                                Image(systemName: "target")
+                                                    .foregroundStyle(goal.priority.color)
+                                                
+                                                Text(settings.localizedString(for: goal.text))
+                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                
+                                                Spacer()
+                                                
+                                                Menu {
+                                                    Picker(settings.localizedString(for: "Priorität"), selection: $goal.priority) {
+                                                        ForEach(GoalPriority.allCases, id: \.self) { priority in
+                                                            Text(settings.localizedString(for: priority.rawValue)).tag(priority)
+                                                        }
+                                                    }
+                                                } label: {
+                                                    HStack(spacing: 4) {
+                                                        Image(systemName: "exclamationmark.circle.fill")
+                                                        Text(settings.localizedString(for: goal.priority.rawValue))
+                                                    }
+                                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                                    .padding(.horizontal, 8)
+                                                    .padding(.vertical, 4)
+                                                    .foregroundStyle(goal.priority.color)
+                                                }
+                                                
+                                                Button {
+                                                    if let index = goals.firstIndex(where: { $0.id == goal.id }) {
+                                                        withAnimation { goals.remove(at: index) }
+                                                    }
+                                                } label: {
+                                                    Image(systemName: "trash")
+                                                        .foregroundStyle(.red.opacity(0.7))
+                                                }
+                                            }
+                                            
+                                            // Unterziele
+                                            ForEach($goal.subtasks) { $subtask in
+                                                HStack {
+                                                    Image(systemName: "arrow.turn.down.right")
+                                                        .foregroundStyle(.secondary)
+                                                        .padding(.leading, 8)
+                                                    
+                                                    Text(settings.localizedString(for: subtask.text))
+                                                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                                                        .foregroundStyle(.secondary)
+                                                    
+                                                    Spacer()
+                                                    
+                                                    Button {
+                                                        if let index = goal.subtasks.firstIndex(where: { $0.id == subtask.id }) {
+                                                            withAnimation { goal.subtasks.remove(at: index) }
+                                                        }
+                                                    } label: {
+                                                        Image(systemName: "xmark")
+                                                            .foregroundStyle(.red.opacity(0.7))
+                                                    }
+                                                }
+                                            }
+                                            
+                                            // Unterziel hinzufügen
+                                            SubtaskInputField(goal: $goal)
+                                        }
+                                        .padding()
+                                        .background(.ultraThinMaterial)
+                                        .cornerRadius(12)
+                                    }
+                                }
+                                .padding(.horizontal, 32)
+                                .padding(.top, 8)
+                        }
                     }
+                    .padding(.top, 8)
                 }
             }
-            
-            Spacer()
-            
-            // Weiter-Button
-            Button(action: action) {
-                Text(buttonText)
             }
+            .padding(.bottom, 24)
+        }
+        
+        // Weiter-Button
+        Button(action: action) {
+            Text(settings.localizedString(for: buttonText))
+        }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large,
                 fillWidth: true,
-                backgroundColor: isLastStep ? .orangePrimary : .blauPrimary,
-                shadowColor: isLastStep ? .orangePrimary.darker() : .blauPrimary.darker(),
+                backgroundColor: .goldPrimary,
+                shadowColor: .goldPrimary.darker(),
                 foregroundColor: .white
             ))
             .padding(.horizontal, 24)
             .padding(.bottom, 40)
+            .padding(.top, 16)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(UIColor.systemBackground).ignoresSafeArea())

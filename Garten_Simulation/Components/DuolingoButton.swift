@@ -108,6 +108,7 @@ private struct DuolingoButtonVisualView: View {
             .padding(.vertical, size.verticalPadding)
             .padding(.horizontal, size.horizontalPadding)
             .frame(maxWidth: fillWidth ? .infinity : nil)
+            .offset(y: (pressed || isPermanentlyPressed) ? 0 : -depth)
             .background(
                 ZStack {
                     // Static Shadow (Bottom Layer)

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct OnboardingIgelView: View {
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var characterStore: CharacterStore
     let pose: OnboardingIgelPose
     let sprechblasenText: String
 
@@ -17,18 +18,10 @@ struct OnboardingIgelView: View {
         self.sprechblasenText = sprechblasenText
     }
 
-    private var rotationDegrees: Double {
+    private var yOffset: CGFloat {
         switch pose {
-        case .daumenHoch: return -8
-        case .winkt:      return -6
-        default:          return 0
-        }
-    }
-
-    private var scaleFactor: CGFloat {
-        switch pose {
-        case .daumenHoch, .feiert: return 1.12
-        default:                   return 1.0
+        case .daumenHoch, .feiert: return -8
+        default:                   return 0
         }
     }
 
@@ -46,11 +39,11 @@ struct OnboardingIgelView: View {
                     .background {
                         RoundedRectangle(cornerRadius: 18, style: .continuous)
                             .fill(Color(UIColor.systemBackground))
-                            .shadow(color: .black.opacity(0.08), radius: 6, x: 0, y: 3)
+                            .shadow(color: Color(white: 0.85), radius: 0, x: 0, y: 8)
                     }
                     .overlay {
                         RoundedRectangle(cornerRadius: 18, style: .continuous)
-                            .stroke(Color.gray.opacity(0.1), lineWidth: 1)
+                            .stroke(Color.gray.opacity(0.15), lineWidth: 2)
                     }
                 
                 // Triangle pointer
@@ -63,18 +56,23 @@ struct OnboardingIgelView: View {
             }
             .padding(.bottom, 6)
             
-            // MARK: - Igel
-            Image("Powerup-Tier-Freund")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 130, height: 130)
-                .rotationEffect(.degrees(rotationDegrees))
-                .scaleEffect(scaleFactor)
-                .shadow(color: .black.opacity(0.04), radius: 5, y: 3)
-                .id("igel_image")
+            // MARK: - Avatar
+            Item3DButton(
+                farbe: Color.characterBackground(for: characterStore.profile.backgroundIndex),
+                sekundaerFarbe: Color.secondaryCharacterBackground(for: characterStore.profile.backgroundIndex),
+                groesse: 140,
+                shadowDepthFactor: 0.04,
+                aktion: {}
+            ) {
+                AvatarView(profile: characterStore.profile)
+                    .frame(width: 140, height: 140, alignment: .top)
+                    .clipShape(Circle())
+            }
+            .offset(y: yOffset)
+            .id("igel_image")
         }
         .padding(.top, -20)
-        .animation(.spring(response: 0.4, dampingFraction: 0.6), value: scaleFactor)
+        .animation(.spring(response: 0.4, dampingFraction: 0.6), value: yOffset)
     }
 }
 
@@ -93,5 +91,7 @@ enum OnboardingIgelPose {
     ZStack {
         Color.appHintergrund.ignoresSafeArea()
         OnboardingIgelView(pose: .daumenHoch, sprechblasenText: "Hallo! Ich bin Igel.")
+            .environmentObject(SettingsStore())
+            .environmentObject(CharacterStore())
     }
 }

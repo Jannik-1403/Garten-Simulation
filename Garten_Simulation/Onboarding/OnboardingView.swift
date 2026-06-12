@@ -6,12 +6,12 @@ struct OnboardingView: View {
     @EnvironmentObject var gartenPfadStore: GartenPfadStore
     
     @StateObject var data = OnboardingData()
-    
-    private let totalSteps = 6
+    @State private var showConfetti = false
+    private let totalSteps = 4
     
     var body: some View {
         ZStack {
-            Color.appHintergrund.ignoresSafeArea()
+            FloatingBackgroundView()
             
             VStack(spacing: 0) {
                 // Header: Back & Progress
@@ -31,24 +31,7 @@ struct OnboardingView: View {
                     }
                     
                     // Progressive Bar
-                    GeometryReader { geo in
-                        ZStack(alignment: .leading) {
-                            Capsule()
-                                .fill(Color.gray.opacity(0.1))
-                                .frame(height: 12)
-                            
-                            Capsule()
-                                .fill(
-                                    LinearGradient(
-                                        colors: [.blauPrimary, .blauPrimary.opacity(0.7)],
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )
-                                )
-                                .frame(width: geo.size.width * CGFloat(min(data.currentStep, totalSteps)) / CGFloat(totalSteps), height: 12)
-                        }
-                    }
-                    .frame(height: 12)
+                    OnboardingProgressBar(currentStep: data.currentStep, totalSteps: totalSteps)
                     
                     Spacer().frame(width: 24)
                 }
@@ -73,23 +56,10 @@ struct OnboardingView: View {
                                 insertion: .move(edge: .trailing),
                                 removal: .move(edge: .leading)
                             ))
-                        
+                            
                     case 4:
-                        OnboardingInteractiveTutorialView()
-                        .onAppear {
-                            Task {
-                                _ = await NotificationManager.shared.requestPermission()
-                            }
-                        }
-                        .transition(AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                        
-                    case 5:
-                        OnboardingZeitView()
-                        .transition(AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-                        
-                    case 6:
                         OnboardingLegalView()
-                        .transition(AnyTransition.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         
                     default:
                         EmptyView()
@@ -98,6 +68,11 @@ struct OnboardingView: View {
                 .animation(.spring(response: 0.5, dampingFraction: 0.8), value: data.currentStep)
             }
             .environmentObject(data)
+        }
+        .overlay {
+            if showConfetti {
+                ConfettiParticleView()
+            }
         }
         .onChange(of: data.currentStep) { _, newStep in
             if newStep > totalSteps {
@@ -108,21 +83,35 @@ struct OnboardingView: View {
     
     private func finishOnboarding() {
         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        FeedbackManager.shared.playSuccess()
+        showConfetti = true
         
-        for plantID in data.gewaehltePflanzenIDs {
-            let time = data.erinnerungsZeiten[plantID]
-            garden.pflanzeHinzufuegenAusOnboarding(plantID: plantID, reminderTime: time)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            let ziel = data.gewaehltesZiele.first ?? .gesund
+        
+        let defaultTime = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date()) ?? Date()
+        
+        if data.gewaehltePflanzenIDs.isEmpty {
+            if let defaultPlant = ziel.pflanzenIDs.first {
+                garden.pflanzeHinzufuegenAusOnboarding(plantID: defaultPlant, reminderTime: defaultTime)
+            }
+        } else {
+            for plantID in data.gewaehltePflanzenIDs {
+                garden.pflanzeHinzufuegenAusOnboarding(plantID: plantID, reminderTime: defaultTime)
+            }
         }
+        
         garden.onboardingSetup()
         
         gartenPfadStore.pfadStarten(
-            ziel: data.gewaehltesZiele.first?.rawValue ?? "gesund",
+            ziel: ziel.rawValue,
             pflanzen: garden.pflanzen
         )
         
         withAnimation {
-            settings.ausgewaehltesZiel = data.gewaehltesZiele.first?.rawValue ?? "gesund"
+            settings.ausgewaehltesZiel = ziel.rawValue
             settings.onboardingAbgeschlossen = true
+        }
         }
     }
 }

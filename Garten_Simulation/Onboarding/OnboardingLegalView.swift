@@ -96,12 +96,14 @@ struct OnboardingLegalView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             }
             .padding(24)
-            .background(Color(.systemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-            .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
+            .background {
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .fill(Color(.systemBackground))
+                    .shadow(color: Color.black.opacity(0.12), radius: 0, x: 0, y: 8)
+            }
             .padding(.horizontal, 24)
             
-            Spacer()
+            Spacer(minLength: 32)
             
             Button {
                 finish()
@@ -150,6 +152,7 @@ struct OnboardingLegalView: View {
     
     private func finish() {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        FeedbackManager.shared.playTap()
         withAnimation(.easeInOut(duration: 0.35)) {
             data.currentStep += 1
         }

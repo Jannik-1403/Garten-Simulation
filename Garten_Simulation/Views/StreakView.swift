@@ -25,9 +25,11 @@ struct StreakView: View {
     private let calendar = Calendar.current
     
     @State var selectedPlant: HabitModel? = nil
+    var isBadHabitMode: Bool = false
     
-    init(selectedPlant: HabitModel? = nil) {
+    init(selectedPlant: HabitModel? = nil, isBadHabitMode: Bool = false) {
         _selectedPlant = State(initialValue: selectedPlant)
+        self.isBadHabitMode = isBadHabitMode
     }
     
     var body: some View {
@@ -110,9 +112,11 @@ struct StreakView: View {
                     .padding(.horizontal, 24)
                     .animation(.spring(), value: selectedMode)
                     
-                    streakFreezeCard
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 40)
+                    if !isBadHabitMode {
+                        streakFreezeCard
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 40)
+                    }
                     
                     Spacer()
                 }
@@ -128,44 +132,46 @@ struct StreakView: View {
         }
         .navigationTitle(selectedPlant == nil
             ? settings.localizedString(for: "streak.view.title")
-            : (settings.showHabitInsteadOfName ? settings.localizedString(for: selectedPlant!.displayedHabitName) : settings.localizedString(for: selectedPlant!.name)))
+            : (isBadHabitMode ? selectedPlant!.name : (settings.showHabitInsteadOfName ? settings.localizedString(for: selectedPlant!.displayedHabitName) : settings.localizedString(for: selectedPlant!.name))))
         .navigationBarTitleDisplayMode(.inline)
         .standardNavigationX()
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Menu {
-                    Button(action: {
-                        withAnimation {
-                            selectedPlant = nil
-                        }
-                    }) {
-                        HStack {
-                            Text(settings.localizedString(for: "Alle") == "Alle" ? "Alle" : settings.localizedString(for: "Alle"))
-                            if selectedPlant == nil {
-                                Image(systemName: "checkmark")
-                            }
-                        }
-                    }
-                    
-                    ForEach(gardenStore.pflanzen) { pflanze in
+            if !isBadHabitMode {
+                ToolbarItem(placement: .topBarLeading) {
+                    Menu {
                         Button(action: {
                             withAnimation {
-                                selectedPlant = pflanze
+                                selectedPlant = nil
                             }
                         }) {
                             HStack {
-                                Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
-                                if selectedPlant?.id == pflanze.id {
+                                Text(settings.localizedString(for: "Alle") == "Alle" ? "Alle" : settings.localizedString(for: "Alle"))
+                                if selectedPlant == nil {
                                     Image(systemName: "checkmark")
                                 }
                             }
                         }
+                        
+                        ForEach(gardenStore.pflanzen) { pflanze in
+                            Button(action: {
+                                withAnimation {
+                                    selectedPlant = pflanze
+                                }
+                            }) {
+                                HStack {
+                                    Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
+                                    if selectedPlant?.id == pflanze.id {
+                                        Image(systemName: "checkmark")
+                                    }
+                                }
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundStyle(.primary)
+                            .padding(8)
                     }
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundStyle(.primary)
-                        .padding(8)
                 }
             }
         }
@@ -196,10 +202,17 @@ struct StreakView: View {
                     Button(action: {}) {
                         ZStack {
                             let isCompleted = isWeekdayCompleted(index)
+                            let completedAmount = isWeekdayCompletedAmount(index)
                             if isCompleted {
-                                Image(systemName: "checkmark")
-                                    .font(.system(size: 16, weight: .bold))
-                                    .foregroundStyle(.white)
+                                if isBadHabitMode {
+                                    Text("\(completedAmount)")
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.white)
+                                } else {
+                                    Image(systemName: "checkmark")
+                                        .font(.system(size: 16, weight: .bold))
+                                        .foregroundStyle(.white)
+                                }
                             }
                         }
                         .frame(width: 40, height: 40)
@@ -234,12 +247,20 @@ struct StreakView: View {
                         ForEach(rows[rowIndex], id: \.self) { date in
                             if let date = date {
                                 let isCompleted = isDateCompleted(date)
+                                let completedAmount = dateCompletedAmount(date)
                                 let isFrozen = isDateFrozen(date)
                                 Button(action: {}) {
-                                    Text("\(calendar.component(.day, from: date))")
-                                        .font(.system(size: 12, weight: .bold))
-                                        .foregroundStyle(isCompleted ? .white : .secondary)
-                                        .frame(width: 32, height: 32)
+                                    if isBadHabitMode && isCompleted {
+                                        Text("\(completedAmount)")
+                                            .font(.system(size: 12, weight: .bold))
+                                            .foregroundStyle(.white)
+                                            .frame(width: 32, height: 32)
+                                    } else {
+                                        Text("\(calendar.component(.day, from: date))")
+                                            .font(.system(size: 12, weight: .bold))
+                                            .foregroundStyle(isCompleted ? .white : .secondary)
+                                            .frame(width: 32, height: 32)
+                                    }
                                 }
                                 .buttonStyle(Streak3DButtonStyle(color: isFrozen ? .blue : (isCompleted ? .orange : Color.primary.opacity(0.05)), isCircle: true))
                                 .disabled(true)
@@ -263,6 +284,15 @@ struct StreakView: View {
         guard let dateToCheck = calendar.date(byAdding: .day, value: -daysToSubtract, to: today) else { return false }
         return isDateCompleted(dateToCheck)
     }
+    
+    private func isWeekdayCompletedAmount(_ index: Int) -> Int {
+        let today = calendar.startOfDay(for: Date())
+        let weekdayOfToday = calendar.component(.weekday, from: today)
+        let currentDayInOurMapping = (weekdayOfToday + 5) % 7
+        let daysToSubtract = currentDayInOurMapping - index
+        guard let dateToCheck = calendar.date(byAdding: .day, value: -daysToSubtract, to: today) else { return 0 }
+        return dateCompletedAmount(dateToCheck)
+    }
 
     private func isWeekdayFrozen(_ index: Int) -> Bool {
         let today = calendar.startOfDay(for: Date())
@@ -281,6 +311,17 @@ struct StreakView: View {
             return (selectedPlant.xpHistory[key] ?? 0) > 0
         } else {
             return streakStore.isDateCompleted(date)
+        }
+    }
+
+    private func dateCompletedAmount(_ date: Date) -> Int {
+        if let selectedPlant = selectedPlant {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let key = formatter.string(from: date)
+            return selectedPlant.xpHistory[key] ?? 0
+        } else {
+            return streakStore.isDateCompleted(date) ? 1 : 0
         }
     }
 

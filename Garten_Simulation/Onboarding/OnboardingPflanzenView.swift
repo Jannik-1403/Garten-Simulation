@@ -71,6 +71,7 @@ struct OnboardingPflanzenView: View {
             
             Button {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                FeedbackManager.shared.playTap()
                 withAnimation(.easeInOut(duration: 0.35)) {
                     data.currentStep += 1
                 }
@@ -91,6 +92,7 @@ struct OnboardingPflanzenView: View {
 
     private func toggleSelection(_ id: String) {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        FeedbackManager.shared.playTap()
         if data.gewaehltePflanzenIDs.contains(id) {
             data.gewaehltePflanzenIDs.removeAll { $0 == id }
         } else {

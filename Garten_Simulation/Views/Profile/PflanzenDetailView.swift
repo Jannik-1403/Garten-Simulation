@@ -12,6 +12,7 @@ struct PflanzenDetailView: View {
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var shopStore: ShopStore
     @EnvironmentObject var pfadStore: GartenPfadStore
+    @EnvironmentObject var interactiveTourManager: InteractiveTourManager
 
     var body: some View {
         ZStack {
@@ -65,21 +66,29 @@ struct PflanzenDetailView: View {
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
             .fullScreenCover(item: $ausgewaehltePflanze) { pflanze in
-                NavigationStack {
-                    PflanzeDetailSheet(
-                        pflanze: pflanze,
-                        wetterEvent: .normal, // Default for inventory view
-                        onLoeschen: {
-                            gardenStore.pflanzEntfernen(pflanze: pflanze)
-                            ausgewaehltePflanze = nil
-                        }
-                    )
-                    .environmentObject(gardenStore)
-                    .environmentObject(shopStore)
-                    .environmentObject(settings)
-                    .environmentObject(powerUpStore)
-                    .environmentObject(pfadStore)
+                ZStack {
+                    NavigationStack {
+                        PflanzeDetailSheet(
+                            pflanze: pflanze,
+                            wetterEvent: .normal, // Default for inventory view
+                            onLoeschen: {
+                                gardenStore.pflanzEntfernen(pflanze: pflanze)
+                                ausgewaehltePflanze = nil
+                            }
+                        )
+                    }
+                    
+                    if interactiveTourManager.isActive {
+                        InteractiveTourOverlay()
+                            .zIndex(99998)
+                    }
                 }
+                .environmentObject(gardenStore)
+                .environmentObject(shopStore)
+                .environmentObject(settings)
+                .environmentObject(powerUpStore)
+                .environmentObject(pfadStore)
+                .environmentObject(interactiveTourManager)
             }
         }
     }

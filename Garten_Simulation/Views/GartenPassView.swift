@@ -43,6 +43,8 @@ struct GartenPassView: View {
                             aktuellerLevel: aktuellerLevel,
                             gesamtXP: gardenStore.gesamtXP
                         )
+                        .tourAnchor(.gamePassIntro)
+                        .id(TourStep.gamePassIntro)
                         
                         // Tier-Sektionen
                         ForEach(gruppiertNachTier, id: \.tier.bezeichnungKey) { gruppe in

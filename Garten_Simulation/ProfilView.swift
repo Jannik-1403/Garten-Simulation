@@ -19,6 +19,7 @@ struct ProfilView: View {
     @EnvironmentObject var achievementStore: AchievementStore
     @EnvironmentObject var titelStore: TitelStore
     @EnvironmentObject var characterStore: CharacterStore
+    @EnvironmentObject var tourManager: InteractiveTourManager
     
     private var freigeschalteteErfolgeAnzahl: Int {
         achievementStore.alleErfolge.filter { $0.istFreigeschaltet }.count
@@ -33,8 +34,9 @@ struct ProfilView: View {
             ZStack(alignment: .top) {
                 Color.appHintergrund.ignoresSafeArea()
                 
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 24) {
+                ScrollViewReader { proxy in
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 24) {
                         // --- AVATAR PREVIEW ---
                         Item3DButton(
                             farbe: Color.characterBackground(for: characterStore.profile.backgroundIndex),
@@ -68,11 +70,15 @@ struct ProfilView: View {
                                 Text(spielerTitel.uppercased())
                             }
                             .buttonStyle(ProfilTitle3DStyle())
+                            .tourAnchor(.titles)
+                            .id(TourStep.titles)
                         }
                         .padding(.bottom, 8)
                         
                         // --- TOP 3 ACHIEVEMENTS ---
                         topAchievementsSection
+                            .tourAnchor(.achievements)
+                            .id(TourStep.achievements)
                         
                         // --- 3D STAT BUTTONS DASHBOARD ---
                         VStack(spacing: 20) {
@@ -85,9 +91,13 @@ struct ProfilView: View {
                                     bestStreak: streakStore.bestStreak,
                                     aktion: { showStreakDetail = true }
                                 )
+                                .tourAnchor(.streak)
+                                .id(TourStep.streak)
                             }
                             
                             InventoryStatButton(count: gardenStore.totalItemsCount, showDetail: $showPflanzenDetail)
+                                .tourAnchor(.inventory)
+                                .id(TourStep.inventory)
                         }
                         .padding(.horizontal, 24)
                         
@@ -95,7 +105,15 @@ struct ProfilView: View {
                         Color.clear
                             .frame(height: 100)
                     }
-                } // closes ScrollView
+                    }
+                    .onChange(of: tourManager.currentStep) { _, newStep in
+                        if newStep == .titles || newStep == .achievements || newStep == .streak || newStep == .inventory {
+                            withAnimation {
+                                proxy.scrollTo(newStep, anchor: .center)
+                            }
+                        }
+                    }
+                } // closes ScrollViewReader
             } // closes ZStack
             .navigationBarHidden(false)
             .toolbarBackground(.visible, for: .navigationBar)

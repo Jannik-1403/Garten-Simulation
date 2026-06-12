@@ -13,6 +13,7 @@ struct Garten_SimulationApp: App {
     @StateObject private var titelStore: TitelStore
     @StateObject private var gartenPfadStore: GartenPfadStore
     @StateObject private var characterStore: CharacterStore
+    @StateObject private var interactiveTourManager: InteractiveTourManager
     
     init() {
         SharedUserDefaults.migrateIfNeeded()
@@ -29,6 +30,7 @@ struct Garten_SimulationApp: App {
         self._titelStore = StateObject(wrappedValue: titel)
         self._gartenPfadStore = StateObject(wrappedValue: GartenPfadStore(settings: settings))
         self._characterStore = StateObject(wrappedValue: CharacterStore())
+        self._interactiveTourManager = StateObject(wrappedValue: InteractiveTourManager())
         
         garden.titelStore = titel
         
@@ -52,6 +54,7 @@ struct Garten_SimulationApp: App {
                 .environmentObject(titelStore)
                 .environmentObject(gartenPfadStore)
                 .environmentObject(characterStore)
+                .environmentObject(interactiveTourManager)
                 .modelContainer(for: [PfadStrang.self, PfadStrangTag.self, PfadVerschmelzung.self])
                 .environment(\.locale, Locale(identifier: settingsStore.appLanguage))
                 .preferredColorScheme(.light)

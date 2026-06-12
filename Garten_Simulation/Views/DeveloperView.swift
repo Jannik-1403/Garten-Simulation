@@ -80,7 +80,7 @@ struct DeveloperView: View {
                                 gardenStore.seeds += 10
                                 FeedbackManager.shared.playSuccess()
                             } label: {
-                                settingRow(title: "10 Samen hinzufügen", icon: "leaf.arrow.triangle.circlepath", color: .purple)
+                                settingRow(title: "10 Samen hinzufügen", icon: "Samen", color: .purple, isAsset: true)
                             }
                         }
                     }
@@ -101,7 +101,7 @@ struct DeveloperView: View {
                                 gardenStore.debugClearWeeds()
                                 FeedbackManager.shared.playTap()
                             } label: {
-                                settingRow(title: "Unkraut entfernen", icon: "leaf.arrow.triangle.circlepath", color: .green)
+                                settingRow(title: "Unkraut entfernen", icon: "Samen", color: .green, isAsset: true)
                             }
                             
                             Divider().padding(.leading, 44)

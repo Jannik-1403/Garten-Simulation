@@ -22,6 +22,7 @@ struct GartenView: View {
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var shopStore: ShopStore
     @EnvironmentObject var pfadStore: GartenPfadStore
+    @EnvironmentObject var interactiveTourManager: InteractiveTourManager
 
     @State private var aktivesEvent: WetterEvent = .normal
     @State private var ausgewaehltePflanze: HabitModel? = nil
@@ -65,8 +66,9 @@ struct GartenView: View {
                 .animation(.easeInOut(duration: 0.8), value: aktivesEvent)
 
             ZStack(alignment: .top) {
-                ScrollView {
-                    ZStack(alignment: .top) {
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        ZStack(alignment: .top) {
                         VStack(spacing: 0) {
                             // Spacer for Header (since it's now an overlay)
                             Spacer().frame(height: headerSpacerHeight)
@@ -77,6 +79,7 @@ struct GartenView: View {
                                         .padding(.top, 20)
                                 .frame(maxWidth: .infinity)
                                 .padding(.top, 40)
+                                .tourAnchor(.intro)
                             } else {
                                 // MARK: - Stylized Acker (Field) Background
                                 ZStack {
@@ -103,6 +106,8 @@ struct GartenView: View {
                                                 }
                                             )
                                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                                            .tourAnchor(.intro, condition: pflanze.id == gardenStore.pflanzen.first?.id)
+                                            .id(pflanze.id == gardenStore.pflanzen.first?.id ? TourStep.intro : nil)
                                         }
                                     }
                                     .frame(maxWidth: .infinity)
@@ -161,6 +166,7 @@ struct GartenView: View {
                                                     ) {
                                                         ausgewaehltesItem = ShopDetailPayload.from(decoration: deko)
                                                     }
+                                                    .tourAnchor(.badHabits, condition: deko.id == gardenStore.placedDecorations.first?.id)
                                                 }
                                             }
                                             .padding(.horizontal, 8)
@@ -170,6 +176,7 @@ struct GartenView: View {
                                     }
                                     .padding(.top, 24)
                                     .padding(.horizontal, 16)
+                                    .id(TourStep.badHabits)
                                 }
                             }
 
@@ -177,6 +184,17 @@ struct GartenView: View {
                         }
                     }
                     .coordinateSpace(name: "GartenGrid")
+                }
+                .onChange(of: interactiveTourManager.currentStep) { _, newStep in
+                    if newStep == .badHabits {
+                        withAnimation {
+                            proxy.scrollTo(TourStep.badHabits, anchor: .bottom)
+                        }
+                    } else if newStep == .intro {
+                        withAnimation {
+                            proxy.scrollTo(TourStep.intro, anchor: .top) // Also good to scroll to top for intro
+                        }
+                    }
                 }
                 .onPreferenceChange(CardPositionPreferenceKey.self) { cardPositions = $0 }
                 .padding(.top, 0)
@@ -193,6 +211,7 @@ struct GartenView: View {
                 .onReceive(timerAktuell) { _ in
                     gardenStore.pruefePflanzenStatus()
                 }
+                } // End of ScrollViewReader
 
                 // MARK: - Sticky Header Bar (Glassmorphic Window)
                 VStack(spacing: 0) {
@@ -216,6 +235,8 @@ struct GartenView: View {
                                 total: totalPlants,
                                 onTap: { zeigeStatistiken = true }
                             )
+                            .tourAnchor(.dailyRingIntro)
+                            .id(TourStep.dailyRingIntro)
                             .padding(.vertical, 8)
                             .padding(.horizontal, 16)
                             .frame(maxWidth: 600)
@@ -334,21 +355,32 @@ struct GartenView: View {
             gardenStore.taeglicherStreakCheck()
         }
         .fullScreenCover(item: $ausgewaehltePflanze) { pflanze in
-            NavigationStack {
-                PflanzeDetailSheet(
-                    pflanze: pflanze,
-                    wetterEvent: aktivesEvent,
-                    onLoeschen: {
-                        gardenStore.pflanzEntfernen(pflanze: pflanze)
-                        ausgewaehltePflanze = nil
-                    }
-                )
-                .environmentObject(gardenStore)
-                .environmentObject(shopStore)
-                .environmentObject(settings)
-                .environmentObject(powerUpStore)
-                .environmentObject(pfadStore)
+            ZStack {
+                NavigationStack {
+                    PflanzeDetailSheet(
+                        pflanze: pflanze,
+                        wetterEvent: aktivesEvent,
+                        onLoeschen: {
+                            gardenStore.pflanzEntfernen(pflanze: pflanze)
+                            ausgewaehltePflanze = nil
+                        }
+                    )
+                }
+                
+                if interactiveTourManager.isActive {
+                    InteractiveTourOverlay()
+                        .zIndex(99998)
+                }
             }
+            .environmentObject(gardenStore)
+            .environmentObject(shopStore)
+            .environmentObject(settings)
+            .environmentObject(powerUpStore)
+            .environmentObject(pfadStore)
+            .environmentObject(interactiveTourManager)
+        }
+        .onChange(of: interactiveTourManager.showPlantDetail) { _, newValue in
+            ausgewaehltePflanze = newValue
         }
         .fullScreenCover(item: $ausgewaehltesItem) { item in
             InventoryItemDetailSheet(item: item)

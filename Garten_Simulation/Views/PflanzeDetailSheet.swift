@@ -9,6 +9,7 @@ struct PflanzeDetailSheet: View {
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var streakStore: StreakStore
+    @EnvironmentObject var interactiveTourManager: InteractiveTourManager
     @Environment(\.dismiss) private var dismiss
     var onLoeschen: (() -> Void)? = nil
 
@@ -83,8 +84,9 @@ struct PflanzeDetailSheet: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .topTrailing) {
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 28) {
+                ScrollViewReader { proxy in
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 28) {
                     // MARK: - HERO (Zone 1)
                     VStack(spacing: 12) {
                         ZStack {
@@ -191,6 +193,8 @@ struct PflanzeDetailSheet: View {
                 // MARK: - TAB CONTENT
                 if selectedTab == .uebersicht {
                     streakCardView
+                        .tourAnchor(.plantStreak)
+                        .id("streakCard")
 
                 // MARK: - ACTIONS (Zone 3)
                 VStack(spacing: 12) {
@@ -357,7 +361,7 @@ struct PflanzeDetailSheet: View {
                                     .foregroundStyle(.white.opacity(0.12))
                                     .offset(x: 35, y: 15)
                             }
-                            Text("Fokus-Session starten").textCase(.uppercase)
+                            Text(settings.localizedString(for: "Fokus-Session starten")).textCase(.uppercase)
                                 .font(.system(size: 16, weight: .black, design: .rounded))
                                 .foregroundStyle(.white)
                         }
@@ -367,6 +371,8 @@ struct PflanzeDetailSheet: View {
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 8)
+                    .tourAnchor(.focusTimer)
+                    .id(TourStep.focusTimer)
 
 
 
@@ -396,11 +402,24 @@ struct PflanzeDetailSheet: View {
                             .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
                             .padding(.horizontal, 16)
                             .padding(.top, 8)
+                            .tourAnchor(.plantPath)
                     }
                 }
             }
+            } // End of ScrollView
+            .onChange(of: interactiveTourManager.currentStep) { _, newStep in
+                withAnimation(.spring()) {
+                    if newStep == .focusTimer {
+                        proxy.scrollTo(TourStep.focusTimer, anchor: .bottom)
+                    } else if newStep == .plantStreak {
+                        proxy.scrollTo("streakCard", anchor: .top)
+                    } else if newStep == .plantPath {
+                        selectedTab = .verlauf
+                    }
+                }
+            }
+            } // End of ScrollViewReader
         }
-    }
         .navigationTitle(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
         .navigationBarTitleDisplayMode(.inline)
         .standardNavigationX()
@@ -744,7 +763,7 @@ struct TimerEditSheetView: View {
     @EnvironmentObject var streakStore: StreakStore
     @Environment(\.dismiss) private var dismiss
 
-    @State private var schedule: ReminderSchedule
+    @State private var schedule: ReminderSchedule = ReminderSchedule.defaultSchedule(time: Date())
     
     // UI States
     @State private var expandedDay: Int? = nil
@@ -757,25 +776,6 @@ struct TimerEditSheetView: View {
     @FocusState private var focusedDay: Int?
 
     let daysKeys = ["days.monday", "days.tuesday", "days.wednesday", "days.thursday", "days.friday", "days.saturday", "days.sunday"]
-
-    init(pflanze: HabitModel) {
-        self.pflanze = pflanze
-        
-        let initialSchedule: ReminderSchedule
-        if let existing = pflanze.reminderSchedule {
-            initialSchedule = existing
-        } else if let legacyTime = pflanze.reminderTime {
-            initialSchedule = ReminderSchedule.defaultSchedule(time: legacyTime, customMessage: pflanze.customReminderMessage)
-        } else {
-            var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-            components.hour = 8
-            components.minute = 0
-            let defaultTime = Calendar.current.date(from: components) ?? Date()
-            initialSchedule = ReminderSchedule.defaultSchedule(time: defaultTime)
-        }
-        
-        self._schedule = State(initialValue: initialSchedule)
-    }
     
     private var pflanzName: String {
         settings.showHabitInsteadOfName
@@ -963,6 +963,19 @@ struct TimerEditSheetView: View {
                     .environmentObject(powerUpStore)
                     .environmentObject(pfadStore)
                     .environmentObject(streakStore)
+            }
+        }
+        .onAppear {
+            if let existing = pflanze.reminderSchedule {
+                schedule = existing
+            } else if let legacyTime = pflanze.reminderTime {
+                schedule = ReminderSchedule.defaultSchedule(time: legacyTime, customMessage: pflanze.customReminderMessage)
+            } else {
+                var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+                components.hour = 8
+                components.minute = 0
+                let defaultTime = Calendar.current.date(from: components) ?? Date()
+                schedule = ReminderSchedule.defaultSchedule(time: defaultTime)
             }
         }
     }

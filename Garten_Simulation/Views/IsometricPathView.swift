@@ -536,6 +536,8 @@ struct ContentHeightKey: PreferenceKey {
 struct PfadActivationOverlay: View {
     @ObservedObject var habit: HabitModel
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var pfadStore: GartenPfadStore
     
     @State private var ausgewaehlt: PfadSchwierigkeit = .anfaenger
     @State private var isAnimating = false
@@ -543,7 +545,7 @@ struct PfadActivationOverlay: View {
     
     var body: some View {
         ZStack {
-            Color.appHintergrund.ignoresSafeArea()
+            Color.appHintergrund
             
             VStack(spacing: 24) {
                 Spacer()
@@ -589,6 +591,13 @@ struct PfadActivationOverlay: View {
                         FeedbackManager.shared.playSuccess()
                         withAnimation(.easeInOut) {
                             habit.pfadAktiviertAm = Date()
+                            
+                            let ziel = settings.ausgewaehltesZiel.isEmpty ? "fitness" : settings.ausgewaehltesZiel
+                            let sRaw = habit.individualSchwierigkeit ?? PfadSchwierigkeit.anfaenger.rawValue
+                            let schwierigkeit = PfadSchwierigkeit(rawValue: sRaw) ?? .anfaenger
+                            
+                            pfadStore.pflanzeHinzufuegen(habit, ziel: ziel, schwierigkeit: schwierigkeit)
+                            gardenStore.savePlants()
                         }
                     }
                 ) {
@@ -603,6 +612,7 @@ struct PfadActivationOverlay: View {
                 .offset(y: isAnimating ? 0 : 20)
             }
         }
+        .frame(minHeight: 400)
         .onAppear {
             if let existingDiff = habit.individualSchwierigkeit, let diffEnum = PfadSchwierigkeit(rawValue: existingDiff) {
                 ausgewaehlt = diffEnum

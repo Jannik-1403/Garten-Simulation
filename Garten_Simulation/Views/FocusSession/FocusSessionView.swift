@@ -15,10 +15,22 @@ struct FocusSessionView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var settings: SettingsStore
+    @Environment(\.scenePhase) var scenePhase
     
     @State private var state: FocusSessionState = .intro
     @State private var currentGoalInput: String = ""
     @State private var sessionGoals: [FocusGoal] = []
+    
+    // Strict Mode Tracking
+    @State private var isStrictMode: Bool = true
+    @State private var showStrictModeAlert: Bool = false
+    @State private var backgroundStartTime: Date? = nil
+    @State private var showFailAlert: Bool = false
+    
+    // Math Challenge
+    @State private var showMathChallenge: Bool = false
+    @State private var cancelMathProblem: String = ""
+    @State private var cancelMathAnswer: Int = 0
     
     // Timer default 25 mins
     @State private var selectedMinutes: Int = 25
@@ -37,29 +49,37 @@ struct FocusSessionView: View {
                     .transition(.opacity)
             case .step1:
                 FocusSessionPreparationStep(
-                    iconName: "iphone.slash",
+                    iconName: "Ablenkung",
                     title: "Ablenkungen weg",
                     description: "Schalte dein Handy jetzt auf 'Nicht stören' und lege es nach dieser Einrichtung außer Sichtweite.",
                     buttonText: "Erledigt",
-                    isLastStep: false
+                    isLastStep: false,
+                    textInput: $currentGoalInput,
+                    goals: $sessionGoals
                 ) {
-                    withAnimation { state = .step2 }
+                    showStrictModeAlert = true
                 }
                 .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
             case .step2:
                 FocusSessionPreparationStep(
-                    iconName: "target",
+                    iconName: "Goal",
                     title: "Klares Ziel",
                     description: "Was genau möchtest du in deiner Fokus-Zeit schaffen? Nimm dir einen Moment, um dich zu fokussieren.",
                     buttonText: "Timer starten",
                     isLastStep: true,
                     showTextInput: true,
+                    habitCategory: pflanze.habitCategory,
                     textInput: $currentGoalInput,
                     goals: $sessionGoals
                 ) {
                     // Keyboard schließen
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     withAnimation {
+                        // Nach Priorität sortieren: Hoch -> Mittel -> Niedrig
+                        sessionGoals.sort {
+                            let pOrder: [GoalPriority: Int] = [.high: 3, .medium: 2, .low: 1]
+                            return pOrder[$0.priority]! > pOrder[$1.priority]!
+                        }
                         remainingSeconds = selectedMinutes * 60
                         state = .timer
                         isTimerRunning = true
@@ -82,9 +102,10 @@ struct FocusSessionView: View {
                         Button {
                             dismiss()
                         } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.system(size: 30))
-                                .foregroundStyle(Color.gray.opacity(0.5))
+                            Image(systemName: "xmark")
+                                .font(.system(size: 16, weight: .black))
+                                .foregroundStyle(.primary)
+                                .padding(8)
                         }
                         .padding()
                     }
@@ -97,6 +118,7 @@ struct FocusSessionView: View {
                 remainingSeconds -= 1
                 if remainingSeconds == 0 {
                     isTimerRunning = false
+                    UIApplication.shared.isIdleTimerDisabled = false
                     withAnimation {
                         finishSession()
                     }
@@ -106,6 +128,62 @@ struct FocusSessionView: View {
         // Damit der Timer nicht weiterläuft, wenn man das Sheet schließt
         .onDisappear {
             isTimerRunning = false
+            UIApplication.shared.isIdleTimerDisabled = false
+        }
+        .onChange(of: state) { newState in
+            if newState == .timer {
+                UIApplication.shared.isIdleTimerDisabled = true
+            } else {
+                UIApplication.shared.isIdleTimerDisabled = false
+            }
+        }
+        .onChange(of: showMathChallenge) { newValue in
+            if newValue && cancelMathProblem.isEmpty {
+                generateCancelMathProblem()
+            }
+        }
+        .onChange(of: scenePhase) { newPhase in
+            guard state == .timer && isTimerRunning else { return }
+            
+            if newPhase == .background || newPhase == .inactive {
+                if backgroundStartTime == nil {
+                    backgroundStartTime = Date()
+                }
+            } else if newPhase == .active {
+                if let startTime = backgroundStartTime {
+                    let timeAway = Date().timeIntervalSince(startTime)
+                    backgroundStartTime = nil
+                    
+                    if isStrictMode && timeAway > 10 {
+                        // Fail the session
+                        isTimerRunning = false
+                        UIApplication.shared.isIdleTimerDisabled = false
+                        showFailAlert = true
+                    }
+                }
+            }
+        }
+        .alert(settings.localizedString(for: "Fokus abgebrochen"), isPresented: $showFailAlert) {
+            Button(settings.localizedString(for: "Schließen"), role: .cancel) {
+                dismiss()
+            }
+        } message: {
+            Text(settings.localizedString(for: "Du hast die App zu lange verlassen. Dein Fokus-Timer wurde abgebrochen."))
+        }
+        .alert(settings.localizedString(for: "alert.strict_mode.title"), isPresented: $showStrictModeAlert) {
+            Button(settings.localizedString(for: "alert.strict_mode.no"), role: .destructive) {
+                isStrictMode = true
+                withAnimation { state = .step2 }
+            }
+            Button(settings.localizedString(for: "alert.strict_mode.yes")) {
+                isStrictMode = false
+                withAnimation { state = .step2 }
+            }
+            Button(settings.localizedString(for: "button.cancel"), role: .cancel) {
+                // Do nothing, stay on step 1
+            }
+        } message: {
+            Text(settings.localizedString(for: "alert.strict_mode.message"))
         }
     }
     
@@ -114,21 +192,22 @@ struct FocusSessionView: View {
         VStack(spacing: 30) {
             Spacer()
             
-            Image(systemName: "timer")
-                .font(.system(size: 60))
-                .foregroundStyle(Color.goldPrimary)
+            Image("Timer full")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 80, height: 80)
             
             VStack(spacing: 8) {
-                Text("Fokus-Session")
+                Text(settings.localizedString(for: "Fokus-Session"))
                     .font(.system(size: 32, weight: .black, design: .rounded))
                 
                 Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.habitName) : settings.localizedString(for: pflanze.name))
                     .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundStyle(pflanze.color)
+                    .foregroundStyle(Color.goldPrimary)
             }
             
             VStack(spacing: 12) {
-                Text("Dauer: \(selectedMinutes) Minuten")
+                Text(String(format: settings.localizedString(for: "Dauer: %lld Minuten"), selectedMinutes))
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
                 
                 Slider(value: Binding<Double>(
@@ -145,7 +224,7 @@ struct FocusSessionView: View {
             Button {
                 withAnimation { state = .step1 }
             } label: {
-                Text("Vorbereitung starten")
+                Text(settings.localizedString(for: "Vorbereitung starten"))
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large, fillWidth: true,
@@ -171,7 +250,7 @@ struct FocusSessionView: View {
                 
                 Circle()
                     .trim(from: 0, to: CGFloat(progress))
-                    .stroke(pflanze.color, style: StrokeStyle(lineWidth: 20, lineCap: .round))
+                    .stroke(Color.goldPrimary, style: StrokeStyle(lineWidth: 20, lineCap: .round))
                     .frame(width: 280, height: 280)
                     .rotationEffect(.degrees(-90))
                     .animation(.linear(duration: 1.0), value: progress)
@@ -190,33 +269,76 @@ struct FocusSessionView: View {
             if !sessionGoals.isEmpty {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 12) {
-                        Text("Deine Ziele")
+                        Text(settings.localizedString(for: "Deine Ziele"))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .padding(.bottom, 4)
                         
                         ForEach($sessionGoals) { $goal in
-                            Button {
-                                withAnimation {
-                                    goal.isCompleted.toggle()
-                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                }
-                            } label: {
+                            VStack(alignment: .leading, spacing: 8) {
                                 HStack {
-                                    Image(systemName: goal.isCompleted ? "checkmark.circle.fill" : "circle")
-                                        .font(.system(size: 24))
-                                        .foregroundStyle(goal.isCompleted ? Color.orangePrimary : Color.gray)
+                                    Button {
+                                        withAnimation {
+                                            if goal.subtasks.isEmpty {
+                                                goal._isCompleted.toggle()
+                                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                            }
+                                        }
+                                    } label: {
+                                        Image(systemName: goal.isCompleted ? "checkmark.circle.fill" : "circle")
+                                            .font(.system(size: 24))
+                                            .foregroundStyle(goal.isCompleted ? Color.orangePrimary : Color.gray)
+                                    }
+                                    .disabled(!goal.subtasks.isEmpty)
+                                    .buttonStyle(.plain)
+                                    
+                                    HStack(spacing: 4) {
+                                        Image(systemName: "exclamationmark.circle.fill")
+                                        Text(LocalizedStringKey(goal.priority.rawValue))
+                                    }
+                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .foregroundStyle(goal.priority.color)
                                     
                                     Text(goal.text)
-                                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .strikethrough(goal.isCompleted)
                                         .foregroundStyle(goal.isCompleted ? .secondary : .primary)
                                     Spacer()
                                 }
-                                .padding()
-                                .background(Color.gray.opacity(0.05))
-                                .cornerRadius(12)
+                                
+                                if !goal.subtasks.isEmpty {
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        ForEach($goal.subtasks) { $subtask in
+                                            Button {
+                                                withAnimation {
+                                                    subtask.isCompleted.toggle()
+                                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                                }
+                                            } label: {
+                                                HStack {
+                                                    Image(systemName: "arrow.turn.down.right")
+                                                        .foregroundStyle(.secondary)
+                                                    
+                                                    Image(systemName: subtask.isCompleted ? "checkmark.square.fill" : "square")
+                                                        .foregroundStyle(subtask.isCompleted ? Color.orangePrimary : Color.gray)
+                                                    
+                                                    Text(subtask.text)
+                                                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                                                        .strikethrough(subtask.isCompleted)
+                                                        .foregroundStyle(subtask.isCompleted ? .secondary : .primary)
+                                                    Spacer()
+                                                }
+                                            }
+                                            .buttonStyle(.plain)
+                                        }
+                                    }
+                                    .padding(.leading, 32)
+                                }
                             }
-                            .buttonStyle(.plain)
+                            .padding()
+                            .background(.ultraThinMaterial)
+                            .cornerRadius(12)
                         }
                     }
                     .padding(.horizontal, 32)
@@ -228,14 +350,20 @@ struct FocusSessionView: View {
             Spacer()
             
             Button {
-                isTimerRunning = false
-                dismiss()
+                showMathChallenge = true
             } label: {
-                Text("Abbrechen")
+                Text(settings.localizedString(for: "button.cancel"))
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundStyle(.red)
             }
             .padding(.bottom, 50)
+        }
+        .sheet(isPresented: $showMathChallenge) {
+            MathChallengeView(problemString: cancelMathProblem, correctAnswer: cancelMathAnswer) {
+                isTimerRunning = false
+                UIApplication.shared.isIdleTimerDisabled = false
+                dismiss()
+            }
         }
     }
     
@@ -253,13 +381,49 @@ struct FocusSessionView: View {
             }
             
             VStack(spacing: 12) {
-                Text("Geschafft!")
+                Text(settings.localizedString(for: "Geschafft!"))
                     .font(.system(size: 32, weight: .black, design: .rounded))
-                Text("Du warst \(selectedMinutes) Minuten lang extrem fokussiert. Deine Pflanze ist stolz auf dich!")
+                Text(String(format: settings.localizedString(for: "Du warst %lld Minuten lang extrem fokussiert. Deine Pflanze ist stolz auf dich!"), selectedMinutes))
                     .font(.system(size: 16, weight: .medium, design: .rounded))
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 32)
+                
+                // Belohnung anzeigen
+                HStack(spacing: 60) {
+                    // Coins (Left)
+                    VStack(spacing: 4) {
+                        Image("coin")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                        
+                        let coins = Int(Double(GameConstants.coinsProGiessen) * gardenStore.coinMultiplikator(for: pflanze))
+                        Text("\(coins)")
+                            .font(.system(size: 24, weight: .black, design: .rounded))
+                        
+                        Text(settings.localizedString(for: "Münzen"))
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    // XP (Right)
+                    VStack(spacing: 4) {
+                        Image("XP")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                        
+                        let xp = Int(Double(pflanze.xpPerCompletion) * gardenStore.xpMultiplikator(for: pflanze))
+                        Text("\(xp)")
+                            .font(.system(size: 24, weight: .black, design: .rounded))
+                        
+                        Text("XP")
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .padding(.top, 24)
             }
             
             Spacer()
@@ -267,7 +431,7 @@ struct FocusSessionView: View {
             Button {
                 dismiss()
             } label: {
-                Text("Einsammeln")
+                Text(settings.localizedString(for: "Einsammeln"))
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large, fillWidth: true,
@@ -289,5 +453,54 @@ struct FocusSessionView: View {
         // Triggert den Habit-Abschluss
         gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+    }
+    
+    private func generateCancelMathProblem() {
+        let isThreeNumbers = Int.random(in: 1...5) == 1 // 20% chance
+        let operations = ["+", "-", "*"]
+        let op1 = operations.randomElement()!
+        
+        var num1 = 0
+        var num2 = 0
+        var result = 0
+        var problem = ""
+        
+        if op1 == "*" {
+            num1 = Int.random(in: 0...10)
+            num2 = Int.random(in: 0...10)
+            result = num1 * num2
+            problem = "\(num1) × \(num2)"
+        } else {
+            num1 = Int.random(in: 0...1000)
+            num2 = Int.random(in: 0...1000)
+            if op1 == "-" {
+                if num1 < num2 { swap(&num1, &num2) }
+                result = num1 - num2
+                problem = "\(num1) - \(num2)"
+            } else {
+                result = num1 + num2
+                problem = "\(num1) + \(num2)"
+            }
+        }
+        
+        if isThreeNumbers {
+            let op2 = ["+", "-"].randomElement()!
+            let num3 = Int.random(in: 0...100)
+            if op2 == "+" {
+                result += num3
+                problem += " + \(num3)"
+            } else {
+                if result < num3 {
+                    result += num3
+                    problem += " + \(num3)"
+                } else {
+                    result -= num3
+                    problem += " - \(num3)"
+                }
+            }
+        }
+        
+        self.cancelMathProblem = problem
+        self.cancelMathAnswer = result
     }
 }

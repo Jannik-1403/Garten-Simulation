@@ -16,17 +16,11 @@ struct OnboardingWillkommenView: View {
                 )
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 
-                VStack(spacing: 8) {
-                    Text(settings.localizedString(for: "onboarding_willkommen_titel"))
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color.primary)
-                    
                     Text(settings.localizedString(for: "onboarding_willkommen_untertitel"))
-                        .font(.system(size: 18, weight: .medium, design: .rounded))
-                        .foregroundStyle(.secondary)
+                        .font(.system(size: 34, weight: .heavy, design: .rounded))
+                        .foregroundStyle(.black)
                         .multilineTextAlignment(.center)
-                        .padding(.horizontal, 40)
-                }
+                        .padding(.horizontal, 24)
                 .padding(.top, 40)
                 .transition(.move(edge: .bottom).combined(with: .opacity))
             }
@@ -36,6 +30,7 @@ struct OnboardingWillkommenView: View {
             if showContent {
                 Button {
                     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    FeedbackManager.shared.playTap()
                     withAnimation(.easeInOut(duration: 0.35)) {
                         data.currentStep += 1
                     }

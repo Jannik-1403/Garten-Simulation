@@ -73,6 +73,7 @@ struct OnboardingZielView: View {
 
             Button {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                FeedbackManager.shared.playTap()
                 withAnimation(.easeInOut(duration: 0.35)) {
                     data.currentStep += 1
                 }
@@ -93,6 +94,7 @@ struct OnboardingZielView: View {
 
     private func toggleZiel(_ ziel: OnboardingZiel) {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        FeedbackManager.shared.playTap()
         withAnimation(.spring()) {
             if data.gewaehltesZiele.contains(ziel) {
                 data.gewaehltesZiele.removeAll { $0 == ziel }

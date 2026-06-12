@@ -12,6 +12,9 @@ struct InventoryItemDetailSheet: View {
     @State private var showSuccessPill = false
     @State private var successMessage = ""
     @State private var showNeedsWeedForPowerUpAlert = false
+    @State private var showNotizSheet = false
+    @State private var noteToEditIndex: Int? = nil
+    @State private var noteToDeleteIndex: Int? = nil
 
     private var powerUp: PowerUpItem? {
         GameDatabase.allPowerUps.first(where: { $0.id == item.id })
@@ -23,10 +26,416 @@ struct InventoryItemDetailSheet: View {
         }
     }
 
+    private var isTrash: Bool { item.id.hasPrefix("trash.") }
+
     var body: some View {
+        if isTrash {
+            trashDetailBody
+        } else {
+            normalDetailBody
+        }
+    }
+
+    // MARK: - Trash / Bad Habit Detail
+    private var trashDetailBody: some View {
+        NavigationStack {
+            ZStack {
+                Color.appHintergrund.ignoresSafeArea()
+
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 16) {
+                        // MARK: Icon (klein)
+                        Group {
+                            if UIImage(named: item.icon) != nil {
+                                Image(item.icon)
+                                    .resizable()
+                                    .scaledToFit()
+                            } else {
+                                Image(systemName: item.icon)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundStyle(item.color)
+                            }
+                        }
+                        .frame(width: 80, height: 80)
+                        .shadow(color: item.color.opacity(0.25), radius: 12, x: 0, y: 6)
+                        .scaleEffect(animateIcon ? 1.04 : 1.0)
+                        .padding(.top, 24)
+
+                        // MARK: Title + Subtitle
+                        VStack(spacing: 6) {
+                            let currentTitleKey = (settings.showHabitInsteadOfName && item.habitTitleKey != nil) ? item.habitTitleKey! : item.titleKey
+                            Text(settings.localizedString(for: currentTitleKey))
+                                .font(.system(size: 26, weight: .black, design: .rounded))
+                                .multilineTextAlignment(.center)
+
+                            Text(settings.localizedString(for: item.descriptionKey))
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 32)
+                        }
+
+                        // MARK: Weekly Streak Card (wie PflanzeDetailSheet)
+                        badHabitWeeklyCard
+                            .padding(.horizontal, 24)
+                            .padding(.top, 8)
+
+                        // MARK: Stats (nur Streak + Gesamt, plain text)
+                        badHabitPlainStats
+                            .padding(.horizontal, 28)
+
+                        // MARK: Spezifische Tipps
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text(settings.localizedString(for: "habit.tips.title"))
+                                .font(.system(size: 18, weight: .bold, design: .rounded))
+
+                            let tips = [
+                                ("eye.slash.fill", "\(item.id).tip.1"),
+                                ("heart.slash.fill", "\(item.id).tip.2"),
+                                ("lock.fill", "\(item.id).tip.3"),
+                                ("hand.thumbsdown.fill", "\(item.id).tip.4")
+                            ]
+
+                            ForEach(tips, id: \.1) { tip in
+                                HStack(alignment: .top, spacing: 14) {
+                                    Image(systemName: tip.0)
+                                        .foregroundColor(Color(hex: item.colorHex))
+                                        .font(.system(size: 18))
+                                        .frame(width: 28)
+
+                                    Text(settings.localizedString(for: tip.1))
+                                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                                        .foregroundColor(.primary)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                }
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                .fill(Color.white)
+                                .shadow(color: Color.black.opacity(0.04), radius: 10, y: 5)
+                        )
+                        .padding(.horizontal, 24)
+                        .padding(.top, 4)
+
+                        // MARK: Notizen
+                        badHabitNotesSection
+                            .padding(.horizontal, 24)
+
+                        // MARK: Rückfall melden Button
+                        Button {
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            gardenStore.trackBadHabit(id: item.id, penaltyCoins: 20)
+                        } label: {
+                            HStack(spacing: 8) {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .font(.system(size: 16))
+                                Text(settings.localizedString(for: "habit.relapse.report"))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                HStack(spacing: 4) {
+                                    Image("coin")
+                                        .resizable().scaledToFit().frame(width: 14, height: 14)
+                                    Text("-20")
+                                        .font(.system(size: 14, weight: .black, design: .rounded))
+                                }
+                            }
+                        }
+                        .buttonStyle(DuolingoButtonStyle(
+                            size: .large,
+                            fillWidth: true,
+                            backgroundColor: Color.red.opacity(0.85),
+                            shadowColor: Color.red.opacity(0.85).darker(),
+                            foregroundColor: .white
+                        ))
+                        .padding(.horizontal, 24)
+                        .padding(.top, -8)
+                        .padding(.bottom, 40)
+                    }
+                }
+            }
+            .standardNavigationX()
+            .onAppear {
+                withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
+                    animateIcon = true
+                }
+            }
+            .sheet(isPresented: $showNotizSheet) {
+                BadHabitNotizSheet(habitId: item.id, editIndex: noteToEditIndex)
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+                    .presentationDetents([.medium])
+                    .presentationDragIndicator(.visible)
+                    .presentationCornerRadius(32)
+                    .presentationBackground(Color(UIColor.systemBackground))
+            }
+            .confirmationDialog(
+                settings.localizedString(for: "plant.detail.note.delete.confirm"),
+                isPresented: Binding(
+                    get: { noteToDeleteIndex != nil },
+                    set: { if !$0 { noteToDeleteIndex = nil } }
+                ),
+                titleVisibility: .visible
+            ) {
+                Button(settings.localizedString(for: "plant.detail.note.delete.action"), role: .destructive) {
+                    if let index = noteToDeleteIndex {
+                        gardenStore.deleteBadHabitNote(id: item.id, index: index)
+                    }
+                }
+                Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
+            }
+        }
+    }
+    // MARK: - Weekly Card (Orange, wie Pflanzen)
+    @ViewBuilder
+    private var badHabitWeeklyCard: some View {
+        let calendar = Calendar.current
+        let executions = gardenStore.badHabitExecutions[item.id] ?? []
+        let weekdays = [
+            settings.localizedString(for: "common.mon"),
+            settings.localizedString(for: "common.tue"),
+            settings.localizedString(for: "common.wed"),
+            settings.localizedString(for: "common.thu"),
+            settings.localizedString(for: "common.fri"),
+            settings.localizedString(for: "common.sat"),
+            settings.localizedString(for: "common.sun")
+        ]
+        let fakePlant: HabitModel = {
+            let model = HabitModel(
+                id: item.id,
+                name: settings.localizedString(for: item.habitTitleKey ?? item.titleKey),
+                symbolName: item.icon,
+                symbolColor: item.colorHex,
+                habitCategory: .lifestyle,
+                symbolism: "",
+                habitName: settings.localizedString(for: item.habitTitleKey ?? item.titleKey)
+            )
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            for execution in executions {
+                let key = formatter.string(from: execution.date)
+                model.xpHistory[key] = (model.xpHistory[key] ?? 0) + 1
+            }
+            if let lastDate = executions.max(by: { $0.date < $1.date })?.date {
+                model.streak = max(0, Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: lastDate), to: Calendar.current.startOfDay(for: Date())).day ?? 0)
+            } else {
+                model.streak = 0
+            }
+            return model
+        }()
+
+        NavigationLink(destination: StreakView(selectedPlant: fakePlant, isBadHabitMode: true)
+            .environmentObject(StreakStore())
+            .environmentObject(gardenStore)
+            .environmentObject(settings)
+        ) {
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    ForEach(0..<7, id: \.self) { index in
+                        let rCount = relapseCount(on: index, executions: executions, calendar: calendar)
+                        VStack(spacing: 8) {
+                            Text(weekdays[index])
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundStyle(.white.opacity(0.8))
+
+                            ZStack {
+                                if rCount > 0 {
+                                    Circle()
+                                        .fill(Color.white.opacity(0.3))
+                                        .frame(width: 38, height: 38)
+                                        .offset(y: 3)
+
+                                    Circle()
+                                        .fill(Color.white)
+                                        .frame(width: 38, height: 38)
+
+                                    Text("\(rCount)")
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        .foregroundStyle(Color.orangePrimary)
+                                } else {
+                                    Circle()
+                                        .fill(Color.white.opacity(0.15))
+                                        .frame(width: 38, height: 38)
+                                }
+                            }
+                            .frame(width: 38, height: 41)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 16)
+            }
+            .background(
+                ZStack {
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .fill(Color.orangeSecondary)
+                        .offset(y: 4)
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .fill(
+                            LinearGradient(
+                                colors: [.orangePrimary, .orangePrimary.opacity(0.9)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                }
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .stroke(Color.white.opacity(0.2), lineWidth: 1.5)
+            )
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+
+    private func relapseCount(on index: Int, executions: [BadHabitExecution], calendar: Calendar) -> Int {
+        let today = calendar.startOfDay(for: Date())
+        let currentWeekday = calendar.component(.weekday, from: today)
+        var normalizedToday = currentWeekday - 2
+        if normalizedToday < 0 { normalizedToday = 6 }
+        let daysToSubtract = normalizedToday - index
+        guard let targetDate = calendar.date(byAdding: .day, value: -daysToSubtract, to: today) else { return 0 }
+        let targetStart = calendar.startOfDay(for: targetDate)
+        let targetEnd = calendar.date(byAdding: .day, value: 1, to: targetStart)!
+        return executions.filter { $0.date >= targetStart && $0.date < targetEnd }.count
+    }
+
+    // MARK: - Plain Stats (nur Streak + Gesamt)
+    @ViewBuilder
+    private var badHabitPlainStats: some View {
+        let executions = gardenStore.badHabitExecutions[item.id] ?? []
+        let total = executions.count
+
+        let streakDays: Int = {
+            if let lastDate = executions.max(by: { $0.date < $1.date })?.date {
+                return max(0, Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: lastDate), to: Calendar.current.startOfDay(for: Date())).day ?? 0)
+            }
+            return 0
+        }()
+
+        HStack(spacing: 0) {
+            VStack(spacing: 4) {
+                HStack(spacing: 6) {
+                    Image("Streak_Eis")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                    Text(total > 0 ? "\(streakDays)" : "-")
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                }
+                Text(settings.localizedString(for: "habit.stats.streak").uppercased())
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity)
+
+            Divider().frame(height: 32)
+
+            VStack(spacing: 4) {
+                HStack(spacing: 6) {
+                    Image("Ablenkung")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                    Text("\(total)")
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                }
+                Text(settings.localizedString(for: "habit.stats.total").uppercased())
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .padding(.vertical, 8)
+    }
+
+    // MARK: - Notes Section
+    @ViewBuilder
+    private var badHabitNotesSection: some View {
+        let notes = gardenStore.badHabitNotes[item.id] ?? []
+
+        VStack(spacing: 8) {
+            // Existing notes
+            ForEach(notes.indices, id: \.self) { index in
+                HStack(spacing: 12) {
+                    ZStack {
+                        Circle().fill(Color.blauPrimary.opacity(0.1))
+                            .frame(width: 36, height: 36)
+                        Image(systemName: "doc.text.fill")
+                            .font(.system(size: 16))
+                            .foregroundStyle(Color.blauPrimary)
+                    }
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        let noteLabel = settings.localizedString(for: "plant.detail.note")
+                        let noteText = noteLabel + " " + String(index + 1)
+                        Text(noteText)
+                            .font(.system(size: 11, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                        Text(notes[index])
+                            .lineLimit(2)
+                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    }
+
+                    Spacer()
+
+                    Button {
+                        noteToDeleteIndex = index
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 20))
+                            .foregroundStyle(Color.red.opacity(0.7))
+                    }
+                }
+                .padding(14)
+                .background(
+                    RoundedRectangle(cornerRadius: 18, style: .continuous)
+                        .fill(Color.white)
+                        .shadow(color: Color.black.opacity(0.04), radius: 10, y: 5)
+                )
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    noteToEditIndex = index
+                    showNotizSheet = true
+                }
+            }
+
+            // Add note button
+            Button {
+                noteToEditIndex = nil
+                showNotizSheet = true
+            } label: {
+                ZStack {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "square.and.pencil")
+                            .font(.system(size: 24))
+                            .foregroundStyle(.white.opacity(0.12))
+                            .offset(x: 35, y: 15)
+                    }
+                    Text(settings.localizedString(for: "plant.detail.note.add")).textCase(.uppercase)
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: 24)
+                .clipped()
+            }
+            .buttonStyle(DuolingoButtonStyle(
+                size: .medium, fillWidth: true,
+                backgroundColor: .blauPrimary, shadowColor: .blauPrimary.darker(), foregroundColor: .white
+            ))
+            .padding(.top, 8)
+        }
+    }
+
+    // MARK: - Normal (nicht-Trash) Detail Body
+    private var normalDetailBody: some View {
         ZStack {
             Color.appHintergrund.ignoresSafeArea()
-            
+
             VStack(spacing: 32) {
                 // Icon Area
                 Group {
@@ -45,23 +454,22 @@ struct InventoryItemDetailSheet: View {
                 .padding(.top, 60)
                 .shadow(color: item.itemType == .decoration ? .clear : item.color.opacity(0.3), radius: 20, x: 0, y: 10)
                 .scaleEffect(animateIcon ? 1.05 : 1.0)
-                
+
                 VStack(spacing: 8) {
                     let currentTitleKey = (settings.showHabitInsteadOfName && item.habitTitleKey != nil) ? item.habitTitleKey! : item.titleKey
                     Text(settings.localizedString(for: currentTitleKey))
                         .font(.system(size: 24, weight: .bold, design: .rounded))
-                    
+
                     Text(settings.localizedString(for: item.descriptionKey))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .lineSpacing(4)
                         .padding(.horizontal, 40)
                 }
-                
+
                 Spacer()
-                
+
                 // MARK: Button-Bereich
                 if let active = activePowerUp {
-                    // Aktiv-Zustand: Timer-Pill
                     HStack(spacing: 8) {
                         Image(systemName: "timer")
                         Text(active.timeRemainingFormatted)
@@ -74,7 +482,6 @@ struct InventoryItemDetailSheet: View {
                     .foregroundColor(.primary)
                     .padding(.bottom, 32)
                 } else {
-                    // Normal: Verwenden-Button
                     Button {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {
                             handleUseTap()
@@ -89,7 +496,7 @@ struct InventoryItemDetailSheet: View {
                         shadowColor: item.color.darker()
                     ))
                     .padding(.horizontal, 24)
-                    
+
                     // Sell Button
                     let sellPrice = Int(Double(item.price) * 0.5)
                     Button {
@@ -119,8 +526,8 @@ struct InventoryItemDetailSheet: View {
             }
             .padding(.horizontal)
             .blur(radius: showSuccessPill ? 2 : 0)
-            
-            // Erfolgspille (Toast) - Zentriert
+
+            // Toast
             if showSuccessPill {
                 VStack {
                     Text(successMessage)
@@ -154,7 +561,6 @@ struct InventoryItemDetailSheet: View {
                             : settings.localizedString(for: plant.name)
                         successMessage = String(format: settings.localizedString(for: "powerup.active.plant"), plantDisplayName, duration)
                         
-                        // Kurze Verzögerung damit Sheet schließt, dann Pill zeigen
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                             withAnimation(.spring()) {
                                 showSuccessPill = true
@@ -221,6 +627,91 @@ struct InventoryItemDetailSheet: View {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
             dismiss()
+        }
+    }
+}
+
+// MARK: - Bad Habit Notiz Sheet
+struct BadHabitNotizSheet: View {
+    let habitId: String
+    var editIndex: Int? = nil
+
+    @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
+    @Environment(\.dismiss) private var dismiss
+
+    @State private var notizText: String = ""
+
+    var isEditing: Bool { editIndex != nil }
+
+    var body: some View {
+        VStack(spacing: 24) {
+            // Header
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(settings.localizedString(for: isEditing ? "plant.detail.note.edit" : "plant.detail.note.add"))
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                }
+                Spacer()
+                Image(systemName: "square.and.pencil")
+                    .font(.system(size: 28, weight: .semibold))
+                    .foregroundStyle(Color.blauPrimary)
+            }
+            .padding(.top, 20)
+
+            // Text Editor
+            TextEditor(text: $notizText)
+                .font(.system(size: 16, weight: .medium, design: .rounded))
+                .scrollContentBackground(.hidden)
+                .padding(16)
+                .frame(minHeight: 140)
+                .background(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .fill(Color.primary.opacity(0.04))
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .stroke(Color.primary.opacity(0.08), lineWidth: 1)
+                )
+                .overlay(alignment: .topLeading) {
+                    if notizText.isEmpty {
+                        Text(settings.localizedString(for: "plant.detail.note.placeholder"))
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                            .foregroundStyle(.tertiary)
+                            .padding(20)
+                            .allowsHitTesting(false)
+                    }
+                }
+
+            Spacer()
+
+            // Save Button
+            Button {
+                if let index = editIndex {
+                    gardenStore.updateBadHabitNote(id: habitId, index: index, text: notizText)
+                } else {
+                    gardenStore.addBadHabitNote(id: habitId, text: notizText)
+                }
+                dismiss()
+            } label: {
+                Text(settings.localizedString(for: isEditing ? "plant.detail.note.save" : "plant.detail.note.add.action"))
+            }
+            .buttonStyle(DuolingoButtonStyle(
+                size: .large,
+                fillWidth: true,
+                backgroundColor: .blauPrimary,
+                shadowColor: .blauPrimary.darker()
+            ))
+        }
+        .padding(.horizontal, 24)
+        .padding(.bottom, 32)
+        .onAppear {
+            if let index = editIndex {
+                let notes = gardenStore.badHabitNotes[habitId] ?? []
+                if index >= 0 && index < notes.count {
+                    notizText = notes[index]
+                }
+            }
         }
     }
 }

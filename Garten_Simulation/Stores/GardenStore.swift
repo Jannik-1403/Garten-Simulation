@@ -8,6 +8,12 @@ struct GiessBonus: Equatable {
     let gems: Int
 }
 
+struct BadHabitExecution: Codable, Identifiable {
+    var id: UUID = UUID()
+    let date: Date
+    let coinsLost: Int
+}
+
 @MainActor
 class GardenStore: ObservableObject {
     @Published var pflanzen: [HabitModel] = []
@@ -66,6 +72,9 @@ class GardenStore: ObservableObject {
         didSet {
             saveDecorations()
         }
+    }
+    @Published var badHabitExecutions: [String: [BadHabitExecution]] = [:] {
+        didSet { saveBadHabits() }
     }
     
     // Daily Spin States
@@ -187,7 +196,7 @@ class GardenStore: ObservableObject {
             let raw = categoryKey.replacingOccurrences(of: "decoration.category.", with: "")
             return DecorationCategory(rawValue: raw)?.icon
         }
-        if categoryKey == "inventory.seeds" { return "leaf.arrow.triangle.circlepath" }
+        if categoryKey == "inventory.seeds" { return "Samen" }
         if categoryKey == "profile.inventory.powerups" { return "Powerup" }
         return nil
     }
@@ -200,6 +209,8 @@ class GardenStore: ObservableObject {
         loadActivePowerUps()
         loadDecorations()
         ladeAbgeholte()
+        loadBadHabits()
+        loadBadHabitNotes()
         updateTageAktiv()
         pruefePflanzenStatus()
         taeglicherStreakCheck()
@@ -215,6 +226,8 @@ class GardenStore: ObservableObject {
         loadActivePowerUps()
         loadDecorations()
         ladeAbgeholte()
+        loadBadHabits()
+        loadBadHabitNotes()
         updateTageAktiv()
         pruefePflanzenStatus()
         taeglicherStreakCheck()
@@ -1560,6 +1573,67 @@ class GardenStore: ObservableObject {
         if let data = SharedUserDefaults.suite.data(forKey: "garden_inventory"),
            let decoded = try? JSONDecoder().decode([ShopDetailPayload].self, from: data) {
             gekaufteItems = decoded
+        }
+    }
+
+    func trackBadHabit(id: String, penaltyCoins: Int) {
+        let execution = BadHabitExecution(date: Date(), coinsLost: penaltyCoins)
+        badHabitExecutions[id, default: []].append(execution)
+        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
+        coinsAbziehen(amount: penaltyCoins, beschreibung: AppStrings.get("habit.relapse.report", language: lang))
+    }
+
+    // MARK: - Bad Habit Notes
+    @Published var badHabitNotes: [String: [String]] = [:] {
+        didSet { saveBadHabitNotes() }
+    }
+
+    func addBadHabitNote(id: String, text: String) {
+        badHabitNotes[id, default: []].append(text)
+    }
+
+    func updateBadHabitNote(id: String, index: Int, text: String) {
+        guard var notes = badHabitNotes[id], index < notes.count else { return }
+        notes[index] = text
+        badHabitNotes[id] = notes
+    }
+
+    func deleteBadHabitNote(id: String, index: Int) {
+        guard var notes = badHabitNotes[id], index < notes.count else { return }
+        notes.remove(at: index)
+        badHabitNotes[id] = notes
+    }
+
+    private func saveBadHabitNotes() {
+        guard !isLoading else { return }
+        if let encoded = try? JSONEncoder().encode(badHabitNotes) {
+            SharedUserDefaults.suite.set(encoded, forKey: "badHabitNotes")
+            SharedUserDefaults.suite.synchronize()
+        }
+    }
+
+    private func loadBadHabitNotes() {
+        if let data = SharedUserDefaults.suite.data(forKey: "badHabitNotes"),
+           let decoded = try? JSONDecoder().decode([String: [String]].self, from: data) {
+            badHabitNotes = decoded
+        }
+    }
+
+    private func saveBadHabits() {
+        guard !isLoading else { return }
+        if let encoded = try? JSONEncoder().encode(badHabitExecutions) {
+            SharedUserDefaults.suite.set(encoded, forKey: "badHabitExecutions")
+            SharedUserDefaults.suite.synchronize()
+        }
+    }
+
+    private func loadBadHabits() {
+        isLoading = true
+        defer { isLoading = false }
+        
+        if let saved = SharedUserDefaults.suite.data(forKey: "badHabitExecutions"),
+           let decoded = try? JSONDecoder().decode([String: [BadHabitExecution]].self, from: saved) {
+            self.badHabitExecutions = decoded
         }
     }
 

@@ -20,6 +20,8 @@ class SettingsStore: ObservableObject {
     @AppStorage("isAnalyticsEnabled")     var isAnalyticsEnabled: Bool = true
     @AppStorage("showHabitInsteadOfName") var showHabitInsteadOfName: Bool = true
     @AppStorage("onboardingAbgeschlossen") var onboardingAbgeschlossen: Bool = false
+    @AppStorage("appTourPromptShown")      var appTourPromptShown: Bool = false
+    @AppStorage("appTourAbgeschlossen")    var appTourAbgeschlossen: Bool = false
     @AppStorage("ausgewaehltesZiel")       var ausgewaehltesZiel: String = ""
     
     @Published var habitStartStunde: Int {

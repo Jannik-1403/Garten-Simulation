@@ -20,6 +20,18 @@ struct CharacterProfile: Codable, Equatable {
         backgroundIndex: 1
     )
     
+    // Random Character
+    static func random() -> CharacterProfile {
+        return CharacterProfile(
+            bodyIndex: Int.random(in: 1...6),
+            hairIndex: Int.random(in: 1...6),
+            eyeIndex: Int.random(in: 1...4),
+            mouthIndex: Int.random(in: 1...7),
+            hasGlasses: Bool.random(),
+            backgroundIndex: Int.random(in: 1...6)
+        )
+    }
+    
     enum CodingKeys: String, CodingKey {
         case bodyIndex, hairIndex, eyeIndex, mouthIndex, hasGlasses, backgroundIndex
     }
@@ -68,7 +80,7 @@ class CharacterStore: ObservableObject {
            let saved = try? JSONDecoder().decode(CharacterProfile.self, from: data) {
             self.profile = saved
         } else {
-            self.profile = .default
+            self.profile = .random()
         }
         self.unlockedGlasses = UserDefaults.standard.bool(forKey: "unlockedGlasses")
         
@@ -85,7 +97,7 @@ class CharacterStore: ObservableObject {
     }
     
     func reset() {
-        self.profile = .default
+        self.profile = .random()
         self.unlockedGlasses = false
         UserDefaults.standard.removeObject(forKey: saveKey)
         UserDefaults.standard.removeObject(forKey: "unlockedGlasses")

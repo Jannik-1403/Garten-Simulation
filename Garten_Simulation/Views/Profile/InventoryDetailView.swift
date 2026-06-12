@@ -46,7 +46,7 @@ struct InventoryDetailView: View {
                             Inventory3DStat(
                                 titleKey: "profile.inventory.plants",
                                 count: gardenStore.pflanzen.count,
-                                icon: "leaf.fill",
+                                icon: "Plants",
                                 farbe: Color(hex: "#2ECC71"),
                                 sekundaerFarbe: Color(hex: "#27AE60"),
                                 aktion: { showPlants = true }
@@ -64,7 +64,7 @@ struct InventoryDetailView: View {
                             Inventory3DStat(
                                 titleKey: "profile.inventory.decorations",
                                 count: gardenStore.placedDecorations.count,
-                                icon: "lamp.table.fill",
+                                icon: "Dekoration",
                                 farbe: Color(hex: "#FF4B00"),
                                 sekundaerFarbe: Color(hex: "#C43D00"),
                                 aktion: { showDecorations = true }
@@ -73,7 +73,7 @@ struct InventoryDetailView: View {
                             Inventory3DStat(
                                 titleKey: "inventory.seeds",
                                 count: gardenStore.seeds,
-                                icon: "leaf.arrow.triangle.circlepath",
+                                icon: "Samen",
                                 farbe: Color(hex: "#9B59B6"),
                                 sekundaerFarbe: Color(hex: "#8E44AD"),
                                 aktion: { showCreationSheet = true }

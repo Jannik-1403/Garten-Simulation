@@ -24,7 +24,8 @@ struct GartenStatsBar: View {
             statSektion(
                 assetName: "streak",
                 wert: "\(streak)",
-                farbe: streakFarbe
+                farbe: streakFarbe,
+                tourStep: .streakHeaderIntro
             )
             .contentShape(Rectangle())
             .onTapGesture {
@@ -36,7 +37,8 @@ struct GartenStatsBar: View {
             statSektion(
                 assetName: "coin",
                 wert: coins.formatted(),
-                farbe: Color.coinBlue
+                farbe: Color.coinBlue,
+                tourStep: .coinsIntro
             )
             .scaleEffect(coinPopScale)
             .contentShape(Rectangle())
@@ -49,7 +51,8 @@ struct GartenStatsBar: View {
             statSektion(
                 assetName: leben <= 0 ? "Heart death" : (leben <= 3 ? "Heart half" : "Heart"),
                 wert: "\(leben)",
-                farbe: leben <= 0 ? .gray : lebenFarbe
+                farbe: leben <= 0 ? .gray : lebenFarbe,
+                tourStep: .livesIntro
             )
             .contentShape(Rectangle())
             .onTapGesture {
@@ -66,7 +69,8 @@ struct GartenStatsBar: View {
     private func statSektion(
         assetName: String,
         wert: String,
-        farbe: Color
+        farbe: Color,
+        tourStep: TourStep? = nil
     ) -> some View {
         HStack(spacing: 5) {
             Image(assetName)
@@ -102,6 +106,8 @@ struct GartenStatsBar: View {
                 .contentTransition(.numericText())
                 .animation(.spring(), value: wert)
         }
+        .tourAnchor(tourStep ?? .done, condition: tourStep != nil)
+        .id(tourStep ?? .done)
         .frame(maxWidth: .infinity)
     }
 

@@ -16,7 +16,7 @@ struct PflanzenButton: View {
             aktion?()
         } label: {
             if let plant = plant {
-                PlantIconView(plant: plant, seltenheit: seltenheit, size: groesse * 0.55, alwaysShowFullGrown: alwaysShowFullGrown)
+                PlantIconView(plant: plant, seltenheit: seltenheit, size: groesse * 1.2, alwaysShowFullGrown: alwaysShowFullGrown) // Größer
             } else {
                 Image(systemName: fallbackIcon)
                     .resizable()
@@ -51,7 +51,7 @@ struct PflanzenButtonStyle: ButtonStyle {
                 .fill(farbe)
                 .overlay {
                     configuration.label
-                        .frame(width: groesse * 0.55, height: groesse * 0.55)
+                        .frame(width: groesse * 1.2, height: groesse * 1.2)
                 }
                 .offset(y: isPressed ? 0 : -6)
         }

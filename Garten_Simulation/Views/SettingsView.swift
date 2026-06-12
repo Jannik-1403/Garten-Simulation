@@ -12,6 +12,7 @@ struct SettingsView: View {
     @EnvironmentObject var achievementStore: AchievementStore
     @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var characterStore: CharacterStore
+    @EnvironmentObject var tourManager: InteractiveTourManager
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
     
@@ -58,6 +59,23 @@ struct SettingsView: View {
                                             title: settings.localizedString(for: "settings.onboarding.repeat"),
                                             icon: "arrow.counterclockwise.circle.fill",
                                             color: .orange
+                                        )
+                                    }
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
+                                    Button {
+                                        gardenStore.selectedTab = 0
+                                        FeedbackManager.shared.playSuccess()
+                                        dismiss()
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                            tourManager.startTour()
+                                        }
+                                    } label: {
+                                        settingRow(
+                                            title: "App-Tour wiederholen",
+                                            icon: "sparkles",
+                                            color: .blue
                                         )
                                     }
                                 }
@@ -228,6 +246,8 @@ struct SettingsView: View {
                     achievementStore.reset()
                     titelStore.reset()
                     pfadStore.pfadZuruecksetzen(settings: settings, gardenStore: gardenStore)
+                    settings.appTourPromptShown = false
+                    settings.appTourAbgeschlossen = false
                     settings.onboardingAbgeschlossen = false
                     FeedbackManager.shared.playError()
                     dismiss()
@@ -412,6 +432,7 @@ struct DangerButtonStyle: ButtonStyle {
         .environmentObject(AchievementStore(gardenStore: GardenStore(), streakStore: StreakStore()))
         .environmentObject(GartenPfadStore(settings: settings))
         .environmentObject(CharacterStore())
+        .environmentObject(InteractiveTourManager())
 }
 
 struct GrovyShareCardView: View {

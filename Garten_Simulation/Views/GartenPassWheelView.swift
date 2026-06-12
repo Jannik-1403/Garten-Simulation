@@ -365,8 +365,10 @@ struct IceWheelIcon: View {
                     .scaledToFit()
                     .frame(width: 24, height: 24)
             case .seeds(_):
-                Image(systemName: "leaf.arrow.triangle.circlepath")
-                    .foregroundColor(.white)
+                Image("Samen")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 26, height: 26)
             case .weed:
                 Image(systemName: "ant.fill")
                     .foregroundColor(.white)

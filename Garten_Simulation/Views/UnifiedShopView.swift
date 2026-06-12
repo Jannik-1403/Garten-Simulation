@@ -24,7 +24,8 @@ struct ShopItemCard: View {
             VStack(alignment: .center, spacing: 12) {
                 Group {
                     if let plant = plant {
-                        PlantIconView(plant: plant, seltenheit: .bronze, size: 80, alwaysShowFullGrown: true) // Erhöht von 50
+                        PlantIconView(plant: plant, seltenheit: .bronze, size: 110, alwaysShowFullGrown: true)
+                            .scaleEffect(1.5)
                     } else {
                         if UIImage(named: icon) != nil {
                             Image(icon)
@@ -99,9 +100,8 @@ struct UnifiedShopView: View {
         if !searchText.isEmpty {
             base = base.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
-        // Filter nach Level und Besitz
+        // Filter nach Besitz (Level Filter entfernt)
         return base.filter { 
-            $0.minGartenLevel <= gardenStore.gartenStufe && 
             !shopStore.isPurchased($0.id) 
         }
     }
@@ -123,9 +123,8 @@ struct UnifiedShopView: View {
         if !searchText.isEmpty {
             base = base.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
-        // Filter nach Level und Besitz
+        // Filter nach Besitz (Level Filter entfernt)
         return base.filter { 
-            $0.minGartenLevel <= gardenStore.gartenStufe && 
             !shopStore.isPurchased($0.id) 
         }
     }
@@ -144,6 +143,7 @@ struct UnifiedShopView: View {
 
                                 shopSwitcher
                                     .padding(.bottom, 8)
+                                    .tourAnchor(.shopIntro)
 
                                 // Suche
                                 HStack(spacing: 8) {
