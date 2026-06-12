@@ -139,9 +139,13 @@ struct SettingsView: View {
                             
                             settingsSection(title: settings.localizedString(for: "settings.section.privacy")) {
                                 VStack(spacing: 0) {
-                                    settingLink(title: settings.localizedString(for: "settings.privacy_settings"), description: settings.localizedString(for: "settings.privacy.desc"), icon: "lock.shield.fill", color: .green)
+                                    Link(destination: URL(string: "https://shrouded-parka-be8.notion.site/Privacy-Policy-37dd74b814d28080acc3c9303df218c8")!) {
+                                        settingRow(title: settings.localizedString(for: "settings.privacy_settings"), icon: "lock.shield.fill", color: .green)
+                                    }
                                     Divider().padding(.leading, 44)
-                                    settingLink(title: settings.localizedString(for: "settings.terms"), description: settings.localizedString(for: "settings.terms.desc"), icon: "doc.text.fill", color: .gray)
+                                    Link(destination: URL(string: "https://shrouded-parka-be8.notion.site/Terms-of-Use-37dd74b814d2805393b6e17145019e9c")!) {
+                                        settingRow(title: settings.localizedString(for: "settings.terms"), icon: "doc.text.fill", color: .gray)
+                                    }
                                     Divider().padding(.leading, 44)
                                     
                                     // Backup & Import

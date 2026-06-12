@@ -69,17 +69,13 @@ struct OnboardingLegalView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                             
                             VStack(alignment: .leading, spacing: 4) {
-                                Button {
-                                    showTerms = true
-                                } label: {
+                                Link(destination: URL(string: "https://shrouded-parka-be8.notion.site/Terms-of-Use-37dd74b814d2805393b6e17145019e9c")!) {
                                     Text(settings.localizedString(for: "onboarding_legal_terms"))
                                         .underline()
                                         .foregroundStyle(Color.blauPrimary)
                                 }
                                 
-                                Button {
-                                    showPrivacy = true
-                                } label: {
+                                Link(destination: URL(string: "https://shrouded-parka-be8.notion.site/Privacy-Policy-37dd74b814d28080acc3c9303df218c8")!) {
                                     Text(settings.localizedString(for: "onboarding_legal_privacy"))
                                         .underline()
                                         .foregroundStyle(Color.blauPrimary)
@@ -120,38 +116,9 @@ struct OnboardingLegalView: View {
             .padding(.horizontal, 24)
             .padding(.bottom, 40)
         }
-        .sheet(isPresented: $showTerms) {
-            NavigationStack {
-                SettingsDetailView(
-                    title: settings.localizedString(for: "settings.terms"),
-                    description: settings.localizedString(for: "settings.terms.desc"),
-                    actionTitle: settings.localizedString(for: "settings.understood"),
-                    icon: "doc.text.fill",
-                    iconColor: .gray,
-                    action: {}
-                )
-                .environmentObject(settings)
-            }
-            .presentationDetents([.large])
-        }
-        .sheet(isPresented: $showPrivacy) {
-            NavigationStack {
-                SettingsDetailView(
-                    title: settings.localizedString(for: "settings.privacy_settings"),
-                    description: settings.localizedString(for: "settings.privacy.desc"),
-                    actionTitle: settings.localizedString(for: "settings.understood"),
-                    icon: "lock.shield.fill",
-                    iconColor: .green,
-                    action: {}
-                )
-                .environmentObject(settings)
-            }
-            .presentationDetents([.large])
-        }
     }
     
     private func finish() {
-        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         FeedbackManager.shared.playTap()
         withAnimation(.easeInOut(duration: 0.35)) {
             data.currentStep += 1
