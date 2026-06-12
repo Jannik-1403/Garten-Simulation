@@ -148,7 +148,7 @@ struct PflanzenGridCell: View {
                 farbe: pflanze.color,
                 sekundaerFarbe: pflanze.color.darker(),
                 groesse: 80,
-                iconSkalierung: 0.65,
+                iconSkalierung: 1.5,
                 aktion: action
             )
 

@@ -28,6 +28,8 @@ struct OnboardingLegalView: View {
                     .font(.system(size: 15, weight: .regular))
                     .foregroundStyle(.secondary)
                     .lineSpacing(4)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 // Benefits List
                 VStack(alignment: .leading, spacing: 12) {

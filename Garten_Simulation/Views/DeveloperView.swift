@@ -9,6 +9,7 @@ struct DeveloperView: View {
     @EnvironmentObject var titelStore: TitelStore
     @EnvironmentObject var achievementStore: AchievementStore
     @EnvironmentObject var pfadStore: GartenPfadStore
+    @EnvironmentObject var tourManager: InteractiveTourManager
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -255,6 +256,40 @@ struct DeveloperView: View {
                                 }
                             } label: {
                                 settingRow(title: "↩️ Test zurücksetzen", icon: "arrow.counterclockwise", color: .orange)
+                            }
+                        }
+                    }
+                    
+                    // Section 6: Onboarding & App-Tour
+                    settingsSection(title: "Onboarding & App-Tour") {
+                        VStack(spacing: 0) {
+                            Button {
+                                settings.onboardingAbgeschlossen = false
+                                FeedbackManager.shared.playSuccess()
+                                dismiss()
+                            } label: {
+                                settingRow(
+                                    title: settings.localizedString(for: "settings.onboarding.repeat"),
+                                    icon: "arrow.counterclockwise.circle.fill",
+                                    color: .orange
+                                )
+                            }
+                            
+                            Divider().padding(.leading, 44)
+                            
+                            Button {
+                                gardenStore.selectedTab = 0
+                                FeedbackManager.shared.playSuccess()
+                                dismiss()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    tourManager.startTour()
+                                }
+                            } label: {
+                                settingRow(
+                                    title: "App-Tour wiederholen",
+                                    icon: "sparkles",
+                                    color: .blue
+                                )
                             }
                         }
                     }

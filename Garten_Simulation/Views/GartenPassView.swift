@@ -602,7 +602,7 @@ struct GartenPassReward3DButton: View {
                     Group {
                         if case .pflanze(let id) = belohnung.typ, 
                            let pl = GameDatabase.shared.plant(for: id) {
-                            PlantIconView(plant: pl, seltenheit: .bronze, size: groesse * 0.6, alwaysShowFullGrown: true)
+                            PlantIconView(plant: pl, seltenheit: .bronze, size: groesse * 1.5, alwaysShowFullGrown: true)
                                 .grayscale(istGesperrt ? 1.0 : 0.0)
                                 .opacity(istGesperrt ? 0.5 : 1.0)
                         } else if info.isAsset {

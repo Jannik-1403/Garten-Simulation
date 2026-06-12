@@ -116,9 +116,10 @@ struct PlantSelectionCard: View {
                 farbe: isSelected ? Color.gruenPrimary : Color(.systemGray6),
                 sekundaerFarbe: isSelected ? Color.gruenPrimary.darker() : Color(.systemGray4),
                 groesse: 100,
+                iconSkalierung: 1.5,
                 aktion: action
             ) {
-                PlantIconView(plant: plant, seltenheit: .bronze, size: 55, alwaysShowFullGrown: true)
+                PlantIconView(plant: plant, seltenheit: .bronze, size: 120, alwaysShowFullGrown: true)
             }
             .overlay(alignment: .topTrailing) {
                 if isSelected {

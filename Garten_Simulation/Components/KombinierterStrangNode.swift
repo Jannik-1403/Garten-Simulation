@@ -199,7 +199,7 @@ struct KombinierterStrangNode: View {
     @ViewBuilder
     private var mergedIconsView: some View {
         let n = min(alleStraenge.count, 4) // Max 4 Icons anzeigen
-        let subGroesse = groesse * (n > 2 ? 0.35 : 0.45)
+        let subGroesse = groesse * (n > 2 ? 0.55 : 0.7)
         
         // Raster-Layout für Merged Icons
         VStack(spacing: 4) {
@@ -218,7 +218,7 @@ struct KombinierterStrangNode: View {
 
     @ViewBuilder
     private func singleIconView(for s: PfadStrang) -> some View {
-        iconImage(for: s, size: groesse * 0.7)
+        iconImage(for: s, size: groesse * 1.5)
     }
 
     @ViewBuilder

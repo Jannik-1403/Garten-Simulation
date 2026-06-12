@@ -395,16 +395,13 @@ struct IceRewardOverlay: View {
             
             // schwebende Card
             VStack(spacing: 16) {
-                // Icon in blauem Kreis
+                // Icon ohne blauen Kreis, dafür deutlich größer
                 ZStack {
-                    Circle()
-                        .fill(Color.blauPrimary.opacity(0.15))
-                        .frame(width: 88, height: 88)
-                    
                     IceWheelIcon(reward: reward)
-                        .scaleEffect(1.5)
+                        .scaleEffect(3.0)
                         .foregroundColor(Color.blauPrimary)
                 }
+                .frame(width: 88, height: 88)
                 .scaleEffect(iconScale)
                 
                 // Titel

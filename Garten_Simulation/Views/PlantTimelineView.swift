@@ -166,7 +166,7 @@ struct TimelineRow: View {
                     farbe: pflanze.color,
                     sekundaerFarbe: pflanze.color.darker(),
                     groesse: 50,
-                    iconSkalierung: 0.6,
+                    iconSkalierung: 1.5,
                     aktion: nil
                 )
                 
@@ -221,7 +221,7 @@ struct SimplePlantCell: View {
                 farbe: pflanze.color,
                 sekundaerFarbe: pflanze.color.darker(),
                 groesse: 70,
-                iconSkalierung: 0.6,
+                iconSkalierung: 1.5,
                 aktion: nil
             )
             

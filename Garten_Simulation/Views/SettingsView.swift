@@ -47,37 +47,6 @@ struct SettingsView: View {
                                             color: .purple
                                         )
                                     }
-                                    
-                                    Divider().padding(.leading, 44)
-                                    
-                                    Button {
-                                        settings.onboardingAbgeschlossen = false
-                                        FeedbackManager.shared.playSuccess()
-                                        dismiss()
-                                    } label: {
-                                        settingRow(
-                                            title: settings.localizedString(for: "settings.onboarding.repeat"),
-                                            icon: "arrow.counterclockwise.circle.fill",
-                                            color: .orange
-                                        )
-                                    }
-                                    
-                                    Divider().padding(.leading, 44)
-                                    
-                                    Button {
-                                        gardenStore.selectedTab = 0
-                                        FeedbackManager.shared.playSuccess()
-                                        dismiss()
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                            tourManager.startTour()
-                                        }
-                                    } label: {
-                                        settingRow(
-                                            title: "App-Tour wiederholen",
-                                            icon: "sparkles",
-                                            color: .blue
-                                        )
-                                    }
                                 }
                             }
 
@@ -216,6 +185,7 @@ struct SettingsView: View {
                                         .environmentObject(titelStore)
                                         .environmentObject(achievementStore)
                                         .environmentObject(pfadStore)
+                                        .environmentObject(tourManager)
                                 } label: {
                                     settingRow(
                                         title: "Developer / Debug Menu",
