@@ -1,15 +1,21 @@
 {
   "images" : [
     {
-      "filename" : "Sonnenblume.svg",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "FEEFB95A-B1D4-4C5A-ABEC-CD67F8A2772F.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserve-vector-data" : true
   }
 }

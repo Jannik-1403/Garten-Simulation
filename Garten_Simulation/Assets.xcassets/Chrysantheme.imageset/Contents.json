@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "D2CEB26C-8D2A-463E-822B-15E228EC7614.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "Chrysantheme.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

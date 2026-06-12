@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "D5873D2A-EF4C-4FB0-87FB-2F15B43A8BEE.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "Erdbeerpflanze.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
