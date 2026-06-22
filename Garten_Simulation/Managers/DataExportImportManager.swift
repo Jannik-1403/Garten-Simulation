@@ -127,7 +127,7 @@ final class DataExportImportManager: ObservableObject {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let dateString = formatter.string(from: Date())
-        let fileName = "GartenSimulation_Backup_\(dateString).gartensave"
+        let fileName = "Grovy_Backup_\(dateString).gartensave"
         
         let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
         

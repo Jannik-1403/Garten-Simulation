@@ -302,13 +302,7 @@ struct DeveloperView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundStyle(.primary)
-                }
+                LiquidGlassDismissButton { dismiss() }
             }
         }
     }

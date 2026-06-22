@@ -27,9 +27,10 @@ struct PflanzeOderAlternativeView: View {
                 // Option 1: Pflanze annehmen
                 AuswahlKarte(
                     icon: AnyView(
-                        Image(systemName: "leaf.fill")
-                            .font(.system(size: 28))
-                            .foregroundColor(.gruenPrimary)
+                        Image("Plants")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 32, height: 32)
                     ),
                     titel: settings.localizedString(for: "pflanze_auswahl_option_pflanze"),
                     untertitel: settings.localizedString(for: "pflanze_auswahl_option_pflanze_sub")
@@ -41,9 +42,10 @@ struct PflanzeOderAlternativeView: View {
                 // Option 2: 2 Spins
                 AuswahlKarte(
                     icon: AnyView(
-                        Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90")
-                            .font(.system(size: 28))
-                            .foregroundColor(.blauPrimary)
+                        Image("Spin")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80)
                     ),
                     titel: settings.localizedString(for: "pflanze_auswahl_option_spins"),
                     untertitel: settings.localizedString(for: "pflanze_auswahl_option_spins_sub")
@@ -70,9 +72,10 @@ struct PflanzeOderAlternativeView: View {
                 // Option 4: Zufälliges Power-Up
                 AuswahlKarte(
                     icon: AnyView(
-                        Image(systemName: "bolt.circle.fill")
-                            .font(.system(size: 32))
-                            .foregroundColor(.goldPrimary)
+                        Image("Powerup")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 32, height: 32)
                     ),
                     titel: settings.localizedString(for: "pflanze_auswahl_option_powerup"),
                     untertitel: settings.localizedString(for: "pflanze_auswahl_option_powerup_sub")
@@ -138,18 +141,9 @@ private struct GartenPassSelectionCardButtonStyle: ButtonStyle {
     @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
     
     func makeBody(configuration: Configuration) -> some View {
-        GartenPassSelectionCardVisualView(configuration: configuration, isHapticEnabled: isHapticEnabled)
-    }
-}
-
-private struct GartenPassSelectionCardVisualView: View {
-    let configuration: ButtonStyle.Configuration
-    let isHapticEnabled: Bool
-    
-    @State private var isVisualPressed = false
-    private let depth: CGFloat = 5
-    
-    var body: some View {
+        let depth: CGFloat = 5
+        let isPressed = configuration.isPressed
+        
         ZStack {
             // Shadow Layer (Base)
             RoundedRectangle(cornerRadius: 16, style: .continuous)
@@ -165,19 +159,10 @@ private struct GartenPassSelectionCardVisualView: View {
                     RoundedRectangle(cornerRadius: 16, style: .continuous)
                         .stroke(Color.black.opacity(0.1), lineWidth: 1.2)
                 )
-                .offset(y: isVisualPressed ? 0 : -depth)
+                .offset(y: isPressed ? 0 : -depth)
         }
         .padding(.top, depth) // Compensate for the upward offset
-        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isVisualPressed)
-        .onChange(of: configuration.isPressed) { oldValue, newValue in
-            if newValue {
-                isVisualPressed = true
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    isVisualPressed = false
-                }
-            }
-        }
-        .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.8), trigger: configuration.isPressed)
+        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
+        .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.8), trigger: isPressed && isHapticEnabled)
     }
 }

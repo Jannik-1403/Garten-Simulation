@@ -6,12 +6,11 @@ struct WeedStackIndicator: View {
     var iconSize: CGFloat = 22
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            ZStack {
-                Image(systemName: "leaf.fill")
-                    .font(.system(size: iconSize, weight: .bold))
-                    .foregroundStyle(.white.opacity(0.95))
-            }
-            .frame(width: iconSize + 10, height: iconSize + 6)
+            // Zeige immer nur ein Unkraut-Icon
+            Image("Unkraut")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 90, height: 90)
         }
         .accessibilityLabel(Text("\(count) Unkraut"))
     }

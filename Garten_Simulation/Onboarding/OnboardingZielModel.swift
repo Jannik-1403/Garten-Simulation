@@ -38,7 +38,7 @@ enum OnboardingZiel: String, CaseIterable, Identifiable {
         case .produktiv: return ["plant.bambus", "plant.weizenfeld", "plant.kirschbaum", "plant.mandelbaum", "plant.apfelbaum"]
         case .mental:    return ["plant.lotus", "plant.lavendel", "plant.klee", "plant.aloe_vera", "plant.sonnenblume"]
         case .fit:       return ["plant.wildgras", "plant.kaktus", "plant.efeu", "plant.bambus", "plant.sonnenblume"]
-        case .lernen:    return ["plant.weizenfeld", "plant.mandelbaum", "plant.minzpflanze", "plant.lotus", "plant.bambus"]
+        case .lernen:    return ["plant.weizenfeld", "plant.mandelbaum", "plant.sonnenblume", "plant.lotus", "plant.bambus"]
         case .schlafen:  return ["plant.lavendel", "plant.lotus", "plant.aloe_vera", "plant.klee", "plant.minzpflanze"]
         }
     }

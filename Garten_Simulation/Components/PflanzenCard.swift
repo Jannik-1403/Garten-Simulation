@@ -56,22 +56,13 @@ struct PflanzenCard: View {
             VStack(spacing: 16) {
                 // MARK: Timer (24h-Countdown) & Warning (!)
                 if !pflanze.istBewässert {
-                    HStack(spacing: 6) {
+                    ZStack {
                         if pflanze.showWarning {
-                            if #available(iOS 18.0, *) {
-                                Image(systemName: "exclamationmark.triangle.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 14, height: 14)
-                                    .foregroundStyle(.orange)
-                                    .symbolEffect(.bounce, options: .repeating)
-                            } else {
-                                Image(systemName: "exclamationmark.triangle.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 14, height: 14)
-                                    .foregroundStyle(.orange)
-                            }
+                            Image("Warndreieck")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 44, height: 44)
+                                .offset(x: -42)
                         }
 
                         HStack(spacing: 4) {
@@ -341,15 +332,10 @@ struct RevivePlantSheet: View {
         VStack(spacing: 24) {
             // Icon
             VStack(spacing: 12) {
-                ZStack {
-                    Circle()
-                        .fill(Color.gruenPrimary.opacity(0.1))
-                        .frame(width: 80, height: 80)
-                    
-                    Image(systemName: "cross.circle.fill")
-                        .font(.system(size: 60))
-                        .foregroundStyle(Color.gruenPrimary)
-                }
+                Image("Heillung")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 140, height: 140)
                 
                 Text(settings.localizedString(for: "pflanze.wiederbeleben.titel"))
                     .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -362,6 +348,7 @@ struct RevivePlantSheet: View {
                 .font(.system(size: 16, weight: .medium, design: .rounded))
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(.horizontal, 24)
             
             // Price or Wonder Water

@@ -59,6 +59,23 @@ class ShopStore: ObservableObject {
         }
     }
 
+    /// Verkauft ein Trash-Item (schlechte Gewohnheit) für 20 Münzen Kosten.
+    /// Gibt `true` zurück, wenn erfolgreich.
+    @discardableResult
+    func sellTrash(id: String) -> Bool {
+        let sellCost = 20
+        guard isPurchased(id), canAfford(sellCost) else { return false }
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+            purchasedIDs.remove(id)
+            coinsAbziehen?(sellCost)
+        }
+        return true
+    }
+
+    func canSellTrash() -> Bool {
+        return canAfford(20)
+    }
+
     func removeFromPurchased(id: String) {
         _ = withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
             purchasedIDs.remove(id)

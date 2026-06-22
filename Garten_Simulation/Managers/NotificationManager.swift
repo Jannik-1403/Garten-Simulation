@@ -2,10 +2,19 @@ import Foundation
 import UserNotifications
 import SwiftUI
 
-class NotificationManager {
+class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationManager()
     
-    private init() {}
+    private override init() {
+        super.init()
+        UNUserNotificationCenter.current().delegate = self
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound, .badge])
+    }
     
     // MARK: - Permission
 
@@ -63,7 +72,7 @@ class NotificationManager {
                     
                     if let customMsg = weekday.customMessage,
                        !customMsg.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                        title = "🌱 \(plantName)"
+                        title = "\(plantName)"
                         body = customMsg
                     } else {
                         let texts = NotificationTexts.pflanzeErinnerung(pflanzenName: plantName, lang: lang)
@@ -97,7 +106,7 @@ class NotificationManager {
                 
                 if let customMsg = habit.customReminderMessage,
                    !customMsg.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                    title = "🌱 \(plantName)"
+                    title = "\(plantName)"
                     body = customMsg
                 } else {
                     let texts = NotificationTexts.pflanzeErinnerung(pflanzenName: plantName, lang: lang)

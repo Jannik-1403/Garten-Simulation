@@ -62,14 +62,7 @@ struct DayPickerView: View {
             .background(Color(uiColor: .systemGroupedBackground))
             .navigationTitle(NSLocalizedString("common.select_day", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(NSLocalizedString("common.close", comment: "")) {
-                        dismiss()
-                    }
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                }
-            }
+            .standardNavigationX()
         }
     }
 }

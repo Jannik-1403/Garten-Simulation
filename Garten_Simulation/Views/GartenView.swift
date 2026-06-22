@@ -333,7 +333,6 @@ struct GartenView: View {
                                             .opacity(0.7)
                                     }
                                     .foregroundStyle(.white)
-                                    .padding(.horizontal, 16)
                                 }
                             }
                         }
@@ -502,11 +501,11 @@ struct GartenView: View {
         .overlay(alignment: .bottomTrailing) {
             if gardenStore.isDailySpinAvailable {
                 Item3DButton(
-                    icon: "gift.fill",
-                    farbe: .rotPrimary,
-                    sekundaerFarbe: .rotSecondary,
+                    icon: "Geschenk",
+                    farbe: .belohnungGoldMid,
+                    sekundaerFarbe: .belohnungGoldSchatten,
                     groesse: 64,
-                    iconSkalierung: 0.45
+                    iconSkalierung: 1.6
                 ) {
                     gardenStore.checkDailySpin()
                 }

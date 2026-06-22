@@ -5,14 +5,13 @@ import SwiftUI
 struct GroovyWidgetBundle: WidgetBundle {
     var body: some Widget {
         // Neue Widgets:
-        GroovyHabitsWidget()
         GroovyWaterWidget()
         GroovyStreakWidget()
         GroovyVerlaufMediumWidget()
         GroovyVerlaufLargeWidget()
         
         // Live Activities:
-        GardenLiveActivity()
+        FocusTimerLiveActivity()
     }
 }
 

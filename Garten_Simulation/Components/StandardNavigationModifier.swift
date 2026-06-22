@@ -2,7 +2,7 @@ import SwiftUI
 
 struct StandardNavigationModifier: ViewModifier {
     @Environment(\.dismiss) private var dismiss
-    
+
     func body(content: Content) -> some View {
         content
             .navigationBarBackButtonHidden(true)
@@ -12,12 +12,13 @@ struct StandardNavigationModifier: ViewModifier {
                         dismiss()
                     } label: {
                         Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
+                            .font(.system(size: 17, weight: .black))
                             .foregroundStyle(.primary)
-                            .padding(8)
                     }
+                    .buttonStyle(.plain)
                 }
             }
+            .toolbarBackground(.hidden, for: .navigationBar)
     }
 }
 

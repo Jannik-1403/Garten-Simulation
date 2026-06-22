@@ -104,9 +104,17 @@
 		145E3EFB2FD7C853005708E5 /* Exceptions for "Garten_Simulation" folder in "GartenWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Components/RarityBackgroundView.swift,
 				Models/PowerUpWeedSupport.swift,
 			);
 			target = 142BB4402F9CA800002CDBD0 /* GartenWidgetExtension */;
+		};
+		1463F9BF2FE448D800CB9973 /* Exceptions for "Garten_Simulation" folder in "Garten_SimulationUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Components/RarityBackgroundView.swift,
+			);
+			target = 1424D4322F6EA14300908588 /* Garten_SimulationUITests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -134,6 +142,7 @@
 			exceptions = (
 				145797CC2F6FED1A00C51D53 /* Exceptions for "Garten_Simulation" folder in "Garten_Simulation" target */,
 				145797CD2F6FED1A00C51D53 /* Exceptions for "Garten_Simulation" folder in "Garten_SimulationTests" target */,
+				1463F9BF2FE448D800CB9973 /* Exceptions for "Garten_Simulation" folder in "Garten_SimulationUITests" target */,
 				145E3EFB2FD7C853005708E5 /* Exceptions for "Garten_Simulation" folder in "GartenWidgetExtension" target */,
 			);
 			path = Garten_Simulation;

@@ -2,38 +2,58 @@ import SwiftUI
 import SwiftData
 import Combine
 
-@main
-struct Garten_SimulationApp: App {
-    @StateObject private var gardenStore: GardenStore
-    @StateObject private var shopStore: ShopStore
-    @StateObject private var settingsStore: SettingsStore
-    @StateObject private var streakStore: StreakStore
-    @StateObject private var achievementStore: AchievementStore
-    @StateObject private var powerUpStore: PowerUpStore
-    @StateObject private var titelStore: TitelStore
-    @StateObject private var gartenPfadStore: GartenPfadStore
-    @StateObject private var characterStore: CharacterStore
-    @StateObject private var interactiveTourManager: InteractiveTourManager
+@MainActor
+class AppDependencyContainer: ObservableObject {
+    let settingsStore: SettingsStore
+    let gardenStore: GardenStore
+    let shopStore: ShopStore
+    let streakStore: StreakStore
+    let titelStore: TitelStore
+    let achievementStore: AchievementStore
+    let powerUpStore: PowerUpStore
+    let gartenPfadStore: GartenPfadStore
+    let characterStore: CharacterStore
+    let interactiveTourManager: InteractiveTourManager
+    let assessmentStore: AssessmentStore
     
     init() {
+        // Perform cleanup on fresh install or reinstall to wipe out any cached App Group defaults
+        let freshInstallKey = "first_launch_after_install_completed"
+        if !UserDefaults.standard.bool(forKey: freshInstallKey) {
+            SharedUserDefaults.suite.removePersistentDomain(forName: SharedUserDefaults.suiteName)
+            SharedUserDefaults.suite.synchronize()
+            UserDefaults.standard.set(true, forKey: freshInstallKey)
+            UserDefaults.standard.synchronize()
+        }
+
         SharedUserDefaults.migrateIfNeeded()
+        
         let settings = SettingsStore()
         let garden = GardenStore()
         let streak = StreakStore()
         let titel = TitelStore()
-        self._settingsStore = StateObject(wrappedValue: settings)
-        self._gardenStore = StateObject(wrappedValue: garden)
-        self._shopStore = StateObject(wrappedValue: ShopStore())
-        self._streakStore = StateObject(wrappedValue: streak)
-        self._achievementStore = StateObject(wrappedValue: AchievementStore(gardenStore: garden, streakStore: streak))
-        self._powerUpStore = StateObject(wrappedValue: PowerUpStore())
-        self._titelStore = StateObject(wrappedValue: titel)
-        self._gartenPfadStore = StateObject(wrappedValue: GartenPfadStore(settings: settings))
-        self._characterStore = StateObject(wrappedValue: CharacterStore())
-        self._interactiveTourManager = StateObject(wrappedValue: InteractiveTourManager())
+        
+        self.settingsStore = settings
+        self.gardenStore = garden
+        self.shopStore = ShopStore()
+        self.streakStore = streak
+        self.titelStore = titel
+        self.achievementStore = AchievementStore(gardenStore: garden, streakStore: streak)
+        self.powerUpStore = PowerUpStore()
+        self.gartenPfadStore = GartenPfadStore(settings: settings)
+        self.characterStore = CharacterStore()
+        self.interactiveTourManager = InteractiveTourManager()
+        self.assessmentStore = AssessmentStore()
         
         garden.titelStore = titel
-        
+    }
+}
+
+@main
+struct Garten_SimulationApp: App {
+    @StateObject private var container = AppDependencyContainer()
+    
+    init() {
         // Ensure standard iOS navigation elements (back chevrons, texts) are black
         UINavigationBar.appearance().tintColor = UIColor.label
     }
@@ -43,96 +63,15 @@ struct Garten_SimulationApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ZStack {
-                ContentView()
-                .environmentObject(gardenStore)
-                .environmentObject(shopStore)
-                .environmentObject(settingsStore)
-                .environmentObject(streakStore)
-                .environmentObject(achievementStore)
-                .environmentObject(powerUpStore)
-                .environmentObject(titelStore)
-                .environmentObject(gartenPfadStore)
-                .environmentObject(characterStore)
-                .environmentObject(interactiveTourManager)
-                .modelContainer(for: [PfadStrang.self, PfadStrangTag.self, PfadVerschmelzung.self])
-                .environment(\.locale, Locale(identifier: settingsStore.appLanguage))
-                .preferredColorScheme(.light)
-                .onChange(of: scenePhase) { oldPhase, newPhase in
-                    if newPhase == .active {
-                        gardenStore.reloadData()
-                        streakStore.checkForMissedDays()
-                        gardenStore.checkAndStartLiveActivity()
-                    }
-                    if newPhase == .inactive || newPhase == .background {
-                        gardenStore.updateLiveActivity()
-                    }
-                }
-                .onAppear {
-                    // Link ShopStore coin closures to GardenStore (single source of truth)
-                    shopStore.coinsProvider  = { [weak gardenStore] in gardenStore?.coins ?? 0 }
-                    shopStore.coinsAbziehen  = { [weak gardenStore] amount in 
-                        let desc = settingsStore.localizedString(for: "transaction.shop_purchase")
-                        gardenStore?.coinsAbziehen(amount: amount, beschreibung: desc)
-                    }
-                    shopStore.coinsHinzufuegen = { [weak gardenStore] amount, title in
-                        let format = settingsStore.localizedString(for: "transaction.sale_format")
-                        let desc = String(format: format, title)
-                        gardenStore?.coinsGutschreiben(amount: amount, beschreibung: desc)
-                    }
-                    
-                    // Link GardenStore watering action to StreakStore
-                    gardenStore.onWatering = { [weak streakStore] in
-                        streakStore?.completeDay()
-                    }
-                    
-                    // Link GardenStore item-claimed action to ShopStore for ownership sync
-                    gardenStore.onItemClaimed = { [weak shopStore] id in
-                        shopStore?.purchasedIDs.insert(id)
-                    }
-                }
-                .fullScreenCover(isPresented: .init(
-                    get: { !settingsStore.onboardingAbgeschlossen && !showSplash },
-                    set: { _ in }
-                )) {
-                    OnboardingView()
-                        .environmentObject(gardenStore)
-                        .environmentObject(shopStore)
-                        .environmentObject(settingsStore)
-                        .environmentObject(gartenPfadStore)
-                        .environmentObject(characterStore)
-                }
-                .task {
-                    _ = await NotificationManager.shared.requestPermission()
-                    NotificationManager.shared.scheduleAll(for: gardenStore.pflanzen)
-                }
-                .onOpenURL { url in
-                    if url.scheme == "grovy" {
-                        // Handle internal deep links from Widgets
-                        switch url.host {
-                        case "garden", "plant":
-                            gardenStore.selectedTab = 0
-                        case "shop":
-                            gardenStore.selectedTab = 1
-                        case "streak":
-                            gardenStore.selectedTab = 2
-                            gardenStore.triggerStreakDetail = true
-                        case "water":
-                            gardenStore.selectedTab = 2
-                            gardenStore.triggerWaterDetail = true
-                        default:
-                            break
-                        }
-                    } else if url.pathExtension == "gartensave" {
-                        gardenStore.pendingImportURL = url
-                    }
-                }
-                .tint(.primary)
-                
-                if showSplash {
-                    SplashScreenView()
-                        .transition(.opacity)
-                        .zIndex(100)
+            AppRootView(
+                settingsStore: container.settingsStore,
+                container: container,
+                showSplash: $showSplash
+            )
+            .onChange(of: scenePhase) { oldPhase, newPhase in
+                if newPhase == .active {
+                    container.gardenStore.reloadData()
+                    container.streakStore.checkForMissedDays()
                 }
             }
             .onAppear {
@@ -141,6 +80,98 @@ struct Garten_SimulationApp: App {
                         showSplash = false
                     }
                 }
+            }
+            .modelContainer(for: [PfadStrang.self, PfadStrangTag.self, PfadVerschmelzung.self])
+        }
+    }
+}
+
+struct AppRootView: View {
+    @ObservedObject var settingsStore: SettingsStore
+    @ObservedObject var container: AppDependencyContainer
+    @Binding var showSplash: Bool
+    
+    var body: some View {
+        ZStack {
+            ContentView()
+                .environmentObject(container.gardenStore)
+                .environmentObject(container.shopStore)
+                .environmentObject(container.settingsStore)
+                .environmentObject(container.streakStore)
+                .environmentObject(container.achievementStore)
+                .environmentObject(container.powerUpStore)
+                .environmentObject(container.titelStore)
+                .environmentObject(container.gartenPfadStore)
+                .environmentObject(container.characterStore)
+                .environmentObject(container.interactiveTourManager)
+                .environmentObject(container.assessmentStore)
+                .environment(\.locale, Locale(identifier: settingsStore.appLanguage))
+                .preferredColorScheme(.light)
+                .onAppear {
+                    // Link ShopStore coin closures to GardenStore (single source of truth)
+                    container.shopStore.coinsProvider  = { [weak gardenStore = container.gardenStore] in gardenStore?.coins ?? 0 }
+                    container.shopStore.coinsAbziehen  = { [weak gardenStore = container.gardenStore, weak settingsStore = container.settingsStore] amount in 
+                        let desc = settingsStore?.localizedString(for: "transaction.shop_purchase") ?? "Shop Purchase"
+                        gardenStore?.coinsAbziehen(amount: amount, beschreibung: desc)
+                    }
+                    container.shopStore.coinsHinzufuegen = { [weak gardenStore = container.gardenStore, weak settingsStore = container.settingsStore] amount, title in
+                        let format = settingsStore?.localizedString(for: "transaction.sale_format") ?? "%@"
+                        let desc = String(format: format, title)
+                        gardenStore?.coinsGutschreiben(amount: amount, beschreibung: desc)
+                    }
+                    
+                    // Link GardenStore watering action to StreakStore
+                    container.gardenStore.onWatering = { [weak streakStore = container.streakStore] in
+                        streakStore?.completeDay()
+                    }
+                    
+                    // Link GardenStore item-claimed action to ShopStore for ownership sync
+                    container.gardenStore.onItemClaimed = { [weak shopStore = container.shopStore] id in
+                        shopStore?.purchasedIDs.insert(id)
+                    }
+                }
+                .fullScreenCover(isPresented: .init(
+                    get: { !settingsStore.onboardingAbgeschlossen && !showSplash },
+                    set: { _ in }
+                )) {
+                    OnboardingView()
+                        .environmentObject(container.gardenStore)
+                        .environmentObject(container.shopStore)
+                        .environmentObject(container.settingsStore)
+                        .environmentObject(container.gartenPfadStore)
+                        .environmentObject(container.characterStore)
+                }
+                .task {
+                    _ = await NotificationManager.shared.requestPermission()
+                    NotificationManager.shared.scheduleAll(for: container.gardenStore.pflanzen)
+                }
+                .onOpenURL { url in
+                    if url.scheme == "grovy" {
+                        // Handle internal deep links from Widgets
+                        switch url.host {
+                        case "garden", "plant":
+                            container.gardenStore.selectedTab = 0
+                        case "shop":
+                            container.gardenStore.selectedTab = 1
+                        case "streak":
+                            container.gardenStore.selectedTab = 2
+                            container.gardenStore.triggerStreakDetail = true
+                        case "water":
+                            container.gardenStore.selectedTab = 2
+                            container.gardenStore.triggerWaterDetail = true
+                        default:
+                            break
+                        }
+                    } else if url.pathExtension == "gartensave" {
+                        container.gardenStore.pendingImportURL = url
+                    }
+                }
+                .tint(.primary)
+            
+            if showSplash {
+                SplashScreenView()
+                    .transition(.opacity)
+                    .zIndex(100)
             }
         }
     }

@@ -37,6 +37,14 @@ enum PfadSchwierigkeit: String, Codable, CaseIterable {
         }
     }
 
+    var muenzen: Int {
+        switch self {
+        case .anfaenger:       return 500
+        case .fortgeschritten: return 1_000
+        case .experte:         return 1_500
+        }
+    }
+
     // Welche Tage werden übersprungen (bereits bekannte Basics)
     var startTag: Int {
         switch self {

@@ -11,6 +11,8 @@ struct ShopItemDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showSuccess = false
     @State private var showInsufficientCoins = false
+    @State private var showMysticConfirmation = false
+    
     @State private var selectedDifficulty: PfadSchwierigkeit? = nil
 
     private var isOwned: Bool { shopStore.isPurchased(payload.id) }
@@ -19,25 +21,32 @@ struct ShopItemDetailView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.appHintergrund.ignoresSafeArea()
+                if payload.itemType == .powerUp, let tag = payload.tag {
+                    RarityBackgroundView(tag: tag)
+                        .ignoresSafeArea()
+                } else {
+                    Color.appHintergrund
+                        .ignoresSafeArea()
+                }
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 0) {
 
-                    // MARK: Hero
-                    ZStack(alignment: .top) {
-
-
-                        VStack(spacing: 0) {
-                            Spacer().frame(height: 60)
-                            
+                    Spacer().frame(height: 60)
+                    
+                    // MARK: Inhalt-Karte
+                    VStack(alignment: .leading, spacing: 24) {
+                        
+                        // MARK: Hero Icon
+                        HStack {
+                            Spacer()
                             Group {
                                 if payload.itemType == .plant, 
                                    let basePlant = GameDatabase.shared.plant(for: payload.id) {
-                                    // Spezial-View für Pflanzen (mit Shopp-Modus)
+                                    // Spezial-View für Pflanzen
                                     PlantIconView(plant: basePlant, seltenheit: .bronze, size: 280, alwaysShowFullGrown: true)
                                 } else if UIImage(named: payload.icon) != nil {
-                                    // Asset vorhanden (Icons/Dekos)
+                                    // Asset vorhanden
                                     Image(payload.icon)
                                         .resizable()
                                         .scaledToFit()
@@ -45,18 +54,14 @@ struct ShopItemDetailView: View {
                                 }
                             }
                             .frame(width: payload.itemType == .decoration ? 240 : 150, height: payload.itemType == .decoration ? 240 : 150)
-                            Spacer().frame(height: 24)
+                            Spacer()
                         }
-                    }
-                    .frame(maxWidth: .infinity)
-
-                    // MARK: Inhalt-Karte
-                    VStack(alignment: .leading, spacing: 24) {
 
                         // Tag + Titel + Subtitle
                         VStack(alignment: .leading, spacing: 8) {
                             if let tag = payload.tag {
-                                Text(settings.localizedString(for: tag))
+                                let displayTag = tag == "mystic" ? "MASTER" : (tag == "legendary" ? "LEGENDÄR" : (tag == "epic" ? "EPISCH" : (tag == "rare" ? "SELTEN" : (tag == "common" ? "GEWÖHNLICH" : settings.localizedString(for: tag)))))
+                                Text(displayTag)
                                     .font(.system(size: 11, weight: .bold))
                                     .foregroundStyle(payload.color)
                                     .kerning(1.4)
@@ -66,9 +71,11 @@ struct ShopItemDetailView: View {
                                 .font(.system(size: 26, weight: .bold, design: .rounded))
                             
                             let currentSubtitleKey = (settings.showHabitInsteadOfName && payload.habitTitleKey != nil) ? payload.titleKey : payload.subtitle
-                            Text(settings.localizedString(for: currentSubtitleKey))
-                                .font(.system(size: 15))
-                                .foregroundStyle(.secondary)
+                            if !currentSubtitleKey.isEmpty {
+                                Text(settings.localizedString(for: currentSubtitleKey))
+                                    .font(.system(size: 15))
+                                    .foregroundStyle(.secondary)
+                            }
                         }
 
                         Divider()
@@ -265,39 +272,23 @@ struct ShopItemDetailView: View {
                                         return
                                     }
                                     
-                                    if payload.itemType == .plant {
-                                        FeedbackManager.shared.playSuccess()
-                                        shopStore.buy(id: payload.id, price: payload.price)
-                                        gardenStore.pflanzHinzufuegen(shopItem: payload)
-                                        
-                                        // Pfad direkt mit der gewählten Schwierigkeit starten
-                                        if let neuePflanze = gardenStore.pflanzen.last(where: { $0.plantID == payload.id }),
-                                           let diff = selectedDifficulty {
-                                            let ziel = settings.ausgewaehltesZiel.isEmpty ? "fit" : settings.ausgewaehltesZiel
-                                            gartenPfadStore.pflanzeHinzufuegen(neuePflanze, ziel: ziel, schwierigkeit: diff)
-                                        }
-
-                                        withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
-                                            showSuccess = true
-                                        }
+                                    if payload.tag == "mystic" {
+                                        showMysticConfirmation = true
                                     } else {
-                                        FeedbackManager.shared.playSuccess()
-                                        shopStore.buy(id: payload.id, price: payload.price)
-                                        gardenStore.itemHinzufuegen(shopItem: payload)
-
-                                        withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
-                                            showSuccess = true
-                                        }
+                                        executePurchase()
                                     }
+                                }
                             }
                         }
-                    }
-                    .padding(24)
+                        .padding(24)
                     .background(
-                        RoundedRectangle(cornerRadius: 28, style: .continuous)
+                        RoundedRectangle(cornerRadius: 32, style: .continuous)
                             .fill(Color(UIColor.systemBackground))
+                            .shadow(color: Color(UIColor.systemGray4), radius: 0, x: 0, y: 8)
                     )
-                    .padding(.top, -20)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 32)
+                    .padding(.bottom, 32)
                 }
             }
 
@@ -327,5 +318,42 @@ struct ShopItemDetailView: View {
         } message: {
             Text(String(format: settings.localizedString(for: "shop.need_more_coins"), payload.price - gardenStore.coins))
         }
+        .alert("Ultimatives Luxus-Item!", isPresented: $showMysticConfirmation) {
+            Button("Abbrechen", role: .cancel) { FeedbackManager.shared.playTap() }
+            Button("Für 5.000 Münzen kaufen") {
+                FeedbackManager.shared.playTap()
+                executePurchase()
+            }
+        } message: {
+            Text("Bist du sicher, dass du deinen ultimativen Cheat-Day für 5.000 Münzen kaufen willst? Dies ist ein riesiges Investment!")
+        }
     }
+    
+    private func executePurchase() {
+        if payload.itemType == .plant {
+            FeedbackManager.shared.playSuccess()
+            shopStore.buy(id: payload.id, price: payload.price)
+            gardenStore.pflanzHinzufuegen(shopItem: payload)
+            
+            // Pfad direkt mit der gewählten Schwierigkeit starten
+            if let neuePflanze = gardenStore.pflanzen.last(where: { $0.plantID == payload.id }),
+               let diff = selectedDifficulty {
+                let ziel = settings.ausgewaehltesZiel.isEmpty ? "fit" : settings.ausgewaehltesZiel
+                gartenPfadStore.pflanzeHinzufuegen(neuePflanze, ziel: ziel, schwierigkeit: diff)
+            }
+
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
+                showSuccess = true
+            }
+        } else {
+            FeedbackManager.shared.playSuccess()
+            shopStore.buy(id: payload.id, price: payload.price)
+            gardenStore.itemHinzufuegen(shopItem: payload)
+
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
+                showSuccess = true
+            }
+        }
+    }
+    
 }

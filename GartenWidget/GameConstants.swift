@@ -23,7 +23,7 @@ enum GameConstants {
     static let streakLottieURL = "https://lottie.host/b8842b8d-669c-45fe-a8cb-92cbd20903dc/9KcW3VdzUV.lottie"
  
     // MARK: Onboarding
-    static let startCoins: Int = 1000
+    static let startCoins: Int = 0
     static let gratisPflanzenAnzahl: Int = 2
  
     // MARK: - Lokalisierung — Key-Präfix

@@ -18,17 +18,18 @@ struct InventoryListView: View {
         case .decorations:
             // Convert DecorationItem to ShopDetailPayload for display
             return gardenStore.placedDecorations.map { deco in
-                ShopDetailPayload(
+                let isTrash = deco.id.hasPrefix("trash.")
+                return ShopDetailPayload(
                     id: deco.id,
                     titleKey: deco.objectNameKey,
                     subtitle: deco.category.localizationKey,
                     descriptionKey: deco.habitDescriptionKey,
                     price: deco.price,
                     icon: deco.sfSymbol,
-                    colorHex: "#FF991A", // orangePrimary
-                    symbolColor: "orange",
-                    shadowColorHex: "#D9660D", // orangeSecondary
-                    tag: "DEKO",
+                    colorHex: isTrash ? "#7F8C8D" : "#FF991A", // gray vs orangePrimary
+                    symbolColor: isTrash ? "gray" : "orange",
+                    shadowColorHex: isTrash ? "#2C3E50" : "#D9660D", // dark gray vs orangeSecondary
+                    tag: isTrash ? "MÜLL" : "DEKO",
                     itemType: .decoration,
                     habitCategory: nil,
                     symbolism: "",
@@ -90,7 +91,6 @@ struct InventoryListView: View {
         }
     }
 }
-
 struct InventoryItemCard: View {
     let item: ShopDetailPayload
     var action: (() -> Void)? = nil
@@ -98,33 +98,46 @@ struct InventoryItemCard: View {
     @EnvironmentObject var gardenStore: GardenStore
     
     var body: some View {
-        VStack(spacing: 12) {
-            Item3DButton(
-                icon: item.icon,
-                farbe: item.color,
-                sekundaerFarbe: item.color.darker(),
-                groesse: 90,
-                iconSkalierung: 0.6,
-                aktion: action
-            )
-            
-            VStack(spacing: 4) {
-                Text(settings.localizedString(for: item.titleKey))
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .multilineTextAlignment(.center)
-                    .lineLimit(1)
+        let isTrash = item.id.hasPrefix("trash.")
+        Button {
+            action?()
+        } label: {
+            VStack(spacing: 12) {
+                Item3DButton(
+                    icon: item.icon,
+                    farbe: item.color,
+                    sekundaerFarbe: item.color.darker(),
+                    groesse: 90,
+                    iconSkalierung: isTrash ? 0.6 : 0.95,
+                    aktion: action
+                )
                 
-                Text(settings.localizedString(for: item.subtitle))
-                    .font(.system(size: 12, weight: .medium, design: .rounded))
-                    .lineLimit(1)
-                .foregroundStyle(.secondary)
+                VStack(spacing: 4) {
+                    Text(settings.localizedString(for: item.titleKey))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .lineLimit(1)
+                        .foregroundStyle(.primary)
+                    
+                    Text(settings.localizedString(for: item.subtitle))
+                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                        .lineLimit(1)
+                        .foregroundStyle(.secondary)
+                }
             }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 20)
+            .padding(.horizontal, 12)
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 20)
-        .padding(.horizontal, 12)
-        .background(Color(UIColor.secondarySystemGroupedBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-        .shadow(color: .black.opacity(0.03), radius: 5, x: 0, y: 2)
+        .buttonStyle(Item3DButtonStyle(
+            farbe: isTrash ? Color(hex: "#FADBD8") : .white, // leicht rötlich/hellgrau für Müll
+            sekundaerFarbe: isTrash ? Color(hex: "#E6B0AA") : Color(hex: "#E5E5EA"), // dunklerer rötlicher Schatten
+            groesse: 170, // Ungefähre Höhe
+            iconSkalierung: 1.0,
+            shadowDepthFactor: 0.05,
+            isRectangular: true,
+            isPermanentlyPressed: false,
+            isDisabled: false
+        ))
     }
 }

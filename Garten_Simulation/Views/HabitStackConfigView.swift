@@ -35,7 +35,8 @@ struct HabitStackConfigView: View {
                                             withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
                                                 sortHabitsByTime()
                                             }
-                                        }
+                                        },
+                                        onDifficultyChange: { gardenStore.savePlants() }
                                     )
                                     .transition(.asymmetric(
                                         insertion: .scale.combined(with: .opacity),
@@ -60,11 +61,7 @@ struct HabitStackConfigView: View {
             .toolbar {
                 // X (Schließen, Rechts)
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button { dismiss() } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.primary)
-                    }
+                    LiquidGlassDismissButton { dismiss() }
                 }
                 
                 // GLOBAL MENU (Rechts - FIX LOKALISIERUNG)
@@ -236,6 +233,7 @@ struct Ritual3DCard: View {
     let isEditing: Bool
     let onDelete: () -> Void
     let onTimeChange: () -> Void
+    var onDifficultyChange: (() -> Void)? = nil
     
     @EnvironmentObject var settings: SettingsStore
     @State private var isPressed = false
@@ -328,6 +326,7 @@ struct Ritual3DCard: View {
             ForEach(PfadSchwierigkeit.allCases, id: \.self) { diff in
                 Button {
                     habit.individualSchwierigkeit = diff.rawValue
+                    onDifficultyChange?()
                 } label: {
                     Label(
                         settings.localizedString(for: "pfad_schwierigkeit_\(diff.rawValue)"),

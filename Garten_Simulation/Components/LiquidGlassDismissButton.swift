@@ -6,10 +6,8 @@ struct LiquidGlassDismissButton: View {
     var body: some View {
         Button(action: action) {
             Image(systemName: "xmark")
-                .font(.system(size: 14, weight: .black))
-                .foregroundStyle(.secondary)
-                .frame(width: 32, height: 32)
-                .background(Circle().fill(.regularMaterial))
+                .font(.system(size: 17, weight: .black))
+                .foregroundStyle(.primary)
         }
         .buttonStyle(.plain)
         .accessibilityLabel(Text("Schließen"))
@@ -28,14 +26,13 @@ private struct GlassDismissOverlayModifier: ViewModifier {
                     onDismiss?()
                     dismiss()
                 }
-                .padding(.top, 16)
-                .padding(.trailing, 20)
+                .padding(.top, 20)
+                .padding(.trailing, 24)
             }
     }
 }
 
 extension View {
-    /// Schließen-Button oben rechts (Glas-Kreis) wie im Shop.
     func glassDismissOverlay(onDismiss: (() -> Void)? = nil) -> some View {
         modifier(GlassDismissOverlayModifier(onDismiss: onDismiss))
     }

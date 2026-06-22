@@ -652,7 +652,7 @@
 "pfad_abschluss_desc" = "Niesamowity! Osiągałeś mistrzostwo przez 90 dni z rzędu. Oto Twoja zasłużona nagroda:";
 "pfad_abschluss_titel" = "Ukończono 90 dni!";
 "pfad_activation_90_tage" = "90 dni";
-"pfad_activation_belohnung" = "Ukończ 90 dni, aby otrzymać 5000 monet!";
+"pfad_activation_belohnung" = "Ukończ 90 dni, aby otrzymać ostateczną nagrodę!";
 "pfad_activation_btn" = "AKTYWUJ ŚCIEŻKĘ";
 "pfad_activation_desc" = "Co się stanie po 90 dniach?\\nOsiągasz mistrzostwo! Twoja roślina zakwitnie w pełni, a Ty zbudujesz silny, długotrwały nawyk.";
 "pfad_activation_diff_change_title" = "Wybrałeś %@. Czy nadal jesteś %@, czy chcesz to zmienić?";
@@ -743,11 +743,11 @@
 "pfad_produktiv_phase_vertiefung_desc" = "Opanuj swój czas. Koncentracja staje się nawykiem.";
 "pfad_progress_format" = "Dzień %d / 90";
 "pfad_schwierigkeit_anfaenger" = "Początkujący";
-"pfad_schwierigkeit_anfaenger_desc" = "Idealny dla początkujących. Małe, proste kroki prowadzą do sukcesu w zrelaksowany sposób.";
+"pfad_schwierigkeit_anfaenger_desc" = "Idealny dla początkujących. Małe, proste kroki prowadzą do sukcesu w zrelaksowany sposób. Nagroda: 500 Monet";
 "pfad_schwierigkeit_experte" = "Ekspert";
-"pfad_schwierigkeit_experte_desc" = "Ostateczne wyzwanie. Pokaż swoją dyscyplinę i opanuj wymagające zadania!";
+"pfad_schwierigkeit_experte_desc" = "Ostateczne wyzwanie. Pokaż swoją dyscyplinę i opanuj wymagające zadania! Nagroda: 1500 Monet";
 "pfad_schwierigkeit_fortgeschritten" = "Mediator";
-"pfad_schwierigkeit_fortgeschritten_desc" = "Dla ambitnych ogrodników. Zrównoważona mieszanka wyzwań i zabawy.";
+"pfad_schwierigkeit_fortgeschritten_desc" = "Dla ambitnych ogrodników. Zrównoważona mieszanka wyzwań i zabawy. Nagroda: 1000 Monet";
 "pfad_schwierigkeit_hinweis" = "Poziom trudności wpływa na liczbę codziennych zadań i liczbę zdobytych PD.";
 "pfad_schwierigkeit_starten" = "Rozpocznij przygodę";
 "pfad_schwierigkeit_titel" = "Jak sprawny już jesteś?";
@@ -1675,7 +1675,7 @@
 "habit.stats.impact" = "Negatywny wpływ";
 "habit.impact.title" = "Metoda 1%";
 "habit.impact.explanation" = "Według 'Atomowych nawyków' Jamesa Cleara, za każdym razem gdy wykonujesz ten nawyk, stajesz się o 1% gorszy (0,99). Ma to ogromny negatywny efekt złożony na twoje życie w dłuższej perspektywie.";
-"habit.tips.title" = "Wskazówki (4 prawa)";
+"habit.tips.title" = "Wskazówki";
 "habit.tip.1" = "Uczyń to niewidocznym: Usuń ze swojego otoczenia wszystkie bodźce, które wywołują ten nawyk.";
 "habit.tip.2" = "Uczyń to nieatrakcyjnym: Skup się na negatywnych konsekwencjach, aby mentalnie zdewaluować nawyk.";
 "habit.tip.3" = "Uczyń to trudnym: Zwiększ opór i kroki potrzebne do wykonania nawyku.";
@@ -1759,3 +1759,14 @@
 "trash.schlaf_killer_koffein.tip.2" = "Kofeina blokuje adenozynę (sygnał zmęczenia) – śpisz mniej głęboko.";
 "trash.schlaf_killer_koffein.tip.3" = "Zamień popołudniową kawę na bezkofeinową lub herbatkę ziołową.";
 "trash.schlaf_killer_koffein.tip.4" = "Śledź jakość snu z kofeiną i bez – różnica cię przekona.";
+"pfad_tag_ausstehend" = "Oczekujące";
+
+"rarity.common" = "ZWYKŁY";
+"rarity.rare" = "RZADKI";
+"rarity.epic" = "EPICKI";
+"rarity.legendary" = "LEGENDARNY";
+"rarity.mystic" = "MISTRZ";
+
+// MARK: - Assessment (Fallback English)
+
+// Finance Quiz – Portfolio extension Q6–Q9 (English fallback)

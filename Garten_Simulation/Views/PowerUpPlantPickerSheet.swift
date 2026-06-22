@@ -28,66 +28,62 @@ struct PowerUpPlantPickerSheet: View {
                 }
                 .navigationTitle(settings.localizedString(for: "powerup.picker.title"))
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button { dismiss() } label: {
-                            Image(systemName: "xmark")
-                                .font(.system(size: 16, weight: .black))
-                                .foregroundStyle(.primary)
-                        }
-                    }
-                }
+                .standardNavigationX()
             } else {
-                List(selectablePlants) { plant in  // gardenStore.pflanzen = [HabitModel]
-                    Button {
-                    onSelect(plant)
-                } label: {
-                    HStack(spacing: 12) {
-                        // Pflanzenbild (SVG or SF Symbol)
-                        if let basePlant = GameDatabase.shared.plant(for: plant.plantID) {
-                            PlantIconView(plant: basePlant, seltenheit: plant.seltenheit, size: 28)
-                        } else {
-                            ZStack {
-                                Circle()
-                                    .fill(plant.color.opacity(0.15))
-                                    .frame(width: 44, height: 44)
-                                Image(systemName: plant.symbolName)
-                                    .foregroundColor(plant.color)
-                                    .font(.system(size: 20))
+                ScrollView {
+                    LazyVStack(spacing: 12) {
+                        ForEach(selectablePlants) { plant in
+                            Item3DButton(
+                                farbe: Color(UIColor.secondarySystemGroupedBackground),
+                                sekundaerFarbe: Color(UIColor.systemGray4),
+                                groesse: 76,
+                                isRectangular: true,
+                                aktion: { onSelect(plant) }
+                            ) {
+                                HStack(spacing: 16) {
+                                    // Pflanzenbild (SVG or SF Symbol)
+                                    if let basePlant = GameDatabase.shared.plant(for: plant.plantID) {
+                                        PlantIconView(plant: basePlant, seltenheit: plant.seltenheit, size: 36)
+                                    } else {
+                                        ZStack {
+                                            Circle()
+                                                .fill(plant.color.opacity(0.15))
+                                                .frame(width: 48, height: 48)
+                                            Image(systemName: plant.symbolName)
+                                                .foregroundColor(plant.color)
+                                                .font(.system(size: 22))
+                                        }
+                                    }
+                                    
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text(settings.showHabitInsteadOfName 
+                                            ? settings.localizedString(for: plant.habitName)
+                                            : settings.localizedString(for: plant.name))
+                                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                                            .foregroundColor(.primary)
+                                            
+                                        Text(plant.seltenheit.lokalisiertTitel) // Bronze/Silber/Gold/Diamant
+                                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                                            .foregroundColor(plant.seltenheit.farbe)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(Color(UIColor.tertiaryLabel))
+                                        .font(.system(size: 18, weight: .bold))
+                                }
+                                .padding(.horizontal, 4)
                             }
+                            .padding(.bottom, 4)
                         }
-                        
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(settings.showHabitInsteadOfName 
-                                ? settings.localizedString(for: plant.habitName)
-                                : settings.localizedString(for: plant.name))
-                                .font(.headline)
-                            Text(plant.seltenheit.lokalisiertTitel) // Bronze/Silber/Gold/Diamant
-                                .font(.caption)
-                                .foregroundColor(plant.seltenheit.farbe)
-                        }
-                        
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.secondary)
-                            .font(.caption)
                     }
-                    .padding(.vertical, 4)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 16)
                 }
-                .buttonStyle(.plain)
-            }
             .navigationTitle(settings.localizedString(for: "powerup.picker.title"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button { dismiss() } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.primary)
-                    }
-                }
-            }
+            .standardNavigationX()
             } // close else block
         } // close NavigationStack
         .presentationDetents([.medium, .large])

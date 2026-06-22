@@ -198,7 +198,7 @@ extension Optional where Wrapped == URL {
 // MARK: - Simulation Data for Interactive Tour
 struct TourSimulationStore {
     static func createMockGardenStore() -> GardenStore {
-        let store = GardenStore()
+        let store = GardenStore(isMock: true)
         
         // Füge eine Fake-Pflanze hinzu
         if let firstPlant = GameDatabase.allPlants.first {
@@ -222,7 +222,7 @@ struct TourSimulationStore {
             store.placedDecorations = [trashDecoration]
         }
         
-        store.coins = 1000
+        store.coins = 0
         store.leben = 5
         store.activeWeeds = [WeedPatch(removalCost: 30, source: .decoration)]
         

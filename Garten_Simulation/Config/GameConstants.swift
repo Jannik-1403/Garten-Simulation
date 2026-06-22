@@ -23,7 +23,7 @@ enum GameConstants {
     static let streakLottieURL = "https://lottie.host/b8842b8d-669c-45fe-a8cb-92cbd20903dc/9KcW3VdzUV.lottie"
  
     // MARK: Onboarding
-    static let startCoins: Int = 1000
+    static let startCoins: Int = 0
     static let gratisPflanzenAnzahl: Int = 2
  
     // MARK: - Lokalisierung — Key-Präfix
@@ -88,17 +88,17 @@ enum GameConstants {
     static let maxGluecksradDrehungen: Int = 10
     
     /// Kosten für die Wiederbelebung einer toten Pflanze
-    static let wiederbelebungsKosten: Int = 50
+    static let wiederbelebungsKosten: Int = 800
 
     // MARK: - Unkraut
     /// Gewohnheiten (Gießvorgänge), um ein einzelnes Unkraut zu entfernen
     static let habitsRequiredPerWeed: Int = 3
     /// XP-Multiplikator pro aktivem Unkraut (0.5 = 50 %)
-    static let weedXPMultiplierPerPatch: Double = 0.5
+    static let weedXPMultiplierPerPatch: Double = 0.8
     /// Untergrenze: selbst bei vielen Unkräutern mindestens 25 % XP
-    static let weedMinimumXPMultiplier: Double = 0.25
+    static let weedMinimumXPMultiplier: Double = 0.5
     /// Coin-Abzug pro aktivem Unkraut beim Gießen
-    static let weedCoinPenaltyPerPatch: Int = 5
+    static let weedCoinPenaltyPerPatch: Int = 0
     /// Münzkosten = Dekopreis × dieser Faktor
     static let weedRemovalCostMultiplier: Int = 3
     /// Fallback-Kosten, wenn Unkraut durch Pflanzentod entsteht

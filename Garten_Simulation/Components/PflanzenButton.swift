@@ -18,11 +18,19 @@ struct PflanzenButton: View {
             if let plant = plant {
                 PlantIconView(plant: plant, seltenheit: seltenheit, size: groesse * 1.2, alwaysShowFullGrown: alwaysShowFullGrown) // Größer
             } else {
-                Image(systemName: fallbackIcon)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: groesse * 0.55, height: groesse * 0.55)
-                    .foregroundStyle(.white)
+                if UIImage(named: fallbackIcon) != nil {
+                    let isTrashIcon = fallbackIcon.hasPrefix("trash.") || fallbackIcon == "Brunnen" || fallbackIcon == "Vogelhaus" || fallbackIcon == "Laterne" || fallbackIcon == "Trittstein-Pfad" || fallbackIcon == "Gartenzerg" || fallbackIcon == "Sonnenschirm" || fallbackIcon == "Seerosenteich" || fallbackIcon == "Vogelbad" || fallbackIcon == "Holzzaun" || fallbackIcon == "Steinstatue" || fallbackIcon == "Windrad" || fallbackIcon == "Haengematte" || fallbackIcon == "Gartenfackel" || fallbackIcon == "Blumenkübel" || fallbackIcon == "Bienenhaus 1" || fallbackIcon == "Igelhaus 1" || fallbackIcon == "Kiesweg 1" || fallbackIcon == "Brücke 1" || fallbackIcon == "Gartenhütte"
+                    Image(fallbackIcon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: isTrashIcon ? groesse * 0.7 : groesse * 1.2, height: isTrashIcon ? groesse * 0.7 : groesse * 1.2)
+                } else {
+                    Image(systemName: fallbackIcon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: groesse * 0.55, height: groesse * 0.55)
+                        .foregroundStyle(.white)
+                }
             }
         }
         .buttonStyle(PflanzenButtonStyle(

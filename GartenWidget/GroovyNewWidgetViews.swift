@@ -295,9 +295,8 @@ struct WaterWidgetView: View {
     }
 
     var body: some View {
-        Link(destination: URL(string: "grovy://water")!) {
-            VStack(spacing: 2) {
-                PNGImage("Drop water")
+        VStack(spacing: 2) {
+            PNGImage("Drop water")
                     .scaledToFit()
                     .frame(width: 42, height: 42)
                     .padding(.bottom, 2)
@@ -318,9 +317,9 @@ struct WaterWidgetView: View {
                 Text(String(format: NSLocalizedString("widget_water_times", comment: ""), count))
                     .font(.system(size: 10, weight: .bold))
                     .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.6))
-            }
-            .padding(12)
         }
+        .padding(12)
+        .widgetURL(URL(string: "grovy://water"))
     }
 }
 
@@ -332,9 +331,8 @@ struct StreakSmallWidgetView: View {
     var streak: Int { entry.appData?.totalStreak ?? 0 }
 
     var body: some View {
-        Link(destination: URL(string: "grovy://streak")!) {
-            ZStack(alignment: .bottomTrailing) {
-                // Text pushed to the absolute top left
+        ZStack(alignment: .bottomTrailing) {
+            // Text pushed to the absolute top left
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text("\(streak)")
                         .font(.system(size: 38, weight: .black, design: .rounded))
@@ -348,13 +346,12 @@ struct StreakSmallWidgetView: View {
                 .padding(.top, 2)
                 .padding(.leading, 10)
                 
-                // Extremely large Igel-Streak pushed way into the corner
-                PNGImage("Igel-Streak")
-                    .scaledToFit()
-                    .frame(width: 160, height: 160)
-                    .offset(x: 35, y: 30)
-            }
+            PNGImage("Igel-Streak")
+                .scaledToFit()
+                .frame(width: 160, height: 160)
+                .offset(x: 35, y: 30)
         }
+        .widgetURL(URL(string: "grovy://streak"))
     }
 }
 
@@ -383,9 +380,8 @@ struct VerlaufMediumWidgetView: View {
     }
 
     var body: some View {
-        Link(destination: URL(string: "grovy://streak")!) {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
                     VStack(alignment: .leading, spacing: 1) {
                         Text(NSLocalizedString("widget_verlauf_week_title", comment: "").uppercased())
                             .font(.system(size: 11, weight: .black))
@@ -414,16 +410,11 @@ struct VerlaufMediumWidgetView: View {
                                 Circle()
                                     .fill(DuoStyle.blockFill(for: entry.backgroundStyle, completed: day.completed))
                                     .frame(width: 36, height: 36)
-                                    .shadow(color: .black.opacity(day.completed ? 0.12 : 0), radius: 2, y: 2)
                                 
                                 if day.completed {
                                     Image(systemName: "checkmark")
-                                        .font(.system(size: 16, weight: .black))
+                                        .font(.system(size: 16, weight: .bold))
                                         .foregroundStyle(Color.orange)
-                                } else {
-                                    Image(systemName: "xmark")
-                                        .font(.system(size: 16, weight: .black))
-                                        .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.5))
                                 }
                             }
                             Text(day.label)
@@ -433,9 +424,9 @@ struct VerlaufMediumWidgetView: View {
                         .frame(maxWidth: .infinity)
                     }
                 }
-            }
-            .padding(16)
         }
+        .padding(16)
+        .widgetURL(URL(string: "grovy://streak"))
     }
 }
 
@@ -484,9 +475,8 @@ struct VerlaufLargeWidgetView: View {
     }
 
     var body: some View {
-        Link(destination: URL(string: "grovy://streak")!) {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
                     VStack(alignment: .leading, spacing: 1) {
                         Text(currentMonthName)
                             .font(.system(size: 12, weight: .black))
@@ -521,13 +511,12 @@ struct VerlaufLargeWidgetView: View {
                     ForEach(Array(gridDays.enumerated()), id: \.offset) { _, day in
                         if let _ = day.date {
                             ZStack {
-                                RoundedRectangle(cornerRadius: 8)
+                                Circle()
                                     .fill(DuoStyle.blockFill(for: entry.backgroundStyle, completed: day.completed))
-                                    .shadow(color: .black.opacity(day.completed ? 0.12 : 0), radius: 2, y: 2)
                                 
                                 if day.completed {
                                     Image(systemName: "checkmark")
-                                        .font(.system(size: 10, weight: .black))
+                                        .font(.system(size: 10, weight: .bold))
                                         .foregroundStyle(Color.orange)
                                 }
                             }
@@ -537,9 +526,8 @@ struct VerlaufLargeWidgetView: View {
                         }
                     }
                 }
-                Spacer(minLength: 0)
-            }
-            .padding(18)
         }
+        .padding(18)
+        .widgetURL(URL(string: "grovy://streak"))
     }
 }

@@ -104,15 +104,7 @@ struct RitualPlantPickerSheet: View {
             }
             .navigationTitle(settings.localizedString(for: "ritual_config_add_habit"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button { dismiss() } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.primary)
-                    }
-                }
-            }
+            .standardNavigationX()
         }
     }
 }

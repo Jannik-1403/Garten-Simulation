@@ -3,20 +3,35 @@ import SwiftUI
 struct DuolingoCard<Content: View>: View {
     let action: () -> Void
     let badgeText: String?
+    let badgeColor: Color
     let tier: ErfolgTier?
     @ViewBuilder let content: Content
     
-    init(action: @escaping () -> Void, badgeText: String? = nil, tier: ErfolgTier? = nil, @ViewBuilder content: () -> Content) {
+    @State private var manualPress = false
+    @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
+    
+    init(action: @escaping () -> Void, badgeText: String? = nil, badgeColor: Color = Color.blauPrimary, tier: ErfolgTier? = nil, @ViewBuilder content: () -> Content) {
         self.action = action
         self.badgeText = badgeText
+        self.badgeColor = badgeColor
         self.tier = tier
         self.content = content()
     }
     
     var body: some View {
         Button(action: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                action()
+            if isHapticEnabled {
+                let impactLight = UIImpactFeedbackGenerator(style: .soft)
+                impactLight.impactOccurred(intensity: 0.75)
+            }
+            
+            // Garantierte Animation bei schnellem Tippen
+            manualPress = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                manualPress = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                    action()
+                }
             }
         }) {
             ZStack(alignment: .topLeading) {
@@ -38,12 +53,12 @@ struct DuolingoCard<Content: View>: View {
                                 bottomTrailingRadius: 8,
                                 topTrailingRadius: 0
                             )
-                            .fill(Color.blauPrimary)
+                            .fill(badgeColor)
                         )
                 }
             }
         }
-        .buttonStyle(DuolingoCardButtonStyle(tier: tier))
+        .buttonStyle(DuolingoCardButtonStyle(tier: tier, forcePressed: manualPress))
     }
 }
 
@@ -52,16 +67,16 @@ struct DuolingoCardButtonStyle: ButtonStyle {
     private let shadowDepth: CGFloat = 4
     private let cornerRadius: CGFloat = 12
     var tier: ErfolgTier? = nil
+    var forcePressed: Bool = false
 
     func makeBody(configuration: Configuration) -> some View {
-        let isPressed = configuration.isPressed
+        let isPressed = configuration.isPressed || forcePressed
         
         configuration.label
             .background(
                 ZStack {
                     RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                         .fill(Color(UIColor.systemBackground))
-                    // CardParticleEmitterView removed as requested
                 }
                 .shadow(
                     color: Color.gray.opacity(0.3),
@@ -75,8 +90,9 @@ struct DuolingoCardButtonStyle: ButtonStyle {
             )
             .offset(y: isPressed ? shadowDepth : 0)
             .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
-            .sensoryFeedback(trigger: isPressed) { _, newValue in
-                (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
+            .sensoryFeedback(trigger: configuration.isPressed) { _, newValue in
+                // Standard-Haptik nur auslösen, wenn nicht manuell gepresst wird (vermeidet doppelte Haptik)
+                (isHapticEnabled && newValue && !forcePressed) ? .impact(flexibility: .soft, intensity: 0.75) : nil
             }
     }
 }

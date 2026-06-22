@@ -189,6 +189,69 @@ struct WasserStatButton: View {
     }
 }
 
+// MARK: - AssessmentStatButton
+
+struct AssessmentStatButton: View {
+    let result: AssessmentResult?
+    var aktion: (() -> Void)? = nil
+    @EnvironmentObject var settings: SettingsStore
+
+    var body: some View {
+        DuolingoCard(action: { aktion?() }) {
+            HStack(spacing: 20) {
+                Item3DButton(
+                    farbe: Color(hex: "#FFD700"),
+                    sekundaerFarbe: Color(hex: "#D4AF37"),
+                    groesse: 60,
+                    iconSkalierung: 1.6,
+                    aktion: {}
+                ) {
+                    Image("Quiz")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 96, height: 96)
+                        .offset(x: 3)
+                }
+                .allowsHitTesting(false)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(settings.localizedString(for: "assessment.entry.title"))
+                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
+
+                    if let result = result {
+                        Text(settings.localizedString(for: result.profile.titleKey))
+                            .font(.system(size: 22, weight: .black, design: .rounded))
+                            .foregroundStyle(.primary)
+
+                        HStack(spacing: 4) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.system(size: 11))
+                                .foregroundStyle(.green)
+                            Text(settings.localizedString(for: "assessment.entry.done"))
+                                .font(.system(size: 11, weight: .semibold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                        }
+                    } else {
+                        Text(settings.localizedString(for: "assessment.entry.cta"))
+                            .font(.system(size: 22, weight: .black, design: .rounded))
+                            .foregroundStyle(.primary)
+
+                        Text(settings.localizedString(for: "assessment.entry.subtitle"))
+                            .font(.system(size: 10, weight: .medium, design: .rounded))
+                            .foregroundStyle(.tertiary)
+                    }
+                }
+
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundStyle(.quaternary)
+            }
+        }
+    }
+}
+
 // MARK: - NameEditSheet
 struct NameEditSheet: View {
     @EnvironmentObject var settings: SettingsStore
@@ -285,7 +348,7 @@ struct NameEditSheet: View {
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button { dismiss() } label: { Image(systemName: "xmark").foregroundStyle(.primary) }
+                    LiquidGlassDismissButton { dismiss() }
                 }
             }
             .onAppear { tempName = settings.igelCustomization.name }
@@ -403,8 +466,6 @@ struct StatisticsDashboard: View {
                 } else {
                     lifeBalanceCard
                     gardenScoreConsistencyCard
-                    gardenScoreStreakCard
-                    nextMilestonesCard
                 }
             }
             .padding(.horizontal, 16)
@@ -417,13 +478,7 @@ struct StatisticsDashboard: View {
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundStyle(.primary)
-                }
+                LiquidGlassDismissButton { dismiss() }
             }
         }
         .fullScreenCover(item: $expandedStat) { detail in
@@ -443,20 +498,20 @@ struct StatisticsDashboard: View {
         }
     }
     
-    enum ShareCardType {
+    enum ShareCardType: Equatable {
         case lifeBalance
         case consistency
         case streak
         case milestones
+        case activity
+        case xp
+        case coins
     }
     
     private func initiateShare(_ type: ShareCardType) {
         self.pendingShareType = type
         self.showPreview = true
     }
-    
-    
-    
     
     private var lifeBalanceCard: some View {
         let habits = gardenStore.pflanzen
@@ -519,27 +574,20 @@ struct StatisticsDashboard: View {
             
             RadarChartView(habits: habits, selectedPeriod: selectedPeriod)
                 .padding(.vertical, 10)
-            
-            Divider()
-                .padding(.horizontal, 20)
-                .padding(.vertical, 8)
-            
-            // 2x2 Stats Grid
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                StatTile(title: "statistik_kachel_gewaessert", value: "\(currentWaterings)", delta: wateringsDelta, farbe: Color(uiColor: .systemGray6), sekundaerFarbe: Color(uiColor: .systemGray5), settings: settings)
-                StatTile(title: "statistik_kachel_streak", value: "\(currentStreak)", delta: 0, farbe: Color(uiColor: .systemGray6), sekundaerFarbe: Color(uiColor: .systemGray5), settings: settings)
-                StatTile(title: "statistik_kachel_pflanzen", value: "\(currentPlants)", delta: plantsDelta, farbe: Color(uiColor: .systemGray6), sekundaerFarbe: Color(uiColor: .systemGray5), settings: settings)
-                StatTile(title: "statistik_kachel_gems", value: "\(currentGems)", delta: gemsDelta, farbe: Color(uiColor: .systemGray6), sekundaerFarbe: Color(uiColor: .systemGray5), settings: settings)
-            }
-            .padding(16)
         }
-        .background(Color.white)
-        .cornerRadius(20)
-        .shadow(color: .black.opacity(0.06), radius: 12, x: 0, y: 4)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .offset(y: 0)
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
+        )
+        .padding(.bottom, 6)
     }
 
     private var gardenScoreConsistencyCard: some View {
-        let data = gardenScoreData
+        let history = StatsHelper.getWateringHistory(from: gardenStore.pflanzen, badHabitExecutions: gardenStore.badHabitExecutions, days: selectedPeriod.days)
         return VStack(alignment: .leading, spacing: 16) {
             HStack {
                 Label(settings.localizedString(for: "stats.score.konsistenz"), systemImage: "checkmark.circle.fill")
@@ -547,26 +595,75 @@ struct StatisticsDashboard: View {
                     .foregroundStyle(Color.gruenPrimary)
                 Spacer()
                 
-                Button(action: { initiateShare(.consistency) }) {
-                    Image(systemName: "square.and.arrow.up")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundStyle(.black)
-                        .padding(8)
+                HStack(spacing: 8) {
+                    Button(action: { initiateShare(.consistency) }) {
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundStyle(.black)
+                            .padding(8)
+                    }
+                    
+                    Button {
+                        expandedStat = .activity
+                    } label: {
+                        Image(systemName: "arrow.up.left.and.arrow.down.right")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundStyle(.black)
+                            .padding(8)
+                    }
                 }
             }
             
-            GardenFactorRow(
-                icon: "checkmark.circle.fill",
-                color: .gruenPrimary,
-                label: settings.localizedString(for: "stats.score.konsistenz"),
-                sublabel: String(format: settings.localizedString(for: "stats.score.konsistenz.period_format"), settings.localizedString(for: selectedPeriod.thisPeriodKey)),
-                value: data.konsistenz
-            )
+            // Large Value & Period
+            VStack(alignment: .leading, spacing: 2) {
+                let currentScore = history.last?.count ?? 0
+                Text("\(currentScore)")
+                    .font(.system(size: 32, weight: .black, design: .rounded))
+                    .foregroundStyle(Color.gruenPrimary)
+                
+                Text(String(format: settings.localizedString(for: "stats.score.konsistenz.period_format"), settings.localizedString(for: selectedPeriod.thisPeriodKey)))
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .foregroundStyle(.secondary)
+            }
+            
+            // Sparkline Line Chart (Stock Chart Style)
+            Chart {
+                ForEach(history) { item in
+                    LineMark(
+                        x: .value("Tag", item.date),
+                        y: .value("Gegossen", item.count)
+                    )
+                    .interpolationMethod(.stepEnd)
+                    .foregroundStyle(Color.gruenPrimary)
+                    .lineStyle(StrokeStyle(lineWidth: 2))
+                    
+                    AreaMark(
+                        x: .value("Tag", item.date),
+                        y: .value("Gegossen", item.count)
+                    )
+                    .interpolationMethod(.stepEnd)
+                    .foregroundStyle(LinearGradient(
+                        colors: [Color.gruenPrimary.opacity(0.25), Color.gruenPrimary.opacity(0)],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ))
+                }
+            }
+            .chartXAxis(.hidden)
+            .chartYAxis(.hidden)
+            .frame(height: 100)
+            .padding(.vertical, 4)
         }
         .padding(20)
-        .background(Color.white)
-        .cornerRadius(20)
-        .shadow(color: .black.opacity(0.06), radius: 12, x: 0, y: 4)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .offset(y: 0)
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
+        )
+        .padding(.bottom, 6)
     }
 
     private var gardenScoreStreakCard: some View {
@@ -596,9 +693,15 @@ struct StatisticsDashboard: View {
             )
         }
         .padding(20)
-        .background(Color.white)
-        .cornerRadius(20)
-        .shadow(color: .black.opacity(0.06), radius: 12, x: 0, y: 4)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .offset(y: 0)
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
+        )
+        .padding(.bottom, 6)
     }
 
 
@@ -682,9 +785,15 @@ struct StatisticsDashboard: View {
             }
         }
         .padding(16)
-        .background(Color.white)
-        .cornerRadius(20)
-        .shadow(color: .black.opacity(0.06), radius: 12, x: 0, y: 4)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .offset(y: 0)
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
+        )
+        .padding(.bottom, 6)
     }
 
 }
@@ -732,12 +841,74 @@ struct StatTile: View {
 
 // MARK: - Fullscreen Detail View
 
+struct Stat3DTitleView: View {
+    let title: String
+    let color: Color
+    var size: CGFloat = 28
+    
+    var body: some View {
+        ZStack {
+            Text(title)
+                .font(.system(size: size, weight: .black, design: .rounded))
+                .foregroundStyle(color.opacity(0.35))
+                .offset(y: size > 20 ? 6 : 3)
+            
+            Text(title)
+                .font(.system(size: size, weight: .black, design: .rounded))
+                .foregroundStyle(color)
+        }
+    }
+}
+
 struct StatDetailFullscreenView: View {
     let detail: StatisticsDashboard.StatDetail
-    let selectedPeriod: StatsPeriod
+    @State var selectedPeriod: StatsPeriod
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
+    
+    @State private var selectedDate: Date? = nil
+    @StateObject private var viewModel = StatDetailViewModel()
+    @State private var showPreview = false
+    @State private var pendingShareType: StatisticsDashboard.ShareCardType? = nil
+
+    init(detail: StatisticsDashboard.StatDetail, selectedPeriod: StatsPeriod) {
+        self.detail = detail
+        self._selectedPeriod = State(initialValue: selectedPeriod)
+    }
+    
+    private func getXAxisDates(for period: StatsPeriod) -> [Date] {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        if period == .day { return [] }
+        let days = period.days
+        let start = calendar.date(byAdding: .day, value: -days, to: today)!
+        let mid = calendar.date(byAdding: .day, value: -(days / 2), to: today)!
+        return [start, mid, today]
+    }
+    
+    private func customXAxisLabel(for date: Date, period: StatsPeriod) -> String {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        
+        switch period {
+        case .week:
+            return date.formatted(.dateTime.weekday(.abbreviated).locale(Locale(identifier: settings.appLanguage)))
+        case .month:
+            let daysDiff = calendar.dateComponents([.day], from: date, to: today).day ?? 0
+            if daysDiff >= 25 {
+                return settings.appLanguage == "de" ? "Woche 1" : "Week 1"
+            } else if daysDiff >= 10 && daysDiff <= 20 {
+                return settings.appLanguage == "de" ? "Woche 2" : "Week 2"
+            } else {
+                return settings.appLanguage == "de" ? "Woche 4" : "Week 4"
+            }
+        case .year, .allTime:
+            return date.formatted(.dateTime.month(.abbreviated).locale(Locale(identifier: settings.appLanguage)))
+        default:
+            return ""
+        }
+    }
     
     private var closestToLevelUp: [HabitModel] {
         gardenStore.pflanzen
@@ -754,25 +925,64 @@ struct StatDetailFullscreenView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
+                    Picker("", selection: $selectedPeriod) {
+                        ForEach(StatsPeriod.allCases, id: \.self) { period in
+                            Text(settings.localizedString(for: period.localizationKey))
+                                .tag(period)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    
                     content
                 }
                 .padding(20)
             }
+            .scrollDisabled(selectedDate != nil)
             .background(Color.appHintergrund.ignoresSafeArea())
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.primary)
+                    HStack(spacing: 16) {
+                        Button {
+                            initiateShare()
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundStyle(.primary)
+                        }
+                        
+                        LiquidGlassDismissButton { dismiss() }
                     }
                 }
             }
+            .task(id: selectedPeriod) {
+                viewModel.loadData(for: selectedPeriod, detail: detail, gardenStore: gardenStore, settings: settings)
+            }
+            .sheet(isPresented: $showPreview) {
+                if let type = pendingShareType {
+                    SharePreviewSheet(
+                        type: type,
+                        period: selectedPeriod,
+                        habits: gardenStore.pflanzen
+                    )
+                    .environmentObject(settings)
+                    .environmentObject(gardenStore)
+                    .environmentObject(StreakStore()) // Fallback or retrieve from parent if needed
+                }
+            }
         }
+    }
+    
+    private func initiateShare() {
+        switch detail {
+        case .activity: pendingShareType = .activity
+        case .balance: pendingShareType = .lifeBalance
+        case .xp: pendingShareType = .xp
+        case .coins: pendingShareType = .coins
+        case .milestones: pendingShareType = .milestones
+        }
+        showPreview = true
     }
     
     @ViewBuilder
@@ -806,51 +1016,201 @@ struct StatDetailFullscreenView: View {
     // Detailed Content Builders
     
     private var activityContent: some View {
-        let history = StatsHelper.getWateringHistory(from: gardenStore.pflanzen)
         return VStack(spacing: 24) {
+            // Interactive Selection Header
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    if let selectedDate = selectedDate {
+                        if selectedPeriod == .day {
+                            let timeStr = selectedDate.formatted(.dateTime.hour().minute().locale(Locale(identifier: settings.appLanguage)))
+                            let label = settings.appLanguage == "de" ? "\(timeStr) Uhr" : timeStr
+                            Text(label)
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                        } else {
+                            Text(selectedDate.formatted(.dateTime.weekday(.wide).day().month().locale(Locale(identifier: settings.appLanguage))))
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                        }
+                        
+                        let scoreAtDate = viewModel.score(at: selectedDate)
+                        Stat3DTitleView(title: "Score: \(scoreAtDate)", color: Color.gruenPrimary)
+                    } else {
+                        Text(settings.localizedString(for: selectedPeriod.thisPeriodKey))
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                        
+                        let total = viewModel.wateringHistory.last?.count ?? 0
+                        Stat3DTitleView(title: "Score: \(total)", color: Color.gruenPrimary)
+                    }
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 4)
+            .animation(.spring(response: 0.3, dampingFraction: 0.8), value: selectedDate)
+            
             Chart {
-                ForEach(history) { item in
-                    BarMark(
-                        x: .value("Tag", item.date, unit: .day),
+                ForEach(viewModel.wateringHistory) { item in
+                    LineMark(
+                        x: .value("Tag", item.date),
                         y: .value("Gegossen", item.count)
                     )
-                    .foregroundStyle(Color.blauPrimary.gradient)
-                    .cornerRadius(8)
+                    .interpolationMethod(.stepEnd)
+                    .foregroundStyle(Color.gruenPrimary)
+                    .lineStyle(StrokeStyle(lineWidth: 2))
+                    
+                    AreaMark(
+                        x: .value("Tag", item.date),
+                        y: .value("Gegossen", item.count)
+                    )
+                    .interpolationMethod(.stepEnd)
+                    .foregroundStyle(LinearGradient(
+                        colors: [Color.gruenPrimary.opacity(0.25), Color.gruenPrimary.opacity(0)],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    ))
+                    
+                    if selectedPeriod == .day, viewModel.getEventDetail(at: item.date) != nil {
+                        PointMark(
+                            x: .value("Tag", item.date),
+                            y: .value("Gegossen", item.count)
+                        )
+                        .foregroundStyle(Color.gruenPrimary)
+                        .symbolSize(40)
+                    }
+                }
+                
+                if let selectedDate = selectedDate {
+                    let scoreAtDate = viewModel.score(at: selectedDate)
+                    RuleMark(x: .value("Selected Tag", selectedDate))
+                        .foregroundStyle(Color.gruenPrimary.opacity(0.4))
+                        .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+                    
+                    PointMark(
+                        x: .value("Selected Tag", selectedDate),
+                        y: .value("Selected Gegossen", scoreAtDate)
+                    )
+                    .foregroundStyle(Color.gruenPrimary)
+                    .symbolSize(120)
                 }
             }
-            .frame(height: 300)
+            .chartXAxis {
+                if selectedPeriod == .day {
+                    AxisMarks(values: .stride(by: .hour, count: 6)) { value in
+                        if let date = value.as(Date.self) {
+                            let hour = Calendar.current.component(.hour, from: date)
+                            let label = settings.appLanguage == "de" ? "\(hour):00 Uhr" : "\(hour):00"
+                            AxisValueLabel(label)
+                        }
+                    }
+                } else {
+                    AxisMarks(values: getXAxisDates(for: selectedPeriod)) { value in
+                        if let date = value.as(Date.self) {
+                            AxisValueLabel {
+                                Text(customXAxisLabel(for: date, period: selectedPeriod))
+                                    .font(.system(size: 11, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                }
+            }
+            .chartXSelection(value: $selectedDate)
+            .frame(height: 220)
             
-            VStack(alignment: .leading, spacing: 16) {
-                Text(settings.localizedString(for: selectedPeriod.thisPeriodKey))
-                    .font(.headline)
-                
-                HStack(spacing: 20) {
-                    DetailInfoBox(title: settings.localizedString(for: "stats.succeeded"), value: "\(gardenStore.pflanzen.filter { $0.istBewässert }.count)")
-                    DetailInfoBox(title: settings.localizedString(for: "stats.missed"), value: "\(gardenStore.pflanzen.filter { !$0.istBewässert }.count)")
+            if selectedPeriod != .day {
+                VStack(alignment: .leading, spacing: 20) {
+                    HStack(spacing: 20) {
+                        DetailInfoBox(
+                            title: settings.localizedString(for: "statistik_gute_gewohnheiten"), 
+                            value: "\(viewModel.goodHabitsCount)"
+                        )
+                        DetailInfoBox(
+                            title: settings.localizedString(for: "statistik_schlechte_gewohnheiten"), 
+                            value: "\(viewModel.badHabitsCount)"
+                        )
+                    }
                 }
             }
         }
+        .padding(20)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
+        )
+        .padding(.bottom, 6)
+        .padding(.horizontal, 16)
     }
     
+    private func splitCoachText(_ text: String) -> (String, String) {
+        if let range = text.range(of: ":") {
+            return (String(text[..<range.lowerBound]).trimmingCharacters(in: .whitespaces),
+                    String(text[range.upperBound...]).trimmingCharacters(in: .whitespaces))
+        } else if let range = text.range(of: "：") {
+            return (String(text[..<range.lowerBound]).trimmingCharacters(in: .whitespaces),
+                    String(text[range.upperBound...]).trimmingCharacters(in: .whitespaces))
+        }
+        return (text, "")
+    }
+
     private var balanceContent: some View {
         return VStack(spacing: 32) {
             RadarChartView(habits: gardenStore.pflanzen, selectedPeriod: selectedPeriod)
                 .frame(height: 350)
                 .padding(.vertical, 20)
             
-            VStack(alignment: .leading, spacing: 16) {
-                Label(settings.localizedString(for: "stats.coach.title"), systemImage: "lightbulb.fill")
-                    .font(.headline)
-                    .foregroundStyle(Color.orangePrimary)
-                
-                VStack(alignment: .leading, spacing: 12) {
-                    CoachBulletPoint(icon: "center.circle.fill", text: settings.localizedString(for: "stats.coach.bullet1"))
-                    CoachBulletPoint(icon: "circle.circle.fill", text: settings.localizedString(for: "stats.coach.bullet2"))
-                    CoachBulletPoint(icon: "waveform.path.ecg", text: settings.localizedString(for: "stats.coach.bullet3"))
-                    CoachBulletPoint(icon: "checkmark.seal.fill", text: settings.localizedString(for: "stats.coach.bullet4"))
+            VStack(spacing: 16) {
+                HStack {
+                    Text(settings.localizedString(for: "habit.tips.title"))
+                        .font(.system(size: 22, weight: .black, design: .rounded))
+                        .foregroundStyle(Color.primary)
+                    Spacer()
                 }
-                .padding()
-                .background(Color.orangePrimary.opacity(0.05), in: RoundedRectangle(cornerRadius: 16))
+                
+                let coachTips = [
+                    ("Geistundseele", "stats.coach.bullet1"),
+                    ("Wachstum", "stats.coach.bullet2"),
+                    ("Gesundheit", "stats.coach.bullet3"),
+                    ("Finanzen", "stats.coach.bullet4")
+                ]
+                
+                ForEach(coachTips, id: \.1) { tip in
+                    let localizedText = settings.localizedString(for: tip.1)
+                    let split = splitCoachText(localizedText)
+                    
+                    HStack(alignment: .center, spacing: 14) {
+                        Image(tip.0)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 44, height: 44)
+                            .scaleEffect(2.2)
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(split.0)
+                                .font(.system(size: 15, weight: .bold, design: .rounded))
+                                .foregroundColor(.primary)
+                            
+                            Text(split.1)
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundColor(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        Spacer(minLength: 0)
+                    }
+                    .padding(16)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20, style: .continuous)
+                            .fill(Color.white)
+                            .shadow(color: Color.black.opacity(0.12), radius: 0, x: 0, y: 4)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20, style: .continuous)
+                            .stroke(Color.black.opacity(0.04), lineWidth: 1)
+                    )
+                }
             }
             
             Text(settings.localizedString(for: "stats.balance.description"))
@@ -861,51 +1221,267 @@ struct StatDetailFullscreenView: View {
     }
     
     private var xpContent: some View {
-        let history = StatsHelper.getXPHistory(from: gardenStore.pflanzen, currentTotalXP: gardenStore.gesamtXP)
         return VStack(spacing: 24) {
+            HStack {
+                VStack(alignment: .leading, spacing: 6) {
+                    if let selectedDate = selectedDate {
+                        HStack(spacing: 8) {
+                            if selectedPeriod == .day {
+                                let timeStr = selectedDate.formatted(.dateTime.hour().minute().locale(Locale(identifier: settings.appLanguage)))
+                                let label = settings.appLanguage == "de" ? "\(timeStr) Uhr" : timeStr
+                                Text(label)
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            } else {
+                                Text(selectedDate.formatted(.dateTime.weekday(.wide).day().month().locale(Locale(identifier: settings.appLanguage))))
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                            
+                            Text("•")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundStyle(.secondary)
+                            
+                            let xpAtDate = viewModel.xp(at: selectedDate)
+                            Stat3DTitleView(title: "\(xpAtDate) XP", color: Color.blauPrimary)
+                        }
+                        
+                        if selectedPeriod == .day, let plantXPDetail = viewModel.getXPEventDetail(at: selectedDate) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "leaf.fill")
+                                    .font(.system(size: 12, weight: .bold))
+                                    .foregroundStyle(plantXPDetail.color)
+                                
+                                Text(plantXPDetail.name)
+                                    .font(.system(size: 13, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(.primary)
+                            }
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 4)
+                            .background(Color.white)
+                            .cornerRadius(12)
+                            .shadow(color: .black.opacity(0.04), radius: 4, x: 0, y: 1)
+                        } else {
+                            Text("")
+                                .font(.system(size: 13))
+                        }
+                    } else {
+                        Text(settings.localizedString(for: selectedPeriod.thisPeriodKey))
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                        
+                        Stat3DTitleView(title: "\(gardenStore.gesamtXP) XP", color: Color.blauPrimary)
+                    }
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 4)
+            .frame(height: 70)
+            .animation(.spring(response: 0.3, dampingFraction: 0.8), value: selectedDate)
+            
             Chart {
-                ForEach(history) { item in
+                ForEach(viewModel.xpHistory) { item in
                     LineMark(x: .value("Tag", item.date), y: .value("XP", item.amount))
-                        .interpolationMethod(.catmullRom)
+                        .interpolationMethod(.stepEnd)
                         .foregroundStyle(Color.blauPrimary)
-                        .lineStyle(StrokeStyle(lineWidth: 4))
+                        .lineStyle(StrokeStyle(lineWidth: 2))
                     
                     AreaMark(x: .value("Tag", item.date), y: .value("XP", item.amount))
-                        .interpolationMethod(.catmullRom)
+                        .interpolationMethod(.stepEnd)
                         .foregroundStyle(LinearGradient(colors: [.blauPrimary.opacity(0.4), .blauPrimary.opacity(0)], startPoint: .top, endPoint: .bottom))
+                    
+                    if selectedPeriod == .day, viewModel.getXPEventDetail(at: item.date) != nil {
+                        PointMark(
+                            x: .value("Tag", item.date),
+                            y: .value("XP", item.amount)
+                        )
+                        .foregroundStyle(Color.blauPrimary)
+                        .symbolSize(40)
+                    }
+                }
+                
+                if let selectedDate = selectedDate {
+                    let xpAtDate = viewModel.xp(at: selectedDate)
+                    RuleMark(x: .value("Selected Tag", selectedDate))
+                        .foregroundStyle(Color.blauPrimary.opacity(0.4))
+                        .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+                    
+                    PointMark(
+                        x: .value("Selected Tag", selectedDate),
+                        y: .value("Selected XP", xpAtDate)
+                    )
+                    .foregroundStyle(Color.blauPrimary)
+                    .symbolSize(120)
                 }
             }
             .chartXAxis {
-                AxisMarks(values: .stride(by: .day, count: 1)) { _ in
-                    AxisValueLabel(format: .dateTime.weekday(.abbreviated))
+                if selectedPeriod == .day {
+                    AxisMarks(values: .stride(by: .hour, count: 6)) { value in
+                        if let date = value.as(Date.self) {
+                            let hour = Calendar.current.component(.hour, from: date)
+                            let label = settings.appLanguage == "de" ? "\(hour):00 Uhr" : "\(hour):00"
+                            AxisValueLabel(label)
+                        }
+                    }
+                } else {
+                    AxisMarks(values: getXAxisDates(for: selectedPeriod)) { value in
+                        if let date = value.as(Date.self) {
+                            AxisValueLabel {
+                                Text(customXAxisLabel(for: date, period: selectedPeriod))
+                                    .font(.system(size: 11, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
                 }
             }
-            .frame(height: 300)
+            .chartXSelection(value: $selectedDate)
+            .frame(height: 220)
         }
+        .padding(20)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
+        )
+        .padding(.bottom, 6)
+        .padding(.horizontal, 16)
     }
     
     private var coinsContent: some View {
-        let history = StatsHelper.getCoinHistory(from: gardenStore.transactions, currentBalance: gardenStore.coins)
         return VStack(spacing: 24) {
+            HStack {
+                VStack(alignment: .leading, spacing: 6) {
+                    if let selectedDate = selectedDate {
+                        HStack(spacing: 8) {
+                            if selectedPeriod == .day {
+                                let timeStr = selectedDate.formatted(.dateTime.hour().minute().locale(Locale(identifier: settings.appLanguage)))
+                                let label = settings.appLanguage == "de" ? "\(timeStr) Uhr" : timeStr
+                                Text(label)
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            } else {
+                                Text(selectedDate.formatted(.dateTime.weekday(.wide).day().month().locale(Locale(identifier: settings.appLanguage))))
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                            
+                            Text("•")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundStyle(.secondary)
+                            
+                            let balanceAtDate = viewModel.coins(at: selectedDate)
+                            Stat3DTitleView(title: "\(balanceAtDate) \(settings.localizedString(for: "statistik_kachel_gems"))", color: Color.goldPrimary)
+                        }
+                        
+                        if selectedPeriod == .day, let tx = viewModel.getCoinEventDetail(at: selectedDate) {
+                            HStack(spacing: 6) {
+                                Image(systemName: tx.icon)
+                                    .font(.system(size: 12, weight: .bold))
+                                    .foregroundStyle(tx.farbe)
+                                
+                                Text(tx.beschreibung)
+                                    .font(.system(size: 13, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(.primary)
+                                
+                                Text(tx.betrag > 0 ? "(+\(tx.betrag))" : "(\(tx.betrag))")
+                                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                                    .foregroundStyle(tx.betrag > 0 ? Color.gruenPrimary : .red)
+                            }
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 4)
+                            .background(Color.white)
+                            .cornerRadius(12)
+                            .shadow(color: .black.opacity(0.04), radius: 4, x: 0, y: 1)
+                        } else {
+                            Text("")
+                                .font(.system(size: 13))
+                        }
+                    } else {
+                        Text(settings.localizedString(for: selectedPeriod.thisPeriodKey))
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                        
+                        Stat3DTitleView(title: "\(gardenStore.coins) \(settings.localizedString(for: "statistik_kachel_gems"))", color: Color.goldPrimary)
+                    }
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 4)
+            .frame(height: 70)
+            .animation(.spring(response: 0.3, dampingFraction: 0.8), value: selectedDate)
+            
             Chart {
-                ForEach(history) { item in
+                ForEach(viewModel.coinHistory) { item in
                     LineMark(x: .value("Tag", item.date), y: .value("Coins", item.balance))
-                        .interpolationMethod(.monotone)
-                        .foregroundStyle(Color.blauPrimary)
-                        .lineStyle(StrokeStyle(lineWidth: 3))
+                        .interpolationMethod(.stepEnd)
+                        .foregroundStyle(Color.goldPrimary)
+                        .lineStyle(StrokeStyle(lineWidth: 2))
                     
                     AreaMark(x: .value("Tag", item.date), y: .value("Coins", item.balance))
-                        .interpolationMethod(.monotone)
-                        .foregroundStyle(Color.blauPrimary.opacity(0.2))
+                        .interpolationMethod(.stepEnd)
+                        .foregroundStyle(LinearGradient(colors: [Color.goldPrimary.opacity(0.3), Color.goldPrimary.opacity(0)], startPoint: .top, endPoint: .bottom))
+                    
+                    if selectedPeriod == .day, viewModel.getCoinEventDetail(at: item.date) != nil {
+                        PointMark(
+                            x: .value("Tag", item.date),
+                            y: .value("Coins", item.balance)
+                        )
+                        .foregroundStyle(Color.goldPrimary)
+                        .symbolSize(40)
+                    }
+                }
+                
+                if let selectedDate = selectedDate {
+                    let balanceAtDate = viewModel.coins(at: selectedDate)
+                    RuleMark(x: .value("Selected Tag", selectedDate))
+                        .foregroundStyle(Color.goldPrimary.opacity(0.4))
+                        .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+                    
+                    PointMark(
+                        x: .value("Selected Tag", selectedDate),
+                        y: .value("Selected Coins", balanceAtDate)
+                    )
+                    .foregroundStyle(Color.goldPrimary)
+                    .symbolSize(120)
                 }
             }
             .chartXAxis {
-                AxisMarks(values: .stride(by: .day, count: 1)) { _ in
-                    AxisValueLabel(format: .dateTime.weekday(.abbreviated))
+                if selectedPeriod == .day {
+                    AxisMarks(values: .stride(by: .hour, count: 6)) { value in
+                        if let date = value.as(Date.self) {
+                            let hour = Calendar.current.component(.hour, from: date)
+                            let label = settings.appLanguage == "de" ? "\(hour):00 Uhr" : "\(hour):00"
+                            AxisValueLabel(label)
+                        }
+                    }
+                } else {
+                    AxisMarks(values: getXAxisDates(for: selectedPeriod)) { value in
+                        if let date = value.as(Date.self) {
+                            AxisValueLabel {
+                                Text(customXAxisLabel(for: date, period: selectedPeriod))
+                                    .font(.system(size: 11, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
                 }
             }
-            .frame(height: 300)
+            .chartXSelection(value: $selectedDate)
+            .frame(height: 220)
         }
+        .padding(20)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
+        )
+        .padding(.bottom, 6)
+        .padding(.horizontal, 16)
     }
     
     private var milestonesContent: some View {
@@ -1018,15 +1594,9 @@ struct MilestonesShareImage: View {
                             .frame(height: 12)
                         }
                     }
-                    .padding(20)
-                    .background(
-                        RoundedRectangle(cornerRadius: 24, style: .continuous)
-                            .fill(theme == .light ? Color.white.opacity(0.4) : Color.white.opacity(0.08))
-                            .shadow(color: .black.opacity(theme == .light ? 0.05 : 0.2), radius: 10, x: 0, y: 5)
-                    )
+                    .padding(.vertical, 8)
                 }
             }
-            .padding(24)
         }
     }
 }
@@ -1083,10 +1653,7 @@ struct StatShareImage<Content: View>: View {
             VStack(alignment: .leading, spacing: 0) {
                 // Header
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(title)
-                        .font(.system(size: 34, weight: .black, design: .rounded))
-                        .foregroundColor(textColor)
-                        .shadow(color: shadowColor, radius: 1, x: 0, y: 1)
+                    Stat3DTitleView(title: title, color: vibrantColor, size: 34)
                     
                     Text(subtitle)
                         .font(.system(size: 18, weight: .bold, design: .rounded))
@@ -1097,9 +1664,14 @@ struct StatShareImage<Content: View>: View {
                 
                 Spacer()
                 
-                // Content Area (Direct on Background - No Card/Glass)
+                // Content Area (Now in a card)
                 content
                     .padding(24)
+                    .background(Color.white)
+                    .cornerRadius(24)
+                    .shadow(color: .black.opacity(0.06), radius: 12, x: 0, y: 4)
+                    .padding(.horizontal, 36)
+                    .environment(\.colorScheme, .light)
                 
                 Spacer()
                 
@@ -1292,11 +1864,7 @@ struct SharePreviewSheet: View {
                     .animation(.spring(response: 0.3, dampingFraction: 0.6), value: savedToPhotos)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button { dismiss() } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.primary)
-                    }
+                    LiquidGlassDismissButton { dismiss() }
                 }
             }
         }
@@ -1319,9 +1887,11 @@ struct SharePreviewSheet: View {
         let data = gardenScoreData
         let periodLabel: String = {
             switch period {
+            case .day:    return settings.localizedString(for: "statistik_share_heute")
             case .week:   return settings.localizedString(for: "statistik_share_letzte_woche")
             case .month:  return settings.localizedString(for: "statistik_share_letzter_monat")
             case .year:   return settings.localizedString(for: "statistik_share_letztes_jahr")
+            case .allTime: return settings.localizedString(for: "statistik_share_alle")
             }
         }()
         
@@ -1336,30 +1906,58 @@ struct SharePreviewSheet: View {
                     vibrantColor: .blauPrimary
                 )
             case .consistency:
+                let history = StatsHelper.getWateringHistory(from: habits, badHabitExecutions: gardenStore.badHabitExecutions, days: period.days)
+                let currentScore = history.last?.count ?? 0
                 StatShareImage(
                     title: settings.localizedString(for: "stats.score.konsistenz"),
                     subtitle: periodLabel,
                     username: username,
                     height: 520,
                     theme: theme,
-                    vibrantColor: .orangePrimary
+                    vibrantColor: .gruenPrimary
                 ) {
-                    VStack(spacing: 28) {
-                        GardenFactorRow(
-                            icon: "checkmark.circle.fill",
-                            color: Color.orangePrimary,
-                            label: settings.localizedString(for: "stats.score.konsistenz"),
-                            sublabel: String(format: settings.localizedString(for: "stats.score.konsistenz.period_format"), settings.localizedString(for: period.thisPeriodKey)),
-                            value: data.konsistenz
-                        )
-                        .padding(.horizontal, 8)
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("\(currentScore)")
+                            .font(.system(size: 32, weight: .black, design: .rounded))
+                            .foregroundStyle(Color.gruenPrimary)
                         
-                        HStack(spacing: 20) {
-                            DetailInfoBox(title: settings.localizedString(for: "stats.succeeded"), value: "\(habits.filter { $0.istBewässert }.count)")
-                            DetailInfoBox(title: settings.localizedString(for: "stats.missed"), value: "\(habits.filter { !$0.istBewässert }.count)")
+                        Chart {
+                            ForEach(history) { item in
+                                LineMark(
+                                    x: .value("Tag", item.date),
+                                    y: .value("Gegossen", item.count)
+                                )
+                                .interpolationMethod(.stepEnd)
+                                .foregroundStyle(Color.gruenPrimary)
+                                .lineStyle(StrokeStyle(lineWidth: 2))
+                                
+                                AreaMark(
+                                    x: .value("Tag", item.date),
+                                    y: .value("Gegossen", item.count)
+                                )
+                                .interpolationMethod(.stepEnd)
+                                .foregroundStyle(LinearGradient(
+                                    colors: [Color.gruenPrimary.opacity(0.25), Color.gruenPrimary.opacity(0)],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                ))
+                            }
                         }
+                        .chartXAxis {
+                            AxisMarks(values: .automatic) { _ in
+                                AxisGridLine()
+                                AxisValueLabel()
+                            }
+                        }
+                        .chartYAxis {
+                            AxisMarks(values: .automatic) { _ in
+                                AxisGridLine()
+                                AxisValueLabel()
+                            }
+                        }
+                        .frame(height: 120)
                     }
-                    .padding(32)
+                    .padding(16)
                 }
             case .streak:
                 StatShareImage(
@@ -1399,7 +1997,7 @@ struct SharePreviewSheet: View {
                         .padding()
                         .background(Color.orange.opacity(0.1), in: RoundedRectangle(cornerRadius: 20))
                     }
-                    .padding(32)
+                    .padding(16)
                 }
             case .milestones:
                 MilestonesShareImage(
@@ -1407,6 +2005,164 @@ struct SharePreviewSheet: View {
                     username: username,
                     theme: theme
                 )
+            case .activity:
+                let history = StatsHelper.getWateringHistory(from: habits, badHabitExecutions: gardenStore.badHabitExecutions, days: period.days)
+                let currentScore = history.last?.count ?? 0
+                StatShareImage(
+                    title: settings.localizedString(for: "stats.activity.title"),
+                    subtitle: periodLabel,
+                    username: username,
+                    height: 520,
+                    theme: theme,
+                    vibrantColor: .gruenPrimary
+                ) {
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("\(currentScore)")
+                            .font(.system(size: 32, weight: .black, design: .rounded))
+                            .foregroundStyle(Color.gruenPrimary)
+                        
+                        Chart {
+                            ForEach(history) { item in
+                                LineMark(
+                                    x: .value("Tag", item.date),
+                                    y: .value("Gegossen", item.count)
+                                )
+                                .interpolationMethod(.stepEnd)
+                                .foregroundStyle(Color.gruenPrimary)
+                                .lineStyle(StrokeStyle(lineWidth: 2))
+                                
+                                AreaMark(
+                                    x: .value("Tag", item.date),
+                                    y: .value("Gegossen", item.count)
+                                )
+                                .interpolationMethod(.stepEnd)
+                                .foregroundStyle(LinearGradient(
+                                    colors: [Color.gruenPrimary.opacity(0.25), Color.gruenPrimary.opacity(0)],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                ))
+                            }
+                        }
+                        .chartXAxis {
+                            AxisMarks(values: .automatic) { _ in
+                                AxisGridLine()
+                                AxisValueLabel()
+                            }
+                        }
+                        .chartYAxis {
+                            AxisMarks(values: .automatic) { _ in
+                                AxisGridLine()
+                                AxisValueLabel()
+                            }
+                        }
+                        .frame(height: 120)
+                    }
+                    .padding(16)
+                }
+            case .xp:
+                let history = StatsHelper.getXPHistory(from: habits, currentTotalXP: gardenStore.gesamtXP, days: period.days)
+                let currentScore = history.last?.amount ?? 0
+                StatShareImage(
+                    title: settings.localizedString(for: "stats.xp.title"),
+                    subtitle: periodLabel,
+                    username: username,
+                    height: 520,
+                    theme: theme,
+                    vibrantColor: .blauPrimary
+                ) {
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("\(currentScore)")
+                            .font(.system(size: 32, weight: .black, design: .rounded))
+                            .foregroundStyle(Color.blauPrimary)
+                        
+                        Chart {
+                            ForEach(history) { item in
+                                LineMark(
+                                    x: .value("Tag", item.date),
+                                    y: .value("XP", item.amount)
+                                )
+                                .foregroundStyle(Color.blauPrimary)
+                                .lineStyle(StrokeStyle(lineWidth: 2))
+                                
+                                AreaMark(
+                                    x: .value("Tag", item.date),
+                                    y: .value("XP", item.amount)
+                                )
+                                .foregroundStyle(LinearGradient(
+                                    colors: [Color.blauPrimary.opacity(0.25), Color.blauPrimary.opacity(0)],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                ))
+                            }
+                        }
+                        .chartXAxis {
+                            AxisMarks(values: .automatic) { _ in
+                                AxisGridLine()
+                                AxisValueLabel()
+                            }
+                        }
+                        .chartYAxis {
+                            AxisMarks(values: .automatic) { _ in
+                                AxisGridLine()
+                                AxisValueLabel()
+                            }
+                        }
+                        .frame(height: 120)
+                    }
+                    .padding(16)
+                }
+            case .coins:
+                let history = StatsHelper.getCoinHistory(from: gardenStore.transactions, currentBalance: gardenStore.coins, days: period.days)
+                let currentScore = history.last?.balance ?? 0
+                StatShareImage(
+                    title: settings.localizedString(for: "stats.coins.title"),
+                    subtitle: periodLabel,
+                    username: username,
+                    height: 520,
+                    theme: theme,
+                    vibrantColor: .goldPrimary
+                ) {
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("\(currentScore)")
+                            .font(.system(size: 32, weight: .black, design: .rounded))
+                            .foregroundStyle(Color.goldPrimary)
+                        
+                        Chart {
+                            ForEach(history) { item in
+                                LineMark(
+                                    x: .value("Tag", item.date),
+                                    y: .value("Coins", item.balance)
+                                )
+                                .foregroundStyle(Color.goldPrimary)
+                                .lineStyle(StrokeStyle(lineWidth: 2))
+                                
+                                AreaMark(
+                                    x: .value("Tag", item.date),
+                                    y: .value("Coins", item.balance)
+                                )
+                                .foregroundStyle(LinearGradient(
+                                    colors: [Color.goldPrimary.opacity(0.25), Color.goldPrimary.opacity(0)],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                ))
+                            }
+                        }
+                        .chartXAxis {
+                            AxisMarks(values: .automatic) { _ in
+                                AxisGridLine()
+                                AxisValueLabel()
+                            }
+                        }
+                        .chartYAxis {
+                            AxisMarks(values: .automatic) { _ in
+                                AxisGridLine()
+                                AxisValueLabel()
+                            }
+                        }
+                        .frame(height: 120)
+                    }
+                    .padding(16)
+                }
             }
         }
     }

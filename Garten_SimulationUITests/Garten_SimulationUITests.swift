@@ -1,41 +1,75 @@
-//
-//  Garten_SimulationUITests.swift
-//  Garten_SimulationUITests
-//
-//  Created by Jannik Schill on 21.03.26.
-//
-
 import XCTest
 
 final class Garten_SimulationUITests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
+    
     @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testTakeScreenshots() throws {
+        continueAfterFailure = true
+        
         let app = XCUIApplication()
+        // Pass arguments to disable tour and other interfering elements
+        app.launchArguments.append("-disableTour")
+        app.launchArguments.append("-hasSeenOnboarding")
+        app.launchArguments.append("YES")
+        app.launchArguments.append("-isUITest")
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    @MainActor
-    func testLaunchPerformance() throws {
-        // This measures how long it takes to launch your application.
-        measure(metrics: [XCTApplicationLaunchMetric()]) {
-            XCUIApplication().launch()
+        
+        // Add an interruption monitor to handle system alerts like Notifications
+        addUIInterruptionMonitor(withDescription: "System Dialog") { alert in
+            let allowButton = alert.buttons.element(boundBy: 1) // Usually "Allow" is the second button
+            if allowButton.exists {
+                allowButton.tap()
+                return true
+            }
+            let okButton = alert.buttons["OK"]
+            if okButton.exists {
+                okButton.tap()
+                return true
+            }
+            let allow = alert.buttons["Erlauben"]
+            if allow.exists {
+                allow.tap()
+                return true
+            }
+            return false
         }
+        
+        // Tap the app to trigger the interruption monitor if a dialog is present
+        app.tap()
+        
+        // Wait for app to settle
+        sleep(5)
+        
+        takeScreenshot(name: "app_store_garden_new")
+        
+        // Find Shop tab
+        let shopTab = app.tabBars.buttons.element(boundBy: 1)
+        if shopTab.exists {
+            shopTab.tap()
+            sleep(2)
+            takeScreenshot(name: "app_store_shop_new")
+        }
+        
+        // Find Pass tab
+        let passTab = app.tabBars.buttons.element(boundBy: 2)
+        if passTab.exists {
+            passTab.tap()
+            sleep(2)
+            takeScreenshot(name: "app_store_pass_new")
+        }
+        
+        // Find Profile tab
+        let profileTab = app.tabBars.buttons.element(boundBy: 3)
+        if profileTab.exists {
+            profileTab.tap()
+            sleep(2)
+            takeScreenshot(name: "app_store_profile_new")
+        }
+    }
+    
+    func takeScreenshot(name: String) {
+        let screenshot = XCUIScreen.main.screenshot()
+        let path = "/Users/jannikschill/.gemini/antigravity/brain/f146e453-628a-4c62-ba2c-2852228f9758/\(name).png"
+        try? screenshot.pngRepresentation.write(to: URL(fileURLWithPath: path))
     }
 }

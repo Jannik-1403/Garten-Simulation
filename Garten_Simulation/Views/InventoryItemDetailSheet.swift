@@ -15,6 +15,8 @@ struct InventoryItemDetailSheet: View {
     @State private var showNotizSheet = false
     @State private var noteToEditIndex: Int? = nil
     @State private var noteToDeleteIndex: Int? = nil
+    @State private var showMaxLivesAlert = false
+
 
     private var powerUp: PowerUpItem? {
         GameDatabase.allPowerUps.first(where: { $0.id == item.id })
@@ -86,40 +88,57 @@ struct InventoryItemDetailSheet: View {
                             .padding(.horizontal, 28)
 
                         // MARK: Spezifische Tipps
-                        VStack(alignment: .leading, spacing: 16) {
-                            Text(settings.localizedString(for: "habit.tips.title"))
-                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                        if item.id.hasPrefix("trash.") && !item.id.contains("custom") {
+                            VStack(spacing: 16) {
+                                HStack {
+                                    Text(settings.localizedString(for: "habit.tips.title"))
+                                        .font(.system(size: 22, weight: .black, design: .rounded))
+                                    Spacer()
+                                }
+                                .padding(.horizontal, 28)
 
-                            let tips = [
-                                ("eye.slash.fill", "\(item.id).tip.1"),
-                                ("heart.slash.fill", "\(item.id).tip.2"),
-                                ("lock.fill", "\(item.id).tip.3"),
-                                ("hand.thumbsdown.fill", "\(item.id).tip.4")
-                            ]
+                                let tips = [
+                                    ("BadHabitsUnsichtbar", settings.localizedString(for: "habit.law.1"), "\(item.id).tip.1"),
+                                    ("BadHabitsUnttraktiv", settings.localizedString(for: "habit.law.2"), "\(item.id).tip.2"),
+                                    ("BadHabitsSchwer", settings.localizedString(for: "habit.law.3"), "\(item.id).tip.3"),
+                                    ("BadHabitsUnbefriedigend", settings.localizedString(for: "habit.law.4"), "\(item.id).tip.4")
+                                ]
 
-                            ForEach(tips, id: \.1) { tip in
-                                HStack(alignment: .top, spacing: 14) {
-                                    Image(systemName: tip.0)
-                                        .foregroundColor(Color(hex: item.colorHex))
-                                        .font(.system(size: 18))
-                                        .frame(width: 28)
+                                ForEach(tips, id: \.1) { tip in
+                                    HStack(alignment: .center, spacing: 14) {
+                                        Image(tip.0)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 44, height: 44)
+                                            .scaleEffect(2.2)
 
-                                    Text(settings.localizedString(for: tip.1))
-                                        .font(.system(size: 14, weight: .medium, design: .rounded))
-                                        .foregroundColor(.primary)
-                                        .fixedSize(horizontal: false, vertical: true)
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            Text(tip.1)
+                                                .font(.system(size: 15, weight: .bold, design: .rounded))
+                                                .foregroundColor(.primary)
+
+                                            Text(settings.localizedString(for: tip.2))
+                                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                                .foregroundColor(.secondary)
+                                                .fixedSize(horizontal: false, vertical: true)
+                                        }
+                                        Spacer(minLength: 0)
+                                    }
+                                    .padding(16)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                            .fill(Color.white)
+                                            .shadow(color: Color.black.opacity(0.12), radius: 0, x: 0, y: 4)
+                                    )
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                            .stroke(Color.black.opacity(0.04), lineWidth: 1)
+                                    )
+                                    .padding(.horizontal, 24)
                                 }
                             }
+                            .padding(.top, 4)
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .fill(Color.white)
-                                .shadow(color: Color.black.opacity(0.04), radius: 10, y: 5)
-                        )
-                        .padding(.horizontal, 24)
-                        .padding(.top, 4)
 
                         // MARK: Notizen
                         badHabitNotesSection
@@ -128,31 +147,26 @@ struct InventoryItemDetailSheet: View {
                         // MARK: Rückfall melden Button
                         Button {
                             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                            gardenStore.trackBadHabit(id: item.id, penaltyCoins: 20)
+                            gardenStore.trackBadHabit(id: item.id, penaltyCoins: 0)
                         } label: {
                             HStack(spacing: 8) {
                                 Image(systemName: "exclamationmark.triangle.fill")
                                     .font(.system(size: 16))
                                 Text(settings.localizedString(for: "habit.relapse.report"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
-                                HStack(spacing: 4) {
-                                    Image("coin")
-                                        .resizable().scaledToFit().frame(width: 14, height: 14)
-                                    Text("-20")
-                                        .font(.system(size: 14, weight: .black, design: .rounded))
-                                }
                             }
                         }
                         .buttonStyle(DuolingoButtonStyle(
                             size: .large,
                             fillWidth: true,
-                            backgroundColor: Color.red.opacity(0.85),
-                            shadowColor: Color.red.opacity(0.85).darker(),
+                            backgroundColor: Color.red,
+                            shadowColor: Color.red.darker(),
                             foregroundColor: .white
                         ))
                         .padding(.horizontal, 24)
                         .padding(.top, -8)
-                        .padding(.bottom, 40)
+
+
                     }
                 }
             }
@@ -186,6 +200,7 @@ struct InventoryItemDetailSheet: View {
                 }
                 Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
             }
+
         }
     }
     // MARK: - Weekly Card (Orange, wie Pflanzen)
@@ -360,47 +375,28 @@ struct InventoryItemDetailSheet: View {
         VStack(spacing: 8) {
             // Existing notes
             ForEach(notes.indices, id: \.self) { index in
-                HStack(spacing: 12) {
-                    ZStack {
-                        Circle().fill(Color.blauPrimary.opacity(0.1))
-                            .frame(width: 36, height: 36)
-                        Image(systemName: "doc.text.fill")
-                            .font(.system(size: 16))
-                            .foregroundStyle(Color.blauPrimary)
-                    }
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        let noteLabel = settings.localizedString(for: "plant.detail.note")
-                        let noteText = noteLabel + " " + String(index + 1)
-                        Text(noteText)
-                            .font(.system(size: 11, weight: .bold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                        Text(notes[index])
-                            .lineLimit(2)
-                            .font(.system(size: 14, weight: .semibold, design: .rounded))
-                    }
-
-                    Spacer()
-
-                    Button {
+                BadHabitNoteRowView(
+                    index: index,
+                    text: notes[index],
+                    onTap: {
+                        noteToEditIndex = index
+                        showNotizSheet = true
+                    },
+                    onDelete: {
                         noteToDeleteIndex = index
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 20))
-                            .foregroundStyle(Color.red.opacity(0.7))
+                    },
+                    deleteConfirmShowing: Binding(
+                        get: { noteToDeleteIndex == index },
+                        set: { if !$0 { noteToDeleteIndex = nil } }
+                    ),
+                    onConfirmDelete: {
+                        gardenStore.deleteBadHabitNote(id: item.id, index: index)
+                        noteToDeleteIndex = nil
+                    },
+                    onCancelDelete: {
+                        noteToDeleteIndex = nil
                     }
-                }
-                .padding(14)
-                .background(
-                    RoundedRectangle(cornerRadius: 18, style: .continuous)
-                        .fill(Color.white)
-                        .shadow(color: Color.black.opacity(0.04), radius: 10, y: 5)
                 )
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    noteToEditIndex = index
-                    showNotizSheet = true
-                }
             }
 
             // Add note button
@@ -409,13 +405,6 @@ struct InventoryItemDetailSheet: View {
                 showNotizSheet = true
             } label: {
                 ZStack {
-                    HStack {
-                        Spacer()
-                        Image(systemName: "square.and.pencil")
-                            .font(.system(size: 24))
-                            .foregroundStyle(.white.opacity(0.12))
-                            .offset(x: 35, y: 15)
-                    }
                     Text(settings.localizedString(for: "plant.detail.note.add")).textCase(.uppercase)
                         .font(.system(size: 14, weight: .bold, design: .rounded))
                 }
@@ -433,165 +422,180 @@ struct InventoryItemDetailSheet: View {
 
     // MARK: - Normal (nicht-Trash) Detail Body
     private var normalDetailBody: some View {
-        ZStack {
-            Color.appHintergrund.ignoresSafeArea()
+        NavigationStack {
+            ZStack {
+                Color.appHintergrund.ignoresSafeArea()
 
-            VStack(spacing: 32) {
-                // Icon Area
-                Group {
-                    if UIImage(named: item.icon) != nil {
-                        Image(item.icon)
-                            .resizable()
-                            .scaledToFit()
+                VStack(spacing: 32) {
+                    // Icon Area
+                    Group {
+                        if UIImage(named: item.icon) != nil {
+                            Image(item.icon)
+                                .resizable()
+                                .scaledToFit()
+                        } else {
+                            Image(systemName: item.icon)
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundStyle(item.color)
+                        }
+                    }
+                    .frame(width: item.itemType == .decoration ? 240 : 120, height: item.itemType == .decoration ? 240 : 120)
+                    .padding(.top, 60)
+                    .shadow(color: item.itemType == .decoration ? .clear : item.color.opacity(0.3), radius: 20, x: 0, y: 10)
+                    .scaleEffect(animateIcon ? 1.05 : 1.0)
+
+                    VStack(spacing: 8) {
+                        let currentTitleKey = (settings.showHabitInsteadOfName && item.habitTitleKey != nil) ? item.habitTitleKey! : item.titleKey
+                        Text(settings.localizedString(for: currentTitleKey))
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
+
+                        Text(settings.localizedString(for: item.descriptionKey))
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                            .lineSpacing(4)
+                            .padding(.horizontal, 40)
+                    }
+
+                    Spacer()
+
+                    // MARK: Button-Bereich
+                    if let active = activePowerUp {
+                        HStack(spacing: 8) {
+                            Image(systemName: "timer")
+                            Text(active.timeRemainingFormatted)
+                                .font(.system(size: 17, weight: .bold, design: .rounded))
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 12)
+                        .background(.regularMaterial, in: Capsule())
+                        .overlay(Capsule().stroke(Color.primary.opacity(0.1), lineWidth: 0.5))
+                        .foregroundColor(.primary)
+                        .padding(.bottom, 32)
                     } else {
-                        Image(systemName: item.icon)
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundStyle(item.color)
-                    }
-                }
-                .frame(width: item.itemType == .decoration ? 240 : 120, height: item.itemType == .decoration ? 240 : 120)
-                .padding(.top, 60)
-                .shadow(color: item.itemType == .decoration ? .clear : item.color.opacity(0.3), radius: 20, x: 0, y: 10)
-                .scaleEffect(animateIcon ? 1.05 : 1.0)
-
-                VStack(spacing: 8) {
-                    let currentTitleKey = (settings.showHabitInsteadOfName && item.habitTitleKey != nil) ? item.habitTitleKey! : item.titleKey
-                    Text(settings.localizedString(for: currentTitleKey))
-                        .font(.system(size: 24, weight: .bold, design: .rounded))
-
-                    Text(settings.localizedString(for: item.descriptionKey))
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                        .lineSpacing(4)
-                        .padding(.horizontal, 40)
-                }
-
-                Spacer()
-
-                // MARK: Button-Bereich
-                if let active = activePowerUp {
-                    HStack(spacing: 8) {
-                        Image(systemName: "timer")
-                        Text(active.timeRemainingFormatted)
-                            .font(.system(size: 17, weight: .bold, design: .rounded))
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 12)
-                    .background(.regularMaterial, in: Capsule())
-                    .overlay(Capsule().stroke(Color.primary.opacity(0.1), lineWidth: 0.5))
-                    .foregroundColor(.primary)
-                    .padding(.bottom, 32)
-                } else {
-                    Button {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {
-                            handleUseTap()
-                        }
-                    } label: {
-                        Text(item.itemType == .powerUp ? settings.localizedString(for: "button.use") : settings.localizedString(for: "button.ok"))
-                    }
-                    .buttonStyle(DuolingoButtonStyle(
-                        size: .large,
-                        fillWidth: true,
-                        backgroundColor: item.color,
-                        shadowColor: item.color.darker()
-                    ))
-                    .padding(.horizontal, 24)
-
-                    // Sell Button
-                    let sellPrice = Int(Double(item.price) * 0.5)
-                    Button {
-                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                        shopStore.sell(id: item.id, price: item.price, title: settings.localizedString(for: item.titleKey))
-                        gardenStore.itemEntfernen(id: item.id)
-                        dismiss()
-                    } label: {
-                        VStack(spacing: 2) {
-                            Text(settings.localizedString(for: "shop.item.sell"))
-                                .font(.system(size: 14, weight: .bold))
-                            HStack(spacing: 4) {
-                                Image("coin")
-                                    .resizable().scaledToFit().frame(width: 14, height: 14)
-                                Text("+\(sellPrice)")
-                                    .font(.system(size: 14, weight: .black))
+                        Button {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {
+                                handleUseTap()
                             }
+                        } label: {
+                            Text(item.itemType == .powerUp ? settings.localizedString(for: "button.use") : settings.localizedString(for: "button.ok"))
                         }
-                        .foregroundStyle(.red)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 10)
-                        .background(Capsule().stroke(Color.red.opacity(0.3), lineWidth: 2))
+                        .buttonStyle(DuolingoButtonStyle(
+                            size: .large,
+                            fillWidth: true,
+                            backgroundColor: item.color,
+                            shadowColor: item.color.darker()
+                        ))
+                        .padding(.horizontal, 24)
+
+                        // Sell Button
+                        let sellPrice = Int(Double(item.price) * 0.5)
+                        Button {
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            shopStore.sell(id: item.id, price: item.price, title: settings.localizedString(for: item.titleKey))
+                            gardenStore.itemEntfernen(id: item.id)
+                            dismiss()
+                        } label: {
+                            VStack(spacing: 2) {
+                                Text(settings.localizedString(for: "shop.item.sell"))
+                                    .font(.system(size: 14, weight: .bold))
+                                HStack(spacing: 4) {
+                                    Image("coin")
+                                        .resizable().scaledToFit().frame(width: 14, height: 14)
+                                    Text("+\(sellPrice)")
+                                        .font(.system(size: 14, weight: .black))
+                                }
+                            }
+                            .foregroundStyle(.red)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                            .background(Capsule().stroke(Color.red.opacity(0.3), lineWidth: 2))
+                        }
+                        .padding(.horizontal, 44)
+                        .padding(.bottom, 32)
                     }
-                    .padding(.horizontal, 44)
-                    .padding(.bottom, 32)
+                }
+                .padding(.horizontal)
+                .blur(radius: showSuccessPill ? 2 : 0)
+
+                // Toast
+                if showSuccessPill {
+                    VStack {
+                        Text(successMessage)
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(Color.gruenPrimary, in: Capsule())
+                            .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
+                            .transition(.move(edge: .top).combined(with: .opacity))
+                            .padding(.top, 20)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .top)
+                    .zIndex(10)
                 }
             }
-            .padding(.horizontal)
-            .blur(radius: showSuccessPill ? 2 : 0)
-
-            // Toast
-            if showSuccessPill {
-                VStack {
-                    Text(successMessage)
-                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 10)
-                        .background(Color.gruenPrimary, in: Capsule())
-                        .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
-                        .transition(.move(edge: .top).combined(with: .opacity))
-                        .padding(.top, 20)
-                }
-                .frame(maxWidth: .infinity, alignment: .top)
-                .zIndex(10)
-            }
-        }
-        .glassDismissOverlay()
-        .sheet(isPresented: $showPlantPicker) {
-            if let p = powerUp {
-                PowerUpPlantPickerSheet(
-                    powerUp: p,
-                    onSelect: { plant in
-                        gardenStore.applyPowerUp(p, targetPlantId: plant.id)
-                        gardenStore.itemVerbrauchen(shopItem: item)
-                        shopStore.removeFromPurchased(id: item.id)
-                        showPlantPicker = false
-                        
-                        let duration = Int(p.durationHours ?? 24)
-                        let plantDisplayName = settings.showHabitInsteadOfName 
-                            ? settings.localizedString(for: plant.habitName)
-                            : settings.localizedString(for: plant.name)
-                        successMessage = String(format: settings.localizedString(for: "powerup.active.plant"), plantDisplayName, duration)
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                            withAnimation(.spring()) {
-                                showSuccessPill = true
-                            }
+            .standardNavigationX()
+            .sheet(isPresented: $showPlantPicker) {
+                if let p = powerUp {
+                    PowerUpPlantPickerSheet(
+                        powerUp: p,
+                        onSelect: { plant in
+                            gardenStore.applyPowerUp(p, targetPlantId: plant.id)
+                            gardenStore.itemVerbrauchen(shopItem: item)
+                            shopStore.removeFromPurchased(id: item.id)
+                            showPlantPicker = false
                             
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
-                                dismiss()
+                            let duration = Int(p.durationHours ?? 24)
+                            let plantDisplayName = settings.showHabitInsteadOfName 
+                                ? settings.localizedString(for: plant.habitName)
+                                : settings.localizedString(for: plant.name)
+                            successMessage = String(format: settings.localizedString(for: "powerup.active.plant"), plantDisplayName, duration)
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                withAnimation(.spring()) {
+                                    showSuccessPill = true
+                                }
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
+                                    dismiss()
+                                }
                             }
                         }
-                    }
-                )
+                    )
+                }
             }
-        }
-        .onAppear {
-            withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
-                animateIcon = true
+            .onAppear {
+                withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
+                    animateIcon = true
+                }
             }
-        }
-        .alert(
-            settings.localizedString(for: "powerup.weed_shield.needs_weed.title"),
-            isPresented: $showNeedsWeedForPowerUpAlert
-        ) {
-            Button(settings.localizedString(for: "button.ok"), role: .cancel) {}
-        } message: {
-            Text(settings.localizedString(for: "powerup.weed_shield.needs_weed.message"))
-        }
+            .alert(
+                settings.localizedString(for: "powerup.weed_shield.needs_weed.title"),
+                isPresented: $showNeedsWeedForPowerUpAlert
+            ) {
+                Button(settings.localizedString(for: "button.ok"), role: .cancel) {}
+            } message: {
+                Text(settings.localizedString(for: "powerup.weed_shield.needs_weed.message"))
+            }
+            .alert(
+                "Maximale Leben erreicht",
+                isPresented: $showMaxLivesAlert
+            ) {
+                Button(settings.localizedString(for: "button.ok"), role: .cancel) {}
+            } message: {
+                Text("Du hast bereits 5 von 5 Leben. Dieses Power-Up kann erst benutzt werden, wenn dir Leben fehlen.")
+            }
+        } // NavigationStack
     }
 
     private func handleUseTap() {
         guard let p = powerUp else {
             dismiss()
+            return
+        }
+
+        if p.id == "powerup.herz_auffueller" && gardenStore.leben >= 5 {
+            showMaxLivesAlert = true
             return
         }
 

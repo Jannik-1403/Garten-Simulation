@@ -169,6 +169,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var totalMlGegossen: Double = 0
     @Published var lebenBereitsAbgezogen: Bool = false
     @Published var isDead: Bool = false
+    @Published var isNegative: Bool = false
     
     // Wiederbelebungs-System
     @Published var wiederbelebtAm: Date? = nil
@@ -196,6 +197,30 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     var todaysReminder: WeekdayReminder? {
         guard let schedule = reminderSchedule, !schedule.isExpired else { return nil }
         return schedule.todaysReminder
+    }
+    
+    /// Gibt den nächsten anstehenden WeekdayReminder zurück (heute oder in der Zukunft)
+    var nextActiveReminder: WeekdayReminder? {
+        guard let schedule = reminderSchedule, !schedule.isExpired else { return nil }
+        
+        let calendar = Calendar.current
+        let appleWeekday = calendar.component(.weekday, from: Date()) // So=1...Sa=7
+        let ourWeekday = appleWeekday == 1 ? 7 : appleWeekday - 1    // Mo=1...So=7
+        
+        // Zuerst heute prüfen
+        if let today = schedule.weekdays.first(where: { $0.weekday == ourWeekday && $0.isEnabled }), !today.isExpired(startDate: schedule.startDate) {
+            return today
+        }
+        
+        // Danach die nächsten Tage in der Woche prüfen
+        for offset in 1...7 {
+            let nextDay = ((ourWeekday - 1 + offset) % 7) + 1
+            if let next = schedule.weekdays.first(where: { $0.weekday == nextDay && $0.isEnabled }), !next.isExpired(startDate: schedule.startDate) {
+                return next
+            }
+        }
+        
+        return nil
     }
     
     // XP Verlauf für die Wochenübersicht (Datum im Format "yyyy-MM-dd": XP an diesem Tag)
@@ -357,7 +382,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         lastNotifiedCycle: Int = 0,
         plantID: String? = nil,
         reminderTime: Date? = nil,
-        customReminderMessage: String? = nil
+        customReminderMessage: String? = nil,
+        isNegative: Bool = false
     ) {
         self.id = id
         self.name = name
@@ -372,6 +398,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.decayDays = decayDays
         self.missedCycles = missedCycles
         self.lastNotifiedCycle = lastNotifiedCycle
+        self.isNegative = isNegative
         self.wiederbelebtAm = nil
         self.strafTage = 3
         self.reminderTime = reminderTime
@@ -409,9 +436,10 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays, missedCycles, lastNotifiedCycle
         case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned, totalMlGegossen, plantID
         case wiederbelebtAm, strafTage, reminderTime, customReminderMessage, wateringDates
-        case lebenBereitsAbgezogen, isDead
+        case lebenBereitsAbgezogen, isDead, isNegative
         case reminderSchedule
         case pfadAktiviertAm, pfadCheckedDates
+        case individualSchwierigkeit
     }
 
     required init(from decoder: Decoder) throws {
@@ -480,6 +508,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         wateringDates = try container.decodeIfPresent([Date].self, forKey: .wateringDates) ?? []
         lebenBereitsAbgezogen = try container.decodeIfPresent(Bool.self, forKey: .lebenBereitsAbgezogen) ?? false
         isDead = try container.decodeIfPresent(Bool.self, forKey: .isDead) ?? false
+        isNegative = try container.decodeIfPresent(Bool.self, forKey: .isNegative) ?? false
         pfadAktiviertAm = try container.decodeIfPresent(Date.self, forKey: .pfadAktiviertAm)
         pfadCheckedDates = try container.decodeIfPresent([Date].self, forKey: .pfadCheckedDates) ?? []
         
@@ -490,6 +519,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             // Automatische Migration: alter Timer → Schedule mit gleicher Zeit an allen Tagen
             reminderSchedule = ReminderSchedule.defaultSchedule(time: legacyTime, customMessage: customReminderMessage)
         }
+        individualSchwierigkeit = try container.decodeIfPresent(String.self, forKey: .individualSchwierigkeit)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -529,9 +559,11 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(wateringDates, forKey: .wateringDates)
         try container.encode(lebenBereitsAbgezogen, forKey: .lebenBereitsAbgezogen)
         try container.encode(isDead, forKey: .isDead)
+        try container.encode(isNegative, forKey: .isNegative)
         try container.encodeIfPresent(reminderSchedule, forKey: .reminderSchedule)
         try container.encodeIfPresent(pfadAktiviertAm, forKey: .pfadAktiviertAm)
         try container.encode(pfadCheckedDates, forKey: .pfadCheckedDates)
+        try container.encodeIfPresent(individualSchwierigkeit, forKey: .individualSchwierigkeit)
     }
 }
 

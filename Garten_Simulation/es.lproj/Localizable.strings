@@ -652,7 +652,7 @@
 "pfad_abschluss_desc" = "¡Increíble! Has dominado 90 días seguidos. Aquí tienes tu bien merecida recompensa:";
 "pfad_abschluss_titel" = "¡90 días completados!";
 "pfad_activation_90_tage" = "90 días";
-"pfad_activation_belohnung" = "¡Completa los 90 días para recibir 5.000 monedas!";
+"pfad_activation_belohnung" = "¡Completa los 90 días para recibir tu recompensa final!";
 "pfad_activation_btn" = "ACTIVAR CAMINO";
 "pfad_activation_desc" = "¿Qué pasa después de 90 días?\\n¡Alcanzas la maestría! Tu planta florecerá completamente y crearás un hábito fuerte y duradero.";
 "pfad_activation_diff_change_title" = "Has seleccionado %@. ¿Sigues siendo %@ o quieres cambiarlo?";
@@ -743,11 +743,11 @@
 "pfad_produktiv_phase_vertiefung_desc" = "Domina tu tiempo. El enfoque se convierte en un hábito.";
 "pfad_progress_format" = "Día %d / 90";
 "pfad_schwierigkeit_anfaenger" = "Principiante";
-"pfad_schwierigkeit_anfaenger_desc" = "Ideal para principiantes. Pasos pequeños y sencillos te llevan al éxito de forma relajada.";
+"pfad_schwierigkeit_anfaenger_desc" = "Ideal para principiantes. Pasos pequeños y sencillos te llevan al éxito de forma relajada. Recompensa: 500 Monedas";
 "pfad_schwierigkeit_experte" = "Experto";
-"pfad_schwierigkeit_experte_desc" = "El desafío definitivo. ¡Muestra tu disciplina y domina tareas exigentes!";
+"pfad_schwierigkeit_experte_desc" = "El desafío definitivo. ¡Muestra tu disciplina y domina tareas exigentes! Recompensa: 1.500 Monedas";
 "pfad_schwierigkeit_fortgeschritten" = "Intermedio";
-"pfad_schwierigkeit_fortgeschritten_desc" = "Para jardineros ambiciosos. Una mezcla equilibrada de desafío y diversión.";
+"pfad_schwierigkeit_fortgeschritten_desc" = "Para jardineros ambiciosos. Una mezcla equilibrada de desafío y diversión. Recompensa: 1.000 Monedas";
 "pfad_schwierigkeit_hinweis" = "El nivel de dificultad afecta la cantidad de tareas diarias y tu ganancia de XP.";
 "pfad_schwierigkeit_starten" = "Iniciar aventura";
 "pfad_schwierigkeit_titel" = "¿Qué tan en forma estás ya?";
@@ -1675,7 +1675,7 @@
 "habit.stats.impact" = "Impacto negativo";
 "habit.impact.title" = "El método del 1%";
 "habit.impact.explanation" = "Según 'Hábitos Atómicos' de James Clear, te vuelves un 1% peor (0,99) cada vez que ejecutas este hábito. Esto tiene un enorme efecto negativo compuesto en tu vida a largo plazo.";
-"habit.tips.title" = "Consejos (Las 4 leyes)";
+"habit.tips.title" = "Consejos";
 "habit.tip.1" = "Hazlo invisible: Elimina de tu entorno todas las señales que desencadenan este hábito.";
 "habit.tip.2" = "Hazlo poco atractivo: Concéntrate en las consecuencias negativas para devaluar mentalmente el hábito.";
 "habit.tip.3" = "Hazlo difícil: Aumenta la fricción y los pasos necesarios para ejecutar el hábito.";
@@ -1759,3 +1759,15 @@
 "trash.schlaf_killer_koffein.tip.2" = "La cafeína bloquea la adenosina (señal de cansancio) – duermes menos profundo y te recuperas peor.";
 "trash.schlaf_killer_koffein.tip.3" = "Reemplaza el café de la tarde con descafeinado o infusiones.";
 "trash.schlaf_killer_koffein.tip.4" = "Registra tu calidad de sueño con y sin cafeína – la diferencia te convencerá.";
+"pfad_tag_ausstehend" = "Pendiente";
+
+"rarity.common" = "COMÚN";
+"rarity.rare" = "RARO";
+"rarity.epic" = "ÉPICO";
+"rarity.legendary" = "LEGENDARIO";
+"rarity.mystic" = "MAESTRO";
+
+// MARK: - Assessment
+
+
+// Finance Quiz – Portfolio extension Q6–Q9 (English fallback)

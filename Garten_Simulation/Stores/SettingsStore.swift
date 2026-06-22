@@ -15,14 +15,33 @@ enum ScreenSize {
 class SettingsStore: ObservableObject {
     static let shared = SettingsStore()
     
-    @AppStorage("isHapticEnabled")        var isHapticEnabled: Bool = true
-    @AppStorage("isNotificationsEnabled") var isNotificationsEnabled: Bool = true
-    @AppStorage("isAnalyticsEnabled")     var isAnalyticsEnabled: Bool = true
-    @AppStorage("showHabitInsteadOfName") var showHabitInsteadOfName: Bool = true
-    @AppStorage("onboardingAbgeschlossen") var onboardingAbgeschlossen: Bool = false
-    @AppStorage("appTourPromptShown")      var appTourPromptShown: Bool = false
-    @AppStorage("appTourAbgeschlossen")    var appTourAbgeschlossen: Bool = false
-    @AppStorage("ausgewaehltesZiel")       var ausgewaehltesZiel: String = ""
+    @Published var isHapticEnabled: Bool {
+        didSet { UserDefaults.standard.set(isHapticEnabled, forKey: "isHapticEnabled") }
+    }
+    @Published var isNotificationsEnabled: Bool {
+        didSet { 
+            UserDefaults.standard.set(isNotificationsEnabled, forKey: "isNotificationsEnabled") 
+            SharedUserDefaults.suite.set(isNotificationsEnabled, forKey: "isNotificationsEnabled")
+        }
+    }
+    @Published var isAnalyticsEnabled: Bool {
+        didSet { UserDefaults.standard.set(isAnalyticsEnabled, forKey: "isAnalyticsEnabled") }
+    }
+    @Published var showHabitInsteadOfName: Bool {
+        didSet { UserDefaults.standard.set(showHabitInsteadOfName, forKey: "showHabitInsteadOfName") }
+    }
+    @Published var onboardingAbgeschlossen: Bool {
+        didSet { UserDefaults.standard.set(onboardingAbgeschlossen, forKey: "onboardingAbgeschlossen") }
+    }
+    @Published var appTourPromptShown: Bool {
+        didSet { UserDefaults.standard.set(appTourPromptShown, forKey: "appTourPromptShown") }
+    }
+    @Published var appTourAbgeschlossen: Bool {
+        didSet { UserDefaults.standard.set(appTourAbgeschlossen, forKey: "appTourAbgeschlossen") }
+    }
+    @Published var ausgewaehltesZiel: String {
+        didSet { UserDefaults.standard.set(ausgewaehltesZiel, forKey: "ausgewaehltesZiel") }
+    }
     
     @Published var habitStartStunde: Int {
         didSet { SharedUserDefaults.suite.set(habitStartStunde, forKey: "habitStartStunde") }
@@ -40,13 +59,12 @@ class SettingsStore: ObservableObject {
         }
     }
     
-
-    // Default 8:00 AM
-    @AppStorage("erinnerungsZeit") private var erinnerungsZeitInternal: Double = 8 * 3600
+    @Published private var erinnerungsZeitInternal: Double {
+        didSet { UserDefaults.standard.set(erinnerungsZeitInternal, forKey: "erinnerungsZeit") }
+    }
 
     var erinnerungsZeit: Date {
         get {
-            // We use the internal double (seconds from midnight) to reconstruct a Date for the picker
             let totalSeconds = Int(erinnerungsZeitInternal)
             let hours = totalSeconds / 3600
             let minutes = (totalSeconds % 3600) / 60
@@ -69,6 +87,16 @@ class SettingsStore: ObservableObject {
 
 
     init() {
+        self.isHapticEnabled = UserDefaults.standard.object(forKey: "isHapticEnabled") as? Bool ?? true
+        self.isNotificationsEnabled = UserDefaults.standard.object(forKey: "isNotificationsEnabled") as? Bool ?? true
+        self.isAnalyticsEnabled = UserDefaults.standard.object(forKey: "isAnalyticsEnabled") as? Bool ?? true
+        self.showHabitInsteadOfName = UserDefaults.standard.object(forKey: "showHabitInsteadOfName") as? Bool ?? true
+        self.onboardingAbgeschlossen = UserDefaults.standard.bool(forKey: "onboardingAbgeschlossen")
+        self.appTourPromptShown = UserDefaults.standard.bool(forKey: "appTourPromptShown")
+        self.appTourAbgeschlossen = UserDefaults.standard.bool(forKey: "appTourAbgeschlossen")
+        self.ausgewaehltesZiel = UserDefaults.standard.string(forKey: "ausgewaehltesZiel") ?? ""
+        self.erinnerungsZeitInternal = UserDefaults.standard.object(forKey: "erinnerungsZeit") as? Double ?? (8 * 3600)
+        
         self.habitStartStunde = SharedUserDefaults.suite.object(forKey: "habitStartStunde") as? Int ?? 7
         self.ritualReihenfolgeIDs = SharedUserDefaults.suite.stringArray(forKey: "ritualReihenfolgeIDs") ?? []
 
@@ -82,7 +110,6 @@ class SettingsStore: ObservableObject {
         if let saved = SharedUserDefaults.suite.string(forKey: "appLanguage") {
             self.appLanguage = saved
         } else {
-            // Detect system language on first start
             let supported = ["de", "en", "es", "fr", "it", "pt"]
             let preferred = Bundle.main.preferredLocalizations.first ?? "en"
             let languageCode = preferred.split(separator: "-").first.map(String.init) ?? "en"
@@ -104,9 +131,8 @@ class SettingsStore: ObservableObject {
     func refreshNotificationStatus() async {
         let center = UNUserNotificationCenter.current()
         let settings = await center.notificationSettings()
-        if settings.authorizationStatus != .authorized {
-            isNotificationsEnabled = false
-        }
+        isNotificationsEnabled = (settings.authorizationStatus == .authorized)
+        UserDefaults.standard.set(isNotificationsEnabled, forKey: "isNotificationsEnabled")
     }
 
     // MARK: - Localization

@@ -183,6 +183,9 @@ class StreakStore: ObservableObject {
             completedDates.removeAll()
             currentStreak = 0
             bestStreak = 0
+            streakFreezes = 0
+            frozenDates.removeAll()
+            lastShownStreak = 0
         }
     }
 }

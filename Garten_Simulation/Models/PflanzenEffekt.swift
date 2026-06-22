@@ -20,21 +20,21 @@ struct PflanzenEffekt: Identifiable {
             switch self {
             case .wetter:  return Color(.systemBlue).opacity(0.12)
             case .powerUp: return Color(.systemGreen).opacity(0.12)
-            case .status:  return Color(.systemOrange).opacity(0.12)
+            case .status:  return Color.gruenPrimary.opacity(0.12)
             }
         }
         var ikonFarbe: Color {
             switch self {
             case .wetter:  return Color(.systemBlue)
             case .powerUp: return Color(.systemGreen)
-            case .status:  return Color(.systemOrange)
+            case .status:  return Color.gruenPrimary
             }
         }
         var rahmenFarbe: Color {
             switch self {
             case .wetter:  return Color(.systemBlue).opacity(0.25)
             case .powerUp: return Color(.systemGreen).opacity(0.25)
-            case .status:  return Color(.systemOrange).opacity(0.25)
+            case .status:  return Color.gruenPrimary.opacity(0.25)
             }
         }
     }

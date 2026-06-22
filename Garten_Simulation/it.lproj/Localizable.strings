@@ -652,7 +652,7 @@
 "pfad_abschluss_desc" = "Incredibile! Hai dominato 90 giorni di fila. Ecco la tua meritata ricompensa:";
 "pfad_abschluss_titel" = "90 giorni completati!";
 "pfad_activation_90_tage" = "90 giorni";
-"pfad_activation_belohnung" = "Completa i 90 giorni per ricevere 5.000 monete!";
+"pfad_activation_belohnung" = "Completa i 90 giorni per ricevere la tua ricompensa finale!";
 "pfad_activation_btn" = "ATTIVA PERCORSO";
 "pfad_activation_desc" = "Cosa succede dopo 90 giorni?\\nRaggiungi la maestria! La tua pianta fiorirà completamente e costruirai un'abitudine forte e duratura.";
 "pfad_activation_diff_change_title" = "Hai selezionato %@. Sei ancora %@ o vuoi cambiarlo?";
@@ -743,11 +743,11 @@
 "pfad_produktiv_phase_vertiefung_desc" = "Padroneggia il tuo tempo. Il focus diventa un'abitudine.";
 "pfad_progress_format" = "Giorno %d / 90";
 "pfad_schwierigkeit_anfaenger" = "Principiante";
-"pfad_schwierigkeit_anfaenger_desc" = "Ideale per i principianti. Piccoli e semplici passi ti guidano verso il successo in totale relax.";
+"pfad_schwierigkeit_anfaenger_desc" = "Ideale per i principianti. Piccoli e semplici passi ti guidano verso il successo in totale relax. Ricompensa: 500 Monete";
 "pfad_schwierigkeit_experte" = "Esperto";
-"pfad_schwierigkeit_experte_desc" = "La sfida definitiva. Mostra la tua disciplina e supera compiti impegnativi!";
+"pfad_schwierigkeit_experte_desc" = "La sfida definitiva. Mostra la tua disciplina e supera compiti impegnativi! Ricompensa: 1.500 Monete";
 "pfad_schwierigkeit_fortgeschritten" = "Intermedio";
-"pfad_schwierigkeit_fortgeschritten_desc" = "Per giardinieri ambiziosi. Un mix equilibrato di sfida e divertimento.";
+"pfad_schwierigkeit_fortgeschritten_desc" = "Per giardinieri ambiziosi. Un mix equilibrato di sfida e divertimento. Ricompensa: 1.000 Monete";
 "pfad_schwierigkeit_hinweis" = "Il livello di difficoltà influisce sul numero di attività giornaliere e sul guadagno di XP.";
 "pfad_schwierigkeit_starten" = "Inizia l'avventura";
 "pfad_schwierigkeit_titel" = "Quanto sei già in forma?";
@@ -967,7 +967,7 @@
 "powerup_wheel_title" = "Ruota dei Power-Up";
 "powerup_wheel_win" = "VINCITORE!";
 "profil_garten_level" = "Garden Level %d";
-"profile.achievements" = "Achievements";
+"profile.achievements" = "Successi";
 "profile.achievements.empty" = "No achievements unlocked yet";
 "profile.achievements.locked_desc" = "Not yet unlocked";
 "profile.achievements.subtitle" = "Your Trophy Cabinet";
@@ -995,26 +995,26 @@
 "profile.coins.tip.watering" = "Water all plants";
 "profile.coins.total" = "Total Balance";
 "profile.edit.title" = "Modifica avatar";
-"profile.inventory" = "Inventory";
-"profile.inventory.decorations" = "Decorations";
-"profile.inventory.plants" = "Plants";
-"profile.inventory.powerups" = "Power-Ups";
-"profile.inventory.total_exchanged" = "Shop Exchanges";
+"profile.inventory" = "Inventario";
+"profile.inventory.decorations" = "Decorazioni";
+"profile.inventory.plants" = "Piante";
+"profile.inventory.powerups" = "Power-Up";
+"profile.inventory.total_exchanged" = "Scambi nel negozio";
 "profile.level.max" = "Max Level!";
 "profile.plants" = "Plants";
 "profile.plants.list" = "MY PLANTS";
 "profile.plants.subtitle" = "Plants in your garden";
-"profile.streak" = "Days";
-"profile.streak.best" = "Best Streak";
+"profile.streak" = "Giorni";
+"profile.streak.best" = "Miglior serie";
 "profile.streak.best_short" = "%d Max";
 "profile.title" = "Profile";
 "profile.transactions.empty" = "No transactions yet";
 "profile.user.name" = "Jannik Schill";
 "profile.user.name.default" = "Gardener";
 "profile.user.xp.format" = "%d XP";
-"profile.xp.earned" = "XP Earned";
-"profile.xp.max" = "Most XP";
-"profile.xp.total" = "Total XP";
+"profile.xp.earned" = "XP guadagnati";
+"profile.xp.max" = "Max XP";
+"profile.xp.total" = "XP totali";
 "progression_cooking_aufbau" = "Cucina oggi con almeno 3 tipi di verdure fresche.";
 "progression_cooking_einstieg" = "Cucina da te un pasto semplice e sano oggi.";
 "progression_cooking_meisterschaft" = "Sei uno chef maestro della tua salute. Goditi il tuo cibo!";
@@ -1675,7 +1675,7 @@
 "habit.stats.impact" = "Impatto negativo";
 "habit.impact.title" = "Il metodo dell'1%";
 "habit.impact.explanation" = "Secondo 'Piccole Abitudini per Grandi Cambiamenti' di James Clear, diventi l'1% peggiore (0,99) ogni volta che esegui questa abitudine. Questo ha un immenso effetto negativo composto sulla tua vita a lungo termine.";
-"habit.tips.title" = "Consigli (Le 4 leggi)";
+"habit.tips.title" = "Consigli";
 "habit.tip.1" = "Rendilo invisibile: Rimuovi dal tuo ambiente tutti gli stimoli che innescano questa abitudine.";
 "habit.tip.2" = "Rendilo poco attraente: Concentrati sulle conseguenze negative per svalutare mentalmente l'abitudine.";
 "habit.tip.3" = "Rendilo difficile: Aumenta l'attrito e i passaggi necessari per eseguire l'abitudine.";
@@ -1759,3 +1759,14 @@
 "trash.schlaf_killer_koffein.tip.2" = "La caffeina blocca l'adenosina (il segnale di stanchezza) – dormi meno profondamente.";
 "trash.schlaf_killer_koffein.tip.3" = "Sostituisci il caffè pomeridiano con decaffeinato o tisane.";
 "trash.schlaf_killer_koffein.tip.4" = "Monitora la qualità del sonno con e senza caffeina – la differenza ti convincerà.";
+"pfad_tag_ausstehend" = "In attesa";
+
+"rarity.common" = "COMUNE";
+"rarity.rare" = "RARO";
+"rarity.epic" = "EPICO";
+"rarity.legendary" = "LEGGENDARIO";
+"rarity.mystic" = "MAESTRO";
+
+// MARK: - Assessment (Fallback English)
+
+// Finance Quiz – Portfolio extension Q6–Q9 (English fallback)

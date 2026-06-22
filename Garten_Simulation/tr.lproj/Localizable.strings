@@ -652,7 +652,7 @@
 "pfad_abschluss_desc" = "İnanılmaz! Art arda 90 gün ustalaştınız. İşte hak ettiğiniz ödülünüz:";
 "pfad_abschluss_titel" = "90 Gün Tamamlandı!";
 "pfad_activation_90_tage" = "90 Gün";
-"pfad_activation_belohnung" = "5.000 jeton kazanmak için 90 günü tamamlayın!";
+"pfad_activation_belohnung" = "Nihai ödülünüzü almak için 90 günü tamamlayın!";
 "pfad_activation_btn" = "YOLU ETKİNLEŞTİR";
 "pfad_activation_desc" = "90 gün sonra ne olur?\\nUstalığa ulaşırsınız! Bitkiniz tamamen çiçek açacak ve güçlü, uzun süreli bir alışkanlık geliştireceksiniz.";
 "pfad_activation_diff_change_title" = "%@'yi seçtiniz. Hala %@ mısın yoksa değiştirmek mi istiyorsun?";
@@ -743,11 +743,11 @@
 "pfad_produktiv_phase_vertiefung_desc" = "Zamanınıza hakim olun. Odaklanmak bir alışkanlık haline gelir.";
 "pfad_progress_format" = "Gün %d / 90";
 "pfad_schwierigkeit_anfaenger" = "Acemi";
-"pfad_schwierigkeit_anfaenger_desc" = "Yeni başlayanlar için idealdir. Küçük, basit adımlar sizi rahat bir şekilde başarıya götürür.";
+"pfad_schwierigkeit_anfaenger_desc" = "Yeni başlayanlar için idealdir. Küçük, basit adımlar sizi rahat bir şekilde başarıya götürür. Ödül: 500 Para";
 "pfad_schwierigkeit_experte" = "Uzman";
-"pfad_schwierigkeit_experte_desc" = "Nihai zorluk. Disiplininizi gösterin ve zorlu görevlerde ustalaşın!";
+"pfad_schwierigkeit_experte_desc" = "Nihai zorluk. Disiplininizi gösterin ve zorlu görevlerde ustalaşın! Ödül: 1.500 Para";
 "pfad_schwierigkeit_fortgeschritten" = "Orta seviye";
-"pfad_schwierigkeit_fortgeschritten_desc" = "Hırslı bahçıvanlar için. Mücadele ve eğlencenin dengeli bir karışımı.";
+"pfad_schwierigkeit_fortgeschritten_desc" = "Hırslı bahçıvanlar için. Mücadele ve eğlencenin dengeli bir karışımı. Ödül: 1.000 Para";
 "pfad_schwierigkeit_hinweis" = "Zorluk seviyesi günlük görev miktarınızı ve XP kazancınızı etkiler.";
 "pfad_schwierigkeit_starten" = "Maceraya Başla";
 "pfad_schwierigkeit_titel" = "Zaten ne kadar formdasın?";
@@ -1675,7 +1675,7 @@
 "habit.stats.impact" = "Olumsuz etki";
 "habit.impact.title" = "%1 Yöntemi";
 "habit.impact.explanation" = "James Clear'ın 'Atomik Alışkanlıklar' kitabına göre, bu alışkanlığı her uyguladığında %1 daha kötü olursun (0,99). Bu, uzun vadede hayatın üzerinde muazzam bir olumsuz bileşik etkiye sahiptir.";
-"habit.tips.title" = "İpuçları (4 Yasa)";
+"habit.tips.title" = "İpuçları";
 "habit.tip.1" = "Görünmez kıl: Bu alışkanlığı tetikleyen tüm ipuçlarını çevrenden kaldır.";
 "habit.tip.2" = "Çekici olmaktan çıkar: Olumsuz sonuçlara odaklanarak alışkanlığı zihinsel olarak değersizleştir.";
 "habit.tip.3" = "Zor kıl: Alışkanlığı uygulamak için gereken sürtünmeyi ve adımları artır.";
@@ -1759,3 +1759,14 @@
 "trash.schlaf_killer_koffein.tip.2" = "Kafein adenozini (yorgunluk sinyalini) engeller – daha az derin uyursun.";
 "trash.schlaf_killer_koffein.tip.3" = "Öğleden sonra kahvesini kafeinsiz veya bitki çayı ile değiştir.";
 "trash.schlaf_killer_koffein.tip.4" = "Kafeinli ve kafeinsiz uyku kaliteni takip et – fark seni ikna edecek.";
+"pfad_tag_ausstehend" = "Beklemede";
+
+"rarity.common" = "YAYGIN";
+"rarity.rare" = "NADİR";
+"rarity.epic" = "DESTANSI";
+"rarity.legendary" = "EFSANEVİ";
+"rarity.mystic" = "USTA";
+
+// MARK: - Assessment (Fallback English)
+
+// Finance Quiz – Portfolio extension Q6–Q9 (English fallback)

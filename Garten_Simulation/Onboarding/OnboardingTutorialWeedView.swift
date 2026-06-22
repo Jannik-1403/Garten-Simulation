@@ -285,9 +285,10 @@ struct OnboardingWheelSegmentIcon: View {
                 .font(.system(size: 24, weight: .bold))
                 .foregroundStyle(.white)
         case .weed:
-            Image(systemName: "ant.fill")
-                .font(.system(size: 22, weight: .bold))
-                .foregroundStyle(.white)
+            Image("Unkraut")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
         case .safe:
             Image(systemName: "leaf.fill")
                 .font(.system(size: 22, weight: .bold))

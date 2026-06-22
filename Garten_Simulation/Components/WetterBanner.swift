@@ -13,8 +13,10 @@ struct WetterBanner: View {
             aktion: aktion
         ) {
             HStack(spacing: 12) {
-                Image(systemName: event.systemIcon)
-                    .font(.system(size: 24, weight: .semibold))
+                Image(event.customIconName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 90, height: 90)
 
                 VStack(alignment: .leading, spacing: 0) {
                     Text(event.untertitel)

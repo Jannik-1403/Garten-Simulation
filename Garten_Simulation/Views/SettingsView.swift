@@ -15,6 +15,7 @@ struct SettingsView: View {
     @EnvironmentObject var tourManager: InteractiveTourManager
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) var scenePhase
     
     @State private var showResetAlert = false
     @State private var showFinalResetAlert = false
@@ -53,9 +54,9 @@ struct SettingsView: View {
                             settingsSection(title: settings.localizedString(for: "settings.section.personalization")) {
                                 HStack(spacing: 12) {
                                     Image(systemName: "globe")
-                                        .foregroundStyle(.white)
+                                        .font(.system(size: 20, weight: .medium))
+                                        .foregroundStyle(.primary)
                                         .frame(width: 28, height: 28)
-                                        .background(Circle().fill(Color.blue))
                                     
                                     Text(settings.localizedString(for: "settings.language"))
                                         .font(.system(size: 16, weight: .medium, design: .rounded))
@@ -89,7 +90,34 @@ struct SettingsView: View {
                                 VStack(spacing: 0) {
                                     settingToggle(title: settings.localizedString(for: "settings.haptic"), icon: "hand.tap.fill", color: .blauPrimary, isOn: $settings.isHapticEnabled)
                                     Divider().padding(.leading, 44)
-                                    settingToggle(title: settings.localizedString(for: "settings.notifications"), icon: "bell.fill", color: .red, isOn: $settings.isNotificationsEnabled)
+                                    Button {
+                                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                                            UIApplication.shared.open(url)
+                                        }
+                                    } label: {
+                                        HStack(spacing: 12) {
+                                            Image(systemName: "bell.fill")
+                                                .font(.system(size: 20, weight: .medium))
+                                                .foregroundStyle(.primary)
+                                                .frame(width: 28, height: 28)
+                                            
+                                            Text(settings.localizedString(for: "settings.notifications"))
+                                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                                            Spacer()
+                                            
+                                            Text(settings.isNotificationsEnabled ? settings.localizedString(for: "settings.on") : settings.localizedString(for: "settings.off"))
+                                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                .foregroundStyle(settings.isNotificationsEnabled ? Color.gruenPrimary : Color.red)
+                                                
+                                            Image(systemName: "chevron.right")
+                                                .font(.system(size: 14, weight: .bold))
+                                                .foregroundStyle(.tertiary)
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 12)
+                                        .contentShape(Rectangle())
+                                    }
+                                    .buttonStyle(.plain)
                                 }
                             }
                             
@@ -151,6 +179,16 @@ struct SettingsView: View {
                                         }
                                     } label: {
                                         settingRow(title: settings.localizedString(for: "settings.share"), icon: "heart.fill", color: .pink)
+                                    }
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
+                                    Button {
+                                        if let url = URL(string: "https://apps.apple.com/app/grovy?action=write-review") {
+                                            UIApplication.shared.open(url)
+                                        }
+                                    } label: {
+                                        settingRow(title: settings.localizedString(for: "settings.rate_app"), icon: "star.fill", color: .yellow)
                                     }
                                 }
                             }
@@ -230,23 +268,22 @@ struct SettingsView: View {
             } message: {
                 Text(settings.localizedString(for: "settings.reset.final.message"))
             }
-            .onChange(of: settings.isNotificationsEnabled) { newValue in
-                if newValue {
-                    NotificationManager.shared.scheduleAll(for: gardenStore.pflanzen)
-                } else {
-                    UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            .onAppear {
+                Task {
+                    await settings.refreshNotificationStatus()
+                }
+            }
+            .onChange(of: scenePhase) { newPhase in
+                if newPhase == .active {
+                    Task {
+                        await settings.refreshNotificationStatus()
+                    }
                 }
             }
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 20, weight: .black))
-                            .foregroundStyle(.primary)
-                    }
+                    LiquidGlassDismissButton { dismiss() }
                 }
             }
             .tint(.primary)
@@ -282,9 +319,9 @@ struct SettingsView: View {
     private func settingToggle(title: String, icon: String, color: Color, isOn: Binding<Bool>) -> some View {
         HStack(spacing: 12) {
             Image(systemName: icon)
-                .foregroundStyle(.white)
+                .font(.system(size: 20, weight: .medium))
+                .foregroundStyle(.primary)
                 .frame(width: 28, height: 28)
-                .background(Circle().fill(color))
             
             Text(title)
                 .font(.system(size: 16, weight: .medium, design: .rounded))
@@ -319,17 +356,18 @@ struct SettingsView: View {
             Group {
                 if isAsset {
                     Image(icon)
+                        .renderingMode(.template)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 18, height: 18)
+                        .frame(width: 20, height: 20)
+                        .foregroundStyle(.primary)
                 } else {
                     Image(systemName: icon)
-                        .foregroundStyle(.white)
-                        .frame(width: 28, height: 28)
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundStyle(.primary)
                 }
             }
             .frame(width: 28, height: 28)
-            .background(Circle().fill(color))
             
             Text(title)
                 .font(.system(size: 16, weight: .medium, design: .rounded))

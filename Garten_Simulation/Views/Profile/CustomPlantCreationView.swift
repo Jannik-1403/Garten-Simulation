@@ -10,24 +10,23 @@ struct CustomPlantCreationView: View {
     @State private var selectedIcon: String = "leaf.fill"
     @State private var selectedColor: String = "green"
     @State private var selectedCategory: HabitCategory = .fitness
+    @State private var isNegative: Bool = false
     @State private var showSeedInfo = false
     @State private var showAllIcons = false
     
-    private let availableIcons = [
-        "leaf.fill", "tree.fill", "sun.max.fill", "star.fill", 
-        "heart.fill", "bolt.fill", "moon.fill", "sparkles", 
-        "drop.fill", "flame.fill", "camera.macro", "house.fill"
-    ]
+    private var availableIcons: [String] {
+        if isNegative {
+            // Get all unique decoration asset symbols from the database
+            return Array(Set(GameDatabase.allDecorations.map { $0.sfSymbol })).sorted()
+        } else {
+            // Get all unique plant asset symbols/names from the database
+            return Array(Set(GameDatabase.allPlants.compactMap { $0.assetName ?? $0.symbolName })).sorted()
+        }
+    }
     
-    private let allIcons = [
-        "leaf.fill", "tree.fill", "flower.fill", "star.fill", "heart.fill", "bolt.fill", "sun.max.fill", "moon.fill",
-        "sparkles", "drop.fill", "camera.macro", "flame.fill", "bicycle", "figure.walk", "figure.run", "figure.strengthtraining.traditional",
-        "book.fill", "pencil", "music.note", "theatermasks.fill", "cup.and.saucer.fill", "mug.fill", "wineglass.fill", "fork.knife",
-        "bed.double.fill", "zzz", "alarm.fill", "timer", "brain.head.profile", "lightbulb.fill", "checklist", "briefcase.fill",
-        "house.fill", "cart.fill", "creditcard.fill", "gift.fill", "gamecontroller.fill", "dice.fill", "puzzlepiece.fill", "balloon.fill",
-        "camera.fill", "headphones", "mic.fill", "paintpalette.fill", "hammer.fill", "wrench.fill", "scissors", "bandage.fill",
-        "pills.fill", "cross.case.fill", "thermometer.medium", "drop.triangle.fill", "wind", "cloud.fill", "umbrella.fill", "beach.umbrella.fill"
-    ]
+    private var allIcons: [String] {
+        availableIcons
+    }
     
     private let availableColors = [
         "green", "mint", "teal", "cyan", "blue", "indigo", 
@@ -36,7 +35,8 @@ struct CustomPlantCreationView: View {
     
     var isFormValid: Bool {
         !plantName.trimmingCharacters(in: .whitespaces).isEmpty &&
-        !habitName.trimmingCharacters(in: .whitespaces).isEmpty
+        !habitName.trimmingCharacters(in: .whitespaces).isEmpty &&
+        gardenStore.seeds >= 10
     }
     
     var body: some View {
@@ -60,21 +60,23 @@ struct CustomPlantCreationView: View {
                             .allowsHitTesting(false)
                             
                             VStack(spacing: 4) {
-                                Text(plantName.isEmpty ? settings.localizedString(for: "plant.create.preview.name") : plantName)
+                                Text(plantName.isEmpty ? (isNegative ? settings.localizedString(for: "plant.create.preview.trash_name") : settings.localizedString(for: "plant.create.preview.name")) : plantName)
                                     .font(.system(size: 24, weight: .black, design: .rounded))
                                     .foregroundStyle(.primary)
                                 
-                                Text(habitName.isEmpty ? settings.localizedString(for: "plant.create.preview.habit") : habitName)
+                                Text(habitName.isEmpty ? (isNegative ? settings.localizedString(for: "plant.create.preview.bad_habit") : settings.localizedString(for: "plant.create.preview.habit")) : habitName)
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
                                 
-                                HStack(spacing: 4) {
-                                    Image(systemName: selectedCategory.icon)
-                                    Text(settings.localizedString(for: selectedCategory.localizationKey))
+                                if !isNegative {
+                                    HStack(spacing: 4) {
+                                        Image(systemName: selectedCategory.icon)
+                                        Text(settings.localizedString(for: selectedCategory.localizationKey))
+                                    }
+                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.primary)
+                                    .padding(.top, 2)
                                 }
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                .foregroundStyle(.primary)
-                                .padding(.top, 2)
                             }
                         }
                         .padding(.top, 20)
@@ -84,67 +86,143 @@ struct CustomPlantCreationView: View {
                             // Text Input Section
                             VStack(alignment: .leading, spacing: 20) {
                                 customTextField(
-                                    title: settings.localizedString(for: "plant.create.field.plant_name"), 
-                                    placeholder: settings.localizedString(for: "plant.create.placeholder.plant"), 
+                                    title: isNegative ? settings.localizedString(for: "plant.create.field.trash_name") : settings.localizedString(for: "plant.create.field.plant_name"), 
+                                    placeholder: isNegative ? settings.localizedString(for: "plant.create.placeholder.trash_name") : settings.localizedString(for: "plant.create.placeholder.plant"), 
                                     text: $plantName
                                 )
                                 
                                 customTextField(
-                                    title: settings.localizedString(for: "plant.create.field.habit_name"), 
-                                    placeholder: settings.localizedString(for: "plant.create.placeholder.habit"), 
+                                    title: isNegative ? settings.localizedString(for: "plant.create.preview.bad_habit") : settings.localizedString(for: "plant.create.field.habit_name"), 
+                                    placeholder: isNegative ? settings.localizedString(for: "plant.create.placeholder.bad_habit") : settings.localizedString(for: "plant.create.placeholder.habit"), 
                                     text: $habitName
                                 )
                             }
                             
-                            // Category Picker (iOS Menu Style)
+                            // Bad Habit 3D Toggle Selector
                             VStack(alignment: .leading, spacing: 12) {
-                                Text(settings.localizedString(for: "shop.category.label"))
+                                Text(settings.localizedString(for: "plant.create.habit_type"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .padding(.horizontal, 4)
                                 
-                                Menu {
-                                    ForEach(HabitCategory.allCases, id: \.self) { cat in
-                                        Button {
-                                            selectedCategory = cat
-                                            FeedbackManager.shared.playTap()
-                                        } label: {
-                                            Label(
-                                                settings.localizedString(for: cat.localizationKey),
-                                                systemImage: cat.icon
-                                            )
+                                HStack(spacing: 16) {
+                                    // Button 1: Gute Angewohnheit
+                                    Button {
+                                        FeedbackManager.shared.playTap()
+                                        isNegative = false
+                                        selectedColor = "green"
+                                        // Reset to first plant icon
+                                        if let firstIcon = GameDatabase.allPlants.compactMap({ $0.assetName ?? $0.symbolName }).sorted().first {
+                                            selectedIcon = firstIcon
                                         }
-                                    }
-                                } label: {
-                                    HStack {
-                                        Image(systemName: selectedCategory.icon)
-                                            .font(.system(size: 20, weight: .bold))
-                                            .foregroundStyle(.primary)
-                                            .frame(width: 32, height: 32)
-                                        
-                                        VStack(alignment: .leading, spacing: 2) {
-                                            Text(settings.localizedString(for: selectedCategory.localizationKey))
-                                                .font(.system(size: 17, weight: .bold, design: .rounded))
-                                                .foregroundStyle(.primary)
-                                            Text(settings.localizedString(for: "category.selection_hint"))
-                                                .font(.system(size: 13))
-                                                .foregroundStyle(.secondary)
+                                    } label: {
+                                        HStack {
+                                            Image(systemName: "plus.circle.fill")
+                                            Text(settings.localizedString(for: "plant.create.good_habit"))
                                         }
-                                        
-                                        Spacer()
-                                        
-                                        Image(systemName: "chevron.up.chevron.down")
-                                            .font(.system(size: 14, weight: .bold))
-                                            .foregroundStyle(.secondary)
+                                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 12)
                                     }
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 12)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 16)
-                                            .fill(Color(UIColor.secondarySystemGroupedBackground))
-                                            .shadow(color: .black.opacity(0.04), radius: 5, x: 0, y: 2)
-                                    )
+                                    .buttonStyle(Item3DButtonStyle(
+                                        farbe: !isNegative ? Color.gruenPrimary : .white,
+                                        sekundaerFarbe: !isNegative ? Color.gruenSecondary : Color(hex: "#E5E5EA"),
+                                        groesse: 48,
+                                        iconSkalierung: 1.0,
+                                        shadowDepthFactor: 0.08,
+                                        isRectangular: true,
+                                        isPermanentlyPressed: !isNegative
+                                    ))
+                                    
+                                    // Button 2: Schlechte Angewohnheit
+                                    Button {
+                                        FeedbackManager.shared.playTap()
+                                        isNegative = true
+                                        selectedColor = "orange"
+                                        // Reset to first decoration/trash icon
+                                        if let firstIcon = GameDatabase.allDecorations.map({ $0.sfSymbol }).sorted().first {
+                                            selectedIcon = firstIcon
+                                        }
+                                    } label: {
+                                        HStack {
+                                            Image(systemName: "minus.circle.fill")
+                                            Text(settings.localizedString(for: "plant.create.preview.bad_habit"))
+                                        }
+                                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 12)
+                                    }
+                                    .buttonStyle(Item3DButtonStyle(
+                                        farbe: isNegative ? Color.red : .white,
+                                        sekundaerFarbe: isNegative ? Color.red.darker() : Color(hex: "#E5E5EA"),
+                                        groesse: 48,
+                                        iconSkalierung: 1.0,
+                                        shadowDepthFactor: 0.08,
+                                        isRectangular: true,
+                                        isPermanentlyPressed: isNegative
+                                    ))
                                 }
-                                .tint(.primary)
+                            }
+                            
+                            // Category Picker (Only shown when NOT isNegative)
+                            if !isNegative {
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text(settings.localizedString(for: "shop.category.label"))
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        .padding(.horizontal, 4)
+                                    
+                                    Menu {
+                                        ForEach(HabitCategory.allCases, id: \.self) { cat in
+                                            Button {
+                                                selectedCategory = cat
+                                                FeedbackManager.shared.playTap()
+                                            } label: {
+                                                Label(
+                                                    settings.localizedString(for: cat.localizationKey),
+                                                    systemImage: cat.icon
+                                                )
+                                            }
+                                        }
+                                    } label: {
+                                        ZStack(alignment: .leading) {
+                                            // Bottom shadow base layer
+                                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                                .fill(Color(hex: "#E5E5EA"))
+                                                .frame(height: 56)
+                                            
+                                            // Top white layer shifted upwards
+                                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                                .fill(Color.white)
+                                                .frame(height: 56)
+                                                .overlay(
+                                                    HStack {
+                                                        Image(systemName: selectedCategory.icon)
+                                                            .font(.system(size: 20, weight: .bold))
+                                                            .foregroundStyle(.primary)
+                                                            .frame(width: 32, height: 32)
+                                                        
+                                                        VStack(alignment: .leading, spacing: 2) {
+                                                            Text(settings.localizedString(for: selectedCategory.localizationKey))
+                                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                                    .foregroundStyle(.primary)
+                                                            Text(settings.localizedString(for: "category.selection_hint"))
+                                                                .font(.system(size: 12))
+                                                                .foregroundStyle(.secondary)
+                                                        }
+                                                        
+                                                        Spacer()
+                                                        
+                                                        Image(systemName: "chevron.up.chevron.down")
+                                                            .font(.system(size: 14, weight: .bold))
+                                                            .foregroundStyle(.secondary)
+                                                    }
+                                                    .padding(.horizontal, 16)
+                                                )
+                                                .offset(y: -4)
+                                        }
+                                        .frame(height: 60)
+                                    }
+                                    .tint(.primary)
+                                }
                             }
                             
                             // Icon Picker
@@ -168,7 +246,7 @@ struct CustomPlantCreationView: View {
                                 }
                                 .padding(.horizontal, 4)
                                 
-                                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 6), spacing: 12) {
+                                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: isNegative ? 6 : 4), spacing: 12) {
                                     ForEach(availableIcons, id: \.self) { icon in
                                         Button {
                                             selectedIcon = icon
@@ -177,40 +255,49 @@ struct CustomPlantCreationView: View {
                                             ZStack {
                                                 Circle()
                                                     .fill(selectedIcon == icon ? uiColor(for: selectedColor).opacity(0.15) : Color.clear)
-                                                    .frame(width: 44, height: 44)
+                                                    .frame(width: isNegative ? 44 : 74)
                                                 
-                                                Image(systemName: icon)
-                                                    .font(.system(size: 20))
-                                                    .foregroundStyle(selectedIcon == icon ? uiColor(for: selectedColor) : .secondary)
+                                                if UIImage(named: icon) != nil {
+                                                    Image(icon)
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: isNegative ? 28 : 70, height: isNegative ? 28 : 70)
+                                                } else {
+                                                    Image(systemName: icon)
+                                                        .font(.system(size: isNegative ? 20 : 40))
+                                                        .foregroundStyle(selectedIcon == icon ? uiColor(for: selectedColor) : .secondary)
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
                             
-                            // Color Picker
-                            VStack(alignment: .leading, spacing: 12) {
-                                Text(settings.localizedString(for: "plant.create.select_color"))
-                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                    .padding(.horizontal, 4)
-                                
-                                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 6), spacing: 12) {
-                                    ForEach(availableColors, id: \.self) { color in
-                                        Button {
-                                            selectedColor = color
-                                            FeedbackManager.shared.playTap()
-                                        } label: {
-                                            ZStack {
-                                                Circle()
-                                                    .fill(uiColor(for: color))
-                                                    .frame(width: 34, height: 34)
-                                                    .shadow(color: selectedColor == color ? uiColor(for: color).opacity(0.6) : .clear, radius: 8)
-                                                
-                                                if selectedColor == color {
+                            // Color Picker (Only shown when NOT isNegative)
+                            if !isNegative {
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text(settings.localizedString(for: "plant.create.select_color"))
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        .padding(.horizontal, 4)
+                                    
+                                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 6), spacing: 12) {
+                                        ForEach(availableColors, id: \.self) { color in
+                                            Button {
+                                                selectedColor = color
+                                                FeedbackManager.shared.playTap()
+                                            } label: {
+                                                ZStack {
                                                     Circle()
-                                                        .stroke(uiColor(for: color), lineWidth: 3)
-                                                        .frame(width: 44, height: 44)
-                                                        .opacity(0.8)
+                                                        .fill(uiColor(for: color))
+                                                        .frame(width: 34, height: 34)
+                                                        .shadow(color: selectedColor == color ? uiColor(for: color).opacity(0.6) : .clear, radius: 8)
+                                                    
+                                                    if selectedColor == color {
+                                                        Circle()
+                                                            .stroke(uiColor(for: color), lineWidth: 3)
+                                                            .frame(width: 44, height: 44)
+                                                            .opacity(0.8)
+                                                    }
                                                 }
                                             }
                                         }
@@ -221,26 +308,37 @@ struct CustomPlantCreationView: View {
                         .padding(.horizontal, 24)
                         
                         // MARK: - Save Button
-                        Button(action: {
-                            FeedbackManager.shared.playSuccess()
-                            gardenStore.addCustomPlant(
-                                name: plantName, 
-                                habit: habitName, 
-                                icon: selectedIcon, 
-                                color: selectedColor,
-                                category: selectedCategory
-                            )
-                            dismiss()
-                        }) {
-                            Text(settings.localizedString(for: "button.save_create"))
+                        VStack(spacing: 8) {
+                            Button(action: {
+                                FeedbackManager.shared.playSuccess()
+                                gardenStore.addCustomPlant(
+                                    name: plantName, 
+                                    habit: habitName, 
+                                    icon: selectedIcon, 
+                                    color: selectedColor,
+                                    category: selectedCategory,
+                                    isNegative: isNegative
+                                )
+                                dismiss()
+                            }) {
+                                Text(settings.localizedString(for: "button.save_create"))
+                            }
+                            .buttonStyle(DuolingoButtonStyle(
+                                size: .large,
+                                fillWidth: true,
+                                backgroundColor: isFormValid ? uiColor(for: selectedColor) : .gray.opacity(0.3),
+                                shadowColor: isFormValid ? uiColor(for: selectedColor).darker() : .gray.opacity(0.5)
+                            ))
+                            .disabled(!isFormValid)
+                            
+                            if gardenStore.seeds < 10 {
+                                Text(settings.localizedString(for: "plant.create.insufficient_seeds"))
+                                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.red)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.top, 4)
+                            }
                         }
-                        .buttonStyle(DuolingoButtonStyle(
-                            size: .large,
-                            fillWidth: true,
-                            backgroundColor: isFormValid ? uiColor(for: selectedColor) : .gray.opacity(0.3),
-                            shadowColor: isFormValid ? uiColor(for: selectedColor).darker() : .gray.opacity(0.5)
-                        ))
-                        .disabled(!isFormValid)
                         .padding(.horizontal, 24)
                         .padding(.top, 10)
                         
@@ -251,15 +349,11 @@ struct CustomPlantCreationView: View {
                     }
                 }
             }
-            .navigationTitle(settings.localizedString(for: "inventory.create_plant"))
+            .navigationTitle(isNegative ? settings.localizedString(for: "plant.create.preview.bad_habit") : settings.localizedString(for: "inventory.create_plant"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button { dismiss() } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.primary)
-                    }
+                    LiquidGlassDismissButton { dismiss() }
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
@@ -282,6 +376,12 @@ struct CustomPlantCreationView: View {
                 AllIconsSheet(selectedIcon: $selectedIcon, selectedColor: uiColor(for: selectedColor), icons: allIcons)
                     .environmentObject(settings)
             }
+            .onAppear {
+                // Initialize to first plant icon
+                if let firstIcon = GameDatabase.allPlants.compactMap({ $0.assetName ?? $0.symbolName }).sorted().first {
+                    selectedIcon = firstIcon
+                }
+            }
         }
     }
     
@@ -293,15 +393,24 @@ struct CustomPlantCreationView: View {
                 .foregroundStyle(.secondary)
                 .padding(.horizontal, 4)
             
-            TextField(placeholder, text: text)
-                .font(.system(size: 17, weight: .medium, design: .rounded))
-                .padding(.horizontal, 16)
-                .padding(.vertical, 14)
-                .background(
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color(UIColor.secondarySystemGroupedBackground))
-                        .shadow(color: .black.opacity(0.04), radius: 5, x: 0, y: 2)
-                )
+            ZStack(alignment: .leading) {
+                // Bottom shadow base layer
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(Color(hex: "#E5E5EA"))
+                    .frame(height: 52)
+                
+                // Top white layer shifted upwards
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(Color.white)
+                    .frame(height: 52)
+                    .overlay(
+                        TextField(placeholder, text: text)
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                            .padding(.horizontal, 16)
+                    )
+                    .offset(y: -4)
+            }
+            .frame(height: 56)
         }
     }
     
@@ -351,9 +460,16 @@ struct AllIconsSheet: View {
                                     .fill(selectedIcon == icon ? selectedColor.opacity(0.15) : Color.clear)
                                     .frame(width: 54, height: 54)
                                 
-                                Image(systemName: icon)
-                                    .font(.system(size: 24))
-                                    .foregroundStyle(selectedIcon == icon ? selectedColor : .secondary)
+                                if UIImage(named: icon) != nil {
+                                    Image(icon)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 36, height: 36)
+                                } else {
+                                    Image(systemName: icon)
+                                        .font(.system(size: 24))
+                                        .foregroundStyle(selectedIcon == icon ? selectedColor : .secondary)
+                                }
                             }
                         }
                     }

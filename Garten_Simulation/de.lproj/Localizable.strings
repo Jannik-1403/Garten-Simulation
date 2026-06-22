@@ -393,7 +393,7 @@
 "igel_name_edit_hint_free" = "Die erste Namensänderung ist völlig kostenlos!";
 "igel_name_edit_hint_paid" = "Jede weitere Namensänderung kostet Münzen.";
 "igel_name_edit_title" = "Namen ändern";
-"igel_name_placeholder" = "Dein Igel";
+"igel_name_placeholder" = "Max Mustermann";
 "igel_pose_astronaut" = "Astronaut";
 "igel_pose_ninja" = "Ninja";
 "igel_pose_schlafanzug" = "Schlafanzug";
@@ -652,7 +652,7 @@
 "pfad_abschluss_desc" = "Unglaublich! Du hast 90 Tage am Stück gemeistert. Hier ist deine wohlverdiente Belohnung:";
 "pfad_abschluss_titel" = "90 Tage geschafft!";
 "pfad_activation_90_tage" = "90 Tage";
-"pfad_activation_belohnung" = "Schließe die 90 Tage ab, um 5.000 Münzen zu erhalten!";
+"pfad_activation_belohnung" = "Schließe die 90 Tage ab, um deine finale Belohnung zu erhalten!";
 "pfad_activation_btn" = "PFAD AKTIVIEREN";
 "pfad_activation_desc" = "Was passiert nach 90 Tagen?\\nDu erreichst die Meisterschaft! Deine Pflanze wird sich vollständig entfalten und du baust eine starke, langfristige Gewohnheit auf.";
 "pfad_activation_diff_change_title" = "Du hast %@ ausgewählt. Bist du noch immer %@ oder willst du das jetzt höher machen?";
@@ -743,11 +743,11 @@
 "pfad_produktiv_phase_vertiefung_desc" = "Meistere deine Zeit. Fokus wird zur Gewohnheit.";
 "pfad_progress_format" = "Tag %d / 90";
 "pfad_schwierigkeit_anfaenger" = "Anfänger";
-"pfad_schwierigkeit_anfaenger_desc" = "Ideal für Einsteiger. Kleine, einfache Schritte führen dich entspannt zum Erfolg.";
+"pfad_schwierigkeit_anfaenger_desc" = "Ideal für Einsteiger. Kleine, einfache Schritte führen dich entspannt zum Erfolg. Belohnung: 500 Münzen";
 "pfad_schwierigkeit_experte" = "Experte";
-"pfad_schwierigkeit_experte_desc" = "Die ultimative Herausforderung. Zeige deine Disziplin und meistere anspruchsvolle Aufgaben!";
+"pfad_schwierigkeit_experte_desc" = "Die ultimative Herausforderung. Zeige deine Disziplin und meistere anspruchsvolle Aufgaben! Belohnung: 1.500 Münzen";
 "pfad_schwierigkeit_fortgeschritten" = "Fortgeschritten";
-"pfad_schwierigkeit_fortgeschritten_desc" = "Für ambitionierte Gärtner. Eine ausgewogene Mischung aus Herausforderung und Spaß.";
+"pfad_schwierigkeit_fortgeschritten_desc" = "Für ambitionierte Gärtner. Eine ausgewogene Mischung aus Herausforderung und Spaß. Belohnung: 1.000 Münzen";
 "pfad_schwierigkeit_hinweis" = "Die Schwierigkeit beeinflusst die tägliche Aufgabenmenge und deinen XP-Gewinn.";
 "pfad_schwierigkeit_starten" = "Abenteuer beginnen";
 "pfad_schwierigkeit_titel" = "Wie fit bist du schon?";
@@ -1014,7 +1014,7 @@
 "profile.user.xp.format" = "%d XP";
 "profile.xp.earned" = "Verdiente XP";
 "profile.xp.max" = "Meiste XP";
-"profile.xp.total" = "Gesamt XP";
+"profile.xp.total" = "Gesamt-XP";
 "progression_cooking_aufbau" = "Koche heute mit mindestens 3 frischen Gemüsesorten.";
 "progression_cooking_einstieg" = "Koche heute eine einfache, gesunde Mahlzeit selbst.";
 "progression_cooking_meisterschaft" = "Du bist ein Meisterkoch deiner Gesundheit. Genieße dein Essen!";
@@ -1258,7 +1258,7 @@
 "statistik_share_letztes_jahr" = "Letztes Jahr";
 "statistik_share_status" = "Mein Status";
 "statistik_titel" = "Statistik";
-"stats.activity.title" = "Aktivität";
+"stats.activity.title" = "Score";
 "stats.balance.description" = "Deine Life Balance zeigt dir, wie gleichmäßig du dich um deine verschiedenen Gewohnheiten kümmerst.";
 "stats.balance.title" = "Life Balance";
 "stats.coach.bullet1" = "Gleichgewicht: Versuche, alle Lebensbereiche gleichmäßig zu pflegen.";
@@ -1290,8 +1290,8 @@
 "stats.plants.top" = "Erfolgreichste Pflanze";
 "stats.plants.worst" = "Braucht mehr Liebe";
 "stats.score.card.title" = "Garten-Score";
-"stats.score.konsistenz" = "Konstanz";
-"stats.score.konsistenz.period_format" = "Gießquote in %@";
+"stats.score.konsistenz" = "Habit Score";
+"stats.score.konsistenz.period_format" = "Score-Entwicklung in %@";
 "stats.score.msg.excellent" = "Hervorragende Arbeit! Dein Garten blüht in voller Pracht.";
 "stats.score.msg.good" = "Gute Arbeit! Dein Garten entwickelt sich großartig.";
 "stats.score.msg.low" = "Mach weiter so! Dein Garten wird bald wachsen.";
@@ -1675,7 +1675,7 @@
 "habit.stats.impact" = "Negativer Effekt";
 "habit.impact.title" = "Die 1%-Methode";
 "habit.impact.explanation" = "Laut James Clears 'Die 1%-Methode' wirst du durch diese Gewohnheit jedes Mal 1% schlechter (0,99). Dies hat auf lange Sicht einen immensen negativen Effekt auf dein Leben.";
-"habit.tips.title" = "Tipps (Die 4 Gesetze)";
+"habit.tips.title" = "Tipps";
 "habit.tip.1" = "Auslöser unsichtbar machen: Entferne alle Reize, die diese Gewohnheit auslösen, aus deiner Umgebung.";
 "habit.tip.2" = "Verlangen unattraktiv machen: Führe dir die negativen Folgen vor Augen, um die Gewohnheit gedanklich abzuwerten.";
 "habit.tip.3" = "Reaktion schwierig machen: Erhöhe die Hürden und Schritte, die nötig sind, um die Gewohnheit auszuführen.";
@@ -1759,3 +1759,108 @@
 "trash.schlaf_killer_koffein.tip.2" = "Koffein blockiert Adenosin (dein Müdigkeitssignal) – du schläfst weniger tief und erholst dich schlechter.";
 "trash.schlaf_killer_koffein.tip.3" = "Ersetze Nachmittagskaffee durch entkoffeinierten Kaffee oder Kräutertee.";
 "trash.schlaf_killer_koffein.tip.4" = "Tracke deine Schlafqualität mit und ohne Koffein – der Unterschied wird dich überzeugen.";
+"pfad_tag_ausstehend" = "Ausstehend";
+
+"rarity.common" = "GEWÖHNLICH";
+"rarity.rare" = "SELTEN";
+"rarity.epic" = "EPISCH";
+"rarity.legendary" = "LEGENDÄR";
+"rarity.mystic" = "MASTER";
+
+"plant.create.field.is_negative" = "Schlechte Gewohnheit";
+"plant.create.field.is_negative_hint" = "Das Abhaken verringert den Zähler um 1.";
+
+// MARK: - Assessment
+
+
+// Finance Profiles
+
+
+
+
+// Finance Questions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MARK: - Mental Assessment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MARK: - Health Assessment (Gesundheit & Biologisches Fundament)
+
+
+// Profile
+
+
+
+
+// Score Labels
+
+// Frage 1: Der kognitive Crash
+
+// Frage 2: Die Rache des Weckers
+
+// Frage 3: Der Krankheits-Ego-Trip
+
+// Frage 4: Die Notfall-Betankung
+
+// Frage 5: Der Dopamin-Schlaf
+
+// Frage 6: Die Wasser-Lüge
+
+// Frage 7: Das Wochenend-Koma
+
+// Frage 8: Soziales Gift
+
+// Frage 9: Schmerz-Ignoranz
+
+// Frage 10: Die Alibi-Vitamine
+
+// Frage 11: Der Bildschirm-Kredit
+
+// Frage 12: Die Basis-Hygiene
+
+// Frage 13: Der Stress-Atem
+
+// Frage 14: Die blinde Ignoranz
+
+// Frage 15: Das wahre Motiv
+
+
+// MARK: - Fitness Assessment
+
+
+
+
+
+

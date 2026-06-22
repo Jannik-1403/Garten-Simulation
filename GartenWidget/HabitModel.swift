@@ -169,6 +169,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var totalMlGegossen: Double = 0
     @Published var lebenBereitsAbgezogen: Bool = false
     @Published var isDead: Bool = false
+    @Published var isNegative: Bool = false
     
     // Wiederbelebungs-System
     @Published var wiederbelebtAm: Date? = nil
@@ -357,7 +358,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         lastNotifiedCycle: Int = 0,
         plantID: String? = nil,
         reminderTime: Date? = nil,
-        customReminderMessage: String? = nil
+        customReminderMessage: String? = nil,
+        isNegative: Bool = false
     ) {
         self.id = id
         self.name = name
@@ -372,6 +374,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.decayDays = decayDays
         self.missedCycles = missedCycles
         self.lastNotifiedCycle = lastNotifiedCycle
+        self.isNegative = isNegative
         self.wiederbelebtAm = nil
         self.strafTage = 3
         self.reminderTime = reminderTime
@@ -409,7 +412,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case maxLevel, xpPerCompletion, waterNeedPerDay, decayDays, missedCycles, lastNotifiedCycle
         case notiz, notizen, timerDatum, xpHistory, totalCoinsEarned, totalMlGegossen, plantID
         case wiederbelebtAm, strafTage, reminderTime, customReminderMessage, wateringDates
-        case lebenBereitsAbgezogen, isDead
+        case lebenBereitsAbgezogen, isDead, isNegative
         case reminderSchedule
         case pfadAktiviertAm, pfadCheckedDates
     }
@@ -480,6 +483,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         wateringDates = try container.decodeIfPresent([Date].self, forKey: .wateringDates) ?? []
         lebenBereitsAbgezogen = try container.decodeIfPresent(Bool.self, forKey: .lebenBereitsAbgezogen) ?? false
         isDead = try container.decodeIfPresent(Bool.self, forKey: .isDead) ?? false
+        isNegative = try container.decodeIfPresent(Bool.self, forKey: .isNegative) ?? false
         pfadAktiviertAm = try container.decodeIfPresent(Date.self, forKey: .pfadAktiviertAm)
         pfadCheckedDates = try container.decodeIfPresent([Date].self, forKey: .pfadCheckedDates) ?? []
         
@@ -529,6 +533,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(wateringDates, forKey: .wateringDates)
         try container.encode(lebenBereitsAbgezogen, forKey: .lebenBereitsAbgezogen)
         try container.encode(isDead, forKey: .isDead)
+        try container.encode(isNegative, forKey: .isNegative)
         try container.encodeIfPresent(reminderSchedule, forKey: .reminderSchedule)
         try container.encodeIfPresent(pfadAktiviertAm, forKey: .pfadAktiviertAm)
         try container.encode(pfadCheckedDates, forKey: .pfadCheckedDates)

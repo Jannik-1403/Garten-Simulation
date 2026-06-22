@@ -68,7 +68,7 @@ struct GartenPassBelohnung: Identifiable {
             
         case .gluecksradDrehung(let n):
             let key = n == 1 ? "reward_type_spin_singular" : "reward_type_spin_plural"
-            return ("\(n) \(localized(key))", "arrow.2.circlepath", false)
+            return ("\(n) \(localized(key))", "Spin", true)
             
         case .powerUp(let id):
             if let pu = GameDatabase.allPowerUps.first(where: { $0.id == id }) {

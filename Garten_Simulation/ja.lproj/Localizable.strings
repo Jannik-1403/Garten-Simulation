@@ -652,7 +652,7 @@
 "pfad_abschluss_desc" = "信じられない！ You mastered 90 days in a row.これが当然の報酬です:";
 "pfad_abschluss_titel" = "90日間完了しました！";
 "pfad_activation_90_tage" = "90日";
-"pfad_activation_belohnung" = "90 日間を完了すると 5,000 コインを獲得できます!";
+"pfad_activation_belohnung" = "90 日間を完了して、最終報酬を受け取ってください!";
 "pfad_activation_btn" = "パスのアクティブ化";
 "pfad_activation_desc" = "90日後はどうなりますか?\\nあなたはマスタリーを達成します！あなたの植物は完全に開花し、強力で長く続く習慣を築くことができます。";
 "pfad_activation_diff_change_title" = "%@ を選択しました。まだ %@ のままですか? それとも変更しますか?";
@@ -743,11 +743,11 @@
 "pfad_produktiv_phase_vertiefung_desc" = "時間をマスターしましょう。集中力が習慣になります。";
 "pfad_progress_format" = "日 %d / 90";
 "pfad_schwierigkeit_anfaenger" = "初心者";
-"pfad_schwierigkeit_anfaenger_desc" = "初心者に最適です。小さくてシンプルなステップが、リラックスした方法であなたを成功に導きます。";
+"pfad_schwierigkeit_anfaenger_desc" = "初心者に最適です。小さくてシンプルなステップが、リラックスした方法であなたを成功に導きます。 報酬：500コイン";
 "pfad_schwierigkeit_experte" = "専門家";
-"pfad_schwierigkeit_experte_desc" = "究極の挑戦。規律を示して、要求の厳しいタスクをマスターしてください。";
+"pfad_schwierigkeit_experte_desc" = "究極の挑戦。規律を示して、要求の厳しいタスクをマスターしてください。 報酬：1,500コイン";
 "pfad_schwierigkeit_fortgeschritten" = "中級";
-"pfad_schwierigkeit_fortgeschritten_desc" = "野心的な庭師向け。挑戦と楽しみのバランスの取れた組み合わせ。";
+"pfad_schwierigkeit_fortgeschritten_desc" = "野心的な庭師向け。挑戦と楽しみのバランスの取れた組み合わせ。 報酬：1,000コイン";
 "pfad_schwierigkeit_hinweis" = "難易度は、毎日のタスク量と獲得 XP に影響します。";
 "pfad_schwierigkeit_starten" = "冒険を始めましょう";
 "pfad_schwierigkeit_titel" = "あなたはすでにどれくらい健康ですか？";
@@ -1675,7 +1675,7 @@
 "habit.stats.impact" = "悪影響";
 "habit.impact.title" = "1%の法則";
 "habit.impact.explanation" = "ジェームズ・クリアの『ジェームズ・クリア式 複利で伸びる1つの習慣』によると、この習慣を実行するたびに1%悪くなります（0.99）。これは長期的に人生に莫大な悪影響を及ぼします。";
-"habit.tips.title" = "ヒント（4つの法則）";
+"habit.tips.title" = "ヒント";
 "habit.tip.1" = "見えなくする：この習慣を引き起こすすべてのきっかけを環境から取り除く。";
 "habit.tip.2" = "魅力をなくす：悪い結果に焦点を当て、習慣の価値を精神的に下げる。";
 "habit.tip.3" = "難しくする：習慣を実行するために必要な摩擦とステップを増やす。";
@@ -1759,3 +1759,14 @@
 "trash.schlaf_killer_koffein.tip.2" = "カフェインはアデノシン（眠気信号）をブロックし、深い睡眠と回復を妨げます。";
 "trash.schlaf_killer_koffein.tip.3" = "午後のコーヒーをデカフェやハーブティーに置き換えましょう。";
 "trash.schlaf_killer_koffein.tip.4" = "カフェインありなしの睡眠の質を追跡しましょう。その違いがあなたを納得させます。";
+"pfad_tag_ausstehend" = "保留中";
+
+"rarity.common" = "コモン";
+"rarity.rare" = "レア";
+"rarity.epic" = "エピック";
+"rarity.legendary" = "レジェンド";
+"rarity.mystic" = "マスター";
+
+// MARK: - Assessment (English Fallback)
+
+// Finance Quiz – Portfolio extension Q6–Q9 (English fallback)

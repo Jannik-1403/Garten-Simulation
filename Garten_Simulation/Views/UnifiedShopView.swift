@@ -16,11 +16,12 @@ struct ShopItemCard: View {
     let subtitle: String
     let price: Int
     var badgeText: String? = nil
+    var rarity: ItemRarity? = nil
     var plant: Plant? = nil
     let onBuy: () -> Void
 
     var body: some View {
-        DuolingoCard(action: onBuy, badgeText: badgeText) {
+        DuolingoCard(action: onBuy, badgeText: badgeText, badgeColor: badgeText != nil ? accentColor : Color.blauPrimary) {
             VStack(alignment: .center, spacing: 12) {
                 Group {
                     if let plant = plant {
@@ -54,10 +55,16 @@ struct ShopItemCard: View {
                         .lineLimit(2)
                 }
 
-                GemsIcon(wert: price)
-                    .padding(.top, 4)
+                if price == 0 {
+                    Stat3DTitleView(title: settings.localizedString(for: "shop.free"), color: .gruenPrimary, size: 16)
+                        .padding(.top, 4)
+                } else {
+                    GemsIcon(wert: price)
+                        .padding(.top, 4)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .center)
+            .padding(16)
         }
     }
 }
@@ -175,6 +182,15 @@ struct UnifiedShopView: View {
                                     VStack(spacing: 12) {
                                         ForEach(gefiltertePowerUps) { item in
                                             let p = item.basePrice
+                                            let badge: String? = {
+                                                switch item.rarity {
+                                                case .mystic: return settings.localizedString(for: "rarity.mystic")
+                                                case .legendary: return settings.localizedString(for: "rarity.legendary")
+                                                case .epic: return settings.localizedString(for: "rarity.epic")
+                                                case .rare: return settings.localizedString(for: "rarity.rare")
+                                                case .common: return settings.localizedString(for: "rarity.common")
+                                                }
+                                            }()
                                             ShopItemCard(
                                                 icon: item.symbolName,
                                                 accentColor: item.color,
@@ -182,11 +198,13 @@ struct UnifiedShopView: View {
                                                 name: item.name,
                                                 subtitle: item.description,
                                                 price: p,
+                                                badgeText: badge,
+                                                rarity: item.rarity,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: item.id,
                                                         titleKey: item.name,
-                                                        subtitle: item.rarity.rawValue,
+                                                        subtitle: "",
                                                         descriptionKey: item.description,
                                                         price: p,
                                                         icon: item.symbolName,

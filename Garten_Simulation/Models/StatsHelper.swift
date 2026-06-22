@@ -28,75 +28,208 @@ struct RarityData: Identifiable {
 }
 
 class StatsHelper {
-    static func getWateringHistory(from plants: [HabitModel]) -> [DailyWatering] {
+    static func getWateringHistory(from plants: [HabitModel], badHabitExecutions: [String: [BadHabitExecution]] = [:], days: Int = 7) -> [DailyWatering] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
         
-        // Find the absolute oldest activity to determine the true start of history
-        var firstActivityDate: Date? = nil
-        for plant in plants {
-            if let first = plant.wateringDates.min() {
-                if firstActivityDate == nil || first < firstActivityDate! {
-                    firstActivityDate = calendar.startOfDay(for: first)
+        if days == 1 {
+            // Collect all changes today with their exact timestamps
+            struct TempEvent {
+                let date: Date
+                let change: Int
+            }
+            var tempEvents: [TempEvent] = []
+            
+            for plant in plants {
+                let change = plant.isNegative ? -1 : 1
+                for wateringDate in plant.wateringDates {
+                    if calendar.isDate(wateringDate, inSameDayAs: today) {
+                        tempEvents.append(TempEvent(date: wateringDate, change: change))
+                    }
                 }
             }
+            
+            for executionsList in badHabitExecutions.values {
+                for execution in executionsList {
+                    if calendar.isDate(execution.date, inSameDayAs: today) {
+                        tempEvents.append(TempEvent(date: execution.date, change: -1))
+                    }
+                }
+            }
+            
+            // Sort chronologically
+            tempEvents.sort(by: { $0.date < $1.date })
+            
+            var history: [DailyWatering] = []
+            
+            // Start of day point (0:00 today)
+            history.append(DailyWatering(date: today, count: 0))
+            
+            var runningTotal = 0
+            for event in tempEvents {
+                runningTotal += event.change
+                history.append(DailyWatering(date: event.date, count: runningTotal))
+            }
+            
+            // End of day point (0:00 of next day)
+            if let nextDay = calendar.date(byAdding: .day, value: 1, to: today),
+               let midnightNextDay = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: nextDay) {
+                history.append(DailyWatering(date: midnightNextDay, count: runningTotal))
+            }
+            
+            return history
         }
         
-        let startDate = firstActivityDate ?? today
-        var history: [Date: Int] = [:]
+        // Multi-day view (Week, Month, Year, All Time)
+        var actualDays = days
+        if days == 10000 {
+            var earliest = today
+            for plant in plants {
+                if let pEarliest = plant.wateringDates.min(), pEarliest < earliest {
+                    earliest = pEarliest
+                }
+                if plant.gekauftAm < earliest {
+                    earliest = plant.gekauftAm
+                }
+            }
+            for list in badHabitExecutions.values {
+                if let eEarliest = list.map({ $0.date }).min(), eEarliest < earliest {
+                    earliest = eEarliest
+                }
+            }
+            let diff = calendar.dateComponents([.day], from: calendar.startOfDay(for: earliest), to: today).day ?? 0
+            actualDays = max(7, diff + 1)
+        }
         
-        // Always show at least today and up to 7 days, but only back to startDate
-        for i in 0..<7 {
+        // Generate and sort the dates in the timeframe
+        var periodDates: [Date] = []
+        for i in 0..<actualDays {
             if let date = calendar.date(byAdding: .day, value: -i, to: today) {
-                let startOfDate = calendar.startOfDay(for: date)
-                if startOfDate >= startDate {
-                    history[startOfDate] = 0
-                }
+                periodDates.append(calendar.startOfDay(for: date))
             }
         }
+        periodDates.append(today)
+        let sortedPeriodDates = Array(Set(periodDates)).sorted()
         
-        // Always ensure at least today is present
-        history[today] = 0
+        // Start the cumulative total at 0 at the beginning of the period
+        var runningTotal = 0
+        
+        // 2. Count the changes on each day within the period
+        var dailyChanges: [Date: Int] = [:]
+        for date in sortedPeriodDates {
+            dailyChanges[date] = 0
+        }
         
         for plant in plants {
+            let change = plant.isNegative ? -1 : 1
             for wateringDate in plant.wateringDates {
                 let startOfDay = calendar.startOfDay(for: wateringDate)
-                if history[startOfDay] != nil {
-                    history[startOfDay, default: 0] += 1
+                if dailyChanges[startOfDay] != nil {
+                    dailyChanges[startOfDay, default: 0] += change
                 }
             }
         }
         
-        return history.map { DailyWatering(date: $0.key, count: $0.value) }
-            .sorted { $0.date < $1.date }
+        for executionsList in badHabitExecutions.values {
+            for execution in executionsList {
+                let startOfDay = calendar.startOfDay(for: execution.date)
+                if dailyChanges[startOfDay] != nil {
+                    dailyChanges[startOfDay, default: 0] -= 1
+                }
+            }
+        }
+        
+        // 3. Accumulate daily changes chronologically
+        var history: [DailyWatering] = []
+        for date in sortedPeriodDates {
+            let change = dailyChanges[date] ?? 0
+            runningTotal += change
+            history.append(DailyWatering(date: date, count: runningTotal))
+        }
+        
+        return history
     }
-    
-    static func getXPHistory(from plants: [HabitModel], currentTotalXP: Int) -> [DailyXP] {
+    static func getXPHistory(from plants: [HabitModel], currentTotalXP: Int, days: Int = 7) -> [DailyXP] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         
-        var firstActivityDate: Date? = nil
-        for plant in plants {
-            for dateStr in plant.xpHistory.keys {
-                if let d = formatter.date(from: dateStr) {
-                    if firstActivityDate == nil || d < firstActivityDate! {
-                        firstActivityDate = calendar.startOfDay(for: d)
+        if days == 1 {
+            struct TempEvent {
+                let date: Date
+                let amount: Int
+            }
+            var tempEvents: [TempEvent] = []
+            
+            let todayStr = formatter.string(from: today)
+            for plant in plants {
+                if let xp = plant.xpHistory[todayStr] {
+                    // Find watering dates today for this plant
+                    let waterings = plant.wateringDates.filter { calendar.isDate($0, inSameDayAs: today) }.sorted()
+                    if !waterings.isEmpty {
+                        // Distribute XP evenly among waterings
+                        let share = xp / waterings.count
+                        let remainder = xp % waterings.count
+                        for (idx, date) in waterings.enumerated() {
+                            tempEvents.append(TempEvent(date: date, amount: share + (idx == 0 ? remainder : 0)))
+                        }
+                    } else {
+                        // If no watering dates but XP exists, default to 12:00
+                        if let midDate = calendar.date(bySettingHour: 12, minute: 0, second: 0, of: today) {
+                            tempEvents.append(TempEvent(date: midDate, amount: xp))
+                        }
                     }
                 }
             }
+            
+            tempEvents.sort(by: { $0.date < $1.date })
+            
+            var history: [DailyXP] = []
+            let totalXPToday = tempEvents.map({ $0.amount }).reduce(0, +)
+            var runningTotal = currentTotalXP - totalXPToday
+            
+            // Start of day
+            history.append(DailyXP(date: today, amount: runningTotal))
+            
+            for event in tempEvents {
+                runningTotal += event.amount
+                history.append(DailyXP(date: event.date, amount: runningTotal))
+            }
+            
+            // End of day (0:00 next day)
+            if let nextDay = calendar.date(byAdding: .day, value: 1, to: today),
+               let midnightNextDay = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: nextDay) {
+                history.append(DailyXP(date: midnightNextDay, amount: runningTotal))
+            }
+            
+            return history
         }
         
-        let startDate = firstActivityDate ?? today
+        var actualDays = days
+        if days == 10000 {
+            var earliest = today
+            for plant in plants {
+                if plant.gekauftAm < earliest {
+                    earliest = plant.gekauftAm
+                }
+                for dateString in plant.xpHistory.keys {
+                    if let date = formatter.date(from: dateString), date < earliest {
+                        earliest = date
+                    }
+                }
+            }
+            let diff = calendar.dateComponents([.day], from: calendar.startOfDay(for: earliest), to: today).day ?? 0
+            actualDays = max(7, diff + 1)
+        }
+        
         var dailyGains: [Date: Int] = [:]
         
-        for i in 0..<7 {
+        // Always show the full timeframe (e.g. 7 or 30 days) to allow drawing a complete line
+        for i in 0..<actualDays {
             if let date = calendar.date(byAdding: .day, value: -i, to: today) {
                 let startOfDate = calendar.startOfDay(for: date)
-                if startOfDate >= startDate {
-                    dailyGains[startOfDate] = 0
-                }
+                dailyGains[startOfDate] = 0
             }
         }
         
@@ -124,32 +257,65 @@ class StatsHelper {
         
         return result.sorted { $0.date < $1.date }
     }
-    
-    static func getCoinHistory(from transactions: [CoinTransaction], currentBalance: Int) -> [CoinHistory] {
+    static func getCoinHistory(from transactions: [CoinTransaction], currentBalance: Int, days: Int = 7) -> [CoinHistory] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
         
-        var firstTxDate: Date? = nil
-        if let first = transactions.map({ $0.datum }).min() {
-            firstTxDate = calendar.startOfDay(for: first)
+        if days == 1 {
+            var tempEvents: [CoinTransaction] = []
+            for tx in transactions {
+                if calendar.isDate(tx.datum, inSameDayAs: today) {
+                    tempEvents.append(tx)
+                }
+            }
+            
+            tempEvents.sort(by: { $0.datum < $1.datum })
+            
+            var history: [CoinHistory] = []
+            let totalChangeToday = tempEvents.map({ $0.betrag }).reduce(0, +)
+            var runningTotal = currentBalance - totalChangeToday
+            
+            // Start of day
+            history.append(CoinHistory(date: today, balance: runningTotal))
+            
+            for event in tempEvents {
+                runningTotal += event.betrag
+                history.append(CoinHistory(date: event.datum, balance: runningTotal))
+            }
+            
+            // End of day (0:00 next day)
+            if let nextDay = calendar.date(byAdding: .day, value: 1, to: today),
+               let midnightNextDay = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: nextDay) {
+                history.append(CoinHistory(date: midnightNextDay, balance: runningTotal))
+            }
+            
+            return history
         }
         
-        let startDate = firstTxDate ?? today
+        var actualDays = days
+        if days == 10000 {
+            var earliest = today
+            if let txEarliest = transactions.map({ $0.datum }).min(), txEarliest < earliest {
+                earliest = txEarliest
+            }
+            let diff = calendar.dateComponents([.day], from: calendar.startOfDay(for: earliest), to: today).day ?? 0
+            actualDays = max(7, diff + 1)
+        }
+        
         var history: [CoinHistory] = []
         var tempBalance = currentBalance
         
         let sortedTransactions = transactions.sorted { $0.datum > $1.datum }
         
-        for i in 0..<7 {
+        // Always show the full timeframe (e.g. 7 or 30 days) to allow drawing a complete line
+        for i in 0..<actualDays {
             if let targetDate = calendar.date(byAdding: .day, value: -i, to: today) {
                 let startOfTarget = calendar.startOfDay(for: targetDate)
-                if startOfTarget >= startDate {
-                    history.append(CoinHistory(date: startOfTarget, balance: tempBalance))
-                    
-                    let dayTxs = sortedTransactions.filter { calendar.isDate($0.datum, inSameDayAs: targetDate) }
-                    for tx in dayTxs {
-                        tempBalance -= tx.betrag
-                    }
+                history.append(CoinHistory(date: startOfTarget, balance: tempBalance))
+                
+                let dayTxs = sortedTransactions.filter { calendar.isDate($0.datum, inSameDayAs: targetDate) }
+                for tx in dayTxs {
+                    tempBalance -= tx.betrag
                 }
             }
         }
@@ -244,7 +410,6 @@ class StatsHelper {
         let startDate = calendar.date(byAdding: .day, value: -days, to: today) ?? today
         
         var recentGain = 0
-        var totalBefore = 0
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"

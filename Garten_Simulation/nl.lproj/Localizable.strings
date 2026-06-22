@@ -652,7 +652,7 @@
 "pfad_abschluss_desc" = "Ongelooflijk! Je hebt het 90 dagen achter elkaar onder de knie. Hier is uw welverdiende beloning:";
 "pfad_abschluss_titel" = "90 dagen voltooid!";
 "pfad_activation_90_tage" = "90 dagen";
-"pfad_activation_belohnung" = "Voltooi de 90 dagen om 5.000 munten te ontvangen!";
+"pfad_activation_belohnung" = "Voltooi de 90 dagen om je ultieme beloning te ontvangen!";
 "pfad_activation_btn" = "ACTIVEER PAD";
 "pfad_activation_desc" = "Wat gebeurt er na 90 dagen?\\nJij bereikt meesterschap! Je plant zal volledig bloeien en je zult een sterke, langdurige gewoonte opbouwen.";
 "pfad_activation_diff_change_title" = "U heeft %@ geselecteerd. Bent u nog steeds %@ of wilt u dit wijzigen?";
@@ -743,11 +743,11 @@
 "pfad_produktiv_phase_vertiefung_desc" = "Beheers uw tijd. Focus wordt een gewoonte.";
 "pfad_progress_format" = "Dag %d / 90";
 "pfad_schwierigkeit_anfaenger" = "Beginner";
-"pfad_schwierigkeit_anfaenger_desc" = "Ideaal voor beginners. Kleine, eenvoudige stappen leiden je op een ontspannen manier naar succes.";
+"pfad_schwierigkeit_anfaenger_desc" = "Ideaal voor beginners. Kleine, eenvoudige stappen leiden je op een ontspannen manier naar succes. Beloning: 500 Munten";
 "pfad_schwierigkeit_experte" = "Deskundige";
-"pfad_schwierigkeit_experte_desc" = "De ultieme uitdaging. Toon je discipline en beheers veeleisende taken!";
+"pfad_schwierigkeit_experte_desc" = "De ultieme uitdaging. Toon je discipline en beheers veeleisende taken! Beloning: 1.500 Munten";
 "pfad_schwierigkeit_fortgeschritten" = "Tussenliggend";
-"pfad_schwierigkeit_fortgeschritten_desc" = "Voor ambitieuze tuiniers. Een uitgebalanceerde mix van uitdaging en plezier.";
+"pfad_schwierigkeit_fortgeschritten_desc" = "Voor ambitieuze tuiniers. Een uitgebalanceerde mix van uitdaging en plezier. Beloning: 1.000 Munten";
 "pfad_schwierigkeit_hinweis" = "De moeilijkheidsgraad heeft invloed op uw dagelijkse taakhoeveelheid en uw XP-winst.";
 "pfad_schwierigkeit_starten" = "Begin avontuur";
 "pfad_schwierigkeit_titel" = "Hoe fit ben jij al?";
@@ -1675,7 +1675,7 @@
 "habit.stats.impact" = "Negatieve impact";
 "habit.impact.title" = "De 1%-methode";
 "habit.impact.explanation" = "Volgens James Clears 'Atomic Habits' word je elke keer dat je deze gewoonte uitvoert 1% slechter (0,99). Dit heeft op de lange termijn een enorm negatief samengesteld effect op je leven.";
-"habit.tips.title" = "Tips (De 4 wetten)";
+"habit.tips.title" = "Tips";
 "habit.tip.1" = "Maak het onzichtbaar: Verwijder alle prikkels die deze gewoonte triggeren uit je omgeving.";
 "habit.tip.2" = "Maak het onaantrekkelijk: Focus op de negatieve gevolgen om de gewoonte mentaal te devalueren.";
 "habit.tip.3" = "Maak het moeilijk: Vergroot de weerstand en stappen die nodig zijn om de gewoonte uit te voeren.";
@@ -1759,3 +1759,14 @@
 "trash.schlaf_killer_koffein.tip.2" = "Cafeïne blokkeert adenosine (je moedheidssignaal) – je slaapt minder diep.";
 "trash.schlaf_killer_koffein.tip.3" = "Vervang middagkoffie door cafeïnevrije koffie of kruidenthee.";
 "trash.schlaf_killer_koffein.tip.4" = "Volg je slaapkwaliteit met en zonder cafeïne – het verschil zal je overtuigen.";
+"pfad_tag_ausstehend" = "In afwachting";
+
+"rarity.common" = "GEWOON";
+"rarity.rare" = "ZELDZAAM";
+"rarity.epic" = "EPISCH";
+"rarity.legendary" = "LEGENDARISCH";
+"rarity.mystic" = "MEESTER";
+
+// MARK: - Assessment (Fallback English)
+
+// Finance Quiz – Portfolio extension Q6–Q9 (English fallback)

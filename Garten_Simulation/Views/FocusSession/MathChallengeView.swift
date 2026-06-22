@@ -15,7 +15,6 @@ struct MathChallengeView: View {
         NavigationStack {
             VStack(spacing: 24) {
                 Spacer()
-                
                 Text(settings.localizedString(for: "math_challenge.title"))
                     .font(.system(size: 24, weight: .black, design: .rounded))
                     .multilineTextAlignment(.center)
@@ -81,6 +80,7 @@ struct MathChallengeView: View {
                 .padding(.horizontal, 24)
                 .padding(.bottom, 16)
             }
+            .standardNavigationX()
         }
     }
 }

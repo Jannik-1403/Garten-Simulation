@@ -652,7 +652,7 @@
 "pfad_abschluss_desc" = "Incredible! You mastered 90 days in a row. Here is your well-deserved reward:";
 "pfad_abschluss_titel" = "90 Days Completed!";
 "pfad_activation_90_tage" = "90 Days";
-"pfad_activation_belohnung" = "Complete the 90 days to receive 5,000 coins!";
+"pfad_activation_belohnung" = "Complete the 90 days to receive your final reward!";
 "pfad_activation_btn" = "ACTIVATE PATH";
 "pfad_activation_desc" = "What happens after 90 days?\\nYou achieve mastery! Your plant will fully bloom and you'll build a strong, long-lasting habit.";
 "pfad_activation_diff_change_title" = "You selected %@. Are you still %@ or do you want to change it?";
@@ -743,11 +743,11 @@
 "pfad_produktiv_phase_vertiefung_desc" = "Master your time. Focus becomes a habit.";
 "pfad_progress_format" = "Day %d / 90";
 "pfad_schwierigkeit_anfaenger" = "Beginner";
-"pfad_schwierigkeit_anfaenger_desc" = "Ideal for beginners. Small, simple steps lead you to success in a relaxed way.";
+"pfad_schwierigkeit_anfaenger_desc" = "Ideal for beginners. Small, simple steps lead you to success in a relaxed way. Reward: 500 Coins";
 "pfad_schwierigkeit_experte" = "Expert";
-"pfad_schwierigkeit_experte_desc" = "The ultimate challenge. Show your discipline and master demanding tasks!";
+"pfad_schwierigkeit_experte_desc" = "The ultimate challenge. Show your discipline and master demanding tasks! Reward: 1,500 Coins";
 "pfad_schwierigkeit_fortgeschritten" = "Intermediate";
-"pfad_schwierigkeit_fortgeschritten_desc" = "For ambitious gardeners. A balanced mix of challenge and fun.";
+"pfad_schwierigkeit_fortgeschritten_desc" = "For ambitious gardeners. A balanced mix of challenge and fun. Reward: 1,000 Coins";
 "pfad_schwierigkeit_hinweis" = "The difficulty level affects your daily task amount and your XP gain.";
 "pfad_schwierigkeit_starten" = "Start Adventure";
 "pfad_schwierigkeit_titel" = "How fit are you already?";
@@ -1258,7 +1258,7 @@
 "statistik_share_letztes_jahr" = "Last Year";
 "statistik_share_status" = "My Status";
 "statistik_titel" = "Statistics";
-"stats.activity.title" = "Activity";
+"stats.activity.title" = "Score";
 "stats.balance.description" = "Your Life Balance shows you how evenly you take care of your different habits.";
 "stats.balance.title" = "Life Balance";
 "stats.coach.bullet1" = "Balance: Try to nurture all life areas equally.";
@@ -1290,8 +1290,8 @@
 "stats.plants.top" = "Most Successful Plant";
 "stats.plants.worst" = "Needs More Love";
 "stats.score.card.title" = "Garden Score";
-"stats.score.konsistenz" = "Consistency";
-"stats.score.konsistenz.period_format" = "Watering rate in %@";
+"stats.score.konsistenz" = "Habit Score";
+"stats.score.konsistenz.period_format" = "Score trend in %@";
 "stats.score.msg.excellent" = "Excellent job! Your garden is blooming in full glory.";
 "stats.score.msg.good" = "Good job! Your garden is developing great.";
 "stats.score.msg.low" = "Keep it up! Your garden will grow soon.";
@@ -1675,7 +1675,7 @@
 "habit.stats.impact" = "Negative Impact";
 "habit.impact.title" = "The 1% Method";
 "habit.impact.explanation" = "According to James Clear's 'Atomic Habits', you become 1% worse (0.99) every time you execute this habit. This has an immense negative compound effect on your life in the long run.";
-"habit.tips.title" = "Tips (The 4 Laws)";
+"habit.tips.title" = "Tips";
 "habit.tip.1" = "Make it invisible: Remove all cues that trigger this habit from your environment.";
 "habit.tip.2" = "Make it unattractive: Focus on the negative consequences to mentally devalue the habit.";
 "habit.tip.3" = "Make it difficult: Increase the friction and steps required to execute the habit.";
@@ -1759,3 +1759,37 @@
 "trash.schlaf_killer_koffein.tip.2" = "Caffeine blocks adenosine (your tiredness signal) – you sleep less deeply and recover worse.";
 "trash.schlaf_killer_koffein.tip.3" = "Replace afternoon coffee with decaf or herbal tea.";
 "trash.schlaf_killer_koffein.tip.4" = "Track your sleep quality with and without caffeine – the difference will convince you.";
+"pfad_tag_ausstehend" = "Pending";
+
+"rarity.common" = "COMMON";
+"rarity.rare" = "RARE";
+"rarity.epic" = "EPIC";
+"rarity.legendary" = "LEGENDARY";
+"rarity.mystic" = "MASTER";
+
+"plant.create.field.is_negative" = "Bad Habit";
+"plant.create.field.is_negative_hint" = "Checking it off decreases the counter by 1.";
+
+// MARK: - Assessment
+
+
+// Finance Profiles
+
+
+
+
+// Finance Questions
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,261 @@
+SWIFT_CODE:
+        // MARK: - Fitness Quiz Data
+
+        // F1
+        FitnessQuestion(id: 1, textKey: "assessment.fitness.q1", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q1.a",
+                          delta: FitnessScoreDeltas(konsistenz: -3, intensitaet:  0, verantwortung: -2)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q1.b",
+                          delta: FitnessScoreDeltas(konsistenz: -2, intensitaet:  0, verantwortung: -3)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q1.c",
+                          delta: FitnessScoreDeltas(konsistenz:  1, intensitaet: -2, verantwortung:  1)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q1.d",
+                          delta: FitnessScoreDeltas(konsistenz:  3, intensitaet:  2, verantwortung:  3)),
+        ]),
+
+        // F2
+        FitnessQuestion(id: 2, textKey: "assessment.fitness.q2", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q2.a",
+                          delta: FitnessScoreDeltas(konsistenz: -3, intensitaet:  0, verantwortung: -3)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q2.b",
+                          delta: FitnessScoreDeltas(konsistenz: -2, intensitaet:  0, verantwortung: -3)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q2.c",
+                          delta: FitnessScoreDeltas(konsistenz: -1, intensitaet:  0, verantwortung:  1)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q2.d",
+                          delta: FitnessScoreDeltas(konsistenz:  2, intensitaet:  1, verantwortung:  3)),
+        ]),
+
+        // F3
+        FitnessQuestion(id: 3, textKey: "assessment.fitness.q3", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q3.a",
+                          delta: FitnessScoreDeltas(konsistenz:  0, intensitaet: -3, verantwortung: -2)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q3.b",
+                          delta: FitnessScoreDeltas(konsistenz:  0, intensitaet: -1, verantwortung: -1)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q3.c",
+                          delta: FitnessScoreDeltas(konsistenz:  1, intensitaet:  2, verantwortung:  2)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q3.d",
+                          delta: FitnessScoreDeltas(konsistenz:  1, intensitaet:  3, verantwortung:  2)),
+        ]),
+
+        // F4
+        FitnessQuestion(id: 4, textKey: "assessment.fitness.q4", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q4.a",
+                          delta: FitnessScoreDeltas(konsistenz:  0, intensitaet:  0, verantwortung: -3)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q4.b",
+                          delta: FitnessScoreDeltas(konsistenz: -2, intensitaet:  0, verantwortung: -3)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q4.c",
+                          delta: FitnessScoreDeltas(konsistenz:  1, intensitaet:  0, verantwortung: -1)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q4.d",
+                          delta: FitnessScoreDeltas(konsistenz:  2, intensitaet:  1, verantwortung:  3)),
+        ]),
+
+        // F5
+        FitnessQuestion(id: 5, textKey: "assessment.fitness.q5", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q5.a",
+                          delta: FitnessScoreDeltas(konsistenz: -2, intensitaet: -1, verantwortung: -2)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q5.b",
+                          delta: FitnessScoreDeltas(konsistenz: -2, intensitaet: -2, verantwortung: -2)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q5.c",
+                          delta: FitnessScoreDeltas(konsistenz:  1, intensitaet: -1, verantwortung:  1)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q5.d",
+                          delta: FitnessScoreDeltas(konsistenz:  3, intensitaet:  3, verantwortung:  3)),
+        ]),
+
+        // F6
+        FitnessQuestion(id: 6, textKey: "assessment.fitness.q6", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q6.a",
+                          delta: FitnessScoreDeltas(konsistenz: -3, intensitaet:  0, verantwortung: -3)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q6.b",
+                          delta: FitnessScoreDeltas(konsistenz:  1, intensitaet: -3, verantwortung: -2)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q6.c",
+                          delta: FitnessScoreDeltas(konsistenz:  0, intensitaet: -1, verantwortung: -2)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q6.d",
+                          delta: FitnessScoreDeltas(konsistenz:  3, intensitaet:  3, verantwortung:  3)),
+        ]),
+
+        // F7
+        FitnessQuestion(id: 7, textKey: "assessment.fitness.q7", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q7.a",
+                          delta: FitnessScoreDeltas(konsistenz:  0, intensitaet:  2, verantwortung: -3)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q7.b",
+                          delta: FitnessScoreDeltas(konsistenz:  0, intensitaet: -1, verantwortung: -3)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q7.c",
+                          delta: FitnessScoreDeltas(konsistenz:  1, intensitaet:  1, verantwortung:  3)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q7.d",
+                          delta: FitnessScoreDeltas(konsistenz:  0, intensitaet: -2, verantwortung: -1)),
+        ]),
+
+        // F8
+        FitnessQuestion(id: 8, textKey: "assessment.fitness.q8", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q8.a",
+                          delta: FitnessScoreDeltas(konsistenz: -3, intensitaet:  0, verantwortung: -2)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q8.b",
+                          delta: FitnessScoreDeltas(konsistenz: -2, intensitaet:  0, verantwortung: -1)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q8.c",
+                          delta: FitnessScoreDeltas(konsistenz:  2, intensitaet:  2, verantwortung:  2)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q8.d",
+                          delta: FitnessScoreDeltas(konsistenz:  3, intensitaet:  1, verantwortung:  3)),
+        ]),
+
+        // F9
+        FitnessQuestion(id: 9, textKey: "assessment.fitness.q9", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q9.a",
+                          delta: FitnessScoreDeltas(konsistenz: -2, intensitaet: -2, verantwortung: -2)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q9.b",
+                          delta: FitnessScoreDeltas(konsistenz: -1, intensitaet: -1, verantwortung: -1)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q9.c",
+                          delta: FitnessScoreDeltas(konsistenz:  1, intensitaet:  0, verantwortung:  1)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q9.d",
+                          delta: FitnessScoreDeltas(konsistenz:  3, intensitaet:  2, verantwortung:  3)),
+        ]),
+
+        // F10
+        FitnessQuestion(id: 10, textKey: "assessment.fitness.q10", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q10.a",
+                          delta: FitnessScoreDeltas(konsistenz: -2, intensitaet: -1, verantwortung: -1)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q10.b",
+                          delta: FitnessScoreDeltas(konsistenz: -3, intensitaet:  0, verantwortung: -2)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q10.c",
+                          delta: FitnessScoreDeltas(konsistenz:  1, intensitaet: -2, verantwortung:  1)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q10.d",
+                          delta: FitnessScoreDeltas(konsistenz:  3, intensitaet:  3, verantwortung:  2)),
+        ]),
+
+        // F11
+        FitnessQuestion(id: 11, textKey: "assessment.fitness.q11", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q11.a",
+                          delta: FitnessScoreDeltas(konsistenz: -1, intensitaet: -3, verantwortung: -2)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q11.b",
+                          delta: FitnessScoreDeltas(konsistenz:  0, intensitaet: -2, verantwortung: -1)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q11.c",
+                          delta: FitnessScoreDeltas(konsistenz:  2, intensitaet:  3, verantwortung:  2)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q11.d",
+                          delta: FitnessScoreDeltas(konsistenz: -1, intensitaet: -3, verantwortung: -1)),
+        ]),
+
+        // F12
+        FitnessQuestion(id: 12, textKey: "assessment.fitness.q12", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q12.a",
+                          delta: FitnessScoreDeltas(konsistenz:  0, intensitaet: -3, verantwortung: -1)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q12.b",
+                          delta: FitnessScoreDeltas(konsistenz:  1, intensitaet: -1, verantwortung:  0)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q12.c",
+                          delta: FitnessScoreDeltas(konsistenz:  2, intensitaet:  1, verantwortung:  1)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q12.d",
+                          delta: FitnessScoreDeltas(konsistenz:  2, intensitaet:  3, verantwortung:  3)),
+        ]),
+
+        // F13
+        FitnessQuestion(id: 13, textKey: "assessment.fitness.q13", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q13.a",
+                          delta: FitnessScoreDeltas(konsistenz: -3, intensitaet: -1, verantwortung: -2)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q13.b",
+                          delta: FitnessScoreDeltas(konsistenz: -3, intensitaet: -1, verantwortung: -3)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q13.c",
+                          delta: FitnessScoreDeltas(konsistenz:  1, intensitaet:  1, verantwortung: -1)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q13.d",
+                          delta: FitnessScoreDeltas(konsistenz:  3, intensitaet:  2, verantwortung:  3)),
+        ]),
+
+        // F14
+        FitnessQuestion(id: 14, textKey: "assessment.fitness.q14", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q14.a",
+                          delta: FitnessScoreDeltas(konsistenz: -3, intensitaet: -1, verantwortung: -3)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q14.b",
+                          delta: FitnessScoreDeltas(konsistenz: -1, intensitaet: -1, verantwortung: -2)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q14.c",
+                          delta: FitnessScoreDeltas(konsistenz:  2, intensitaet:  1, verantwortung:  2)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q14.d",
+                          delta: FitnessScoreDeltas(konsistenz:  2, intensitaet:  3, verantwortung:  3)),
+        ]),
+
+        // F15
+        FitnessQuestion(id: 15, textKey: "assessment.fitness.q15", answers: [
+            FitnessAnswer(id: 0, textKey: "assessment.fitness.q15.a",
+                          delta: FitnessScoreDeltas(konsistenz: -1, intensitaet: -1, verantwortung: -1)),
+            FitnessAnswer(id: 1, textKey: "assessment.fitness.q15.b",
+                          delta: FitnessScoreDeltas(konsistenz: -1, intensitaet: -1, verantwortung: -2)),
+            FitnessAnswer(id: 2, textKey: "assessment.fitness.q15.c",
+                          delta: FitnessScoreDeltas(konsistenz:  1, intensitaet:  0, verantwortung:  1)),
+            FitnessAnswer(id: 3, textKey: "assessment.fitness.q15.d",
+                          delta: FitnessScoreDeltas(konsistenz:  2, intensitaet:  3, verantwortung:  3)),
+        ]),
+
+
+STRINGS_CODE:
+"assessment.fitness.q1" = "Dein Wecker klingelt um 5:30 Uhr für das geplante Workout. Es ist draußen eiskalt, dunkel und regnet.";
+"assessment.fitness.q1.a" = "Ich drücke auf Snooze. Schlaf ist schließlich auch wichtig für die Regeneration.";
+"assessment.fitness.q1.b" = "Ich bleibe liegen und nehme mir fest vor, das Workout heute Abend nachzuholen (was ich dann nicht tue).";
+"assessment.fitness.q1.c" = "Ich stehe auf, mache aber nur ein kurzes, halbes Workout zu Hause im Warmen.";
+"assessment.fitness.q1.d" = "Ich fluche, stehe auf, friere und ziehe das geplante Workout zu 100% durch.";
+"assessment.fitness.q2" = "Du zahlst seit 6 Monaten 50€ für ein Gym, warst aber diesen Monat erst ein einziges Mal dort. Was sagst du dir selbst?";
+"assessment.fitness.q2.a" = "Ich hatte in letzter Zeit einfach extrem viel Stress und keine Zeit.";
+"assessment.fitness.q2.b" = "Das Gym ist zu weit weg und die Geräte sind eh immer belegt.";
+"assessment.fitness.q2.c" = "Ich kündige das Abo. Offensichtlich bin ich nicht der Typ dafür.";
+"assessment.fitness.q2.d" = "Ich bin undiszipliniert gewesen. Ich packe in dieser Sekunde meine Sporttasche.";
+"assessment.fitness.q3" = "Du machst eine Übung. Dein Plan sagt 12 Wiederholungen. Bei Nummer 9 fangen deine Muskeln an, extrem zu brennen.";
+"assessment.fitness.q3.a" = "Ich höre bei 9 auf. Ich will mich ja nicht verletzen.";
+"assessment.fitness.q3.b" = "Ich quäle mich auf 10 und breche dann ab. Das reicht auch.";
+"assessment.fitness.q3.c" = "Ich beiße die Zähne zusammen, zwinge mich bis zur 12 und lege keuchend ab.";
+"assessment.fitness.q3.d" = "Wenn 12 das Ziel ist und ich bei 12 noch Kraft habe, mache ich 14, bis der Muskel komplett versagt.";
+"assessment.fitness.q4" = "Welcher dieser Sätze beschreibt deine aktuelle körperliche Verfassung am besten?";
+"assessment.fitness.q4.a" = "Ich habe einfach nicht die Genetik für einen guten Körper.";
+"assessment.fitness.q4.b" = "Wenn ich mehr Freizeit hätte, wäre ich in Topform.";
+"assessment.fitness.q4.c" = "Ich trainiere zwar, aber meine Ernährung macht mir meine Ergebnisse kaputt.";
+"assessment.fitness.q4.d" = "Mein Körper ist das exakte Spiegelbild meiner Disziplin. Ich bekomme das, was ich verdiene.";
+"assessment.fitness.q5" = "Heute steht dein absolutes Hass-Workout auf dem Plan (z.B. schweres Beintraining oder intensives Cardio). Du hast leichte Kopfschmerzen.";
+"assessment.fitness.q5.a" = "Ich lasse das Training heute komplett ausfallen. Der Körper braucht Ruhe.";
+"assessment.fitness.q5.b" = "Ich gehe hin, mache aber stattdessen Brust/Bizeps oder etwas Einfaches, das Spaß macht.";
+"assessment.fitness.q5.c" = "Ich gehe hin, mache das Hass-Workout, aber mit 50% weniger Gewicht/Geschwindigkeit.";
+"assessment.fitness.q5.d" = "Ich gehe hin und zerstöre das Hass-Workout exakt nach Plan. Kopfschmerzen sind keine Ausrede.";
+"assessment.fitness.q6" = "Du trainierst seit 8 Wochen, siehst aber absolut keinen Fortschritt mehr im Spiegel oder auf der Waage.";
+"assessment.fitness.q6.a" = "Ich verliere die Motivation und höre auf. Das System funktioniert bei mir nicht.";
+"assessment.fitness.q6.b" = "Ich trainiere lustlos genau gleich weiter und hoffe auf ein Wunder.";
+"assessment.fitness.q6.c" = "Ich kaufe teure Supplements oder suche nach einer geheimen neuen Übung.";
+"assessment.fitness.q6.d" = "Ich analysiere meine Ernährung, erhöhe die Intensität und zwinge den Körper zur Anpassung.";
+"assessment.fitness.q7" = "Du machst eine schwere Übung vor anderen Leuten im Gym. Das Gewicht ist eigentlich zu schwer, um es mit sauberer Technik zu bewegen.";
+"assessment.fitness.q7.a" = "Ich reiße das Gewicht mit absolut miserabler Form hoch, um stark auszusehen.";
+"assessment.fitness.q7.b" = "Ich bitte jemanden, extrem viel mitzuhelfen, und behaupte danach, ich hätte es selbst gedrückt.";
+"assessment.fitness.q7.c" = "Ich lege Gewicht ab, bis ich es mit perfekter Form schaffe, auch wenn es peinlich wenig ist.";
+"assessment.fitness.q7.d" = "Ich trainiere sowieso nur an geführten Maschinen, weil mir freie Gewichte zu anstrengend sind.";
+"assessment.fitness.q8" = "Du bist auf dem Weg zum Training. Deine Freunde rufen an: 'Komm sofort her, wir haben Pizza bestellt und fangen gleich an zu zocken!'";
+"assessment.fitness.q8.a" = "Ich drehe sofort um. Man ist nur einmal jung und Training kann man nachholen.";
+"assessment.fitness.q8.b" = "Ich fahre hin, habe aber ein extrem schlechtes Gewissen dabei.";
+"assessment.fitness.q8.c" = "Ich sage ihnen, dass ich in 60 Minuten komme, und ziehe mein Workout vorher in Rekordzeit durch.";
+"assessment.fitness.q8.d" = "Ich lehne eiskalt ab. Meine Workout-Zeiten sind nicht verhandelbar.";
+"assessment.fitness.q9" = "Wie genau dokumentierst du deine Trainingsfortschritte (Gewichte, Zeiten, Wiederholungen)?";
+"assessment.fitness.q9.a" = "Gar nicht. Ich mache das, worauf ich an dem Tag spontan Lust habe.";
+"assessment.fitness.q9.b" = "Ich merke mir das ungefähr im Kopf.";
+"assessment.fitness.q9.c" = "Ich habe einen groben Plan auf dem Handy und trage ab und zu mal was ein.";
+"assessment.fitness.q9.d" = "Jede Einheit, jedes Gewicht und jede Zeit wird präzise geloggt. Ohne Daten kein Wachstum.";
+"assessment.fitness.q10" = "Du bist eine Woche im Urlaub oder auf einem Schul-Ausflug. Es gibt kein Gym und du hast keine Ausrüstung.";
+"assessment.fitness.q10.a" = "Urlaub ist Urlaub. Ich bewege mich eine Woche lang absolut gar nicht.";
+"assessment.fitness.q10.b" = "Ich nehme mir vor zu joggen, lasse die Schuhe aber die ganze Woche im Koffer.";
+"assessment.fitness.q10.c" = "Ich gehe viel spazieren oder schwimmen, mache aber kein echtes Workout.";
+"assessment.fitness.q10.d" = "Ich wache morgens auf und zerstöre meinen Körper mit 300 Liegestützen und Kniebeugen im Hotelzimmer.";
+"assessment.fitness.q11" = "Wie verhältst du dich zwischen deinen Sätzen während des Workouts?";
+"assessment.fitness.q11.a" = "Ich scrolle auf TikTok/Instagram, vergesse die Zeit und sitze 5 Minuten am Gerät.";
+"assessment.fitness.q11.b" = "Ich texte mit Freunden, mache aber nach Gefühl irgendwann weiter.";
+"assessment.fitness.q11.c" = "Ich kontrolliere exakt meine Pausenzeit auf der Uhr, atme und fokussiere mich auf den nächsten Satz.";
+"assessment.fitness.q11.d" = "Ich rede mit jedem im Gym und mein Puls fällt komplett in den Keller.";
+"assessment.fitness.q12" = "Während einer Übung spürst du ein starkes, brennendes Gefühl in den Muskeln, es ist extrem unangenehm. Was denkst du in dieser Millisekunde?";
+"assessment.fitness.q12.a" = "'Das tut weh, ich muss sofort aufhören, bevor ich kaputt gehe.'";
+"assessment.fitness.q12.b" = "'Ich hasse dieses Gefühl, wann ist das endlich vorbei?'";
+"assessment.fitness.q12.c" = "'Noch zwei Wiederholungen, dann habe ich es überstanden.'";
+"assessment.fitness.q12.d" = "'Dieses Brennen ist exakt der Punkt, an dem mein Körper wächst. Ich drücke weiter!'";
+"assessment.fitness.q13" = "Du wachst auf und hast so brutalen Muskelkater in den Beinen, dass du kaum die Treppe runterkommst. Heute steht Oberkörper auf dem Plan.";
+"assessment.fitness.q13.a" = "Ich bleibe im Bett. Mein ganzer Körper braucht Erholung.";
+"assessment.fitness.q13.b" = "Ich gehe nicht ins Training, weil der Weg dorthin schon zu anstrengend ist.";
+"assessment.fitness.q13.c" = "Ich werfe eine Schmerztablette ein und trainiere.";
+"assessment.fitness.q13.d" = "Ich humple fluchend ins Gym, wärme mich auf und trainiere den Oberkörper exakt nach Plan.";
+"assessment.fitness.q14" = "Du schaust an einem schlechten Tag in den Spiegel und bist mit deinem Körper absolut unzufrieden. Was ist deine erste Reaktion?";
+"assessment.fitness.q14.a" = "Ich tröste mich mit Fast Food. Ist eh schon alles egal.";
+"assessment.fitness.q14.b" = "Ich rede mir ein, dass 'innere Werte' eh viel wichtiger sind.";
+"assessment.fitness.q14.c" = "Ich werde wütend auf mich selbst und beschließe, morgen härter zu trainieren.";
+"assessment.fitness.q14.d" = "Ich bestrafe die Schwäche sofort: Laufschuhe an, raus auf die Straße, 5 Kilometer rennen.";
+"assessment.fitness.q15" = "Warum willst du überhaupt fit oder stark sein?";
+"assessment.fitness.q15.a" = "Ehrlich gesagt trainiere ich nur, damit andere mich attraktiv finden.";
+"assessment.fitness.q15.b" = "Ich will auf Social Media gute Bilder posten können.";
+"assessment.fitness.q15.c" = "Ich trainiere aus Angst, später krank oder schwach zu werden.";
+"assessment.fitness.q15.d" = "Ich will wissen, wo mein absolutes körperliches Limit liegt. Es geht um mentale Dominanz.";
+

@@ -35,14 +35,21 @@ struct RetentionSurveyView: View {
             }
             .padding()
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    LiquidGlassDismissButton {
+                    Button {
                         gardenStore.zeigeGameOverOverlay = false
                         dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 17, weight: .semibold))
+                            .foregroundStyle(.primary)
                     }
+                    .buttonStyle(.plain)
                 }
             }
+            .toolbarBackground(.hidden, for: .navigationBar)
         }
     }
 

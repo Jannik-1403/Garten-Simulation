@@ -137,7 +137,7 @@ enum AppStrings {
         "igel_pose_titel": ["de": "Pose", "en": "Pose", "es": "Postura", "fr": "Pose", "it": "Posa", "pt": "Pose"],
         "igel_accessoire_titel": ["de": "Accessoire", "en": "Accessory", "es": "Accesorio", "fr": "Accessoire", "it": "Accessorio", "pt": "Acessório"],
         "igel_gesicht_titel": ["de": "Gesicht", "en": "Face", "es": "Cara", "fr": "Visage", "it": "Viso", "pt": "Rosto"],
-        "igel_name_placeholder": ["de": "Dein Igel", "en": "Your Hedgehog", "es": "Tu erizo", "fr": "Ton hérisson", "it": "Il tuo riccio", "pt": "Teu ouriço"],
+        "igel_name_placeholder": ["de": "Max Mustermann", "en": "Your Name", "es": "Tu nombre", "fr": "Ton nom", "it": "Il tuo nome", "pt": "Teu nome"],
         "igel_name_edit_title": ["de": "Namen ändern", "en": "Change Name", "es": "Cambiar nombre", "fr": "Changer de nom", "it": "Cambia nome", "pt": "Alterar nome"],
         "igel_name_edit_hint_free": ["de": "Die erste Namensänderung ist völlig kostenlos!", "en": "The first name change is completely free!", "es": "¡El primer cambio de nombre es totalmente gratis!", "fr": "Le premier changement de nom est entièrement gratuit !", "it": "Il primo cambio di nome è completamente gratuito!", "pt": "A primeira alteração de nome é totalmente gratuita!"],
         "igel_name_edit_hint_paid": ["de": "Jede weitere Namensänderung kostet Münzen.", "en": "Each subsequent name change costs coins.", "es": "Cada cambio de nombre adicional cuesta monedas.", "fr": "Chaque changement de nom supplémentaire coûte des pièces.", "it": "Ogni successivo cambio di nome costa monete.", "pt": "Cada alteração de nome adicional custa moedas."],
@@ -1294,18 +1294,20 @@ enum AppStrings {
         
         // Share & Analytics Keys
         "statistik_life_balance": ["de": "Life Balance", "en": "Life Balance", "es": "Equilibrio", "fr": "Équilibre", "it": "Equilibrio", "pt": "Equilíbrio"],
+        "statistik_share_heute": ["de": "Heute", "en": "Today", "es": "Hoy", "fr": "Aujourd'hui", "it": "Oggi", "pt": "Hoje"],
+        "statistik_share_alle": ["de": "Gesamte Zeit", "en": "All Time", "es": "Todo el tempo", "fr": "Tout le temps", "it": "Tutto il tempo", "pt": "Todo o tempo"],
         "statistik_share_letzte_woche": ["de": "Letzte Woche", "en": "Last Week", "es": "Última semana", "fr": "Semaine dernière", "it": "Ultima settimana", "pt": "Última semana"],
         "statistik_share_letzter_monat": ["de": "Letzter Monat", "en": "Last Month", "es": "Último mes", "fr": "Mois dernier", "it": "Ultimo mese", "pt": "Último mês"],
         "statistik_share_letztes_jahr": ["de": "Letztes Jahr", "en": "Last Year", "es": "Último año", "fr": "Année dernière", "it": "Ultimo anno", "pt": "Último ano"],
         "statistik_share_status": ["de": "Mein Status", "en": "My Status", "es": "Mi estado", "fr": "Mon statut", "it": "Il mio stato", "pt": "Meu estado"],
         "stats.milestone.title": ["de": "Nächste Meilensteine", "en": "Next Milestones", "es": "Próximos hitos", "fr": "Prochains jalons", "it": "Prossimi traguardi", "pt": "Próximos marcos"],
         "stats.score.card.title": ["de": "Garten-Score", "en": "Garden Score", "es": "Puntuación", "fr": "Score du jardin", "it": "Punteggio", "pt": "Pontuação do jardim"],
-        "stats.score.konsistenz": ["de": "Konstanz", "en": "Consistency", "es": "Consistencia", "fr": "Constance", "it": "Costanza", "pt": "Consistência"],
+        "stats.score.konsistenz": ["de": "Habit Score", "en": "Habit Score", "es": "Consistencia", "fr": "Constance", "it": "Costanza", "pt": "Consistência"],
         "stats.score.streak": ["de": "Streak", "en": "Streak", "es": "Racha", "fr": "Série", "it": "Streak", "pt": "Sequência"],
         "stats.score.seltenheit": ["de": "Seltenheit", "en": "Rarity", "es": "Rareza", "fr": "Rareté", "it": "Rarità", "pt": "Raridade"],
         "stats.share.preview_title": ["de": "Vorschau", "en": "Preview", "es": "Vista previa", "fr": "Aperçu", "it": "Anteprima", "pt": "Vorschau"],
         "stats.share.hint": ["de": "Wähle ein Design für dein Bild", "en": "Choose a design for your image", "es": "Elige un diseño", "fr": "Choisis un design", "it": "Scegli un design", "pt": "Escolha um design"],
-        "stats.score.konsistenz.period_format": ["de": "Gießquote in %@", "en": "Watering rate in %@", "es": "Tasa en %@", "fr": "Taux en %@", "it": "Tasso in %@", "pt": "Taxa em %@"],
+        "stats.score.konsistenz.period_format": ["de": "Score-Entwicklung in %@", "en": "Score trend in %@", "es": "Tasa en %@", "fr": "Taux en %@", "it": "Tasso in %@", "pt": "Taxa em %@"],
         "stats.score.streak.period_format": ["de": "Bester Streak in %@", "en": "Best streak in %@", "es": "Mejor racha en %@", "fr": "Meilleure série en %@", "it": "Miglior streak in %@", "pt": "Melhor sequência em %@"],
         "stats.succeeded": ["de": "Erledigt", "en": "Succeeded", "es": "Logrado", "fr": "Réussi", "it": "Riuscito", "pt": "Concluído"],
         "stats.missed": ["de": "Verpasst", "en": "Missed", "es": "Perdido", "fr": "Raté", "it": "Perso", "pt": "Perdido"],
@@ -1337,7 +1339,7 @@ enum AppStrings {
         
         "stats.milestone.remaining": ["de": "%d XP bis %@", "en": "%d XP until %@", "es": "%d XP hasta %@", "fr": "%d XP jusqu'à %@", "it": "%d XP fino a %@", "pt": "%d XP até %@"],
         
-        "stats.activity.title": ["de": "Aktivität", "en": "Activity", "es": "Actividad", "fr": "Activité", "it": "Attività", "pt": "Atividade"],
+        "stats.activity.title": ["de": "Score", "en": "Score", "es": "Actividad", "fr": "Activité", "it": "Attività", "pt": "Atividade"],
         "stats.balance.title": ["de": "Life Balance", "en": "Life Balance", "es": "Equilibrio", "fr": "Équilibre", "it": "Equilibrio", "pt": "Equilíbrio"],
         "stats.xp.title": ["de": "XP-Verlauf", "en": "XP History", "es": "Historial de XP", "fr": "Historique d'XP", "it": "Cronologia XP", "pt": "Histórico de XP"],
         "stats.coins.title": ["de": "Münz-Verlauf", "en": "Coin History", "es": "Historial de monedas", "fr": "Historique des pièces", "it": "Cronologia monete", "pt": "Histórico de moedas"],
@@ -1358,13 +1360,17 @@ enum AppStrings {
         "stats.share.style.light": ["de": "Hell", "en": "Light", "es": "Claro", "fr": "Clair", "it": "Chiaro", "pt": "Claro"],
         "stats.share.style.dark": ["de": "Dunkel", "en": "Dark", "es": "Oscuro", "fr": "Sombre", "it": "Scuro", "pt": "Escuro"],
         
+        "statistik_periode_tag": ["de": "Tag", "en": "Day", "es": "Día", "fr": "Jour", "it": "Giorno", "pt": "Dia"],
         "statistik_periode_woche": ["de": "Woche", "en": "Week", "es": "Semana", "fr": "Semaine", "it": "Settimana", "pt": "Semana"],
         "statistik_periode_monat": ["de": "Monat", "en": "Month", "es": "Mes", "fr": "Mois", "it": "Mese", "pt": "Mês"],
         "statistik_periode_jahr": ["de": "Jahr", "en": "Year", "es": "Año", "fr": "Année", "it": "Anno", "pt": "Ano"],
+        "statistik_periode_alle": ["de": "Alle", "en": "All", "es": "Todos", "fr": "Tous", "it": "Tutti", "pt": "Todos"],
         
+        "stats.period.today_simple": ["de": "Heute", "en": "Today", "es": "Hoy", "fr": "Aujourd'hui", "it": "Oggi", "pt": "Hoje"],
         "stats.period.this_week_simple": ["de": "Diese Woche", "en": "This Week", "es": "Esta Semana", "fr": "Cette Semaine", "it": "Questa Settimana", "pt": "Esta Semana"],
         "stats.period.this_month_simple": ["de": "Diesen Monat", "en": "This Month", "es": "Este Mes", "fr": "Ce Mois", "it": "Questo Mese", "pt": "Este Mês"],
         "stats.period.this_year_simple": ["de": "Dieses Jahr", "en": "This Year", "es": "Este Año", "fr": "Cette Année", "it": "Quest'Anno", "pt": "Este Ano"],
+        "stats.period.alltime_simple": ["de": "Gesamt", "en": "All Time", "es": "Todo el tempo", "fr": "Tout le temps", "it": "Sempre", "pt": "Todo o tempo"],
         
         "statistik_legend_aktuell": ["de": "Aktueller Zeitraum", "en": "Current Period", "es": "Período actual", "fr": "Période actuelle", "it": "Periodo attuale", "pt": "Período atual"],
         "statistik_legend_vorherig": ["de": "Vorheriger Zeitraum", "en": "Previous Period", "es": "Período anterior", "fr": "Période précédente", "it": "Periodo precedente", "pt": "Período anterior"],

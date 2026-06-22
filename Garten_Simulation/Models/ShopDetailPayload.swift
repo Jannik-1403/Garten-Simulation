@@ -25,7 +25,12 @@ struct ShopDetailPayload: Identifiable, Codable {
     let habitTitleKey: String?
     let habitDescriptionKey: String?
     
-    var color: Color { Color(hex: colorHex) }
+    var color: Color {
+        if itemType == .powerUp, let tag = tag, let rarity = ItemRarity(rawValue: tag) {
+            return rarity.color
+        }
+        return Color(hex: colorHex)
+    }
     var shadowColor: Color { Color(hex: shadowColorHex) }
 
     init(

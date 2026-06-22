@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import ActivityKit
 
 enum FocusSessionState {
     case intro
@@ -21,6 +22,9 @@ struct FocusSessionView: View {
     @State private var currentGoalInput: String = ""
     @State private var sessionGoals: [FocusGoal] = []
     
+    // Live Activity
+    @State private var focusActivity: Activity<FocusTimerActivityAttributes>? = nil
+    
     // Strict Mode Tracking
     @State private var isStrictMode: Bool = true
     @State private var showStrictModeAlert: Bool = false
@@ -40,78 +44,63 @@ struct FocusSessionView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        ZStack {
-            Color(UIColor.systemBackground).ignoresSafeArea()
-            
-            switch state {
-            case .intro:
-                introView
-                    .transition(.opacity)
-            case .step1:
-                FocusSessionPreparationStep(
-                    iconName: "Ablenkung",
-                    title: "Ablenkungen weg",
-                    description: "Schalte dein Handy jetzt auf 'Nicht stören' und lege es nach dieser Einrichtung außer Sichtweite.",
-                    buttonText: "Erledigt",
-                    isLastStep: false,
-                    textInput: $currentGoalInput,
-                    goals: $sessionGoals
-                ) {
-                    showStrictModeAlert = true
-                }
-                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-            case .step2:
-                FocusSessionPreparationStep(
-                    iconName: "Goal",
-                    title: "Klares Ziel",
-                    description: "Was genau möchtest du in deiner Fokus-Zeit schaffen? Nimm dir einen Moment, um dich zu fokussieren.",
-                    buttonText: "Timer starten",
-                    isLastStep: true,
-                    showTextInput: true,
-                    habitCategory: pflanze.habitCategory,
-                    textInput: $currentGoalInput,
-                    goals: $sessionGoals
-                ) {
-                    // Keyboard schließen
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    withAnimation {
-                        // Nach Priorität sortieren: Hoch -> Mittel -> Niedrig
-                        sessionGoals.sort {
-                            let pOrder: [GoalPriority: Int] = [.high: 3, .medium: 2, .low: 1]
-                            return pOrder[$0.priority]! > pOrder[$1.priority]!
-                        }
-                        remainingSeconds = selectedMinutes * 60
-                        state = .timer
-                        isTimerRunning = true
+        NavigationStack {
+            ZStack {
+                Color(UIColor.systemBackground).ignoresSafeArea()
+                
+                switch state {
+                case .intro:
+                    introView
+                        .transition(.opacity)
+                case .step1:
+                    FocusSessionPreparationStep(
+                        iconName: "Handy",
+                        title: "Ablenkungen weg",
+                        description: "Schalte dein Handy jetzt auf 'Nicht stören' und lege es nach dieser Einrichtung außer Sichtweite.",
+                        buttonText: "Erledigt",
+                        isLastStep: false,
+                        textInput: $currentGoalInput,
+                        goals: $sessionGoals
+                    ) {
+                        showStrictModeAlert = true
                     }
-                }
-                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-            case .timer:
-                timerView
-                    .transition(.opacity)
-            case .success:
-                successView
-                    .transition(.scale)
-            }
-            
-            // Schließen Button oben rechts (außer beim Timer, da ist abbrechen anders)
-            if state != .timer {
-                VStack {
-                    HStack {
-                        Spacer()
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: "xmark")
-                                .font(.system(size: 16, weight: .black))
-                                .foregroundStyle(.primary)
-                                .padding(8)
+                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                case .step2:
+                    FocusSessionPreparationStep(
+                        iconName: "Goal",
+                        title: "Klares Ziel",
+                        description: "Was genau möchtest du in deiner Fokus-Zeit schaffen? Nimm dir einen Moment, um dich zu fokussieren.",
+                        buttonText: "Timer starten",
+                        isLastStep: true,
+                        showTextInput: true,
+                        habitCategory: pflanze.habitCategory,
+                        textInput: $currentGoalInput,
+                        goals: $sessionGoals
+                    ) {
+                        // Keyboard schließen
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        withAnimation {
+                            // Nach Priorität sortieren: Hoch -> Mittel -> Niedrig
+                            sessionGoals.sort {
+                                let pOrder: [GoalPriority: Int] = [.high: 3, .medium: 2, .low: 1]
+                                return pOrder[$0.priority]! > pOrder[$1.priority]!
+                            }
+                            remainingSeconds = selectedMinutes * 60
+                            state = .timer
+                            isTimerRunning = true
+                            startLiveActivity()
                         }
-                        .padding()
                     }
-                    Spacer()
+                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                case .timer:
+                    timerView
+                        .transition(.opacity)
+                case .success:
+                    successView
+                        .transition(.scale)
                 }
             }
+            .standardNavigationX()
         }
         .onReceive(timer) { _ in
             if isTimerRunning && remainingSeconds > 0 {
@@ -129,6 +118,7 @@ struct FocusSessionView: View {
         .onDisappear {
             isTimerRunning = false
             UIApplication.shared.isIdleTimerDisabled = false
+            stopLiveActivity()
         }
         .onChange(of: state) { newState in
             if newState == .timer {
@@ -158,6 +148,7 @@ struct FocusSessionView: View {
                         // Fail the session
                         isTimerRunning = false
                         UIApplication.shared.isIdleTimerDisabled = false
+                        stopLiveActivity()
                         showFailAlert = true
                     }
                 }
@@ -237,10 +228,12 @@ struct FocusSessionView: View {
     
     // MARK: - Timer View
     private var timerView: some View {
-        VStack {
-            Spacer()
-            
-            ZStack {
+        GeometryReader { geometry in
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 0) {
+                    Spacer(minLength: 40)
+                    
+                    ZStack {
                 let totalSeconds = Double(selectedMinutes * 60)
                 let progress = 1.0 - (Double(remainingSeconds) / totalSeconds)
                 
@@ -267,8 +260,7 @@ struct FocusSessionView: View {
             }
             
             if !sessionGoals.isEmpty {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: 12) {
                         Text(settings.localizedString(for: "Deine Ziele"))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .padding(.bottom, 4)
@@ -341,13 +333,11 @@ struct FocusSessionView: View {
                             .cornerRadius(12)
                         }
                     }
-                    .padding(.horizontal, 32)
-                }
-                .frame(maxHeight: 200)
+                .padding(.horizontal, 32)
                 .padding(.top, 20)
             }
             
-            Spacer()
+            Spacer(minLength: 40)
             
             Button {
                 showMathChallenge = true
@@ -358,7 +348,10 @@ struct FocusSessionView: View {
             }
             .padding(.bottom, 50)
         }
-        .sheet(isPresented: $showMathChallenge) {
+        .frame(maxWidth: .infinity, minHeight: geometry.size.height)
+        }
+        }
+        .fullScreenCover(isPresented: $showMathChallenge) {
             MathChallengeView(problemString: cancelMathProblem, correctAnswer: cancelMathAnswer) {
                 isTimerRunning = false
                 UIApplication.shared.isIdleTimerDisabled = false
@@ -450,6 +443,7 @@ struct FocusSessionView: View {
     
     private func finishSession() {
         state = .success
+        stopLiveActivity()
         // Triggert den Habit-Abschluss
         gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
@@ -502,5 +496,39 @@ struct FocusSessionView: View {
         
         self.cancelMathProblem = problem
         self.cancelMathAnswer = result
+    }
+    
+    // MARK: - Live Activity Management
+    private func startLiveActivity() {
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
+        
+        let endTime = Date().addingTimeInterval(TimeInterval(remainingSeconds))
+        let goalTitle = sessionGoals.first(where: { $0.priority == .high })?.text ?? 
+                        sessionGoals.first?.text ?? 
+                        "Focus Session"
+                        
+        let attributes = FocusTimerActivityAttributes(
+            habitName: settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name)
+        )
+        let state = FocusTimerActivityAttributes.ContentState(
+            endTime: endTime,
+            title: goalTitle
+        )
+        
+        do {
+            focusActivity = try Activity.request(attributes: attributes, content: .init(state: state, staleDate: nil))
+        } catch {
+            print("Konnte Focus Live Activity nicht starten: \(error)")
+        }
+    }
+    
+    private func stopLiveActivity() {
+        guard let activity = focusActivity else { return }
+        
+        Task {
+            // Dismissal immediately because the session is over or aborted
+            await activity.end(nil, dismissalPolicy: .immediate)
+            focusActivity = nil
+        }
     }
 }

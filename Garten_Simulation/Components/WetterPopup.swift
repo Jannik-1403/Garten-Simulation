@@ -29,16 +29,10 @@ struct WetterPopup: View {
                             .fill(event.bannerFarbe.opacity(0.25))
                             .frame(width: 75, height: 75)
 
-                        if #available(iOS 18.0, *) {
-                            Image(systemName: event.systemIcon)
-                                .font(.system(size: 36))
-                                .foregroundStyle(event.bannerFarbe)
-                                .symbolEffect(.bounce, value: erschienen)
-                        } else {
-                            Image(systemName: event.systemIcon)
-                                .font(.system(size: 36))
-                                .foregroundStyle(event.bannerFarbe)
-                        }
+                        Image(event.customIconName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 140, height: 140)
                     }
 
                     VStack(spacing: 8) {

@@ -652,7 +652,7 @@
 "pfad_abschluss_desc" = "Incroyable ! Tu as maîtrisé 90 jours d'affilée. Voici ta récompense bien méritée :";
 "pfad_abschluss_titel" = "90 jours terminés !";
 "pfad_activation_90_tage" = "90 jours";
-"pfad_activation_belohnung" = "Termine les 90 jours pour recevoir 5 000 pièces !";
+"pfad_activation_belohnung" = "Termine les 90 jours pour recevoir ta récompense finale !";
 "pfad_activation_btn" = "ACTIVER LE CHEMIN";
 "pfad_activation_desc" = "Que se passe-t-il après 90 jours ?\\nTu atteins la maîtrise ! Ta plante va complètement s'épanouir et tu vas créer une habitude forte et durable.";
 "pfad_activation_diff_change_title" = "Tu as sélectionné %@. Es-tu toujours %@ ou veux-tu le changer ?";
@@ -743,11 +743,11 @@
 "pfad_produktiv_phase_vertiefung_desc" = "Maîtrise ton temps. La concentration devient une habitude.";
 "pfad_progress_format" = "Jour %d / 90";
 "pfad_schwierigkeit_anfaenger" = "Débutant";
-"pfad_schwierigkeit_anfaenger_desc" = "Idéal pour les débutants. De petites étapes simples te mènent au succès en toute sérénité.";
+"pfad_schwierigkeit_anfaenger_desc" = "Idéal pour les débutants. De petites étapes simples te mènent au succès en toute sérénité. Récompense : 500 Pièces";
 "pfad_schwierigkeit_experte" = "Expert";
-"pfad_schwierigkeit_experte_desc" = "Le défi ultime. Fais preuve de discipline et maîtrise des tâches exigeantes !";
+"pfad_schwierigkeit_experte_desc" = "Le défi ultime. Fais preuve de discipline et maîtrise des tâches exigeantes ! Récompense : 1 500 Pièces";
 "pfad_schwierigkeit_fortgeschritten" = "Intermédiaire";
-"pfad_schwierigkeit_fortgeschritten_desc" = "Pour les jardiniers ambitieux. Un mélange équilibré de défi et de plaisir.";
+"pfad_schwierigkeit_fortgeschritten_desc" = "Pour les jardiniers ambitieux. Un mélange équilibré de défi et de plaisir. Récompense : 1 000 Pièces";
 "pfad_schwierigkeit_hinweis" = "Le niveau de difficulté influence la quantité de tâches quotidiennes et tes gains de XP.";
 "pfad_schwierigkeit_starten" = "Commencer l'aventure";
 "pfad_schwierigkeit_titel" = "À quel point es-tu déjà en forme ?";
@@ -1675,7 +1675,7 @@
 "habit.stats.impact" = "Impact négatif";
 "habit.impact.title" = "La méthode des 1%";
 "habit.impact.explanation" = "Selon 'Un rien peut tout changer' de James Clear, tu deviens 1% pire (0,99) à chaque fois que tu exécutes cette habitude. Cela a un immense effet négatif composé sur ta vie à long terme.";
-"habit.tips.title" = "Conseils (Les 4 lois)";
+"habit.tips.title" = "Conseils";
 "habit.tip.1" = "Rends-le invisible : Supprime de ton environnement tous les déclencheurs de cette habitude.";
 "habit.tip.2" = "Rends-le peu attrayant : Concentre-toi sur les conséquences négatives pour dévaluer mentalement l'habitude.";
 "habit.tip.3" = "Rends-le difficile : Augmente les obstacles et les étapes nécessaires pour exécuter l'habitude.";
@@ -1759,3 +1759,15 @@
 "trash.schlaf_killer_koffein.tip.2" = "La caféine bloque l'adénosine (ton signal de fatigue) – tu dors moins profondément.";
 "trash.schlaf_killer_koffein.tip.3" = "Remplace le café de l'après-midi par du décaféiné ou une tisane.";
 "trash.schlaf_killer_koffein.tip.4" = "Suis la qualité de ton sommeil avec et sans caféine – la différence te convaincra.";
+"pfad_tag_ausstehend" = "En attente";
+
+"rarity.common" = "COMMUN";
+"rarity.rare" = "RARE";
+"rarity.epic" = "ÉPIQUE";
+"rarity.legendary" = "LÉGENDAIRE";
+"rarity.mystic" = "MAÎTRE";
+
+// MARK: - Assessment
+
+
+// Finance Quiz – Portfolio extension Q6–Q9 (English fallback)

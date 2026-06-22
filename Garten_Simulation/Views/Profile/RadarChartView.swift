@@ -108,7 +108,7 @@ struct RadarChartView: View {
             .foregroundStyle(.secondary)
         }
         .padding(14)
-        .frame(width: 180)
+        .frame(width: 240)
         .background(.regularMaterial)
         .cornerRadius(14)
         .shadow(color: .black.opacity(0.15), radius: 8)
@@ -153,8 +153,9 @@ struct RadarChartView: View {
             
             Item3DButton(
                 farbe: category.color,
-                sekundaerFarbe: category.color.opacity(0.7), // Using opacity as a proxy for darker() if not available
+                sekundaerFarbe: category.color.opacity(0.7),
                 groesse: 36,
+                iconSkalierung: 1.6,
                 aktion: {
                     withAnimation(.spring(response: 0.3)) {
                         if selectedCategory == category {
@@ -165,9 +166,10 @@ struct RadarChartView: View {
                     }
                 }
             ) {
-                Image(systemName: category.icon)
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundStyle(.white)
+                Image(category.assetName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 58, height: 58)
             }
             .position(point)
         }
@@ -316,9 +318,11 @@ struct RadarChartShareImage: View {
 
     private var periodLabel: String {
         switch selectedPeriod {
-        case .week:   return settings.localizedString(for: "statistik_share_letzte_woche")
-        case .month:  return settings.localizedString(for: "statistik_share_letzter_monat")
-        case .year:   return settings.localizedString(for: "statistik_share_letztes_jahr")
+        case .day:     return settings.localizedString(for: "stats.period.today_simple")
+        case .week:    return settings.localizedString(for: "statistik_share_letzte_woche")
+        case .month:   return settings.localizedString(for: "statistik_share_letzter_monat")
+        case .year:    return settings.localizedString(for: "statistik_share_letztes_jahr")
+        case .allTime: return settings.localizedString(for: "stats.period.alltime_simple")
         }
     }
 }

@@ -12,6 +12,7 @@ struct ProfilView: View {
     @State private var showSettings = false
     @State private var showCharacterCustomization = false
     @State private var ausgewaehlterErfolg: Erfolg? = nil
+    @State private var showAssessment = false
     
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
@@ -20,6 +21,7 @@ struct ProfilView: View {
     @EnvironmentObject var titelStore: TitelStore
     @EnvironmentObject var characterStore: CharacterStore
     @EnvironmentObject var tourManager: InteractiveTourManager
+    @EnvironmentObject var assessmentStore: AssessmentStore
     
     private var freigeschalteteErfolgeAnzahl: Int {
         achievementStore.alleErfolge.filter { $0.istFreigeschaltet }.count
@@ -98,6 +100,11 @@ struct ProfilView: View {
                             InventoryStatButton(count: gardenStore.totalItemsCount, showDetail: $showPflanzenDetail)
                                 .tourAnchor(.inventory)
                                 .id(TourStep.inventory)
+                            
+                            AssessmentStatButton(
+                                result: assessmentStore.financeResult,
+                                aktion: { showAssessment = true }
+                            )
                         }
                         .padding(.horizontal, 24)
                         
@@ -185,6 +192,11 @@ struct ProfilView: View {
                     .environmentObject(settings)
                     .environmentObject(gardenStore)
                     .environmentObject(streakStore)
+            }
+            .fullScreenCover(isPresented: $showAssessment) {
+                AssessmentCategoryView()
+                    .environmentObject(assessmentStore)
+                    .environmentObject(settings)
             }
             .overlay {
                 if let neuerTitel = titelStore.neuerTitelZumAnzeigen {

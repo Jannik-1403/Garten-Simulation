@@ -126,17 +126,7 @@ struct ExportImportView: View {
             .animation(.easeInOut(duration: 0.2), value: isLoading)
             .navigationTitle(settingsStore.localizedString(for: "backup_title"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        withAnimation { dismiss() }
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.primary)
-                    }
-                }
-            }
+            .standardNavigationX()
             .sheet(isPresented: $showShareSheet, onDismiss: { exportURL = nil }) {
                 if let url = exportURL {
                     ShareSheet(activityItems: [url])

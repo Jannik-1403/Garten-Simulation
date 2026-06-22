@@ -42,6 +42,16 @@ enum WetterEvent: String, CaseIterable {
         }
     }
 
+    var customIconName: String {
+        switch self {
+        case .normal: return "WetterNormal"
+        case .regen: return "WetterRegen"
+        case .schnee: return "WetterFrost"
+        case .sturm: return "WetterSturm"
+        case .perfekt: return "WetterPerfekt"
+        }
+    }
+
     var systemIcon: String {
         switch self {
         case .normal: return "sun.max.fill"

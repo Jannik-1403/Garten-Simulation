@@ -23,11 +23,7 @@ struct TitelAuswahlSheet: View {
             }
             .navigationTitle(settings.localizedString(for: "titel.auswahl.titel"))
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    LiquidGlassDismissButton { dismiss() }
-                }
-            }
+            .standardNavigationX()
         }
         .presentationDetents([.medium, .large])
         .presentationDragIndicator(.visible)

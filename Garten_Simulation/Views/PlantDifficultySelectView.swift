@@ -17,16 +17,10 @@ struct PlantDifficultySelectView: View {
                 
                 HStack {
                     Spacer()
-                    Button { 
+                    LiquidGlassDismissButton {
                         FeedbackManager.shared.playTap()
-                        dismiss() 
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.primary)
-                            .padding(12)
+                        dismiss()
                     }
-                    .buttonStyle(.plain)
                     .padding(.trailing, 16)
                 }
 

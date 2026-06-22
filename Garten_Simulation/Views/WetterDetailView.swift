@@ -10,10 +10,11 @@ struct WetterDetailView: View {
             VStack(spacing: 28) {
                 // MARK: - 3D Header Icon
                 Item3DButton(
-                    icon: event.systemIcon,
+                    icon: event.customIconName,
                     farbe: event.bannerFarbe,
                     sekundaerFarbe: event.bannerFarbeSekundaer,
-                    groesse: 120
+                    groesse: 120,
+                    iconSkalierung: 1.8
                 )
                 .padding(.top, 32)
 
@@ -48,8 +49,8 @@ struct WetterDetailView: View {
                         )
                     } else {
                         weatherInfoBlock(
-                            icon: "star.fill",
-                            isAsset: false,
+                            icon: "XP",
+                            isAsset: true,
                             title: settings.localizedString(for: "common.xp"),
                             value: xpText
                         )

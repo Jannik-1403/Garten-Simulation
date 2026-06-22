@@ -370,8 +370,10 @@ struct IceWheelIcon: View {
                     .scaledToFit()
                     .frame(width: 26, height: 26)
             case .weed:
-                Image(systemName: "ant.fill")
-                    .foregroundColor(.white)
+                Image("Unkraut")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 60, height: 60)
             }
         }
         .font(.system(size: 24, weight: .bold))

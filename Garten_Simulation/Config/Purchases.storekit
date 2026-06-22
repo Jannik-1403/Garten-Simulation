@@ -19,7 +19,7 @@
 			<array>
 				<dict>
 					<key>description</key>
-					<string>Get 100 extra coins for your garden.</string>
+					<string>Get 500 extra coins for your garden.</string>
 					<key>displayName</key>
 					<string>Small Coin Pack</string>
 					<key>locale</key>
@@ -27,7 +27,7 @@
 				</dict>
 				<dict>
 					<key>description</key>
-					<string>Erhalte 100 Münzen für deinen Garten.</string>
+					<string>Erhalte 500 Münzen für deinen Garten.</string>
 					<key>displayName</key>
 					<string>Kleines Münzpaket</string>
 					<key>locale</key>
@@ -52,7 +52,7 @@
 			<array>
 				<dict>
 					<key>description</key>
-					<string>Get 500 extra coins for your garden.</string>
+					<string>Get 1800 extra coins for your garden.</string>
 					<key>displayName</key>
 					<string>Medium Coin Pack</string>
 					<key>locale</key>
@@ -60,7 +60,7 @@
 				</dict>
 				<dict>
 					<key>description</key>
-					<string>Erhalte 500 Münzen für deinen Garten.</string>
+					<string>Erhalte 1800 Münzen für deinen Garten.</string>
 					<key>displayName</key>
 					<string>Mittleres Münzpaket</string>
 					<key>locale</key>
@@ -85,7 +85,7 @@
 			<array>
 				<dict>
 					<key>description</key>
-					<string>Get 1200 extra coins for your garden.</string>
+					<string>Get 3500 extra coins for your garden.</string>
 					<key>displayName</key>
 					<string>Large Coin Pack</string>
 					<key>locale</key>
@@ -93,7 +93,7 @@
 				</dict>
 				<dict>
 					<key>description</key>
-					<string>Erhalte 1200 Münzen für deinen Garten.</string>
+					<string>Erhalte 3500 Münzen für deinen Garten.</string>
 					<key>displayName</key>
 					<string>Großes Münzpaket</string>
 					<key>locale</key>

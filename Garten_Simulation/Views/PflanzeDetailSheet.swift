@@ -26,6 +26,7 @@ struct PflanzeDetailSheet: View {
     @State private var selectedTab: DetailTab = .uebersicht
     @State private var pfadBereit: Bool = false
 
+
     enum DetailTab: String, CaseIterable {
         case uebersicht
         case verlauf
@@ -44,7 +45,7 @@ struct PflanzeDetailSheet: View {
             effekte.append(PflanzenEffekt(
                 id: UUID(uuidString: "77777777-7777-7777-7777-000000000001")!,
                 typ: .status,
-                ikonQuelle: .system("tortoise.fill"),
+                ikonQuelle: .asset("Schildkröte"),
                 titel: settings.localizedString(for: "effekt.erholung.titel"),
                 beschreibung: settings.localizedString(for: "effekt.erholung.beschreibung"),
                 expiresAt: expiration
@@ -56,7 +57,7 @@ struct PflanzeDetailSheet: View {
         effekte.append(PflanzenEffekt(
             id: UUID(uuidString: "88888888-8888-8888-8888-000000000002")!,
             typ: .wetter,
-            ikonQuelle: .system(wetterEvent.systemIcon),
+            ikonQuelle: .asset(wetterEvent.customIconName),
             titel: wetterEvent.titel,
             beschreibung: wetterEvent.untertitel,
             expiresAt: endOfDay
@@ -86,7 +87,7 @@ struct PflanzeDetailSheet: View {
             ZStack(alignment: .topTrailing) {
                 ScrollViewReader { proxy in
                     ScrollView(showsIndicators: false) {
-                        VStack(spacing: 28) {
+                        LazyVStack(spacing: 28, pinnedViews: [.sectionHeaders]) {
                     // MARK: - HERO (Zone 1)
                     VStack(spacing: 12) {
                         ZStack {
@@ -166,10 +167,9 @@ struct PflanzeDetailSheet: View {
                         if !aktiveEffekte.isEmpty {
                             HStack(spacing: 12) {
                                 ForEach(aktiveEffekte) { effekt in
-                                    EffektIkonButton(effekt: effekt) {
+                                    EffektIkonButton(effekt: effekt, size: 28, iconSkalierung: effekt.typ == .wetter ? 1.5 : 1.0) {
                                         ausgewaehlterEffekt = effekt
                                     }
-                                    .scaleEffect(1.4) // Etwas größer im Detail Sheet
                                 }
                             }
                             .padding(.top, 16)
@@ -179,19 +179,9 @@ struct PflanzeDetailSheet: View {
                     }
                     .padding(.top, 40)
 
-                // MARK: - TAB PICKER
-                if !(pflanze.plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: pflanze.plantID) == nil) {
-                    Picker("", selection: $selectedTab) {
-                        Text(settings.localizedString(for: "tab.uebersicht")).tag(DetailTab.uebersicht)
-                        Text(settings.localizedString(for: "tab.verlauf")).tag(DetailTab.verlauf)
-                    }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal, 24)
-                    .padding(.top, 8)
-                }
-
-                // MARK: - TAB CONTENT
-                if selectedTab == .uebersicht {
+                // MARK: - TAB PICKER & CONTENT
+                Section {
+                    if selectedTab == .uebersicht {
                     streakCardView
                         .tourAnchor(.plantStreak)
                         .id("streakCard")
@@ -202,96 +192,43 @@ struct PflanzeDetailSheet: View {
 
                     // Notizen Liste
                     ForEach(pflanze.notizen.indices, id: \.self) { index in
-                        HStack(spacing: 12) {
-                            ZStack {
-                                Circle().fill(Color.blauPrimary.opacity(0.1))
-                                    .frame(width: 36, height: 36)
-                                Image(systemName: "doc.text.fill")
-                                    .font(.system(size: 16))
-                                    .foregroundStyle(Color.blauPrimary)
-                            }
-                            
-                            VStack(alignment: .leading, spacing: 2) {
-                                let noteLabel = settings.localizedString(for: "plant.detail.note")
-                                let noteText = noteLabel + " " + String(index + 1)
-                                Text(noteText)
-                                    .font(.system(size: 11, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.secondary)
-                                Text(pflanze.notizen[index])
-                                    .lineLimit(2)
-                                    .font(.system(size: 14, weight: .semibold, design: .rounded))
-                            }
-                            
-                            Spacer()
-                            
-                            // Löschen Button (X)
-                            Button {
+                        NoteRowView(
+                            pflanze: pflanze,
+                            index: index,
+                            onTap: {
+                                noteToEditIndex = index
+                                zeigeNotizSheet = true
+                            },
+                            onDelete: {
                                 noteToDeleteIndex = index
-                            } label: {
-                                Image(systemName: "xmark.circle.fill")
-                                    .font(.system(size: 20))
-                                    .foregroundStyle(Color.red.opacity(0.7))
+                            },
+                            deleteConfirmShowing: Binding(
+                                get: { noteToDeleteIndex == index },
+                                set: { if !$0 { noteToDeleteIndex = nil } }
+                            ),
+                            onConfirmDelete: {
+                                gardenStore.notizEntfernen(pflanze: pflanze, index: index)
+                                noteToDeleteIndex = nil
+                            },
+                            onCancelDelete: {
+                                noteToDeleteIndex = nil
                             }
-                        }
-                        .padding(14)
-                        .background(
-                            RoundedRectangle(cornerRadius: 18, style: .continuous)
-                                .fill(Color.white)
-                                .shadow(color: Color.black.opacity(0.04), radius: 10, y: 5)
                         )
                         .padding(.horizontal, 24)
                         .padding(.bottom, 4)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            noteToEditIndex = index
-                            zeigeNotizSheet = true
-                        }
                     }
 
                     // Timer Vorschau
                     if pflanze.hasActiveReminder {
-                        HStack(spacing: 12) {
-                            ZStack {
-                                Circle().fill(Color.orangePrimary.opacity(0.1))
-                                    .frame(width: 36, height: 36)
-                                Image(systemName: pflanze.reminderSchedule?.weekdays.first(where: { $0.isEnabled })?.repeatMode.sfSymbol ?? "bell.fill")
-                                    .font(.system(size: 16))
-                                    .foregroundStyle(Color.orangePrimary)
-                            }
-                            
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(settings.localizedString(for: "plant.detail.timer.active"))
-                                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.secondary)
-                                if let today = pflanze.todaysReminder {
-                                    Text("\(today.time, style: .time)")
-                                        .font(.system(size: 14, weight: .semibold, design: .rounded))
-                                } else {
-                                    Text(settings.localizedString(for: "timer.weekday.title"))
-                                        .font(.system(size: 14, weight: .semibold, design: .rounded))
-                                }
-                            }
-                            Spacer()
-                            Button {
-                                zeigeTimerAbbrechenDialog = true
-                            } label: {
-                                Image(systemName: "xmark.circle.fill")
-                                    .font(.system(size: 20))
-                                    .foregroundStyle(Color.red.opacity(0.8))
-                            }
-                        }
-                        .padding(14)
-                        .background(
-                            RoundedRectangle(cornerRadius: 18, style: .continuous)
-                                .fill(Color.white)
-                                .shadow(color: Color.black.opacity(0.04), radius: 10, y: 5)
+                        TimerRowView(
+                            pflanze: pflanze,
+                            onTap: { zeigeTimerEditSheet = true },
+                            onDelete: { zeigeTimerAbbrechenDialog = true },
+                            deleteConfirmShowing: $zeigeTimerAbbrechenDialog,
+                            onConfirmDelete: { gardenStore.timerEntfernen(pflanze: pflanze) }
                         )
                         .padding(.horizontal, 24)
                         .padding(.bottom, 8)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            zeigeTimerEditSheet = true
-                        }
                     }
 
                     // 3D Buttons nebeneinander
@@ -301,13 +238,7 @@ struct PflanzeDetailSheet: View {
                             zeigeNotizSheet = true
                         } label: {
                             ZStack {
-                                HStack {
-                                    Spacer()
-                                    Image(systemName: "square.and.pencil")
-                                        .font(.system(size: 24))
-                                        .foregroundStyle(.white.opacity(0.12))
-                                        .offset(x: 35, y: 15)
-                                }
+
                                 Text(settings.localizedString(for: "plant.detail.note.add")).textCase(.uppercase)
                                     .font(.system(size: 14, weight: .bold, design: .rounded))
                             }
@@ -324,13 +255,7 @@ struct PflanzeDetailSheet: View {
                             zeigeTimerSheet = true
                         } label: {
                             ZStack {
-                                HStack {
-                                    Spacer()
-                                    Image(systemName: "bell.fill")
-                                        .font(.system(size: 24))
-                                        .foregroundStyle(.white.opacity(0.12))
-                                        .offset(x: 35, y: 15)
-                                }
+
                                 Text(settings.localizedString(for: "plant.detail.timer")).textCase(.uppercase)
                                     .font(.system(size: 15, weight: .bold, design: .rounded))
                             }
@@ -405,6 +330,18 @@ struct PflanzeDetailSheet: View {
                             .tourAnchor(.plantPath)
                     }
                 }
+                } header: {
+                    if !(pflanze.plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: pflanze.plantID) == nil) {
+                        Picker("", selection: $selectedTab) {
+                            Text(settings.localizedString(for: "tab.uebersicht")).tag(DetailTab.uebersicht)
+                            Text(settings.localizedString(for: "tab.verlauf")).tag(DetailTab.verlauf)
+                        }
+                        .pickerStyle(.segmented)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 8)
+                        .background(Color(UIColor.secondarySystemBackground))
+                    }
+                } // End of Section
             }
             } // End of ScrollView
             .onChange(of: interactiveTourManager.currentStep) { _, newStep in
@@ -423,7 +360,7 @@ struct PflanzeDetailSheet: View {
         .navigationTitle(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
         .navigationBarTitleDisplayMode(.inline)
         .standardNavigationX()
-        .background(.ultraThinMaterial)
+        .background(Color(UIColor.secondarySystemBackground))
         .onAppear {
             withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
                 pulsieren = true
@@ -474,57 +411,18 @@ struct PflanzeDetailSheet: View {
                     .environmentObject(settings)
             }
         }
-        // MARK: - Notiz Löschen Dialog
-        .confirmationDialog(
-            settings.localizedString(for: "plant.detail.note.delete.confirm"),
-            isPresented: Binding(
-                get: { noteToDeleteIndex != nil },
-                set: { if !$0 { noteToDeleteIndex = nil } }
-            ),
-            titleVisibility: .visible
-        ) {
-            Button(settings.localizedString(for: "plant.detail.note.delete.action"), role: .destructive) {
-                if let index = noteToDeleteIndex {
-                    gardenStore.notizEntfernen(pflanze: pflanze, index: index)
-                }
-            }
-            Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
-        }
-        // MARK: - Notiz Bearbeiten Dialog
-        .confirmationDialog(
-            settings.localizedString(for: "plant.detail.note.edit.options"),
-            isPresented: Binding(
-                get: { noteToEditIndex != nil },
-                set: { if !$0 { noteToEditIndex = nil } }
-            ),
-            titleVisibility: .visible
-        ) {
-            Button(settings.localizedString(for: "button.edit")) {
+
+        // MARK: - Notiz Bearbeiten: Direkt Sheet öffnen (kein Dialog mehr)
+        .onChange(of: noteToEditIndex) { _, newIndex in
+            if newIndex != nil {
                 zeigeNotizSheet = true
             }
-            Button(settings.localizedString(for: "button.delete"), role: .destructive) {
-                noteToDeleteIndex = noteToEditIndex
-                noteToEditIndex = nil
-            }
-            Button(settings.localizedString(for: "button.cancel"), role: .cancel) {
-                noteToEditIndex = nil
-            }
         }
-        // MARK: - Timer Abbrechen Dialog
-        .confirmationDialog(
-            settings.localizedString(for: "plant.detail.timer.cancel.confirm"),
-            isPresented: $zeigeTimerAbbrechenDialog,
-            titleVisibility: .visible
-        ) {
-            Button(settings.localizedString(for: "plant.detail.timer.cancel.action"), role: .destructive) {
-                gardenStore.timerEntfernen(pflanze: pflanze)
-            }
-            Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
-        }
+
         // MARK: - Effekt Detail Sheet
         .sheet(item: $ausgewaehlterEffekt) { effekt in
             EffektDetailSheet(effekt: effekt)
-                .presentationDetents([.fraction(0.38)])
+                .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
         }
         .fullScreenCover(isPresented: $zeigeFocusSession) {
@@ -638,12 +536,9 @@ struct PflanzeDetailSheet: View {
             }
             .background(
                 ZStack {
-                    // 3D Shadow
                     RoundedRectangle(cornerRadius: 24, style: .continuous)
                         .fill(Color.orangeSecondary)
                         .offset(y: 4)
-                    
-                    // Main Orange Surface
                     RoundedRectangle(cornerRadius: 24, style: .continuous)
                         .fill(
                             LinearGradient(
@@ -842,8 +737,9 @@ struct TimerEditSheetView: View {
                 .listStyle(.insetGrouped)
                 .scrollDismissesKeyboard(.interactively)
                 .scrollContentBackground(.hidden)
-                .background(Color.white)
+                .shadow(color: .black.opacity(0.15), radius: 0, x: 0, y: 4)
             }
+            .background(Color.appHintergrund.ignoresSafeArea())
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -1005,7 +901,7 @@ struct TimerEditSheetView: View {
                         }
                     }
                 } else {
-                    withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                    withAnimation(.spring(response: 0.4, dampingFraction: 0.75, blendDuration: 0)) {
                         if !isEnabled {
                             schedule.weekdays[index].isEnabled = true
                             expandedDay = day
@@ -1061,7 +957,6 @@ struct TimerEditSheetView: View {
             // Expanded Content
             if isExpanded {
                 expandedContent(for: index, day: day)
-                    .transition(.opacity)
             }
         }
         .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
@@ -1138,8 +1033,15 @@ struct TimerEditSheetView: View {
 
     private func autoSave() {
         Task {
-            _ = await NotificationManager.shared.requestPermission()
-            gardenStore.timerScheduleSetzen(pflanze: pflanze, schedule: schedule)
+            let status = await NotificationManager.shared.checkAuthorizationStatus()
+            if status == .denied {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    await UIApplication.shared.open(url)
+                }
+            } else {
+                _ = await NotificationManager.shared.requestPermission()
+                gardenStore.timerScheduleSetzen(pflanze: pflanze, schedule: schedule)
+            }
         }
     }
 }
@@ -1170,9 +1072,16 @@ struct TimerCreateSheetView: View {
 
             Button {
                 Task {
-                    _ = await NotificationManager.shared.requestPermission()
-                    gardenStore.timerSetzen(pflanze: pflanze, datum: ausgewaehlteZeit)
-                    dismiss()
+                    let status = await NotificationManager.shared.checkAuthorizationStatus()
+                    if status == .denied {
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            await UIApplication.shared.open(url)
+                        }
+                    } else {
+                        _ = await NotificationManager.shared.requestPermission()
+                        gardenStore.timerSetzen(pflanze: pflanze, datum: ausgewaehlteZeit)
+                        dismiss()
+                    }
                 }
             } label: {
                 Text(settings.localizedString(for: "plant.detail.timer.set"))
@@ -1181,6 +1090,7 @@ struct TimerCreateSheetView: View {
             .padding(.horizontal, 24)
             .padding(.bottom, 32)
         }
+        .background(Color.appHintergrund.ignoresSafeArea())
     }
 }
 
@@ -1283,5 +1193,211 @@ struct PlantWeeklyStreakView: View {
         let key = formatter.string(from: targetDate)
         
         return pflanze.xpHistory[key] ?? 0
+    }
+}
+
+// MARK: - List Row 3D Button Style
+struct PflanzeDetailListRowButtonStyle: ButtonStyle {
+    var isVisualPressed: Bool = false
+    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
+
+    func makeBody(configuration: Configuration) -> some View {
+        let isPressed = configuration.isPressed || isVisualPressed
+        configuration.label
+            .background(
+                ZStack {
+                    RoundedRectangle(cornerRadius: 18, style: .continuous)
+                        .fill(Color(.systemGray4))
+                        .offset(y: isPressed ? 0 : 4)
+                    RoundedRectangle(cornerRadius: 18, style: .continuous)
+                        .fill(Color.white)
+                }
+            )
+            .offset(y: isPressed ? 4 : 0)
+            .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
+            .sensoryFeedback(trigger: isPressed) { _, newValue in
+                (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
+            }
+    }
+}
+
+// MARK: - Note Row (own State for isVisualPressed animation)
+struct NoteRowView: View {
+    @EnvironmentObject var settings: SettingsStore
+    let pflanze: HabitModel
+    let index: Int
+    let onTap: () -> Void
+    let onDelete: () -> Void
+    let deleteConfirmShowing: Binding<Bool>
+    let onConfirmDelete: () -> Void
+    let onCancelDelete: () -> Void
+
+    @State private var isVisualPressed = false
+    @State private var deletePressed = false
+
+    var body: some View {
+        // The entire row (including X) lives in one Button so everything animates together.
+        // The X intercepts its own tap via simultaneousGesture without triggering the parent.
+        Button {
+            isVisualPressed = true
+            FeedbackManager.shared.playTap()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                isVisualPressed = false
+                onTap()
+            }
+        } label: {
+            HStack(spacing: 12) {
+                Image("Notizen")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32, height: 32)
+                    .scaleEffect(2.5)
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("\(settings.localizedString(for: "plant.detail.note")) \(index + 1)")
+                        .font(.system(size: 11, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                    Text(pflanze.notizen[index])
+                        .lineLimit(2)
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                }
+
+                Spacer()
+
+                // X delete button — inside the label so it moves with the card.
+                // Uses simultaneousGesture so it intercepts the tap independently.
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 20))
+                    .foregroundStyle(Color.red.opacity(0.7))
+                    .frame(width: 44, height: 44)
+                    .contentShape(Rectangle())
+                    .simultaneousGesture(
+                        TapGesture().onEnded { onDelete() }
+                    )
+            }
+            .padding(.vertical, 6)
+            .padding(.horizontal, 14)
+        }
+        .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: isVisualPressed))
+        .confirmationDialog(
+            settings.localizedString(for: "plant.detail.note.delete.confirm"),
+            isPresented: deleteConfirmShowing,
+            titleVisibility: .visible
+        ) {
+            Button(settings.localizedString(for: "plant.detail.note.delete.action"), role: .destructive) {
+                onConfirmDelete()
+            }
+            Button(settings.localizedString(for: "button.cancel"), role: .cancel) {
+                onCancelDelete()
+            }
+        }
+    }
+}
+
+// MARK: - Timer Row (own State for isVisualPressed animation)
+struct TimerRowView: View {
+    @EnvironmentObject var settings: SettingsStore
+    let pflanze: HabitModel
+    let onTap: () -> Void
+    let onDelete: () -> Void
+    let deleteConfirmShowing: Binding<Bool>
+    let onConfirmDelete: () -> Void
+
+    @State private var isVisualPressed = false
+
+    var body: some View {
+        // The entire row (including X) lives in one Button so everything animates together.
+        Button {
+            isVisualPressed = true
+            FeedbackManager.shared.playTap()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                isVisualPressed = false
+                onTap()
+            }
+        } label: {
+            HStack(spacing: 12) {
+                Image("Erinnerung")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32, height: 32)
+                    .scaleEffect(2.5)
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(settings.localizedString(for: "plant.detail.timer.active"))
+                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                    if let next = pflanze.nextActiveReminder {
+                        Text("\(next.time, style: .time)")
+                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    } else {
+                        Text(settings.localizedString(for: "timer.weekday.title"))
+                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    }
+                }
+                Spacer()
+
+                // X delete button — inside the label so it moves with the card.
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 20))
+                    .foregroundStyle(Color.red.opacity(0.8))
+                    .frame(width: 44, height: 44)
+                    .contentShape(Rectangle())
+                    .simultaneousGesture(
+                        TapGesture().onEnded { onDelete() }
+                    )
+            }
+            .padding(.vertical, 6)
+            .padding(.horizontal, 14)
+        }
+        .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: isVisualPressed))
+        .confirmationDialog(
+            settings.localizedString(for: "plant.detail.timer.cancel.confirm"),
+            isPresented: deleteConfirmShowing,
+            titleVisibility: .visible
+        ) {
+            Button(settings.localizedString(for: "plant.detail.timer.cancel.action"), role: .destructive) {
+                onConfirmDelete()
+            }
+            Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
+        }
+    }
+}
+
+// MARK: - Streak Card Button Style
+// Mirrors PflanzenCardButtonStyle: responds to BOTH configuration.isPressed (hold)
+// and isVisualPressed (quick tap) so the animation is always visible.
+struct StreakCardButtonStyle: ButtonStyle {
+    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
+    let isVisualPressed: Bool
+
+    func makeBody(configuration: Configuration) -> some View {
+        let isPressed = configuration.isPressed || isVisualPressed
+
+        ZStack {
+            // 3D Shadow
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .fill(Color.orangeSecondary)
+
+            // Main Orange Surface
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .fill(
+                    LinearGradient(
+                        colors: [.orangePrimary, .orangePrimary.opacity(0.9)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .stroke(Color.white.opacity(0.2), lineWidth: 1.5)
+                )
+                .overlay(configuration.label)
+                .offset(y: isPressed ? 0 : -4)
+        }
+        .offset(y: isPressed ? 4 : 0)
+        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
+        .sensoryFeedback(trigger: isPressed) { _, newValue in
+            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
+        }
     }
 }

@@ -100,10 +100,13 @@ struct IsometricPathView: View {
                             Color.clear
                                 .frame(width: canvasWidth, height: canvasHeight)
 
-                            // Berechne den Fortschritt
+                            // Berechne den Fortschritt mit optimierter Logik
+                            let calendar = Calendar.current
+                            let checkedStartOfDays = Set(habit.pfadCheckedDates.map { calendar.startOfDay(for: $0) })
+                            
                             let firstUnwateredIndex = (0..<totalDays).first { i in
                                 let date = dayAt(index: i)
-                                return !habit.pfadCheckedDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
+                                return !checkedStartOfDays.contains(calendar.startOfDay(for: date))
                             } ?? totalDays
 
                             // Alle Elemente (Tiles + Dekorationen) zusammen nach Z-Order sortieren
@@ -138,9 +141,11 @@ struct IsometricPathView: View {
                 }
                 .overlay(alignment: .top) {
                     if selectedDay == nil {
+                        let calendar = Calendar.current
+                        let checkedStartOfDays = Set(habit.pfadCheckedDates.map { calendar.startOfDay(for: $0) })
                         let firstUnwateredIndex = (0..<totalDays).first { i in
                             let date = dayAt(index: i)
-                            return !habit.pfadCheckedDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
+                            return !checkedStartOfDays.contains(calendar.startOfDay(for: date))
                         } ?? totalDays
                         let currentDay = min(firstUnwateredIndex + 1, totalDays)
                         let diffEnum = PfadSchwierigkeit(rawValue: habit.individualSchwierigkeit ?? "") ?? .anfaenger
@@ -178,9 +183,11 @@ struct IsometricPathView: View {
                     }
                 }
                 .onAppear {
+                    let calendar = Calendar.current
+                    let checkedStartOfDays = Set(habit.pfadCheckedDates.map { calendar.startOfDay(for: $0) })
                     let firstUnwateredIndex = (0..<totalDays).first { i in
                         let date = dayAt(index: i)
-                        return !habit.pfadCheckedDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
+                        return !checkedStartOfDays.contains(calendar.startOfDay(for: date))
                     } ?? (totalDays - 1)
 
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -203,9 +210,11 @@ struct IsometricPathView: View {
         let dayNum = index + 1
         
         // Berechne erneut den aktuellen freigeschalteten Index
+        let calendar = Calendar.current
+        let checkedStartOfDays = Set(habit.pfadCheckedDates.map { calendar.startOfDay(for: $0) })
         let firstUnwateredIndex = (0..<totalDays).first { i in
             let d = dayAt(index: i)
-            return !habit.pfadCheckedDates.contains { Calendar.current.isDate($0, inSameDayAs: d) }
+            return !checkedStartOfDays.contains(calendar.startOfDay(for: d))
         } ?? totalDays
         
         let isUnlockedStump = (index == firstUnwateredIndex)
@@ -292,14 +301,9 @@ struct IsometricPathView: View {
             // Header / Close
             HStack {
                 Spacer()
-                Button(action: { selectedDay = nil }) {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 16, weight: .black))
-                        .foregroundStyle(.primary)
-                        .padding(12)
-                }
+                LiquidGlassDismissButton { selectedDay = nil }
+                    .padding(.trailing, 16)
             }
-            .padding(.horizontal, 24)
             .padding(.top, 20)
             
             VStack(spacing: 25) {
@@ -337,14 +341,17 @@ struct IsometricPathView: View {
                         .minimumScaleFactor(0.8)
                 }
                 
-                // 4. Datum & Status
+                // 4. Status (Erledigt / Ausstehend)
                 HStack(spacing: 10) {
-                    let isWatered = habit.pfadCheckedDates.contains { Calendar.current.isDate($0, inSameDayAs: date) }
+                    let calendar = Calendar.current
+                    let dateStartOfDay = calendar.startOfDay(for: date)
+                    let isWatered = habit.pfadCheckedDates.contains { calendar.startOfDay(for: $0) == dateStartOfDay }
                     Image(systemName: isWatered ? "checkmark.circle.fill" : "clock.fill")
                         .foregroundColor(isWatered ? .green : .orange)
                         .font(.body)
                     
-                    Text(date.formatted(date: .long, time: .omitted))
+                    let statusText = isWatered ? AppStrings.get("pfad_tag_erledigt", language: lang) : AppStrings.get("pfad_tag_ausstehend", language: lang)
+                    Text(statusText)
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundColor(.secondary)
                 }
@@ -470,7 +477,10 @@ struct IsometricPathView: View {
     @ViewBuilder
     private func tileView(index i: Int, firstUnwateredIndex: Int) -> some View {
         let dateOfTile = dayAt(index: i)
-        let isFuture = Calendar.current.compare(dateOfTile, to: Date(), toGranularity: .day) == .orderedDescending
+        let calendar = Calendar.current
+        let todayStart = calendar.startOfDay(for: Date())
+        let tileStart = calendar.startOfDay(for: dateOfTile)
+        let isFuture = tileStart > todayStart
         
         let status: PathTileView.TileStatus = {
             if i < firstUnwateredIndex { return .erledigt }
@@ -540,6 +550,16 @@ struct PfadActivationOverlay: View {
     @EnvironmentObject var pfadStore: GartenPfadStore
     
     @State private var ausgewaehlt: PfadSchwierigkeit = .anfaenger
+
+    /// Liest die tatsächlich gespeicherte Schwierigkeit direkt aus dem Habit-Modell.
+    private var gespeicherteSchwierigkeit: PfadSchwierigkeit {
+        if let raw = habit.individualSchwierigkeit,
+           let diff = PfadSchwierigkeit(rawValue: raw) {
+            return diff
+        }
+        return ausgewaehlt
+    }
+
     @State private var isAnimating = false
     @State private var isChangingDifficulty = false
     
@@ -569,9 +589,27 @@ struct PfadActivationOverlay: View {
                         .scaledToFit()
                         .frame(width: 60, height: 60)
                         .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 4)
+
+                    // Münzenbelohnung – 3D-Text wie Glücksrad/Spieltitel
+                    // Liest immer direkt aus dem gespeicherten Modell → kein falscher Wert nach Neustart
+                    let aktiveStufe = gespeicherteSchwierigkeit
+                    let formatted = NumberFormatter.localizedString(from: NSNumber(value: aktiveStufe.muenzen), number: .decimal)
+                    ZStack {
+                        // Schattenebene
+                        Text(formatted)
+                            .font(.system(size: 36, weight: .black, design: .rounded))
+                            .foregroundStyle(aktiveStufe.farbe.opacity(0.35))
+                            .offset(y: 6)
+                        // Haupttextebene
+                        Text(formatted)
+                            .font(.system(size: 36, weight: .black, design: .rounded))
+                            .foregroundStyle(aktiveStufe.farbe)
+                    }
+                    .contentTransition(.numericText())
+                    .animation(.spring(response: 0.4, dampingFraction: 0.7), value: aktiveStufe)
                         
                     Text(settings.localizedString(for: "pfad_activation_belohnung"))
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 32)

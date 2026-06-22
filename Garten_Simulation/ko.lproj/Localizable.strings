@@ -652,7 +652,7 @@
 "pfad_abschluss_desc" = "믿을 수 없는! 90일 연속으로 마스터하셨습니다. 여기 당신이 받을 만한 보상이 있습니다:";
 "pfad_abschluss_titel" = "90일 완료!";
 "pfad_activation_90_tage" = "90일";
-"pfad_activation_belohnung" = "90일을 완료하고 5,000코인을 받으세요!";
+"pfad_activation_belohnung" = "90일을 완료하고 최종 보상을 받으세요!";
 "pfad_activation_btn" = "경로 활성화";
 "pfad_activation_desc" = "90일 후에는 어떻게 되나요?\\n당신은 숙달을 달성합니다! 식물이 완전히 꽃을 피우고 강하고 오래 지속되는 습관을 갖게 될 것입니다.";
 "pfad_activation_diff_change_title" = "%@을(를) 선택하셨습니다. 아직 %@ 상태인가요, 아니면 변경하시겠습니까?";
@@ -743,11 +743,11 @@
 "pfad_produktiv_phase_vertiefung_desc" = "시간을 마스터하세요. 집중은 습관이 됩니다.";
 "pfad_progress_format" = "일 %d / 90";
 "pfad_schwierigkeit_anfaenger" = "초보자";
-"pfad_schwierigkeit_anfaenger_desc" = "초보자에게 이상적입니다. 작고 간단한 단계를 통해 편안한 방식으로 성공을 거둘 수 있습니다.";
+"pfad_schwierigkeit_anfaenger_desc" = "초보자에게 이상적입니다. 작고 간단한 단계를 통해 편안한 방식으로 성공을 거둘 수 있습니다. 보상: 500 코인";
 "pfad_schwierigkeit_experte" = "전문가";
-"pfad_schwierigkeit_experte_desc" = "궁극적인 도전. 당신의 규율을 보여주고 까다로운 작업을 마스터하세요!";
+"pfad_schwierigkeit_experte_desc" = "궁극적인 도전. 당신의 규율을 보여주고 까다로운 작업을 마스터하세요! 보상: 1,500 코인";
 "pfad_schwierigkeit_fortgeschritten" = "중급";
-"pfad_schwierigkeit_fortgeschritten_desc" = "야심찬 정원사를 위한 제품입니다. 도전과 재미의 균형 잡힌 조합.";
+"pfad_schwierigkeit_fortgeschritten_desc" = "야심찬 정원사를 위한 제품입니다. 도전과 재미의 균형 잡힌 조합. 보상: 1,000 코인";
 "pfad_schwierigkeit_hinweis" = "난이도는 일일 작업량과 XP 획득에 영향을 미칩니다.";
 "pfad_schwierigkeit_starten" = "모험 시작";
 "pfad_schwierigkeit_titel" = "당신은 이미 얼마나 건강합니까?";
@@ -1675,7 +1675,7 @@
 "habit.stats.impact" = "부정적 영향";
 "habit.impact.title" = "1% 법칙";
 "habit.impact.explanation" = "제임스 클리어의 '아주 작은 습관의 힘'에 따르면, 이 습관을 실행할 때마다 1% 나빠집니다 (0.99). 이것은 장기적으로 삶에 엄청난 부정적 복리 효과를 미칩니다.";
-"habit.tips.title" = "팁 (4가지 법칙)";
+"habit.tips.title" = "팁";
 "habit.tip.1" = "보이지 않게 만들기: 이 습관을 유발하는 모든 단서를 환경에서 제거하세요.";
 "habit.tip.2" = "매력 없게 만들기: 부정적인 결과에 집중하여 정신적으로 습관의 가치를 떨어뜨리세요.";
 "habit.tip.3" = "어렵게 만들기: 습관을 실행하는 데 필요한 마찰과 단계를 늘리세요.";
@@ -1759,3 +1759,14 @@
 "trash.schlaf_killer_koffein.tip.2" = "카페인은 아데노신(피로 신호)을 차단합니다 – 더 얕게 자고 회복이 나빠집니다.";
 "trash.schlaf_killer_koffein.tip.3" = "오후 커피를 디카페인이나 허브차로 대체하세요.";
 "trash.schlaf_killer_koffein.tip.4" = "카페인 있을 때와 없을 때의 수면 품질을 추적하세요 – 차이가 설득할 것입니다.";
+"pfad_tag_ausstehend" = "대기 중";
+
+"rarity.common" = "일반";
+"rarity.rare" = "희귀";
+"rarity.epic" = "에픽";
+"rarity.legendary" = "전설";
+"rarity.mystic" = "마스터";
+
+// MARK: - Assessment (English Fallback)
+
+// Finance Quiz – Portfolio extension Q6–Q9 (English fallback)

@@ -453,9 +453,9 @@ class GartenPfadStore: ObservableObject {
             if let pid = resolvedPflanzenID, let habit = gardenStore.pflanzen.first(where: { $0.id == pid }) {
                 let schwierigkeit = PfadSchwierigkeit(rawValue: habit.individualSchwierigkeit ?? "") ?? .anfaenger
                 switch schwierigkeit {
-                case .anfaenger: coins = 2500
-                case .fortgeschritten: coins = 5000
-                case .experte: coins = 10000
+                case .anfaenger: coins = 500
+                case .fortgeschritten: coins = 1000
+                case .experte: coins = 1500
                 }
                 self.letzterAbschlussCoins = coins
                 self.letzteAbschlussPflanzeID = habit.id

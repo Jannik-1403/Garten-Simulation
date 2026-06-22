@@ -54,6 +54,8 @@ class GardenStore: ObservableObject {
     @Published var skillXP: [String: Int] = [:]
     @Published var completed90DayChallenges: Int = 0
     
+    var isMock: Bool = false
+    
     var gekauftePflanzenAnzahl: Int { pflanzen.count }
     
     var diamantPflanzenAnzahl: Int {
@@ -147,7 +149,7 @@ class GardenStore: ObservableObject {
     
     var titelStore: TitelStore? = nil
 
-    private var gardenActivity: Activity<GardenActivityAttributes>? = nil
+    // Live Activity was moved to Focus Timer
 
 
     var totalItemsCount: Int {
@@ -201,21 +203,24 @@ class GardenStore: ObservableObject {
         return nil
     }
 
-    init() {
-        loadStats()
-        loadPlants()
-        loadTransactions()
-        loadInventory()
-        loadActivePowerUps()
-        loadDecorations()
-        ladeAbgeholte()
-        loadBadHabits()
-        loadBadHabitNotes()
-        updateTageAktiv()
-        pruefePflanzenStatus()
-        taeglicherStreakCheck()
-        checkUngegossenePflanzen()
-        updateWidgetData()
+    init(isMock: Bool = false) {
+        self.isMock = isMock
+        if !isMock {
+            loadStats()
+            loadPlants()
+            loadTransactions()
+            loadInventory()
+            loadActivePowerUps()
+            loadDecorations()
+            ladeAbgeholte()
+            loadBadHabits()
+            loadBadHabitNotes()
+            updateTageAktiv()
+            pruefePflanzenStatus()
+            taeglicherStreakCheck()
+            checkUngegossenePflanzen()
+            updateWidgetData()
+        }
     }
 
     func reloadData() {
@@ -448,9 +453,6 @@ class GardenStore: ObservableObject {
 
         // Neue Benachrichtigungs-Logik
         NotificationManager.shared.rescheduleAfterWatering(habit: pflanze, allHabits: pflanzen)
-        
-        // Live Activity aktualisieren
-        updateLiveActivity()
     }
 
     // MARK: Pflanze entfernen
@@ -545,7 +547,6 @@ class GardenStore: ObservableObject {
             savePlants()
             NotificationManager.shared.scheduleAll(for: pflanzen)
             updateWidgetData() // Update Home-Screen Widget
-            updateLiveActivity() // Update Live Activity
         }
     }
 
@@ -775,10 +776,10 @@ class GardenStore: ObservableObject {
         )
         
         withAnimation(.spring(response: 0.4)) {
+            neue.individualSchwierigkeit = "fortgeschritten"
             pflanzen.append(neue)
             savePlants()
             NotificationManager.shared.scheduleAll(for: pflanzen)
-            updateLiveActivity()
         }
     }
 
@@ -1053,17 +1054,17 @@ class GardenStore: ObservableObject {
         }
     }
 
-    func addCustomPlant(name: String, habit: String, icon: String, color: String, category: HabitCategory) {
+    func addCustomPlant(name: String, habit: String, icon: String, color: String, category: HabitCategory, isNegative: Bool = false) {
         guard seeds >= 10 else { return }
         seeds -= 10
         saveStats()
         
-        createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category)
+        createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category, isNegative: isNegative)
     }
     
     // Non-billed version for Onboarding
     func addCustomPlantFromOnboarding(name: String, habit: String, icon: String, color: String, category: HabitCategory, reminderTime: Date? = nil) {
-        createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category, reminderTime: reminderTime)
+        createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category, reminderTime: reminderTime, isNegative: false)
     }
     
     // Backwards compatibility for older onboarding code calling a German-named API
@@ -1071,28 +1072,52 @@ class GardenStore: ObservableObject {
         addCustomPlantFromOnboarding(name: name, habit: habit, icon: icon, color: color, category: category, reminderTime: reminderTime)
     }
     
-    private func createAndAddCustomPlant(name: String, habit: String, icon: String, color: String, category: HabitCategory, reminderTime: Date? = nil) {
+    private func createAndAddCustomPlant(name: String, habit: String, icon: String, color: String, category: HabitCategory, reminderTime: Date? = nil, isNegative: Bool = false) {
         let newCustomID = "custom_\(UUID().uuidString)"
-        let customPlant = HabitModel(
-            id: UUID().uuidString,
-            name: name,
-            symbolName: icon,
-            symbolColor: color,
-            habitCategory: category,
-            symbolism: "plant.create.custom_symbolism",
-            habitName: habit,
-            maxLevel: 10,
-            xpPerCompletion: 100,
-            waterNeedPerDay: 1,
-            decayDays: 2,
-            plantID: newCustomID,
-            reminderTime: reminderTime
-        )
         
-        withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
-            pflanzen.append(customPlant)
-            savePlants()
-            NotificationManager.shared.scheduleAll(for: pflanzen)
+        if isNegative {
+            let customDecoration = DecorationItem(
+                id: "trash.\(newCustomID)",
+                objectNameKey: name,
+                objectDescriptionKey: "Eigene schlechte Angewohnheit",
+                habitNameKey: name,
+                habitDescriptionKey: habit,
+                sfSymbol: icon,
+                price: 0,
+                category: .deko,
+                minGartenLevel: 1
+            )
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                placedDecorations.append(customDecoration)
+                speichereAbgeholte() // saves decorations/stats
+                if let encoded = try? JSONEncoder().encode(placedDecorations) {
+                    SharedUserDefaults.suite.set(encoded, forKey: "placedDecorations")
+                    SharedUserDefaults.suite.synchronize()
+                }
+            }
+        } else {
+            let customPlant = HabitModel(
+                id: UUID().uuidString,
+                name: name,
+                symbolName: icon,
+                symbolColor: color,
+                habitCategory: category,
+                symbolism: "plant.create.custom_symbolism",
+                habitName: habit,
+                maxLevel: 10,
+                xpPerCompletion: 100,
+                waterNeedPerDay: 1,
+                decayDays: 2,
+                plantID: newCustomID,
+                reminderTime: reminderTime,
+                isNegative: isNegative
+            )
+            
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                pflanzen.append(customPlant)
+                savePlants()
+                NotificationManager.shared.scheduleAll(for: pflanzen)
+            }
         }
     }
     
@@ -1183,6 +1208,7 @@ class GardenStore: ObservableObject {
     }
 
     func saveDecorations() {
+        guard !isMock else { return }
         guard !isLoading else { return }
         if let encoded = try? JSONEncoder().encode(placedDecorations) {
             SharedUserDefaults.suite.set(encoded, forKey: "garden_decorations")
@@ -1213,8 +1239,7 @@ class GardenStore: ObservableObject {
             weedCrisis.decorationSpawnsDuringCrisis += 1
         }
 
-        let cost = max(removalCost, GameConstants.weedRemovalCostSpin)
-        let patch = WeedPatch(removalCost: cost, source: source)
+        let patch = WeedPatch(removalCost: 500, source: source)
         activeWeeds.append(patch)
         weedCrisis.peakWeedCount = max(weedCrisis.peakWeedCount, activeWeeds.count)
         saveStats()
@@ -1355,32 +1380,13 @@ class GardenStore: ObservableObject {
         if let data = SharedUserDefaults.suite.data(forKey: "active_weeds"),
            let decoded = try? JSONDecoder().decode([WeedPatch].self, from: data) {
             activeWeeds = decoded.filter { !$0.isCleared }
-            return
-        }
-
-        guard SharedUserDefaults.suite.bool(forKey: "is_weed_active") else {
+        } else {
             activeWeeds = []
-            return
         }
-
-        let habits = SharedUserDefaults.suite.integer(forKey: "daily_quests_completed_since_weed")
-        let cost = SharedUserDefaults.suite.integer(forKey: "weed_removal_cost")
-        let spawnTimestamp = SharedUserDefaults.suite.double(forKey: "weed_spawn_date")
-        let spawnDate = spawnTimestamp > 0 ? Date(timeIntervalSince1970: spawnTimestamp) : Date()
-        let resolvedCost = cost > 0 ? cost : GameConstants.weedRemovalCostPlantDeath
-
-        activeWeeds = [
-            WeedPatch(
-                spawnDate: spawnDate,
-                removalCost: resolvedCost,
-                habitsCompleted: habits,
-                source: .decoration
-            )
-        ]
-        saveStats()
     }
 
     func saveStats() {
+        guard !isMock else { return }
         guard !isLoading else { return }
         SharedUserDefaults.suite.set(coins, forKey: "stats_coins")
         SharedUserDefaults.suite.set(gesamtXP, forKey: "stats_gesamt_xp")
@@ -1402,8 +1408,12 @@ class GardenStore: ObservableObject {
         SharedUserDefaults.suite.set(pendingDailySpin, forKey: "pending_daily_spin")
         if let encoded = try? JSONEncoder().encode(activeWeeds) {
             SharedUserDefaults.suite.set(encoded, forKey: "active_weeds")
+            if activeWeeds.isEmpty {
+                SharedUserDefaults.suite.removeObject(forKey: "is_weed_active")
+            }
         } else {
             SharedUserDefaults.suite.removeObject(forKey: "active_weeds")
+            SharedUserDefaults.suite.removeObject(forKey: "is_weed_active")
         }
         if let crisisData = try? JSONEncoder().encode(weedCrisis) {
             SharedUserDefaults.suite.set(crisisData, forKey: "weed_crisis_state")
@@ -1483,6 +1493,7 @@ class GardenStore: ObservableObject {
     }
 
     func savePlants() {
+        guard !isMock else { return }
         guard !isLoading else { return }
         if let encoded = try? JSONEncoder().encode(pflanzen) {
             SharedUserDefaults.suite.set(encoded, forKey: "garden_plants")
@@ -1492,6 +1503,7 @@ class GardenStore: ObservableObject {
     }
 
     func updateWidgetData() {
+        guard !isMock else { return }
         let totalStreak = SharedUserDefaults.suite.integer(forKey: "streak_last_shown")
         let timestamps = SharedUserDefaults.suite.array(forKey: "streak_completed_dates") as? [TimeInterval] ?? []
         let dates = Set(timestamps.map { Date(timeIntervalSince1970: $0) })
@@ -1502,11 +1514,6 @@ class GardenStore: ObservableObject {
             gems: coins,
             streakCompletedDates: dates
         )
-        
-        // Live Activity immer direkt mitaktualisieren / starten, falls nötig
-        DispatchQueue.main.async {
-            self.checkAndStartLiveActivity()
-        }
     }
 
     private func loadPlants() {
@@ -1541,6 +1548,7 @@ class GardenStore: ObservableObject {
     }
 
     func saveTransactions() {
+        guard !isMock else { return }
         guard !isLoading else { return }
         if let encoded = try? JSONEncoder().encode(transactions) {
             SharedUserDefaults.suite.set(encoded, forKey: "garden_transactions")
@@ -1559,6 +1567,7 @@ class GardenStore: ObservableObject {
     }
 
     func saveInventory() {
+        guard !isMock else { return }
         guard !isLoading else { return }
         if let encoded = try? JSONEncoder().encode(gekaufteItems) {
             SharedUserDefaults.suite.set(encoded, forKey: "garden_inventory")
@@ -1579,8 +1588,15 @@ class GardenStore: ObservableObject {
     func trackBadHabit(id: String, penaltyCoins: Int) {
         let execution = BadHabitExecution(date: Date(), coinsLost: penaltyCoins)
         badHabitExecutions[id, default: []].append(execution)
-        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
-        coinsAbziehen(amount: penaltyCoins, beschreibung: AppStrings.get("habit.relapse.report", language: lang))
+        
+        // Unkraut spawnen (Bestrafung für Rückfall)
+        withAnimation {
+            if let decoration = GameDatabase.allDecorations.first(where: { $0.id == id }) {
+                spawnWeed(removalCost: decoration.price * GameConstants.weedRemovalCostMultiplier, source: .decoration)
+            } else {
+                spawnWeed(removalCost: 50, source: .decoration)
+            }
+        }
     }
 
     // MARK: - Bad Habit Notes
@@ -1620,6 +1636,7 @@ class GardenStore: ObservableObject {
     }
 
     private func saveBadHabits() {
+        guard !isMock else { return }
         guard !isLoading else { return }
         if let encoded = try? JSONEncoder().encode(badHabitExecutions) {
             SharedUserDefaults.suite.set(encoded, forKey: "badHabitExecutions")
@@ -1678,6 +1695,9 @@ class GardenStore: ObservableObject {
             gestorbenePflanzenLog.removeAll()
             gluecksradDrehungen = 0
             abgeholtePassLevel.removeAll()
+            badHabitExecutions.removeAll()
+            badHabitNotes.removeAll()
+            skillXP.removeAll()
             
             lastSpinTimestamp = nil
             activeWeeds.removeAll()
@@ -1695,7 +1715,8 @@ class GardenStore: ObservableObject {
                 "daily_quests_completed_since_weed", "active_weeds",
                 "weed_removal_cost", "weed_spawn_date", "weed_crisis_state",
                 "comeback_boost_expires_at", "abgeholtePassLevel",
-                "stats_gluecksrad_drehungen", "daily_spin_last_shown_day_string"
+                "stats_gluecksrad_drehungen", "daily_spin_last_shown_day_string",
+                "badHabitExecutions", "badHabitNotes", "stats_skill_xp"
             ]
             keys.forEach { SharedUserDefaults.suite.removeObject(forKey: $0) }
             
@@ -1810,90 +1831,5 @@ class GardenStore: ObservableObject {
         pruefePflanzenStatus()
     }
 
-    // MARK: - Live Activity Management
-    
-    func checkAndStartLiveActivity() {
-        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
-        
-        // Falls wir nach einem Neustart sind, prüfen ob noch eine Aktivität läuft
-        let activities = Activity<GardenActivityAttributes>.activities
-        if !activities.isEmpty {
-            gardenActivity = activities.first
-        }
-        
-        let gesamt = pflanzen.count
-        
-        // Nur starten, wenn noch etwas zu tun ist ODER wenn wir die Island als Status-Monitor nutzen wollen
-        if gardenActivity == nil && gesamt > 0 {
-            startLiveActivity()
-        } else if gardenActivity != nil {
-            updateLiveActivity()
-        }
-    }
-    
-    private func startLiveActivity() {
-        // Alte Activities beenden, um Duplikate zu verhindern
-        Task {
-            for activity in Activity<GardenActivityAttributes>.activities {
-                await activity.end(nil, dismissalPolicy: .immediate)
-            }
-        }
-        
-        // Verzögerung, um den Sichtbarkeits-Fehler (visibility) beim App-Start zu vermeiden
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let attributes = GardenActivityAttributes(gartenName: "Noch offene Gewohnheiten")
-            
-            let state = self.createActivityState()
-            
-            do {
-                self.gardenActivity = try Activity.request(attributes: attributes, content: .init(state: state, staleDate: nil))
-            } catch {
-                print("Live Activity Fehler: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    func updateLiveActivity() {
-        guard let activity = gardenActivity else {
-            // Falls keine Aktivität läuft, aber Pflanzen da sind -> Neu starten?
-            if !pflanzen.isEmpty {
-                startLiveActivity()
-            }
-            return
-        }
-        
-        let state = createActivityState()
-        
-        Task {
-            await activity.update(.init(state: state, staleDate: nil))
-        }
-    }
-    
-    func stopLiveActivity() {
-        guard let activity = gardenActivity else { return }
-        
-        let finalState = createActivityState()
-        
-        Task {
-            await activity.end(.init(state: finalState, staleDate: nil), dismissalPolicy: .default)
-            self.gardenActivity = nil
-        }
-    }
-    
-    private func createActivityState() -> GardenActivityAttributes.ContentState {
-        let gegossen = pflanzen.filter { $0.istBewässert }.count
-        let gesamt = pflanzen.count
-        let streak = SharedUserDefaults.suite.integer(forKey: "streak_last_shown")
-        
-        let msg = "\(gesamt - gegossen)"
-        
-        return GardenActivityAttributes.ContentState(
-            gegossenePflanzen: gegossen,
-            gesamtPflanzen: gesamt,
-            wetterIcon: aktivesWetter.systemIcon,
-            wetterName: aktivesWetter.titel,
-            streakTage: streak,
-            nachricht: msg
-        )
-    }
+    // MARK: - Live Activity Management (Moved to FocusTimer)
 }

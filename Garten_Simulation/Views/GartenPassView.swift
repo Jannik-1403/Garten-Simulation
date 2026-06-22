@@ -565,80 +565,62 @@ struct GartenPassReward3DButton: View {
     let kannAbholen: Bool
     let onAbholen: () -> Void
     
-    private var groesse: CGFloat { belohnung.istMeilenstein ? 84 : 74 }
+    private var groesse: CGFloat { 74 }
     private var shadowDepth: CGFloat { groesse * 0.08 }
-    
-    @State private var pulseScale: CGFloat = 1.0
     
     /// Die Grundfarbe basierend auf Kategorie
     private var buttonFarbe: Color {
-        if istGesperrt { return Color(hex: "#E5E5EA") } // Grauer Hintergrund
+        if istGesperrt {
+            return Color(uiColor: .systemGray5)
+        }
         return belohnung.kategorieFarbe
     }
 
     private var buttonSekundaerFarbe: Color {
-        if istGesperrt { return Color(hex: "#C7C7CC") } // Grauer Schatten
+        if istGesperrt {
+            return Color(uiColor: .systemGray3)
+        }
         return belohnung.kategorieFarbe.darker()
     }
     
     var body: some View {
         VStack(spacing: 12) {
-            ZStack {
-                // Aura-Glow für abholbare Belohnungen
+            Button {
                 if kannAbholen {
-                    Circle()
-                        .fill(belohnung.kategorieFarbe.opacity(0.25))
-                        .frame(width: groesse + 14, height: groesse + 14)
-                        .blur(radius: 6)
-                        .scaleEffect(pulseScale)
-                }
-                
-                Button {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
                         onAbholen()
                     }
-                } label: {
-                    let info = belohnung.getDisplayInfo(settings: settings)
-                    Group {
-                        if case .pflanze(let id) = belohnung.typ, 
-                           let pl = GameDatabase.shared.plant(for: id) {
-                            PlantIconView(plant: pl, seltenheit: .bronze, size: groesse * 1.5, alwaysShowFullGrown: true)
-                                .grayscale(istGesperrt ? 1.0 : 0.0)
-                                .opacity(istGesperrt ? 0.5 : 1.0)
-                        } else if info.isAsset {
-                            Image(info.icon)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: groesse * 0.6, height: groesse * 0.6)
-                                .grayscale(istGesperrt ? 1.0 : 0.0)
-                                .opacity(istGesperrt ? 0.5 : 1.0)
-                                .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
-                        } else {
-                            Image(systemName: info.icon)
-                                .font(.system(size: groesse * 0.45, weight: .black))
-                                .foregroundColor(istGesperrt ? Color(hex: "#AEAEB2") : .white)
-                                .shadow(color: .black.opacity(istGesperrt ? 0 : 0.1), radius: 2, x: 0, y: 1)
-                        }
+                }
+            } label: {
+                let info = belohnung.getDisplayInfo(settings: settings)
+                Group {
+                    if case .pflanze(let id) = belohnung.typ,
+                       let pl = GameDatabase.shared.plant(for: id) {
+                        PlantIconView(plant: pl, seltenheit: .bronze, size: groesse * 1.5, alwaysShowFullGrown: true)
+                    } else if info.isAsset {
+                        Image(info.icon)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: info.icon == "Spin" ? groesse * 1.5 : groesse * 0.6, height: info.icon == "Spin" ? groesse * 1.5 : groesse * 0.6)
+                            .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
+                    } else {
+                        Image(systemName: info.icon)
+                            .font(.system(size: groesse * 0.45, weight: .black))
+                            .foregroundColor(.white)
+                            .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
                     }
                 }
-                .buttonStyle(GartenPassButtonStyle(
-                    farbe: buttonFarbe,
-                    sekundaerFarbe: buttonSekundaerFarbe,
-                    groesse: groesse,
-                    istAbgeholt: istAbgeholt,
-                    istGesperrt: istGesperrt,
-                    kannAbholen: kannAbholen
-                ))
-                .disabled(istAbgeholt || istGesperrt)
-                .scaleEffect(kannAbholen ? pulseScale : 1.0)
+                .grayscale(istGesperrt ? 1.0 : 0.0)
+                .opacity(istGesperrt ? 0.6 : 1.0)
             }
-            .onAppear {
-                if kannAbholen {
-                    withAnimation(.easeInOut(duration: 1.2).repeatForever(autoreverses: true)) {
-                        pulseScale = 1.06
-                    }
-                }
-            }
+            .buttonStyle(GartenPassButtonStyle(
+                farbe: buttonFarbe,
+                sekundaerFarbe: buttonSekundaerFarbe,
+                groesse: groesse,
+                istAbgeholt: istAbgeholt,
+                istGesperrt: istGesperrt,
+                kannAbholen: kannAbholen
+            ))
             
             // Label
             Text(belohnung.beschriftung(settings: settings))
@@ -663,31 +645,8 @@ struct GartenPassButtonStyle: ButtonStyle {
     let kannAbholen: Bool
     
     func makeBody(configuration: Configuration) -> some View {
-        GartenPassButtonVisualView(
-            configuration: configuration,
-            farbe: farbe,
-            sekundaerFarbe: sekundaerFarbe,
-            groesse: groesse,
-            istAbgeholt: istAbgeholt,
-            istGesperrt: istGesperrt,
-            kannAbholen: kannAbholen
-        )
-    }
-}
-
-private struct GartenPassButtonVisualView: View {
-    let configuration: ButtonStyle.Configuration
-    let farbe: Color
-    let sekundaerFarbe: Color
-    let groesse: CGFloat
-    let istAbgeholt: Bool
-    let istGesperrt: Bool
-    let kannAbholen: Bool
-    
-    @State private var isVisualPressed = false
-    
-    var body: some View {
         let shadowDepth: CGFloat = groesse * 0.08
+        let isPressed = configuration.isPressed && kannAbholen
         
         ZStack {
             // Shadow / Base
@@ -701,7 +660,7 @@ private struct GartenPassButtonVisualView: View {
                 .overlay {
                     configuration.label
                 }
-                .offset(y: isVisualPressed ? shadowDepth : 0)
+                .offset(y: isPressed ? shadowDepth : 0)
         }
         .frame(width: groesse, height: groesse)
         // Keine Opacity oder Saturation mehr, das wird direkt über die grauen Farben geregelt
@@ -734,17 +693,7 @@ private struct GartenPassButtonVisualView: View {
                     .offset(x: 4, y: -4)
             }
         }
-        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isVisualPressed)
-        .onChange(of: configuration.isPressed) { oldValue, newValue in
-            if newValue && kannAbholen {
-                isVisualPressed = true
-            } else {
-                // Slight delay for release animation
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    isVisualPressed = false
-                }
-            }
-        }
+        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
         .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.8), trigger: configuration.isPressed)
     }
 }

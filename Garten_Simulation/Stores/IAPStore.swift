@@ -17,9 +17,9 @@ final class IAPStore: ObservableObject {
     ]
 
     static let coinAmounts: [String: Int] = [
-        "com.gartenapp.coins.pack_small":  100,
-        "com.gartenapp.coins.pack_medium": 500,
-        "com.gartenapp.coins.pack_large":  1200
+        "com.gartenapp.coins.pack_small":  500,
+        "com.gartenapp.coins.pack_medium": 1800,
+        "com.gartenapp.coins.pack_large":  3500
     ]
 
     // MARK: - Published State

@@ -22,6 +22,8 @@ struct OnboardingLegalView: View {
             VStack(alignment: .leading, spacing: 20) {
                 Text(settings.localizedString(for: "onboarding_legal_title")) // e.g. "Nutzungsbedingungen & Datenschutz"
                     .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
                     .padding(.bottom, 4)
                 
                 Text(settings.localizedString(for: "onboarding_legal_desc")) // e.g. "Bevor du loslegst, bitten wir dich, unsere Bedingungen zu akzeptieren."
@@ -137,6 +139,8 @@ struct OnboardingLegalView: View {
             Text(text)
                 .font(.system(size: 15, weight: .medium))
                 .foregroundStyle(.primary)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }

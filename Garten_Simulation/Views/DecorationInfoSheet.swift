@@ -8,9 +8,10 @@ struct DecorationInfoSheet: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .font(.system(size: 60))
-                        .foregroundStyle(.orange)
+                    Image("Warndreieck")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80, height: 80)
                         .padding(.top, 20)
                     
                     Text(settings.localizedString(for: "decoration.info.title"))
@@ -29,17 +30,7 @@ struct DecorationInfoSheet: View {
                 .padding()
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(.gray)
-                            .font(.system(size: 24))
-                    }
-                }
-            }
+            .standardNavigationX()
         }
     }
 }

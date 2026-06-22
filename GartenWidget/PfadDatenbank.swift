@@ -163,7 +163,7 @@ class PfadDatenbank {
         case "produktiv": return "plant.kirschbaum"
         case "mental":    return "plant.lavendel"
         case "fit":       return "plant.efeu"
-        case "lernen":    return "plant.minzpflanze"
+        case "lernen":    return "plant.sonnenblume"
         default:          return nil
         }
     }

@@ -36,17 +36,12 @@ struct WheelOfFortuneView: View {
             VStack {
                 HStack {
                     Spacer()
-                    Button {
+                    LiquidGlassDismissButton {
                         FeedbackManager.shared.playTap()
                         dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.primary)
-                            .padding(12)
                     }
-                    .padding(.trailing, 8)
-                    .padding(.top, 20)
+                    .padding(.trailing, 16)
+                    .padding(.top, 16)
                 }
                 Spacer()
             }

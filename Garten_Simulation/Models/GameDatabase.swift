@@ -54,6 +54,17 @@ enum HabitCategory: String, CaseIterable, Codable {
         case .finance:   return "banknote.fill"
         }
     }
+    
+    var assetName: String {
+        switch self {
+        case .fitness:   return "Fitness"
+        case .health:    return "Gesundheit"
+        case .mental:    return "Geistundseele"
+        case .growth:    return "Wachstum"
+        case .lifestyle: return "Lifestyle"
+        case .finance:   return "Finanzen"
+        }
+    }
 }
 
 enum UnlockMethod: String, Codable {
@@ -62,8 +73,20 @@ enum UnlockMethod: String, Codable {
     case compassionDrop
 }
 
+import SwiftUI
+
 enum ItemRarity: String, Codable {
-    case common, rare, epic, legendary
+    case common, rare, epic, legendary, mystic
+    
+    var color: Color {
+        switch self {
+        case .common: return .gray
+        case .rare: return .blue
+        case .epic: return .purple
+        case .legendary: return .yellow
+        case .mystic: return Color(red: 1.0, green: 0.3, blue: 0.0) // Gold-Rot / Orange-Red
+        }
+    }
 }
 
 
@@ -106,9 +129,7 @@ struct Plant: Identifiable, Codable {
     }
 
     var basePrice: Int {
-        let basis = xpPerCompletion * 10
-        let levelBonus = maxLevel > 10 ? 50 : 0
-        return basis + levelBonus
+        return 800
     }
 
     var localizedName: String {
@@ -166,11 +187,13 @@ struct PowerUpItem: Identifiable, Codable {
     }
 
     var basePrice: Int {
+        if id == "powerup.weed_shield" { return 1200 }
         switch rarity {
-        case .common:    return 50
+        case .common:    return 100
         case .rare:      return 150
         case .epic:      return 350
-        case .legendary: return 800
+        case .legendary: return 1500
+        case .mystic:    return 5000
         }
     }
 }
@@ -200,7 +223,7 @@ extension Plant {
     var color: Color { colorFromString(symbolColor) }
 }
 extension PowerUpItem {
-    var color: Color { colorFromString(symbolColor) }
+    var color: Color { rarity.color }
 }
 
 // MARK: - DATABASE
@@ -239,25 +262,25 @@ struct GameDatabase {
 
     // MARK: Müll-Items (20 Stück, Re-branded IDs)
     static let allTrashItems: [DecorationItem] = [
-        DecorationItem(id: "trash.fast_food_abo",         objectNameKey: "trash.fast_food_abo.obj_name", objectDescriptionKey: "trash.fast_food_abo.obj_desc", habitNameKey: "trash.fast_food_abo.name", habitDescriptionKey: "trash.fast_food_abo.desc",         sfSymbol: "Brunnen",                price: 40,  category: .wasser),
-        DecorationItem(id: "trash.endlos_scroll_tv",      objectNameKey: "trash.endlos_scroll_tv.obj_name", objectDescriptionKey: "trash.endlos_scroll_tv.obj_desc", habitNameKey: "trash.endlos_scroll_tv.name", habitDescriptionKey: "trash.endlos_scroll_tv.desc",      sfSymbol: "Vogelhaus",              price: 25,  category: .tiere),
-        DecorationItem(id: "trash.luxus_auto",            objectNameKey: "trash.luxus_auto.obj_name", objectDescriptionKey: "trash.luxus_auto.obj_desc", habitNameKey: "trash.luxus_auto.name", habitDescriptionKey: "trash.luxus_auto.desc",            sfSymbol: "Laterne",                price: 20,  category: .beleuchtung),
-        DecorationItem(id: "trash.party_pass",            objectNameKey: "trash.party_pass.obj_name", objectDescriptionKey: "trash.party_pass.obj_desc", habitNameKey: "trash.party_pass.name", habitDescriptionKey: "trash.party_pass.desc",            sfSymbol: "Trittstein-Pfad",        price: 30,  category: .pfade),
-        DecorationItem(id: "trash.energy_drink_kiste",    objectNameKey: "trash.energy_drink_kiste.obj_name", objectDescriptionKey: "trash.energy_drink_kiste.obj_desc", habitNameKey: "trash.energy_drink_kiste.name", habitDescriptionKey: "trash.energy_drink_kiste.desc",    sfSymbol: "Gartenzerg",             price: 10,  category: .deko),
-        DecorationItem(id: "trash.zigaretten_automat",    objectNameKey: "trash.zigaretten_automat.obj_name", objectDescriptionKey: "trash.zigaretten_automat.obj_desc", habitNameKey: "trash.zigaretten_automat.name", habitDescriptionKey: "trash.zigaretten_automat.desc",    sfSymbol: "Sonnenschirm",           price: 22,  category: .moebel),
-        DecorationItem(id: "trash.online_shopping_app",   objectNameKey: "trash.online_shopping_app.obj_name", objectDescriptionKey: "trash.online_shopping_app.obj_desc", habitNameKey: "trash.online_shopping_app.name", habitDescriptionKey: "trash.online_shopping_app.desc",   sfSymbol: "Seerosenteich",           price: 50,  category: .wasser),
-        DecorationItem(id: "trash.junk_mail_abo",         objectNameKey: "trash.junk_mail_abo.obj_name", objectDescriptionKey: "trash.junk_mail_abo.obj_desc", habitNameKey: "trash.junk_mail_abo.name", habitDescriptionKey: "trash.junk_mail_abo.desc",         sfSymbol: "Vogelbad",               price: 18,  category: .wasser),
-        DecorationItem(id: "trash.nacht_snack_box",       objectNameKey: "trash.nacht_snack_box.obj_name", objectDescriptionKey: "trash.nacht_snack_box.obj_desc", habitNameKey: "trash.nacht_snack_box.name", habitDescriptionKey: "trash.nacht_snack_box.desc",       sfSymbol: "Holzzaun",               price: 12,  category: .deko),
-        DecorationItem(id: "trash.alkohol_flatrate",      objectNameKey: "trash.alkohol_flatrate.obj_name", objectDescriptionKey: "trash.alkohol_flatrate.obj_desc", habitNameKey: "trash.alkohol_flatrate.name", habitDescriptionKey: "trash.alkohol_flatrate.desc",      sfSymbol: "Steinstatue",             price: 60,  category: .deko),
-        DecorationItem(id: "trash.doomscrolling_handy",   objectNameKey: "trash.doomscrolling_handy.obj_name", objectDescriptionKey: "trash.doomscrolling_handy.obj_desc", habitNameKey: "trash.doomscrolling_handy.name", habitDescriptionKey: "trash.doomscrolling_handy.desc",   sfSymbol: "Windrad",                price: 15,  category: .deko),
-        DecorationItem(id: "trash.binge_streaming",       objectNameKey: "trash.binge_streaming.obj_name", objectDescriptionKey: "trash.binge_streaming.obj_desc", habitNameKey: "trash.binge_streaming.name", habitDescriptionKey: "trash.binge_streaming.desc",       sfSymbol: "Haengematte",            price: 35,  category: .moebel),
-        DecorationItem(id: "trash.fastfood_lieferdienst", objectNameKey: "trash.fastfood_lieferdienst.obj_name", objectDescriptionKey: "trash.fastfood_lieferdienst.obj_desc", habitNameKey: "trash.fastfood_lieferdienst.name", habitDescriptionKey: "trash.fastfood_lieferdienst.desc", sfSymbol: "Gartenfackel",           price: 15,  category: .beleuchtung),
-        DecorationItem(id: "trash.lootbox_zockerabo",     objectNameKey: "trash.lootbox_zockerabo.obj_name", objectDescriptionKey: "trash.lootbox_zockerabo.obj_desc", habitNameKey: "trash.lootbox_zockerabo.name", habitDescriptionKey: "trash.lootbox_zockerabo.desc",     sfSymbol: "Blumenkübel",            price: 10,  category: .deko),
-        DecorationItem(id: "trash.luxus_uhr",             objectNameKey: "trash.luxus_uhr.obj_name", objectDescriptionKey: "trash.luxus_uhr.obj_desc", habitNameKey: "trash.luxus_uhr.name", habitDescriptionKey: "trash.luxus_uhr.desc",             sfSymbol: "Bienenhaus 1",           price: 45,  category: .tiere),
-        DecorationItem(id: "trash.couch_abo",             objectNameKey: "trash.couch_abo.obj_name", objectDescriptionKey: "trash.couch_abo.obj_desc", habitNameKey: "trash.couch_abo.name", habitDescriptionKey: "trash.couch_abo.desc",             sfSymbol: "Igelhaus 1",             price: 20,  category: .tiere),
-        DecorationItem(id: "trash.doener_dauerkarte",     objectNameKey: "trash.doener_dauerkarte.obj_name", objectDescriptionKey: "trash.doener_dauerkarte.obj_desc", habitNameKey: "trash.doener_dauerkarte.name", habitDescriptionKey: "trash.doener_dauerkarte.desc",     sfSymbol: "Kiesweg 1",              price: 25,  category: .pfade),
-        DecorationItem(id: "trash.negativitaets_feed",    objectNameKey: "trash.negativitaets_feed.obj_name", objectDescriptionKey: "trash.negativitaets_feed.obj_desc", habitNameKey: "trash.negativitaets_feed.name", habitDescriptionKey: "trash.negativitaets_feed.desc",    sfSymbol: "Brücke 1",               price: 80,  category: .pfade),
-        DecorationItem(id: "trash.schlaf_killer_koffein", objectNameKey: "trash.schlaf_killer_koffein.obj_name", objectDescriptionKey: "trash.schlaf_killer_koffein.obj_desc", habitNameKey: "trash.schlaf_killer_koffein.name", habitDescriptionKey: "trash.schlaf_killer_koffein.desc", sfSymbol: "Gartenhütte",            price: 120, category: .moebel)
+        DecorationItem(id: "trash.fast_food_abo",         objectNameKey: "trash.fast_food_abo.obj_name", objectDescriptionKey: "trash.fast_food_abo.obj_desc", habitNameKey: "trash.fast_food_abo.name", habitDescriptionKey: "trash.fast_food_abo.desc",         sfSymbol: "Brunnen",                price: 0,  category: .wasser),
+        DecorationItem(id: "trash.endlos_scroll_tv",      objectNameKey: "trash.endlos_scroll_tv.obj_name", objectDescriptionKey: "trash.endlos_scroll_tv.obj_desc", habitNameKey: "trash.endlos_scroll_tv.name", habitDescriptionKey: "trash.endlos_scroll_tv.desc",      sfSymbol: "Vogelhaus",              price: 0,  category: .tiere),
+        DecorationItem(id: "trash.luxus_auto",            objectNameKey: "trash.luxus_auto.obj_name", objectDescriptionKey: "trash.luxus_auto.obj_desc", habitNameKey: "trash.luxus_auto.name", habitDescriptionKey: "trash.luxus_auto.desc",            sfSymbol: "Laterne",                price: 0,  category: .beleuchtung),
+        DecorationItem(id: "trash.party_pass",            objectNameKey: "trash.party_pass.obj_name", objectDescriptionKey: "trash.party_pass.obj_desc", habitNameKey: "trash.party_pass.name", habitDescriptionKey: "trash.party_pass.desc",            sfSymbol: "Trittstein-Pfad",        price: 0,  category: .pfade),
+        DecorationItem(id: "trash.energy_drink_kiste",    objectNameKey: "trash.energy_drink_kiste.obj_name", objectDescriptionKey: "trash.energy_drink_kiste.obj_desc", habitNameKey: "trash.energy_drink_kiste.name", habitDescriptionKey: "trash.energy_drink_kiste.desc",    sfSymbol: "Gartenzerg",             price: 0,  category: .deko),
+        DecorationItem(id: "trash.zigaretten_automat",    objectNameKey: "trash.zigaretten_automat.obj_name", objectDescriptionKey: "trash.zigaretten_automat.obj_desc", habitNameKey: "trash.zigaretten_automat.name", habitDescriptionKey: "trash.zigaretten_automat.desc",    sfSymbol: "Sonnenschirm",           price: 0,  category: .moebel),
+        DecorationItem(id: "trash.online_shopping_app",   objectNameKey: "trash.online_shopping_app.obj_name", objectDescriptionKey: "trash.online_shopping_app.obj_desc", habitNameKey: "trash.online_shopping_app.name", habitDescriptionKey: "trash.online_shopping_app.desc",   sfSymbol: "Seerosenteich",           price: 0,  category: .wasser),
+        DecorationItem(id: "trash.junk_mail_abo",         objectNameKey: "trash.junk_mail_abo.obj_name", objectDescriptionKey: "trash.junk_mail_abo.obj_desc", habitNameKey: "trash.junk_mail_abo.name", habitDescriptionKey: "trash.junk_mail_abo.desc",         sfSymbol: "Vogelbad",               price: 0,  category: .wasser),
+        DecorationItem(id: "trash.nacht_snack_box",       objectNameKey: "trash.nacht_snack_box.obj_name", objectDescriptionKey: "trash.nacht_snack_box.obj_desc", habitNameKey: "trash.nacht_snack_box.name", habitDescriptionKey: "trash.nacht_snack_box.desc",       sfSymbol: "Holzzaun",               price: 0,  category: .deko),
+        DecorationItem(id: "trash.alkohol_flatrate",      objectNameKey: "trash.alkohol_flatrate.obj_name", objectDescriptionKey: "trash.alkohol_flatrate.obj_desc", habitNameKey: "trash.alkohol_flatrate.name", habitDescriptionKey: "trash.alkohol_flatrate.desc",      sfSymbol: "Steinstatue",             price: 0,  category: .deko),
+        DecorationItem(id: "trash.doomscrolling_handy",   objectNameKey: "trash.doomscrolling_handy.obj_name", objectDescriptionKey: "trash.doomscrolling_handy.obj_desc", habitNameKey: "trash.doomscrolling_handy.name", habitDescriptionKey: "trash.doomscrolling_handy.desc",   sfSymbol: "Windrad",                price: 0,  category: .deko),
+        DecorationItem(id: "trash.binge_streaming",       objectNameKey: "trash.binge_streaming.obj_name", objectDescriptionKey: "trash.binge_streaming.obj_desc", habitNameKey: "trash.binge_streaming.name", habitDescriptionKey: "trash.binge_streaming.desc",       sfSymbol: "Haengematte",            price: 0,  category: .moebel),
+        DecorationItem(id: "trash.fastfood_lieferdienst", objectNameKey: "trash.fastfood_lieferdienst.obj_name", objectDescriptionKey: "trash.fastfood_lieferdienst.obj_desc", habitNameKey: "trash.fastfood_lieferdienst.name", habitDescriptionKey: "trash.fastfood_lieferdienst.desc", sfSymbol: "Gartenfackel",           price: 0,  category: .beleuchtung),
+        DecorationItem(id: "trash.lootbox_zockerabo",     objectNameKey: "trash.lootbox_zockerabo.obj_name", objectDescriptionKey: "trash.lootbox_zockerabo.obj_desc", habitNameKey: "trash.lootbox_zockerabo.name", habitDescriptionKey: "trash.lootbox_zockerabo.desc",     sfSymbol: "Blumenkübel",            price: 0,  category: .deko),
+        DecorationItem(id: "trash.luxus_uhr",             objectNameKey: "trash.luxus_uhr.obj_name", objectDescriptionKey: "trash.luxus_uhr.obj_desc", habitNameKey: "trash.luxus_uhr.name", habitDescriptionKey: "trash.luxus_uhr.desc",             sfSymbol: "Bienenhaus 1",           price: 0,  category: .tiere),
+        DecorationItem(id: "trash.couch_abo",             objectNameKey: "trash.couch_abo.obj_name", objectDescriptionKey: "trash.couch_abo.obj_desc", habitNameKey: "trash.couch_abo.name", habitDescriptionKey: "trash.couch_abo.desc",             sfSymbol: "Igelhaus 1",             price: 0,  category: .tiere),
+        DecorationItem(id: "trash.doener_dauerkarte",     objectNameKey: "trash.doener_dauerkarte.obj_name", objectDescriptionKey: "trash.doener_dauerkarte.obj_desc", habitNameKey: "trash.doener_dauerkarte.name", habitDescriptionKey: "trash.doener_dauerkarte.desc",     sfSymbol: "Kiesweg 1",              price: 0,  category: .pfade),
+        DecorationItem(id: "trash.negativitaets_feed",    objectNameKey: "trash.negativitaets_feed.obj_name", objectDescriptionKey: "trash.negativitaets_feed.obj_desc", habitNameKey: "trash.negativitaets_feed.name", habitDescriptionKey: "trash.negativitaets_feed.desc",    sfSymbol: "Brücke 1",               price: 0,  category: .pfade),
+        DecorationItem(id: "trash.schlaf_killer_koffein", objectNameKey: "trash.schlaf_killer_koffein.obj_name", objectDescriptionKey: "trash.schlaf_killer_koffein.obj_desc", habitNameKey: "trash.schlaf_killer_koffein.name", habitDescriptionKey: "trash.schlaf_killer_koffein.desc", sfSymbol: "Gartenhütte",            price: 0, category: .moebel)
     ]
 
     // MARK: Decorations (modern API)
@@ -266,17 +289,18 @@ struct GameDatabase {
     // MARK: Power-Up Items (16 Stück)
     static let allPowerUps: [PowerUpItem] = [
         PowerUpItem(id: "powerup.herz_auffueller",   name: "item.herz_auffueller.name",       symbolName: "Heart",              symbolColor: "red",    description: "item.herz_auffueller.description",unlockMethod: .streak7,        rarity: .common,    durationHours: nil,   effectMultiplier: 1.0, howToUse: "item.herz_auffueller.usage", target: .garden),
-        PowerUpItem(id: "powerup.gartenschutz",      name: "item.unkraut_schild.name",        symbolName: PowerUpWeedSupport.unkrautSchildAssetName, symbolColor: "green", description: "item.unkraut_schild.description", unlockMethod: .streak7, rarity: .common, durationHours: 24.0, effectMultiplier: 1.0, howToUse: "item.unkraut_schild.usage", target: .garden),
-        PowerUpItem(id: "powerup.wunder_wasser",      name: "item.wunder_wasser.name",         symbolName: "Powerup-Wunderwasser",  symbolColor: "blue",   description: "item.wunder_wasser.description",                 unlockMethod: .levelUp,        rarity: .rare,      durationHours: 24.0,  effectMultiplier: 1.0, howToUse: "item.wunder_wasser.usage", target: .plant),
-        PowerUpItem(id: "powerup.sturmfest",         name: "item.waechter_turm.name",          symbolName: "Powerup-WächterTurm",   symbolColor: "orange", description: "item.waechter_turm.description",unlockMethod: .streak14,       rarity: .rare,      durationHours: nil,  effectMultiplier: 1.0, howToUse: "item.waechter_turm.usage",   target: .plant),
         PowerUpItem(id: "powerup.duenger_blitz",      name: "item.duenger_blitz.name",          symbolName: "Powerup-Düngerblitz",   symbolColor: "yellow", description: "item.duenger_blitz.description",           unlockMethod: .streak7,        rarity: .common,    durationHours: 24.0,  effectMultiplier: 2.0, howToUse: "item.duenger_blitz.usage",   target: .plant),
-        PowerUpItem(id: "powerup.zauberstab",        name: "item.zauberstab.name",            symbolName: "Powerup-Zauberstarb",    symbolColor: "indigo", description: "item.zauberstab.description",                   unlockMethod: .levelUp,        rarity: .rare,      durationHours: GameConstants.zauberstabDurationHours, effectMultiplier: 1.0, howToUse: "item.zauberstab.usage",     target: .garden),
-        PowerUpItem(id: "powerup.zeitkapsel",         name: "item.zeitkapsel.name",            symbolName: "Powerup-Zeitkapsel",    symbolColor: "purple", description: "item.zeitkapsel.description",       unlockMethod: .streak30,       rarity: .epic,      durationHours: 24.0,  effectMultiplier: 1.0, howToUse: "item.zeitkapsel.usage",     target: .garden),
-        PowerUpItem(id: "powerup.goldener_schluessel", name: "item.goldener_schluessel.name",   symbolName: "Powerup-GoldenerSchlüssel", symbolColor: "yellow", description: "item.goldener_schluessel.description",         unlockMethod: .streak21,       rarity: .epic,      durationHours: 24.0,  effectMultiplier: 1.5, howToUse: "item.goldener_schluessel.usage", target: .garden),
-        PowerUpItem(id: "powerup.diamant_erde",       name: "item.diamant_erde.name",          symbolName: "Powerup-Diamanterde",   symbolColor: "cyan",   description: "item.diamant_erde.description",         unlockMethod: .streak100,      rarity: .legendary, durationHours: 24.0,  effectMultiplier: 1.1, howToUse: "item.diamant_erde.usage",   target: .plant),
-        PowerUpItem(id: "powerup.tier_freund",        name: "item.tier_freund.name",           symbolName: "Powerup-Tier-Freund",   symbolColor: "orange", description: "item.tier_freund.description",          unlockMethod: .compassionDrop, rarity: .common,    durationHours: 24.0,  effectMultiplier: 1.0, howToUse: "item.tier_freund.usage",    target: .garden),
-        PowerUpItem(id: "powerup.gluecks_segen",     name: "item.gluecks_segen.name",         symbolName: "Powerup-Glückssegen",   symbolColor: "pink",   description: "item.gluecks_segen.description",            unlockMethod: .streak50,       rarity: .legendary, durationHours: 24.0,  effectMultiplier: 2.0, howToUse: "item.gluecks_segen.usage",   target: .garden),
         
+        PowerUpItem(id: "powerup.zeitkapsel",         name: "item.zeitkapsel.name",            symbolName: "Powerup-Zeitkapsel",    symbolColor: "purple", description: "item.zeitkapsel.description",       unlockMethod: .streak30,       rarity: .epic,      durationHours: 24.0,  effectMultiplier: 1.0, howToUse: "item.zeitkapsel.usage",     target: .garden),
+        PowerUpItem(id: "powerup.wunder_wasser",      name: "item.wunder_wasser.name",         symbolName: "Powerup-Wunderwasser",  symbolColor: "blue",   description: "item.wunder_wasser.description",                 unlockMethod: .levelUp,        rarity: .epic,      durationHours: 24.0,  effectMultiplier: 1.0, howToUse: "item.wunder_wasser.usage", target: .plant),
+        PowerUpItem(id: "powerup.gluecks_segen",     name: "item.gluecks_segen.name",         symbolName: "Powerup-Glückssegen",   symbolColor: "pink",   description: "item.gluecks_segen.description",            unlockMethod: .streak50,       rarity: .epic, durationHours: 24.0,  effectMultiplier: 2.0, howToUse: "item.gluecks_segen.usage",   target: .garden),
+        
+        PowerUpItem(id: "powerup.gartenschutz",      name: "item.unkraut_schild.name",        symbolName: PowerUpWeedSupport.unkrautSchildAssetName, symbolColor: "green", description: "item.unkraut_schild.description", unlockMethod: .streak7, rarity: .legendary, durationHours: 24.0, effectMultiplier: 1.0, howToUse: "item.unkraut_schild.usage", target: .garden),
+        PowerUpItem(id: "powerup.diamant_erde",       name: "item.diamant_erde.name",          symbolName: "Powerup-Diamanterde",   symbolColor: "cyan",   description: "item.diamant_erde.description",         unlockMethod: .streak100,      rarity: .legendary, durationHours: 24.0,  effectMultiplier: 1.1, howToUse: "item.diamant_erde.usage",   target: .plant),
+        PowerUpItem(id: "powerup.sturmfest",         name: "item.waechter_turm.name",          symbolName: "Powerup-WächterTurm",   symbolColor: "orange", description: "item.waechter_turm.description",unlockMethod: .streak14,       rarity: .legendary,      durationHours: nil,  effectMultiplier: 1.0, howToUse: "item.waechter_turm.usage",   target: .plant),
+        PowerUpItem(id: "powerup.goldener_schluessel", name: "item.goldener_schluessel.name",   symbolName: "Powerup-GoldenerSchlüssel", symbolColor: "yellow", description: "item.goldener_schluessel.description",         unlockMethod: .streak21,       rarity: .legendary,      durationHours: 24.0,  effectMultiplier: 1.5, howToUse: "item.goldener_schluessel.usage", target: .garden),
+        
+        PowerUpItem(id: "powerup.zauberstab",        name: "item.zauberstab.name",            symbolName: "Powerup-Zauberstarb",    symbolColor: "indigo", description: "item.zauberstab.description",                   unlockMethod: .levelUp,        rarity: .mystic,      durationHours: GameConstants.zauberstabDurationHours, effectMultiplier: 1.0, howToUse: "item.zauberstab.usage",     target: .garden),
     ]
     
     // MARK: - Alle 45 Titel (Spieler-Titel System)

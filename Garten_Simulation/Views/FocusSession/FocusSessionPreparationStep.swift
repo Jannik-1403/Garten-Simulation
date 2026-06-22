@@ -93,12 +93,13 @@ struct FocusSessionPreparationStep: View {
     var body: some View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 32) {
+                VStack(spacing: 16) {
                     Image(iconName)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 100, height: 100)
+                        .frame(width: (iconName == "Handy" || iconName == "Goal") ? 300 : 100, height: (iconName == "Handy" || iconName == "Goal") ? 300 : 100)
                         .padding(.top, 40)
+                        .padding(.bottom, (iconName == "Handy" || iconName == "Goal") ? -40 : 0)
             
             // Texte
             VStack(spacing: 16) {

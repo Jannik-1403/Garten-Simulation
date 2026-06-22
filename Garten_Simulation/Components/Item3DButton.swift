@@ -12,6 +12,9 @@ struct Item3DButton: View {
     var isDisabled: Bool = false // NEU: Deaktivierter Zustand in Graustufen
     var aktion: (() -> Void)? = nil
     
+    @State private var manualPress = false
+    @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
+    
     // New: Support for custom views
     private var customLabel: AnyView? = nil
 
@@ -43,9 +46,18 @@ struct Item3DButton: View {
     
     var body: some View {
         Button {
-            // Delay to allow the 3D "pop-back" animation to complete
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
-                aktion?()
+            if isHapticEnabled {
+                let impactLight = UIImpactFeedbackGenerator(style: .soft)
+                impactLight.impactOccurred(intensity: 0.8)
+            }
+            
+            // Garantierte Animation bei schnellem Tippen
+            manualPress = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                manualPress = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.16) {
+                    aktion?()
+                }
             }
         } label: {
             if let customLabel = customLabel {
@@ -62,7 +74,8 @@ struct Item3DButton: View {
             shadowDepthFactor: shadowDepthFactor,
             isRectangular: isRectangular,
             isPermanentlyPressed: isPermanentlyPressed,
-            isDisabled: isDisabled
+            isDisabled: isDisabled,
+            forcePressed: manualPress
         ))
         .disabled(isDisabled)
     }
@@ -100,37 +113,11 @@ struct Item3DButtonStyle: ButtonStyle {
     var isRectangular: Bool = false
     var isPermanentlyPressed: Bool = false
     var isDisabled: Bool = false
+    var forcePressed: Bool = false
 
     func makeBody(configuration: Configuration) -> some View {
-        Item3DButtonVisualView(
-            configuration: configuration,
-            farbe: farbe,
-            sekundaerFarbe: sekundaerFarbe,
-            groesse: groesse,
-            iconSkalierung: iconSkalierung,
-            shadowDepthFactor: shadowDepthFactor,
-            isRectangular: isRectangular,
-            isPermanentlyPressed: isPermanentlyPressed,
-            isHapticEnabled: isHapticEnabled
-        )
-    }
-}
-
-private struct Item3DButtonVisualView: View {
-    let configuration: ButtonStyle.Configuration
-    let farbe: Color
-    let sekundaerFarbe: Color
-    let groesse: CGFloat
-    var iconSkalierung: CGFloat = 0.7
-    var shadowDepthFactor: CGFloat = 0.08
-    var isRectangular: Bool = false
-    var isPermanentlyPressed: Bool = false
-    let isHapticEnabled: Bool
-    
-    @State private var isVisualPressed = false
-    
-    var body: some View {
         let shadowDepth: CGFloat = groesse * shadowDepthFactor
+        let isPressed = configuration.isPressed || isPermanentlyPressed || forcePressed
         
         ZStack {
             // Shadow / Base
@@ -150,7 +137,7 @@ private struct Item3DButtonVisualView: View {
                         configuration.label
                             .padding(.horizontal, 10)
                     }
-                    .offset(y: (isVisualPressed || isPermanentlyPressed) ? 0 : -shadowDepth)
+                    .offset(y: isPressed ? 0 : -shadowDepth)
             } else {
                 Circle()
                     .fill(farbe)
@@ -158,20 +145,14 @@ private struct Item3DButtonVisualView: View {
                         configuration.label
                             .frame(width: groesse * iconSkalierung, height: groesse * iconSkalierung)
                     }
-                    .offset(y: (isVisualPressed || isPermanentlyPressed) ? 0 : -shadowDepth)
+                    .offset(y: isPressed ? 0 : -shadowDepth)
             }
         }
         .frame(width: isRectangular ? nil : groesse, height: groesse)
-        .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: isVisualPressed)
-        .onChange(of: configuration.isPressed) { oldValue, newValue in
-            if newValue {
-                isVisualPressed = true
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    isVisualPressed = false
-                }
-            }
+        .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: isPressed)
+        .sensoryFeedback(trigger: configuration.isPressed) { _, newValue in
+            (isHapticEnabled && newValue && !forcePressed) ? .impact(flexibility: .soft, intensity: 0.8) : nil
         }
-        .sensoryFeedback(.impact(flexibility: .soft, intensity: 0.8), trigger: configuration.isPressed)
+        .opacity(isDisabled ? 0.5 : 1.0)
     }
 }

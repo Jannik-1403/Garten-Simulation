@@ -446,11 +446,7 @@ struct ErfolgSharePreviewSheet: View {
                     .animation(.spring(response: 0.3, dampingFraction: 0.6), value: savedToPhotos)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button { dismiss() } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .black))
-                            .foregroundStyle(.primary)
-                    }
+                    LiquidGlassDismissButton { dismiss() }
                 }
             }
         }

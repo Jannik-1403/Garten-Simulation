@@ -27,7 +27,7 @@
       ],
       "productID" : "com.gartenapp.coins.pack_small",
       "promotionalImageID" : "2B5830D1",
-      "referenceName" : "100 Münzen",
+      "referenceName" : "500 Münzen",
       "type" : "Consumable"
     },
     {
@@ -43,7 +43,7 @@
       ],
       "productID" : "com.gartenapp.coins.pack_medium",
       "promotionalImageID" : "4DDC54AB",
-      "referenceName" : "500 Münzen",
+      "referenceName" : "1800 Münzen",
       "type" : "Consumable"
     },
     {
@@ -59,7 +59,7 @@
       ],
       "productID" : "com.gartenapp.coins.pack_large",
       "promotionalImageID" : "72B43FF1",
-      "referenceName" : "1200 Münzen",
+      "referenceName" : "3500 Münzen",
       "type" : "Consumable"
     },
     {
