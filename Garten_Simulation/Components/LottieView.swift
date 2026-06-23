@@ -20,7 +20,7 @@ struct LottieView: View {
         .onAppear {
             setupAnimation()
         }
-        .onChange(of: name) { _ in
+        .onChange(of: name) {
             setupAnimation()
         }
     }

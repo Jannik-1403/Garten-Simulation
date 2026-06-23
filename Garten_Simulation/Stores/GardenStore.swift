@@ -1249,7 +1249,7 @@ class GardenStore: ObservableObject {
         guard let index = activeWeeds.firstIndex(where: { !$0.isCleared }) else { return }
         activeWeeds[index].habitsCompleted += 1
         if activeWeeds[index].isCleared {
-            withAnimation {
+            _ = withAnimation {
                 activeWeeds.remove(at: index)
             }
             handleWeedQueueEmptied(clearedByHabits: true)
@@ -1265,7 +1265,7 @@ class GardenStore: ObservableObject {
             amount: front.removalCost,
             beschreibung: AppStrings.get("weed_popup_pay", language: lang)
         )
-        withAnimation {
+        _ = withAnimation {
             activeWeeds.removeFirst()
         }
         handleWeedQueueEmptied(clearedByHabits: false)
@@ -1313,7 +1313,7 @@ class GardenStore: ObservableObject {
 
     private func clearFrontWeedForShield(allowComeback: Bool) {
         guard !activeWeeds.isEmpty else { return }
-        withAnimation {
+        _ = withAnimation {
             activeWeeds.removeFirst()
         }
         handleWeedQueueEmptied(clearedByHabits: true, allowComeback: allowComeback)

@@ -292,7 +292,7 @@ struct DragShieldToWeed: View {
             UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
             spawnPop(at: target)
 
-            withAnimation(.spring(response: 0.12, dampingFraction: 0.78)) {
+            _ = withAnimation(.spring(response: 0.12, dampingFraction: 0.78)) {
                 impactPressedIndices.insert(index)
             }
         }

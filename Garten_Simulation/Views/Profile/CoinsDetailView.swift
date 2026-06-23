@@ -4,6 +4,7 @@ import StoreKit
 struct CoinsDetailView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var characterStore: CharacterStore
     @StateObject private var iapStore = IAPStore()
     @Environment(\.dismiss) var dismiss
     
@@ -56,13 +57,23 @@ struct CoinsDetailView: View {
                                 .multilineTextAlignment(.center)
                         }
                         
-                        if iapStore.products.isEmpty {
+                        if !iapStore.hasLoaded {
                             VStack(spacing: 12) {
-                                ProgressView()
-                                    .scaleEffect(1.2)
-                                Text(settings.localizedString(for: "iap_loading"))
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
+                                if let error = iapStore.purchaseError {
+                                    Image(systemName: "exclamationmark.triangle.fill")
+                                        .font(.system(size: 30))
+                                        .foregroundStyle(.red)
+                                    Text(error)
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                        .multilineTextAlignment(.center)
+                                } else {
+                                    ProgressView()
+                                        .scaleEffect(1.2)
+                                    Text(settings.localizedString(for: "iap_loading"))
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                }
                             }
                             .frame(height: 200)
                         } else {
@@ -85,7 +96,7 @@ struct CoinsDetailView: View {
                     }
                     .padding(.horizontal, 20)
 
-                    // MARK: - Error Handling
+                    // MARK: - Purchase Error Handling
                     if let error = iapStore.purchaseError {
                         HStack(spacing: 8) {
                             Image(systemName: "exclamationmark.triangle.fill")
@@ -100,18 +111,17 @@ struct CoinsDetailView: View {
                         .padding(.horizontal, 24)
                     }
 
-                    // MARK: - Apple Legal Hint
-                    Text(settings.localizedString(for: "iap_restore_hint"))
-                        .font(.system(size: 11, weight: .medium, design: .rounded))
-                        .foregroundStyle(.tertiary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 40)
-                        .padding(.bottom, 40)
                 }
             }
         }
         .navigationTitle(settings.localizedString(for: "coin_shop_nav_title"))
         .navigationBarTitleDisplayMode(.inline)
         .standardNavigationX()
+        .onAppear {
+            // Check entitlements on load to handle automatic revoking if refunded
+            Task {
+                await iapStore.syncEntitlements(characterStore: characterStore)
+            }
+        }
     }
 }

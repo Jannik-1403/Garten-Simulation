@@ -100,7 +100,7 @@ struct FocusSessionView: View {
                         .transition(.scale)
                 }
             }
-            .standardNavigationX()
+            .standardNavigationX(show: state != .timer && state != .success)
         }
         .onReceive(timer) { _ in
             if isTimerRunning && remainingSeconds > 0 {
@@ -120,26 +120,26 @@ struct FocusSessionView: View {
             UIApplication.shared.isIdleTimerDisabled = false
             stopLiveActivity()
         }
-        .onChange(of: state) { newState in
-            if newState == .timer {
+        .onChange(of: state) {
+            if state == .timer {
                 UIApplication.shared.isIdleTimerDisabled = true
             } else {
                 UIApplication.shared.isIdleTimerDisabled = false
             }
         }
-        .onChange(of: showMathChallenge) { newValue in
-            if newValue && cancelMathProblem.isEmpty {
+        .onChange(of: showMathChallenge) {
+            if showMathChallenge && cancelMathProblem.isEmpty {
                 generateCancelMathProblem()
             }
         }
-        .onChange(of: scenePhase) { newPhase in
+        .onChange(of: scenePhase) {
             guard state == .timer && isTimerRunning else { return }
             
-            if newPhase == .background || newPhase == .inactive {
+            if scenePhase == .background || scenePhase == .inactive {
                 if backgroundStartTime == nil {
                     backgroundStartTime = Date()
                 }
-            } else if newPhase == .active {
+            } else if scenePhase == .active {
                 if let startTime = backgroundStartTime {
                     let timeAway = Date().timeIntervalSince(startTime)
                     backgroundStartTime = nil

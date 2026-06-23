@@ -189,15 +189,6 @@ struct TimelineRow: View {
 
             // Plant Card
             ZStack {
-                // Hidden NavigationLink — triggered programmatically after animation
-                NavigationLink(
-                    destination: PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter),
-                    isActive: $navigate
-                ) {
-                    EmptyView()
-                }
-                .hidden()
-
                 // Tappable card — exact same pattern as PflanzenCard
                 Button {
                     // 1. Immediately set visual pressed state (animation starts)
@@ -256,6 +247,9 @@ struct TimelineRow: View {
                 }
                 .buttonStyle(TimelineCardButtonStyle(isVisualPressed: isVisualPressed))
             }
+            .navigationDestination(isPresented: $navigate) {
+                PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter)
+            }
             .padding(.bottom, isLast ? 4 : 20)
         }
     }
@@ -273,15 +267,6 @@ struct SimplePlantCell: View {
 
     var body: some View {
         ZStack {
-            // Hidden NavigationLink — triggered programmatically after animation
-            NavigationLink(
-                destination: PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter),
-                isActive: $navigate
-            ) {
-                EmptyView()
-            }
-            .hidden()
-
             // Tappable card — exact same pattern as PflanzenCard
             Button {
                 // 1. Immediately set visual pressed state (animation starts)
@@ -319,6 +304,9 @@ struct SimplePlantCell: View {
                 .padding(.horizontal, 8)
             }
             .buttonStyle(TimelineCardButtonStyle(isVisualPressed: isVisualPressed))
+        }
+        .navigationDestination(isPresented: $navigate) {
+            PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter)
         }
     }
 }

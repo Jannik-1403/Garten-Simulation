@@ -37,9 +37,6 @@ struct ErfolgDetailSheet: View {
 
     
     var body: some View {
-        let isDiamond = liveErfolg.tier == .diamant || liveErfolg.tier == .max
-        let isReadyToUpgrade = liveErfolg.istFreigeschaltet && liveErfolg.tier != .max
-        
         NavigationStack {
             ZStack {
                 Color.white.ignoresSafeArea() 
@@ -281,8 +278,6 @@ struct ShareAchievementCard: View {
     }
     
     var body: some View {
-        let isDiamond = erfolg.tier == .diamant || erfolg.tier == .max
-        
         VStack(spacing: 24) {
             ZStack {
                 // 1. Gorgeous scattered 3D diamonds/comets behind badge matching the detail sheet

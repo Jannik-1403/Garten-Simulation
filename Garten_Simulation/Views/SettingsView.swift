@@ -13,6 +13,7 @@ struct SettingsView: View {
     @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var characterStore: CharacterStore
     @EnvironmentObject var tourManager: InteractiveTourManager
+    @StateObject private var iapStore = IAPStore()
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) var scenePhase
@@ -181,7 +182,7 @@ struct SettingsView: View {
                                         settingRow(title: settings.localizedString(for: "settings.share"), icon: "heart.fill", color: .pink)
                                     }
                                     
-                                    Divider().padding(.leading, 44)
+
                                     
                                     Button {
                                         if let url = URL(string: "https://apps.apple.com/app/grovy?action=write-review") {
@@ -209,6 +210,33 @@ struct SettingsView: View {
                                 .buttonStyle(DangerButtonStyle())
                             }
                             .padding(.top, 16)
+                            
+                            // MARK: - Restore Purchases
+                            Button(action: {
+                                Task {
+                                    await iapStore.restorePurchases(characterStore: characterStore)
+                                }
+                            }) {
+                                if iapStore.isPurchasing {
+                                    ProgressView()
+                                        .padding(.top, 8)
+                                } else {
+                                    Text(settings.localizedString(for: "iap_restore_btn"))
+                                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                        .underline()
+                                        .padding(.top, 8)
+                                        .padding(.bottom, 8)
+                                }
+                            }
+                            .disabled(iapStore.isPurchasing)
+                            
+                            Text(settings.localizedString(for: "iap_restore_hint"))
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 24)
+                                .padding(.bottom, 24)
 
                             // MARK: - Developer Menu (Clean & at the bottom)
                             #if DEBUG
@@ -273,7 +301,7 @@ struct SettingsView: View {
                     await settings.refreshNotificationStatus()
                 }
             }
-            .onChange(of: scenePhase) { newPhase in
+            .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active {
                     Task {
                         await settings.refreshNotificationStatus()
@@ -329,8 +357,8 @@ struct SettingsView: View {
             Toggle("", isOn: isOn)
                 .labelsHidden()
                 .tint(Color.gruenPrimary)
-                .onChange(of: isOn.wrappedValue) {
-                    if isOn.wrappedValue {
+                .onChange(of: isOn.wrappedValue) { _, newValue in
+                    if newValue {
                         FeedbackManager.shared.playSuccess()
                     }
                 }

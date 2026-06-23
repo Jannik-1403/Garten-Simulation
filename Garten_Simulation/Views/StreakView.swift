@@ -433,7 +433,6 @@ struct StreakFreezeDetailSheet: View {
                     .padding(.horizontal, 20)
                 
                 let countText: Text = {
-                    let fullString = String(format: settings.localizedString(for: "streak.freeze.count_format"), streakStore.streakFreezes)
                     let highlight = "\(streakStore.streakFreezes) \(settings.localizedString(for: "common.of") == "common.of" ? "von" : settings.localizedString(for: "common.of")) 2 \(settings.localizedString(for: "common.in_stock") == "common.in_stock" ? "auf Vorrat" : settings.localizedString(for: "common.in_stock"))"
                     
                     // Simple approach: split the string and color the dynamic part

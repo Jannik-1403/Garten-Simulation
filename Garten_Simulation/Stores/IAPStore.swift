@@ -27,6 +27,7 @@ final class IAPStore: ObservableObject {
     @Published var products: [Product] = []
     @Published var isPurchasing = false
     @Published var purchaseError: String? = nil
+    @Published var hasLoaded = false
 
     // MARK: - Private
 
@@ -46,10 +47,45 @@ final class IAPStore: ObservableObject {
     // MARK: - Load Products
 
     func loadProducts() async {
+        print("🛒 [IAPStore] loadProducts() gestartet!")
+        print("🛒 [IAPStore] Suche nach folgenden Product IDs: \(IAPStore.productIDs)")
+        
         do {
-            let loaded = try await Product.products(for: IAPStore.productIDs)
+            // Use a 10-second timeout to prevent infinite loading in simulator
+            let loaded = try await withThrowingTaskGroup(of: [Product].self) { group in
+                group.addTask {
+                    print("🛒 [IAPStore] Starte Product.products(for:) Anfrage...")
+                    let fetchedProducts = try await Product.products(for: IAPStore.productIDs)
+                    print("🛒 [IAPStore] Product.products(for:) erfolgreich zurückgekehrt!")
+                    return fetchedProducts
+                }
+                group.addTask {
+                    try await Task.sleep(nanoseconds: 10_000_000_000)
+                    print("🛒 [IAPStore] ⚠️ 10-Sekunden Timeout erreicht!")
+                    throw StoreError.failedVerification // Timeout
+                }
+                
+                let result = try await group.next()!
+                group.cancelAll()
+                return result
+            }
+            
+            print("🛒 [IAPStore] Anzahl gefundener Produkte: \(loaded.count)")
+            for product in loaded {
+                print("🛒 [IAPStore] Gefundenes Produkt: \(product.id) - \(product.displayName) - \(product.displayPrice)")
+            }
+            
             products = loaded.sorted { $0.price < $1.price }
+            hasLoaded = true
+            
+            if products.isEmpty {
+                print("🛒 [IAPStore] ❌ FEHLER: 0 Produkte gefunden! StoreKit hat keine der angeforderten IDs in der Konfiguration gefunden.")
+                purchaseError = "StoreKit configuration file not found or invalid."
+            } else {
+                print("🛒 [IAPStore] ✅ Produkte erfolgreich sortiert und gespeichert.")
+            }
         } catch {
+            print("🛒 [IAPStore] ❌ CATCH-BLOCK ERREICHT! Exakter Fehler: \(error)")
             purchaseError = NSLocalizedString("iap_error_load", comment: "")
         }
     }
@@ -111,6 +147,40 @@ final class IAPStore: ObservableObject {
                     await transaction.finish()
                 }
             }
+        }
+    }
+
+    // MARK: - Entitlements & Restore
+
+    func syncEntitlements(characterStore: CharacterStore) async {
+        var hasGlasses = false
+        
+        // Loop through all current entitlements
+        for await result in Transaction.currentEntitlements {
+            guard case .verified(let transaction) = result else { continue }
+            
+            if transaction.productID == "com.gartenapp.cosmetics.glasses" {
+                hasGlasses = true
+            }
+        }
+        
+        // If the user refunded the glasses, this will be false and revoke access
+        if characterStore.unlockedGlasses != hasGlasses {
+            characterStore.unlockedGlasses = hasGlasses
+        }
+    }
+
+    func restorePurchases(characterStore: CharacterStore) async {
+        isPurchasing = true
+        purchaseError = nil
+        defer { isPurchasing = false }
+        
+        do {
+            // Force StoreKit to sync with App Store
+            try await AppStore.sync()
+            await syncEntitlements(characterStore: characterStore)
+        } catch {
+            purchaseError = NSLocalizedString("iap_error_restore", comment: "")
         }
     }
 

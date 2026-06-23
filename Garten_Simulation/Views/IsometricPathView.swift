@@ -96,10 +96,7 @@ struct IsometricPathView: View {
                         )
                         .frame(width: canvasWidth, height: canvasHeight)
                         
-                        ZStack(alignment: .topLeading) {
-                            Color.clear
-                                .frame(width: canvasWidth, height: canvasHeight)
-
+                        VStack(spacing: 0) {
                             // Berechne den Fortschritt mit optimierter Logik
                             let calendar = Calendar.current
                             let checkedStartOfDays = Set(habit.pfadCheckedDates.map { calendar.startOfDay(for: $0) })
@@ -109,18 +106,38 @@ struct IsometricPathView: View {
                                 return !checkedStartOfDays.contains(calendar.startOfDay(for: date))
                             } ?? totalDays
 
-                            // Alle Elemente (Tiles + Dekorationen) zusammen nach Z-Order sortieren
-                            ForEach(sortedRenderItems(firstUnwateredIndex: firstUnwateredIndex), id: \.sortKey) { item in
-                                switch item.kind {
-                                case .tile(let i):
-                                    tileView(index: i, firstUnwateredIndex: firstUnwateredIndex)
-                                        .position(tilePosition(index: i))
-                                        .zIndex(item.zValue)
-                                        .id(i)
-                                    
-                                case .deko(let d):
-                                    dekoView(deko: d)
-                                        .zIndex(item.zValue)
+                            let allItems = sortedRenderItems(firstUnwateredIndex: firstUnwateredIndex)
+                            let chunkSize: CGFloat = 1000
+                            let chunkCount = Int(ceil(canvasHeight / chunkSize))
+
+                            LazyVStack(spacing: 0) {
+                                ForEach(0..<chunkCount, id: \.self) { chunkIndex in
+                                    let chunkOffset = CGFloat(chunkIndex) * chunkSize
+                                    let chunkMinY = chunkOffset
+                                    let chunkMaxY = chunkOffset + chunkSize
+                                    let chunkItems = allItems.filter { item in
+                                        item.position.y >= chunkMinY && item.position.y < chunkMaxY
+                                    }
+
+                                    ZStack(alignment: .topLeading) {
+                                        Color.clear
+                                            .frame(width: canvasWidth, height: chunkSize)
+
+                                        ForEach(chunkItems, id: \.sortKey) { item in
+                                            Group {
+                                                switch item.kind {
+                                                case .tile(let i):
+                                                    tileView(index: i, firstUnwateredIndex: firstUnwateredIndex)
+                                                        .id(i)
+                                                case .deko(let d):
+                                                    dekoView(deko: d)
+                                                }
+                                            }
+                                            .position(x: item.position.x, y: item.position.y - chunkOffset)
+                                            .zIndex(item.zValue)
+                                        }
+                                    }
+                                    .frame(width: canvasWidth, height: chunkSize)
                                 }
                             }
                         }
@@ -425,8 +442,6 @@ struct IsometricPathView: View {
 
 
 
-
-    
     private func dayAt(index i: Int) -> Date {
         // Tag 1 (index 0) ist das Aktivierungsdatum (oder Fallback auf gekauftAm)
         let referenceDate = habit.pfadAktiviertAm ?? habit.gekauftAm
@@ -444,30 +459,45 @@ struct IsometricPathView: View {
         let sortKey: String
         let zValue: Double
         let kind: RenderKind
+        let position: CGPoint
+    }
+
+    private func dekoPosition(deko: IsoDecoration) -> CGPoint {
+        let pt = IsometricMath.point(col: deko.col, row: deko.row, screenWidth: canvasWidth)
+        let posX = pt.x
+        let posY = pt.y 
+            + IsometricMath.tileHeight
+            - (deko.heightPt / 2)
+            + deko.yOffset
+        return CGPoint(x: posX, y: posY)
     }
 
     private func sortedRenderItems(firstUnwateredIndex: Int) -> [RenderItem] {
         var items: [RenderItem] = []
         
-        // Tiles hinzuf\u00fcgen
+        // Tiles hinzufügen
         for i in 0..<totalDays {
             let coord = pathGridCoordinates[i]
             let sum = coord.col + coord.row
+            let pos = tilePosition(index: i)
             items.append(RenderItem(
                 sortKey: "tile_\(i)",
                 zValue: Double(sum) * 10 + Double(i) * 0.1,
-                kind: .tile(i)
+                kind: .tile(i),
+                position: pos
             ))
         }
         
-        // Dekorationen hinzuf\u00fcgen
+        // Dekorationen hinzufügen
         for deko in decorations {
             let sum = deko.col + deko.row
+            let pos = dekoPosition(deko: deko)
             items.append(RenderItem(
                 sortKey: "deko_\(deko.id)",
                 // +5 damit Deko leicht vor gleichwertigen Tiles liegt
                 zValue: Double(sum) * 10 + 5,
-                kind: .deko(deko)
+                kind: .deko(deko),
+                position: pos
             ))
         }
         
@@ -490,7 +520,7 @@ struct IsometricPathView: View {
             } else { return .nichtFreigeschalten }
         }()
         
-        return PathTileView(
+        PathTileView(
             dayNumber: i + 1,
             status: status,
             action: {
@@ -515,18 +545,7 @@ struct IsometricPathView: View {
 
 
     private func dekoView(deko: IsoDecoration) -> some View {
-        var pt = IsometricMath.point(col: deko.col, row: deko.row, screenWidth: canvasWidth)
-        
-        // Unterkante des Bildes auf Tile-Unterrand setzen
-        // (so sitzt das Objekt ON the tile, wie ein Baum)
-        let posX = pt.x
-        let posY = pt.y 
-            + IsometricMath.tileHeight          // \u2192 Unterkante der Tile-Oberfl\u00e4che
-            - (deko.heightPt / 2)               // \u2192 Bildmitte so dass Unterkante auf Tile sitzt
-            + deko.yOffset
-
-        return dekoContent(imageName: deko.imageName, size: deko.widthPt)
-            .position(x: posX, y: posY)
+        dekoContent(imageName: deko.imageName, size: deko.widthPt)
             .allowsHitTesting(false)
     }
 

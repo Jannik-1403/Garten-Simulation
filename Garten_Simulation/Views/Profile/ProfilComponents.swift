@@ -515,23 +515,6 @@ struct StatisticsDashboard: View {
     
     private var lifeBalanceCard: some View {
         let habits = gardenStore.pflanzen
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        let days = selectedPeriod.days
-        let currentStart = calendar.date(byAdding: .day, value: -days, to: today)!
-        let prevStart = calendar.date(byAdding: .day, value: -days * 2, to: today)!
-        
-        let now = Date()
-        let currentWaterings = habits.reduce(0) { $0 + $1.wateringDates.filter { $0 >= currentStart && $0 <= now }.count }
-        let prevWaterings = habits.reduce(0) { $0 + $1.wateringDates.filter { $0 >= prevStart && $0 < currentStart }.count }
-        let wateringsDelta = currentWaterings - prevWaterings
-        let currentPlants = habits.count
-        let prevPlants = habits.filter { $0.gekauftAm < currentStart }.count
-        let plantsDelta = currentPlants - prevPlants
-        let currentGems = currentWaterings * GameConstants.gemsProGiessen
-        let prevGems = prevWaterings * GameConstants.gemsProGiessen
-        let gemsDelta = currentGems - prevGems
-        let currentStreak = streakStore.currentStreak
 
         return VStack(spacing: 0) {
             // Header

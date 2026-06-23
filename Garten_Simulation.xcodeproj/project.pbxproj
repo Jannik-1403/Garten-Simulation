@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0370AF75CB4C1274B4E56F4F /* GardenLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FAE63E7A274000A94E65EA /* GardenLiveActivity.swift */; };
 		142BB4432F9CA800002CDBD0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142BB4422F9CA800002CDBD0 /* WidgetKit.framework */; };
 		142BB4452F9CA800002CDBD0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142BB4442F9CA800002CDBD0 /* SwiftUI.framework */; };
 		142BB4502F9CA800002CDBD0 /* GartenWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 142BB4412F9CA800002CDBD0 /* GartenWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -67,7 +66,6 @@
 		14595B612F9E6A9E00C69460 /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActivityKit.framework; path = System/Library/Frameworks/ActivityKit.framework; sourceTree = SDKROOT; };
 		1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeltenheitProgressRing.swift; sourceTree = "<group>"; };
 		451D92332C87A16BD490A21B /* GardenActivityAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GardenActivityAttributes.swift; path = Garten_Simulation/Models/GardenActivityAttributes.swift; sourceTree = "<group>"; };
-		B4FAE63E7A274000A94E65EA /* GardenLiveActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GardenLiveActivity.swift; path = GartenWidget/GardenLiveActivity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -199,7 +197,6 @@
 				1424D41D2F6EA14200908588 /* Products */,
 				1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */,
 				451D92332C87A16BD490A21B /* GardenActivityAttributes.swift */,
-				B4FAE63E7A274000A94E65EA /* GardenLiveActivity.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -437,7 +434,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BBD8C98B5B1151FFFE518F3 /* GardenActivityAttributes.swift in Sources */,
-				0370AF75CB4C1274B4E56F4F /* GardenLiveActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

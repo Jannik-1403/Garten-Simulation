@@ -193,7 +193,7 @@ struct FocusSessionPreparationStep: View {
                                                 
                                                 Button {
                                                     if let index = goals.firstIndex(where: { $0.id == goal.id }) {
-                                                        withAnimation { goals.remove(at: index) }
+                                                        _ = withAnimation { goals.remove(at: index) }
                                                     }
                                                 } label: {
                                                     Image(systemName: "trash")
@@ -216,7 +216,7 @@ struct FocusSessionPreparationStep: View {
                                                     
                                                     Button {
                                                         if let index = goal.subtasks.firstIndex(where: { $0.id == subtask.id }) {
-                                                            withAnimation { goal.subtasks.remove(at: index) }
+                                                            _ = withAnimation { goal.subtasks.remove(at: index) }
                                                         }
                                                     } label: {
                                                         Image(systemName: "xmark")

@@ -218,7 +218,7 @@ struct PflanzenCard: View {
             }
         }
         .onChange(of: gardenStore.letzterBonus) { _, bonus in
-            if let bonus = bonus, gardenStore.letzteBonusPflanzeID == pflanze.id {
+            if bonus != nil, gardenStore.letzteBonusPflanzeID == pflanze.id {
                 bonusText = settings.localizedString(for: "bonus_text")
                 zeigeBonusText = true
             }

@@ -539,11 +539,7 @@ struct GartenView: View {
             if let s = prefs.first(where: { $0.id == "streak" }) { streakHeaderPosition = s.center }
         }
         .onChange(of: gardenStore.giessTriggerID) { _, _ in
-            let now = Date()
-            if let p = gardenStore.pflanzen.min(by: { 
-                abs(($0.letzteBewaesserung ?? .distantPast).timeIntervalSince(now)) < 
-                abs(($1.letzteBewaesserung ?? .distantPast).timeIntervalSince(now)) 
-            }) {
+            if !gardenStore.pflanzen.isEmpty {
                 // Anzahl der Münzen basierend auf dem Gewinn (z.B. 1 Münze pro 5 Coins, min 2, max 8)
                 let coinsEarned = gardenStore.letzteGiessCoins
                 let coinCount = min(8, max(2, coinsEarned / 5))
