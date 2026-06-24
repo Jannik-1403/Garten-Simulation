@@ -441,7 +441,7 @@ struct StatisticsDashboard: View {
     }
     
     enum StatDetail: String, Identifiable {
-        case activity, balance, xp, coins, milestones
+        case activity, balance, xp, coins, milestones, focus, triggers
         var id: String { self.rawValue }
     }
     
@@ -466,6 +466,8 @@ struct StatisticsDashboard: View {
                 } else {
                     lifeBalanceCard
                     gardenScoreConsistencyCard
+                    focusScoreCard
+                    triggerStatisticsCard
                 }
             }
             .padding(.horizontal, 16)
@@ -506,6 +508,8 @@ struct StatisticsDashboard: View {
         case activity
         case xp
         case coins
+        case focus
+        case triggers
     }
     
     private func initiateShare(_ type: ShareCardType) {
@@ -636,6 +640,193 @@ struct StatisticsDashboard: View {
             .chartYAxis(.hidden)
             .frame(height: 100)
             .padding(.vertical, 4)
+        }
+        .padding(20)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .offset(y: 0)
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
+        )
+        .padding(.bottom, 6)
+    }
+
+    private var focusScoreCard: some View {
+        let history = StatsHelper.getFocusHistory(from: gardenStore.focusSessions, days: selectedPeriod.days)
+        return VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                Label(settings.localizedString(for: "Fokus-Score"), systemImage: "timer")
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .foregroundStyle(Color.orangePrimary)
+                Spacer()
+                
+                HStack(spacing: 8) {
+                    Button(action: { initiateShare(.focus) }) {
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundStyle(.black)
+                            .padding(8)
+                    }
+                    
+                    Button {
+                        expandedStat = .focus
+                    } label: {
+                        Image(systemName: "arrow.up.left.and.arrow.down.right")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundStyle(.black)
+                            .padding(8)
+                    }
+                }
+            }
+            
+            // Large Value & Period
+            VStack(alignment: .leading, spacing: 2) {
+                let currentTotal = history.reduce(0) { $0 + $1.completedMinutes + $1.abortedMinutes }
+                Text("\(currentTotal) min")
+                    .font(.system(size: 32, weight: .black, design: .rounded))
+                    .foregroundStyle(Color.orangePrimary)
+                
+                Text(String(format: settings.localizedString(for: "stats.score.focus.period_format"), settings.localizedString(for: selectedPeriod.thisPeriodKey)))
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .foregroundStyle(.secondary)
+            }
+            
+            // Sparkline Line Chart (Stacked)
+            Chart {
+                ForEach(history) { item in
+                    BarMark(
+                        x: .value("Tag", item.date),
+                        y: .value("Fokus", item.completedMinutes)
+                    )
+                    .foregroundStyle(Color.gruenPrimary)
+                    
+                    BarMark(
+                        x: .value("Tag", item.date),
+                        y: .value("Abgebrochen", item.abortedMinutes)
+                    )
+                    .foregroundStyle(Color.red)
+                }
+            }
+            .chartXAxis(.hidden)
+            .chartYAxis(.hidden)
+            .frame(height: 100)
+            .padding(.vertical, 4)
+            
+            if selectedPeriod == .week || selectedPeriod == .month {
+                if history.count >= 2 {
+                    let todayStats = history.last!
+                    let yesterdayStats = history[history.count - 2]
+                    let todayTotal = todayStats.completedMinutes + todayStats.abortedMinutes
+                    let yesterdayTotal = yesterdayStats.completedMinutes + yesterdayStats.abortedMinutes
+                    let diff = todayTotal - yesterdayTotal
+                    
+                    if diff > 0 {
+                        Text("Du hast heute \(diff) Minuten mehr fokussiert als gestern. Weiter so!")
+                            .font(.system(size: 12, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.leading)
+                    } else if diff < 0 {
+                        Text("Du hast heute \(-diff) Minuten früher Schluss gemacht als gestern. Bleib dran!")
+                            .font(.system(size: 12, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.leading)
+                    } else if todayTotal > 0 {
+                        Text("Genauso fokussiert wie gestern. Sehr gut!")
+                            .font(.system(size: 12, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.leading)
+                    }
+                }
+            }
+        }
+        .padding(20)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .offset(y: 0)
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
+        )
+        .padding(.bottom, 6)
+    }
+
+    private var triggerStatisticsCard: some View {
+        let calendar = Calendar.current
+        let today = Date()
+        let startDate: Date
+        if selectedPeriod == .allTime {
+            startDate = .distantPast
+        } else {
+            startDate = calendar.date(byAdding: .day, value: -selectedPeriod.days, to: today) ?? .distantPast
+        }
+        
+        var triggerCounts: [String: Int] = [:]
+        for list in gardenStore.badHabitExecutions.values {
+            for execution in list {
+                if execution.date >= startDate {
+                    if let triggers = execution.triggers {
+                        for t in triggers {
+                            triggerCounts[t, default: 0] += 1
+                        }
+                    }
+                }
+            }
+        }
+        
+        let sortedTriggers = triggerCounts.sorted { $0.value > $1.value }
+        
+        return VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                Label(settings.localizedString(for: "trigger.title"), systemImage: "bolt.trianglebadge.exclamationmark.fill")
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .foregroundStyle(Color.red)
+                Spacer()
+                
+                HStack(spacing: 8) {
+                    Button(action: { initiateShare(.triggers) }) {
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundStyle(.black)
+                            .padding(8)
+                    }
+                    
+                    Button {
+                        expandedStat = .triggers
+                    } label: {
+                        Image(systemName: "arrow.up.left.and.arrow.down.right")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundStyle(.black)
+                            .padding(8)
+                    }
+                }
+            }
+            
+            if sortedTriggers.isEmpty {
+                Text(settings.localizedString(for: "trigger.no_triggers"))
+                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                    .foregroundStyle(.secondary)
+            } else {
+                VStack(spacing: 12) {
+                    ForEach(sortedTriggers.prefix(5), id: \.key) { item in
+                        HStack {
+                            Text(item.key)
+                                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                                .foregroundStyle(.primary)
+                            Spacer()
+                            Text("\(item.value)x")
+                                .font(.system(size: 15, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+                        .background(Color.secondary.opacity(0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    }
+                }
+            }
         }
         .padding(20)
         .background(Color(UIColor.systemBackground))
@@ -854,6 +1045,7 @@ struct StatDetailFullscreenView: View {
     @StateObject private var viewModel = StatDetailViewModel()
     @State private var showPreview = false
     @State private var pendingShareType: StatisticsDashboard.ShareCardType? = nil
+    @State private var selectedHabitFilter: String = "all"
 
     init(detail: StatisticsDashboard.StatDetail, selectedPeriod: StatsPeriod) {
         self.detail = detail
@@ -864,10 +1056,55 @@ struct StatDetailFullscreenView: View {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
         if period == .day { return [] }
-        let days = period.days
-        let start = calendar.date(byAdding: .day, value: -days, to: today)!
-        let mid = calendar.date(byAdding: .day, value: -(days / 2), to: today)!
-        return [start, mid, today]
+        
+        if period == .week {
+            return [
+                calendar.date(byAdding: .day, value: -6, to: today)!,
+                calendar.date(byAdding: .day, value: -4, to: today)!,
+                calendar.date(byAdding: .day, value: -2, to: today)!,
+                today
+            ]
+        } else if period == .month {
+            return [
+                calendar.date(byAdding: .day, value: -28, to: today)!,
+                calendar.date(byAdding: .day, value: -21, to: today)!,
+                calendar.date(byAdding: .day, value: -14, to: today)!,
+                calendar.date(byAdding: .day, value: -7, to: today)!
+            ]
+        } else if period == .year {
+            return [
+                calendar.date(byAdding: .month, value: -12, to: today)!,
+                calendar.date(byAdding: .month, value: -9, to: today)!,
+                calendar.date(byAdding: .month, value: -6, to: today)!,
+                calendar.date(byAdding: .month, value: -3, to: today)!,
+                today
+            ]
+        } else {
+            // allTime
+            var earliest = today
+            for plant in gardenStore.pflanzen {
+                if plant.gekauftAm < earliest { earliest = plant.gekauftAm }
+                if let minDate = plant.wateringDates.min(), minDate < earliest { earliest = minDate }
+            }
+            for list in gardenStore.badHabitExecutions.values {
+                if let minDate = list.map({ $0.date }).min(), minDate < earliest { earliest = minDate }
+            }
+            for session in gardenStore.focusSessions {
+                if session.date < earliest { earliest = session.date }
+            }
+            for tx in gardenStore.transactions {
+                if tx.datum < earliest { earliest = tx.datum }
+            }
+            
+            let actualDays = calendar.dateComponents([.day], from: calendar.startOfDay(for: earliest), to: today).day ?? 0
+            let effectiveDays = max(7, actualDays + 1)
+            
+            let start = calendar.date(byAdding: .day, value: -effectiveDays, to: today)!
+            let q1 = calendar.date(byAdding: .day, value: -(effectiveDays * 3 / 4), to: today)!
+            let mid = calendar.date(byAdding: .day, value: -(effectiveDays / 2), to: today)!
+            let q3 = calendar.date(byAdding: .day, value: -(effectiveDays / 4), to: today)!
+            return [start, q1, mid, q3, today]
+        }
     }
     
     private func customXAxisLabel(for date: Date, period: StatsPeriod) -> String {
@@ -879,14 +1116,21 @@ struct StatDetailFullscreenView: View {
             return date.formatted(.dateTime.weekday(.abbreviated).locale(Locale(identifier: settings.appLanguage)))
         case .month:
             let daysDiff = calendar.dateComponents([.day], from: date, to: today).day ?? 0
-            if daysDiff >= 25 {
+            if daysDiff >= 24 {
                 return settings.appLanguage == "de" ? "Woche 1" : "Week 1"
-            } else if daysDiff >= 10 && daysDiff <= 20 {
+            } else if daysDiff >= 17 {
                 return settings.appLanguage == "de" ? "Woche 2" : "Week 2"
+            } else if daysDiff >= 10 {
+                return settings.appLanguage == "de" ? "Woche 3" : "Week 3"
             } else {
                 return settings.appLanguage == "de" ? "Woche 4" : "Week 4"
             }
-        case .year, .allTime:
+        case .year:
+            return date.formatted(.dateTime.month(.abbreviated).locale(Locale(identifier: settings.appLanguage)))
+        case .allTime:
+            if (calendar.dateComponents([.day], from: date, to: today).day ?? 0) > 365 {
+                return date.formatted(.dateTime.year().locale(Locale(identifier: settings.appLanguage)))
+            }
             return date.formatted(.dateTime.month(.abbreviated).locale(Locale(identifier: settings.appLanguage)))
         default:
             return ""
@@ -908,13 +1152,15 @@ struct StatDetailFullscreenView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
-                    Picker("", selection: $selectedPeriod) {
-                        ForEach(StatsPeriod.allCases, id: \.self) { period in
-                            Text(settings.localizedString(for: period.localizationKey))
-                                .tag(period)
+                    if detail != .triggers {
+                        Picker("", selection: $selectedPeriod) {
+                            ForEach(StatsPeriod.allCases, id: \.self) { period in
+                                Text(settings.localizedString(for: period.localizationKey))
+                                    .tag(period)
+                            }
                         }
+                        .pickerStyle(.segmented)
                     }
-                    .pickerStyle(.segmented)
                     
                     content
                 }
@@ -925,6 +1171,29 @@ struct StatDetailFullscreenView: View {
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    if detail == .triggers {
+                        let badHabitIds = Array(gardenStore.badHabitExecutions.keys)
+                        Menu {
+                            Picker("Filter", selection: $selectedHabitFilter) {
+                                Text(settings.localizedString(for: "trigger.all_habits")).tag("all")
+                                ForEach(badHabitIds, id: \.self) { habitId in
+                                    let habitName = GameDatabase.allDecorations.first(where: { $0.id == habitId })?.habitNameKey ?? habitId
+                                    Text(settings.localizedString(for: habitName)).tag(habitId)
+                                }
+                            }
+                        } label: {
+                            HStack(spacing: 6) {
+                                let currentName = selectedHabitFilter == "all" ? settings.localizedString(for: "trigger.all_habits") : settings.localizedString(for: GameDatabase.allDecorations.first(where: { $0.id == selectedHabitFilter })?.habitNameKey ?? selectedHabitFilter)
+                                Text(currentName)
+                                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                Image(systemName: "chevron.up.chevron.down")
+                                    .font(.system(size: 12, weight: .bold))
+                            }
+                            .foregroundStyle(.primary)
+                        }
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 16) {
                         Button {
@@ -964,6 +1233,8 @@ struct StatDetailFullscreenView: View {
         case .xp: pendingShareType = .xp
         case .coins: pendingShareType = .coins
         case .milestones: pendingShareType = .milestones
+        case .focus: pendingShareType = .focus
+        case .triggers: pendingShareType = .triggers
         }
         showPreview = true
     }
@@ -982,6 +1253,10 @@ struct StatDetailFullscreenView: View {
                 coinsContent
             case .milestones:
                 milestonesContent
+            case .focus:
+                focusContent
+            case .triggers:
+                triggersContent
             }
         }
     }
@@ -993,6 +1268,8 @@ struct StatDetailFullscreenView: View {
         case .xp: return settings.localizedString(for: "stats.xp.title")
         case .coins: return settings.localizedString(for: "stats.coins.title")
         case .milestones: return settings.localizedString(for: "stats.milestone.title")
+        case .focus: return settings.localizedString(for: "Fokus-Score")
+        case .triggers: return settings.localizedString(for: "trigger.title")
         }
     }
     
@@ -1517,6 +1794,198 @@ struct StatDetailFullscreenView: View {
         }
     }
     
+    private var focusContent: some View {
+        let history = StatsHelper.getFocusHistory(from: gardenStore.focusSessions, days: selectedPeriod.days)
+        return VStack(spacing: 24) {
+            HStack {
+                VStack(alignment: .leading, spacing: 6) {
+                    if let selectedDate = selectedDate {
+                        HStack(spacing: 8) {
+                            if selectedPeriod == .day {
+                                let timeStr = selectedDate.formatted(.dateTime.hour().minute().locale(Locale(identifier: settings.appLanguage)))
+                                let label = settings.appLanguage == "de" ? "\(timeStr) Uhr" : timeStr
+                                Text(label)
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            } else {
+                                Text(selectedDate.formatted(.dateTime.weekday(.wide).day().month().locale(Locale(identifier: settings.appLanguage))))
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                            
+                            Text("•")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundStyle(.secondary)
+                            
+                            let statsForDate = history.first(where: { 
+                                if selectedPeriod == .day {
+                                    return Calendar.current.compare($0.date, to: selectedDate, toGranularity: .hour) == .orderedSame
+                                } else {
+                                    return Calendar.current.isDate($0.date, inSameDayAs: selectedDate)
+                                }
+                            })
+                            let completed = statsForDate?.completedMinutes ?? 0
+                            let aborted = statsForDate?.abortedMinutes ?? 0
+                            let total = completed + aborted
+                            Stat3DTitleView(title: "\(total) min", color: Color.gruenPrimary)
+                        }
+                    } else {
+                        Text(settings.localizedString(for: selectedPeriod.thisPeriodKey))
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                        
+                        let currentTotal = history.reduce(0) { $0 + $1.completedMinutes + $1.abortedMinutes }
+                        Stat3DTitleView(title: "\(currentTotal) min", color: Color.gruenPrimary)
+                    }
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 4)
+            .frame(height: 70)
+            .animation(.spring(response: 0.3, dampingFraction: 0.8), value: selectedDate)
+            
+            Chart {
+                ForEach(history) { item in
+                    BarMark(
+                        x: .value("Tag", item.date),
+                        y: .value("Fokus", item.completedMinutes)
+                    )
+                    .foregroundStyle(Color.gruenPrimary)
+                    
+                    BarMark(
+                        x: .value("Tag", item.date),
+                        y: .value("Abgebrochen", item.abortedMinutes)
+                    )
+                    .foregroundStyle(Color.red)
+                }
+                
+                if let selectedDate = selectedDate {
+                    RuleMark(x: .value("Selected Tag", selectedDate))
+                        .foregroundStyle(Color.orangePrimary.opacity(0.4))
+                        .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+                }
+            }
+            .chartXAxis {
+                if selectedPeriod == .day {
+                    AxisMarks(values: .stride(by: .hour, count: 6)) { value in
+                        if let date = value.as(Date.self) {
+                            let hour = Calendar.current.component(.hour, from: date)
+                            let label = settings.appLanguage == "de" ? "\(hour):00 Uhr" : "\(hour):00"
+                            AxisValueLabel(label)
+                        }
+                    }
+                } else {
+                    AxisMarks(values: getXAxisDates(for: selectedPeriod)) { value in
+                        if let date = value.as(Date.self) {
+                            AxisValueLabel {
+                                Text(customXAxisLabel(for: date, period: selectedPeriod))
+                                    .font(.system(size: 11, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                }
+            }
+            .chartXSelection(value: $selectedDate)
+            .frame(height: 220)
+        }
+        .padding(20)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
+        )
+        .padding(.bottom, 6)
+        .padding(.horizontal, 16)
+    }
+    
+    private var triggersContent: some View {
+        let executionsToUse: [String: [BadHabitExecution]]
+        if selectedHabitFilter == "all" {
+            executionsToUse = gardenStore.badHabitExecutions
+        } else {
+            executionsToUse = [selectedHabitFilter: gardenStore.badHabitExecutions[selectedHabitFilter] ?? []]
+        }
+        
+        var triggerCounts: [String: Int] = [:]
+        for list in executionsToUse.values {
+            for execution in list {
+                if let triggers = execution.triggers {
+                    for t in triggers {
+                        triggerCounts[t, default: 0] += 1
+                    }
+                }
+            }
+        }
+        
+        let sortedTriggers = triggerCounts.sorted { $0.value > $1.value }
+        let totalCount = sortedTriggers.reduce(0) { $0 + $1.value }
+        
+        return VStack(spacing: 16) {
+            if sortedTriggers.isEmpty {
+                VStack(spacing: 12) {
+                    Image(systemName: "bolt.trianglebadge.exclamationmark.fill")
+                        .font(.system(size: 40))
+                        .foregroundStyle(.secondary.opacity(0.5))
+                    Text(settings.localizedString(for: "trigger.no_triggers"))
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 40)
+            } else {
+                ForEach(Array(sortedTriggers.enumerated()), id: \.element.key) { index, item in
+                    let percentage = totalCount > 0 ? Double(item.value) / Double(totalCount) : 0
+                    
+                    VStack(spacing: 8) {
+                        HStack {
+                            HStack(spacing: 10) {
+                                Text("\(index + 1).")
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                                    .frame(width: 24, alignment: .trailing)
+                                
+                                Text(item.key)
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.primary)
+                            }
+                            
+                            Spacer()
+                            
+                            Text("\(item.value)x")
+                                .font(.system(size: 16, weight: .black, design: .rounded))
+                                .foregroundStyle(Color.red)
+                        }
+                        
+                        GeometryReader { geo in
+                            ZStack(alignment: .leading) {
+                                Capsule()
+                                    .fill(Color.secondary.opacity(0.1))
+                                    .frame(height: 8)
+                                Capsule()
+                                    .fill(Color.red.opacity(0.7 + 0.3 * (1.0 - Double(index) / max(1, Double(sortedTriggers.count)))))
+                                    .frame(width: geo.size.width * CGFloat(percentage), height: 8)
+                            }
+                        }
+                        .frame(height: 8)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 14)
+                    .background(Color(UIColor.systemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .background(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .fill(Color.black.opacity(0.12))
+                            .offset(y: 4)
+                    )
+                }
+            }
+        }
+        .padding(.horizontal, 16)
+    }
 }
 
 struct MilestonesShareImage: View {
@@ -2146,8 +2615,107 @@ struct SharePreviewSheet: View {
                     }
                     .padding(16)
                 }
+            case .focus:
+                let history = StatsHelper.getFocusHistory(from: gardenStore.focusSessions, days: period.days)
+                let currentMinutes = history.reduce(0) { $0 + $1.completedMinutes }
+                StatShareImage(
+                    title: settings.localizedString(for: "Fokus-Score"),
+                    subtitle: periodLabel,
+                    username: username,
+                    height: 520,
+                    theme: theme,
+                    vibrantColor: .orangePrimary
+                ) {
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("\(currentMinutes) min")
+                            .font(.system(size: 32, weight: .black, design: .rounded))
+                            .foregroundStyle(Color.orangePrimary)
+                        
+                        Chart {
+                            ForEach(history) { item in
+                                BarMark(
+                                    x: .value("Tag", item.date),
+                                    y: .value("Fokus", item.completedMinutes)
+                                )
+                                .foregroundStyle(Color.gruenPrimary)
+                                
+                                BarMark(
+                                    x: .value("Tag", item.date),
+                                    y: .value("Abgebrochen", item.abortedMinutes)
+                                )
+                                .foregroundStyle(Color.red)
+                            }
+                        }
+                        .chartXAxis {
+                            AxisMarks(values: .automatic) { _ in
+                                AxisGridLine()
+                                AxisValueLabel()
+                            }
+                        }
+                        .chartYAxis {
+                            AxisMarks(values: .automatic) { _ in
+                                AxisGridLine()
+                                AxisValueLabel()
+                            }
+                        }
+                        .frame(height: 120)
+                    }
+                    .padding(16)
+                }
+            case .triggers:
+                triggersShareContent(periodLabel: periodLabel, username: username, theme: theme)
             }
         }
+    }
+    
+    @ViewBuilder
+    private func triggersShareContent(periodLabel: String, username: String, theme: ShareImageTheme) -> some View {
+        let sortedTriggers = computeTriggerCounts()
+        
+        StatShareImage(
+            title: settings.localizedString(for: "trigger.title"),
+            subtitle: periodLabel,
+            username: username,
+            height: CGFloat(460 + min(sortedTriggers.count, 5) * 50),
+            theme: theme,
+            vibrantColor: .red
+        ) {
+            VStack(spacing: 12) {
+                ForEach(Array(sortedTriggers.prefix(5).enumerated()), id: \.element.key) { index, item in
+                    HStack {
+                        Text("\(index + 1).")
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .frame(width: 24, alignment: .trailing)
+                        Text(item.key)
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundStyle(.primary)
+                        Spacer()
+                        Text("\(item.value)x")
+                            .font(.system(size: 16, weight: .black, design: .rounded))
+                            .foregroundStyle(Color.red)
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 10)
+                    .background(Color.secondary.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
+                }
+            }
+            .padding(16)
+        }
+    }
+    
+    private func computeTriggerCounts() -> [(key: String, value: Int)] {
+        var triggerCounts: [String: Int] = [:]
+        for list in gardenStore.badHabitExecutions.values {
+            for execution in list {
+                if let triggers = execution.triggers {
+                    for t in triggers {
+                        triggerCounts[t, default: 0] += 1
+                    }
+                }
+            }
+        }
+        return triggerCounts.sorted { $0.value > $1.value }
     }
     
     private func themeNameKey(for theme: ShareImageTheme) -> String {

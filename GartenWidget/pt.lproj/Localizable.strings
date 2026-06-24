@@ -20,3 +20,7 @@
 "widget_verlauf_month_title" = "Histórico mensal";
 "widget_verlauf_month_description" = "Seus últimos 30 dias de relance.";
 "widget_verlauf_last30" = "Últimos 30 dias";
+
+"Fokus-Score" = "Fokus-Score";
+
+"stats.score.focus.period_format" = "Fokus in %@";

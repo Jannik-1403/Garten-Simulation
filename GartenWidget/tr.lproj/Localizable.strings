@@ -20,3 +20,7 @@
 "widget_verlauf_month_title" = "Aylık Geçmiş";
 "widget_verlauf_month_description" = "Bir bakışta son 30 gününüz.";
 "widget_verlauf_last30" = "Son 30 gün";
+
+"Fokus-Score" = "Fokus-Score";
+
+"stats.score.focus.period_format" = "Fokus in %@";

@@ -12,6 +12,7 @@ struct BadHabitExecution: Codable, Identifiable {
     var id: UUID = UUID()
     let date: Date
     let coinsLost: Int
+    var triggers: [String]?
 }
 
 @MainActor
@@ -36,23 +37,17 @@ class GardenStore: ObservableObject {
         didSet { saveStats() }
     }
     
-    // Level-Up System (50 Levels)
-    @Published var zeigeGartenLevelUpOverlay: Bool = false
-    @Published var neuerGartenLevel: Int = 1
-    @Published var neueFreischaltungen: [GartenLevelFreischaltung] = []
-    
-    // Garten-Pass
-    @Published var abgeholtePassLevel: Set<Int> = [] {
-        didSet { speichereAbgeholte() }
-    }
-    
     // Stats for Achievements
+    @Published var dailySpinsVerfuegbar: Bool = true
     @Published var gesamtVerdient: Int = 0
     @Published var gesamtAusgegeben: Int = 0
     @Published var gesamtGegossen: Int = 0
     @Published var tageAktiv: Int = 0
     @Published var skillXP: [String: Int] = [:]
     @Published var completed90DayChallenges: Int = 0
+    @Published var focusSessions: [FocusSessionLog] = [] {
+        didSet { saveFocusSessions() }
+    }
     
     var isMock: Bool = false
     
@@ -77,6 +72,10 @@ class GardenStore: ObservableObject {
     }
     @Published var badHabitExecutions: [String: [BadHabitExecution]] = [:] {
         didSet { saveBadHabits() }
+    }
+    
+    @Published var savedCustomTriggers: [String] = [] {
+        didSet { saveCustomTriggers() }
     }
     
     // Daily Spin States
@@ -212,9 +211,9 @@ class GardenStore: ObservableObject {
             loadInventory()
             loadActivePowerUps()
             loadDecorations()
-            ladeAbgeholte()
             loadBadHabits()
             loadBadHabitNotes()
+            loadCustomTriggers()
             updateTageAktiv()
             pruefePflanzenStatus()
             taeglicherStreakCheck()
@@ -230,9 +229,9 @@ class GardenStore: ObservableObject {
         loadInventory()
         loadActivePowerUps()
         loadDecorations()
-        ladeAbgeholte()
         loadBadHabits()
         loadBadHabitNotes()
+        loadCustomTriggers()
         updateTageAktiv()
         pruefePflanzenStatus()
         taeglicherStreakCheck()
@@ -294,34 +293,6 @@ class GardenStore: ObservableObject {
         }
     }
 
-    func debugLevelUp() {
-        let vor = gartenStufe
-        let nextLevel = vor + 1
-        guard nextLevel <= 50 else { return }
-        
-        // Berechne XP die benötigt werden um das NÄCHSTE Level zu ERREICHEN
-        let xpFuerNaechstes = GameConstants.xpFuerLevel(nextLevel)
-        gesamtXP = xpFuerNaechstes
-        
-        let nach = gartenStufe
-        if nach > vor {
-            // Belohnungen (Spins)
-            let freigeschaltet = GartenLevel.freischaltungenFuer(level: nach)
-            for f in freigeschaltet {
-                if case .gluecksradDrehung(let anzahl) = f.typ {
-                    gluecksradDrehungen = min(gluecksradDrehungen + anzahl, GameConstants.maxGluecksradDrehungen)
-                }
-            }
-
-            neuerGartenLevel = nach
-            neueFreischaltungen = freigeschaltet
-            withAnimation(.spring(response: 0.5, dampingFraction: 0.75)) {
-                zeigeGartenLevelUpOverlay = true
-            }
-        }
-        saveStats()
-    }
-    
     func xpHinzufuegen(amount: Int) {
         let vor = gartenStufe
         gesamtXP += amount
@@ -334,12 +305,6 @@ class GardenStore: ObservableObject {
                 if case .gluecksradDrehung(let anzahl) = f.typ {
                     gluecksradDrehungen = min(gluecksradDrehungen + anzahl, GameConstants.maxGluecksradDrehungen)
                 }
-            }
-
-            neuerGartenLevel = nach
-            neueFreischaltungen = freigeschaltet
-            withAnimation(.spring(response: 0.5, dampingFraction: 0.75)) {
-                zeigeGartenLevelUpOverlay = true
             }
         }
         saveStats()
@@ -679,7 +644,7 @@ class GardenStore: ObservableObject {
         }
     }
 
-    private func logPurchase(shopItem: ShopDetailPayload, isFree: Bool = false) {
+    func logPurchase(shopItem: ShopDetailPayload, isFree: Bool = false) {
         if !isFree && shopItem.price > 0 {
             let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
             let desc = "\(AppStrings.get("shop.buy.success", language: lang)) \(shopItem.titleKey)"
@@ -967,92 +932,6 @@ class GardenStore: ObservableObject {
         activePowerUps.contains { $0.isActive && $0.powerUpId == "powerup.zeitkapsel" }
     }
 
-    // MARK: - Garten-Pass
-    
-    func kannAbholen(level: Int) -> Bool {
-        let aktuellerLevel = GartenLevel.level(fuerXP: gesamtXP)
-        return level <= aktuellerLevel && !abgeholtePassLevel.contains(level)
-    }
-    
-    func belohnungAbholen(belohnung: GartenPassBelohnung) {
-        guard kannAbholen(level: belohnung.id) else { return }
-        
-        abgeholtePassLevel.insert(belohnung.id)
-        
-        switch belohnung.typ {
-        case .coins(let n):
-            coinsGutschreiben(amount: n, beschreibung: NSLocalizedString("pass_belohnung_coins", comment: ""))
-        case .gluecksradDrehung(let n):
-            gluecksradDrehungen = min(gluecksradDrehungen + n, GameConstants.maxGluecksradDrehungen)
-            saveStats()
-        case .powerUp(let id):
-            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == id }) {
-                let payload = ShopDetailPayload.from(powerUp: pu)
-                itemHinzufuegen(shopItem: payload, isFree: true)
-                onItemClaimed?(pu.id) // Sync mit Shop
-            }
-        case .pflanze(let id):
-            if let pl = GameDatabase.allPlants.first(where: { $0.id == id }) {
-                // Prüfen ob der User diese Pflanze schon hat
-                if pflanzen.contains(where: { $0.plantID == id }) {
-                    // Pflanze schon vorhanden → 150 Coins als Ersatz
-                    letzteErsatzCoins = 150
-                    coinsGutschreiben(amount: 150, beschreibung: NSLocalizedString("pass_belohnung_ersatz_coins", comment: ""))
-                } else {
-                    letzteErsatzCoins = nil
-                    let payload = ShopDetailPayload.from(plant: pl)
-                    pflanzHinzufuegen(shopItem: payload, isFree: true)
-                }
-                onItemClaimed?(pl.id) // Sync mit Shop
-            }
-        case .dekoration(let id):
-            if let dk = GameDatabase.allDecorations.first(where: { $0.id == id }) {
-                let payload = ShopDetailPayload.from(decoration: dk)
-                itemHinzufuegen(shopItem: payload, isFree: true)
-                onItemClaimed?(dk.id) // Sync mit Shop
-            }
-        case .paket(let titel, let paketCoins, let powerUpID):
-            coinsGutschreiben(amount: paketCoins, beschreibung: titel)
-            if let puID = powerUpID, let pu = GameDatabase.allPowerUps.first(where: { $0.id == puID }) {
-                let payload = ShopDetailPayload.from(powerUp: pu)
-                itemHinzufuegen(shopItem: payload, isFree: true)
-                onItemClaimed?(pu.id) // Sync mit Shop
-            }
-        case .seeds(let n):
-            seeds += n
-            saveStats()
-        }
-    }
-    
-    func einloesenGartenPassBelohnung(belohnung: GartenPassSpinBelohnung) {
-        switch belohnung {
-        case .coins(let amount):
-            coinsGutschreiben(amount: amount, beschreibung: NSLocalizedString("ice_wheel_reward", comment: ""))
-        case .xp(let amount):
-            xpHinzufuegen(amount: amount)
-        case .seeds(let amount):
-            seeds += amount
-        case .powerUp(let id):
-            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == id }) {
-                let payload = ShopDetailPayload.from(powerUp: pu)
-                itemHinzufuegen(shopItem: payload, isFree: true)
-            }
-        case .pflanze(let id):
-            if let pl = GameDatabase.allPlants.first(where: { $0.id == id }) {
-                let payload = ShopDetailPayload.from(plant: pl)
-                pflanzHinzufuegen(shopItem: payload, isFree: true)
-            }
-        case .deko(let id):
-            if let dk = GameDatabase.allDecorations.first(where: { $0.id == id }) {
-                let payload = ShopDetailPayload.from(decoration: dk)
-                itemHinzufuegen(shopItem: payload, isFree: true)
-            }
-        case .weed:
-            withAnimation(.spring()) {
-                spawnWeed(removalCost: GameConstants.weedRemovalCostSpin, source: .dailySpin)
-            }
-        }
-    }
 
     func addCustomPlant(name: String, habit: String, icon: String, color: String, category: HabitCategory, isNegative: Bool = false) {
         guard seeds >= 10 else { return }
@@ -1089,7 +968,6 @@ class GardenStore: ObservableObject {
             )
             withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                 placedDecorations.append(customDecoration)
-                speichereAbgeholte() // saves decorations/stats
                 if let encoded = try? JSONEncoder().encode(placedDecorations) {
                     SharedUserDefaults.suite.set(encoded, forKey: "placedDecorations")
                     SharedUserDefaults.suite.synchronize()
@@ -1121,18 +999,6 @@ class GardenStore: ObservableObject {
         }
     }
     
-    func speichereAbgeholte() {
-        guard !isLoading else { return }
-        SharedUserDefaults.suite.set(Array(abgeholtePassLevel), forKey: "abgeholtePassLevel")
-        SharedUserDefaults.suite.synchronize()
-    }
-    
-    func ladeAbgeholte() {
-        isLoading = true
-        defer { isLoading = false }
-        let gespeichert = SharedUserDefaults.suite.array(forKey: "abgeholtePassLevel") as? [Int] ?? []
-        abgeholtePassLevel = Set(gespeichert)
-    }
 
 
     // MARK: Notizen Management
@@ -1432,6 +1298,15 @@ class GardenStore: ObservableObject {
         SharedUserDefaults.suite.synchronize()
         updateWidgetData()
     }
+    
+    func saveFocusSessions() {
+        guard !isMock else { return }
+        guard !isLoading else { return }
+        if let encoded = try? JSONEncoder().encode(focusSessions) {
+            SharedUserDefaults.suite.set(encoded, forKey: "stats_focus_sessions")
+            SharedUserDefaults.suite.synchronize()
+        }
+    }
 
     private func loadStats() {
         isLoading = true
@@ -1475,6 +1350,11 @@ class GardenStore: ObservableObject {
         } else if skillXP.isEmpty {
             // Migration: Initialisiere aus vorhandenen Pflanzen
             migrateSkillXP()
+        }
+        
+        if let focusData = SharedUserDefaults.suite.data(forKey: "stats_focus_sessions"),
+           let decodedFocus = try? JSONDecoder().decode([FocusSessionLog].self, from: focusData) {
+            focusSessions = decodedFocus
         }
     }
     
@@ -1585,9 +1465,20 @@ class GardenStore: ObservableObject {
         }
     }
 
-    func trackBadHabit(id: String, penaltyCoins: Int) {
-        let execution = BadHabitExecution(date: Date(), coinsLost: penaltyCoins)
+    func trackBadHabit(id: String, penaltyCoins: Int, triggers: [String]? = nil) {
+        let execution = BadHabitExecution(date: Date(), coinsLost: penaltyCoins, triggers: triggers)
         badHabitExecutions[id, default: []].append(execution)
+        
+        // Automatisch eine Notiz mit den Auslösern speichern
+        if let triggers = triggers, !triggers.isEmpty {
+            let triggerList = triggers.joined(separator: ", ")
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .short
+            let dateStr = dateFormatter.string(from: Date())
+            let noteText = "\(dateStr) – \(triggerList)"
+            addBadHabitNote(id: id, text: noteText)
+        }
         
         // Unkraut spawnen (Bestrafung für Rückfall)
         withAnimation {
@@ -1653,6 +1544,22 @@ class GardenStore: ObservableObject {
             self.badHabitExecutions = decoded
         }
     }
+    
+    private func saveCustomTriggers() {
+        guard !isMock else { return }
+        guard !isLoading else { return }
+        if let encoded = try? JSONEncoder().encode(savedCustomTriggers) {
+            SharedUserDefaults.suite.set(encoded, forKey: "savedCustomTriggers")
+            SharedUserDefaults.suite.synchronize()
+        }
+    }
+    
+    private func loadCustomTriggers() {
+        if let saved = SharedUserDefaults.suite.data(forKey: "savedCustomTriggers"),
+           let decoded = try? JSONDecoder().decode([String].self, from: saved) {
+            self.savedCustomTriggers = decoded
+        }
+    }
 
     private func updateTageAktiv() {
         isLoading = true
@@ -1694,7 +1601,7 @@ class GardenStore: ObservableObject {
             leben = 5
             gestorbenePflanzenLog.removeAll()
             gluecksradDrehungen = 0
-            abgeholtePassLevel.removeAll()
+
             badHabitExecutions.removeAll()
             badHabitNotes.removeAll()
             skillXP.removeAll()
@@ -1716,7 +1623,7 @@ class GardenStore: ObservableObject {
                 "weed_removal_cost", "weed_spawn_date", "weed_crisis_state",
                 "comeback_boost_expires_at", "abgeholtePassLevel",
                 "stats_gluecksrad_drehungen", "daily_spin_last_shown_day_string",
-                "badHabitExecutions", "badHabitNotes", "stats_skill_xp"
+                "badHabitExecutions", "badHabitNotes", "stats_skill_xp", "savedCustomTriggers"
             ]
             keys.forEach { SharedUserDefaults.suite.removeObject(forKey: $0) }
             

@@ -12,7 +12,7 @@ struct RadarChartView: View {
     private let gridLevels = 6
     
     private var categories: [HabitCategory] {
-        HabitCategory.allCases
+        HabitCategory.allCases.filter { $0 != .seeds }
     }
     
     var body: some View {

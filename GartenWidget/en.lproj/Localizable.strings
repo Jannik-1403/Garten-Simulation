@@ -20,3 +20,7 @@
 "widget_verlauf_month_title" = "Monthly History";
 "widget_verlauf_month_description" = "Your last 30 days at a glance.";
 "widget_verlauf_last30" = "Last 30 days";
+
+"Fokus-Score" = "Focus Score";
+
+"stats.score.focus.period_format" = "Focus in %@";

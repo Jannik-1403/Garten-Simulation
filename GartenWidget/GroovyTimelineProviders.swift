@@ -91,3 +91,20 @@ struct VerlaufLargeTimelineProvider: AppIntentTimelineProvider {
         return Timeline(entries: [entry], policy: .after(nextRefresh()))
     }
 }
+
+
+// MARK: - Lock Screen Provider (Static)
+struct StaticLockScreenProvider: TimelineProvider {
+    typealias Entry = GroovyStreakEntry
+
+    func placeholder(in context: Context) -> GroovyStreakEntry {
+        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .today, backgroundStyle: .colorful)
+    }
+    func getSnapshot(in context: Context, completion: @escaping (GroovyStreakEntry) -> Void) {
+        completion(GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .today, backgroundStyle: .colorful))
+    }
+    func getTimeline(in context: Context, completion: @escaping (Timeline<GroovyStreakEntry>) -> Void) {
+        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .today, backgroundStyle: .colorful)
+        completion(Timeline(entries: [entry], policy: .after(nextRefresh())))
+    }
+}

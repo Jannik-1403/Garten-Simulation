@@ -1771,3 +1771,7 @@
 
 
 // Finance Quiz – Portfolio extension Q6–Q9 (English fallback)
+
+"Fokus-Score" = "Fokus-Score";
+
+"stats.score.focus.period_format" = "Fokus in %@";

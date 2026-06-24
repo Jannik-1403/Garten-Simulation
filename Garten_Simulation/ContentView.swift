@@ -51,28 +51,6 @@ struct ContentView: View {
                 .zIndex(10000)
             }
 
-            // Globaler Level-Up Overlay
-            if gardenStore.zeigeGartenLevelUpOverlay {
-                GartenLevelUpOverlay(
-                    neuerLevel: gardenStore.neuerGartenLevel,
-                    freischaltungen: gardenStore.neueFreischaltungen,
-                    onDismiss: {
-                        withAnimation {
-                            gardenStore.zeigeGartenLevelUpOverlay = false
-                        }
-                    },
-                    onGluecksradDrehen: {
-                        withAnimation {
-                            gardenStore.zeigeGartenLevelUpOverlay = false
-                            gardenStore.showDailySpinOverlay = true
-                        }
-                    }
-                )
-                .transition(.opacity.combined(with: .scale(scale: 0.9)))
-                .ignoresSafeArea()
-                .zIndex(10001)
-            }
-            
             // App Tour Prompt Overlay
             if settings.onboardingAbgeschlossen && !settings.appTourPromptShown && !settings.appTourAbgeschlossen {
                 AppTourPromptOverlay {
@@ -147,11 +125,6 @@ struct MainAppTabView: View {
                 .tag(1)
                 .tabItem {
                     Label(settings.localizedString(for: "tab.shop"), systemImage: "cart.fill")
-                }
-            GartenPassView()
-                .tag(2)
-                .tabItem {
-                    Label(settings.localizedString(for: "tab.pass"), systemImage: "star.fill")
                 }
 
             ProfilView()

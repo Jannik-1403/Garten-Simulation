@@ -86,6 +86,7 @@ struct FocusSessionPreparationStep: View {
         case .growth: return ["1 Kapitel lesen", "Vokabeln wiederholen", "Zusammenfassung schreiben"]
         case .lifestyle: return ["Zimmer aufräumen", "Pflanzen gießen", "Wochenplan erstellen"]
         case .finance: return ["Ausgaben tracken", "Budget überprüfen", "Rechnungen bezahlen"]
+        case .seeds: return []
         case .none: return ["Fokus setzen", "Handy weglegen", "Ablenkungen blockieren"]
         }
     }

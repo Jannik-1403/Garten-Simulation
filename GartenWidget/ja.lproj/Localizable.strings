@@ -20,3 +20,7 @@
 "widget_verlauf_month_title" = "月次履歴";
 "widget_verlauf_month_description" = "過去 30 日間が一目でわかります。";
 "widget_verlauf_last30" = "過去 30 日間";
+
+"Fokus-Score" = "Fokus-Score";
+
+"stats.score.focus.period_format" = "Fokus in %@";

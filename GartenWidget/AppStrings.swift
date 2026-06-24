@@ -1377,6 +1377,11 @@ enum AppStrings {
         
         "statistik_popup_erreicht": ["de": "erreicht", "en": "achieved", "es": "logrado", "fr": "atteint", "it": "raggiunto", "pt": "alcançado"],
         "statistik_popup_gewohnheiten": ["de": "Gewohnheiten", "en": "Habits", "es": "Hábitos", "fr": "Habitudes", "it": "Abitudini", "pt": "Hábitos"],
-        "statistik_popup_giessungen": ["de": "Gießungen", "en": "Waterings", "es": "Riegos", "fr": "Arrosages", "it": "Annaffiature", "pt": "Regas"]
+        "statistik_popup_giessungen": ["de": "Gießungen", "en": "Waterings", "es": "Riegos", "fr": "Arrosages", "it": "Annaffiature", "pt": "Regas"],
+        
+        // MARK: - Shop Seeds
+        "category.seeds": ["de": "Samen", "en": "Seeds", "es": "Semillas", "fr": "Graines", "it": "Semi", "pt": "Sementes"],
+        "shop.seeds.name": ["de": "Magische Samen", "en": "Magical Seeds", "es": "Semillas Mágicas", "fr": "Graines Magiques", "it": "Semi Magici", "pt": "Sementes Mágicas"],
+        "shop.seeds.desc": ["de": "Ein Paket mit 10 magischen Samen. Damit kannst du dir deine eigene, einzigartige Pflanze erschaffen!", "en": "A packet of 10 magical seeds. Use them to create your own unique plant!", "es": "Un paquete de 10 semillas mágicas. ¡Úsalas para crear tu propia planta única!", "fr": "Un paquet de 10 graines magiques. Utilisez-les pour créer votre propre plante unique !", "it": "Un pacchetto di 10 semi magici. Usali per creare la tua pianta unica!", "pt": "Um pacote de 10 sementes mágicas. Usa-as para criar a tua própria planta única!"]
     ]
 }

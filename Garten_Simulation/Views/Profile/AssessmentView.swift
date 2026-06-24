@@ -158,6 +158,8 @@ struct AssessmentCategoryView: View {
             LifestyleAssessmentQuizView()
                 .environmentObject(assessmentStore)
                 .environmentObject(settings)
+        case .seeds:
+            EmptyView()
         }
     }
 
@@ -195,6 +197,8 @@ struct AssessmentCategoryView: View {
                 LifestyleResultView(result: r, onRetake: { assessmentStore.resetLifestyleResult(); resultCategory = nil; selectedCategory = .lifestyle })
                     .environmentObject(settings)
             }
+        case .seeds:
+            EmptyView()
         }
     }
 
@@ -206,6 +210,7 @@ struct AssessmentCategoryView: View {
         case .health:  return assessmentStore.healthResult  != nil
         case .fitness: return assessmentStore.fitnessResult != nil
         case .lifestyle: return assessmentStore.lifestyleResult != nil
+        case .seeds: return false
         }
     }
 }

@@ -20,3 +20,7 @@
 "widget_verlauf_month_title" = "Maandelijkse geschiedenis";
 "widget_verlauf_month_description" = "Uw laatste 30 dagen in één oogopslag.";
 "widget_verlauf_last30" = "Laatste 30 dagen";
+
+"Fokus-Score" = "Fokus-Score";
+
+"stats.score.focus.period_format" = "Fokus in %@";

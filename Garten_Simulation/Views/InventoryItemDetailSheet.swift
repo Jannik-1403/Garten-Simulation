@@ -15,6 +15,7 @@ struct InventoryItemDetailSheet: View {
     @State private var showNotizSheet = false
     @State private var noteToEditIndex: Int? = nil
     @State private var noteToDeleteIndex: Int? = nil
+    @State private var showTriggerSheet = false
     @State private var showMaxLivesAlert = false
 
 
@@ -147,7 +148,7 @@ struct InventoryItemDetailSheet: View {
                         // MARK: Rückfall melden Button
                         Button {
                             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                            gardenStore.trackBadHabit(id: item.id, penaltyCoins: 0)
+                            showTriggerSheet = true
                         } label: {
                             HStack(spacing: 8) {
                                 Image(systemName: "exclamationmark.triangle.fill")
@@ -184,6 +185,14 @@ struct InventoryItemDetailSheet: View {
                     .presentationDragIndicator(.visible)
                     .presentationCornerRadius(32)
                     .presentationBackground(Color(UIColor.systemBackground))
+            }
+            .sheet(isPresented: $showTriggerSheet) {
+                TriggerSelectionSheet(habitId: item.id)
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
+                    .presentationCornerRadius(32)
             }
             .confirmationDialog(
                 settings.localizedString(for: "plant.detail.note.delete.confirm"),

@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 
 enum HabitCategory: String, CaseIterable, Codable {
+    case seeds
     case fitness
     case health
     case mental
@@ -26,6 +27,8 @@ enum HabitCategory: String, CaseIterable, Codable {
             self = .lifestyle
         case "finance":
             self = .finance
+        case "seeds":
+            self = .seeds
         default:
             self = .lifestyle
         }
@@ -41,6 +44,7 @@ enum HabitCategory: String, CaseIterable, Codable {
         case .growth:    return .gruenPrimary
         case .lifestyle: return .blauPrimary
         case .finance:   return .coinBlue
+        case .seeds:     return .brown
         }
     }
     
@@ -52,6 +56,7 @@ enum HabitCategory: String, CaseIterable, Codable {
         case .growth:    return "leaf.fill"
         case .lifestyle: return "star.fill"
         case .finance:   return "banknote.fill"
+        case .seeds:     return "leaf.circle.fill"
         }
     }
     
@@ -63,6 +68,7 @@ enum HabitCategory: String, CaseIterable, Codable {
         case .growth:    return "Wachstum"
         case .lifestyle: return "Lifestyle"
         case .finance:   return "Finanzen"
+        case .seeds:     return ""
         }
     }
 }
@@ -257,7 +263,10 @@ struct GameDatabase {
         Plant(id: "plant.klee",             name: "plant.klee.name",              symbolName: "star.fill",                     assetName: "Klee",                   symbol: "🍀", symbolColor: "green",   habitCategory: .mental,  symbolism: "plant.klee.symbolism",             habitName: "habit.dankbarkeit",           xpPerCompletion: 60,  decayDays: 2, minGartenLevel: 1, igelAsset: "Igel-Musik"),
         
         // MARK: Spezial-Pflanzen (Durch Samen freischaltbar)
-        Plant(id: "plant.mystic_seed",      name: "plant.mystic_seed.name",       symbolName: "leaf.arrow.triangle.circlepath", assetName: "plant_lotus", symbolColor: "indigo", habitCategory: .mental, symbolism: "plant.mystic_seed.symbolism",    habitName: "habit.atemarbeit",            xpPerCompletion: 250, decayDays: 5, minGartenLevel: 25)
+        Plant(id: "plant.mystic_seed",      name: "plant.mystic_seed.name",       symbolName: "leaf.arrow.triangle.circlepath", assetName: "plant_lotus", symbolColor: "indigo", habitCategory: .mental, symbolism: "plant.mystic_seed.symbolism",    habitName: "habit.atemarbeit",            xpPerCompletion: 250, decayDays: 5, minGartenLevel: 25),
+        
+        // MARK: Shop Items
+        Plant(id: "plant.seeds",            name: "shop.seeds.name",              symbolName: "",               assetName: "Samen",           symbol: "", symbolColor: "brown",    habitCategory: .seeds, symbolism: "shop.seeds.desc",           habitName: "shop.seeds.name",             xpPerCompletion: 0,   decayDays: 0, minGartenLevel: 1)
     ]
 
     // MARK: Müll-Items (20 Stück, Re-branded IDs)

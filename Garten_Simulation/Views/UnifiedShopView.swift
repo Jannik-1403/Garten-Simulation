@@ -25,8 +25,15 @@ struct ShopItemCard: View {
             VStack(alignment: .center, spacing: 12) {
                 Group {
                     if let plant = plant {
-                        PlantIconView(plant: plant, seltenheit: .bronze, size: 110, alwaysShowFullGrown: true)
-                            .scaleEffect(1.5)
+                        if plant.id == "plant.seeds" {
+                            Image("Samen")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80, height: 80)
+                        } else {
+                            PlantIconView(plant: plant, seltenheit: .bronze, size: 110, alwaysShowFullGrown: true)
+                                .scaleEffect(1.5)
+                        }
                     } else {
                         if UIImage(named: icon) != nil {
                             Image(icon)

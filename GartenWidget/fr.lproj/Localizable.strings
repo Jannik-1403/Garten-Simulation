@@ -20,3 +20,7 @@
 "widget_verlauf_month_title" = "Historique mensuel";
 "widget_verlauf_month_description" = "Tes 30 derniers jours en un coup d\u2019œil.";
 "widget_verlauf_last30" = "30 derniers jours";
+
+"Fokus-Score" = "Fokus-Score";
+
+"stats.score.focus.period_format" = "Fokus in %@";

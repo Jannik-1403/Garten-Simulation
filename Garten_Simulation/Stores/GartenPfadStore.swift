@@ -21,9 +21,6 @@ class GartenPfadStore: ObservableObject {
     @Published var zeigePfadAbschlussOverlay: Bool = false
     @Published var letzteAbschlussPflanzeID: String? = nil
     @Published var letzterAbschlussCoins: Int = 0
-    @Published var verfuegbareSpins: Int {
-        didSet { UserDefaults.standard.set(verfuegbareSpins, forKey: "gartenpass_spins") }
-    }
     
     private var modelContext: ModelContext?
     private var settings: SettingsStore
@@ -35,7 +32,6 @@ class GartenPfadStore: ObservableObject {
     init(modelContext: ModelContext? = nil, settings: SettingsStore) {
         self.modelContext = modelContext
         self.settings = settings
-        self.verfuegbareSpins = UserDefaults.standard.integer(forKey: "gartenpass_spins")
         ladePfad()
     }
 
@@ -704,45 +700,6 @@ class GartenPfadStore: ObservableObject {
         return grouped.values
             .map { $0.sorted() }
             .sorted { ($0.first ?? 0) < ($1.first ?? 0) }
-    }
-
-    func belohnungGutschreiben(_ belohnung: GartenPassBelohnung, gardenStore: GardenStore, powerUpStore: PowerUpStore) {
-        switch belohnung.typ {
-        case .coins(let n):
-            gardenStore.addCoins(n, reason: NSLocalizedString("pass_belohnung_coins", comment: ""))
-        case .gluecksradDrehung(let n):
-            self.spinsHinzufuegen(n)
-            gardenStore.gluecksradDrehungen += n
-        case .pflanze(let id):
-            gardenStore.pflanzeHinzufuegen(id: id)
-            // NEU: Pfad direkt mit hinzufügen
-            if let neuePflanze = gardenStore.pflanzen.last(where: { $0.plantID == id }) {
-                self.pflanzeHinzufuegen(neuePflanze, ziel: settings.ausgewaehltesZiel, schwierigkeit: .anfaenger)
-            }
-        case .powerUp(_):
-            powerUpStore.zufaelligesPowerUpHinzufuegen()
-        case .dekoration(let id):
-            if let dk = GameDatabase.allDecorations.first(where: { $0.id == id }) {
-                let payload = ShopDetailPayload.from(decoration: dk)
-                gardenStore.itemHinzufuegen(shopItem: payload, isFree: true)
-            }
-        case .paket(let titel, let coins, let puID):
-            gardenStore.addCoins(coins, reason: titel)
-            if puID != nil {
-                powerUpStore.zufaelligesPowerUpHinzufuegen() // Simplified for random
-            }
-        case .seeds(let n):
-            gardenStore.seeds += n
-        }
-    }
-
-    func spinVerbrauchen() {
-        guard verfuegbareSpins > 0 else { return }
-        verfuegbareSpins -= 1
-    }
-
-    func spinsHinzufuegen(_ anzahl: Int) {
-        verfuegbareSpins += anzahl
     }
 }
 

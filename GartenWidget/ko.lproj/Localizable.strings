@@ -20,3 +20,7 @@
 "widget_verlauf_month_title" = "월별 기록";
 "widget_verlauf_month_description" = "지난 30일을 한눈에 살펴보세요.";
 "widget_verlauf_last30" = "지난 30일";
+
+"Fokus-Score" = "Fokus-Score";
+
+"stats.score.focus.period_format" = "Fokus in %@";

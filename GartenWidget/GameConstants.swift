@@ -3,7 +3,7 @@ import Foundation
 enum GameConstants {
 
     // MARK: Belohnungen pro Gießvorgang
-    static let coinsProGiessen: Int = 10
+    static let coinsProGiessen: Int = 30
     static let xpProGiessen: Int = 100
     static let mlProGiessen: Double = 300
     static let gemsProGiessen: Int = 1

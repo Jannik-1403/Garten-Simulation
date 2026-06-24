@@ -90,9 +90,6 @@ struct InteractiveTourOverlay: View {
             if step == .shopPrompt {
                 return CGPoint(x: w * 0.375, y: h - geo.safeAreaInsets.bottom - 25)
             }
-            if step == .gamePassPrompt {
-                return CGPoint(x: w * 0.625, y: h - geo.safeAreaInsets.bottom - 25)
-            }
             if step == .profilePrompt {
                 return CGPoint(x: w * 0.875, y: h - geo.safeAreaInsets.bottom - 25)
             }
@@ -197,13 +194,6 @@ struct InteractiveTourOverlay: View {
             })
         case .shopIntro:
             return (settings.localizedString(for: "tour_3_title"), settings.localizedString(for: "tour_3_desc"), { tourManager.nextStep() })
-        case .gamePassPrompt:
-            return (settings.localizedString(for: "tab.pass"), settings.localizedString(for: "tour_gamepass_prompt_desc"), {
-                gardenStore.selectedTab = 2
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { tourManager.nextStep() }
-            })
-        case .gamePassIntro:
-            return (settings.localizedString(for: "tour_gamepass_intro_title"), settings.localizedString(for: "tour_gamepass_intro_desc"), { tourManager.nextStep() })
         case .profilePrompt:
             return (settings.localizedString(for: "tab.profil"), settings.localizedString(for: "tour_profile_prompt_desc"), {
                 gardenStore.selectedTab = 3

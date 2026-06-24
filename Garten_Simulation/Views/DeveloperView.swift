@@ -23,14 +23,6 @@ struct DeveloperView: View {
                     settingsSection(title: "Allgemeine Steuerung") {
                         VStack(spacing: 0) {
                             Button {
-                                gardenStore.debugLevelUp()
-                            } label: {
-                                settingRow(title: "Level Up (+1)", icon: "sparkles", color: .yellow)
-                            }
-                            
-                            Divider().padding(.leading, 44)
-                            
-                            Button {
                                 gardenStore.taeglicherStreakCheck()
                                 FeedbackManager.shared.playSuccess()
                             } label: {

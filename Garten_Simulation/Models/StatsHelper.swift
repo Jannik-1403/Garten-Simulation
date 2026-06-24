@@ -13,6 +13,13 @@ struct DailyWatering: Identifiable {
     let count: Int
 }
 
+struct DailyFocus: Identifiable {
+    let id = UUID()
+    let date: Date
+    let completedMinutes: Int
+    let abortedMinutes: Int
+}
+
 struct CoinHistory: Identifiable {
     let id = UUID()
     let date: Date
@@ -28,6 +35,31 @@ struct RarityData: Identifiable {
 }
 
 class StatsHelper {
+    static func getTriggerCounts(from badHabitExecutions: [String: [BadHabitExecution]], days: Int) -> [(key: String, value: Int)] {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let startDate: Date
+        if days == 0 {
+            startDate = .distantPast // Assume 0 means all time if not handled, or just pass Int.max
+        } else {
+            startDate = calendar.date(byAdding: .day, value: -days, to: today) ?? .distantPast
+        }
+        
+        var triggerCounts: [String: Int] = [:]
+        for list in badHabitExecutions.values {
+            for execution in list {
+                if execution.date >= startDate {
+                    if let triggers = execution.triggers {
+                        for t in triggers {
+                            triggerCounts[t, default: 0] += 1
+                        }
+                    }
+                }
+            }
+        }
+        return triggerCounts.sorted { $0.value > $1.value }
+    }
+
     static func getWateringHistory(from plants: [HabitModel], badHabitExecutions: [String: [BadHabitExecution]] = [:], days: Int = 7) -> [DailyWatering] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
@@ -149,6 +181,81 @@ class StatsHelper {
         
         return history
     }
+
+    static func getFocusHistory(from sessions: [FocusSessionLog], days: Int = 7) -> [DailyFocus] {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        
+        if days == 1 {
+            var hourlyFocus: [Date: (completed: Int, aborted: Int)] = [:]
+            for hour in 0..<24 {
+                if let date = calendar.date(bySettingHour: hour, minute: 0, second: 0, of: today) {
+                    hourlyFocus[date] = (0, 0)
+                }
+            }
+            
+            for session in sessions {
+                if calendar.isDate(session.date, inSameDayAs: today) {
+                    if let hourDate = calendar.date(bySettingHour: calendar.component(.hour, from: session.date), minute: 0, second: 0, of: today) {
+                        if session.isCompleted {
+                            hourlyFocus[hourDate]!.completed += session.durationMinutes
+                        } else {
+                            hourlyFocus[hourDate]!.aborted += session.durationMinutes
+                        }
+                    }
+                }
+            }
+            
+            var history: [DailyFocus] = []
+            let sortedDates = hourlyFocus.keys.sorted()
+            for date in sortedDates {
+                let data = hourlyFocus[date]!
+                history.append(DailyFocus(date: date, completedMinutes: data.completed, abortedMinutes: data.aborted))
+            }
+            return history
+        }
+        
+        var actualDays = days
+        if days == 10000 {
+            var earliest = today
+            if let firstSession = sessions.min(by: { $0.date < $1.date }) {
+                earliest = calendar.startOfDay(for: firstSession.date)
+            }
+            let diff = calendar.dateComponents([.day], from: earliest, to: today).day ?? 0
+            actualDays = max(7, diff + 1)
+        }
+        
+        var dailyFocus: [Date: (completed: Int, aborted: Int)] = [:]
+        
+        for i in 0..<actualDays {
+            if let date = calendar.date(byAdding: .day, value: -i, to: today) {
+                dailyFocus[calendar.startOfDay(for: date)] = (0, 0)
+            }
+        }
+        dailyFocus[today] = (0, 0)
+        
+        for session in sessions {
+            let startOfDay = calendar.startOfDay(for: session.date)
+            if dailyFocus[startOfDay] != nil {
+                if session.isCompleted {
+                    dailyFocus[startOfDay]!.completed += session.durationMinutes
+                } else {
+                    dailyFocus[startOfDay]!.aborted += session.durationMinutes
+                }
+            }
+        }
+        
+        var history: [DailyFocus] = []
+        let sortedDates = dailyFocus.keys.sorted()
+        
+        for date in sortedDates {
+            let data = dailyFocus[date]!
+            history.append(DailyFocus(date: date, completedMinutes: data.completed, abortedMinutes: data.aborted))
+        }
+        
+        return history
+    }
+
     static func getXPHistory(from plants: [HabitModel], currentTotalXP: Int, days: Int = 7) -> [DailyXP] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())

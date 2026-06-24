@@ -137,11 +137,13 @@ class SettingsStore: ObservableObject {
 
     // MARK: - Localization
     func localizedString(for key: String) -> String {
+        let uniqueFallback = "___KEY_NOT_FOUND___"
+        
         // Priority 1: Check the specific language bundle (e.g. es.lproj)
         if let path = Bundle.main.path(forResource: appLanguage, ofType: "lproj"),
            let bundle = Bundle(path: path) {
-            let localized = NSLocalizedString(key, tableName: nil, bundle: bundle, value: key, comment: "")
-            if localized != key {
+            let localized = bundle.localizedString(forKey: key, value: uniqueFallback, table: nil)
+            if localized != uniqueFallback {
                 return localized
             }
         }

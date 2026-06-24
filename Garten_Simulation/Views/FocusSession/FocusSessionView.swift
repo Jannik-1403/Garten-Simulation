@@ -150,6 +150,12 @@ struct FocusSessionView: View {
                         UIApplication.shared.isIdleTimerDisabled = false
                         stopLiveActivity()
                         showFailAlert = true
+                        
+                        let completedSeconds = selectedMinutes * 60 - remainingSeconds
+                        let durationMinutes = completedSeconds / 60
+                        if durationMinutes > 0 {
+                            gardenStore.focusSessions.append(FocusSessionLog(date: Date(), durationMinutes: durationMinutes, isCompleted: false))
+                        }
                     }
                 }
             }
@@ -356,6 +362,12 @@ struct FocusSessionView: View {
                 isTimerRunning = false
                 UIApplication.shared.isIdleTimerDisabled = false
                 dismiss()
+                
+                let completedSeconds = selectedMinutes * 60 - remainingSeconds
+                let durationMinutes = completedSeconds / 60
+                if durationMinutes > 0 {
+                    gardenStore.focusSessions.append(FocusSessionLog(date: Date(), durationMinutes: durationMinutes, isCompleted: false))
+                }
             }
         }
     }
@@ -365,18 +377,15 @@ struct FocusSessionView: View {
         VStack(spacing: 30) {
             Spacer()
             
-            ZStack {
-                Circle().fill(Color.orangePrimary.opacity(0.1))
-                    .frame(width: 140, height: 140)
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 70))
-                    .foregroundStyle(Color.orangePrimary)
-            }
+            Image("Timer full")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 140, height: 140)
             
             VStack(spacing: 12) {
                 Text(settings.localizedString(for: "Geschafft!"))
                     .font(.system(size: 32, weight: .black, design: .rounded))
-                Text(String(format: settings.localizedString(for: "Du warst %lld Minuten lang extrem fokussiert. Deine Pflanze ist stolz auf dich!"), selectedMinutes))
+                Text(String(format: settings.localizedString(for: "Du warst %lld Minuten lang extrem fokussiert. Die XP werden auf alle deine Pflanzen aufgeteilt!"), selectedMinutes))
                     .font(.system(size: 16, weight: .medium, design: .rounded))
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.secondary)
@@ -444,8 +453,34 @@ struct FocusSessionView: View {
     private func finishSession() {
         state = .success
         stopLiveActivity()
+        
+        let xpGained = Int(Double(pflanze.xpPerCompletion) * gardenStore.xpMultiplikator(for: pflanze))
+        
         // Triggert den Habit-Abschluss
         gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
+        
+        // XP von der spezifischen Pflanze abziehen und auf alle aufteilen
+        if !gardenStore.pflanzen.isEmpty {
+            pflanze.currentXP -= xpGained
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let key = formatter.string(from: Date())
+            if let currentHistory = pflanze.xpHistory[key] {
+                pflanze.xpHistory[key] = max(0, currentHistory - xpGained)
+            }
+            
+            let share = max(1, xpGained / gardenStore.pflanzen.count)
+            let remainder = xpGained % gardenStore.pflanzen.count
+            
+            for (index, p) in gardenStore.pflanzen.enumerated() {
+                let amount = share + (index == 0 ? remainder : 0)
+                p.currentXP += amount
+                p.xpHistory[key] = (p.xpHistory[key] ?? 0) + amount
+            }
+        }
+        
+        gardenStore.focusSessions.append(FocusSessionLog(date: Date(), durationMinutes: selectedMinutes, isCompleted: true))
         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
     }
     

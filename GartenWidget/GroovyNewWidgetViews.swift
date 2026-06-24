@@ -531,3 +531,41 @@ struct VerlaufLargeWidgetView: View {
         .widgetURL(URL(string: "grovy://streak"))
     }
 }
+
+
+// MARK: - LOCK SCREEN: Streak Widget
+struct LockScreenStreakWidgetView: View {
+    let entry: GroovyStreakEntry
+    var streak: Int { entry.appData?.totalStreak ?? 0 }
+
+    var body: some View {
+        ZStack {
+            if #available(iOSApplicationExtension 16.0, *) {
+                AccessoryWidgetBackground()
+            }
+            VStack(spacing: 0) {
+                Image(systemName: "flame.fill")
+                    .font(.system(size: 16, weight: .bold))
+                Text("\(streak)")
+                    .font(.system(size: 18, weight: .black, design: .rounded))
+            }
+        }
+        .widgetURL(URL(string: "grovy://streak"))
+    }
+}
+
+// MARK: - LOCK SCREEN: Timer Widget
+struct LockScreenTimerWidgetView: View {
+    let entry: GroovyStreakEntry
+
+    var body: some View {
+        ZStack {
+            if #available(iOSApplicationExtension 16.0, *) {
+                AccessoryWidgetBackground()
+            }
+            Image(systemName: "timer")
+                .font(.system(size: 30, weight: .bold))
+        }
+        .widgetURL(URL(string: "grovy://timer"))
+    }
+}

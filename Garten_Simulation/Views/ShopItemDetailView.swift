@@ -41,7 +41,12 @@ struct ShopItemDetailView: View {
                         HStack {
                             Spacer()
                             Group {
-                                if payload.itemType == .plant, 
+                                if payload.id == "plant.seeds" {
+                                    Image("Samen")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 150, height: 150)
+                                } else if payload.itemType == .plant, 
                                    let basePlant = GameDatabase.shared.plant(for: payload.id) {
                                     // Spezial-View für Pflanzen
                                     PlantIconView(plant: basePlant, seltenheit: .bronze, size: 280, alwaysShowFullGrown: true)
@@ -135,7 +140,7 @@ struct ShopItemDetailView: View {
                             .padding(.top, 8)
                             
                             // MARK: Schwierigkeits-Auswahl (Nur für Pflanzen)
-                            if payload.itemType == .plant {
+                            if payload.itemType == .plant && payload.id != "plant.seeds" {
                                 VStack(alignment: .leading, spacing: 14) {
                                     HStack {
                                         Text(settings.localizedString(for: "schwierigkeit.titel"))
@@ -330,7 +335,16 @@ struct ShopItemDetailView: View {
     }
     
     private func executePurchase() {
-        if payload.itemType == .plant {
+        if payload.id == "plant.seeds" {
+            FeedbackManager.shared.playSuccess()
+            shopStore.buy(id: payload.id, price: payload.price)
+            gardenStore.logPurchase(shopItem: payload)
+            gardenStore.seeds += 10
+            
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
+                showSuccess = true
+            }
+        } else if payload.itemType == .plant {
             FeedbackManager.shared.playSuccess()
             shopStore.buy(id: payload.id, price: payload.price)
             gardenStore.pflanzHinzufuegen(shopItem: payload)
