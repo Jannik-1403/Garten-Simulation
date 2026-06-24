@@ -51,8 +51,71 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
 
         // Bereits verwendete (Wochentag, Stunde, Minute)-Slots → verhindert Doppel-Notifications
         var usedSlots = Set<String>()
+        
+        // 1. Read routines to find overridden habits and schedule routine reminders
+        var overriddenHabitIDs = Set<String>()
+        let customRoutinesData = UserDefaults.standard.data(forKey: "customRoutines") ?? Data()
+        if let decodedRoutines = try? JSONDecoder().decode([RoutineUIData].self, from: customRoutinesData) {
+            for routine in decodedRoutines {
+                if routine.reminderSchedule != nil || routine.reminderTime != nil {
+                    // Collect overridden habits
+                    if routine.overrideIndividualReminders {
+                        for id in routine.assignedHabitIDs {
+                            overriddenHabitIDs.insert(id)
+                        }
+                    }
+                    
+                    // Schedule Routine
+                    let routineName = AppStrings.get(routine.titleKey, language: lang)
+                    
+                    if let schedule = routine.reminderSchedule, !schedule.isExpired {
+                        for weekday in schedule.weekdays where weekday.isEnabled {
+                            let hour   = calendar.component(.hour,   from: weekday.time)
+                            let minute = calendar.component(.minute, from: weekday.time)
+                            let slotKey = "\(weekday.appleWeekday):\(hour):\(minute)"
+                            
+                            guard !usedSlots.contains(slotKey) else { continue }
+                            usedSlots.insert(slotKey)
+                            
+                            let title = "Zeit für Routine: \(routineName)"
+                            let body = weekday.customMessage ?? "Starte jetzt deine Routine und verdiene Fokus-Punkte!"
+                            let repeats = weekday.repeatMode != .once
+                            
+                            scheduleWeekday(
+                                id: "routine-\(routine.id)-\(weekday.weekday)",
+                                weekday: weekday.appleWeekday,
+                                hour: hour,
+                                minute: minute,
+                                title: title,
+                                body: body,
+                                repeats: repeats
+                            )
+                        }
+                    } else if let reminderTime = routine.reminderTime {
+                        let hour   = calendar.component(.hour,   from: reminderTime)
+                        let minute = calendar.component(.minute, from: reminderTime)
+                        let slotKey = "legacy:\(hour):\(minute)"
+                        
+                        guard !usedSlots.contains(slotKey) else { continue }
+                        usedSlots.insert(slotKey)
+                        
+                        scheduleRepeating(
+                            id: "routine-\(routine.id)",
+                            hour: hour,
+                            minute: minute,
+                            title: "Zeit für Routine: \(routineName)",
+                            body: "Starte jetzt deine Routine und verdiene Fokus-Punkte!"
+                        )
+                    }
+                }
+            }
+        }
 
+        // 2. Schedule individual habits
         for habit in habits {
+            // Überspringen, falls durch Routine überschrieben
+            if overriddenHabitIDs.contains(habit.id) { continue }
+            
             // Pflanzname — LOKALISIERT statt roher Schlüssel
             let rawName = habit.habitName.isEmpty ? habit.name : habit.habitName
             let plantName = AppStrings.get(rawName, language: lang)

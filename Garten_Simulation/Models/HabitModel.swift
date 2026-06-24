@@ -3,7 +3,7 @@ import Combine
 
 // MARK: - Reminder Schedule Types
 
-struct WeekdayReminder: Codable, Identifiable {
+struct WeekdayReminder: Codable, Identifiable, Equatable {
     var id: Int { weekday }
     var weekday: Int              // 1=Mo, 2=Di, 3=Mi, 4=Do, 5=Fr, 6=Sa, 7=So
     var time: Date                // Nur Stunde:Minute relevant
@@ -76,7 +76,7 @@ enum ReminderRepeatMode: String, Codable, CaseIterable {
     }
 }
 
-struct ReminderSchedule: Codable {
+struct ReminderSchedule: Codable, Equatable {
     var weekdays: [WeekdayReminder]         // 7 Einträge (Mo-So)
     var startDate: Date = Date()            // Wann der Timer begonnen hat
     

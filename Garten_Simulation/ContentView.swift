@@ -121,6 +121,12 @@ struct MainAppTabView: View {
                     Label(settings.localizedString(for: "tab.garten"), systemImage: "leaf.fill")
                 }
 
+            RoutinenView()
+                .tag(4)
+                .tabItem {
+                    Label(settings.localizedString(for: "tab.routines"), systemImage: "list.bullet.clipboard.fill")
+                }
+
             UnifiedShopView()
                 .tag(1)
                 .tabItem {

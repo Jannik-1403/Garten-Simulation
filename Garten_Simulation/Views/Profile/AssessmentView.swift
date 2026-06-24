@@ -92,7 +92,7 @@ struct AssessmentCategoryView: View {
 
                         // Category Grid
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                            ForEach(HabitCategory.allCases, id: \.self) { category in
+                            ForEach(HabitCategory.allCases.filter { $0 != .seeds }, id: \.self) { category in
                                 Category3DCard(
                                     category: category,
                                     isAvailable: available.contains(category),

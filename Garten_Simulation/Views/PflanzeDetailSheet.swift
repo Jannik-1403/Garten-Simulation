@@ -25,6 +25,13 @@ struct PflanzeDetailSheet: View {
     @State private var ausgewaehlterEffekt: PflanzenEffekt? = nil
     @State private var selectedTab: DetailTab = .uebersicht
     @State private var pfadBereit: Bool = false
+    
+    @AppStorage("customRoutines") private var customRoutinesData: Data = Data()
+    
+    private var parentRoutineWithReminder: RoutineUIData? {
+        guard let routines = try? JSONDecoder().decode([RoutineUIData].self, from: customRoutinesData) else { return nil }
+        return routines.first(where: { $0.assignedHabitIDs.contains(pflanze.id) && ($0.reminderSchedule != nil || $0.reminderTime != nil) })
+    }
 
 
     enum DetailTab: String, CaseIterable {
@@ -87,97 +94,99 @@ struct PflanzeDetailSheet: View {
             ZStack(alignment: .topTrailing) {
                 ScrollViewReader { proxy in
                     ScrollView(showsIndicators: false) {
-                        LazyVStack(spacing: 28, pinnedViews: [.sectionHeaders]) {
+                        LazyVStack(spacing: 28) {
                     // MARK: - HERO (Zone 1)
-                    VStack(spacing: 12) {
-                        ZStack {
-                            // Hintergrund-Ring (grau)
-                            Circle()
-                                .stroke(Color.gray.opacity(0.15), lineWidth: 8)
-                                .frame(width: 180, height: 180)
-
-                            // Fortschritts-Ring (Seltenheits-Farbe)
-                            Circle()
-                                .trim(from: 0, to: pflanze.ringFortschritt)
-                                .stroke(
-                                    pflanze.seltenheit.farbe,
-                                    style: StrokeStyle(lineWidth: 8, lineCap: .round)
-                                )
-                                .frame(width: 180, height: 180)
-                                .rotationEffect(.degrees(-90))
-                                .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
-
-                            // 3D Pflanze Button
-                            if let basePlant = GameDatabase.shared.plant(for: pflanze.plantID) {
-                                PflanzenButton(
-                                    plant: basePlant,
-                                    seltenheit: pflanze.seltenheit,
-                                    farbe: pflanze.color,
-                                    sekundaerFarbe: pflanze.color.darker(),
-                                    groesse: 140
-                                )
-                                .scaleEffect(pulsieren ? 1.03 : 1.0)
-                                .allowsHitTesting(false)
-                            } else {
-                                // Fallback if not found
-                                PflanzenButton(
-                                    plant: Plant(id: "fallback", name: settings.localizedString(for: "common.plant_fallback"), symbolName: pflanze.symbolName, assetName: nil, symbol: "🌱", symbolColor: pflanze.symbolColor, habitCategory: pflanze.habitCategory, symbolism: ""),
-                                    seltenheit: pflanze.seltenheit,
-                                    farbe: pflanze.color,
-                                    sekundaerFarbe: pflanze.color.darker(),
-                                    groesse: 140
-                                )
-                                .scaleEffect(pulsieren ? 1.03 : 1.0)
-                                .allowsHitTesting(false)
-                            }
-                        }
-                        .scaleEffect(min(1.0, ScreenSize.width / 390)) // Scale down on smaller iPhones
-
-                        Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
-                            .font(.system(size: 36, weight: .black, design: .rounded))
-                            .minimumScaleFactor(0.5)
-                            .lineLimit(2)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal, 20)
-
-                        Text(settings.localizedString(for: pflanze.habitCategory.localizationKey))
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                            .textCase(.uppercase)
-                            .tracking(1.5)
-
-                        // Vier-Spalten Stats Header (In einer schwebenden Karte)
-                        ViewThatFits(in: .horizontal) {
-                            statsRow
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                statsRow.frame(minWidth: 400)
-                            }
-                        }
-                        .padding(.vertical, 14)
-                        .padding(.horizontal, 12)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .fill(Color.white)
-                                .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
-                        )
-                        .padding(.horizontal, 24)
-                        .padding(.top, 4)
-
-                        // NEU: Pflanzen-Effekte (Wetter, Power-Ups, Penalties)
-                        if !aktiveEffekte.isEmpty {
-                            HStack(spacing: 12) {
-                                ForEach(aktiveEffekte) { effekt in
-                                    EffektIkonButton(effekt: effekt, size: 28, iconSkalierung: effekt.typ == .wetter ? 1.5 : 1.0) {
-                                        ausgewaehlterEffekt = effekt
-                                    }
+                    if selectedTab == .uebersicht {
+                        VStack(spacing: 12) {
+                            ZStack {
+                                // Hintergrund-Ring (grau)
+                                Circle()
+                                    .stroke(Color.gray.opacity(0.15), lineWidth: 8)
+                                    .frame(width: 180, height: 180)
+    
+                                // Fortschritts-Ring (Seltenheits-Farbe)
+                                Circle()
+                                    .trim(from: 0, to: pflanze.ringFortschritt)
+                                    .stroke(
+                                        pflanze.seltenheit.farbe,
+                                        style: StrokeStyle(lineWidth: 8, lineCap: .round)
+                                    )
+                                    .frame(width: 180, height: 180)
+                                    .rotationEffect(.degrees(-90))
+                                    .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
+    
+                                // 3D Pflanze Button
+                                if let basePlant = GameDatabase.shared.plant(for: pflanze.plantID) {
+                                    PflanzenButton(
+                                        plant: basePlant,
+                                        seltenheit: pflanze.seltenheit,
+                                        farbe: pflanze.color,
+                                        sekundaerFarbe: pflanze.color.darker(),
+                                        groesse: 140
+                                    )
+                                    .scaleEffect(pulsieren ? 1.03 : 1.0)
+                                    .allowsHitTesting(false)
+                                } else {
+                                    // Fallback if not found
+                                    PflanzenButton(
+                                        plant: Plant(id: "fallback", name: settings.localizedString(for: "common.plant_fallback"), symbolName: pflanze.symbolName, assetName: nil, symbol: "🌱", symbolColor: pflanze.symbolColor, habitCategory: pflanze.habitCategory, symbolism: ""),
+                                        seltenheit: pflanze.seltenheit,
+                                        farbe: pflanze.color,
+                                        sekundaerFarbe: pflanze.color.darker(),
+                                        groesse: 140
+                                    )
+                                    .scaleEffect(pulsieren ? 1.03 : 1.0)
+                                    .allowsHitTesting(false)
                                 }
                             }
-                            .padding(.top, 16)
-                            .padding(.bottom, 4)
-                            .id(activeStateID)
+                            .scaleEffect(min(1.0, ScreenSize.width / 390)) // Scale down on smaller iPhones
+    
+                            Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
+                                .font(.system(size: 36, weight: .black, design: .rounded))
+                                .minimumScaleFactor(0.5)
+                                .lineLimit(2)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 20)
+    
+                            Text(settings.localizedString(for: pflanze.habitCategory.localizationKey))
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .textCase(.uppercase)
+                                .tracking(1.5)
+    
+                            // Vier-Spalten Stats Header (In einer schwebenden Karte)
+                            ViewThatFits(in: .horizontal) {
+                                statsRow
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    statsRow.frame(minWidth: 400)
+                                }
+                            }
+                            .padding(.vertical, 14)
+                            .padding(.horizontal, 12)
+                            .background(
+                                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                    .fill(Color.white)
+                                    .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
+                            )
+                            .padding(.horizontal, 24)
+                            .padding(.top, 4)
+    
+                            // NEU: Pflanzen-Effekte (Wetter, Power-Ups, Penalties)
+                            if !aktiveEffekte.isEmpty {
+                                HStack(spacing: 12) {
+                                    ForEach(aktiveEffekte) { effekt in
+                                        EffektIkonButton(effekt: effekt, size: 28, iconSkalierung: effekt.typ == .wetter ? 1.5 : 1.0) {
+                                            ausgewaehlterEffekt = effekt
+                                        }
+                                    }
+                                }
+                                .padding(.top, 16)
+                                .padding(.bottom, 4)
+                                .id(activeStateID)
+                            }
                         }
+                        .padding(.top, 40)
                     }
-                    .padding(.top, 40)
 
                 // MARK: - TAB PICKER & CONTENT
                 Section {
@@ -217,9 +226,42 @@ struct PflanzeDetailSheet: View {
                         .padding(.horizontal, 24)
                         .padding(.bottom, 4)
                     }
+                    
+                    // Routine Reminder Hint
+                    if let routine = parentRoutineWithReminder {
+                        HStack(spacing: 12) {
+                            Image(systemName: routine.icon)
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundStyle(Color(hex: routine.colorHex))
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                if routine.overrideIndividualReminders {
+                                    Text("Durch Routine pausiert")
+                                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.primary)
+                                    Text("Erinnerungen für diese Gewohnheit werden durch die Routine '\(settings.localizedString(for: routine.titleKey))' gesteuert.")
+                                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                } else {
+                                    Text("Zusätzliche Erinnerung aktiv")
+                                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.primary)
+                                    Text("Diese Gewohnheit klingelt zusätzlich zur Routine '\(settings.localizedString(for: routine.titleKey))'.")
+                                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                            Spacer()
+                        }
+                        .padding(16)
+                        .background(Color(hex: routine.colorHex).opacity(0.1))
+                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 4)
+                    }
 
-                    // Timer Vorschau
-                    if pflanze.hasActiveReminder {
+                    // Own Timer Row (only show if not overridden, or if override is disabled)
+                    if pflanze.hasActiveReminder && !(parentRoutineWithReminder?.overrideIndividualReminders == true) {
                         TimerRowView(
                             pflanze: pflanze,
                             onTap: { zeigeTimerEditSheet = true },
@@ -713,31 +755,17 @@ struct TimerEditSheetView: View {
                 }
 
                 // Days List
-                List {
-                    Section {
+                ScrollView {
+                    VStack(spacing: 16) {
                         ForEach(1...7, id: \.self) { day in
                             dayRow(for: day)
-                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    if schedule.weekdays[dayIndex(for: day)].isEnabled {
-                                        Button(role: .destructive) {
-                                            withAnimation {
-                                                schedule.weekdays[dayIndex(for: day)].isEnabled = false
-                                                if expandedDay == day {
-                                                    expandedDay = nil
-                                                }
-                                            }
-                                        } label: {
-                                            Label(settings.localizedString(for: "plant.detail.note.delete.action"), systemImage: "trash")
-                                        }
-                                    }
-                                }
                         }
                     }
+                    .padding(.horizontal, 24)
+                    .padding(.top, 8)
+                    .padding(.bottom, 40)
                 }
-                .listStyle(.insetGrouped)
                 .scrollDismissesKeyboard(.interactively)
-                .scrollContentBackground(.hidden)
-                .shadow(color: .black.opacity(0.15), radius: 0, x: 0, y: 4)
             }
             .background(Color.appHintergrund.ignoresSafeArea())
             .navigationBarBackButtonHidden(true)
@@ -949,10 +977,11 @@ struct TimerEditSheetView: View {
                             .font(.system(size: 18))
                     }
                 }
-                .padding(.vertical, 12)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 16)
                 .contentShape(Rectangle())
             }
-            .buttonStyle(.plain)
+            .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: false))
             
             // Expanded Content
             if isExpanded {
@@ -994,8 +1023,7 @@ struct TimerEditSheetView: View {
                           text: Binding(
                               get: { schedule.weekdays[index].customMessage ?? "" },
                               set: { schedule.weekdays[index].customMessage = $0.isEmpty ? nil : $0 }
-                          ),
-                          axis: .vertical)
+                          ))
                     .focused($focusedDay, equals: day)
                     .font(.system(size: 15, weight: .medium, design: .rounded))
                     .padding(12)
@@ -1021,7 +1049,39 @@ struct TimerEditSheetView: View {
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
+            
+            // Deaktivieren Button
+            Button(role: .destructive) {
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
+                    schedule.weekdays[index].isEnabled = false
+                    if expandedDay == day {
+                        expandedDay = nil
+                    }
+                }
+            } label: {
+                HStack {
+                    Image(systemName: "trash")
+                    Text("Deaktivieren")
+                }
+                .font(.system(size: 14, weight: .bold, design: .rounded))
+                .padding(.vertical, 10)
+                .frame(maxWidth: .infinity)
+                .background(Color.red.opacity(0.1))
+                .foregroundColor(.red)
+                .cornerRadius(10)
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 16)
         }
+        .background(
+            ZStack {
+                RoundedRectangle(cornerRadius: 18, style: .continuous)
+                    .fill(Color(.systemGray4))
+                    .offset(y: 4)
+                RoundedRectangle(cornerRadius: 18, style: .continuous)
+                    .fill(Color(UIColor.secondarySystemGroupedBackground))
+            }
+        )
     }
     
     private func timeFormatted(_ date: Date) -> String {

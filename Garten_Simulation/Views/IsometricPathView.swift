@@ -88,7 +88,6 @@ struct IsometricPathView: View {
         } else {
             ZStack {
                 ScrollViewReader { proxy in
-                ScrollView(.vertical, showsIndicators: false) {
                     ZStack(alignment: .top) {
                         IsometricGrassBackground(
                             contentHeight: canvasHeight,
@@ -149,10 +148,8 @@ struct IsometricPathView: View {
                             }
                         )
                     }
-                }
-                .scrollDisabled(selectedDay != nil)
-                .scrollContentBackground(.hidden)
-                .background(Color(hex: "#3e7a2d"))
+                    .scrollDisabled(selectedDay != nil)
+                    .background(Color(hex: "#3e7a2d"))
                 .onPreferenceChange(ContentHeightKey.self) { height in
                     contentHeight = max(height, UIScreen.main.bounds.height)
                 }
