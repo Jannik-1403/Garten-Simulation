@@ -26,11 +26,13 @@ struct PflanzeDetailSheet: View {
     @State private var selectedTab: DetailTab = .uebersicht
     @State private var pfadBereit: Bool = false
     
-    @AppStorage("customRoutines") private var customRoutinesData: Data = Data()
+    @AppStorage("customRoutinesData") private var customRoutinesData: Data = Data()
     
     private var parentRoutineWithReminder: RoutineUIData? {
         guard let routines = try? JSONDecoder().decode([RoutineUIData].self, from: customRoutinesData) else { return nil }
-        return routines.first(where: { $0.assignedHabitIDs.contains(pflanze.id) && ($0.reminderSchedule != nil || $0.reminderTime != nil) })
+        return routines.first(where: { routine in
+            routine.contains(habit: pflanze) && (routine.reminderSchedule != nil || routine.reminderTime != nil)
+        })
     }
 
 
@@ -227,41 +229,9 @@ struct PflanzeDetailSheet: View {
                         .padding(.bottom, 4)
                     }
                     
-                    // Routine Reminder Hint
-                    if let routine = parentRoutineWithReminder {
-                        HStack(spacing: 12) {
-                            Image(systemName: routine.icon)
-                                .font(.system(size: 20, weight: .bold))
-                                .foregroundStyle(Color(hex: routine.colorHex))
-                            
-                            VStack(alignment: .leading, spacing: 2) {
-                                if routine.overrideIndividualReminders {
-                                    Text("Durch Routine pausiert")
-                                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                                        .foregroundStyle(.primary)
-                                    Text("Erinnerungen für diese Gewohnheit werden durch die Routine '\(settings.localizedString(for: routine.titleKey))' gesteuert.")
-                                        .font(.system(size: 12, weight: .medium, design: .rounded))
-                                        .foregroundStyle(.secondary)
-                                } else {
-                                    Text("Zusätzliche Erinnerung aktiv")
-                                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                                        .foregroundStyle(.primary)
-                                    Text("Diese Gewohnheit klingelt zusätzlich zur Routine '\(settings.localizedString(for: routine.titleKey))'.")
-                                        .font(.system(size: 12, weight: .medium, design: .rounded))
-                                        .foregroundStyle(.secondary)
-                                }
-                            }
-                            Spacer()
-                        }
-                        .padding(16)
-                        .background(Color(hex: routine.colorHex).opacity(0.1))
-                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 4)
-                    }
 
-                    // Own Timer Row (only show if not overridden, or if override is disabled)
-                    if pflanze.hasActiveReminder && !(parentRoutineWithReminder?.overrideIndividualReminders == true) {
+                    // Own Timer Row (always show if active, so user can edit non-overridden days)
+                    if pflanze.hasActiveReminder {
                         TimerRowView(
                             pflanze: pflanze,
                             onTap: { zeigeTimerEditSheet = true },
@@ -714,6 +684,14 @@ struct TimerEditSheetView: View {
 
     let daysKeys = ["days.monday", "days.tuesday", "days.wednesday", "days.thursday", "days.friday", "days.saturday", "days.sunday"]
     
+    @AppStorage("customRoutinesData") private var customRoutinesData: Data = Data()
+    
+    private var parentRoutineWithReminder: RoutineUIData? {
+        guard let routines = try? JSONDecoder().decode([RoutineUIData].self, from: customRoutinesData) else { return nil }
+        return routines.first(where: { routine in
+            routine.contains(habit: pflanze) && (routine.reminderSchedule != nil || routine.reminderTime != nil)
+        })
+    }
     private var pflanzName: String {
         settings.showHabitInsteadOfName
             ? settings.localizedString(for: pflanze.habitName)
@@ -908,16 +886,29 @@ struct TimerEditSheetView: View {
         schedule.weekdays.firstIndex(where: { $0.weekday == day }) ?? 0
     }
     
+    private func routineOverrides(day: Int) -> Bool {
+        guard let routine = parentRoutineWithReminder, routine.overrideIndividualReminders else {
+            return false
+        }
+        if let sched = routine.reminderSchedule {
+            let index = sched.weekdays.firstIndex(where: { $0.weekday == day }) ?? 0
+            return sched.weekdays[index].isEnabled
+        }
+        return true
+    }
+    
     @ViewBuilder
     private func dayRow(for day: Int) -> some View {
         let index = dayIndex(for: day)
         let isEnabled = schedule.weekdays[index].isEnabled
-        let isExpanded = expandedDay == day && !isLinkingNotes
+        let isOverridden = routineOverrides(day: day)
+        let isExpanded = expandedDay == day && !isLinkingNotes && !isOverridden
         let isSelectedForLinking = selectedDaysForLinking.contains(day)
         
-        VStack(spacing: 0) {
+        VStack(spacing: 12) {
             // Header Row (Tap to expand/link)
             Button {
+                if isOverridden { return }
                 if isLinkingNotes {
                     if isEnabled {
                         withAnimation {
@@ -953,11 +944,22 @@ struct TimerEditSheetView: View {
                     
                     Text(settings.localizedString(for: daysKeys[day-1]))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundStyle(isEnabled ? Color.primary : Color.secondary.opacity(0.5))
+                        .foregroundStyle((isEnabled && !isOverridden) ? Color.primary : Color.secondary.opacity(0.5))
                     
                     Spacer()
                     
-                    if isEnabled {
+                    if isOverridden {
+                        HStack(spacing: 4) {
+                            if let routineName = parentRoutineWithReminder?.titleKey {
+                                Text(settings.localizedString(for: routineName))
+                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                    .foregroundStyle(Color(hex: parentRoutineWithReminder!.colorHex))
+                            }
+                            Text("Pausiert")
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundStyle(.secondary.opacity(0.6))
+                        }
+                    } else if isEnabled {
                         if !isLinkingNotes {
                             Text(timeFormatted(schedule.weekdays[index].time))
                                 .font(.system(size: 16, weight: isExpanded ? .bold : .semibold, design: .rounded))

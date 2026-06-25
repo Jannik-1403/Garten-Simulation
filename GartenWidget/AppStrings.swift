@@ -1382,6 +1382,29 @@ enum AppStrings {
         // MARK: - Shop Seeds
         "category.seeds": ["de": "Samen", "en": "Seeds", "es": "Semillas", "fr": "Graines", "it": "Semi", "pt": "Sementes"],
         "shop.seeds.name": ["de": "Magische Samen", "en": "Magical Seeds", "es": "Semillas Mágicas", "fr": "Graines Magiques", "it": "Semi Magici", "pt": "Sementes Mágicas"],
-        "shop.seeds.desc": ["de": "Ein Paket mit 10 magischen Samen. Damit kannst du dir deine eigene, einzigartige Pflanze erschaffen!", "en": "A packet of 10 magical seeds. Use them to create your own unique plant!", "es": "Un paquete de 10 semillas mágicas. ¡Úsalas para crear tu propia planta única!", "fr": "Un paquet de 10 graines magiques. Utilisez-les pour créer votre propre plante unique !", "it": "Un pacchetto di 10 semi magici. Usali per creare la tua pianta unica!", "pt": "Um pacote de 10 sementes mágicas. Usa-as para criar a tua própria planta única!"]
+        "shop.seeds.desc": ["de": "Ein Paket mit 10 magischen Samen. Damit kannst du dir deine eigene, einzigartige Pflanze erschaffen!", "en": "A packet of 10 magical seeds. Use them to create your own unique plant!", "es": "Un paquete de 10 semillas mágicas. ¡Úsalas para crear tu propia planta única!", "fr": "Un paquet de 10 graines magiques. Utilisez-les pour créer votre propre plante unique !", "it": "Un pacchetto di 10 semi magici. Usali per creare la tua pianta unica!", "pt": "Um pacote de 10 sementes mágicas. Usa-as para criar a tua própria planta única!"],
+
+        // MARK: - Routines Editor
+        "routine.edit.name": ["de": "Name der Routine", "en": "Routine Name", "es": "Nombre de la rutina", "fr": "Nom de la routine", "it": "Nome della routine", "pt": "Nome da rotina"],
+        "routine.edit.name.placeholder": ["de": "z.B. Mittagspause", "en": "e.g. Lunch Break", "es": "ej. Pausa para almorzar", "fr": "ex. Pause déjeuner", "it": "es. Pausa pranzo", "pt": "ex. Pausa para o almoço"],
+        "routine.edit.color": ["de": "Farbe", "en": "Color", "es": "Color", "fr": "Couleur", "it": "Colore", "pt": "Cor"],
+        "routine.edit.reminder": ["de": "Erinnerung", "en": "Reminder", "es": "Recordatorio", "fr": "Rappel", "it": "Promemoria", "pt": "Lembrete"],
+        "routine.edit.timer.edit": ["de": "Timer bearbeiten", "en": "Edit Timer", "es": "Editar temporizador", "fr": "Modifier le minuteur", "it": "Modifica timer", "pt": "Editar temporizador"],
+        "routine.edit.timer.add": ["de": "Timer hinzufügen", "en": "Add Timer", "es": "Añadir temporizador", "fr": "Ajouter un minuteur", "it": "Aggiungi timer", "pt": "Adicionar temporizador"],
+        "routine.edit.habits.included": ["de": "Enthaltene Gewohnheiten", "en": "Included Habits", "es": "Hábitos incluidos", "fr": "Habitudes incluses", "it": "Abitudini incluse", "pt": "Hábitos incluídos"],
+        "routine.edit.habits.reorder": ["de": "Reihenfolge anpassen", "en": "Adjust Order", "es": "Ajustar orden", "fr": "Ajuster l'ordre", "it": "Regola l'ordine", "pt": "Ajustar ordem"],
+        "routine.edit.habits.none": ["de": "Keine Gewohnheiten zugewiesen.", "en": "No habits assigned.", "es": "No hay hábitos asignados.", "fr": "Aucune habitude assignée.", "it": "Nessuna abitudine assegnata.", "pt": "Sem hábitos atribuídos."],
+        "routine.edit.title": ["de": "Routine bearbeiten", "en": "Edit Routine", "es": "Editar rutina", "fr": "Modifier la routine", "it": "Modifica routine", "pt": "Editar rotina"],
+        "routine.edit.habit.add_single": ["de": "Gewohnheit hinzufügen", "en": "Add Habit", "es": "Añadir hábito", "fr": "Ajouter une habitude", "it": "Aggiungi abitudine", "pt": "Adicionar hábito"],
+        "routine.edit.habits.add": ["de": "Gewohnheiten hinzufügen", "en": "Add Habits", "es": "Añadir hábitos", "fr": "Ajouter des habitudes", "it": "Aggiungi abitudini", "pt": "Adicionar hábitos"],
+        "routine.edit.habits.empty": ["de": "Du hast aktuell keine freien Gewohnheiten ohne Routine.", "en": "You currently have no free habits without a routine.", "es": "Actualmente no tienes hábitos libres sin rutina.", "fr": "Vous n'avez actuellement aucune habitude libre sans routine.", "it": "Attualmente non hai abitudini libere senza routine.", "pt": "Atualmente não tem hábitos livres sem rotina."],
+        "routine.create.title": ["de": "Neue Routine", "en": "New Routine", "es": "Nueva rutina", "fr": "Nouvelle routine", "it": "Nuova routine", "pt": "Nova rotina"],
+        "routine.custom.default_name": ["de": "Eigene Routine", "en": "Custom Routine", "es": "Rutina personalizada", "fr": "Routine personnalisée", "it": "Routine personalizzata", "pt": "Rotina personalizada"],
+        "routine.pending": ["de": "Ausstehend", "en": "Pending", "es": "Pendiente", "fr": "En attente", "it": "In attesa", "pt": "Pendente"],
+        "routine.completed": ["de": "Abgeschlossen", "en": "Completed", "es": "Completado", "fr": "Terminé", "it": "Completato", "pt": "Concluído"],
+        "routine.start": ["de": "Starten", "en": "Start", "es": "Empezar", "fr": "Commencer", "it": "Inizia", "pt": "Iniciar"],
+        "routine.reminder.activate": ["de": "Erinnerung aktivieren", "en": "Enable Reminder", "es": "Activar recordatorio", "fr": "Activer le rappel", "it": "Attiva promemoria", "pt": "Ativar lembrete"],
+        "routine.reminder.only_routine": ["de": "Nur Routine-Erinnerung", "en": "Only Routine Reminder", "es": "Solo recordatorio de rutina", "fr": "Uniquement le rappel de routine", "it": "Solo promemoria della routine", "pt": "Apenas lembrete de rotina"],
+        "routine.reminder.pause_individual": ["de": "Pausiert individuelle Pflanzen-Timer", "en": "Pauses individual plant timers", "es": "Pausa los temporizadores de plantas individuales", "fr": "Met en pause les minuteurs de plantes individuels", "it": "Mette in pausa i timer delle singole piante", "pt": "Pausa os temporizadores individuais das plantas"]
     ]
 }

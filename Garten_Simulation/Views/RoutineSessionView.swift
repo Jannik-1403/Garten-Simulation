@@ -54,10 +54,9 @@ struct RoutineSessionView: View {
                             isTimerRunning = false
                             dismiss()
                         } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.system(size: 28))
-                                .symbolRenderingMode(.hierarchical)
-                                .foregroundStyle(Color.gray.opacity(0.4))
+                            Image(systemName: "xmark")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundStyle(.primary)
                         }
                     }
                 }
@@ -101,7 +100,7 @@ struct RoutineSessionView: View {
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                 
-                Text("\(habits.count) \(settings.localizedString(for: "onboarding.step1.habitTitle")). Bist du bereit für deinen Flow?")
+                Text("\(habits.count) \(settings.localizedString(for: "routine.session.habits")). \(settings.localizedString(for: "routine.session.ready"))")
                     .font(.system(size: 18, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -123,13 +122,13 @@ struct RoutineSessionView: View {
                     }
                 }
             ) {
-                Text(settings.localizedString(for: "Routine starten"))
-                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                Text(settings.localizedString(for: "routine.session.start"))
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)
             }
             .padding(.horizontal, 32)
             
-            Button(settings.localizedString(for: "Abbrechen")) {
+            Button(settings.localizedString(for: "common.cancel")) {
                 dismiss()
             }
             .font(.system(size: 18, weight: .semibold, design: .rounded))
@@ -148,7 +147,7 @@ struct RoutineSessionView: View {
             Spacer()
             
             // Progress
-            Text("Schritt \(currentHabitIndex + 1) von \(habits.count)")
+            Text("\(settings.localizedString(for: "routine.session.step")) \(currentHabitIndex + 1) \(settings.localizedString(for: "routine.session.of")) \(habits.count)")
                 .font(.system(size: 16, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
@@ -161,14 +160,14 @@ struct RoutineSessionView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 250, height: 250)
-                    .padding(.top, 24)
+                    .padding(.top, -10)
                 
                 Text(settings.showHabitInsteadOfName ? settings.localizedString(for: currentHabit.displayedHabitName) : settings.localizedString(for: currentHabit.name))
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.5)
                     .fixedSize(horizontal: false, vertical: true)
-                    .padding(.top, 16)
+                    .padding(.top, -15) // Moved up to slightly overlap the plant
                     .padding(.horizontal, 32)
                 
                 if !currentHabit.symbolism.isEmpty {
@@ -197,13 +196,13 @@ struct RoutineSessionView: View {
                 HStack(spacing: 12) {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 24))
-                    Text(currentHabitIndex == habits.count - 1 ? settings.localizedString(for: "Routine abschließen") : settings.localizedString(for: "Erledigt & Weiter"))
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                    Text(currentHabitIndex == habits.count - 1 ? settings.localizedString(for: "routine.session.finish") : settings.localizedString(for: "routine.session.next"))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
                 }
                 .foregroundStyle(.white)
             }
             .padding(.horizontal, 32)
-            .padding(.bottom, 48)
+            .padding(.bottom, 24)
         }
     }
     
@@ -222,12 +221,12 @@ struct RoutineSessionView: View {
             }
             
             VStack(spacing: 16) {
-                Text(settings.localizedString(for: "Routine gemeistert!"))
+                Text(settings.localizedString(for: "routine.session.mastered"))
                     .font(.system(size: 36, weight: .black, design: .rounded))
                     .multilineTextAlignment(.center)
                 
-                Text("\(settings.localizedString(for: "Dauer:")) \(timeString)")
-                    .font(.system(size: 20, weight: .bold, design: .monospaced))
+                Text("\(settings.localizedString(for: "routine.session.duration")) \(timeString)")
+                    .font(.system(size: 16, weight: .bold, design: .monospaced))
                     .foregroundStyle(.secondary)
             }
             
@@ -242,8 +241,8 @@ struct RoutineSessionView: View {
                     dismiss()
                 }
             ) {
-                Text(settings.localizedString(for: "Klasse!"))
-                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                Text(settings.localizedString(for: "routine.session.great"))
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)
             }
             .padding(.horizontal, 32)

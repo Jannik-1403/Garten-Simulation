@@ -14,6 +14,33 @@ struct RoutineUIData: Identifiable, Equatable, Codable {
     var color: Color {
         Color(hex: colorHex)
     }
+    
+    func contains(habit: HabitModel) -> Bool {
+        if self.assignedHabitIDs.contains(habit.id) { return true }
+        
+        switch self.filterType {
+        case .morning:
+            if let reminder = habit.nextActiveReminder {
+                let h = Calendar.current.component(.hour, from: reminder.time)
+                return h >= 5 && h < 12
+            }
+            return false
+        case .afternoon:
+            if let reminder = habit.nextActiveReminder {
+                let h = Calendar.current.component(.hour, from: reminder.time)
+                return h >= 12 && h < 17
+            }
+            return false
+        case .evening:
+            if let reminder = habit.nextActiveReminder {
+                let h = Calendar.current.component(.hour, from: reminder.time)
+                return h >= 17 || h < 5
+            }
+            return false
+        case .custom:
+            return false
+        }
+    }
 }
 
 enum RoutineFilterType: String, Codable {
@@ -39,24 +66,12 @@ struct RoutinenView: View {
     }
 
     func habits(for routine: RoutineUIData) -> [HabitModel] {
-        switch routine.filterType {
-        case .morning:
-            return timelinePlants.filter {
-                let h = Calendar.current.component(.hour, from: $0.nextActiveReminder!.time)
-                return h >= 5 && h < 12
-            }
-        case .afternoon:
-            return timelinePlants.filter {
-                let h = Calendar.current.component(.hour, from: $0.nextActiveReminder!.time)
-                return h >= 12 && h < 17
-            }
-        case .evening:
-            return timelinePlants.filter {
-                let h = Calendar.current.component(.hour, from: $0.nextActiveReminder!.time)
-                return h >= 17 || h < 5
-            }
-        case .custom:
-            return gardenStore.pflanzen.filter { routine.assignedHabitIDs.contains($0.id) }
+        let unsortedHabits = gardenStore.pflanzen.filter { routine.contains(habit: $0) }
+        
+        return unsortedHabits.sorted { h1, h2 in
+            let index1 = routine.assignedHabitIDs.firstIndex(of: h1.id) ?? Int.max
+            let index2 = routine.assignedHabitIDs.firstIndex(of: h2.id) ?? Int.max
+            return index1 < index2
         }
     }
 
@@ -69,6 +84,20 @@ struct RoutinenView: View {
             }
         }
         return gardenStore.pflanzen.filter { !displayedIDs.contains($0.id) }
+    }
+
+    private func isRoutineCompleted(_ routine: RoutineUIData) -> Bool {
+        let currentHabits = habits(for: routine)
+        guard !currentHabits.isEmpty else { return false }
+        return currentHabits.allSatisfy { $0.istBewässert }
+    }
+    
+    private var uncompletedRoutines: [RoutineUIData] {
+        routines.filter { !isRoutineCompleted($0) }
+    }
+    
+    private var completedRoutines: [RoutineUIData] {
+        routines.filter { isRoutineCompleted($0) }
     }
 
     @State private var routineToEdit: RoutineUIData?
@@ -90,23 +119,67 @@ struct RoutinenView: View {
                         
                         // MARK: - Routines (Expandable)
                         VStack(spacing: 0) {
-                            ForEach(routines) { routine in
-                                RoutineExpandableSection(
-                                    titleKey: routine.titleKey,
-                                    icon: routine.icon,
-                                    color: routine.color,
-                                    habits: habits(for: routine),
-                                    routine: routine,
-                                    onHabitTap: { pflanze in
-                                        selectedHabitToView = pflanze
-                                    },
-                                    onStart: {
-                                        routineToPlay = routine
-                                    },
-                                    onEdit: {
-                                        routineToEdit = routine
+                            if !uncompletedRoutines.isEmpty {
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text(settings.localizedString(for: "routine.pending"))
+                                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                        .padding(.horizontal, 24)
+                                        .padding(.bottom, 8)
+                                    
+                                    ForEach(uncompletedRoutines) { routine in
+                                        RoutineExpandableSection(
+                                            titleKey: routine.titleKey,
+                                            icon: routine.icon,
+                                            color: routine.color,
+                                            habits: habits(for: routine),
+                                            routine: routine,
+                                            isCompleted: false,
+                                            onHabitTap: { pflanze in
+                                                selectedHabitToView = pflanze
+                                            },
+                                            onStart: {
+                                                routineToPlay = routine
+                                            },
+                                            onEdit: {
+                                                routineToEdit = routine
+                                            }
+                                        )
                                     }
-                                )
+                                }
+                                .padding(.bottom, 12)
+                            }
+                            
+                            // MARK: - Completed Routines
+                            if !completedRoutines.isEmpty {
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text(settings.localizedString(for: "routine.completed"))
+                                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                        .padding(.horizontal, 24)
+                                        .padding(.top, 32)
+                                        .padding(.bottom, 8)
+                                    
+                                    ForEach(completedRoutines) { routine in
+                                        RoutineExpandableSection(
+                                            titleKey: routine.titleKey,
+                                            icon: routine.icon,
+                                            color: routine.color,
+                                            habits: habits(for: routine),
+                                            routine: routine,
+                                            isCompleted: true,
+                                            onHabitTap: { pflanze in
+                                                selectedHabitToView = pflanze
+                                            },
+                                            onStart: {
+                                                routineToPlay = routine
+                                            },
+                                            onEdit: {
+                                                routineToEdit = routine
+                                            }
+                                        )
+                                    }
+                                }
                             }
                             
                             // Without Routine (Not deletable)
@@ -120,6 +193,7 @@ struct RoutinenView: View {
                                     selectedHabitToView = pflanze
                                 }
                             )
+                            .padding(.top, completedRoutines.isEmpty ? 32 : 16)
                         }
                         .padding(.top, 24)
                         
@@ -152,7 +226,7 @@ struct RoutinenView: View {
                                 }
                             }
                         } label: {
-                            Label("Routine löschen", systemImage: "trash")
+                            Label(settings.localizedString(for: "routine.delete"), systemImage: "trash")
                         }
                     } label: {
                         Image(systemName: "ellipsis")
@@ -192,7 +266,7 @@ struct RoutinenView: View {
             }
             .sheet(item: $routineToEdit) { item in
                 if let idx = routines.firstIndex(where: { $0.id == item.id }) {
-                    EditRoutineSheet(routine: $routines[idx])
+                    EditRoutineSheet(routine: $routines[idx], availableHabits: otherPlants)
                 } else {
                     EmptyView()
                 }
@@ -238,6 +312,7 @@ struct RoutineExpandableSection: View {
     let color: Color
     let habits: [HabitModel]
     var routine: RoutineUIData? = nil
+    var isCompleted: Bool = false
     var onHabitTap: ((HabitModel) -> Void)? = nil
     var onStart: (() -> Void)? = nil
     var onEdit: (() -> Void)? = nil
@@ -300,25 +375,44 @@ struct RoutineExpandableSection: View {
                                 onHabitTap?(pflanze)
                             })
                         }
-                        
-                        if onStart != nil || onEdit != nil {
-                            HStack(spacing: 12) {
-                                if let onEdit = onEdit {
+                    }
+                    
+                    if onStart != nil || onEdit != nil {
+                        HStack(spacing: 12) {
+                            if let onEdit = onEdit {
+                                Item3DButton(
+                                    farbe: Color(white: 0.8),
+                                    sekundaerFarbe: Color(white: 0.7),
+                                    groesse: 56,
+                                    isRectangular: true,
+                                    aktion: onEdit
+                                ) {
+                                    Image(systemName: "pencil")
+                                        .font(.system(size: 20, weight: .bold))
+                                        .foregroundStyle(.white)
+                                }
+                                .frame(width: 64)
+                            }
+                            
+                            if let onStart = onStart, !habits.isEmpty {
+                                if isCompleted {
+                                    let midnight = Calendar.current.startOfDay(for: Date()).addingTimeInterval(86400)
                                     Item3DButton(
                                         farbe: Color(white: 0.8),
                                         sekundaerFarbe: Color(white: 0.7),
                                         groesse: 56,
                                         isRectangular: true,
-                                        aktion: onEdit
+                                        aktion: {}
                                     ) {
-                                        Image(systemName: "pencil")
-                                            .font(.system(size: 20, weight: .bold))
-                                            .foregroundStyle(.white)
+                                        HStack {
+                                            Image(systemName: "clock.fill")
+                                            Text(settings.localizedString(for: "routine.available_in")) + Text(" ") + Text(timerInterval: Date()...midnight)
+                                        }
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.white)
                                     }
-                                    .frame(width: 64)
-                                }
-                                
-                                if let onStart = onStart {
+                                    .disabled(true)
+                                } else {
                                     Item3DButton(
                                         farbe: Color.green,
                                         sekundaerFarbe: Color.green.darker(),
@@ -328,15 +422,15 @@ struct RoutineExpandableSection: View {
                                     ) {
                                         HStack {
                                             Image(systemName: "play.fill")
-                                            Text("Starten")
+                                            Text(settings.localizedString(for: "routine.start"))
                                         }
                                         .font(.system(size: 18, weight: .bold, design: .rounded))
                                         .foregroundStyle(.white)
                                     }
                                 }
                             }
-                            .padding(.top, 8)
                         }
+                        .padding(.top, 8)
                     }
                 }
                 .padding(.top, 16)
@@ -374,23 +468,7 @@ struct RoutineHabitCard: View {
             }
         ) {
             HStack(spacing: 16) {
-                // Time indicator (only if exists)
-                if let t = timeString {
-                    VStack {
-                        Text(t)
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(.black)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 6)
-                            .background(Color(white: 0.9))
-                            .clipShape(Capsule())
-                            .minimumScaleFactor(0.5)
-                            .lineLimit(1)
-                    }
-                    
-                    Divider()
-                        .frame(height: 30)
-                }
+
                 
                 // Plant Icon
                 ZStack {
@@ -456,12 +534,12 @@ struct CreateRoutineSheet: View {
                     VStack(alignment: .leading, spacing: 32) {
                         
                         // Name Input
-                        VStack(alignment: .leading, spacing: 12) {
-                            Text("Name der Routine")
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundStyle(.primary)
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(settings.localizedString(for: "routine.pending"))
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
                             
-                            TextField("z.B. Mittagspause", text: $routineName)
+                            TextField(settings.localizedString(for: "routine.edit.name.placeholder"), text: $routineName)
                                 .font(.system(size: 18, weight: .semibold, design: .rounded))
                                 .padding(16)
                                 .background(Color(white: 0.95))
@@ -471,7 +549,7 @@ struct CreateRoutineSheet: View {
                         
                         // Color Picker
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("Farbe")
+                            Text(settings.localizedString(for: "routine.edit.color"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundStyle(.primary)
                                 .padding(.horizontal, 24)
@@ -506,7 +584,7 @@ struct CreateRoutineSheet: View {
                         
                         // Reminder Timer Edit Button
                         VStack(alignment: .leading) {
-                            Text("Erinnerung")
+                            Text(settings.localizedString(for: "routine.edit.reminder"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundStyle(.primary)
                             
@@ -514,7 +592,7 @@ struct CreateRoutineSheet: View {
                                 showTimerSheet = true
                             } label: {
                                 HStack {
-                                    Text(hasReminder ? "Timer bearbeiten" : "Timer hinzufügen")
+                                    Text(settings.localizedString(for: hasReminder ? "routine.edit.timer.edit" : "routine.edit.timer.add"))
                                         .font(.system(size: 16, weight: .semibold, design: .rounded))
                                     Spacer()
                                     Image(systemName: "chevron.right")
@@ -531,13 +609,13 @@ struct CreateRoutineSheet: View {
                         
                         // Habit Selection
                         VStack(alignment: .leading, spacing: 16) {
-                            Text("Gewohnheiten hinzufügen")
+                            Text(settings.localizedString(for: "routine.edit.habits.add"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundStyle(.primary)
                                 .padding(.horizontal, 24)
                             
                             if availableHabits.isEmpty {
-                                Text("Du hast aktuell keine freien Gewohnheiten ohne Routine.")
+                                Text(settings.localizedString(for: "routine.edit.habits.empty"))
                                     .font(.system(size: 14, weight: .medium, design: .rounded))
                                     .foregroundStyle(.secondary)
                                     .padding(.horizontal, 24)
@@ -565,19 +643,19 @@ struct CreateRoutineSheet: View {
                     .padding(.top, 24)
                 }
             }
-            .navigationTitle("Neue Routine")
+            .navigationTitle(settings.localizedString(for: "routine.create.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Abbrechen") {
+                    Button(settings.localizedString(for: "common.cancel")) {
                         dismiss()
                     }
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Speichern") {
+                    Button(settings.localizedString(for: "common.save")) {
                         var newRoutine = RoutineUIData(
-                            titleKey: routineName.isEmpty ? "Eigene Routine" : routineName,
+                            titleKey: routineName.isEmpty ? "routine.custom.default_name" : routineName,
                             icon: selectedIcon,
                             colorHex: selectedColor,
                             filterType: .custom,
@@ -598,7 +676,7 @@ struct CreateRoutineSheet: View {
             }
             .sheet(isPresented: $showTimerSheet) {
                 RoutineTimerEditSheetView(
-                    routineName: routineName.isEmpty ? "Neue Routine" : routineName,
+                    routineName: routineName.isEmpty ? settings.localizedString(for: "routine.create.title") : routineName,
                     schedule: $schedule,
                     overrideIndividualReminders: $overrideIndividualReminders,
                     hasReminder: $hasReminder
@@ -630,7 +708,7 @@ struct RoutineTimerEditSheetView: View {
                 // Header
                 HStack {
                     VStack(alignment: .leading, spacing: 3) {
-                        Text("Timer")
+                        Text(settings.localizedString(for: "routine.timer"))
                             .font(.system(size: 22, weight: .black, design: .rounded))
                         Text(settings.localizedString(for: routineName))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
@@ -644,7 +722,7 @@ struct RoutineTimerEditSheetView: View {
                 
                 // Toggle to turn off timer completely
                 Toggle(isOn: $hasReminder.animation()) {
-                    Text("Erinnerung aktivieren")
+                    Text(settings.localizedString(for: "routine.reminder.activate"))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                 }
                 .padding(.horizontal, 24)
@@ -660,9 +738,9 @@ struct RoutineTimerEditSheetView: View {
                             
                             Toggle(isOn: $overrideIndividualReminders.animation()) {
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text("Nur Routine-Erinnerung")
+                                    Text(settings.localizedString(for: "routine.reminder.only_routine"))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
-                                    Text("Pausiert individuelle Pflanzen-Timer")
+                                    Text(settings.localizedString(for: "routine.reminder.pause_individual"))
                                         .font(.system(size: 12, weight: .medium, design: .rounded))
                                         .foregroundStyle(.secondary)
                                 }
@@ -721,7 +799,7 @@ struct RoutineTimerEditSheetView: View {
         let isEnabled = schedule.weekdays[index].isEnabled
         let isExpanded = expandedDay == day
         
-        VStack(spacing: 0) {
+        VStack(spacing: 12) {
             Button {
                 withAnimation(.spring(response: 0.4, dampingFraction: 0.75, blendDuration: 0)) {
                     if !isEnabled {
@@ -754,7 +832,7 @@ struct RoutineTimerEditSheetView: View {
                             .foregroundStyle(.secondary)
                             .font(.system(size: 14, weight: isExpanded ? .bold : .medium))
                     } else {
-                        Text("Ausgeschaltet")
+                        Text(settings.localizedString(for: "routine.timer.off"))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary.opacity(0.6))
                         Image(systemName: "plus.circle.fill")
@@ -844,7 +922,7 @@ struct RoutineTimerEditSheetView: View {
             } label: {
                 HStack {
                     Image(systemName: "trash")
-                    Text("Deaktivieren")
+                    Text(settings.localizedString(for: "routine.timer.disable"))
                 }
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .padding(.vertical, 10)

@@ -10,6 +10,8 @@ struct EditRoutineSheet: View {
     @State private var tempName: String
     @State private var tempColor: String
     @State private var assignedHabits: [HabitModel] = []
+    @State private var habitsToRemoveTimers: [HabitModel] = []
+    @State private var showHabitPicker = false
     
     @State private var hasReminder: Bool = false
     @State private var schedule: ReminderSchedule = ReminderSchedule.defaultSchedule(time: Date())
@@ -18,8 +20,11 @@ struct EditRoutineSheet: View {
     
     let colors: [String] = ["#AF52DE", "#007AFF", "#32ADE6", "#00C7BE", "#34C759", "#FFCC00", "#FF9500", "#FF2D55", "#FF3B30", "#5856D6"]
     
-    init(routine: Binding<RoutineUIData>) {
+    let availableHabits: [HabitModel]
+    
+    init(routine: Binding<RoutineUIData>, availableHabits: [HabitModel]) {
         self._routine = routine
+        self.availableHabits = availableHabits
         self._tempName = State(initialValue: routine.wrappedValue.titleKey)
         self._tempColor = State(initialValue: routine.wrappedValue.colorHex)
         self._hasReminder = State(initialValue: routine.wrappedValue.reminderSchedule != nil || routine.wrappedValue.reminderTime != nil)
@@ -45,11 +50,11 @@ struct EditRoutineSheet: View {
                             
                             // Name Input
                             VStack(alignment: .leading, spacing: 12) {
-                                Text("Name der Routine")
+                                Text(settings.localizedString(for: "routine.edit.name"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                                 
-                                TextField("z.B. Mittagspause", text: $tempName)
+                                TextField(settings.localizedString(for: "routine.edit.name.placeholder"), text: $tempName)
                                     .font(.system(size: 18, weight: .semibold, design: .rounded))
                                     .padding(16)
                                     .background(Color(white: 0.95))
@@ -60,7 +65,7 @@ struct EditRoutineSheet: View {
                             
                             // Color Picker
                             VStack(alignment: .leading, spacing: 12) {
-                                Text("Farbe")
+                                Text(settings.localizedString(for: "routine.edit.color"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                                     .padding(.horizontal, 24)
@@ -95,7 +100,7 @@ struct EditRoutineSheet: View {
                             
                             // Reminder Timer Edit Button
                             VStack(alignment: .leading) {
-                                Text("Erinnerung")
+                                Text(settings.localizedString(for: "routine.edit.reminder"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                                 
@@ -103,7 +108,7 @@ struct EditRoutineSheet: View {
                                     showTimerSheet = true
                                 } label: {
                                     HStack {
-                                        Text(hasReminder ? "Timer bearbeiten" : "Timer hinzufügen")
+                                        Text(settings.localizedString(for: hasReminder ? "routine.edit.timer.edit" : "routine.edit.timer.add"))
                                             .font(.system(size: 16, weight: .semibold, design: .rounded))
                                         Spacer()
                                         Image(systemName: "chevron.right")
@@ -121,40 +126,67 @@ struct EditRoutineSheet: View {
                             // Habit Reordering (List)
                             VStack(alignment: .leading, spacing: 12) {
                                 HStack {
-                                    Text("Reihenfolge anpassen")
+                                    Text(settings.localizedString(for: routine.filterType == .custom ? "routine.edit.habits.reorder" : "routine.edit.habits.included"))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .foregroundStyle(.primary)
                                     Spacer()
-                                    EditButton()
+                                    if !availableHabits.isEmpty {
+                                        Button {
+                                            showHabitPicker = true
+                                        } label: {
+                                            Image(systemName: "plus.circle.fill")
+                                                .font(.system(size: 24))
+                                                .foregroundStyle(Color.green)
+                                        }
+                                    }
                                 }
                                 .padding(.horizontal, 24)
                                 
                                 if assignedHabits.isEmpty {
-                                    Text("Keine Gewohnheiten zugewiesen.")
+                                    Text(settings.localizedString(for: "routine.edit.habits.none"))
                                         .font(.system(size: 14, weight: .medium, design: .rounded))
                                         .foregroundStyle(.secondary)
                                         .padding(.horizontal, 24)
                                 } else {
                                     List {
-                                        ForEach(assignedHabits) { habit in
-                                            HStack(spacing: 16) {
-                                                Image(habit.plantImageName)
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 32, height: 32)
-                                                
-                                                Text(settings.showHabitInsteadOfName ? settings.localizedString(for: habit.displayedHabitName) : settings.localizedString(for: habit.name))
-                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        if routine.filterType == .custom {
+                                            ForEach(assignedHabits) { habit in
+                                                HStack(spacing: 16) {
+                                                    Image(habit.plantImageName)
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: 32, height: 32)
+                                                    
+                                                    Text(settings.showHabitInsteadOfName ? settings.localizedString(for: habit.displayedHabitName) : settings.localizedString(for: habit.name))
+                                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                }
+                                                .padding(.vertical, 4)
+                                                .listRowBackground(Color(white: 0.98))
                                             }
-                                            .padding(.vertical, 4)
-                                            .listRowBackground(Color(white: 0.98))
+                                            .onMove(perform: moveHabits)
+                                            .onDelete(perform: deleteHabits)
+                                        } else {
+                                            ForEach(assignedHabits) { habit in
+                                                HStack(spacing: 16) {
+                                                    Image(habit.plantImageName)
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: 32, height: 32)
+                                                    
+                                                    Text(settings.showHabitInsteadOfName ? settings.localizedString(for: habit.displayedHabitName) : settings.localizedString(for: habit.name))
+                                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                }
+                                                .padding(.vertical, 4)
+                                                .listRowBackground(Color(white: 0.98))
+                                            }
+                                            .onMove(perform: moveHabits)
+                                            .onDelete(perform: deleteHabits)
                                         }
-                                        .onMove(perform: moveHabits)
-                                        .onDelete(perform: deleteHabits)
                                     }
                                     .frame(height: max(200, CGFloat(assignedHabits.count * 60 + 40))) // Dynamic height approximation
                                     .listStyle(.plain)
                                     .scrollDisabled(true)
+                                    .environment(\.editMode, .constant(.active))
                                 }
                             }
                             
@@ -163,25 +195,27 @@ struct EditRoutineSheet: View {
                     }
                 }
             }
-            .navigationTitle("Routine bearbeiten")
+            .navigationTitle(settings.localizedString(for: "routine.edit.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Abbrechen") {
+                    Button(settings.localizedString(for: "common.cancel")) {
                         dismiss()
                     }
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Speichern") {
+                    Button(settings.localizedString(for: "common.save")) {
                         routine.titleKey = tempName
                         routine.colorHex = tempColor
                         routine.assignedHabitIDs = assignedHabits.map { $0.id }
                         routine.reminderSchedule = hasReminder ? schedule : nil
                         routine.overrideIndividualReminders = overrideIndividualReminders
                         
-                        // Note: We no longer delete the individual reminders!
-                        // They are preserved so they return if the routine is deleted.
+                        // Process removed dynamic habits
+                        for habit in habitsToRemoveTimers {
+                            gardenStore.timerEntfernen(pflanze: habit)
+                        }
                         
                         dismiss()
                     }
@@ -189,9 +223,17 @@ struct EditRoutineSheet: View {
                 }
             }
             .onAppear {
+                if tempName.hasPrefix("routine.") {
+                    tempName = settings.localizedString(for: tempName)
+                }
+                
                 // Populate assigned habits correctly ordered
-                assignedHabits = routine.assignedHabitIDs.compactMap { id in
-                    gardenStore.pflanzen.first(where: { $0.id == id })
+                if routine.filterType == .custom {
+                    assignedHabits = routine.assignedHabitIDs.compactMap { id in
+                        gardenStore.pflanzen.first(where: { $0.id == id })
+                    }
+                } else {
+                    assignedHabits = gardenStore.pflanzen.filter { routine.contains(habit: $0) }
                 }
             }
             .sheet(isPresented: $showTimerSheet) {
@@ -203,6 +245,51 @@ struct EditRoutineSheet: View {
                 )
                 .environmentObject(settings)
             }
+            .sheet(isPresented: $showHabitPicker) {
+                NavigationStack {
+                    ZStack {
+                        Color.appHintergrund.ignoresSafeArea()
+                        ScrollView {
+                            VStack(spacing: 12) {
+                                ForEach(availableHabits) { plant in
+                                    if !assignedHabits.contains(where: { $0.id == plant.id }) {
+                                        Button {
+                                            if !assignedHabits.contains(where: { $0.id == plant.id }) {
+                                                assignedHabits.append(plant)
+                                            }
+                                            showHabitPicker = false
+                                        } label: {
+                                            HStack(spacing: 16) {
+                                                Image(plant.plantImageName)
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 48, height: 48)
+                                                Text(settings.showHabitInsteadOfName ? settings.localizedString(for: plant.displayedHabitName) : settings.localizedString(for: plant.name))
+                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                    .foregroundStyle(.primary)
+                                                Spacer()
+                                            }
+                                            .padding()
+                                            .background(Color(white: 0.95))
+                                            .cornerRadius(16)
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(24)
+                        }
+                    }
+                    .navigationTitle(settings.localizedString(for: "routine.edit.habit.add_single"))
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button(settings.localizedString(for: "common.close")) {
+                                showHabitPicker = false
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -211,6 +298,11 @@ struct EditRoutineSheet: View {
     }
     
     private func deleteHabits(at offsets: IndexSet) {
+        if routine.filterType != .custom {
+            for index in offsets {
+                habitsToRemoveTimers.append(assignedHabits[index])
+            }
+        }
         assignedHabits.remove(atOffsets: offsets)
     }
 }
