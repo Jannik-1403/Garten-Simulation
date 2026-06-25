@@ -92,7 +92,7 @@ struct PlantTimelineView: View {
                         // MARK: - Scheduled notifications section
                         if !timelinePlants.isEmpty {
                             VStack(alignment: .leading, spacing: 16) {
-                                Text("Geplante Benachrichtigungen")
+                                Text(settings.localizedString(for: "timeline.scheduled_notifications"))
                                     .font(.system(size: 20, weight: .black, design: .rounded))
                                     .foregroundStyle(.primary)
                                     .padding(.horizontal, 24)
@@ -110,7 +110,7 @@ struct PlantTimelineView: View {
                         // MARK: - Plants without notifications section
                         if !otherPlants.isEmpty {
                             VStack(alignment: .leading, spacing: 16) {
-                                Text("Ohne Benachrichtigung")
+                                Text(settings.localizedString(for: "timeline.no_notification"))
                                     .font(.system(size: 20, weight: .black, design: .rounded))
                                     .foregroundStyle(.primary)
                                     .padding(.horizontal, 24)

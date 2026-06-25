@@ -70,7 +70,7 @@ struct MultiStrangCanvas: View {
                     } label: {
                         HStack {
                             Image(systemName: "chevron.left")
-                            Text("Alle Gewohnheiten anzeigen")
+                            Text(settings.localizedString(for: "canvas.show_all"))
                         }
                         .font(.system(size: 14, weight: .bold, design: .rounded))
                         .padding(.horizontal, 16)

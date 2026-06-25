@@ -343,19 +343,19 @@ struct GrowthScoreBreakdownCard: View {
                 .tracking(1)
 
             ScoreBar(
-                label: "Disziplin",
+                label: settings.localizedString(for: "assessment.score.disziplin"),
                 value: animated ? disziplinNorm : 0,
                 color: Color(hex: "#D0021B"),
                 rawValue: result.rawDisziplin
             )
             ScoreBar(
-                label: "Effizienz",
+                label: settings.localizedString(for: "assessment.score.effizienz"),
                 value: animated ? effizienzNorm : 0,
                 color: Color(hex: "#F5A623"),
                 rawValue: result.rawEffizienz
             )
             ScoreBar(
-                label: "Umsetzung",
+                label: settings.localizedString(for: "assessment.score.umsetzung"),
                 value: animated ? umsetzungNorm : 0,
                 color: Color(hex: "#4CAF50"),
                 rawValue: result.rawUmsetzung

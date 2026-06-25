@@ -29,7 +29,7 @@ struct MultiStrangPfadView: View {
                                 // Fallback if no tag found for this day
                                 VStack {
                                     Text("Tag \(day)")
-                                    Text("Keine Aufgabe gefunden")
+                                    Text(settings.localizedString(for: "path.no_task"))
                                         .foregroundStyle(.secondary)
                                 }
                                 .tag(day - 1)

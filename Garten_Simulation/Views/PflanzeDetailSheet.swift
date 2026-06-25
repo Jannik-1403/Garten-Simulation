@@ -718,10 +718,10 @@ struct TimerEditSheetView: View {
                 
                 if isLinkingNotes, let note = selectedNoteForLinking {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Notiz zuweisen: \(note)")
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                        Text("Wähle die Tage aus, an denen diese Notiz erscheinen soll.")
-                            .font(.system(size: 12, weight: .regular, design: .rounded))
+                        Text("\(settings.localizedString(for: "routine.note.assign")) \(note)")
+                            .font(.system(size: 22, weight: .black, design: .rounded))
+                        Text(settings.localizedString(for: "routine.note.assign.desc"))
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -955,7 +955,7 @@ struct TimerEditSheetView: View {
                                     .font(.system(size: 12, weight: .bold, design: .rounded))
                                     .foregroundStyle(Color(hex: parentRoutineWithReminder!.colorHex))
                             }
-                            Text("Pausiert")
+                            Text(settings.localizedString(for: "routine.timer.paused"))
                                 .font(.system(size: 14, weight: .medium, design: .rounded))
                                 .foregroundStyle(.secondary.opacity(0.6))
                         }
@@ -971,7 +971,7 @@ struct TimerEditSheetView: View {
                                 .font(.system(size: 14, weight: isExpanded ? .bold : .medium))
                         }
                     } else {
-                        Text("Ausgeschaltet")
+                        Text(settings.localizedString(for: "routine.timer.off"))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary.opacity(0.6))
                         Image(systemName: "plus.circle.fill")
@@ -1063,9 +1063,9 @@ struct TimerEditSheetView: View {
             } label: {
                 HStack {
                     Image(systemName: "trash")
-                    Text("Deaktivieren")
+                    Text(settings.localizedString(for: "routine.timer.disable"))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
                 }
-                .font(.system(size: 14, weight: .bold, design: .rounded))
                 .padding(.vertical, 10)
                 .frame(maxWidth: .infinity)
                 .background(Color.red.opacity(0.1))

@@ -10,6 +10,7 @@ struct RoutineUIData: Identifiable, Equatable, Codable {
     var reminderTime: Date? = nil // Legacy, keep for backward compatibility
     var reminderSchedule: ReminderSchedule? = nil
     var overrideIndividualReminders: Bool = true
+    var lastCompletedDate: Date? = nil
     
     var color: Color {
         Color(hex: colorHex)
@@ -87,9 +88,10 @@ struct RoutinenView: View {
     }
 
     private func isRoutineCompleted(_ routine: RoutineUIData) -> Bool {
-        let currentHabits = habits(for: routine)
-        guard !currentHabits.isEmpty else { return false }
-        return currentHabits.allSatisfy { $0.istBewässert }
+        if let lastCompleted = routine.lastCompletedDate, Calendar.current.isDateInToday(lastCompleted) {
+            return true
+        }
+        return false
     }
     
     private var uncompletedRoutines: [RoutineUIData] {
@@ -236,7 +238,6 @@ struct RoutinenView: View {
                     }
                 }
             }
-            .standardNavigationX()
             .fullScreenCover(item: $selectedHabitToView) { pflanze in
                 ZStack {
                     NavigationStack {
@@ -262,17 +263,21 @@ struct RoutinenView: View {
                 .environmentObject(interactiveTourManager)
             }
             .sheet(isPresented: $showCreateSheet) {
-                CreateRoutineSheet(routines: $routines, availableHabits: otherPlants)
+                CreateRoutineSheet(routines: $routines, availableHabits: gardenStore.pflanzen)
             }
             .sheet(item: $routineToEdit) { item in
                 if let idx = routines.firstIndex(where: { $0.id == item.id }) {
-                    EditRoutineSheet(routine: $routines[idx], availableHabits: otherPlants)
+                    EditRoutineSheet(routine: $routines[idx], availableHabits: gardenStore.pflanzen)
                 } else {
                     EmptyView()
                 }
             }
             .fullScreenCover(item: $routineToPlay) { item in
-                RoutineSessionView(routine: item, habits: habits(for: item))
+                RoutineSessionView(routine: item, habits: habits(for: item), onComplete: {
+                    if let idx = routines.firstIndex(where: { $0.id == item.id }) {
+                        routines[idx].lastCompletedDate = Date()
+                    }
+                })
             }
             .onAppear {
                 loadRoutines()

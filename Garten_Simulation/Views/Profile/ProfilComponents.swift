@@ -733,7 +733,7 @@ struct StatisticsDashboard: View {
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.leading)
                     } else if todayTotal > 0 {
-                        Text("Genauso fokussiert wie gestern. Sehr gut!")
+                        Text(settings.localizedString(for: "profile.focus.same"))
                             .font(.system(size: 12, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.leading)

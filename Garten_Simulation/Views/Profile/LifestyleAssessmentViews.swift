@@ -343,19 +343,19 @@ struct LifestyleScoreBreakdownCard: View {
                 .tracking(1)
 
             ScoreBar(
-                label: "Umfeld",
+                label: settings.localizedString(for: "assessment.score.umfeld"),
                 value: animated ? umfeldNorm : 0,
                 color: Color(hex: "#FF6B6B"),
                 rawValue: result.rawUmfeld
             )
             ScoreBar(
-                label: "Standards",
+                label: settings.localizedString(for: "assessment.score.standards"),
                 value: animated ? standardsNorm : 0,
                 color: Color(hex: "#F5A623"),
                 rawValue: result.rawStandards
             )
             ScoreBar(
-                label: "Einfluss",
+                label: settings.localizedString(for: "assessment.score.einfluss"),
                 value: animated ? einflussNorm : 0,
                 color: Color(hex: "#4CAF50"),
                 rawValue: result.rawEinfluss

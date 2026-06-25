@@ -592,7 +592,7 @@ struct InventoryItemDetailSheet: View {
             ) {
                 Button(settings.localizedString(for: "button.ok"), role: .cancel) {}
             } message: {
-                Text("Du hast bereits 5 von 5 Leben. Dieses Power-Up kann erst benutzt werden, wenn dir Leben fehlen.")
+                Text(settings.localizedString(for: "powerup.lives.full"))
             }
         } // NavigationStack
     }

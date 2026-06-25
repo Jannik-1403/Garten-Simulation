@@ -280,7 +280,7 @@ struct Category3DCard: View {
                         .font(.system(size: 18))
                         .foregroundStyle(.green)
                 } else if !isAvailable {
-                    Text("Soon")
+                    Text(settings.localizedString(for: "assessment.soon"))
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundStyle(.quaternary)
                         .padding(.horizontal, 10)

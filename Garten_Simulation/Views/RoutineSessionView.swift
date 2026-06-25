@@ -10,6 +10,7 @@ enum RoutineSessionState {
 struct RoutineSessionView: View {
     let routine: RoutineUIData
     let habits: [HabitModel]
+    var onComplete: (() -> Void)? = nil
     
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var gardenStore: GardenStore
@@ -18,6 +19,8 @@ struct RoutineSessionView: View {
     
     @State private var state: RoutineSessionState = .intro
     @State private var currentHabitIndex: Int = 0
+    @State private var totalCoins: Int = 0
+    @State private var totalXP: Int = 0
     
     // Stopwatch
     @State private var elapsedSeconds: Int = 0
@@ -45,20 +48,6 @@ struct RoutineSessionView: View {
                 case .success:
                     successView
                         .transition(.scale)
-                }
-            }
-            .toolbar {
-                if state == .running {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            isTimerRunning = false
-                            dismiss()
-                        } label: {
-                            Image(systemName: "xmark")
-                                .font(.system(size: 20, weight: .bold))
-                                .foregroundStyle(.primary)
-                        }
-                    }
                 }
             }
             .toolbarBackground(.hidden, for: .navigationBar)
@@ -208,45 +197,73 @@ struct RoutineSessionView: View {
     
     // MARK: - Success View
     private var successView: some View {
-        VStack(spacing: 32) {
+        VStack(spacing: 30) {
             Spacer()
             
-            ZStack {
-                Circle()
-                    .fill(Color.green.opacity(0.2))
-                    .frame(width: 140, height: 140)
-                Image(systemName: "checkmark.seal.fill")
-                    .font(.system(size: 70, weight: .bold))
-                    .foregroundStyle(Color.green)
-            }
+            Image("Timer full")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 140, height: 140)
             
-            VStack(spacing: 16) {
-                Text(settings.localizedString(for: "routine.session.mastered"))
-                    .font(.system(size: 36, weight: .black, design: .rounded))
-                    .multilineTextAlignment(.center)
+            VStack(spacing: 12) {
+                Text(settings.localizedString(for: "Geschafft!"))
+                    .font(.system(size: 32, weight: .black, design: .rounded))
                 
-                Text("\(settings.localizedString(for: "routine.session.duration")) \(timeString)")
-                    .font(.system(size: 16, weight: .bold, design: .monospaced))
+                let durationMins = max(1, elapsedSeconds / 60)
+                Text(String(format: settings.localizedString(for: "Du warst %lld Minuten lang extrem fokussiert. Die XP werden auf alle deine Pflanzen aufgeteilt!"), durationMins))
+                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                    .multilineTextAlignment(.center)
                     .foregroundStyle(.secondary)
+                    .padding(.horizontal, 32)
+                
+                // Belohnung anzeigen
+                HStack(spacing: 60) {
+                    // Coins (Left)
+                    VStack(spacing: 4) {
+                        Image("coin")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                        
+                        Text("\(totalCoins)")
+                            .font(.system(size: 24, weight: .black, design: .rounded))
+                        
+                        Text(settings.localizedString(for: "Münzen"))
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
+                    
+                    // XP (Right)
+                    VStack(spacing: 4) {
+                        Image("XP")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                        
+                        Text("\(totalXP)")
+                            .font(.system(size: 24, weight: .black, design: .rounded))
+                        
+                        Text("XP")
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .padding(.top, 24)
             }
             
             Spacer()
             
-            Item3DButton(
-                farbe: Color.blue,
-                sekundaerFarbe: Color.blue.darker(),
-                groesse: 64,
-                isRectangular: true,
-                aktion: {
-                    dismiss()
-                }
-            ) {
-                Text(settings.localizedString(for: "routine.session.great"))
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundStyle(.white)
+            Button {
+                dismiss()
+            } label: {
+                Text(settings.localizedString(for: "Einsammeln"))
             }
-            .padding(.horizontal, 32)
-            .padding(.bottom, 48)
+            .buttonStyle(DuolingoButtonStyle(
+                size: .large, fillWidth: true,
+                backgroundColor: .orangePrimary, shadowColor: .orangePrimary.darker(), foregroundColor: .white
+            ))
+            .padding(.horizontal, 24)
+            .padding(.bottom, 40)
         }
     }
     
@@ -255,8 +272,25 @@ struct RoutineSessionView: View {
         if currentHabitIndex < habits.count {
             let habit = habits[currentHabitIndex]
             
-            // Giessen: Award coins and EXP
-            gardenStore.giessen(pflanze: habit, powerUpStore: powerUpStore)
+            // Calculate what giessen will award and add to totals
+            let baseCoins = Int(Double(GameConstants.coinsProGiessen) * gardenStore.coinMultiplikator(for: habit))
+            let xp = Int(Double(habit.xpPerCompletion) * gardenStore.xpMultiplikator(for: habit))
+            
+            totalCoins += baseCoins
+            totalXP += xp
+            
+            // Manually add XP without "watering" the plant
+            habit.currentXP += xp
+            
+            // Log XP history
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let key = formatter.string(from: Date())
+            habit.xpHistory[key] = (habit.xpHistory[key] ?? 0) + xp
+            habit.totalCoinsEarned += baseCoins
+            
+            gardenStore.xpHinzufuegen(amount: xp)
+            gardenStore.savePlants()
             
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
@@ -277,9 +311,20 @@ struct RoutineSessionView: View {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
         
-        // Log as a focus session so it appears in stats
         let durationMins = max(1, elapsedSeconds / 60)
+        
+        // Add duration-based bonus coins, precisely like requested (Focus-like but duration-based)
+        // Give coinsProGiessen per minute of duration as a bonus.
+        let durationBonusCoins = durationMins * GameConstants.coinsProGiessen
+        totalCoins += durationBonusCoins
+        
+        // Ensure ALL accumulated coins (base + duration bonus) are added to the shop
+        gardenStore.coinsGutschreiben(amount: totalCoins, beschreibung: "Routine Abschluss")
+        
+        // Log as a focus session so it appears in stats
         gardenStore.focusSessions.append(FocusSessionLog(date: Date(), durationMinutes: durationMins, isCompleted: true))
+        
+        onComplete?()
         
         state = .success
     }

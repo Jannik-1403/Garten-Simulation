@@ -330,7 +330,7 @@ struct ShopItemDetailView: View {
                 executePurchase()
             }
         } message: {
-            Text("Bist du sicher, dass du deinen ultimativen Cheat-Day für 5.000 Münzen kaufen willst? Dies ist ein riesiges Investment!")
+            Text(settings.localizedString(for: "shop.cheatday.confirm"))
         }
     }
     
