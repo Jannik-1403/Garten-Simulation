@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-06-28 - Onboarding Flow Korrektur
+- **Reihenfolge**: App-Onboarding → Tour-Prompt → Routinen-Onboarding funktioniert jetzt korrekt nach Alles-Löschen.
+- **Timing-Fix**: `routineOnboardingAbgeschlossen = false` wird jetzt BEVOR der Tab-Wechsel gesetzt → `onAppear` in `RoutinenView` sieht den korrekten Zustand.
+
 ## 2026-06-28 - Onboarding Timing-Bug behoben
 - **Root Cause**: `routineOnboardingAbgeschlossen` war bei Erstnutzern bereits `false` → erneutes Setzen auf `false` löste kein `onChange` aus.
 - **Fix**: Erzwungener `true → false`-Toggle mit 400ms Delay garantiert, dass SwiftUI die Änderung immer erkennt.
