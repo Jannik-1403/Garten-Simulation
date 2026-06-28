@@ -207,35 +207,7 @@ struct RoutinenView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Menu {
-                        Button {
-                            showCreateSheet = true
-                        } label: {
-                            Label(String(localized: String.LocalizationValue("routine.create"), locale: Locale(identifier: settings.appLanguage)), systemImage: "plus")
-                        }
-                        
-                        Menu {
-                            ForEach(routines) { routine in
-                                Button(role: .destructive) {
-                                    withAnimation {
-                                        if let idx = routines.firstIndex(where: { $0.id == routine.id }) {
-                                            routines.remove(at: idx)
-                                        }
-                                    }
-                                } label: {
-                                    Text(String(localized: String.LocalizationValue(routine.titleKey), locale: Locale(identifier: settings.appLanguage)))
-                                    Image(systemName: "trash")
-                                }
-                            }
-                        } label: {
-                            Label(String(localized: String.LocalizationValue("routine.delete"), locale: Locale(identifier: settings.appLanguage)), systemImage: "trash")
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundStyle(.primary)
-                            .padding(8)
-                    }
+                    topBarMenu
                 }
             }
             .fullScreenCover(item: $selectedHabitToView) { pflanze in
@@ -294,6 +266,40 @@ struct RoutinenView: View {
             })) {
                 RoutineOnboardingView()
             }
+        }
+    }
+    
+    @ViewBuilder
+    private var topBarMenu: some View {
+        Menu {
+            Button {
+                showCreateSheet = true
+            } label: {
+                Label(String(localized: String.LocalizationValue("routine.create"), locale: Locale(identifier: settings.appLanguage)), systemImage: "plus")
+            }
+            
+            Menu {
+                ForEach(routines) { routine in
+                    Button(role: .destructive) {
+                        withAnimation {
+                            if let idx = routines.firstIndex(where: { $0.id == routine.id }) {
+                                routines.remove(at: idx)
+                            }
+                        }
+                    } label: {
+                        Text(LocalizedStringKey(routine.titleKey))
+                            .environment(\.locale, Locale(identifier: settings.appLanguage))
+                        Image(systemName: "trash")
+                    }
+                }
+            } label: {
+                Label(String(localized: String.LocalizationValue("routine.delete"), locale: Locale(identifier: settings.appLanguage)), systemImage: "trash")
+            }
+        } label: {
+            Image(systemName: "ellipsis")
+                .font(.system(size: 18, weight: .bold))
+                .foregroundStyle(.primary)
+                .padding(8)
         }
     }
     
