@@ -282,8 +282,17 @@ struct RoutinenView: View {
             .onAppear {
                 loadRoutines()
             }
-            .onChange(of: routines) { newValue in
+            .onChange(of: routines) { _, _ in
                 saveRoutines()
+            }
+            .fullScreenCover(isPresented: Binding(get: {
+                !settings.routineOnboardingAbgeschlossen
+            }, set: { newValue in
+                if !newValue {
+                    settings.routineOnboardingAbgeschlossen = true
+                }
+            })) {
+                RoutineOnboardingView()
             }
         }
     }

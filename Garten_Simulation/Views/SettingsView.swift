@@ -13,6 +13,7 @@ struct SettingsView: View {
     @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var characterStore: CharacterStore
     @EnvironmentObject var tourManager: InteractiveTourManager
+    @EnvironmentObject var assessmentStore: AssessmentStore
     @StateObject private var iapStore = IAPStore()
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -292,7 +293,7 @@ struct SettingsView: View {
             .alert(String(localized: "settings.reset.final.title"), isPresented: $showFinalResetAlert) {
                 Button(String(localized: "settings.reset.confirm"), role: .destructive) {
                     UserDefaults.standard.removeObject(forKey: "customRoutinesData")
-                    SettingsStore.shared.routineOnboardingAbgeschlossen = false
+                    settings.routineOnboardingAbgeschlossen = false
                     
                     gardenStore.resetAllData()
                     shopStore.reset()
@@ -301,10 +302,15 @@ struct SettingsView: View {
                     characterStore.reset()
                     achievementStore.reset()
                     titelStore.reset()
+                    assessmentStore.resetAll()
                     pfadStore.pfadZuruecksetzen(settings: settings, gardenStore: gardenStore)
                     settings.appTourPromptShown = false
                     settings.appTourAbgeschlossen = false
                     settings.onboardingAbgeschlossen = false
+                    
+                    // Clear all pending notifications
+                    NotificationManager.shared.scheduleAll(for: [])
+                    
                     FeedbackManager.shared.playError()
                     dismiss()
                 }
@@ -489,6 +495,7 @@ struct DangerButtonStyle: ButtonStyle {
         .environmentObject(GartenPfadStore(settings: settings))
         .environmentObject(CharacterStore())
         .environmentObject(InteractiveTourManager())
+        .environmentObject(AssessmentStore())
 }
 
 struct GrovyShareCardView: View {
