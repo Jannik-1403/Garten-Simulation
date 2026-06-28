@@ -86,3 +86,6 @@
 ## [Native Close Button für Quiz-Ergebnisse] - 2026-06-28
 - 'X'-Button (LiquidGlassDismissButton) im Profil/Quizbereich hat nun ein natives iOS-Design.
 - Das Overlay für den Dismiss-Button wird nun absolut platziert und überlagert nicht mehr mit der versteckten Navigationsleiste, was Fehler bei der Sichtbarkeit behebt.
+
+## [Native Close Button für Quiz-Ergebnisse Fix] - 2026-06-28
+- Komplett zurück auf Standard-iOS-Ansicht: NavigationBar bleibt erhalten und nutzt ein natives ToolbarItem (grauer Kreis mit 'X'), damit der Inhalt nicht unschön nach oben in die Statusleiste rutscht.
