@@ -50,11 +50,11 @@ struct EditRoutineSheet: View {
                             
                             // Name Input
                             VStack(alignment: .leading, spacing: 12) {
-                                Text(settings.localizedString(for: "routine.edit.name"))
+                                Text(String(localized: "routine.edit.name"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                                 
-                                TextField(settings.localizedString(for: "routine.edit.name.placeholder"), text: $tempName)
+                                TextField(String(localized: "routine.edit.name.placeholder"), text: $tempName)
                                     .font(.system(size: 18, weight: .semibold, design: .rounded))
                                     .padding(16)
                                     .background(Color(white: 0.95))
@@ -65,7 +65,7 @@ struct EditRoutineSheet: View {
                             
                             // Color Picker
                             VStack(alignment: .leading, spacing: 12) {
-                                Text(settings.localizedString(for: "routine.edit.color"))
+                                Text(String(localized: "routine.edit.color"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                                     .padding(.horizontal, 24)
@@ -100,7 +100,7 @@ struct EditRoutineSheet: View {
                             
                             // Reminder Timer Edit Button
                             VStack(alignment: .leading) {
-                                Text(settings.localizedString(for: "routine.edit.reminder"))
+                                Text(String(localized: "routine.edit.reminder"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                                 
@@ -108,7 +108,7 @@ struct EditRoutineSheet: View {
                                     showTimerSheet = true
                                 } label: {
                                     HStack {
-                                        Text(settings.localizedString(for: hasReminder ? "routine.edit.timer.edit" : "routine.edit.timer.add"))
+                                        Text(String(localized: String.LocalizationValue(hasReminder ? "routine.edit.timer.edit" : "routine.edit.timer.add"), locale: Locale(identifier: settings.appLanguage)))
                                             .font(.system(size: 16, weight: .semibold, design: .rounded))
                                         Spacer()
                                         Image(systemName: "chevron.right")
@@ -126,7 +126,7 @@ struct EditRoutineSheet: View {
                             // Habit Reordering (List)
                             VStack(alignment: .leading, spacing: 12) {
                                 HStack {
-                                    Text(settings.localizedString(for: routine.filterType == .custom ? "routine.edit.habits.reorder" : "routine.edit.habits.included"))
+                                    Text(String(localized: String.LocalizationValue(routine.filterType == .custom ? "routine.edit.habits.reorder" : "routine.edit.habits.included"), locale: Locale(identifier: settings.appLanguage)))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .foregroundStyle(.primary)
                                     Spacer()
@@ -143,7 +143,7 @@ struct EditRoutineSheet: View {
                                 .padding(.horizontal, 24)
                                 
                                 if assignedHabits.isEmpty {
-                                    Text(settings.localizedString(for: "routine.edit.habits.none"))
+                                    Text(String(localized: "routine.edit.habits.none"))
                                         .font(.system(size: 14, weight: .medium, design: .rounded))
                                         .foregroundStyle(.secondary)
                                         .padding(.horizontal, 24)
@@ -157,7 +157,7 @@ struct EditRoutineSheet: View {
                                                         .scaledToFit()
                                                         .frame(width: 32, height: 32)
                                                     
-                                                    Text(settings.showHabitInsteadOfName ? settings.localizedString(for: habit.displayedHabitName) : settings.localizedString(for: habit.name))
+                                                    Text(settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(habit.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(habit.name), locale: Locale(identifier: settings.appLanguage)))
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                                 }
                                                 .padding(.vertical, 4)
@@ -173,7 +173,7 @@ struct EditRoutineSheet: View {
                                                         .scaledToFit()
                                                         .frame(width: 32, height: 32)
                                                     
-                                                    Text(settings.showHabitInsteadOfName ? settings.localizedString(for: habit.displayedHabitName) : settings.localizedString(for: habit.name))
+                                                    Text(settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(habit.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(habit.name), locale: Locale(identifier: settings.appLanguage)))
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                                 }
                                                 .padding(.vertical, 4)
@@ -195,17 +195,17 @@ struct EditRoutineSheet: View {
                     }
                 }
             }
-            .navigationTitle(settings.localizedString(for: "routine.edit.title"))
+            .navigationTitle(String(localized: "routine.edit.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(settings.localizedString(for: "common.cancel")) {
+                    Button(String(localized: "common.cancel")) {
                         dismiss()
                     }
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(settings.localizedString(for: "common.save")) {
+                    Button(String(localized: "common.save")) {
                         routine.titleKey = tempName
                         routine.colorHex = tempColor
                         routine.assignedHabitIDs = assignedHabits.map { $0.id }
@@ -224,7 +224,7 @@ struct EditRoutineSheet: View {
             }
             .onAppear {
                 if tempName.hasPrefix("routine.") {
-                    tempName = settings.localizedString(for: tempName)
+                    tempName = String(localized: String.LocalizationValue(tempName), locale: Locale(identifier: settings.appLanguage))
                 }
                 
                 // Populate assigned habits correctly ordered
@@ -264,7 +264,7 @@ struct EditRoutineSheet: View {
                                                     .resizable()
                                                     .scaledToFit()
                                                     .frame(width: 48, height: 48)
-                                                Text(settings.showHabitInsteadOfName ? settings.localizedString(for: plant.displayedHabitName) : settings.localizedString(for: plant.name))
+                                                Text(settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(plant.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(plant.name), locale: Locale(identifier: settings.appLanguage)))
                                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                                     .foregroundStyle(.primary)
                                                 Spacer()
@@ -279,11 +279,11 @@ struct EditRoutineSheet: View {
                             .padding(24)
                         }
                     }
-                    .navigationTitle(settings.localizedString(for: "routine.edit.habit.add_single"))
+                    .navigationTitle(String(localized: "routine.edit.habit.add_single"))
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
-                            Button(settings.localizedString(for: "common.close")) {
+                            Button(String(localized: "common.close")) {
                                 showHabitPicker = false
                             }
                         }

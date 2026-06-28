@@ -26,7 +26,7 @@ struct LebenDetailView: View {
                         VStack(spacing: 4) {
                             Text("\(gardenStore.leben) / 5")
                                 .font(.system(size: 48, weight: .bold, design: .rounded))
-                            Text(settings.localizedString(for: "leben.verbleibend"))
+                            Text(String(localized: "leben.verbleibend"))
                                 .font(.headline)
                                 .foregroundStyle(.secondary)
                         }
@@ -37,9 +37,9 @@ struct LebenDetailView: View {
 
                     // Erklärung der Regeln
                     VStack(alignment: .leading, spacing: 16) {
-                        RuleRow(icon: "drop.fill", color: .blue, text: settings.localizedString(for: "leben.regel1"), isSystemIcon: true)
-                        RuleRow(icon: "heart.slash.fill", color: .red, text: settings.localizedString(for: "leben.regel2"), isSystemIcon: true)
-                        RuleRow(icon: "arrow.counterclockwise", color: .green, text: settings.localizedString(for: "leben.regel3"), isSystemIcon: true)
+                        RuleRow(icon: "drop.fill", color: .blue, text: String(localized: "leben.regel1"), isSystemIcon: true)
+                        RuleRow(icon: "heart.slash.fill", color: .red, text: String(localized: "leben.regel2"), isSystemIcon: true)
+                        RuleRow(icon: "arrow.counterclockwise", color: .green, text: String(localized: "leben.regel3"), isSystemIcon: true)
                     }
                     .padding()
                     .background(
@@ -54,7 +54,7 @@ struct LebenDetailView: View {
                     // Welche Pflanzen haben Leben gekostet (Log)
                     if !gardenStore.gestorbenePflanzenLog.isEmpty {
                         VStack(alignment: .leading, spacing: 16) {
-                            Text(settings.localizedString(for: "leben.verloren.durch"))
+                            Text(String(localized: "leben.verloren.durch"))
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                                 .padding(.horizontal, 4)
                             
@@ -89,7 +89,7 @@ struct LebenDetailView: View {
                 }
                 .padding()
             }
-            .navigationTitle(settings.localizedString(for: "leben.titel"))
+            .navigationTitle(String(localized: "leben.titel"))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
             .background(Color.appHintergrund.ignoresSafeArea())

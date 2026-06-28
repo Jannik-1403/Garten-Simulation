@@ -8,11 +8,13 @@ struct NotificationTexts {
     }
     
     // MARK: - Trigger A: Wartet (18h)
-    static func wartet(pflanzenName: String, stunden: Int, lang: String) -> (title: String, body: String) {
+    static func wartet(pflanzenName: String, stunden: Int) -> (title: String, body: String) {
+        let lang = Locale.current.language.languageCode?.identifier ?? "de"
+        _ = lang
         let variant = randomVariant()
-        let title = AppStrings.get("notification.wait.\(variant).title", language: lang)
+        let title = NSLocalizedString("notification.wait.\(variant).title", comment: "")
             .replacingOccurrences(of: "%@", with: pflanzenName)
-        let body = AppStrings.get("notification.wait.\(variant).body", language: lang)
+        let body = NSLocalizedString("notification.wait.\(variant).body", comment: "")
             .replacingOccurrences(of: "%d", with: "\(stunden)")
             .replacingOccurrences(of: "%@", with: pflanzenName)
         
@@ -20,11 +22,13 @@ struct NotificationTexts {
     }
     
     // MARK: - Trigger B: Streak-Gefahr (22h)
-    static func streakGefahr(pflanzenName: String, streak: Int, lang: String) -> (title: String, body: String) {
+    static func streakGefahr(pflanzenName: String, streak: Int) -> (title: String, body: String) {
+        let lang = Locale.current.language.languageCode?.identifier ?? "de"
+        _ = lang
         let variant = randomVariant()
-        let title = AppStrings.get("notification.streak.\(variant).title", language: lang)
+        let title = NSLocalizedString("notification.streak.\(variant).title", comment: "")
             .replacingOccurrences(of: "%@", with: pflanzenName)
-        let body = AppStrings.get("notification.streak.\(variant).body", language: lang)
+        let body = NSLocalizedString("notification.streak.\(variant).body", comment: "")
             .replacingOccurrences(of: "%@", with: pflanzenName)
             .replacingOccurrences(of: "%d", with: "\(streak)")
         
@@ -32,19 +36,23 @@ struct NotificationTexts {
     }
     
     // MARK: - Trigger C: Morgen-Motivation (8:00 Uhr)
-    static func morgenMotivation(streak: Int, lang: String) -> (title: String, body: String) {
+    static func morgenMotivation(streak: Int) -> (title: String, body: String) {
+        let lang = Locale.current.language.languageCode?.identifier ?? "de"
+        _ = lang
         let variant = randomVariant()
-        let title = AppStrings.get("notification.morning.\(variant).title", language: lang)
-        let body = AppStrings.get("notification.morning.\(variant).body", language: lang)
+        let title = NSLocalizedString("notification.morning.\(variant).title", comment: "")
+        let body = NSLocalizedString("notification.morning.\(variant).body", comment: "")
             .replacingOccurrences(of: "%d", with: "\(streak)")
         
         return (title, body)
     }
     
     // MARK: - Trigger D: Stiller Abend (20:00 Uhr)
-    static func stillerAbend(anzahlUngegossen: Int, lang: String) -> (title: String, body: String) {
+    static func stillerAbend(anzahlUngegossen: Int) -> (title: String, body: String) {
+        let lang = Locale.current.language.languageCode?.identifier ?? "de"
+        _ = lang
         let variant = randomVariant()
-        let title = AppStrings.get("notification.evening.\(variant).title", language: lang)
+        let title = NSLocalizedString("notification.evening.\(variant).title", comment: "")
         
         // Handle pluralization for different languages
         let unit: String
@@ -62,7 +70,7 @@ struct NotificationTexts {
             unit = anzahlUngegossen == 1 ? "plant" : "plants"
         }
         
-        let body = AppStrings.get("notification.evening.\(variant).body", language: lang)
+        let body = NSLocalizedString("notification.evening.\(variant).body", comment: "")
             .replacingOccurrences(of: "%d", with: "\(anzahlUngegossen)")
             .replacingOccurrences(of: "%@", with: unit)
         

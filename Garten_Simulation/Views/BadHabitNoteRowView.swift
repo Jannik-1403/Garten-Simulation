@@ -29,7 +29,7 @@ struct BadHabitNoteRowView: View {
                     .scaleEffect(2.5)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("\(settings.localizedString(for: "plant.detail.note")) \(index + 1)")
+                    Text("\(String(localized: "plant.detail.note")) \(index + 1)")
                         .font(.system(size: 11, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                     Text(text)
@@ -53,14 +53,14 @@ struct BadHabitNoteRowView: View {
         }
         .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: isVisualPressed))
         .confirmationDialog(
-            settings.localizedString(for: "plant.detail.note.delete.confirm"),
+            String(localized: "plant.detail.note.delete.confirm"),
             isPresented: deleteConfirmShowing,
             titleVisibility: .visible
         ) {
-            Button(settings.localizedString(for: "plant.detail.note.delete.action"), role: .destructive) {
+            Button(String(localized: "plant.detail.note.delete.action"), role: .destructive) {
                 onConfirmDelete()
             }
-            Button(settings.localizedString(for: "button.cancel"), role: .cancel) {
+            Button(String(localized: "button.cancel"), role: .cancel) {
                 onCancelDelete()
             }
         }

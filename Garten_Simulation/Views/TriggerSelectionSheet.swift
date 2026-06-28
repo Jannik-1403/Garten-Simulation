@@ -28,7 +28,7 @@ struct TriggerSelectionSheet: View {
     // Alle Auslöser (Basis + Custom)
     var allTriggers: [(key: String, display: String)] {
         var list: [(key: String, display: String)] = baseTriggerKeys.map { key in
-            (key: key, display: settings.localizedString(for: key))
+            (key: key, display: NSLocalizedString(key, comment: ""))
         }
         for custom in gardenStore.savedCustomTriggers {
             if !list.contains(where: { $0.display == custom }) {
@@ -102,7 +102,7 @@ struct TriggerSelectionSheet: View {
                         gardenStore.trackBadHabit(id: habitId, penaltyCoins: 0, triggers: selectedArray)
                         dismiss()
                     } label: {
-                        Text(settings.localizedString(for: "trigger.save_button"))
+                        Text(String(localized: "trigger.save_button"))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                     }
                     .buttonStyle(DuolingoButtonStyle(
@@ -121,7 +121,7 @@ struct TriggerSelectionSheet: View {
                     )
                 }
             }
-            .navigationTitle(settings.localizedString(for: "trigger.selection_title"))
+            .navigationTitle(String(localized: "trigger.selection_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -140,12 +140,12 @@ struct TriggerSelectionSheet: View {
                     }
                 }
             }
-            .alert(settings.localizedString(for: "trigger.own_trigger"), isPresented: $showAddAlert) {
-                TextField(settings.localizedString(for: "trigger.trigger_name"), text: $newTriggerText)
-                Button(settings.localizedString(for: "trigger.cancel"), role: .cancel) {
+            .alert(String(localized: "trigger.own_trigger"), isPresented: $showAddAlert) {
+                TextField(String(localized: "trigger.trigger_name"), text: $newTriggerText)
+                Button(String(localized: "trigger.cancel"), role: .cancel) {
                     newTriggerText = ""
                 }
-                Button(settings.localizedString(for: "trigger.add")) {
+                Button(String(localized: "trigger.add")) {
                     let trimmed = newTriggerText.trimmingCharacters(in: .whitespacesAndNewlines)
                     if !trimmed.isEmpty {
                         if !gardenStore.savedCustomTriggers.contains(trimmed) {
@@ -156,7 +156,7 @@ struct TriggerSelectionSheet: View {
                     newTriggerText = ""
                 }
             } message: {
-                Text(settings.localizedString(for: "trigger.own_trigger_desc"))
+                Text(String(localized: "trigger.own_trigger_desc"))
             }
         }
     }

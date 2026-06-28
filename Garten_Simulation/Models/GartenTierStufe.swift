@@ -40,18 +40,18 @@ enum GartenTierStufe: CaseIterable {
     /// Lokalisiert den Namen der Stufe basierend auf dem SettingsStore (wichtig für In-App Sprachwahl)
     func lokalisiertTitel(settings: SettingsStore) -> String {
         switch self {
-        case .bronzeI:    return settings.localizedString(for: "tier_stufe_bronze_1")
-        case .bronzeII:   return settings.localizedString(for: "tier_stufe_bronze_2")
-        case .bronzeIII:  return settings.localizedString(for: "tier_stufe_bronze_3")
-        case .silberI:    return settings.localizedString(for: "tier_stufe_silber_1")
-        case .silberII:   return settings.localizedString(for: "tier_stufe_silber_2")
-        case .silberIII:  return settings.localizedString(for: "tier_stufe_silber_3")
-        case .goldI:      return settings.localizedString(for: "tier_stufe_gold_1")
-        case .goldII:     return settings.localizedString(for: "tier_stufe_gold_2")
-        case .goldIII:    return settings.localizedString(for: "tier_stufe_gold_3")
-        case .diamantI:   return settings.localizedString(for: "tier_stufe_diamant_1")
-        case .diamantII:  return settings.localizedString(for: "tier_stufe_diamant_2")
-        case .diamantIII: return settings.localizedString(for: "tier_stufe_diamant_3")
+        case .bronzeI:    return String(localized: "tier_stufe_bronze_1")
+        case .bronzeII:   return String(localized: "tier_stufe_bronze_2")
+        case .bronzeIII:  return String(localized: "tier_stufe_bronze_3")
+        case .silberI:    return String(localized: "tier_stufe_silber_1")
+        case .silberII:   return String(localized: "tier_stufe_silber_2")
+        case .silberIII:  return String(localized: "tier_stufe_silber_3")
+        case .goldI:      return String(localized: "tier_stufe_gold_1")
+        case .goldII:     return String(localized: "tier_stufe_gold_2")
+        case .goldIII:    return String(localized: "tier_stufe_gold_3")
+        case .diamantI:   return String(localized: "tier_stufe_diamant_1")
+        case .diamantII:  return String(localized: "tier_stufe_diamant_2")
+        case .diamantIII: return String(localized: "tier_stufe_diamant_3")
         }
     }
 

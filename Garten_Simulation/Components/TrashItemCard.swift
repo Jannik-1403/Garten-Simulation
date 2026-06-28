@@ -24,7 +24,7 @@ struct DecorationCard: View {
             .frame(width: 110, height: 110)
             
             // MARK: Name
-            Text(settings.localizedString(for: decoration.objectNameKey))
+            Text(NSLocalizedString(decoration.objectNameKey, comment: ""))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.primary)
                 .multilineTextAlignment(.center)

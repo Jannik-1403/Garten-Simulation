@@ -70,7 +70,7 @@ struct MultiStrangCanvas: View {
                     } label: {
                         HStack {
                             Image(systemName: "chevron.left")
-                            Text(settings.localizedString(for: "canvas.show_all"))
+                            Text(String(localized: "canvas.show_all"))
                         }
                         .font(.system(size: 14, weight: .bold, design: .rounded))
                         .padding(.horizontal, 16)
@@ -237,7 +237,7 @@ struct MultiStrangCanvas: View {
             Spacer()
             
             VStack(spacing: 0) {
-                Text("Tag \(selectedDay)")
+                Text(String(format: String(localized: "common.day_format"), String(selectedDay)))
                     .font(.system(size: 32 * min(1.0, scale * 1.2), weight: .black, design: .rounded))
                     .foregroundColor(.black)
                 

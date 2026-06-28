@@ -23,16 +23,16 @@ struct PurchaseSuccessOverlay: View {
                 // Text
                 VStack(spacing: 12) {
                     VStack(spacing: 6) {
-                        Text(settings.localizedString(for: "shop.purchase_success.title"))
+                        Text(String(localized: "shop.purchase_success.title"))
                             .font(.system(size: 26, weight: .black, design: .rounded))
                             .foregroundStyle(.primary)
                         
-                        Text(settings.localizedString(for: "shop.purchase_success.subtitle"))
+                        Text(String(localized: "shop.purchase_success.subtitle"))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                     }
                     
-                    Text(settings.localizedString(for: itemName))
+                    Text(NSLocalizedString(itemName, comment: ""))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
@@ -52,7 +52,7 @@ struct PurchaseSuccessOverlay: View {
                     Image("coin")
                         .resizable().scaledToFit()
                         .frame(width: 20, height: 20)
-                    Text(String(format: settings.localizedString(for: "purchase.coins_deducted_format"), price))
+                    Text(String(format: String(localized: "purchase.coins_deducted_format"), price))
                         .font(.system(size: 16, weight: .heavy))
                         .foregroundStyle(Color.coinBlue)
                 }
@@ -65,7 +65,7 @@ struct PurchaseSuccessOverlay: View {
 
                 // Super-Button — DuolingoButtonStyle
                 Button(action: onDismiss) {
-                    Text(settings.localizedString(for: "shop.purchase_success.awesome"))
+                    Text(String(localized: "shop.purchase_success.awesome"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                 }
                 .buttonStyle(DuolingoButtonStyle(

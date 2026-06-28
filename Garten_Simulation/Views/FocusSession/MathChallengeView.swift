@@ -15,11 +15,11 @@ struct MathChallengeView: View {
         NavigationStack {
             VStack(spacing: 24) {
                 Spacer()
-                Text(settings.localizedString(for: "math_challenge.title"))
+                Text(String(localized: "math_challenge.title"))
                     .font(.system(size: 24, weight: .black, design: .rounded))
                     .multilineTextAlignment(.center)
                 
-                Text(settings.localizedString(for: "math_challenge.description"))
+                Text(String(localized: "math_challenge.description"))
                     .font(.system(size: 16, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -33,7 +33,7 @@ struct MathChallengeView: View {
                     .cornerRadius(20)
                     .padding(.horizontal)
                 
-                TextField(settings.localizedString(for: "math_challenge.placeholder"), text: $userAnswer)
+                TextField(String(localized: "math_challenge.placeholder"), text: $userAnswer)
                     .keyboardType(.numberPad)
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
@@ -50,7 +50,7 @@ struct MathChallengeView: View {
                     }
                 
                 if showError {
-                    Text(settings.localizedString(for: "math_challenge.error"))
+                    Text(String(localized: "math_challenge.error"))
                         .foregroundStyle(.red)
                         .font(.system(size: 14, weight: .bold, design: .rounded))
                 }
@@ -66,7 +66,7 @@ struct MathChallengeView: View {
                         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                     }
                 } label: {
-                    Text(settings.localizedString(for: "math_challenge.confirm_cancel"))
+                    Text(String(localized: "math_challenge.confirm_cancel"))
                 }
                 .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: .red, shadowColor: .red.darker()))
                 .padding(.horizontal, 24)
@@ -74,7 +74,7 @@ struct MathChallengeView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text(settings.localizedString(for: "math_challenge.continue_focus"))
+                    Text(String(localized: "math_challenge.continue_focus"))
                 }
                 .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: .blauPrimary, shadowColor: .blauPrimary.darker()))
                 .padding(.horizontal, 24)

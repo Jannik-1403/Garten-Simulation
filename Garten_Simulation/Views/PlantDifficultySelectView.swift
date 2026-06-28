@@ -44,12 +44,12 @@ struct PlantDifficultySelectView: View {
                 }
 
                 // Titel
-                Text(settings.localizedString(for: "pfad_schwierigkeit_titel"))
+                Text(String(localized: "pfad_schwierigkeit_titel"))
                     .font(.system(size: 26, weight: .bold))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
 
-                Text(settings.localizedString(for: "pfad_schwierigkeit_untertitel"))
+                Text(String(localized: "pfad_schwierigkeit_untertitel"))
                     .font(.system(size: 15))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -80,10 +80,10 @@ struct PlantDifficultySelectView: View {
                                     .foregroundColor(isSelected ? .white : stufe.farbe)
                                 
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text(settings.localizedString(for: stufe.titelKey))
+                                    Text(NSLocalizedString(stufe.titelKey, comment: ""))
                                         .font(.system(size: 17, weight: .bold, design: .rounded))
                                         .foregroundColor(isSelected ? .white : .primary)
-                                    Text(settings.localizedString(for: stufe.beschreibungKey))
+                                    Text(NSLocalizedString(stufe.beschreibungKey, comment: ""))
                                         .font(.system(size: 13))
                                         .foregroundStyle(isSelected ? Color.white.opacity(0.8) : .secondary)
                                 }
@@ -108,7 +108,7 @@ struct PlantDifficultySelectView: View {
                 Button {
                     onStart(ausgewaehlt)
                 } label: {
-                    Text(settings.localizedString(for: "pfad_schwierigkeit_starten"))
+                    Text(String(localized: "pfad_schwierigkeit_starten"))
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(DuolingoButtonStyle(size: .large, backgroundColor: ausgewaehlt.farbe, shadowColor: ausgewaehlt.farbe.darker()))

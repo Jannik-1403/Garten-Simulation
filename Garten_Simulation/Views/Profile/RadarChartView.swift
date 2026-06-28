@@ -62,8 +62,8 @@ struct RadarChartView: View {
                 
                 // 6. Legend
                 HStack(spacing: 20) {
-                    legendItem(label: settings.localizedString(for: "statistik_legend_aktuell"), color: .blauPrimary)
-                    legendItem(label: settings.localizedString(for: "statistik_legend_vorherig"), color: .gray)
+                    legendItem(label: String(localized: "statistik_legend_aktuell"), color: .blauPrimary)
+                    legendItem(label: String(localized: "statistik_legend_vorherig"), color: .gray)
                 }
             }
             
@@ -84,7 +84,7 @@ struct RadarChartView: View {
         let stats = getStats(for: category)
         
         VStack(spacing: 6) {
-            Text(settings.localizedString(for: category.localizationKey))
+            Text(NSLocalizedString(category.localizationKey, comment: ""))
                 .font(.system(size: 15, weight: .bold, design: .rounded))
             
             Divider()
@@ -93,16 +93,16 @@ struct RadarChartView: View {
                 .font(.system(size: 28, weight: .black, design: .rounded))
                 .foregroundStyle(Color.blauPrimary)
             
-            Text(settings.localizedString(for: "statistik_popup_erreicht").uppercased())
+            Text(String(localized: "statistik_popup_erreicht").uppercased())
                 .font(.system(size: 9, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
             
             Divider()
             
             HStack {
-                Label("\(stats.habitsCount) \(settings.localizedString(for: "statistik_popup_gewohnheiten"))", systemImage: "leaf.fill")
+                Label("\(stats.habitsCount) \(String(localized: "statistik_popup_gewohnheiten"))", systemImage: "leaf.fill")
                 Spacer()
-                Label("\(stats.waterings) \(settings.localizedString(for: "statistik_popup_giessungen"))", systemImage: "drop.fill")
+                Label("\(stats.waterings) \(String(localized: "statistik_popup_giessungen"))", systemImage: "drop.fill")
             }
             .font(.system(size: 10, weight: .medium, design: .rounded))
             .foregroundStyle(.secondary)
@@ -302,7 +302,7 @@ struct RadarChartShareImage: View {
 
     var body: some View {
         StatShareImage(
-            title: settings.localizedString(for: "statistik_life_balance"),
+            title: String(localized: "statistik_life_balance"),
             subtitle: periodLabel,
             username: username,
             height: 620,
@@ -318,11 +318,11 @@ struct RadarChartShareImage: View {
 
     private var periodLabel: String {
         switch selectedPeriod {
-        case .day:     return settings.localizedString(for: "stats.period.today_simple")
-        case .week:    return settings.localizedString(for: "statistik_share_letzte_woche")
-        case .month:   return settings.localizedString(for: "statistik_share_letzter_monat")
-        case .year:    return settings.localizedString(for: "statistik_share_letztes_jahr")
-        case .allTime: return settings.localizedString(for: "stats.period.alltime_simple")
+        case .day:     return String(localized: "stats.period.today_simple")
+        case .week:    return String(localized: "statistik_share_letzte_woche")
+        case .month:   return String(localized: "statistik_share_letzter_monat")
+        case .year:    return String(localized: "statistik_share_letztes_jahr")
+        case .allTime: return String(localized: "stats.period.alltime_simple")
         }
     }
 }

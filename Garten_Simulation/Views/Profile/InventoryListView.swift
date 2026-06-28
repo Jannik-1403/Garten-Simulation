@@ -45,9 +45,9 @@ struct InventoryListView: View {
     var title: String {
         switch category {
         case .powerUps:
-            return settings.localizedString(for: "profile.inventory.powerups")
+            return String(localized: "profile.inventory.powerups")
         case .decorations:
-            return settings.localizedString(for: "profile.inventory.decorations")
+            return String(localized: "profile.inventory.decorations")
         }
     }
     
@@ -61,7 +61,7 @@ struct InventoryListView: View {
                         .font(.system(size: 60))
                         .foregroundStyle(.secondary.opacity(0.3))
                     
-                    Text(settings.localizedString(for: "inventory.empty"))
+                    Text(String(localized: "inventory.empty"))
                         .font(.headline)
                         .foregroundStyle(.secondary)
                 }
@@ -113,13 +113,13 @@ struct InventoryItemCard: View {
                 )
                 
                 VStack(spacing: 4) {
-                    Text(settings.localizedString(for: item.titleKey))
+                    Text(NSLocalizedString(item.titleKey, comment: ""))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .multilineTextAlignment(.center)
                         .lineLimit(1)
                         .foregroundStyle(.primary)
                     
-                    Text(settings.localizedString(for: item.subtitle))
+                    Text(NSLocalizedString(item.subtitle, comment: ""))
                         .font(.system(size: 12, weight: .medium, design: .rounded))
                         .lineLimit(1)
                         .foregroundStyle(.secondary)

@@ -10,7 +10,7 @@ struct OnboardingCustomPlantView: View {
         VStack(spacing: 0) {
             OnboardingIgelView(
                 pose: .erklaert,
-                sprechblasenText: settings.localizedString(for: "onboarding_custom_blase")
+                sprechblasenText: String(localized: "onboarding_custom_blase")
             )
             .padding(.top, 20)
             
@@ -30,7 +30,7 @@ struct OnboardingCustomPlantView: View {
                         } label: {
                             HStack {
                                 Image(systemName: "plus.circle.fill")
-                                Text(settings.localizedString(for: "onboarding_custom_add"))
+                                Text(String(localized: "onboarding_custom_add"))
                             }
                         }
                         .buttonStyle(DuolingoButtonStyle(
@@ -52,7 +52,7 @@ struct OnboardingCustomPlantView: View {
                     data.currentStep += 1
                 }
             } label: {
-                Text(settings.localizedString(for: "onboarding_pflanzen_weiter"))
+                Text(String(localized: "onboarding_pflanzen_weiter"))
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large,
@@ -94,7 +94,7 @@ struct CustomHabitCard: View {
                 HStack(spacing: 4) {
                     Image(systemName: habit.habitCategory.icon)
                         .font(.system(size: 10, weight: .bold))
-                    Text(settings.localizedString(for: habit.habitCategory.localizationKey))
+                    Text(NSLocalizedString(habit.habitCategory.localizationKey, comment: ""))
                         .font(.system(size: 10, weight: .bold, design: .rounded))
                 }
                 .foregroundStyle(.primary)
@@ -139,11 +139,11 @@ struct AddCustomHabitSheet: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section(header: Text(settings.localizedString(for: "onboarding_custom_name"))) {
-                    TextField(settings.localizedString(for: "onboarding_custom_placeholder"), text: $name)
+                Section(header: Text(String(localized: "onboarding_custom_name"))) {
+                    TextField(String(localized: "onboarding_custom_placeholder"), text: $name)
                 }
                 
-                Section(header: Text(settings.localizedString(for: "onboarding_custom_icon"))) {
+                Section(header: Text(String(localized: "onboarding_custom_icon"))) {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 15) {
                             ForEach(symbols, id: \.self) { symbol in
@@ -158,7 +158,7 @@ struct AddCustomHabitSheet: View {
                     }
                 }
                 
-                Section(header: Text(settings.localizedString(for: "onboarding_custom_color"))) {
+                Section(header: Text(String(localized: "onboarding_custom_color"))) {
                     HStack(spacing: 15) {
                         ForEach(colors, id: \.self) { color in
                             ColorCircle(
@@ -171,11 +171,11 @@ struct AddCustomHabitSheet: View {
                     .padding(.vertical, 8)
                 }
                 
-                Section(header: Text(settings.localizedString(for: "shop.category.label"))) {
-                    Picker(settings.localizedString(for: "shop.category.label"), selection: $selectedCategory) {
+                Section(header: Text(String(localized: "shop.category.label"))) {
+                    Picker(String(localized: "shop.category.label"), selection: $selectedCategory) {
                         ForEach(HabitCategory.allCases, id: \.self) { cat in
                             Label(
-                                settings.localizedString(for: cat.localizationKey),
+                                NSLocalizedString(cat.localizationKey, comment: ""),
                                 systemImage: cat.icon
                             )
                             .tag(cat)
@@ -185,16 +185,16 @@ struct AddCustomHabitSheet: View {
                     .tint(.primary)
                 }
             }
-            .navigationTitle(settings.localizedString(for: "onboarding_custom_title"))
+            .navigationTitle(String(localized: "onboarding_custom_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(settings.localizedString(for: "common.cancel")) {
+                    Button(String(localized: "common.cancel")) {
                         dismiss()
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(settings.localizedString(for: "common.add")) {
+                    Button(String(localized: "common.add")) {
                         let new = CustomOnboardingPflanze(
                             name: name, 
                             sfSymbol: selectedSymbol, 
@@ -261,7 +261,7 @@ struct CategoryCircle: View {
             }
             .overlay(Circle().stroke(isSelected ? category.color : Color.clear, lineWidth: 2))
             
-            Text(settings.localizedString(for: category.localizationKey))
+            Text(NSLocalizedString(category.localizationKey, comment: ""))
                 .font(.system(size: 10, weight: .bold, design: .rounded))
                 .foregroundStyle(isSelected ? .primary : .secondary)
         }

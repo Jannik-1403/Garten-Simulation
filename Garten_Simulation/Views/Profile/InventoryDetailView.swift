@@ -88,7 +88,7 @@ struct InventoryDetailView: View {
                 .padding(.top, 20)
             }
         }
-        .navigationTitle(settings.localizedString(for: "profile.inventory"))
+        .navigationTitle(String(localized: "profile.inventory"))
         .navigationBarTitleDisplayMode(.inline)
         .standardNavigationX()
         .fullScreenCover(isPresented: $showCreationSheet) {
@@ -145,7 +145,7 @@ struct Inventory3DStat: View {
                 .font(.system(size: 22, weight: .black, design: .rounded))
                 .foregroundStyle(.primary)
             
-            Text(settings.localizedString(for: titleKey))
+            Text(NSLocalizedString(titleKey, comment: ""))
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)

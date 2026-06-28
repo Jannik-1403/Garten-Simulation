@@ -18,11 +18,11 @@ public struct WaterPlantIntent: AppIntent {
     @MainActor
     public func perform() async throws -> some IntentResult & ProvidesDialog {
         let shared = SharedUserDefaults.suite
-        let lang = shared.string(forKey: "appLanguage") ?? "de"
+
 
         guard let data = shared.data(forKey: "garden_plants"),
               let pflanzen = try? JSONDecoder().decode([HabitModel].self, from: data) else {
-            let errorMsg = AppStrings.get("intent_water_fail", language: lang)
+            let errorMsg = NSLocalizedString("intent_water_fail", comment: "")
             return .result(dialog: IntentDialog(stringLiteral: errorMsg))
         }
 
@@ -31,16 +31,16 @@ public struct WaterPlantIntent: AppIntent {
             
             var displayName = pflanze.habitName
             if displayName.contains(".") {
-                displayName = AppStrings.get(displayName, language: lang)
+                displayName = NSLocalizedString(displayName, comment: "")
             }
             if displayName.isEmpty || displayName.contains(".") {
                 if let dbPlant = GameDatabase.allPlants.first(where: { $0.id.lowercased() == pflanze.plantID.lowercased() }) {
-                    displayName = AppStrings.get(dbPlant.name, language: lang)
+                    displayName = NSLocalizedString(dbPlant.name, comment: "")
                 }
             }
             
             if pflanze.istBewässert {
-                let msgTemplate = AppStrings.get("intent_water_already_done", language: lang)
+                let msgTemplate = NSLocalizedString("intent_water_already_done", comment: "")
                 let msg = msgTemplate.replacingOccurrences(of: "%@", with: displayName)
                 return .result(dialog: IntentDialog(stringLiteral: msg))
             }
@@ -100,7 +100,7 @@ public struct WaterPlantIntent: AppIntent {
             var transactionsData: [[String: Any]] = shared.array(forKey: "stats_transactions") as? [[String: Any]] ?? []
             let newTransaction: [String: Any] = [
                 "datum": Date().timeIntervalSince1970,
-                "beschreibung": AppStrings.get("profile.coins.tip.watering", language: lang),
+                "beschreibung": NSLocalizedString("profile.coins.tip.watering", comment: ""),
                 "betrag": coinsGewonnen,
                 "icon": "Drop water",
                 "farbeHex": "#00919E"
@@ -122,12 +122,12 @@ public struct WaterPlantIntent: AppIntent {
             WidgetCenter.shared.reloadAllTimelines()
             shared.synchronize()
 
-            let successTemplate = AppStrings.get("intent_water_success", language: lang)
+            let successTemplate = NSLocalizedString("intent_water_success", comment: "")
             let successMsg = successTemplate.replacingOccurrences(of: "%@", with: displayName)
             return .result(dialog: IntentDialog(stringLiteral: successMsg))
         }
 
-        let failMsg = AppStrings.get("intent_water_fail", language: lang)
+        let failMsg = NSLocalizedString("intent_water_fail", comment: "")
         return .result(dialog: IntentDialog(stringLiteral: failMsg))
     }
 }

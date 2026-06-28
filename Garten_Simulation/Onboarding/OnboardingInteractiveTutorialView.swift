@@ -23,7 +23,7 @@ struct OnboardingInteractiveTutorialView: View {
             VStack(spacing: 0) {
                 OnboardingIgelView(
                     pose: innerPose,
-                    sprechblasenText: gegossen ? settings.localizedString(for: "onboarding_tutorial_giessen_erfolg") : settings.localizedString(for: "onboarding_tutorial_giessen_blase")
+                    sprechblasenText: gegossen ? String(localized: "onboarding_tutorial_giessen_erfolg") : String(localized: "onboarding_tutorial_giessen_blase")
                 )
                 .padding(.top, 20)
                 
@@ -85,10 +85,10 @@ struct OnboardingInteractiveTutorialView: View {
                         })
                         
                         VStack(spacing: 4) {
-                            Text(settings.localizedString(for: plant.localizedName))
+                            Text(NSLocalizedString(plant.localizedName, comment: ""))
                                 .font(.system(size: 20, weight: .black, design: .rounded))
                             
-                            Text(settings.localizedString(for: "onboarding_tutorial_giessen_test"))
+                            Text(String(localized: "onboarding_tutorial_giessen_test"))
                                 .font(.system(.subheadline, design: .rounded, weight: .bold))
                                 .foregroundStyle(.secondary)
                         }
@@ -104,7 +104,7 @@ struct OnboardingInteractiveTutorialView: View {
                             data.currentStep += 1
                         }
                     } label: {
-                        Text(settings.localizedString(for: "onboarding_weiter"))
+                        Text(String(localized: "onboarding_weiter"))
                     }
                     .buttonStyle(DuolingoButtonStyle(
                         size: .large,

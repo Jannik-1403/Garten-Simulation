@@ -17,7 +17,7 @@ struct PfadEinstellungenView: View {
                 HStack(spacing: 10) {
                     Image(systemName: "info.circle.fill")
                         .foregroundColor(.blauPrimary)
-                    Text(settings.localizedString(for: "pfad_schwierigkeit_hinweis"))
+                    Text(String(localized: "pfad_schwierigkeit_hinweis"))
                         .font(.system(size: 13))
                         .foregroundColor(.secondary)
                 }
@@ -31,23 +31,23 @@ struct PfadEinstellungenView: View {
                 } label: {
                     HStack {
                         Image(systemName: "arrow.counterclockwise")
-                        Text(settings.localizedString(for: "pfad_zuruecksetzen_button"))
+                        Text(String(localized: "pfad_zuruecksetzen_button"))
                     }
                 }
             }
         }
-        .navigationTitle(settings.localizedString(for: "pfad_einstellungen_titel"))
+        .navigationTitle(String(localized: "pfad_einstellungen_titel"))
         .navigationBarTitleDisplayMode(.inline)
         .alert(
-            settings.localizedString(for: "pfad_zuruecksetzen_titel"),
+            String(localized: "pfad_zuruecksetzen_titel"),
             isPresented: $zeigeResetBestaetigung
         ) {
-            Button(settings.localizedString(for: "pfad_zuruecksetzen_bestaetigen"), role: .destructive) {
+            Button(String(localized: "pfad_zuruecksetzen_bestaetigen"), role: .destructive) {
                 pfadStore.pfadZuruecksetzen(settings: settings, gardenStore: gardenStore)
             }
-            Button(settings.localizedString(for: "button.cancel"), role: .cancel) {}
+            Button(String(localized: "button.cancel"), role: .cancel) {}
         } message: {
-            Text(settings.localizedString(for: "pfad_zuruecksetzen_nachricht"))
+            Text(String(localized: "pfad_zuruecksetzen_nachricht"))
         }
     }
 }

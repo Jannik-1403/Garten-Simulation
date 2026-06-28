@@ -36,7 +36,7 @@ struct WetterPopup: View {
                     }
 
                     VStack(spacing: 8) {
-                        Text(settings.localizedString(for: "weather.new_event"))
+                        Text(String(localized: "weather.new_event"))
                             .font(.appCaption)
                             .foregroundStyle(.secondary)
                             .textCase(.uppercase)
@@ -76,7 +76,7 @@ struct WetterPopup: View {
                             .fill(event.bannerFarbe)
                             .frame(height: 56)
                             .overlay {
-                                Text(settings.localizedString(for: "settings.understood"))
+                                Text(String(localized: "settings.understood"))
                                     .font(.appButton)
                                     .foregroundStyle(.white)
                             }
@@ -127,17 +127,17 @@ struct WetterPopup: View {
     // MARK: - Helper Texte
     var gemsText: String {
         switch event {
-        case .perfekt: return settings.localizedString(for: "weather.effect.gems_plus")
-        case .schnee: return settings.localizedString(for: "weather.effect.gems_minus")
-        default: return settings.localizedString(for: "weather.effect.normal")
+        case .perfekt: return String(localized: "weather.effect.gems_plus")
+        case .schnee: return String(localized: "weather.effect.gems_minus")
+        default: return String(localized: "weather.effect.normal")
         }
     }
 
     var xpText: String {
         switch event {
-        case .regen: return settings.localizedString(for: "weather.effect.xp_plus")
-        case .perfekt: return settings.localizedString(for: "weather.effect.xp_plus")
-        default: return settings.localizedString(for: "weather.effect.normal")
+        case .regen: return String(localized: "weather.effect.xp_plus")
+        case .perfekt: return String(localized: "weather.effect.xp_plus")
+        default: return String(localized: "weather.effect.normal")
         }
     }
 

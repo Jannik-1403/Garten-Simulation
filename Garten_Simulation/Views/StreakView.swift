@@ -6,9 +6,9 @@ enum StreakMode: String, CaseIterable, Identifiable {
     
     func label(settings: SettingsStore) -> String {
         switch self {
-        case .week: return settings.localizedString(for: "streak.mode.week")
-        case .month: return settings.localizedString(for: "streak.mode.month")
-        case .year: return settings.localizedString(for: "streak.mode.year")
+        case .week: return String(localized: "streak.mode.week")
+        case .month: return String(localized: "streak.mode.month")
+        case .year: return String(localized: "streak.mode.year")
         }
     }
 }
@@ -131,8 +131,8 @@ struct StreakView: View {
                 .presentationCornerRadius(32)
         }
         .navigationTitle(selectedPlant == nil
-            ? settings.localizedString(for: "streak.view.title")
-            : (isBadHabitMode ? selectedPlant!.name : (settings.showHabitInsteadOfName ? settings.localizedString(for: selectedPlant!.displayedHabitName) : settings.localizedString(for: selectedPlant!.name))))
+            ? String(localized: "streak.view.title")
+            : (isBadHabitMode ? selectedPlant!.name : (settings.showHabitInsteadOfName ? NSLocalizedString(selectedPlant!.displayedHabitName, comment: "") : NSLocalizedString(selectedPlant!.name, comment: ""))))
         .navigationBarTitleDisplayMode(.inline)
         .standardNavigationX()
         .toolbar {
@@ -145,7 +145,7 @@ struct StreakView: View {
                             }
                         }) {
                             HStack {
-                                Text(settings.localizedString(for: "Alle") == "Alle" ? "Alle" : settings.localizedString(for: "Alle"))
+                                Text(String(localized: "Alle", defaultValue: "Alle"))
                                 if selectedPlant == nil {
                                     Image(systemName: "checkmark")
                                 }
@@ -159,7 +159,7 @@ struct StreakView: View {
                                 }
                             }) {
                                 HStack {
-                                    Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
+                                    Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
                                     if selectedPlant?.id == pflanze.id {
                                         Image(systemName: "checkmark")
                                     }
@@ -180,12 +180,12 @@ struct StreakView: View {
     private var headerTitle: String {
         switch selectedMode {
         case .week:
-            return settings.localizedString(for: "streak.view.weekly_overview")
+            return String(localized: "streak.view.weekly_overview")
         case .month:
             return monthYearString(from: currentMonth)
         case .year:
             let year = calendar.component(.year, from: currentMonth)
-            return String(format: settings.localizedString(for: "streak.view.year_format"), year)
+            return String(format: String(localized: "streak.view.year_format"), year)
         }
     }
     
@@ -330,7 +330,7 @@ struct StreakView: View {
     }
 
     private var localizedWeekdays: [String] {
-        let weekdayString = settings.localizedString(for: "streak.weekdays.short")
+        let weekdayString = String(localized: "streak.weekdays.short")
         let symbols = weekdayString.components(separatedBy: ",")
         if symbols.count == 7 {
             return symbols
@@ -349,7 +349,7 @@ struct StreakView: View {
         default:   localeId = "en_US"
         }
         formatter.locale = Locale(identifier: localeId)
-        formatter.dateFormat = settings.localizedString(for: "streak.format.month_year")
+        formatter.dateFormat = String(localized: "streak.format.month_year")
         return formatter.string(from: date)
     }
     
@@ -388,11 +388,11 @@ struct StreakView: View {
                 .padding(.top, 8)
                 
                 VStack(spacing: 4) {
-                    Text(settings.localizedString(for: "streak.freeze.title"))
+                    Text(String(localized: "streak.freeze.title"))
                         .font(.system(size: 22, weight: .bold, design: .rounded))
                         .foregroundStyle(.primary)
                     
-                    Text(String(format: settings.localizedString(for: "streak.freeze.unit"), streakStore.streakFreezes))
+                    Text(String(format: String(localized: "streak.freeze.unit"), streakStore.streakFreezes))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(.blue)
                 }
@@ -427,17 +427,15 @@ struct StreakFreezeDetailSheet: View {
             .padding(.top, 20)
             
             VStack(spacing: 12) {
-                Text(settings.localizedString(for: "streak.freeze.description"))
+                Text(String(localized: "streak.freeze.description"))
                     .font(.system(size: 20, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
                 
                 let countText: Text = {
-                    let highlight = "\(streakStore.streakFreezes) \(settings.localizedString(for: "common.of") == "common.of" ? "von" : settings.localizedString(for: "common.of")) 2 \(settings.localizedString(for: "common.in_stock") == "common.in_stock" ? "auf Vorrat" : settings.localizedString(for: "common.in_stock"))"
+                    let highlight = "\(streakStore.streakFreezes) \(String(localized: "common.of", defaultValue: "von")) 2 \(String(localized: "common.in_stock", defaultValue: "auf Vorrat"))"
                     
-                    // Simple approach: split the string and color the dynamic part
-                    // Or just recreate it manually for better control
-                    return Text(settings.localizedString(for: "common.you_have") == "common.you_have" ? "Du hast " : settings.localizedString(for: "common.you_have"))
+                    return Text(String(localized: "common.you_have", defaultValue: "Du hast "))
                         .foregroundColor(.primary)
                         + Text(highlight)
                         .foregroundColor(.blue)
@@ -459,7 +457,7 @@ struct StreakFreezeDetailSheet: View {
                     isRectangular: true,
                     aktion: { dismiss() }
                 ) {
-                    Text(settings.localizedString(for: "streak.freeze.understand"))
+                    Text(String(localized: "streak.freeze.understand"))
                         .font(.system(size: 18, weight: .bold))
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
@@ -474,7 +472,7 @@ struct StreakFreezeDetailSheet: View {
                     aktion: buyStreakFreeze
                 ) {
                     HStack(spacing: 8) {
-                        Text(settings.localizedString(for: "streak.freeze.buy").replacingOccurrences(of: "(100 Coins)", with: ""))
+                        Text(String(localized: "streak.freeze.buy").replacingOccurrences(of: "(100 \(String(localized: "common.coins")))", with: ""))
                             .font(.system(size: 18, weight: .bold))
                         
                         HStack(spacing: 4) {
@@ -585,7 +583,7 @@ struct YearlyCalendarView: View {
     }
     
     private func monthName(for month: Int) -> String {
-        return settings.localizedString(for: "month.\(month)")
+        return String(localized: "month.\(month)")
     }
 }
 

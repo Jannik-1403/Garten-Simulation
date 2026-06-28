@@ -18,12 +18,14 @@ struct ActivePowerUp: Identifiable, Codable {
     }
     
     var timeRemainingFormatted: String {
-        guard let expiresAt = expiresAt else { return "Permanent" }
+        guard let expiresAt = expiresAt else { return NSLocalizedString("powerup.status.permanent", comment: "") }
         let remaining = expiresAt.timeIntervalSinceNow
-        guard remaining > 0 else { return "Abgelaufen" }
+        guard remaining > 0 else { return NSLocalizedString("powerup.status.abgelaufen", comment: "") }
         let hours = Int(remaining / 3600)
         let minutes = Int((remaining.truncatingRemainder(dividingBy: 3600)) / 60)
-        if hours > 0 { return "\(hours)h \(minutes)m" }
-        return "\(minutes)m"
+        let hStr = NSLocalizedString("common.hour_short", comment: "")
+        let mStr = NSLocalizedString("common.min_short", comment: "")
+        if hours > 0 { return "\(hours)\(hStr) \(minutes)\(mStr)" }
+        return "\(minutes)\(mStr)"
     }
 }

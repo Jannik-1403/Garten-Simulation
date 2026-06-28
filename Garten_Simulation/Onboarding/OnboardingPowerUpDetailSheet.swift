@@ -28,13 +28,13 @@ struct OnboardingPowerUpDetailSheet: View {
                             .shadow(color: item.color.opacity(0.3), radius: 20, x: 0, y: 10)
                             .padding(.top, 60)
                         
-                        Text(settings.localizedString(for: item.name))
+                        Text(NSLocalizedString(item.name, comment: ""))
                             .font(.system(size: 28, weight: .black, design: .rounded))
                             .multilineTextAlignment(.center)
                     }
                     
                     // Description
-                    Text(settings.localizedString(for: item.description))
+                    Text(NSLocalizedString(item.description, comment: ""))
                         .font(.system(size: 17, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
@@ -43,12 +43,12 @@ struct OnboardingPowerUpDetailSheet: View {
                     // Usage Hint
                     if !item.howToUse.isEmpty {
                         VStack(spacing: 8) {
-                            Text(settings.localizedString(for: "shop.item.usage").uppercased())
+                            Text(String(localized: "shop.item.usage").uppercased())
                                 .font(.system(size: 12, weight: .bold))
                                 .foregroundStyle(.tertiary)
                                 .tracking(1.5)
                             
-                            Text(settings.localizedString(for: item.howToUse))
+                            Text(NSLocalizedString(item.howToUse, comment: ""))
                                 .font(.system(size: 15))
                                 .foregroundStyle(.secondary)
                                 .multilineTextAlignment(.center)
@@ -65,7 +65,7 @@ struct OnboardingPowerUpDetailSheet: View {
                         onUse()
                         dismiss()
                     } label: {
-                        Text(settings.localizedString(for: "button.use"))
+                        Text(String(localized: "button.use"))
                     }
                     .buttonStyle(DuolingoButtonStyle(
                         size: .large,

@@ -22,12 +22,12 @@ struct PfadTagDetailView: View {
                 // Header
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
-                        let headerKey = settings.localizedString(for: "pfad_tag_header")
+                        let headerKey = String(localized: "pfad_tag_header")
                         Text(String(format: headerKey, tag.tagNummer))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                         
-                        Text(settings.localizedString(for: "pfad_phase_tag_titel_\(tag.phase.rawValue)"))
+                        Text(String(localized: "pfad_phase_tag_titel_\(tag.phase.rawValue)"))
                             .font(.system(size: 16, weight: .black, design: .rounded))
                             .foregroundStyle(tag.phase.farbe)
                     }
@@ -60,7 +60,7 @@ struct PfadTagDetailView: View {
 
                         // Status Badge
                         if tag.istErledigt {
-                            Text(String(format: settings.localizedString(for: "pfad_done_prefix"), settings.localizedString(for: "erledigt_status")))
+                            Text(String(format: String(localized: "pfad_done_prefix"), String(localized: "erledigt_status")))
                                 .font(.system(size: 14, weight: .bold))
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 6)
@@ -71,7 +71,7 @@ struct PfadTagDetailView: View {
                             lockedStateView
                                 .padding(.top, -8)
                         } else {
-                            Text(settings.localizedString(for: "heute_status"))
+                            Text(String(localized: "heute_status"))
                                 .font(.system(size: 14, weight: .bold))
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 6)
@@ -112,7 +112,7 @@ struct PfadTagDetailView: View {
                             dismiss()
                         }
                     } label: {
-                        Text(settings.localizedString(for: "pfad_tag_erledigen"))
+                        Text(String(localized: "pfad_tag_erledigen"))
                     }
                     .buttonStyle(DuolingoButtonStyle(
                         size: .large,
@@ -162,19 +162,19 @@ struct PfadTagDetailView: View {
                 let alleTags = strang.tags.sorted(by: { $0.tagNummer < $1.tagNummer })
                 if let firstIncomplete = alleTags.first(where: { !$0.istErledigt }), tag.id == firstIncomplete.id {
                     // Es ist der erste unfertige Tag. Warum ist er gesperrt? Weil Vorgänger heute erledigt wurde!
-                    Text(settings.localizedString(for: "pfad_morgen_verfuegbar"))
+                    Text(String(localized: "pfad_morgen_verfuegbar"))
                         .font(.system(size: 14, weight: .medium, design: .rounded))
                         .foregroundColor(.secondary)
                         .padding(.bottom, 40)
                 } else {
                     // Komplett in der Zukunft
-                    Text(settings.localizedString(for: "pfad_tag_gesperrt"))
+                    Text(String(localized: "pfad_tag_gesperrt"))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                         .padding(.bottom, 40)
                 }
             } else {
-                Text(settings.localizedString(for: "pfad_tag_gesperrt"))
+                Text(String(localized: "pfad_tag_gesperrt"))
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundStyle(.secondary)
                     .padding(.bottom, 40)
@@ -217,42 +217,42 @@ struct PfadTagDetailView: View {
         let formatter = RelativeDateTimeFormatter()
         formatter.locale = Locale(identifier: settings.appLanguage)
         formatter.unitsStyle = .abbreviated
-        return String(format: settings.localizedString(for: "pfad_tag_verfuegbar_in"), formatter.localizedString(for: datum, relativeTo: Date()))
+        return String(format: String(localized: "pfad_tag_verfuegbar_in"), formatter.localizedString(for: datum, relativeTo: Date()))
     }
     
     private func habitName(for t: PfadStrangTag) -> String {
         guard let s = t.strang else { return "" }
         // 1. User habit
         if let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
-            return settings.localizedString(for: habit.displayedHabitName)
+            return NSLocalizedString(habit.displayedHabitName, comment: "")
         }
         // 2. GameDatabase fallback
         if let plant = GameDatabase.shared.plant(for: s.pflanzenID) {
-            return settings.localizedString(for: plant.habitCategory.localizationKey)
+            return NSLocalizedString(plant.habitCategory.localizationKey, comment: "")
         }
-        return settings.localizedString(for: s.pflanzenName)
+        return NSLocalizedString(s.pflanzenName, comment: "")
     }
 
     private func localizedTitle(for tag: PfadStrangTag) -> String {
-        var raw = settings.localizedString(for: tag.titelKey)
+        var raw = NSLocalizedString(tag.titelKey, comment: "")
         
         // Failsafe: Wenn der Key nicht übersetzt wurde (roher Schlüssel)
         if raw == tag.titelKey {
             // Versuche generic fallback
             let fallbackKey = tag.titelKey.replacingOccurrences(of: #"pfad_.*_day_"#, with: "pfad_generic_day_", options: .regularExpression)
                                           .replacingOccurrences(of: #"pfad_.*_phase_"#, with: "pfad_generic_phase_", options: .regularExpression)
-            let fallbackRaw = settings.localizedString(for: fallbackKey)
+            let fallbackRaw = NSLocalizedString(fallbackKey, comment: "")
             if fallbackRaw != fallbackKey {
                 raw = fallbackRaw
             } else if tag.istMeilenstein {
-                raw = settings.localizedString(for: "pfad_meilenstein_titel") // Generic fallback
+                raw = String(localized: "pfad_meilenstein_titel") // Generic fallback
             } else {
-                raw = settings.localizedString(for: "pfad_aufgabe_titel")
+                raw = String(localized: "pfad_aufgabe_titel")
             }
         }
         
         // Bereinigen falls Unterstriche auftauchen, obwohl es kein Key mehr sein sollte
-        if raw == tag.titelKey { raw = settings.localizedString(for: "routine_titel") }
+        if raw == tag.titelKey { raw = String(localized: "routine_titel") }
         
         return raw.replacingOccurrences(of: "[HABIT]", with: habitName(for: tag))
     }
@@ -270,18 +270,18 @@ struct PfadTagDetailView: View {
             return dynamicDesc.replacingOccurrences(of: "[HABIT]", with: habitName(for: tag))
         }
 
-        var raw = settings.localizedString(for: tag.beschreibungKey)
+        var raw = NSLocalizedString(tag.beschreibungKey, comment: "")
         
         // Failsafe: Wenn der Key roh zurückkommt, generischen probieren
         if raw == tag.beschreibungKey {
             let fallbackKey = tag.beschreibungKey.replacingOccurrences(of: #"pfad_.*_day_"#, with: "pfad_generic_day_", options: .regularExpression)
                                                  .replacingOccurrences(of: #"pfad_.*_phase_"#, with: "pfad_generic_phase_", options: .regularExpression)
             
-            let fallbackRaw = settings.localizedString(for: fallbackKey)
+            let fallbackRaw = NSLocalizedString(fallbackKey, comment: "")
             if fallbackRaw != fallbackKey {
                 raw = fallbackRaw
             } else {
-                raw = settings.localizedString(for: "pfad_schwierigkeit_\(diff)_desc")
+                raw = String(localized: "pfad_schwierigkeit_\(diff)_desc")
             }
         }
         
@@ -293,13 +293,13 @@ struct PfadTagDetailView: View {
     private var journeyProgressBar: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text(String(format: settings.localizedString(for: "pfad_progress_format"), tag.tagNummer))
+                Text(String(format: String(localized: "pfad_progress_format"), tag.tagNummer))
                     .font(.system(size: 14, weight: .black, design: .rounded))
                     .foregroundStyle(.primary)
                 
                 Spacer()
                 
-                let phaseLabel = settings.localizedString(for: "pfad_phase_tag_titel_\(tag.phase.rawValue)")
+                let phaseLabel = String(localized: "pfad_phase_tag_titel_\(tag.phase.rawValue)")
                 Text(phaseLabel)
                     .font(.system(size: 12, weight: .bold))
                     .foregroundStyle(tag.phase.farbe)
@@ -330,7 +330,7 @@ struct PfadTagDetailView: View {
     }
     
     private var journeyPhaseDescription: String {
-        settings.localizedString(for: "pfad_phase_beschreibung_\(tag.phase.rawValue)")
+        String(localized: "pfad_phase_beschreibung_\(tag.phase.rawValue)")
     }
     
 

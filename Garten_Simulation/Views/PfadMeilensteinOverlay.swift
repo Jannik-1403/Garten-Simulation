@@ -25,7 +25,7 @@ struct PfadMeilensteinOverlay: View {
                             .foregroundStyle(Color.goldPrimary.gradient)
                             .shadow(color: .goldPrimary.opacity(0.5), radius: 20)
                         
-                        Text(settings.localizedString(for: "pfad_meilenstein_titel"))
+                        Text(String(localized: "pfad_meilenstein_titel"))
                             .font(.system(size: 36, weight: .black, design: .rounded))
                             .foregroundStyle(.white)
                             .multilineTextAlignment(.center)
@@ -34,7 +34,7 @@ struct PfadMeilensteinOverlay: View {
                 )
                 
                 VStack(spacing: 12) {
-                    Text(settings.localizedString(for: meilensteinTitel))
+                    Text(NSLocalizedString(meilensteinTitel, comment: ""))
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundStyle(.white.opacity(0.9))
                     
@@ -49,7 +49,7 @@ struct PfadMeilensteinOverlay: View {
                 Button {
                     onDismiss()
                 } label: {
-                    Text(settings.localizedString(for: "common_continue"))
+                    Text(String(localized: "common_continue"))
                 }
                 .buttonStyle(DuolingoButtonStyle(
                     size: .large,

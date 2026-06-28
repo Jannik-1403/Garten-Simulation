@@ -46,7 +46,7 @@ struct OnboardingTutorialWeedView: View {
                             Button {
                                 buyDecoration()
                             } label: {
-                                Text(settings.localizedString(for: "onboarding_tutorial_weed_decoration_hint"))
+                                Text(String(localized: "onboarding_tutorial_weed_decoration_hint"))
                             }
                             .buttonStyle(DuolingoButtonStyle(
                                 size: .medium,
@@ -126,7 +126,7 @@ struct OnboardingTutorialWeedView: View {
                             Button {
                                 showWheelDemo()
                             } label: {
-                                Text(settings.localizedString(for: "onboarding_weiter"))
+                                Text(String(localized: "onboarding_weiter"))
                             }
                             .buttonStyle(DuolingoButtonStyle(size: .medium))
                             .padding(.top, 40)
@@ -146,7 +146,7 @@ struct OnboardingTutorialWeedView: View {
                         data.currentStep += 1
                     }
                 } label: {
-                    Text(settings.localizedString(for: "onboarding_weiter"))
+                    Text(String(localized: "onboarding_weiter"))
                 }
                 .buttonStyle(DuolingoButtonStyle(
                     size: .large,
@@ -169,10 +169,10 @@ struct OnboardingTutorialWeedView: View {
     
     private var bubbleText: String {
         switch step {
-        case .intro: return settings.localizedString(for: "onboarding_tutorial_4_text")
-        case .buying: return settings.localizedString(for: "onboarding_tutorial_weed_decoration_hint")
-        case .warning: return settings.localizedString(for: "onboarding_tutorial_interactive_weed_bubble")
-        case .wheel: return settings.localizedString(for: "onboarding_tutorial_interactive_weed_warning")
+        case .intro: return String(localized: "onboarding_tutorial_4_text")
+        case .buying: return String(localized: "onboarding_tutorial_weed_decoration_hint")
+        case .warning: return String(localized: "onboarding_tutorial_interactive_weed_bubble")
+        case .wheel: return String(localized: "onboarding_tutorial_interactive_weed_warning")
         }
     }
     

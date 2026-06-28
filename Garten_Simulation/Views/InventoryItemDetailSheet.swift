@@ -68,11 +68,11 @@ struct InventoryItemDetailSheet: View {
                         // MARK: Title + Subtitle
                         VStack(spacing: 6) {
                             let currentTitleKey = (settings.showHabitInsteadOfName && item.habitTitleKey != nil) ? item.habitTitleKey! : item.titleKey
-                            Text(settings.localizedString(for: currentTitleKey))
+                            Text(NSLocalizedString(currentTitleKey, comment: ""))
                                 .font(.system(size: 26, weight: .black, design: .rounded))
                                 .multilineTextAlignment(.center)
 
-                            Text(settings.localizedString(for: item.descriptionKey))
+                            Text(NSLocalizedString(item.descriptionKey, comment: ""))
                                 .font(.system(size: 14, weight: .medium, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .multilineTextAlignment(.center)
@@ -92,17 +92,17 @@ struct InventoryItemDetailSheet: View {
                         if item.id.hasPrefix("trash.") && !item.id.contains("custom") {
                             VStack(spacing: 16) {
                                 HStack {
-                                    Text(settings.localizedString(for: "habit.tips.title"))
+                                    Text(String(localized: "habit.tips.title"))
                                         .font(.system(size: 22, weight: .black, design: .rounded))
                                     Spacer()
                                 }
                                 .padding(.horizontal, 28)
 
                                 let tips = [
-                                    ("BadHabitsUnsichtbar", settings.localizedString(for: "habit.law.1"), "\(item.id).tip.1"),
-                                    ("BadHabitsUnttraktiv", settings.localizedString(for: "habit.law.2"), "\(item.id).tip.2"),
-                                    ("BadHabitsSchwer", settings.localizedString(for: "habit.law.3"), "\(item.id).tip.3"),
-                                    ("BadHabitsUnbefriedigend", settings.localizedString(for: "habit.law.4"), "\(item.id).tip.4")
+                                    ("BadHabitsUnsichtbar", String(localized: "habit.law.1"), "\(item.id).tip.1"),
+                                    ("BadHabitsUnttraktiv", String(localized: "habit.law.2"), "\(item.id).tip.2"),
+                                    ("BadHabitsSchwer", String(localized: "habit.law.3"), "\(item.id).tip.3"),
+                                    ("BadHabitsUnbefriedigend", String(localized: "habit.law.4"), "\(item.id).tip.4")
                                 ]
 
                                 ForEach(tips, id: \.1) { tip in
@@ -118,7 +118,7 @@ struct InventoryItemDetailSheet: View {
                                                 .font(.system(size: 15, weight: .bold, design: .rounded))
                                                 .foregroundColor(.primary)
 
-                                            Text(settings.localizedString(for: tip.2))
+                                            Text(NSLocalizedString(tip.2, comment: ""))
                                                 .font(.system(size: 14, weight: .medium, design: .rounded))
                                                 .foregroundColor(.secondary)
                                                 .fixedSize(horizontal: false, vertical: true)
@@ -153,7 +153,7 @@ struct InventoryItemDetailSheet: View {
                             HStack(spacing: 8) {
                                 Image(systemName: "exclamationmark.triangle.fill")
                                     .font(.system(size: 16))
-                                Text(settings.localizedString(for: "habit.relapse.report"))
+                                Text(String(localized: "habit.relapse.report"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                             }
                         }
@@ -195,19 +195,19 @@ struct InventoryItemDetailSheet: View {
                     .presentationCornerRadius(32)
             }
             .confirmationDialog(
-                settings.localizedString(for: "plant.detail.note.delete.confirm"),
+                String(localized: "plant.detail.note.delete.confirm"),
                 isPresented: Binding(
                     get: { noteToDeleteIndex != nil },
                     set: { if !$0 { noteToDeleteIndex = nil } }
                 ),
                 titleVisibility: .visible
             ) {
-                Button(settings.localizedString(for: "plant.detail.note.delete.action"), role: .destructive) {
+                Button(String(localized: "plant.detail.note.delete.action"), role: .destructive) {
                     if let index = noteToDeleteIndex {
                         gardenStore.deleteBadHabitNote(id: item.id, index: index)
                     }
                 }
-                Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
+                Button(String(localized: "button.cancel"), role: .cancel) { }
             }
 
         }
@@ -218,23 +218,23 @@ struct InventoryItemDetailSheet: View {
         let calendar = Calendar.current
         let executions = gardenStore.badHabitExecutions[item.id] ?? []
         let weekdays = [
-            settings.localizedString(for: "common.mon"),
-            settings.localizedString(for: "common.tue"),
-            settings.localizedString(for: "common.wed"),
-            settings.localizedString(for: "common.thu"),
-            settings.localizedString(for: "common.fri"),
-            settings.localizedString(for: "common.sat"),
-            settings.localizedString(for: "common.sun")
+            String(localized: "common.mon"),
+            String(localized: "common.tue"),
+            String(localized: "common.wed"),
+            String(localized: "common.thu"),
+            String(localized: "common.fri"),
+            String(localized: "common.sat"),
+            String(localized: "common.sun")
         ]
         let fakePlant: HabitModel = {
             let model = HabitModel(
                 id: item.id,
-                name: settings.localizedString(for: item.habitTitleKey ?? item.titleKey),
+                name: NSLocalizedString(item.habitTitleKey ?? item.titleKey, comment: ""),
                 symbolName: item.icon,
                 symbolColor: item.colorHex,
                 habitCategory: .lifestyle,
                 symbolism: "",
-                habitName: settings.localizedString(for: item.habitTitleKey ?? item.titleKey)
+                habitName: NSLocalizedString(item.habitTitleKey ?? item.titleKey, comment: "")
             )
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
@@ -350,7 +350,7 @@ struct InventoryItemDetailSheet: View {
                     Text(total > 0 ? "\(streakDays)" : "-")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                 }
-                Text(settings.localizedString(for: "habit.stats.streak").uppercased())
+                Text(String(localized: "habit.stats.streak").uppercased())
                     .font(.system(size: 10, weight: .bold))
                     .foregroundStyle(.secondary)
             }
@@ -367,7 +367,7 @@ struct InventoryItemDetailSheet: View {
                     Text("\(total)")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                 }
-                Text(settings.localizedString(for: "habit.stats.total").uppercased())
+                Text(String(localized: "habit.stats.total").uppercased())
                     .font(.system(size: 10, weight: .bold))
                     .foregroundStyle(.secondary)
             }
@@ -414,7 +414,7 @@ struct InventoryItemDetailSheet: View {
                 showNotizSheet = true
             } label: {
                 ZStack {
-                    Text(settings.localizedString(for: "plant.detail.note.add")).textCase(.uppercase)
+                    Text(String(localized: "plant.detail.note.add")).textCase(.uppercase)
                         .font(.system(size: 14, weight: .bold, design: .rounded))
                 }
                 .frame(maxWidth: .infinity)
@@ -456,10 +456,10 @@ struct InventoryItemDetailSheet: View {
 
                     VStack(spacing: 8) {
                         let currentTitleKey = (settings.showHabitInsteadOfName && item.habitTitleKey != nil) ? item.habitTitleKey! : item.titleKey
-                        Text(settings.localizedString(for: currentTitleKey))
+                        Text(NSLocalizedString(currentTitleKey, comment: ""))
                             .font(.system(size: 24, weight: .bold, design: .rounded))
 
-                        Text(settings.localizedString(for: item.descriptionKey))
+                        Text(NSLocalizedString(item.descriptionKey, comment: ""))
                             .font(.system(size: 16, weight: .medium, design: .rounded))
                             .lineSpacing(4)
                             .padding(.horizontal, 40)
@@ -486,7 +486,7 @@ struct InventoryItemDetailSheet: View {
                                 handleUseTap()
                             }
                         } label: {
-                            Text(item.itemType == .powerUp ? settings.localizedString(for: "button.use") : settings.localizedString(for: "button.ok"))
+                            Text(item.itemType == .powerUp ? String(localized: "button.use") : String(localized: "button.ok"))
                         }
                         .buttonStyle(DuolingoButtonStyle(
                             size: .large,
@@ -500,12 +500,12 @@ struct InventoryItemDetailSheet: View {
                         let sellPrice = Int(Double(item.price) * 0.5)
                         Button {
                             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                            shopStore.sell(id: item.id, price: item.price, title: settings.localizedString(for: item.titleKey))
+                            shopStore.sell(id: item.id, price: item.price, title: NSLocalizedString(item.titleKey, comment: ""))
                             gardenStore.itemEntfernen(id: item.id)
                             dismiss()
                         } label: {
                             VStack(spacing: 2) {
-                                Text(settings.localizedString(for: "shop.item.sell"))
+                                Text(String(localized: "shop.item.sell"))
                                     .font(.system(size: 14, weight: .bold))
                                 HStack(spacing: 4) {
                                     Image("coin")
@@ -556,9 +556,9 @@ struct InventoryItemDetailSheet: View {
                             
                             let duration = Int(p.durationHours ?? 24)
                             let plantDisplayName = settings.showHabitInsteadOfName 
-                                ? settings.localizedString(for: plant.habitName)
-                                : settings.localizedString(for: plant.name)
-                            successMessage = String(format: settings.localizedString(for: "powerup.active.plant"), plantDisplayName, duration)
+                                ? NSLocalizedString(plant.habitName, comment: "")
+                                : NSLocalizedString(plant.name, comment: "")
+                            successMessage = String(format: String(localized: "powerup.active.plant"), plantDisplayName, duration)
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                                 withAnimation(.spring()) {
@@ -579,20 +579,20 @@ struct InventoryItemDetailSheet: View {
                 }
             }
             .alert(
-                settings.localizedString(for: "powerup.weed_shield.needs_weed.title"),
+                String(localized: "powerup.weed_shield.needs_weed.title"),
                 isPresented: $showNeedsWeedForPowerUpAlert
             ) {
-                Button(settings.localizedString(for: "button.ok"), role: .cancel) {}
+                Button(String(localized: "button.ok"), role: .cancel) {}
             } message: {
-                Text(settings.localizedString(for: "powerup.weed_shield.needs_weed.message"))
+                Text(String(localized: "powerup.weed_shield.needs_weed.message"))
             }
             .alert(
-                "Maximale Leben erreicht",
+                String(localized: "powerup.lives.max_reached.title", defaultValue: "Maximale Leben erreicht"),
                 isPresented: $showMaxLivesAlert
             ) {
-                Button(settings.localizedString(for: "button.ok"), role: .cancel) {}
+                Button(String(localized: "button.ok"), role: .cancel) {}
             } message: {
-                Text(settings.localizedString(for: "powerup.lives.full"))
+                Text(String(localized: "powerup.lives.full"))
             }
         } // NavigationStack
     }
@@ -632,7 +632,7 @@ struct InventoryItemDetailSheet: View {
         shopStore.removeFromPurchased(id: item.id)
 
         let duration = Int(p.durationHours ?? 24)
-        successMessage = String(format: settings.localizedString(for: "powerup.active.garden"), duration)
+        successMessage = String(format: String(localized: "powerup.active.garden"), duration)
 
         withAnimation(.spring()) {
             showSuccessPill = true
@@ -662,7 +662,7 @@ struct BadHabitNotizSheet: View {
             // Header
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(settings.localizedString(for: isEditing ? "plant.detail.note.edit" : "plant.detail.note.add"))
+                    Text(NSLocalizedString(isEditing ? "plant.detail.note.edit" : "plant.detail.note.add", comment: ""))
                         .font(.system(size: 24, weight: .black, design: .rounded))
                 }
                 Spacer()
@@ -688,7 +688,7 @@ struct BadHabitNotizSheet: View {
                 )
                 .overlay(alignment: .topLeading) {
                     if notizText.isEmpty {
-                        Text(settings.localizedString(for: "plant.detail.note.placeholder"))
+                        Text(String(localized: "plant.detail.note.placeholder"))
                             .font(.system(size: 16, weight: .medium, design: .rounded))
                             .foregroundStyle(.tertiary)
                             .padding(20)
@@ -707,7 +707,7 @@ struct BadHabitNotizSheet: View {
                 }
                 dismiss()
             } label: {
-                Text(settings.localizedString(for: isEditing ? "plant.detail.note.save" : "plant.detail.note.add.action"))
+                Text(NSLocalizedString(isEditing ? "plant.detail.note.save" : "plant.detail.note.add.action", comment: ""))
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large,

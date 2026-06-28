@@ -37,11 +37,11 @@ struct ActivePowerUpDetailSheet: View {
                 // MARK: - Texts
                 VStack(spacing: 12) {
                     if let base = powerUpBase {
-                        Text(settings.localizedString(for: base.name))
+                        Text(NSLocalizedString(base.name, comment: ""))
                             .font(.system(size: 24, weight: .bold, design: .rounded))
                             .multilineTextAlignment(.center)
                         
-                        Text(settings.localizedString(for: base.description))
+                        Text(NSLocalizedString(base.description, comment: ""))
                             .font(.system(size: 16, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -49,10 +49,10 @@ struct ActivePowerUpDetailSheet: View {
                         
                         if !base.howToUse.isEmpty {
                             VStack(spacing: 4) {
-                                Text(settings.localizedString(for: "shop.item.usage"))
+                                Text(String(localized: "shop.item.usage"))
                                     .font(.system(size: 11, weight: .bold))
                                     .foregroundStyle(.tertiary)
-                                Text(settings.localizedString(for: base.howToUse))
+                                Text(NSLocalizedString(base.howToUse, comment: ""))
                                     .font(.system(size: 14))
                                     .foregroundStyle(.secondary)
                                     .multilineTextAlignment(.center)
@@ -65,7 +65,7 @@ struct ActivePowerUpDetailSheet: View {
                 
                 // MARK: - Timer
                 VStack(spacing: 4) {
-                    Text(settings.localizedString(for: "powerup.active_until")) // Could be localized
+                    Text(String(localized: "powerup.active_until")) // Could be localized
                         .font(.system(size: 12, weight: .bold))
                         .foregroundStyle(.tertiary)
                         .textCase(.uppercase)
@@ -75,12 +75,12 @@ struct ActivePowerUpDetailSheet: View {
                             .font(.system(size: 18, weight: .bold))
                             .foregroundStyle(powerUpBase?.color ?? .green)
                         
-                        Text(String(format: settings.localizedString(for: "powerup.remaining"), aktiv.timeRemainingFormatted))
+                        Text(String(format: String(localized: "powerup.remaining"), aktiv.timeRemainingFormatted))
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundStyle(.secondary)
                             .padding(.top, 4)
                     } else {
-                        Text(settings.localizedString(for: "powerup.permanent"))
+                        Text(String(localized: "powerup.permanent"))
                             .font(.system(size: 18, weight: .bold))
                             .foregroundStyle(powerUpBase?.color ?? .green)
                             
@@ -102,7 +102,7 @@ struct ActivePowerUpDetailSheet: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text(settings.localizedString(for: "button.ok"))
+                    Text(String(localized: "button.ok"))
                 }
                 .buttonStyle(DuolingoButtonStyle(
                     backgroundColor: powerUpBase?.color ?? .green,

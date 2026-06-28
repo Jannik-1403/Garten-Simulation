@@ -165,11 +165,11 @@ class HabitProgressionGenerator {
             let formattedValue = isIntegerUnit ? String(format: "%.0f", targetValue) : String(format: "%.1f", targetValue)
             let formattedValueStr = formattedValue.replacingOccurrences(of: ".", with: ",") // For German locale compatibility if needed, but AppStrings format uses %@
             
-            let template = AppStrings.get(templateKey, language: language)
-            let unitText = AppStrings.get(unitKey, language: language)
+            let template = NSLocalizedString(templateKey, comment: "")
+            let unitText = NSLocalizedString(unitKey, comment: "")
             
             let motIndex = (dayNum % 5) + 1
-            let motivation = AppStrings.get("progression_mot_\(motIndex)", language: language)
+            let motivation = NSLocalizedString("progression_mot_\(motIndex)", comment: "")
             
             // Replaces %@ with value and unit
             // Note: Make sure the template in AppStrings uses `%1$@` and `%2$@` or `%@` sequentially
@@ -184,13 +184,13 @@ class HabitProgressionGenerator {
             else if dayNum <= 75 { phaseKey = vertiefungKey }
             else { phaseKey = meisterschaftKey }
             
-            let text = AppStrings.get(phaseKey, language: language)
+            let text = NSLocalizedString(phaseKey, comment: "")
             
             var diffText = ""
             if difficulty.lowercased() == "experte" {
-                diffText = AppStrings.get("progression_diff_experte_prefix", language: language) + " "
+                diffText = NSLocalizedString("progression_diff_experte_prefix", comment: "") + " "
             } else if difficulty.lowercased() == "fortgeschritten" {
-                diffText = AppStrings.get("progression_diff_fortgeschritten_prefix", language: language) + " "
+                diffText = NSLocalizedString("progression_diff_fortgeschritten_prefix", comment: "") + " "
             }
             
             return "\(diffText)\(text)"

@@ -15,21 +15,21 @@ struct SingleHabitNode: View {
     private var displayedName: String {
         // 1. Versuche die aktive Gewohnheit des Nutzers zu finden
         if let habit = gardenStore.pflanzen.first(where: { $0.id == strang.pflanzenID }) {
-            return settings.localizedString(for: habit.displayedHabitName)
+            return NSLocalizedString(habit.displayedHabitName, comment: "")
         }
         
         // 2. Fallback: Datenbank-Abgleich für spezifischen Namen (z.B. Meditieren)
         if let plant = GameDatabase.allPlants.first(where: { $0.id.lowercased() == strang.pflanzenID.lowercased() }) {
             // Erst den Gewohnheits-Namen versuchen (z.B. habit.meditieren)
             if !plant.habitName.isEmpty {
-                return settings.localizedString(for: plant.habitName)
+                return NSLocalizedString(plant.habitName, comment: "")
             }
             // Wenn der fehlt, die Kategorie (z.B. category.mental)
-            return settings.localizedString(for: plant.habitCategory.localizationKey)
+            return NSLocalizedString(plant.habitCategory.localizationKey, comment: "")
         }
         
         // 3. Letzter Fallback (sollte eigentlich nie erreicht werden)
-        return settings.localizedString(for: strang.pflanzenName)
+        return NSLocalizedString(strang.pflanzenName, comment: "")
     }
 
     private var obereFarbe: Color {
@@ -133,12 +133,12 @@ struct SingleHabitNode: View {
         if let habit = gardenStore.pflanzen.first(where: { $0.id == strang.pflanzenID }) {
             NavigationStack {
                 VStack(spacing: 20) {
-                    Text(settings.localizedString(for: habit.displayedHabitName))
+                    Text(NSLocalizedString(habit.displayedHabitName, comment: ""))
                         .font(.headline)
                         .padding(.top)
                     
                     DatePicker(
-                        settings.localizedString(for: "time_picker.label"),
+                        String(localized: "time_picker.label"),
                         selection: $tempTime,
                         displayedComponents: .hourAndMinute
                     )
@@ -147,14 +147,14 @@ struct SingleHabitNode: View {
                     
                     Spacer()
                 }
-                .navigationTitle(settings.localizedString(for: "time_picker.title"))
+                .navigationTitle(String(localized: "time_picker.title"))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
-                        Button(settings.localizedString(for: "common.cancel")) { showTimePicker = false }
+                        Button(String(localized: "common.cancel")) { showTimePicker = false }
                     }
                     ToolbarItem(placement: .confirmationAction) {
-                        Button(settings.localizedString(for: "common.save")) {
+                        Button(String(localized: "common.save")) {
                             habit.reminderTime = tempTime
                             gardenStore.savePlants()
                             gardenStore.objectWillChange.send()

@@ -12,11 +12,11 @@ struct OnboardingWillkommenView: View {
             if showContent {
                 OnboardingIgelView(
                     pose: .winkt,
-                    sprechblasenText: settings.localizedString(for: "onboarding_willkommen_blase")
+                    sprechblasenText: String(localized: "onboarding_willkommen_blase")
                 )
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 
-                    Text(settings.localizedString(for: "onboarding_willkommen_untertitel"))
+                    Text(String(localized: "onboarding_willkommen_untertitel"))
                         .font(.system(size: 34, weight: .heavy, design: .rounded))
                         .foregroundStyle(.black)
                         .multilineTextAlignment(.center)
@@ -35,7 +35,7 @@ struct OnboardingWillkommenView: View {
                         data.currentStep += 1
                     }
                 } label: {
-                    Text(settings.localizedString(for: "onboarding_los_gehts"))
+                    Text(String(localized: "onboarding_los_gehts"))
                 }
                 .buttonStyle(DuolingoButtonStyle(
                     size: .large,

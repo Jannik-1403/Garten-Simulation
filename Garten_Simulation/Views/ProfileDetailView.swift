@@ -39,15 +39,15 @@ struct ProfileDetailView: View {
                     
                     // Detailed Stats / History
                     VStack(alignment: .leading, spacing: 20) {
-                        Text(settings.localizedString(for: "common.details"))
+                        Text(String(localized: "common.details"))
                             .font(.system(size: 13, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                             .padding(.leading, 8)
                         
                         VStack(spacing: 12) {
-                            detailRow(label: settings.localizedString(for: "common.total"), value: value)
-                            detailRow(label: settings.localizedString(for: "common.this_month"), value: "+\(Int.random(in: 1...5))")
-                            detailRow(label: settings.localizedString(for: "common.record"), value: value)
+                            detailRow(label: String(localized: "common.total"), value: value)
+                            detailRow(label: String(localized: "common.this_month"), value: "+\(Int.random(in: 1...5))")
+                            detailRow(label: String(localized: "common.record"), value: value)
                         }
                     }
                     .padding(.horizontal, 24)

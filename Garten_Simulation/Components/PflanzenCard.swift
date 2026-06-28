@@ -71,7 +71,7 @@ struct PflanzenCard: View {
                                 .scaledToFit()
                                 .frame(width: 14, height: 14)
                             
-                            Text("\(pflanze.remainingHoursInCycle)h")
+                            Text("\(pflanze.remainingHoursInCycle)\(String(localized: "common.hour_short"))")
                                 .font(.system(size: 12, weight: .bold, design: .rounded))
                                 .foregroundStyle((pflanze.showWarning || pflanze.isDead) ? .orange : .secondary)
                         }
@@ -83,7 +83,7 @@ struct PflanzenCard: View {
 
                 // MARK: Habit Name + Seltenheit
                 VStack(spacing: 4) {
-                    Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
+                    Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
                         .font(.system(size: 18, weight: .black, design: .rounded))
                         .foregroundStyle(Color.primary)
                         .lineLimit(2)
@@ -169,10 +169,10 @@ struct PflanzenCard: View {
                 Group {
                     if pflanze.isDead {
                         VStack(spacing: 2) {
-                            Text(settings.localizedString(for: "pflanze.tot.titel"))
+                            Text(String(localized: "pflanze.tot.titel"))
                                 .font(.system(size: 14, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.orange)
-                            Text(String(format: settings.localizedString(for: "pflanze.tot.seit"), pflanze.missedCycles))
+                            Text(String(format: String(localized: "pflanze.tot.seit"), pflanze.missedCycles))
                                 .font(.system(size: 12, weight: .regular, design: .rounded))
                                 .foregroundStyle(.secondary)
                         }
@@ -193,7 +193,7 @@ struct PflanzenCard: View {
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundStyle(Color.gruenPrimary)
                             
-                            Text(settings.localizedString(for: "garden.plant.done"))
+                            Text(String(localized: "garden.plant.done"))
                                 .font(.system(size: 15, weight: .bold, design: .rounded))
                                 .foregroundStyle(Color.gruenPrimary)
                         }
@@ -219,7 +219,7 @@ struct PflanzenCard: View {
         }
         .onChange(of: gardenStore.letzterBonus) { _, bonus in
             if bonus != nil, gardenStore.letzteBonusPflanzeID == pflanze.id {
-                bonusText = settings.localizedString(for: "bonus_text")
+                bonusText = String(localized: "bonus_text")
                 zeigeBonusText = true
             }
         }
@@ -337,14 +337,14 @@ struct RevivePlantSheet: View {
                     .scaledToFit()
                     .frame(width: 140, height: 140)
                 
-                Text(settings.localizedString(for: "pflanze.wiederbeleben.titel"))
+                Text(String(localized: "pflanze.wiederbeleben.titel"))
                     .font(.system(size: 24, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
             }
             .padding(.top, 20)
             
             // Description
-            Text(String(format: settings.localizedString(for: "pflanze.wiederbeleben.beschreibung"), pflanze.missedCycles))
+            Text(String(format: String(localized: "pflanze.wiederbeleben.beschreibung"), pflanze.missedCycles))
                 .font(.system(size: 16, weight: .medium, design: .rounded))
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -366,7 +366,7 @@ struct RevivePlantSheet: View {
                         gardenStore.reviveWithWonderWater(pflanze: pflanze)
                         dismiss()
                     } label: {
-                        Text("\(settings.localizedString(for: "item.wunder_wasser.name")) (Gratis)")
+                        Text("\(String(localized: "item.wunder_wasser.name")) (Gratis)")
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                     }
                     .buttonStyle(DuolingoButtonStyle(
@@ -379,7 +379,7 @@ struct RevivePlantSheet: View {
                         gardenStore.revive(pflanze: pflanze)
                         dismiss()
                     } label: {
-                        Text(settings.localizedString(for: "pflanze.wiederbeleben.button"))
+                        Text(String(localized: "pflanze.wiederbeleben.button"))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                     }
                     .buttonStyle(DuolingoButtonStyle(
@@ -394,7 +394,7 @@ struct RevivePlantSheet: View {
                     gardenStore.loeschePflanze(pflanze: pflanze)
                     dismiss()
                 } label: {
-                    Text(settings.localizedString(for: "button.delete"))
+                    Text(String(localized: "button.delete"))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundStyle(.red)
                         .padding(.vertical, 8)

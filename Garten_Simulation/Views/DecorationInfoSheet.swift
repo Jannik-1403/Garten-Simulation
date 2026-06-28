@@ -14,12 +14,12 @@ struct DecorationInfoSheet: View {
                         .frame(width: 80, height: 80)
                         .padding(.top, 20)
                     
-                    Text(settings.localizedString(for: "decoration.info.title"))
+                    Text(String(localized: "decoration.info.title"))
                         .font(.title2)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
                     
-                    Text(settings.localizedString(for: "decoration.info.description"))
+                    Text(String(localized: "decoration.info.description"))
                         .font(.body)
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.secondary)

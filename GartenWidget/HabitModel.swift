@@ -296,12 +296,11 @@ class HabitModel: Identifiable, ObservableObject, Codable {
 
     var formattedVolume: String {
         let liter = totalMlGegossen / 1000
-        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
         if liter < 1 {
-            let unit = AppStrings.get("common.ml", language: lang)
+            let unit = NSLocalizedString("common.ml", comment: "")
             return String(format: "%.0f %@", totalMlGegossen, unit)
         } else {
-            let unit = AppStrings.get("common.liter", language: lang)
+            let unit = NSLocalizedString("common.liter", comment: "")
             return String(format: "%.1f %@", liter, unit)
         }
     }

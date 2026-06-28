@@ -48,7 +48,7 @@ struct GrowthAssessmentQuizView: View {
         }
         .navigationBarHidden(showResult)
         .navigationBarBackButtonHidden(true)
-        .navigationTitle(settings.localizedString(for: HabitCategory.growth.localizationKey))
+        .navigationTitle(NSLocalizedString(HabitCategory.growth.localizationKey, comment: ""))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -117,7 +117,7 @@ struct GrowthAssessmentQuizView: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
-                    QuizQuestionCard(text: settings.localizedString(for: currentQuestion.textKey))
+                    QuizQuestionCard(text: NSLocalizedString(currentQuestion.textKey, comment: ""))
                         .padding(.horizontal, 24)
                         .padding(.top, 16)
                         .offset(x: cardOffset)
@@ -126,7 +126,7 @@ struct GrowthAssessmentQuizView: View {
                     VStack(spacing: 10) {
                         ForEach(shuffledAnswers) { answer in
                             QuizAnswerButton(
-                                text: settings.localizedString(for: answer.textKey),
+                                text: NSLocalizedString(answer.textKey, comment: ""),
                                 isSelected: selectedAnswerID == answer.id,
                                 color: .green,
                                 shadowColor: Color(hex: "#4CAF50"),
@@ -155,8 +155,8 @@ struct GrowthAssessmentQuizView: View {
                 Button(action: advance) {
                     HStack(spacing: 8) {
                         Text(isLastQuestion
-                             ? settings.localizedString(for: "assessment.btn.result")
-                             : settings.localizedString(for: "assessment.btn.next"))
+                             ? String(localized: "assessment.btn.result")
+                             : String(localized: "assessment.btn.next"))
                         Image(systemName: isLastQuestion ? "chart.bar.fill" : "arrow.right")
                     }
                 }
@@ -260,13 +260,13 @@ struct GrowthResultView: View {
                         }
 
                         VStack(spacing: 6) {
-                            Text(settings.localizedString(for: "assessment.result.youare"))
+                            Text(String(localized: "assessment.result.youare"))
                                 .font(.system(size: 13, weight: .black, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .textCase(.uppercase)
                                 .tracking(1.5)
 
-                            Text(settings.localizedString(for: profile.titleKey))
+                            Text(NSLocalizedString(profile.titleKey, comment: ""))
                                 .font(.system(size: 30, weight: .black, design: .rounded))
                                 .foregroundStyle(.primary)
                                 
@@ -274,7 +274,7 @@ struct GrowthResultView: View {
                     }
 
                     // Description Card
-                    Text(settings.localizedString(for: profile.descKey))
+                    Text(NSLocalizedString(profile.descKey, comment: ""))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundStyle(.primary.opacity(0.85))
                         .multilineTextAlignment(.center)
@@ -336,26 +336,26 @@ struct GrowthScoreBreakdownCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(settings.localizedString(for: "assessment.result.breakdown"))
+            Text(String(localized: "assessment.result.breakdown"))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
                 .tracking(1)
 
             ScoreBar(
-                label: settings.localizedString(for: "assessment.score.disziplin"),
+                label: String(localized: "assessment.score.disziplin"),
                 value: animated ? disziplinNorm : 0,
                 color: Color(hex: "#D0021B"),
                 rawValue: result.rawDisziplin
             )
             ScoreBar(
-                label: settings.localizedString(for: "assessment.score.effizienz"),
+                label: String(localized: "assessment.score.effizienz"),
                 value: animated ? effizienzNorm : 0,
                 color: Color(hex: "#F5A623"),
                 rawValue: result.rawEffizienz
             )
             ScoreBar(
-                label: settings.localizedString(for: "assessment.score.umsetzung"),
+                label: String(localized: "assessment.score.umsetzung"),
                 value: animated ? umsetzungNorm : 0,
                 color: Color(hex: "#4CAF50"),
                 rawValue: result.rawUmsetzung

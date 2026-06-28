@@ -56,11 +56,11 @@ struct WheelOfFortuneView: View {
                         Button {
                             FeedbackManager.shared.playTap()
                         } label: {
-                            Text(settings.localizedString(for: "dailyspin.title"))
+                            Text(String(localized: "dailyspin.title"))
                         }
                         .buttonStyle(Pressed3DTextButtonStyle())
                         
-                        Text(settings.localizedString(for: "dailyspin.subtitle"))
+                        Text(String(localized: "dailyspin.subtitle"))
                             .font(.system(size: 15, weight: .regular))
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -139,11 +139,11 @@ struct WheelOfFortuneView: View {
                     VStack(spacing: 12) {
                         Button(action: handleSpinAction) {
                             if gardenStore.pendingDailySpin {
-                                Text(settings.localizedString(for: "spin_button_gratis"))
+                                Text(String(localized: "spin_button_gratis"))
                             } else if gardenStore.gluecksradDrehungen > 0 {
-                                Text(String(format: settings.localizedString(for: "spin_button_mit_anzahl"), gardenStore.gluecksradDrehungen))
+                                Text(String(format: String(localized: "spin_button_mit_anzahl"), gardenStore.gluecksradDrehungen))
                             } else {
-                                Text(settings.localizedString(for: "spin_button_keine"))
+                                Text(String(localized: "spin_button_keine"))
                             }
                         }
                         .buttonStyle(DuolingoButtonStyle(
@@ -155,11 +155,11 @@ struct WheelOfFortuneView: View {
                         .padding(.horizontal, 30)
                         
                         if !gardenStore.heuteGegossen {
-                            Text(settings.localizedString(for: "lucky_wheel_locked_hint"))
+                            Text(String(localized: "lucky_wheel_locked_hint"))
                                 .font(.footnote)
                                 .foregroundStyle(.secondary)
                         } else if !gardenStore.pendingDailySpin && gardenStore.gluecksradDrehungen <= 0 {
-                            Text(settings.localizedString(for: "dailyspin.no_spins_hint"))
+                            Text(String(localized: "dailyspin.no_spins_hint"))
                                 .font(.system(size: 13, weight: .medium))
                                 .foregroundStyle(.secondary)
                         }
@@ -350,18 +350,18 @@ struct SpinResultOverlay: View {
 
     private var overlayTitel: String {
         switch result {
-        case .klein:   return settings.localizedFormat("dailyspin.result.wheel.coins", 20)
-        case .mittel:  return settings.localizedFormat("dailyspin.result.wheel.coins", 50)
-        case .gross:   return settings.localizedFormat("dailyspin.result.wheel.coins", 100)
-        case .xpBoost: return settings.localizedFormat("dailyspin.result.wheel.xp", 100)
-        case .jackpot: return settings.localizedFormat("dailyspin.result.wheel.coins", 300)
+        case .klein:   return String(format: String(localized: "dailyspin.result.wheel.coins"), 20)
+        case .mittel:  return String(format: String(localized: "dailyspin.result.wheel.coins"), 50)
+        case .gross:   return String(format: String(localized: "dailyspin.result.wheel.coins"), 100)
+        case .xpBoost: return String(format: String(localized: "dailyspin.result.wheel.xp"), 100)
+        case .jackpot: return String(format: String(localized: "dailyspin.result.wheel.coins"), 300)
         }
     }
 
     private var overlayUntertitel: String {
         switch result {
-        case .xpBoost: return settings.localizedString(for: "dailyspin.result.xp.subtitle")
-        default:       return settings.localizedString(for: "dailyspin.result.coins.subtitle")
+        case .xpBoost: return String(localized: "dailyspin.result.xp.subtitle")
+        default:       return String(localized: "dailyspin.result.coins.subtitle")
         }
     }
 
@@ -386,7 +386,7 @@ struct SpinResultOverlay: View {
                 }
 
                 Button(action: onDismiss) {
-                    Text(settings.localizedString(for: "dailyspin.button.continue"))
+                    Text(String(localized: "dailyspin.button.continue"))
                         .font(.system(size: 17, weight: .bold, design: .rounded))
                 }
                 .buttonStyle(DuolingoButtonStyle(

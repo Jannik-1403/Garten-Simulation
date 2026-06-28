@@ -92,7 +92,7 @@ struct PlantTimelineView: View {
                         // MARK: - Scheduled notifications section
                         if !timelinePlants.isEmpty {
                             VStack(alignment: .leading, spacing: 16) {
-                                Text(settings.localizedString(for: "timeline.scheduled_notifications"))
+                                Text(String(localized: "timeline.scheduled_notifications"))
                                     .font(.system(size: 20, weight: .black, design: .rounded))
                                     .foregroundStyle(.primary)
                                     .padding(.horizontal, 24)
@@ -110,7 +110,7 @@ struct PlantTimelineView: View {
                         // MARK: - Plants without notifications section
                         if !otherPlants.isEmpty {
                             VStack(alignment: .leading, spacing: 16) {
-                                Text(settings.localizedString(for: "timeline.no_notification"))
+                                Text(String(localized: "timeline.no_notification"))
                                     .font(.system(size: 20, weight: .black, design: .rounded))
                                     .foregroundStyle(.primary)
                                     .padding(.horizontal, 24)
@@ -131,7 +131,7 @@ struct PlantTimelineView: View {
                                 Image(systemName: "leaf")
                                     .font(.system(size: 40))
                                     .foregroundStyle(.tertiary)
-                                Text(settings.localizedString(for: "garden.empty.subtitle"))
+                                Text(String(localized: "garden.empty.subtitle"))
                                     .font(.system(size: 16, weight: .medium, design: .rounded))
                                     .foregroundStyle(.secondary)
                             }
@@ -143,7 +143,7 @@ struct PlantTimelineView: View {
                     }
                 }
             }
-            .navigationTitle("Zeitleiste")
+            .navigationTitle(String(localized: "common.timeline"))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
         }
@@ -215,8 +215,8 @@ struct TimelineRow: View {
 
                         VStack(alignment: .leading, spacing: 4) {
                             Text(settings.showHabitInsteadOfName
-                                ? settings.localizedString(for: pflanze.habitName)
-                                : settings.localizedString(for: pflanze.name))
+                                ? NSLocalizedString(pflanze.habitName, comment: "")
+                                : NSLocalizedString(pflanze.name, comment: ""))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundStyle(.primary)
                                 .lineLimit(1)
@@ -228,9 +228,9 @@ struct TimelineRow: View {
                                     .lineLimit(1)
                             } else {
                                 let pflanzName = settings.showHabitInsteadOfName
-                                    ? settings.localizedString(for: pflanze.habitName)
-                                    : settings.localizedString(for: pflanze.name)
-                                Text(String(format: settings.localizedString(for: "timer.preview.body.example"), pflanzName))
+                                    ? NSLocalizedString(pflanze.habitName, comment: "")
+                                    : NSLocalizedString(pflanze.name, comment: "")
+                                Text(String(format: String(localized: "timer.preview.body.example"), pflanzName))
                                     .font(.system(size: 12, weight: .medium, design: .rounded))
                                     .foregroundStyle(.secondary)
                                     .lineLimit(1)
@@ -292,8 +292,8 @@ struct SimplePlantCell: View {
                     .allowsHitTesting(false)
 
                     Text(settings.showHabitInsteadOfName
-                        ? settings.localizedString(for: pflanze.habitName)
-                        : settings.localizedString(for: pflanze.name))
+                        ? NSLocalizedString(pflanze.habitName, comment: "")
+                        : NSLocalizedString(pflanze.name, comment: ""))
                         .font(.system(size: 13, weight: .bold, design: .rounded))
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)

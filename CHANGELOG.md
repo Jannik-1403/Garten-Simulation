@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-06-28 - Cleanup & TikTok Integration
+- **Projekt Cleanup**: Über 50 veraltete Python-/Ruby-Skripte und Logdateien aus dem Hauptverzeichnis entfernt, um das Projekt schlank zu halten.
+- **Assets Cleanup**: Ungenutzte Icons, fehlerhafte KI-Bildkopien und ungenutzte Charaktere aus `Assets.xcassets` entfernt. Bonsai-Stufen und das TikTok-Logo blieben erhalten.
+- **Community Einstellungen**: Neuen Bereich "Community" in `SettingsView` hinzugefügt, inklusive verlinktem TikTok-Account (`@grovy807`) mit offiziellem Logo.
+- **Lokalisierung**: TikTok-Texte direkt in `Localizable.xcstrings` für alle 11 Projektsprachen hinterlegt.
+
 ## 2026-06-28 - Onboarding Flow Korrektur
 - **Reihenfolge**: App-Onboarding → Tour-Prompt → Routinen-Onboarding funktioniert jetzt korrekt nach Alles-Löschen.
 - **Timing-Fix**: `routineOnboardingAbgeschlossen = false` wird jetzt BEVOR der Tab-Wechsel gesetzt → `onAppear` in `RoutinenView` sieht den korrekten Zustand.
@@ -57,3 +63,5 @@
 - Added GroovyHabitsWidget to the main WidgetBundle so it displays correctly.
 - Fixed a crash in RoutineSessionView caused by the Watchdog terminating the app when running in the background with isIdleTimerDisabled enabled.
 - Alles Löschen-Button im Einstellungsmenü setzt nun auch Quiz-Ergebnisse (Assessments) und geplante Benachrichtigungen korrekt zurück.
+
+- Fix: Pluralformen für Gewohnheiten in allen 11 Sprachen korrigiert (String Catalog substitutions)

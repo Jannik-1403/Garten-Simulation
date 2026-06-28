@@ -20,7 +20,7 @@ struct AssessmentEntryButton: View {
                 }
 
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(settings.localizedString(for: "assessment.entry.title"))
+                    Text(String(localized: "assessment.entry.title"))
                         .font(.system(size: 15, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
 
@@ -29,12 +29,12 @@ struct AssessmentEntryButton: View {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 11, weight: .semibold))
                                 .foregroundStyle(.green)
-                            Text(settings.localizedString(for: result.profile.titleKey))
+                            Text(NSLocalizedString(result.profile.titleKey, comment: ""))
                                 .font(.system(size: 12, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.secondary)
                         }
                     } else {
-                        Text(settings.localizedString(for: "assessment.entry.subtitle"))
+                        Text(String(localized: "assessment.entry.subtitle"))
                             .font(.system(size: 12, weight: .semibold, design: .rounded))
                             .foregroundStyle(.secondary)
                     }
@@ -78,11 +78,11 @@ struct AssessmentCategoryView: View {
 
                         // Header
                         VStack(spacing: 8) {
-                            Text(settings.localizedString(for: "assessment.category.headline"))
+                            Text(String(localized: "assessment.category.headline"))
                                 .font(.system(size: 28, weight: .black, design: .rounded))
                                 .multilineTextAlignment(.center)
 
-                            Text(settings.localizedString(for: "assessment.category.sub"))
+                            Text(String(localized: "assessment.category.sub.15q", defaultValue: "15 Fragen. 5 Minuten. Keine Selbsttäuschung."))
                                 .font(.system(size: 14, weight: .medium, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .multilineTextAlignment(.center)
@@ -115,7 +115,7 @@ struct AssessmentCategoryView: View {
                     }
                 }
             }
-            .navigationTitle(settings.localizedString(for: "assessment.nav.title"))
+            .navigationTitle(String(localized: "assessment.nav.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -271,7 +271,7 @@ struct Category3DCard: View {
                             .saturation(isAvailable ? 1.0 : 0.0)
                     )
 
-                Text(settings.localizedString(for: category.localizationKey))
+                Text(NSLocalizedString(category.localizationKey, comment: ""))
                     .font(.system(size: 15, weight: .black, design: .rounded))
                     .foregroundStyle(isAvailable ? .primary : .tertiary)
 
@@ -280,7 +280,7 @@ struct Category3DCard: View {
                         .font(.system(size: 18))
                         .foregroundStyle(.green)
                 } else if !isAvailable {
-                    Text(settings.localizedString(for: "assessment.soon"))
+                    Text(String(localized: "assessment.soon"))
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundStyle(.quaternary)
                         .padding(.horizontal, 10)
@@ -352,7 +352,7 @@ struct FinanceAssessmentQuizView: View {
         }
         .navigationBarHidden(showResult)
         .navigationBarBackButtonHidden(true)
-        .navigationTitle(settings.localizedString(for: HabitCategory.finance.localizationKey))
+        .navigationTitle(NSLocalizedString(HabitCategory.finance.localizationKey, comment: ""))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -437,7 +437,7 @@ struct FinanceAssessmentQuizView: View {
 
 
                     // Question Card
-                    QuizQuestionCard(text: settings.localizedString(for: currentQuestion.textKey))
+                    QuizQuestionCard(text: NSLocalizedString(currentQuestion.textKey, comment: ""))
                         .padding(.horizontal, 24)
                         .padding(.top, 16)
                         .offset(x: cardOffset)
@@ -447,7 +447,7 @@ struct FinanceAssessmentQuizView: View {
                     VStack(spacing: 10) {
                         ForEach(shuffledAnswers) { answer in
                             QuizAnswerButton(
-                                text: settings.localizedString(for: answer.textKey),
+                                text: NSLocalizedString(answer.textKey, comment: ""),
                                 isSelected: selectedAnswerID == answer.id,
                                 color: .coinBlue,
                                 shadowColor: Color(hex: "#007A99"),
@@ -477,8 +477,8 @@ struct FinanceAssessmentQuizView: View {
                 Button(action: advance) {
                     HStack(spacing: 8) {
                         Text(isLastQuestion
-                             ? settings.localizedString(for: "assessment.btn.result")
-                             : settings.localizedString(for: "assessment.btn.next"))
+                             ? String(localized: "assessment.btn.result")
+                             : String(localized: "assessment.btn.next"))
                         Image(systemName: isLastQuestion ? "chart.bar.fill" : "arrow.right")
                     }
                 }
@@ -709,13 +709,13 @@ struct FinanceResultView: View {
                         }
 
                         VStack(spacing: 6) {
-                            Text(settings.localizedString(for: "assessment.result.youare"))
+                            Text(String(localized: "assessment.result.youare"))
                                 .font(.system(size: 13, weight: .black, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .textCase(.uppercase)
                                 .tracking(1.5)
 
-                            Text(settings.localizedString(for: profile.titleKey))
+                            Text(NSLocalizedString(profile.titleKey, comment: ""))
                                 .font(.system(size: 30, weight: .black, design: .rounded))
                                 .foregroundStyle(.primary)
                                 
@@ -723,7 +723,7 @@ struct FinanceResultView: View {
                     }
 
                     // Profile Description
-                    Text(settings.localizedString(for: profile.descKey))
+                    Text(NSLocalizedString(profile.descKey, comment: ""))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundStyle(.primary.opacity(0.85))
                         .multilineTextAlignment(.center)
@@ -785,26 +785,26 @@ struct ScoreBreakdownCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(settings.localizedString(for: "assessment.result.breakdown"))
+            Text(String(localized: "assessment.result.breakdown"))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
                 .tracking(1)
 
             ScoreBar(
-                label: settings.localizedString(for: "assessment.score.kontrolle"),
+                label: String(localized: "assessment.score.kontrolle"),
                 value: animated ? kontrolleNorm : 0,
                 color: Color(hex: "#4FC3F7"),
                 rawValue: result.rawKontrolle
             )
             ScoreBar(
-                label: settings.localizedString(for: "assessment.score.entscheidung"),
+                label: String(localized: "assessment.score.entscheidung"),
                 value: animated ? entscheidungNorm : 0,
                 color: Color(hex: "#81C784"),
                 rawValue: result.rawEntscheidung
             )
             ScoreBar(
-                label: settings.localizedString(for: "assessment.score.risiko"),
+                label: String(localized: "assessment.score.risiko"),
                 value: animated ? risikoNorm : 0,
                 color: Color(hex: "#FFB74D"),
                 rawValue: result.rawRisiko

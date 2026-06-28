@@ -52,7 +52,7 @@ struct HealthAssessmentQuizView: View {
         }
         .navigationBarHidden(showResult)
         .navigationBarBackButtonHidden(true)
-        .navigationTitle(settings.localizedString(for: HabitCategory.health.localizationKey))
+        .navigationTitle(NSLocalizedString(HabitCategory.health.localizationKey, comment: ""))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -121,7 +121,7 @@ struct HealthAssessmentQuizView: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
-                    QuizQuestionCard(text: settings.localizedString(for: currentQuestion.textKey))
+                    QuizQuestionCard(text: NSLocalizedString(currentQuestion.textKey, comment: ""))
                         .padding(.horizontal, 24)
                         .padding(.top, 16)
                         .offset(x: cardOffset)
@@ -130,7 +130,7 @@ struct HealthAssessmentQuizView: View {
                     VStack(spacing: 10) {
                         ForEach(shuffledAnswers) { answer in
                             QuizAnswerButton(
-                                text: settings.localizedString(for: answer.textKey),
+                                text: NSLocalizedString(answer.textKey, comment: ""),
                                 isSelected: selectedAnswerID == answer.id,
                                 color: accentTop,
                                 shadowColor: accentShadow,
@@ -159,8 +159,8 @@ struct HealthAssessmentQuizView: View {
                 Button(action: advance) {
                     HStack(spacing: 8) {
                         Text(isLastQuestion
-                             ? settings.localizedString(for: "assessment.btn.result")
-                             : settings.localizedString(for: "assessment.btn.next"))
+                             ? String(localized: "assessment.btn.result")
+                             : String(localized: "assessment.btn.next"))
                         Image(systemName: isLastQuestion ? "chart.bar.fill" : "arrow.right")
                     }
                 }
@@ -265,13 +265,13 @@ struct HealthResultView: View {
                         }
 
                         VStack(spacing: 6) {
-                            Text(settings.localizedString(for: "assessment.result.youare"))
+                            Text(String(localized: "assessment.result.youare"))
                                 .font(.system(size: 13, weight: .black, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .textCase(.uppercase)
                                 .tracking(1.5)
 
-                            Text(settings.localizedString(for: profile.titleKey))
+                            Text(NSLocalizedString(profile.titleKey, comment: ""))
                                 .font(.system(size: 30, weight: .black, design: .rounded))
                                 .foregroundStyle(.primary)
                                 
@@ -279,7 +279,7 @@ struct HealthResultView: View {
                     }
 
                     // Description Card
-                    Text(settings.localizedString(for: profile.descKey))
+                    Text(NSLocalizedString(profile.descKey, comment: ""))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundStyle(.primary.opacity(0.85))
                         .multilineTextAlignment(.center)
@@ -344,26 +344,26 @@ struct HealthScoreBreakdownCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(settings.localizedString(for: "assessment.result.breakdown"))
+            Text(String(localized: "assessment.result.breakdown"))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
                 .tracking(1)
 
             ScoreBar(
-                label: settings.localizedString(for: "assessment.score.regeneration"),
+                label: String(localized: "assessment.score.regeneration"),
                 value: animated ? regenerationNorm : 0,
                 color: Color(hex: "#5AC8FA"),
                 rawValue: result.rawRegeneration
             )
             ScoreBar(
-                label: settings.localizedString(for: "assessment.score.kraftstoff"),
+                label: String(localized: "assessment.score.kraftstoff"),
                 value: animated ? kraftstoffNorm : 0,
                 color: Color(hex: "#FF9500"),
                 rawValue: result.rawKraftstoff
             )
             ScoreBar(
-                label: settings.localizedString(for: "assessment.score.praevention"),
+                label: String(localized: "assessment.score.praevention"),
                 value: animated ? praeventionNorm : 0,
                 color: Color(hex: "#E8513A"),
                 rawValue: result.rawPraevention

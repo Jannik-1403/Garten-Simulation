@@ -27,11 +27,11 @@ struct PflanzenDetailView: View {
                                 .foregroundStyle(.secondary.opacity(0.3))
                             
                             VStack(spacing: 8) {
-                                Text(settings.localizedString(for: "garden.empty.title"))
+                                Text(String(localized: "garden.empty.title"))
                                     .font(.headline)
                                     .foregroundStyle(.primary)
                                 
-                                Text(settings.localizedString(for: "garden.empty.subtitle"))
+                                Text(String(localized: "garden.empty.subtitle"))
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
                                     .multilineTextAlignment(.center)
@@ -62,7 +62,7 @@ struct PflanzenDetailView: View {
                     Spacer(minLength: 40)
                 }
             }
-            .navigationTitle(settings.localizedString(for: "profile.plants"))
+            .navigationTitle(String(localized: "profile.plants"))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
             .fullScreenCover(item: $ausgewaehltePflanze) { pflanze in
@@ -121,7 +121,7 @@ struct PflanzenDetailView: View {
                 }
             }
 
-            Text(settings.localizedString(for: labelKey))
+            Text(NSLocalizedString(labelKey, comment: ""))
                 .font(.system(size: 16))
                 .foregroundStyle(.primary)
 
@@ -153,8 +153,8 @@ struct PflanzenGridCell: View {
             )
 
             Text(settings.showHabitInsteadOfName 
-                ? settings.localizedString(for: pflanze.habitName)
-                : settings.localizedString(for: pflanze.name))
+                ? NSLocalizedString(pflanze.habitName, comment: "")
+                : NSLocalizedString(pflanze.name, comment: ""))
                 .font(.system(size: 12, weight: .semibold, design: .rounded))
                 .foregroundStyle(.primary)
                 .lineLimit(2)

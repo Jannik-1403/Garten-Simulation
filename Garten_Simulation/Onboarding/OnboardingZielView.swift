@@ -10,7 +10,7 @@ struct OnboardingZielView: View {
         VStack(spacing: 0) {
             OnboardingIgelView(
                 pose: data.gewaehltesZiele.isEmpty ? .fragt : .daumenHoch,
-                sprechblasenText: NSLocalizedString("onboarding_ziel_blase", comment: "")
+                sprechblasenText: String(localized: "onboarding_ziel_blase")
             )
             .padding(.top, 20)
 
@@ -63,7 +63,7 @@ struct OnboardingZielView: View {
                         }
                     }
                 } label: {
-                    Text(NSLocalizedString("onboarding_ziel_fehlt", comment: ""))
+                    Text(String(localized: "onboarding_ziel_fehlt"))
                         .font(.system(.subheadline, design: .rounded, weight: .bold))
                         .foregroundStyle(.secondary)
                 }
@@ -78,7 +78,7 @@ struct OnboardingZielView: View {
                     data.currentStep += 1
                 }
             } label: {
-                Text(NSLocalizedString("onboarding_weiter", comment: ""))
+                Text(String(localized: "onboarding_weiter"))
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large,

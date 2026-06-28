@@ -22,11 +22,11 @@ struct PowerUpPlantPickerSheet: View {
                     Image(systemName: "leaf.arrow.circlepath")
                         .font(.system(size: 60))
                         .foregroundColor(.secondary)
-                    Text(settings.localizedString(for: "powerup.picker.no_plants"))
+                    Text(String(localized: "powerup.picker.no_plants"))
                         .font(.headline)
                         .foregroundColor(.secondary)
                 }
-                .navigationTitle(settings.localizedString(for: "powerup.picker.title"))
+                .navigationTitle(String(localized: "powerup.picker.title"))
                 .navigationBarTitleDisplayMode(.inline)
                 .standardNavigationX()
             } else {
@@ -57,8 +57,8 @@ struct PowerUpPlantPickerSheet: View {
                                     
                                     VStack(alignment: .leading, spacing: 4) {
                                         Text(settings.showHabitInsteadOfName 
-                                            ? settings.localizedString(for: plant.habitName)
-                                            : settings.localizedString(for: plant.name))
+                                            ? NSLocalizedString(plant.habitName, comment: "")
+                                            : NSLocalizedString(plant.name, comment: ""))
                                             .font(.system(size: 18, weight: .bold, design: .rounded))
                                             .foregroundColor(.primary)
                                             
@@ -81,7 +81,7 @@ struct PowerUpPlantPickerSheet: View {
                     .padding(.horizontal, 20)
                     .padding(.vertical, 16)
                 }
-            .navigationTitle(settings.localizedString(for: "powerup.picker.title"))
+            .navigationTitle(String(localized: "powerup.picker.title"))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
             } // close else block

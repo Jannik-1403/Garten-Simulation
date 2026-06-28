@@ -18,7 +18,7 @@ struct OnboardingZeitView: View {
         if !data.gewaehltePflanzenIDs.isEmpty {
             let id = data.gewaehltePflanzenIDs[currentIndex]
             let plant = GameDatabase.allPlants.first { $0.id == id }
-            return settings.localizedString(for: plant?.localizedName ?? "")
+            return NSLocalizedString(plant?.localizedName ?? "", comment: "")
         }
         return ""
     }
@@ -31,7 +31,7 @@ struct OnboardingZeitView: View {
         VStack(spacing: 0) {
             OnboardingIgelView(
                 pose: .fragt,
-                sprechblasenText: String(format: settings.localizedString(for: "onboarding_zeit_blase_personal"), currentPlantName)
+                sprechblasenText: String(format: String(localized: "onboarding_zeit_blase_personal"), currentPlantName)
             )
             .padding(.top, 20)
             
@@ -62,7 +62,7 @@ struct OnboardingZeitView: View {
                 
                 // Content of the card (Time picker)
                 HStack {
-                    Text(settings.localizedString(for: "onboarding_zeit_picker_label")) // e.g. "Erinnerung"
+                    Text(String(localized: "onboarding_zeit_picker_label")) // e.g. "Erinnerung"
                         .font(.system(size: 17, weight: .regular))
                     Spacer()
                     DatePicker("", selection: $selectedTime, displayedComponents: .hourAndMinute)
@@ -81,7 +81,7 @@ struct OnboardingZeitView: View {
             Spacer()
             
             // Step Indicator
-            Text(String(format: settings.localizedString(for: "onboarding_zeit_progress"), currentIndex + 1, totalPlants))
+            Text(String(format: String(localized: "onboarding_zeit_progress"), currentIndex + 1, totalPlants))
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .padding(.bottom, 12)
@@ -90,7 +90,7 @@ struct OnboardingZeitView: View {
                 Button {
                     saveAndNext()
                 } label: {
-                    Text(settings.localizedString(for: "onboarding_zeit_weiter"))
+                    Text(String(localized: "onboarding_zeit_weiter"))
                 }
                 .buttonStyle(DuolingoButtonStyle(
                     size: .large,
@@ -102,7 +102,7 @@ struct OnboardingZeitView: View {
                 Button {
                     skipAndNext()
                 } label: {
-                    Text(settings.localizedString(for: "onboarding_zeit_skip"))
+                    Text(String(localized: "onboarding_zeit_skip"))
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                         .padding(.vertical, 8)

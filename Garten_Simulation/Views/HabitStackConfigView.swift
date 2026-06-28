@@ -56,7 +56,7 @@ struct HabitStackConfigView: View {
                         .padding(.bottom, 24)
                 }
             }
-            .navigationTitle(settingsStore.localizedString(for: "ritual_config_title"))
+            .navigationTitle(String(localized: "ritual_config_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 // X (Schließen, Rechts)
@@ -70,14 +70,14 @@ struct HabitStackConfigView: View {
                         Button {
                             showAddPicker = true
                         } label: {
-                            Label(settingsStore.localizedString(for: "ritual_config_add_habit"), systemImage: "plus")
+                            Label(String(localized: "ritual_config_add_habit"), systemImage: "plus")
                         }
                         
                         Button {
                             withAnimation { isEditing.toggle() }
                         } label: {
                             Label(
-                                isEditing ? settingsStore.localizedString(for: "button.done") : settingsStore.localizedString(for: "button.edit"),
+                                isEditing ? String(localized: "button.done") : String(localized: "button.edit"),
                                 systemImage: isEditing ? "checkmark.circle" : "pencil"
                             )
                         }
@@ -179,9 +179,9 @@ struct HabitStackConfigView: View {
             Image(systemName: "gearshape.fill")
                 .font(.system(size: 40))
                 .shadow(radius: 4)
-            Text(settingsStore.localizedString(for: "ritual_config_headline"))
+            Text(String(localized: "ritual_config_headline"))
                 .font(.system(size: 24, weight: .black, design: .rounded))
-            Text(settingsStore.localizedString(for: "ritual_config_subheadline"))
+            Text(String(localized: "ritual_config_subheadline"))
                 .font(.system(size: 14, weight: .medium, design: .rounded))
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -203,7 +203,7 @@ struct HabitStackConfigView: View {
                     aktion: { showAddPicker = true }
                 )
             }
-            Text(settingsStore.localizedString(for: "garden.empty.title"))
+            Text(String(localized: "garden.empty.title"))
                 .font(.system(.headline, design: .rounded))
             Spacer()
         }
@@ -217,7 +217,7 @@ struct HabitStackConfigView: View {
             isRectangular: true, // VIERECKIG
             aktion: saveAndStart
         ) {
-            Text(settingsStore.localizedString(for: "ritual_config_start"))
+            Text(String(localized: "ritual_config_start"))
                 .font(.system(size: 18, weight: .black, design: .rounded))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
@@ -293,7 +293,7 @@ struct Ritual3DCard: View {
             .opacity(isLocked ? 0.4 : 1.0)
             
             VStack(alignment: .leading, spacing: 4) {
-                Text(settings.localizedString(for: habit.habitName))
+                Text(NSLocalizedString(habit.habitName, comment: ""))
                     .font(.system(size: 16, weight: .black, design: .rounded))
                     .foregroundColor(isLocked ? .secondary : .primary)
                 
@@ -329,7 +329,7 @@ struct Ritual3DCard: View {
                     onDifficultyChange?()
                 } label: {
                     Label(
-                        settings.localizedString(for: "pfad_schwierigkeit_\(diff.rawValue)"),
+                        String(localized: "pfad_schwierigkeit_\(diff.rawValue)"),
                         systemImage: diff == (PfadSchwierigkeit(rawValue: habit.individualSchwierigkeit ?? "") ?? .anfaenger) ? "checkmark.circle.fill" : "circle"
                     )
                 }
@@ -340,7 +340,7 @@ struct Ritual3DCard: View {
                     .fill(difficultyColor)
                     .frame(width: 8, height: 8)
                 let diff = PfadSchwierigkeit(rawValue: habit.individualSchwierigkeit ?? "") ?? .anfaenger
-                Text(settings.localizedString(for: "pfad_schwierigkeit_\(diff.rawValue)"))
+                Text(String(localized: "pfad_schwierigkeit_\(diff.rawValue)"))
                     .font(.system(size: 11, weight: .bold, design: .rounded))
             }
             .foregroundColor(difficultyColor)
@@ -351,7 +351,7 @@ struct Ritual3DCard: View {
         HStack(spacing: 4) {
             Image(systemName: "lock.fill")
                 .font(.system(size: 10))
-            Text(settings.localizedString(for: "pfad_tag_gesperrt").uppercased())
+            Text(String(localized: "pfad_tag_gesperrt").uppercased())
                 .font(.system(size: 10, weight: .black))
         }
         .foregroundColor(.gray)

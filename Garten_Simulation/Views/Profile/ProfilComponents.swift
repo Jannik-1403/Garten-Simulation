@@ -46,7 +46,7 @@ struct XPStatButton: View {
                     Text("\(xp)")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
-                    Text(settings.localizedString(for: "profile.xp.total"))
+                    Text(String(localized: "profile.xp.total"))
                         .font(.system(size: 12, weight: .semibold, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
@@ -73,7 +73,7 @@ struct InventoryStatButton: View {
                 )
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(settings.localizedString(for: "profile.inventory"))
+                    Text(String(localized: "profile.inventory"))
                         .font(.system(size: 13, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                     
@@ -111,7 +111,7 @@ struct StreakStatButton: View {
                     Text("\(bestStreak)")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
-                    Text(settings.localizedString(for: "profile.streak.best"))
+                    Text(String(localized: "profile.streak.best"))
                         .font(.system(size: 12, weight: .semibold, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
@@ -141,7 +141,7 @@ struct ErfolgeStatButton: View {
                     Text("\(count)")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
-                    Text(settings.localizedString(for: "profile.achievements"))
+                    Text(String(localized: "profile.achievements"))
                         .font(.system(size: 12, weight: .semibold, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
@@ -168,7 +168,7 @@ struct WasserStatButton: View {
                 )
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(settings.localizedString(for: "wasser.karte.titel"))
+                    Text(String(localized: "wasser.karte.titel"))
                         .font(.system(size: 13, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                     
@@ -176,7 +176,7 @@ struct WasserStatButton: View {
                         .font(.system(size: 28, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
                     
-                    Text(settings.localizedString(for: "wasser.gesamt"))
+                    Text(String(localized: "wasser.gesamt"))
                         .font(.system(size: 10, weight: .medium, design: .rounded))
                         .foregroundStyle(.tertiary)
                 }
@@ -215,12 +215,12 @@ struct AssessmentStatButton: View {
                 .allowsHitTesting(false)
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(settings.localizedString(for: "assessment.entry.title"))
+                    Text(String(localized: "assessment.entry.title"))
                         .font(.system(size: 13, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
 
                     if let result = result {
-                        Text(settings.localizedString(for: result.profile.titleKey))
+                        Text(NSLocalizedString(result.profile.titleKey, comment: ""))
                             .font(.system(size: 22, weight: .black, design: .rounded))
                             .foregroundStyle(.primary)
 
@@ -228,16 +228,16 @@ struct AssessmentStatButton: View {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 11))
                                 .foregroundStyle(.green)
-                            Text(settings.localizedString(for: "assessment.entry.done"))
+                            Text(String(localized: "assessment.entry.done"))
                                 .font(.system(size: 11, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.secondary)
                         }
                     } else {
-                        Text(settings.localizedString(for: "assessment.entry.cta"))
+                        Text(String(localized: "assessment.entry.cta"))
                             .font(.system(size: 22, weight: .black, design: .rounded))
                             .foregroundStyle(.primary)
 
-                        Text(settings.localizedString(for: "assessment.entry.subtitle"))
+                        Text(String(localized: "assessment.entry.subtitle"))
                             .font(.system(size: 10, weight: .medium, design: .rounded))
                             .foregroundStyle(.tertiary)
                     }
@@ -274,16 +274,16 @@ struct NameEditSheet: View {
             VStack(spacing: 24) {
                 if !zeigeZweiteBestaetigung {
                     VStack(spacing: 8) {
-                        Text(settings.localizedString(for: "igel_name_edit_title"))
+                        Text(String(localized: "igel_name_edit_title"))
                             .font(.system(size: 24, weight: .black, design: .rounded))
                         
-                        Text(settings.localizedString(for: settings.igelCustomization.nameChangeCount == 0 ? "igel_name_edit_hint_free" : "igel_name_edit_hint_paid"))
+                        Text(NSLocalizedString(settings.igelCustomization.nameChangeCount == 0 ? "igel_name_edit_hint_free" : "igel_name_edit_hint_paid", comment: ""))
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
                     }
                     
-                    TextField(settings.localizedString(for: "igel_name_placeholder"), text: $tempName)
+                    TextField(String(localized: "igel_name_placeholder"), text: $tempName)
                         .font(.headline)
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 12).fill(Color(.secondarySystemGroupedBackground)))
@@ -292,7 +292,7 @@ struct NameEditSheet: View {
                     Button(action: {
                         withAnimation { zeigeZweiteBestaetigung = true }
                     }) {
-                        Text(settings.localizedString(for: "common_continue"))
+                        Text(String(localized: "common_continue"))
                             .font(.headline)
                             .frame(maxWidth: .infinity)
                     }
@@ -301,11 +301,11 @@ struct NameEditSheet: View {
                 } else {
                     VStack(spacing: 16) {
                         Image("coin").resizable().scaledToFit().frame(width: 60, height: 60)
-                        Text(settings.localizedString(for: "igel_name_confirm_title"))
+                        Text(String(localized: "igel_name_confirm_title"))
                             .font(.system(size: 24, weight: .black, design: .rounded))
                             .multilineTextAlignment(.center)
                         
-                        Text(String(format: settings.localizedString(for: "igel_name_confirm_hint"), tempName))
+                        Text(String(format: String(localized: "igel_name_confirm_hint"), tempName))
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -325,7 +325,7 @@ struct NameEditSheet: View {
                     }) {
                         HStack(spacing: 12) {
                             if cost == 0 {
-                                Text(settings.localizedString(for: "igel_name_edit_button_free"))
+                                Text(String(localized: "igel_name_edit_button_free"))
                             } else {
                                 Image("coin").resizable().scaledToFit().frame(width: 22, height: 22)
                                 Text("\(cost)")
@@ -373,7 +373,7 @@ struct StatisticsDashboard: View {
     
     private var gardenScoreData: (score: Int, konsistenz: Double, streakScore: Double, message: String, bestStreakInPeriod: Int) {
         let habits = gardenStore.pflanzen
-        guard !habits.isEmpty else { return (0, 0, 0, settings.localizedString(for: "stats.score.msg.low"), 0) }
+        guard !habits.isEmpty else { return (0, 0, 0, String(localized: "stats.score.msg.low"), 0) }
         
         let days = selectedPeriod.days
         let calendar = Calendar.current
@@ -417,10 +417,10 @@ struct StatisticsDashboard: View {
         let scoreValue = Int((konsistenz * 0.6 + streakScore * 0.4) * 100)
         
         let message: String
-        if scoreValue >= 85 { message = settings.localizedString(for: "stats.score.msg.excellent") }
-        else if scoreValue >= 60 { message = settings.localizedString(for: "stats.score.msg.good") }
-        else if scoreValue >= 35 { message = settings.localizedString(for: "stats.score.msg.ok") }
-        else { message = settings.localizedString(for: "stats.score.msg.low") }
+        if scoreValue >= 85 { message = String(localized: "stats.score.msg.excellent") }
+        else if scoreValue >= 60 { message = String(localized: "stats.score.msg.good") }
+        else if scoreValue >= 35 { message = String(localized: "stats.score.msg.ok") }
+        else { message = String(localized: "stats.score.msg.low") }
         
         return (scoreValue, konsistenz, streakScore, message, bestStreakInPeriod)
     }
@@ -450,7 +450,7 @@ struct StatisticsDashboard: View {
             VStack(spacing: 24) {
                 Picker("", selection: $selectedPeriod) {
                     ForEach(StatsPeriod.allCases, id: \.self) { period in
-                        Text(settings.localizedString(for: period.localizationKey))
+                        Text(NSLocalizedString(period.localizationKey, comment: ""))
                             .tag(period)
                     }
                 }
@@ -458,9 +458,9 @@ struct StatisticsDashboard: View {
                 .padding(.horizontal, 16)
                 if gardenStore.pflanzen.isEmpty {
                     ContentUnavailableView(
-                        settings.localizedString(for: "stats.empty.title"),
+                        String(localized: "stats.empty.title"),
                         systemImage: "leaf.fill",
-                        description: Text(settings.localizedString(for: "stats.empty.desc"))
+                        description: Text(String(localized: "stats.empty.desc"))
                     )
                     .padding(.top, 40)
                 } else {
@@ -475,7 +475,7 @@ struct StatisticsDashboard: View {
             .padding(.bottom, 40)
         }
         .background(Color.appHintergrund.ignoresSafeArea())
-        .navigationTitle(settings.localizedString(for: "statistik_titel"))
+        .navigationTitle(String(localized: "statistik_titel"))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -524,9 +524,9 @@ struct StatisticsDashboard: View {
             // Header
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(settings.localizedString(for: "statistik_life_balance"))
+                    Text(String(localized: "statistik_life_balance"))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
-                    Text(settings.localizedString(for: selectedPeriod.thisPeriodKey))
+                    Text(NSLocalizedString(selectedPeriod.thisPeriodKey, comment: ""))
                         .font(.system(size: 12, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
@@ -577,7 +577,7 @@ struct StatisticsDashboard: View {
         let history = StatsHelper.getWateringHistory(from: gardenStore.pflanzen, badHabitExecutions: gardenStore.badHabitExecutions, days: selectedPeriod.days)
         return VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Label(settings.localizedString(for: "stats.score.konsistenz"), systemImage: "checkmark.circle.fill")
+                Label(String(localized: "stats.score.konsistenz"), systemImage: "checkmark.circle.fill")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.gruenPrimary)
                 Spacer()
@@ -608,7 +608,7 @@ struct StatisticsDashboard: View {
                     .font(.system(size: 32, weight: .black, design: .rounded))
                     .foregroundStyle(Color.gruenPrimary)
                 
-                Text(String(format: settings.localizedString(for: "stats.score.konsistenz.period_format"), settings.localizedString(for: selectedPeriod.thisPeriodKey)))
+                Text(String(format: String(localized: "stats.score.konsistenz.period_format"), NSLocalizedString(selectedPeriod.thisPeriodKey, comment: "")))
                     .font(.system(size: 12, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
             }
@@ -657,7 +657,7 @@ struct StatisticsDashboard: View {
         let history = StatsHelper.getFocusHistory(from: gardenStore.focusSessions, days: selectedPeriod.days)
         return VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Label(settings.localizedString(for: "Fokus-Score"), systemImage: "timer")
+                Label(String(localized: "Fokus-Score"), systemImage: "timer")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.orangePrimary)
                 Spacer()
@@ -684,11 +684,11 @@ struct StatisticsDashboard: View {
             // Large Value & Period
             VStack(alignment: .leading, spacing: 2) {
                 let currentTotal = history.reduce(0) { $0 + $1.completedMinutes + $1.abortedMinutes }
-                Text("\(currentTotal) min")
+                Text(String(currentTotal) + " " + String(localized: "common.min"))
                     .font(.system(size: 32, weight: .black, design: .rounded))
                     .foregroundStyle(Color.orangePrimary)
                 
-                Text(String(format: settings.localizedString(for: "stats.score.focus.period_format"), settings.localizedString(for: selectedPeriod.thisPeriodKey)))
+                Text(String(format: String(localized: "stats.score.focus.period_format"), NSLocalizedString(selectedPeriod.thisPeriodKey, comment: "")))
                     .font(.system(size: 12, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
             }
@@ -698,13 +698,13 @@ struct StatisticsDashboard: View {
                 ForEach(history) { item in
                     BarMark(
                         x: .value("Tag", item.date),
-                        y: .value("Fokus", item.completedMinutes)
+                        y: .value(String(localized: "assessment.score.fokus"), item.completedMinutes)
                     )
                     .foregroundStyle(Color.gruenPrimary)
                     
                     BarMark(
                         x: .value("Tag", item.date),
-                        y: .value("Abgebrochen", item.abortedMinutes)
+                        y: .value(String(localized: "common.aborted"), item.abortedMinutes)
                     )
                     .foregroundStyle(Color.red)
                 }
@@ -723,17 +723,17 @@ struct StatisticsDashboard: View {
                     let diff = todayTotal - yesterdayTotal
                     
                     if diff > 0 {
-                        Text("Du hast heute \(diff) Minuten mehr fokussiert als gestern. Weiter so!")
-                            .font(.system(size: 12, weight: .medium, design: .rounded))
+                        Text(String(format: String(localized: "stats.focus.more"), String(diff)))
+                            .font(.system(size: 13, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.leading)
                     } else if diff < 0 {
-                        Text("Du hast heute \(-diff) Minuten früher Schluss gemacht als gestern. Bleib dran!")
-                            .font(.system(size: 12, weight: .medium, design: .rounded))
+                        Text(String(format: String(localized: "stats.focus.less"), String(-diff)))
+                            .font(.system(size: 13, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.leading)
                     } else if todayTotal > 0 {
-                        Text(settings.localizedString(for: "profile.focus.same"))
+                        Text(String(localized: "profile.focus.same"))
                             .font(.system(size: 12, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.leading)
@@ -780,7 +780,7 @@ struct StatisticsDashboard: View {
         
         return VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Label(settings.localizedString(for: "trigger.title"), systemImage: "bolt.trianglebadge.exclamationmark.fill")
+                Label(String(localized: "trigger.title"), systemImage: "bolt.trianglebadge.exclamationmark.fill")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.red)
                 Spacer()
@@ -805,14 +805,14 @@ struct StatisticsDashboard: View {
             }
             
             if sortedTriggers.isEmpty {
-                Text(settings.localizedString(for: "trigger.no_triggers"))
+                Text(String(localized: "trigger.no_triggers"))
                     .font(.system(size: 14, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
             } else {
                 VStack(spacing: 12) {
                     ForEach(sortedTriggers.prefix(5), id: \.key) { item in
                         HStack {
-                            Text(item.key)
+                            Text(NSLocalizedString(item.key, comment: ""))
                                 .font(.system(size: 15, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.primary)
                             Spacer()
@@ -844,7 +844,7 @@ struct StatisticsDashboard: View {
         let data = gardenScoreData
         return VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Label(settings.localizedString(for: "stats.score.streak"), systemImage: "flame.fill")
+                Label(String(localized: "stats.score.streak"), systemImage: "flame.fill")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.orangePrimary)
                 Spacer()
@@ -860,8 +860,8 @@ struct StatisticsDashboard: View {
             GardenFactorRow(
                 icon: "flame.fill",
                 color: .orangePrimary,
-                label: settings.localizedString(for: "stats.score.streak"),
-                sublabel: String(format: settings.localizedString(for: "stats.score.streak.period_format"), settings.localizedString(for: selectedPeriod.thisPeriodKey)),
+                label: String(localized: "stats.score.streak"),
+                sublabel: String(format: String(localized: "stats.score.streak.period_format"), NSLocalizedString(selectedPeriod.thisPeriodKey, comment: "")),
                 value: data.streakScore,
                 valueText: "\(data.bestStreakInPeriod)d · \(Int(data.streakScore * 100))%"
             )
@@ -882,7 +882,7 @@ struct StatisticsDashboard: View {
     private var nextMilestonesCard: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Text(settings.localizedString(for: "stats.milestone.title"))
+                Text(String(localized: "stats.milestone.title"))
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .textCase(.uppercase)
                     .foregroundStyle(.secondary)
@@ -920,7 +920,7 @@ struct StatisticsDashboard: View {
                             
                             VStack(alignment: .leading, spacing: 4) {
                                 HStack {
-                                    Text(settings.showHabitInsteadOfName ? settings.localizedString(for: habit.habitName) : settings.localizedString(for: habit.name))
+                                    Text(settings.showHabitInsteadOfName ? NSLocalizedString(habit.habitName, comment: "") : NSLocalizedString(habit.name, comment: ""))
                                         .font(.system(size: 14, weight: .bold, design: .rounded))
                                     Spacer()
                                     if let next = habit.seltenheit.naechste {
@@ -944,7 +944,7 @@ struct StatisticsDashboard: View {
                                 
                                 if let next = habit.seltenheit.naechste {
                                     let remaining = next.xpSchwelle - habit.currentXP
-                                    Text(String(format: settings.localizedString(for: "stats.milestone.remaining"), remaining, next.lokalisiertTitel))
+                                    Text(String(format: String(localized: "stats.milestone.remaining"), remaining, next.lokalisiertTitel))
                                         .font(.caption2)
                                         .foregroundStyle(.secondary)
                                 }
@@ -988,7 +988,7 @@ struct StatTile: View {
             isRectangular: true
         ) {
             VStack(alignment: .leading, spacing: 2) {
-                Text(settings.localizedString(for: title))
+                Text(NSLocalizedString(title, comment: ""))
                     .font(.system(size: 8, weight: .bold, design: .rounded))
                     .foregroundStyle(.black)
                     .textCase(.uppercase)
@@ -1155,7 +1155,7 @@ struct StatDetailFullscreenView: View {
                     if detail != .triggers {
                         Picker("", selection: $selectedPeriod) {
                             ForEach(StatsPeriod.allCases, id: \.self) { period in
-                                Text(settings.localizedString(for: period.localizationKey))
+                                Text(NSLocalizedString(period.localizationKey, comment: ""))
                                     .tag(period)
                             }
                         }
@@ -1176,15 +1176,15 @@ struct StatDetailFullscreenView: View {
                         let badHabitIds = Array(gardenStore.badHabitExecutions.keys)
                         Menu {
                             Picker("Filter", selection: $selectedHabitFilter) {
-                                Text(settings.localizedString(for: "trigger.all_habits")).tag("all")
+                                Text(String(localized: "trigger.all_habits")).tag("all")
                                 ForEach(badHabitIds, id: \.self) { habitId in
                                     let habitName = GameDatabase.allDecorations.first(where: { $0.id == habitId })?.habitNameKey ?? habitId
-                                    Text(settings.localizedString(for: habitName)).tag(habitId)
+                                    Text(NSLocalizedString(habitName, comment: "")).tag(habitId)
                                 }
                             }
                         } label: {
                             HStack(spacing: 6) {
-                                let currentName = selectedHabitFilter == "all" ? settings.localizedString(for: "trigger.all_habits") : settings.localizedString(for: GameDatabase.allDecorations.first(where: { $0.id == selectedHabitFilter })?.habitNameKey ?? selectedHabitFilter)
+                                let currentName = selectedHabitFilter == "all" ? String(localized: "trigger.all_habits") : NSLocalizedString(GameDatabase.allDecorations.first(where: { $0.id == selectedHabitFilter })?.habitNameKey ?? selectedHabitFilter, comment: "")
                                 Text(currentName)
                                     .font(.system(size: 16, weight: .semibold, design: .rounded))
                                 Image(systemName: "chevron.up.chevron.down")
@@ -1263,13 +1263,13 @@ struct StatDetailFullscreenView: View {
     
     private var title: String {
         switch detail {
-        case .activity: return settings.localizedString(for: "stats.activity.title")
-        case .balance: return settings.localizedString(for: "stats.balance.title")
-        case .xp: return settings.localizedString(for: "stats.xp.title")
-        case .coins: return settings.localizedString(for: "stats.coins.title")
-        case .milestones: return settings.localizedString(for: "stats.milestone.title")
-        case .focus: return settings.localizedString(for: "Fokus-Score")
-        case .triggers: return settings.localizedString(for: "trigger.title")
+        case .activity: return String(localized: "stats.activity.title")
+        case .balance: return String(localized: "stats.balance.title")
+        case .xp: return String(localized: "stats.xp.title")
+        case .coins: return String(localized: "stats.coins.title")
+        case .milestones: return String(localized: "stats.milestone.title")
+        case .focus: return String(localized: "Fokus-Score")
+        case .triggers: return String(localized: "trigger.title")
         }
     }
     
@@ -1294,14 +1294,14 @@ struct StatDetailFullscreenView: View {
                         }
                         
                         let scoreAtDate = viewModel.score(at: selectedDate)
-                        Stat3DTitleView(title: "Score: \(scoreAtDate)", color: Color.gruenPrimary)
+                        Stat3DTitleView(title: String(localized: "assessment.score.title") + ": " + String(scoreAtDate), color: Color.gruenPrimary)
                     } else {
-                        Text(settings.localizedString(for: selectedPeriod.thisPeriodKey))
+                        Text(NSLocalizedString(selectedPeriod.thisPeriodKey, comment: ""))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                         
                         let total = viewModel.wateringHistory.last?.count ?? 0
-                        Stat3DTitleView(title: "Score: \(total)", color: Color.gruenPrimary)
+                        Stat3DTitleView(title: String(localized: "assessment.score.title") + ": " + String(total), color: Color.gruenPrimary)
                     }
                 }
                 Spacer()
@@ -1382,11 +1382,11 @@ struct StatDetailFullscreenView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     HStack(spacing: 20) {
                         DetailInfoBox(
-                            title: settings.localizedString(for: "statistik_gute_gewohnheiten"), 
+                            title: String(localized: "statistik_gute_gewohnheiten"), 
                             value: "\(viewModel.goodHabitsCount)"
                         )
                         DetailInfoBox(
-                            title: settings.localizedString(for: "statistik_schlechte_gewohnheiten"), 
+                            title: String(localized: "statistik_schlechte_gewohnheiten"), 
                             value: "\(viewModel.badHabitsCount)"
                         )
                     }
@@ -1424,7 +1424,7 @@ struct StatDetailFullscreenView: View {
             
             VStack(spacing: 16) {
                 HStack {
-                    Text(settings.localizedString(for: "habit.tips.title"))
+                    Text(String(localized: "habit.tips.title"))
                         .font(.system(size: 22, weight: .black, design: .rounded))
                         .foregroundStyle(Color.primary)
                     Spacer()
@@ -1438,7 +1438,7 @@ struct StatDetailFullscreenView: View {
                 ]
                 
                 ForEach(coachTips, id: \.1) { tip in
-                    let localizedText = settings.localizedString(for: tip.1)
+                    let localizedText = NSLocalizedString(tip.1, comment: "")
                     let split = splitCoachText(localizedText)
                     
                     HStack(alignment: .center, spacing: 14) {
@@ -1473,7 +1473,7 @@ struct StatDetailFullscreenView: View {
                 }
             }
             
-            Text(settings.localizedString(for: "stats.balance.description"))
+            Text(String(localized: "stats.balance.description"))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -1526,7 +1526,7 @@ struct StatDetailFullscreenView: View {
                                 .font(.system(size: 13))
                         }
                     } else {
-                        Text(settings.localizedString(for: selectedPeriod.thisPeriodKey))
+                        Text(NSLocalizedString(selectedPeriod.thisPeriodKey, comment: ""))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                         
@@ -1633,7 +1633,7 @@ struct StatDetailFullscreenView: View {
                                 .foregroundStyle(.secondary)
                             
                             let balanceAtDate = viewModel.coins(at: selectedDate)
-                            Stat3DTitleView(title: "\(balanceAtDate) \(settings.localizedString(for: "statistik_kachel_gems"))", color: Color.goldPrimary)
+                            Stat3DTitleView(title: "\(balanceAtDate) \(String(localized: "statistik_kachel_gems"))", color: Color.goldPrimary)
                         }
                         
                         if selectedPeriod == .day, let tx = viewModel.getCoinEventDetail(at: selectedDate) {
@@ -1660,11 +1660,11 @@ struct StatDetailFullscreenView: View {
                                 .font(.system(size: 13))
                         }
                     } else {
-                        Text(settings.localizedString(for: selectedPeriod.thisPeriodKey))
+                        Text(NSLocalizedString(selectedPeriod.thisPeriodKey, comment: ""))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                         
-                        Stat3DTitleView(title: "\(gardenStore.coins) \(settings.localizedString(for: "statistik_kachel_gems"))", color: Color.goldPrimary)
+                        Stat3DTitleView(title: "\(gardenStore.coins) \(String(localized: "statistik_kachel_gems"))", color: Color.goldPrimary)
                     }
                 }
                 Spacer()
@@ -1756,7 +1756,7 @@ struct StatDetailFullscreenView: View {
                         
                         VStack(alignment: .leading, spacing: 6) {
                             HStack {
-                                Text(settings.showHabitInsteadOfName ? settings.localizedString(for: habit.habitName) : settings.localizedString(for: habit.name))
+                                Text(settings.showHabitInsteadOfName ? NSLocalizedString(habit.habitName, comment: "") : NSLocalizedString(habit.name, comment: ""))
                                     .font(.system(size: 18, weight: .bold, design: .rounded))
                                 Spacer()
                                 if let next = habit.seltenheit.naechste {
@@ -1780,7 +1780,7 @@ struct StatDetailFullscreenView: View {
                             
                             if let next = habit.seltenheit.naechste {
                                 let remaining = next.xpSchwelle - habit.currentXP
-                                Text(String(format: settings.localizedString(for: "stats.milestone.remaining"), remaining, next.lokalisiertTitel))
+                                Text(String(format: String(localized: "stats.milestone.remaining"), remaining, next.lokalisiertTitel))
                                     .font(.system(size: 13, weight: .medium, design: .rounded))
                                     .foregroundStyle(.secondary)
                             }
@@ -1830,12 +1830,12 @@ struct StatDetailFullscreenView: View {
                             Stat3DTitleView(title: "\(total) min", color: Color.gruenPrimary)
                         }
                     } else {
-                        Text(settings.localizedString(for: selectedPeriod.thisPeriodKey))
+                        Text(NSLocalizedString(selectedPeriod.thisPeriodKey, comment: ""))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                         
                         let currentTotal = history.reduce(0) { $0 + $1.completedMinutes + $1.abortedMinutes }
-                        Stat3DTitleView(title: "\(currentTotal) min", color: Color.gruenPrimary)
+                        Stat3DTitleView(title: String(currentTotal) + " " + String(localized: "common.min"), color: Color.gruenPrimary)
                     }
                 }
                 Spacer()
@@ -1848,13 +1848,13 @@ struct StatDetailFullscreenView: View {
                 ForEach(history) { item in
                     BarMark(
                         x: .value("Tag", item.date),
-                        y: .value("Fokus", item.completedMinutes)
+                        y: .value(String(localized: "assessment.score.fokus"), item.completedMinutes)
                     )
                     .foregroundStyle(Color.gruenPrimary)
                     
                     BarMark(
                         x: .value("Tag", item.date),
-                        y: .value("Abgebrochen", item.abortedMinutes)
+                        y: .value(String(localized: "common.aborted"), item.abortedMinutes)
                     )
                     .foregroundStyle(Color.red)
                 }
@@ -1929,7 +1929,7 @@ struct StatDetailFullscreenView: View {
                     Image(systemName: "bolt.trianglebadge.exclamationmark.fill")
                         .font(.system(size: 40))
                         .foregroundStyle(.secondary.opacity(0.5))
-                    Text(settings.localizedString(for: "trigger.no_triggers"))
+                    Text(String(localized: "trigger.no_triggers"))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
@@ -1948,7 +1948,7 @@ struct StatDetailFullscreenView: View {
                                     .foregroundStyle(.secondary)
                                     .frame(width: 24, alignment: .trailing)
                                 
-                                Text(item.key)
+                                Text(NSLocalizedString(item.key, comment: ""))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                             }
@@ -1997,8 +1997,8 @@ struct MilestonesShareImage: View {
 
     var body: some View {
             StatShareImage(
-                title: settings.localizedString(for: "stats.milestone.title"),
-                subtitle: settings.localizedString(for: "statistik_share_status"),
+                title: String(localized: "stats.milestone.title"),
+                subtitle: String(localized: "statistik_share_status"),
                 username: username,
                 height: 720, // Reduced height
                 theme: theme,
@@ -2015,7 +2015,7 @@ struct MilestonesShareImage: View {
                         
                         VStack(alignment: .leading, spacing: 10) {
                             HStack {
-                                Text(settings.showHabitInsteadOfName ? settings.localizedString(for: habit.habitName) : settings.localizedString(for: habit.name))
+                                Text(settings.showHabitInsteadOfName ? NSLocalizedString(habit.habitName, comment: "") : NSLocalizedString(habit.name, comment: ""))
                                     .font(.system(size: 20, weight: .bold, design: .rounded))
                                     .foregroundColor(theme == .light ? .black : .white)
                                 Spacer()
@@ -2240,7 +2240,7 @@ struct SharePreviewSheet: View {
     
     private var username: String {
         let name = settings.igelCustomization.name.trimmingCharacters(in: .whitespacesAndNewlines)
-        return name.isEmpty ? settings.localizedString(for: "profile.user.name.default") : name
+        return name.isEmpty ? String(localized: "profile.user.name.default") : name
     }
     
     private let themes: [ShareImageTheme] = [.light, .dark, .vibrant]
@@ -2268,15 +2268,15 @@ struct SharePreviewSheet: View {
                     }
                     
                     VStack(spacing: 8) {
-                        Text(settings.localizedString(for: themeNameKey(for: selectedTheme)))
+                        Text(NSLocalizedString(themeNameKey(for: selectedTheme), comment: ""))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                         
-                        Text(settings.localizedString(for: "stats.share.swipe_hint"))
+                        Text(String(localized: "stats.share.swipe_hint"))
                             .font(.system(size: 13, weight: .medium, design: .rounded))
                             .foregroundColor(.secondary)
                         
                         if savedToPhotos {
-                            Label("In Fotos gespeichert", systemImage: "checkmark.circle.fill")
+                            Label(String(localized: "common.saved_to_photos"), systemImage: "checkmark.circle.fill")
                                 .font(.system(size: 13, weight: .semibold, design: .rounded))
                                 .foregroundColor(.green)
                                 .transition(.opacity.combined(with: .scale))
@@ -2286,7 +2286,7 @@ struct SharePreviewSheet: View {
                     .padding(.bottom, 60)
                 }
             }
-            .navigationTitle(settings.localizedString(for: "stats.share.preview_title"))
+            .navigationTitle(String(localized: "stats.share.preview_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -2339,11 +2339,11 @@ struct SharePreviewSheet: View {
         let data = gardenScoreData
         let periodLabel: String = {
             switch period {
-            case .day:    return settings.localizedString(for: "statistik_share_heute")
-            case .week:   return settings.localizedString(for: "statistik_share_letzte_woche")
-            case .month:  return settings.localizedString(for: "statistik_share_letzter_monat")
-            case .year:   return settings.localizedString(for: "statistik_share_letztes_jahr")
-            case .allTime: return settings.localizedString(for: "statistik_share_alle")
+            case .day:    return String(localized: "statistik_share_heute")
+            case .week:   return String(localized: "statistik_share_letzte_woche")
+            case .month:  return String(localized: "statistik_share_letzter_monat")
+            case .year:   return String(localized: "statistik_share_letztes_jahr")
+            case .allTime: return String(localized: "statistik_share_alle")
             }
         }()
         
@@ -2361,7 +2361,7 @@ struct SharePreviewSheet: View {
                 let history = StatsHelper.getWateringHistory(from: habits, badHabitExecutions: gardenStore.badHabitExecutions, days: period.days)
                 let currentScore = history.last?.count ?? 0
                 StatShareImage(
-                    title: settings.localizedString(for: "stats.score.konsistenz"),
+                    title: String(localized: "stats.score.konsistenz"),
                     subtitle: periodLabel,
                     username: username,
                     height: 520,
@@ -2413,7 +2413,7 @@ struct SharePreviewSheet: View {
                 }
             case .streak:
                 StatShareImage(
-                    title: settings.localizedString(for: "stats.score.streak"),
+                    title: String(localized: "stats.score.streak"),
                     subtitle: periodLabel,
                     username: username,
                     height: 520,
@@ -2424,8 +2424,8 @@ struct SharePreviewSheet: View {
                         GardenFactorRow(
                             icon: "flame.fill",
                             color: Color.orangePrimary,
-                            label: settings.localizedString(for: "stats.score.streak"),
-                            sublabel: String(format: settings.localizedString(for: "stats.score.streak.period_format"), settings.localizedString(for: period.thisPeriodKey)),
+                            label: String(localized: "stats.score.streak"),
+                            sublabel: String(format: String(localized: "stats.score.streak.period_format"), NSLocalizedString(period.thisPeriodKey, comment: "")),
                             value: data.streakScore,
                             valueText: "\(data.bestStreakInPeriod)d · \(Int(data.streakScore * 100))%"
                         )
@@ -2437,11 +2437,11 @@ struct SharePreviewSheet: View {
                                 .foregroundStyle(Color.orange)
                             
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(settings.localizedString(for: "stats.streak.best"))
+                                Text(String(localized: "stats.streak.best"))
                                     .font(.system(size: 14, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
                                 let dayKey = data.bestStreakInPeriod == 1 ? "common.day" : "common.days"
-                                Text("\(data.bestStreakInPeriod) " + settings.localizedString(for: dayKey))
+                                Text("\(data.bestStreakInPeriod) " + NSLocalizedString(dayKey, comment: ""))
                                     .font(.system(size: 20, weight: .black, design: .rounded))
                             }
                             Spacer()
@@ -2461,7 +2461,7 @@ struct SharePreviewSheet: View {
                 let history = StatsHelper.getWateringHistory(from: habits, badHabitExecutions: gardenStore.badHabitExecutions, days: period.days)
                 let currentScore = history.last?.count ?? 0
                 StatShareImage(
-                    title: settings.localizedString(for: "stats.activity.title"),
+                    title: String(localized: "stats.activity.title"),
                     subtitle: periodLabel,
                     username: username,
                     height: 520,
@@ -2515,7 +2515,7 @@ struct SharePreviewSheet: View {
                 let history = StatsHelper.getXPHistory(from: habits, currentTotalXP: gardenStore.gesamtXP, days: period.days)
                 let currentScore = history.last?.amount ?? 0
                 StatShareImage(
-                    title: settings.localizedString(for: "stats.xp.title"),
+                    title: String(localized: "stats.xp.title"),
                     subtitle: periodLabel,
                     username: username,
                     height: 520,
@@ -2567,7 +2567,7 @@ struct SharePreviewSheet: View {
                 let history = StatsHelper.getCoinHistory(from: gardenStore.transactions, currentBalance: gardenStore.coins, days: period.days)
                 let currentScore = history.last?.balance ?? 0
                 StatShareImage(
-                    title: settings.localizedString(for: "stats.coins.title"),
+                    title: String(localized: "stats.coins.title"),
                     subtitle: periodLabel,
                     username: username,
                     height: 520,
@@ -2619,7 +2619,7 @@ struct SharePreviewSheet: View {
                 let history = StatsHelper.getFocusHistory(from: gardenStore.focusSessions, days: period.days)
                 let currentMinutes = history.reduce(0) { $0 + $1.completedMinutes }
                 StatShareImage(
-                    title: settings.localizedString(for: "Fokus-Score"),
+                    title: String(localized: "Fokus-Score"),
                     subtitle: periodLabel,
                     username: username,
                     height: 520,
@@ -2627,7 +2627,7 @@ struct SharePreviewSheet: View {
                     vibrantColor: .orangePrimary
                 ) {
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("\(currentMinutes) min")
+                        Text(String(currentMinutes) + " " + String(localized: "common.min"))
                             .font(.system(size: 32, weight: .black, design: .rounded))
                             .foregroundStyle(Color.orangePrimary)
                         
@@ -2635,13 +2635,13 @@ struct SharePreviewSheet: View {
                             ForEach(history) { item in
                                 BarMark(
                                     x: .value("Tag", item.date),
-                                    y: .value("Fokus", item.completedMinutes)
+                                    y: .value(String(localized: "assessment.score.fokus"), item.completedMinutes)
                                 )
                                 .foregroundStyle(Color.gruenPrimary)
                                 
                                 BarMark(
                                     x: .value("Tag", item.date),
-                                    y: .value("Abgebrochen", item.abortedMinutes)
+                                    y: .value(String(localized: "common.aborted"), item.abortedMinutes)
                                 )
                                 .foregroundStyle(Color.red)
                             }
@@ -2673,7 +2673,7 @@ struct SharePreviewSheet: View {
         let sortedTriggers = computeTriggerCounts()
         
         StatShareImage(
-            title: settings.localizedString(for: "trigger.title"),
+            title: String(localized: "trigger.title"),
             subtitle: periodLabel,
             username: username,
             height: CGFloat(460 + min(sortedTriggers.count, 5) * 50),
@@ -2687,7 +2687,7 @@ struct SharePreviewSheet: View {
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                             .frame(width: 24, alignment: .trailing)
-                        Text(item.key)
+                        Text(NSLocalizedString(item.key, comment: ""))
                             .font(.system(size: 16, weight: .bold, design: .rounded))
                             .foregroundStyle(.primary)
                         Spacer()

@@ -49,7 +49,7 @@ struct SubtaskInputField: View {
             Image(systemName: "plus")
                 .foregroundStyle(.secondary)
                 .padding(.leading, 8)
-            TextField(settings.localizedString(for: "Unterziel hinzufügen..."), text: $text)
+            TextField(String(localized: "Unterziel hinzufügen..."), text: $text)
                 .font(.system(size: 14, weight: .medium, design: .rounded))
                 .submitLabel(.done)
                 .onSubmit {
@@ -104,11 +104,11 @@ struct FocusSessionPreparationStep: View {
             
             // Texte
             VStack(spacing: 16) {
-                Text(settings.localizedString(for: title))
+                Text(NSLocalizedString(title, comment: ""))
                     .font(.system(size: 28, weight: .black, design: .rounded))
                     .multilineTextAlignment(.center)
                 
-                Text(settings.localizedString(for: description))
+                Text(NSLocalizedString(description, comment: ""))
                     .font(.system(size: 16, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -128,7 +128,7 @@ struct FocusSessionPreparationStep: View {
                                             goals.append(FocusGoal(text: suggestion))
                                         }
                                     } label: {
-                                        Text(settings.localizedString(for: suggestion))
+                                        Text(NSLocalizedString(suggestion, comment: ""))
                                             .font(.system(size: 14, weight: .medium, design: .rounded))
                                             .padding(.horizontal, 16)
                                             .padding(.vertical, 8)
@@ -143,7 +143,7 @@ struct FocusSessionPreparationStep: View {
                         
                         // Eingabefeld
                         HStack {
-                            TextField(settings.localizedString(for: "Neues Hauptziel..."), text: $textInput)
+                            TextField(String(localized: "Neues Hauptziel..."), text: $textInput)
                                 .padding()
                                 .background(.ultraThinMaterial)
                                 .cornerRadius(12)
@@ -170,21 +170,21 @@ struct FocusSessionPreparationStep: View {
                                                 Image(systemName: "target")
                                                     .foregroundStyle(goal.priority.color)
                                                 
-                                                Text(settings.localizedString(for: goal.text))
+                                                Text(NSLocalizedString(goal.text, comment: ""))
                                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                                 
                                                 Spacer()
                                                 
                                                 Menu {
-                                                    Picker(settings.localizedString(for: "Priorität"), selection: $goal.priority) {
+                                                    Picker(String(localized: "Priorität"), selection: $goal.priority) {
                                                         ForEach(GoalPriority.allCases, id: \.self) { priority in
-                                                            Text(settings.localizedString(for: priority.rawValue)).tag(priority)
+                                                            Text(NSLocalizedString(priority.rawValue, comment: "")).tag(priority)
                                                         }
                                                     }
                                                 } label: {
                                                     HStack(spacing: 4) {
                                                         Image(systemName: "exclamationmark.circle.fill")
-                                                        Text(settings.localizedString(for: goal.priority.rawValue))
+                                                        Text(NSLocalizedString(goal.priority.rawValue, comment: ""))
                                                     }
                                                     .font(.system(size: 12, weight: .bold, design: .rounded))
                                                     .padding(.horizontal, 8)
@@ -209,7 +209,7 @@ struct FocusSessionPreparationStep: View {
                                                         .foregroundStyle(.secondary)
                                                         .padding(.leading, 8)
                                                     
-                                                    Text(settings.localizedString(for: subtask.text))
+                                                    Text(NSLocalizedString(subtask.text, comment: ""))
                                                         .font(.system(size: 14, weight: .medium, design: .rounded))
                                                         .foregroundStyle(.secondary)
                                                     
@@ -247,7 +247,7 @@ struct FocusSessionPreparationStep: View {
         
         // Weiter-Button
         Button(action: action) {
-            Text(settings.localizedString(for: buttonText))
+            Text(NSLocalizedString(buttonText, comment: ""))
         }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large,

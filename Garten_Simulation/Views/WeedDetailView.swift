@@ -11,11 +11,8 @@ struct WeedDetailView: View {
     @State private var showInfoPopover = false
 
     private var stylizedBodyText: AttributedString {
-        let raw = settings.localizedFormat(
-            "weed_popup_body",
-            gardenStore.weedEffectiveRewardPercent,
-            GameConstants.habitsRequiredPerWeed
-        )
+        let raw = String(format: String(localized: "weed_popup_body"), gardenStore.weedEffectiveRewardPercent,
+            GameConstants.habitsRequiredPerWeed)
         var attr = AttributedString(raw)
         
         let terms = [
@@ -84,7 +81,7 @@ struct WeedDetailView: View {
                                 }
                             }) {
                                 HStack {
-                                    Text(settings.localizedString(for: "weed_popup_pay"))
+                                    Text(String(localized: "weed_popup_pay"))
                                         .font(.system(size: 15, weight: .bold))
                                     Image("coin")
                                         .resizable()
@@ -150,7 +147,7 @@ struct WeedDetailView: View {
             Button {
                 showInfoPopover.toggle()
             } label: {
-                Text(settings.localizedString(for: "weed_popup_title"))
+                Text(String(localized: "weed_popup_title"))
                     .font(.system(size: 32, weight: .black, design: .rounded))
                     .foregroundStyle(.primary)
             }
@@ -165,8 +162,8 @@ struct WeedDetailView: View {
                         if gardenStore.hasWeedShieldOption {
                             Text(
                                 gardenStore.blocksNewWeedSpawns && selectedPowerUp == nil
-                                    ? settings.localizedString(for: "weed.shield.ritual.drag_active")
-                                    : settings.localizedString(for: "weed.shield.ritual.drag")
+                                    ? String(localized: "weed.shield.ritual.drag_active")
+                                    : String(localized: "weed.shield.ritual.drag")
                             )
                             .font(.system(size: 14, weight: .semibold, design: .rounded))
                             .foregroundStyle(.secondary)
@@ -175,10 +172,7 @@ struct WeedDetailView: View {
             
                         if gardenStore.isComebackBoostActive {
                             Label(
-                                settings.localizedFormat(
-                                    "weed.comeback.banner",
-                                    gardenStore.comebackBoostRewardPercent
-                                ),
+                                String(format: String(localized: "weed.comeback.banner"), gardenStore.comebackBoostRewardPercent),
                                 systemImage: "bolt.fill"
                             )
                             .font(.caption)
@@ -188,11 +182,8 @@ struct WeedDetailView: View {
             
                         if gardenStore.weedCount > 1 {
                             Text(
-                                settings.localizedFormat(
-                                    "weed_queue_position",
-                                    1,
-                                    gardenStore.weedCount
-                                )
+                                String(format: String(localized: "weed_queue_position"), 1,
+                                    gardenStore.weedCount)
                             )
                             .font(.subheadline)
                             .fontWeight(.semibold)
@@ -220,7 +211,7 @@ struct WeedDetailView: View {
     private var shieldDragSection: some View {
         VStack(spacing: 8) {
             if !canUseShieldDrag && hasWeedPowerUpsInInventory {
-                Text(settings.localizedString(for: "weed.shield.ritual.pick_first"))
+                Text(String(localized: "weed.shield.ritual.pick_first"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -239,11 +230,8 @@ struct WeedDetailView: View {
 
             if canUseShieldDrag {
                 Text(
-                    settings.localizedFormat(
-                        "weed.shield.ritual.progress",
-                        shieldedDotIndices.count,
-                        GameConstants.habitsRequiredPerWeed
-                    )
+                    String(format: String(localized: "weed.shield.ritual.progress"), shieldedDotIndices.count,
+                        GameConstants.habitsRequiredPerWeed)
                 )
                 .font(.caption2)
                 .foregroundStyle(.tertiary)
@@ -288,11 +276,8 @@ struct WeedDetailView: View {
             }
 
             Text(
-                settings.localizedFormat(
-                    "weed_progress_label",
-                    gardenStore.dailyQuestsCompletedSinceWeed,
-                    GameConstants.habitsRequiredPerWeed
-                )
+                String(format: String(localized: "weed_progress_label"), gardenStore.dailyQuestsCompletedSinceWeed,
+                    GameConstants.habitsRequiredPerWeed)
             )
             .font(.subheadline)
             .fontWeight(.semibold)

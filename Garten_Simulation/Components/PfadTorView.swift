@@ -15,7 +15,7 @@ struct PfadTorView: View {
                 HStack(spacing: 8) {
                     Image(systemName: phaseIcon)
                         .font(.system(size: 14, weight: .bold))
-                    Text(settings.localizedString(for: "pfad_phase_" + phase.rawValue).uppercased())
+                    Text(NSLocalizedString("pfad_phase_" + phase.rawValue, comment: "").uppercased())
                         .font(.system(size: 13, weight: .black, design: .rounded))
                         .tracking(1.5)
                 }

@@ -68,7 +68,7 @@ struct HabitVerlaufView: View {
                     .font(.system(size: 60))
                     .foregroundStyle(.secondary.opacity(0.3))
                 
-                Text(settings.localizedString(for: "verlauf.custom_plant.message"))
+                Text(String(localized: "verlauf.custom_plant.message"))
                     .font(.system(size: 17, weight: .semibold, design: .rounded))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -100,19 +100,19 @@ struct HabitVerlaufView: View {
         HStack(spacing: 0) {
             statCell(
                 value: "\(wateredCount)",
-                label: settings.localizedString(for: "verlauf.stat.days"),
+                label: String(localized: "verlauf.stat.days"),
                 color: .gruenPrimary
             )
             divider
             statCell(
                 value: "\(pflanze.streak)",
-                label: settings.localizedString(for: "verlauf.stat.streak"),
+                label: String(localized: "verlauf.stat.streak"),
                 color: .orangePrimary
             )
             divider
             statCell(
                 value: "\(consistencyPct)%",
-                label: settings.localizedString(for: "verlauf.stat.rate"),
+                label: String(localized: "verlauf.stat.rate"),
                 color: .blauPrimary
             )
         }
@@ -146,7 +146,7 @@ struct HabitVerlaufView: View {
     // MARK: - Heatmap Section
     private var heatmapSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(settings.localizedString(for: "verlauf.title"))
+            Text(String(localized: "verlauf.title"))
                 .font(.system(size: 15, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
 
@@ -169,9 +169,9 @@ struct HabitVerlaufView: View {
             Image(systemName: "drop.fill")
                 .font(.system(size: 36))
                 .foregroundStyle(Color.blauPrimary.opacity(0.3))
-            Text(settings.localizedString(for: "verlauf.empty.title"))
+            Text(String(localized: "verlauf.empty.title"))
                 .font(.system(size: 15, weight: .bold, design: .rounded))
-            Text(settings.localizedString(for: "verlauf.empty.subtitle"))
+            Text(String(localized: "verlauf.empty.subtitle"))
                 .font(.system(size: 13, weight: .medium, design: .rounded))
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)

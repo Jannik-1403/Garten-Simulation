@@ -55,8 +55,8 @@ struct PflanzeDetailSheet: View {
                 id: UUID(uuidString: "77777777-7777-7777-7777-000000000001")!,
                 typ: .status,
                 ikonQuelle: .asset("Schildkröte"),
-                titel: settings.localizedString(for: "effekt.erholung.titel"),
-                beschreibung: settings.localizedString(for: "effekt.erholung.beschreibung"),
+                titel: String(localized: "effekt.erholung.titel"),
+                beschreibung: String(localized: "effekt.erholung.beschreibung"),
                 expiresAt: expiration
             ))
         }
@@ -80,8 +80,8 @@ struct PflanzeDetailSheet: View {
                         id: aktiv.id, // Nutze die stabile ID des Power-Ups!
                         typ: .powerUp,
                         ikonQuelle: .asset(base.symbolName),
-                        titel: settings.localizedString(for: base.name),
-                        beschreibung: settings.localizedString(for: base.description),
+                        titel: NSLocalizedString(base.name, comment: ""),
+                        beschreibung: NSLocalizedString(base.description, comment: ""),
                         expiresAt: aktiv.expiresAt
                     ))
                 }
@@ -131,7 +131,7 @@ struct PflanzeDetailSheet: View {
                                 } else {
                                     // Fallback if not found
                                     PflanzenButton(
-                                        plant: Plant(id: "fallback", name: settings.localizedString(for: "common.plant_fallback"), symbolName: pflanze.symbolName, assetName: nil, symbol: "🌱", symbolColor: pflanze.symbolColor, habitCategory: pflanze.habitCategory, symbolism: ""),
+                                        plant: Plant(id: "fallback", name: String(localized: "common.plant_fallback"), symbolName: pflanze.symbolName, assetName: nil, symbol: "🌱", symbolColor: pflanze.symbolColor, habitCategory: pflanze.habitCategory, symbolism: ""),
                                         seltenheit: pflanze.seltenheit,
                                         farbe: pflanze.color,
                                         sekundaerFarbe: pflanze.color.darker(),
@@ -143,14 +143,14 @@ struct PflanzeDetailSheet: View {
                             }
                             .scaleEffect(min(1.0, ScreenSize.width / 390)) // Scale down on smaller iPhones
     
-                            Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
+                            Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
                                 .font(.system(size: 36, weight: .black, design: .rounded))
                                 .minimumScaleFactor(0.5)
                                 .lineLimit(2)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 20)
     
-                            Text(settings.localizedString(for: pflanze.habitCategory.localizationKey))
+                            Text(NSLocalizedString(pflanze.habitCategory.localizationKey, comment: ""))
                                 .font(.system(size: 14, weight: .bold, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .textCase(.uppercase)
@@ -251,7 +251,7 @@ struct PflanzeDetailSheet: View {
                         } label: {
                             ZStack {
 
-                                Text(settings.localizedString(for: "plant.detail.note.add")).textCase(.uppercase)
+                                Text(String(localized: "plant.detail.note.add")).textCase(.uppercase)
                                     .font(.system(size: 14, weight: .bold, design: .rounded))
                             }
                             .frame(maxWidth: .infinity)
@@ -268,7 +268,7 @@ struct PflanzeDetailSheet: View {
                         } label: {
                             ZStack {
 
-                                Text(settings.localizedString(for: "plant.detail.timer")).textCase(.uppercase)
+                                Text(String(localized: "plant.detail.timer")).textCase(.uppercase)
                                     .font(.system(size: 15, weight: .bold, design: .rounded))
                             }
                             .frame(maxWidth: .infinity)
@@ -298,7 +298,7 @@ struct PflanzeDetailSheet: View {
                                     .foregroundStyle(.white.opacity(0.12))
                                     .offset(x: 35, y: 15)
                             }
-                            Text(settings.localizedString(for: "Fokus-Session starten")).textCase(.uppercase)
+                            Text(String(localized: "Fokus-Session starten")).textCase(.uppercase)
                                 .font(.system(size: 16, weight: .black, design: .rounded))
                                 .foregroundStyle(.white)
                         }
@@ -317,7 +317,7 @@ struct PflanzeDetailSheet: View {
                     Button {
                         zeigeVerkaufenDialog = true
                     } label: {
-                        Text(settings.localizedString(for: "plant.detail.sell"))
+                        Text(String(localized: "plant.detail.sell"))
                             .font(.system(size: 16, weight: .bold, design: .rounded))
                             .foregroundStyle(Color.red)
                     }
@@ -345,8 +345,8 @@ struct PflanzeDetailSheet: View {
                 } header: {
                     if !(pflanze.plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: pflanze.plantID) == nil) {
                         Picker("", selection: $selectedTab) {
-                            Text(settings.localizedString(for: "tab.uebersicht")).tag(DetailTab.uebersicht)
-                            Text(settings.localizedString(for: "tab.verlauf")).tag(DetailTab.verlauf)
+                            Text(String(localized: "tab.uebersicht")).tag(DetailTab.uebersicht)
+                            Text(String(localized: "tab.verlauf")).tag(DetailTab.verlauf)
                         }
                         .pickerStyle(.segmented)
                         .padding(.horizontal, 24)
@@ -369,7 +369,7 @@ struct PflanzeDetailSheet: View {
             }
             } // End of ScrollViewReader
         }
-        .navigationTitle(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
+        .navigationTitle(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
         .navigationBarTitleDisplayMode(.inline)
         .standardNavigationX()
         .background(Color(UIColor.secondarySystemBackground))
@@ -380,20 +380,20 @@ struct PflanzeDetailSheet: View {
         }
         // MARK: - Verkaufen Dialog
         .confirmationDialog(
-            settings.localizedString(for: "plant.detail.sell.confirm"),
+            String(localized: "plant.detail.sell.confirm"),
             isPresented: $zeigeVerkaufenDialog,
             titleVisibility: .visible
         ) {
             let refund = Int(Double(pflanze.basePrice) * 0.5)
-            Button("\(settings.localizedString(for: "plant.detail.sell.action")) (+\(refund) Coins)", role: .destructive) {
+            Button("\(String(localized: "plant.detail.sell.action")) (+\(refund) \(String(localized: "common.coins")))", role: .destructive) {
                 UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                 let sellTitle = settings.showHabitInsteadOfName 
-                    ? settings.localizedString(for: pflanze.habitName)
-                    : settings.localizedString(for: pflanze.name)
+                    ? NSLocalizedString(pflanze.habitName, comment: "")
+                    : NSLocalizedString(pflanze.name, comment: "")
                 shopStore.sell(id: pflanze.id, price: pflanze.basePrice, title: sellTitle)
                 onLoeschen?()
             }
-            Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
+            Button(String(localized: "button.cancel"), role: .cancel) { }
         }
         // MARK: - Notiz Sheet
         .sheet(isPresented: $zeigeNotizSheet) {
@@ -482,7 +482,7 @@ struct PflanzeDetailSheet: View {
                     Text("\(pflanze.streak)")
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                 }
-                Text(settings.localizedString(for: "plant.detail.streak").uppercased())
+                Text(String(localized: "plant.detail.streak").uppercased())
                     .font(.system(size: 8, weight: .bold))
                     .foregroundStyle(.secondary)
             }
@@ -500,7 +500,7 @@ struct PflanzeDetailSheet: View {
                     Text("\(pflanze.currentXP)")
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                 }
-                Text(settings.localizedString(for: "plant.detail.xp").uppercased())
+                Text(String(localized: "plant.detail.xp").uppercased())
                     .font(.system(size: 8, weight: .bold))
                     .foregroundStyle(.secondary)
             }
@@ -527,7 +527,7 @@ struct PflanzeDetailSheet: View {
                     Text(pflanze.formattedVolume)
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                 }
-                Text(settings.localizedString(for: "plant.detail.watered").uppercased())
+                Text(String(localized: "plant.detail.watered").uppercased())
                     .font(.system(size: 8, weight: .bold))
                     .foregroundStyle(.secondary)
             }
@@ -590,11 +590,11 @@ struct NotizSheetView: View {
             // Header
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(settings.localizedString(for: isEditing ? "plant.detail.note.edit" : "plant.detail.note.add"))
+                    Text(NSLocalizedString(isEditing ? "plant.detail.note.edit" : "plant.detail.note.add", comment: ""))
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         Text(settings.showHabitInsteadOfName 
-                             ? settings.localizedString(for: pflanze.habitName)
-                             : settings.localizedString(for: pflanze.name))
+                             ? NSLocalizedString(pflanze.habitName, comment: "")
+                             : NSLocalizedString(pflanze.name, comment: ""))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                 }
@@ -621,7 +621,7 @@ struct NotizSheetView: View {
                 )
                 .overlay(alignment: .topLeading) {
                     if notizText.isEmpty {
-                        Text(settings.localizedString(for: "plant.detail.note.placeholder"))
+                        Text(String(localized: "plant.detail.note.placeholder"))
                             .font(.system(size: 16, weight: .medium, design: .rounded))
                             .foregroundStyle(.tertiary)
                             .padding(20)
@@ -640,7 +640,7 @@ struct NotizSheetView: View {
                 }
                 dismiss()
             } label: {
-                Text(settings.localizedString(for: isEditing ? "plant.detail.note.save" : "plant.detail.note.add.action"))
+                Text(NSLocalizedString(isEditing ? "plant.detail.note.save" : "plant.detail.note.add.action", comment: ""))
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large,
@@ -694,8 +694,8 @@ struct TimerEditSheetView: View {
     }
     private var pflanzName: String {
         settings.showHabitInsteadOfName
-            ? settings.localizedString(for: pflanze.habitName)
-            : settings.localizedString(for: pflanze.name)
+            ? NSLocalizedString(pflanze.habitName, comment: "")
+            : NSLocalizedString(pflanze.name, comment: "")
     }
 
     var body: some View {
@@ -704,7 +704,7 @@ struct TimerEditSheetView: View {
                 // Header
                 HStack {
                     VStack(alignment: .leading, spacing: 3) {
-                        Text(settings.localizedString(for: "plant.detail.timer"))
+                        Text(String(localized: "plant.detail.timer"))
                             .font(.system(size: 22, weight: .black, design: .rounded))
                         Text(pflanzName)
                             .font(.system(size: 14, weight: .medium, design: .rounded))
@@ -718,9 +718,9 @@ struct TimerEditSheetView: View {
                 
                 if isLinkingNotes, let note = selectedNoteForLinking {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("\(settings.localizedString(for: "routine.note.assign")) \(note)")
+                        Text("\(String(localized: "routine.note.assign")) \(note)")
                             .font(.system(size: 22, weight: .black, design: .rounded))
-                        Text(settings.localizedString(for: "routine.note.assign.desc"))
+                        Text(String(localized: "routine.note.assign.desc"))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                     }
@@ -761,7 +761,7 @@ struct TimerEditSheetView: View {
                                 selectedNoteForLinking = nil
                             }
                         } label: {
-                            Text(settings.localizedString(for: "common.done_button"))
+                            Text(String(localized: "common.done_button"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                         }
                         .disabled(selectedDaysForLinking.isEmpty)
@@ -776,7 +776,7 @@ struct TimerEditSheetView: View {
                             autoSave()
                             dismiss()
                         } label: {
-                            Text(settings.localizedString(for: "common.done_button"))
+                            Text(String(localized: "common.done_button"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                         }
                     }
@@ -791,7 +791,7 @@ struct TimerEditSheetView: View {
                                 selectedNoteForLinking = nil
                             }
                         } label: {
-                            Text(settings.localizedString(for: "common.cancel"))
+                            Text(String(localized: "common.cancel"))
                                 .font(.system(size: 16, weight: .regular))
                                 .foregroundStyle(.red)
                         }
@@ -800,7 +800,7 @@ struct TimerEditSheetView: View {
                             // 1. Notizen verknüpfen Sub-Menu
                             Menu {
                                 if pflanze.notizen.isEmpty {
-                                    Text(settings.localizedString(for: "plant.detail.note.empty"))
+                                    Text(String(localized: "plant.detail.note.empty"))
                                 } else {
                                     ForEach(pflanze.notizen, id: \.self) { notiz in
                                         Button(notiz) {
@@ -813,7 +813,7 @@ struct TimerEditSheetView: View {
                                     }
                                 }
                             } label: {
-                                Label(settings.localizedString(for: "timer.note.link"), systemImage: "link")
+                                Label(String(localized: "timer.note.link"), systemImage: "link")
                             }
                             
                             // 2. Wiederholung für alle Sub-Menu
@@ -828,18 +828,18 @@ struct TimerEditSheetView: View {
                                             }
                                         }
                                     } label: {
-                                        Label(settings.localizedString(for: mode.localizationKey), systemImage: mode.sfSymbol)
+                                        Label(NSLocalizedString(mode.localizationKey, comment: ""), systemImage: mode.sfSymbol)
                                     }
                                 }
                             } label: {
-                                Label(settings.localizedString(for: "timer.repeat.title"), systemImage: "repeat")
+                                Label(String(localized: "timer.repeat.title"), systemImage: "repeat")
                             }
                             
                             // 3. Zeitleiste (Alle Benachrichtigungen)
                             Button {
                                 showTimeline = true
                             } label: {
-                                Label("Zeitleiste", systemImage: "list.bullet.rectangle.portrait")
+                                Label(String(localized: "common.timeline"), systemImage: "list.bullet.rectangle.portrait")
                             }
                             
                             // 4. Löschen
@@ -847,7 +847,7 @@ struct TimerEditSheetView: View {
                                 gardenStore.timerEntfernen(pflanze: pflanze)
                                 dismiss()
                             } label: {
-                                Label(settings.localizedString(for: "plant.detail.timer.delete"), systemImage: "trash")
+                                Label(String(localized: "plant.detail.timer.delete"), systemImage: "trash")
                             }
                         } label: {
                             Image(systemName: "ellipsis")
@@ -942,7 +942,7 @@ struct TimerEditSheetView: View {
                             .foregroundStyle(isSelectedForLinking ? Color.orangePrimary : Color.secondary.opacity(0.3))
                     }
                     
-                    Text(settings.localizedString(for: daysKeys[day-1]))
+                    Text(NSLocalizedString(daysKeys[day-1], comment: ""))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle((isEnabled && !isOverridden) ? Color.primary : Color.secondary.opacity(0.5))
                     
@@ -951,11 +951,11 @@ struct TimerEditSheetView: View {
                     if isOverridden {
                         HStack(spacing: 4) {
                             if let routineName = parentRoutineWithReminder?.titleKey {
-                                Text(settings.localizedString(for: routineName))
+                                Text(NSLocalizedString(routineName, comment: ""))
                                     .font(.system(size: 12, weight: .bold, design: .rounded))
                                     .foregroundStyle(Color(hex: parentRoutineWithReminder!.colorHex))
                             }
-                            Text(settings.localizedString(for: "routine.timer.paused"))
+                            Text(String(localized: "routine.timer.paused"))
                                 .font(.system(size: 14, weight: .medium, design: .rounded))
                                 .foregroundStyle(.secondary.opacity(0.6))
                         }
@@ -971,7 +971,7 @@ struct TimerEditSheetView: View {
                                 .font(.system(size: 14, weight: isExpanded ? .bold : .medium))
                         }
                     } else {
-                        Text(settings.localizedString(for: "routine.timer.off"))
+                        Text(String(localized: "routine.timer.off"))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary.opacity(0.6))
                         Image(systemName: "plus.circle.fill")
@@ -1016,12 +1016,12 @@ struct TimerEditSheetView: View {
             
             // Message Field
             VStack(alignment: .leading, spacing: 6) {
-                Text(settings.localizedString(for: "timer.notification.title"))
+                Text(String(localized: "timer.notification.title"))
                     .font(.system(size: 12, weight: .bold, design: .rounded))
                     .foregroundStyle(.secondary)
                     .textCase(.uppercase)
                 
-                TextField(String(format: settings.localizedString(for: "timer.preview.body.example"), pflanzName),
+                TextField(String(format: String(localized: "timer.preview.body.example"), pflanzName),
                           text: Binding(
                               get: { schedule.weekdays[index].customMessage ?? "" },
                               set: { schedule.weekdays[index].customMessage = $0.isEmpty ? nil : $0 }
@@ -1037,14 +1037,14 @@ struct TimerEditSheetView: View {
             
             // Repeat Mode
             VStack(alignment: .leading, spacing: 6) {
-                Text(settings.localizedString(for: "timer.repeat.title"))
+                Text(String(localized: "timer.repeat.title"))
                     .font(.system(size: 12, weight: .bold, design: .rounded))
                     .foregroundStyle(.secondary)
                     .textCase(.uppercase)
                     
                 Picker("", selection: $schedule.weekdays[index].repeatMode) {
                     ForEach(ReminderRepeatMode.allCases, id: \.self) { mode in
-                        Text(settings.localizedString(for: mode.localizationKey)).tag(mode)
+                        Text(NSLocalizedString(mode.localizationKey, comment: "")).tag(mode)
                     }
                 }
                 .pickerStyle(.segmented)
@@ -1063,7 +1063,7 @@ struct TimerEditSheetView: View {
             } label: {
                 HStack {
                     Image(systemName: "trash")
-                    Text(settings.localizedString(for: "routine.timer.disable"))
+                    Text(String(localized: "routine.timer.disable"))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                 }
                 .padding(.vertical, 10)
@@ -1124,7 +1124,7 @@ struct TimerCreateSheetView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text(settings.localizedString(for: "plant.detail.timer.set"))
+            Text(String(localized: "plant.detail.timer.set"))
                 .font(.system(size: 20, weight: .bold, design: .rounded))
                 .padding(.top, 24)
 
@@ -1146,7 +1146,7 @@ struct TimerCreateSheetView: View {
                     }
                 }
             } label: {
-                Text(settings.localizedString(for: "plant.detail.timer.set"))
+                Text(String(localized: "plant.detail.timer.set"))
             }
             .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: .orangePrimary, shadowColor: .orangePrimary.darker()))
             .padding(.horizontal, 24)
@@ -1187,13 +1187,13 @@ struct PlantWeeklyStreakView: View {
     private let calendar = Calendar.current
     private var weekdays: [String] {
         [
-            settings.localizedString(for: "common.mon"),
-            settings.localizedString(for: "common.tue"),
-            settings.localizedString(for: "common.wed"),
-            settings.localizedString(for: "common.thu"),
-            settings.localizedString(for: "common.fri"),
-            settings.localizedString(for: "common.sat"),
-            settings.localizedString(for: "common.sun")
+            String(localized: "common.mon"),
+            String(localized: "common.tue"),
+            String(localized: "common.wed"),
+            String(localized: "common.thu"),
+            String(localized: "common.fri"),
+            String(localized: "common.sat"),
+            String(localized: "common.sun")
         ]
     }
     
@@ -1229,7 +1229,7 @@ struct PlantWeeklyStreakView: View {
                     }
                     .frame(width: 38, height: 41) // Platz für Schatten reservieren
                     
-                    Text(dayXP > 0 ? "+\(dayXP) \(settings.localizedString(for: "common.xp"))" : " ")
+                    Text(dayXP > 0 ? "+\(dayXP) \(String(localized: "common.xp"))" : " ")
                         .font(.system(size: 10, weight: .black, design: .rounded))
                         .foregroundStyle(dayXP > 0 ? .white : .clear)
                         .lineLimit(1)
@@ -1316,7 +1316,7 @@ struct NoteRowView: View {
                     .scaleEffect(2.5)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("\(settings.localizedString(for: "plant.detail.note")) \(index + 1)")
+                    Text("\(String(localized: "plant.detail.note")) \(index + 1)")
                         .font(.system(size: 11, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                     Text(pflanze.notizen[index])
@@ -1342,14 +1342,14 @@ struct NoteRowView: View {
         }
         .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: isVisualPressed))
         .confirmationDialog(
-            settings.localizedString(for: "plant.detail.note.delete.confirm"),
+            String(localized: "plant.detail.note.delete.confirm"),
             isPresented: deleteConfirmShowing,
             titleVisibility: .visible
         ) {
-            Button(settings.localizedString(for: "plant.detail.note.delete.action"), role: .destructive) {
+            Button(String(localized: "plant.detail.note.delete.action"), role: .destructive) {
                 onConfirmDelete()
             }
-            Button(settings.localizedString(for: "button.cancel"), role: .cancel) {
+            Button(String(localized: "button.cancel"), role: .cancel) {
                 onCancelDelete()
             }
         }
@@ -1385,14 +1385,14 @@ struct TimerRowView: View {
                     .scaleEffect(2.5)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(settings.localizedString(for: "plant.detail.timer.active"))
+                    Text(String(localized: "plant.detail.timer.active"))
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                     if let next = pflanze.nextActiveReminder {
                         Text("\(next.time, style: .time)")
                             .font(.system(size: 14, weight: .semibold, design: .rounded))
                     } else {
-                        Text(settings.localizedString(for: "timer.weekday.title"))
+                        Text(String(localized: "timer.weekday.title"))
                             .font(.system(size: 14, weight: .semibold, design: .rounded))
                     }
                 }
@@ -1413,14 +1413,14 @@ struct TimerRowView: View {
         }
         .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: isVisualPressed))
         .confirmationDialog(
-            settings.localizedString(for: "plant.detail.timer.cancel.confirm"),
+            String(localized: "plant.detail.timer.cancel.confirm"),
             isPresented: deleteConfirmShowing,
             titleVisibility: .visible
         ) {
-            Button(settings.localizedString(for: "plant.detail.timer.cancel.action"), role: .destructive) {
+            Button(String(localized: "plant.detail.timer.cancel.action"), role: .destructive) {
                 onConfirmDelete()
             }
-            Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
+            Button(String(localized: "button.cancel"), role: .cancel) { }
         }
     }
 }

@@ -18,9 +18,9 @@ struct OnboardingPowerUpTutorialView: View {
     
     var bubbleText: String {
         if itemVerwendet {
-            return settings.localizedString(for: "onboarding_tutorial_powerup_active_success")
+            return String(localized: "onboarding_tutorial_powerup_active_success")
         }
-        return zeigeDetail ? settings.localizedString(for: "onboarding_tutorial_powerup_detail_hint") : settings.localizedString(for: "onboarding_tutorial_powerup_bubble")
+        return zeigeDetail ? String(localized: "onboarding_tutorial_powerup_detail_hint") : String(localized: "onboarding_tutorial_powerup_bubble")
     }
     
     var body: some View {
@@ -51,7 +51,7 @@ struct OnboardingPowerUpTutorialView: View {
                     .animation(.spring(), value: itemVerwendet)
                     
                     if !itemVerwendet {
-                        Text(settings.localizedString(for: item.name))
+                        Text(NSLocalizedString(item.name, comment: ""))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                             .transition(.opacity)
@@ -68,7 +68,7 @@ struct OnboardingPowerUpTutorialView: View {
                         data.currentStep += 1
                     }
                 } label: {
-                    Text(settings.localizedString(for: "onboarding_weiter"))
+                    Text(String(localized: "onboarding_weiter"))
                 }
                 .buttonStyle(DuolingoButtonStyle(
                     size: .large,

@@ -12,14 +12,14 @@ struct OnboardingFertigView: View {
         VStack(spacing: 0) {
             OnboardingIgelView(
                 pose: innerPose,
-                sprechblasenText: settings.localizedString(for: "onboarding_fertig_blase")
+                sprechblasenText: String(localized: "onboarding_fertig_blase")
             )
             .padding(.top, 20)
             
             Spacer()
             
             VStack(spacing: 30) {
-                Text(settings.localizedString(for: "onboarding_fertig_titel"))
+                Text(String(localized: "onboarding_fertig_titel"))
                     .font(.system(size: 36, weight: .black, design: .rounded))
                     .foregroundStyle(Color.goldPrimary)
                 
@@ -42,7 +42,7 @@ struct OnboardingFertigView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 24, height: 24)
-                        Text(settings.localizedString(for: "onboarding_fertig_startcoins"))
+                        Text(String(localized: "onboarding_fertig_startcoins"))
                             .font(.system(.headline, design: .rounded))
                     }
                     .padding(.horizontal, 20)
@@ -70,7 +70,7 @@ struct OnboardingFertigView: View {
             Button {
                 finish()
             } label: {
-                Text(settings.localizedString(for: "onboarding_fertig_button"))
+                Text(String(localized: "onboarding_fertig_button"))
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large,

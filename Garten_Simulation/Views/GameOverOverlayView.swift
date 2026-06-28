@@ -27,11 +27,11 @@ struct GameOverOverlayView: View {
                     }
 
                     VStack(spacing: 12) {
-                        Text(settings.localizedString(for: "gameover.titel"))
+                        Text(String(localized: "gameover.titel"))
                             .font(.system(size: 32, weight: .black, design: .rounded))
                             .foregroundStyle(.primary)
                         
-                        Text(settings.localizedString(for: "gameover.beschreibung"))
+                        Text(String(localized: "gameover.beschreibung"))
                             .font(.system(size: 17, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -45,7 +45,7 @@ struct GameOverOverlayView: View {
                                 zeigeUmfrage = true
                             }
                         } label: {
-                            Text(settings.localizedString(for: "gameover.button"))
+                            Text(String(localized: "gameover.button"))
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                         }
                         .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: .gruenPrimary))
@@ -53,7 +53,7 @@ struct GameOverOverlayView: View {
                         Button {
                             gardenStore.zeigeGameOverOverlay = false
                         } label: {
-                            Text(settings.localizedString(for: "button.back_to_garden"))
+                            Text(String(localized: "button.back_to_garden"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundStyle(.secondary)
                         }

@@ -122,7 +122,7 @@ struct StreakIncreaseOverlayView: View {
 
                         // ── Subtext ──────────────────────────────────
                         if showSubtext {
-                            Text(settings.localizedString(for: "streak.increase.days"))
+                            Text(String(localized: "streak.increase.days", defaultValue: "Tage Streak"))
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                                 .foregroundStyle(Color(hex: "#FF4B2B"))
                                 .transition(.opacity)
@@ -160,7 +160,7 @@ struct StreakIncreaseOverlayView: View {
                                         isVisible = false
                                     }
                                 } label: {
-                                    Text(settings.localizedString(for: "button.continue"))
+                                    Text(String(localized: "button.continue", defaultValue: "Weiter"))
                                 }
                                 .buttonStyle(DuolingoButtonStyle(
                                     size: .large,
@@ -191,13 +191,13 @@ struct StreakIncreaseOverlayView: View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 let labels = [
-                    settings.localizedString(for: "days.mo"),
-                    settings.localizedString(for: "days.tu"),
-                    settings.localizedString(for: "days.we"),
-                    settings.localizedString(for: "days.th"),
-                    settings.localizedString(for: "days.fr"),
-                    settings.localizedString(for: "days.sa"),
-                    settings.localizedString(for: "days.su")
+                    String(localized: "days.mo", defaultValue: "Mo"),
+                    String(localized: "days.tu", defaultValue: "Di"),
+                    String(localized: "days.we", defaultValue: "Mi"),
+                    String(localized: "days.th", defaultValue: "Do"),
+                    String(localized: "days.fr", defaultValue: "Fr"),
+                    String(localized: "days.sa", defaultValue: "Sa"),
+                    String(localized: "days.su", defaultValue: "So")
                 ]
 
                 ForEach(0..<7, id: \.self) { index in
@@ -383,7 +383,18 @@ struct StreakIncreaseOverlayView: View {
     }
 
     private var motivationText: String {
-        return settings.localizedString(for: "streak.motivation.\(motivationIndex)")
+        switch motivationIndex {
+        case 0: return String(localized: "streak.motivation.0", defaultValue: "Bleib am Ball!")
+        case 1: return String(localized: "streak.motivation.1", defaultValue: "Jeden Tag ein kleines Stück besser.")
+        case 2: return String(localized: "streak.motivation.2", defaultValue: "Dranbleiben zahlt sich aus!")
+        case 3: return String(localized: "streak.motivation.3", defaultValue: "Du bist stärker als du denkst.")
+        case 4: return String(localized: "streak.motivation.4", defaultValue: "Unkraut wächst nicht in gepflegten Gärten.")
+        case 5: return String(localized: "streak.motivation.5", defaultValue: "Routine schlägt Motivation.")
+        case 6: return String(localized: "streak.motivation.6", defaultValue: "Kleine Schritte, große Wirkung.")
+        case 7: return String(localized: "streak.motivation.7", defaultValue: "Dein Garten wächst mit dir!")
+        case 8: return String(localized: "streak.motivation.8", defaultValue: "Konsistenz ist der Schlüssel.")
+        default: return String(localized: "streak.motivation.9", defaultValue: "Heute ist ein guter Tag für Fortschritt.")
+        }
     }
 
     // MARK: - Helper

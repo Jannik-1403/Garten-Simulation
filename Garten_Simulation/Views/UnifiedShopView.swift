@@ -49,13 +49,13 @@ struct ShopItemCard: View {
                 .frame(width: 110, height: 110)
 
                 VStack(alignment: .center, spacing: 4) {
-                    Text(settings.localizedString(for: name))
+                    Text(NSLocalizedString(name, comment: ""))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(Color.primary)
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
                         .minimumScaleFactor(0.8)
-                    Text(settings.localizedString(for: subtitle))
+                    Text(NSLocalizedString(subtitle, comment: ""))
                         .font(.system(size: 14))
                         .foregroundStyle(Color.secondary)
                         .multilineTextAlignment(.center)
@@ -63,7 +63,7 @@ struct ShopItemCard: View {
                 }
 
                 if price == 0 {
-                    Stat3DTitleView(title: settings.localizedString(for: "shop.free"), color: .gruenPrimary, size: 16)
+                    Stat3DTitleView(title: String(localized: "shop.free"), color: .gruenPrimary, size: 16)
                         .padding(.top, 4)
                 } else {
                     GemsIcon(wert: price)
@@ -126,8 +126,8 @@ struct UnifiedShopView: View {
             base = base.filter { $0.category == kat }
         }
         if !searchText.isEmpty {
-            let lang = settings.appLanguage
-            base = base.filter { AppStrings.get(settings.showHabitInsteadOfName ? $0.habitNameKey : $0.objectNameKey, language: lang).localizedCaseInsensitiveContains(searchText) }
+
+            base = base.filter { NSLocalizedString(settings.showHabitInsteadOfName ? $0.habitNameKey : $0.objectNameKey, comment: "").localizedCaseInsensitiveContains(searchText) }
         }
         return base.filter { !shopStore.isPurchased($0.id) }
     }
@@ -164,7 +164,7 @@ struct UnifiedShopView: View {
                                     Image(systemName: "magnifyingglass")
                                         .font(.system(size: 15))
                                         .foregroundColor(Color(UIColor.placeholderText))
-                                    TextField(settings.localizedString(for: "shop.search_placeholder"), text: $searchText)
+                                    TextField(String(localized: "shop.search_placeholder"), text: $searchText)
                                         .font(.system(size: 16))
                                         .submitLabel(.search)
                                     if !searchText.isEmpty {
@@ -185,17 +185,17 @@ struct UnifiedShopView: View {
 
                                 if shopCategory == .gegenstande {
                                     // Power-Ups
-                                    sectionHeader(settings.localizedString(for: "shop.category.powerups"))
+                                    sectionHeader(String(localized: "shop.category.powerups"))
                                     VStack(spacing: 12) {
                                         ForEach(gefiltertePowerUps) { item in
                                             let p = item.basePrice
                                             let badge: String? = {
                                                 switch item.rarity {
-                                                case .mystic: return settings.localizedString(for: "rarity.mystic")
-                                                case .legendary: return settings.localizedString(for: "rarity.legendary")
-                                                case .epic: return settings.localizedString(for: "rarity.epic")
-                                                case .rare: return settings.localizedString(for: "rarity.rare")
-                                                case .common: return settings.localizedString(for: "rarity.common")
+                                                case .mystic: return String(localized: "rarity.mystic")
+                                                case .legendary: return String(localized: "rarity.legendary")
+                                                case .epic: return String(localized: "rarity.epic")
+                                                case .rare: return String(localized: "rarity.rare")
+                                                case .common: return String(localized: "rarity.common")
                                                 }
                                             }()
                                             ShopItemCard(
@@ -233,17 +233,17 @@ struct UnifiedShopView: View {
                                     Spacer().frame(height: 28)
 
                                     // Dekorationen
-                                    sectionHeader(settings.localizedString(for: "shop.category.decorations")) {
+                                    sectionHeader(String(localized: "shop.category.decorations")) {
                                         showDecorationInfo = true
                                     }
                                     
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         HStack(spacing: 8) {
-                                            LiquidGlassFilterPill(title: settings.localizedString(for: "shop.filter.all"), isSelected: selectedDecorationCategory == nil) {
+                                            LiquidGlassFilterPill(title: String(localized: "shop.filter.all"), isSelected: selectedDecorationCategory == nil) {
                                                 selectedDecorationCategory = nil
                                             }
                                             ForEach(DecorationCategory.allCases, id: \.self) { kat in
-                                                LiquidGlassFilterPill(title: settings.localizedString(for: kat.localizationKey), isSelected: selectedDecorationCategory == kat) {
+                                                LiquidGlassFilterPill(title: NSLocalizedString(kat.localizationKey, comment: ""), isSelected: selectedDecorationCategory == kat) {
                                                     selectedDecorationCategory = kat
                                                 }
                                             }
@@ -262,7 +262,7 @@ struct UnifiedShopView: View {
                                                 name: settings.showHabitInsteadOfName ? item.habitNameKey : item.objectNameKey,
                                                 subtitle: item.habitDescriptionKey,
                                                 price: item.price,
-                                                badgeText: isOwned ? settings.localizedString(for: "shop.owned") : nil,
+                                                badgeText: isOwned ? String(localized: "shop.owned") : nil,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: item.id,
@@ -288,11 +288,11 @@ struct UnifiedShopView: View {
                                     // Pflanzen
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         HStack(spacing: 8) {
-                                            LiquidGlassFilterPill(title: settings.localizedString(for: "shop.filter.all"), isSelected: selectedHabitCategory == nil) {
+                                            LiquidGlassFilterPill(title: String(localized: "shop.filter.all"), isSelected: selectedHabitCategory == nil) {
                                                 selectedHabitCategory = nil
                                             }
                                             ForEach(HabitCategory.allCases, id: \.self) { kat in
-                                                LiquidGlassFilterPill(title: settings.localizedString(for: kat.localizationKey), isSelected: selectedHabitCategory == kat) {
+                                                LiquidGlassFilterPill(title: NSLocalizedString(kat.localizationKey, comment: ""), isSelected: selectedHabitCategory == kat) {
                                                     selectedHabitCategory = kat
                                                 }
                                             }
@@ -314,7 +314,7 @@ struct UnifiedShopView: View {
                                                 name: displayName,
                                                 subtitle: plant.symbolism,
                                                 price: p,
-                                                badgeText: isOwned ? settings.localizedString(for: "shop.owned") : nil,
+                                                badgeText: isOwned ? String(localized: "shop.owned") : nil,
                                                 plant: plant,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
@@ -368,7 +368,7 @@ struct UnifiedShopView: View {
                         .fixedSize()
                 }
                 ToolbarItem(placement: .principal) {
-                    Text(settings.localizedString(for: "shop.title"))
+                    Text(String(localized: "shop.title"))
                         .font(.headline)
                         .fontWeight(.bold)
                 }
@@ -388,9 +388,9 @@ struct UnifiedShopView: View {
     }
 
     private var shopSwitcher: some View {
-        Picker(settings.localizedString(for: "shop.category.label"), selection: $shopCategory) {
-            Text(settings.localizedString(for: ShopCategory.gegenstande.rawValue)).tag(ShopCategory.gegenstande)
-            Text(settings.localizedString(for: ShopCategory.pflanzen.rawValue)).tag(ShopCategory.pflanzen)
+        Picker(String(localized: "shop.category.label"), selection: $shopCategory) {
+            Text(NSLocalizedString(ShopCategory.gegenstande.rawValue, comment: "")).tag(ShopCategory.gegenstande)
+            Text(NSLocalizedString(ShopCategory.pflanzen.rawValue, comment: "")).tag(ShopCategory.pflanzen)
         }
         .pickerStyle(.segmented)
         .padding(.horizontal, 16)

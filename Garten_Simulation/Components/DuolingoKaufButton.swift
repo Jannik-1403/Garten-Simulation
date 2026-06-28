@@ -15,7 +15,7 @@ struct DuolingoKaufButton: View {
                 Image("coin")
                     .resizable().scaledToFit()
                     .frame(width: 20, height: 20)
-                Text(settings.localizedString(for: "button.buy_now"))
+                Text(String(localized: "button.buy_now"))
                     .font(.system(.title3, design: .rounded, weight: .bold))
             }
             .foregroundStyle(.white)

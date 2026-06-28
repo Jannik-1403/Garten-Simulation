@@ -56,7 +56,7 @@ struct RetentionSurveyView: View {
     // MARK: Schritt 1 — Warum aufgehört?
     var schritt1: some View {
         VStack(spacing: 20) {
-            Text(settings.localizedString(for: "retention.frage1.titel"))
+            Text(String(localized: "retention.frage1.titel"))
                 .font(.title3)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
@@ -107,13 +107,13 @@ struct RetentionSurveyView: View {
 
             case .vergessen:
                 VStack(spacing: 16) {
-                    Text(settings.localizedString(for: "retention.frage2.vergessen"))
+                    Text(String(localized: "retention.frage2.vergessen"))
                         .font(.title3).fontWeight(.bold).multilineTextAlignment(.center)
                     Button {
                         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
                         withAnimation { schritt = 3 }
                     } label: {
-                        Text(settings.localizedString(for: "retention.notification.aktivieren"))
+                        Text(String(localized: "retention.notification.aktivieren"))
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(DuolingoButtonStyle(size: .large, backgroundColor: .blauPrimary, shadowColor: .blauSecondary))
@@ -122,14 +122,14 @@ struct RetentionSurveyView: View {
 
             case .keineZeit:
                 VStack(spacing: 16) {
-                    Text(settings.localizedString(for: "retention.frage2.keineZeit"))
+                    Text(String(localized: "retention.frage2.keineZeit"))
                         .font(.title3).fontWeight(.bold).multilineTextAlignment(.center)
                     ForEach([2, 3, 5], id: \.self) { anzahl in
                         Button {
                             // Tipp für den Nutzer speichern — keine echte Logik nötig
                             withAnimation { schritt = 3 }
                         } label: {
-                            Text(String(format: settings.localizedString(for: "retention.pflanzen.anzahl"), anzahl))
+                            Text(String(format: String(localized: "retention.pflanzen.anzahl"), anzahl))
                                 .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(DuolingoButtonStyle(
@@ -142,13 +142,13 @@ struct RetentionSurveyView: View {
 
             case .keineLust:
                 VStack(spacing: 16) {
-                    Text(settings.localizedString(for: "retention.frage2.keineLust"))
+                    Text(String(localized: "retention.frage2.keineLust"))
                         .font(.title3).fontWeight(.bold).multilineTextAlignment(.center)
                     ForEach(Array(["retention.spass.pflanzen", "retention.spass.coins", "retention.spass.streak", "retention.spass.nichts"].enumerated()), id: \.offset) { index, key in
                         Button {
                             withAnimation { schritt = 3 }
                         } label: {
-                            Text(settings.localizedString(for: key))
+                            Text(NSLocalizedString(key, comment: ""))
                                 .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(DuolingoButtonStyle(
@@ -164,22 +164,22 @@ struct RetentionSurveyView: View {
                     Image(systemName: "star.fill")
                         .font(.system(size: 48))
                         .foregroundStyle(.yellow)
-                    Text(settings.localizedString(for: "retention.frage2.nichtMehrNoetig"))
+                    Text(String(localized: "retention.frage2.nichtMehrNoetig"))
                         .font(.title3).fontWeight(.bold).multilineTextAlignment(.center)
-                    Text(settings.localizedString(for: "retention.frage2.nichtMehrNoetig.sub"))
+                    Text(String(localized: "retention.frage2.nichtMehrNoetig.sub"))
                         .font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
                     weiterButton
                 }
 
             case .nichtMotiviert:
                 VStack(spacing: 16) {
-                    Text(settings.localizedString(for: "retention.frage2.nichtMotiviert"))
+                    Text(String(localized: "retention.frage2.nichtMotiviert"))
                         .font(.title3).fontWeight(.bold).multilineTextAlignment(.center)
                     ForEach(["retention.mehr.belohnungen", "retention.mehr.pflanzen", "retention.mehr.erinnerungen", "retention.mehr.anderes"], id: \.self) { key in
                         Button {
                             withAnimation { schritt = 3 }
                         } label: {
-                            Text(settings.localizedString(for: key))
+                            Text(NSLocalizedString(key, comment: ""))
                                 .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(DuolingoButtonStyle(
@@ -203,17 +203,17 @@ struct RetentionSurveyView: View {
                 .font(.system(size: 64))
                 .foregroundStyle(.green)
 
-            Text(settings.localizedString(for: "retention.abschluss.titel"))
+            Text(String(localized: "retention.abschluss.titel"))
                 .font(.title3).fontWeight(.bold).multilineTextAlignment(.center)
 
-            Text(settings.localizedString(for: "retention.abschluss.sub"))
+            Text(String(localized: "retention.abschluss.sub"))
                 .font(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
 
             Button {
                 gardenStore.zeigeGameOverOverlay = false
                 dismiss()
             } label: {
-                Text(settings.localizedString(for: "retention.abschluss.button"))
+                Text(String(localized: "retention.abschluss.button"))
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(DuolingoButtonStyle(
@@ -226,7 +226,7 @@ struct RetentionSurveyView: View {
                 gardenStore.zeigeGameOverOverlay = false
                 dismiss()
             } label: {
-                Text(settings.localizedString(for: "retention.abschluss.nein"))
+                Text(String(localized: "retention.abschluss.nein"))
                     .foregroundStyle(.secondary)
                     .font(.subheadline)
             }
@@ -237,7 +237,7 @@ struct RetentionSurveyView: View {
         Button {
             withAnimation { schritt = 3 }
         } label: {
-            Text(settings.localizedString(for: "retention.weiter"))
+            Text(String(localized: "retention.weiter"))
                 .frame(maxWidth: .infinity)
         }
         .buttonStyle(DuolingoButtonStyle(

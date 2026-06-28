@@ -65,19 +65,19 @@ struct ShopItemDetailView: View {
                         // Tag + Titel + Subtitle
                         VStack(alignment: .leading, spacing: 8) {
                             if let tag = payload.tag {
-                                let displayTag = tag == "mystic" ? "MASTER" : (tag == "legendary" ? "LEGENDÄR" : (tag == "epic" ? "EPISCH" : (tag == "rare" ? "SELTEN" : (tag == "common" ? "GEWÖHNLICH" : settings.localizedString(for: tag)))))
+                                let displayTag = tag == "mystic" ? "MASTER" : (tag == "legendary" ? "LEGENDÄR" : (tag == "epic" ? "EPISCH" : (tag == "rare" ? "SELTEN" : (tag == "common" ? "GEWÖHNLICH" : NSLocalizedString(tag, comment: "")))))
                                 Text(displayTag)
                                     .font(.system(size: 11, weight: .bold))
                                     .foregroundStyle(payload.color)
                                     .kerning(1.4)
                             }
                             let currentTitleKey = (settings.showHabitInsteadOfName && payload.habitTitleKey != nil) ? payload.habitTitleKey! : payload.titleKey
-                            Text(settings.localizedString(for: currentTitleKey))
+                            Text(NSLocalizedString(currentTitleKey, comment: ""))
                                 .font(.system(size: 26, weight: .bold, design: .rounded))
                             
                             let currentSubtitleKey = (settings.showHabitInsteadOfName && payload.habitTitleKey != nil) ? payload.titleKey : payload.subtitle
                             if !currentSubtitleKey.isEmpty {
-                                Text(settings.localizedString(for: currentSubtitleKey))
+                                Text(NSLocalizedString(currentSubtitleKey, comment: ""))
                                     .font(.system(size: 15))
                                     .foregroundStyle(.secondary)
                             }
@@ -88,11 +88,11 @@ struct ShopItemDetailView: View {
 
                         // Beschreibung
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(settings.localizedString(for: "shop.item.description"))
+                            Text(String(localized: "shop.item.description"))
                                 .font(.system(size: 12, weight: .bold))
                                 .foregroundStyle(.secondary)
                                 .kerning(1.2)
-                            Text(settings.localizedString(for: payload.descriptionKey))
+                            Text(NSLocalizedString(payload.descriptionKey, comment: ""))
                                 .font(.system(size: 15))
                                 .lineSpacing(4)
                         }
@@ -101,11 +101,11 @@ struct ShopItemDetailView: View {
 
                         if let usage = payload.howToUse, !usage.isEmpty {
                             VStack(alignment: .leading, spacing: 10) {
-                                Text(settings.localizedString(for: "shop.item.usage"))
+                                Text(String(localized: "shop.item.usage"))
                                     .font(.system(size: 12, weight: .bold))
                                     .foregroundStyle(.secondary)
                                     .kerning(1.2)
-                                Text(settings.localizedString(for: usage))
+                                Text(NSLocalizedString(usage, comment: ""))
                                     .font(.system(size: 15))
                                     .lineSpacing(4)
                             }
@@ -124,7 +124,7 @@ struct ShopItemDetailView: View {
                                         .foregroundStyle(Color.coinBlue)
                                     Spacer()
                                     HStack(spacing: 3) {
-                                        Text(settings.localizedString(for: "shop.your_balance"))
+                                        Text(String(localized: "shop.your_balance"))
                                             .font(.system(size: 13))
                                             .foregroundStyle(.secondary)
                                         Image("coin")
@@ -143,11 +143,11 @@ struct ShopItemDetailView: View {
                             if payload.itemType == .plant && payload.id != "plant.seeds" {
                                 VStack(alignment: .leading, spacing: 14) {
                                     HStack {
-                                        Text(settings.localizedString(for: "schwierigkeit.titel"))
+                                        Text(String(localized: "schwierigkeit.titel"))
                                             .font(.system(size: 14, weight: .bold, design: .rounded))
                                         Spacer()
                                         if let diff = selectedDifficulty {
-                                            Text(settings.localizedString(for: diff.titelKey))
+                                            Text(NSLocalizedString(diff.titelKey, comment: ""))
                                                 .font(.system(size: 14, weight: .bold))
                                                 .foregroundStyle(diff.farbe)
                                         }
@@ -169,7 +169,7 @@ struct ShopItemDetailView: View {
                                                     FeedbackManager.shared.playTap()
                                                 }
                                             } label: {
-                                                Text(settings.localizedString(for: diff.titelKey))
+                                                Text(NSLocalizedString(diff.titelKey, comment: ""))
                                                     .font(.system(size: 11, weight: .black, design: .rounded))
                                                     .minimumScaleFactor(0.6)
                                                     .lineLimit(2)
@@ -180,14 +180,14 @@ struct ShopItemDetailView: View {
                                     .frame(height: 70)
                                     
                                     if let diff = selectedDifficulty {
-                                        Text(settings.localizedString(for: diff.beschreibungKey))
+                                        Text(NSLocalizedString(diff.beschreibungKey, comment: ""))
                                             .font(.system(size: 12, weight: .medium))
                                             .foregroundStyle(.secondary)
                                             .fixedSize(horizontal: false, vertical: true)
                                             .padding(.horizontal, 4)
                                             .transition(.opacity.combined(with: .move(edge: .top)))
                                     } else {
-                                        Text(settings.localizedString(for: "schwierigkeit.waehlen_hinweis"))
+                                        Text(String(localized: "schwierigkeit.waehlen_hinweis"))
                                             .font(.system(size: 12, weight: .bold))
                                             .foregroundStyle(.orange)
                                             .padding(.horizontal, 4)
@@ -206,7 +206,7 @@ struct ShopItemDetailView: View {
                                     Button {
                                         FeedbackManager.shared.playTap()
                                     } label: {
-                                        Text(settings.localizedString(for: "shop.owned"))
+                                        Text(String(localized: "shop.owned"))
                                     }
                                     .buttonStyle(DuolingoButtonStyle(
                                         size: .large,
@@ -226,14 +226,14 @@ struct ShopItemDetailView: View {
                                         FeedbackManager.shared.playTap()
                                         
                                         // Aktion
-                                        shopStore.sell(id: payload.id, price: payload.price, title: settings.localizedString(for: payload.titleKey))
+                                        shopStore.sell(id: payload.id, price: payload.price, title: NSLocalizedString(payload.titleKey, comment: ""))
                                         
                                         if payload.itemType == .decoration {
                                             gardenStore.itemEntfernen(id: payload.id)
                                         }
                                     } label: {
                                         VStack(spacing: 2) {
-                                            Text(settings.localizedString(for: "shop.item.sell"))
+                                            Text(String(localized: "shop.item.sell"))
                                                 .font(.system(size: 14, weight: .bold))
                                             HStack(spacing: 4) {
                                                 Image("coin")
@@ -255,7 +255,7 @@ struct ShopItemDetailView: View {
                                     FeedbackManager.shared.playError()
                                     showInsufficientCoins = true
                                 } label: {
-                                    Text(settings.localizedString(for: "shop.not_enough_coins"))
+                                    Text(String(localized: "shop.not_enough_coins"))
                                 }
                                 .buttonStyle(DuolingoButtonStyle(
                                     size: .large,
@@ -304,10 +304,10 @@ struct ShopItemDetailView: View {
             // Erfolg-Overlay
             if showSuccess {
                 PurchaseSuccessOverlay(
-                    itemName: settings.localizedString(for: payload.titleKey),
+                    itemName: NSLocalizedString(payload.titleKey, comment: ""),
                     price: payload.price,
                     subtitle: payload.itemType == .powerUp
-                        ? settings.localizedString(for: "shop.purchase_success.powerup_hint")
+                        ? String(localized: "shop.purchase_success.powerup_hint")
                         : nil
                 ) {
                     FeedbackManager.shared.playTap()
@@ -318,19 +318,19 @@ struct ShopItemDetailView: View {
             }
         }
         .animation(.spring(response: 0.4, dampingFraction: 0.72), value: showSuccess)
-        .alert(settings.localizedString(for: "shop.not_enough_coins"), isPresented: $showInsufficientCoins) {
-            Button(settings.localizedString(for: "button.ok"), role: .cancel) { FeedbackManager.shared.playTap() }
+        .alert(String(localized: "shop.not_enough_coins"), isPresented: $showInsufficientCoins) {
+            Button(String(localized: "button.ok"), role: .cancel) { FeedbackManager.shared.playTap() }
         } message: {
-            Text(String(format: settings.localizedString(for: "shop.need_more_coins"), payload.price - gardenStore.coins))
+            Text(String(format: String(localized: "shop.need_more_coins"), payload.price - gardenStore.coins))
         }
         .alert("Ultimatives Luxus-Item!", isPresented: $showMysticConfirmation) {
-            Button("Abbrechen", role: .cancel) { FeedbackManager.shared.playTap() }
-            Button("Für 5.000 Münzen kaufen") {
+            Button(String(localized: "common.cancel"), role: .cancel) { FeedbackManager.shared.playTap() }
+            Button(String(format: String(localized: "shop.buy_for_coins_format"), "5.000")) {
                 FeedbackManager.shared.playTap()
                 executePurchase()
             }
         } message: {
-            Text(settings.localizedString(for: "shop.cheatday.confirm"))
+            Text(String(localized: "shop.cheatday.confirm"))
         }
     }
     

@@ -25,7 +25,7 @@ struct NeuerTitelOverlay: View {
                 Button {
                     onDismiss()
                 } label: {
-                    Text(settings.localizedString(for: "button.ok"))
+                    Text(String(localized: "button.ok"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)

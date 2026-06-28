@@ -4,7 +4,8 @@ struct NotificationTexts {
 
     // MARK: - Individuelle Pflanzen-Erinnerung
 
-    static func pflanzeErinnerung(pflanzenName: String, lang: String) -> (title: String, body: String) {
+    static func pflanzeErinnerung(pflanzenName: String) -> (title: String, body: String) {
+        let lang = Locale.current.language.languageCode?.identifier ?? "de"
         let variant = Int.random(in: 1...5)
         switch lang {
         case "de":
@@ -24,7 +25,8 @@ struct NotificationTexts {
 
     // MARK: - Globale Abend-Erinnerung
 
-    static func abendeErinnerung(anzahlPflanzen: Int, lang: String) -> (title: String, body: String) {
+    static func abendeErinnerung(anzahlPflanzen: Int) -> (title: String, body: String) {
+        let lang = Locale.current.language.languageCode?.identifier ?? "de"
         switch lang {
         case "de":
             if anzahlPflanzen == 1 {
@@ -169,19 +171,19 @@ struct NotificationTexts {
 
     // MARK: - Legacy (kept for any remaining callers)
 
-    static func wartet(pflanzenName: String, stunden: Int, lang: String) -> (title: String, body: String) {
-        pflanzeErinnerung(pflanzenName: pflanzenName, lang: lang)
+    static func wartet(pflanzenName: String, stunden: Int) -> (title: String, body: String) {
+        return pflanzeErinnerung(pflanzenName: pflanzenName)
     }
 
-    static func streakGefahr(pflanzenName: String, streak: Int, lang: String) -> (title: String, body: String) {
-        pflanzeErinnerung(pflanzenName: pflanzenName, lang: lang)
+    static func streakGefahr(pflanzenName: String, streak: Int) -> (title: String, body: String) {
+        return pflanzeErinnerung(pflanzenName: pflanzenName)
     }
 
-    static func morgenMotivation(streak: Int, lang: String) -> (title: String, body: String) {
-        ("🌅 Guten Morgen!", "Heute ist ein neuer Tag. Vergiss deine Pflanzen nicht!")
+    static func morgenMotivation(streak: Int) -> (title: String, body: String) {
+        return ("🌅 Guten Morgen!", "Heute ist ein neuer Tag. Vergiss deine Pflanzen nicht!")
     }
 
-    static func stillerAbend(anzahlUngegossen: Int, lang: String) -> (title: String, body: String) {
-        abendeErinnerung(anzahlPflanzen: anzahlUngegossen, lang: lang)
+    static func stillerAbend(anzahlUngegossen: Int) -> (title: String, body: String) {
+        return abendeErinnerung(anzahlPflanzen: anzahlUngegossen)
     }
 }

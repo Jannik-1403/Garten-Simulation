@@ -28,7 +28,7 @@ struct ProfilView: View {
     }
 
     private var spielerTitel: String {
-        titelStore.aktiverTitel().map { settings.localizedString(for: $0.displayName) } ?? settings.localizedString(for: "titel.anfaenger")
+        titelStore.aktiverTitel().map { NSLocalizedString($0.displayName, comment: "") } ?? String(localized: "titel.anfaenger")
     }
 
     var body: some View {
@@ -59,7 +59,7 @@ struct ProfilView: View {
                                 zeigeNameEdit = true
                             } label: {
                                 Text(settings.igelCustomization.name.isEmpty
-                                     ? settings.localizedString(for: "igel_name_placeholder")
+                                     ? String(localized: "igel_name_placeholder")
                                      : settings.igelCustomization.name)
                                     .font(.title2)
                                     .fontWeight(.heavy)
@@ -230,7 +230,7 @@ struct ProfilView: View {
             // Horizontal Scroll List
             let unlockedAchievements = getUnlockedErfolge()
             if unlockedAchievements.isEmpty {
-                Text(settings.localizedString(for: "profile.achievements.empty"))
+                Text(String(localized: "profile.achievements.empty"))
                     .font(.system(size: 14, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -244,7 +244,7 @@ struct ProfilView: View {
                                     ErfolgBadgeView(erfolg: erfolg, istFreigeschaltet: true)
                                         .frame(width: 60, height: 60)
                                     
-                                    Text(settings.localizedString(for: erfolg.titelKey))
+                                    Text(NSLocalizedString(erfolg.titelKey, comment: ""))
                                         .font(.system(size: 11, weight: .bold, design: .rounded))
                                         .foregroundStyle(.primary)
                                         .multilineTextAlignment(.center)

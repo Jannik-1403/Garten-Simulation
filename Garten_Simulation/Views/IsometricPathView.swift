@@ -166,7 +166,7 @@ struct IsometricPathView: View {
                         
                         HStack {
                             // Current Day Badge
-                            Text(String(format: settings.localizedString(for: "pfad_tag_header"), currentDay))
+                            Text(String(format: String(localized: "pfad_tag_header"), currentDay))
                                 .font(.system(size: 20, weight: .black, design: .rounded))
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 16)
@@ -181,7 +181,7 @@ struct IsometricPathView: View {
                             HStack(spacing: 6) {
                                 Image(systemName: diffEnum.icon)
                                     .font(.system(size: 16, weight: .bold))
-                                Text(settings.localizedString(for: diffEnum.titelKey))
+                                Text(NSLocalizedString(diffEnum.titelKey, comment: ""))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                             }
                             .foregroundColor(.white)
@@ -236,7 +236,7 @@ struct IsometricPathView: View {
         let isFuture = Calendar.current.compare(dateOfTile, to: Date(), toGranularity: .day) == .orderedDescending
         let canBeCompleted = isUnlockedStump && !isFuture
         
-        let lang = settings.appLanguage
+
         let diff = habit.individualSchwierigkeit ?? "anfaenger"
         
         // Hole die Pflanze aus der Datenbank für das richtige Asset
@@ -251,7 +251,7 @@ struct IsometricPathView: View {
             return "meisterschaft"
         }()
         
-        let phaseName = AppStrings.get("pfad_phase_\(phaseKey)", language: lang)
+        let phaseName = NSLocalizedString("pfad_phase_\(phaseKey)", comment: "")
         let plantID = habit.plantID.lowercased().replacingOccurrences(of: "plant.", with: "")
         
         let zielSchluessel: String = {
@@ -266,41 +266,41 @@ struct IsometricPathView: View {
         }()
         
         // Lokalisierte Texte (Titel)
-        var title = AppStrings.get("pfad_\(plantID)_day_\(dayNum)_title", language: lang)
+        var title = NSLocalizedString("pfad_\(plantID)_day_\(dayNum)_title", comment: "")
         if title.contains("pfad_") {
-            let generic = AppStrings.get("pfad_generic_day_\(dayNum)_title", language: lang)
+            let generic = NSLocalizedString("pfad_generic_day_\(dayNum)_title", comment: "")
             if !generic.contains("pfad_") { title = generic }
             else {
-                let goal = AppStrings.get("pfad_\(zielSchluessel)_day_\(dayNum)_title", language: lang)
+                let goal = NSLocalizedString("pfad_\(zielSchluessel)_day_\(dayNum)_title", comment: "")
                 if !goal.contains("pfad_") { title = goal }
-                else { title = String(format: AppStrings.get("pfad_tag_header", language: lang), dayNum) }
+                else { title = String(format: NSLocalizedString("pfad_tag_header", comment: ""), dayNum) }
             }
         }
         let displayTitle = title
         
         // Lokalisierte Texte (Beschreibung)
         var dayDesc = ""
-        if let dynamicDesc = HabitProgressionGenerator.generateDescription(for: habit.plantID, dayNum: dayNum, difficulty: diff, language: lang) {
+        if let dynamicDesc = HabitProgressionGenerator.generateDescription(for: habit.plantID, dayNum: dayNum, difficulty: diff, language: Locale.current.language.languageCode?.identifier ?? "de") {
             dayDesc = dynamicDesc
         } else {
-            dayDesc = AppStrings.get("pfad_\(plantID)_day_\(dayNum)_desc_\(diff)", language: lang)
+            dayDesc = NSLocalizedString("pfad_\(plantID)_day_\(dayNum)_desc_\(diff)", comment: "")
             if dayDesc.contains("pfad_") {
-                let generic = AppStrings.get("pfad_generic_day_\(dayNum)_desc_\(diff)", language: lang)
+                let generic = NSLocalizedString("pfad_generic_day_\(dayNum)_desc_\(diff)", comment: "")
                 if !generic.contains("pfad_") { dayDesc = generic }
                 else {
-                    let goal = AppStrings.get("pfad_\(zielSchluessel)_day_\(dayNum)_desc_\(diff)", language: lang)
+                    let goal = NSLocalizedString("pfad_\(zielSchluessel)_day_\(dayNum)_desc_\(diff)", comment: "")
                     if !goal.contains("pfad_") { dayDesc = goal }
                     else {
-                        let plantPhase = AppStrings.get("pfad_\(plantID)_phase_\(phaseKey)_desc_\(diff)", language: lang)
+                        let plantPhase = NSLocalizedString("pfad_\(plantID)_phase_\(phaseKey)_desc_\(diff)", comment: "")
                         if !plantPhase.contains("pfad_") { dayDesc = plantPhase }
                         else {
-                            let genericPhase = AppStrings.get("pfad_generic_phase_\(phaseKey)_desc_\(diff)", language: lang)
+                            let genericPhase = NSLocalizedString("pfad_generic_phase_\(phaseKey)_desc_\(diff)", comment: "")
                             if !genericPhase.contains("pfad_") { dayDesc = genericPhase }
                             else {
-                                let goalPhase = AppStrings.get("pfad_\(zielSchluessel)_phase_\(phaseKey)_desc_\(diff)", language: lang)
+                                let goalPhase = NSLocalizedString("pfad_\(zielSchluessel)_phase_\(phaseKey)_desc_\(diff)", comment: "")
                                 if !goalPhase.contains("pfad_") { dayDesc = goalPhase }
                                 else {
-                                    let fallback = AppStrings.get("pfad_schwierigkeit_\(diff)_desc", language: lang)
+                                    let fallback = NSLocalizedString("pfad_schwierigkeit_\(diff)_desc", comment: "")
                                     dayDesc = fallback.contains("pfad_") ? "" : fallback
                                 }
                             }
@@ -334,7 +334,7 @@ struct IsometricPathView: View {
                         .font(.system(size: 14, weight: .black, design: .rounded))
                         .foregroundColor(.orange)
                     
-                    Text(String(format: AppStrings.get("pfad_tag_von", language: lang), dayNum, totalDays))
+                    Text(String(format: NSLocalizedString("pfad_tag_von", comment: ""), dayNum, totalDays))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundColor(.secondary)
                 }
@@ -364,7 +364,7 @@ struct IsometricPathView: View {
                         .foregroundColor(isWatered ? .green : .orange)
                         .font(.body)
                     
-                    let statusText = isWatered ? AppStrings.get("pfad_tag_erledigt", language: lang) : AppStrings.get("pfad_tag_ausstehend", language: lang)
+                    let statusText = isWatered ? NSLocalizedString("pfad_tag_erledigt", comment: "") : NSLocalizedString("pfad_tag_ausstehend", comment: "")
                     Text(statusText)
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundColor(.secondary)
@@ -390,7 +390,7 @@ struct IsometricPathView: View {
                                     pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings, pflanzenID: habit.id)
                                 } else {
                                     gardenStore.xpHinzufuegen(amount: 50)
-                                    gardenStore.coinsGutschreiben(amount: 20, beschreibung: settings.localizedString(for: "pfad_tag_erledigt_belohnung"))
+                                    gardenStore.coinsGutschreiben(amount: 20, beschreibung: String(localized: "pfad_tag_erledigt_belohnung"))
                                     FeedbackManager.shared.playSuccess()
                                 }
                                 
@@ -404,7 +404,7 @@ struct IsometricPathView: View {
                             }
                         }
                     ) {
-                        Text(AppStrings.get("pfad_erledigen_btn", language: lang).uppercased())
+                        Text(NSLocalizedString("pfad_erledigen_btn", comment: "").uppercased())
                             .font(.system(size: 20, weight: .black, design: .rounded))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -589,7 +589,7 @@ struct PfadActivationOverlay: View {
                 // 90 Tage 3D Button + Belohnungstext
                 VStack(spacing: 12) {
                     Button(action: { FeedbackManager.shared.playTap() }) {
-                        Text(settings.localizedString(for: "pfad_activation_90_tage"))
+                        Text(String(localized: "pfad_activation_90_tage"))
                             .font(.system(size: 42, weight: .black, design: .rounded))
                     }
                     .buttonStyle(Pressed3DTextButtonStyle())
@@ -624,7 +624,7 @@ struct PfadActivationOverlay: View {
                     .contentTransition(.numericText())
                     .animation(.spring(response: 0.4, dampingFraction: 0.7), value: aktiveStufe)
                         
-                    Text(settings.localizedString(for: "pfad_activation_belohnung"))
+                    Text(String(localized: "pfad_activation_belohnung"))
                         .font(.system(size: 15, weight: .medium, design: .rounded))
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -655,7 +655,7 @@ struct PfadActivationOverlay: View {
                         }
                     }
                 ) {
-                    Text(settings.localizedString(for: "pfad_activation_btn"))
+                    Text(String(localized: "pfad_activation_btn"))
                         .font(.system(size: 20, weight: .black, design: .rounded))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)

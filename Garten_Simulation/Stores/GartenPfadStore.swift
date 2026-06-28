@@ -429,7 +429,7 @@ class GartenPfadStore: ObservableObject {
         }
 
         gardenStore.xpHinzufuegen(amount: 50)
-        gardenStore.coinsGutschreiben(amount: 20, beschreibung: settings.localizedString(for: "pfad_tag_erledigt_belohnung"))
+        gardenStore.coinsGutschreiben(amount: 20, beschreibung: String(localized: "pfad_tag_erledigt_belohnung"))
 
         if tag.istMeilenstein {
             meilensteinBelohnungAusloesen(tag: tag, gardenStore: gardenStore, settings: settings, pflanzenID: pflanzenID)
@@ -461,21 +461,21 @@ class GartenPfadStore: ObservableObject {
                 // Fallback
                 coins = 100
                 xp = 500
-                gardenStore.coinsGutschreiben(amount: coins, beschreibung: settings.localizedString(for: "pfad_abgeschlossen_belohnung"))
+                gardenStore.coinsGutschreiben(amount: coins, beschreibung: String(localized: "pfad_abgeschlossen_belohnung"))
                 gardenStore.xpHinzufuegen(amount: xp)
-                let pattern = settings.localizedString(for: "pfad_belohnung_meisterschaft")
+                let pattern = String(localized: "pfad_belohnung_meisterschaft")
                 belohnungsText = String(format: pattern, coins, xp)
             }
         } else {
             coins = 50
             xp = 100
-            gardenStore.coinsGutschreiben(amount: coins, beschreibung: settings.localizedString(for: "pfad_meilenstein_belohnung"))
+            gardenStore.coinsGutschreiben(amount: coins, beschreibung: String(localized: "pfad_meilenstein_belohnung"))
             gardenStore.xpHinzufuegen(amount: xp)
-            let pattern = settings.localizedString(for: "pfad_belohnung_meilenstein")
+            let pattern = String(localized: "pfad_belohnung_meilenstein")
             belohnungsText = String(format: pattern, coins, xp)
         }
         
-        letzterMeilensteinTitel = settings.localizedString(for: tag.titelKey)
+        letzterMeilensteinTitel = NSLocalizedString(tag.titelKey, comment: "")
         zeigeMeilensteinOverlay = true
     }
 

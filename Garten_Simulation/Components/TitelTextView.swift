@@ -11,7 +11,7 @@ struct TitelTextView: View {
     var body: some View {
         let baseColor = colorOverride ?? titel.titleColor
         
-        Text(settings.localizedString(for: titel.displayName))
+        Text(NSLocalizedString(titel.displayName, comment: ""))
             .font(.system(size: fontSize, weight: .black, design: .rounded))
             .foregroundStyle(baseColor)
     }

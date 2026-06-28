@@ -37,11 +37,11 @@ struct OnboardingPflanzenView: View {
         VStack(spacing: 0) {
             OnboardingIgelView(
                 pose: .neutral,
-                sprechblasenText: settings.localizedString(for: "onboarding_pflanzen_blase")
+                sprechblasenText: String(localized: "onboarding_pflanzen_blase")
             )
             .padding(.top, 20)
             
-            Text(settings.localizedString(for: "onboarding_pflanzen_hinweis"))
+            Text(String(localized: "onboarding_pflanzen_hinweis"))
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .padding(.top, 8)
@@ -76,7 +76,7 @@ struct OnboardingPflanzenView: View {
                     data.currentStep += 1
                 }
             } label: {
-                Text(settings.localizedString(for: "onboarding_pflanzen_weiter"))
+                Text(String(localized: "onboarding_pflanzen_weiter"))
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large,
@@ -132,14 +132,14 @@ struct PlantSelectionCard: View {
             }
             
             VStack(spacing: 2) {
-                Text(settings.localizedString(for: plant.habitName))
+                Text(NSLocalizedString(plant.habitName, comment: ""))
                     .font(.system(size: 15, weight: .bold, design: .rounded))
                     .foregroundStyle(isSelected ? .primary : .secondary)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .minimumScaleFactor(0.8)
                 
-                Text(settings.localizedString(for: plant.localizedName))
+                Text(NSLocalizedString(plant.localizedName, comment: ""))
                     .font(.system(size: 12, weight: .bold, design: .rounded))
                     .foregroundStyle(isSelected ? .secondary : Color(.systemGray3))
                     .multilineTextAlignment(.center)
@@ -196,7 +196,7 @@ struct CategoryHeaderView: View {
                     .foregroundStyle(category.color)
             }
             
-            Text(settings.localizedString(for: category.labelKey))
+            Text(NSLocalizedString(category.labelKey, comment: ""))
                 .font(.system(size: 20, weight: .black, design: .rounded))
                 .foregroundStyle(.primary)
             

@@ -59,7 +59,7 @@ struct DailyWateringRingView: View {
 
                 // MARK: - Text
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(settings.localizedString(for: "garden.daily_ring.title"))
+                    Text(String(localized: "garden.daily_ring.title"))
                         .font(.system(size: 13, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
 

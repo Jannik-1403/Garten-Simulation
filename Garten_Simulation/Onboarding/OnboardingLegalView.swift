@@ -12,7 +12,7 @@ struct OnboardingLegalView: View {
         VStack(spacing: 0) {
             OnboardingIgelView(
                 pose: hasAcceptedTerms ? .daumenHoch : .erklaert,
-                sprechblasenText: settings.localizedString(for: "onboarding_legal_bubble_title") // e.g. "Fast geschafft! Nur noch eine kleine Formsache."
+                sprechblasenText: String(localized: "onboarding_legal_bubble_title") // e.g. "Fast geschafft! Nur noch eine kleine Formsache."
             )
             .padding(.top, 20)
             
@@ -20,13 +20,13 @@ struct OnboardingLegalView: View {
             
             // Apple-like Card for Legal stuff
             VStack(alignment: .leading, spacing: 20) {
-                Text(settings.localizedString(for: "onboarding_legal_title")) // e.g. "Nutzungsbedingungen & Datenschutz"
+                Text(String(localized: "onboarding_legal_title")) // e.g. "Nutzungsbedingungen & Datenschutz"
                     .font(.system(size: 22, weight: .bold, design: .rounded))
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.bottom, 4)
                 
-                Text(settings.localizedString(for: "onboarding_legal_desc")) // e.g. "Bevor du loslegst, bitten wir dich, unsere Bedingungen zu akzeptieren."
+                Text(String(localized: "onboarding_legal_desc")) // e.g. "Bevor du loslegst, bitten wir dich, unsere Bedingungen zu akzeptieren."
                     .font(.system(size: 15, weight: .regular))
                     .foregroundStyle(.secondary)
                     .lineSpacing(4)
@@ -35,9 +35,9 @@ struct OnboardingLegalView: View {
                 
                 // Benefits List
                 VStack(alignment: .leading, spacing: 12) {
-                    benefitRow(icon: "person.crop.circle.badge.xmark", text: settings.localizedString(for: "onboarding_legal_benefit_1"))
-                    benefitRow(icon: "shield.lefthalf.filled", text: settings.localizedString(for: "onboarding_legal_benefit_2"), color: .blauPrimary)
-                    benefitRow(icon: "lock.shield", text: settings.localizedString(for: "onboarding_legal_benefit_3"), color: .green)
+                    benefitRow(icon: "person.crop.circle.badge.xmark", text: String(localized: "onboarding_legal_benefit_1"))
+                    benefitRow(icon: "shield.lefthalf.filled", text: String(localized: "onboarding_legal_benefit_2"), color: .blauPrimary)
+                    benefitRow(icon: "lock.shield", text: String(localized: "onboarding_legal_benefit_3"), color: .green)
                 }
                 .padding(.vertical, 8)
                 
@@ -66,7 +66,7 @@ struct OnboardingLegalView: View {
                         
                         // Text with Links
                         VStack(alignment: .leading, spacing: 6) {
-                            Text(settings.localizedString(for: "onboarding_legal_checkbox_text")) // e.g. "Ich habe die Bedingungen gelesen und stimme zu."
+                            Text(String(localized: "onboarding_legal_checkbox_text")) // e.g. "Ich habe die Bedingungen gelesen und stimme zu."
                                 .font(.system(size: 15, weight: .medium))
                                 .foregroundStyle(.primary)
                                 .multilineTextAlignment(.leading)
@@ -74,13 +74,13 @@ struct OnboardingLegalView: View {
                             
                             VStack(alignment: .leading, spacing: 4) {
                                 Link(destination: URL(string: "https://shrouded-parka-be8.notion.site/Terms-of-Use-37dd74b814d2805393b6e17145019e9c")!) {
-                                    Text(settings.localizedString(for: "onboarding_legal_terms"))
+                                    Text(String(localized: "onboarding_legal_terms"))
                                         .underline()
                                         .foregroundStyle(Color.blauPrimary)
                                 }
                                 
                                 Link(destination: URL(string: "https://shrouded-parka-be8.notion.site/Privacy-Policy-37dd74b814d28080acc3c9303df218c8")!) {
-                                    Text(settings.localizedString(for: "onboarding_legal_privacy"))
+                                    Text(String(localized: "onboarding_legal_privacy"))
                                         .underline()
                                         .foregroundStyle(Color.blauPrimary)
                                 }
@@ -108,7 +108,7 @@ struct OnboardingLegalView: View {
             Button {
                 finish()
             } label: {
-                Text(settings.localizedString(for: "onboarding_legal_finish_button")) // e.g. "Loslegen"
+                Text(String(localized: "onboarding_legal_finish_button")) // e.g. "Loslegen"
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large,

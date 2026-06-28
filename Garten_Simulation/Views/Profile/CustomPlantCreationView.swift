@@ -60,18 +60,18 @@ struct CustomPlantCreationView: View {
                             .allowsHitTesting(false)
                             
                             VStack(spacing: 4) {
-                                Text(plantName.isEmpty ? (isNegative ? settings.localizedString(for: "plant.create.preview.trash_name") : settings.localizedString(for: "plant.create.preview.name")) : plantName)
+                                Text(plantName.isEmpty ? (isNegative ? String(localized: "plant.create.preview.trash_name") : String(localized: "plant.create.preview.name")) : plantName)
                                     .font(.system(size: 24, weight: .black, design: .rounded))
                                     .foregroundStyle(.primary)
                                 
-                                Text(habitName.isEmpty ? (isNegative ? settings.localizedString(for: "plant.create.preview.bad_habit") : settings.localizedString(for: "plant.create.preview.habit")) : habitName)
+                                Text(habitName.isEmpty ? (isNegative ? String(localized: "plant.create.preview.bad_habit") : String(localized: "plant.create.preview.habit")) : habitName)
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
                                 
                                 if !isNegative {
                                     HStack(spacing: 4) {
                                         Image(systemName: selectedCategory.icon)
-                                        Text(settings.localizedString(for: selectedCategory.localizationKey))
+                                        Text(NSLocalizedString(selectedCategory.localizationKey, comment: ""))
                                     }
                                     .font(.system(size: 12, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
@@ -86,21 +86,21 @@ struct CustomPlantCreationView: View {
                             // Text Input Section
                             VStack(alignment: .leading, spacing: 20) {
                                 customTextField(
-                                    title: isNegative ? settings.localizedString(for: "plant.create.field.trash_name") : settings.localizedString(for: "plant.create.field.plant_name"), 
-                                    placeholder: isNegative ? settings.localizedString(for: "plant.create.placeholder.trash_name") : settings.localizedString(for: "plant.create.placeholder.plant"), 
+                                    title: isNegative ? String(localized: "plant.create.field.trash_name") : String(localized: "plant.create.field.plant_name"), 
+                                    placeholder: isNegative ? String(localized: "plant.create.placeholder.trash_name") : String(localized: "plant.create.placeholder.plant"), 
                                     text: $plantName
                                 )
                                 
                                 customTextField(
-                                    title: isNegative ? settings.localizedString(for: "plant.create.preview.bad_habit") : settings.localizedString(for: "plant.create.field.habit_name"), 
-                                    placeholder: isNegative ? settings.localizedString(for: "plant.create.placeholder.bad_habit") : settings.localizedString(for: "plant.create.placeholder.habit"), 
+                                    title: isNegative ? String(localized: "plant.create.preview.bad_habit") : String(localized: "plant.create.field.habit_name"), 
+                                    placeholder: isNegative ? String(localized: "plant.create.placeholder.bad_habit") : String(localized: "plant.create.placeholder.habit"), 
                                     text: $habitName
                                 )
                             }
                             
                             // Bad Habit 3D Toggle Selector
                             VStack(alignment: .leading, spacing: 12) {
-                                Text(settings.localizedString(for: "plant.create.habit_type"))
+                                Text(String(localized: "plant.create.habit_type"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .padding(.horizontal, 4)
                                 
@@ -117,7 +117,7 @@ struct CustomPlantCreationView: View {
                                     } label: {
                                         HStack {
                                             Image(systemName: "plus.circle.fill")
-                                            Text(settings.localizedString(for: "plant.create.good_habit"))
+                                            Text(String(localized: "plant.create.good_habit"))
                                         }
                                         .font(.system(size: 14, weight: .bold, design: .rounded))
                                         .frame(maxWidth: .infinity)
@@ -145,7 +145,7 @@ struct CustomPlantCreationView: View {
                                     } label: {
                                         HStack {
                                             Image(systemName: "minus.circle.fill")
-                                            Text(settings.localizedString(for: "plant.create.preview.bad_habit"))
+                                            Text(String(localized: "plant.create.preview.bad_habit"))
                                         }
                                         .font(.system(size: 14, weight: .bold, design: .rounded))
                                         .frame(maxWidth: .infinity)
@@ -166,7 +166,7 @@ struct CustomPlantCreationView: View {
                             // Category Picker (Only shown when NOT isNegative)
                             if !isNegative {
                                 VStack(alignment: .leading, spacing: 12) {
-                                    Text(settings.localizedString(for: "shop.category.label"))
+                                    Text(String(localized: "shop.category.label"))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .padding(.horizontal, 4)
                                     
@@ -177,7 +177,7 @@ struct CustomPlantCreationView: View {
                                                 FeedbackManager.shared.playTap()
                                             } label: {
                                                 Label(
-                                                    settings.localizedString(for: cat.localizationKey),
+                                                    NSLocalizedString(cat.localizationKey, comment: ""),
                                                     systemImage: cat.icon
                                                 )
                                             }
@@ -201,10 +201,10 @@ struct CustomPlantCreationView: View {
                                                             .frame(width: 32, height: 32)
                                                         
                                                         VStack(alignment: .leading, spacing: 2) {
-                                                            Text(settings.localizedString(for: selectedCategory.localizationKey))
+                                                            Text(NSLocalizedString(selectedCategory.localizationKey, comment: ""))
                                                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                                                     .foregroundStyle(.primary)
-                                                            Text(settings.localizedString(for: "category.selection_hint"))
+                                                            Text(String(localized: "category.selection_hint"))
                                                                 .font(.system(size: 12))
                                                                 .foregroundStyle(.secondary)
                                                         }
@@ -228,7 +228,7 @@ struct CustomPlantCreationView: View {
                             // Icon Picker
                             VStack(alignment: .leading, spacing: 12) {
                                 HStack {
-                                    Text(settings.localizedString(for: "plant.create.select_symbol"))
+                                    Text(String(localized: "plant.create.select_symbol"))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                     
                                     Spacer()
@@ -276,7 +276,7 @@ struct CustomPlantCreationView: View {
                             // Color Picker (Only shown when NOT isNegative)
                             if !isNegative {
                                 VStack(alignment: .leading, spacing: 12) {
-                                    Text(settings.localizedString(for: "plant.create.select_color"))
+                                    Text(String(localized: "plant.create.select_color"))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .padding(.horizontal, 4)
                                     
@@ -321,7 +321,7 @@ struct CustomPlantCreationView: View {
                                 )
                                 dismiss()
                             }) {
-                                Text(settings.localizedString(for: "button.save_create"))
+                                Text(String(localized: "button.save_create"))
                             }
                             .buttonStyle(DuolingoButtonStyle(
                                 size: .large,
@@ -332,7 +332,7 @@ struct CustomPlantCreationView: View {
                             .disabled(!isFormValid)
                             
                             if gardenStore.seeds < 10 {
-                                Text(settings.localizedString(for: "plant.create.insufficient_seeds"))
+                                Text(String(localized: "plant.create.insufficient_seeds"))
                                     .font(.system(size: 13, weight: .bold, design: .rounded))
                                     .foregroundStyle(.red)
                                     .multilineTextAlignment(.center)
@@ -342,14 +342,14 @@ struct CustomPlantCreationView: View {
                         .padding(.horizontal, 24)
                         .padding(.top, 10)
                         
-                        Text(String(format: settings.localizedString(for: "inventory.create_plant.cost_format"), 10))
+                        Text(String(format: String(localized: "inventory.create_plant.cost_format"), 10))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                             .padding(.bottom, 40)
                     }
                 }
             }
-            .navigationTitle(isNegative ? settings.localizedString(for: "plant.create.preview.bad_habit") : settings.localizedString(for: "inventory.create_plant"))
+            .navigationTitle(isNegative ? String(localized: "plant.create.preview.bad_habit") : String(localized: "inventory.create_plant"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -367,10 +367,10 @@ struct CustomPlantCreationView: View {
                     }
                 }
             }
-            .alert(settings.localizedString(for: "inventory.seeds.info.title"), isPresented: $showSeedInfo) {
-                Button(settings.localizedString(for: "button.ok"), role: .cancel) { }
+            .alert(String(localized: "inventory.seeds.info.title"), isPresented: $showSeedInfo) {
+                Button(String(localized: "button.ok"), role: .cancel) { }
             } message: {
-                Text(String(format: settings.localizedString(for: "inventory.seeds.info.body"), gardenStore.seeds))
+                Text(String(format: String(localized: "inventory.seeds.info.body"), gardenStore.seeds))
             }
             .sheet(isPresented: $showAllIcons) {
                 AllIconsSheet(selectedIcon: $selectedIcon, selectedColor: uiColor(for: selectedColor), icons: allIcons)
@@ -476,11 +476,11 @@ struct AllIconsSheet: View {
                 }
                 .padding(24)
             }
-            .navigationTitle(settings.localizedString(for: "plant.create.select_symbol"))
+            .navigationTitle(String(localized: "plant.create.select_symbol"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(settings.localizedString(for: "button.ok")) { dismiss() }
+                    Button(String(localized: "button.ok")) { dismiss() }
                         .fontWeight(.bold)
                         .foregroundStyle(.black)
                 }

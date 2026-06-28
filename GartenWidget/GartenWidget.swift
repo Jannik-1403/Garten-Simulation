@@ -26,8 +26,8 @@ struct GroovyWaterWidget: Widget {
                     WaterBackgroundView(style: entry.backgroundStyle)
                 }
         }
-        .configurationDisplayName(NSLocalizedString("widget_water_title", comment: ""))
-        .description(NSLocalizedString("widget_water_description", comment: ""))
+        .configurationDisplayName(String(localized: "widget_water_title", defaultValue: "Wasser"))
+        .description(String(localized: "widget_water_description", defaultValue: "Dein getrunkenes Wasser."))
         .supportedFamilies([.systemSmall])
     }
 }
@@ -42,8 +42,8 @@ struct GroovyStreakWidget: Widget {
                     StreakBackgroundView(style: entry.backgroundStyle)
                 }
         }
-        .configurationDisplayName(NSLocalizedString("widget_streak_title", comment: ""))
-        .description(NSLocalizedString("widget_streak_description", comment: ""))
+        .configurationDisplayName(String(localized: "widget_streak_title", defaultValue: "Streak"))
+        .description(String(localized: "widget_streak_description", defaultValue: "Dein aktueller Streak."))
         .supportedFamilies([.systemSmall])
     }
 }
@@ -58,8 +58,8 @@ struct GroovyVerlaufMediumWidget: Widget {
                     DuoStyle.backgroundView(for: entry.backgroundStyle, defaultGradient: DuoStyle.orangeGradient)
                 }
         }
-        .configurationDisplayName(NSLocalizedString("widget_verlauf_week_title", comment: ""))
-        .description(NSLocalizedString("widget_verlauf_week_description", comment: ""))
+        .configurationDisplayName(String(localized: "widget_verlauf_week_title", defaultValue: "Wochenverlauf"))
+        .description(String(localized: "widget_verlauf_week_description", defaultValue: "Die letzten 7 Tage im Überblick."))
         .supportedFamilies([.systemMedium])
     }
 }
@@ -74,8 +74,8 @@ struct GroovyVerlaufLargeWidget: Widget {
                     DuoStyle.backgroundView(for: entry.backgroundStyle, defaultGradient: DuoStyle.orangeGradient)
                 }
         }
-        .configurationDisplayName(NSLocalizedString("widget_verlauf_month_title", comment: ""))
-        .description(NSLocalizedString("widget_verlauf_month_description", comment: ""))
+        .configurationDisplayName(String(localized: "widget_verlauf_month_title", defaultValue: "Monatsverlauf"))
+        .description(String(localized: "widget_verlauf_month_description", defaultValue: "Dein gesamter Monat auf einen Blick."))
         .supportedFamilies([.systemLarge])
     }
 }

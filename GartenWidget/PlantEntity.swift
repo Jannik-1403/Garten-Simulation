@@ -31,7 +31,7 @@ public struct PlantEntity: AppEntity {
             return []
         }
         
-        let lang = shared.string(forKey: "appLanguage") ?? Locale.current.language.languageCode?.identifier ?? "de"
+
         
         return pflanzen
             .filter { !$0.istBewässert } // Nur Pflanzen zeigen, die noch nicht gegossen wurden
@@ -40,13 +40,13 @@ public struct PlantEntity: AppEntity {
                 
                 // Falls es ein Key ist (z.B. plant.erdbeere.name), übersetzen wir ihn
                 if finalName.contains(".") {
-                    finalName = AppStrings.get(finalName, language: lang)
+                    finalName = NSLocalizedString(finalName, comment: "")
                 }
                 
                 // Falls immer noch leer oder Key (Fallback), nutzen wir den Display-Namen
                 if finalName.isEmpty || finalName.contains(".") {
                     if let dbPlant = GameDatabase.allPlants.first(where: { $0.id.lowercased() == habit.plantID.lowercased() }) {
-                        finalName = AppStrings.get(dbPlant.name, language: lang)
+                        finalName = NSLocalizedString(dbPlant.name, comment: "")
                     }
                 }
                 

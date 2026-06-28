@@ -23,7 +23,7 @@ struct ErfolgeDetailView: View {
                 // Freigeschaltete Erfolge
                 if !freigeschaltet.isEmpty {
                     VStack(alignment: .leading, spacing: 12) {
-                        Text(settings.localizedString(for: "erfolge.freigeschaltet"))
+                        Text(String(localized: "erfolge.freigeschaltet"))
                             .font(.headline.weight(.bold))
                             .padding(.horizontal)
                         
@@ -42,7 +42,7 @@ struct ErfolgeDetailView: View {
                 // Gesperrte Erfolge
                 if !gesperrt.isEmpty {
                     VStack(alignment: .leading, spacing: 12) {
-                        Text(settings.localizedString(for: "erfolge.gesperrt"))
+                        Text(String(localized: "erfolge.gesperrt"))
                             .font(.headline.weight(.bold))
                             .padding(.horizontal)
                         
@@ -60,7 +60,7 @@ struct ErfolgeDetailView: View {
             }
             .padding(.vertical)
         }
-        .navigationTitle(settings.localizedString(for: "erfolge.titel"))
+        .navigationTitle(String(localized: "erfolge.titel"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -95,11 +95,11 @@ struct ErfolgGridItem: View {
     
     var tierLabel: String {
         switch erfolg.tier {
-        case .bronze: return "Bronze"
-        case .silber: return "Silber"
-        case .gold: return "Gold"
-        case .diamant: return "Diamant"
-        case .master, .max: return "Master"
+        case .bronze: return String(localized: "rarity.bronze")
+        case .silber: return String(localized: "rarity.silber")
+        case .gold: return String(localized: "rarity.gold")
+        case .diamant: return String(localized: "rarity.diamant")
+        case .master, .max: return String(localized: "rarity.master")
         }
     }
     
@@ -120,7 +120,7 @@ struct ErfolgGridItem: View {
                 .scaleEffect(isVisible ? 1.0 : 0.5)
                 .opacity(isVisible ? 1.0 : 0.0)
             
-            Text(settings.localizedString(for: erfolg.titelKey))
+            Text(NSLocalizedString(erfolg.titelKey, comment: ""))
                 .font(.caption.weight(.bold))
                 .multilineTextAlignment(.center)
                 .foregroundStyle(istFreigeschaltet ? .primary : .secondary)

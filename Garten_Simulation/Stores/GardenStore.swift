@@ -173,13 +173,12 @@ class GardenStore: ObservableObject {
 
     var gesamtLiterFormatiert: String {
         let liter = gesamtMlGegossen / 1000
-        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
         
         if liter < 1 {
-            let unit = AppStrings.get("common.ml", language: lang)
+            let unit = NSLocalizedString("common.ml", comment: "")
             return String(format: "%.0f %@", gesamtMlGegossen, unit)
         } else {
-            let unit = AppStrings.get("common.liter", language: lang)
+            let unit = NSLocalizedString("common.liter", comment: "")
             return String(format: "%.1f %@", liter, unit)
         }
     }
@@ -382,7 +381,6 @@ class GardenStore: ObservableObject {
             gesamtVerdient += coinsGewonnen
             
             // Add real transaction
-            let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
             
             // Skill XP hinzufügen
             if let skill = SkillHelper.getSkill(for: pflanze) {
@@ -390,7 +388,7 @@ class GardenStore: ObservableObject {
             }
             let transaction = CoinTransaction(
                 datum: Date(),
-                beschreibung: AppStrings.get("profile.coins.tip.watering", language: lang),
+                beschreibung: NSLocalizedString("profile.coins.tip.watering", comment: ""),
                 betrag: coinsGewonnen,
                 icon: "Drop water",
                 farbeHex: "#00919E" // coinBlue
@@ -431,9 +429,7 @@ class GardenStore: ObservableObject {
     // MARK: Pflanze wiederbeleben
     func revive(pflanze: HabitModel) {
         guard coins >= GameConstants.wiederbelebungsKosten else { return }
-        
-        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
-        coinsAbziehen(amount: GameConstants.wiederbelebungsKosten, beschreibung: AppStrings.get("transaction.revive", language: lang))
+        coinsAbziehen(amount: GameConstants.wiederbelebungsKosten, beschreibung: NSLocalizedString("transaction.revive", comment: ""))
         
         objectWillChange.send()
         withAnimation {
@@ -646,8 +642,7 @@ class GardenStore: ObservableObject {
 
     func logPurchase(shopItem: ShopDetailPayload, isFree: Bool = false) {
         if !isFree && shopItem.price > 0 {
-            let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
-            let desc = "\(AppStrings.get("shop.buy.success", language: lang)) \(shopItem.titleKey)"
+            let desc = "\(NSLocalizedString("shop.buy.success", comment: "")) \(shopItem.titleKey)"
             coinsAbziehen(amount: shopItem.price, beschreibung: desc)
         }
         // Count all shop exchanges
@@ -1126,10 +1121,9 @@ class GardenStore: ObservableObject {
     @discardableResult
     func removeFrontWeedWithCoins() -> Bool {
         guard let front = activeWeeds.first, coins >= front.removalCost else { return false }
-        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
         coinsAbziehen(
             amount: front.removalCost,
-            beschreibung: AppStrings.get("weed_popup_pay", language: lang)
+            beschreibung: NSLocalizedString("weed_popup_pay", comment: "")
         )
         _ = withAnimation {
             activeWeeds.removeFirst()

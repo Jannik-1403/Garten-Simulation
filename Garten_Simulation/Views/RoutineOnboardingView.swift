@@ -121,7 +121,16 @@ struct RoutineOnboardingView: View {
                         groesse: 60,
                         isRectangular: true,
                         aktion: {
-                            let finalRoutines = routines.filter { selectedRoutineIDs.contains($0.id) }
+                            var finalRoutines = routines.filter { selectedRoutineIDs.contains($0.id) }
+                            
+                            // Automatisch die beim Onboarding erstellten Gewohnheiten zuweisen
+                            let allHabitIDs = gardenStore.pflanzen.map { $0.id }
+                            for i in 0..<finalRoutines.count {
+                                if finalRoutines[i].assignedHabitIDs.isEmpty {
+                                    finalRoutines[i].assignedHabitIDs = allHabitIDs
+                                }
+                            }
+                            
                             savedRoutines = finalRoutines
                             
                             if let encoded = try? JSONEncoder().encode(savedRoutines) {
@@ -147,9 +156,12 @@ struct RoutineOnboardingView: View {
             }
             .sheet(item: $routineToEdit) { editableRoutine in
                 if let index = routines.firstIndex(where: { $0.id == editableRoutine.id }) {
+                    let assignedToOthers = routines.filter { $0.id != editableRoutine.id }.flatMap { $0.assignedHabitIDs }
+                    let available = gardenStore.pflanzen.filter { !assignedToOthers.contains($0.id) }
+                    
                     EditRoutineSheet(
                         routine: $routines[index],
-                        availableHabits: gardenStore.pflanzen
+                        availableHabits: available
                     )
                     .environmentObject(settings)
                     .environmentObject(gardenStore)

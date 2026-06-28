@@ -20,7 +20,7 @@ struct RarityLevelUpOverlay: View {
             // Popup Card
             VStack(spacing: 30) {
                 // Header
-                Text(settings.localizedString(for: "level_up.title"))
+                Text(String(localized: "level_up.title"))
                     .font(.system(size: 26, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.primary)
                 
@@ -41,7 +41,7 @@ struct RarityLevelUpOverlay: View {
                 
                 // Details
                 VStack(spacing: 8) {
-                    Text(settings.localizedString(for: "level_up.subtitle"))
+                    Text(String(localized: "level_up.subtitle"))
                         .font(.system(size: 16))
                         .foregroundStyle(.secondary)
                     
@@ -52,7 +52,7 @@ struct RarityLevelUpOverlay: View {
                 
                 // Action Button
                 Button(action: onDismiss) {
-                    Text(settings.localizedString(for: "shop.purchase_success.awesome"))
+                    Text(String(localized: "shop.purchase_success.awesome"))
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(DuolingoButtonStyle(

@@ -54,9 +54,9 @@ struct KombinierterStrangNode: View {
     private var displayedName: String {
         let names = alleStraenge.compactMap { s -> String? in
             if let habit = gardenStore.pflanzen.first(where: { $0.plantID == s.pflanzenID }) {
-                return habit.habitName.isEmpty ? settings.localizedString(for: habit.name) : habit.habitName
+                return habit.habitName.isEmpty ? NSLocalizedString(habit.name, comment: "") : habit.habitName
             }
-            return settings.localizedString(for: s.pflanzenName)
+            return NSLocalizedString(s.pflanzenName, comment: "")
         }
         
         if names.isEmpty { return "" }
@@ -144,12 +144,12 @@ struct KombinierterStrangNode: View {
         if let habit = gardenStore.pflanzen.first(where: { $0.plantID == strang.pflanzenID }) {
             NavigationStack {
                 VStack(spacing: 20) {
-                    Text(settings.localizedString(for: habit.displayedHabitName))
+                    Text(NSLocalizedString(habit.displayedHabitName, comment: ""))
                         .font(.headline)
                         .padding(.top)
                     
                     DatePicker(
-                        settings.localizedString(for: "time_picker.label"),
+                        String(localized: "time_picker.label"),
                         selection: $tempTime,
                         displayedComponents: .hourAndMinute
                     )
@@ -158,14 +158,14 @@ struct KombinierterStrangNode: View {
                     
                     Spacer()
                 }
-                .navigationTitle(settings.localizedString(for: "time_picker.title"))
+                .navigationTitle(String(localized: "time_picker.title"))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
-                        Button(settings.localizedString(for: "common.cancel")) { showTimePicker = false }
+                        Button(String(localized: "common.cancel")) { showTimePicker = false }
                     }
                     ToolbarItem(placement: .confirmationAction) {
-                        Button(settings.localizedString(for: "common.save")) {
+                        Button(String(localized: "common.save")) {
                             habit.reminderTime = tempTime
                             gardenStore.savePlants()
                             gardenStore.objectWillChange.send()

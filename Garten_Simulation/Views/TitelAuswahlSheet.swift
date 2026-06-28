@@ -21,7 +21,7 @@ struct TitelAuswahlSheet: View {
                     .padding()
                 }
             }
-            .navigationTitle(settings.localizedString(for: "titel.auswahl.titel"))
+            .navigationTitle(String(localized: "titel.auswahl.titel"))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
         }

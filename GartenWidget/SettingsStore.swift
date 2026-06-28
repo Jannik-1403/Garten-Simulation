@@ -53,7 +53,7 @@ class SettingsStore: ObservableObject {
             self.appLanguage = saved
         } else {
             // Detect system language on first start
-            let supported = ["de", "en", "es", "fr", "it", "pt"]
+            let supported = ["de", "en", "es", "fr", "it", "pt", "ja", "ko", "pl", "nl", "tr"]
             let preferred = Bundle.main.preferredLocalizations.first ?? "en"
             let languageCode = preferred.split(separator: "-").first.map(String.init) ?? "en"
             
@@ -79,22 +79,6 @@ class SettingsStore: ObservableObject {
 
     // MARK: - Localization
     func localizedString(for key: String) -> String {
-        // Priority 1: Check the specific language bundle (e.g. es.lproj)
-        if let path = Bundle.main.path(forResource: appLanguage, ofType: "lproj"),
-           let bundle = Bundle(path: path) {
-            let localized = NSLocalizedString(key, tableName: nil, bundle: bundle, value: key, comment: "")
-            if localized != key {
-                return localized
-            }
-        }
-        
-        // Priority 2: Fallback to AppStrings inline dictionary
-        let appString = AppStrings.get(key, language: appLanguage)
-        if appString != key {
-            return appString
-        }
-        
-        // Priority 3: Ultimate fallback to system language default NSLocalizedString
         return NSLocalizedString(key, comment: "")
     }
 

@@ -57,8 +57,8 @@ struct CharacterCustomizationView: View {
                                         selectedCategory = category
                                     }
                                 } label: {
-                                    Text(category.rawValue)
-                                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                                    Text(String(localized: "character.category.\(category.rawValue.lowercased())"))
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .padding(.horizontal, 16)
                                         .padding(.vertical, 10)
                                         .background(
@@ -156,14 +156,14 @@ struct CharacterCustomizationView: View {
                     Spacer()
                 }
             }
-            .navigationTitle(settings.localizedString(for: "profile.edit.title"))
+            .navigationTitle(String(localized: "profile.edit.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         dismiss()
                     } label: {
-                        Text(settings.localizedString(for: "button.done"))
+                        Text(String(localized: "button.done"))
                             .font(.system(size: 16, weight: .bold, design: .rounded))
                     }
                 }
@@ -196,7 +196,7 @@ struct GlassesPurchaseSheet: View {
                 .offset(y: 50) // Visually pushed down
                 .padding(.bottom, 30) // Just enough padding for the text
             
-            Text(settings.localizedString(for: "glasses.unlock.title"))
+            Text(String(localized: "glasses.unlock.title"))
                 .font(.title2.bold())
                 .multilineTextAlignment(.center)
             
@@ -211,7 +211,7 @@ struct GlassesPurchaseSheet: View {
                     isDisabled: gardenStore.coins < 1000,
                     aktion: {
                         if gardenStore.coins >= 1000 {
-                            gardenStore.coinsAbziehen(amount: 1000, beschreibung: settings.localizedString(for: "glasses.unlock.title"))
+                            gardenStore.coinsAbziehen(amount: 1000, beschreibung: String(localized: "glasses.unlock.title"))
                             characterStore.unlockedGlasses = true
                             dismiss()
                         }
@@ -221,7 +221,7 @@ struct GlassesPurchaseSheet: View {
                         Image("coin")
                             .resizable()
                             .frame(width: 20, height: 20)
-                        Text(settings.localizedString(for: "glasses.unlock.coins"))
+                        Text(String(localized: "glasses.unlock.coins"))
                     }
                     .frame(maxWidth: .infinity)
                     .foregroundColor(.white)

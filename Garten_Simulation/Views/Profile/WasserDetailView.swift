@@ -23,7 +23,7 @@ struct WasserDetailView: View {
                             }
                             
                             VStack(spacing: 8) {
-                                Text(settings.localizedString(for: "wasser.titel"))
+                                Text(String(localized: "wasser.titel"))
                                     .font(.title2)
                                     .fontWeight(.bold)
                                     .foregroundStyle(.primary)
@@ -33,7 +33,7 @@ struct WasserDetailView: View {
                                     .foregroundStyle(Color.blauPrimary)
                                     .contentTransition(.numericText())
                                 
-                                Text(String(format: settings.localizedString(for: "wasser.entspricht"),
+                                Text(String(format: String(localized: "wasser.entspricht"),
                                             Int(gardenStore.gesamtMlGegossen / 300)))
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
@@ -43,7 +43,7 @@ struct WasserDetailView: View {
                         
                         // Liste — "Meist gegossene Pflanzen"
                         VStack(alignment: .leading, spacing: 12) {
-                            Text(settings.localizedString(for: "wasser.meine.pflanzen"))
+                            Text(String(localized: "wasser.meine.pflanzen"))
                                 .font(.footnote)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(.secondary)
@@ -63,9 +63,9 @@ struct WasserDetailView: View {
                                         .opacity(0.5)
                                     
                                     VStack(spacing: 4) {
-                                        Text(settings.localizedString(for: "wasser.leer.titel"))
+                                        Text(String(localized: "wasser.leer.titel"))
                                             .font(.system(size: 18, weight: .bold, design: .rounded))
-                                        Text(settings.localizedString(for: "wasser.leer.body"))
+                                        Text(String(localized: "wasser.leer.body"))
                                             .font(.system(size: 14))
                                             .foregroundStyle(.secondary)
                                     }
@@ -145,7 +145,7 @@ struct WasserRankingRow: View {
                 let plant = GameDatabase.shared.plant(for: habit.plantID)
                 let name = plant?.localizedName ?? habit.name
                 
-                Text(settings.localizedString(for: name))
+                Text(NSLocalizedString(name, comment: ""))
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .lineLimit(2)
@@ -153,8 +153,8 @@ struct WasserRankingRow: View {
                 
                 let zyklen = Int(habit.totalMlGegossen / 300)
                 let cycleText = zyklen == 1 
-                    ? settings.localizedString(for: "wasser.zyklus.singular")
-                    : String(format: settings.localizedString(for: "wasser.zyklus.plural"), zyklen)
+                    ? String(localized: "wasser.zyklus.singular")
+                    : String(format: String(localized: "wasser.zyklus.plural"), zyklen)
                 
                 Text(cycleText)
                     .font(.caption)
@@ -176,9 +176,9 @@ struct WasserRankingRow: View {
     private func formatVolume(_ ml: Double) -> String {
         let liter = ml / 1000
         if liter < 1 {
-            return String(format: "%.0f %@", ml, settings.localizedString(for: "common.ml"))
+            return String(format: "%.0f %@", ml, String(localized: "common.ml"))
         } else {
-            return String(format: "%.1f %@", liter, settings.localizedString(for: "common.liter"))
+            return String(format: "%.1f %@", liter, String(localized: "common.liter"))
         }
     }
 }

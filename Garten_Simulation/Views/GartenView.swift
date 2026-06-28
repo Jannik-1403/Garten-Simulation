@@ -75,7 +75,7 @@ struct GartenView: View {
 
                             // MARK: - Pflanzen Grid
                             if gardenStore.pflanzen.isEmpty {
-                                    GartenIgelView(text: settings.localizedString(for: "garden.empty.subtitle"))
+                                    GartenIgelView(text: String(localized: "garden.empty.subtitle"))
                                         .padding(.top, 20)
                                 .frame(maxWidth: .infinity)
                                 .padding(.top, 40)
@@ -120,7 +120,7 @@ struct GartenView: View {
                                 let powerUps = gardenStore.gekaufteItems.filter { $0.itemType == .powerUp }
                                 if !powerUps.isEmpty {
                                     VStack(alignment: .leading, spacing: 12) {
-                                        Text(settings.localizedString(for: "garden.powerups"))
+                                        Text(String(localized: "garden.powerups"))
                                             .font(.system(size: 20, weight: .bold, design: .rounded))
                                             .foregroundStyle(.primary)
                                             .padding(.horizontal, 8)
@@ -150,7 +150,7 @@ struct GartenView: View {
                                 // MARK: - Dekorationen
                                 if !gardenStore.placedDecorations.isEmpty {
                                     VStack(alignment: .leading, spacing: 12) {
-                                        Text(settings.localizedString(for: "garden.trash"))
+                                        Text(String(localized: "garden.trash"))
                                             .font(.system(size: 20, weight: .bold, design: .rounded))
                                             .foregroundStyle(.primary)
                                             .padding(.horizontal, 8)
@@ -271,10 +271,7 @@ struct GartenView: View {
                                     Image(systemName: "bolt.fill")
                                         .foregroundStyle(.yellow)
                                     Text(
-                                        settings.localizedFormat(
-                                            "weed.comeback.banner",
-                                            gardenStore.comebackBoostRewardPercent
-                                        )
+                                        String(format: String(localized: "weed.comeback.banner"), gardenStore.comebackBoostRewardPercent)
                                     )
                                     .font(.subheadline)
                                     .fontWeight(.bold)
@@ -302,18 +299,15 @@ struct GartenView: View {
 
                                         VStack(alignment: .leading, spacing: 0) {
                                             Text(
-                                                settings.localizedFormat(
-                                                    "weed_banner_subtitle",
-                                                    gardenStore.weedEffectiveRewardPercent
-                                                )
+                                                String(format: String(localized: "weed_banner_subtitle"), gardenStore.weedEffectiveRewardPercent)
                                             )
                                                 .font(.caption)
                                                 .opacity(0.85)
                                                 .lineLimit(1)
                                             Text(
                                                 gardenStore.weedCount > 1
-                                                    ? settings.localizedFormat("weed_banner_title_multi", gardenStore.weedCount)
-                                                    : settings.localizedString(for: "weed_banner_title")
+                                                    ? String(format: String(localized: "weed_banner_title_multi"), gardenStore.weedCount)
+                                                    : String(localized: "weed_banner_title")
                                             )
                                                 .font(.subheadline)
                                                 .fontWeight(.bold)
@@ -481,7 +475,7 @@ struct GartenView: View {
                     habit: habit,
                     coinsEarned: pfadStore.letzterAbschlussCoins,
                     onCollect: {
-                        gardenStore.coinsGutschreiben(amount: pfadStore.letzterAbschlussCoins, beschreibung: settings.localizedString(for: "pfad_abgeschlossen_belohnung"))
+                        gardenStore.coinsGutschreiben(amount: pfadStore.letzterAbschlussCoins, beschreibung: String(localized: "pfad_abgeschlossen_belohnung"))
                         gardenStore.completed90DayChallenges += 1
                         gardenStore.saveStats()
                         
@@ -620,13 +614,13 @@ struct WonderWaterRescueOverlay: View {
                     .shadow(color: .blue.opacity(0.3), radius: 10, y: 5)
                 
                 VStack(spacing: 8) {
-                    Text(settings.localizedString(for: "wonder_water.rescue.title"))
+                    Text(String(localized: "wonder_water.rescue.title"))
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.center)
                     
-                    Text(String(format: settings.localizedString(for: "wonder_water.rescue.body_format"),
-                        settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.habitName) : settings.localizedString(for: pflanze.name)))
+                    Text(String(format: String(localized: "wonder_water.rescue.body_format"),
+                        settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.habitName, comment: "") : NSLocalizedString(pflanze.name, comment: "")))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -638,7 +632,7 @@ struct WonderWaterRescueOverlay: View {
                         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         onDecision(true)
                     }) {
-                        Text(String(format: settings.localizedString(for: "wonder_water.rescue.action_format"), settings.localizedString(for: "item.wunder_wasser.name")))
+                        Text(String(format: String(localized: "wonder_water.rescue.action_format"), String(localized: "item.wunder_wasser.name")))
                             .font(.system(size: 16, weight: .bold))
                     }
                     .buttonStyle(DuolingoButtonStyle(
@@ -651,7 +645,7 @@ struct WonderWaterRescueOverlay: View {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         onDecision(false)
                     }) {
-                        Text(settings.localizedString(for: "wonder_water.rescue.decline"))
+                        Text(String(localized: "wonder_water.rescue.decline"))
                             .font(.system(size: 16, weight: .bold))
                     }
                     .buttonStyle(DuolingoButtonStyle(
@@ -699,12 +693,12 @@ struct StreakFreezeRescueOverlay: View {
                 }
                 
                 VStack(spacing: 12) {
-                    Text(settings.localizedString(for: "streak.freeze.used.title"))
+                    Text(String(localized: "streak.freeze.used.title"))
                         .font(.system(size: 28, weight: .black, design: .rounded))
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.center)
                     
-                    Text(settings.localizedString(for: "streak.freeze.used.message"))
+                    Text(String(localized: "streak.freeze.used.message"))
                         .font(.system(size: 17, weight: .medium, design: .rounded))
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -715,7 +709,7 @@ struct StreakFreezeRescueOverlay: View {
                     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                     withAnimation { onDismiss() }
                 }) {
-                    Text(settings.localizedString(for: "common.done_button"))
+                    Text(String(localized: "common.done_button"))
                         .font(.system(size: 18, weight: .bold))
                         .frame(maxWidth: .infinity)
                 }

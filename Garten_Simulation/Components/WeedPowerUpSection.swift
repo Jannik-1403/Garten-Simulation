@@ -13,7 +13,7 @@ struct WeedPowerUpSection: View {
     var body: some View {
         if !items.isEmpty {
             VStack(alignment: .leading, spacing: 10) {
-                Text(settings.localizedString(for: "weed.powerup.section"))
+                Text(String(localized: "weed.powerup.section"))
                     .font(.subheadline)
                     .fontWeight(.bold)
                     .foregroundStyle(.secondary)
@@ -60,11 +60,11 @@ struct WeedPowerUpSection: View {
                 )
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(settings.localizedString(for: item.titleKey))
+                    Text(NSLocalizedString(item.titleKey, comment: ""))
                         .font(.subheadline)
                         .fontWeight(.bold)
                         .foregroundStyle(.primary)
-                    Text(settings.localizedString(for: hintKey))
+                    Text(NSLocalizedString(hintKey, comment: ""))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .lineLimit(2)

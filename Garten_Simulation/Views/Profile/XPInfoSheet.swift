@@ -23,7 +23,7 @@ struct XPInfoSheet: View {
                             }
 
                             
-                            Text(settings.localizedString(for: "xp_info.title"))
+                            Text(String(localized: "xp_info.title"))
                                 .font(.system(size: 26, weight: .black, design: .rounded))
                         }
                         .padding(.top, 40)
@@ -31,7 +31,7 @@ struct XPInfoSheet: View {
                         // Info Card
                         VStack(alignment: .leading, spacing: 24) {
                             VStack(alignment: .leading, spacing: 8) {
-                                Text(settings.localizedString(for: "xp_info.current_label"))
+                                Text(String(localized: "xp_info.current_label"))
                                     .font(.system(size: 14, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
                                     .textCase(.uppercase)
@@ -41,7 +41,7 @@ struct XPInfoSheet: View {
                                         .font(.system(size: 48, weight: .black, design: .rounded))
                                         .foregroundStyle(Color(hex: "#D9A300")) // Dunkelgelb
                                     
-                                    Text("XP")
+                                    Text(String(localized: "common.xp"))
                                         .font(.system(size: 24, weight: .black, design: .rounded))
                                         .foregroundStyle(Color(hex: "#D9A300").opacity(0.7))
                                 }
@@ -49,7 +49,7 @@ struct XPInfoSheet: View {
                             
                             Divider()
                             
-                            Text(settings.localizedString(for: "xp_info.description"))
+                            Text(String(localized: "xp_info.description"))
                                 .font(.system(size: 18, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.primary)
                                 .multilineTextAlignment(.leading)
@@ -69,7 +69,7 @@ struct XPInfoSheet: View {
                 Button {
                     dismiss()
                 } label: {
-                    Text(settings.localizedString(for: "common.close"))
+                    Text(String(localized: "common.close"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)

@@ -38,7 +38,7 @@ struct CoinsDetailView: View {
                         ))
                         .disabled(true)
 
-                        Text(settings.localizedString(for: "profile.coins.available"))
+                        Text(String(localized: "profile.coins.available"))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                             .opacity(0.8)
@@ -49,9 +49,9 @@ struct CoinsDetailView: View {
                     VStack(spacing: 20) {
                         // Section Header
                         VStack(spacing: 6) {
-                            Text(settings.localizedString(for: "coin_shop_title"))
+                            Text(String(localized: "coin_shop_title"))
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
-                            Text(settings.localizedString(for: "coin_shop_subtitle"))
+                            Text(String(localized: "coin_shop_subtitle"))
                                 .font(.system(size: 14, weight: .medium, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .multilineTextAlignment(.center)
@@ -70,7 +70,7 @@ struct CoinsDetailView: View {
                                 } else {
                                     ProgressView()
                                         .scaleEffect(1.2)
-                                    Text(settings.localizedString(for: "iap_loading"))
+                                    Text(String(localized: "iap_loading"))
                                         .font(.subheadline)
                                         .foregroundStyle(.secondary)
                                 }
@@ -114,7 +114,7 @@ struct CoinsDetailView: View {
                 }
             }
         }
-        .navigationTitle(settings.localizedString(for: "coin_shop_nav_title"))
+        .navigationTitle(String(localized: "coin_shop_nav_title"))
         .navigationBarTitleDisplayMode(.inline)
         .standardNavigationX()
         .onAppear {

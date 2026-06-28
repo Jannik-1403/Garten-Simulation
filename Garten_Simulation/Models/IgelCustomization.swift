@@ -27,15 +27,15 @@ enum IgelPose: String, CaseIterable, Codable {
 
     var displayName: String {
         switch self {
-        case .stehend:     return AppStrings.get("igel_pose_stehend", language: SettingsStore.shared.appLanguage)
-        case .rennen:      return AppStrings.get("igel_pose_rennen", language: SettingsStore.shared.appLanguage)
-        case .schlafen:    return AppStrings.get("igel_pose_schlafen", language: SettingsStore.shared.appLanguage)
-        case .winken:      return AppStrings.get("igel_pose_winken", language: SettingsStore.shared.appLanguage)
-        case .liegen:      return AppStrings.get("igel_pose_liegen", language: SettingsStore.shared.appLanguage)
-        case .astronaut:   return AppStrings.get("igel_pose_astronaut", language: SettingsStore.shared.appLanguage)
-        case .sportler:    return AppStrings.get("igel_pose_sportler", language: SettingsStore.shared.appLanguage)
-        case .ninja:       return AppStrings.get("igel_pose_ninja", language: SettingsStore.shared.appLanguage)
-        case .schlafanzug: return AppStrings.get("igel_pose_schlafanzug", language: SettingsStore.shared.appLanguage)
+        case .stehend:     return NSLocalizedString("igel_pose_stehend", comment: "")
+        case .rennen:      return NSLocalizedString("igel_pose_rennen", comment: "")
+        case .schlafen:    return NSLocalizedString("igel_pose_schlafen", comment: "")
+        case .winken:      return NSLocalizedString("igel_pose_winken", comment: "")
+        case .liegen:      return NSLocalizedString("igel_pose_liegen", comment: "")
+        case .astronaut:   return NSLocalizedString("igel_pose_astronaut", comment: "")
+        case .sportler:    return NSLocalizedString("igel_pose_sportler", comment: "")
+        case .ninja:       return NSLocalizedString("igel_pose_ninja", comment: "")
+        case .schlafanzug: return NSLocalizedString("igel_pose_schlafanzug", comment: "")
         }
     }
 }
@@ -49,11 +49,11 @@ enum IgelAccessoire: String, CaseIterable, Codable {
 
     var displayName: String {
         switch self {
-        case .keins: return AppStrings.get("igel_acc_keins", language: SettingsStore.shared.appLanguage)
-        case .hut: return AppStrings.get("igel_acc_hut", language: SettingsStore.shared.appLanguage)
-        case .brille: return AppStrings.get("igel_acc_brille", language: SettingsStore.shared.appLanguage)
-        case .schal: return AppStrings.get("igel_acc_schal", language: SettingsStore.shared.appLanguage)
-        case .blume: return AppStrings.get("igel_acc_blume", language: SettingsStore.shared.appLanguage)
+        case .keins: return NSLocalizedString("igel_acc_keins", comment: "")
+        case .hut: return NSLocalizedString("igel_acc_hut", comment: "")
+        case .brille: return NSLocalizedString("igel_acc_brille", comment: "")
+        case .schal: return NSLocalizedString("igel_acc_schal", comment: "")
+        case .blume: return NSLocalizedString("igel_acc_blume", comment: "")
         }
     }
 }
@@ -67,11 +67,11 @@ enum IgelGesicht: String, CaseIterable, Codable {
 
     var displayName: String {
         switch self {
-        case .froh: return AppStrings.get("igel_gesicht_froh", language: SettingsStore.shared.appLanguage)
-        case .cool: return AppStrings.get("igel_gesicht_cool", language: SettingsStore.shared.appLanguage)
-        case .schlafrig: return AppStrings.get("igel_gesicht_schlafrig", language: SettingsStore.shared.appLanguage)
-        case .verliebt: return AppStrings.get("igel_gesicht_verliebt", language: SettingsStore.shared.appLanguage)
-        case .stolz: return AppStrings.get("igel_gesicht_stolz", language: SettingsStore.shared.appLanguage)
+        case .froh: return NSLocalizedString("igel_gesicht_froh", comment: "")
+        case .cool: return NSLocalizedString("igel_gesicht_cool", comment: "")
+        case .schlafrig: return NSLocalizedString("igel_gesicht_schlafrig", comment: "")
+        case .verliebt: return NSLocalizedString("igel_gesicht_verliebt", comment: "")
+        case .stolz: return NSLocalizedString("igel_gesicht_stolz", comment: "")
         }
     }
 }

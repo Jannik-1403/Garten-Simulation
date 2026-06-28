@@ -8,11 +8,11 @@ struct EffektDetailSheet: View {
         let (typeTitle, typeIcon): (String, String) = {
             switch effekt.typ {
             case .wetter:  
-                return (settings.localizedString(for: "effekt.typ.wetter"), "cloud.fill")
+                return (String(localized: "effekt.typ.wetter"), "cloud.fill")
             case .powerUp: 
-                return (settings.localizedString(for: "effekt.typ.powerup"), "bolt.fill")
+                return (String(localized: "effekt.typ.powerup"), "bolt.fill")
             case .status:  
-                return (settings.localizedString(for: "effekt.typ.status"), "info.circle.fill")
+                return (String(localized: "effekt.typ.status"), "info.circle.fill")
             }
         }()
 
@@ -68,7 +68,7 @@ struct EffektDetailSheet: View {
                 .padding(.vertical, 7)
                 
                 if effekt.expiresAt != nil {
-                    Text(settings.localizedString(for: "common.active"))
+                    Text(String(localized: "common.active"))
                         .font(.system(size: 10, weight: .black))
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)

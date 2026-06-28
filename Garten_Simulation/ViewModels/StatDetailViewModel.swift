@@ -49,7 +49,7 @@ final class StatDetailViewModel: ObservableObject {
                 for plant in gardenStore.pflanzen {
                     let change = plant.isNegative ? -1 : 1
                     let name = plant.habitName.isEmpty ? plant.name : plant.habitName
-                    let localizedName = settings.localizedString(for: name)
+                    let localizedName = NSLocalizedString(name, comment: "")
                     let detail = HabitEventDetail(name: localizedName, symbolName: plant.symbolName, color: Color(hex: plant.symbolColor), change: change)
                     
                     for d in plant.wateringDates where calendar.isDate(d, inSameDayAs: today) {
@@ -66,7 +66,7 @@ final class StatDetailViewModel: ObservableObject {
                         icon = dbPlant.symbolName
                         colorHex = dbPlant.symbolColor
                     }
-                    let localizedName = settings.localizedString(for: name)
+                    let localizedName = NSLocalizedString(name, comment: "")
                     let detail = HabitEventDetail(name: localizedName, symbolName: icon, color: Color(hex: colorHex), change: -1)
                     
                     for exec in executions where calendar.isDate(exec.date, inSameDayAs: today) {
@@ -90,7 +90,7 @@ final class StatDetailViewModel: ObservableObject {
             if period == .day {
                 for plant in gardenStore.pflanzen {
                     let name = plant.habitName.isEmpty ? plant.name : plant.habitName
-                    let localizedName = settings.localizedString(for: name)
+                    let localizedName = NSLocalizedString(name, comment: "")
                     let detail = XPEventDetail(name: localizedName, color: Color(hex: plant.symbolColor))
                     
                     for d in plant.wateringDates where calendar.isDate(d, inSameDayAs: today) {
@@ -105,7 +105,7 @@ final class StatDetailViewModel: ObservableObject {
             var newCoinDetails: [Date: CoinEventDetail] = [:]
             if period == .day {
                 for tx in gardenStore.transactions where calendar.isDate(tx.datum, inSameDayAs: today) {
-                    let detail = CoinEventDetail(beschreibung: settings.localizedString(for: tx.beschreibung), icon: tx.icon, farbe: tx.farbe, betrag: tx.betrag)
+                    let detail = CoinEventDetail(beschreibung: NSLocalizedString(tx.beschreibung, comment: ""), icon: tx.icon, farbe: tx.farbe, betrag: tx.betrag)
                     newCoinDetails[tx.datum] = detail
                 }
             }

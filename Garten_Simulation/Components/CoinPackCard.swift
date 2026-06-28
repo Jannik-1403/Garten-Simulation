@@ -8,6 +8,7 @@ struct CoinPackCard: View {
     let product: Product
     let isPurchasing: Bool
     let onPurchase: () -> Void
+    @EnvironmentObject var settings: SettingsStore
 
     @State private var isPressed = false
 
@@ -42,11 +43,19 @@ struct CoinPackCard: View {
 
             // MARK: Name & Description
             VStack(alignment: .leading, spacing: 3) {
-                Text(product.displayName)
+                let titleKey = "shop.item.\(product.id).title"
+                let localizedTitle = NSLocalizedString(titleKey, comment: "")
+                let finalTitle = localizedTitle != titleKey ? localizedTitle : product.displayName
+
+                let descKey = "shop.item.\(product.id).desc"
+                let localizedDesc = NSLocalizedString(descKey, comment: "")
+                let finalDesc = localizedDesc != descKey ? localizedDesc : product.description
+
+                Text(finalTitle)
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
                     .lineLimit(2)
                     .minimumScaleFactor(0.8)
-                Text(product.description)
+                Text(finalDesc)
                     .font(.system(size: 13))
                     .foregroundStyle(.secondary)
                     .lineLimit(2)

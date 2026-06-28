@@ -16,15 +16,13 @@ struct ComebackBoostOverlayView: View {
                         .foregroundStyle(Color.gruenPrimary)
                         .symbolEffect(.bounce, value: isVisible)
 
-                    Text(settings.localizedString(for: "weed.comeback.overlay.title"))
+                    Text(String(localized: "weed.comeback.overlay.title"))
                         .font(.title)
                         .fontWeight(.black)
                         .multilineTextAlignment(.center)
 
                     Text(
-                        settings.localizedFormat(
-                            "weed.comeback.overlay.body",
-                            Int(GameConstants.comebackBoostDurationHours),
+                        String(format: String(localized: "weed.comeback.overlay.body"), Int(GameConstants.comebackBoostDurationHours),
                             rewardPercent
                         )
                     )
@@ -33,7 +31,7 @@ struct ComebackBoostOverlayView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
 
-                    Button(settings.localizedString(for: "weed.comeback.overlay.button")) {
+                    Button(String(localized: "weed.comeback.overlay.button")) {
                         withAnimation { isVisible = false }
                     }
                     .buttonStyle(DuolingoButtonStyle(

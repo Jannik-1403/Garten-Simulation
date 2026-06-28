@@ -236,11 +236,12 @@ struct RoutinenView: View {
                 .environmentObject(interactiveTourManager)
             }
             .sheet(isPresented: $showCreateSheet) {
-                CreateRoutineSheet(routines: $routines, availableHabits: gardenStore.pflanzen)
+                CreateRoutineSheet(routines: $routines, availableHabits: otherPlants)
             }
             .sheet(item: $routineToEdit) { item in
                 if let idx = routines.firstIndex(where: { $0.id == item.id }) {
-                    EditRoutineSheet(routine: $routines[idx], availableHabits: gardenStore.pflanzen)
+                    let availableForEdit = otherPlants + habits(for: item)
+                    EditRoutineSheet(routine: $routines[idx], availableHabits: availableForEdit)
                 } else {
                     EmptyView()
                 }

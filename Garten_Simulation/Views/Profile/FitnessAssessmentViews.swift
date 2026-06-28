@@ -52,7 +52,7 @@ struct FitnessAssessmentQuizView: View {
         }
         .navigationBarHidden(showResult)
         .navigationBarBackButtonHidden(true)
-        .navigationTitle(settings.localizedString(for: HabitCategory.fitness.localizationKey))
+        .navigationTitle(NSLocalizedString(HabitCategory.fitness.localizationKey, comment: ""))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -126,7 +126,7 @@ struct FitnessAssessmentQuizView: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
                     // Question Card
-                    QuizQuestionCard(text: settings.localizedString(for: currentQuestion.textKey))
+                    QuizQuestionCard(text: NSLocalizedString(currentQuestion.textKey, comment: ""))
                         .padding(.horizontal, 24)
                         .padding(.top, 16)
                         .offset(x: cardOffset)
@@ -136,7 +136,7 @@ struct FitnessAssessmentQuizView: View {
                     VStack(spacing: 10) {
                         ForEach(shuffledAnswers) { answer in
                             QuizAnswerButton(
-                                text: settings.localizedString(for: answer.textKey),
+                                text: NSLocalizedString(answer.textKey, comment: ""),
                                 isSelected: selectedAnswerID == answer.id,
                                 color: .orangePrimary,
                                 shadowColor: Color(hex: "#E65C00"),
@@ -166,8 +166,8 @@ struct FitnessAssessmentQuizView: View {
                 Button(action: advance) {
                     HStack(spacing: 8) {
                         Text(isLastQuestion
-                             ? settings.localizedString(for: "assessment.btn.result")
-                             : settings.localizedString(for: "assessment.btn.next"))
+                             ? String(localized: "assessment.btn.result")
+                             : String(localized: "assessment.btn.next"))
                         Image(systemName: isLastQuestion ? "chart.bar.fill" : "arrow.right")
                     }
                 }
@@ -276,20 +276,20 @@ struct FitnessResultView: View {
                         }
 
                         VStack(spacing: 6) {
-                            Text(settings.localizedString(for: "assessment.result.youare"))
+                            Text(String(localized: "assessment.result.youare"))
                                 .font(.system(size: 13, weight: .black, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .textCase(.uppercase)
                                 .tracking(1.5)
 
-                            Text(settings.localizedString(for: profile.titleKey))
+                            Text(NSLocalizedString(profile.titleKey, comment: ""))
                                 .font(.system(size: 30, weight: .black, design: .rounded))
                                 .foregroundStyle(.primary)
                                 
                         }
                     }
 
-                    Text(settings.localizedString(for: profile.descKey))
+                    Text(NSLocalizedString(profile.descKey, comment: ""))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundStyle(.primary.opacity(0.85))
                         .multilineTextAlignment(.center)
@@ -353,26 +353,26 @@ struct FitnessScoreBreakdownCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(settings.localizedString(for: "assessment.result.breakdown"))
+            Text(String(localized: "assessment.result.breakdown"))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
                 .tracking(1)
 
             ScoreBar(
-                label: settings.localizedString(for: "assessment.score.konsistenz"),
+                label: String(localized: "assessment.score.konsistenz"),
                 value: animated ? konsistenzNorm : 0,
                 color: Color(hex: "#4FC3F7"),
                 rawValue: result.rawKonsistenz
             )
             ScoreBar(
-                label: settings.localizedString(for: "assessment.score.intensitaet"),
+                label: String(localized: "assessment.score.intensitaet"),
                 value: animated ? intensitaetNorm : 0,
                 color: Color(hex: "#81C784"),
                 rawValue: result.rawIntensitaet
             )
             ScoreBar(
-                label: settings.localizedString(for: "assessment.score.verantwortung"),
+                label: String(localized: "assessment.score.verantwortung"),
                 value: animated ? verantwortungNorm : 0,
                 color: Color(hex: "#FFB74D"),
                 rawValue: result.rawVerantwortung

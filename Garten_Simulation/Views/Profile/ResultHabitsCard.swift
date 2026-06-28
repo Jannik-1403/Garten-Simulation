@@ -5,12 +5,9 @@ extension View {
         navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: onDismiss) {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 17, weight: .black))
-                            .foregroundStyle(.primary)
+                    LiquidGlassDismissButton {
+                        onDismiss()
                     }
-                    .buttonStyle(.plain)
                 }
             }
             .toolbarBackground(.hidden, for: .navigationBar)
@@ -25,17 +22,17 @@ struct ResultHabitsCard: View {
     var body: some View {
         VStack(spacing: 16) {
             HabitSection(
-                title: settings.localizedString(for: "assessment.habits.build.title"),
+                title: String(localized: "assessment.habits.build.title"),
                 icon: "plus.circle.fill",
                 iconColor: .green,
-                text: settings.localizedString(for: buildHabitsKey)
+                text: NSLocalizedString(buildHabitsKey, comment: "")
             )
 
             HabitSection(
-                title: settings.localizedString(for: "assessment.habits.break.title"),
+                title: String(localized: "assessment.habits.break.title"),
                 icon: "minus.circle.fill",
                 iconColor: .red,
-                text: settings.localizedString(for: breakHabitsKey)
+                text: NSLocalizedString(breakHabitsKey, comment: "")
             )
         }
         .padding(.horizontal, 20)
@@ -49,7 +46,7 @@ struct AssessmentRetakeButton: View {
     var body: some View {
         Button(action: action) {
             Label(
-                settings.localizedString(for: "assessment.btn.retake"),
+                String(localized: "assessment.btn.retake"),
                 systemImage: "arrow.counterclockwise"
             )
             .font(.system(size: 15, weight: .bold, design: .rounded))

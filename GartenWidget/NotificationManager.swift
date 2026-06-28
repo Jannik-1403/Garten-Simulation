@@ -229,28 +229,26 @@ class NotificationManager: ObservableObject {
         
         let texts: (title: String, body: String)
         
-        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
-        
         switch candidate.type {
         case .triggerA:
             let name = candidate.habit?.habitName ?? candidate.habit?.name ?? "Pflanze"
             let h = Int(candidate.time.timeIntervalSince(candidate.habit?.letzteBewaesserung ?? Date()) / 3600)
-            texts = NotificationTexts.wartet(pflanzenName: name, stunden: h, lang: lang)
+            texts = NotificationTexts.wartet(pflanzenName: name, stunden: h)
             
         case .triggerB:
             let name = candidate.habit?.habitName ?? candidate.habit?.name ?? "Pflanze"
-            texts = NotificationTexts.streakGefahr(pflanzenName: name, streak: candidate.habit?.streak ?? 0, lang: lang)
+            texts = NotificationTexts.streakGefahr(pflanzenName: name, streak: candidate.habit?.streak ?? 0)
             
         case .triggerC:
-            texts = NotificationTexts.morgenMotivation(streak: candidate.count, lang: lang)
+            texts = NotificationTexts.morgenMotivation(streak: candidate.count)
             
         case .triggerD:
-            texts = NotificationTexts.stillerAbend(anzahlUngegossen: candidate.count, lang: lang)
+            texts = NotificationTexts.stillerAbend(anzahlUngegossen: candidate.count)
             
         case .triggerE:
             let name = candidate.habit?.habitName ?? candidate.habit?.name ?? "Pflanze"
             // Wir nutzen hier vorerst den TriggerA Text oder einen leicht angepassten
-            texts = NotificationTexts.wartet(pflanzenName: name, stunden: 0, lang: lang)
+            texts = NotificationTexts.wartet(pflanzenName: name, stunden: 0)
         }
         
         content.title = texts.title

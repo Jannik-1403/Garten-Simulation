@@ -110,12 +110,12 @@ struct AppRootView: View {
                 .onAppear {
                     // Link ShopStore coin closures to GardenStore (single source of truth)
                     container.shopStore.coinsProvider  = { [weak gardenStore = container.gardenStore] in gardenStore?.coins ?? 0 }
-                    container.shopStore.coinsAbziehen  = { [weak gardenStore = container.gardenStore, weak settingsStore = container.settingsStore] amount in 
-                        let desc = settingsStore?.localizedString(for: "transaction.shop_purchase") ?? "Shop Purchase"
+                    container.shopStore.coinsAbziehen  = { [weak gardenStore = container.gardenStore] amount in 
+                        let desc = NSLocalizedString("transaction.shop_purchase", comment: "")
                         gardenStore?.coinsAbziehen(amount: amount, beschreibung: desc)
                     }
-                    container.shopStore.coinsHinzufuegen = { [weak gardenStore = container.gardenStore, weak settingsStore = container.settingsStore] amount, title in
-                        let format = settingsStore?.localizedString(for: "transaction.sale_format") ?? "%@"
+                    container.shopStore.coinsHinzufuegen = { [weak gardenStore = container.gardenStore] amount, title in
+                        let format = NSLocalizedString("transaction.sale_format", comment: "")
                         let desc = String(format: format, title)
                         gardenStore?.coinsGutschreiben(amount: amount, beschreibung: desc)
                     }

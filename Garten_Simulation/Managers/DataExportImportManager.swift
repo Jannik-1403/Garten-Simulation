@@ -193,7 +193,7 @@ final class DataExportImportManager: ObservableObject {
             
             let habit = HabitModel(
                 id: data.id.uuidString,
-                name: dbPlant?.name ?? settingsStore.localizedString(for: "common.plant_fallback"), // Or keep localized name if available
+                name: dbPlant?.name ?? String(localized: "common.plant_fallback"), // Or keep localized name if available
                 symbolName: dbPlant?.symbolName ?? "leaf",
                 symbolColor: dbPlant?.symbolColor ?? "green",
                 habitCategory: dbPlant?.habitCategory ?? .lifestyle,

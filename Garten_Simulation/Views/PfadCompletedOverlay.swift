@@ -30,7 +30,7 @@ struct PfadCompletedOverlay: View {
                             .foregroundColor(Color(hex: habit.symbolColor))
                             .shadow(color: Color(hex: habit.symbolColor).opacity(0.3), radius: 10, y: 5)
                         
-                        Text(settings.localizedString(for: "pfad_abschluss_titel"))
+                        Text(String(localized: "pfad_abschluss_titel"))
                             .font(.title2.bold())
                             .foregroundColor(.primary)
                             .multilineTextAlignment(.center)
@@ -38,7 +38,7 @@ struct PfadCompletedOverlay: View {
                     
                     // Description
                     VStack(spacing: 16) {
-                        let descTemplate = settings.localizedString(for: "pfad_abschluss_desc")
+                        let descTemplate = String(localized: "pfad_abschluss_desc")
                         Text(descTemplate.replacingOccurrences(of: "[HABIT]", with: habit.habitName.isEmpty ? habit.name : habit.habitName))
                             .font(.subheadline)
                             .foregroundColor(.secondary)
@@ -69,7 +69,7 @@ struct PfadCompletedOverlay: View {
                                 onCollect()
                             }
                         }) {
-                            Text(settings.localizedString(for: "pfad_abschluss_btn_einsammeln").uppercased())
+                            Text(String(localized: "pfad_abschluss_btn_einsammeln").uppercased())
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundColor(.black)
                         }

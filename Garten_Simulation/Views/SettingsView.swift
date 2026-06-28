@@ -173,6 +173,20 @@ struct SettingsView: View {
                                 }
                             }
                             
+                            settingsSection(title: String(localized: "settings.section.social", defaultValue: "Community")) {
+                                VStack(spacing: 0) {
+                                    Button {
+                                        if let url = URL(string: "https://www.tiktok.com/@grovy807?is_from_webapp=1&sender_device=pc") {
+                                            UIApplication.shared.open(url)
+                                        }
+                                    } label: {
+                                        settingRow(title: String(localized: "settings.tiktok", defaultValue: "Folge uns auf TikTok"), icon: "tiktok_logo", color: .primary, isAsset: true)
+                                    }
+                                    .buttonStyle(.plain)
+                                }
+                            }
+                            .padding(.top, 16)
+                            
                             settingsSection(title: String(localized: "settings.section.support")) {
                                 VStack(spacing: 0) {
                                     Button {

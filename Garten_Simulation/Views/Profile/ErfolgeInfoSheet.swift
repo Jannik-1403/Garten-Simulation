@@ -31,6 +31,7 @@ struct TierRow: View {
     let tier: ErfolgTier
     let iconName: String
     let isLast: Bool
+    @EnvironmentObject var settings: SettingsStore
     
     var body: some View {
         VStack(spacing: 16) {
@@ -42,7 +43,7 @@ struct TierRow: View {
                     .frame(width: 220, height: 220)
                     .applyErfolgFarbe(for: tier)
                 
-                Text(tier.label)
+                Text(String(localized: "rarity.\(tier.label.lowercased())"))
                     .font(.system(size: 28, weight: .heavy, design: .rounded))
                     .foregroundStyle(tier.color)
             }

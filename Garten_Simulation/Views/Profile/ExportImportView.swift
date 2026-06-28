@@ -40,7 +40,7 @@ struct ExportImportView: View {
                             .foregroundStyle(.blue.gradient)
                             .padding(.top, 20)
                         
-                        Text(settingsStore.localizedString(for: "backup_export_hint"))
+                        Text(String(localized: "backup_export_hint"))
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -53,7 +53,7 @@ struct ExportImportView: View {
                             } label: {
                                 HStack {
                                     Image(systemName: "square.and.arrow.up")
-                                    Text(settingsStore.localizedString(for: "backup_export_titel"))
+                                    Text(String(localized: "backup_export_titel"))
                                 }
                             }
                             .buttonStyle(DuolingoButtonStyle(
@@ -67,7 +67,7 @@ struct ExportImportView: View {
                             } label: {
                                 HStack {
                                     Image(systemName: "folder.badge.plus")
-                                    Text(settingsStore.localizedString(for: "backup_import_titel"))
+                                    Text(String(localized: "backup_import_titel"))
                                 }
                             }
                             .buttonStyle(DuolingoButtonStyle(
@@ -77,7 +77,7 @@ struct ExportImportView: View {
                         }
                         .padding(.horizontal, 20)
                         
-                        Text(settingsStore.localizedString(for: "backup_import_hint"))
+                        Text(String(localized: "backup_import_hint"))
                             .font(.caption)
                             .foregroundStyle(.secondary)
                             .multilineTextAlignment(.center)
@@ -104,7 +104,7 @@ struct ExportImportView: View {
                         Spacer()
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
-                            Text(settingsStore.localizedString(for: "backup_erfolg"))
+                            Text(String(localized: "backup_erfolg"))
                         }
                         .font(.headline)
                         .foregroundStyle(.white)
@@ -124,7 +124,7 @@ struct ExportImportView: View {
             }
             .animation(.spring(response: 0.4, dampingFraction: 0.8), value: erfolgreich)
             .animation(.easeInOut(duration: 0.2), value: isLoading)
-            .navigationTitle(settingsStore.localizedString(for: "backup_title"))
+            .navigationTitle(String(localized: "backup_title"))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
             .sheet(isPresented: $showShareSheet, onDismiss: { exportURL = nil }) {
@@ -147,23 +147,23 @@ struct ExportImportView: View {
                     errorMessage = error.localizedDescription
                 }
             }
-            .alert(settingsStore.localizedString(for: "backup_import_bestaetigung_titel"), isPresented: $showImportConfirm) {
-                Button(settingsStore.localizedString(for: "backup_import_bestaetigung_ja"), role: .destructive) {
+            .alert(String(localized: "backup_import_bestaetigung_titel"), isPresented: $showImportConfirm) {
+                Button(String(localized: "backup_import_bestaetigung_ja"), role: .destructive) {
                     if let url = importURL {
                         performImport(from: url)
                     }
                 }
-                Button(settingsStore.localizedString(for: "button.cancel"), role: .cancel) {
+                Button(String(localized: "button.cancel"), role: .cancel) {
                     importURL = nil
                 }
             } message: {
-                Text(settingsStore.localizedString(for: "backup_import_bestaetigung_text"))
+                Text(String(localized: "backup_import_bestaetigung_text"))
             }
-            .alert(settingsStore.localizedString(for: "backup_fehler_titel"), isPresented: Binding(
+            .alert(String(localized: "backup_fehler_titel"), isPresented: Binding(
                 get: { errorMessage != nil },
                 set: { if !$0 { errorMessage = nil } }
             )) {
-                Button(settingsStore.localizedString(for: "button.ok"), role: .cancel) {}
+                Button(String(localized: "button.ok"), role: .cancel) {}
             } message: {
                 if let msg = errorMessage {
                     Text(msg)

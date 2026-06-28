@@ -13,6 +13,7 @@ struct RoutineSessionView: View {
     var onComplete: (() -> Void)? = nil
     
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var settings: SettingsStore
@@ -22,6 +23,7 @@ struct RoutineSessionView: View {
     @State private var totalCoins: Int = 0
     @State private var totalXP: Int = 0
     
+
     // Stopwatch
     @State private var elapsedSeconds: Int = 0
     @State private var isTimerRunning = false
@@ -68,6 +70,19 @@ struct RoutineSessionView: View {
                 UIApplication.shared.isIdleTimerDisabled = false
             }
         }
+        .onChange(of: scenePhase) { oldPhase, newPhase in
+            if newPhase == .background || newPhase == .inactive {
+                UIApplication.shared.isIdleTimerDisabled = false
+                if state == .running {
+                    isTimerRunning = false
+                }
+            } else if newPhase == .active {
+                if state == .running {
+                    UIApplication.shared.isIdleTimerDisabled = true
+                    isTimerRunning = true
+                }
+            }
+        }
     }
     
     // MARK: - Intro View
@@ -76,20 +91,36 @@ struct RoutineSessionView: View {
             Spacer()
             
             ZStack {
-                Circle()
-                    .fill(routine.color.opacity(0.2))
-                    .frame(width: 120, height: 120)
-                Image(systemName: routine.icon)
-                    .font(.system(size: 56, weight: .bold))
-                    .foregroundStyle(routine.color)
+                if routine.titleKey == "routine.morning" {
+                    Image("MorgenRoutine")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 160, height: 160)
+                } else if routine.titleKey == "routine.evening" {
+                    Image("AbendRoutine")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 160, height: 160)
+                } else if routine.titleKey == "routine.gym" {
+                    Image("GymRoutine")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 160, height: 160)
+                } else {
+                    Image("allgemeineMorgenroutine")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 160, height: 160)
+                }
             }
             
             VStack(spacing: 12) {
-                Text(settings.localizedString(for: routine.titleKey))
+                Text(LocalizedStringKey(routine.titleKey))
+                    .environment(\.locale, Locale(identifier: settings.appLanguage))
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                 
-                Text("\(habits.count) \(settings.localizedString(for: "routine.session.habits")). \(settings.localizedString(for: "routine.session.ready"))")
+                Text(String(localized: "routine.session.ready.subtitle", defaultValue: "\(habits.count) Gewohnheiten. Bereit?"))
                     .font(.system(size: 18, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -111,13 +142,13 @@ struct RoutineSessionView: View {
                     }
                 }
             ) {
-                Text(settings.localizedString(for: "routine.session.start"))
+                Text(String(localized: "routine.session.start"))
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)
             }
             .padding(.horizontal, 32)
             
-            Button(settings.localizedString(for: "common.cancel")) {
+            Button(String(localized: "common.cancel")) {
                 dismiss()
             }
             .font(.system(size: 18, weight: .semibold, design: .rounded))
@@ -136,7 +167,7 @@ struct RoutineSessionView: View {
             Spacer()
             
             // Progress
-            Text("\(settings.localizedString(for: "routine.session.step")) \(currentHabitIndex + 1) \(settings.localizedString(for: "routine.session.of")) \(habits.count)")
+            Text(String(localized: "routine.session.progress", defaultValue: "Schritt \(currentHabitIndex + 1) von \(habits.count)"))
                 .font(.system(size: 16, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
@@ -151,7 +182,8 @@ struct RoutineSessionView: View {
                     .frame(width: 250, height: 250)
                     .padding(.top, -10)
                 
-                Text(settings.showHabitInsteadOfName ? settings.localizedString(for: currentHabit.displayedHabitName) : settings.localizedString(for: currentHabit.name))
+                Text(LocalizedStringKey(settings.showHabitInsteadOfName ? currentHabit.displayedHabitName : currentHabit.name))
+                    .environment(\.locale, Locale(identifier: settings.appLanguage))
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.5)
@@ -160,7 +192,8 @@ struct RoutineSessionView: View {
                     .padding(.horizontal, 32)
                 
                 if !currentHabit.symbolism.isEmpty {
-                    Text(settings.localizedString(for: currentHabit.symbolism))
+                    Text(LocalizedStringKey(currentHabit.symbolism))
+                        .environment(\.locale, Locale(identifier: settings.appLanguage))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
@@ -185,7 +218,7 @@ struct RoutineSessionView: View {
                 HStack(spacing: 12) {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 24))
-                    Text(currentHabitIndex == habits.count - 1 ? settings.localizedString(for: "routine.session.finish") : settings.localizedString(for: "routine.session.next"))
+                    Text(currentHabitIndex == habits.count - 1 ? String(localized: "routine.session.finish") : String(localized: "routine.session.next"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                 }
                 .foregroundStyle(.white)
@@ -206,11 +239,11 @@ struct RoutineSessionView: View {
                 .frame(width: 140, height: 140)
             
             VStack(spacing: 12) {
-                Text(settings.localizedString(for: "Geschafft!"))
+                Text(String(localized: "routine.success.title", defaultValue: "Geschafft!"))
                     .font(.system(size: 32, weight: .black, design: .rounded))
                 
                 let durationMins = max(1, elapsedSeconds / 60)
-                Text(String(format: settings.localizedString(for: "Du warst %lld Minuten lang extrem fokussiert. Die XP werden auf alle deine Pflanzen aufgeteilt!"), durationMins))
+                Text(String(localized: "routine.success.subtitle", defaultValue: "Du warst \(durationMins) Minuten lang extrem fokussiert. Die XP werden auf alle deine Pflanzen aufgeteilt!"))
                     .font(.system(size: 16, weight: .medium, design: .rounded))
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.secondary)
@@ -228,7 +261,7 @@ struct RoutineSessionView: View {
                         Text("\(totalCoins)")
                             .font(.system(size: 24, weight: .black, design: .rounded))
                         
-                        Text(settings.localizedString(for: "Münzen"))
+                        Text(String(localized: "common.coins", defaultValue: "Münzen"))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                     }
@@ -243,7 +276,7 @@ struct RoutineSessionView: View {
                         Text("\(totalXP)")
                             .font(.system(size: 24, weight: .black, design: .rounded))
                         
-                        Text("XP")
+                        Text(String(localized: "common.xp"))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                     }
@@ -256,7 +289,7 @@ struct RoutineSessionView: View {
             Button {
                 dismiss()
             } label: {
-                Text(settings.localizedString(for: "Einsammeln"))
+                Text(String(localized: "common.collect", defaultValue: "Einsammeln"))
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large, fillWidth: true,

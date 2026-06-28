@@ -28,8 +28,8 @@ struct MultiStrangPfadView: View {
                             } else {
                                 // Fallback if no tag found for this day
                                 VStack {
-                                    Text("Tag \(day)")
-                                    Text(settings.localizedString(for: "path.no_task"))
+                                    Text(String(format: String(localized: "common.day_format"), String(day)))
+                                    Text(String(localized: "path.no_task"))
                                         .foregroundStyle(.secondary)
                                 }
                                 .tag(day - 1)
@@ -120,10 +120,10 @@ struct DailyTaskCardView: View {
             // 1. Header (TAG X / Phase)
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("TAG \(tag.tagNummer)".uppercased())
+                    Text(String(format: String(localized: "common.day_format"), String(tag.tagNummer)).uppercased())
                         .font(.system(size: 14, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
-                    Text(settings.localizedString(for: "pfad_phase_tag_titel_\(tag.phase.rawValue)"))
+                    Text(String(localized: "pfad_phase_tag_titel_\(tag.phase.rawValue)"))
                         .font(.system(size: 18, weight: .black, design: .rounded))
                         .foregroundStyle(tag.phase.farbe)
                 }
@@ -169,10 +169,10 @@ struct DailyTaskCardView: View {
                     // 5. Progress Box
                     VStack(alignment: .leading, spacing: 12) {
                         HStack {
-                            Text("Tag \(tag.tagNummer) / 90")
+                            Text(String(format: String(localized: "path.day_progress_format"), String(tag.tagNummer)))
                                 .font(.system(size: 14, weight: .black, design: .rounded))
                             Spacer()
-                            Text(settings.localizedString(for: "pfad_phase_tag_titel_\(tag.phase.rawValue)"))
+                            Text(String(localized: "pfad_phase_tag_titel_\(tag.phase.rawValue)"))
                                 .font(.system(size: 12, weight: .bold))
                                 .foregroundStyle(tag.phase.farbe)
                         }
@@ -188,7 +188,7 @@ struct DailyTaskCardView: View {
                         }
                         .frame(height: 8)
                         
-                        Text(settings.localizedString(for: "pfad_phase_beschreibung_\(tag.phase.rawValue)"))
+                        Text(String(localized: "pfad_phase_beschreibung_\(tag.phase.rawValue)"))
                             .font(.system(size: 12, weight: .bold))
                             .foregroundStyle(.secondary)
                     }
@@ -204,7 +204,7 @@ struct DailyTaskCardView: View {
                             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                             pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
                         } label: {
-                            Text(settings.localizedString(for: "pfad_tag_erledigen").uppercased())
+                            Text(String(localized: "pfad_tag_erledigen").uppercased())
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 12)
@@ -222,7 +222,7 @@ struct DailyTaskCardView: View {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 32))
                                 .foregroundStyle(.green)
-                            Text(settings.localizedString(for: "erledigt_status").uppercased())
+                            Text(String(localized: "erledigt_status").uppercased())
                                 .font(.system(size: 16, weight: .black, design: .rounded))
                                 .foregroundStyle(.green)
                         }
@@ -232,7 +232,7 @@ struct DailyTaskCardView: View {
                             Image(systemName: "clock.fill")
                                 .font(.system(size: 24))
                                 .foregroundStyle(.secondary)
-                            Text(settings.localizedString(for: "pfad_morgen_verfuegbar"))
+                            Text(String(localized: "pfad_morgen_verfuegbar"))
                                 .font(.system(size: 14, weight: .bold, design: .rounded))
                                 .foregroundStyle(.secondary)
                         }
@@ -280,7 +280,7 @@ struct DailyTaskCardView: View {
     private var statusBadge: some View {
         Group {
             if isToday && !tag.istErledigt {
-                Text(settings.localizedString(for: "heute_status"))
+                Text(String(localized: "heute_status"))
                     .font(.system(size: 14, weight: .bold))
                     .padding(.horizontal, 16)
                     .padding(.vertical, 6)
@@ -300,20 +300,20 @@ struct DailyTaskCardView: View {
     }
     
     private var localizedTitle: String {
-        let raw = settings.localizedString(for: tag.titelKey)
+        let raw = NSLocalizedString(tag.titelKey, comment: "")
         return raw.replacingOccurrences(of: "[HABIT]", with: habitName)
     }
 
     private var localizedDescription: String {
-        let raw = settings.localizedString(for: tag.beschreibungKey)
+        let raw = NSLocalizedString(tag.beschreibungKey, comment: "")
         return raw.replacingOccurrences(of: "[HABIT]", with: habitName)
     }
     
     private var habitName: String {
         guard let s = tag.strang else { return "" }
         if let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
-            return settings.localizedString(for: habit.displayedHabitName)
+            return NSLocalizedString(habit.displayedHabitName, comment: "")
         }
-        return settings.localizedString(for: s.pflanzenName)
+        return NSLocalizedString(s.pflanzenName, comment: "")
     }
 }

@@ -60,6 +60,16 @@ class AssessmentStore: ObservableObject {
     func resetFinanceResult() {
         financeResult = nil
     }
+    
+    /// Setzt alle Quiz-Ergebnisse (Assessments) zurück.
+    func resetAll() {
+        resetFinanceResult()
+        resetMentalResult()
+        resetGrowthResult()
+        resetHealthResult()
+        resetFitnessResult()
+        resetLifestyleResult()
+    }
 
     // MARK: - Persistence (UserDefaults)
 

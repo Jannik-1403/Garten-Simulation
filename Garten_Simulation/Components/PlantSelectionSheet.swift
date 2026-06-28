@@ -13,7 +13,7 @@ struct PlantSelectionSheet: View {
         NavigationView {
             List {
                 Section {
-                    Text(settings.localizedString(for: "powerup.select_plant_prompt"))
+                    Text(String(localized: "powerup.select_plant_prompt"))
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .listRowBackground(Color.clear)
@@ -36,7 +36,7 @@ struct PlantSelectionSheet: View {
                             }
                             
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(settings.localizedString(for: plant.name))
+                                Text(NSLocalizedString(plant.name, comment: ""))
                                     .font(.headline)
                                 Text(plant.seltenheit.lokalisiertTitel)
                                     .font(.caption)
@@ -54,11 +54,11 @@ struct PlantSelectionSheet: View {
                     .buttonStyle(.plain)
                 }
             }
-            .navigationTitle(settings.localizedString(for: powerUp.name))
+            .navigationTitle(NSLocalizedString(powerUp.name, comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(settings.localizedString(for: "button.cancel")) {
+                    Button(String(localized: "button.cancel")) {
                         dismiss()
                     }
                 }

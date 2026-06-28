@@ -87,17 +87,17 @@ struct ErfolgDetailSheet: View {
                     
                     VStack(spacing: 24) {
                         VStack(spacing: 12) {
-                            Text(settings.localizedString(for: liveErfolg.titelKey))
+                            Text(NSLocalizedString(liveErfolg.titelKey, comment: ""))
                                 .font(.system(size: 34, weight: .black, design: .rounded))
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 24)
                             
                             // Tier Subtitle
-                            Text(liveErfolg.tier == .max ? settings.localizedString(for: "erfolg.max_reached") : liveErfolg.tier.label)
+                            Text(liveErfolg.tier == .max ? String(localized: "erfolg.max_reached") : String(localized: "rarity.\(liveErfolg.tier.label.lowercased())"))
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                                 .foregroundStyle(liveErfolg.tier.color)
                             
-                            Text(settings.localizedString(for: liveErfolg.beschreibungKey))
+                            Text(NSLocalizedString(liveErfolg.beschreibungKey, comment: ""))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .multilineTextAlignment(.center)
@@ -111,7 +111,7 @@ struct ErfolgDetailSheet: View {
                     VStack(spacing: 24) {
                         VStack(spacing: 12) {
                             HStack {
-                                Text(settings.localizedString(for: "erfolge.fortschritt"))
+                                Text(String(localized: "erfolge.fortschritt"))
                                     .font(.subheadline.weight(.bold))
                                     .foregroundStyle(.secondary)
                                 Spacer()
@@ -139,7 +139,7 @@ struct ErfolgDetailSheet: View {
                     .padding(.bottom, 60)
                 }
             }
-            .navigationTitle(settings.localizedString(for: liveErfolg.titelKey))
+            .navigationTitle(NSLocalizedString(liveErfolg.titelKey, comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
             .toolbar {
@@ -274,7 +274,7 @@ struct ShareAchievementCard: View {
     
     private var username: String {
         let name = settings.igelCustomization.name.trimmingCharacters(in: .whitespacesAndNewlines)
-        return name.isEmpty ? settings.localizedString(for: "profile.user.name.default") : name
+        return name.isEmpty ? String(localized: "profile.user.name.default") : name
     }
     
     var body: some View {
@@ -296,7 +296,7 @@ struct ShareAchievementCard: View {
             .padding(.top, 32)
             
             VStack(spacing: 12) {
-                Text(settings.localizedString(for: erfolg.titelKey))
+                Text(NSLocalizedString(erfolg.titelKey, comment: ""))
                     .font(.system(size: 26, weight: .black, design: .rounded))
                     .foregroundStyle(textColor)
                     .multilineTextAlignment(.center)
@@ -310,7 +310,7 @@ struct ShareAchievementCard: View {
                     .background(erfolg.tier.color.opacity(0.12))
                     .clipShape(Capsule())
                 
-                Text(settings.localizedString(for: erfolg.beschreibungKey))
+                Text(NSLocalizedString(erfolg.beschreibungKey, comment: ""))
                     .font(.system(size: 15, weight: .bold, design: .rounded))
                     .foregroundStyle(secondaryTextColor)
                     .multilineTextAlignment(.center)
@@ -396,15 +396,15 @@ struct ErfolgSharePreviewSheet: View {
                     }
                     
                     VStack(spacing: 8) {
-                        Text(settings.localizedString(for: themeNameKey(for: selectedTheme)))
+                        Text(NSLocalizedString(themeNameKey(for: selectedTheme), comment: ""))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                         
-                        Text(settings.localizedString(for: "stats.share.swipe_hint"))
+                        Text(String(localized: "stats.share.swipe_hint"))
                             .font(.system(size: 13, weight: .medium, design: .rounded))
                             .foregroundColor(.secondary)
                         
                         if savedToPhotos {
-                            Label("In Fotos gespeichert", systemImage: "checkmark.circle.fill")
+                            Label(String(localized: "common.saved_to_photos"), systemImage: "checkmark.circle.fill")
                                 .font(.system(size: 13, weight: .semibold, design: .rounded))
                                 .foregroundColor(.green)
                                 .transition(.opacity.combined(with: .scale))
@@ -414,7 +414,7 @@ struct ErfolgSharePreviewSheet: View {
                     .padding(.bottom, 60)
                 }
             }
-            .navigationTitle(settings.localizedString(for: "stats.share.preview_title"))
+            .navigationTitle(String(localized: "stats.share.preview_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

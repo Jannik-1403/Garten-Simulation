@@ -171,7 +171,7 @@ struct DeveloperView: View {
                     // Section 3: Time Skip simulation
                     settingsSection(title: "Zeitsprung-Simulation") {
                         VStack(spacing: 8) {
-                            Text(settings.localizedString(for: "settings.timeskip_simulation"))
+                            Text(String(localized: "settings.timeskip_simulation"))
                                 .font(.system(size: 11, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .padding(.top, 8)
@@ -261,7 +261,7 @@ struct DeveloperView: View {
                                 dismiss()
                             } label: {
                                 settingRow(
-                                    title: settings.localizedString(for: "settings.onboarding.repeat"),
+                                    title: String(localized: "settings.onboarding.repeat"),
                                     icon: "arrow.counterclockwise.circle.fill",
                                     color: .orange
                                 )

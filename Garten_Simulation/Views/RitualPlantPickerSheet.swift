@@ -57,12 +57,12 @@ struct RitualPlantPickerSheet: View {
                                     
                                     VStack(alignment: .leading, spacing: 2) {
                                         // HABIT NAME ALS TITEL
-                                        Text(settings.localizedString(for: plant.habitName))
+                                        Text(NSLocalizedString(plant.habitName, comment: ""))
                                             .font(.system(size: 16, weight: .black, design: .rounded))
                                             .foregroundColor(isOwned ? .primary : .secondary)
                                         
                                         // PFLANZE ALS UNTERTITEL
-                                        Text(settings.localizedString(for: plant.name))
+                                        Text(NSLocalizedString(plant.name, comment: ""))
                                             .font(.system(size: 12, weight: .medium, design: .rounded))
                                             .foregroundColor(.secondary)
                                         
@@ -70,7 +70,7 @@ struct RitualPlantPickerSheet: View {
                                             HStack(spacing: 4) {
                                                 Image(systemName: "lock.fill")
                                                     .font(.system(size: 10))
-                                                Text(settings.localizedString(for: "pfad_tag_gesperrt").uppercased())
+                                                Text(String(localized: "pfad_tag_gesperrt").uppercased())
                                                     .font(.system(size: 10, weight: .black))
                                             }
                                             .foregroundColor(.gray)
@@ -102,7 +102,7 @@ struct RitualPlantPickerSheet: View {
                     .padding(24)
                 }
             }
-            .navigationTitle(settings.localizedString(for: "ritual_config_add_habit"))
+            .navigationTitle(String(localized: "ritual_config_add_habit"))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
         }
