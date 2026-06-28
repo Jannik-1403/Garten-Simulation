@@ -263,9 +263,17 @@ struct RoutinenView: View {
                 saveRoutines()
             }
             .onChange(of: settings.routineOnboardingAbgeschlossen) { _, newValue in
-                // Wenn Flag auf false gesetzt wird (z.B. nach Reset), sofort Onboarding zeigen
+                // Wenn Flag auf false gesetzt wird (z.B. nach Reset oder Tour-Prompt), sofort Onboarding zeigen
                 if !newValue {
                     showOnboarding = true
+                }
+            }
+            .onChange(of: gardenStore.selectedTab) { _, newTab in
+                // Wenn der Nutzer zu diesem Tab navigiert wird (z.B. vom Tour-Prompt), erneut prüfen
+                if newTab == 4 && !settings.routineOnboardingAbgeschlossen {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        showOnboarding = true
+                    }
                 }
             }
             .fullScreenCover(isPresented: $showOnboarding) {
