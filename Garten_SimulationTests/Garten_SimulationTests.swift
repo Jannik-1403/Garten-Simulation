@@ -6,7 +6,7 @@
 //
 
 import Testing
-@testable import Garten_Simulation
+@testable import Grovy
 
 struct Garten_SimulationTests {
 
