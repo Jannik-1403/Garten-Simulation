@@ -39,78 +39,75 @@ struct RoutineOnboardingView: View {
                             ForEach($routines) { $routine in
                                 let isSelected = selectedRoutineIDs.contains(routine.id)
                                 
-                                HStack(spacing: 16) {
-                                    // Checkbox
-                                    Button {
+                                Item3DButton(
+                                    farbe: .white,
+                                    sekundaerFarbe: Color(white: 0.9),
+                                    groesse: 80,
+                                    isRectangular: true,
+                                    aktion: {
                                         if isSelected {
                                             selectedRoutineIDs.remove(routine.id)
                                         } else {
                                             selectedRoutineIDs.insert(routine.id)
                                         }
-                                    } label: {
+                                    }
+                                ) {
+                                    HStack(spacing: 16) {
+                                        // Checkbox
                                         Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                                             .font(.system(size: 28))
-                                            .foregroundStyle(isSelected ? Color(hex: routine.colorHex) : Color.gray.opacity(0.5))
-                                    }
-                                    
-                                    // Icon
-                                    Group {
-                                        if routine.titleKey == "routine.morning" {
-                                            Image("MorgenRoutine")
-                                                .resizable()
-                                                .scaledToFit()
-                                        } else if routine.titleKey == "routine.evening" {
-                                            Image("AbendRoutine")
-                                                .resizable()
-                                                .scaledToFit()
-                                        } else if routine.titleKey == "routine.gym" {
-                                            Image("GymRoutine")
-                                                .resizable()
-                                                .scaledToFit()
-                                        } else {
-                                            Image("allgemeineMorgenroutine")
-                                                .resizable()
-                                                .scaledToFit()
-                                        }
-                                    }
-                                    .frame(width: 48, height: 48)
-                                    
-                                    // Title
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        Text(String(localized: String.LocalizationValue(routine.titleKey), locale: Locale(identifier: settings.appLanguage)))
-                                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                                            .foregroundStyle(isSelected ? Color.orange : Color.gray.opacity(0.5))
                                         
-                                        if !routine.assignedHabitIDs.isEmpty {
-                                            Text("\(routine.assignedHabitIDs.count) \(String(localized: "routine.habits", defaultValue: "Gewohnheiten", locale: Locale(identifier: settings.appLanguage)))")
-                                                .font(.system(size: 14, weight: .medium, design: .rounded))
-                                                .foregroundStyle(.secondary)
+                                        // Icon
+                                        Group {
+                                            if routine.titleKey == "routine.morning" {
+                                                Image("MorgenRoutine")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                            } else if routine.titleKey == "routine.evening" {
+                                                Image("AbendRoutine")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                            } else if routine.titleKey == "routine.gym" {
+                                                Image("GymRoutine")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                            } else {
+                                                Image("allgemeineMorgenroutine")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                            }
                                         }
+                                        .frame(width: 48, height: 48)
+                                        
+                                        // Title
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            Text(String(localized: String.LocalizationValue(routine.titleKey), locale: Locale(identifier: settings.appLanguage)))
+                                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                                                .foregroundStyle(.primary)
+                                            
+                                            if !routine.assignedHabitIDs.isEmpty {
+                                                Text("\(routine.assignedHabitIDs.count) \(String(localized: "routine.habits", defaultValue: "Gewohnheiten", locale: Locale(identifier: settings.appLanguage)))")
+                                                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                                                    .foregroundStyle(.secondary)
+                                            }
+                                        }
+                                        
+                                        Spacer()
+                                        
+                                        // Edit Button
+                                        Image(systemName: "pencil")
+                                            .font(.system(size: 18, weight: .bold))
+                                            .foregroundStyle(.gray)
+                                            .padding(10)
+                                            .background(Color(white: 0.95))
+                                            .clipShape(Circle())
+                                            .onTapGesture {
+                                                routineToEdit = routine
+                                            }
                                     }
-                                    
-                                    Spacer()
-                                    
-                                    // Edit Button
-                                    Button {
-                                        routineToEdit = routine
-                                    } label: {
-                                        Text(String(localized: "common.edit", defaultValue: "Bearbeiten", locale: Locale(identifier: settings.appLanguage)))
-                                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                                            .padding(.horizontal, 16)
-                                            .padding(.vertical, 8)
-                                            .background(Color(white: 0.9))
-                                            .cornerRadius(12)
-                                    }
-                                }
-                                .padding(16)
-                                .background(Color.white)
-                                .cornerRadius(20)
-                                .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
-                                .onTapGesture {
-                                    if isSelected {
-                                        selectedRoutineIDs.remove(routine.id)
-                                    } else {
-                                        selectedRoutineIDs.insert(routine.id)
-                                    }
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 4)
                                 }
                             }
                         }
