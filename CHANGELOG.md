@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-06-28 - Routine Onboarding Vollständiger Bugfix
+- **Timing-Bug behoben**: Onboarding erscheint jetzt sofort nach "Alles Löschen" ohne App-Neustart (via `@State showOnboarding` + `onChange` statt reaktivem Binding).
+- **Doppelte Routinen nach Reset behoben**: `customRoutinesData` wird jetzt explizit auf `Data()` gesetzt, sodass `@AppStorage` den leeren Zustand sofort erkennt.
+- **Sprachwechsel-Bug behoben**: Onboarding erscheint nicht mehr ungewollt beim Wechsel der App-Sprache.
+- **Fertig-Button sichtbar gemacht**: Button hat jetzt einen orangen Gradient mit Schatten, klar erkennbar.
+
 ## 2026-06-28 - Routine Onboarding UI Überarbeitung
 - Routine-Karten im Onboarding nutzen jetzt den `Item3DButton` mit 3D-Druckfeedback.
 - Auswahlindikator (Checkbox) ist jetzt immer einheitlich orange statt in der jeweiligen Routinen-Farbe.
