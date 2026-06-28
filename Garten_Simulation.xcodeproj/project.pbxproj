@@ -86,16 +86,6 @@
 		145797CD2F6FED1A00C51D53 /* Exceptions for "Garten_Simulation" folder in "Garten_SimulationTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Animations/character.riv,
-				Animations/fire_button.riv,
-				Animations/note_book.riv,
-				Animations/plant_Splash_Screen.riv,
-				Animations/progress_bar.riv,
-				Assets.xcassets,
-				Info.plist,
-				LaunchScreen.storyboard,
-				Localizable.xcstrings,
-				StoreKitConfig.storekit,
 			);
 			target = 1424D4282F6EA14300908588 /* Garten_SimulationTests */;
 		};
