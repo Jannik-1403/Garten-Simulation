@@ -57,6 +57,7 @@ struct ContentView: View {
                     interactiveTourManager.startTour()
                 }
                 .environmentObject(settings)
+                .environmentObject(gardenStore)
                 .zIndex(99999)
             }
             
@@ -118,25 +119,25 @@ struct MainAppTabView: View {
             GartenView()
                 .tag(0)
                 .tabItem {
-                    Label(settings.localizedString(for: "tab.garten"), systemImage: "leaf.fill")
+                    Label(String(localized: "tab.garten"), systemImage: "leaf.fill")
                 }
 
             RoutinenView()
                 .tag(4)
                 .tabItem {
-                    Label(settings.localizedString(for: "tab.routines"), systemImage: "list.bullet.clipboard.fill")
+                    Label(String(localized: "tab.routines"), systemImage: "list.bullet.clipboard.fill")
                 }
 
             UnifiedShopView()
                 .tag(1)
                 .tabItem {
-                    Label(settings.localizedString(for: "tab.shop"), systemImage: "cart.fill")
+                    Label(String(localized: "tab.shop"), systemImage: "cart.fill")
                 }
 
             ProfilView()
                 .tag(3)
                 .tabItem {
-                    Label(settings.localizedString(for: "tab.profil"), systemImage: "person.fill")
+                    Label(String(localized: "tab.profil"), systemImage: "person.fill")
                 }
         }
         .tint(.primary)

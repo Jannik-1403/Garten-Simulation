@@ -115,36 +115,31 @@ struct RoutineOnboardingView: View {
                         .padding(24)
                     }
                     
-                    Button {
-                        // Nur ausgewählte Routinen speichern (savedRoutines vorher leeren, falls Reset)
-                        let finalRoutines = routines.filter { selectedRoutineIDs.contains($0.id) }
-                        savedRoutines = finalRoutines
-                        
-                        if let encoded = try? JSONEncoder().encode(savedRoutines) {
-                            customRoutinesData = encoded
+                    Item3DButton(
+                        farbe: Color.orange,
+                        sekundaerFarbe: Color.orange.darker(),
+                        groesse: 60,
+                        isRectangular: true,
+                        aktion: {
+                            let finalRoutines = routines.filter { selectedRoutineIDs.contains($0.id) }
+                            savedRoutines = finalRoutines
+                            
+                            if let encoded = try? JSONEncoder().encode(savedRoutines) {
+                                customRoutinesData = encoded
+                            }
+                            
+                            if let onFinish = onFinish {
+                                onFinish()
+                            } else {
+                                settings.routineOnboardingAbgeschlossen = true
+                                dismiss()
+                            }
                         }
-                        
-                        if let onFinish = onFinish {
-                            onFinish()
-                        } else {
-                            settings.routineOnboardingAbgeschlossen = true
-                            dismiss()
-                        }
-                    } label: {
+                    ) {
                         Text(String(localized: "common.done", defaultValue: "Fertig", locale: Locale(identifier: settings.appLanguage)))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .foregroundStyle(.white)
                             .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(
-                                LinearGradient(
-                                    colors: [Color.orange, Color.orange.opacity(0.85)],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                            .shadow(color: Color.orange.opacity(0.4), radius: 8, y: 4)
                     }
                     .padding(.horizontal, 24)
                     .padding(.bottom, 32)

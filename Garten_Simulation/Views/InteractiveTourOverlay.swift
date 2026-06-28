@@ -3,6 +3,7 @@ import SwiftUI
 // MARK: - App Tour Prompt Overlay
 struct AppTourPromptOverlay: View {
     @EnvironmentObject var settingsStore: SettingsStore
+    @EnvironmentObject var gardenStore: GardenStore
     let onStartTour: () -> Void
     
     var body: some View {
@@ -11,34 +12,60 @@ struct AppTourPromptOverlay: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 24) {
-                Text(settingsStore.localizedString(for: "tour_prompt_title"))
+                Text(String(localized: "tour_prompt_title"))
                     .font(.title2.bold())
                     .multilineTextAlignment(.center)
                 
-                Text(settingsStore.localizedString(for: "tour_prompt_desc"))
+                Text(String(localized: "tour_prompt_desc"))
                     .font(.body)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.secondary)
                     .padding(.horizontal)
                 
                 VStack(spacing: 12) {
-                    Button(action: {
-                        settingsStore.appTourPromptShown = true
-                        onStartTour()
-                    }) {
-                        Text(settingsStore.localizedString(for: "tour_prompt_yes"))
-                    }
-                    .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: Color.gruenPrimary, shadowColor: Color.gruenPrimary.darker(), foregroundColor: .white))
-                    
-                    Button(action: {
-                        withAnimation {
+                    // JA: Vorschau starten → zum Routinen-Tab navigieren & Onboarding triggern
+                    Item3DButton(
+                        farbe: Color.gruenPrimary,
+                        sekundaerFarbe: Color.gruenPrimary.darker(),
+                        groesse: 56,
+                        isRectangular: true,
+                        aktion: {
                             settingsStore.appTourPromptShown = true
                             settingsStore.appTourAbgeschlossen = true
+                            // Zum Routinen-Tab wechseln
+                            gardenStore.selectedTab = 4
+                            // Routine-Onboarding zurücksetzen, damit es beim Tab-Öffnen erscheint
+                            settingsStore.routineOnboardingAbgeschlossen = false
                         }
-                    }) {
-                        Text(settingsStore.localizedString(for: "tour_prompt_no"))
+                    ) {
+                        Text(String(localized: "tour_prompt_yes"))
+                            .font(.system(size: 17, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: Color.rotPrimary, shadowColor: Color.rotPrimary.darker(), foregroundColor: .white))
+                    
+                    // NEIN: Direkt zum Routine-Onboarding ohne Tour
+                    Item3DButton(
+                        farbe: Color.rotPrimary,
+                        sekundaerFarbe: Color.rotPrimary.darker(),
+                        groesse: 56,
+                        isRectangular: true,
+                        aktion: {
+                            withAnimation {
+                                settingsStore.appTourPromptShown = true
+                                settingsStore.appTourAbgeschlossen = true
+                                // Zum Routinen-Tab wechseln
+                                gardenStore.selectedTab = 4
+                                // Routine-Onboarding triggern
+                                settingsStore.routineOnboardingAbgeschlossen = false
+                            }
+                        }
+                    ) {
+                        Text(String(localized: "tour_prompt_no"))
+                            .font(.system(size: 17, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                    }
                 }
             }
             .padding(32)
@@ -87,8 +114,11 @@ struct InteractiveTourOverlay: View {
         let frame = tourManager.anchors[step] ?? CGRect(x: w/2, y: h/2, width: 0, height: 0)
         
         let targetPoint: CGPoint = {
-            if step == .shopPrompt {
+            if step == .routinePrompt {
                 return CGPoint(x: w * 0.375, y: h - geo.safeAreaInsets.bottom - 25)
+            }
+            if step == .shopPrompt {
+                return CGPoint(x: w * 0.625, y: h - geo.safeAreaInsets.bottom - 25)
             }
             if step == .profilePrompt {
                 return CGPoint(x: w * 0.875, y: h - geo.safeAreaInsets.bottom - 25)
@@ -109,7 +139,7 @@ struct InteractiveTourOverlay: View {
         }()
         
         let arrowEdge: Edge? = {
-            if frame.width > 0 && step != .shopPrompt && step != .profilePrompt {
+            if frame.width > 0 && step != .routinePrompt && step != .shopPrompt && step != .profilePrompt {
                 let localMidY = frame.midY - geo.safeAreaInsets.top
                 return localMidY <= h / 2 ? .top : .bottom
             }
@@ -162,51 +192,58 @@ struct InteractiveTourOverlay: View {
     private func stepConfig(for step: TourStep) -> (title: String, desc: String, onNext: () -> Void) {
         switch step {
         case .coinsIntro:
-            return (settings.localizedString(for: "tour_coins_title"), settings.localizedString(for: "tour_coins_desc"), { tourManager.nextStep() })
+            return (String(localized: "tour_coins_title"), String(localized: "tour_coins_desc"), { tourManager.nextStep() })
         case .livesIntro:
-            return (settings.localizedString(for: "tour_lives_title"), settings.localizedString(for: "tour_lives_desc"), { tourManager.nextStep() })
+            return (String(localized: "tour_lives_title"), String(localized: "tour_lives_desc"), { tourManager.nextStep() })
         case .streakHeaderIntro:
-            return (settings.localizedString(for: "tour_streak_header_title"), settings.localizedString(for: "tour_streak_header_desc"), { tourManager.nextStep() })
+            return (String(localized: "tour_streak_header_title"), String(localized: "tour_streak_header_desc"), { tourManager.nextStep() })
         case .dailyRingIntro:
-            return (settings.localizedString(for: "tour_daily_ring_title"), settings.localizedString(for: "tour_daily_ring_desc"), { tourManager.nextStep() })
+            return (String(localized: "tour_daily_ring_title"), String(localized: "tour_daily_ring_desc"), { tourManager.nextStep() })
         case .intro:
-            return (settings.localizedString(for: "tour_1_title"), settings.localizedString(for: "tour_1_desc"), { 
+            return (String(localized: "tour_1_title"), String(localized: "tour_1_desc"), { 
                 if let firstPlant = gardenStore.pflanzen.first {
                     tourManager.showPlantDetail = firstPlant
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { tourManager.nextStep() }
             })
         case .focusTimer:
-            return (settings.localizedString(for: "tour_5_title"), settings.localizedString(for: "tour_5_desc"), { tourManager.nextStep() })
+            return (String(localized: "tour_5_title"), String(localized: "tour_5_desc"), { tourManager.nextStep() })
         case .plantStreak:
-            return (settings.localizedString(for: "tour_plant_streak_title"), settings.localizedString(for: "tour_plant_streak_desc"), { tourManager.nextStep() })
+            return (String(localized: "tour_plant_streak_title"), String(localized: "tour_plant_streak_desc"), { tourManager.nextStep() })
         case .plantPath:
-            return (settings.localizedString(for: "tour_plant_path_title"), settings.localizedString(for: "tour_plant_path_desc"), {
+            return (String(localized: "tour_plant_path_title"), String(localized: "tour_plant_path_desc"), {
                 tourManager.showPlantDetail = nil
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { tourManager.nextStep() }
             })
         case .badHabits:
-            return (settings.localizedString(for: "tour_2_title"), settings.localizedString(for: "tour_2_desc"), { tourManager.nextStep() })
+            return (String(localized: "tour_2_title"), String(localized: "tour_2_desc"), { tourManager.nextStep() })
+        case .routinePrompt:
+            return (String(localized: "tab.routines"), String(localized: "tour_routine_prompt_desc"), {
+                gardenStore.selectedTab = 4
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { tourManager.nextStep() }
+            })
+        case .routineIntro:
+            return (String(localized: "tour_routine_title"), String(localized: "tour_routine_desc"), { tourManager.nextStep() })
         case .shopPrompt:
-            return (settings.localizedString(for: "tab.shop"), settings.localizedString(for: "tour_shop_prompt_desc"), {
+            return (String(localized: "tab.shop"), String(localized: "tour_shop_prompt_desc"), {
                 gardenStore.selectedTab = 1
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { tourManager.nextStep() }
             })
         case .shopIntro:
-            return (settings.localizedString(for: "tour_3_title"), settings.localizedString(for: "tour_3_desc"), { tourManager.nextStep() })
+            return (String(localized: "tour_3_title"), String(localized: "tour_3_desc"), { tourManager.nextStep() })
         case .profilePrompt:
-            return (settings.localizedString(for: "tab.profil"), settings.localizedString(for: "tour_profile_prompt_desc"), {
+            return (String(localized: "tab.profil"), String(localized: "tour_profile_prompt_desc"), {
                 gardenStore.selectedTab = 3
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { tourManager.nextStep() }
             })
         case .titles:
-            return (settings.localizedString(for: "tour_4_title"), settings.localizedString(for: "tour_4_desc"), { tourManager.nextStep() })
+            return (String(localized: "tour_4_title"), String(localized: "tour_4_desc"), { tourManager.nextStep() })
         case .achievements:
-            return (settings.localizedString(for: "tour_6_title"), settings.localizedString(for: "tour_6_desc"), { tourManager.nextStep() })
+            return (String(localized: "tour_6_title"), String(localized: "tour_6_desc"), { tourManager.nextStep() })
         case .streak:
-            return (settings.localizedString(for: "tour_7_title"), settings.localizedString(for: "tour_7_desc"), { tourManager.nextStep() })
+            return (String(localized: "tour_7_title"), String(localized: "tour_7_desc"), { tourManager.nextStep() })
         case .inventory:
-            return (settings.localizedString(for: "tour_inventory_title"), settings.localizedString(for: "tour_inventory_desc"), { tourManager.nextStep() })
+            return (String(localized: "tour_inventory_title"), String(localized: "tour_inventory_desc"), { tourManager.nextStep() })
         case .done:
             return ("", "", {})
         }
