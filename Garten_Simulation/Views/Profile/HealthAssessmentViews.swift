@@ -50,7 +50,6 @@ struct HealthAssessmentQuizView: View {
                     ))
             }
         }
-        .navigationBarHidden(showResult)
         .navigationBarBackButtonHidden(true)
         .navigationTitle(NSLocalizedString(HabitCategory.health.localizationKey, comment: ""))
         .navigationBarTitleDisplayMode(.inline)

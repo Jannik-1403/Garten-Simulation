@@ -46,7 +46,6 @@ struct MentalAssessmentQuizView: View {
                     ))
             }
         }
-        .navigationBarHidden(showResult)
         .navigationBarBackButtonHidden(true)
         .navigationTitle(NSLocalizedString(HabitCategory.mental.localizationKey, comment: ""))
         .navigationBarTitleDisplayMode(.inline)

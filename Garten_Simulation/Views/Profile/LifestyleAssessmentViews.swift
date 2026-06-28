@@ -46,7 +46,6 @@ struct LifestyleAssessmentQuizView: View {
                     ))
             }
         }
-        .navigationBarHidden(showResult)
         .navigationBarBackButtonHidden(true)
         .navigationTitle(NSLocalizedString(HabitCategory.lifestyle.localizationKey, comment: ""))
         .navigationBarTitleDisplayMode(.inline)

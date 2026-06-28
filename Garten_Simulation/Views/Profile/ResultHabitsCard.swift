@@ -4,13 +4,12 @@ extension View {
     func assessmentDismissToolbar(onDismiss: @escaping () -> Void) -> some View {
         self
             .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
-            .overlay(alignment: .topTrailing) {
-                LiquidGlassDismissButton {
-                    onDismiss()
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    LiquidGlassDismissButton {
+                        onDismiss()
+                    }
                 }
-                .padding(.top, 16)
-                .padding(.trailing, 20)
             }
     }
 }

@@ -350,7 +350,6 @@ struct FinanceAssessmentQuizView: View {
                     ))
             }
         }
-        .navigationBarHidden(showResult)
         .navigationBarBackButtonHidden(true)
         .navigationTitle(NSLocalizedString(HabitCategory.finance.localizationKey, comment: ""))
         .navigationBarTitleDisplayMode(.inline)

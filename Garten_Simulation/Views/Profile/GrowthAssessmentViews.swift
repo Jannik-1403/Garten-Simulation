@@ -46,7 +46,6 @@ struct GrowthAssessmentQuizView: View {
                     ))
             }
         }
-        .navigationBarHidden(showResult)
         .navigationBarBackButtonHidden(true)
         .navigationTitle(NSLocalizedString(HabitCategory.growth.localizationKey, comment: ""))
         .navigationBarTitleDisplayMode(.inline)
