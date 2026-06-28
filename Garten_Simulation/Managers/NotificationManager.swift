@@ -45,12 +45,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         
         let isNotificationsEnabled = SharedUserDefaults.suite.object(forKey: "isNotificationsEnabled") as? Bool ?? true
         guard isNotificationsEnabled else { return }
-
-        let lang = SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"
         let calendar = Calendar.current
-
-        // Bereits verwendete (Wochentag, Stunde, Minute)-Slots → verhindert Doppel-Notifications
-        var usedSlots = Set<String>()
         
         // 1. Read routines to find overridden habits and schedule routine reminders
         var overriddenHabitIDs = Set<String>()
@@ -68,19 +63,14 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                     }
                     
                     // Schedule Routine
-                    let routineName = AppStrings.get(routine.titleKey, language: lang)
+                    let routineName = NSLocalizedString(routine.titleKey, comment: "")
                     
                     if let schedule = routine.reminderSchedule, !schedule.isExpired {
                         for weekday in schedule.weekdays where weekday.isEnabled {
                             let hour   = calendar.component(.hour,   from: weekday.time)
                             let minute = calendar.component(.minute, from: weekday.time)
-                            let slotKey = "\(weekday.appleWeekday):\(hour):\(minute)"
-                            
-                            guard !usedSlots.contains(slotKey) else { continue }
-                            usedSlots.insert(slotKey)
-                            
-                            let title = "Zeit für Routine: \(routineName)"
-                            let body = weekday.customMessage ?? "Starte jetzt deine Routine und verdiene Fokus-Punkte!"
+                            let title = String(localized: "Zeit für Routine: \(routineName)")
+                            let body = weekday.customMessage ?? String(localized: "Starte jetzt deine Routine und verdiene Fokus-Punkte!")
                             let repeats = weekday.repeatMode != .once
                             
                             scheduleWeekday(
@@ -96,17 +86,15 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                     } else if let reminderTime = routine.reminderTime {
                         let hour   = calendar.component(.hour,   from: reminderTime)
                         let minute = calendar.component(.minute, from: reminderTime)
-                        let slotKey = "legacy:\(hour):\(minute)"
-                        
-                        guard !usedSlots.contains(slotKey) else { continue }
-                        usedSlots.insert(slotKey)
+                        let title = String(localized: "Zeit für Routine: \(routineName)")
+                        let body = String(localized: "Starte jetzt deine Routine und verdiene Fokus-Punkte!")
                         
                         scheduleRepeating(
                             id: "routine-\(routine.id)",
                             hour: hour,
                             minute: minute,
-                            title: "Zeit für Routine: \(routineName)",
-                            body: "Starte jetzt deine Routine und verdiene Fokus-Punkte!"
+                            title: title,
+                            body: body
                         )
                     }
                 }
@@ -120,17 +108,13 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
             
             // Pflanzname — LOKALISIERT statt roher Schlüssel
             let rawName = habit.habitName.isEmpty ? habit.name : habit.habitName
-            let plantName = AppStrings.get(rawName, language: lang)
+            let plantName = NSLocalizedString(rawName, comment: "")
             
             // Neues System: ReminderSchedule mit Wochentagen
             if let schedule = habit.reminderSchedule, !schedule.isExpired {
                 for weekday in schedule.weekdays where weekday.isEnabled {
                     let hour   = calendar.component(.hour,   from: weekday.time)
                     let minute = calendar.component(.minute, from: weekday.time)
-                    let slotKey = "\(weekday.appleWeekday):\(hour):\(minute)"
-                    
-                    guard !usedSlots.contains(slotKey) else { continue }
-                    usedSlots.insert(slotKey)
                     
                     var title = ""
                     var body = ""
@@ -140,7 +124,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                         title = "\(plantName)"
                         body = customMsg
                     } else {
-                        let texts = NotificationTexts.pflanzeErinnerung(pflanzenName: plantName, lang: lang)
+                        let texts = NotificationTexts.pflanzeErinnerung(pflanzenName: plantName)
                         title = texts.title
                         body = texts.body
                     }
@@ -161,10 +145,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                 // Legacy-Fallback: altes System ohne Schedule
                 let hour   = calendar.component(.hour,   from: reminderTime)
                 let minute = calendar.component(.minute, from: reminderTime)
-                let slotKey = "legacy:\(hour):\(minute)"
-                
-                guard !usedSlots.contains(slotKey) else { continue }
-                usedSlots.insert(slotKey)
                 
                 var title = ""
                 var body = ""
@@ -174,7 +154,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                     title = "\(plantName)"
                     body = customMsg
                 } else {
-                    let texts = NotificationTexts.pflanzeErinnerung(pflanzenName: plantName, lang: lang)
+                    let texts = NotificationTexts.pflanzeErinnerung(pflanzenName: plantName)
                     title = texts.title
                     body = texts.body
                 }
@@ -193,19 +173,15 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         // Nur wenn es Pflanzen OHNE individuelle Reminder-Zeit gibt
         let ohneReminder = habits.filter { !$0.hasActiveReminder }
         if !ohneReminder.isEmpty {
-            let eveningSlot = "legacy:20:0"
-            if !usedSlots.contains(eveningSlot) {
-                usedSlots.insert(eveningSlot)
-                let count = ohneReminder.count
-                let texts = NotificationTexts.abendeErinnerung(anzahlPflanzen: count, lang: lang)
-                scheduleRepeating(
-                    id: "reminder-evening",
-                    hour: 20,
-                    minute: 0,
-                    title: texts.title,
-                    body: texts.body
-                )
-            }
+            let count = ohneReminder.count
+            let texts = NotificationTexts.abendeErinnerung(anzahlPflanzen: count)
+            scheduleRepeating(
+                id: "reminder-evening",
+                hour: 20,
+                minute: 0,
+                title: texts.title,
+                body: texts.body
+            )
         }
     }
 
