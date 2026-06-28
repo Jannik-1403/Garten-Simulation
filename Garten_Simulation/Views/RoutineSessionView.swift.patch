@@ -1,0 +1,218 @@
+--- Garten_Simulation/Views/RoutineSessionView.swift
++++ Garten_Simulation/Views/RoutineSessionView.swift
+@@ -8,8 +8,14 @@
+     case success
+ }
+ 
++enum RoutineSessionItem {
++    case habit(HabitModel)
++    case custom(RoutineCustomItem)
++}
++
+ struct RoutineSessionView: View {
+     let routine: RoutineUIData
+     let habits: [HabitModel]
++    let customItems: [RoutineCustomItem]
+     var onComplete: (() -> Void)? = nil
+     
+@@ -23,6 +29,12 @@
+     @State private var totalXP: Int = 0
+     
++    private var items: [RoutineSessionItem] {
++        let h = habits.map { RoutineSessionItem.habit($0) }
++        let c = customItems.map { RoutineSessionItem.custom($0) }
++        return h + c
++    }
++    
+     // Stopwatch
+     @State private var elapsedSeconds: Int = 0
+     @State private var isTimerRunning = false
+@@ -89,7 +101,7 @@
+                     .font(.system(size: 32, weight: .bold, design: .rounded))
+                     .multilineTextAlignment(.center)
+                 
+-                Text("\(habits.count) \(String(localized: "routine.session.habits")). \(String(localized: "routine.session.ready"))")
++                Text("\(items.count) \(String(localized: "routine.session.habits")). \(String(localized: "routine.session.ready"))")
+                     .font(.system(size: 18, weight: .medium, design: .rounded))
+                     .foregroundStyle(.secondary)
+                     .multilineTextAlignment(.center)
+@@ -136,38 +148,49 @@
+             Spacer()
+             
+             // Progress
+-            Text("\(String(localized: "routine.session.step")) \(currentHabitIndex + 1) \(String(localized: "routine.session.of")) \(habits.count)")
++            Text("\(String(localized: "routine.session.step")) \(currentHabitIndex + 1) \(String(localized: "routine.session.of")) \(items.count)")
+                 .font(.system(size: 16, weight: .bold, design: .rounded))
+                 .foregroundStyle(.secondary)
+                 .textCase(.uppercase)
+             
+             // Current Habit
+-            if currentHabitIndex < habits.count {
+-                let currentHabit = habits[currentHabitIndex]
+-                
+-                Image(currentHabit.plantImageName)
+-                    .resizable()
+-                    .scaledToFit()
+-                    .frame(width: 250, height: 250)
+-                    .padding(.top, -10)
+-                
+-                Text(settings.showHabitInsteadOfName ? NSLocalizedString(currentHabit.displayedHabitName, comment: "") : NSLocalizedString(currentHabit.name, comment: ""))
+-                    .font(.system(size: 32, weight: .bold, design: .rounded))
+-                    .multilineTextAlignment(.center)
+-                    .minimumScaleFactor(0.5)
+-                    .fixedSize(horizontal: false, vertical: true)
+-                    .padding(.top, -15) // Moved up to slightly overlap the plant
+-                    .padding(.horizontal, 32)
+-                
+-                if !currentHabit.symbolism.isEmpty {
+-                    Text(NSLocalizedString(currentHabit.symbolism, comment: ""))
+-                        .font(.system(size: 16, weight: .medium, design: .rounded))
+-                        .foregroundStyle(.secondary)
++            if currentHabitIndex < items.count {
++                let currentItem = items[currentHabitIndex]
++                
++                switch currentItem {
++                case .habit(let currentHabit):
++                    Image(currentHabit.plantImageName)
++                        .resizable()
++                        .scaledToFit()
++                        .frame(width: 250, height: 250)
++                        .padding(.top, -10)
++                    
++                    Text(settings.showHabitInsteadOfName ? NSLocalizedString(currentHabit.displayedHabitName, comment: "") : NSLocalizedString(currentHabit.name, comment: ""))
++                        .font(.system(size: 32, weight: .bold, design: .rounded))
+                         .multilineTextAlignment(.center)
+                         .minimumScaleFactor(0.5)
+                         .fixedSize(horizontal: false, vertical: true)
++                        .padding(.top, -15) // Moved up to slightly overlap the plant
+                         .padding(.horizontal, 32)
+-                        .padding(.top, 8)
++                    
++                    if !currentHabit.symbolism.isEmpty {
++                        Text(NSLocalizedString(currentHabit.symbolism, comment: ""))
++                            .font(.system(size: 16, weight: .medium, design: .rounded))
++                            .foregroundStyle(.secondary)
++                            .multilineTextAlignment(.center)
++                            .minimumScaleFactor(0.5)
++                            .fixedSize(horizontal: false, vertical: true)
++                            .padding(.horizontal, 32)
++                            .padding(.top, 8)
++                    }
++                case .custom(let customItem):
++                    Text(customItem.title)
++                        .font(.system(size: 32, weight: .bold, design: .rounded))
++                        .multilineTextAlignment(.center)
++                        .minimumScaleFactor(0.5)
++                        .fixedSize(horizontal: false, vertical: true)
++                        .padding(.horizontal, 32)
++                        
++                    Text(String(localized: "routine.custom_items.category", defaultValue: "PERSONALISIERT"))
++                        .font(.system(size: 16, weight: .bold, design: .rounded))
++                        .foregroundStyle(.secondary)
++                        .multilineTextAlignment(.center)
++                        .padding(.top, 8)
+                 }
+             }
+             
+@@ -185,7 +208,7 @@
+                 HStack(spacing: 12) {
+                     Image(systemName: "checkmark.circle.fill")
+                         .font(.system(size: 24))
+-                    Text(currentHabitIndex == habits.count - 1 ? String(localized: "routine.session.finish") : String(localized: "routine.session.next"))
++                    Text(currentHabitIndex == items.count - 1 ? String(localized: "routine.session.finish") : String(localized: "routine.session.next"))
+                         .font(.system(size: 18, weight: .bold, design: .rounded))
+                 }
+                 .foregroundStyle(.white)
+@@ -206,11 +229,11 @@
+             
+             VStack(spacing: 12) {
+-                Text(String(localized: "Geschafft!"))
++                Text(String(localized: "routine.success.title", defaultValue: "Geschafft!"))
+                     .font(.system(size: 32, weight: .black, design: .rounded))
+                 
+                 let durationMins = max(1, elapsedSeconds / 60)
+-                Text(String(format: String(localized: "Du warst %lld Minuten lang extrem fokussiert. Die XP werden auf alle deine Pflanzen aufgeteilt!"), durationMins))
++                Text(String(format: String(localized: "routine.success.subtitle", defaultValue: "Du warst %lld Minuten lang extrem fokussiert. Die XP werden auf alle deine Pflanzen aufgeteilt!"), durationMins))
+                     .font(.system(size: 16, weight: .medium, design: .rounded))
+                     .multilineTextAlignment(.center)
+@@ -228,7 +251,7 @@
+                         Text("\(totalCoins)")
+                             .font(.system(size: 24, weight: .black, design: .rounded))
+                         
+-                        Text(String(localized: "Münzen"))
++                        Text(String(localized: "common.coins", defaultValue: "Münzen"))
+                             .font(.system(size: 14, weight: .bold, design: .rounded))
+                             .foregroundStyle(.secondary)
+@@ -256,7 +279,7 @@
+             Button {
+                 dismiss()
+             } label: {
+-                Text(String(localized: "Einsammeln"))
++                Text(String(localized: "common.collect", defaultValue: "Einsammeln"))
+             }
+             .buttonStyle(DuolingoButtonStyle(
+@@ -269,27 +292,34 @@
+     
+     // MARK: - Logic
+     private func completeCurrentHabit() {
+-        if currentHabitIndex < habits.count {
+-            let habit = habits[currentHabitIndex]
+-            
+-            // Calculate what giessen will award and add to totals
+-            let baseCoins = Int(Double(GameConstants.coinsProGiessen) * gardenStore.coinMultiplikator(for: habit))
+-            let xp = Int(Double(habit.xpPerCompletion) * gardenStore.xpMultiplikator(for: habit))
+-            
+-            totalCoins += baseCoins
+-            totalXP += xp
+-            
+-            // Manually add XP without "watering" the plant
+-            habit.currentXP += xp
+-            
+-            // Log XP history
+-            let formatter = DateFormatter()
+-            formatter.dateFormat = "yyyy-MM-dd"
+-            let key = formatter.string(from: Date())
+-            habit.xpHistory[key] = (habit.xpHistory[key] ?? 0) + xp
+-            habit.totalCoinsEarned += baseCoins
+-            
+-            gardenStore.xpHinzufuegen(amount: xp)
+-            gardenStore.savePlants()
++        if currentHabitIndex < items.count {
++            let currentItem = items[currentHabitIndex]
++            
++            switch currentItem {
++            case .habit(let habit):
++                // Calculate what giessen will award and add to totals
++                let baseCoins = Int(Double(GameConstants.coinsProGiessen) * gardenStore.coinMultiplikator(for: habit))
++                let xp = Int(Double(habit.xpPerCompletion) * gardenStore.xpMultiplikator(for: habit))
++                
++                totalCoins += baseCoins
++                totalXP += xp
++                
++                // Manually add XP without "watering" the plant
++                habit.currentXP += xp
++                
++                // Log XP history
++                let formatter = DateFormatter()
++                formatter.dateFormat = "yyyy-MM-dd"
++                let key = formatter.string(from: Date())
++                habit.xpHistory[key] = (habit.xpHistory[key] ?? 0) + xp
++                habit.totalCoinsEarned += baseCoins
++                
++                gardenStore.xpHinzufuegen(amount: xp)
++                gardenStore.savePlants()
++            case .custom(_):
++                // Give a small flat reward for custom items since they have no difficulty multiplier
++                totalCoins += 5
++                totalXP += 5
++                gardenStore.xpHinzufuegen(amount: 5)
++            }
+             
+             let generator = UINotificationFeedbackGenerator()
+@@ -296,7 +326,7 @@
+             
+             withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+-                if currentHabitIndex < habits.count - 1 {
++                if currentHabitIndex < items.count - 1 {
+                     currentHabitIndex += 1
+                 } else {
