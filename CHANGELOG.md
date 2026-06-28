@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-06-28 - Routine Onboarding UI Überarbeitung
+- Routine-Karten im Onboarding nutzen jetzt den `Item3DButton` mit 3D-Druckfeedback.
+- Auswahlindikator (Checkbox) ist jetzt immer einheitlich orange statt in der jeweiligen Routinen-Farbe.
+- "Bearbeiten"-Text wurde durch ein rundes Stift-Icon (`pencil`) ersetzt, konsistent mit der restlichen App.
+
+## 2026-06-28 - Routine Onboarding Bugfix
+- Fehler beim Laden des Routine-Onboardings nach App-Reset behoben (Fehlende Variablen in `RoutineOnboardingView` ergänzt).
+- Compiler-Timeouts in `RoutinenView` behoben, indem komplexe SwiftUI-Strukturen in Unter-Views ausgelagert wurden.
+- Test-Target Fehler behoben (Projekt-Dateien wurden fälschlicherweise in `Garten_SimulationTests` und `Garten_SimulationUITests` doppelt kompiliert).
+
 ## 2026-06-28 - Entfernung inaktiver Widgets
 - Das inaktive "Offene Gewohnheiten" Widget (`GroovyHabitsWidget`) wurde vollständig aus dem Projekt gelöscht.
 - Die Registrierung im `WidgetBundle` wurde entfernt, sodass nur noch die Widgets für Wasserverbrauch, Streak, Wochenverlauf und Monatsverlauf verfügbar sind.
@@ -27,3 +37,4 @@
 - Converted all hardcoded texts in GartenWidget.swift, GroovyHabitsWidget.swift, and GroovyNewWidgetViews.swift to native String(localized:).
 - Added GroovyHabitsWidget to the main WidgetBundle so it displays correctly.
 - Fixed a crash in RoutineSessionView caused by the Watchdog terminating the app when running in the background with isIdleTimerDisabled enabled.
+- Alles Löschen-Button im Einstellungsmenü setzt nun auch Quiz-Ergebnisse (Assessments) und geplante Benachrichtigungen korrekt zurück.
