@@ -8,8 +8,8 @@ struct LifestyleAssessmentQuizView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var currentIndex: Int = 0
-    @State private var shuffledAnswers: [LifestyleAnswer] = []
-    @State private var selectedAnswers: [Int: LifestyleAnswer] = [:]
+    @State private var shuffledAnswers: [AssessmentAnswer] = []
+    @State private var selectedAnswers: [Int: AssessmentAnswer] = [:]
     @State private var selectedAnswerID: Int? = nil
     @State private var showResult = false
     @State private var cardOffset: CGFloat = 0
@@ -17,7 +17,7 @@ struct LifestyleAssessmentQuizView: View {
 
     private let questions = LifestyleQuiz.questions
 
-    private var currentQuestion: LifestyleQuestion { questions[currentIndex] }
+    private var currentQuestion: AssessmentQuestion { questions[currentIndex] }
     private var progress: Double { Double(currentIndex) / Double(questions.count) }
     private var isLastQuestion: Bool { currentIndex == questions.count - 1 }
 
@@ -176,7 +176,7 @@ struct LifestyleAssessmentQuizView: View {
 
     // MARK: - Logic
 
-    private func selectAnswer(_ answer: LifestyleAnswer) {
+    private func selectAnswer(_ answer: AssessmentAnswer) {
         selectedAnswerID = answer.id
         selectedAnswers[currentQuestion.id] = answer
     }
@@ -227,10 +227,10 @@ struct LifestyleResultView: View {
 
     private var rarityTag: String {
         switch profile {
-        case .gefangener:  return "epic"
-        case .chaot:       return "mystic"
-        case .mitlaeufer:  return "legendary"
-        case .elite:       return "plant"
+        case .level1:    return "mystic"
+        case .level2:    return "legendary"
+        case .level3:    return "epic"
+        case .level4:    return "plant"
         }
     }
 
@@ -323,42 +323,27 @@ struct LifestyleScoreBreakdownCard: View {
     @EnvironmentObject var settings: SettingsStore
     @State private var animated = false
 
-    // Theoretical display range across 15 questions
-    private var umfeldNorm: Double { normalizedDisplay(result.rawUmfeld, max: 28, min: -28) }
-    private var standardsNorm: Double { normalizedDisplay(result.rawStandards, max: 37, min: -37) }
-    private var einflussNorm: Double { normalizedDisplay(result.rawEinfluss, max: 34, min: -34) }
-
-    private func normalizedDisplay(_ value: Int, max maxVal: Int, min minVal: Int) -> Double {
-        let range = Double(maxVal - minVal)
-        let shifted = Double(value - minVal)
-        return min(max(shifted / range, 0), 1)
+    private var scoreNorm: Double {
+        let maxScore = 30.0
+        let minScore = -30.0
+        let range = maxScore - minScore
+        let shifted = Double(result.score) - minScore
+        return max(0, min(1, shifted / range))
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(String(localized: "assessment.result.breakdown"))
+            Text(String(localized: "assessment.result.breakdown", defaultValue: "Ergebnis Übersicht"))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
                 .tracking(1)
 
             ScoreBar(
-                label: String(localized: "assessment.score.umfeld"),
-                value: animated ? umfeldNorm : 0,
-                color: Color(hex: "#FF6B6B"),
-                rawValue: result.rawUmfeld
-            )
-            ScoreBar(
-                label: String(localized: "assessment.score.standards"),
-                value: animated ? standardsNorm : 0,
-                color: Color(hex: "#F5A623"),
-                rawValue: result.rawStandards
-            )
-            ScoreBar(
-                label: String(localized: "assessment.score.einfluss"),
-                value: animated ? einflussNorm : 0,
-                color: Color(hex: "#4CAF50"),
-                rawValue: result.rawEinfluss
+                label: String(localized: "assessment.score.total", defaultValue: "Gesamtpunktzahl"),
+                value: animated ? scoreNorm : 0,
+                color: Color(hex: "#4FC3F7"),
+                rawValue: result.score
             )
         }
         .padding(20)

@@ -8,8 +8,8 @@ struct HealthAssessmentQuizView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var currentIndex: Int = 0
-    @State private var shuffledAnswers: [HealthAnswer] = []
-    @State private var selectedAnswers: [Int: HealthAnswer] = [:]
+    @State private var shuffledAnswers: [AssessmentAnswer] = []
+    @State private var selectedAnswers: [Int: AssessmentAnswer] = [:]
     @State private var selectedAnswerID: Int? = nil
     @State private var showResult = false
     @State private var cardOffset: CGFloat = 0
@@ -17,7 +17,7 @@ struct HealthAssessmentQuizView: View {
 
     private let questions = HealthQuiz.questions
 
-    private var currentQuestion: HealthQuestion { questions[currentIndex] }
+    private var currentQuestion: AssessmentQuestion { questions[currentIndex] }
     private var progress: Double { Double(currentIndex) / Double(questions.count) }
     private var isLastQuestion: Bool { currentIndex == questions.count - 1 }
 
@@ -180,7 +180,7 @@ struct HealthAssessmentQuizView: View {
 
     // MARK: - Logic
 
-    private func selectAnswer(_ answer: HealthAnswer) {
+    private func selectAnswer(_ answer: AssessmentAnswer) {
         selectedAnswerID = answer.id
         selectedAnswers[currentQuestion.id] = answer
     }
@@ -232,10 +232,10 @@ struct HealthResultView: View {
 
     private var rarityTag: String {
         switch profile {
-        case .erschoepfer: return "mystic"
-        case .vergifter:   return "epic"
-        case .ignorant:    return "legendary"
-        case .optimierer:  return "plant"
+        case .level1: return "mystic"
+        case .level2:   return "epic"
+        case .level3:    return "legendary"
+        case .level4:  return "plant"
         }
     }
 
@@ -328,45 +328,27 @@ struct HealthScoreBreakdownCard: View {
     @EnvironmentObject var settings: SettingsStore
     @State private var animated = false
 
-    // Display-Normalisierung über 15 Fragen
-    // regeneration: theoretisch max ≈ +22 / min ≈ -34
-    // kraftstoff:   theoretisch max ≈ +23 / min ≈ -37
-    // prävention:   theoretisch max ≈ +23 / min ≈ -38
-    private var regenerationNorm: Double { normalizedDisplay(result.rawRegeneration, max: 22, min: -34) }
-    private var kraftstoffNorm:   Double { normalizedDisplay(result.rawKraftstoff,   max: 23, min: -37) }
-    private var praeventionNorm:  Double { normalizedDisplay(result.rawPraevention,  max: 23, min: -38) }
-
-    private func normalizedDisplay(_ value: Int, max maxVal: Int, min minVal: Int) -> Double {
-        let range = Double(maxVal - minVal)
-        let shifted = Double(value - minVal)
-        return min(max(shifted / range, 0), 1)
+    private var scoreNorm: Double {
+        let maxScore = 30.0
+        let minScore = -30.0
+        let range = maxScore - minScore
+        let shifted = Double(result.score) - minScore
+        return max(0, min(1, shifted / range))
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(String(localized: "assessment.result.breakdown"))
+            Text(String(localized: "assessment.result.breakdown", defaultValue: "Ergebnis Übersicht"))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
                 .tracking(1)
 
             ScoreBar(
-                label: String(localized: "assessment.score.regeneration"),
-                value: animated ? regenerationNorm : 0,
-                color: Color(hex: "#5AC8FA"),
-                rawValue: result.rawRegeneration
-            )
-            ScoreBar(
-                label: String(localized: "assessment.score.kraftstoff"),
-                value: animated ? kraftstoffNorm : 0,
-                color: Color(hex: "#FF9500"),
-                rawValue: result.rawKraftstoff
-            )
-            ScoreBar(
-                label: String(localized: "assessment.score.praevention"),
-                value: animated ? praeventionNorm : 0,
-                color: Color(hex: "#E8513A"),
-                rawValue: result.rawPraevention
+                label: String(localized: "assessment.score.total", defaultValue: "Gesamtpunktzahl"),
+                value: animated ? scoreNorm : 0,
+                color: Color(hex: "#4FC3F7"),
+                rawValue: result.score
             )
         }
         .padding(20)
