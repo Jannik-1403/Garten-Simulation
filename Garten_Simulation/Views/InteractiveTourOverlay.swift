@@ -32,12 +32,11 @@ struct AppTourPromptOverlay: View {
                         aktion: {
                             settingsStore.appTourPromptShown = true
                             settingsStore.appTourAbgeschlossen = true
-                            // Zuerst auf true setzen (falls es schon false war, feuert onChange sonst nicht)
-                            settingsStore.routineOnboardingAbgeschlossen = true
-                            gardenStore.selectedTab = 4
-                            // Nach kurzem Delay auf false setzen → onChange in RoutinenView feuert garantiert
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                                settingsStore.routineOnboardingAbgeschlossen = false
+                            // Flag ZUERST auf false → dann Tab wechseln
+                            // So sieht onAppear in RoutinenView den richtigen Zustand
+                            settingsStore.routineOnboardingAbgeschlossen = false
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                gardenStore.selectedTab = 4
                             }
                         }
                     ) {
@@ -47,7 +46,7 @@ struct AppTourPromptOverlay: View {
                             .frame(maxWidth: .infinity)
                     }
                     
-                    // NEIN: Direkt zum Routine-Onboarding ohne Tour
+                    // NEIN: Direkt zum Routine-Onboarding
                     Item3DButton(
                         farbe: Color.rotPrimary,
                         sekundaerFarbe: Color.rotPrimary.darker(),
@@ -56,12 +55,10 @@ struct AppTourPromptOverlay: View {
                         aktion: {
                             settingsStore.appTourPromptShown = true
                             settingsStore.appTourAbgeschlossen = true
-                            // Zuerst auf true setzen (falls es schon false war, feuert onChange sonst nicht)
-                            settingsStore.routineOnboardingAbgeschlossen = true
-                            gardenStore.selectedTab = 4
-                            // Nach kurzem Delay auf false setzen → onChange in RoutinenView feuert garantiert
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                                settingsStore.routineOnboardingAbgeschlossen = false
+                            // Flag ZUERST auf false → dann Tab wechseln
+                            settingsStore.routineOnboardingAbgeschlossen = false
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                gardenStore.selectedTab = 4
                             }
                         }
                     ) {

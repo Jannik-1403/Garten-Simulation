@@ -269,11 +269,9 @@ struct RoutinenView: View {
                 }
             }
             .onChange(of: gardenStore.selectedTab) { _, newTab in
-                // Wenn der Nutzer zu diesem Tab navigiert wird (z.B. vom Tour-Prompt), erneut prüfen
+                // Wenn der Nutzer zu Tab 4 (Routinen) navigiert und Onboarding nötig ist
                 if newTab == 4 && !settings.routineOnboardingAbgeschlossen {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        showOnboarding = true
-                    }
+                    showOnboarding = true
                 }
             }
             .fullScreenCover(isPresented: $showOnboarding) {
