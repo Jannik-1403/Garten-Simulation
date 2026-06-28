@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-06-28 - Onboarding-Routing & Item3DButton Fertig-Button
+- **Vorschau-Frage umgebaut**: Sowohl "Ja" als auch "Nein" leiten jetzt direkt zum Routinen-Tab (Tab 4) weiter und triggern das Routine-Onboarding sofort.
+- **Fertig-Button** im Routine-Onboarding ist jetzt ein `Item3DButton` (Orange, 3D-Druckeffekt, Haptic Feedback).
+
 ## 2026-06-28 - Routine Onboarding Vollständiger Bugfix
 - **Timing-Bug behoben**: Onboarding erscheint jetzt sofort nach "Alles Löschen" ohne App-Neustart (via `@State showOnboarding` + `onChange` statt reaktivem Binding).
 - **Doppelte Routinen nach Reset behoben**: `customRoutinesData` wird jetzt explizit auf `Data()` gesetzt, sodass `@AppStorage` den leeren Zustand sofort erkennt.
