@@ -5,9 +5,10 @@ struct LiquidGlassDismissButton: View {
 
     var body: some View {
         Button(action: action) {
-            Image(systemName: "xmark")
-                .font(.system(size: 17, weight: .black))
-                .foregroundStyle(.primary)
+            Image(systemName: "xmark.circle.fill")
+                .symbolRenderingMode(.hierarchical)
+                .font(.system(size: 28))
+                .foregroundStyle(.secondary)
         }
         .buttonStyle(.plain)
         .accessibilityLabel(Text("Schließen"))

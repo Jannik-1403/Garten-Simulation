@@ -2,15 +2,16 @@ import SwiftUI
 
 extension View {
     func assessmentDismissToolbar(onDismiss: @escaping () -> Void) -> some View {
-        navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    LiquidGlassDismissButton {
-                        onDismiss()
-                    }
+        self
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            .overlay(alignment: .topTrailing) {
+                LiquidGlassDismissButton {
+                    onDismiss()
                 }
+                .padding(.top, 16)
+                .padding(.trailing, 20)
             }
-            .toolbarBackground(.hidden, for: .navigationBar)
     }
 }
 
