@@ -21,6 +21,35 @@ struct GartenSaveFile: Codable {
     // Progressive achievements support
     let achievementTiers: [String: Int]?
     let achievementUnlockDatesV2: [String: TimeInterval]?
+    
+    // New fields in V2 (Version is still 1, but these are newly added as optional for backward compatibility)
+    let leben: Int?
+    let gestorbenePflanzenLog: [String]?
+    let gluecksradDrehungen: Int?
+    let seeds: Int?
+    let gesamtVerdient: Int?
+    let gesamtAusgegeben: Int?
+    let gesamtGegossen: Int?
+    let tageAktiv: Int?
+    let skillXP: [String: Int]?
+    let completed90DayChallenges: Int?
+    let focusSessions: [FocusSessionLog]?
+    let placedDecorations: [DecorationItem]?
+    let badHabitExecutions: [String: [BadHabitExecution]]?
+    let savedCustomTriggers: [String]?
+    let badHabitNotes: [String: [String]]?
+    let transactions: [CoinTransaction]?
+    let assessmentData: AssessmentSaveData?
+    let customRoutines: [RoutineUIData]?
+}
+
+struct AssessmentSaveData: Codable {
+    let financeResult: AssessmentResult?
+    let mentalResult: MentalAssessmentResult?
+    let growthResult: GrowthAssessmentResult?
+    let healthResult: HealthAssessmentResult?
+    let fitnessResult: FitnessAssessmentResult?
+    let lifestyleResult: LifestyleAssessmentResult?
 }
 
 struct PflanzenSaveData: Codable {
@@ -78,10 +107,16 @@ final class DataExportImportManager: ObservableObject {
         shopStore: ShopStore,
         achievementStore: AchievementStore,
         settingsStore: SettingsStore,
-        streakStore: StreakStore
+        streakStore: StreakStore,
+        assessmentStore: AssessmentStore
     ) throws -> URL {
         isLoading = true
         defer { isLoading = false }
+        
+        var customRoutines: [RoutineUIData]? = nil
+        if let customRoutinesData = UserDefaults.standard.data(forKey: "customRoutinesData") {
+            customRoutines = try? JSONDecoder().decode([RoutineUIData].self, from: customRoutinesData)
+        }
         
         let saveFile = GartenSaveFile(
             version: 1,
@@ -113,7 +148,32 @@ final class DataExportImportManager: ObservableObject {
                 benachrichtigungenAktiv: settingsStore.isNotificationsEnabled
             ),
             achievementTiers: achievementStore.achievementTiers,
-            achievementUnlockDatesV2: SharedUserDefaults.suite.dictionary(forKey: "achievement_unlock_dates_v2") as? [String: TimeInterval]
+            achievementUnlockDatesV2: SharedUserDefaults.suite.dictionary(forKey: "achievement_unlock_dates_v2") as? [String: TimeInterval],
+            leben: gardenStore.leben,
+            gestorbenePflanzenLog: gardenStore.gestorbenePflanzenLog,
+            gluecksradDrehungen: gardenStore.gluecksradDrehungen,
+            seeds: gardenStore.seeds,
+            gesamtVerdient: gardenStore.gesamtVerdient,
+            gesamtAusgegeben: gardenStore.gesamtAusgegeben,
+            gesamtGegossen: gardenStore.gesamtGegossen,
+            tageAktiv: gardenStore.tageAktiv,
+            skillXP: gardenStore.skillXP,
+            completed90DayChallenges: gardenStore.completed90DayChallenges,
+            focusSessions: gardenStore.focusSessions,
+            placedDecorations: gardenStore.placedDecorations,
+            badHabitExecutions: gardenStore.badHabitExecutions,
+            savedCustomTriggers: gardenStore.savedCustomTriggers,
+            badHabitNotes: gardenStore.badHabitNotes,
+            transactions: gardenStore.transactions,
+            assessmentData: AssessmentSaveData(
+                financeResult: assessmentStore.financeResult,
+                mentalResult: assessmentStore.mentalResult,
+                growthResult: assessmentStore.growthResult,
+                healthResult: assessmentStore.healthResult,
+                fitnessResult: assessmentStore.fitnessResult,
+                lifestyleResult: assessmentStore.lifestyleResult
+            ),
+            customRoutines: customRoutines
         )
         
         // Serialize
@@ -148,6 +208,7 @@ final class DataExportImportManager: ObservableObject {
         achievementStore: AchievementStore,
         settingsStore: SettingsStore,
         streakStore: StreakStore,
+        assessmentStore: AssessmentStore,
         modelContext: ModelContext? = nil
     ) throws {
         isLoading = true
@@ -183,6 +244,38 @@ final class DataExportImportManager: ObservableObject {
         gardenStore.gesamtXP = saveFile.gesamtXP
         if let importedStreak = saveFile.gesamtStreak {
             streakStore.currentStreak = importedStreak
+        }
+        
+        if let leben = saveFile.leben { gardenStore.leben = leben }
+        if let gestorbenePflanzenLog = saveFile.gestorbenePflanzenLog { gardenStore.gestorbenePflanzenLog = gestorbenePflanzenLog }
+        if let gluecksradDrehungen = saveFile.gluecksradDrehungen { gardenStore.gluecksradDrehungen = gluecksradDrehungen }
+        if let seeds = saveFile.seeds { gardenStore.seeds = seeds }
+        if let gesamtVerdient = saveFile.gesamtVerdient { gardenStore.gesamtVerdient = gesamtVerdient }
+        if let gesamtAusgegeben = saveFile.gesamtAusgegeben { gardenStore.gesamtAusgegeben = gesamtAusgegeben }
+        if let gesamtGegossen = saveFile.gesamtGegossen { gardenStore.gesamtGegossen = gesamtGegossen }
+        if let tageAktiv = saveFile.tageAktiv { gardenStore.tageAktiv = tageAktiv }
+        if let skillXP = saveFile.skillXP { gardenStore.skillXP = skillXP }
+        if let completed90DayChallenges = saveFile.completed90DayChallenges { gardenStore.completed90DayChallenges = completed90DayChallenges }
+        if let focusSessions = saveFile.focusSessions { gardenStore.focusSessions = focusSessions }
+        if let placedDecorations = saveFile.placedDecorations { gardenStore.placedDecorations = placedDecorations }
+        if let badHabitExecutions = saveFile.badHabitExecutions { gardenStore.badHabitExecutions = badHabitExecutions }
+        if let savedCustomTriggers = saveFile.savedCustomTriggers { gardenStore.savedCustomTriggers = savedCustomTriggers }
+        if let badHabitNotes = saveFile.badHabitNotes { gardenStore.badHabitNotes = badHabitNotes }
+        if let transactions = saveFile.transactions { gardenStore.transactions = transactions }
+        
+        if let assessmentData = saveFile.assessmentData {
+            assessmentStore.financeResult = assessmentData.financeResult
+            assessmentStore.mentalResult = assessmentData.mentalResult
+            assessmentStore.growthResult = assessmentData.growthResult
+            assessmentStore.healthResult = assessmentData.healthResult
+            assessmentStore.fitnessResult = assessmentData.fitnessResult
+            assessmentStore.lifestyleResult = assessmentData.lifestyleResult
+        }
+        
+        if let customRoutines = saveFile.customRoutines {
+            if let encoded = try? JSONEncoder().encode(customRoutines) {
+                UserDefaults.standard.set(encoded, forKey: "customRoutinesData")
+            }
         }
         
         // Pflanzen neu aufbauen

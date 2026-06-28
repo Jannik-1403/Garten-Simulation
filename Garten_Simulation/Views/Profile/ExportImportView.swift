@@ -10,6 +10,7 @@ struct ExportImportView: View {
     @EnvironmentObject var settingsStore: SettingsStore
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var pfadStore: GartenPfadStore
+    @EnvironmentObject var assessmentStore: AssessmentStore
     
     // SwiftData context (optional if used)
     @Environment(\.modelContext) private var modelContext
@@ -187,7 +188,8 @@ struct ExportImportView: View {
                     shopStore: shopStore,
                     achievementStore: achievementStore,
                     settingsStore: settingsStore,
-                    streakStore: streakStore
+                    streakStore: streakStore,
+                    assessmentStore: assessmentStore
                 )
                 self.exportURL = url
                 self.showShareSheet = true
@@ -210,6 +212,7 @@ struct ExportImportView: View {
                     achievementStore: achievementStore,
                     settingsStore: settingsStore,
                     streakStore: streakStore,
+                    assessmentStore: assessmentStore,
                     modelContext: modelContext
                 )
                 
@@ -240,4 +243,5 @@ struct ExportImportView: View {
         .environmentObject(AchievementStore(gardenStore: GardenStore(), streakStore: StreakStore()))
         .environmentObject(SettingsStore())
         .environmentObject(StreakStore())
+        .environmentObject(AssessmentStore())
 }
