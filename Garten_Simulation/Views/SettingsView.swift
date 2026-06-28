@@ -35,7 +35,7 @@ struct SettingsView: View {
 
                         // Sections
                         VStack(spacing: 32) {
-                            settingsSection(title: settings.localizedString(for: "settings.section.profile")) {
+                            settingsSection(title: String(localized: "settings.section.profile")) {
                                 VStack(spacing: 0) {
                                     NavigationLink {
                                         StatisticsDashboard()
@@ -44,7 +44,7 @@ struct SettingsView: View {
                                             .environmentObject(streakStore)
                                     } label: {
                                         settingRow(
-                                            title: settings.localizedString(for: "settings.stats_button"),
+                                            title: String(localized: "settings.stats_button"),
                                             icon: "chart.bar.fill",
                                             color: .purple
                                         )
@@ -52,44 +52,45 @@ struct SettingsView: View {
                                 }
                             }
 
-                            settingsSection(title: settings.localizedString(for: "settings.section.personalization")) {
-                                HStack(spacing: 12) {
-                                    Image(systemName: "globe")
-                                        .font(.system(size: 20, weight: .medium))
-                                        .foregroundStyle(.primary)
-                                        .frame(width: 28, height: 28)
-                                    
-                                    Text(settings.localizedString(for: "settings.language"))
-                                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                                        .lineLimit(1)
-                                        .minimumScaleFactor(0.5)
-                                    
-                                    Spacer()
-                                    
-                                    Picker("", selection: $settings.appLanguage) {
-                                        Text(settings.localizedString(for: "settings.language.de")).tag("de")
-                                        Text(settings.localizedString(for: "settings.language.en")).tag("en")
-                                        Text(settings.localizedString(for: "settings.language.es")).tag("es")
-                                        Text(settings.localizedString(for: "settings.language.fr")).tag("fr")
-                                        Text(settings.localizedString(for: "settings.language.it")).tag("it")
-                                        Text(settings.localizedString(for: "settings.language.pt")).tag("pt")
-                                        Text(settings.localizedString(for: "settings.language.ja")).tag("ja")
-                                        Text(settings.localizedString(for: "settings.language.ko")).tag("ko")
-                                        Text(settings.localizedString(for: "settings.language.nl")).tag("nl")
-                                        Text(settings.localizedString(for: "settings.language.pl")).tag("pl")
-                                        Text(settings.localizedString(for: "settings.language.tr")).tag("tr")
+                            settingsSection(title: String(localized: "settings.section.personalization")) {
+                                Button {
+                                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                                        UIApplication.shared.open(url)
                                     }
-                                    .pickerStyle(.menu)
-                                    .fixedSize(horizontal: true, vertical: false)
+                                } label: {
+                                    HStack(spacing: 12) {
+                                        Image(systemName: "globe")
+                                            .font(.system(size: 20, weight: .medium))
+                                            .foregroundStyle(.primary)
+                                            .frame(width: 28, height: 28)
+                                        
+                                        Text(String(localized: "settings.language", defaultValue: "App-Sprache"))
+                                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                                            .foregroundStyle(.primary)
+                                        
+                                        Spacer()
+                                        
+                                        let langCode = Locale.current.language.languageCode?.identifier ?? "de"
+                                        Text(Locale(identifier: langCode).localizedString(forIdentifier: langCode) ?? "Deutsch")
+                                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                                            .foregroundStyle(.secondary)
+                                        
+                                        Image(systemName: "chevron.right")
+                                            .font(.system(size: 14, weight: .bold))
+                                            .foregroundStyle(.tertiary)
+                                    }
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 12)
+                                    .contentShape(Rectangle())
                                 }
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 8)
+                                .buttonStyle(.plain)
                             }
 
 
-                            settingsSection(title: settings.localizedString(for: "settings.section.general")) {
+
+                            settingsSection(title: String(localized: "settings.section.general")) {
                                 VStack(spacing: 0) {
-                                    settingToggle(title: settings.localizedString(for: "settings.haptic"), icon: "hand.tap.fill", color: .blauPrimary, isOn: $settings.isHapticEnabled)
+                                    settingToggle(title: String(localized: "settings.haptic"), icon: "hand.tap.fill", color: .blauPrimary, isOn: $settings.isHapticEnabled)
                                     Divider().padding(.leading, 44)
                                     Button {
                                         if let url = URL(string: UIApplication.openSettingsURLString) {
@@ -102,11 +103,11 @@ struct SettingsView: View {
                                                 .foregroundStyle(.primary)
                                                 .frame(width: 28, height: 28)
                                             
-                                            Text(settings.localizedString(for: "settings.notifications"))
+                                            Text(String(localized: "settings.notifications"))
                                                 .font(.system(size: 16, weight: .medium, design: .rounded))
                                             Spacer()
                                             
-                                            Text(settings.isNotificationsEnabled ? settings.localizedString(for: "settings.on") : settings.localizedString(for: "settings.off"))
+                                            Text(settings.isNotificationsEnabled ? String(localized: "settings.on") : String(localized: "settings.off"))
                                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                                 .foregroundStyle(settings.isNotificationsEnabled ? Color.gruenPrimary : Color.red)
                                                 
@@ -122,11 +123,11 @@ struct SettingsView: View {
                                 }
                             }
                             
-                            settingsSection(title: settings.localizedString(for: "settings.section.display")) {
+                            settingsSection(title: String(localized: "settings.section.display")) {
                                 VStack(alignment: .leading, spacing: 12) {
-                                    settingToggle(title: settings.localizedString(for: "settings.display.mode"), icon: "square.text.square.fill", color: .purple, isOn: $settings.showHabitInsteadOfName)
+                                    settingToggle(title: String(localized: "settings.display.mode"), icon: "square.text.square.fill", color: .purple, isOn: $settings.showHabitInsteadOfName)
                                     
-                                    Text(settings.localizedString(for: "settings.display.mode.desc"))
+                                    Text(String(localized: "settings.display.mode.desc"))
                                         .font(.system(size: 13, weight: .medium, design: .rounded))
                                         .foregroundStyle(.secondary)
                                         .padding(.horizontal, 16)
@@ -135,15 +136,27 @@ struct SettingsView: View {
                             }
 
                             
-                            settingsSection(title: settings.localizedString(for: "settings.section.privacy")) {
+                            settingsSection(title: String(localized: "settings.section.privacy")) {
                                 VStack(spacing: 0) {
-                                    Link(destination: URL(string: "https://shrouded-parka-be8.notion.site/Privacy-Policy-37dd74b814d28080acc3c9303df218c8")!) {
-                                        settingRow(title: settings.localizedString(for: "settings.privacy_settings"), icon: "lock.shield.fill", color: .green)
+                                    Button {
+                                        if let url = URL(string: "https://shrouded-parka-be8.notion.site/Privacy-Policy-37dd74b814d28080acc3c9303df218c8") {
+                                            UIApplication.shared.open(url)
+                                        }
+                                    } label: {
+                                        settingRow(title: String(localized: "settings.privacy_settings"), icon: "lock.shield.fill", color: .green)
                                     }
+                                    .buttonStyle(.plain)
+                                    
                                     Divider().padding(.leading, 44)
-                                    Link(destination: URL(string: "https://shrouded-parka-be8.notion.site/Terms-of-Use-37dd74b814d2805393b6e17145019e9c")!) {
-                                        settingRow(title: settings.localizedString(for: "settings.terms"), icon: "doc.text.fill", color: .gray)
+                                    
+                                    Button {
+                                        if let url = URL(string: "https://shrouded-parka-be8.notion.site/Terms-of-Use-37dd74b814d2805393b6e17145019e9c") {
+                                            UIApplication.shared.open(url)
+                                        }
+                                    } label: {
+                                        settingRow(title: String(localized: "settings.terms"), icon: "doc.text.fill", color: .gray)
                                     }
+                                    .buttonStyle(.plain)
                                     Divider().padding(.leading, 44)
                                     
                                     // Backup & Import
@@ -151,7 +164,7 @@ struct SettingsView: View {
                                         showBackupSheet = true
                                     } label: {
                                         settingRow(
-                                            title: settings.localizedString(for: "backup_profil_button"),
+                                            title: String(localized: "backup_profil_button"),
                                             icon: "arrow.up.arrow.down.circle.fill",
                                             color: .blue
                                         )
@@ -159,12 +172,12 @@ struct SettingsView: View {
                                 }
                             }
                             
-                            settingsSection(title: settings.localizedString(for: "settings.section.support")) {
+                            settingsSection(title: String(localized: "settings.section.support")) {
                                 VStack(spacing: 0) {
                                     Button {
                                         settings.contactSupport()
                                     } label: {
-                                        settingRow(title: settings.localizedString(for: "settings.contact"), icon: "message.fill", color: .blauPrimary)
+                                        settingRow(title: String(localized: "settings.contact"), icon: "message.fill", color: .blauPrimary)
                                     }
                                     
                                     Divider().padding(.leading, 44)
@@ -179,7 +192,7 @@ struct SettingsView: View {
                                             settings.shareApp()
                                         }
                                     } label: {
-                                        settingRow(title: settings.localizedString(for: "settings.share"), icon: "heart.fill", color: .pink)
+                                        settingRow(title: String(localized: "settings.share"), icon: "heart.fill", color: .pink)
                                     }
                                     
 
@@ -189,7 +202,7 @@ struct SettingsView: View {
                                             UIApplication.shared.open(url)
                                         }
                                     } label: {
-                                        settingRow(title: settings.localizedString(for: "settings.rate_app"), icon: "star.fill", color: .yellow)
+                                        settingRow(title: String(localized: "settings.rate_app"), icon: "star.fill", color: .yellow)
                                     }
                                 }
                             }
@@ -197,11 +210,11 @@ struct SettingsView: View {
                             .padding(.top, 16)
 
                             // MARK: - Danger Zone
-                            settingsSection(title: settings.localizedString(for: "settings.section.danger")) {
+                            settingsSection(title: String(localized: "settings.section.danger")) {
                                 Button {
                                     showResetAlert = true
                                 } label: {
-                                    Text(settings.localizedString(for: "settings.reset.title"))
+                                    Text(String(localized: "settings.reset.title"))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .foregroundStyle(.white)
                                         .frame(maxWidth: .infinity)
@@ -221,7 +234,7 @@ struct SettingsView: View {
                                     ProgressView()
                                         .padding(.top, 8)
                                 } else {
-                                    Text(settings.localizedString(for: "iap_restore_btn"))
+                                    Text(String(localized: "iap_restore_btn"))
                                         .font(.system(size: 14, weight: .medium, design: .rounded))
                                         .foregroundStyle(.secondary)
                                         .underline()
@@ -231,7 +244,7 @@ struct SettingsView: View {
                             }
                             .disabled(iapStore.isPurchasing)
                             
-                            Text(settings.localizedString(for: "iap_restore_hint"))
+                            Text(String(localized: "iap_restore_hint"))
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                                 .multilineTextAlignment(.center)
@@ -268,16 +281,19 @@ struct SettingsView: View {
                     }
                 }
             }
-            .alert(settings.localizedString(for: "settings.reset.alert.title"), isPresented: $showResetAlert) {
-                Button(settings.localizedString(for: "settings.reset.confirm"), role: .destructive) {
+            .alert(String(localized: "settings.reset.alert.title"), isPresented: $showResetAlert) {
+                Button(String(localized: "settings.reset.confirm"), role: .destructive) {
                     showFinalResetAlert = true
                 }
-                Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
+                Button(String(localized: "button.cancel"), role: .cancel) { }
             } message: {
-                Text(settings.localizedString(for: "settings.reset.alert.message"))
+                Text(String(localized: "settings.reset.alert.message"))
             }
-            .alert(settings.localizedString(for: "settings.reset.final.title"), isPresented: $showFinalResetAlert) {
-                Button(settings.localizedString(for: "settings.reset.confirm"), role: .destructive) {
+            .alert(String(localized: "settings.reset.final.title"), isPresented: $showFinalResetAlert) {
+                Button(String(localized: "settings.reset.confirm"), role: .destructive) {
+                    UserDefaults.standard.removeObject(forKey: "customRoutinesData")
+                    SettingsStore.shared.routineOnboardingAbgeschlossen = false
+                    
                     gardenStore.resetAllData()
                     shopStore.reset()
                     streakStore.reset()
@@ -292,9 +308,9 @@ struct SettingsView: View {
                     FeedbackManager.shared.playError()
                     dismiss()
                 }
-                Button(settings.localizedString(for: "button.cancel"), role: .cancel) { }
+                Button(String(localized: "button.cancel"), role: .cancel) { }
             } message: {
-                Text(settings.localizedString(for: "settings.reset.final.message"))
+                Text(String(localized: "settings.reset.final.message"))
             }
             .onAppear {
                 Task {
@@ -371,7 +387,7 @@ struct SettingsView: View {
         NavigationLink(destination: SettingsDetailView(
             title: title,
             description: description,
-            actionTitle: settings.localizedString(for: "settings.understood"),
+            actionTitle: String(localized: "settings.understood"),
             icon: icon,
             iconColor: color,
             action: {})) {
@@ -498,7 +514,7 @@ struct GrovyShareCardView: View {
                     )
             }
             
-            Text("Improve your life")
+            Text(String(localized: "settings.improve_your_life"))
                 .font(.system(size: 42, weight: .black, design: .rounded))
                 .foregroundColor(.black)
         }

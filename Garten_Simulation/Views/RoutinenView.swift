@@ -123,7 +123,7 @@ struct RoutinenView: View {
                         VStack(spacing: 0) {
                             if !uncompletedRoutines.isEmpty {
                                 VStack(alignment: .leading, spacing: 12) {
-                                    Text(settings.localizedString(for: "routine.pending"))
+                                    Text(String(localized: String.LocalizationValue("routine.pending"), locale: Locale(identifier: settings.appLanguage)))
                                         .font(.system(size: 20, weight: .bold, design: .rounded))
                                         .foregroundStyle(.secondary)
                                         .padding(.horizontal, 24)
@@ -155,7 +155,7 @@ struct RoutinenView: View {
                             // MARK: - Completed Routines
                             if !completedRoutines.isEmpty {
                                 VStack(alignment: .leading, spacing: 12) {
-                                    Text(settings.localizedString(for: "routine.completed"))
+                                    Text(String(localized: String.LocalizationValue("routine.completed"), locale: Locale(identifier: settings.appLanguage)))
                                         .font(.system(size: 20, weight: .bold, design: .rounded))
                                         .foregroundStyle(.secondary)
                                         .padding(.horizontal, 24)
@@ -203,7 +203,7 @@ struct RoutinenView: View {
                     }
                 }
             }
-            .navigationTitle(settings.localizedString(for: "tab.routines"))
+            .navigationTitle(String(localized: String.LocalizationValue("tab.routines"), locale: Locale(identifier: settings.appLanguage)))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -211,7 +211,7 @@ struct RoutinenView: View {
                         Button {
                             showCreateSheet = true
                         } label: {
-                            Label(settings.localizedString(for: "routine.create"), systemImage: "plus")
+                            Label(String(localized: String.LocalizationValue("routine.create"), locale: Locale(identifier: settings.appLanguage)), systemImage: "plus")
                         }
                         
                         Menu {
@@ -223,12 +223,12 @@ struct RoutinenView: View {
                                         }
                                     }
                                 } label: {
-                                    Text(settings.localizedString(for: routine.titleKey))
+                                    Text(String(localized: String.LocalizationValue(routine.titleKey), locale: Locale(identifier: settings.appLanguage)))
                                     Image(systemName: "trash")
                                 }
                             }
                         } label: {
-                            Label(settings.localizedString(for: "routine.delete"), systemImage: "trash")
+                            Label(String(localized: String.LocalizationValue("routine.delete"), locale: Locale(identifier: settings.appLanguage)), systemImage: "trash")
                         }
                     } label: {
                         Image(systemName: "ellipsis")
@@ -292,13 +292,6 @@ struct RoutinenView: View {
         if let decoded = try? JSONDecoder().decode([RoutineUIData].self, from: customRoutinesData) {
             routines = decoded
         }
-        if routines.isEmpty {
-            routines = [
-                RoutineUIData(titleKey: "routine.morning", icon: "sun.max.fill", colorHex: "#FF9500", filterType: .morning),
-                RoutineUIData(titleKey: "routine.gym", icon: "figure.run", colorHex: "#FF3B30", filterType: .afternoon),
-                RoutineUIData(titleKey: "routine.evening", icon: "moon.stars.fill", colorHex: "#5856D6", filterType: .evening)
-            ]
-        }
     }
     
     private func saveRoutines() {
@@ -343,7 +336,7 @@ struct RoutineExpandableSection: View {
                         .foregroundStyle(.white)
                         .frame(width: 32)
                     
-                    Text(settings.localizedString(for: titleKey))
+                    Text(String(localized: String.LocalizationValue(titleKey), locale: Locale(identifier: settings.appLanguage)))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
                     
@@ -370,7 +363,7 @@ struct RoutineExpandableSection: View {
             if isExpanded {
                 VStack(spacing: 12) {
                     if habits.isEmpty {
-                        Text(settings.localizedString(for: "garden.empty.subtitle"))
+                        Text(String(localized: String.LocalizationValue("garden.empty.subtitle"), locale: Locale(identifier: settings.appLanguage)))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                             .padding(.vertical, 16)
@@ -411,7 +404,7 @@ struct RoutineExpandableSection: View {
                                     ) {
                                         HStack {
                                             Image(systemName: "clock.fill")
-                                            Text(settings.localizedString(for: "routine.available_in")) + Text(" ") + Text(timerInterval: Date()...midnight)
+                                            Text(String(localized: String.LocalizationValue("routine.available_in"), locale: Locale(identifier: settings.appLanguage))) + Text(" ") + Text(timerInterval: Date()...midnight)
                                         }
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .foregroundStyle(.white)
@@ -427,7 +420,7 @@ struct RoutineExpandableSection: View {
                                     ) {
                                         HStack {
                                             Image(systemName: "play.fill")
-                                            Text(settings.localizedString(for: "routine.start"))
+                                            Text(String(localized: String.LocalizationValue("routine.start"), locale: Locale(identifier: settings.appLanguage)))
                                         }
                                         .font(.system(size: 18, weight: .bold, design: .rounded))
                                         .foregroundStyle(.white)
@@ -485,12 +478,12 @@ struct RoutineHabitCard: View {
                 
                 // Details
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
+                    Text(settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(pflanze.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(pflanze.name), locale: Locale(identifier: settings.appLanguage)))
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundStyle(.primary)
                         .lineLimit(1)
                     
-                    Text(settings.localizedString(for: pflanze.habitCategory.localizationKey))
+                    Text(String(localized: String.LocalizationValue(pflanze.habitCategory.localizationKey), locale: Locale(identifier: settings.appLanguage)))
                         .font(.system(size: 12, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                         .textCase(.uppercase)
@@ -540,11 +533,11 @@ struct CreateRoutineSheet: View {
                         
                         // Name Input
                         VStack(alignment: .leading, spacing: 0) {
-                            Text(settings.localizedString(for: "routine.pending"))
+                            Text(String(localized: String.LocalizationValue("routine.pending"), locale: Locale(identifier: settings.appLanguage)))
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundStyle(.secondary)
                             
-                            TextField(settings.localizedString(for: "routine.edit.name.placeholder"), text: $routineName)
+                            TextField(String(localized: String.LocalizationValue("routine.edit.name.placeholder"), locale: Locale(identifier: settings.appLanguage)), text: $routineName)
                                 .font(.system(size: 18, weight: .semibold, design: .rounded))
                                 .padding(16)
                                 .background(Color(white: 0.95))
@@ -554,7 +547,7 @@ struct CreateRoutineSheet: View {
                         
                         // Color Picker
                         VStack(alignment: .leading, spacing: 12) {
-                            Text(settings.localizedString(for: "routine.edit.color"))
+                            Text(String(localized: String.LocalizationValue("routine.edit.color"), locale: Locale(identifier: settings.appLanguage)))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundStyle(.primary)
                                 .padding(.horizontal, 24)
@@ -589,7 +582,7 @@ struct CreateRoutineSheet: View {
                         
                         // Reminder Timer Edit Button
                         VStack(alignment: .leading) {
-                            Text(settings.localizedString(for: "routine.edit.reminder"))
+                            Text(String(localized: String.LocalizationValue("routine.edit.reminder"), locale: Locale(identifier: settings.appLanguage)))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundStyle(.primary)
                             
@@ -597,7 +590,7 @@ struct CreateRoutineSheet: View {
                                 showTimerSheet = true
                             } label: {
                                 HStack {
-                                    Text(settings.localizedString(for: hasReminder ? "routine.edit.timer.edit" : "routine.edit.timer.add"))
+                                    Text(String(localized: String.LocalizationValue(hasReminder ? "routine.edit.timer.edit" : "routine.edit.timer.add"), locale: Locale(identifier: settings.appLanguage)))
                                         .font(.system(size: 16, weight: .semibold, design: .rounded))
                                     Spacer()
                                     Image(systemName: "chevron.right")
@@ -614,13 +607,13 @@ struct CreateRoutineSheet: View {
                         
                         // Habit Selection
                         VStack(alignment: .leading, spacing: 16) {
-                            Text(settings.localizedString(for: "routine.edit.habits.add"))
+                            Text(String(localized: String.LocalizationValue("routine.edit.habits.add"), locale: Locale(identifier: settings.appLanguage)))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundStyle(.primary)
                                 .padding(.horizontal, 24)
                             
                             if availableHabits.isEmpty {
-                                Text(settings.localizedString(for: "routine.edit.habits.empty"))
+                                Text(String(localized: String.LocalizationValue("routine.edit.habits.empty"), locale: Locale(identifier: settings.appLanguage)))
                                     .font(.system(size: 14, weight: .medium, design: .rounded))
                                     .foregroundStyle(.secondary)
                                     .padding(.horizontal, 24)
@@ -648,17 +641,17 @@ struct CreateRoutineSheet: View {
                     .padding(.top, 24)
                 }
             }
-            .navigationTitle(settings.localizedString(for: "routine.create.title"))
+            .navigationTitle(String(localized: String.LocalizationValue("routine.create.title"), locale: Locale(identifier: settings.appLanguage)))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(settings.localizedString(for: "common.cancel")) {
+                    Button(String(localized: String.LocalizationValue("common.cancel"), locale: Locale(identifier: settings.appLanguage))) {
                         dismiss()
                     }
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(settings.localizedString(for: "common.save")) {
+                    Button(String(localized: String.LocalizationValue("common.save"), locale: Locale(identifier: settings.appLanguage))) {
                         var newRoutine = RoutineUIData(
                             titleKey: routineName.isEmpty ? "routine.custom.default_name" : routineName,
                             icon: selectedIcon,
@@ -681,7 +674,7 @@ struct CreateRoutineSheet: View {
             }
             .sheet(isPresented: $showTimerSheet) {
                 RoutineTimerEditSheetView(
-                    routineName: routineName.isEmpty ? settings.localizedString(for: "routine.create.title") : routineName,
+                    routineName: routineName.isEmpty ? String(localized: String.LocalizationValue("routine.create.title"), locale: Locale(identifier: settings.appLanguage)) : routineName,
                     schedule: $schedule,
                     overrideIndividualReminders: $overrideIndividualReminders,
                     hasReminder: $hasReminder
@@ -713,9 +706,9 @@ struct RoutineTimerEditSheetView: View {
                 // Header
                 HStack {
                     VStack(alignment: .leading, spacing: 3) {
-                        Text(settings.localizedString(for: "routine.timer"))
+                        Text(String(localized: String.LocalizationValue("routine.timer"), locale: Locale(identifier: settings.appLanguage)))
                             .font(.system(size: 22, weight: .black, design: .rounded))
-                        Text(settings.localizedString(for: routineName))
+                        Text(String(localized: String.LocalizationValue(routineName), locale: Locale(identifier: settings.appLanguage)))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                     }
@@ -727,7 +720,7 @@ struct RoutineTimerEditSheetView: View {
                 
                 // Toggle to turn off timer completely
                 Toggle(isOn: $hasReminder.animation()) {
-                    Text(settings.localizedString(for: "routine.reminder.activate"))
+                    Text(String(localized: String.LocalizationValue("routine.reminder.activate"), locale: Locale(identifier: settings.appLanguage)))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                 }
                 .padding(.horizontal, 24)
@@ -743,9 +736,9 @@ struct RoutineTimerEditSheetView: View {
                             
                             Toggle(isOn: $overrideIndividualReminders.animation()) {
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text(settings.localizedString(for: "routine.reminder.only_routine"))
+                                    Text(String(localized: String.LocalizationValue("routine.reminder.only_routine"), locale: Locale(identifier: settings.appLanguage)))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
-                                    Text(settings.localizedString(for: "routine.reminder.pause_individual"))
+                                    Text(String(localized: String.LocalizationValue("routine.reminder.pause_individual"), locale: Locale(identifier: settings.appLanguage)))
                                         .font(.system(size: 12, weight: .medium, design: .rounded))
                                         .foregroundStyle(.secondary)
                                 }
@@ -785,7 +778,7 @@ struct RoutineTimerEditSheetView: View {
                         Button {
                             dismiss()
                         } label: {
-                            Text(settings.localizedString(for: "common.done_button"))
+                            Text(String(localized: String.LocalizationValue("common.done_button"), locale: Locale(identifier: settings.appLanguage)))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                         }
                     }
@@ -821,7 +814,7 @@ struct RoutineTimerEditSheetView: View {
                 }
             } label: {
                 HStack(spacing: 12) {
-                    Text(settings.localizedString(for: daysKeys[day-1]))
+                    Text(String(localized: String.LocalizationValue(daysKeys[day-1]), locale: Locale(identifier: settings.appLanguage)))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(isEnabled ? Color.primary : Color.secondary.opacity(0.5))
                     
@@ -837,7 +830,7 @@ struct RoutineTimerEditSheetView: View {
                             .foregroundStyle(.secondary)
                             .font(.system(size: 14, weight: isExpanded ? .bold : .medium))
                     } else {
-                        Text(settings.localizedString(for: "routine.timer.off"))
+                        Text(String(localized: String.LocalizationValue("routine.timer.off"), locale: Locale(identifier: settings.appLanguage)))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary.opacity(0.6))
                         Image(systemName: "plus.circle.fill")
@@ -880,12 +873,12 @@ struct RoutineTimerEditSheetView: View {
             
             // Message Field
             VStack(alignment: .leading, spacing: 6) {
-                Text(settings.localizedString(for: "timer.notification.title"))
+                Text(String(localized: String.LocalizationValue("timer.notification.title"), locale: Locale(identifier: settings.appLanguage)))
                     .font(.system(size: 12, weight: .bold, design: .rounded))
                     .foregroundStyle(.secondary)
                     .textCase(.uppercase)
                 
-                TextField(String(format: settings.localizedString(for: "timer.preview.body.example"), settings.localizedString(for: routineName)),
+                TextField(String(format: String(localized: String.LocalizationValue("timer.preview.body.example"), locale: Locale(identifier: settings.appLanguage)), String(localized: String.LocalizationValue(routineName), locale: Locale(identifier: settings.appLanguage))),
                           text: Binding(
                               get: { schedule.weekdays[index].customMessage ?? "" },
                               set: { schedule.weekdays[index].customMessage = $0.isEmpty ? nil : $0 }
@@ -901,14 +894,14 @@ struct RoutineTimerEditSheetView: View {
             
             // Repeat Mode
             VStack(alignment: .leading, spacing: 6) {
-                Text(settings.localizedString(for: "timer.repeat.title"))
+                Text(String(localized: String.LocalizationValue("timer.repeat.title"), locale: Locale(identifier: settings.appLanguage)))
                     .font(.system(size: 12, weight: .bold, design: .rounded))
                     .foregroundStyle(.secondary)
                     .textCase(.uppercase)
                     
                 Picker("", selection: $schedule.weekdays[index].repeatMode) {
                     ForEach(ReminderRepeatMode.allCases, id: \.self) { mode in
-                        Text(settings.localizedString(for: mode.localizationKey)).tag(mode)
+                        Text(String(localized: String.LocalizationValue(mode.localizationKey), locale: Locale(identifier: settings.appLanguage))).tag(mode)
                     }
                 }
                 .pickerStyle(.segmented)
@@ -927,7 +920,7 @@ struct RoutineTimerEditSheetView: View {
             } label: {
                 HStack {
                     Image(systemName: "trash")
-                    Text(settings.localizedString(for: "routine.timer.disable"))
+                    Text(String(localized: String.LocalizationValue("routine.timer.disable"), locale: Locale(identifier: settings.appLanguage)))
                 }
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .padding(.vertical, 10)
@@ -1002,7 +995,7 @@ struct SelectableHabitCard: View {
                 
                 // Name
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(settings.showHabitInsteadOfName ? settings.localizedString(for: pflanze.displayedHabitName) : settings.localizedString(for: pflanze.name))
+                    Text(settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(pflanze.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(pflanze.name), locale: Locale(identifier: settings.appLanguage)))
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundStyle(.primary)
                         .lineLimit(1)

@@ -39,6 +39,9 @@ class SettingsStore: ObservableObject {
     @Published var appTourAbgeschlossen: Bool {
         didSet { UserDefaults.standard.set(appTourAbgeschlossen, forKey: "appTourAbgeschlossen") }
     }
+    @Published var routineOnboardingAbgeschlossen: Bool {
+        didSet { UserDefaults.standard.set(routineOnboardingAbgeschlossen, forKey: "routineOnboardingAbgeschlossen") }
+    }
     @Published var ausgewaehltesZiel: String {
         didSet { UserDefaults.standard.set(ausgewaehltesZiel, forKey: "ausgewaehltesZiel") }
     }
@@ -78,12 +81,6 @@ class SettingsStore: ObservableObject {
     }
 
 
-    // Published so every View re-renders when language changes
-    @Published var appLanguage: String {
-        didSet {
-            SharedUserDefaults.suite.set(appLanguage, forKey: "appLanguage")
-        }
-    }
 
 
     init() {
@@ -94,6 +91,7 @@ class SettingsStore: ObservableObject {
         self.onboardingAbgeschlossen = UserDefaults.standard.bool(forKey: "onboardingAbgeschlossen")
         self.appTourPromptShown = UserDefaults.standard.bool(forKey: "appTourPromptShown")
         self.appTourAbgeschlossen = UserDefaults.standard.bool(forKey: "appTourAbgeschlossen")
+        self.routineOnboardingAbgeschlossen = UserDefaults.standard.bool(forKey: "routineOnboardingAbgeschlossen")
         self.ausgewaehltesZiel = UserDefaults.standard.string(forKey: "ausgewaehltesZiel") ?? ""
         self.erinnerungsZeitInternal = UserDefaults.standard.object(forKey: "erinnerungsZeit") as? Double ?? (8 * 3600)
         
@@ -107,21 +105,7 @@ class SettingsStore: ObservableObject {
             self.igelCustomization = IgelCustomization()
         }
 
-        if let saved = SharedUserDefaults.suite.string(forKey: "appLanguage") {
-            self.appLanguage = saved
-        } else {
-            let supported = ["de", "en", "es", "fr", "it", "pt"]
-            let preferred = Bundle.main.preferredLocalizations.first ?? "en"
-            let languageCode = preferred.split(separator: "-").first.map(String.init) ?? "en"
-            
-            if supported.contains(languageCode) {
-                self.appLanguage = languageCode
-            } else {
-                self.appLanguage = "en"
-            }
-            SharedUserDefaults.suite.set(self.appLanguage, forKey: "appLanguage")
-        }
-        
+
         Task {
             await refreshNotificationStatus()
         }
@@ -135,32 +119,13 @@ class SettingsStore: ObservableObject {
         UserDefaults.standard.set(isNotificationsEnabled, forKey: "isNotificationsEnabled")
     }
 
-    // MARK: - Localization
-    func localizedString(for key: String) -> String {
-        let uniqueFallback = "___KEY_NOT_FOUND___"
-        
-        // Priority 1: Check the specific language bundle (e.g. es.lproj)
-        if let path = Bundle.main.path(forResource: appLanguage, ofType: "lproj"),
-           let bundle = Bundle(path: path) {
-            let localized = bundle.localizedString(forKey: key, value: uniqueFallback, table: nil)
-            if localized != uniqueFallback {
-                return localized
-            }
-        }
-        
-        // Priority 2: Fallback to AppStrings inline dictionary
-        let appString = AppStrings.get(key, language: appLanguage)
-        if appString != key {
-            return appString
-        }
-        
-        // Priority 3: Ultimate fallback to system language default NSLocalizedString
-        return NSLocalizedString(key, comment: "")
-    }
-
-    func localizedFormat(_ key: String, _ args: CVarArg...) -> String {
-        let format = localizedString(for: key)
-        return String(format: format, locale: Locale.current, arguments: args)
+    // MARK: - Locale
+    /// Returns the Locale corresponding to the user's chosen app language.
+    var appLocale: Locale { Locale(identifier: appLanguage) }
+    
+    var appLanguage: String {
+        get { Locale.current.language.languageCode?.identifier ?? "en" }
+        set { /* No-op, managed by iOS Native Settings */ }
     }
 
     // MARK: - Actions
@@ -168,7 +133,7 @@ class SettingsStore: ObservableObject {
     func importData()        { /* print("Importing data...") */ }
     func deleteAccount()     { /* print("Deleting account...") */ }
     func shareApp(image: UIImage? = nil) {
-        let text = localizedString(for: "settings.share.desc")
+        let text = NSLocalizedString("settings.share.desc", comment: "")
         let urlString = "https://apps.apple.com/app/grovy"
         
         let itemSource = GrovyShareItemSource(title: text, urlString: urlString, image: image)

@@ -1,0 +1,160 @@
+import SwiftUI
+
+struct RoutineOnboardingView: View {
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var gardenStore: GardenStore
+    
+    @Binding var savedRoutines: [RoutineUIData]
+    @Binding var customRoutinesData: Data
+    
+    @State private var routines: [RoutineUIData] = [
+        RoutineUIData(titleKey: "routine.morning", icon: "sun.max.fill", colorHex: "#FF9500", filterType: .morning),
+        RoutineUIData(titleKey: "routine.gym", icon: "figure.run", colorHex: "#FF3B30", filterType: .afternoon),
+        RoutineUIData(titleKey: "routine.evening", icon: "moon.stars.fill", colorHex: "#5856D6", filterType: .evening)
+    ]
+    
+    @State private var selectedRoutineIDs: Set<UUID> = []
+    @State private var routineToEdit: RoutineUIData? = nil
+    
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color.appHintergrund.ignoresSafeArea()
+                
+                VStack(spacing: 24) {
+                    Text(String(localized: "routine.onboarding.title", defaultValue: "Deine Routinen", locale: Locale(identifier: settings.appLanguage)))
+                        .font(.system(size: 28, weight: .bold, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .padding(.top, 40)
+                    
+                    Text(String(localized: "routine.onboarding.subtitle", defaultValue: "Wähle deine bevorzugten Routinen aus und füge direkt Gewohnheiten hinzu.", locale: Locale(identifier: settings.appLanguage)))
+                        .font(.system(size: 16, weight: .regular, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                    
+                    ScrollView {
+                        VStack(spacing: 16) {
+                            ForEach($routines) { $routine in
+                                let isSelected = selectedRoutineIDs.contains(routine.id)
+                                
+                                HStack(spacing: 16) {
+                                    // Checkbox
+                                    Button {
+                                        if isSelected {
+                                            selectedRoutineIDs.remove(routine.id)
+                                        } else {
+                                            selectedRoutineIDs.insert(routine.id)
+                                        }
+                                    } label: {
+                                        Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                                            .font(.system(size: 28))
+                                            .foregroundStyle(isSelected ? Color(hex: routine.colorHex) : Color.gray.opacity(0.5))
+                                    }
+                                    
+                                    // Icon
+                                    Group {
+                                        if routine.titleKey == "routine.morning" {
+                                            Image("MorgenRoutine")
+                                                .resizable()
+                                                .scaledToFit()
+                                        } else if routine.titleKey == "routine.evening" {
+                                            Image("AbendRoutine")
+                                                .resizable()
+                                                .scaledToFit()
+                                        } else if routine.titleKey == "routine.gym" {
+                                            Image("GymRoutine")
+                                                .resizable()
+                                                .scaledToFit()
+                                        } else {
+                                            Image("allgemeineMorgenroutine")
+                                                .resizable()
+                                                .scaledToFit()
+                                        }
+                                    }
+                                    .frame(width: 48, height: 48)
+                                    
+                                    // Title
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text(String(localized: String.LocalizationValue(routine.titleKey), locale: Locale(identifier: settings.appLanguage)))
+                                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                                        
+                                        if !routine.assignedHabitIDs.isEmpty {
+                                            Text("\(routine.assignedHabitIDs.count) \(String(localized: "routine.habits", defaultValue: "Gewohnheiten", locale: Locale(identifier: settings.appLanguage)))")
+                                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                                .foregroundStyle(.secondary)
+                                        }
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    // Edit Button
+                                    Button {
+                                        routineToEdit = routine
+                                    } label: {
+                                        Text(String(localized: "common.edit", defaultValue: "Bearbeiten", locale: Locale(identifier: settings.appLanguage)))
+                                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                                            .padding(.horizontal, 16)
+                                            .padding(.vertical, 8)
+                                            .background(Color(white: 0.9))
+                                            .cornerRadius(12)
+                                    }
+                                }
+                                .padding(16)
+                                .background(Color.white)
+                                .cornerRadius(20)
+                                .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
+                                .onTapGesture {
+                                    if isSelected {
+                                        selectedRoutineIDs.remove(routine.id)
+                                    } else {
+                                        selectedRoutineIDs.insert(routine.id)
+                                    }
+                                }
+                            }
+                        }
+                        .padding(24)
+                    }
+                    
+                    Button {
+                        // Save selected routines
+                        let finalRoutines = routines.filter { selectedRoutineIDs.contains($0.id) }
+                        savedRoutines.append(contentsOf: finalRoutines)
+                        
+                        if let encoded = try? JSONEncoder().encode(savedRoutines) {
+                            customRoutinesData = encoded
+                        }
+                        
+                        settings.routineOnboardingAbgeschlossen = true
+                        dismiss()
+                    } label: {
+                        Text(String(localized: "common.done", defaultValue: "Fertig", locale: Locale(identifier: settings.appLanguage)))
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.green)
+                            .cornerRadius(16)
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 32)
+                }
+            }
+            .sheet(item: $routineToEdit) { editableRoutine in
+                if let index = routines.firstIndex(where: { $0.id == editableRoutine.id }) {
+                    EditRoutineSheet(
+                        routine: $routines[index],
+                        availableHabits: gardenStore.pflanzen
+                    )
+                    .environmentObject(settings)
+                    .environmentObject(gardenStore)
+                    .onDisappear {
+                        // Automatically select it if they edited it
+                        selectedRoutineIDs.insert(editableRoutine.id)
+                    }
+                }
+            }
+        }
+    }
+}
