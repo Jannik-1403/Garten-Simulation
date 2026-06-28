@@ -191,11 +191,11 @@ struct UnifiedShopView: View {
                                             let p = item.basePrice
                                             let badge: String? = {
                                                 switch item.rarity {
-                                                case .mystic: return String(localized: "rarity.mystic")
-                                                case .legendary: return String(localized: "rarity.legendary")
-                                                case .epic: return String(localized: "rarity.epic")
-                                                case .rare: return String(localized: "rarity.rare")
-                                                case .common: return String(localized: "rarity.common")
+                                                case .mystic: return String(localized: "rarity.mystic", defaultValue: "Mystisch")
+                                                case .legendary: return String(localized: "rarity.legendary", defaultValue: "Legendär")
+                                                case .epic: return String(localized: "rarity.epic", defaultValue: "Episch")
+                                                case .rare: return String(localized: "rarity.rare", defaultValue: "Selten")
+                                                case .common: return String(localized: "rarity.common", defaultValue: "Gewöhnlich")
                                                 }
                                             }()
                                             ShopItemCard(

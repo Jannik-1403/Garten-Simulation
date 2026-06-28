@@ -29,6 +29,16 @@ public enum ErfolgTier: Int, Codable, CaseIterable, Comparable {
         }
     }
     
+    public var localizedName: String {
+        switch self {
+        case .bronze: return String(localized: "rarity.bronze", defaultValue: "Bronze")
+        case .silber: return String(localized: "rarity.silber", defaultValue: "Silber")
+        case .gold: return String(localized: "rarity.gold", defaultValue: "Gold")
+        case .diamant: return String(localized: "rarity.diamant", defaultValue: "Diamant")
+        case .master, .max: return String(localized: "rarity.master", defaultValue: "Master")
+        }
+    }
+    
     public var color: Color {
         switch self {
         case .bronze:

@@ -93,7 +93,7 @@ struct ErfolgDetailSheet: View {
                                 .padding(.horizontal, 24)
                             
                             // Tier Subtitle
-                            Text(liveErfolg.tier == .max ? String(localized: "erfolg.max_reached") : String(localized: "rarity.\(liveErfolg.tier.label.lowercased())"))
+                            Text(liveErfolg.tier == .max ? String(localized: "erfolg.max_reached", defaultValue: "Maximum erreicht") : liveErfolg.tier.localizedName)
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                                 .foregroundStyle(liveErfolg.tier.color)
                             

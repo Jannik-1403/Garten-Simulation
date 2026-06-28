@@ -93,15 +93,7 @@ struct ErfolgGridItem: View {
     
     @State private var isVisible = false
     
-    var tierLabel: String {
-        switch erfolg.tier {
-        case .bronze: return String(localized: "rarity.bronze")
-        case .silber: return String(localized: "rarity.silber")
-        case .gold: return String(localized: "rarity.gold")
-        case .diamant: return String(localized: "rarity.diamant")
-        case .master, .max: return String(localized: "rarity.master")
-        }
-    }
+    var tierLabel: String { erfolg.tier.localizedName }
     
     var body: some View {
         VStack(spacing: 0) {

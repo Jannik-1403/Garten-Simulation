@@ -43,7 +43,7 @@ struct TierRow: View {
                     .frame(width: 220, height: 220)
                     .applyErfolgFarbe(for: tier)
                 
-                Text(String(localized: "rarity.\(tier.label.lowercased())"))
+                Text(tier.localizedName)
                     .font(.system(size: 28, weight: .heavy, design: .rounded))
                     .foregroundStyle(tier.color)
             }
