@@ -86,7 +86,6 @@
 		145797CD2F6FED1A00C51D53 /* Exceptions for "Garten_Simulation" folder in "Garten_SimulationTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"/Localized: Localizable.strings",
 				Animations/character.riv,
 				Animations/fire_button.riv,
 				Animations/note_book.riv,
@@ -95,6 +94,7 @@
 				Assets.xcassets,
 				Info.plist,
 				LaunchScreen.storyboard,
+				Localizable.xcstrings,
 				StoreKitConfig.storekit,
 			);
 			target = 1424D4282F6EA14300908588 /* Garten_SimulationTests */;
@@ -110,7 +110,6 @@
 		1463F9BF2FE448D800CB9973 /* Exceptions for "Garten_Simulation" folder in "Garten_SimulationUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Components/RarityBackgroundView.swift,
 			);
 			target = 1424D4322F6EA14300908588 /* Garten_SimulationUITests */;
 		};
@@ -119,11 +118,15 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1424D42C2F6EA14300908588 /* Garten_SimulationTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Garten_SimulationTests;
 			sourceTree = "<group>";
 		};
 		1424D4362F6EA14300908588 /* Garten_SimulationUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Garten_SimulationUITests;
 			sourceTree = "<group>";
 		};
@@ -671,7 +674,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = NO;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Garten-SimulationTests";
@@ -686,7 +689,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Garten_Simulation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Garten_Simulation";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Grovy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Grovy";
 			};
 			name = Debug;
 		};
@@ -696,7 +699,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = NO;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Garten-SimulationTests";
@@ -711,7 +714,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Garten_Simulation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Garten_Simulation";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Grovy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Grovy";
 			};
 			name = Release;
 		};
@@ -720,7 +723,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = NO;
+				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Garten-SimulationUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -743,7 +746,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = NO;
+				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Garten-SimulationUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
