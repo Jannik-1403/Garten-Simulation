@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-06-28 - Onboarding Timing-Bug behoben
+- **Root Cause**: `routineOnboardingAbgeschlossen` war bei Erstnutzern bereits `false` → erneutes Setzen auf `false` löste kein `onChange` aus.
+- **Fix**: Erzwungener `true → false`-Toggle mit 400ms Delay garantiert, dass SwiftUI die Änderung immer erkennt.
+- **Zusatz**: `onChange(of: selectedTab)` in `RoutinenView` fängt Tab-Navigation ab als zweite Absicherung.
+
 ## 2026-06-28 - Onboarding-Routing & Item3DButton Fertig-Button
 - **Vorschau-Frage umgebaut**: Sowohl "Ja" als auch "Nein" leiten jetzt direkt zum Routinen-Tab (Tab 4) weiter und triggern das Routine-Onboarding sofort.
 - **Fertig-Button** im Routine-Onboarding ist jetzt ein `Item3DButton` (Orange, 3D-Druckeffekt, Haptic Feedback).
