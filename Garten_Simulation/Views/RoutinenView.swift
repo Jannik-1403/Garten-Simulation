@@ -264,7 +264,7 @@ struct RoutinenView: View {
                     settings.routineOnboardingAbgeschlossen = true
                 }
             })) {
-                RoutineOnboardingView()
+                RoutineOnboardingView(savedRoutines: $routines, customRoutinesData: $customRoutinesData)
             }
         }
     }
