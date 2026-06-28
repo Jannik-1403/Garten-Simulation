@@ -268,7 +268,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				1424D42C2F6EA14300908588 /* Garten_SimulationTests */,
-				145797BB2F6FED1A00C51D53 /* Garten_Simulation */,
 			);
 			name = Garten_SimulationTests;
 			productName = Garten_SimulationTests;
