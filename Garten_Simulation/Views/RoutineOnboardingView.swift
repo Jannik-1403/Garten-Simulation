@@ -7,6 +7,7 @@ struct RoutineOnboardingView: View {
     
     @Binding var savedRoutines: [RoutineUIData]
     @Binding var customRoutinesData: Data
+    var onFinish: (() -> Void)? = nil
     
     @State private var routines: [RoutineUIData] = [
         RoutineUIData(titleKey: "routine.morning", icon: "sun.max.fill", colorHex: "#FF9500", filterType: .morning),
@@ -115,24 +116,35 @@ struct RoutineOnboardingView: View {
                     }
                     
                     Button {
-                        // Save selected routines
+                        // Nur ausgewählte Routinen speichern (savedRoutines vorher leeren, falls Reset)
                         let finalRoutines = routines.filter { selectedRoutineIDs.contains($0.id) }
-                        savedRoutines.append(contentsOf: finalRoutines)
+                        savedRoutines = finalRoutines
                         
                         if let encoded = try? JSONEncoder().encode(savedRoutines) {
                             customRoutinesData = encoded
                         }
                         
-                        settings.routineOnboardingAbgeschlossen = true
-                        dismiss()
+                        if let onFinish = onFinish {
+                            onFinish()
+                        } else {
+                            settings.routineOnboardingAbgeschlossen = true
+                            dismiss()
+                        }
                     } label: {
                         Text(String(localized: "common.done", defaultValue: "Fertig", locale: Locale(identifier: settings.appLanguage)))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .foregroundStyle(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.green)
-                            .cornerRadius(16)
+                            .background(
+                                LinearGradient(
+                                    colors: [Color.orange, Color.orange.opacity(0.85)],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                            .shadow(color: Color.orange.opacity(0.4), radius: 8, y: 4)
                     }
                     .padding(.horizontal, 24)
                     .padding(.bottom, 32)

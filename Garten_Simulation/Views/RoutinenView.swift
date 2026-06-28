@@ -60,6 +60,7 @@ struct RoutinenView: View {
     @State private var routines: [RoutineUIData] = []
     
     @State private var showCreateSheet = false
+    @State private var showOnboarding = false
     
     // All scheduled habits
     private var timelinePlants: [HabitModel] {
@@ -253,18 +254,29 @@ struct RoutinenView: View {
             }
             .onAppear {
                 loadRoutines()
+                // Zeige Onboarding wenn noch nicht abgeschlossen
+                if !settings.routineOnboardingAbgeschlossen {
+                    showOnboarding = true
+                }
             }
             .onChange(of: routines) { _, _ in
                 saveRoutines()
             }
-            .fullScreenCover(isPresented: Binding(get: {
-                !settings.routineOnboardingAbgeschlossen
-            }, set: { newValue in
+            .onChange(of: settings.routineOnboardingAbgeschlossen) { _, newValue in
+                // Wenn Flag auf false gesetzt wird (z.B. nach Reset), sofort Onboarding zeigen
                 if !newValue {
-                    settings.routineOnboardingAbgeschlossen = true
+                    showOnboarding = true
                 }
-            })) {
-                RoutineOnboardingView(savedRoutines: $routines, customRoutinesData: $customRoutinesData)
+            }
+            .fullScreenCover(isPresented: $showOnboarding) {
+                RoutineOnboardingView(
+                    savedRoutines: $routines,
+                    customRoutinesData: $customRoutinesData,
+                    onFinish: {
+                        settings.routineOnboardingAbgeschlossen = true
+                        showOnboarding = false
+                    }
+                )
             }
         }
     }
