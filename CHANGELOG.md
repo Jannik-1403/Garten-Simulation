@@ -65,3 +65,6 @@
 - Alles Löschen-Button im Einstellungsmenü setzt nun auch Quiz-Ergebnisse (Assessments) und geplante Benachrichtigungen korrekt zurück.
 
 - Fix: Pluralformen für Gewohnheiten in allen 11 Sprachen korrigiert (String Catalog substitutions)
+
+- Automatisches Zuweisen von Gewohnheiten zu Routinen beim Onboarding-Abschluss
+- Bereits einer Routine zugewiesene Gewohnheiten werden bei der Erstellung/Bearbeitung anderer Routinen nicht mehr zur Auswahl angeboten
