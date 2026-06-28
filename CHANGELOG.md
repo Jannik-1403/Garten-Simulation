@@ -1,4 +1,10 @@
 
+### Assessment Re-Refactoring (3-Kategorien-Profilsystem)
+- Single-Score Bewertung wurde rückgängig gemacht. Das Quiz-System nutzt wieder die 3-Achsen-Bewertung (z.B. Kontrolle, Entscheidung, Risiko).
+- Die 24 verschiedenen Profile wurden beibehalten und mit extrem personalisierten und ausführlichen Texten in allen 11 Sprachen angereichert.
+- Nutzer erhalten nun bei jedem Ergebnis detaillierte Erklärungen, welche Gewohnheiten sie aufbauen und welche sie ablegen sollten.
+- Die 3 Bewertungsbalken pro Kategorie werden wieder im UI angezeigt.
+
 ### Assessment Single-Score Refactoring
 - Alle 6 Assessments (Finance, Mental, Growth, Health, Fitness, Lifestyle) verwenden nun ein einheitliches Single-Score System.
 - Die komplexen 3-Achsen Scores wurden auf einen einzigen integer Score reduziert (Minuspunkte, Pluspunkte).
@@ -76,3 +82,7 @@
 
 - Automatisches Zuweisen von Gewohnheiten zu Routinen beim Onboarding-Abschluss
 - Bereits einer Routine zugewiesene Gewohnheiten werden bei der Erstellung/Bearbeitung anderer Routinen nicht mehr zur Auswahl angeboten
+
+## [Native Close Button für Quiz-Ergebnisse] - 2026-06-28
+- 'X'-Button (LiquidGlassDismissButton) im Profil/Quizbereich hat nun ein natives iOS-Design.
+- Das Overlay für den Dismiss-Button wird nun absolut platziert und überlagert nicht mehr mit der versteckten Navigationsleiste, was Fehler bei der Sichtbarkeit behebt.
