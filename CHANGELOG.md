@@ -1,3 +1,11 @@
+
+### Assessment Single-Score Refactoring
+- Alle 6 Assessments (Finance, Mental, Growth, Health, Fitness, Lifestyle) verwenden nun ein einheitliches Single-Score System.
+- Die komplexen 3-Achsen Scores wurden auf einen einzigen integer Score reduziert (Minuspunkte, Pluspunkte).
+- Das Ergebnis wird nun in 4 Leveln kategorisiert (Level 1 bis Level 4).
+- Alle Profile und Result-Views wurden aktualisiert, um nur noch den Gesamtscore (Total Score) anzuzeigen.
+- Lokalisierungen für alle 11 Sprachen für die neuen Level 1-4 wurden hinzugefügt.
+
 # Changelog
 
 ## 2026-06-28 - Cleanup & TikTok Integration
