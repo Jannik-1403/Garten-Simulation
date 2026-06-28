@@ -8,8 +8,8 @@ struct MentalAssessmentQuizView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var currentIndex: Int = 0
-    @State private var shuffledAnswers: [AssessmentAnswer] = []
-    @State private var selectedAnswers: [Int: AssessmentAnswer] = [:]
+    @State private var shuffledAnswers: [MentalAnswer] = []
+    @State private var selectedAnswers: [Int: MentalAnswer] = [:]
     @State private var selectedAnswerID: Int? = nil
     @State private var showResult = false
     @State private var cardOffset: CGFloat = 0
@@ -17,7 +17,7 @@ struct MentalAssessmentQuizView: View {
 
     private let questions = MentalQuiz.questions
 
-    private var currentQuestion: AssessmentQuestion { questions[currentIndex] }
+    private var currentQuestion: MentalQuestion { questions[currentIndex] }
     private var progress: Double { Double(currentIndex) / Double(questions.count) }
     private var isLastQuestion: Bool { currentIndex == questions.count - 1 }
 
@@ -176,7 +176,7 @@ struct MentalAssessmentQuizView: View {
 
     // MARK: - Logic
 
-    private func selectAnswer(_ answer: AssessmentAnswer) {
+    private func selectAnswer(_ answer: MentalAnswer) {
         selectedAnswerID = answer.id
         selectedAnswers[currentQuestion.id] = answer
     }
@@ -227,10 +227,10 @@ struct MentalResultView: View {
 
     private var rarityTag: String {
         switch profile {
-        case .level1:          return "mystic"
-        case .level2:         return "epic"
-        case .level3:             return "legendary"
-        case .level4: return "plant"
+        case .glaeserner:          return "mystic"
+        case .getriebener:         return "epic"
+        case .spiegel:             return "legendary"
+        case .unerschuetterlicher: return "plant"
         }
     }
 
@@ -323,27 +323,42 @@ struct MentalScoreBreakdownCard: View {
     @EnvironmentObject var settings: SettingsStore
     @State private var animated = false
 
-    private var scoreNorm: Double {
-        let maxScore = 30.0
-        let minScore = -30.0
-        let range = maxScore - minScore
-        let shifted = Double(result.score) - minScore
-        return max(0, min(1, shifted / range))
+    // Theoretical display range across 15 questions
+    private var resilienzNorm: Double { normalizedDisplay(result.rawResilienz, max: 44, min: -37) }
+    private var fokusNorm: Double     { normalizedDisplay(result.rawFokus,     max: 45, min: -38) }
+    private var egoNorm: Double       { normalizedDisplay(result.rawEgo,        max: 30, min: -37) }
+
+    private func normalizedDisplay(_ value: Int, max maxVal: Int, min minVal: Int) -> Double {
+        let range = Double(maxVal - minVal)
+        let shifted = Double(value - minVal)
+        return min(max(shifted / range, 0), 1)
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(String(localized: "assessment.result.breakdown", defaultValue: "Ergebnis Übersicht"))
+            Text(String(localized: "assessment.result.breakdown"))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
                 .tracking(1)
 
             ScoreBar(
-                label: String(localized: "assessment.score.total", defaultValue: "Gesamtpunktzahl"),
-                value: animated ? scoreNorm : 0,
+                label: String(localized: "assessment.score.resilienz"),
+                value: animated ? resilienzNorm : 0,
+                color: Color(hex: "#FF6B6B"),
+                rawValue: result.rawResilienz
+            )
+            ScoreBar(
+                label: String(localized: "assessment.score.fokus"),
+                value: animated ? fokusNorm : 0,
                 color: Color(hex: "#4FC3F7"),
-                rawValue: result.score
+                rawValue: result.rawFokus
+            )
+            ScoreBar(
+                label: String(localized: "assessment.score.ego"),
+                value: animated ? egoNorm : 0,
+                color: Color(hex: "#DA70D6"),
+                rawValue: result.rawEgo
             )
         }
         .padding(20)

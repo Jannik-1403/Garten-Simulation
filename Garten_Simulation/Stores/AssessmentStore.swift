@@ -37,16 +37,21 @@ class AssessmentStore: ObservableObject {
 
     /// Wertet die gegebenen Antworten aus und speichert das Ergebnis.
     func submitFinanceQuiz(answers: [Int: AssessmentAnswer]) {
-        var score = 0
+        var score = AssessmentRawScore()
+
         for (_, answer) in answers {
-            score += answer.delta
+            score.kontrolle    += answer.delta.kontrolle
+            score.entscheidung += answer.delta.entscheidung
+            score.risiko       += answer.delta.risiko
         }
 
         let profile = AssessmentScoringEngine.computeProfile(from: score)
 
         financeResult = AssessmentResult(
             profile: profile,
-            score: score,
+            rawKontrolle: score.kontrolle,
+            rawEntscheidung: score.entscheidung,
+            rawRisiko: score.risiko,
             date: Date()
         )
     }
@@ -104,17 +109,22 @@ extension AssessmentStore {
     // MARK: Public API — Mental
 
     /// Berechnet das mentale Profil aus den gegebenen Antworten und speichert es.
-    func submitMentalQuiz(answers: [Int: AssessmentAnswer]) {
-        var score = 0
+    func submitMentalQuiz(answers: [Int: MentalAnswer]) {
+        var score = MentalRawScore()
+
         for (_, answer) in answers {
-            score += answer.delta
+            score.resilienz += answer.delta.resilienz
+            score.fokus     += answer.delta.fokus
+            score.ego       += answer.delta.ego
         }
 
         let profile = MentalScoringEngine.computeProfile(from: score)
 
         mentalResult = MentalAssessmentResult(
             profile: profile,
-            score: score,
+            rawResilienz: score.resilienz,
+            rawFokus:     score.fokus,
+            rawEgo:       score.ego,
             date: Date()
         )
     }
@@ -151,17 +161,22 @@ extension AssessmentStore {
 
     // MARK: Public API — Growth
 
-    func submitGrowthQuiz(answers: [Int: AssessmentAnswer]) {
-        var score = 0
+    func submitGrowthQuiz(answers: [Int: GrowthAnswer]) {
+        var score = GrowthRawScore()
+
         for (_, answer) in answers {
-            score += answer.delta
+            score.disziplin += answer.delta.disziplin
+            score.effizienz += answer.delta.effizienz
+            score.umsetzung += answer.delta.umsetzung
         }
 
         let profile = GrowthScoringEngine.computeProfile(from: score)
 
         growthResult = GrowthAssessmentResult(
             profile: profile,
-            score: score,
+            rawDisziplin: score.disziplin,
+            rawEffizienz: score.effizienz,
+            rawUmsetzung: score.umsetzung,
             date: Date()
         )
     }
@@ -197,17 +212,22 @@ extension AssessmentStore {
 
     // MARK: Public API — Health
 
-    func submitHealthQuiz(answers: [Int: AssessmentAnswer]) {
-        var score = 0
+    func submitHealthQuiz(answers: [Int: HealthAnswer]) {
+        var score = HealthRawScore()
+
         for (_, answer) in answers {
-            score += answer.delta
+            score.regeneration += answer.delta.regeneration
+            score.kraftstoff   += answer.delta.kraftstoff
+            score.praevention  += answer.delta.praevention
         }
 
         let profile = HealthScoringEngine.computeProfile(from: score)
 
         healthResult = HealthAssessmentResult(
             profile: profile,
-            score: score,
+            rawRegeneration: score.regeneration,
+            rawKraftstoff:   score.kraftstoff,
+            rawPraevention:  score.praevention,
             date: Date()
         )
     }
@@ -244,17 +264,22 @@ extension AssessmentStore {
 
     // MARK: Public API — Fitness
 
-    func submitFitnessQuiz(answers: [Int: AssessmentAnswer]) {
-        var score = 0
+    func submitFitnessQuiz(answers: [Int: FitnessAnswer]) {
+        var score = FitnessRawScore()
+
         for (_, answer) in answers {
-            score += answer.delta
+            score.konsistenz += answer.delta.konsistenz
+            score.intensitaet += answer.delta.intensitaet
+            score.verantwortung += answer.delta.verantwortung
         }
 
         let profile = FitnessScoringEngine.computeProfile(from: score)
 
         fitnessResult = FitnessAssessmentResult(
             profile: profile,
-            score: score,
+            rawKonsistenz: score.konsistenz,
+            rawIntensitaet: score.intensitaet,
+            rawVerantwortung: score.verantwortung,
             date: Date()
         )
     }
@@ -290,17 +315,22 @@ extension AssessmentStore {
 
     // MARK: Public API — Lifestyle
 
-    func submitLifestyleQuiz(answers: [Int: AssessmentAnswer]) {
-        var score = 0
+    func submitLifestyleQuiz(answers: [Int: LifestyleAnswer]) {
+        var score = LifestyleRawScore()
+
         for (_, answer) in answers {
-            score += answer.delta
+            score.umfeld += answer.delta.umfeld
+            score.standards += answer.delta.standards
+            score.einfluss += answer.delta.einfluss
         }
 
         let profile = LifestyleScoringEngine.computeProfile(from: score)
 
         lifestyleResult = LifestyleAssessmentResult(
             profile: profile,
-            score: score,
+            rawUmfeld: score.umfeld,
+            rawStandards: score.standards,
+            rawEinfluss: score.einfluss,
             date: Date()
         )
     }

@@ -76,14 +76,3 @@
 
 - Automatisches Zuweisen von Gewohnheiten zu Routinen beim Onboarding-Abschluss
 - Bereits einer Routine zugewiesene Gewohnheiten werden bei der Erstellung/Bearbeitung anderer Routinen nicht mehr zur Auswahl angeboten
-
-## [Export/Import Updates] - 2026-06-28
-- Erweiterung von GartenSaveFile für den Export und Import der neuen Feature-Daten:
-  - Lebensstand, Glücksrad-Drehungen, Seeds
-  - Münz-Einnahmen, Ausgaben, Gießmenge, aktive Tage
-  - Schlechte Gewohnheiten, Notizen und Coin-Transactions
-  - Fokus-Sessions und dekorierte Items
-  - Alle 6 Quiz-/Assessment-Ergebnisse (Finance, Mental, Growth, Health, Fitness, Lifestyle)
-  - Die gespeicherten Routinen (customRoutinesData aus UserDefaults)
-- Aktualisierung des DataExportImportManagers für Abwärtskompatibilität.
-- AssessmentStore als EnvironmentObject in ExportImportView eingebunden.

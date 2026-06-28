@@ -8,8 +8,8 @@ struct FitnessAssessmentQuizView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var currentIndex: Int = 0
-    @State private var shuffledAnswers: [AssessmentAnswer] = []
-    @State private var selectedAnswers: [Int: AssessmentAnswer] = [:]
+    @State private var shuffledAnswers: [FitnessAnswer] = []
+    @State private var selectedAnswers: [Int: FitnessAnswer] = [:]
     @State private var selectedAnswerID: Int? = nil
     @State private var showResult = false
     @State private var cardOffset: CGFloat = 0
@@ -17,7 +17,7 @@ struct FitnessAssessmentQuizView: View {
 
     private let questions = FitnessQuiz.questions
 
-    private var currentQuestion: AssessmentQuestion {
+    private var currentQuestion: FitnessQuestion {
         questions[currentIndex]
     }
 
@@ -191,7 +191,7 @@ struct FitnessAssessmentQuizView: View {
         currentIndex == questions.count - 1
     }
 
-    private func selectAnswer(_ answer: AssessmentAnswer) {
+    private func selectAnswer(_ answer: FitnessAnswer) {
         selectedAnswerID = answer.id
         selectedAnswers[currentQuestion.id] = answer
     }
@@ -244,10 +244,10 @@ struct FitnessResultView: View {
 
     private var rarityTag: String {
         switch profile {
-        case .level1: return "plant"
-        case .level2:           return "rare"
-        case .level3:       return "epic"
-        case .level4:              return "legendary"
+        case .schoenwetter_sportler: return "plant"
+        case .wohlfuehler:           return "rare"
+        case .ausreden_sucher:       return "epic"
+        case .maschine:              return "legendary"
         }
     }
 
@@ -336,27 +336,46 @@ struct FitnessScoreBreakdownCard: View {
     @EnvironmentObject var settings: SettingsStore
     @State private var animated = false
 
-    private var scoreNorm: Double {
-        let maxScore = 30.0
-        let minScore = -30.0
-        let range = maxScore - minScore
-        let shifted = Double(result.score) - minScore
-        return max(0, min(1, shifted / range))
+    // Ranges for normalization matching engine
+    // konsistenz min -29, max 29
+    // intensitaet min -25, max 25
+    // verantwortung min -36, max 36
+
+    private var konsistenzNorm: Double { normalizedDisplay(result.rawKonsistenz, max: 29, min: -29) }
+    private var intensitaetNorm: Double { normalizedDisplay(result.rawIntensitaet, max: 25, min: -25) }
+    private var verantwortungNorm: Double { normalizedDisplay(result.rawVerantwortung, max: 36, min: -36) }
+
+    private func normalizedDisplay(_ value: Int, max: Int, min: Int) -> Double {
+        let range = Double(max - min)
+        let shifted = Double(value - min)
+        return shifted / range
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(String(localized: "assessment.result.breakdown", defaultValue: "Ergebnis Übersicht"))
+            Text(String(localized: "assessment.result.breakdown"))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
                 .tracking(1)
 
             ScoreBar(
-                label: String(localized: "assessment.score.total", defaultValue: "Gesamtpunktzahl"),
-                value: animated ? scoreNorm : 0,
+                label: String(localized: "assessment.score.konsistenz"),
+                value: animated ? konsistenzNorm : 0,
                 color: Color(hex: "#4FC3F7"),
-                rawValue: result.score
+                rawValue: result.rawKonsistenz
+            )
+            ScoreBar(
+                label: String(localized: "assessment.score.intensitaet"),
+                value: animated ? intensitaetNorm : 0,
+                color: Color(hex: "#81C784"),
+                rawValue: result.rawIntensitaet
+            )
+            ScoreBar(
+                label: String(localized: "assessment.score.verantwortung"),
+                value: animated ? verantwortungNorm : 0,
+                color: Color(hex: "#FFB74D"),
+                rawValue: result.rawVerantwortung
             )
         }
         .padding(20)

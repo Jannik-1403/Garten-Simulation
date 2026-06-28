@@ -8,8 +8,8 @@ struct GrowthAssessmentQuizView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var currentIndex: Int = 0
-    @State private var shuffledAnswers: [AssessmentAnswer] = []
-    @State private var selectedAnswers: [Int: AssessmentAnswer] = [:]
+    @State private var shuffledAnswers: [GrowthAnswer] = []
+    @State private var selectedAnswers: [Int: GrowthAnswer] = [:]
     @State private var selectedAnswerID: Int? = nil
     @State private var showResult = false
     @State private var cardOffset: CGFloat = 0
@@ -17,7 +17,7 @@ struct GrowthAssessmentQuizView: View {
 
     private let questions = GrowthQuiz.questions
 
-    private var currentQuestion: AssessmentQuestion { questions[currentIndex] }
+    private var currentQuestion: GrowthQuestion { questions[currentIndex] }
     private var progress: Double { Double(currentIndex) / Double(questions.count) }
     private var isLastQuestion: Bool { currentIndex == questions.count - 1 }
 
@@ -176,7 +176,7 @@ struct GrowthAssessmentQuizView: View {
 
     // MARK: - Logic
 
-    private func selectAnswer(_ answer: AssessmentAnswer) {
+    private func selectAnswer(_ answer: GrowthAnswer) {
         selectedAnswerID = answer.id
         selectedAnswers[currentQuestion.id] = answer
     }
@@ -227,10 +227,10 @@ struct GrowthResultView: View {
 
     private var rarityTag: String {
         switch profile {
-        case .level1:    return "epic"
-        case .level2:  return "mystic"
-        case .level3:    return "legendary"
-        case .level4:      return "plant"
+        case .traeumer:    return "epic"
+        case .fakeWorker:  return "mystic"
+        case .aufgeber:    return "legendary"
+        case .macher:      return "plant"
         }
     }
 
@@ -323,27 +323,42 @@ struct GrowthScoreBreakdownCard: View {
     @EnvironmentObject var settings: SettingsStore
     @State private var animated = false
 
-    private var scoreNorm: Double {
-        let maxScore = 30.0
-        let minScore = -30.0
-        let range = maxScore - minScore
-        let shifted = Double(result.score) - minScore
-        return max(0, min(1, shifted / range))
+    // Theoretical display range across 15 questions
+    private var disziplinNorm: Double { normalizedDisplay(result.rawDisziplin, max: 39, min: -39) }
+    private var effizienzNorm: Double { normalizedDisplay(result.rawEffizienz, max: 37, min: -37) }
+    private var umsetzungNorm: Double { normalizedDisplay(result.rawUmsetzung, max: 31, min: -31) }
+
+    private func normalizedDisplay(_ value: Int, max maxVal: Int, min minVal: Int) -> Double {
+        let range = Double(maxVal - minVal)
+        let shifted = Double(value - minVal)
+        return min(max(shifted / range, 0), 1)
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(String(localized: "assessment.result.breakdown", defaultValue: "Ergebnis Übersicht"))
+            Text(String(localized: "assessment.result.breakdown"))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
                 .tracking(1)
 
             ScoreBar(
-                label: String(localized: "assessment.score.total", defaultValue: "Gesamtpunktzahl"),
-                value: animated ? scoreNorm : 0,
-                color: Color(hex: "#4FC3F7"),
-                rawValue: result.score
+                label: String(localized: "assessment.score.disziplin"),
+                value: animated ? disziplinNorm : 0,
+                color: Color(hex: "#D0021B"),
+                rawValue: result.rawDisziplin
+            )
+            ScoreBar(
+                label: String(localized: "assessment.score.effizienz"),
+                value: animated ? effizienzNorm : 0,
+                color: Color(hex: "#F5A623"),
+                rawValue: result.rawEffizienz
+            )
+            ScoreBar(
+                label: String(localized: "assessment.score.umsetzung"),
+                value: animated ? umsetzungNorm : 0,
+                color: Color(hex: "#4CAF50"),
+                rawValue: result.rawUmsetzung
             )
         }
         .padding(20)

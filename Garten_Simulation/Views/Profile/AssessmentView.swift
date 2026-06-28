@@ -676,10 +676,10 @@ struct FinanceResultView: View {
 
     private var rarityTag: String {
         switch profile {
-        case .level1:    return "mystic"
-        case .level2: return "legendary"
-        case .level3:     return "epic"
-        case .level4:    return "plant"
+        case .verdraenger:    return "mystic"
+        case .prokrastinator: return "legendary"
+        case .impulsiver:     return "epic"
+        case .kontrolleur:    return "plant"
         }
     }
 
@@ -771,27 +771,43 @@ struct ScoreBreakdownCard: View {
     @EnvironmentObject var settings: SettingsStore
     @State private var animated = false
 
-    private var scoreNorm: Double {
-        let maxScore = 30.0
-        let minScore = -30.0
-        let range = maxScore - minScore
-        let shifted = Double(result.score) - minScore
-        return max(0, min(1, shifted / range))
+    // Display-Normalisierung über 15 Fragen (max/min aus Matrix)
+    private var kontrolleNorm: Double  { normalizedDisplay(result.rawKontrolle,    max: 30, min: -25) }
+    private var entscheidungNorm: Double { normalizedDisplay(result.rawEntscheidung, max: 23, min: -21) }
+    private var risikoNorm: Double     { normalizedDisplay(result.rawRisiko,         max: 20, min: -20) }
+
+    /// Skaliert einen Rohwert auf [0,1] für die visuelle Darstellung.
+    private func normalizedDisplay(_ value: Int, max: Int, min: Int) -> Double {
+        let range = Double(max - min)
+        let shifted = Double(value - min)
+        return shifted / range
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(String(localized: "assessment.result.breakdown", defaultValue: "Ergebnis Übersicht"))
+            Text(String(localized: "assessment.result.breakdown"))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .textCase(.uppercase)
                 .tracking(1)
 
             ScoreBar(
-                label: String(localized: "assessment.score.total", defaultValue: "Gesamtpunktzahl"),
-                value: animated ? scoreNorm : 0,
+                label: String(localized: "assessment.score.kontrolle"),
+                value: animated ? kontrolleNorm : 0,
                 color: Color(hex: "#4FC3F7"),
-                rawValue: result.score
+                rawValue: result.rawKontrolle
+            )
+            ScoreBar(
+                label: String(localized: "assessment.score.entscheidung"),
+                value: animated ? entscheidungNorm : 0,
+                color: Color(hex: "#81C784"),
+                rawValue: result.rawEntscheidung
+            )
+            ScoreBar(
+                label: String(localized: "assessment.score.risiko"),
+                value: animated ? risikoNorm : 0,
+                color: Color(hex: "#FFB74D"),
+                rawValue: result.rawRisiko
             )
         }
         .padding(20)
