@@ -108,6 +108,7 @@
 ## 2026-06-29 - Schlechte Gewohnheiten Drag-and-Drop
 - Die Darstellung von schlechten Gewohnheiten (Trash) auf der Startseite wurde von einer horizontalen Liste auf ein Grid-Layout (`LazyVGrid`) umgestellt, ähnlich wie bei den guten Gewohnheiten (`PflanzenCard`).
 - Ein neues `BadHabitCard` UI-Element wurde eingeführt.
-- Schlechte Gewohnheiten unterstützen nun Drag-and-Drop: Zieht man das `SchlechteGewohnheitKreuz` auf die Karte, öffnet sich das Sheet zum Melden eines Rückfalls (`TriggerSelectionSheet`).
-- Der graue Timer-Hintergrundkreis wurde bei `BadHabitCard` entfernt, da er dort keinen Zweck erfüllt.
-- Nach erfolgreichem Drag-and-Drop des Kreuzes wird nun eine rote Partikel-Animation (WeedPartikel) abgespielt, analog zur Wassertropfen-Animation bei den Pflanzen.
+- Schlechte Gewohnheiten unterstützen nun Drag-and-Drop: Zieht man das `SchlechteGewohnheitKreuz` auf die Karte, öffnet sich das Sheet zum Melden eines Rückfalls (`TriggerSelectionSheet`). Das Kreuz springt nach dem Loslassen sofort zurück und bleibt nutzbar.
+- Der graue Timer-Hintergrundkreis wurde bei `BadHabitCard` entfernt und der Icon-Button wurde Rot gefärbt.
+- Ein Zähler (rotes Badge) oben rechts an der BadHabitCard zeigt nun an, wie oft man am heutigen Tag bereits rückfällig wurde.
+- Die horizontale Breite der BadHabitCard-Elemente im Grid wurde exakt an die Breite der PflanzenCard-Elemente angepasst.
