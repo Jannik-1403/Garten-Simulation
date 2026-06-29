@@ -109,3 +109,5 @@
 - Die Darstellung von schlechten Gewohnheiten (Trash) auf der Startseite wurde von einer horizontalen Liste auf ein Grid-Layout (`LazyVGrid`) umgestellt, ähnlich wie bei den guten Gewohnheiten (`PflanzenCard`).
 - Ein neues `BadHabitCard` UI-Element wurde eingeführt.
 - Schlechte Gewohnheiten unterstützen nun Drag-and-Drop: Zieht man das `SchlechteGewohnheitKreuz` auf die Karte, öffnet sich das Sheet zum Melden eines Rückfalls (`TriggerSelectionSheet`).
+- Der graue Timer-Hintergrundkreis wurde bei `BadHabitCard` entfernt, da er dort keinen Zweck erfüllt.
+- Nach erfolgreichem Drag-and-Drop des Kreuzes wird nun eine rote Partikel-Animation (WeedPartikel) abgespielt, analog zur Wassertropfen-Animation bei den Pflanzen.

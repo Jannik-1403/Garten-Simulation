@@ -6,10 +6,17 @@ struct BadHabitCard: View {
     let onTap: () -> Void
 
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var gardenStore: GardenStore
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
     @State private var isVisualPressed = false
     @State private var position: CGPoint = .zero
     @State private var wobble: CGFloat = 1.0
+
+    private var executionsToday: Int {
+        guard let executions = gardenStore.badHabitExecutions[deko.id] else { return 0 }
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        return executions.filter { Calendar.current.startOfDay(for: $0.date) == startOfDay }.count
+    }
 
     var body: some View {
         ZStack {
@@ -66,6 +73,17 @@ struct BadHabitCard: View {
                             groesse: 110 * scale,
                             aktion: onTap
                         )
+
+                        if executionsToday > 0 {
+                            Text("\(executionsToday)")
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundColor(.white)
+                                .frame(width: 32, height: 32)
+                                .background(Color.red)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                                .offset(x: (110 * scale) / 2.5, y: -(110 * scale) / 2.5)
+                        }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(
@@ -135,4 +153,6 @@ struct BadHabitCard: View {
         onTap: {}
     )
     .background(Color.appHintergrund)
+    .environmentObject(GardenStore(isMock: true))
+    .environmentObject(SettingsStore())
 }

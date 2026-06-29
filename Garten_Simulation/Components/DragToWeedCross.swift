@@ -125,8 +125,10 @@ struct DragToWeedCross: View {
                     let h = p.groesse
                     let w = h
 
-                    Circle()
-                        .fill(Color.red)
+                    Image(systemName: "drop.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(Color.red)
                         .frame(width: w, height: h)
                         .position(x: plantLocal.x + dx, y: plantLocal.y + dy)
                         .opacity(p.opazitaet)
