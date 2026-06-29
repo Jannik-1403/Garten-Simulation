@@ -1,3 +1,7 @@
+### Routine UI & Syntax Fix
+- Ein Syntaxfehler in PflanzeDetailSheet (fehlende Klammer) wurde behoben.
+- Routinen zeigen nun an, wenn Gewohnheiten heute bereits erledigt wurden, und vergeben keine doppelten Belohnungen.
+
 
 ### Assessment "1% Marginal Gains" Updates
 - Sämtliche Texte für aufzubauende (Plus) und abzulegende (Minus) Gewohnheiten in den 24 Assessment-Profilen wurden nach der "1% Marginal Gains" Methode umgeschrieben.
@@ -126,3 +130,6 @@
 - **Fix (Bad Habits & Localization):** Im Garten-Inventar wird bei schlechten Gewohnheiten nun korrekterweise "Schlechte Gewohnheiten" als Untertitel statt "Dekoration" angezeigt.
 - **Fix (Bad Habits & Localization):** Der harte Text für das "Schlechte Gewohnheit"-Label in der `BadHabitCard` wurde in `Localizable.xcstrings` ausgelagert und in alle 11 Projektsprachen übersetzt.
 - **Fix (Localization):** Die rohen Schlüssel für Beschreibungen und Objektbeschreibungen bei "Unnötig online geshoppt" (`trash.online_shopping_app.desc` und `trash.online_shopping_app.obj_desc`) wurden repariert und in alle 11 Projektsprachen übersetzt.
+- Refactored Timer UI in PflanzeDetailSheet and RoutinenView to use a fullscreen edit view and added an 'Apply to all days' toggle button.
+- Syntax Error (Missing brace) in PflanzeDetailSheet behoben.
+- Compile-Warnung (var zu let) in RoutineOnboardingView behoben.
