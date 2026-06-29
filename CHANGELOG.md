@@ -141,3 +141,4 @@
 - UI: Info-Button und Erklärungssheet für 'Schlechte Gewohnheiten' im Shop entfernt.
 - **Export Selection Sheet:** Ein natives "Drei-Punkte-Menü" wurde in der oberen linken Ecke der Detailansichten (`PflanzeDetailSheet` & `InventoryItemDetailSheet`) eingeführt.
 - **Benutzerdefinierter Export:** Anwender können nun zwischen "Gesamte App", "Nur dieser Eintrag" und "Benutzerdefiniert" wählen. Bei benutzerdefiniert lassen sich spezifische Gewohnheiten und schlechte Gewohnheiten gezielt für den Export via Checkboxen aus- und abwählen.
+- UI: Info-Button und Erklärungssheet 'Schlechte Gewohnheiten' im Shop vollständig entfernt.

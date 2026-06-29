@@ -17,6 +17,7 @@ struct InventoryItemDetailSheet: View {
     @State private var noteToDeleteIndex: Int? = nil
     @State private var showTriggerSheet = false
     @State private var showMaxLivesAlert = false
+    @State private var showExportSheet = false
 
 
     private var powerUp: PowerUpItem? {
@@ -601,6 +602,26 @@ struct InventoryItemDetailSheet: View {
                 Button(String(localized: "button.ok"), role: .cancel) {}
             } message: {
                 Text(String(localized: "powerup.lives.full"))
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Menu {
+                        Button {
+                            showExportSheet = true
+                        } label: {
+                            Label(String(localized: "export.notes.menu.label", defaultValue: "Notizen exportieren"), systemImage: "square.and.arrow.up")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.black)
+                    }
+                }
+            }
+            .sheet(isPresented: $showExportSheet) {
+                ExportNotesSelectionSheet(currentHabitId: item.id)
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
             }
         } // NavigationStack
     }
