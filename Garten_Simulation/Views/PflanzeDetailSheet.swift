@@ -25,6 +25,7 @@ struct PflanzeDetailSheet: View {
     @State private var ausgewaehlterEffekt: PflanzenEffekt? = nil
     @State private var selectedTab: DetailTab = .uebersicht
     @State private var pfadBereit: Bool = false
+    @State private var showExportSheet = false
     
     @AppStorage("customRoutinesData") private var customRoutinesData: Data = Data()
     
@@ -381,6 +382,26 @@ struct PflanzeDetailSheet: View {
         .navigationBarTitleDisplayMode(.inline)
         .standardNavigationX()
         .background(Color(UIColor.secondarySystemBackground))
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Menu {
+                    Button {
+                        showExportSheet = true
+                    } label: {
+                        Label(String(localized: "export.notes.menu.label", defaultValue: "Notizen exportieren"), systemImage: "square.and.arrow.up")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundColor(.black)
+                }
+            }
+        }
+        .sheet(isPresented: $showExportSheet) {
+            ExportNotesSelectionSheet(currentHabitId: pflanze.id)
+                .environmentObject(gardenStore)
+                .environmentObject(settings)
+        }
         .onAppear {
             withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
                 pulsieren = true

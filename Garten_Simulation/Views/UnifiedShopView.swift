@@ -88,7 +88,7 @@ struct UnifiedShopView: View {
     @State private var shopCategory: ShopCategory = .gegenstande
     @State private var selectedHabitCategory: HabitCategory? = nil
     @State private var selectedDecorationCategory: DecorationCategory? = nil
-    @State private var showDecorationInfo = false
+
 
     enum ShopCategory: String, CaseIterable {
         case pflanzen    = "shop.tab.plants"
@@ -233,9 +233,7 @@ struct UnifiedShopView: View {
                                     Spacer().frame(height: 28)
 
                                     // Dekorationen
-                                    sectionHeader(String(localized: "shop.category.decorations")) {
-                                        showDecorationInfo = true
-                                    }
+                                    sectionHeader(String(localized: "shop.category.decorations"))
                                     
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         HStack(spacing: 8) {
@@ -379,10 +377,6 @@ struct UnifiedShopView: View {
                     .environmentObject(gardenStore)
                     .environmentObject(settings)
                     .environmentObject(powerUpStore)
-            }
-            .sheet(isPresented: $showDecorationInfo) {
-                DecorationInfoSheet()
-                    .environmentObject(settings)
             }
         }
     }
