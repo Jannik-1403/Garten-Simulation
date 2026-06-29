@@ -117,3 +117,4 @@
 
 ## 2026-06-29 - Routine Timer Edit
 - Routine Timer: 'Alle Tage gleich machen' Option über die drei Punkte (...) oben rechts im Timer-Edit-Screen hinzugefügt.
+- Routine-Abschluss überarbeitet: Gewohnheiten werden korrekt bewässert und bringen exakt die erwarteten Münzen/XP, ohne Timer-Boni.

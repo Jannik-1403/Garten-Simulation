@@ -95,22 +95,22 @@ struct RoutineSessionView: View {
                     Image("MorgenRoutine")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 160, height: 160)
+                        .frame(width: 250, height: 250)
                 } else if routine.titleKey == "routine.evening" {
                     Image("AbendRoutine")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 160, height: 160)
+                        .frame(width: 250, height: 250)
                 } else if routine.titleKey == "routine.gym" {
                     Image("GymRoutine")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 160, height: 160)
+                        .frame(width: 250, height: 250)
                 } else {
                     Image("allgemeineMorgenroutine")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 160, height: 160)
+                        .frame(width: 250, height: 250)
                 }
             }
             

@@ -123,13 +123,7 @@ struct RoutineOnboardingView: View {
                         aktion: {
                             var finalRoutines = routines.filter { selectedRoutineIDs.contains($0.id) }
                             
-                            // Automatisch die beim Onboarding erstellten Gewohnheiten zuweisen
-                            let allHabitIDs = gardenStore.pflanzen.map { $0.id }
-                            for i in 0..<finalRoutines.count {
-                                if finalRoutines[i].assignedHabitIDs.isEmpty {
-                                    finalRoutines[i].assignedHabitIDs = allHabitIDs
-                                }
-                            }
+                            // No automatic assignment of habits anymore
                             
                             savedRoutines = finalRoutines
                             
