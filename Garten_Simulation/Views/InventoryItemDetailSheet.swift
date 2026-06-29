@@ -382,6 +382,21 @@ struct InventoryItemDetailSheet: View {
         let notes = gardenStore.badHabitNotes[item.id] ?? []
 
         VStack(spacing: 8) {
+            // Notizen Header & Liste
+            HStack {
+                Text(String(localized: "plant.detail.notes_header", defaultValue: "Notizen"))
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                Spacer()
+                if let pdfURL = PDFExportManager.shared.generateAllNotesPDF(gardenStore: gardenStore, settings: settings) {
+                    ShareLink(item: pdfURL) {
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.blauPrimary)
+                    }
+                }
+            }
+            .padding(.bottom, 4)
+
             // Existing notes
             ForEach(notes.indices, id: \.self) { index in
                 BadHabitNoteRowView(

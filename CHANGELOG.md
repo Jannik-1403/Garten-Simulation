@@ -133,3 +133,8 @@
 - Refactored Timer UI in PflanzeDetailSheet and RoutinenView to use a fullscreen edit view and added an 'Apply to all days' toggle button.
 - Syntax Error (Missing brace) in PflanzeDetailSheet behoben.
 - Compile-Warnung (var zu let) in RoutineOnboardingView behoben.
+
+## PDF Notiz-Export Feature
+- `PDFExportManager.swift` hinzugefügt, um aus allen Notizen der App ein strukturiertes PDF zu generieren.
+- Ein globaler Export-Button wurde in der `PflanzeDetailSheet` und der `InventoryItemDetailSheet` (für Schlechte Gewohnheiten) neben dem "Notizen"-Header ergänzt.
+- Neue Lokalisierungsschlüssel für den PDF-Export in `Localizable.xcstrings` hinterlegt und in alle Sprachen übersetzt.
