@@ -869,7 +869,6 @@ struct TimerEditSheetView: View {
                     }
                 }
             }
-            }
             .fullScreenCover(isPresented: $showTimeline) {
                 PlantTimelineView()
                     .environmentObject(gardenStore)

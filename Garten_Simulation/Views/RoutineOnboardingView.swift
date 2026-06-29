@@ -61,15 +61,15 @@ struct RoutineOnboardingView: View {
                                         
                                         // Icon
                                         Group {
-                                            if routine.titleKey == "routine.morning" {
+                                            if routine.titleKey == "routine.morning" || routine.titleKey.lowercased() == "morgenroutine" {
                                                 Image("MorgenRoutine")
                                                     .resizable()
                                                     .scaledToFit()
-                                            } else if routine.titleKey == "routine.evening" {
+                                            } else if routine.titleKey == "routine.evening" || routine.titleKey.lowercased() == "abendroutine" {
                                                 Image("AbendRoutine")
                                                     .resizable()
                                                     .scaledToFit()
-                                            } else if routine.titleKey == "routine.gym" {
+                                            } else if routine.titleKey == "routine.gym" || routine.titleKey.lowercased() == "gymroutine" {
                                                 Image("GymRoutine")
                                                     .resizable()
                                                     .scaledToFit()
@@ -121,7 +121,7 @@ struct RoutineOnboardingView: View {
                         groesse: 60,
                         isRectangular: true,
                         aktion: {
-                            var finalRoutines = routines.filter { selectedRoutineIDs.contains($0.id) }
+                            let finalRoutines = routines.filter { selectedRoutineIDs.contains($0.id) }
                             
                             // No automatic assignment of habits anymore
                             
