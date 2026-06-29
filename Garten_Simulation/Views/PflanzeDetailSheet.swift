@@ -206,13 +206,6 @@ struct PflanzeDetailSheet: View {
                         Text(String(localized: "plant.detail.notes_header", defaultValue: "Notizen"))
                             .font(.system(size: 20, weight: .bold, design: .rounded))
                         Spacer()
-                        if let pdfURL = PDFExportManager.shared.generateAllNotesPDF(gardenStore: gardenStore, settings: settings) {
-                            ShareLink(item: pdfURL) {
-                                Image(systemName: "square.and.arrow.up")
-                                    .font(.system(size: 18, weight: .bold))
-                                    .foregroundColor(.blauPrimary)
-                            }
-                        }
                     }
                     .padding(.horizontal, 24)
                     .padding(.bottom, 8)
@@ -1534,4 +1527,263 @@ struct TimerDayFullscreenEditView: View {
             }
         }
     }
+}
+
+// MARK: - Export Notes Selection
+struct ExportNotesSelectionSheet: View {
+    let currentHabitId: String?
+    @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
+    @Environment(\.dismiss) private var dismiss
+    
+    enum SelectionMode {
+        case all
+        case current
+        case custom
+    }
+    
+    @State private var selectionMode: SelectionMode = .current
+    @State private var selectedPlantIds: Set<String> = []
+    @State private var selectedBadHabitIds: Set<String> = []
+    
+    // For sharing
+    @State private var generatedPDFUrl: URL? = nil
+    @State private var isSharing = false
+    
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color.appHintergrund.ignoresSafeArea()
+                
+                VStack(spacing: 24) {
+                    // Header
+                    VStack(spacing: 8) {
+                        Text(String(localized: "export.selection.title", defaultValue: "Notizen exportieren"))
+                            .font(.system(size: 26, weight: .black, design: .rounded))
+                        
+                        Text(String(localized: "export.selection.subtitle", defaultValue: "Wähle, welche Notizen exportiert werden sollen."))
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding(.top, 24)
+                    
+                    // Options
+                    VStack(spacing: 12) {
+                        if currentHabitId != nil {
+                            optionRow(
+                                title: String(localized: "export.selection.only_this", defaultValue: "Nur diese Notizen"),
+                                mode: .current
+                            )
+                        }
+                        
+                        optionRow(
+                            title: String(localized: "export.selection.all", defaultValue: "Alle Notizen"),
+                            mode: .all
+                        )
+                        
+                        optionRow(
+                            title: String(localized: "export.selection.custom", defaultValue: "Auswahl..."),
+                            mode: .custom
+                        )
+                    }
+                    .padding(.horizontal, 24)
+                    
+                    // Custom Selection List
+                    if selectionMode == .custom {
+                        ScrollView {
+                            VStack(alignment: .leading, spacing: 16) {
+                                let goodHabits = gardenStore.pflanzen.filter { !$0.notizen.isEmpty }
+                                if !goodHabits.isEmpty {
+                                    Text(String(localized: "pdf.notes.good_habits", defaultValue: "Gute Gewohnheiten"))
+                                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                                        .padding(.horizontal, 4)
+                                    
+                                    ForEach(goodHabits) { plant in
+                                        let name = settings.showHabitInsteadOfName ? NSLocalizedString(plant.displayedHabitName, comment: "") : NSLocalizedString(plant.name, comment: "")
+                                        toggleRow(
+                                            title: "🌱 \(name)",
+                                            isSelected: selectedPlantIds.contains(plant.id),
+                                            action: {
+                                                if selectedPlantIds.contains(plant.id) {
+                                                    selectedPlantIds.remove(plant.id)
+                                                } else {
+                                                    selectedPlantIds.insert(plant.id)
+                                                }
+                                            }
+                                        )
+                                    }
+                                }
+                                
+                                let badHabitsWithNotes = gardenStore.badHabitNotes.filter { !$0.value.isEmpty }.map { $0.key }
+                                if !badHabitsWithNotes.isEmpty {
+                                    Text(String(localized: "pdf.notes.bad_habits", defaultValue: "Schlechte Gewohnheiten"))
+                                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                                        .padding(.horizontal, 4)
+                                        .padding(.top, 12)
+                                    
+                                    ForEach(badHabitsWithNotes, id: \.self) { id in
+                                        toggleRow(
+                                            title: "⚠️ \(getBadHabitName(id: id))",
+                                            isSelected: selectedBadHabitIds.contains(id),
+                                            action: {
+                                                if selectedBadHabitIds.contains(id) {
+                                                    selectedBadHabitIds.remove(id)
+                                                } else {
+                                                    selectedBadHabitIds.insert(id)
+                                                }
+                                            }
+                                        )
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 32)
+                        }
+                    } else {
+                        Spacer()
+                    }
+                    
+                    // Export Button
+                    Button {
+                        generateAndShare()
+                    } label: {
+                        Text(String(localized: "export.selection.generate", defaultValue: "PDF Exportieren"))
+                    }
+                    .buttonStyle(DuolingoButtonStyle(
+                        size: .large,
+                        fillWidth: true,
+                        backgroundColor: .blauPrimary,
+                        shadowColor: .blauPrimary.darker()
+                    ))
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 24)
+                    .disabled(selectionMode == .custom && selectedPlantIds.isEmpty && selectedBadHabitIds.isEmpty)
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(String(localized: "button.cancel", defaultValue: "Abbrechen")) {
+                        dismiss()
+                    }
+                }
+            }
+            .onAppear {
+                if currentHabitId == nil {
+                    selectionMode = .all
+                }
+            }
+            .sheet(isPresented: $isSharing) {
+                if let url = generatedPDFUrl {
+                    PDFExportShareSheet(activityItems: [url])
+                }
+            }
+        }
+    }
+    
+    private func optionRow(title: String, mode: SelectionMode) -> some View {
+        Button {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                selectionMode = mode
+            }
+        } label: {
+            HStack {
+                Text(title)
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundColor(selectionMode == mode ? .white : .primary)
+                Spacer()
+                if selectionMode == mode {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                } else {
+                    Image(systemName: "circle")
+                        .foregroundColor(.secondary)
+                        .font(.system(size: 20))
+                }
+            }
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(selectionMode == mode ? Color.blauPrimary : Color(.systemBackground))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .stroke(selectionMode == mode ? Color.blauPrimary : Color.gray.opacity(0.2), lineWidth: 1)
+            )
+        }
+    }
+    
+    private func toggleRow(title: String, isSelected: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack {
+                Text(title)
+                    .font(.system(size: 15, weight: .medium, design: .rounded))
+                    .foregroundColor(.primary)
+                Spacer()
+                Image(systemName: isSelected ? "checkmark.square.fill" : "square")
+                    .foregroundColor(isSelected ? .blauPrimary : .secondary)
+                    .font(.system(size: 20))
+            }
+            .padding(12)
+            .background(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .fill(Color(.systemBackground))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .stroke(isSelected ? Color.blauPrimary.opacity(0.5) : Color.gray.opacity(0.15), lineWidth: 1)
+            )
+        }
+    }
+    
+    private func getBadHabitName(id: String) -> String {
+        if let badHabit = GameDatabase.allDecorations.first(where: { $0.id == id }) {
+            let key = settings.showHabitInsteadOfName ? badHabit.habitNameKey : badHabit.objectNameKey
+            return NSLocalizedString(key, comment: "")
+        }
+        return NSLocalizedString(id, comment: "")
+    }
+    
+    private func generateAndShare() {
+        var pIds: Set<String>? = nil
+        var bIds: Set<String>? = nil
+        
+        switch selectionMode {
+        case .all:
+            pIds = nil
+            bIds = nil
+        case .current:
+            if let cid = currentHabitId {
+                if gardenStore.pflanzen.contains(where: { $0.id == cid }) {
+                    pIds = [cid]
+                    bIds = []
+                } else {
+                    pIds = []
+                    bIds = [cid]
+                }
+            }
+        case .custom:
+            pIds = selectedPlantIds
+            bIds = selectedBadHabitIds
+        }
+        
+        if let url = PDFExportManager.shared.generatePDF(for: pIds, badHabitIds: bIds, gardenStore: gardenStore, settings: settings) {
+            generatedPDFUrl = url
+            isSharing = true
+        }
+    }
+}
+
+struct PDFExportShareSheet: UIViewControllerRepresentable {
+    var activityItems: [Any]
+    var applicationActivities: [UIActivity]? = nil
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }

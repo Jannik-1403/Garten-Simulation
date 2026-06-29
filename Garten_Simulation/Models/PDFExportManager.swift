@@ -5,7 +5,7 @@ import PDFKit
 class PDFExportManager {
     static let shared = PDFExportManager()
 
-    func generateAllNotesPDF(gardenStore: GardenStore, settings: SettingsStore) -> URL? {
+    func generatePDF(for plantIds: Set<String>? = nil, badHabitIds: Set<String>? = nil, gardenStore: GardenStore, settings: SettingsStore) -> URL? {
         let pdfMetaData = [
             kCGPDFContextCreator: "Garten Simulation",
             kCGPDFContextAuthor: "User",
@@ -58,7 +58,11 @@ class PDFExportManager {
             drawText(NSLocalizedString("pdf.notes.title", comment: ""), attributes: titleAttributes, yPos: &currentY, addSpace: 30)
             
             // Gute Gewohnheiten
-            let goodHabits = gardenStore.pflanzen.filter { !$0.notizen.isEmpty }
+            var goodHabits = gardenStore.pflanzen.filter { !$0.notizen.isEmpty }
+            if let pIds = plantIds {
+                goodHabits = goodHabits.filter { pIds.contains($0.id) }
+            }
+            
             if !goodHabits.isEmpty {
                 drawText(NSLocalizedString("pdf.notes.good_habits", comment: ""), attributes: headerAttributes, yPos: &currentY, addSpace: 15)
                 for plant in goodHabits {
@@ -72,12 +76,16 @@ class PDFExportManager {
             }
             
             // Schlechte Gewohnheiten
-            let badHabitNotes = gardenStore.badHabitNotes.filter { !$0.value.isEmpty }
-            if !badHabitNotes.isEmpty {
+            var bHabitNotes = gardenStore.badHabitNotes.filter { !$0.value.isEmpty }
+            if let bIds = badHabitIds {
+                bHabitNotes = bHabitNotes.filter { bIds.contains($0.key) }
+            }
+            
+            if !bHabitNotes.isEmpty {
                 currentY += 20
                 drawText(NSLocalizedString("pdf.notes.bad_habits", comment: ""), attributes: headerAttributes, yPos: &currentY, addSpace: 15)
                 
-                for (id, notes) in badHabitNotes {
+                for (id, notes) in bHabitNotes {
                     let itemNameKey: String
                     if let badHabit = GameDatabase.allDecorations.first(where: { $0.id == id }) {
                         itemNameKey = settings.showHabitInsteadOfName ? badHabit.habitNameKey : badHabit.objectNameKey

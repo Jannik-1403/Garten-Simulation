@@ -138,3 +138,4 @@
 - `PDFExportManager.swift` hinzugefügt, um aus allen Notizen der App ein strukturiertes PDF zu generieren.
 - Ein globaler Export-Button wurde in der `PflanzeDetailSheet` und der `InventoryItemDetailSheet` (für Schlechte Gewohnheiten) neben dem "Notizen"-Header ergänzt.
 - Neue Lokalisierungsschlüssel für den PDF-Export in `Localizable.xcstrings` hinterlegt und in alle Sprachen übersetzt.
+- UI: Info-Button und Erklärungssheet für 'Schlechte Gewohnheiten' im Shop entfernt.
