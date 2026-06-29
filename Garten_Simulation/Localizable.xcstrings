@@ -68582,6 +68582,17 @@
         }
       }
     },
+    "export.notes.menu.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Notizen exportieren"
+          }
+        }
+      }
+    },
     "export.selection.all" : {
       "comment" : "A label for the export option to export all notes.",
       "extractionState" : "extracted_with_value",

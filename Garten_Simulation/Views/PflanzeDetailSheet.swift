@@ -391,9 +391,24 @@ struct PflanzeDetailSheet: View {
                         Label(String(localized: "export.notes.menu.label", defaultValue: "Notizen exportieren"), systemImage: "square.and.arrow.up")
                     }
                 } label: {
-                    Image(systemName: "ellipsis.circle")
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(.black)
+                    ZStack {
+                        // Shadow layer
+                        Circle()
+                            .fill(Color(hex: "#C7C7CC"))
+                            .frame(width: 36, height: 36)
+                        // Top layer
+                        Circle()
+                            .fill(Color.white)
+                            .frame(width: 36, height: 36)
+                            .offset(y: -2.5)
+                            .overlay(
+                                Image(systemName: "ellipsis")
+                                    .font(.system(size: 14, weight: .bold))
+                                    .foregroundColor(.black)
+                                    .offset(y: -2.5)
+                            )
+                    }
+                    .frame(width: 36, height: 36)
                 }
             }
         }
