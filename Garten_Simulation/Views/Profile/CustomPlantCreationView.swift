@@ -20,7 +20,9 @@ struct CustomPlantCreationView: View {
             return Array(Set(GameDatabase.allDecorations.map { $0.sfSymbol })).sorted()
         } else {
             // Get all unique plant asset symbols/names from the database
-            return Array(Set(GameDatabase.allPlants.compactMap { $0.assetName ?? $0.symbolName })).sorted()
+            return Array(Set(GameDatabase.allPlants.compactMap { $0.assetName ?? $0.symbolName }))
+                .filter { $0 != "Samen" }
+                .sorted()
         }
     }
     
@@ -137,7 +139,7 @@ struct CustomPlantCreationView: View {
                                     Button {
                                         FeedbackManager.shared.playTap()
                                         isNegative = true
-                                        selectedColor = "orange"
+                                        selectedColor = "red"
                                         // Reset to first decoration/trash icon
                                         if let firstIcon = GameDatabase.allDecorations.map({ $0.sfSymbol }).sorted().first {
                                             selectedIcon = firstIcon

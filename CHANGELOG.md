@@ -112,3 +112,8 @@
 - Der graue Timer-Hintergrundkreis wurde bei `BadHabitCard` entfernt und der Icon-Button wurde Rot gefärbt.
 - Ein Zähler (rotes Badge) oben rechts an der BadHabitCard zeigt nun an, wie oft man am heutigen Tag bereits rückfällig wurde.
 - Die horizontale Breite der BadHabitCard-Elemente im Grid wurde exakt an die Breite der PflanzenCard-Elemente angepasst.
+
+- Updated coin amounts in shop translations to match actual received values (500, 1800, 3500) for all languages.
+
+## 2026-06-29 - Routine Timer Edit
+- Routine Timer: 'Alle Tage gleich machen' Option über die drei Punkte (...) oben rechts im Timer-Edit-Screen hinzugefügt.

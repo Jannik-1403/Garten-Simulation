@@ -305,25 +305,15 @@ struct RoutineSessionView: View {
         if currentHabitIndex < habits.count {
             let habit = habits[currentHabitIndex]
             
-            // Calculate what giessen will award and add to totals
-            let baseCoins = Int(Double(GameConstants.coinsProGiessen) * gardenStore.coinMultiplikator(for: habit))
-            let xp = Int(Double(habit.xpPerCompletion) * gardenStore.xpMultiplikator(for: habit))
+            let wasWatered = habit.istBewässert
             
-            totalCoins += baseCoins
-            totalXP += xp
+            // Actually water the plant (this adds coins and XP to the gardenStore globally)
+            gardenStore.giessen(pflanze: habit, powerUpStore: powerUpStore)
             
-            // Manually add XP without "watering" the plant
-            habit.currentXP += xp
-            
-            // Log XP history
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            let key = formatter.string(from: Date())
-            habit.xpHistory[key] = (habit.xpHistory[key] ?? 0) + xp
-            habit.totalCoinsEarned += baseCoins
-            
-            gardenStore.xpHinzufuegen(amount: xp)
-            gardenStore.savePlants()
+            if !wasWatered {
+                totalCoins += gardenStore.letzteGiessCoins
+                totalXP += gardenStore.letzteGiessXP
+            }
             
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.success)
@@ -346,13 +336,9 @@ struct RoutineSessionView: View {
         
         let durationMins = max(1, elapsedSeconds / 60)
         
-        // Add duration-based bonus coins, precisely like requested (Focus-like but duration-based)
-        // Give coinsProGiessen per minute of duration as a bonus.
-        let durationBonusCoins = durationMins * GameConstants.coinsProGiessen
-        totalCoins += durationBonusCoins
-        
-        // Ensure ALL accumulated coins (base + duration bonus) are added to the shop
-        gardenStore.coinsGutschreiben(amount: totalCoins, beschreibung: "Routine Abschluss")
+        // Die XP und Münzen basieren rein auf den abgeschlossenen Gewohnheiten
+        // (es gibt keinen zusätzlichen Timer-Bonus mehr).
+        // gardenStore.giessen hat die Coins und XP bereits global hinzugefügt.
         
         // Log as a focus session so it appears in stats
         gardenStore.focusSessions.append(FocusSessionLog(date: Date(), durationMinutes: durationMins, isCompleted: true))

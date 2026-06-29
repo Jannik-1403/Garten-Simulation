@@ -747,6 +747,18 @@ struct RoutineTimerEditSheetView: View {
                             .foregroundStyle(.secondary)
                     }
                     Spacer()
+                    
+                    Menu {
+                        Button {
+                            applyToAllDays()
+                        } label: {
+                            Label(String(localized: String.LocalizationValue("routine.timer.apply_all"), locale: Locale(identifier: settings.appLanguage)), systemImage: "doc.on.doc")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .font(.system(size: 20))
+                            .foregroundStyle(.primary)
+                    }
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 16)
@@ -982,6 +994,22 @@ struct RoutineTimerEditSheetView: View {
         formatter.timeStyle = .short
         formatter.dateStyle = .none
         return formatter.string(from: date)
+    }
+    
+    private func applyToAllDays() {
+        let referenceDayIndex = expandedDay != nil ? dayIndex(for: expandedDay!) : 0
+        let refTime = schedule.weekdays[referenceDayIndex].time
+        let refMsg = schedule.weekdays[referenceDayIndex].customMessage
+        let refMode = schedule.weekdays[referenceDayIndex].repeatMode
+        
+        withAnimation {
+            for i in 0..<schedule.weekdays.count {
+                schedule.weekdays[i].isEnabled = true
+                schedule.weekdays[i].time = refTime
+                schedule.weekdays[i].customMessage = refMsg
+                schedule.weekdays[i].repeatMode = refMode
+            }
+        }
     }
 }
 
