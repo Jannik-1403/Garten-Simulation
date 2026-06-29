@@ -298,7 +298,7 @@ struct PflanzeDetailSheet: View {
                                     .foregroundStyle(.white.opacity(0.12))
                                     .offset(x: 35, y: 15)
                             }
-                            Text(String(localized: "Fokus-Session starten")).textCase(.uppercase)
+                            Text(String(localized: "focus.session.start", defaultValue: "Fokus-Session starten")).textCase(.uppercase)
                                 .font(.system(size: 16, weight: .black, design: .rounded))
                                 .foregroundStyle(.white)
                         }

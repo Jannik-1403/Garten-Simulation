@@ -165,7 +165,7 @@ struct FocusSessionView: View {
                 dismiss()
             }
         } message: {
-            Text(String(localized: "Du hast die App zu lange verlassen. Dein Fokus-Timer wurde abgebrochen."))
+            Text(String(localized: "focus.session.cancelled.app_left", defaultValue: "Du hast die App zu lange verlassen. Dein Fokus-Timer wurde abgebrochen."))
         }
         .alert(String(localized: "alert.strict_mode.title"), isPresented: $showStrictModeAlert) {
             Button(String(localized: "alert.strict_mode.no"), role: .destructive) {
@@ -385,7 +385,7 @@ struct FocusSessionView: View {
             VStack(spacing: 12) {
                 Text(String(localized: "Geschafft!"))
                     .font(.system(size: 32, weight: .black, design: .rounded))
-                Text(String(format: String(localized: "Du warst %lld Minuten lang extrem fokussiert. Die XP werden auf alle deine Pflanzen aufgeteilt!"), selectedMinutes))
+                Text(String(format: String(localized: "focus.session.completed.xp_shared", defaultValue: "Du warst %lld Minuten lang extrem fokussiert. Die XP werden auf alle deine Pflanzen aufgeteilt!"), selectedMinutes))
                     .font(.system(size: 16, weight: .medium, design: .rounded))
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.secondary)

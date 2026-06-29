@@ -70,7 +70,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                             let hour   = calendar.component(.hour,   from: weekday.time)
                             let minute = calendar.component(.minute, from: weekday.time)
                             let title = String(localized: "Zeit für Routine: \(routineName)")
-                            let body = weekday.customMessage ?? String(localized: "Starte jetzt deine Routine und verdiene Fokus-Punkte!")
+                            let body = weekday.customMessage ?? String(localized: "notification.routine.start", defaultValue: "Starte jetzt deine Routine und verdiene Fokus-Punkte!")
                             let repeats = weekday.repeatMode != .once
                             
                             scheduleWeekday(
@@ -87,7 +87,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                         let hour   = calendar.component(.hour,   from: reminderTime)
                         let minute = calendar.component(.minute, from: reminderTime)
                         let title = String(localized: "Zeit für Routine: \(routineName)")
-                        let body = String(localized: "Starte jetzt deine Routine und verdiene Fokus-Punkte!")
+                        let body = String(localized: "notification.routine.start", defaultValue: "Starte jetzt deine Routine und verdiene Fokus-Punkte!")
                         
                         scheduleRepeating(
                             id: "routine-\(routine.id)",

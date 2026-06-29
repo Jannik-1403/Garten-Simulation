@@ -49,7 +49,7 @@ struct SubtaskInputField: View {
             Image(systemName: "plus")
                 .foregroundStyle(.secondary)
                 .padding(.leading, 8)
-            TextField(String(localized: "Unterziel hinzufügen..."), text: $text)
+            TextField(String(localized: "focus.session.subgoal.add", defaultValue: "Unterziel hinzufügen..."), text: $text)
                 .font(.system(size: 14, weight: .medium, design: .rounded))
                 .submitLabel(.done)
                 .onSubmit {

@@ -323,7 +323,7 @@ struct ShopItemDetailView: View {
         } message: {
             Text(String(format: String(localized: "shop.need_more_coins"), payload.price - gardenStore.coins))
         }
-        .alert("Ultimatives Luxus-Item!", isPresented: $showMysticConfirmation) {
+        .alert(String(localized: "shop.mystic.confirmation.title", defaultValue: "Ultimatives Luxus-Item!"), isPresented: $showMysticConfirmation) {
             Button(String(localized: "common.cancel"), role: .cancel) { FeedbackManager.shared.playTap() }
             Button(String(format: String(localized: "shop.buy_for_coins_format"), "5.000")) {
                 FeedbackManager.shared.playTap()
