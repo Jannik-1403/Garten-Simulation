@@ -99,3 +99,13 @@
 - Behoben: Xcode Build-Fehler aufgrund von ungültigen Format-Specifiern (`%-S`, `%-D`, `%-F`, etc.) in `Localizable.xcstrings` repariert, die Abstürze bei der Swift-Typgenerierung verursacht haben.
 - Mismatched positional format arguments (z.B. `%d` und `%@`) repariert, sodass Lokalisierungen mit re-geordneten Parametern sauber kompilieren (z.B. `%1$@`).
 - Alle Unit- und UI-Tests durchlaufen wieder erfolgreich.
+- Fehlerhafte, rohe Lokalisierungsschlüssel wurden im Code durch standardisierte Schlüssel ersetzt (z.B. `focus.session.start`).
+- Ungenutzte Rohtexte wurden aus dem `Localizable.xcstrings` Katalog bereinigt.
+- Fehlende Übersetzungen (besonders im Türkischen für Sonderzeichen und Platzhalter) wurden automatisiert ergänzt, um 100% Übersetzungsabdeckung zu gewährleisten.
+- Alle ausstehenden und fehlenden String-Einträge in sämtlichen 11 Sprachen wurden vollautomatisiert aufgefüllt. Es wurden gezielt vorhandene Übersetzungen aus `AppStrings.swift` verwendet. 
+- Platzhalter (wie `%lld` oder leere Zeichen) wurden in die jeweilige Übersetzung übernommen, sodass die Xcode-Lokalisierungsanzeige jetzt für alle Sprachen zuverlässig bei 100% steht.
+
+## 2026-06-29 - Schlechte Gewohnheiten Drag-and-Drop
+- Die Darstellung von schlechten Gewohnheiten (Trash) auf der Startseite wurde von einer horizontalen Liste auf ein Grid-Layout (`LazyVGrid`) umgestellt, ähnlich wie bei den guten Gewohnheiten (`PflanzenCard`).
+- Ein neues `BadHabitCard` UI-Element wurde eingeführt.
+- Schlechte Gewohnheiten unterstützen nun Drag-and-Drop: Zieht man das `SchlechteGewohnheitKreuz` auf die Karte, öffnet sich das Sheet zum Melden eines Rückfalls (`TriggerSelectionSheet`).

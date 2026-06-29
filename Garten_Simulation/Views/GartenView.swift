@@ -38,6 +38,9 @@ struct GartenView: View {
     @State private var timerAktuell = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var cardPositions: [CardPositionData] = []
     
+    @State private var showTriggerSheet = false
+    @State private var triggerSheetHabitId = ""
+    
     // Fly-in Animationen
     @State private var flyingCoins: [FlyingCoinItem] = []
     @State private var coinHeaderPosition: CGPoint = .zero
@@ -155,27 +158,26 @@ struct GartenView: View {
                                             .foregroundStyle(.primary)
                                             .padding(.horizontal, 8)
 
-                                        ScrollView(.horizontal, showsIndicators: false) {
-                                            HStack(spacing: 16) {
-                                                ForEach(gardenStore.placedDecorations) { deko in
-                                                    Item3DButton(
-                                                        icon: deko.sfSymbol,
-                                                        farbe: .orangePrimary,
-                                                        sekundaerFarbe: .orangeSecondary,
-                                                        groesse: 90
-                                                    ) {
+                                        LazyVGrid(columns: columns, spacing: 30) {
+                                            ForEach(gardenStore.placedDecorations) { deko in
+                                                BadHabitCard(
+                                                    deko: deko,
+                                                    onCrossApplied: {
+                                                        triggerSheetHabitId = deko.id
+                                                        showTriggerSheet = true
+                                                    },
+                                                    onTap: {
                                                         ausgewaehltesItem = ShopDetailPayload.from(decoration: deko)
                                                     }
-                                                    .tourAnchor(.badHabits, condition: deko.id == gardenStore.placedDecorations.first?.id)
-                                                }
+                                                )
+                                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                                                .tourAnchor(.badHabits, condition: deko.id == gardenStore.placedDecorations.first?.id)
                                             }
-                                            .padding(.horizontal, 8)
-                                            .padding(.top, 8)
-                                            .padding(.bottom, 12)
                                         }
+                                        .padding(.horizontal, 8)
                                     }
                                     .padding(.top, 24)
-                                    .padding(.horizontal, 16)
+                                    .padding(.horizontal, 8)
                                     .id(TourStep.badHabits)
                                 }
                             }
@@ -428,6 +430,14 @@ struct GartenView: View {
             .presentationDetents([.large])
             .presentationDragIndicator(.visible)
             .presentationCornerRadius(32)
+        }
+        .sheet(isPresented: $showTriggerSheet) {
+            TriggerSelectionSheet(habitId: triggerSheetHabitId)
+                .environmentObject(gardenStore)
+                .environmentObject(settings)
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+                .presentationCornerRadius(32)
         }
         .fullScreenCover(isPresented: $zeigeUnkrautDetail) {
             WeedDetailView()
