@@ -91,17 +91,17 @@ struct RoutineSessionView: View {
             Spacer()
             
             ZStack {
-                if routine.titleKey == "routine.morning" {
+                if routine.titleKey == "routine.morning" || routine.titleKey.lowercased() == "morgenroutine" {
                     Image("MorgenRoutine")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 250, height: 250)
-                } else if routine.titleKey == "routine.evening" {
+                } else if routine.titleKey == "routine.evening" || routine.titleKey.lowercased() == "abendroutine" {
                     Image("AbendRoutine")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 250, height: 250)
-                } else if routine.titleKey == "routine.gym" {
+                } else if routine.titleKey == "routine.gym" || routine.titleKey.lowercased() == "gymroutine" {
                     Image("GymRoutine")
                         .resizable()
                         .scaledToFit()
@@ -120,11 +120,19 @@ struct RoutineSessionView: View {
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                 
-                Text(String(localized: "routine.session.ready.subtitle", defaultValue: "\(habits.count) Gewohnheiten. Bereit?"))
-                    .font(.system(size: 18, weight: .medium, design: .rounded))
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 32)
+                if habits.count == 1 {
+                    Text(String(localized: "routine.session.ready.subtitle.singular", defaultValue: "1 Gewohnheit. Bereit?"))
+                        .font(.system(size: 18, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                } else {
+                    Text(String(localized: "routine.session.ready.subtitle", defaultValue: "\(habits.count) Gewohnheiten. Bereit?"))
+                        .font(.system(size: 18, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                }
             }
             
             Spacer()

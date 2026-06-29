@@ -365,10 +365,7 @@ struct RoutineExpandableSection: View {
                 }
             ) {
                 HStack(spacing: 16) {
-                    Image(systemName: icon)
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundStyle(.white)
-                        .frame(width: 32)
+                    // No icon on the left anymore
                     
                     Text(String(localized: String.LocalizationValue(titleKey), locale: Locale(identifier: settings.appLanguage)))
                         .font(.system(size: 18, weight: .bold, design: .rounded))

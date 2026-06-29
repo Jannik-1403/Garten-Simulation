@@ -673,14 +673,13 @@ struct TimerEditSheetView: View {
     @State private var schedule: ReminderSchedule = ReminderSchedule.defaultSchedule(time: Date())
     
     // UI States
-    @State private var expandedDay: Int? = nil
+    @State private var editingDayIndex: Int? = nil
+    @State private var isAllDaysEqual: Bool = false
     @State private var isLinkingNotes: Bool = false
     @State private var selectedDaysForLinking: Set<Int> = []
     @State private var selectedNoteForLinking: String? = nil
     @State private var showTimeline = false
-    
-    // Focus
-    @FocusState private var focusedDay: Int?
+
 
     let daysKeys = ["days.monday", "days.tuesday", "days.wednesday", "days.thursday", "days.friday", "days.saturday", "days.sunday"]
     
@@ -735,8 +734,12 @@ struct TimerEditSheetView: View {
                 // Days List
                 ScrollView {
                     VStack(spacing: 16) {
-                        ForEach(1...7, id: \.self) { day in
-                            dayRow(for: day)
+                        if isAllDaysEqual {
+                            dayRow(for: 1, isSingleRow: true)
+                        } else {
+                            ForEach(1...7, id: \.self) { day in
+                                dayRow(for: day, isSingleRow: false)
+                            }
                         }
                     }
                     .padding(.horizontal, 24)
@@ -747,7 +750,6 @@ struct TimerEditSheetView: View {
             }
             .background(Color.appHintergrund.ignoresSafeArea())
             .navigationBarBackButtonHidden(true)
-            .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     if isLinkingNotes {
                         Button {
@@ -765,12 +767,6 @@ struct TimerEditSheetView: View {
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                         }
                         .disabled(selectedDaysForLinking.isEmpty)
-                    } else if focusedDay != nil {
-                        Button {
-                            focusedDay = nil
-                        } label: {
-                            Image(systemName: "keyboard.chevron.compact.down")
-                        }
                     } else {
                         Button {
                             autoSave()
@@ -797,6 +793,21 @@ struct TimerEditSheetView: View {
                         }
                     } else {
                         Menu {
+                            Button {
+                                withAnimation {
+                                    isAllDaysEqual.toggle()
+                                    if isAllDaysEqual {
+                                        applyToAllDays()
+                                    }
+                                }
+                            } label: {
+                                if isAllDaysEqual {
+                                    Label(String(localized: "routine.timer.edit_individual", defaultValue: "Tage einzeln bearbeiten"), systemImage: "list.bullet")
+                                } else {
+                                    Label(String(localized: "routine.timer.apply_all"), systemImage: "doc.on.doc")
+                                }
+                            }
+                            
                             // 1. Notizen verknüpfen Sub-Menu
                             Menu {
                                 if pflanze.notizen.isEmpty {
@@ -867,6 +878,32 @@ struct TimerEditSheetView: View {
                     .environmentObject(streakStore)
             }
         }
+        .fullScreenCover(isPresented: Binding(
+            get: { editingDayIndex != nil },
+            set: { if !$0 { editingDayIndex = nil } }
+        )) {
+            if let index = editingDayIndex {
+                let isSingleRow = isAllDaysEqual
+                TimerDayFullscreenEditView(
+                    title: isSingleRow ? String(localized: "timer.notification.title") : NSLocalizedString(daysKeys[schedule.weekdays[index].weekday - 1], comment: ""),
+                    exampleMessageName: pflanzName,
+                    time: $schedule.weekdays[index].time,
+                    customMessage: $schedule.weekdays[index].customMessage,
+                    repeatMode: $schedule.weekdays[index].repeatMode,
+                    isEnabled: $schedule.weekdays[index].isEnabled,
+                    onDisable: {
+                        if isSingleRow {
+                            applyToAllDays()
+                        }
+                    }
+                )
+                .onDisappear {
+                    if isSingleRow {
+                        applyToAllDays()
+                    }
+                }
+            }
+        }
         .onAppear {
             if let existing = pflanze.reminderSchedule {
                 schedule = existing
@@ -878,6 +915,14 @@ struct TimerEditSheetView: View {
                 components.minute = 0
                 let defaultTime = Calendar.current.date(from: components) ?? Date()
                 schedule = ReminderSchedule.defaultSchedule(time: defaultTime)
+            }
+            
+            let ref = schedule.weekdays[0]
+            isAllDaysEqual = schedule.weekdays.allSatisfy { 
+                $0.time == ref.time && 
+                $0.customMessage == ref.customMessage && 
+                $0.repeatMode == ref.repeatMode &&
+                $0.isEnabled == ref.isEnabled
             }
         }
     }
@@ -897,12 +942,27 @@ struct TimerEditSheetView: View {
         return true
     }
     
+    private func applyToAllDays() {
+        let refTime = schedule.weekdays[0].time
+        let refMsg = schedule.weekdays[0].customMessage
+        let refMode = schedule.weekdays[0].repeatMode
+        let refEnabled = schedule.weekdays[0].isEnabled
+        
+        withAnimation {
+            for i in 0..<schedule.weekdays.count {
+                schedule.weekdays[i].isEnabled = refEnabled
+                schedule.weekdays[i].time = refTime
+                schedule.weekdays[i].customMessage = refMsg
+                schedule.weekdays[i].repeatMode = refMode
+            }
+        }
+    }
+    
     @ViewBuilder
-    private func dayRow(for day: Int) -> some View {
+    private func dayRow(for day: Int, isSingleRow: Bool = false) -> some View {
         let index = dayIndex(for: day)
         let isEnabled = schedule.weekdays[index].isEnabled
         let isOverridden = routineOverrides(day: day)
-        let isExpanded = expandedDay == day && !isLinkingNotes && !isOverridden
         let isSelectedForLinking = selectedDaysForLinking.contains(day)
         
         VStack(spacing: 12) {
@@ -920,18 +980,15 @@ struct TimerEditSheetView: View {
                         }
                     }
                 } else {
-                    withAnimation(.spring(response: 0.4, dampingFraction: 0.75, blendDuration: 0)) {
-                        if !isEnabled {
+                    if !isEnabled {
+                        withAnimation {
                             schedule.weekdays[index].isEnabled = true
-                            expandedDay = day
-                        } else {
-                            if expandedDay == day {
-                                expandedDay = nil
-                                focusedDay = nil
-                            } else {
-                                expandedDay = day
+                            if isSingleRow {
+                                applyToAllDays()
                             }
                         }
+                    } else {
+                        editingDayIndex = index
                     }
                 }
             } label: {
@@ -942,7 +999,7 @@ struct TimerEditSheetView: View {
                             .foregroundStyle(isSelectedForLinking ? Color.orangePrimary : Color.secondary.opacity(0.3))
                     }
                     
-                    Text(NSLocalizedString(daysKeys[day-1], comment: ""))
+                    Text(isSingleRow ? String(localized: "timer.notification.title") : NSLocalizedString(daysKeys[day-1], comment: ""))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle((isEnabled && !isOverridden) ? Color.primary : Color.secondary.opacity(0.5))
                     
@@ -962,13 +1019,8 @@ struct TimerEditSheetView: View {
                     } else if isEnabled {
                         if !isLinkingNotes {
                             Text(timeFormatted(schedule.weekdays[index].time))
-                                .font(.system(size: 16, weight: isExpanded ? .bold : .semibold, design: .rounded))
+                                .font(.system(size: 16, weight: .semibold, design: .rounded))
                                 .foregroundStyle(Color.primary)
-                            
-                            Image(systemName: "chevron.down")
-                                .rotationEffect(.degrees(isExpanded ? 180 : 0))
-                                .foregroundStyle(.secondary)
-                                .font(.system(size: 14, weight: isExpanded ? .bold : .medium))
                         }
                     } else {
                         Text(String(localized: "routine.timer.off"))
@@ -984,105 +1036,12 @@ struct TimerEditSheetView: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: false))
-            
-            // Expanded Content
-            if isExpanded {
-                expandedContent(for: index, day: day)
-            }
         }
         .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         .listRowBackground(
             isLinkingNotes && isSelectedForLinking
                 ? Color.orangePrimary.opacity(0.1)
                 : nil
-        )
-    }
-    
-    @ViewBuilder
-    private func expandedContent(for index: Int, day: Int) -> some View {
-        VStack(spacing: 16) {
-            Divider()
-                .padding(.horizontal, 16)
-            
-            DatePicker(
-                "",
-                selection: $schedule.weekdays[index].time,
-                displayedComponents: .hourAndMinute
-            )
-            .datePickerStyle(.wheel)
-            .labelsHidden()
-            .frame(height: 150)
-            .clipped()
-            
-            // Message Field
-            VStack(alignment: .leading, spacing: 6) {
-                Text(String(localized: "timer.notification.title"))
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundStyle(.secondary)
-                    .textCase(.uppercase)
-                
-                TextField(String(format: String(localized: "timer.preview.body.example"), pflanzName),
-                          text: Binding(
-                              get: { schedule.weekdays[index].customMessage ?? "" },
-                              set: { schedule.weekdays[index].customMessage = $0.isEmpty ? nil : $0 }
-                          ))
-                    .focused($focusedDay, equals: day)
-                    .font(.system(size: 15, weight: .medium, design: .rounded))
-                    .padding(12)
-                    .background(Color(UIColor.secondarySystemBackground))
-                    .cornerRadius(12)
-            }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 8)
-            
-            // Repeat Mode
-            VStack(alignment: .leading, spacing: 6) {
-                Text(String(localized: "timer.repeat.title"))
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundStyle(.secondary)
-                    .textCase(.uppercase)
-                    
-                Picker("", selection: $schedule.weekdays[index].repeatMode) {
-                    ForEach(ReminderRepeatMode.allCases, id: \.self) { mode in
-                        Text(NSLocalizedString(mode.localizationKey, comment: "")).tag(mode)
-                    }
-                }
-                .pickerStyle(.segmented)
-            }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 16)
-            
-            // Deaktivieren Button
-            Button(role: .destructive) {
-                withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
-                    schedule.weekdays[index].isEnabled = false
-                    if expandedDay == day {
-                        expandedDay = nil
-                    }
-                }
-            } label: {
-                HStack {
-                    Image(systemName: "trash")
-                    Text(String(localized: "routine.timer.disable"))
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                }
-                .padding(.vertical, 10)
-                .frame(maxWidth: .infinity)
-                .background(Color.red.opacity(0.1))
-                .foregroundColor(.red)
-                .cornerRadius(10)
-            }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 16)
-        }
-        .background(
-            ZStack {
-                RoundedRectangle(cornerRadius: 18, style: .continuous)
-                    .fill(Color(.systemGray4))
-                    .offset(y: 4)
-                RoundedRectangle(cornerRadius: 18, style: .continuous)
-                    .fill(Color(UIColor.secondarySystemGroupedBackground))
-            }
         )
     }
     
@@ -1460,6 +1419,103 @@ struct StreakCardButtonStyle: ButtonStyle {
         .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
         .sensoryFeedback(trigger: isPressed) { _, newValue in
             (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
+        }
+    }
+}
+
+// MARK: - Timer Day Fullscreen Edit View
+struct TimerDayFullscreenEditView: View {
+    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var settings: SettingsStore
+    
+    let title: String
+    let exampleMessageName: String
+    
+    @Binding var time: Date
+    @Binding var customMessage: String?
+    @Binding var repeatMode: ReminderRepeatMode
+    @Binding var isEnabled: Bool
+    
+    var onDisable: (() -> Void)? = nil
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 24) {
+                    DatePicker(
+                        "",
+                        selection: $time,
+                        displayedComponents: .hourAndMinute
+                    )
+                    .datePickerStyle(.wheel)
+                    .labelsHidden()
+                    .frame(height: 200)
+                    .clipped()
+                    
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(String(localized: "timer.notification.title"))
+                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .textCase(.uppercase)
+                        
+                        TextField(String(format: String(localized: "timer.preview.body.example"), exampleMessageName),
+                                  text: Binding(
+                                      get: { customMessage ?? "" },
+                                      set: { customMessage = $0.isEmpty ? nil : $0 }
+                                  ))
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
+                            .padding(12)
+                            .background(Color(UIColor.secondarySystemGroupedBackground))
+                            .cornerRadius(12)
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(String(localized: "timer.repeat.title"))
+                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .textCase(.uppercase)
+                            
+                        Picker("", selection: $repeatMode) {
+                            ForEach(ReminderRepeatMode.allCases, id: \.self) { mode in
+                                Text(NSLocalizedString(mode.localizationKey, comment: "")).tag(mode)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                    }
+                    
+                    Button(role: .destructive) {
+                        withAnimation {
+                            isEnabled = false
+                        }
+                        onDisable?()
+                        dismiss()
+                    } label: {
+                        HStack {
+                            Image(systemName: "trash")
+                            Text(String(localized: "routine.timer.disable"))
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                        }
+                        .padding(.vertical, 14)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.red.opacity(0.1))
+                        .foregroundColor(.red)
+                        .cornerRadius(12)
+                    }
+                    .padding(.top, 16)
+                }
+                .padding(24)
+            }
+            .background(Color(.systemGroupedBackground).ignoresSafeArea())
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(String(localized: "common.done_button")) {
+                        dismiss()
+                    }
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                }
+            }
         }
     }
 }
