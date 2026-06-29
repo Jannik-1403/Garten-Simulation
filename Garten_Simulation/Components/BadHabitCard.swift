@@ -11,8 +11,11 @@ struct BadHabitCard: View {
     @State private var isVisualPressed = false
     @State private var position: CGPoint = .zero
     @State private var wobble: CGFloat = 1.0
-    /// Wird von DragToWeedCross gesetzt, wenn das X über dem Button schwebt
+
+    /// true wenn das X über dem Button schwebt → Icon ausblenden
     @State private var kreuzUeberButton: Bool = false
+    /// true wenn das X auf dem Button "gestempelt" wurde → X auf Button zeigen, unten X weg
+    @State private var kreuzAufButton: Bool = false
 
     private var executionsToday: Int {
         guard let executions = gardenStore.badHabitExecutions[deko.id] else { return 0 }
@@ -24,6 +27,7 @@ struct BadHabitCard: View {
         ZStack {
             // MARK: - Layer 0: Visual Card Background
             Button {
+                guard !kreuzAufButton else { return }
                 isVisualPressed = true
                 FeedbackManager.shared.playTap()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
@@ -39,7 +43,6 @@ struct BadHabitCard: View {
 
             // MARK: - Layer 1: Interactive Card Content
             VStack(spacing: 16) {
-                // Spacer for the top
                 Color.clear.frame(height: 14)
 
                 // Habit Name
@@ -63,12 +66,12 @@ struct BadHabitCard: View {
                 .frame(maxWidth: .infinity)
                 .padding(.top, 4)
 
-                // MARK: - Icon Area (Button + Kreuz overlay)
+                // MARK: - Icon Area
                 GeometryReader { geo in
                     let scale = min(geo.size.width / 160, 1.2)
 
                     ZStack {
-                        // Normaler roter Button — verschwindet wenn X drüber schwebt
+                        // Normaler roter Button-Icon — weg wenn X schwebt oder drauf ist
                         Item3DButton(
                             icon: deko.sfSymbol,
                             farbe: .red,
@@ -76,18 +79,17 @@ struct BadHabitCard: View {
                             groesse: 110 * scale,
                             aktion: onTap
                         )
-                        .opacity(kreuzUeberButton ? 0 : 1)
-                        .animation(.easeInOut(duration: 0.15), value: kreuzUeberButton)
+                        .opacity((kreuzUeberButton || kreuzAufButton) ? 0 : 1)
+                        .animation(.easeInOut(duration: 0.18), value: kreuzUeberButton)
+                        .animation(.easeInOut(duration: 0.18), value: kreuzAufButton)
 
-                        // Kreuz-Overlay auf dem Button — nur sichtbar wenn X drüber ist
-                        if kreuzUeberButton {
+                        // X auf dem Button — sichtbar wenn gestempelt wurde
+                        if kreuzAufButton {
                             Image("SchlechteGewohnheitKreuz")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 80 * scale, height: 80 * scale)
-                                .scaleEffect(kreuzUeberButton ? 1.1 : 0.6)
-                                .transition(.scale.combined(with: .opacity))
-                                .animation(.spring(response: 0.25, dampingFraction: 0.6), value: kreuzUeberButton)
+                                .frame(width: 90 * scale, height: 90 * scale)
+                                .transition(.scale(scale: 0.6).combined(with: .opacity))
                         }
 
                         // Badge Zähler
@@ -125,7 +127,8 @@ struct BadHabitCard: View {
                     pflanzenPosition: position,
                     istErledigt: false,
                     coordinateSpace: .named("BadHabitCardSpace"),
-                    istUeberZiel: $kreuzUeberButton
+                    istUeberZiel: $kreuzUeberButton,
+                    kreuzAufButton: $kreuzAufButton
                 )
                 .allowsHitTesting(true)
                 .frame(height: 80)
@@ -148,9 +151,17 @@ struct BadHabitCard: View {
                 wobble = 1.0
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-            FeedbackManager.shared.playWatering()
-            onCrossApplied()
+        FeedbackManager.shared.playWatering()
+        onCrossApplied()
+
+        // Nach dem Sheet schließen: alles zurücksetzen
+        // Das passiert via onCrossApplied() → GartenView öffnet Sheet
+        // Wir resetten nach einer kurzen Pause (Sheet wird geöffnet)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                kreuzAufButton = false
+                kreuzUeberButton = false
+            }
         }
     }
 }

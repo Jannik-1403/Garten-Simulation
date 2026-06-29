@@ -2,17 +2,16 @@ import SwiftUI
 
 // MARK: - Drag to Weed Cross
 
-/// Das X-Icon, das von unten auf den roten Button gezogen werden kann.
-/// Wenn es über dem Ziel hängt, wird `istUeberZiel` auf `true` gesetzt,
-/// damit der Button sein Icon verstecken und das X zeigen kann.
 struct DragToWeedCross: View {
     let onCrossApplied: () -> Void
     let pflanzenPosition: CGPoint
     let istErledigt: Bool
     var coordinateSpace: CoordinateSpace = .global
 
-    /// Extern beobachtbar: zeigt an, ob das X gerade über dem Ziel schwebt
+    /// Extern beobachtbar: X schwebt gerade über dem Button (Button-Icon soll verschwinden)
     @Binding var istUeberZiel: Bool
+    /// Extern beobachtbar: X wurde auf Button gelassen → Button zeigt das X, das untere X weg
+    @Binding var kreuzAufButton: Bool
 
     @State private var dragOffset = CGSize.zero
     @State private var isDragging = false
@@ -28,11 +27,9 @@ struct DragToWeedCross: View {
 
     var body: some View {
         GeometryReader { geo in
-            let stripGlobal = geo.frame(in: coordinateSpace)
-
             let dragGesture = DragGesture(coordinateSpace: coordinateSpace)
                 .onChanged { value in
-                    guard !istErledigt else { return }
+                    guard !istErledigt, !kreuzAufButton else { return }
 
                     let ersterDragTick = !isDragging
                     var t = Transaction()
@@ -45,43 +42,39 @@ struct DragToWeedCross: View {
                     let rotation = Double(value.translation.width) / 20
                     crossKippWinkel = min(max(rotation, -15), 15)
 
-                    let distanz = distance(
-                        from: value.location,
-                        to: pflanzenPosition
-                    )
-
+                    let distanz = distance(from: value.location, to: pflanzenPosition)
                     let neuerTreffer = distanz < trefferRadius
                     let trefferGeaendert = neuerTreffer != letzterTreffer
 
                     if ersterDragTick || trefferGeaendert {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
+                        withAnimation(.spring(response: 0.25, dampingFraction: 0.6)) {
                             treffer = neuerTreffer
-                            crossSkalierung = neuerTreffer ? 1.4 : 1.0
+                            crossSkalierung = neuerTreffer ? 1.3 : 1.0
+                            istUeberZiel = neuerTreffer
                         }
                         letzterTreffer = neuerTreffer
                         if trefferGeaendert {
                             hapticTrigger.toggle()
-                            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                                istUeberZiel = neuerTreffer
-                            }
                         }
                     }
                 }
                 .onEnded { _ in
-                    guard !istErledigt else { return }
+                    guard !istErledigt, !kreuzAufButton else { return }
 
                     if treffer {
-                        // Kurz auf dem Button bleiben, dann zurückfedern
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                            withAnimation(.spring(response: 0.45, dampingFraction: 0.6)) {
-                                dragOffset = .zero
-                                crossKippWinkel = 0
-                                crossSkalierung = 1.0
-                                isDragging = false
-                                treffer = false
-                                letzterTreffer = false
-                                istUeberZiel = false
-                            }
+                        // X landet auf dem Button: unten ausblenden, oben anzeigen
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.65)) {
+                            dragOffset = .zero
+                            crossKippWinkel = 0
+                            crossSkalierung = 1.0
+                            isDragging = false
+                            treffer = false
+                            letzterTreffer = false
+                            kreuzAufButton = true   // X ist jetzt oben auf dem Button
+                            // istUeberZiel bleibt true → Button-Icon bleibt unsichtbar
+                        }
+                        // Rückfall melden
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                             onCrossApplied()
                         }
                     } else {
@@ -97,33 +90,33 @@ struct DragToWeedCross: View {
                     }
                 }
 
-            ZStack {
-                Image("SchlechteGewohnheitKreuz")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: crossBreite * 1.2, height: crossHoehe * 1.2)
-                    .padding(20) // Generous touch area
-                    .contentShape(Rectangle())
-                    .simultaneousGesture(dragGesture)
-                    .brightness(treffer ? 0.12 : 0)
-                    .scaleEffect(crossSkalierung)
-                    .opacity(istUeberZiel ? 0 : 1) // ausblenden wenn über dem Ziel
-                    .rotationEffect(.degrees(isDragging ? crossKippWinkel : 0))
-                    .offset(dragOffset)
-                    .animation(.spring(response: 0.3, dampingFraction: 0.5), value: treffer)
-                    .animation(.spring(response: 0.15, dampingFraction: 0.6), value: crossSkalierung)
-                    .animation(.easeInOut(duration: 0.15), value: istUeberZiel)
+            // Das X unten: verschwindet sobald es auf dem Button gelandet ist
+            if !kreuzAufButton {
+                ZStack {
+                    Image("SchlechteGewohnheitKreuz")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: crossBreite * 1.2, height: crossHoehe * 1.2)
+                        .padding(20)
+                        .contentShape(Rectangle())
+                        .simultaneousGesture(dragGesture)
+                        .brightness(treffer ? 0.12 : 0)
+                        .scaleEffect(crossSkalierung)
+                        .rotationEffect(.degrees(isDragging ? crossKippWinkel : 0))
+                        .offset(dragOffset)
+                        .animation(.spring(response: 0.25, dampingFraction: 0.6), value: treffer)
+                        .animation(.spring(response: 0.15, dampingFraction: 0.6), value: crossSkalierung)
+                }
+                .frame(width: geo.size.width, height: geo.size.height)
             }
-            .frame(width: geo.size.width, height: geo.size.height)
         }
         .frame(maxWidth: .infinity, minHeight: 72, maxHeight: 72)
-        .allowsHitTesting(true)
+        .allowsHitTesting(!kreuzAufButton)
         .sensoryFeedback(.impact, trigger: treffer)
         .sensoryFeedback(.success, trigger: hapticTrigger)
         .onChange(of: istErledigt) { _, erledigt in
             if !erledigt {
                 letzterTreffer = false
-                istUeberZiel = false
             }
         }
     }
@@ -140,7 +133,8 @@ struct DragToWeedCross: View {
             onCrossApplied: { print("Angewendet!") },
             pflanzenPosition: CGPoint(x: 200, y: 300),
             istErledigt: false,
-            istUeberZiel: .constant(false)
+            istUeberZiel: .constant(false),
+            kreuzAufButton: .constant(false)
         )
     }
 }
