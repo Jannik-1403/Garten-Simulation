@@ -123,3 +123,6 @@
 - Routine-Icons aus der Listenansicht links entfernt.
 - Plural-/Singular-Logik für Gewohnheiten in der Routine-Ansicht korrigiert.
 - Fehlerhafte Routine-Icons (GymRoutine etc.) gefixt.
+- **Fix (Bad Habits & Localization):** Im Garten-Inventar wird bei schlechten Gewohnheiten nun korrekterweise "Schlechte Gewohnheiten" als Untertitel statt "Dekoration" angezeigt.
+- **Fix (Bad Habits & Localization):** Der harte Text für das "Schlechte Gewohnheit"-Label in der `BadHabitCard` wurde in `Localizable.xcstrings` ausgelagert und in alle 11 Projektsprachen übersetzt.
+- **Fix (Localization):** Die rohen Schlüssel für Beschreibungen und Objektbeschreibungen bei "Unnötig online geshoppt" (`trash.online_shopping_app.desc` und `trash.online_shopping_app.obj_desc`) wurden repariert und in alle 11 Projektsprachen übersetzt.
