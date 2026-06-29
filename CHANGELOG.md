@@ -94,3 +94,8 @@
 
 ## [Native Close Button für Quiz-Ergebnisse Fix] - 2026-06-28
 - Komplett zurück auf Standard-iOS-Ansicht: NavigationBar bleibt erhalten und nutzt ein natives ToolbarItem (grauer Kreis mit 'X'), damit der Inhalt nicht unschön nach oben in die Statusleiste rutscht.
+
+## 2026-06-29 - String Catalog Build-Fehler Behebung
+- Behoben: Xcode Build-Fehler aufgrund von ungültigen Format-Specifiern (`%-S`, `%-D`, `%-F`, etc.) in `Localizable.xcstrings` repariert, die Abstürze bei der Swift-Typgenerierung verursacht haben.
+- Mismatched positional format arguments (z.B. `%d` und `%@`) repariert, sodass Lokalisierungen mit re-geordneten Parametern sauber kompilieren (z.B. `%1$@`).
+- Alle Unit- und UI-Tests durchlaufen wieder erfolgreich.

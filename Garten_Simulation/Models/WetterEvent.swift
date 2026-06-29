@@ -10,11 +10,33 @@ enum WetterEvent: String, CaseIterable {
 
     // MARK: - Texte
     var titel: String {
-        return NSLocalizedString("weather.\(rawValue).title", comment: "")
+        switch self {
+        case .normal: return String(localized: "weather.normal.title", defaultValue: "Ruhiger Tag")
+        case .regen: return String(localized: "weather.regen.title", defaultValue: "Regen")
+        case .schnee: return String(localized: "weather.schnee.title", defaultValue: "Frostwarnung")
+        case .sturm: return String(localized: "weather.sturm.title", defaultValue: "Sturm im Anmarsch")
+        case .perfekt: return String(localized: "weather.perfekt.title", defaultValue: "Perfektes Wetter!")
+        }
     }
 
     var untertitel: String {
-        return NSLocalizedString("weather.\(rawValue).subtitle", comment: "")
+        switch self {
+        case .normal: return String(localized: "weather.normal.subtitle", defaultValue: "Alles wächst wie geplant")
+        case .regen: return String(localized: "weather.regen.subtitle", defaultValue: "Heute gibt es doppelte XP!")
+        case .schnee: return String(localized: "weather.schnee.subtitle", defaultValue: "Heute nur 50% Belohnung")
+        case .sturm: return String(localized: "weather.sturm.subtitle", defaultValue: "Pflanzentod kostet 2 Leben!")
+        case .perfekt: return String(localized: "weather.perfekt.subtitle", defaultValue: "Heute doppelte Belohnung!")
+        }
+    }
+
+    var regel: String {
+        switch self {
+        case .normal: return String(localized: "weather.rule.normal", defaultValue: "Alles normal. Einmal gießen.")
+        case .regen: return String(localized: "weather.rule.regen", defaultValue: "Regen: Heute erhältst du doppelte XP.")
+        case .schnee: return String(localized: "weather.rule.schnee", defaultValue: "Frost: Nur die Hälfte der Coins erhalten.")
+        case .sturm: return String(localized: "weather.rule.sturm", defaultValue: "Sturm: Wenn eine Pflanze stirbt, verlierst du 2 Leben statt 1.")
+        case .perfekt: return String(localized: "weather.rule.perfekt", defaultValue: "Perfektes Wetter: Heute doppelte Coins.")
+        }
     }
 
     var icon: String {

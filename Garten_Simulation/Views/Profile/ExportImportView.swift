@@ -35,10 +35,13 @@ struct ExportImportView: View {
                 
                 ScrollView {
                     VStack(spacing: 24) {
-                        // Header Illustration (optional)
-                        Image(systemName: "arrow.up.arrow.down.circle.fill")
-                            .font(.system(size: 80))
-                            .foregroundStyle(.blue.gradient)
+                        // Header Illustration
+                        Image("ExportImport")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80)
+                            .scaleEffect(2.2)
+                            .allowsHitTesting(false)
                             .padding(.top, 20)
                         
                         Text(String(localized: "backup_export_hint"))
