@@ -139,3 +139,5 @@
 - Ein globaler Export-Button wurde in der `PflanzeDetailSheet` und der `InventoryItemDetailSheet` (für Schlechte Gewohnheiten) neben dem "Notizen"-Header ergänzt.
 - Neue Lokalisierungsschlüssel für den PDF-Export in `Localizable.xcstrings` hinterlegt und in alle Sprachen übersetzt.
 - UI: Info-Button und Erklärungssheet für 'Schlechte Gewohnheiten' im Shop entfernt.
+- **Export Selection Sheet:** Ein natives "Drei-Punkte-Menü" wurde in der oberen linken Ecke der Detailansichten (`PflanzeDetailSheet` & `InventoryItemDetailSheet`) eingeführt.
+- **Benutzerdefinierter Export:** Anwender können nun zwischen "Gesamte App", "Nur dieser Eintrag" und "Benutzerdefiniert" wählen. Bei benutzerdefiniert lassen sich spezifische Gewohnheiten und schlechte Gewohnheiten gezielt für den Export via Checkboxen aus- und abwählen.
