@@ -118,7 +118,7 @@ struct InventoryItemDetailSheet: View {
                                                 .font(.system(size: 15, weight: .bold, design: .rounded))
                                                 .foregroundColor(.primary)
 
-                                            Text(NSLocalizedString(tip.2, comment: ""))
+                                            Text(String(localized: String.LocalizationValue(tip.2)))
                                                 .font(.system(size: 14, weight: .medium, design: .rounded))
                                                 .foregroundColor(.secondary)
                                                 .fixedSize(horizontal: false, vertical: true)
