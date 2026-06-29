@@ -68,8 +68,8 @@ struct BadHabitCard: View {
                     ZStack {
                         Item3DButton(
                             icon: deko.sfSymbol,
-                            farbe: .orangePrimary,
-                            sekundaerFarbe: .orangeSecondary,
+                            farbe: .red,
+                            sekundaerFarbe: .red.darker(by: 0.2),
                             groesse: 110 * scale,
                             aktion: onTap
                         )

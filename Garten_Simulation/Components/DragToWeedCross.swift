@@ -1,15 +1,5 @@
 import SwiftUI
 
-// MARK: - Weed Partikel
-
-struct WeedPartikel: Identifiable {
-    let id = UUID()
-    let winkel: Double
-    var distanz: CGFloat
-    let groesse: CGFloat
-    var opazitaet: Double = 1.0
-}
-
 // MARK: - Drag to Weed Cross
 
 struct DragToWeedCross: View {
@@ -26,8 +16,6 @@ struct DragToWeedCross: View {
     @State private var crossKippWinkel: Double = 0
     @State private var crossSkalierung: CGFloat = 1.0
     @State private var crossOpazitaet: Double = 1.0
-    @State private var istVerschwunden = false
-    @State private var partikel: [WeedPartikel] = []
 
     private let crossBreite: CGFloat = 64
     private let crossHoehe: CGFloat = 64
@@ -43,7 +31,7 @@ struct DragToWeedCross: View {
 
             let dragGesture = DragGesture(coordinateSpace: coordinateSpace)
                 .onChanged { value in
-                    guard !istErledigt, !istVerschwunden else { return }
+                    guard !istErledigt else { return }
 
                     let ersterDragTick = !isDragging
                     var t = Transaction()
@@ -76,29 +64,18 @@ struct DragToWeedCross: View {
                     }
                 }
                 .onEnded { _ in
-                    guard !istErledigt, !istVerschwunden else { return }
+                    guard !istErledigt else { return }
 
                     if treffer {
-                        isDragging = false
-                        crossKippWinkel = 0
-                        withAnimation(.spring(response: 0.15, dampingFraction: 0.6)) {
-                            crossSkalierung = 1.6
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                            spawnPartikelTropfen()
-                            withAnimation(.easeIn(duration: 0.2)) {
-                                crossSkalierung = 0.0
-                                crossOpazitaet = 0.0
-                            }
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                            onCrossApplied()
-                            istVerschwunden = true
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                             dragOffset = .zero
+                            crossKippWinkel = 0
+                            crossSkalierung = 1.0
                             isDragging = false
                             treffer = false
                             letzterTreffer = false
                         }
+                        onCrossApplied()
                     } else {
                         withAnimation(
                             .spring(
@@ -118,24 +95,7 @@ struct DragToWeedCross: View {
                 }
 
             ZStack {
-                ForEach(partikel) { p in
-                    let rad = p.winkel * .pi / 180
-                    let dx = cos(rad) * p.distanz
-                    let dy = sin(rad) * p.distanz
-                    let h = p.groesse
-                    let w = h
-
-                    Image(systemName: "drop.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundStyle(Color.red)
-                        .frame(width: w, height: h)
-                        .position(x: plantLocal.x + dx, y: plantLocal.y + dy)
-                        .opacity(p.opazitaet)
-                }
-
-                if !istVerschwunden {
-                    Image("SchlechteGewohnheitKreuz")
+                Image("SchlechteGewohnheitKreuz")
                         .resizable()
                         .scaledToFit()
                         .frame(width: crossBreite * 1.2, height: crossHoehe * 1.2)
@@ -159,19 +119,15 @@ struct DragToWeedCross: View {
                             .easeIn(duration: 0.2),
                             value: crossOpazitaet
                         )
-                }
             }
             .frame(width: geo.size.width, height: geo.size.height)
         }
         .frame(maxWidth: .infinity, minHeight: 72, maxHeight: 72)
-        .allowsHitTesting(!istVerschwunden)
+        .allowsHitTesting(true)
         .sensoryFeedback(.impact, trigger: treffer)
         .sensoryFeedback(.success, trigger: hapticTrigger)
         .onChange(of: istErledigt) { _, erledigt in
-            if erledigt {
-                partikel = []
-            } else {
-                istVerschwunden = false
+            if !erledigt {
                 letzterTreffer = false
             }
         }
@@ -181,30 +137,7 @@ struct DragToWeedCross: View {
         sqrt(pow(from.x - to.x, 2) + pow(from.y - to.y, 2))
     }
 
-    private func spawnPartikelTropfen() {
-        partikel = (0..<12).map { _ in
-            WeedPartikel(
-                winkel: Double.random(in: 0...360),
-                distanz: CGFloat.random(in: 20...60),
-                groesse: CGFloat.random(in: 8...14)
-            )
-        }
 
-        DispatchQueue.main.async {
-            withAnimation(.easeOut(duration: 0.6)) {
-                partikel = partikel.map { p in
-                    var q = p
-                    q.distanz *= 2.5
-                    q.opazitaet = 0
-                    return q
-                }
-            }
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.65) {
-            partikel = []
-        }
-    }
 }
 
 #Preview {

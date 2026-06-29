@@ -156,7 +156,6 @@ struct GartenView: View {
                                         Text(String(localized: "garden.trash"))
                                             .font(.system(size: 20, weight: .bold, design: .rounded))
                                             .foregroundStyle(.primary)
-                                            .padding(.horizontal, 8)
 
                                         LazyVGrid(columns: columns, spacing: 30) {
                                             ForEach(gardenStore.placedDecorations) { deko in
@@ -174,10 +173,9 @@ struct GartenView: View {
                                                 .tourAnchor(.badHabits, condition: deko.id == gardenStore.placedDecorations.first?.id)
                                             }
                                         }
-                                        .padding(.horizontal, 8)
                                     }
                                     .padding(.top, 24)
-                                    .padding(.horizontal, 8)
+                                    .padding(.horizontal, 16)
                                     .id(TourStep.badHabits)
                                 }
                             }
