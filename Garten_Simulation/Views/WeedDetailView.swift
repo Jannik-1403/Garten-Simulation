@@ -11,7 +11,8 @@ struct WeedDetailView: View {
     @State private var showInfoPopover = false
 
     private var stylizedBodyText: AttributedString {
-        let raw = String(format: String(localized: "weed_popup_body"), gardenStore.weedEffectiveRewardPercent,
+        let percentString = "\(gardenStore.weedEffectiveRewardPercent)%"
+        let raw = String(format: String(localized: "weed_popup_body"), percentString,
             GameConstants.habitsRequiredPerWeed)
         var attr = AttributedString(raw)
         
@@ -172,7 +173,7 @@ struct WeedDetailView: View {
             
                         if gardenStore.isComebackBoostActive {
                             Label(
-                                String(format: String(localized: "weed.comeback.banner"), gardenStore.comebackBoostRewardPercent),
+                                String(format: String(localized: "weed.comeback.banner"), "\(gardenStore.comebackBoostRewardPercent)%"),
                                 systemImage: "bolt.fill"
                             )
                             .font(.caption)

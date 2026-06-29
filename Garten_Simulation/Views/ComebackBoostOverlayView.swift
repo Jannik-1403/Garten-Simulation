@@ -23,7 +23,7 @@ struct ComebackBoostOverlayView: View {
 
                     Text(
                         String(format: String(localized: "weed.comeback.overlay.body"), Int(GameConstants.comebackBoostDurationHours),
-                            rewardPercent
+                            "\(rewardPercent)%"
                         )
                     )
                     .font(.body)

@@ -4,6 +4,8 @@
 2. **Never use the old system**: Do NOT use `AppStrings.get(...)`, `NSLocalizedString`, oder `settings.localizedString`. Dieses alte System wurde komplett durch Apples native `Localizable.xcstrings` (String Catalogs) ersetzt!
 3. **Immer mit Default-Value**: Gib bei `String(localized: ...)` immer einen klaren, deutschen `defaultValue` an. Xcode extrahiert diesen dann automatisch in den String Catalog (`Localizable.xcstrings`), wo der Nutzer ihn später in die anderen Sprachen übersetzen kann.
 4. **Verhindere Duplikate**: Bevor du einen neuen Key erstellst, überlege, ob es nicht schon einen passenden gibt (z.B. `common.cancel` statt `button.abbrechen`). Wiederverwendung hält die Übersetzungsdatei sauber.
+5. **Prozentzahlen NIEMALS mit `%%` in xcstrings**: Verwende NIEMALS `%d%%` oder `%lld%%` als Format-String in `Localizable.xcstrings`. Das löst Xcode-Warnungen aus ("Not all languages format percentages in the same way"). Die korrekte Methode: Übergib einen vorformatierten String aus Swift (`"\(value)%"`) und verwende `%@` als Platzhalter im xcstrings-String.
+6. **100% Übersetzungsabdeckung erzwingen**: JEDER neue `String(localized:)` Key MUSS sofort in ALLE 11 Projektsprachen (DE, NL, EN, FR, IT, JA, KO, PL, PT, ES, TR) übersetzt werden. Fehlende Übersetzungen führen zu 99% statt 100% im Xcode String Catalog – das ist NICHT akzeptabel. Füge für jede neue Sprache immer `"state": "translated"` und einen vollständigen Wert ein. Überprüfe nach jedem neuen Key, dass alle 11 Sprachen vorhanden sind.
 
 ## Senior iOS Software Architect Role
 Du agierst ab sofort als Senior iOS Software Architect. Das oberste Ziel ist fehlerfreier, extrem performanter Swift- und SwiftUI-Code.

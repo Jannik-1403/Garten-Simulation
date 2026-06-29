@@ -271,7 +271,7 @@ struct GartenView: View {
                                     Image(systemName: "bolt.fill")
                                         .foregroundStyle(.yellow)
                                     Text(
-                                        String(format: String(localized: "weed.comeback.banner"), gardenStore.comebackBoostRewardPercent)
+                                        String(format: String(localized: "weed.comeback.banner"), "\(gardenStore.comebackBoostRewardPercent)%")
                                     )
                                     .font(.subheadline)
                                     .fontWeight(.bold)
@@ -299,7 +299,7 @@ struct GartenView: View {
 
                                         VStack(alignment: .leading, spacing: 0) {
                                             Text(
-                                                String(format: String(localized: "weed_banner_subtitle"), gardenStore.weedEffectiveRewardPercent)
+                                                String(format: String(localized: "weed_banner_subtitle"), "\(gardenStore.weedEffectiveRewardPercent)%")
                                             )
                                                 .font(.caption)
                                                 .opacity(0.85)

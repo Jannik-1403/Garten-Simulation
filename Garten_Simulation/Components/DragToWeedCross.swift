@@ -29,10 +29,6 @@ struct DragToWeedCross: View {
     var body: some View {
         GeometryReader { geo in
             let stripGlobal = geo.frame(in: coordinateSpace)
-            let plantLocal = CGPoint(
-                x: pflanzenPosition.x - stripGlobal.minX,
-                y: pflanzenPosition.y - stripGlobal.minY
-            )
 
             let dragGesture = DragGesture(coordinateSpace: coordinateSpace)
                 .onChanged { value in
