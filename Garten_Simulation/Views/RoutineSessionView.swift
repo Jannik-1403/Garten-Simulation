@@ -210,6 +210,17 @@ struct RoutineSessionView: View {
                         .padding(.horizontal, 32)
                         .padding(.top, 8)
                 }
+                
+                if currentHabit.istBewässert {
+                    HStack(spacing: 6) {
+                        Image(systemName: "checkmark.circle.fill")
+                        Text(String(localized: "routine.session.alreadyCompleted", defaultValue: "Bereits erledigt - keine Belohnung"))
+                    }
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .foregroundStyle(.green)
+                    .padding(.top, 16)
+                    .padding(.horizontal, 32)
+                }
             }
             
             Spacer()

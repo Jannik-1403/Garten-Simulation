@@ -726,8 +726,8 @@ struct RoutineTimerEditSheetView: View {
     @Binding var overrideIndividualReminders: Bool
     @Binding var hasReminder: Bool
     
-    @State private var expandedDay: Int? = nil
-    @FocusState private var focusedDay: Int?
+    @State private var editingDayIndex: Int? = nil
+    @State private var isAllDaysEqual: Bool = false
 
     let daysKeys = ["days.monday", "days.tuesday", "days.wednesday", "days.thursday", "days.friday", "days.saturday", "days.sunday"]
     
@@ -744,18 +744,6 @@ struct RoutineTimerEditSheetView: View {
                             .foregroundStyle(.secondary)
                     }
                     Spacer()
-                    
-                    Menu {
-                        Button {
-                            applyToAllDays()
-                        } label: {
-                            Label(String(localized: String.LocalizationValue("routine.timer.apply_all"), locale: Locale(identifier: settings.appLanguage)), systemImage: "doc.on.doc")
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .font(.system(size: 20))
-                            .foregroundStyle(.primary)
-                    }
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 16)
@@ -773,8 +761,12 @@ struct RoutineTimerEditSheetView: View {
                     // Days List
                     ScrollView {
                         VStack(spacing: 16) {
-                            ForEach(1...7, id: \.self) { day in
-                                dayRow(for: day)
+                            if isAllDaysEqual {
+                                dayRow(for: 1, isSingleRow: true)
+                            } else {
+                                ForEach(1...7, id: \.self) { day in
+                                    dayRow(for: day, isSingleRow: false)
+                                }
                             }
                             
                             Toggle(isOn: $overrideIndividualReminders.animation()) {
@@ -810,22 +802,72 @@ struct RoutineTimerEditSheetView: View {
             .background(Color.appHintergrund.ignoresSafeArea())
             .navigationBarBackButtonHidden(true)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    if focusedDay != nil {
+                ToolbarItem(placement: .topBarLeading) {
+                    Menu {
                         Button {
-                            focusedDay = nil
+                            withAnimation {
+                                isAllDaysEqual.toggle()
+                                if isAllDaysEqual {
+                                    applyToAllDays()
+                                }
+                            }
                         } label: {
-                            Image(systemName: "keyboard.chevron.compact.down")
+                            if isAllDaysEqual {
+                                Label(String(localized: "routine.timer.edit_individual", defaultValue: "Tage einzeln bearbeiten"), systemImage: "list.bullet")
+                            } else {
+                                Label(String(localized: String.LocalizationValue("routine.timer.apply_all"), locale: Locale(identifier: settings.appLanguage)), systemImage: "doc.on.doc")
+                            }
                         }
-                    } else {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Text(String(localized: String.LocalizationValue("common.done_button"), locale: Locale(identifier: settings.appLanguage)))
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .font(.system(size: 20))
+                            .foregroundStyle(.primary)
                     }
                 }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text(String(localized: String.LocalizationValue("common.done_button"), locale: Locale(identifier: settings.appLanguage)))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                    }
+                }
+            }
+        }
+        .fullScreenCover(isPresented: Binding(
+            get: { editingDayIndex != nil },
+            set: { if !$0 { editingDayIndex = nil } }
+        )) {
+            if let index = editingDayIndex {
+                let isSingleRow = isAllDaysEqual
+                TimerDayFullscreenEditView(
+                    title: isSingleRow ? String(localized: "timer.notification.title") : String(localized: String.LocalizationValue(daysKeys[schedule.weekdays[index].weekday - 1]), locale: Locale(identifier: settings.appLanguage)),
+                    exampleMessageName: String(localized: String.LocalizationValue(routineName), locale: Locale(identifier: settings.appLanguage)),
+                    time: $schedule.weekdays[index].time,
+                    customMessage: $schedule.weekdays[index].customMessage,
+                    repeatMode: $schedule.weekdays[index].repeatMode,
+                    isEnabled: $schedule.weekdays[index].isEnabled,
+                    onDisable: {
+                        if isSingleRow {
+                            applyToAllDays()
+                        }
+                    }
+                )
+                .onDisappear {
+                    if isSingleRow {
+                        applyToAllDays()
+                    }
+                }
+            }
+        }
+        .onAppear {
+            let ref = schedule.weekdays[0]
+            isAllDaysEqual = schedule.weekdays.allSatisfy { 
+                $0.time == ref.time && 
+                $0.customMessage == ref.customMessage && 
+                $0.repeatMode == ref.repeatMode &&
+                $0.isEnabled == ref.isEnabled
             }
         }
     }
@@ -835,29 +877,25 @@ struct RoutineTimerEditSheetView: View {
     }
     
     @ViewBuilder
-    private func dayRow(for day: Int) -> some View {
+    private func dayRow(for day: Int, isSingleRow: Bool = false) -> some View {
         let index = dayIndex(for: day)
         let isEnabled = schedule.weekdays[index].isEnabled
-        let isExpanded = expandedDay == day
         
         VStack(spacing: 12) {
             Button {
-                withAnimation(.spring(response: 0.4, dampingFraction: 0.75, blendDuration: 0)) {
-                    if !isEnabled {
+                if !isEnabled {
+                    withAnimation {
                         schedule.weekdays[index].isEnabled = true
-                        expandedDay = day
-                    } else {
-                        if expandedDay == day {
-                            expandedDay = nil
-                            focusedDay = nil
-                        } else {
-                            expandedDay = day
+                        if isSingleRow {
+                            applyToAllDays()
                         }
                     }
+                } else {
+                    editingDayIndex = index
                 }
             } label: {
                 HStack(spacing: 12) {
-                    Text(String(localized: String.LocalizationValue(daysKeys[day-1]), locale: Locale(identifier: settings.appLanguage)))
+                    Text(isSingleRow ? String(localized: "timer.notification.title") : String(localized: String.LocalizationValue(daysKeys[day-1]), locale: Locale(identifier: settings.appLanguage)))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(isEnabled ? Color.primary : Color.secondary.opacity(0.5))
                     
@@ -865,13 +903,8 @@ struct RoutineTimerEditSheetView: View {
                     
                     if isEnabled {
                         Text(timeFormatted(schedule.weekdays[index].time))
-                            .font(.system(size: 16, weight: isExpanded ? .bold : .semibold, design: .rounded))
+                            .font(.system(size: 16, weight: .semibold, design: .rounded))
                             .foregroundStyle(Color.primary)
-                        
-                        Image(systemName: "chevron.down")
-                            .rotationEffect(.degrees(isExpanded ? 180 : 0))
-                            .foregroundStyle(.secondary)
-                            .font(.system(size: 14, weight: isExpanded ? .bold : .medium))
                     } else {
                         Text(String(localized: String.LocalizationValue("routine.timer.off"), locale: Locale(identifier: settings.appLanguage)))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
@@ -886,104 +919,7 @@ struct RoutineTimerEditSheetView: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: false))
-            
-            if isExpanded {
-                expandedContent(for: index, day: day)
-            }
         }
-    }
-    
-    @ViewBuilder
-    private func expandedContent(for index: Int, day: Int) -> some View {
-        VStack(spacing: 16) {
-            Divider()
-                .padding(.horizontal, 16)
-            
-            DatePicker(
-                "",
-                selection: Binding(
-                    get: { schedule.weekdays[index].time },
-                    set: { newTime in
-                        schedule.weekdays[index].time = newTime
-                    }
-                ),
-                displayedComponents: .hourAndMinute
-            )
-            .datePickerStyle(.wheel)
-            .labelsHidden()
-            .frame(height: 150)
-            .clipped()
-            
-            // Message Field
-            VStack(alignment: .leading, spacing: 6) {
-                Text(String(localized: String.LocalizationValue("timer.notification.title"), locale: Locale(identifier: settings.appLanguage)))
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundStyle(.secondary)
-                    .textCase(.uppercase)
-                
-                TextField(String(format: String(localized: String.LocalizationValue("timer.preview.body.example"), locale: Locale(identifier: settings.appLanguage)), String(localized: String.LocalizationValue(routineName), locale: Locale(identifier: settings.appLanguage))),
-                          text: Binding(
-                              get: { schedule.weekdays[index].customMessage ?? "" },
-                              set: { schedule.weekdays[index].customMessage = $0.isEmpty ? nil : $0 }
-                          ))
-                    .focused($focusedDay, equals: day)
-                    .font(.system(size: 15, weight: .medium, design: .rounded))
-                    .padding(12)
-                    .background(Color(UIColor.secondarySystemBackground))
-                    .cornerRadius(12)
-            }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 8)
-            
-            // Repeat Mode
-            VStack(alignment: .leading, spacing: 6) {
-                Text(String(localized: String.LocalizationValue("timer.repeat.title"), locale: Locale(identifier: settings.appLanguage)))
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundStyle(.secondary)
-                    .textCase(.uppercase)
-                    
-                Picker("", selection: $schedule.weekdays[index].repeatMode) {
-                    ForEach(ReminderRepeatMode.allCases, id: \.self) { mode in
-                        Text(String(localized: String.LocalizationValue(mode.localizationKey), locale: Locale(identifier: settings.appLanguage))).tag(mode)
-                    }
-                }
-                .pickerStyle(.segmented)
-            }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 16)
-            
-            // Deaktivieren Button
-            Button(role: .destructive) {
-                withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
-                    schedule.weekdays[index].isEnabled = false
-                    if expandedDay == day {
-                        expandedDay = nil
-                    }
-                }
-            } label: {
-                HStack {
-                    Image(systemName: "trash")
-                    Text(String(localized: String.LocalizationValue("routine.timer.disable"), locale: Locale(identifier: settings.appLanguage)))
-                }
-                .font(.system(size: 14, weight: .bold, design: .rounded))
-                .padding(.vertical, 10)
-                .frame(maxWidth: .infinity)
-                .background(Color.red.opacity(0.1))
-                .foregroundColor(.red)
-                .cornerRadius(10)
-            }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 16)
-        }
-        .background(
-            ZStack {
-                RoundedRectangle(cornerRadius: 18, style: .continuous)
-                    .fill(Color(.systemGray4))
-                    .offset(y: 4)
-                RoundedRectangle(cornerRadius: 18, style: .continuous)
-                    .fill(Color(UIColor.secondarySystemGroupedBackground))
-            }
-        )
     }
     
     private func timeFormatted(_ date: Date) -> String {
@@ -994,14 +930,15 @@ struct RoutineTimerEditSheetView: View {
     }
     
     private func applyToAllDays() {
-        let referenceDayIndex = expandedDay != nil ? dayIndex(for: expandedDay!) : 0
+        let referenceDayIndex = 0
         let refTime = schedule.weekdays[referenceDayIndex].time
         let refMsg = schedule.weekdays[referenceDayIndex].customMessage
         let refMode = schedule.weekdays[referenceDayIndex].repeatMode
+        let refEnabled = schedule.weekdays[referenceDayIndex].isEnabled
         
         withAnimation {
             for i in 0..<schedule.weekdays.count {
-                schedule.weekdays[i].isEnabled = true
+                schedule.weekdays[i].isEnabled = refEnabled
                 schedule.weekdays[i].time = refTime
                 schedule.weekdays[i].customMessage = refMsg
                 schedule.weekdays[i].repeatMode = refMode

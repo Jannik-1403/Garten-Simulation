@@ -750,6 +750,7 @@ struct TimerEditSheetView: View {
             }
             .background(Color.appHintergrund.ignoresSafeArea())
             .navigationBarBackButtonHidden(true)
+            .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     if isLinkingNotes {
                         Button {
@@ -818,7 +819,7 @@ struct TimerEditSheetView: View {
                                             withAnimation {
                                                 selectedNoteForLinking = notiz
                                                 isLinkingNotes = true
-                                                expandedDay = nil
+                                                editingDayIndex = nil
                                             }
                                         }
                                     }
@@ -867,6 +868,7 @@ struct TimerEditSheetView: View {
                         }
                     }
                 }
+            }
             }
             .fullScreenCover(isPresented: $showTimeline) {
                 PlantTimelineView()

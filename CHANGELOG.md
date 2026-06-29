@@ -120,3 +120,6 @@
 - Routine-Abschluss überarbeitet: Gewohnheiten werden korrekt bewässert und bringen exakt die erwarteten Münzen/XP, ohne Timer-Boni.
 - Gewohnheiten werden im Routine-Onboarding nicht mehr automatisch hinzugefügt.
 - Routine-Icons in der Session-Ansicht (Intro) vergrößert.
+- Routine-Icons aus der Listenansicht links entfernt.
+- Plural-/Singular-Logik für Gewohnheiten in der Routine-Ansicht korrigiert.
+- Fehlerhafte Routine-Icons (GymRoutine etc.) gefixt.

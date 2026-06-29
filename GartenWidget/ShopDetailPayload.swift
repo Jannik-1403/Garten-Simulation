@@ -112,7 +112,7 @@ extension ShopDetailPayload {
         ShopDetailPayload(
             id: decoration.id,
             titleKey: decoration.objectNameKey,
-            subtitle: "Dekoration",
+            subtitle: String(localized: "decoration.info.title", defaultValue: "Schlechte Gewohnheiten"),
             descriptionKey: decoration.objectDescriptionKey,
             price: decoration.price,
             icon: decoration.sfSymbol,
