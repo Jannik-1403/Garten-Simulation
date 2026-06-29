@@ -11,6 +11,8 @@ struct BadHabitCard: View {
     @State private var isVisualPressed = false
     @State private var position: CGPoint = .zero
     @State private var wobble: CGFloat = 1.0
+    /// Wird von DragToWeedCross gesetzt, wenn das X über dem Button schwebt
+    @State private var kreuzUeberButton: Bool = false
 
     private var executionsToday: Int {
         guard let executions = gardenStore.badHabitExecutions[deko.id] else { return 0 }
@@ -37,7 +39,7 @@ struct BadHabitCard: View {
 
             // MARK: - Layer 1: Interactive Card Content
             VStack(spacing: 16) {
-                // Spacer for the top where timer would be
+                // Spacer for the top
                 Color.clear.frame(height: 14)
 
                 // Habit Name
@@ -61,11 +63,12 @@ struct BadHabitCard: View {
                 .frame(maxWidth: .infinity)
                 .padding(.top, 4)
 
+                // MARK: - Icon Area (Button + Kreuz overlay)
                 GeometryReader { geo in
                     let scale = min(geo.size.width / 160, 1.2)
-                    let baseDim: CGFloat = 135 * scale
 
                     ZStack {
+                        // Normaler roter Button — verschwindet wenn X drüber schwebt
                         Item3DButton(
                             icon: deko.sfSymbol,
                             farbe: .red,
@@ -73,7 +76,21 @@ struct BadHabitCard: View {
                             groesse: 110 * scale,
                             aktion: onTap
                         )
+                        .opacity(kreuzUeberButton ? 0 : 1)
+                        .animation(.easeInOut(duration: 0.15), value: kreuzUeberButton)
 
+                        // Kreuz-Overlay auf dem Button — nur sichtbar wenn X drüber ist
+                        if kreuzUeberButton {
+                            Image("SchlechteGewohnheitKreuz")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80 * scale, height: 80 * scale)
+                                .scaleEffect(kreuzUeberButton ? 1.1 : 0.6)
+                                .transition(.scale.combined(with: .opacity))
+                                .animation(.spring(response: 0.25, dampingFraction: 0.6), value: kreuzUeberButton)
+                        }
+
+                        // Badge Zähler
                         if executionsToday > 0 {
                             Text("\(executionsToday)")
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -107,7 +124,8 @@ struct BadHabitCard: View {
                     },
                     pflanzenPosition: position,
                     istErledigt: false,
-                    coordinateSpace: .named("BadHabitCardSpace")
+                    coordinateSpace: .named("BadHabitCardSpace"),
+                    istUeberZiel: $kreuzUeberButton
                 )
                 .allowsHitTesting(true)
                 .frame(height: 80)
@@ -130,8 +148,8 @@ struct BadHabitCard: View {
                 wobble = 1.0
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.65) {
-            FeedbackManager.shared.playWatering() // Or a specific sound for bad habit
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            FeedbackManager.shared.playWatering()
             onCrossApplied()
         }
     }
