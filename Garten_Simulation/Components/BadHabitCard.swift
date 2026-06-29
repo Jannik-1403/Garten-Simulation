@@ -71,17 +71,30 @@ struct BadHabitCard: View {
                     let scale = min(geo.size.width / 160, 1.2)
 
                     ZStack {
-                        // Normaler roter Button-Icon — weg wenn X schwebt oder drauf ist
+                        // 3D-Button-Rahmen bleibt immer sichtbar
+                        // Nur das Icon drin verschwindet wenn X drüber ist
                         Item3DButton(
-                            icon: deko.sfSymbol,
                             farbe: .red,
                             sekundaerFarbe: .red.darker(by: 0.2),
                             groesse: 110 * scale,
                             aktion: onTap
-                        )
-                        .opacity((kreuzUeberButton || kreuzAufButton) ? 0 : 1)
-                        .animation(.easeInOut(duration: 0.18), value: kreuzUeberButton)
-                        .animation(.easeInOut(duration: 0.18), value: kreuzAufButton)
+                        ) {
+                            Group {
+                                if UIImage(named: deko.sfSymbol) != nil {
+                                    Image(deko.sfSymbol)
+                                        .resizable()
+                                        .scaledToFit()
+                                } else {
+                                    Image(systemName: deko.sfSymbol)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .foregroundStyle(.white)
+                                }
+                            }
+                            .opacity((kreuzUeberButton || kreuzAufButton) ? 0 : 1)
+                            .animation(.easeInOut(duration: 0.18), value: kreuzUeberButton)
+                            .animation(.easeInOut(duration: 0.18), value: kreuzAufButton)
+                        }
 
                         // X auf dem Button — sichtbar wenn gestempelt wurde
                         if kreuzAufButton {
