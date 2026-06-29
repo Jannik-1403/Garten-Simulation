@@ -1,4 +1,9 @@
 
+### Assessment "1% Marginal Gains" Updates
+- Sämtliche Texte für aufzubauende (Plus) und abzulegende (Minus) Gewohnheiten in den 24 Assessment-Profilen wurden nach der "1% Marginal Gains" Methode umgeschrieben.
+- Die Texte fokussieren sich jetzt auf extreme Mini-Habits (z.B. "15 Sekunden kalt duschen", "1 Kreditkarte aus Autofill löschen"), anstatt unüberwindbare Aufgaben zu verlangen.
+- Alle 11 Sprachen wurden entsprechend aktualisiert.
+
 ### Assessment Re-Refactoring (3-Kategorien-Profilsystem)
 - Single-Score Bewertung wurde rückgängig gemacht. Das Quiz-System nutzt wieder die 3-Achsen-Bewertung (z.B. Kontrolle, Entscheidung, Risiko).
 - Die 24 verschiedenen Profile wurden beibehalten und mit extrem personalisierten und ausführlichen Texten in allen 11 Sprachen angereichert.
