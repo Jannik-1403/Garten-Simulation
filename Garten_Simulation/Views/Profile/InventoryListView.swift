@@ -108,7 +108,7 @@ struct InventoryItemCard: View {
                     farbe: item.color,
                     sekundaerFarbe: item.color.darker(),
                     groesse: 90,
-                    iconSkalierung: isTrash ? 0.6 : 0.95,
+                    iconSkalierung: item.itemType == .decoration ? 4.4 : (isTrash ? 0.6 : 0.95),
                     aktion: action
                 )
                 

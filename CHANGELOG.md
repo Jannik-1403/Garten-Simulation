@@ -1,3 +1,7 @@
+## [2026-06-30] - PDF Sprache/Lokalisierung Bugfix Teil 2
+- Der PDF Export Manager und der PDF Export Configurator nutzen nun bei jeder Textgenerierung den aktuell in der App ausgewählten `appLanguage`-Code (z.B. "en" oder "de").
+- Bisher wurden manche Texte nur im Standard-Locale formatiert oder haben die Sprachauswahl ignoriert. Dies ist nun für alle Datumswerte, Timer-Formatierungen, Routinen-Namen und PDF-Textblöcke strikt an die In-App Sprache gebunden.
+
 ## [2026-06-30] - Übersetzung Bugfix
 - Fehlende Übersetzungen im PDF Export Konfigurator und im PDF Bericht selbst wurden nachgetragen. Wenn die App auf Englisch gestellt ist, sind nun auch alle Menüpunkte und Überschriften (z.B. "Good Habits", "Additional Data", "Generate PDF") korrekt übersetzt.
 
@@ -189,3 +193,4 @@
 - Bad Habits verwenden nun ihre spezifischen neuen Icons anstatt der Platzhalter.
 - Bad Habit Icons in der BadHabitCard sind nun 2.2x größer skaliert.
 - Platzhalter-Icons wurden nicht aus den Assets gelöscht, da diese reguläre Dekorationen (wie Brunnen, Vogelhaus, Laterne etc.) im Spiel sind und ansonsten dort fehlen würden.
+- Alte Dekoration-Icons (die zuvor als Platzhalter für schlechte Gewohnheiten dienten) wurden vollständig aus den Assets gelöscht, da sie nun exklusiv durch die spezifischen Icons für schlechte Gewohnheiten ersetzt wurden.

@@ -18,6 +18,7 @@ struct ShopItemCard: View {
     var badgeText: String? = nil
     var rarity: ItemRarity? = nil
     var plant: Plant? = nil
+    var iconScale: CGFloat = 1.0
     let onBuy: () -> Void
 
     var body: some View {
@@ -39,10 +40,12 @@ struct ShopItemCard: View {
                             Image(icon)
                                 .resizable()
                                 .scaledToFit()
+                                .scaleEffect(iconScale)
                         } else {
                             Image(systemName: icon)
                                 .font(.system(size: 80))
                                 .foregroundStyle(accentColor)
+                                .scaleEffect(iconScale)
                         }
                     }
                 }
@@ -261,6 +264,7 @@ struct UnifiedShopView: View {
                                                 subtitle: item.habitDescriptionKey,
                                                 price: item.price,
                                                 badgeText: isOwned ? String(localized: "shop.owned") : nil,
+                                                iconScale: 4.4,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: item.id,
