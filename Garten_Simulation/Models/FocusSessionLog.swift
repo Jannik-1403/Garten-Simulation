@@ -5,4 +5,11 @@ struct FocusSessionLog: Codable, Identifiable {
     let date: Date
     let durationMinutes: Int
     let isCompleted: Bool
+    
+    // New optional metadata
+    var isRoutine: Bool?
+    var routineNameKey: String?
+    var habitId: String?
+    var habitName: String?
+    var tasks: [String]?
 }

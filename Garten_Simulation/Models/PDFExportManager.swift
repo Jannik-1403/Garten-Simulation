@@ -139,7 +139,22 @@ class PDFExportManager {
                 } else {
                     for session in sessions {
                         let dateStr = formatter.string(from: session.date)
-                        drawText("• \(dateStr) - \(session.durationMinutes) Min", attributes: textAttributes, yPos: &currentY, offset: 15)
+                        let isRoutineStr = (session.isRoutine == true) ? String(localized: "export.pdf.focus.type_routine", defaultValue: "Routine") : String(localized: "export.pdf.focus.type_habit", defaultValue: "Gewohnheit")
+                        drawText("• \(dateStr) - \(session.durationMinutes) Min (\(isRoutineStr))", attributes: boldTextAttributes, yPos: &currentY, offset: 15)
+                        
+                        if session.isRoutine == true, let rNameKey = session.routineNameKey {
+                            drawText("  Routine: \(NSLocalizedString(rNameKey, comment: ""))", attributes: textAttributes, yPos: &currentY, offset: 15)
+                        } else if let hName = session.habitName {
+                            let habitTitle = settings.showHabitInsteadOfName ? (gardenStore.pflanzen.first(where: { $0.id == session.habitId })?.displayedHabitName ?? hName) : hName
+                            drawText("  " + String(format: String(localized: "export.pdf.focus.habit_name", defaultValue: "Gewohnheit: %@"), NSLocalizedString(habitTitle, comment: "")), attributes: textAttributes, yPos: &currentY, offset: 15)
+                        }
+                        
+                        if let tasks = session.tasks, !tasks.isEmpty {
+                            drawText("  " + String(localized: "export.pdf.focus.tasks", defaultValue: "Aufgaben:"), attributes: textAttributes, yPos: &currentY, offset: 15)
+                            for task in tasks {
+                                drawText("    - \(task)", attributes: textAttributes, yPos: &currentY, offset: 15)
+                            }
+                        }
                     }
                 }
             }
@@ -262,6 +277,17 @@ class PDFExportManager {
                                     }
                                 }
                             }
+                            
+                            let completions = gardenStore.focusSessions.filter { $0.isRoutine == true && $0.routineNameKey == routine.titleKey }
+                            if !completions.isEmpty {
+                                let recentCompletions = completions.sorted { $0.date > $1.date }.prefix(5)
+                                drawText(String(localized: "export.pdf.routines.history", defaultValue: "Letzte Abschlüsse:"), attributes: textAttributes, yPos: &currentY, offset: 15)
+                                for c in recentCompletions {
+                                    let cDate = formatter.string(from: c.date)
+                                    drawText("  - \(cDate) (\(c.durationMinutes) Min)", attributes: textAttributes, yPos: &currentY, offset: 15)
+                                }
+                            }
+                            
                             currentY += 10
                         }
                     } else {

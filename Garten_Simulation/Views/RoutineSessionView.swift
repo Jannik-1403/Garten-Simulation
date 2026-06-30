@@ -360,7 +360,17 @@ struct RoutineSessionView: View {
         // gardenStore.giessen hat die Coins und XP bereits global hinzugefügt.
         
         // Log as a focus session so it appears in stats
-        gardenStore.focusSessions.append(FocusSessionLog(date: Date(), durationMinutes: durationMins, isCompleted: true))
+        let log = FocusSessionLog(
+            date: Date(),
+            durationMinutes: durationMins,
+            isCompleted: true,
+            isRoutine: true,
+            routineNameKey: routine.titleKey,
+            habitId: nil,
+            habitName: nil,
+            tasks: nil
+        )
+        gardenStore.focusSessions.append(log)
         
         onComplete?()
         

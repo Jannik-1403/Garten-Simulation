@@ -154,7 +154,16 @@ struct FocusSessionView: View {
                         let completedSeconds = selectedMinutes * 60 - remainingSeconds
                         let durationMinutes = completedSeconds / 60
                         if durationMinutes > 0 {
-                            gardenStore.focusSessions.append(FocusSessionLog(date: Date(), durationMinutes: durationMinutes, isCompleted: false))
+                            let log = FocusSessionLog(
+                                date: Date(),
+                                durationMinutes: durationMinutes,
+                                isCompleted: false,
+                                isRoutine: false,
+                                habitId: pflanze.id,
+                                habitName: pflanze.name,
+                                tasks: sessionGoals.map { $0.text }
+                            )
+                            gardenStore.focusSessions.append(log)
                         }
                     }
                 }
@@ -366,7 +375,16 @@ struct FocusSessionView: View {
                 let completedSeconds = selectedMinutes * 60 - remainingSeconds
                 let durationMinutes = completedSeconds / 60
                 if durationMinutes > 0 {
-                    gardenStore.focusSessions.append(FocusSessionLog(date: Date(), durationMinutes: durationMinutes, isCompleted: false))
+                    let log = FocusSessionLog(
+                        date: Date(),
+                        durationMinutes: durationMinutes,
+                        isCompleted: false,
+                        isRoutine: false,
+                        habitId: pflanze.id,
+                        habitName: pflanze.name,
+                        tasks: sessionGoals.map { $0.text }
+                    )
+                    gardenStore.focusSessions.append(log)
                 }
             }
         }
@@ -480,7 +498,16 @@ struct FocusSessionView: View {
             }
         }
         
-        gardenStore.focusSessions.append(FocusSessionLog(date: Date(), durationMinutes: selectedMinutes, isCompleted: true))
+        let log = FocusSessionLog(
+            date: Date(),
+            durationMinutes: selectedMinutes,
+            isCompleted: true,
+            isRoutine: false,
+            habitId: pflanze.id,
+            habitName: pflanze.name,
+            tasks: sessionGoals.map { $0.text }
+        )
+        gardenStore.focusSessions.append(log)
         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
     }
     

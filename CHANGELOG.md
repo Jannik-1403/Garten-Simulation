@@ -1,3 +1,9 @@
+## [2026-06-30] - UI & Export Updates
+- Gute Gewohnheiten sind im PDF-Export nun standardmäßig deaktiviert, können aber über einen Toggle aktiviert werden.
+- Der `Item3DButton` hat nun eine dezente Kontur erhalten, um Ränder besser sichtbar zu machen.
+- Der Button "PDF generieren" nutzt nun das einheitliche `Item3DButton`-Design.
+- Das Schließen-X oben rechts ist jetzt dicker (`.heavy`) und komplett schwarz.
+
 ## [2026-06-30] - PDF Export Refactor
 - Modulare PDF-Generierung für Notizen, Statistiken, Timer, schlechte Gewohnheiten, Quizzes und Routinen eingebaut.
 - `ImageRenderer` für Quiz Ergebnisse eingebaut, um diese als Bilder im PDF zu zeigen.
