@@ -70,7 +70,7 @@ struct GruenerBanner: View {
 #Preview {
     GruenerBanner(
         abschnitt: "ABSCHNITT 1, EINHEIT 1",
-        titel: "Starte deine Reise"
+        titel: String(localized: "banner.start_journey", defaultValue: "Starte deine Reise")
     )
     .padding()
 }

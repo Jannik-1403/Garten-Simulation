@@ -221,7 +221,7 @@ struct DeveloperView: View {
                                 pfadStore.debugJumpToDay89()
                                 FeedbackManager.shared.playSuccess()
                             } label: {
-                                settingRow(title: "Zu Tag 89 springen", icon: "forward.end.fill", color: .purple)
+                                settingRow(title: String(localized: "developer.jump_to_day_89", defaultValue: "Zu Tag 89 springen"), icon: "forward.end.fill", color: .purple)
                             }
                         }
                     }
@@ -290,7 +290,7 @@ struct DeveloperView: View {
                 .padding(.vertical, 20)
             }
         }
-        .navigationTitle("Developer Options")
+        .navigationTitle(String(localized: "developer.options.title", defaultValue: "Developer Options"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

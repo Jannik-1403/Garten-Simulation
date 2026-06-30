@@ -743,7 +743,7 @@ struct BadHabitNotizSheet: View {
             id: "test",
             titleKey: "Super-Dünger",
             subtitle: "Wachstums-Boost",
-            descriptionKey: "Beschleunigt das Wachstum deiner Pflanzen um 50% für die nächsten 24 Stunden.",
+            descriptionKey: "inventory.item.desc.growth_boost",
             price: 500,
             icon: "Powerup",
             colorHex: "#FFD000", // yellow
@@ -752,7 +752,7 @@ struct BadHabitNotizSheet: View {
             tag: "POWER-UP",
             itemType: .powerUp,
             habitCategory: .fitness,
-            symbolism: "Energie und schnelles Vorankommen.",
+            symbolism: "inventory.item.symbolism.growth_boost",
             howToUse: "item.duenger_blitz.usage"
         )
     )

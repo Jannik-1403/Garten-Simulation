@@ -41,7 +41,7 @@ struct SettingsDetailView: View {
     NavigationStack {
         SettingsDetailView(
             title: "Nutzungsbedingungen",
-            description: "Dies sind die Nutzungsbedingungen für die Garten-Simulation...",
+            description: String(localized: "settings.terms.placeholder", defaultValue: "Dies sind die Nutzungsbedingungen für die Garten-Simulation..."),
             actionTitle: "Verstanden",
             icon: "doc.text.fill",
             iconColor: .gray,

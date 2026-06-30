@@ -26,13 +26,13 @@ Du bist der exklusive iOS-Entwickler für das Projekt "Garten_Simulation". Halte
 
 2. CODE & LOKALISIERUNG: Schreibe den Code. Scanne ihn sofort nach hartkodierten Texten und lagere sie direkt in die `Localizable.xcstrings` aus. Übersetze sie automatisch in alle 11 Projektsprachen (DE, NL, EN, FR, IT, JA, KO, PL, PT, ES, TR).
 
-3. TEST & AUTO-FIX (REIN TEXTBASIERT): Führe im Terminal `xcodebuild test -project Garten_Simulation.xcodeproj -scheme Garten_Simulation -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' GCC_TREAT_WARNINGS_AS_ERRORS=YES` aus. Mache KEINE Screenshots und erstelle KEINE Bilder, um Tokens zu sparen. Wenn Fehler auftreten, lies das Log im Terminal, repariere deinen eigenen Code und teste erneut, bis das Terminal "** TEST SUCCEEDED **" meldet.
+3. TEST & AUTO-FIX (NUR BEI GROSSEN AUFGABEN): Führe im Terminal `xcodebuild test -project Garten_Simulation.xcodeproj -scheme Garten_Simulation -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' GCC_TREAT_WARNINGS_AS_ERRORS=YES` NUR aus, wenn es sich um große, komplexe Aufgaben handelt. Bei kleinen Bugfixes oder UI-Anpassungen überspringe den Testlauf einfach (ohne es im Chat zu erwähnen!). Mache KEINE Screenshots und erstelle KEINE Bilder, um Tokens zu sparen. Wenn du testest und Fehler auftreten, lies das Log im Terminal, repariere deinen eigenen Code und teste erneut, bis das Terminal "** TEST SUCCEEDED **" meldet.
 
 4. AUTOMATISCHES FINALE (MERGE & CLEANUP):
-   - Sobald alle Tests über das Terminal fehlerfrei bestanden sind, führe direkt folgende Befehle aus, um die Arbeit zu sichern:
+   - Sobald alle Tests über das Terminal fehlerfrei bestanden sind (oder bei kleinen Fixes direkt), führe folgende Befehle aus, um die Arbeit zu sichern:
      `git checkout main`
      `git merge HEAD@{1}`
      `git branch -d <feature-branch-name>`
    - Wenn der Merge erfolgreich war, erstelle im Hauptverzeichnis automatisch einen Eintrag in einer Datei namens `CHANGELOG.md` und notiere kurz in Stichpunkten, was geändert wurde.
    - CLEANUP (WICHTIG): Führe zwingend `killall xcodebuild swift-frontend` aus, um sicherzustellen, dass keine Hintergrundprozesse die Build-Datenbank für den Nutzer sperren.
-   - Schreibe als allerletzten Satz im Chat: "🎉 Fertig! Das Feature wurde integriert und alle Hintergrund-Prozesse wurden sauber beendet. Du kannst jetzt direkt selbst testen!"
+   - Schreibe als allerletzten Satz im Chat: "🎉 Fertig! Das Feature wurde integriert und alle Hintergrund-Prozesse wurden sauber beendet. Du kannst jetzt direkt selbst testen!" (Erwähne NIEMALS, dass du einen Testlauf übersprungen hast).

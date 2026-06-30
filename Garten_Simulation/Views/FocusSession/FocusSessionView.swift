@@ -56,7 +56,7 @@ struct FocusSessionView: View {
                     FocusSessionPreparationStep(
                         iconName: "Handy",
                         title: "Ablenkungen weg",
-                        description: "Schalte dein Handy jetzt auf 'Nicht stören' und lege es nach dieser Einrichtung außer Sichtweite.",
+                        description: String(localized: "focus.session.dnd_hint", defaultValue: "Schalte dein Handy jetzt auf 'Nicht stören' und lege es nach dieser Einrichtung außer Sichtweite."),
                         buttonText: "Erledigt",
                         isLastStep: false,
                         textInput: $currentGoalInput,
@@ -69,7 +69,7 @@ struct FocusSessionView: View {
                     FocusSessionPreparationStep(
                         iconName: "Goal",
                         title: "Klares Ziel",
-                        description: "Was genau möchtest du in deiner Fokus-Zeit schaffen? Nimm dir einen Moment, um dich zu fokussieren.",
+                        description: String(localized: "focus.session.goal_hint", defaultValue: "Was genau möchtest du in deiner Fokus-Zeit schaffen? Nimm dir einen Moment, um dich zu fokussieren."),
                         buttonText: "Timer starten",
                         isLastStep: true,
                         showTextInput: true,

@@ -198,3 +198,4 @@
 - Bad Habit Icons in der BadHabitCard sind nun 2.2x größer skaliert.
 - Platzhalter-Icons wurden nicht aus den Assets gelöscht, da diese reguläre Dekorationen (wie Brunnen, Vogelhaus, Laterne etc.) im Spiel sind und ansonsten dort fehlen würden.
 - Alte Dekoration-Icons (die zuvor als Platzhalter für schlechte Gewohnheiten dienten) wurden vollständig aus den Assets gelöscht, da sie nun exklusiv durch die spezifischen Icons für schlechte Gewohnheiten ersetzt wurden.
+- Fehlende Übersetzungen für Routinen-Texte in allen 11 Sprachen zu Localizable.xcstrings hinzugefügt.
