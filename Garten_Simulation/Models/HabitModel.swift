@@ -185,6 +185,10 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var pfadAktiviertAm: Date? = nil
     @Published var pfadCheckedDates: [Date] = []
     
+    // HealthKit Integration
+    @Published var healthKitType: HealthKitType? = nil
+    @Published var healthKitGoal: Double? = nil
+    
     /// Hat die Pflanze einen aktiven (nicht abgelaufenen) Erinnerungs-Schedule?
     var hasActiveReminder: Bool {
         guard let schedule = reminderSchedule else {
@@ -382,7 +386,9 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         plantID: String? = nil,
         reminderTime: Date? = nil,
         customReminderMessage: String? = nil,
-        isNegative: Bool = false
+        isNegative: Bool = false,
+        healthKitType: HealthKitType? = nil,
+        healthKitGoal: Double? = nil
     ) {
         self.id = id
         self.name = name
@@ -404,6 +410,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.customReminderMessage = customReminderMessage
         self.pfadAktiviertAm = nil
         self.pfadCheckedDates = []
+        self.healthKitType = healthKitType
+        self.healthKitGoal = healthKitGoal
         
         // Wenn reminderTime gesetzt → automatisch Schedule erstellen
         if let rt = reminderTime {
@@ -439,6 +447,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case reminderSchedule
         case pfadAktiviertAm, pfadCheckedDates
         case individualSchwierigkeit
+        case healthKitType, healthKitGoal
     }
 
     required init(from decoder: Decoder) throws {
@@ -519,6 +528,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             reminderSchedule = ReminderSchedule.defaultSchedule(time: legacyTime, customMessage: customReminderMessage)
         }
         individualSchwierigkeit = try container.decodeIfPresent(String.self, forKey: .individualSchwierigkeit)
+        healthKitType = try container.decodeIfPresent(HealthKitType.self, forKey: .healthKitType)
+        healthKitGoal = try container.decodeIfPresent(Double.self, forKey: .healthKitGoal)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -563,6 +574,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encodeIfPresent(pfadAktiviertAm, forKey: .pfadAktiviertAm)
         try container.encode(pfadCheckedDates, forKey: .pfadCheckedDates)
         try container.encodeIfPresent(individualSchwierigkeit, forKey: .individualSchwierigkeit)
+        try container.encodeIfPresent(healthKitType, forKey: .healthKitType)
+        try container.encodeIfPresent(healthKitGoal, forKey: .healthKitGoal)
     }
 }
 

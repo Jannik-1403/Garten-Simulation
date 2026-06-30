@@ -71,6 +71,10 @@
 			</dict>
 		</dict>
 	</array>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Wir nutzen deine Gesundheitsdaten, um deine Routinen automatisch im Hintergrund abzuhaken und deine Pflanzen wachsen zu lassen.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Wir nutzen deine Gesundheitsdaten, um deine Routinen automatisch im Hintergrund abzuhaken und deine Pflanzen wachsen zu lassen.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Grovy möchte dein exportiertes Statistik- oder Erfolgsbild direkt in deiner Fotogalerie speichern.</string>
 	<key>NSSupportsLiveActivities</key>

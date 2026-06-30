@@ -36,3 +36,9 @@ Du bist der exklusive iOS-Entwickler für das Projekt "Garten_Simulation". Halte
    - Wenn der Merge erfolgreich war, erstelle im Hauptverzeichnis automatisch einen Eintrag in einer Datei namens `CHANGELOG.md` und notiere kurz in Stichpunkten, was geändert wurde.
    - CLEANUP (WICHTIG): Führe zwingend `killall xcodebuild swift-frontend` aus, um sicherzustellen, dass keine Hintergrundprozesse die Build-Datenbank für den Nutzer sperren.
    - Schreibe als allerletzten Satz im Chat: "🎉 Fertig! Das Feature wurde integriert und alle Hintergrund-Prozesse wurden sauber beendet. Du kannst jetzt direkt selbst testen!" (Erwähne NIEMALS, dass du einen Testlauf übersprungen hast).
+
+## Feature Flags (Pro-Version & Zukünftige Features)
+Wenn der Nutzer an der "Pro-Version" oder an Features für ein zukünftiges Update arbeitet, die im aktuellen App-Store-Release noch unsichtbar sein sollen:
+1. Verstecke die UI-Einstiegspunkte strikt hinter `if FeatureFlags.isProVersionEnabled { ... }`.
+2. Alle normalen Features, die nichts mit der Pro-Version zu tun haben, werden ganz normal und ohne Feature-Flag implementiert.
+3. Nutze für diese Feature-Flags die Datei `Garten_Simulation/Models/FeatureFlags.swift`.

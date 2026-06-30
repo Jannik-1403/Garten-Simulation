@@ -20,6 +20,7 @@ struct PflanzeDetailSheet: View {
     @State private var zeigeTimerEditSheet = false
     @State private var pulsieren = false
     @State private var zeigeTimerAbbrechenDialog = false
+    @State private var zeigeHealthKitConfig = false
     @State private var noteToEditIndex: Int? = nil
     @State private var noteToDeleteIndex: Int? = nil
     @State private var ausgewaehlterEffekt: PflanzenEffekt? = nil
@@ -289,6 +290,26 @@ struct PflanzeDetailSheet: View {
                         ))
                     }
                     .padding(.horizontal, 24)
+                    
+                    if FeatureFlags.isProVersionEnabled {
+                        Button {
+                            zeigeHealthKitConfig = true
+                        } label: {
+                            ZStack {
+                                Text(String(localized: "health.config.title", defaultValue: "Apple Health")).textCase(.uppercase)
+                                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 24)
+                            .clipped()
+                        }
+                        .buttonStyle(DuolingoButtonStyle(
+                            size: .medium, fillWidth: true,
+                            backgroundColor: .rotPrimary, shadowColor: .rotPrimary.darker(), foregroundColor: .white
+                        ))
+                        .padding(.horizontal, 24)
+                        .padding(.top, 4)
+                    }
 
                     // Focus Session Button
                     Item3DButton(
@@ -423,7 +444,10 @@ struct PflanzeDetailSheet: View {
                 .presentationCornerRadius(32)
                 .presentationBackground(Color(UIColor.systemBackground))
         }
-        // MARK: - Timer Edit Sheet
+        // MARK: - Timer Edit
+        .sheet(isPresented: $zeigeHealthKitConfig) {
+            RoutineHealthKitConfigView(selectedType: $pflanze.healthKitType, goal: $pflanze.healthKitGoal)
+        }
         .fullScreenCover(isPresented: $zeigeTimerEditSheet) {
             NavigationStack {
                 TimerEditSheetView(pflanze: pflanze)

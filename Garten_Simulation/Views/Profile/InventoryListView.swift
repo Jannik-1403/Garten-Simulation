@@ -108,7 +108,7 @@ struct InventoryItemCard: View {
                     farbe: item.color,
                     sekundaerFarbe: item.color.darker(),
                     groesse: 90,
-                    iconSkalierung: item.itemType == .decoration ? 2.2 : (isTrash ? 0.6 : 0.95),
+                    iconSkalierung: isTrash ? 1.5 : (item.itemType == .decoration ? 2.2 : 0.95),
                     aktion: action
                 )
                 
@@ -130,8 +130,8 @@ struct InventoryItemCard: View {
             .padding(.horizontal, 12)
         }
         .buttonStyle(Item3DButtonStyle(
-            farbe: isTrash ? Color(hex: "#FADBD8") : .white, // leicht rötlich/hellgrau für Müll
-            sekundaerFarbe: isTrash ? Color(hex: "#E6B0AA") : Color(hex: "#E5E5EA"), // dunklerer rötlicher Schatten
+            farbe: .white,
+            sekundaerFarbe: Color(hex: "#E5E5EA"),
             groesse: 170, // Ungefähre Höhe
             iconSkalierung: 1.0,
             shadowDepthFactor: 0.05,

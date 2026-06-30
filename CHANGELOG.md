@@ -210,3 +210,9 @@
 - Fixed raw string catalog keys showing in 90-day multi-strand path view
 - Added translations for pending path task badge ('pfad_tag_ausstehend')
 - Fehler behoben: Button 'Ja' bei der Einführungstour hat fälschlicherweise die Tour übersprungen und sofort das Routine-Onboarding geöffnet. Jetzt startet die Tour korrekt. Routine-Onboarding wird während der Tour pausiert.
+
+- Localized hardcoded 'Samen' category text in shop view
+
+- Fixed 'common.collect' translation issue on routine XP screen
+
+- Added HealthKit integration for tracking steps, water, and sleep automatically for routines.
