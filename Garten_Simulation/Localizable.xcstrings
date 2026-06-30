@@ -54771,7 +54771,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Collecter"
+            "value": "Récupérer"
           }
         },
         "it": {
@@ -54783,37 +54783,37 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.collect"
+            "value": "集める"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.collect"
+            "value": "수집하다"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.collect"
+            "value": "Verzamelen"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.collect"
+            "value": "Zbierać"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.collect"
+            "value": "Recolher"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.collect"
+            "value": "Topla"
           }
         }
       }
