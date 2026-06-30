@@ -294,7 +294,7 @@ struct UnifiedShopView: View {
                                                 selectedHabitCategory = nil
                                             }
                                             ForEach(HabitCategory.allCases, id: \.self) { kat in
-                                                LiquidGlassFilterPill(title: NSLocalizedString(kat.localizationKey, comment: ""), isSelected: selectedHabitCategory == kat) {
+                                                LiquidGlassFilterPill(title: kat.localizedName, isSelected: selectedHabitCategory == kat) {
                                                     selectedHabitCategory = kat
                                                 }
                                             }

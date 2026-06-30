@@ -36,6 +36,18 @@ enum HabitCategory: String, CaseIterable, Codable {
 
     var localizationKey: String { "category.\(self.rawValue)" }
     
+    var localizedName: String {
+        switch self {
+        case .fitness: return String(localized: "category.fitness", defaultValue: "Fitness")
+        case .health: return String(localized: "category.health", defaultValue: "Gesundheit")
+        case .mental: return String(localized: "category.mental", defaultValue: "Mental")
+        case .growth: return String(localized: "category.growth", defaultValue: "Wachstum")
+        case .lifestyle: return String(localized: "category.lifestyle", defaultValue: "Lifestyle")
+        case .finance: return String(localized: "category.finance", defaultValue: "Finanzen")
+        case .seeds: return String(localized: "category.seeds", defaultValue: "Samen")
+        }
+    }
+    
     var color: Color {
         switch self {
         case .fitness:   return .orangePrimary

@@ -51773,7 +51773,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "재원"
+            "value": "재정"
           }
         },
         "nl": {
@@ -51821,13 +51821,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fitness"
+            "value": "Aptitud física"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fitness"
+            "value": "Condition physique"
           }
         },
         "it": {
@@ -51845,25 +51845,25 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "적합"
+            "value": "피트니스"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geschiktheid"
+            "value": "Fitness"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zdatność"
+            "value": "Fitness"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fitness"
+            "value": "Aptidão"
           }
         },
         "tr": {
@@ -52043,7 +52043,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Style de vie"
+            "value": "Mode de vie"
           }
         },
         "it": {
@@ -52061,7 +52061,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "라이프 스타일"
+            "value": "라이프스타일"
           }
         },
         "nl": {
@@ -52085,7 +52085,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yaşam Tarzı"
+            "value": "Yaşam tarzı"
           }
         }
       }
@@ -52097,67 +52097,67 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geist & Seele"
+            "value": "Mental"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mind & Soul"
+            "value": "Mental"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mente y Alma"
+            "value": "Mental"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esprit & Âme"
+            "value": "Mental"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mente & Anima"
+            "value": "Mentale"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "マインド＆ソウル"
+            "value": "メンタル"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "정신과 영혼"
+            "value": "정신"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geest & Ziel"
+            "value": "Mentaal"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Umysł i dusza"
+            "value": "Mentalny"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mente & Alma"
+            "value": "Mental"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zihin ve Ruh"
+            "value": "Zihinsel"
           }
         }
       }
@@ -52271,25 +52271,25 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Samen"
+            "value": "種"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Samen"
+            "value": "씨앗"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Samen"
+            "value": "Zaden"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Samen"
+            "value": "Nasiona"
           }
         },
         "pt": {
@@ -52301,7 +52301,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Samen"
+            "value": "Tohumlar"
           }
         }
       }
