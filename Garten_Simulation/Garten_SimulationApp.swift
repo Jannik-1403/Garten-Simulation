@@ -142,7 +142,6 @@ struct AppRootView: View {
                         .environmentObject(container.characterStore)
                 }
                 .task {
-                    _ = await NotificationManager.shared.requestPermission()
                     NotificationManager.shared.scheduleAll(for: container.gardenStore.pflanzen)
                 }
                 .onOpenURL { url in

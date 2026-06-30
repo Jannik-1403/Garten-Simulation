@@ -255,8 +255,8 @@ struct RoutinenView: View {
             }
             .onAppear {
                 loadRoutines()
-                // Zeige Onboarding wenn noch nicht abgeschlossen
-                if !settings.routineOnboardingAbgeschlossen {
+                // Zeige Onboarding wenn noch nicht abgeschlossen und wir auf Tab 4 sind
+                if !settings.routineOnboardingAbgeschlossen && gardenStore.selectedTab == 4 {
                     showOnboarding = true
                 }
             }
@@ -264,8 +264,8 @@ struct RoutinenView: View {
                 saveRoutines()
             }
             .onChange(of: settings.routineOnboardingAbgeschlossen) { _, newValue in
-                // Wenn Flag auf false gesetzt wird (z.B. nach Reset oder Tour-Prompt), sofort Onboarding zeigen
-                if !newValue {
+                // Wenn Flag auf false gesetzt wird (z.B. nach Reset), nur Onboarding zeigen wenn auf Tab 4
+                if !newValue && gardenStore.selectedTab == 4 {
                     showOnboarding = true
                 }
             }

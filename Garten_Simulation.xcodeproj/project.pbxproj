@@ -791,10 +791,6 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				"OTHER_LDFLAGS[arch=*]" = (
-					framework,
-					"\"ActivityKit\"",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jannik.grovy.GartenWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
