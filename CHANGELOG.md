@@ -1,3 +1,9 @@
+## [2026-06-30] - PDF Export Quiz & Kategorie-Stats Fixes
+- Die Quiz-Ergebnisse im PDF zeigen nun den korrekten lokalisierten Text statt dem rawValue der Datenbank an (z.B. "Ausreden-Sucher" statt "ausreden_suche").
+- Bei den Quiz-Ergebnissen wird jetzt zusätzlich die Beschreibung und der Punkt "Was man verbessern kann" mit angezeigt.
+- Bei den allgemeinen Statistiken wird nun die Anzahl der Gieß-Vorgänge (Mischgut/Erfahrungspunkte) pro Kategorie aufgeschlüsselt angezeigt.
+- Alle neuen Strings wurden erfolgreich in alle verfügbaren Sprachen übersetzt.
+
 ## [2026-06-30] - Export UI Anpassungen
 - Die Option "Gute Gewohnheiten" in den Export-Einstellungen wurde nach unten zu den restlichen Optionen verschoben.
 - Der Hintergrund der Export-Konfiguration ist nun in einem dezenten Grauton gehalten, damit sich die Buttons besser abheben.
