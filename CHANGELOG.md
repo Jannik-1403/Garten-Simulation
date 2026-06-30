@@ -1,3 +1,7 @@
+## [2026-06-30] - PDF Sprache/Lokalisierung Bugfix Teil 3 (Statistiken & Streaks)
+- Die Platzhalter für Streaks (Höchster Streak, Aktueller Streak, Abgeschlossene Challenges, Längster Streak ohne Rückfall) wurden aus dem lokalen Speicher korrekt in alle 11 Sprachen übersetzt und eingebunden.
+- Auch die Auslöser (Triggers) bei den schlechten Gewohnheiten werden jetzt mehrsprachig angezeigt.
+
 ## [2026-06-30] - PDF Sprache/Lokalisierung Bugfix Teil 2
 - Der PDF Export Manager und der PDF Export Configurator nutzen nun bei jeder Textgenerierung den aktuell in der App ausgewählten `appLanguage`-Code (z.B. "en" oder "de").
 - Bisher wurden manche Texte nur im Standard-Locale formatiert oder haben die Sprachauswahl ignoriert. Dies ist nun für alle Datumswerte, Timer-Formatierungen, Routinen-Namen und PDF-Textblöcke strikt an die In-App Sprache gebunden.
