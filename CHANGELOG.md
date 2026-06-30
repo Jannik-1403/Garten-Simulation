@@ -1,3 +1,6 @@
+## [2026-06-30] - Übersetzung Bugfix
+- Fehlende Übersetzungen im PDF Export Konfigurator und im PDF Bericht selbst wurden nachgetragen. Wenn die App auf Englisch gestellt ist, sind nun auch alle Menüpunkte und Überschriften (z.B. "Good Habits", "Additional Data", "Generate PDF") korrekt übersetzt.
+
 ## [2026-06-30] - PDF Export Quiz & Kategorie-Stats Fixes
 - Die Quiz-Ergebnisse im PDF zeigen nun den korrekten lokalisierten Text statt dem rawValue der Datenbank an (z.B. "Ausreden-Sucher" statt "ausreden_suche").
 - Bei den Quiz-Ergebnissen wird jetzt zusätzlich die Beschreibung und der Punkt "Was man verbessern kann" mit angezeigt.
@@ -183,3 +186,6 @@
 
 - Lokalisierungs-Fix: Die Anzeige der rohen Kategorie-Schlüssel (z. B. 'character.category.body') in den Charakter-Einstellungen (CharacterCustomizationView) wurde repariert und verwendet nun  mit Standardwerten sowie echten Übersetzungen.
 - Lokalisierungs-Fix: Die Anzeige der rohen Kategorie-Schlüssel (z. B. 'character.category.body') in den Charakter-Einstellungen (CharacterCustomizationView) wurde repariert und verwendet nun `String(localized: ...)` mit Standardwerten sowie echten Übersetzungen in 11 Sprachen.
+- Bad Habits verwenden nun ihre spezifischen neuen Icons anstatt der Platzhalter.
+- Bad Habit Icons in der BadHabitCard sind nun 2.2x größer skaliert.
+- Platzhalter-Icons wurden nicht aus den Assets gelöscht, da diese reguläre Dekorationen (wie Brunnen, Vogelhaus, Laterne etc.) im Spiel sind und ansonsten dort fehlen würden.
