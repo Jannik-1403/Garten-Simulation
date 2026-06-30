@@ -264,7 +264,7 @@ struct UnifiedShopView: View {
                                                 subtitle: item.habitDescriptionKey,
                                                 price: item.price,
                                                 badgeText: isOwned ? String(localized: "shop.owned") : nil,
-                                                iconScale: 4.4,
+                                                iconScale: 2.2,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
                                                         id: item.id,

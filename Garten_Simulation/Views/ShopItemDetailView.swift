@@ -56,7 +56,7 @@ struct ShopItemDetailView: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: payload.itemType == .decoration ? 180 : 150, height: payload.itemType == .decoration ? 180 : 150)
-                                        .scaleEffect(payload.itemType == .decoration ? 4.4 : 1.0)
+                                        .scaleEffect(payload.itemType == .decoration ? 2.2 : 1.0)
                                 }
                             }
                             .frame(width: payload.itemType == .decoration ? 240 : 150, height: payload.itemType == .decoration ? 240 : 150)

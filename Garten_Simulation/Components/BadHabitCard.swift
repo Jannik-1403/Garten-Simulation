@@ -84,12 +84,12 @@ struct BadHabitCard: View {
                                     Image(deko.sfSymbol)
                                         .resizable()
                                         .scaledToFit()
-                                        .scaleEffect(4.4)
+                                        .scaleEffect(2.2)
                                 } else {
                                     Image(systemName: deko.sfSymbol)
                                         .resizable()
                                         .scaledToFit()
-                                        .scaleEffect(4.4)
+                                        .scaleEffect(2.2)
                                         .foregroundStyle(.white)
                                 }
                             }

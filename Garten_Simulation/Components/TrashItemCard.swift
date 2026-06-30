@@ -14,7 +14,7 @@ struct DecorationCard: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 100)
-                        .scaleEffect(4.4)
+                        .scaleEffect(2.2)
                 } else {
                     Image(systemName: decoration.sfSymbol)
                         .font(.system(size: 55, weight: .bold))
