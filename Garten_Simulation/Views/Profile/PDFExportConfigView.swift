@@ -25,16 +25,14 @@ struct PDFExportConfigView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 16) {
                         
-                        // Gewohnheiten (optional)
-                        toggleRow(title: String(localized: "export.config.section.habits", defaultValue: "Gute Gewohnheiten"), isSelected: $includeGoodHabits)
-                        
-                        Divider().padding(.vertical, 8)
+
                         
                         // Optionale Bereiche
                         Text(String(localized: "export.config.section.optional", defaultValue: "Zusätzliche Daten"))
                             .font(.system(size: 16, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                         
+                        toggleRow(title: String(localized: "export.config.section.habits", defaultValue: "Gute Gewohnheiten"), isSelected: $includeGoodHabits)
                         toggleRow(title: String(localized: "export.config.stats", defaultValue: "Statistiken (Gesamtfortschritt)"), isSelected: $includeStatistics)
                         toggleRow(title: String(localized: "export.config.bad_habits", defaultValue: "Schlechte Gewohnheiten & Rückfälle"), isSelected: $includeBadHabits)
                         toggleRow(title: String(localized: "export.config.routines", defaultValue: "Routinen"), isSelected: $includeRoutines)
@@ -79,6 +77,7 @@ struct PDFExportConfigView: View {
                 .padding(.horizontal, 24)
                 .padding(.bottom, 24)
             }
+            .background(Color(hex: "#F2F2F7").ignoresSafeArea())
             .navigationTitle(String(localized: "export.config.title", defaultValue: "PDF Export Konfigurator"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

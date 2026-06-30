@@ -1,3 +1,9 @@
+## [2026-06-30] - Fokus Session Metadaten
+- `FocusSessionLog` erweitert, um festzuhalten, ob es sich um eine Routine oder normale Gewohnheit handelt, inklusive verknüpfter Aufgaben/Todos.
+- PDF-Export Manager liest die neuen Fokus-Session Daten aus und stellt diese im Bericht dar (mit Gewohnheitsnamen und Aufgaben).
+- PDF-Export zeigt nun bei den Routinen auch die Historie an (wann welche Routine abgeschlossen wurde).
+- Übersetzungen mit dem Python-Script in `Localizable.xcstrings` aktualisiert.
+
 ## [2026-06-30] - UI & Export Updates
 - Gute Gewohnheiten sind im PDF-Export nun standardmäßig deaktiviert, können aber über einen Toggle aktiviert werden.
 - Der `Item3DButton` hat nun eine dezente Kontur erhalten, um Ränder besser sichtbar zu machen.

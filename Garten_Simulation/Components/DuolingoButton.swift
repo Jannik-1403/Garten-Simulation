@@ -114,10 +114,12 @@ private struct DuolingoButtonVisualView: View {
                     // Static Shadow (Bottom Layer)
                     RoundedRectangle(cornerRadius: size.cornerRadius, style: .continuous)
                         .fill(actualShadow)
+                        .overlay(RoundedRectangle(cornerRadius: size.cornerRadius, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
                     
                     // Main face (Top Layer)
                     RoundedRectangle(cornerRadius: size.cornerRadius, style: .continuous)
                         .fill(actualBackground)
+                        .overlay(RoundedRectangle(cornerRadius: size.cornerRadius, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
                         .offset(y: (pressed || isPermanentlyPressed) ? 0 : -depth)
                 }
             )
