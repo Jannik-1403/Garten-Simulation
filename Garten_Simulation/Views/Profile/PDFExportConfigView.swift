@@ -8,6 +8,7 @@ struct PDFExportConfigView: View {
 
     @EnvironmentObject var assessmentStore: AssessmentStore
     
+    @State private var includeGoodHabits = false
     @State private var includeNotes = true
     @State private var includeTimer = true // Focus Timer
     @State private var includeStatistics = true
@@ -24,24 +25,8 @@ struct PDFExportConfigView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 16) {
                         
-                        // Gewohnheiten (immer dabei)
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(String(localized: "export.config.section.habits", defaultValue: "Gute Gewohnheiten"))
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
-                            
-                            HStack {
-                                Text(String(localized: "export.config.habits_always_included", defaultValue: "Werden standardmäßig immer exportiert."))
-                                    .font(.system(size: 14, weight: .medium, design: .rounded))
-                                    .foregroundStyle(.secondary)
-                                Spacer()
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundStyle(.green)
-                            }
-                            .padding()
-                            .background(Color.green.opacity(0.1))
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                        }
+                        // Gewohnheiten (optional)
+                        toggleRow(title: String(localized: "export.config.section.habits", defaultValue: "Gute Gewohnheiten"), isSelected: $includeGoodHabits)
                         
                         Divider().padding(.vertical, 8)
                         
@@ -61,34 +46,36 @@ struct PDFExportConfigView: View {
                 }
                 
                 // Export Button
-                Button {
-                    let pdfUrl = PDFExportManager.shared.generatePDF(
-                        gardenStore: gardenStore,
-                        settings: settings,
-                        streakStore: streakStore,
-                        assessmentStore: assessmentStore,
-                        includeNotes: true,
-                        includeTimer: includeTimer,
-                        includeStatistics: includeStatistics,
-                        includeQuizResults: includeQuizResults,
-                        includeBadHabits: includeBadHabits,
-                        includeRoutines: includeRoutines
-                    )
-                    if let pdfUrl = pdfUrl {
-                        self.generatedPDFUrl = pdfUrl
-                        self.isSharing = true
+                Item3DButton(
+                    farbe: .blauPrimary,
+                    sekundaerFarbe: Color.blauPrimary.opacity(0.7),
+                    groesse: 56,
+                    isRectangular: true,
+                    aktion: {
+                        let pdfUrl = PDFExportManager.shared.generatePDF(
+                            gardenStore: gardenStore,
+                            settings: settings,
+                            streakStore: streakStore,
+                            assessmentStore: assessmentStore,
+                            includeGoodHabits: includeGoodHabits,
+                            includeNotes: includeNotes,
+                            includeTimer: includeTimer,
+                            includeStatistics: includeStatistics,
+                            includeQuizResults: includeQuizResults,
+                            includeBadHabits: includeBadHabits,
+                            includeRoutines: includeRoutines
+                        )
+                        if let pdfUrl = pdfUrl {
+                            self.generatedPDFUrl = pdfUrl
+                            self.isSharing = true
+                        }
                     }
-                } label: {
+                ) {
                     Text(String(localized: "export.config.button", defaultValue: "PDF generieren"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 18)
-                        .background(Color.blauPrimary)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .shadow(color: Color.blauPrimary.opacity(0.3), radius: 10, x: 0, y: 5)
                 }
-                .buttonStyle(.plain)
                 .padding(.horizontal, 24)
                 .padding(.bottom, 24)
             }
@@ -96,12 +83,8 @@ struct PDFExportConfigView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
+                    LiquidGlassDismissButton {
                         dismiss()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 28))
-                            .foregroundStyle(.gray.opacity(0.5), Color(hex: "#F2F2F7"))
                     }
                 }
             }
@@ -142,6 +125,7 @@ struct PDFExportConfigView: View {
             settings: settings,
             streakStore: streakStore,
             assessmentStore: assessmentStore,
+            includeGoodHabits: includeGoodHabits,
             includeNotes: includeNotes,
             includeTimer: includeTimer,
             includeStatistics: includeStatistics,

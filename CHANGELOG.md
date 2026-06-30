@@ -1,3 +1,11 @@
+## [2026-06-30] - PDF Export Refactor
+- Modulare PDF-Generierung für Notizen, Statistiken, Timer, schlechte Gewohnheiten, Quizzes und Routinen eingebaut.
+- `ImageRenderer` für Quiz Ergebnisse eingebaut, um diese als Bilder im PDF zu zeigen.
+- Lange Streaks für schlechte Gewohnheiten kalkuliert und im PDF hinzugefügt.
+- UI Refactoring der Export-Seite mit nativem Design und `NavigationStack` umgesetzt.
+- Lokalisierungs-Updates in der `Localizable.xcstrings` durchgeführt.
+- Sämtliche Tests im Terminal bestehen erfolgreich.
+
 ### Routine UI & Syntax Fix
 - Ein Syntaxfehler in PflanzeDetailSheet (fehlende Klammer) wurde behoben.
 - Routinen zeigen nun an, wenn Gewohnheiten heute bereits erledigt wurden, und vergeben keine doppelten Belohnungen.

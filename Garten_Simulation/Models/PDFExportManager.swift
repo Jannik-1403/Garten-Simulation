@@ -14,6 +14,7 @@ class PDFExportManager {
         settings: SettingsStore,
         streakStore: StreakStore,
         assessmentStore: AssessmentStore,
+        includeGoodHabits: Bool = false,
         includeNotes: Bool = true,
         includeTimer: Bool = false,
         includeStatistics: Bool = false,
@@ -88,26 +89,28 @@ class PDFExportManager {
             formatter.timeStyle = .short
             drawText(String(localized: "export.pdf.date", defaultValue: "Erstellt am \(formatter.string(from: Date()))"), attributes: textAttributes, yPos: &currentY, addSpace: 20)
             
-            // 1. Gute Gewohnheiten & Notizen (Immer dabei)
-            drawText(String(localized: "export.good_habits.title", defaultValue: "Gute Gewohnheiten & Notizen"), attributes: headerAttributes, yPos: &currentY, addSpace: 15)
-            
-            let plantsToExport = gardenStore.pflanzen.filter { plantIds == nil || plantIds!.contains($0.id) }
-            
-            for plant in plantsToExport {
-                let titleStr = settings.showHabitInsteadOfName ? NSLocalizedString(plant.displayedHabitName, comment: "") : NSLocalizedString(plant.name, comment: "")
-                drawText(titleStr, attributes: subheaderAttributes, yPos: &currentY, offset: 15)
+            // 1. Gute Gewohnheiten & Notizen (Optional)
+            if includeGoodHabits {
+                drawText(String(localized: "export.good_habits.title", defaultValue: "Gute Gewohnheiten & Notizen"), attributes: headerAttributes, yPos: &currentY, addSpace: 15)
                 
-                if includeNotes {
-                    let notes = plant.notizen
-                    if notes.isEmpty {
-                        drawText(String(localized: "export.notes.empty", defaultValue: "Keine Notizen vorhanden."), attributes: textAttributes, yPos: &currentY, offset: 15)
-                    } else {
-                        for (index, note) in notes.enumerated() {
-                            drawText("\(index + 1). \(note)", attributes: textAttributes, yPos: &currentY, offset: 15)
+                let plantsToExport = gardenStore.pflanzen.filter { plantIds == nil || plantIds!.contains($0.id) }
+                
+                for plant in plantsToExport {
+                    let titleStr = settings.showHabitInsteadOfName ? NSLocalizedString(plant.displayedHabitName, comment: "") : NSLocalizedString(plant.name, comment: "")
+                    drawText(titleStr, attributes: subheaderAttributes, yPos: &currentY, offset: 15)
+                    
+                    if includeNotes {
+                        let notes = plant.notizen
+                        if notes.isEmpty {
+                            drawText(String(localized: "export.notes.empty", defaultValue: "Keine Notizen vorhanden."), attributes: textAttributes, yPos: &currentY, offset: 15)
+                        } else {
+                            for (index, note) in notes.enumerated() {
+                                drawText("\(index + 1). \(note)", attributes: textAttributes, yPos: &currentY, offset: 15)
+                            }
                         }
                     }
+                    currentY += 10
                 }
-                currentY += 10
             }
             
             // 2. Statistiken

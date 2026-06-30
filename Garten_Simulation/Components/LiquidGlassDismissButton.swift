@@ -6,7 +6,7 @@ struct LiquidGlassDismissButton: View {
     var body: some View {
         Button(action: action) {
             Image(systemName: "xmark")
-                .font(.system(size: 22, weight: .bold))
+                .font(.system(size: 24, weight: .heavy))
                 .foregroundStyle(.black)
                 .padding(8)
                 .contentShape(Rectangle())

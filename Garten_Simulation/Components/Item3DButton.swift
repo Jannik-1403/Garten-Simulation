@@ -124,15 +124,18 @@ struct Item3DButtonStyle: ButtonStyle {
             if isRectangular {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(sekundaerFarbe)
+                    .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
             } else {
                 Circle()
                     .fill(sekundaerFarbe)
+                    .overlay(Circle().stroke(Color.black.opacity(0.1), lineWidth: 1))
             }
             
             // Top Layer
             if isRectangular {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(farbe)
+                    .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
                     .overlay {
                         configuration.label
                             .padding(.horizontal, 10)
@@ -141,6 +144,7 @@ struct Item3DButtonStyle: ButtonStyle {
             } else {
                 Circle()
                     .fill(farbe)
+                    .overlay(Circle().stroke(Color.black.opacity(0.15), lineWidth: 1))
                     .overlay {
                         configuration.label
                             .frame(width: groesse * iconSkalierung, height: groesse * iconSkalierung)

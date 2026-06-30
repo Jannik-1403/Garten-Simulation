@@ -1796,6 +1796,7 @@ struct ExportNotesSelectionSheet: View {
             settings: settings,
             streakStore: streakStore,
             assessmentStore: AssessmentStore(),
+            includeGoodHabits: true,
             includeNotes: true,
             includeTimer: false,
             includeStatistics: false,
