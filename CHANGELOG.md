@@ -174,3 +174,6 @@
 - In den Einstellungen unter Profil einen neuen PDF Export Konfigurator hinzugefügt.
 - Beim Gießen (manuell oder durch Routine) wird nun automatisch eine Notiz angelegt.
 - Die exportierte PDF enthält nun umfassende Daten: Gute/Schlechte Gewohnheiten, Statistiken, Quiz Ergebnisse, Fokus Zeit und Routinen.
+
+- Lokalisierungs-Fix: Die Anzeige der rohen Kategorie-Schlüssel (z. B. 'character.category.body') in den Charakter-Einstellungen (CharacterCustomizationView) wurde repariert und verwendet nun  mit Standardwerten sowie echten Übersetzungen.
+- Lokalisierungs-Fix: Die Anzeige der rohen Kategorie-Schlüssel (z. B. 'character.category.body') in den Charakter-Einstellungen (CharacterCustomizationView) wurde repariert und verwendet nun `String(localized: ...)` mit Standardwerten sowie echten Übersetzungen in 11 Sprachen.

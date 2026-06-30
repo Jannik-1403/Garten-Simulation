@@ -123,6 +123,16 @@ class PDFExportManager {
                 
                 let challengeText = String(localized: "stats.completed_challenges", defaultValue: "Abgeschlossene 90-Tage Challenges: \(gardenStore.completed90DayChallenges)")
                 drawText(challengeText, attributes: textAttributes, yPos: &currentY, offset: 15)
+                
+                currentY += 10
+                drawText(String(localized: "stats.categories_watered", defaultValue: "Gegossen pro Kategorie:"), attributes: subheaderAttributes, yPos: &currentY, offset: 15)
+                for category in HabitCategory.allCases.filter({ $0 != .seeds }) {
+                    let catWatered = gardenStore.pflanzen.filter { $0.habitCategory == category }.reduce(0) { $0 + $1.wateringDates.count }
+                    if catWatered > 0 {
+                        let localizedCat = NSLocalizedString(category.localizationKey, comment: "")
+                        drawText("  • \(localizedCat): \(catWatered)x", attributes: textAttributes, yPos: &currentY, offset: 15)
+                    }
+                }
             }
             
             // 3. Timer / Fokus Zeit

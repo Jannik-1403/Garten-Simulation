@@ -3,43 +3,67 @@ import SwiftUI
 struct QuizScreenshotView: View {
     let assessmentStore: AssessmentStore
     
+    private func getQuizData() -> [(String, String, String, String)] {
+        var data: [(String, String, String, String)] = []
+        if let res = assessmentStore.financeResult {
+            data.append((String(localized: "quiz.finance", defaultValue: "Finanzen"), NSLocalizedString(res.profile.titleKey, comment: ""), NSLocalizedString(res.profile.descKey, comment: ""), NSLocalizedString(res.profile.actionKey, comment: "")))
+        }
+        if let res = assessmentStore.mentalResult {
+            data.append((String(localized: "quiz.mental", defaultValue: "Mental"), NSLocalizedString(res.profile.titleKey, comment: ""), NSLocalizedString(res.profile.descKey, comment: ""), NSLocalizedString(res.profile.actionKey, comment: "")))
+        }
+        if let res = assessmentStore.growthResult {
+            data.append((String(localized: "quiz.growth", defaultValue: "Wachstum"), NSLocalizedString(res.profile.titleKey, comment: ""), NSLocalizedString(res.profile.descKey, comment: ""), NSLocalizedString(res.profile.actionKey, comment: "")))
+        }
+        if let res = assessmentStore.healthResult {
+            data.append((String(localized: "quiz.health", defaultValue: "Gesundheit"), NSLocalizedString(res.profile.titleKey, comment: ""), NSLocalizedString(res.profile.descKey, comment: ""), NSLocalizedString(res.profile.actionKey, comment: "")))
+        }
+        if let res = assessmentStore.fitnessResult {
+            data.append((String(localized: "quiz.fitness", defaultValue: "Fitness"), NSLocalizedString(res.profile.titleKey, comment: ""), NSLocalizedString(res.profile.descKey, comment: ""), NSLocalizedString(res.profile.actionKey, comment: "")))
+        }
+        if let res = assessmentStore.lifestyleResult {
+            data.append((String(localized: "quiz.lifestyle", defaultValue: "Lifestyle"), NSLocalizedString(res.profile.titleKey, comment: ""), NSLocalizedString(res.profile.descKey, comment: ""), NSLocalizedString(res.profile.actionKey, comment: "")))
+        }
+        return data
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             Text(String(localized: "export.quiz.title", defaultValue: "Quiz Ergebnisse"))
                 .font(.system(size: 28, weight: .bold, design: .rounded))
                 .padding(.bottom, 8)
             
-            let quizzes: [(String, String?)] = [
-                (String(localized: "quiz.finance", defaultValue: "Finanzen"), assessmentStore.financeResult?.profile.rawValue),
-                (String(localized: "quiz.mental", defaultValue: "Mental"), assessmentStore.mentalResult?.profile.rawValue),
-                (String(localized: "quiz.growth", defaultValue: "Wachstum"), assessmentStore.growthResult?.profile.rawValue),
-                (String(localized: "quiz.health", defaultValue: "Gesundheit"), assessmentStore.healthResult?.profile.rawValue),
-                (String(localized: "quiz.fitness", defaultValue: "Fitness"), assessmentStore.fitnessResult?.profile.rawValue),
-                (String(localized: "quiz.lifestyle", defaultValue: "Lifestyle"), assessmentStore.lifestyleResult?.profile.rawValue)
-            ]
-            
-            let completedQuizzes = quizzes.compactMap { quiz -> (String, String)? in
-                if let val = quiz.1 {
-                    return (quiz.0, val)
-                }
-                return nil
-            }
+            let completedQuizzes = getQuizData()
             
             if completedQuizzes.isEmpty {
                 Text(String(localized: "export.no_data", defaultValue: "Keine Daten momentan drin."))
                     .font(.system(size: 16, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
             } else {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                VStack(spacing: 20) {
                     ForEach(completedQuizzes, id: \.0) { quiz in
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(quiz.0)
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text(quiz.0) // Kategorie (z.B. Fitness)
                                 .font(.system(size: 14, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.secondary)
                             
-                            Text(quiz.1)
-                                .font(.system(size: 18, weight: .bold, design: .rounded))
+                            Text(quiz.1) // Profil Title
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundStyle(Color.blauPrimary)
+                                
+                            Text(quiz.2) // Profil Beschreibung
+                                .font(.system(size: 14, weight: .regular, design: .rounded))
+                                .foregroundStyle(.primary)
+                                .fixedSize(horizontal: false, vertical: true)
+                                
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(String(localized: "export.quiz.action.title", defaultValue: "Was man verbessern kann:"))
+                                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(Color.orange)
+                                Text(quiz.3) // Action text
+                                    .font(.system(size: 14, weight: .regular, design: .rounded))
+                                    .foregroundStyle(.primary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
                         }
                         .padding()
                         .frame(maxWidth: .infinity, alignment: .leading)
