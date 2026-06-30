@@ -1,3 +1,9 @@
+## [2026-06-30] - Export UI Anpassungen
+- Die Option "Gute Gewohnheiten" in den Export-Einstellungen wurde nach unten zu den restlichen Optionen verschoben.
+- Der Hintergrund der Export-Konfiguration ist nun in einem dezenten Grauton gehalten, damit sich die Buttons besser abheben.
+- Alle Einstellungs-Buttons haben nun eine feine Umrandung, um sich noch deutlicher vom Hintergrund abzusetzen.
+- Sämtliche neuen Texte wurden in alle Sprachen übersetzt (Englisch, etc.).
+
 ## [2026-06-30] - Fokus Session Metadaten
 - `FocusSessionLog` erweitert, um festzuhalten, ob es sich um eine Routine oder normale Gewohnheit handelt, inklusive verknüpfter Aufgaben/Todos.
 - PDF-Export Manager liest die neuen Fokus-Session Daten aus und stellt diese im Bericht dar (mit Gewohnheitsnamen und Aufgaben).

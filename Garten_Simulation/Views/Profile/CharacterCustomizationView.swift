@@ -8,6 +8,17 @@ enum CharacterCategory: String, CaseIterable {
     case mouth = "Mund"
     case background = "Hintergrund"
     case extras = "Extras"
+
+    var localizedName: String {
+        switch self {
+        case .body: return String(localized: "character.category.body", defaultValue: "Körper")
+        case .hair: return String(localized: "character.category.hair", defaultValue: "Haare")
+        case .eyes: return String(localized: "character.category.eyes", defaultValue: "Augen")
+        case .mouth: return String(localized: "character.category.mouth", defaultValue: "Mund")
+        case .background: return String(localized: "character.category.background", defaultValue: "Hintergrund")
+        case .extras: return String(localized: "character.category.extras", defaultValue: "Extras")
+        }
+    }
 }
 
 struct CharacterCustomizationView: View {
@@ -57,7 +68,7 @@ struct CharacterCustomizationView: View {
                                         selectedCategory = category
                                     }
                                 } label: {
-                                    Text(String(localized: "character.category.\(category.rawValue.lowercased())"))
+                                    Text(category.localizedName)
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .padding(.horizontal, 16)
                                         .padding(.vertical, 10)
