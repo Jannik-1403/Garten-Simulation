@@ -310,7 +310,7 @@ class GardenStore: ObservableObject {
     }
     
     // MARK: Pflanze gießen
-    func giessen(pflanze: HabitModel, powerUpStore: PowerUpStore) {
+    func giessen(pflanze: HabitModel, powerUpStore: PowerUpStore, fromRoutine: Bool = false) {
         guard !pflanze.istBewässert else { return }
 
         // 2. XP & Coins berechnen (Multiplikative Logik)
@@ -367,6 +367,13 @@ class GardenStore: ObservableObject {
         pflanze.missedCycles = 0 // Reset Gesundheit
         pflanze.lastNotifiedCycle = 0 // Reset Herz-Abzug-Trigger
         pflanze.totalMlGegossen += GameConstants.mlProGiessen
+        
+        // Auto-generierte Notiz
+        let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
+        let routineString = fromRoutine ? String(localized: "note.auto.routine", defaultValue: "(mit Routine)") : String(localized: "note.auto.no_routine", defaultValue: "(ohne Routine)")
+        let noteText = "\(timeString) - ✅ \(String(localized: "note.auto.completed", defaultValue: "Gewohnheit abgeschlossen")) \(routineString)"
+        
+        pflanze.notizen.insert(noteText, at: 0)
         
         savePlants()
 

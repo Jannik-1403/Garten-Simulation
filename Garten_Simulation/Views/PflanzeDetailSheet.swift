@@ -25,7 +25,6 @@ struct PflanzeDetailSheet: View {
     @State private var ausgewaehlterEffekt: PflanzenEffekt? = nil
     @State private var selectedTab: DetailTab = .uebersicht
     @State private var pfadBereit: Bool = false
-    @State private var showExportSheet = false
     
     @AppStorage("customRoutinesData") private var customRoutinesData: Data = Data()
     
@@ -382,41 +381,6 @@ struct PflanzeDetailSheet: View {
         .navigationBarTitleDisplayMode(.inline)
         .standardNavigationX()
         .background(Color(UIColor.secondarySystemBackground))
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Menu {
-                    Button {
-                        showExportSheet = true
-                    } label: {
-                        Label(String(localized: "export.notes.menu.label", defaultValue: "Notizen exportieren"), systemImage: "square.and.arrow.up")
-                    }
-                } label: {
-                    ZStack {
-                        // Shadow layer
-                        Circle()
-                            .fill(Color(hex: "#C7C7CC"))
-                            .frame(width: 36, height: 36)
-                        // Top layer
-                        Circle()
-                            .fill(Color.white)
-                            .frame(width: 36, height: 36)
-                            .offset(y: -2.5)
-                            .overlay(
-                                Image(systemName: "ellipsis")
-                                    .font(.system(size: 14, weight: .bold))
-                                    .foregroundColor(.black)
-                                    .offset(y: -2.5)
-                            )
-                    }
-                    .frame(width: 36, height: 36)
-                }
-            }
-        }
-        .sheet(isPresented: $showExportSheet) {
-            ExportNotesSelectionSheet(currentHabitId: pflanze.id)
-                .environmentObject(gardenStore)
-                .environmentObject(settings)
-        }
         .onAppear {
             withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
                 pulsieren = true
@@ -1570,6 +1534,7 @@ struct ExportNotesSelectionSheet: View {
     let currentHabitId: String?
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var streakStore: StreakStore
     @Environment(\.dismiss) private var dismiss
     
     enum SelectionMode {
@@ -1638,7 +1603,9 @@ struct ExportNotesSelectionSheet: View {
                                     ForEach(goodHabits) { plant in
                                         let name = settings.showHabitInsteadOfName ? NSLocalizedString(plant.displayedHabitName, comment: "") : NSLocalizedString(plant.name, comment: "")
                                         toggleRow(
-                                            title: "🌱 \(name)",
+                                            title: name,
+                                            icon: "leaf.fill",
+                                            iconColor: .gruenPrimary,
                                             isSelected: selectedPlantIds.contains(plant.id),
                                             action: {
                                                 if selectedPlantIds.contains(plant.id) {
@@ -1660,7 +1627,9 @@ struct ExportNotesSelectionSheet: View {
                                     
                                     ForEach(badHabitsWithNotes, id: \.self) { id in
                                         toggleRow(
-                                            title: "⚠️ \(getBadHabitName(id: id))",
+                                            title: getBadHabitName(id: id),
+                                            icon: "xmark.circle.fill",
+                                            iconColor: .red,
                                             isSelected: selectedBadHabitIds.contains(id),
                                             action: {
                                                 if selectedBadHabitIds.contains(id) {
@@ -1719,59 +1688,74 @@ struct ExportNotesSelectionSheet: View {
     }
     
     private func optionRow(title: String, mode: SelectionMode) -> some View {
-        Button {
+        let isSelected = selectionMode == mode
+        return Button {
             withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                 selectionMode = mode
             }
         } label: {
-            HStack {
-                Text(title)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundColor(selectionMode == mode ? .white : .primary)
-                Spacer()
-                if selectionMode == mode {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.white)
-                        .font(.system(size: 20))
-                } else {
-                    Image(systemName: "circle")
-                        .foregroundColor(.secondary)
-                        .font(.system(size: 20))
-                }
+            ZStack {
+                // 3D Schatten-Ebene
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(isSelected ? Color.blauPrimary.darker() : Color(hex: "#C7C7CC"))
+                // Top-Ebene
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(isSelected ? Color.blauPrimary : Color.white)
+                    .offset(y: -3)
+                    .overlay(
+                        HStack {
+                            Text(title)
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundColor(isSelected ? .white : .primary)
+                            Spacer()
+                            Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                                .foregroundColor(isSelected ? .white : .secondary)
+                                .font(.system(size: 20))
+                        }
+                        .padding(.horizontal, 16)
+                        .offset(y: -3)
+                    )
             }
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(selectionMode == mode ? Color.blauPrimary : Color(.systemBackground))
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .stroke(selectionMode == mode ? Color.blauPrimary : Color.gray.opacity(0.2), lineWidth: 1)
-            )
+            .frame(height: 56)
         }
+        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isSelected)
     }
     
-    private func toggleRow(title: String, isSelected: Bool, action: @escaping () -> Void) -> some View {
+    private func toggleRow(title: String, icon: String, iconColor: Color = .blauPrimary, isSelected: Bool, action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            HStack {
-                Text(title)
-                    .font(.system(size: 15, weight: .medium, design: .rounded))
-                    .foregroundColor(.primary)
-                Spacer()
-                Image(systemName: isSelected ? "checkmark.square.fill" : "square")
-                    .foregroundColor(isSelected ? .blauPrimary : .secondary)
-                    .font(.system(size: 20))
+            ZStack {
+                // 3D Schatten-Ebene
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .fill(isSelected ? Color.blauPrimary.opacity(0.4) : Color(hex: "#C7C7CC"))
+                // Top-Ebene
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .fill(isSelected ? Color.blauPrimary.opacity(0.12) : Color.white)
+                    .offset(y: -2.5)
+                    .overlay(
+                        HStack(spacing: 12) {
+                            Item3DButton(
+                                icon: icon,
+                                farbe: iconColor,
+                                sekundaerFarbe: iconColor.darker(),
+                                groesse: 34,
+                                iconSkalierung: 0.55
+                            )
+                            Text(title)
+                                .font(.system(size: 15, weight: .medium, design: .rounded))
+                                .foregroundColor(.primary)
+                                .lineLimit(1)
+                            Spacer()
+                            Image(systemName: isSelected ? "checkmark.square.fill" : "square")
+                                .foregroundColor(isSelected ? .blauPrimary : .secondary)
+                                .font(.system(size: 20))
+                        }
+                        .padding(.horizontal, 12)
+                        .offset(y: -2.5)
+                    )
             }
-            .padding(12)
-            .background(
-                RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .fill(Color(.systemBackground))
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .stroke(isSelected ? Color.blauPrimary.opacity(0.5) : Color.gray.opacity(0.15), lineWidth: 1)
-            )
+            .frame(height: 52)
         }
+        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isSelected)
     }
     
     private func getBadHabitName(id: String) -> String {
@@ -1805,7 +1789,20 @@ struct ExportNotesSelectionSheet: View {
             bIds = selectedBadHabitIds
         }
         
-        if let url = PDFExportManager.shared.generatePDF(for: pIds, badHabitIds: bIds, gardenStore: gardenStore, settings: settings) {
+        if let url = PDFExportManager.shared.generatePDF(
+            for: pIds,
+            badHabitIds: bIds,
+            gardenStore: gardenStore,
+            settings: settings,
+            streakStore: streakStore,
+            assessmentStore: AssessmentStore(),
+            includeNotes: true,
+            includeTimer: false,
+            includeStatistics: false,
+            includeQuizResults: false,
+            includeBadHabits: false,
+            includeRoutines: false
+        ) {
             generatedPDFUrl = url
             isSharing = true
         }

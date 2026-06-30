@@ -22,6 +22,7 @@ struct SettingsView: View {
     @State private var showResetAlert = false
     @State private var showFinalResetAlert = false
     @State private var showBackupSheet = false
+    @State private var showPDFExport = false
     
     private var aktuelleTierStufe: GartenTierStufe {
         GartenTierStufe.fuer(level: gardenStore.gartenStufe)
@@ -49,6 +50,25 @@ struct SettingsView: View {
                                             icon: "chart.bar.fill",
                                             color: .purple
                                         )
+                                    }
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
+                                    Button {
+                                        showPDFExport = true
+                                    } label: {
+                                        settingRow(
+                                            title: String(localized: "settings.pdf_export", defaultValue: "PDF Export"),
+                                            icon: "square.and.arrow.up",
+                                            color: .blauPrimary
+                                        )
+                                    }
+                                    .fullScreenCover(isPresented: $showPDFExport) {
+                                        PDFExportConfigView()
+                                            .environmentObject(gardenStore)
+                                            .environmentObject(settings)
+                                            .environmentObject(streakStore)
+                                            .environmentObject(assessmentStore)
                                     }
                                 }
                             }

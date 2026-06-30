@@ -17,7 +17,6 @@ struct InventoryItemDetailSheet: View {
     @State private var noteToDeleteIndex: Int? = nil
     @State private var showTriggerSheet = false
     @State private var showMaxLivesAlert = false
-    @State private var showExportSheet = false
 
 
     private var powerUp: PowerUpItem? {
@@ -602,41 +601,6 @@ struct InventoryItemDetailSheet: View {
                 Button(String(localized: "button.ok"), role: .cancel) {}
             } message: {
                 Text(String(localized: "powerup.lives.full"))
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Menu {
-                        Button {
-                            showExportSheet = true
-                        } label: {
-                            Label(String(localized: "export.notes.menu.label", defaultValue: "Notizen exportieren"), systemImage: "square.and.arrow.up")
-                        }
-                    } label: {
-                        ZStack {
-                            // Shadow layer
-                            Circle()
-                                .fill(Color(hex: "#C7C7CC"))
-                                .frame(width: 36, height: 36)
-                            // Top layer
-                            Circle()
-                                .fill(Color.white)
-                                .frame(width: 36, height: 36)
-                                .offset(y: -2.5)
-                                .overlay(
-                                    Image(systemName: "ellipsis")
-                                        .font(.system(size: 14, weight: .bold))
-                                        .foregroundColor(.black)
-                                        .offset(y: -2.5)
-                                )
-                        }
-                        .frame(width: 36, height: 36)
-                    }
-                }
-            }
-            .sheet(isPresented: $showExportSheet) {
-                ExportNotesSelectionSheet(currentHabitId: item.id)
-                    .environmentObject(gardenStore)
-                    .environmentObject(settings)
             }
         } // NavigationStack
     }

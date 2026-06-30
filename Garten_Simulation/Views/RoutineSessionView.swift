@@ -327,7 +327,7 @@ struct RoutineSessionView: View {
             let wasWatered = habit.istBewässert
             
             // Actually water the plant (this adds coins and XP to the gardenStore globally)
-            gardenStore.giessen(pflanze: habit, powerUpStore: powerUpStore)
+            gardenStore.giessen(pflanze: habit, powerUpStore: powerUpStore, fromRoutine: true)
             
             if !wasWatered {
                 totalCoins += gardenStore.letzteGiessCoins

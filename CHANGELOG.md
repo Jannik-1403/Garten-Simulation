@@ -142,3 +142,9 @@
 - **Export Selection Sheet:** Ein natives "Drei-Punkte-Menü" wurde in der oberen linken Ecke der Detailansichten (`PflanzeDetailSheet` & `InventoryItemDetailSheet`) eingeführt.
 - **Benutzerdefinierter Export:** Anwender können nun zwischen "Gesamte App", "Nur dieser Eintrag" und "Benutzerdefiniert" wählen. Bei benutzerdefiniert lassen sich spezifische Gewohnheiten und schlechte Gewohnheiten gezielt für den Export via Checkboxen aus- und abwählen.
 - UI: Info-Button und Erklärungssheet 'Schlechte Gewohnheiten' im Shop vollständig entfernt.
+
+## 30.06.2026
+- Export Button aus PflanzeDetailSheet und InventoryItemDetailSheet entfernt.
+- In den Einstellungen unter Profil einen neuen PDF Export Konfigurator hinzugefügt.
+- Beim Gießen (manuell oder durch Routine) wird nun automatisch eine Notiz angelegt.
+- Die exportierte PDF enthält nun umfassende Daten: Gute/Schlechte Gewohnheiten, Statistiken, Quiz Ergebnisse, Fokus Zeit und Routinen.
