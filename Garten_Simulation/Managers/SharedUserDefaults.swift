@@ -35,6 +35,6 @@ struct SharedUserDefaults {
         
         shared.set(true, forKey: migrationKey)
         shared.synchronize()
-        print("✅ Migration to App Group successful.")
+        print(" Migration to App Group successful.")
     }
 }

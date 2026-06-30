@@ -556,17 +556,17 @@ enum AppStrings {
         "iap_error_purchase": ["de": "Kauf fehlgeschlagen. Bitte erneut versuchen.", "en": "Purchase failed. Please try again.", "es": "La compra falló. Por favor, inténtalo de nuevo.", "fr": "Achat échoué. Veuillez réessayer.", "it": "Acquisto fallito. Riprova.", "pt": "Compra falhada. Por favor tenta novamente.", "ja": "購入に失敗しました。もう一度試してください。", "ko": "구매에 실패했습니다. 다시 시도해 주세요.", "pl": "Zakup nie powiódł się. Spróbuj ponownie.", "nl": "Aankoop mislukt. Probeer het opnieuw.", "tr": "Satın alma başarısız oldu. Lütfen tekrar deneyin."],
         "iap_loading": ["de": "Produkte werden geladen...", "en": "Loading products...", "es": "Cargando productos...", "fr": "Chargement des produits...", "it": "Caricamento prodotti in corso...", "pt": "A carregar produtos...", "ja": "製品を読み込んでいます...", "ko": "제품 로드 중...", "pl": "Ładowanie produktów...", "nl": "Producten laden...", "tr": "Ürünler yükleniyor..."],
         "iap_restore_hint": [
-            "de": "⚠️ WICHTIG: 'Käufe wiederherstellen' funktioniert bei Apple NUR für Einmalkäufe (wie die Sonnenbrille). Münzen (Consumables) können laut Apple-Regeln niemals wiederhergestellt werden.",
-            "en": "⚠️ IMPORTANT: 'Restore Purchases' ONLY works for non-consumables (like the sunglasses). Coins (consumables) can never be restored according to Apple rules.",
-            "es": "⚠️ IMPORTANTE: 'Restaurar compras' SOLO funciona para compras no consumibles (como las gafas de sol). Las monedas no se pueden restaurar.",
-            "fr": "⚠️ IMPORTANT : 'Restaurer les achats' fonctionne UNIQUEMENT pour les achats non consommables (comme les lunettes). Les pièces ne peuvent pas être restaurées.",
-            "it": "⚠️ IMPORTANTE: 'Ripristina acquisti' funziona SOLO per articoli non di consumo (come gli occhiali da sole). Le monete non possono essere ripristinate.",
-            "pt": "⚠️ IMPORTANTE: 'Restaurar Compras' funciona APENAS para não consumíveis (como óculos de sol). Moedas nunca podem ser restauradas.",
-            "ja": "⚠️ 重要: 「購入の復元」は、非消耗品（サングラスなど）にのみ機能します。コインは復元できません。",
-            "ko": "⚠️ 중요: '구매 복원'은 비소모품(선글라스 등)에만 적용됩니다. 코인은 복원할 수 없습니다.",
-            "pl": "⚠️ WAŻNE: 'Przywróć zakupy' działa TYLKO dla przedmiotów jednorazowych (jak okulary). Monet nie można przywrócić.",
-            "nl": "⚠️ BELANGRIJK: 'Aankopen herstellen' werkt ALLEEN voor niet-verbruiksartikelen (zoals zonnebrillen). Munten kunnen niet worden hersteld.",
-            "tr": "⚠️ ÖNEMLİ: 'Satın Alınanları Geri Yükle' SADECE güneş gözlüğü gibi kalıcı öğeler için çalışır. Jetonlar geri yüklenemez."
+            "de": " WICHTIG: 'Käufe wiederherstellen' funktioniert bei Apple NUR für Einmalkäufe (wie die Sonnenbrille). Münzen (Consumables) können laut Apple-Regeln niemals wiederhergestellt werden.",
+            "en": " IMPORTANT: 'Restore Purchases' ONLY works for non-consumables (like the sunglasses). Coins (consumables) can never be restored according to Apple rules.",
+            "es": " IMPORTANTE: 'Restaurar compras' SOLO funciona para compras no consumibles (como las gafas de sol). Las monedas no se pueden restaurar.",
+            "fr": " IMPORTANT : 'Restaurer les achats' fonctionne UNIQUEMENT pour les achats non consommables (comme les lunettes). Les pièces ne peuvent pas être restaurées.",
+            "it": " IMPORTANTE: 'Ripristina acquisti' funziona SOLO per articoli non di consumo (come gli occhiali da sole). Le monete non possono essere ripristinate.",
+            "pt": " IMPORTANTE: 'Restaurar Compras' funciona APENAS para não consumíveis (como óculos de sol). Moedas nunca podem ser restauradas.",
+            "ja": " 重要: 「購入の復元」は、非消耗品（サングラスなど）にのみ機能します。コインは復元できません。",
+            "ko": " 중요: '구매 복원'은 비소모품(선글라스 등)에만 적용됩니다. 코인은 복원할 수 없습니다.",
+            "pl": " WAŻNE: 'Przywróć zakupy' działa TYLKO dla przedmiotów jednorazowych (jak okulary). Monet nie można przywrócić.",
+            "nl": " BELANGRIJK: 'Aankopen herstellen' werkt ALLEEN voor niet-verbruiksartikelen (zoals zonnebrillen). Munten kunnen niet worden hersteld.",
+            "tr": " ÖNEMLİ: 'Satın Alınanları Geri Yükle' SADECE güneş gözlüğü gibi kalıcı öğeler için çalışır. Jetonlar geri yüklenemez."
         ],
         "iap_restore_btn": ["de": "Käufe wiederherstellen", "en": "Restore Purchases", "es": "Restaurar compras", "fr": "Restaurer les achats", "it": "Ripristina acquisti", "pt": "Restaurar compras", "ja": "購入を復元", "ko": "구입 복원", "pl": "Przywróć zakupy", "nl": "Aankopen herstellen", "tr": "Satın Alınanları Geri Yükle"],
         "splash_loading": [

@@ -236,7 +236,7 @@ struct DeveloperView: View {
                                 }
                                 gardenStore.checkUngegossenePflanzen()
                             } label: {
-                                settingRow(title: "⚠️ Leben-System testen", icon: "heart.slash.fill", color: .red)
+                                settingRow(title: " Leben-System testen", icon: "heart.slash.fill", color: .red)
                             }
                             
                             Divider().padding(.leading, 44)
@@ -247,7 +247,7 @@ struct DeveloperView: View {
                                     pflanze.lebenBereitsAbgezogen = false
                                 }
                             } label: {
-                                settingRow(title: "↩️ Test zurücksetzen", icon: "arrow.counterclockwise", color: .orange)
+                                settingRow(title: " Test zurücksetzen", icon: "arrow.counterclockwise", color: .orange)
                             }
                         }
                     }

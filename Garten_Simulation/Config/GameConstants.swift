@@ -134,7 +134,7 @@ enum GameConstants {
         40: 20
     ]
     
-    // MARK: - PflanzenStufe ↔ Garten-Level Mapping
+    // MARK: - PflanzenStufe  Garten-Level Mapping
     /// XP-Schwelle für jede Garten-Stufe (PflanzenStufe) im 50-Level-System.
     /// Mappt die 12 PflanzenStufe-Werte auf kumulierte XP-Schwellen.
     static func xpSchwelleGarten(fuer stufe: PflanzenStufe) -> Int {

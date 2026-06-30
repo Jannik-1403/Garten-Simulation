@@ -41,10 +41,10 @@ enum WetterEvent: String, CaseIterable {
 
     var icon: String {
         switch self {
-        case .normal: return "☀️"
-        case .regen: return "️"
-        case .schnee: return "❄️"
-        case .sturm: return "⛈️"
+        case .normal: return ""
+        case .regen: return ""
+        case .schnee: return ""
+        case .sturm: return ""
         case .perfekt: return ""
         }
     }

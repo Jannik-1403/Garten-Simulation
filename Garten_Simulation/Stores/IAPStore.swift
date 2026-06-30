@@ -61,7 +61,7 @@ final class IAPStore: ObservableObject {
                 }
                 group.addTask {
                     try await Task.sleep(nanoseconds: 10_000_000_000)
-                    print(" [IAPStore] ⚠️ 10-Sekunden Timeout erreicht!")
+                    print(" [IAPStore]  10-Sekunden Timeout erreicht!")
                     throw StoreError.failedVerification // Timeout
                 }
                 
@@ -79,13 +79,13 @@ final class IAPStore: ObservableObject {
             hasLoaded = true
             
             if products.isEmpty {
-                print(" [IAPStore] ❌ FEHLER: 0 Produkte gefunden! StoreKit hat keine der angeforderten IDs in der Konfiguration gefunden.")
+                print(" [IAPStore]  FEHLER: 0 Produkte gefunden! StoreKit hat keine der angeforderten IDs in der Konfiguration gefunden.")
                 purchaseError = "StoreKit configuration file not found or invalid."
             } else {
-                print(" [IAPStore] ✅ Produkte erfolgreich sortiert und gespeichert.")
+                print(" [IAPStore]  Produkte erfolgreich sortiert und gespeichert.")
             }
         } catch {
-            print(" [IAPStore] ❌ CATCH-BLOCK ERREICHT! Exakter Fehler: \(error)")
+            print(" [IAPStore]  CATCH-BLOCK ERREICHT! Exakter Fehler: \(error)")
             purchaseError = NSLocalizedString("iap_error_load", comment: "")
         }
     }

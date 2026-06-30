@@ -204,3 +204,4 @@
 - Layout der schlechten Gewohnheiten-Liste in der Gartenseite angepasst (jetzt untereinander statt nebeneinander und schmaler)
 - pt-BR Locale entfernt und fehlende Übersetzungen in allen 11 Sprachen für 100% Abdeckung hinzugefügt.
 - Leere Strings und Prozentangaben (z.B. %lld%%) aus Localizable.xcstrings entfernt und im Code durch Text(verbatim:) ersetzt.
+- Alle Emojis aus der gesamten Codebase (Lokalisierung, Hardcoded-Strings, Models) entfernt.
