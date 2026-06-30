@@ -89,7 +89,7 @@ struct RadarChartView: View {
             
             Divider()
             
-            Text("\(Int((stats.percentage * 100).rounded()))%")
+            Text(verbatim: "\(Int((stats.percentage * 100).rounded()))%")
                 .font(.system(size: 28, weight: .black, design: .rounded))
                 .foregroundStyle(Color.blauPrimary)
             

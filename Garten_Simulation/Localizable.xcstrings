@@ -50286,6 +50286,77 @@
         }
       }
     },
+    "banner.start_journey": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starte deine Reise"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start your journey"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comienza tu viaje"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commencez votre voyage"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inizia il tuo viaggio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたの旅を始めましょう"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "여정을 시작하세요"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begin je reis"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rozpocznij swoją podróż"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comece sua jornada"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yolculuğunuza başlayın"
+          }
+        }
+      }
+    },
     "bonus_text": {
       "comment": "",
       "extractionState": "manual",
@@ -61654,6 +61725,148 @@
         }
       }
     },
+    "developer.jump_to_day_89": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu Tag 89 springen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jump to Day 89"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saltar al Día 89"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sauter au jour 89"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salta al giorno 89"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "89日目にジャンプ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "89일로 점프"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spring naar dag 89"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skocz do dnia 89"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pular para o dia 89"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "89. Güne Atla"
+          }
+        }
+      }
+    },
+    "developer.options.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Developer Options"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Developer Options"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opciones de Desarrollador"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Options du développeur"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opzioni Sviluppatore"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開発者オプション"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "개발자 옵션"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ontwikkelaarsopties"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opcje Programisty"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opções de Desenvolvedor"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geliştirici Seçenekleri"
+          }
+        }
+      }
+    },
     "effekt.erholung.beschreibung": {
       "comment": "",
       "extractionState": "manual",
@@ -69926,7 +70139,6 @@
       }
     },
     "export.good_habits.title": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -69997,7 +70209,6 @@
       }
     },
     "export.no_data": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -70068,7 +70279,6 @@
       }
     },
     "export.notes.empty": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -70707,7 +70917,6 @@
       }
     },
     "export.pdf.date": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -70848,7 +71057,6 @@
       }
     },
     "export.pdf.focus.routine_format": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -70919,7 +71127,6 @@
       }
     },
     "export.pdf.focus.session_format": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -71270,7 +71477,6 @@
       }
     },
     "export.pdf.routines.history_format": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -71341,7 +71547,6 @@
       }
     },
     "export.pdf.title": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -71768,7 +71973,6 @@
     },
     "export.selection.all": {
       "comment": "A label for the export option to export all notes.",
-      "extractionState": "extracted_with_value",
       "isCommentAutoGenerated": true,
       "localizations": {
         "de": {
@@ -71841,7 +72045,6 @@
     },
     "export.selection.custom": {
       "comment": "A label for the custom selection mode in the export notes selection sheet.",
-      "extractionState": "extracted_with_value",
       "isCommentAutoGenerated": true,
       "localizations": {
         "de": {
@@ -71986,7 +72189,6 @@
     },
     "export.selection.only_this": {
       "comment": "A label for a selection mode that only includes the currently selected note.",
-      "extractionState": "extracted_with_value",
       "isCommentAutoGenerated": true,
       "localizations": {
         "de": {
@@ -72059,7 +72261,6 @@
     },
     "export.selection.subtitle": {
       "comment": "A description of the export selection sheet.",
-      "extractionState": "extracted_with_value",
       "isCommentAutoGenerated": true,
       "localizations": {
         "de": {
@@ -72132,7 +72333,6 @@
     },
     "export.selection.title": {
       "comment": "The title of the export selection sheet.",
-      "extractionState": "extracted_with_value",
       "isCommentAutoGenerated": true,
       "localizations": {
         "de": {
@@ -72275,7 +72475,6 @@
       }
     },
     "export.timer.title": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -73132,6 +73331,148 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld dakika boyunca son derece odaklandınız. XP tüm bitkilerinize dağıtılacak!"
+          }
+        }
+      }
+    },
+    "focus.session.dnd_hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schalte dein Handy jetzt auf 'Nicht stören' und lege es nach dieser Einrichtung außer Sichtweite."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Put your phone on 'Do Not Disturb' now and place it out of sight after this setup."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pon tu teléfono en 'No Molestar' ahora y colócalo fuera de la vista después de esta configuración."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mettez votre téléphone sur 'Ne pas déranger' maintenant et placez-le hors de vue après cette configuration."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metti il tuo telefono in 'Non Disturbare' ora e mettilo fuori dalla vista dopo questa configurazione."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今すぐ電話を「おやすみモード」にして、設定後に見えない場所に置いてください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지금 휴대전화를 '방해 금지' 모드로 설정하고 설정 후 눈에 띄지 않는 곳에 두세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zet je telefoon nu op 'Niet storen' en leg hem uit het zicht na deze installatie."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Włącz teraz tryb 'Nie przeszkadzać' i odłóż telefon poza zasięg wzroku po tej konfiguracji."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coloque seu telefone em 'Não Perturbe' agora e coloque-o fora de vista após esta configuração."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonunuzu şimdi 'Rahatsız Etmeyin' moduna alın ve bu kurulumdan sonra gözden uzak bir yere koyun."
+          }
+        }
+      }
+    },
+    "focus.session.goal_hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was genau möchtest du in deiner Fokus-Zeit schaffen? Nimm dir einen Moment, um dich zu fokussieren."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What exactly do you want to accomplish in your focus time? Take a moment to focus."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Qué quieres lograr exactamente en tu tiempo de enfoque? Tómate un momento para enfocarte."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Que voulez-vous accomplir exactement pendant votre temps de concentration ? Prenez un moment pour vous concentrer."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cosa vuoi realizzare esattamente nel tuo tempo di focus? Prenditi un momento per concentrarti."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フォーカス時間で正確に何を達成したいですか？ 集中するための時間を取ってください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "집중 시간 동안 정확히 무엇을 성취하고 싶으신가요? 잠시 집중할 시간을 가지세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wat wil je precies bereiken in je focustijd? Neem even de tijd om je te concentreren."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Co dokładnie chcesz osiągnąć w swoim czasie skupienia? Poświęć chwilę na koncentrację."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O que exatamente você quer realizar no seu tempo de foco? Reserve um momento para se concentrar."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odaklanma zamanınızda tam olarak ne başarmak istiyorsunuz? Odaklanmak için bir an ayırın."
           }
         }
       }
@@ -81275,6 +81616,148 @@
           "stringUnit": {
             "state": "translated",
             "value": "Envanteriniz boş"
+          }
+        }
+      }
+    },
+    "inventory.item.desc.growth_boost": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beschleunigt das Wachstum deiner Pflanzen um 50% für die nächsten 24 Stunden."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accelerates the growth of your plants by 50% for the next 24 hours."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acelera el crecimiento de tus plantas en un 50% durante las próximas 24 horas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accélère la croissance de vos plantes de 50% pendant les prochaines 24 heures."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accelera la crescita delle tue piante del 50% per le prossime 24 ore."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "次の24時間、植物の成長を50%加速させます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다음 24시간 동안 식물의 성장을 50% 가속화합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versnelt de groei van je planten met 50% voor de komende 24 uur."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przyspiesza wzrost twoich roślin o 50% przez następne 24 godziny."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acelera o crescimento de suas plantas em 50% pelas próximas 24 horas."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Önümüzdeki 24 saat boyunca bitkilerinizin büyümesini %50 hızlandırır."
+          }
+        }
+      }
+    },
+    "inventory.item.symbolism.growth_boost": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energie und schnelles Vorankommen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energy and rapid progress."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energía y progreso rápido."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Énergie et progrès rapide."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energia e progresso rapido."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "エネルギーと迅速な進歩。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "에너지와 빠른 진전."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energie en snelle vooruitgang."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energia i szybki postęp."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energia e progresso rápido."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enerji ve hızlı ilerleme."
           }
         }
       }
@@ -100195,16 +100678,16 @@
             "value": "Notatki_SymulacjaOgrodu.pdf"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Notlar_BahceSimulasyonu.pdf"
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
             "value": "Notas_SimulacaoJardim.pdf"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notlar_BahceSimulasyonu.pdf"
           }
         }
       }
@@ -114879,16 +115362,16 @@
             "value": "Notatki"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Notlar"
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
             "value": "Notas"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notlar"
           }
         }
       }
@@ -133686,7 +134169,6 @@
     },
     "quiz.finance": {
       "comment": "Quiz title for the financial quiz.",
-      "extractionState": "extracted_with_value",
       "isCommentAutoGenerated": true,
       "localizations": {
         "de": {
@@ -133759,7 +134241,6 @@
     },
     "quiz.fitness": {
       "comment": "Quiz title for the fitness quiz.",
-      "extractionState": "extracted_with_value",
       "isCommentAutoGenerated": true,
       "localizations": {
         "de": {
@@ -133832,7 +134313,6 @@
     },
     "quiz.growth": {
       "comment": "Quiz title for the growth assessment.",
-      "extractionState": "extracted_with_value",
       "isCommentAutoGenerated": true,
       "localizations": {
         "de": {
@@ -133905,7 +134385,6 @@
     },
     "quiz.health": {
       "comment": "Quiz title for the health assessment.",
-      "extractionState": "extracted_with_value",
       "isCommentAutoGenerated": true,
       "localizations": {
         "de": {
@@ -133978,7 +134457,6 @@
     },
     "quiz.lifestyle": {
       "comment": "Quiz title for the \"Lifestyle\" quiz.",
-      "extractionState": "extracted_with_value",
       "isCommentAutoGenerated": true,
       "localizations": {
         "de": {
@@ -134051,7 +134529,6 @@
     },
     "quiz.mental": {
       "comment": "Quiz title for the mental quiz.",
-      "extractionState": "extracted_with_value",
       "isCommentAutoGenerated": true,
       "localizations": {
         "de": {
@@ -143401,7 +143878,6 @@
       }
     },
     "routine.timer.edit_individual": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -147221,7 +147697,6 @@
       }
     },
     "settings.pdf_export": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -149230,6 +149705,77 @@
           "stringUnit": {
             "state": "translated",
             "value": "Grovy'yi kullanarak aşağıdaki şartları kabul etmiş olursunuz:\n\n1. Kullanım\nUygulama yalnızca kişisel kullanıma yöneliktir.\n\n2. İçerik\nTüm oyun içeriği, tasarımları ve metinleri geliştiricinin mülkiyetindedir.\n\n3. Sorumluluk\nUygulama garanti olmadan sağlanır. Geliştirici veri kaybı konusunda hiçbir sorumluluk kabul etmez.\n\n4. Değişiklikler\nGeliştirici, uygulamayı ve bu şartları istediği zaman güncelleme hakkını saklı tutar.\n\n5. İletişim\nSorularınız için ayarlardaki Destek aracılığıyla bize ulaşın."
+          }
+        }
+      }
+    },
+    "settings.terms.placeholder": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dies sind die Nutzungsbedingungen für die Garten-Simulation..."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These are the terms of use for the Garden Simulation..."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estos son los términos de uso para la Simulación de Jardín..."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce sont les conditions d'utilisation de la Simulation de Jardin..."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questi sono i termini di utilizzo per la Simulazione Giardino..."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "これはガーデンシミュレーションの利用規約です..."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "정원 시뮬레이션의 이용 약관입니다..."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dit zijn de gebruiksvoorwaarden voor de Tuinsimulatie..."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oto warunki użytkowania Symulacji Ogrodu..."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estes são os termos de uso para a Simulação de Jardim..."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bahçe Simülasyonu kullanım şartları şunlardır..."
           }
         }
       }
@@ -155706,7 +156252,6 @@
       }
     },
     "stats.categories_watered_format": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -160229,7 +160774,6 @@
       }
     },
     "stats.total_focus": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -199168,574 +199712,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rutin zamanı: %@"
-          }
-        }
-      }
-    },
-    "focus.session.dnd_hint": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schalte dein Handy jetzt auf 'Nicht stören' und lege es nach dieser Einrichtung außer Sichtweite."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Put your phone on 'Do Not Disturb' now and place it out of sight after this setup."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pon tu teléfono en 'No Molestar' ahora y colócalo fuera de la vista después de esta configuración."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mettez votre téléphone sur 'Ne pas déranger' maintenant et placez-le hors de vue après cette configuration."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Metti il tuo telefono in 'Non Disturbare' ora e mettilo fuori dalla vista dopo questa configurazione."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Coloque seu telefone em 'Não Perturbe' agora e coloque-o fora de vista após esta configuração."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今すぐ電話を「おやすみモード」にして、設定後に見えない場所に置いてください。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "지금 휴대전화를 '방해 금지' 모드로 설정하고 설정 후 눈에 띄지 않는 곳에 두세요."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Włącz teraz tryb 'Nie przeszkadzać' i odłóż telefon poza zasięg wzroku po tej konfiguracji."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zet je telefoon nu op 'Niet storen' en leg hem uit het zicht na deze installatie."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Telefonunuzu şimdi 'Rahatsız Etmeyin' moduna alın ve bu kurulumdan sonra gözden uzak bir yere koyun."
-          }
-        }
-      }
-    },
-    "focus.session.goal_hint": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Was genau möchtest du in deiner Fokus-Zeit schaffen? Nimm dir einen Moment, um dich zu fokussieren."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "What exactly do you want to accomplish in your focus time? Take a moment to focus."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¿Qué quieres lograr exactamente en tu tiempo de enfoque? Tómate un momento para enfocarte."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Que voulez-vous accomplir exactement pendant votre temps de concentration ? Prenez un moment pour vous concentrer."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cosa vuoi realizzare esattamente nel tuo tempo di focus? Prenditi un momento per concentrarti."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O que exatamente você quer realizar no seu tempo de foco? Reserve um momento para se concentrar."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "フォーカス時間で正確に何を達成したいですか？ 集中するための時間を取ってください。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "집중 시간 동안 정확히 무엇을 성취하고 싶으신가요? 잠시 집중할 시간을 가지세요."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Co dokładnie chcesz osiągnąć w swoim czasie skupienia? Poświęć chwilę na koncentrację."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wat wil je precies bereiken in je focustijd? Neem even de tijd om je te concentreren."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Odaklanma zamanınızda tam olarak ne başarmak istiyorsunuz? Odaklanmak için bir an ayırın."
-          }
-        }
-      }
-    },
-    "inventory.item.desc.growth_boost": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beschleunigt das Wachstum deiner Pflanzen um 50% für die nächsten 24 Stunden."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Accelerates the growth of your plants by 50% for the next 24 hours."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Acelera el crecimiento de tus plantas en un 50% durante las próximas 24 horas."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Accélère la croissance de vos plantes de 50% pendant les prochaines 24 heures."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Accelera la crescita delle tue piante del 50% per le prossime 24 ore."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Acelera o crescimento de suas plantas em 50% pelas próximas 24 horas."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "次の24時間、植物の成長を50%加速させます。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "다음 24시간 동안 식물의 성장을 50% 가속화합니다."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Przyspiesza wzrost twoich roślin o 50% przez następne 24 godziny."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Versnelt de groei van je planten met 50% voor de komende 24 uur."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Önümüzdeki 24 saat boyunca bitkilerinizin büyümesini %50 hızlandırır."
-          }
-        }
-      }
-    },
-    "inventory.item.symbolism.growth_boost": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Energie und schnelles Vorankommen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Energy and rapid progress."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Energía y progreso rápido."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Énergie et progrès rapide."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Energia e progresso rapido."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Energia e progresso rápido."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "エネルギーと迅速な進歩。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "에너지와 빠른 진전."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Energia i szybki postęp."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Energie en snelle vooruitgang."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enerji ve hızlı ilerleme."
-          }
-        }
-      }
-    },
-    "banner.start_journey": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Starte deine Reise"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Start your journey"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comienza tu viaje"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Commencez votre voyage"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inizia il tuo viaggio"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comece sua jornada"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "あなたの旅を始めましょう"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "여정을 시작하세요"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rozpocznij swoją podróż"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Begin je reis"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yolculuğunuza başlayın"
-          }
-        }
-      }
-    },
-    "settings.terms.placeholder": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dies sind die Nutzungsbedingungen für die Garten-Simulation..."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "These are the terms of use for the Garden Simulation..."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Estos son los términos de uso para la Simulación de Jardín..."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ce sont les conditions d'utilisation de la Simulation de Jardin..."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Questi sono i termini di utilizzo per la Simulazione Giardino..."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Estes são os termos de uso para a Simulação de Jardim..."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "これはガーデンシミュレーションの利用規約です..."
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "정원 시뮬레이션의 이용 약관입니다..."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Oto warunki użytkowania Symulacji Ogrodu..."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dit zijn de gebruiksvoorwaarden voor de Tuinsimulatie..."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bahçe Simülasyonu kullanım şartları şunlardır..."
-          }
-        }
-      }
-    },
-    "developer.jump_to_day_89": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zu Tag 89 springen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jump to Day 89"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Saltar al Día 89"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sauter au jour 89"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Salta al giorno 89"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pular para o dia 89"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "89日目にジャンプ"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "89일로 점프"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skocz do dnia 89"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Spring naar dag 89"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "89. Güne Atla"
-          }
-        }
-      }
-    },
-    "developer.options.title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Developer Options"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Developer Options"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opciones de Desarrollador"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Options du développeur"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opzioni Sviluppatore"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opções de Desenvolvedor"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "開発者オプション"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "개발자 옵션"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opcje Programisty"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ontwikkelaarsopties"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Geliştirici Seçenekleri"
           }
         }
       }

@@ -435,7 +435,7 @@ struct RoutineExpandableSection: View {
                                     ) {
                                         HStack {
                                             Image(systemName: "clock.fill")
-                                            Text(String(localized: String.LocalizationValue("routine.available_in"), locale: Locale(identifier: settings.appLanguage))) + Text(" ") + Text(timerInterval: Date()...midnight)
+                                            Text(String(localized: String.LocalizationValue("routine.available_in"), locale: Locale(identifier: settings.appLanguage))) + Text(verbatim: " ") + Text(timerInterval: Date()...midnight)
                                         }
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .foregroundStyle(.white)

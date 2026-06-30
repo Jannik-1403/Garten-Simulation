@@ -5,7 +5,7 @@ struct ZoomIndikatorView: View {
     @State private var sichtbar = true
 
     var body: some View {
-        Text("\(Int(zoom * 100))%")
+        Text(verbatim: "\(Int(zoom * 100))%")
             .font(.system(size: 12, weight: .semibold, design: .monospaced))
             .foregroundColor(.secondary)
             .padding(.horizontal, 10)

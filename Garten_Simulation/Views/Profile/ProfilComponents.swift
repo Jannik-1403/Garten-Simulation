@@ -1522,7 +1522,7 @@ struct StatDetailFullscreenView: View {
                             .cornerRadius(12)
                             .shadow(color: .black.opacity(0.04), radius: 4, x: 0, y: 1)
                         } else {
-                            Text("")
+                            Text(verbatim: "")
                                 .font(.system(size: 13))
                         }
                     } else {
@@ -1656,7 +1656,7 @@ struct StatDetailFullscreenView: View {
                             .cornerRadius(12)
                             .shadow(color: .black.opacity(0.04), radius: 4, x: 0, y: 1)
                         } else {
-                            Text("")
+                            Text(verbatim: "")
                                 .font(.system(size: 13))
                         }
                     } else {
@@ -2819,7 +2819,7 @@ struct MiniScoreIndicator: View {
     
     var body: some View {
         VStack(spacing: 4) {
-            Text("\(value)%")
+            Text(verbatim: "\(value)%")
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .foregroundStyle(color)
             Text(label)

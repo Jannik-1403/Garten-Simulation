@@ -199,3 +199,7 @@
 - Platzhalter-Icons wurden nicht aus den Assets gelöscht, da diese reguläre Dekorationen (wie Brunnen, Vogelhaus, Laterne etc.) im Spiel sind und ansonsten dort fehlen würden.
 - Alte Dekoration-Icons (die zuvor als Platzhalter für schlechte Gewohnheiten dienten) wurden vollständig aus den Assets gelöscht, da sie nun exklusiv durch die spezifischen Icons für schlechte Gewohnheiten ersetzt wurden.
 - Fehlende Übersetzungen für Routinen-Texte in allen 11 Sprachen zu Localizable.xcstrings hinzugefügt.
+- Hartcodierte Texte in FocusSessionView, InventoryItemDetailSheet, GruenerBanner, SettingsDetailView und DeveloperView lokalisiert und in 11 Sprachen übersetzt.
+- Schlechte Gewohnheiten-Karte auf der Gartenseite komplett überarbeitet (quer, neues Layout für das X-Icon und Zielbox)
+- Layout der schlechten Gewohnheiten-Liste in der Gartenseite angepasst (jetzt untereinander statt nebeneinander und schmaler)
+- pt-BR Locale entfernt und fehlende Übersetzungen in allen 11 Sprachen für 100% Abdeckung hinzugefügt.

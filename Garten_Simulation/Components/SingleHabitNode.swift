@@ -110,7 +110,7 @@ struct SingleHabitNode: View {
                         }
                         .frame(width: groesse * 1.2, height: 6)
                         
-                        Text("\(Int((Double(tag.tagNummer) / 90.0) * 100))%")
+                        Text(verbatim: "\(Int((Double(tag.tagNummer) / 90.0) * 100))%")
                             .font(.system(size: groesse * 0.16, weight: .bold, design: .rounded))
                             .foregroundColor(.secondary)
                     }
