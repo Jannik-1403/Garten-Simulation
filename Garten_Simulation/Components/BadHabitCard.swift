@@ -37,123 +37,111 @@ struct BadHabitCard: View {
             } label: {
                 Rectangle().fill(Color.clear)
                     .frame(maxWidth: .infinity)
-                    .frame(minHeight: 320)
+                    .frame(minHeight: 110)
             }
             .buttonStyle(PflanzenCardButtonStyle(isVisualPressed: isVisualPressed, isDead: false))
 
             // MARK: - Layer 1: Interactive Card Content
-            VStack(spacing: 16) {
-                Color.clear.frame(height: 14)
+            HStack(spacing: 12) {
+                // --- Left: Icon ---
+                ZStack {
+                    if UIImage(named: deko.sfSymbol) != nil {
+                        Image(deko.sfSymbol)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 48, height: 48)
+                    } else {
+                        Image(systemName: deko.sfSymbol)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 48, height: 48)
+                            .foregroundStyle(Color.primary)
+                    }
 
-                // Habit Name
-                VStack(spacing: 4) {
+                    // Badge Zähler
+                    if executionsToday > 0 {
+                        Text("\(executionsToday)")
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                            .frame(width: 24, height: 24)
+                            .background(Color.red)
+                            .clipShape(Circle())
+                            .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                            .offset(x: 20, y: -20)
+                    }
+                }
+                .frame(width: 56, height: 56)
+
+                // --- Middle: Text ---
+                VStack(alignment: .leading, spacing: 4) {
                     let titleKey = settings.showHabitInsteadOfName ? deko.habitNameKey : deko.objectNameKey
                     Text(NSLocalizedString(titleKey, comment: ""))
-                        .font(.system(size: 18, weight: .black, design: .rounded))
+                        .font(.system(size: 16, weight: .black, design: .rounded))
                         .foregroundStyle(Color.primary)
                         .lineLimit(2)
-                        .multilineTextAlignment(.center)
-                        .minimumScaleFactor(0.6)
-                        .padding(.horizontal, 4)
+                        .minimumScaleFactor(0.8)
 
                     Text(String(localized: "bad_habit.label", defaultValue: "Schlechte Gewohnheit"))
-                        .font(.system(size: 10, weight: .bold, design: .rounded))
+                        .font(.system(size: 9, weight: .bold, design: .rounded))
                         .foregroundStyle(Color.orangePrimary)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 3)
                         .background(Capsule().fill(Color.orangePrimary.opacity(0.12)))
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.top, 4)
 
-                // MARK: - Icon Area
-                GeometryReader { geo in
-                    let scale = min(geo.size.width / 160, 1.2)
+                Spacer(minLength: 4)
 
+                // --- Right: Drag Cross & Target Box ---
+                HStack(spacing: 16) {
+                    // Draggable Cross
+                    DragToWeedCross(
+                        onCrossApplied: {
+                            handleCrossApplied()
+                        },
+                        pflanzenPosition: position,
+                        istErledigt: false,
+                        coordinateSpace: .named("BadHabitCardSpace"),
+                        istUeberZiel: $kreuzUeberButton,
+                        kreuzAufButton: $kreuzAufButton
+                    )
+                    .frame(width: 64, height: 64)
+
+                    // Target Box
                     ZStack {
-                        // 3D-Button-Rahmen bleibt immer sichtbar
-                        // Nur das Icon drin verschwindet wenn X drüber ist
-                        Item3DButton(
-                            farbe: .red,
-                            sekundaerFarbe: .red.darker(by: 0.2),
-                            groesse: 110 * scale,
-                            aktion: onTap
-                        ) {
-                            Group {
-                                if UIImage(named: deko.sfSymbol) != nil {
-                                    Image(deko.sfSymbol)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .scaleEffect(2.2)
-                                } else {
-                                    Image(systemName: deko.sfSymbol)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .scaleEffect(2.2)
-                                        .foregroundStyle(.white)
-                                }
-                            }
-                            .opacity((kreuzUeberButton || kreuzAufButton) ? 0 : 1)
-                            .animation(.easeInOut(duration: 0.18), value: kreuzUeberButton)
-                            .animation(.easeInOut(duration: 0.18), value: kreuzAufButton)
-                        }
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .fill(Color(hex: "#F2F2F7"))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                    .stroke(kreuzUeberButton ? Color.orangePrimary : Color.gray.opacity(0.3), style: StrokeStyle(lineWidth: 2, dash: [6]))
+                            )
+                            .animation(.easeInOut(duration: 0.2), value: kreuzUeberButton)
 
-                        // X auf dem Button — sichtbar wenn gestempelt wurde
                         if kreuzAufButton {
                             Image("SchlechteGewohnheitKreuz")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 90 * scale, height: 90 * scale)
+                                .frame(width: 44, height: 44)
                                 .transition(.scale(scale: 0.6).combined(with: .opacity))
                         }
-
-                        // Badge Zähler
-                        if executionsToday > 0 {
-                            Text("\(executionsToday)")
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundColor(.white)
-                                .frame(width: 32, height: 32)
-                                .background(Color.red)
-                                .clipShape(Circle())
-                                .overlay(Circle().stroke(Color.white, lineWidth: 2))
-                                .offset(x: (110 * scale) / 2.5, y: -(110 * scale) / 2.5)
-                        }
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(width: 64, height: 64)
                     .background(
-                        Color.clear
-                            .allowsHitTesting(false)
-                            .onAppear {
+                        GeometryReader { geo in
+                            Color.clear.onAppear {
                                 let frame = geo.frame(in: .named("BadHabitCardSpace"))
                                 position = CGPoint(x: frame.midX, y: frame.midY)
                             }
+                        }
                     )
                 }
-                .frame(height: 150)
-                .padding(.vertical, 8)
-                .scaleEffect(wobble)
-                .animation(.spring(response: 0.3, dampingFraction: 0.4), value: wobble)
-
-                // Drag to Weed Cross
-                DragToWeedCross(
-                    onCrossApplied: {
-                        handleCrossApplied()
-                    },
-                    pflanzenPosition: position,
-                    istErledigt: false,
-                    coordinateSpace: .named("BadHabitCardSpace"),
-                    istUeberZiel: $kreuzUeberButton,
-                    kreuzAufButton: $kreuzAufButton
-                )
-                .allowsHitTesting(true)
-                .frame(height: 80)
             }
             .padding(.horizontal, 16)
-            .padding(.top, 24)
-            .padding(.bottom, 16)
+            .padding(.vertical, 16)
             .frame(maxWidth: .infinity, alignment: .center)
             .allowsHitTesting(true)
         }
+        .scaleEffect(wobble)
+        .animation(.spring(response: 0.3, dampingFraction: 0.4), value: wobble)
         .coordinateSpace(name: "BadHabitCardSpace")
     }
 
