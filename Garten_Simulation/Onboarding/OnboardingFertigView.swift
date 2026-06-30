@@ -29,7 +29,7 @@ struct OnboardingFertigView: View {
                     HStack(spacing: 20) {
                         ForEach(data.gewaehltePflanzenIDs, id: \.self) { id in
                             let plant = GameDatabase.allPlants.first { $0.id == id }
-                            Text(plant?.symbol ?? "🌱")
+                            Text(plant?.symbol ?? "")
                                 .font(.system(size: 50))
                         }
                     }

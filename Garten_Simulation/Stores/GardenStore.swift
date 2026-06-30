@@ -596,7 +596,7 @@ class GardenStore: ObservableObject {
     // MARK: Coins hinzufügen (IAP)
     /// Adds coins purchased via In-App Purchase and logs the transaction.
     func addCoins(_ amount: Int, reason: String) {
-        coinsGutschreiben(amount: amount, beschreibung: "🛒 \(reason)")
+        coinsGutschreiben(amount: amount, beschreibung: " \(reason)")
     }
 
     // MARK: Coins gutschreiben (Verdienst)

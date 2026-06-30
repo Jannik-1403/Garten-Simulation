@@ -131,7 +131,7 @@ struct PflanzeDetailSheet: View {
                                 } else {
                                     // Fallback if not found
                                     PflanzenButton(
-                                        plant: Plant(id: "fallback", name: String(localized: "common.plant_fallback"), symbolName: pflanze.symbolName, assetName: nil, symbol: "🌱", symbolColor: pflanze.symbolColor, habitCategory: pflanze.habitCategory, symbolism: ""),
+                                        plant: Plant(id: "fallback", name: String(localized: "common.plant_fallback"), symbolName: pflanze.symbolName, assetName: nil, symbol: "", symbolColor: pflanze.symbolColor, habitCategory: pflanze.habitCategory, symbolism: ""),
                                         seltenheit: pflanze.seltenheit,
                                         farbe: pflanze.color,
                                         sekundaerFarbe: pflanze.color.darker(),

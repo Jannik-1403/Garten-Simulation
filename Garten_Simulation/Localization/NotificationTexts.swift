@@ -180,7 +180,7 @@ struct NotificationTexts {
     }
 
     static func morgenMotivation(streak: Int) -> (title: String, body: String) {
-        return ("🌅 Guten Morgen!", "Heute ist ein neuer Tag. Vergiss deine Pflanzen nicht!")
+        return (" Guten Morgen!", "Heute ist ein neuer Tag. Vergiss deine Pflanzen nicht!")
     }
 
     static func stillerAbend(anzahlUngegossen: Int) -> (title: String, body: String) {

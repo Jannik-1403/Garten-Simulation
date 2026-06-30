@@ -47,21 +47,21 @@ final class IAPStore: ObservableObject {
     // MARK: - Load Products
 
     func loadProducts() async {
-        print("🛒 [IAPStore] loadProducts() gestartet!")
-        print("🛒 [IAPStore] Suche nach folgenden Product IDs: \(IAPStore.productIDs)")
+        print(" [IAPStore] loadProducts() gestartet!")
+        print(" [IAPStore] Suche nach folgenden Product IDs: \(IAPStore.productIDs)")
         
         do {
             // Use a 10-second timeout to prevent infinite loading in simulator
             let loaded = try await withThrowingTaskGroup(of: [Product].self) { group in
                 group.addTask {
-                    print("🛒 [IAPStore] Starte Product.products(for:) Anfrage...")
+                    print(" [IAPStore] Starte Product.products(for:) Anfrage...")
                     let fetchedProducts = try await Product.products(for: IAPStore.productIDs)
-                    print("🛒 [IAPStore] Product.products(for:) erfolgreich zurückgekehrt!")
+                    print(" [IAPStore] Product.products(for:) erfolgreich zurückgekehrt!")
                     return fetchedProducts
                 }
                 group.addTask {
                     try await Task.sleep(nanoseconds: 10_000_000_000)
-                    print("🛒 [IAPStore] ⚠️ 10-Sekunden Timeout erreicht!")
+                    print(" [IAPStore] ⚠️ 10-Sekunden Timeout erreicht!")
                     throw StoreError.failedVerification // Timeout
                 }
                 
@@ -70,22 +70,22 @@ final class IAPStore: ObservableObject {
                 return result
             }
             
-            print("🛒 [IAPStore] Anzahl gefundener Produkte: \(loaded.count)")
+            print(" [IAPStore] Anzahl gefundener Produkte: \(loaded.count)")
             for product in loaded {
-                print("🛒 [IAPStore] Gefundenes Produkt: \(product.id) - \(product.displayName) - \(product.displayPrice)")
+                print(" [IAPStore] Gefundenes Produkt: \(product.id) - \(product.displayName) - \(product.displayPrice)")
             }
             
             products = loaded.sorted { $0.price < $1.price }
             hasLoaded = true
             
             if products.isEmpty {
-                print("🛒 [IAPStore] ❌ FEHLER: 0 Produkte gefunden! StoreKit hat keine der angeforderten IDs in der Konfiguration gefunden.")
+                print(" [IAPStore] ❌ FEHLER: 0 Produkte gefunden! StoreKit hat keine der angeforderten IDs in der Konfiguration gefunden.")
                 purchaseError = "StoreKit configuration file not found or invalid."
             } else {
-                print("🛒 [IAPStore] ✅ Produkte erfolgreich sortiert und gespeichert.")
+                print(" [IAPStore] ✅ Produkte erfolgreich sortiert und gespeichert.")
             }
         } catch {
-            print("🛒 [IAPStore] ❌ CATCH-BLOCK ERREICHT! Exakter Fehler: \(error)")
+            print(" [IAPStore] ❌ CATCH-BLOCK ERREICHT! Exakter Fehler: \(error)")
             purchaseError = NSLocalizedString("iap_error_load", comment: "")
         }
     }
