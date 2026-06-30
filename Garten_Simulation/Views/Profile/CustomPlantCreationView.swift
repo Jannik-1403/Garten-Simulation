@@ -264,6 +264,7 @@ struct CustomPlantCreationView: View {
                                                         .resizable()
                                                         .scaledToFit()
                                                         .frame(width: isNegative ? 28 : 70, height: isNegative ? 28 : 70)
+                                                        .scaleEffect(isNegative ? 2.2 : 1.0)
                                                 } else {
                                                     Image(systemName: icon)
                                                         .font(.system(size: isNegative ? 20 : 40))
@@ -375,7 +376,7 @@ struct CustomPlantCreationView: View {
                 Text(String(format: String(localized: "inventory.seeds.info.body"), gardenStore.seeds))
             }
             .sheet(isPresented: $showAllIcons) {
-                AllIconsSheet(selectedIcon: $selectedIcon, selectedColor: uiColor(for: selectedColor), icons: allIcons)
+                AllIconsSheet(selectedIcon: $selectedIcon, selectedColor: uiColor(for: selectedColor), icons: allIcons, isNegative: isNegative)
                     .environmentObject(settings)
             }
             .onAppear {
@@ -442,6 +443,7 @@ struct AllIconsSheet: View {
     @Binding var selectedIcon: String
     let selectedColor: Color
     let icons: [String]
+    var isNegative: Bool = false
     
     let columns = [
         GridItem(.adaptive(minimum: 60), spacing: 16)
@@ -467,6 +469,7 @@ struct AllIconsSheet: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 36, height: 36)
+                                        .scaleEffect(isNegative ? 2.2 : 1.0)
                                 } else {
                                     Image(systemName: icon)
                                         .font(.system(size: 24))
