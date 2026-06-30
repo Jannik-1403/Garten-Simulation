@@ -300,19 +300,69 @@ struct DailyTaskCardView: View {
     }
     
     private var localizedTitle: String {
-        let raw = NSLocalizedString(tag.titelKey, comment: "")
+        var raw = NSLocalizedString(tag.titelKey, comment: "")
+        
+        // Failsafe: Wenn der Key nicht übersetzt wurde (roher Schlüssel)
+        if raw == tag.titelKey {
+            // Versuche generic fallback
+            let fallbackKey = tag.titelKey.replacingOccurrences(of: #"pfad_.*_day_"#, with: "pfad_generic_day_", options: .regularExpression)
+                                          .replacingOccurrences(of: #"pfad_.*_phase_"#, with: "pfad_generic_phase_", options: .regularExpression)
+            let fallbackRaw = NSLocalizedString(fallbackKey, comment: "")
+            if fallbackRaw != fallbackKey {
+                raw = fallbackRaw
+            } else if tag.istMeilenstein {
+                raw = String(localized: "pfad_meilenstein_titel") // Generic fallback
+            } else {
+                raw = String(localized: "pfad_aufgabe_titel")
+            }
+        }
+        
+        // Bereinigen falls Unterstriche auftauchen, obwohl es kein Key mehr sein sollte
+        if raw == tag.titelKey { raw = String(localized: "routine_titel") }
+        
         return raw.replacingOccurrences(of: "[HABIT]", with: habitName)
     }
 
     private var localizedDescription: String {
-        let raw = NSLocalizedString(tag.beschreibungKey, comment: "")
+        let diff: String = {
+            if let s = tag.strang, let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
+                return habit.individualSchwierigkeit ?? "anfaenger"
+            }
+            return "anfaenger"
+        }()
+        
+        if let plantID = tag.strang?.pflanzenID,
+           let dynamicDesc = HabitProgressionGenerator.generateDescription(for: plantID, dayNum: tag.tagNummer, difficulty: diff, language: settings.appLanguage) {
+            return dynamicDesc.replacingOccurrences(of: "[HABIT]", with: habitName)
+        }
+
+        var raw = NSLocalizedString(tag.beschreibungKey, comment: "")
+        
+        // Failsafe: Wenn der Key roh zurückkommt, generischen probieren
+        if raw == tag.beschreibungKey {
+            let fallbackKey = tag.beschreibungKey.replacingOccurrences(of: #"pfad_.*_day_"#, with: "pfad_generic_day_", options: .regularExpression)
+                                                 .replacingOccurrences(of: #"pfad_.*_phase_"#, with: "pfad_generic_phase_", options: .regularExpression)
+            
+            let fallbackRaw = NSLocalizedString(fallbackKey, comment: "")
+            if fallbackRaw != fallbackKey {
+                raw = fallbackRaw
+            } else {
+                raw = String(localized: "pfad_schwierigkeit_\(diff)_desc")
+            }
+        }
+        
         return raw.replacingOccurrences(of: "[HABIT]", with: habitName)
     }
     
     private var habitName: String {
         guard let s = tag.strang else { return "" }
+        // 1. User habit
         if let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
             return NSLocalizedString(habit.displayedHabitName, comment: "")
+        }
+        // 2. GameDatabase fallback
+        if let plant = GameDatabase.shared.plant(for: s.pflanzenID) {
+            return NSLocalizedString(plant.habitCategory.localizationKey, comment: "")
         }
         return NSLocalizedString(s.pflanzenName, comment: "")
     }
