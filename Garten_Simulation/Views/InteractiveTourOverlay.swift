@@ -23,7 +23,7 @@ struct AppTourPromptOverlay: View {
                     .padding(.horizontal)
                 
                 VStack(spacing: 12) {
-                    // JA: Zum Routinen-Tab navigieren & Onboarding triggern
+                    // JA: Tour starten
                     Item3DButton(
                         farbe: Color.gruenPrimary,
                         sekundaerFarbe: Color.gruenPrimary.darker(),
@@ -31,13 +31,8 @@ struct AppTourPromptOverlay: View {
                         isRectangular: true,
                         aktion: {
                             settingsStore.appTourPromptShown = true
-                            settingsStore.appTourAbgeschlossen = true
-                            // Flag ZUERST auf false → dann Tab wechseln
-                            // So sieht onAppear in RoutinenView den richtigen Zustand
                             settingsStore.routineOnboardingAbgeschlossen = false
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                gardenStore.selectedTab = 4
-                            }
+                            onStartTour()
                         }
                     ) {
                         Text(String(localized: "tour_prompt_yes"))
@@ -46,7 +41,7 @@ struct AppTourPromptOverlay: View {
                             .frame(maxWidth: .infinity)
                     }
                     
-                    // NEIN: Direkt zum Routine-Onboarding
+                    // NEIN: Direkt zum Routine-Onboarding vormerken für später
                     Item3DButton(
                         farbe: Color.rotPrimary,
                         sekundaerFarbe: Color.rotPrimary.darker(),
@@ -55,11 +50,7 @@ struct AppTourPromptOverlay: View {
                         aktion: {
                             settingsStore.appTourPromptShown = true
                             settingsStore.appTourAbgeschlossen = true
-                            // Flag ZUERST auf false → dann Tab wechseln
                             settingsStore.routineOnboardingAbgeschlossen = false
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                gardenStore.selectedTab = 4
-                            }
                         }
                     ) {
                         Text(String(localized: "tour_prompt_no"))

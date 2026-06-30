@@ -206,3 +206,6 @@
 - Leere Strings und Prozentangaben (z.B. %lld%%) aus Localizable.xcstrings entfernt und im Code durch Text(verbatim:) ersetzt.
 - Alle Emojis aus der gesamten Codebase (Lokalisierung, Hardcoded-Strings, Models) entfernt.
 - Alle restlichen Sonder-Emojis (wie ⚠️) aus der App entfernt.
+- Konflikt zwischen Haupt-Onboarding und Routine-Onboarding behoben. Routine-Onboarding feuert nun ausschließlich auf dem Routine-Tab (Tab 4).
+- Fixed raw string catalog keys showing in 90-day multi-strand path view
+- Added translations for pending path task badge ('pfad_tag_ausstehend')
