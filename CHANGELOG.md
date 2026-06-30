@@ -209,3 +209,4 @@
 - Konflikt zwischen Haupt-Onboarding und Routine-Onboarding behoben. Routine-Onboarding feuert nun ausschließlich auf dem Routine-Tab (Tab 4).
 - Fixed raw string catalog keys showing in 90-day multi-strand path view
 - Added translations for pending path task badge ('pfad_tag_ausstehend')
+- Fehler behoben: Button 'Ja' bei der Einführungstour hat fälschlicherweise die Tour übersprungen und sofort das Routine-Onboarding geöffnet. Jetzt startet die Tour korrekt. Routine-Onboarding wird während der Tour pausiert.
