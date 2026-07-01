@@ -119,6 +119,7 @@ struct PaywallView: View {
                             #if DEBUG
                             Button {
                                 iapStore.isProUser = true
+                                UserDefaults.standard.set(true, forKey: "debug_isProUser")
                                 dismiss()
                             } label: {
                                 Text("DEBUG: Pro Freischalten")

@@ -13,7 +13,8 @@ final class IAPStore: ObservableObject {
         "com.gartenapp.coins.pack_small",
         "com.gartenapp.coins.pack_medium",
         "com.gartenapp.coins.pack_large",
-        "com.gartenapp.cosmetics.glasses"
+        "com.gartenapp.cosmetics.glasses",
+        "com.gartenapp.pro.lifetime"
     ]
 
     static let coinAmounts: [String: Int] = [
@@ -28,6 +29,7 @@ final class IAPStore: ObservableObject {
     @Published var isPurchasing = false
     @Published var purchaseError: String? = nil
     @Published var hasLoaded = false
+    @Published var isProUser = false
 
     // MARK: - Private
 
@@ -36,6 +38,11 @@ final class IAPStore: ObservableObject {
     // MARK: - Init / Deinit
 
     init() {
+        #if DEBUG
+        if UserDefaults.standard.bool(forKey: "debug_isProUser") {
+            self.isProUser = true
+        }
+        #endif
         transactionListener = listenForTransactions()
         Task { await loadProducts() }
     }
@@ -110,6 +117,8 @@ final class IAPStore: ObservableObject {
                     )
                 } else if product.id == "com.gartenapp.cosmetics.glasses" {
                     characterStore?.unlockedGlasses = true
+                } else if product.id == "com.gartenapp.pro.lifetime" {
+                    self.isProUser = true
                 }
                 await transaction.finish()
 
@@ -154,6 +163,7 @@ final class IAPStore: ObservableObject {
 
     func syncEntitlements(characterStore: CharacterStore) async {
         var hasGlasses = false
+        var hasPro = false
         
         // Loop through all current entitlements
         for await result in Transaction.currentEntitlements {
@@ -161,12 +171,26 @@ final class IAPStore: ObservableObject {
             
             if transaction.productID == "com.gartenapp.cosmetics.glasses" {
                 hasGlasses = true
+            } else if transaction.productID == "com.gartenapp.pro.lifetime" {
+                hasPro = true
             }
         }
         
         // If the user refunded the glasses, this will be false and revoke access
         if characterStore.unlockedGlasses != hasGlasses {
             characterStore.unlockedGlasses = hasGlasses
+        }
+        
+        DispatchQueue.main.async {
+            #if DEBUG
+            if UserDefaults.standard.bool(forKey: "debug_isProUser") {
+                self.isProUser = true
+            } else {
+                self.isProUser = hasPro
+            }
+            #else
+            self.isProUser = hasPro
+            #endif
         }
     }
 
