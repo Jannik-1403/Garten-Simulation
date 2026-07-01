@@ -456,157 +456,138 @@ struct PflanzeDetailSheet: View {
                 .environmentObject(settings)
                 .environmentObject(powerUpStore)
         }
-        .fullScreenCover(isPresented: $zeigePaywall) {
-            PaywallView()
-                .environmentObject(iapStore)
-        }
-    }
-}
-    @ViewBuilder
-    private var healthKitConfigSection: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Text(String(localized: "apple.health.title", defaultValue: "Apple Health Kopplung"))
-                    .font(.system(size: 20, weight: .bold, design: .rounded))
-                Spacer()
-            }
-            .padding(.horizontal, 24)
-            
-            Group {
-                if iapStore.isProUser {
-                    // Background Glass
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .fill(Color.secondary.opacity(0.05))
-                        .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
-                    
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .stroke(
-                            LinearGradient(
-                                colors: [.white.opacity(0.5), .white.opacity(0.1)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
-                            lineWidth: 1
-                        )
-                    
-                    VStack(spacing: 16) {
-                        HStack {
-                            Text(String(localized: "apple.health.tracking", defaultValue: "Tracking Metrik"))
-                                .font(.system(size: 15, weight: .semibold, design: .rounded))
-                            Spacer()
-                            Picker("", selection: Binding<HealthMetricType?>(
-                                get: { pflanze.linkedHealthMetric },
-                                set: { newValue in
-                                    pflanze.linkedHealthMetric = newValue
-                                    gardenStore.savePlants()
-                                }
-                            )) {
-                                Text(String(localized: "apple.health.metric.none", defaultValue: "Keine")).tag(nil as HealthMetricType?)
-                                ForEach(HealthMetricType.allCases, id: \.self) { metric in
-                                    Text(String(localized: String.LocalizationValue(metric.localizationKey))).tag(metric as HealthMetricType?)
-                                }
-                            }
-                            .tint(.red)
                         }
-                        
-                        if let metric = pflanze.linkedHealthMetric {
-                            Divider()
-                                .background(Color.secondary.opacity(0.2))
-                            
-                            HStack {
-                                Text(String(localized: "apple.health.target", defaultValue: "Tagesziel"))
-                                    .font(.system(size: 15, weight: .semibold, design: .rounded))
-                                Spacer()
-                                TextField("0", value: Binding(
-                                    get: { pflanze.healthTarget },
-                                    set: { pflanze.healthTarget = $0; gardenStore.savePlants() }
-                                ), format: .number)
-                                .keyboardType(.numberPad)
-                                .multilineTextAlignment(.trailing)
-                                .frame(width: 100)
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundStyle(.primary)
-                                .padding(8)
-                                .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
-                            }
-                            
-                            // Progress
-                            let current: Int = {
-                                switch metric {
-                                case .steps: return Int(healthManager.todaysSteps)
-                                case .water: return Int(healthManager.todaysWater)
-                                case .sleep: return Int(healthManager.todaysSleep)
-                                case .mindfulness: return Int(healthManager.todaysMindfulness)
-                                }
-                            }()
-                            
-                            let target = Int(pflanze.healthTarget ?? 0)
-                            let unit: String = {
-                                switch metric {
-                                case .steps: return String(localized: "apple.health.unit.steps", defaultValue: "Schritte")
-                                case .water: return String(localized: "apple.health.unit.water", defaultValue: "ml")
-                                case .sleep: return String(localized: "apple.health.unit.sleep", defaultValue: "h")
-                                case .mindfulness: return String(localized: "apple.health.unit.mindfulness", defaultValue: "min")
-                                }
-                            }()
-                            
-                            VStack(spacing: 8) {
-                                HStack {
-                                    Text(String(localized: "apple.health.progress", defaultValue: "Fortschritt heute"))
-                                        .font(.system(size: 13, weight: .medium, design: .rounded))
-                                        .foregroundStyle(.secondary)
-                                    Spacer()
-                                    Text("\(current) / \(target) \(unit)")
-                                        .font(.system(size: 13, weight: .bold, design: .rounded))
-                                        .foregroundStyle(.red)
-                                }
-                                
-                                GeometryReader { geo in
-                                    ZStack(alignment: .leading) {
-                                        Capsule()
-                                            .fill(Color.secondary.opacity(0.2))
-                                            .frame(height: 8)
+                        .fullScreenCover(isPresented: $zeigePaywall) {
+                            PaywallView()
+                                .environmentObject(iapStore)
+                        }
+                    }
+                    @ViewBuilder
+                    private var healthKitConfigSection: some View {
+                        VStack(spacing: 12) {
+                            Group {
+                                if iapStore.isProUser {
+                                    VStack(spacing: 16) {
+                                        let metricForToggle = pflanze.automaticHealthMetric ?? .steps
+                                        let isActiveBinding = Binding<Bool>(
+                                            get: { pflanze.linkedHealthMetric != nil },
+                                            set: { isOn in
+                                                pflanze.linkedHealthMetric = isOn ? metricForToggle : nil
+                                                gardenStore.savePlants()
+                                            }
+                                        )
                                         
-                                        Capsule()
-                                            .fill(
-                                                LinearGradient(colors: [.red, .pink], startPoint: .leading, endPoint: .trailing)
-                                            )
-                                            .frame(width: min(geo.size.width, geo.size.width * CGFloat(current) / CGFloat(max(1, target))), height: 8)
-                                            .shadow(color: .red.opacity(0.3), radius: 3, y: 1)
+                                        Toggle(String(localized: String.LocalizationValue(metricForToggle.localizationKey)), isOn: isActiveBinding)
+                                            .font(.system(size: 15, weight: .semibold, design: .rounded))
+                                            .tint(.black)
+                                        
+                                        if let metric = pflanze.linkedHealthMetric {
+                                            HStack {
+                                                Text(String(localized: "apple.health.target", defaultValue: "Tagesziel"))
+                                                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                                                Spacer()
+                                                TextField("0", value: Binding(
+                                                    get: { pflanze.healthTarget },
+                                                    set: { pflanze.healthTarget = $0; gardenStore.savePlants() }
+                                                ), format: .number)
+                                                .keyboardType(.numberPad)
+                                                .multilineTextAlignment(.trailing)
+                                                .frame(width: 100)
+                                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                .foregroundStyle(.orange)
+                                                .padding(8)
+                                                .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
+                                            }
+                                            
+                                            // Progress
+                                            let current: Int = {
+                                                switch metric {
+                                                case .steps: return Int(healthManager.todaysSteps)
+                                                case .water: return Int(healthManager.todaysWater)
+                                                case .sleep: return Int(healthManager.todaysSleep)
+                                                case .mindfulness: return Int(healthManager.todaysMindfulness)
+                                                case .running: return Int(healthManager.todaysRunning)
+                                                case .strengthTraining: return Int(healthManager.todaysStrengthTraining)
+                                                }
+                                            }()
+                                            
+                                            let target = Int(pflanze.healthTarget ?? 0)
+                                            let unit: String = {
+                                                switch metric {
+                                                case .steps: return String(localized: "apple.health.unit.steps", defaultValue: "Schritte")
+                                                case .water: return String(localized: "apple.health.unit.water", defaultValue: "ml")
+                                                case .sleep: return String(localized: "apple.health.unit.sleep", defaultValue: "h")
+                                                case .mindfulness: return String(localized: "apple.health.unit.mindfulness", defaultValue: "min")
+                                                case .running: return String(localized: "apple.health.unit.running", defaultValue: "min")
+                                                case .strengthTraining: return String(localized: "apple.health.unit.strengthTraining", defaultValue: "min")
+                                                }
+                                            }()
+                                            
+                                            VStack(spacing: 8) {
+                                                HStack {
+                                                    Text(String(localized: "apple.health.progress", defaultValue: "Fortschritt heute"))
+                                                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                                                        .foregroundStyle(.secondary)
+                                                    Spacer()
+                                                    Text("\(current) / \(target) \(unit)")
+                                                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                                                        .foregroundStyle(.orange)
+                                                }
+                                                
+                                                GeometryReader { geo in
+                                                    ZStack(alignment: .leading) {
+                                                        Capsule()
+                                                            .fill(Color.secondary.opacity(0.2))
+                                                            .frame(height: 8)
+                                                        
+                                                        Capsule()
+                                                            .fill(Color.orange)
+                                                            .frame(width: min(geo.size.width, geo.size.width * CGFloat(current) / CGFloat(max(1, target))), height: 8)
+                                                            .shadow(color: .orange.opacity(0.3), radius: 3, y: 1)
+                                                    }
+                                                }
+                                                .frame(height: 8)
+                                            }
+                                        }
+                                    }
+                                    .padding(20)
+                                    .background(
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                                .fill(Color(UIColor.systemGray4))
+                                                .offset(y: 4)
+                                            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                                .fill(Color(UIColor.secondarySystemGroupedBackground))
+                                        }
+                                    )
+                                    .padding(.bottom, 4)
+                                } else {
+                                    Item3DButton(
+                                        farbe: Color.goldPrimary,
+                                        sekundaerFarbe: Color(red: 0.7, green: 0.5, blue: 0.0), // Dunkelgold
+                                        groesse: 56,
+                                        isRectangular: true,
+                                        aktion: {
+                                            zeigePaywall = true
+                                        }
+                                    ) {
+                                        HStack(spacing: 8) {
+                                            Image(systemName: "lock.fill")
+                                                .font(.system(size: 18, weight: .bold))
+                                            
+                                            Text(String(localized: "apple.health.pro_locked", defaultValue: "Grovy Pro Feature"))
+                                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        }
+                                        .frame(maxWidth: .infinity)
+                                        .foregroundStyle(.white)
+                                        .padding(.horizontal, 16)
                                     }
                                 }
-                                .frame(height: 8)
                             }
+                            .padding(.horizontal, 24)
                         }
+                        .padding(.bottom, 8)
                     }
-                    .padding(20)
-                } else {
-                    Item3DButton(
-                        farbe: Color.goldPrimary,
-                        sekundaerFarbe: Color(red: 0.7, green: 0.5, blue: 0.0), // Dunkelgold
-                        groesse: 56,
-                        isRectangular: true,
-                        aktion: {
-                            zeigePaywall = true
-                        }
-                    ) {
-                        HStack(spacing: 8) {
-                            Image(systemName: "lock.fill")
-                                .font(.system(size: 18, weight: .bold))
-                            
-                            Text(String(localized: "apple.health.pro_locked", defaultValue: "Grovy Pro Feature"))
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                        }
-                        .frame(maxWidth: .infinity)
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 16)
-                    }
-                }
-            }
-            .padding(.horizontal, 24)
-        }
-        .padding(.bottom, 8)
-    }
 
     private func sicherstellenDassPfadExistiert() {
         let strangExistiert = pfadStore.straenge.contains(where: {
