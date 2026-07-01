@@ -4,9 +4,12 @@
 - Kalender-Synchronisation wird nun als Pro-Feature behandelt: Der Kalender-Button wird auch für Nicht-Pro-User angezeigt, ist jedoch golden gefärbt, besitzt ein Schloss-Symbol und öffnet bei Klick die Paywall.
 - In der `PaywallView` wurde die "Kalender Synchronisation" zur Liste der exklusiven Pro-Features hinzugefügt.
 - Auf der Paywall-Seite wird nun statisch das `ProFeature`-Icon auf 200x220 Pixel vergrößert angezeigt.
+- Dem ProFeature-Icon wurde ein zusätzliches Bottom-Padding hinzugefügt, um jegliche Überlappungen mit dem Titeltext zu verhindern.
+- Der Kauf-Button in der `PaywallView` wurde auf den voll-plastischen `DuolingoButtonStyle` (3D Button) umgestellt.
 - Das Pro-Produkt (`com.gartenapp.pro.lifetime`) mit einem Lifetime-Preis von **9,99 €** wurde in beiden Xcode-StoreKit-Konfigurationen (`StoreKitConfig.storekit` und `Purchases.storekit`) hinzugefügt. Dadurch können Produkte nun auch im Simulator regulär geladen werden.
 - Ein Fallback-Bypass (DEBUG-Freischaltung) wurde im Simulator auch außerhalb des regulären Debug-Flags aktiviert, um Entwicklungs- und Previews-Tests zu vereinfachen, wenn die Produkte noch laden.
 - Alle neuen Zeichenketten wurden vollständig in alle 11 Projektsprachen übersetzt.
+
 
 
 
