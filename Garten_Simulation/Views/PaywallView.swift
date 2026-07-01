@@ -38,6 +38,8 @@ struct PaywallView: View {
                         .scaledToFit()
                         .frame(width: 200, height: 220)
                         .padding(.top, 40)
+                        .padding(.bottom, 24)
+
                     
                     // Title
                     VStack(spacing: 8) {
@@ -90,25 +92,19 @@ struct PaywallView: View {
                             } label: {
                                 HStack {
                                     Text(String(localized: "paywall.button.unlock", defaultValue: "Jetzt Freischalten"))
-                                        .font(.system(size: 18, weight: .black, design: .rounded))
                                     Spacer()
                                     Text(product.displayPrice)
-                                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                                        .opacity(0.9)
                                 }
-                                .padding(.horizontal, 24)
-                                .padding(.vertical, 18)
-                                .background(
-                                    LinearGradient(
-                                        colors: [Color.goldPrimary, Color.orangePrimary],
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )
-                                )
-                                .foregroundColor(.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                .shadow(color: Color.goldPrimary.opacity(0.3), radius: 15, y: 8)
                             }
+                            .buttonStyle(
+                                DuolingoButtonStyle(
+                                    size: .large,
+                                    fillWidth: true,
+                                    backgroundColor: Color.goldPrimary,
+                                    shadowColor: Color.goldPrimary.darker(),
+                                    foregroundColor: .white
+                                )
+                            )
                             .padding(.horizontal, 24)
                             
                             Text(String(localized: "paywall.description.lifetime", defaultValue: "Einmalzahlung. Lifetime Zugriff."))
@@ -129,6 +125,7 @@ struct PaywallView: View {
                             #endif
                         }
                     }
+
                 }
                 .padding(.bottom, 60)
             }
