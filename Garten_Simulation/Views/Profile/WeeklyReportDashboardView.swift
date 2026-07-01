@@ -38,7 +38,7 @@ struct WeeklyReportDashboardView: View {
     }
     
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 24) {
             // 1. Week Navigation
             HStack {
                 Button {
@@ -92,7 +92,7 @@ struct WeeklyReportDashboardView: View {
             .padding(.horizontal, 8)
             
             // 2. Summary Grid (Overview Cards)
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                 // Focus Time Card
                 summaryCard(
                     title: String(localized: "weekly_report.card.focus_time", defaultValue: "Fokuszeit"),
@@ -165,14 +165,14 @@ struct WeeklyReportDashboardView: View {
                 }
             }
             .padding(16)
+            .background(Color(UIColor.systemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             .background(
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .fill(Color.secondary.opacity(0.08))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 24, style: .continuous)
-                            .stroke(Color.yellow.opacity(0.2), lineWidth: 1.5)
-                    )
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(Color.black.opacity(0.18))
+                    .offset(y: 6)
             )
+            .padding(.bottom, 6)
             
             // 4. Swift Chart: Focus Time
             chartContainer(title: String(localized: "weekly_report.chart.focus_title", defaultValue: "Fokuszeit pro Tag")) {
@@ -182,8 +182,8 @@ struct WeeklyReportDashboardView: View {
                             x: .value("Tag", item.dayName),
                             y: .value("Minuten", item.minutes)
                         )
-                        .foregroundStyle(Color.blauPrimary.gradient)
-                        .cornerRadius(8)
+                        .foregroundStyle(Color.blauPrimary)
+                        .cornerRadius(4)
                         
                         if let selected = selectedFocusDay, selected.dayName == item.dayName {
                             RuleMark(y: .value("Auswahl", selected.minutes))
@@ -224,8 +224,8 @@ struct WeeklyReportDashboardView: View {
                             x: .value("Tag", item.dayName),
                             y: .value("Erledigt", item.count)
                         )
-                        .foregroundStyle(Color.green.gradient)
-                        .cornerRadius(8)
+                        .foregroundStyle(Color.green)
+                        .cornerRadius(4)
                         
                         if let selected = selectedHabitsDay, selected.dayName == item.dayName {
                             RuleMark(y: .value("Auswahl", selected.count))
@@ -279,7 +279,7 @@ struct WeeklyReportDashboardView: View {
                         zeigePaywall = true
                     }
                 } label: {
-                    HStack {
+                    HStack(spacing: 4) {
                         if !iapStore.isProUser {
                             Image(systemName: "lock.fill")
                                 .foregroundColor(.white)
@@ -311,6 +311,7 @@ struct WeeklyReportDashboardView: View {
             }
             .padding(.top, 16)
         }
+        .padding(.horizontal, 8)
         .sheet(isPresented: $isSharing) {
             if let url = generatedPDFUrl {
                 PDFExportShareSheet(activityItems: [url])
@@ -364,9 +365,12 @@ struct WeeklyReportDashboardView: View {
             }
         }
         .padding(14)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .background(
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(Color.secondary.opacity(0.06))
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
         )
     }
     
@@ -380,9 +384,13 @@ struct WeeklyReportDashboardView: View {
                 .frame(height: 180)
         }
         .padding(20)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .background(
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .fill(Color.secondary.opacity(0.06))
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
         )
+        .padding(.bottom, 6)
     }
 }

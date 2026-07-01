@@ -280,3 +280,4 @@
 - Fixed SIGKILL crash on launch and restored keyboard dismiss button in topBarTrailing
 - Fixed UI compilation errors related to the top right keyboard dismiss button logic
 - Applied keyboard dismiss logic to Apple Health target field
+- UI der Wochenübersicht (WeeklyReportDashboardView) überarbeitet (3D-Karten, schlichte Diagramme analog zu Statistiken)
