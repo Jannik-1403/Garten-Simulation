@@ -13,7 +13,7 @@ struct FocusSoundControlView: View {
     }
     
     var body: some View {
-        let isLocked = !iapStore.isProUser && selectedSound != .none
+        let isLocked = !iapStore.isProUser
         
         VStack(spacing: 16) {
             // Header: Sound-Auswahl (Pfeil Links - Name - Pfeil Rechts) ohne Icons
@@ -25,7 +25,7 @@ struct FocusSoundControlView: View {
                 } label: {
                     Image(systemName: "chevron.left")
                         .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(isLocked ? .white.opacity(0.8) : .secondary)
                         .padding(8)
                 }
                 
@@ -33,7 +33,7 @@ struct FocusSoundControlView: View {
                 
                 Text(selectedSound.displayName)
                     .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundColor(.primary)
+                    .foregroundColor(isLocked ? .white : .primary)
                     .multilineTextAlignment(.center)
                     .frame(minWidth: 160)
                 
@@ -46,7 +46,7 @@ struct FocusSoundControlView: View {
                 } label: {
                     Image(systemName: "chevron.right")
                         .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(isLocked ? .white.opacity(0.8) : .secondary)
                         .padding(8)
                 }
             }
@@ -88,25 +88,25 @@ struct FocusSoundControlView: View {
         .padding(.horizontal, 20)
         .background(
             ZStack {
-                // 3D-Schatten/Boden-Layer für die Karte
+                // 3D-Schatten/Boden-Layer für die Karte (weiter nach unten)
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(Color(UIColor.secondarySystemBackground).darker(by: 0.08))
-                    .offset(y: 4)
+                    .fill(isLocked ? .goldPrimary.darker() : Color(UIColor.secondarySystemBackground).darker(by: 0.12))
+                    .offset(y: 8)
                 
-                // Weißer/Hellgrauer Haupt-Layer der Karte
+                // Haupt-Layer der Karte (Gold wenn gesperrt)
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(Color(UIColor.secondarySystemBackground))
+                    .fill(isLocked ? .goldPrimary : Color(UIColor.secondarySystemBackground))
                     .overlay(
                         RoundedRectangle(cornerRadius: 20, style: .continuous)
-                            .stroke(Color.primary.opacity(0.06), lineWidth: 1)
+                            .stroke(Color.black.opacity(0.1), lineWidth: 1)
                     )
             }
         )
-        .padding(.bottom, 4) // Ausgleich für den 3D-Schatten-Offset
+        .padding(.bottom, 8) // Ausgleich für den 3D-Schatten-Offset
         // Bei Soundwechsel automatisch den Ton anpassen, falls bereits abgespielt wird
         .onChange(of: selectedSound) { _, newSound in
             if audioManager.isPlaying {
-                if !iapStore.isProUser && newSound != .none {
+                if !iapStore.isProUser {
                     audioManager.stop()
                 } else {
                     audioManager.play(sound: newSound)
@@ -136,7 +136,7 @@ struct FocusSoundControlView: View {
     }
     
     private func togglePlay() {
-        if !iapStore.isProUser && selectedSound != .none {
+        if !iapStore.isProUser {
             showPaywall = true
             return
         }
