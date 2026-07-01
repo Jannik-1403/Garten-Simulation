@@ -49,11 +49,11 @@ struct PaywallView: View {
                     
                     // Title
                     VStack(spacing: 8) {
-                        Text("Grovy Pro")
+                        Text(String(localized: "paywall.title", defaultValue: "Grovy Pro"))
                             .font(.system(size: 40, weight: .black, design: .rounded))
                             .foregroundStyle(.white)
                         
-                        Text("Schalte das volle Potenzial deines Gartens frei.")
+                        Text(String(localized: "paywall.subtitle", defaultValue: "Schalte das volle Potenzial deines Gartens frei."))
                             .font(.system(size: 16, weight: .medium, design: .rounded))
                             .foregroundStyle(.white.opacity(0.7))
                             .multilineTextAlignment(.center)
@@ -62,8 +62,21 @@ struct PaywallView: View {
                     
                     // Feature List
                     VStack(alignment: .leading, spacing: 24) {
-                        featureRow(icon: "heart.text.square.fill", title: "Apple Health Sync", description: "Verknüpfe deine Schritte und Wasserziele direkt mit dem Garten.", color: .red)
+                        featureRow(
+                            icon: "heart.text.square.fill",
+                            title: String(localized: "paywall.feature.health.title", defaultValue: "Apple Health Sync"),
+                            description: String(localized: "paywall.feature.health.desc", defaultValue: "Verknüpfe deine Schritte und Wasserziele direkt mit dem Garten."),
+                            color: .red
+                        )
+                        
+                        featureRow(
+                            icon: "calendar.badge.plus",
+                            title: String(localized: "paywall.feature.calendar.title", defaultValue: "Kalender Synchronisation"),
+                            description: String(localized: "paywall.feature.calendar.desc", defaultValue: "Synchronisiere deine Gewohnheiten und Timer direkt mit deinem Apple Kalender."),
+                            color: .goldPrimary
+                        )
                     }
+
                     .padding(.horizontal, 24)
                     .padding(.top, 16)
                     
@@ -85,7 +98,7 @@ struct PaywallView: View {
                                 }
                             } label: {
                                 HStack {
-                                    Text("Jetzt Freischalten")
+                                    Text(String(localized: "paywall.button.unlock", defaultValue: "Jetzt Freischalten"))
                                         .font(.system(size: 18, weight: .black, design: .rounded))
                                     Spacer()
                                     Text(product.displayPrice)
@@ -107,12 +120,12 @@ struct PaywallView: View {
                             }
                             .padding(.horizontal, 24)
                             
-                            Text("Einmalzahlung. Lifetime Zugriff.")
+                            Text(String(localized: "paywall.description.lifetime", defaultValue: "Einmalzahlung. Lifetime Zugriff."))
                                 .font(.system(size: 12, weight: .medium))
                                 .foregroundStyle(.white.opacity(0.5))
                             
                         } else {
-                            Text("Lade Produkte...")
+                            Text(String(localized: "paywall.loading", defaultValue: "Lade Produkte..."))
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundStyle(.white.opacity(0.5))
                             
@@ -122,7 +135,7 @@ struct PaywallView: View {
                                 UserDefaults.standard.set(true, forKey: "debug_isProUser")
                                 dismiss()
                             } label: {
-                                Text("DEBUG: Pro Freischalten")
+                                Text(String(localized: "paywall.button.debug", defaultValue: "DEBUG: Pro Freischalten"))
                                     .font(.system(size: 14, weight: .bold, design: .rounded))
                                     .padding(.horizontal, 24)
                                     .padding(.vertical, 12)

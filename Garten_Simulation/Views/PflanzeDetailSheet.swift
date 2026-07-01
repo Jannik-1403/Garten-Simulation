@@ -1387,7 +1387,12 @@ struct TimerCreateSheetView: View {
     @ObservedObject var pflanze: HabitModel
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var iapStore: IAPStore
     @Environment(\.dismiss) private var dismiss
+
+    @State private var showCalendarSheet = false
+    @State private var zeigePaywall = false
+
 
     @State private var ausgewaehlteZeit: Date = {
         var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
@@ -1398,9 +1403,37 @@ struct TimerCreateSheetView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text(String(localized: "plant.detail.timer.set"))
-                .font(.system(size: 20, weight: .bold, design: .rounded))
-                .padding(.top, 24)
+            HStack {
+                Text(String(localized: "plant.detail.timer.set"))
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                
+                Spacer()
+                
+                Button {
+                    if iapStore.isProUser {
+                        showCalendarSheet = true
+                    } else {
+                        zeigePaywall = true
+                    }
+                } label: {
+                    if iapStore.isProUser {
+                        Image(systemName: "calendar")
+                            .font(.system(size: 22, weight: .bold))
+                            .foregroundStyle(Color.primary)
+                    } else {
+                        HStack(spacing: 4) {
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 14))
+                            Image(systemName: "calendar")
+                                .font(.system(size: 22, weight: .bold))
+                        }
+                        .foregroundStyle(Color.goldPrimary)
+                    }
+                }
+
+            }
+            .padding(.top, 24)
+            .padding(.horizontal, 24)
 
             DatePicker("", selection: $ausgewaehlteZeit, displayedComponents: .hourAndMinute)
                 .datePickerStyle(.wheel)
@@ -1427,6 +1460,22 @@ struct TimerCreateSheetView: View {
             .padding(.bottom, 32)
         }
         .background(Color.appHintergrund.ignoresSafeArea())
+        .dropDestination(for: CalendarEventPayload.self) { items, location in
+            guard let first = items.first else { return false }
+            ausgewaehlteZeit = first.startDate
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            return true
+        }
+        .sheet(isPresented: $showCalendarSheet) {
+            CalendarEventsSheet { event in
+                ausgewaehlteZeit = event.startDate
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            }
+        }
+        .fullScreenCover(isPresented: $zeigePaywall) {
+            PaywallView()
+        }
+
     }
 }
 
@@ -1742,6 +1791,10 @@ struct StreakCardButtonStyle: ButtonStyle {
 struct TimerDayFullscreenEditView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var iapStore: IAPStore
+    
+    @State private var showCalendarSheet = false
+    @State private var zeigePaywall = false
     
     let title: String
     let exampleMessageName: String
@@ -1825,12 +1878,56 @@ struct TimerDayFullscreenEditView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(String(localized: "common.done_button")) {
-                        dismiss()
+                    HStack(spacing: 16) {
+                        Button {
+                            if iapStore.isProUser {
+                                showCalendarSheet = true
+                            } else {
+                                zeigePaywall = true
+                            }
+                        } label: {
+                            if iapStore.isProUser {
+                                Image(systemName: "calendar")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundStyle(Color.primary)
+                            } else {
+                                HStack(spacing: 4) {
+                                    Image(systemName: "lock.fill")
+                                        .font(.system(size: 14))
+                                    Image(systemName: "calendar")
+                                        .font(.system(size: 20, weight: .bold))
+                                }
+                                .foregroundStyle(Color.goldPrimary)
+                            }
+                        }
+                        
+                        Button(String(localized: "common.done_button")) {
+                            dismiss()
+                        }
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
                     }
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
                 }
             }
+            .dropDestination(for: CalendarEventPayload.self) { items, location in
+                guard let first = items.first else { return false }
+                
+                customMessage = first.title
+                time = first.startDate
+                
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                return true
+            }
+            .sheet(isPresented: $showCalendarSheet) {
+                CalendarEventsSheet { event in
+                    customMessage = event.title
+                    time = event.startDate
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                }
+            }
+            .fullScreenCover(isPresented: $zeigePaywall) {
+                PaywallView()
+            }
+
         }
     }
 }
