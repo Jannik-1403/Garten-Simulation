@@ -10,7 +10,12 @@ struct DeveloperView: View {
     @EnvironmentObject var achievementStore: AchievementStore
     @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var tourManager: InteractiveTourManager
+    @EnvironmentObject var iapStore: IAPStore
+    @EnvironmentObject var assessmentStore: AssessmentStore
     @Environment(\.dismiss) var dismiss
+    
+    @State private var showWeeklyReport = false
+
     
     var body: some View {
         ZStack {
@@ -75,8 +80,18 @@ struct DeveloperView: View {
                             } label: {
                                 settingRow(title: "10 Samen hinzufügen", icon: "Samen", color: .purple, isAsset: true)
                             }
+                            
+                            Divider().padding(.leading, 44)
+                            
+                            Button {
+                                showWeeklyReport = true
+                                FeedbackManager.shared.playTap()
+                            } label: {
+                                settingRow(title: "Wochenbericht testen", icon: "calendar.badge.plus", color: .goldPrimary)
+                            }
                         }
                     }
+
                     
                     // Section 2: Weeds & Power-Ups
                     settingsSection(title: "Unkraut & Power-Ups") {
@@ -297,7 +312,30 @@ struct DeveloperView: View {
                 LiquidGlassDismissButton { dismiss() }
             }
         }
+        .sheet(isPresented: $showWeeklyReport) {
+            NavigationStack {
+                ScrollView {
+                    WeeklyReportDashboardView()
+                        .padding(.top, 20)
+                }
+                .navigationTitle(String(localized: "weekly_report.navigation.title", defaultValue: "Wochenbericht"))
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(String(localized: "common.close", defaultValue: "Schließen")) {
+                            showWeeklyReport = false
+                        }
+                    }
+                }
+            }
+            .environmentObject(gardenStore)
+            .environmentObject(settings)
+            .environmentObject(iapStore)
+            .environmentObject(streakStore)
+            .environmentObject(assessmentStore)
+        }
     }
+
     
     // MARK: - Helpers
     
