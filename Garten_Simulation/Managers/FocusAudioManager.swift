@@ -125,17 +125,42 @@ class FocusAudioManager: ObservableObject {
         }
         let data = channels[0]
         
-        var lastOut: Float = 0.0
+        var b0: Float = 0.0
+        var b1: Float = 0.0
+        var b2: Float = 0.0
+        var b3: Float = 0.0
+        var b4: Float = 0.0
+        var b5: Float = 0.0
+        var b6: Float = 0.0
+        
+        var lastOut1: Float = 0.0
+        var lastOut2: Float = 0.0
+        
         for i in 0..<Int(bufferSize) {
+            let white = Float.random(in: -1.0...1.0)
             if type == .whiteNoise {
-                // Weißes Rauschen: Zufällige Werte zwischen -1.0 und 1.0 (leicht gedämpft)
-                data[i] = Float.random(in: -1.0...1.0) * 0.15
+                // Paul Kellet Pink Noise Filter (sehr weicher, natürlicher Wasserfall-Sound)
+                b0 = 0.99886 * b0 + white * 0.0555179
+                b1 = 0.99332 * b1 + white * 0.0750759
+                b2 = 0.96900 * b2 + white * 0.1538520
+                b3 = 0.86650 * b3 + white * 0.3104856
+                b4 = 0.55000 * b4 + white * 0.5329522
+                b5 = -0.7616 * b5 - white * 0.0168980
+                let pink = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362
+                b6 = white * 0.115926
+                data[i] = pink * 0.12
             } else {
-                // Braunes Rauschen: Akkumuliertes weißes Rauschen (Tiefpassfilter)
-                let white = Float.random(in: -1.0...1.0)
-                data[i] = (lastOut + (0.02 * white)) / 1.02
-                lastOut = data[i]
-                data[i] *= 2.0 // Lautstärke-Kompensation
+                // 2-Pol-Tiefpassfilter für warmes, tiefes Brown Noise (Meeresrauschen)
+                lastOut1 = 0.993 * lastOut1 + 0.007 * white
+                lastOut2 = 0.991 * lastOut2 + 0.009 * lastOut1
+                data[i] = lastOut2 * 8.5
+            }
+            
+            // Soft-Clipping Limiter gegen digitale Verzerrung
+            if data[i] > 1.0 {
+                data[i] = 1.0
+            } else if data[i] < -1.0 {
+                data[i] = -1.0
             }
         }
         

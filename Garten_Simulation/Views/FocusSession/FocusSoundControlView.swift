@@ -13,101 +13,86 @@ struct FocusSoundControlView: View {
     }
     
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 16) {
+            // Header: Sound-Auswahl (Pfeil Links - Name - Pfeil Rechts) ohne Icons
             HStack {
-                // Zurück-Button
                 Button {
                     withAnimation {
                         selectPrevious()
                     }
                 } label: {
                     Image(systemName: "chevron.left")
-                        .font(.system(size: 16, weight: .bold))
+                        .font(.system(size: 18, weight: .bold))
                         .foregroundColor(.secondary)
                         .padding(8)
                 }
                 
-                // Swipebare Sound-Auswahl
-                TabView(selection: $selectedSound) {
-                    ForEach(FocusSound.allCases) { sound in
-                        VStack(spacing: 4) {
-                            HStack(spacing: 6) {
-                                Image(systemName: sound.iconName)
-                                    .font(.system(size: 20))
-                                    .foregroundColor(sound == selectedSound ? .goldPrimary : .primary)
-                                
-                                Text(sound.displayName)
-                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                    .foregroundColor(.primary)
-                                
-                                if sound.isPremium {
-                                    Image(systemName: iapStore.isProUser ? "checkmark.seal.fill" : "lock.fill")
-                                        .font(.system(size: 12))
-                                        .foregroundColor(.goldPrimary)
-                                }
-                            }
-                            
-                            if sound.isPremium && !iapStore.isProUser {
-                                Text(String(localized: "focus.sound.pro_required", defaultValue: "PRO Feature"))
-                                    .font(.system(size: 11, weight: .semibold, design: .rounded))
-                                    .foregroundColor(.goldPrimary)
-                            } else {
-                                Text(sound == audioManager.currentSound && audioManager.isPlaying
-                                     ? String(localized: "focus.sound.playing", defaultValue: "Wird abgespielt...")
-                                     : String(localized: "focus.sound.ready", defaultValue: "Bereit zum Abspielen"))
-                                    .font(.system(size: 11, weight: .medium, design: .rounded))
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                        .tag(sound)
-                    }
-                }
-                .frame(height: 54)
-                .tabViewStyle(.page(indexDisplayMode: .never))
+                Spacer()
                 
-                // Vorwärts-Button
+                Text(selectedSound.displayName)
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
+                    .frame(minWidth: 160)
+                
+                Spacer()
+                
                 Button {
                     withAnimation {
                         selectNext()
                     }
                 } label: {
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 16, weight: .bold))
+                        .font(.system(size: 18, weight: .bold))
                         .foregroundColor(.secondary)
                         .padding(8)
                 }
             }
             
-            // Abspiel- & Stopp-Button
-            Button {
-                togglePlay()
-            } label: {
-                HStack(spacing: 8) {
-                    Image(systemName: isCurrentSoundPlaying ? "stop.fill" : "play.fill")
-                        .font(.system(size: 14, weight: .bold))
-                    
-                    Text(isCurrentSoundPlaying
-                         ? String(localized: "focus.sound.button.stop", defaultValue: "Stoppen")
-                         : String(localized: "focus.sound.button.start", defaultValue: "Starten"))
-                        .font(.system(size: 14, weight: .bold, design: .rounded))
+            // Abspiel- & Schloss-Button als großes Item3DButton
+            let isLocked = selectedSound.isPremium && !iapStore.isProUser
+            
+            if isLocked {
+                // Goldener 3D-Button mit Schloss für gesperrte Premium-Sounds
+                Item3DButton(
+                    farbe: .goldPrimary,
+                    sekundaerFarbe: .goldPrimary.darker(),
+                    groesse: 80,
+                    isRectangular: false,
+                    aktion: {
+                        showPaywall = true
+                    }
+                ) {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundColor(.white)
                 }
-                .foregroundColor(.white)
-                .padding(.horizontal, 24)
-                .padding(.vertical, 8)
-                .background(isCurrentSoundPlaying ? Color.red : Color.goldPrimary)
-                .cornerRadius(20)
-                .shadow(color: (isCurrentSoundPlaying ? Color.red : Color.goldPrimary).opacity(0.3), radius: 5, y: 3)
+            } else {
+                // Großer weiß/grauer 3D-Button für freigegebene Sounds
+                Item3DButton(
+                    farbe: Color(white: 0.96),
+                    sekundaerFarbe: Color(white: 0.82),
+                    groesse: 80,
+                    isRectangular: false,
+                    aktion: {
+                        togglePlay()
+                    }
+                ) {
+                    Image(systemName: isCurrentSoundPlaying ? "stop.fill" : "play.fill")
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundColor(.primary)
+                }
             }
         }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 16)
-        .background(Color(UIColor.secondarySystemBackground).opacity(0.8))
-        .cornerRadius(16)
+        .padding(.vertical, 16)
+        .padding(.horizontal, 20)
+        .background(Color(UIColor.secondarySystemBackground).opacity(0.4)) // schlichter, dezenter Hintergrund
+        .cornerRadius(20)
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.primary.opacity(0.06), lineWidth: 1)
         )
-        // Bei Wischen des Sounds automatisch den Ton anpassen, falls bereits abgespielt wird
+        // Bei Soundwechsel automatisch den Ton anpassen, falls bereits abgespielt wird
         .onChange(of: selectedSound) { _, newSound in
             if audioManager.isPlaying {
                 if newSound.isPremium && !iapStore.isProUser {
