@@ -3,7 +3,9 @@
 - `ReminderSchedule` wurde im `GartenWidget` Target aktualisiert und für reibungslose Synchronisation vereinheitlicht.
 - Kalender-Synchronisation wird nun als Pro-Feature behandelt: Der Kalender-Button wird auch für Nicht-Pro-User angezeigt, ist jedoch golden gefärbt, besitzt ein Schloss-Symbol und öffnet bei Klick die Paywall.
 - In der `PaywallView` wurde die "Kalender Synchronisation" zur Liste der exklusiven Pro-Features hinzugefügt.
+- Auf der Paywall-Seite wird nun statisch das `ProFeature`-Icon anstelle der animierten Krone angezeigt.
 - Alle neuen Zeichenketten wurden vollständig in alle 11 Projektsprachen übersetzt.
+
 
 
 ## [2026-06-30] - PDF Sprache/Lokalisierung Bugfix Teil 3 (Statistiken & Streaks)
