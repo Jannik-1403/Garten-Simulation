@@ -1,8 +1,10 @@
-## [2026-07-01] - Bugfix: ReminderSchedule Abwärtskompatibilität
-- Die veralteten Properties `weekdays` und `todaysReminder` wurden als read-write Computed Properties auf `ReminderSchedule` wiederhergestellt.
-- Dadurch wurden die Compilerfehler in `HabitModel.swift`, `PflanzeDetailSheet.swift` und `RoutinenView.swift` behoben.
-- `ReminderSchedule` wurde ebenfalls im `GartenWidget` Target aktualisiert und vereinheitlicht, um dieselbe Datenstruktur und Rückwärtskompatibilität bereitzustellen.
-- Das Projekt lässt sich wieder vollständig fehlerfrei bauen.
+## [2026-07-01] - Bugfix & Pro-Feature: ReminderSchedule & Kalender-Sync
+- Die veralteten Properties `weekdays` und `todaysReminder` wurden als read-write Computed Properties auf `ReminderSchedule` wiederhergestellt, um Compilerfehler zu beheben.
+- `ReminderSchedule` wurde im `GartenWidget` Target aktualisiert und für reibungslose Synchronisation vereinheitlicht.
+- Kalender-Synchronisation wird nun als Pro-Feature behandelt: Der Kalender-Button wird auch für Nicht-Pro-User angezeigt, ist jedoch golden gefärbt, besitzt ein Schloss-Symbol und öffnet bei Klick die Paywall.
+- In der `PaywallView` wurde die "Kalender Synchronisation" zur Liste der exklusiven Pro-Features hinzugefügt.
+- Alle neuen Zeichenketten wurden vollständig in alle 11 Projektsprachen übersetzt.
+
 
 ## [2026-06-30] - PDF Sprache/Lokalisierung Bugfix Teil 3 (Statistiken & Streaks)
 
