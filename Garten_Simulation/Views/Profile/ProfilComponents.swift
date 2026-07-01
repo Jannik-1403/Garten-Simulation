@@ -464,11 +464,16 @@ struct StatisticsDashboard: View {
                     )
                     .padding(.top, 40)
                 } else {
-                    lifeBalanceCard
-                    gardenScoreConsistencyCard
-                    focusScoreCard
-                    triggerStatisticsCard
+                    if selectedPeriod == .week {
+                        WeeklyReportDashboardView()
+                    } else {
+                        lifeBalanceCard
+                        gardenScoreConsistencyCard
+                        focusScoreCard
+                        triggerStatisticsCard
+                    }
                 }
+
             }
             .padding(.horizontal, 16)
             .padding(.top, 16)

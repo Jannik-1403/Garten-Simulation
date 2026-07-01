@@ -323,4 +323,116 @@ class PDFExportManager {
             return nil
         }
     }
+    
+    @MainActor
+    func generateWeeklyPDFReport(
+        for weekStart: Date,
+        gardenStore: GardenStore,
+        settings: SettingsStore,
+        streakStore: StreakStore,
+        assessmentStore: AssessmentStore
+    ) -> URL? {
+        let report = WeeklyStatsManager.shared.generateReport(for: weekStart, gardenStore: gardenStore)
+        let locale = Locale(identifier: settings.appLanguage)
+        
+        let pdfMetaData = [
+            kCGPDFContextCreator: "Grovy Wochenbericht",
+            kCGPDFContextAuthor: "User"
+        ]
+        let format = UIGraphicsPDFRendererFormat()
+        format.documentInfo = pdfMetaData as [String: Any]
+        
+        let pageWidth = 595.2
+        let pageHeight = 841.8
+        let pageRect = CGRect(x: 0, y: 0, width: pageWidth, height: pageHeight)
+        
+        let renderer = UIGraphicsPDFRenderer(bounds: pageRect, format: format)
+        
+        let data = renderer.pdfData { (context) in
+            context.beginPage()
+            
+            var currentY: CGFloat = 40.0
+            
+            let titleAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 24, weight: .bold)
+            ]
+            let subtitleAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 14, weight: .medium),
+                .foregroundColor: UIColor.gray
+            ]
+            let sectionHeaderAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 16, weight: .bold)
+            ]
+            let boldTextAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 12, weight: .bold)
+            ]
+            let bodyTextAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 12, weight: .regular)
+            ]
+            
+            func drawText(_ text: String, attributes: [NSAttributedString.Key: Any], yPos: inout CGFloat, offset: CGFloat = 15, addSpace: CGFloat = 0) {
+                let textRect = CGRect(x: 40, y: yPos, width: pageWidth - 80, height: 1000)
+                let nsText = text as NSString
+                let boundingRect = nsText.boundingRect(with: CGSize(width: pageWidth - 80, height: .greatestFiniteMagnitude),
+                                                     options: .usesLineFragmentOrigin,
+                                                     attributes: attributes,
+                                                     context: nil)
+                
+                nsText.draw(in: textRect, withAttributes: attributes)
+                yPos += boundingRect.height + offset + addSpace
+                
+                if yPos > pageHeight - 50 {
+                    context.beginPage()
+                    yPos = 40.0
+                }
+            }
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd.MM.yyyy"
+            let rangeString = "\(formatter.string(from: report.weekStartDate)) - \(formatter.string(from: report.weekEndDate))"
+            
+            drawText("Grovy Wochenbericht", attributes: titleAttributes, yPos: &currentY, offset: 4)
+            drawText("Zeitraum: \(rangeString)", attributes: subtitleAttributes, yPos: &currentY, offset: 25)
+            
+            drawText("1. Wochen-Zusammenfassung", attributes: sectionHeaderAttributes, yPos: &currentY, offset: 12, addSpace: 5)
+            
+            let focusChangeStr = report.focusMinutesChangePercentage >= 0 ? "+\(Int(report.focusMinutesChangePercentage))%" : "\(Int(report.focusMinutesChangePercentage))%"
+            let habitsChangeStr = report.habitsChangePercentage >= 0 ? "+\(Int(report.habitsChangePercentage))%" : "\(Int(report.habitsChangePercentage))%"
+            
+            drawText("• Gesamt-Fokuszeit: \(report.totalFocusMinutes) Minuten (\(focusChangeStr) im Vergleich zur Vorwoche)", attributes: bodyTextAttributes, yPos: &currentY, offset: 8)
+            drawText("• Erledigte Gewohnheiten: \(report.completedHabitsCount) (\(habitsChangeStr) im Vergleich zur Vorwoche)", attributes: bodyTextAttributes, yPos: &currentY, offset: 8)
+            drawText("• Abgeschlossene Fokus-Sessions: \(report.completedSessionsCount)", attributes: bodyTextAttributes, yPos: &currentY, offset: 8)
+            drawText("• Verdiente Erfahrungspunkte: \(report.earnedXP) XP", attributes: bodyTextAttributes, yPos: &currentY, offset: 20)
+            
+            drawText("2. Fortschritts-Analyse", attributes: sectionHeaderAttributes, yPos: &currentY, offset: 12, addSpace: 5)
+            drawText(report.feedbackTitle, attributes: boldTextAttributes, yPos: &currentY, offset: 8)
+            drawText(report.feedbackDescription, attributes: bodyTextAttributes, yPos: &currentY, offset: 20)
+            
+            drawText("3. Tägliche Aktivitäten", attributes: sectionHeaderAttributes, yPos: &currentY, offset: 15, addSpace: 5)
+            
+            drawText("Fokus-Minuten:", attributes: boldTextAttributes, yPos: &currentY, offset: 8)
+            for item in report.dailyFocusMinutes {
+                drawText("  • \(item.dayName): \(item.minutes) Min", attributes: bodyTextAttributes, yPos: &currentY, offset: 6)
+            }
+            
+            currentY += 10
+            drawText("Erledigte Gewohnheiten:", attributes: boldTextAttributes, yPos: &currentY, offset: 8)
+            for item in report.dailyHabitsCompleted {
+                drawText("  • \(item.dayName): \(item.count) erledigt", attributes: bodyTextAttributes, yPos: &currentY, offset: 6)
+            }
+        }
+        
+        let fileManager = FileManager.default
+        let tempDir = fileManager.temporaryDirectory
+        let fileURL = tempDir.appendingPathComponent("Grovy_Wochenbericht.pdf")
+        
+        do {
+            try data.write(to: fileURL)
+            return fileURL
+        } catch {
+            print("Fehler beim Speichern der Wochen-PDF: \(error.localizedDescription)")
+            return nil
+        }
+    }
 }
+
