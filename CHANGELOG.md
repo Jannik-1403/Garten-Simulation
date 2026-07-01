@@ -9,7 +9,13 @@
 - Der Kauf-Button in der `PaywallView` wurde auf den voll-plastischen `DuolingoButtonStyle` (3D Button) umgestellt.
 - Das Pro-Produkt (`com.gartenapp.pro.lifetime`) mit einem Lifetime-Preis von **9,99 €** wurde in beiden Xcode-StoreKit-Konfigurationen (`StoreKitConfig.storekit` und `Purchases.storekit`) hinzugefügt. Dadurch können Produkte nun auch im Simulator regulär geladen werden.
 - Ein Fallback-Bypass (DEBUG-Freischaltung) wurde im Simulator auch außerhalb des regulären Debug-Flags aktiviert, um Entwicklungs- und Previews-Tests zu vereinfachen, wenn die Produkte noch laden.
-- Alle neuen Zeichenketten wurden vollständig in alle 11 Projektsprachen übersetzt.
+- **NEUES FEATURE**: Detaillierte wöchentliche Produktivitäts-Analyse (`WeeklyReportDashboardView` & `WeeklyStatsManager`) unter dem Tab "Statistik" hinzugefügt, wenn das Wochen-Intervall ausgewählt ist.
+  - Ermöglicht das Navigieren zwischen historischen Wochen mittels `<` und `>` Tasten.
+  - Bietet interaktive Swift Charts für die tägliche Fokuszeit und die Anzahl erledigter Gewohnheiten mit Tooltips.
+  - Bietet eine detaillierte, aufklappbare Wochen-Analyse mit Vergleichen und prozentualen Veränderungen zur Vorwoche.
+  - Integriert den wöchentlichen PDF-Report-Export und Share Sheet über den `PDFExportManager` (Pro-Feature).
+- Alle neuen Zeichenketten und Wochentage wurden vollständig in alle 11 Projektsprachen übersetzt.
+
 
 
 
