@@ -151,6 +151,33 @@ struct SettingsView: View {
                                             zeigePaywall = true
                                         }
                                     }
+                                    
+                                    if healthManager.isAuthorized {
+                                        Divider().padding(.leading, 44)
+                                        
+                                        Button {
+                                            if let url = URL(string: "x-apple-health://") {
+                                                UIApplication.shared.open(url)
+                                            }
+                                        } label: {
+                                            HStack {
+                                                Image(systemName: "slider.horizontal.3")
+                                                    .foregroundStyle(.blue)
+                                                    .frame(width: 28) // Platzhalter für Einrückung
+                                                Text(String(localized: "settings.health.manage", defaultValue: "Berechtigungen verwalten"))
+                                                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                                                    .foregroundStyle(.blue)
+                                                Spacer()
+                                                Image(systemName: "arrow.up.forward.app")
+                                                    .font(.system(size: 14))
+                                                    .foregroundStyle(.blue.opacity(0.7))
+                                            }
+                                            .padding(.horizontal, 16)
+                                            .padding(.vertical, 12)
+                                            .contentShape(Rectangle())
+                                        }
+                                        .buttonStyle(.plain)
+                                    }
                                 }
                             }
                             
