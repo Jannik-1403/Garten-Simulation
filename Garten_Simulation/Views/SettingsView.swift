@@ -94,30 +94,32 @@ struct SettingsView: View {
                             // MARK: - Integrationen (Pro Feature)
                             settingsSection(title: String(localized: "settings.section.integrations", defaultValue: "Integrationen")) {
                                 VStack(alignment: .leading, spacing: 0) {
-                                    HStack(spacing: 12) {
-                                        Image(systemName: "heart.text.square.fill")
-                                            .font(.system(size: 20, weight: .medium))
-                                            .foregroundStyle(.white)
-                                            .frame(width: 28, height: 28)
-                                            .background(Color.red, in: RoundedRectangle(cornerRadius: 6))
-                                        
-                                        VStack(alignment: .leading, spacing: 2) {
+                                    Button {
+                                        if !iapStore.isProUser {
+                                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                            zeigePaywall = true
+                                        } else if !healthManager.isAuthorized {
+                                            healthManager.requestAuthorization()
+                                        } else {
+                                            if let url = URL(string: "x-apple-health://") {
+                                                UIApplication.shared.open(url)
+                                            }
+                                        }
+                                    } label: {
+                                        HStack(spacing: 12) {
+                                            Image(systemName: "heart.text.square.fill")
+                                                .font(.system(size: 20, weight: .medium))
+                                                .foregroundStyle(.white)
+                                                .frame(width: 28, height: 28)
+                                                .background(Color.red, in: RoundedRectangle(cornerRadius: 6))
+                                            
                                             Text(String(localized: "settings.health.title", defaultValue: "Apple Health"))
                                                 .font(.system(size: 16, weight: .medium, design: .rounded))
                                                 .foregroundStyle(.primary)
                                             
-                                            Text(healthManager.isAuthorized ? String(localized: "apple.health.state.connected", defaultValue: "Verbunden") : String(localized: "apple.health.state.disconnected", defaultValue: "Getrennt"))
-                                                .font(.system(size: 12, weight: .medium, design: .rounded))
-                                                .foregroundStyle(healthManager.isAuthorized ? .green : .secondary)
-                                        }
-                                        
-                                        Spacer()
-                                        
-                                        if !iapStore.isProUser {
-                                            Button {
-                                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                                                zeigePaywall = true
-                                            } label: {
+                                            Spacer()
+                                            
+                                            if !iapStore.isProUser {
                                                 Text(String(localized: "settings.pro.badge", defaultValue: "PRO"))
                                                     .font(.system(size: 10, weight: .black, design: .rounded))
                                                     .padding(.horizontal, 6)
@@ -125,59 +127,21 @@ struct SettingsView: View {
                                                     .background(Color.orangePrimary)
                                                     .foregroundStyle(.white)
                                                     .clipShape(Capsule())
+                                            } else {
+                                                Text(healthManager.isAuthorized ? String(localized: "settings.on", defaultValue: "An") : String(localized: "settings.off", defaultValue: "Aus"))
+                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                    .foregroundStyle(healthManager.isAuthorized ? Color.gruenPrimary : Color.red)
+                                                    
+                                                Image(systemName: "chevron.right")
+                                                    .font(.system(size: 14, weight: .bold))
+                                                    .foregroundStyle(.tertiary)
                                             }
-                                            .buttonStyle(.plain)
-                                        } else {
-                                            Toggle("", isOn: Binding(
-                                                get: { healthManager.isAuthorized },
-                                                set: { isOn in
-                                                    if isOn {
-                                                        healthManager.requestAuthorization()
-                                                    } else {
-                                                        healthManager.disconnect()
-                                                    }
-                                                }
-                                            ))
-                                            .labelsHidden()
-                                            .tint(.green)
                                         }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 12)
+                                        .contentShape(Rectangle())
                                     }
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 12)
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        if !iapStore.isProUser {
-                                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                                            zeigePaywall = true
-                                        }
-                                    }
-                                    
-                                    if healthManager.isAuthorized {
-                                        Divider().padding(.leading, 44)
-                                        
-                                        Button {
-                                            if let url = URL(string: "x-apple-health://") {
-                                                UIApplication.shared.open(url)
-                                            }
-                                        } label: {
-                                            HStack {
-                                                Image(systemName: "slider.horizontal.3")
-                                                    .foregroundStyle(.blue)
-                                                    .frame(width: 28) // Platzhalter für Einrückung
-                                                Text(String(localized: "settings.health.manage", defaultValue: "Berechtigungen verwalten"))
-                                                    .font(.system(size: 14, weight: .medium, design: .rounded))
-                                                    .foregroundStyle(.blue)
-                                                Spacer()
-                                                Image(systemName: "arrow.up.forward.app")
-                                                    .font(.system(size: 14))
-                                                    .foregroundStyle(.blue.opacity(0.7))
-                                            }
-                                            .padding(.horizontal, 16)
-                                            .padding(.vertical, 12)
-                                            .contentShape(Rectangle())
-                                        }
-                                        .buttonStyle(.plain)
-                                    }
+                                    .buttonStyle(.plain)
                                 }
                             }
                             
