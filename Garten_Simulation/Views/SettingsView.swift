@@ -101,8 +101,13 @@ struct SettingsView: View {
                                         } else if !healthManager.isAuthorized {
                                             healthManager.requestAuthorization()
                                         } else {
-                                            if let url = URL(string: "x-apple-health://") {
-                                                UIApplication.shared.open(url)
+                                            // Versuche direkt in die iOS Einstellungen -> Datenschutz zu springen
+                                            if let url = URL(string: "App-Prefs:root=Privacy&path=HEALTH") {
+                                                if UIApplication.shared.canOpenURL(url) {
+                                                    UIApplication.shared.open(url)
+                                                } else if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                                                    UIApplication.shared.open(settingsUrl)
+                                                }
                                             }
                                         }
                                     } label: {
