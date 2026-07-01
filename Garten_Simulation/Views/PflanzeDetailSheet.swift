@@ -517,6 +517,7 @@ struct PflanzeDetailSheet: View {
                                                             set: { pflanze.healthTarget = $0; gardenStore.savePlants() }
                                                         ), format: .number)
                                                         .keyboardType(.numberPad)
+                                                        .focused($isTargetFocused)
                                                         .multilineTextAlignment(.trailing)
                                                         .frame(width: 100)
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
