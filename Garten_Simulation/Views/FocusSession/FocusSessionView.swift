@@ -354,13 +354,13 @@ struct FocusSessionView: View {
                 .padding(.top, 20)
             }
             
+            Spacer()
+            
             if FeatureFlags.isProVersionEnabled {
                 FocusSoundControlView()
                     .padding(.horizontal, 32)
-                    .padding(.bottom, 12)
+                    .padding(.bottom, 24)
             }
-            
-            Spacer(minLength: 40)
             
             Button {
                 showMathChallenge = true
@@ -369,7 +369,7 @@ struct FocusSessionView: View {
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundStyle(.red)
             }
-            .padding(.bottom, 50)
+            .padding(.bottom, 40)
         }
         .frame(maxWidth: .infinity, minHeight: geometry.size.height)
         }

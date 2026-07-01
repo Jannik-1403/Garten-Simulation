@@ -13,6 +13,8 @@ struct FocusSoundControlView: View {
     }
     
     var body: some View {
+        let isLocked = !iapStore.isProUser && selectedSound != .none
+        
         VStack(spacing: 16) {
             // Header: Sound-Auswahl (Pfeil Links - Name - Pfeil Rechts) ohne Icons
             HStack {
@@ -50,8 +52,6 @@ struct FocusSoundControlView: View {
             }
             
             // Abspiel- & Schloss-Button als großes Item3DButton
-            let isLocked = selectedSound.isPremium && !iapStore.isProUser
-            
             if isLocked {
                 // Goldener 3D-Button mit Schloss für gesperrte Premium-Sounds
                 Item3DButton(
@@ -86,16 +86,27 @@ struct FocusSoundControlView: View {
         }
         .padding(.vertical, 16)
         .padding(.horizontal, 20)
-        .background(Color(UIColor.secondarySystemBackground).opacity(0.4)) // schlichter, dezenter Hintergrund
-        .cornerRadius(20)
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.primary.opacity(0.06), lineWidth: 1)
+        .background(
+            ZStack {
+                // 3D-Schatten/Boden-Layer für die Karte
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(Color(UIColor.secondarySystemBackground).darker(by: 0.08))
+                    .offset(y: 4)
+                
+                // Weißer/Hellgrauer Haupt-Layer der Karte
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(Color(UIColor.secondarySystemBackground))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20, style: .continuous)
+                            .stroke(Color.primary.opacity(0.06), lineWidth: 1)
+                    )
+            }
         )
+        .padding(.bottom, 4) // Ausgleich für den 3D-Schatten-Offset
         // Bei Soundwechsel automatisch den Ton anpassen, falls bereits abgespielt wird
         .onChange(of: selectedSound) { _, newSound in
             if audioManager.isPlaying {
-                if newSound.isPremium && !iapStore.isProUser {
+                if !iapStore.isProUser && newSound != .none {
                     audioManager.stop()
                 } else {
                     audioManager.play(sound: newSound)
@@ -125,7 +136,7 @@ struct FocusSoundControlView: View {
     }
     
     private func togglePlay() {
-        if selectedSound.isPremium && !iapStore.isProUser {
+        if !iapStore.isProUser && selectedSound != .none {
             showPaywall = true
             return
         }
