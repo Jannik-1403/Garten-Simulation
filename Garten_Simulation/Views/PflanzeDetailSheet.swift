@@ -472,103 +472,109 @@ struct PflanzeDetailSheet: View {
                                 if iapStore.isProUser {
                                     if let autoMetric = pflanze.automaticHealthMetric {
                                         // --- APPLE HEALTH SECTION ---
-                                        VStack(spacing: 16) {
-                                            let isConnected = pflanze.linkedHealthMetric != nil
-                                            
-                                            Button {
-                                                if !isConnected {
-                                                    healthManager.requestAuthorization()
-                                                }
-                                                pflanze.linkedHealthMetric = isConnected ? nil : autoMetric
-                                                gardenStore.savePlants()
-                                            } label: {
-                                                HStack {
-                                                    Image(systemName: "heart.fill")
-                                                    Text(String(localized: String.LocalizationValue(autoMetric.localizationKey)))
-                                                }
-                                                .font(.system(size: 15, weight: .bold, design: .rounded))
-                                                .foregroundColor(.white)
-                                                .frame(maxWidth: .infinity)
-                                                .padding()
-                                                .background(isConnected ? Color.green : Color.black, in: RoundedRectangle(cornerRadius: 12))
+                                        VStack(spacing: 12) {
+                                            HStack {
+                                                Text(String(localized: "apple.health.title", defaultValue: "Apple Health Kopplung"))
+                                                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                                                Spacer()
                                             }
-                                            .buttonStyle(Item3DButtonStyle(
-                                                farbe: isConnected ? .green : .black,
-                                                sekundaerFarbe: isConnected ? Color.green.opacity(0.8) : Color.black.opacity(0.8),
-                                                isRectangular: true,
-                                                isPermanentlyPressed: isConnected
-                                            ))
+                                            .padding(.horizontal, 24)
                                             
-                                            if let metric = pflanze.linkedHealthMetric {
-                                                HStack {
-                                                    Text(String(localized: "apple.health.target", defaultValue: "Tagesziel"))
-                                                        .font(.system(size: 15, weight: .semibold, design: .rounded))
-                                                    Spacer()
-                                                    TextField("0", value: Binding(
-                                                        get: { pflanze.healthTarget },
-                                                        set: { pflanze.healthTarget = $0; gardenStore.savePlants() }
-                                                    ), format: .number)
-                                                    .keyboardType(.numberPad)
-                                                    .multilineTextAlignment(.trailing)
-                                                    .frame(width: 100)
-                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                    .foregroundStyle(.orange)
-                                                    .padding(8)
-                                                    .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
-                                                }
-                                                
-                                                // Progress
-                                                let current: Int = {
-                                                    switch metric {
-                                                    case .steps: return Int(healthManager.todaysSteps)
-                                                    case .water: return Int(healthManager.todaysWater)
-                                                    case .sleep: return Int(healthManager.todaysSleep)
-                                                    case .mindfulness: return Int(healthManager.todaysMindfulness)
-                                                    case .running: return Int(healthManager.todaysRunning)
-                                                    case .strengthTraining: return Int(healthManager.todaysStrengthTraining)
+                                            VStack(spacing: 16) {
+                                                let isActiveBinding = Binding<Bool>(
+                                                    get: { pflanze.linkedHealthMetric != nil },
+                                                    set: { isOn in
+                                                        pflanze.linkedHealthMetric = isOn ? autoMetric : nil
+                                                        gardenStore.savePlants()
                                                     }
-                                                }()
+                                                )
                                                 
-                                                let target = Int(pflanze.healthTarget ?? 0)
-                                                let unit: String = {
-                                                    switch metric {
-                                                    case .steps: return String(localized: "apple.health.unit.steps", defaultValue: "Schritte")
-                                                    case .water: return String(localized: "apple.health.unit.water", defaultValue: "ml")
-                                                    case .sleep: return String(localized: "apple.health.unit.sleep", defaultValue: "h")
-                                                    case .mindfulness: return String(localized: "apple.health.unit.mindfulness", defaultValue: "min")
-                                                    case .running: return String(localized: "apple.health.unit.running", defaultValue: "min")
-                                                    case .strengthTraining: return String(localized: "apple.health.unit.strengthTraining", defaultValue: "min")
-                                                    }
-                                                }()
+                                                Toggle(String(localized: String.LocalizationValue(autoMetric.localizationKey)), isOn: isActiveBinding)
+                                                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                                                    .tint(.black)
                                                 
-                                                VStack(spacing: 8) {
+                                                if let metric = pflanze.linkedHealthMetric {
                                                     HStack {
-                                                        Text(String(localized: "apple.health.progress", defaultValue: "Fortschritt heute"))
-                                                            .font(.system(size: 13, weight: .medium, design: .rounded))
-                                                            .foregroundStyle(.secondary)
+                                                        Text(String(localized: "apple.health.target", defaultValue: "Tagesziel"))
+                                                            .font(.system(size: 15, weight: .semibold, design: .rounded))
                                                         Spacer()
-                                                        Text("\(current) / \(target) \(unit)")
-                                                            .font(.system(size: 13, weight: .bold, design: .rounded))
-                                                            .foregroundStyle(.orange)
+                                                        TextField("0", value: Binding(
+                                                            get: { pflanze.healthTarget },
+                                                            set: { pflanze.healthTarget = $0; gardenStore.savePlants() }
+                                                        ), format: .number)
+                                                        .keyboardType(.numberPad)
+                                                        .multilineTextAlignment(.trailing)
+                                                        .frame(width: 100)
+                                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                        .foregroundStyle(.orange)
+                                                        .padding(8)
+                                                        .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
                                                     }
                                                     
-                                                    GeometryReader { geo in
-                                                        ZStack(alignment: .leading) {
-                                                            Capsule()
-                                                                .fill(Color.secondary.opacity(0.2))
-                                                                .frame(height: 8)
-                                                            
-                                                            Capsule()
-                                                                .fill(Color.orange)
-                                                                .frame(width: min(geo.size.width, geo.size.width * CGFloat(current) / CGFloat(max(1, target))), height: 8)
-                                                                .shadow(color: .orange.opacity(0.3), radius: 3, y: 1)
+                                                    // Progress
+                                                    let current: Int = {
+                                                        switch metric {
+                                                        case .steps: return Int(healthManager.todaysSteps)
+                                                        case .water: return Int(healthManager.todaysWater)
+                                                        case .sleep: return Int(healthManager.todaysSleep)
+                                                        case .mindfulness: return Int(healthManager.todaysMindfulness)
+                                                        case .running: return Int(healthManager.todaysRunning)
+                                                        case .strengthTraining: return Int(healthManager.todaysStrengthTraining)
                                                         }
+                                                    }()
+                                                    
+                                                    let target = Int(pflanze.healthTarget ?? 0)
+                                                    let unit: String = {
+                                                        switch metric {
+                                                        case .steps: return String(localized: "apple.health.unit.steps", defaultValue: "Schritte")
+                                                        case .water: return String(localized: "apple.health.unit.water", defaultValue: "ml")
+                                                        case .sleep: return String(localized: "apple.health.unit.sleep", defaultValue: "h")
+                                                        case .mindfulness: return String(localized: "apple.health.unit.mindfulness", defaultValue: "min")
+                                                        case .running: return String(localized: "apple.health.unit.running", defaultValue: "min")
+                                                        case .strengthTraining: return String(localized: "apple.health.unit.strengthTraining", defaultValue: "min")
+                                                        }
+                                                    }()
+                                                    
+                                                    VStack(spacing: 8) {
+                                                        HStack {
+                                                            Text(String(localized: "apple.health.progress", defaultValue: "Fortschritt heute"))
+                                                                .font(.system(size: 13, weight: .medium, design: .rounded))
+                                                                .foregroundStyle(.secondary)
+                                                            Spacer()
+                                                            Text("\(current) / \(target) \(unit)")
+                                                                .font(.system(size: 13, weight: .bold, design: .rounded))
+                                                                .foregroundStyle(.orange)
+                                                        }
+                                                        
+                                                        GeometryReader { geo in
+                                                            ZStack(alignment: .leading) {
+                                                                Capsule()
+                                                                    .fill(Color.secondary.opacity(0.2))
+                                                                    .frame(height: 8)
+                                                                
+                                                                Capsule()
+                                                                    .fill(Color.orange)
+                                                                    .frame(width: min(geo.size.width, geo.size.width * CGFloat(current) / CGFloat(max(1, target))), height: 8)
+                                                                    .shadow(color: .orange.opacity(0.3), radius: 3, y: 1)
+                                                            }
+                                                        }
+                                                        .frame(height: 8)
                                                     }
-                                                    .frame(height: 8)
                                                 }
                                             }
+                                            .padding(20)
+                                            .background(
+                                                ZStack {
+                                                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                                        .fill(Color(UIColor.systemGray4))
+                                                        .offset(y: 4)
+                                                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                                        .fill(Color(UIColor.secondarySystemGroupedBackground))
+                                                }
+                                            )
+                                            .padding(.horizontal, 24)
+                                            .padding(.bottom, 4)
                                         }
-                                        .padding(.horizontal, 24)
                                     } else {
                                         // --- EIGENER TRACKER SECTION ---
                                         VStack(spacing: 12) {
@@ -1068,6 +1074,16 @@ struct TimerEditSheetView: View {
                             Text(String(localized: "common.done_button"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                         }
+                    }
+                }
+                
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button {
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    } label: {
+                        Image(systemName: "keyboard.chevron.compact.down")
+                            .font(.system(size: 16, weight: .bold))
                     }
                 }
 
