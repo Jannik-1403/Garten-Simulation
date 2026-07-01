@@ -36,9 +36,10 @@ struct PaywallView: View {
                     Image("ProFeature")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 200, height: 220)
+                        .frame(width: 250, height: 250)
                         .padding(.top, 40)
-                        .padding(.bottom, 24)
+                        .padding(.bottom, -15)
+
 
                     
                     // Title
