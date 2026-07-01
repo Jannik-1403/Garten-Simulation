@@ -11,7 +11,6 @@ struct WeeklyReportDashboardView: View {
     @State private var selectedWeekStart: Date = WeeklyStatsManager.shared.startOfWeek(for: Date())
     @State private var selectedFocusDay: DailyFocusTime? = nil
     @State private var selectedHabitsDay: DailyHabitsCount? = nil
-    
     @State private var generatedPDFUrl: URL? = nil
     @State private var isSharing = false
     @State private var zeigePaywall = false
@@ -39,142 +38,46 @@ struct WeeklyReportDashboardView: View {
     
     var body: some View {
         VStack(spacing: 24) {
-            // 1. Week Navigation
-            HStack {
-                Button {
-                    withAnimation {
-                        selectedWeekStart = calendar.date(byAdding: .day, value: -7, to: selectedWeekStart)!
-                        selectedFocusDay = nil
-                        selectedHabitsDay = nil
-                    }
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.primary)
-                        .padding(12)
-                        .background(Color.secondary.opacity(0.15))
-                        .clipShape(Circle())
-                }
-                
-                Spacer()
-                
-                VStack(spacing: 2) {
-                    Text(String(localized: "weekly_report.navigation.title", defaultValue: "Wochenbericht"))
-                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundColor(.secondary)
-                        .textCase(.uppercase)
-                    
-                    Text(formattedWeekRange)
-                        .font(.system(size: 18, weight: .black, design: .rounded))
-                        .foregroundColor(.primary)
-                }
-                
-                Spacer()
-                
-                Button {
-                    if canGoForward {
-                        withAnimation {
-                            selectedWeekStart = calendar.date(byAdding: .day, value: 7, to: selectedWeekStart)!
-                            selectedFocusDay = nil
-                            selectedHabitsDay = nil
-                        }
-                    }
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(canGoForward ? .primary : .secondary.opacity(0.3))
-                        .padding(12)
-                        .background(Color.secondary.opacity(canGoForward ? 0.15 : 0.05))
-                        .clipShape(Circle())
-                }
-                .disabled(!canGoForward)
-            }
-            .padding(.horizontal, 8)
             
-            // 2. Summary Grid (Overview Cards)
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                // Focus Time Card
-                summaryCard(
+            // 1. Week Navigation
+            weekNavigationHeader
+            
+            // 2. Summary Grid (4 Karten mit Asset-Icons)
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 14) {
+                summaryCardAsset(
                     title: String(localized: "weekly_report.card.focus_time", defaultValue: "Fokuszeit"),
                     value: "\(report.totalFocusMinutes) Min",
                     change: report.focusMinutesChangePercentage,
-                    systemIcon: "clock.fill",
+                    assetIcon: "Timer full",
                     color: .blauPrimary
                 )
-                
-                // Completed Habits Card
-                summaryCard(
+                summaryCardAsset(
                     title: String(localized: "weekly_report.card.habits", defaultValue: "Gewohnheiten"),
                     value: "\(report.completedHabitsCount)",
                     change: report.habitsChangePercentage,
-                    systemIcon: "checkmark.circle.fill",
+                    assetIcon: "Drop water",
                     color: .green
                 )
-                
-                // Sessions Completed Card
-                summaryCard(
+                summaryCardAsset(
                     title: String(localized: "weekly_report.card.sessions", defaultValue: "Sessions"),
                     value: "\(report.completedSessionsCount)",
                     change: nil,
-                    systemIcon: "bolt.fill",
+                    assetIcon: "streak",
                     color: .orangePrimary
                 )
-                
-                // Earned XP Card
-                summaryCard(
+                summaryCardAsset(
                     title: String(localized: "weekly_report.card.xp", defaultValue: "Verdiente XP"),
-                    value: "+\(report.earnedXP) XP",
+                    value: "+\(report.earnedXP)",
                     change: nil,
-                    systemIcon: "sparkles",
+                    assetIcon: "XP",
                     color: .purple
                 )
             }
             
-            // 3. Weekly Analysis & Feedback (DisclosureGroup)
-            VStack(alignment: .leading, spacing: 0) {
-                DisclosureGroup(isExpanded: $isAnalysisExpanded) {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Divider()
-                            .padding(.vertical, 8)
-                        
-                        Text(report.feedbackDescription)
-                            .font(.system(size: 15, weight: .medium, design: .rounded))
-                            .foregroundColor(.primary.opacity(0.85))
-                            .lineSpacing(4)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                } label: {
-                    HStack(spacing: 12) {
-                        Image(systemName: "lightbulb.fill")
-                            .font(.system(size: 20))
-                            .foregroundColor(.yellow)
-                            .padding(8)
-                            .background(Color.yellow.opacity(0.15))
-                            .clipShape(Circle())
-                        
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(report.feedbackTitle)
-                                .font(.system(size: 16, weight: .black, design: .rounded))
-                                .foregroundColor(.primary)
-                            Text(String(localized: "weekly_report.analysis.subtitle", defaultValue: "Deine Fortschritts-Analyse"))
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                .foregroundColor(.secondary)
-                        }
-                        Spacer()
-                    }
-                }
-            }
-            .padding(16)
-            .background(Color(UIColor.systemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-            .background(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(Color.black.opacity(0.18))
-                    .offset(y: 6)
-            )
-            .padding(.bottom, 6)
+            // 3. Analyse & Feedback (aufklappbar)
+            analysisCard
             
-            // 4. Swift Chart: Focus Time
+            // 4. Chart: Fokuszeit
             chartContainer(title: String(localized: "weekly_report.chart.focus_title", defaultValue: "Fokuszeit pro Tag")) {
                 Chart {
                     ForEach(report.dailyFocusMinutes) { item in
@@ -195,10 +98,8 @@ struct WeeklyReportDashboardView: View {
                 .chartXSelection(value: Binding(
                     get: { selectedFocusDay?.dayName },
                     set: { newValue in
-                        if let name = newValue {
-                            selectedFocusDay = report.dailyFocusMinutes.first(where: { $0.dayName == name })
-                        } else {
-                            selectedFocusDay = nil
+                        selectedFocusDay = newValue.flatMap { name in
+                            report.dailyFocusMinutes.first(where: { $0.dayName == name })
                         }
                     }
                 ))
@@ -206,8 +107,7 @@ struct WeeklyReportDashboardView: View {
                     if let selected = selectedFocusDay, selected.minutes > 0 {
                         Text("\(selected.minutes) Min")
                             .font(.system(size: 12, weight: .bold, design: .rounded))
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 6)
+                            .padding(.horizontal, 10).padding(.vertical, 6)
                             .background(Color.blauPrimary)
                             .foregroundColor(.white)
                             .cornerRadius(8)
@@ -216,7 +116,7 @@ struct WeeklyReportDashboardView: View {
                 }
             }
             
-            // 5. Swift Chart: Habits Completed
+            // 5. Chart: Gewohnheiten
             chartContainer(title: String(localized: "weekly_report.chart.habits_title", defaultValue: "Erledigte Gewohnheiten")) {
                 Chart {
                     ForEach(report.dailyHabitsCompleted) { item in
@@ -237,10 +137,8 @@ struct WeeklyReportDashboardView: View {
                 .chartXSelection(value: Binding(
                     get: { selectedHabitsDay?.dayName },
                     set: { newValue in
-                        if let name = newValue {
-                            selectedHabitsDay = report.dailyHabitsCompleted.first(where: { $0.dayName == name })
-                        } else {
-                            selectedHabitsDay = nil
+                        selectedHabitsDay = newValue.flatMap { name in
+                            report.dailyHabitsCompleted.first(where: { $0.dayName == name })
                         }
                     }
                 ))
@@ -248,8 +146,7 @@ struct WeeklyReportDashboardView: View {
                     if let selected = selectedHabitsDay, selected.count > 0 {
                         Text("\(selected.count) erledigt")
                             .font(.system(size: 12, weight: .bold, design: .rounded))
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 6)
+                            .padding(.horizontal, 10).padding(.vertical, 6)
                             .background(Color.green)
                             .foregroundColor(.white)
                             .cornerRadius(8)
@@ -258,58 +155,8 @@ struct WeeklyReportDashboardView: View {
                 }
             }
             
-            // 6. Pro PDF Export Button
-            VStack(spacing: 8) {
-                Button {
-                    if iapStore.isProUser {
-                        // Pro: PDF generieren und sharen
-                        let pdfUrl = PDFExportManager.shared.generateWeeklyPDFReport(
-                            for: selectedWeekStart,
-                            gardenStore: gardenStore,
-                            settings: settings,
-                            streakStore: streakStore,
-                            assessmentStore: assessmentStore
-                        )
-                        if let pdfUrl = pdfUrl {
-                            self.generatedPDFUrl = pdfUrl
-                            self.isSharing = true
-                        }
-                    } else {
-                        // Free: Paywall öffnen
-                        zeigePaywall = true
-                    }
-                } label: {
-                    HStack(spacing: 4) {
-                        if !iapStore.isProUser {
-                            Image(systemName: "lock.fill")
-                                .foregroundColor(.white)
-                        }
-                        Text(String(localized: "weekly_report.button.export_pdf", defaultValue: "PDF Wochenbericht teilen"))
-                            .font(.system(size: 18, weight: .black, design: .rounded))
-                    }
-                }
-                .buttonStyle(
-                    DuolingoButtonStyle(
-                        size: .large,
-                        fillWidth: true,
-                        backgroundColor: iapStore.isProUser ? .blauPrimary : .goldPrimary,
-                        shadowColor: iapStore.isProUser ? .blauPrimary.darker() : .goldPrimary.darker(),
-                        foregroundColor: .white
-                    )
-                )
-                
-                if !iapStore.isProUser {
-                    Text(String(localized: "weekly_report.button.pro_badge", defaultValue: "PRO FEATURE"))
-                        .font(.system(size: 11, weight: .black, design: .rounded))
-                        .foregroundColor(.goldPrimary)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
-                        .background(Color.goldPrimary.opacity(0.15))
-                        .clipShape(Capsule())
-                        .padding(.top, 4)
-                }
-            }
-            .padding(.top, 16)
+            // 6. PDF Export Button
+            exportButton
         }
         .padding(.horizontal, 8)
         .sheet(isPresented: $isSharing) {
@@ -323,17 +170,206 @@ struct WeeklyReportDashboardView: View {
         }
     }
     
-    // MARK: - Helper Views
+    // MARK: - Week Navigation Header
     
-    private func summaryCard(title: String, value: String, change: Double?, systemIcon: String, color: Color) -> some View {
+    private var weekNavigationHeader: some View {
+        HStack {
+            Button {
+                withAnimation {
+                    selectedWeekStart = calendar.date(byAdding: .day, value: -7, to: selectedWeekStart)!
+                    selectedFocusDay = nil
+                    selectedHabitsDay = nil
+                }
+            } label: {
+                Image(systemName: "chevron.left")
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.primary)
+                    .padding(12)
+                    .background(Color.secondary.opacity(0.15))
+                    .clipShape(Circle())
+            }
+            
+            Spacer()
+            
+            VStack(spacing: 2) {
+                Text(String(localized: "weekly_report.navigation.title", defaultValue: "Wochenbericht"))
+                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                    .foregroundColor(.secondary)
+                    .textCase(.uppercase)
+                Text(formattedWeekRange)
+                    .font(.system(size: 18, weight: .black, design: .rounded))
+                    .foregroundColor(.primary)
+            }
+            
+            Spacer()
+            
+            Button {
+                if canGoForward {
+                    withAnimation {
+                        selectedWeekStart = calendar.date(byAdding: .day, value: 7, to: selectedWeekStart)!
+                        selectedFocusDay = nil
+                        selectedHabitsDay = nil
+                    }
+                }
+            } label: {
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(canGoForward ? .primary : .secondary.opacity(0.3))
+                    .padding(12)
+                    .background(Color.secondary.opacity(canGoForward ? 0.15 : 0.05))
+                    .clipShape(Circle())
+            }
+            .disabled(!canGoForward)
+        }
+        .padding(.horizontal, 8)
+    }
+    
+    // MARK: - Analyse Card
+    
+    private var analysisCard: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            DisclosureGroup(isExpanded: $isAnalysisExpanded) {
+                VStack(alignment: .leading, spacing: 12) {
+                    Divider().padding(.vertical, 8)
+                    
+                    // Feedback-Text aufgeteilt: Haupt-Text + Best-Day-Info + Tipp
+                    let parts = report.feedbackDescription.components(separatedBy: "\n\n")
+                    
+                    if parts.count >= 1 {
+                        Text(parts[0])
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
+                            .foregroundColor(.primary.opacity(0.85))
+                            .lineSpacing(4)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    
+                    if parts.count >= 2 {
+                        HStack(spacing: 10) {
+                            Image(systemName: "calendar.badge.checkmark")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.orangePrimary)
+                            Text(parts[1])
+                                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                .foregroundColor(.primary.opacity(0.8))
+                                .lineSpacing(3)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .padding(12)
+                        .background(Color.orangePrimary.opacity(0.08))
+                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    }
+                    
+                    if parts.count >= 3 {
+                        HStack(alignment: .top, spacing: 10) {
+                            SwiftUI.Image("Wachstum")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 28, height: 28)
+                            
+                            Text(parts[2])
+                                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                .foregroundColor(.primary.opacity(0.8))
+                                .lineSpacing(3)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .padding(12)
+                        .background(Color.green.opacity(0.08))
+                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    }
+                }
+            } label: {
+                HStack(spacing: 12) {
+                    Image(systemName: "lightbulb.fill")
+                        .font(.system(size: 20))
+                        .foregroundColor(.yellow)
+                        .padding(8)
+                        .background(Color.yellow.opacity(0.15))
+                        .clipShape(Circle())
+                    
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(report.feedbackTitle)
+                            .font(.system(size: 16, weight: .black, design: .rounded))
+                            .foregroundColor(.primary)
+                        Text(String(localized: "weekly_report.analysis.subtitle", defaultValue: "Deine Fortschritts-Analyse"))
+                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
+                }
+            }
+        }
+        .padding(16)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(Color.black.opacity(0.18))
+                .offset(y: 6)
+        )
+        .padding(.bottom, 6)
+    }
+    
+    // MARK: - Export Button
+    
+    private var exportButton: some View {
+        VStack(spacing: 8) {
+            Button {
+                if iapStore.isProUser {
+                    let pdfUrl = PDFExportManager.shared.generateWeeklyPDFReport(
+                        for: selectedWeekStart,
+                        gardenStore: gardenStore,
+                        settings: settings,
+                        streakStore: streakStore,
+                        assessmentStore: assessmentStore
+                    )
+                    if let pdfUrl = pdfUrl {
+                        self.generatedPDFUrl = pdfUrl
+                        self.isSharing = true
+                    }
+                } else {
+                    zeigePaywall = true
+                }
+            } label: {
+                HStack(spacing: 6) {
+                    if !iapStore.isProUser {
+                        Image(systemName: "lock.fill")
+                            .foregroundColor(.white)
+                    }
+                    Text(String(localized: "weekly_report.button.export_pdf", defaultValue: "PDF Wochenbericht teilen"))
+                        .font(.system(size: 18, weight: .black, design: .rounded))
+                }
+            }
+            .buttonStyle(
+                DuolingoButtonStyle(
+                    size: .large,
+                    fillWidth: true,
+                    backgroundColor: iapStore.isProUser ? .blauPrimary : .goldPrimary,
+                    shadowColor: iapStore.isProUser ? .blauPrimary.darker() : .goldPrimary.darker(),
+                    foregroundColor: .white
+                )
+            )
+            
+            if !iapStore.isProUser {
+                Text(String(localized: "weekly_report.button.pro_badge", defaultValue: "PRO FEATURE"))
+                    .font(.system(size: 11, weight: .black, design: .rounded))
+                    .foregroundColor(.goldPrimary)
+                    .padding(.horizontal, 10).padding(.vertical, 4)
+                    .background(Color.goldPrimary.opacity(0.15))
+                    .clipShape(Capsule())
+            }
+        }
+        .padding(.top, 16)
+    }
+    
+    // MARK: - Summary Card mit Asset-Icon
+    
+    private func summaryCardAsset(title: String, value: String, change: Double?, assetIcon: String, color: Color) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Image(systemName: systemIcon)
-                    .font(.system(size: 16))
-                    .foregroundColor(color)
-                    .padding(8)
-                    .background(color.opacity(0.12))
-                    .clipShape(Circle())
+                SwiftUI.Image(assetIcon)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32, height: 32)
                 
                 Spacer()
                 
@@ -347,8 +383,7 @@ struct WeeklyReportDashboardView: View {
                             .font(.system(size: 11, weight: .bold, design: .rounded))
                     }
                     .foregroundColor(isPositive ? .green : .red)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 3)
+                    .padding(.horizontal, 6).padding(.vertical, 3)
                     .background((isPositive ? Color.green : Color.red).opacity(0.1))
                     .cornerRadius(8)
                 }
@@ -358,7 +393,6 @@ struct WeeklyReportDashboardView: View {
                 Text(value)
                     .font(.system(size: 20, weight: .black, design: .rounded))
                     .foregroundColor(.primary)
-                
                 Text(title)
                     .font(.system(size: 12, weight: .bold, design: .rounded))
                     .foregroundColor(.secondary)
@@ -374,12 +408,13 @@ struct WeeklyReportDashboardView: View {
         )
     }
     
+    // MARK: - Chart Container
+    
     private func chartContainer<Content: View>(title: String, @ViewBuilder content: () -> Content) -> some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(title)
                 .font(.system(size: 16, weight: .black, design: .rounded))
                 .foregroundColor(.primary)
-            
             content()
                 .frame(height: 180)
         }
@@ -394,3 +429,5 @@ struct WeeklyReportDashboardView: View {
         .padding(.bottom, 6)
     }
 }
+
+

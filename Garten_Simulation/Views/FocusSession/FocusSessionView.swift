@@ -209,13 +209,13 @@ struct FocusSessionView: View {
                 Text(String(localized: "focus.session.title", defaultValue: "Fokus-Session"))
                     .font(.system(size: 32, weight: .black, design: .rounded))
                 
-                Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.habitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
+                Text(settings.showHabitInsteadOfName ? pflanze.displayedHabitName : pflanze.name)
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.goldPrimary)
             }
             
             VStack(spacing: 12) {
-                Text(String(localized: "focus.session.duration.format", defaultValue: "Dauer: \(selectedMinutes) Minuten"))
+                Text(String(format: String(localized: "focus.session.duration.format", defaultValue: "Dauer: %lld Minuten"), Int64(selectedMinutes)))
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
                 
                 Slider(value: Binding<Double>(
@@ -270,7 +270,7 @@ struct FocusSessionView: View {
                         .font(.system(size: 64, weight: .black, design: .monospaced))
                         .foregroundStyle(Color.primary)
                     
-                    Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.habitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
+                    Text(settings.showHabitInsteadOfName ? pflanze.displayedHabitName : pflanze.name)
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
@@ -579,7 +579,7 @@ struct FocusSessionView: View {
                         "Focus Session"
                         
         let attributes = FocusTimerActivityAttributes(
-            habitName: settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: "")
+            habitName: settings.showHabitInsteadOfName ? pflanze.displayedHabitName : pflanze.name
         )
         let state = FocusTimerActivityAttributes.ContentState(
             endTime: endTime,

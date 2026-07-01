@@ -3,7 +3,7 @@
 - **Mehrsprachige Vorlagen (Templates)**: Sämtliche 20 Vorschläge und Ziele (z.B. "10 Min Dehnen", "Tiefes Atmen", "Ausgaben tracken" etc.) wurden für alle 11 Projektsprachen (DE, NL, EN, FR, IT, JA, KO, PL, PT, ES, TR) übersetzt und im String Catalog eingetragen.
 - **SwiftUI Code Refactoring**: Veraltete `NSLocalizedString(...)` Aufrufe wurden durch die native SwiftUI-Integration ersetzt. Benutzereingaben werden jetzt direkt unübersetzt dargestellt, während vordefinierte Vorlagen und statische UI-Texte sauber über `String(localized:defaultValue:)` geladen werden.
 - **3D-Card Design**: Die gesamte Sound-Maschine (`FocusSoundControlView`) verwendet jetzt ein plastisches 3D-Karten-Design mit einem Hauptlayer in `secondarySystemBackground` (weiß in Light Mode) und einem passenden 3D-Schatten-Bodenlayer. Die Karte wurde im Timer-Screen weiter nach unten verschoben.
-- **Pro-Feature Schutz**: Da die Sound-Maschine ein Pro-Feature ist, sind jetzt alle auswählbaren Sounds (außer "Kein Sound") für Nicht-Pro-User gesperrt. Der Abspielknopf erscheint dann golden mit einem Schloss-Symbol und öffnet bei Klick die Paywall.
+- **Pro-Feature Schutz**: Die komplette Sound-Maschine ist nun strikt für Nicht-Pro-User gesperrt (inklusive "Kein Sound"). Der gesamte 3D-Hintergrund färbt sich dabei golden, zeigt weiße Bedienelemente und ein Schloss-Symbol, welches bei Klick direkt die Paywall öffnet.
 
 ## [2026-07-01] - Pro-Feature: Fokus-Sound-Maschine (Flow-State-Audio)
 - **Neues Feature: Fokus-Sound-Maschine**: Ermöglicht das Abspielen von beruhigenden Hintergrundgeräuschen direkt während einer Fokus-Session oder einer Routine-Session.
