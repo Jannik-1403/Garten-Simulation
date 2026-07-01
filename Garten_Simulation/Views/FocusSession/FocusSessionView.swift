@@ -55,9 +55,9 @@ struct FocusSessionView: View {
                 case .step1:
                     FocusSessionPreparationStep(
                         iconName: "Handy",
-                        title: "Ablenkungen weg",
+                        title: String(localized: "focus.prep.step1.title", defaultValue: "Ablenkungen weg"),
                         description: String(localized: "focus.session.dnd_hint", defaultValue: "Schalte dein Handy jetzt auf 'Nicht stören' und lege es nach dieser Einrichtung außer Sichtweite."),
-                        buttonText: "Erledigt",
+                        buttonText: String(localized: "focus.prep.step1.button", defaultValue: "Erledigt"),
                         isLastStep: false,
                         textInput: $currentGoalInput,
                         goals: $sessionGoals
@@ -68,9 +68,9 @@ struct FocusSessionView: View {
                 case .step2:
                     FocusSessionPreparationStep(
                         iconName: "Goal",
-                        title: "Klares Ziel",
+                        title: String(localized: "focus.prep.step2.title", defaultValue: "Klares Ziel"),
                         description: String(localized: "focus.session.goal_hint", defaultValue: "Was genau möchtest du in deiner Fokus-Zeit schaffen? Nimm dir einen Moment, um dich zu fokussieren."),
-                        buttonText: "Timer starten",
+                        buttonText: String(localized: "focus.prep.step2.button", defaultValue: "Timer starten"),
                         isLastStep: true,
                         showTextInput: true,
                         habitCategory: pflanze.habitCategory,
@@ -171,8 +171,8 @@ struct FocusSessionView: View {
                 }
             }
         }
-        .alert(String(localized: "Fokus abgebrochen"), isPresented: $showFailAlert) {
-            Button(String(localized: "Schließen"), role: .cancel) {
+        .alert(String(localized: "focus.session.cancelled.title", defaultValue: "Fokus abgebrochen"), isPresented: $showFailAlert) {
+            Button(String(localized: "common.close", defaultValue: "Schließen"), role: .cancel) {
                 dismiss()
             }
         } message: {
@@ -206,7 +206,7 @@ struct FocusSessionView: View {
                 .frame(width: 80, height: 80)
             
             VStack(spacing: 8) {
-                Text(String(localized: "Fokus-Session"))
+                Text(String(localized: "focus.session.title", defaultValue: "Fokus-Session"))
                     .font(.system(size: 32, weight: .black, design: .rounded))
                 
                 Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.habitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
@@ -215,7 +215,7 @@ struct FocusSessionView: View {
             }
             
             VStack(spacing: 12) {
-                Text(String(format: String(localized: "Dauer: %lld Minuten"), selectedMinutes))
+                Text(String(localized: "focus.session.duration.format", defaultValue: "Dauer: \(selectedMinutes) Minuten"))
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
                 
                 Slider(value: Binding<Double>(
@@ -232,7 +232,7 @@ struct FocusSessionView: View {
             Button {
                 withAnimation { state = .step1 }
             } label: {
-                Text(String(localized: "Vorbereitung starten"))
+                Text(String(localized: "focus.session.start_prep", defaultValue: "Vorbereitung starten"))
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large, fillWidth: true,
@@ -278,7 +278,7 @@ struct FocusSessionView: View {
             
             if !sessionGoals.isEmpty {
                 VStack(alignment: .leading, spacing: 12) {
-                        Text(String(localized: "Deine Ziele"))
+                        Text(String(localized: "focus.session.your_goals", defaultValue: "Deine Ziele"))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .padding(.bottom, 4)
                         
@@ -302,7 +302,7 @@ struct FocusSessionView: View {
                                     
                                     HStack(spacing: 4) {
                                         Image(systemName: "exclamationmark.circle.fill")
-                                        Text(LocalizedStringKey(goal.priority.rawValue))
+                                        Text(goal.priority.displayName)
                                     }
                                     .font(.system(size: 12, weight: .bold, design: .rounded))
                                     .padding(.horizontal, 8)
@@ -409,7 +409,7 @@ struct FocusSessionView: View {
                 .frame(width: 140, height: 140)
             
             VStack(spacing: 12) {
-                Text(String(localized: "Geschafft!"))
+                Text(String(localized: "focus.session.done", defaultValue: "Geschafft!"))
                     .font(.system(size: 32, weight: .black, design: .rounded))
                 Text(String(format: String(localized: "focus.session.completed.xp_shared", defaultValue: "Du warst %lld Minuten lang extrem fokussiert. Die XP werden auf alle deine Pflanzen aufgeteilt!"), selectedMinutes))
                     .font(.system(size: 16, weight: .medium, design: .rounded))
@@ -430,7 +430,7 @@ struct FocusSessionView: View {
                         Text("\(coins)")
                             .font(.system(size: 24, weight: .black, design: .rounded))
                         
-                        Text(String(localized: "Münzen"))
+                        Text(String(localized: "focus.session.coins", defaultValue: "Münzen"))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                     }
@@ -459,7 +459,7 @@ struct FocusSessionView: View {
             Button {
                 dismiss()
             } label: {
-                Text(String(localized: "Einsammeln"))
+                Text(String(localized: "focus.session.collect", defaultValue: "Einsammeln"))
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large, fillWidth: true,

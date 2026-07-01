@@ -1,9 +1,17 @@
 import SwiftUI
 
 enum GoalPriority: String, CaseIterable, Equatable {
-    case low = "Niedrig"
-    case medium = "Mittel"
-    case high = "Hoch"
+    case low
+    case medium
+    case high
+    
+    var displayName: String {
+        switch self {
+        case .low: return String(localized: "focus.priority.low", defaultValue: "Niedrig")
+        case .medium: return String(localized: "focus.priority.medium", defaultValue: "Mittel")
+        case .high: return String(localized: "focus.priority.high", defaultValue: "Hoch")
+        }
+    }
     
     var color: Color {
         switch self {
@@ -80,14 +88,42 @@ struct FocusSessionPreparationStep: View {
     
     private func suggestions(for category: HabitCategory?) -> [String] {
         switch category {
-        case .fitness: return ["10 Min Dehnen", "Workout aufwärmen", "Ausrüstung richten"]
-        case .health: return ["Wasser trinken", "Gesundes Rezept planen", "Ernährungstagebuch"]
-        case .mental: return ["Tiefes Atmen", "Journaling", "Meditation starten"]
-        case .growth: return ["1 Kapitel lesen", "Vokabeln wiederholen", "Zusammenfassung schreiben"]
-        case .lifestyle: return ["Zimmer aufräumen", "Pflanzen gießen", "Wochenplan erstellen"]
-        case .finance: return ["Ausgaben tracken", "Budget überprüfen", "Rechnungen bezahlen"]
+        case .fitness: return [
+            String(localized: "focus.suggestion.fitness.stretch", defaultValue: "10 Min Dehnen"),
+            String(localized: "focus.suggestion.fitness.warmup", defaultValue: "Workout aufwärmen"),
+            String(localized: "focus.suggestion.fitness.gear", defaultValue: "Ausrüstung richten")
+        ]
+        case .health: return [
+            String(localized: "focus.suggestion.health.water", defaultValue: "Wasser trinken"),
+            String(localized: "focus.suggestion.health.mealplan", defaultValue: "Gesundes Rezept planen"),
+            String(localized: "focus.suggestion.health.diary", defaultValue: "Ernährungstagebuch")
+        ]
+        case .mental: return [
+            String(localized: "focus.suggestion.mental.breathing", defaultValue: "Tiefes Atmen"),
+            String(localized: "focus.suggestion.mental.journaling", defaultValue: "Journaling"),
+            String(localized: "focus.suggestion.mental.meditation", defaultValue: "Meditation starten")
+        ]
+        case .growth: return [
+            String(localized: "focus.suggestion.growth.read", defaultValue: "1 Kapitel lesen"),
+            String(localized: "focus.suggestion.growth.vocab", defaultValue: "Vokabeln wiederholen"),
+            String(localized: "focus.suggestion.growth.summary", defaultValue: "Zusammenfassung schreiben")
+        ]
+        case .lifestyle: return [
+            String(localized: "focus.suggestion.lifestyle.cleanup", defaultValue: "Zimmer aufräumen"),
+            String(localized: "focus.suggestion.lifestyle.waterplants", defaultValue: "Pflanzen gießen"),
+            String(localized: "focus.suggestion.lifestyle.weeklyplan", defaultValue: "Wochenplan erstellen")
+        ]
+        case .finance: return [
+            String(localized: "focus.suggestion.finance.track", defaultValue: "Ausgaben tracken"),
+            String(localized: "focus.suggestion.finance.budget", defaultValue: "Budget überprüfen"),
+            String(localized: "focus.suggestion.finance.bills", defaultValue: "Rechnungen bezahlen")
+        ]
         case .seeds: return []
-        case .none: return ["Fokus setzen", "Handy weglegen", "Ablenkungen blockieren"]
+        case .none: return [
+            String(localized: "focus.suggestion.none.focus", defaultValue: "Fokus setzen"),
+            String(localized: "focus.suggestion.none.dnd", defaultValue: "Handy weglegen"),
+            String(localized: "focus.suggestion.none.no_distractions", defaultValue: "Ablenkungen blockieren")
+        ]
         }
     }
     
@@ -104,11 +140,11 @@ struct FocusSessionPreparationStep: View {
             
             // Texte
             VStack(spacing: 16) {
-                Text(NSLocalizedString(title, comment: ""))
+                Text(title)
                     .font(.system(size: 28, weight: .black, design: .rounded))
                     .multilineTextAlignment(.center)
                 
-                Text(NSLocalizedString(description, comment: ""))
+                Text(description)
                     .font(.system(size: 16, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -128,7 +164,7 @@ struct FocusSessionPreparationStep: View {
                                             goals.append(FocusGoal(text: suggestion))
                                         }
                                     } label: {
-                                        Text(NSLocalizedString(suggestion, comment: ""))
+                                        Text(suggestion)
                                             .font(.system(size: 14, weight: .medium, design: .rounded))
                                             .padding(.horizontal, 16)
                                             .padding(.vertical, 8)
@@ -143,7 +179,7 @@ struct FocusSessionPreparationStep: View {
                         
                         // Eingabefeld
                         HStack {
-                            TextField(String(localized: "Neues Hauptziel..."), text: $textInput)
+                            TextField(String(localized: "focus.session.main_goal.placeholder", defaultValue: "Neues Hauptziel..."), text: $textInput)
                                 .padding()
                                 .background(.ultraThinMaterial)
                                 .cornerRadius(12)
@@ -170,21 +206,21 @@ struct FocusSessionPreparationStep: View {
                                                 Image(systemName: "target")
                                                     .foregroundStyle(goal.priority.color)
                                                 
-                                                Text(NSLocalizedString(goal.text, comment: ""))
+                                                Text(goal.text)
                                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                                 
                                                 Spacer()
                                                 
                                                 Menu {
-                                                    Picker(String(localized: "Priorität"), selection: $goal.priority) {
+                                                    Picker(String(localized: "focus.session.priority", defaultValue: "Priorität"), selection: $goal.priority) {
                                                         ForEach(GoalPriority.allCases, id: \.self) { priority in
-                                                            Text(NSLocalizedString(priority.rawValue, comment: "")).tag(priority)
+                                                            Text(priority.displayName).tag(priority)
                                                         }
                                                     }
                                                 } label: {
                                                     HStack(spacing: 4) {
                                                         Image(systemName: "exclamationmark.circle.fill")
-                                                        Text(NSLocalizedString(goal.priority.rawValue, comment: ""))
+                                                        Text(goal.priority.displayName)
                                                     }
                                                     .font(.system(size: 12, weight: .bold, design: .rounded))
                                                     .padding(.horizontal, 8)
@@ -209,7 +245,7 @@ struct FocusSessionPreparationStep: View {
                                                         .foregroundStyle(.secondary)
                                                         .padding(.leading, 8)
                                                     
-                                                    Text(NSLocalizedString(subtask.text, comment: ""))
+                                                    Text(subtask.text)
                                                         .font(.system(size: 14, weight: .medium, design: .rounded))
                                                         .foregroundStyle(.secondary)
                                                     
@@ -247,7 +283,7 @@ struct FocusSessionPreparationStep: View {
         
         // Weiter-Button
         Button(action: action) {
-            Text(NSLocalizedString(buttonText, comment: ""))
+            Text(buttonText)
         }
             .buttonStyle(DuolingoButtonStyle(
                 size: .large,
