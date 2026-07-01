@@ -1,4 +1,11 @@
+## [2026-07-01] - Bugfix: ReminderSchedule Abwärtskompatibilität
+- Die veralteten Properties `weekdays` und `todaysReminder` wurden als read-write Computed Properties auf `ReminderSchedule` wiederhergestellt.
+- Dadurch wurden die Compilerfehler in `HabitModel.swift`, `PflanzeDetailSheet.swift` und `RoutinenView.swift` behoben.
+- `ReminderSchedule` wurde ebenfalls im `GartenWidget` Target aktualisiert und vereinheitlicht, um dieselbe Datenstruktur und Rückwärtskompatibilität bereitzustellen.
+- Das Projekt lässt sich wieder vollständig fehlerfrei bauen.
+
 ## [2026-06-30] - PDF Sprache/Lokalisierung Bugfix Teil 3 (Statistiken & Streaks)
+
 - Die Platzhalter für Streaks (Höchster Streak, Aktueller Streak, Abgeschlossene Challenges, Längster Streak ohne Rückfall) wurden aus dem lokalen Speicher korrekt in alle 11 Sprachen übersetzt und eingebunden.
 - Auch die Auslöser (Triggers) bei den schlechten Gewohnheiten werden jetzt mehrsprachig angezeigt.
 
@@ -216,3 +223,21 @@
 - Fixed 'common.collect' translation issue on routine XP screen
 
 - Added HealthKit integration for tracking steps, water, and sleep automatically for routines.
+- Fixed Picker type inference for HealthMetricType in PflanzeDetailSheet
+- Added DEBUG button in PaywallView to unlock Pro mode for local testing
+- Persist debug PRO feature testing locally and update Apple Health lock overlay to Item3DButton
+- Changed Timer button color to match Notes button in PflanzeDetailSheet
+- Updated Apple Health UI styling to match user request (black toggle, orange progress, 3D container)
+- Fixed SwiftUI alert bug preventing custom tracker from saving properly
+- Updated Apple Health UI in PflanzeDetailSheet to use Item3DButton and properly request permissions
+- Fixed Apple Health authorization by adding HealthKit entitlement
+- Updated Apple Health settings UI with toggle and removed data bubbles
+- Added button to open Apple Health app for managing permissions
+- Changed Apple Health setting row to match Notifications styling
+- Changed Apple Health deep link to point to iOS Privacy Settings
+- Updated Apple Health row in settings with Health app deep link and instructional text
+- Added keyboard toolbar with dismiss button
+- Moved keyboard dismiss button to top navigation bar
+- Fixed SIGKILL crash on launch and restored keyboard dismiss button in topBarTrailing
+- Fixed UI compilation errors related to the top right keyboard dismiss button logic
+- Applied keyboard dismiss logic to Apple Health target field
