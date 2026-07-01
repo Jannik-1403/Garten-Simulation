@@ -3,6 +3,29 @@ import Combine
 
 // MARK: - Reminder Schedule Types
 
+struct TimerEntry: Identifiable, Codable, Equatable {
+    var id: UUID = UUID()
+    var time: Date
+    var customMessage: String?
+    var repeatMode: ReminderRepeatMode
+    var activeWeekdays: Set<Int> // 1=Mo, 7=So
+    var isEnabled: Bool
+    var eventIdentifier: String? // for calendar sync
+    
+    func isExpired(startDate: Date) -> Bool {
+        switch repeatMode {
+        case .forever:
+            return false
+        case .once:
+            return Date().timeIntervalSince(startDate) > 7 * 24 * 3600
+        case .month:
+            return Date().timeIntervalSince(startDate) > 30 * 24 * 3600
+        case .year:
+            return Date().timeIntervalSince(startDate) > 365 * 24 * 3600
+        }
+    }
+}
+
 struct WeekdayReminder: Codable, Identifiable, Equatable {
     var id: Int { weekday }
     var weekday: Int              // 1=Mo, 2=Di, 3=Mi, 4=Do, 5=Fr, 6=Sa, 7=So
@@ -77,67 +100,182 @@ enum ReminderRepeatMode: String, Codable, CaseIterable {
 }
 
 struct ReminderSchedule: Codable, Equatable {
-    var weekdays: [WeekdayReminder]         // 7 Einträge (Mo-So)
+    var entries: [TimerEntry] = []
     var startDate: Date = Date()            // Wann der Timer begonnen hat
     
     private enum CodingKeys: String, CodingKey {
-        case weekdays, startDate, repeatMode
+        case entries, weekdays, startDate, repeatMode
     }
     
-    init(weekdays: [WeekdayReminder], startDate: Date = Date()) {
-        self.weekdays = weekdays
+    init(entries: [TimerEntry], startDate: Date = Date()) {
+        self.entries = entries
         self.startDate = startDate
     }
     
+    init(weekdays: [WeekdayReminder], startDate: Date = Date()) {
+        self.startDate = startDate
+        self.entries = []
+        let globalRepeatMode = ReminderRepeatMode.forever
+        for wd in weekdays {
+            let entry = TimerEntry(
+                time: wd.time,
+                customMessage: wd.customMessage,
+                repeatMode: wd.repeatMode == .forever ? globalRepeatMode : wd.repeatMode,
+                activeWeekdays: [wd.weekday],
+                isEnabled: wd.isEnabled
+            )
+            self.entries.append(entry)
+        }
+    }
+
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        var decodedWeekdays = try container.decode([WeekdayReminder].self, forKey: .weekdays)
         startDate = try container.decodeIfPresent(Date.self, forKey: .startDate) ?? Date()
         
-        // MIGRATION: Alte repeatMode übernehmen
-        if let oldRepeatMode = try container.decodeIfPresent(ReminderRepeatMode.self, forKey: .repeatMode) {
-            for i in 0..<decodedWeekdays.count {
-                decodedWeekdays[i].repeatMode = oldRepeatMode
+        if let decodedEntries = try container.decodeIfPresent([TimerEntry].self, forKey: .entries) {
+            self.entries = decodedEntries
+        } else {
+            // MIGRATION: Convert old weekdays array to TimerEntry
+            self.entries = []
+            if let decodedWeekdays = try container.decodeIfPresent([WeekdayReminder].self, forKey: .weekdays) {
+                var globalRepeatMode = ReminderRepeatMode.forever
+                if let oldRepeatMode = try container.decodeIfPresent(ReminderRepeatMode.self, forKey: .repeatMode) {
+                    globalRepeatMode = oldRepeatMode
+                }
+                for wd in decodedWeekdays {
+                    let entry = TimerEntry(
+                        time: wd.time,
+                        customMessage: wd.customMessage,
+                        repeatMode: wd.repeatMode == .forever ? globalRepeatMode : wd.repeatMode,
+                        activeWeekdays: [wd.weekday],
+                        isEnabled: wd.isEnabled
+                    )
+                    self.entries.append(entry)
+                }
             }
         }
-        self.weekdays = decodedWeekdays
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(weekdays, forKey: .weekdays)
+        try container.encode(entries, forKey: .entries)
         try container.encode(startDate, forKey: .startDate)
     }
     
     /// Erstellt einen Standard-Schedule mit gleicher Zeit an allen Tagen
     static func defaultSchedule(time: Date, customMessage: String? = nil) -> ReminderSchedule {
-        let weekdays = (1...7).map { day in
-            WeekdayReminder(weekday: day, time: time, customMessage: customMessage, isEnabled: true, repeatMode: .forever)
-        }
-        return ReminderSchedule(weekdays: weekdays)
+        let entry = TimerEntry(
+            time: time,
+            customMessage: customMessage,
+            repeatMode: .forever,
+            activeWeekdays: Set(1...7),
+            isEnabled: true
+        )
+        return ReminderSchedule(entries: [entry])
     }
     
     /// Prüft ob der Schedule abgelaufen ist
     var isExpired: Bool {
-        let enabledDays = weekdays.filter { $0.isEnabled }
-        if enabledDays.isEmpty { return true }
-        return enabledDays.allSatisfy { $0.isExpired(startDate: startDate) }
+        let enabledEntries = entries.filter { $0.isEnabled }
+        if enabledEntries.isEmpty { return true }
+        return enabledEntries.allSatisfy { $0.isExpired(startDate: startDate) }
     }
     
-    /// Gibt den Eintrag für den aktuellen Wochentag zurück (falls aktiviert und nicht abgelaufen)
-    var todaysReminder: WeekdayReminder? {
+    /// Gibt alle Einträge für den aktuellen Wochentag zurück (falls aktiviert und nicht abgelaufen)
+    var todaysReminders: [TimerEntry] {
         let calendar = Calendar.current
         let appleWeekday = calendar.component(.weekday, from: Date()) // So=1...Sa=7
         let ourWeekday = appleWeekday == 1 ? 7 : appleWeekday - 1    // Mo=1...So=7
-        guard let reminder = weekdays.first(where: { $0.weekday == ourWeekday && $0.isEnabled }) else { return nil }
         
-        if reminder.isExpired(startDate: startDate) { return nil }
-        return reminder
+        return entries.filter { entry in
+            entry.isEnabled && entry.activeWeekdays.contains(ourWeekday) && !entry.isExpired(startDate: startDate)
+        }
     }
     
     /// Anzahl aktiver Tage
     var enabledDaysCount: Int {
-        weekdays.filter(\.isEnabled).count
+        var uniqueDays = Set<Int>()
+        for entry in entries where entry.isEnabled {
+            uniqueDays.formUnion(entry.activeWeekdays)
+        }
+        return uniqueDays.count
+    }
+    
+    /// MIGRATION/COMPATIBILITY: Berechnet virtuelle WeekdayReminder aus den neuen TimerEntry-Einträgen bzw. schreibt Änderungen in diese zurück.
+    var weekdays: [WeekdayReminder] {
+        get {
+            var list: [WeekdayReminder] = []
+            for entry in entries {
+                for day in entry.activeWeekdays {
+                    list.append(WeekdayReminder(
+                        weekday: day,
+                        time: entry.time,
+                        customMessage: entry.customMessage,
+                        isEnabled: entry.isEnabled,
+                        repeatMode: entry.repeatMode
+                    ))
+                }
+            }
+            return list.sorted { $0.weekday < $1.weekday }
+        }
+        set {
+            var tempEntries: [TimerEntry] = []
+            for wd in newValue {
+                if let idx = tempEntries.firstIndex(where: {
+                    $0.time == wd.time &&
+                    $0.customMessage == wd.customMessage &&
+                    $0.repeatMode == wd.repeatMode &&
+                    $0.isEnabled == wd.isEnabled
+                }) {
+                    tempEntries[idx].activeWeekdays.insert(wd.weekday)
+                } else {
+                    let entry = TimerEntry(
+                        time: wd.time,
+                        customMessage: wd.customMessage,
+                        repeatMode: wd.repeatMode,
+                        activeWeekdays: [wd.weekday],
+                        isEnabled: wd.isEnabled
+                    )
+                    tempEntries.append(entry)
+                }
+            }
+            self.entries = tempEntries
+        }
+    }
+
+    
+    /// MIGRATION/COMPATIBILITY: Gibt den heutigen WeekdayReminder zurück, falls vorhanden und aktiv
+    var todaysReminder: WeekdayReminder? {
+        let calendar = Calendar.current
+        let appleWeekday = calendar.component(.weekday, from: Date()) // So=1...Sa=7
+        let ourWeekday = appleWeekday == 1 ? 7 : appleWeekday - 1    // Mo=1...So=7
+        
+        return weekdays.first { wd in
+            wd.weekday == ourWeekday && wd.isEnabled && !wd.isExpired(startDate: startDate)
+        }
+    }
+}
+
+
+// MARK: - HealthKit Metric Types
+enum HealthMetricType: String, Codable, CaseIterable {
+    case steps = "steps"
+    case water = "water"
+    case sleep = "sleep"
+    case mindfulness = "mindfulness"
+    case running = "running"
+    case strengthTraining = "strengthTraining"
+    
+    var localizationKey: String {
+        switch self {
+        case .steps: return "health.metric.steps"
+        case .water: return "health.metric.water"
+        case .sleep: return "health.metric.sleep"
+        case .mindfulness: return "health.metric.mindfulness"
+        case .running: return "health.metric.running"
+        case .strengthTraining: return "health.metric.strengthTraining"
+        }
     }
 }
 
@@ -157,6 +295,24 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             return asset
         }
         return symbolName
+    }
+    
+    var automaticHealthMetric: HealthMetricType? {
+        let nameLower = habitName.lowercased()
+        if nameLower.contains("joggen") || nameLower.contains("laufen") || nameLower.contains("running") {
+            return .running
+        } else if nameLower.contains("krafttraining") || nameLower.contains("fitness") || nameLower.contains("gym") || nameLower.contains("workout") {
+            return .strengthTraining
+        } else if nameLower.contains("trinken") || nameLower.contains("wasser") || nameLower.contains("water") {
+            return .water
+        } else if nameLower.contains("schlafen") || nameLower.contains("sleep") || nameLower.contains("ruhe") {
+            return .sleep
+        } else if nameLower.contains("meditieren") || nameLower.contains("mindfulness") || nameLower.contains("achtsamkeit") {
+            return .mindfulness
+        } else if nameLower.contains("schritte") || nameLower.contains("spazieren") || nameLower.contains("steps") {
+            return .steps
+        }
+        return nil
     }
     
     @Published var currentXP: Int
@@ -185,9 +341,14 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var pfadAktiviertAm: Date? = nil
     @Published var pfadCheckedDates: [Date] = []
     
-    // HealthKit Integration
-    @Published var healthKitType: HealthKitType? = nil
-    @Published var healthKitGoal: Double? = nil
+    // Apple Health Integration (Pro Version)
+    @Published var linkedHealthMetric: HealthMetricType? = nil
+    @Published var healthTarget: Double? = nil
+    
+    // Eigener Tracker (Manuell)
+    @Published var customTrackerName: String? = nil
+    @Published var customTrackerTarget: Double? = nil
+    @Published var customTrackerProgress: Double = 0
     
     /// Hat die Pflanze einen aktiven (nicht abgelaufenen) Erinnerungs-Schedule?
     var hasActiveReminder: Bool {
@@ -386,9 +547,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         plantID: String? = nil,
         reminderTime: Date? = nil,
         customReminderMessage: String? = nil,
-        isNegative: Bool = false,
-        healthKitType: HealthKitType? = nil,
-        healthKitGoal: Double? = nil
+        isNegative: Bool = false
     ) {
         self.id = id
         self.name = name
@@ -410,8 +569,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.customReminderMessage = customReminderMessage
         self.pfadAktiviertAm = nil
         self.pfadCheckedDates = []
-        self.healthKitType = healthKitType
-        self.healthKitGoal = healthKitGoal
+        self.linkedHealthMetric = nil
+        self.healthTarget = nil
         
         // Wenn reminderTime gesetzt → automatisch Schedule erstellen
         if let rt = reminderTime {
@@ -447,7 +606,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case reminderSchedule
         case pfadAktiviertAm, pfadCheckedDates
         case individualSchwierigkeit
-        case healthKitType, healthKitGoal
+        case linkedHealthMetric, healthTarget
+        case customTrackerName, customTrackerTarget, customTrackerProgress
     }
 
     required init(from decoder: Decoder) throws {
@@ -528,8 +688,11 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             reminderSchedule = ReminderSchedule.defaultSchedule(time: legacyTime, customMessage: customReminderMessage)
         }
         individualSchwierigkeit = try container.decodeIfPresent(String.self, forKey: .individualSchwierigkeit)
-        healthKitType = try container.decodeIfPresent(HealthKitType.self, forKey: .healthKitType)
-        healthKitGoal = try container.decodeIfPresent(Double.self, forKey: .healthKitGoal)
+        linkedHealthMetric = try container.decodeIfPresent(HealthMetricType.self, forKey: .linkedHealthMetric)
+        healthTarget = try container.decodeIfPresent(Double.self, forKey: .healthTarget)
+        customTrackerName = try container.decodeIfPresent(String.self, forKey: .customTrackerName)
+        customTrackerTarget = try container.decodeIfPresent(Double.self, forKey: .customTrackerTarget)
+        customTrackerProgress = try container.decodeIfPresent(Double.self, forKey: .customTrackerProgress) ?? 0
     }
 
     func encode(to encoder: Encoder) throws {
@@ -574,8 +737,12 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encodeIfPresent(pfadAktiviertAm, forKey: .pfadAktiviertAm)
         try container.encode(pfadCheckedDates, forKey: .pfadCheckedDates)
         try container.encodeIfPresent(individualSchwierigkeit, forKey: .individualSchwierigkeit)
-        try container.encodeIfPresent(healthKitType, forKey: .healthKitType)
-        try container.encodeIfPresent(healthKitGoal, forKey: .healthKitGoal)
+        try container.encodeIfPresent(linkedHealthMetric, forKey: .linkedHealthMetric)
+        try container.encodeIfPresent(healthTarget, forKey: .healthTarget)
+        
+        try container.encodeIfPresent(customTrackerName, forKey: .customTrackerName)
+        try container.encodeIfPresent(customTrackerTarget, forKey: .customTrackerTarget)
+        try container.encode(customTrackerProgress, forKey: .customTrackerProgress)
     }
 }
 
