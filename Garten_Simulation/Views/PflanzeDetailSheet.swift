@@ -31,6 +31,7 @@ struct PflanzeDetailSheet: View {
     @State private var zeigeCustomTrackerAlert = false
     @State private var customTrackerInputName = ""
     @ObservedObject private var healthManager = HealthManager.shared
+    @FocusState private var isTargetFocused: Bool
     
     @AppStorage("customRoutinesData") private var customRoutinesData: Data = Data()
     
@@ -622,6 +623,7 @@ struct PflanzeDetailSheet: View {
                                                             set: { pflanze.customTrackerTarget = $0; gardenStore.savePlants() }
                                                         ), format: .number)
                                                         .keyboardType(.numberPad)
+                                                        .focused($isTargetFocused)
                                                         .multilineTextAlignment(.trailing)
                                                         .frame(width: 100)
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -1050,7 +1052,14 @@ struct TimerEditSheetView: View {
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    if isLinkingNotes {
+                    if isTargetFocused {
+                        Button {
+                            isTargetFocused = false
+                        } label: {
+                            Image(systemName: "keyboard.chevron.compact.down")
+                                .font(.system(size: 16, weight: .bold))
+                        }
+                    } else if isLinkingNotes {
                         Button {
                             // Bestätigen der Verknüpfung
                             withAnimation {
@@ -1074,16 +1083,6 @@ struct TimerEditSheetView: View {
                             Text(String(localized: "common.done_button"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                         }
-                    }
-                }
-                
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()
-                    Button {
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    } label: {
-                        Image(systemName: "keyboard.chevron.compact.down")
-                            .font(.system(size: 16, weight: .bold))
                     }
                 }
 
