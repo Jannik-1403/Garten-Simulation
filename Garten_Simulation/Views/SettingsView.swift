@@ -14,12 +14,15 @@ struct SettingsView: View {
     @EnvironmentObject var characterStore: CharacterStore
     @EnvironmentObject var tourManager: InteractiveTourManager
     @EnvironmentObject var assessmentStore: AssessmentStore
-    @StateObject private var iapStore = IAPStore()
+    @EnvironmentObject var iapStore: IAPStore
+    @StateObject private var healthManager = HealthManager.shared
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) var scenePhase
     
     @State private var showResetAlert = false
+    @State private var zeigeAccountLoeschenDialog = false
+    @State private var zeigePaywall = false
     @State private var showFinalResetAlert = false
     @State private var showBackupSheet = false
     @State private var showPDFExport = false
@@ -37,6 +40,120 @@ struct SettingsView: View {
 
                         // Sections
                         VStack(spacing: 32) {
+                            // MARK: - Pro Upgrade
+                            if !iapStore.isProUser {
+                                Button {
+                                    zeigePaywall = true
+                                } label: {
+                                    HStack(spacing: 12) {
+                                        Image(systemName: "crown.fill")
+                                            .font(.system(size: 24))
+                                            .foregroundStyle(
+                                                LinearGradient(
+                                                    colors: [Color.goldPrimary, Color.orangePrimary],
+                                                    startPoint: .topLeading,
+                                                    endPoint: .bottomTrailing
+                                                )
+                                            )
+                                        
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            Text(String(localized: "settings.pro.unlock", defaultValue: "Grovy Pro freischalten"))
+                                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                .foregroundStyle(.white)
+                                            Text(String(localized: "settings.pro.subtitle", defaultValue: "Erhalte vollen Zugriff"))
+                                                .font(.system(size: 12, weight: .medium, design: .rounded))
+                                                .foregroundStyle(.white.opacity(0.8))
+                                        }
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .font(.system(size: 14, weight: .bold))
+                                            .foregroundStyle(.white.opacity(0.8))
+                                    }
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 14)
+                                    .background(
+                                        LinearGradient(
+                                            colors: [Color.black.opacity(0.6), Color.black.opacity(0.8)],
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        ),
+                                        in: RoundedRectangle(cornerRadius: 16)
+                                    )
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 16)
+                                            .stroke(LinearGradient(
+                                                colors: [Color.goldPrimary.opacity(0.5), Color.orangePrimary.opacity(0.2)],
+                                                startPoint: .topLeading,
+                                                endPoint: .bottomTrailing
+                                            ), lineWidth: 1)
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                            }
+                            
+                            // MARK: - Integrationen (Pro Feature)
+                            settingsSection(title: String(localized: "settings.section.integrations", defaultValue: "Integrationen")) {
+                                VStack(alignment: .leading, spacing: 0) {
+                                    HStack(spacing: 12) {
+                                        Image(systemName: "heart.text.square.fill")
+                                            .font(.system(size: 20, weight: .medium))
+                                            .foregroundStyle(.white)
+                                            .frame(width: 28, height: 28)
+                                            .background(Color.red, in: RoundedRectangle(cornerRadius: 6))
+                                        
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            Text(String(localized: "settings.health.title", defaultValue: "Apple Health"))
+                                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                                                .foregroundStyle(.primary)
+                                            
+                                            Text(healthManager.isAuthorized ? String(localized: "apple.health.state.connected", defaultValue: "Verbunden") : String(localized: "apple.health.state.disconnected", defaultValue: "Getrennt"))
+                                                .font(.system(size: 12, weight: .medium, design: .rounded))
+                                                .foregroundStyle(healthManager.isAuthorized ? .green : .secondary)
+                                        }
+                                        
+                                        Spacer()
+                                        
+                                        if !iapStore.isProUser {
+                                            Button {
+                                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                                zeigePaywall = true
+                                            } label: {
+                                                Text(String(localized: "settings.pro.badge", defaultValue: "PRO"))
+                                                    .font(.system(size: 10, weight: .black, design: .rounded))
+                                                    .padding(.horizontal, 6)
+                                                    .padding(.vertical, 4)
+                                                    .background(Color.orangePrimary)
+                                                    .foregroundStyle(.white)
+                                                    .clipShape(Capsule())
+                                            }
+                                            .buttonStyle(.plain)
+                                        } else {
+                                            Toggle("", isOn: Binding(
+                                                get: { healthManager.isAuthorized },
+                                                set: { isOn in
+                                                    if isOn {
+                                                        healthManager.requestAuthorization()
+                                                    } else {
+                                                        healthManager.disconnect()
+                                                    }
+                                                }
+                                            ))
+                                            .labelsHidden()
+                                            .tint(.green)
+                                        }
+                                    }
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 12)
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        if !iapStore.isProUser {
+                                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                            zeigePaywall = true
+                                        }
+                                    }
+                                }
+                            }
+                            
                             settingsSection(title: String(localized: "settings.section.profile")) {
                                 VStack(spacing: 0) {
                                     NavigationLink {
@@ -244,6 +361,11 @@ struct SettingsView: View {
                             
                             .padding(.top, 16)
 
+
+
+                            
+
+                            
                             // MARK: - Danger Zone
                             settingsSection(title: String(localized: "settings.section.danger")) {
                                 Button {
@@ -378,6 +500,10 @@ struct SettingsView: View {
                     .presentationDetents([.large])
                     .presentationDragIndicator(.visible)
             }
+            .fullScreenCover(isPresented: $zeigePaywall) {
+                PaywallView()
+                    .environmentObject(iapStore)
+            }
         }
     
     // MARK: - Helpers
@@ -479,6 +605,22 @@ struct SettingsView: View {
                 .padding(.vertical, 10)
                 .background(RoundedRectangle(cornerRadius: 12).fill(Color.indigo))
         }
+    }
+    
+    private func healthDataBubble(icon: String, value: String, title: String, color: Color) -> some View {
+        VStack(spacing: 4) {
+            Image(systemName: icon)
+                .font(.system(size: 18))
+                .foregroundStyle(color)
+            Text(value)
+                .font(.system(size: 14, weight: .bold, design: .rounded))
+            Text(title)
+                .font(.system(size: 10, weight: .medium))
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 8)
+        .background(Color(UIColor.tertiarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12))
     }
 }
 
