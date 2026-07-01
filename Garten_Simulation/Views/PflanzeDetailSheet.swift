@@ -20,7 +20,6 @@ struct PflanzeDetailSheet: View {
     @State private var zeigeTimerEditSheet = false
     @State private var pulsieren = false
     @State private var zeigeTimerAbbrechenDialog = false
-    @State private var zeigeHealthKitConfig = false
     @State private var noteToEditIndex: Int? = nil
     @State private var noteToDeleteIndex: Int? = nil
     @State private var ausgewaehlterEffekt: PflanzenEffekt? = nil
@@ -201,6 +200,10 @@ struct PflanzeDetailSheet: View {
                 // MARK: - ACTIONS (Zone 3)
                 VStack(spacing: 12) {
                     
+                    // Apple Health Integration (Pro Feature)
+                    if FeatureFlags.isProVersionEnabled && HealthManager.shared.isAuthorized {
+                        healthKitConfigSection
+                    }
 
                     // Notizen Header & Liste
                     HStack {
@@ -290,26 +293,6 @@ struct PflanzeDetailSheet: View {
                         ))
                     }
                     .padding(.horizontal, 24)
-                    
-                    if FeatureFlags.isProVersionEnabled {
-                        Button {
-                            zeigeHealthKitConfig = true
-                        } label: {
-                            ZStack {
-                                Text(String(localized: "health.config.title", defaultValue: "Apple Health")).textCase(.uppercase)
-                                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                            }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 24)
-                            .clipped()
-                        }
-                        .buttonStyle(DuolingoButtonStyle(
-                            size: .medium, fillWidth: true,
-                            backgroundColor: .rotPrimary, shadowColor: .rotPrimary.darker(), foregroundColor: .white
-                        ))
-                        .padding(.horizontal, 24)
-                        .padding(.top, 4)
-                    }
 
                     // Focus Session Button
                     Item3DButton(
@@ -444,10 +427,7 @@ struct PflanzeDetailSheet: View {
                 .presentationCornerRadius(32)
                 .presentationBackground(Color(UIColor.systemBackground))
         }
-        // MARK: - Timer Edit
-        .sheet(isPresented: $zeigeHealthKitConfig) {
-            RoutineHealthKitConfigView(selectedType: $pflanze.healthKitType, goal: $pflanze.healthKitGoal)
-        }
+        // MARK: - Timer Edit Sheet
         .fullScreenCover(isPresented: $zeigeTimerEditSheet) {
             NavigationStack {
                 TimerEditSheetView(pflanze: pflanze)
@@ -477,6 +457,62 @@ struct PflanzeDetailSheet: View {
         }
     }
 }
+    @ViewBuilder
+    private var healthKitConfigSection: some View {
+        VStack(spacing: 8) {
+            HStack {
+                Text("Apple Health Kopplung")
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                Spacer()
+                Image(systemName: "heart.text.square.fill")
+                    .foregroundStyle(.red)
+                    .font(.system(size: 20))
+            }
+            .padding(.horizontal, 24)
+            
+            VStack(spacing: 12) {
+                HStack {
+                    Text("Tracking Metrik")
+                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                    Spacer()
+                    Picker("", selection: Binding<HealthMetricType?>(
+                        get: { pflanze.linkedHealthMetric },
+                        set: { newValue in
+                            pflanze.linkedHealthMetric = newValue
+                            gardenStore.saveData()
+                        }
+                    )) {
+                        Text("Keine").tag(nil as HealthMetricType?)
+                        ForEach(HealthMetricType.allCases, id: \.self) { metric in
+                            Text(String(localized: String.LocalizationValue(metric.localizationKey))).tag(metric as HealthMetricType?)
+                        }
+                    }
+                    .tint(.red)
+                }
+                
+                if pflanze.linkedHealthMetric != nil {
+                    Divider()
+                    HStack {
+                        Text("Tagesziel")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                        Spacer()
+                        TextField("Ziel (z.B. 10000)", value: Binding(
+                            get: { pflanze.healthTarget },
+                            set: { pflanze.healthTarget = $0; gardenStore.saveData() }
+                        ), format: .number)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.trailing)
+                        .frame(width: 100)
+                    }
+                }
+            }
+            .padding()
+            .background(Color.red.opacity(0.1), in: RoundedRectangle(cornerRadius: 16))
+            .padding(.horizontal, 24)
+        }
+        .padding(.bottom, 8)
+    }
+
     private func sicherstellenDassPfadExistiert() {
         let strangExistiert = pfadStore.straenge.contains(where: {
             $0.pflanzenID == pflanze.id
