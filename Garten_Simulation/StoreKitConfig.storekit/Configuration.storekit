@@ -95,6 +95,27 @@
       "promotionalImageID": "11A22B33",
       "referenceName": "Premium Sonnenbrille",
       "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "9.99",
+      "familyShareable": true,
+      "internalID": "PRO_LIFETIME_01",
+      "localizations": [
+        {
+          "description": "Unlock the full potential of your garden.",
+          "displayName": "Grovy Pro Lifetime",
+          "locale": "en_US"
+        },
+        {
+          "description": "Schalte das volle Potenzial deines Gartens frei.",
+          "displayName": "Grovy Pro Lifetime",
+          "locale": "de"
+        }
+      ],
+      "productID": "com.gartenapp.pro.lifetime",
+      "promotionalImageID": "11A22B44",
+      "referenceName": "Grovy Pro Lifetime",
+      "type": "NonConsumable"
     }
   ],
   "settings": {

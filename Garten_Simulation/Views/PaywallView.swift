@@ -36,9 +36,8 @@ struct PaywallView: View {
                     Image("ProFeature")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 120, height: 120)
+                        .frame(width: 200, height: 220)
                         .padding(.top, 40)
-
                     
                     // Title
                     VStack(spacing: 8) {
@@ -69,7 +68,6 @@ struct PaywallView: View {
                             color: .goldPrimary
                         )
                     }
-
                     .padding(.horizontal, 24)
                     .padding(.top, 16)
                     
@@ -123,20 +121,11 @@ struct PaywallView: View {
                                 .foregroundStyle(.white.opacity(0.5))
                             
                             #if DEBUG
-                            Button {
-                                iapStore.isProUser = true
-                                UserDefaults.standard.set(true, forKey: "debug_isProUser")
-                                dismiss()
-                            } label: {
-                                Text(String(localized: "paywall.button.debug", defaultValue: "DEBUG: Pro Freischalten"))
-                                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                                    .padding(.horizontal, 24)
-                                    .padding(.vertical, 12)
-                                    .background(Color.blue.opacity(0.3))
-                                    .foregroundStyle(.blue)
-                                    .clipShape(Capsule())
-                            }
-                            .padding(.top, 16)
+                            debugUnlockButton
+                            #else
+                            #if targetEnvironment(simulator)
+                            debugUnlockButton
+                            #endif
                             #endif
                         }
                     }
@@ -158,10 +147,9 @@ struct PaywallView: View {
                 Task { await iapStore.loadProducts() }
             }
         }
-
-        }
     }
-    
+    }
+
     private func featureRow(icon: String, title: String, description: String, color: Color) -> some View {
         HStack(alignment: .top, spacing: 16) {
             Image(systemName: icon)
@@ -180,5 +168,23 @@ struct PaywallView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
+    }
+    
+    @ViewBuilder
+    private var debugUnlockButton: some View {
+        Button {
+            iapStore.isProUser = true
+            UserDefaults.standard.set(true, forKey: "debug_isProUser")
+            dismiss()
+        } label: {
+            Text(String(localized: "paywall.button.debug", defaultValue: "DEBUG: Pro Freischalten"))
+                .font(.system(size: 14, weight: .bold, design: .rounded))
+                .padding(.horizontal, 24)
+                .padding(.vertical, 12)
+                .background(Color.blue.opacity(0.3))
+                .foregroundStyle(.blue)
+                .clipShape(Capsule())
+        }
+        .padding(.top, 16)
     }
 }
