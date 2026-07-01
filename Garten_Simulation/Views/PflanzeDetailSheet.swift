@@ -388,7 +388,20 @@ struct PflanzeDetailSheet: View {
         }
         .navigationTitle(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
         .navigationBarTitleDisplayMode(.inline)
-        .standardNavigationX()
+        .standardNavigationX(show: !isTargetFocused)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                if isTargetFocused {
+                    Button {
+                        isTargetFocused = false
+                    } label: {
+                        Image(systemName: "keyboard.chevron.compact.down")
+                            .font(.system(size: 17, weight: .black))
+                            .foregroundStyle(.primary)
+                    }
+                }
+            }
+        }
         .background(Color(UIColor.secondarySystemBackground))
         .onAppear {
             withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
@@ -1052,14 +1065,7 @@ struct TimerEditSheetView: View {
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    if isTargetFocused {
-                        Button {
-                            isTargetFocused = false
-                        } label: {
-                            Image(systemName: "keyboard.chevron.compact.down")
-                                .font(.system(size: 16, weight: .bold))
-                        }
-                    } else if isLinkingNotes {
+                    if isLinkingNotes {
                         Button {
                             // Bestätigen der Verknüpfung
                             withAnimation {
