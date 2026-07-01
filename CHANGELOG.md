@@ -1,8 +1,12 @@
 ## [2026-07-01] - Pro-Feature: Fokus-Sound-Maschine (Flow-State-Audio)
 - **Neues Feature: Fokus-Sound-Maschine**: Ermöglicht das Abspielen von beruhigenden Hintergrundgeräuschen direkt während einer Fokus-Session oder einer Routine-Session.
-- **Swipebare Sound-Auswahl**: Ein neues Steuerelement `FocusSoundControlView` wurde integriert, bei dem Nutzer per Wischen oder über Pfeiltasten zwischen den Sounds wechseln können.
+- **Schlichtes UI-Refactoring**: Das Steuerelement `FocusSoundControlView` wurde auf ein minimalistisches Design umgestellt. Keine Icons im Header, sondern nur der Soundname flankiert von einfachen Chevron-Pfeilen zur Navigation.
+- **Großer 3D-Steuerungsbutton**: Der Play/Stop-Knopf wurde durch einen großen `Item3DButton` ersetzt. Bei spielbaren Sounds ist er weiß/hellgrau; bei Premium-Sounds (ohne Pro) ist er golden und zeigt ein Schloss-Symbol, um die Paywall zu öffnen.
+- **Hochwertige Sound-Verbesserung**: Das Rauschen klingt nun weicher und angenehmer:
+  - "Weißes Rauschen" verwendet jetzt den **Paul-Kellet-Pink-Noise-Filter**, der wie ein natürlicher, sanfter Wasserfall klingt.
+  - "Braunes Rauschen" verwendet einen **2-Pol-Tiefpassfilter** für ein warmes, tiefes Meeresrauschen/Gewitter-Grummeln.
+  - Ein Soft-Clipping-Limiter verhindert jegliche digitale Verzerrung im Audiokanal.
 - **6 Fokus-Sounds**: Keine Geräusche, Weißes Rauschen, Braunes Rauschen, Waldregen, Kaffeehaus-Atmosphäre und Zen-Flöte stehen zur Auswahl.
-- **Rausch-Synthese in Swift**: Weißes und braunes Rauschen werden über `AVAudioEngine` direkt in Swift synthetisiert. Dadurch sind sie komplett offline, verbrauchen 0 KB Speicherplatz und erfordern keine Lizenzgebühren.
 - **Pro-Feature Schutz**: Premium-Naturgeräusche sind exklusiv für Pro-Nutzer freigeschaltet (gesichert über `IAPStore` und `FeatureFlags.isProVersionEnabled`). Versucht ein Nicht-Pro-User diese abzuspielen, öffnet sich die `PaywallView`.
 - **Lebenszyklus-Steuerung**: Sounds stoppen automatisch beim erfolgreichen Beenden, Abbrechen (durch die Matheaufgabe oder den Strict Mode) oder beim Schließen des Ansicht-Sheets.
 - **Vollständige Lokalisierung**: Alle Töne und UI-Texte wurden in alle 11 Projektsprachen (DE, NL, EN, FR, IT, JA, KO, PL, PT, ES, TR) in `Localizable.xcstrings` übersetzt.
