@@ -299,7 +299,7 @@ struct WeeklyReportDashboardView: View {
             }
         }
         .padding(16)
-        .background(Color(UIColor.systemBackground))
+        .background(Color(UIColor.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .background(
             RoundedRectangle(cornerRadius: 20, style: .continuous)
@@ -399,7 +399,7 @@ struct WeeklyReportDashboardView: View {
             }
         }
         .padding(14)
-        .background(Color(UIColor.systemBackground))
+        .background(Color(UIColor.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .background(
             RoundedRectangle(cornerRadius: 20, style: .continuous)
@@ -419,7 +419,7 @@ struct WeeklyReportDashboardView: View {
                 .frame(height: 180)
         }
         .padding(20)
-        .background(Color(UIColor.systemBackground))
+        .background(Color(UIColor.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .background(
             RoundedRectangle(cornerRadius: 20, style: .continuous)

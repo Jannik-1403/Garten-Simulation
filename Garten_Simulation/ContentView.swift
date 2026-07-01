@@ -7,8 +7,12 @@ struct ContentView: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gartenPfadStore: GartenPfadStore
     @EnvironmentObject var interactiveTourManager: InteractiveTourManager
+    @EnvironmentObject var iapStore: IAPStore
+    @EnvironmentObject var assessmentStore: AssessmentStore
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var realShopStore: ShopStore
+    
+    @State private var showWeeklyReportPopup = false
     
     @StateObject private var mockGardenStore = TourSimulationStore.createMockGardenStore()
     @StateObject private var mockStreakStore = TourSimulationStore.createMockStreakStore()
@@ -70,6 +74,34 @@ struct ContentView: View {
                     .zIndex(99998)
             }
         }
+        .sheet(isPresented: $showWeeklyReportPopup) {
+            NavigationStack {
+                ScrollView {
+                    WeeklyReportDashboardView()
+                        .padding(.top, 8)
+                }
+                .background(Color.appHintergrund.ignoresSafeArea())
+                .navigationTitle(String(localized: "weekly_report.navigation.title", defaultValue: "Wochenbericht"))
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button { showWeeklyReportPopup = false } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.system(size: 24))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
+            }
+            .environmentObject(gardenStore)
+            .environmentObject(settings)
+            .environmentObject(streakStore)
+            .environmentObject(iapStore)
+            .environmentObject(assessmentStore)
+        }
+        .onAppear {
+            checkAndShowSundayWeeklyReport()
+        }
         .fullScreenCover(isPresented: $interactiveTourManager.showTimerSheet) {
             if let pflanze = gardenStore.pflanzen.first {
                 FocusSessionView(pflanze: pflanze)
@@ -104,6 +136,33 @@ struct ContentView: View {
                 .onDisappear {
                     gardenStore.pendingImportURL = nil
                 }
+        }
+    }
+
+    // MARK: - Sunday Weekly Report Logic
+    
+    private func checkAndShowSundayWeeklyReport() {
+        let calendar = Calendar.current
+        let today = Date()
+        
+        // Prüfe ob heute Sonntag ist (weekday 1 = Sonntag)
+        guard calendar.component(.weekday, from: today) == 1 else { return }
+        
+        // Eindeutiger Key pro Kalender-Woche
+        let weekOfYear = calendar.component(.weekOfYear, from: today)
+        let year = calendar.component(.yearForWeekOfYear, from: today)
+        let key = "weeklyReportShown_\(year)_\(weekOfYear)"
+        
+        // Nur einmal pro Woche zeigen
+        guard !UserDefaults.standard.bool(forKey: key) else { return }
+        
+        // Erst nach Onboarding zeigen
+        guard settings.onboardingAbgeschlossen else { return }
+        
+        // Kurze Verzögerung damit andere Overlays zuerst erscheinen
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            UserDefaults.standard.set(true, forKey: key)
+            showWeeklyReportPopup = true
         }
     }
 }
