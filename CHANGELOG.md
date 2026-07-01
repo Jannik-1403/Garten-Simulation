@@ -1,4 +1,16 @@
+## [2026-07-01] - Audio-Overhaul: Hochwertige Stereo-Synthese & Button-Fix
+
+- **Regen**: Vollständig neue Synthese – mehrschichtiges Stereo-Pink-Noise mit langsamer Windmodulation (LFO) und einer simulierten Einzeltropfen-Schicht für natürliches, lebendiges Regengeräusch.
+- **Kaffeehaus**: 5 überlagerte Bandpass-Stimmschichten (280 Hz–1,8 kHz) mit natürlicher Sprachkadenz-Modulation statt bloßem Rauschen – klingt wie echtes Hintergrundgemurmel.
+- **Zen-Flöte**: Additive Synthese auf pentatonischer Tonleiter (C4–C5) mit 4 Obertönen, sanften sin²-Hüllkurven und Atemgeräusch-Schicht für flötenähnlichen Charakter.
+- **Weißes/Braunes Rauschen**: Jetzt echter Stereo-Ausgang statt Mono.
+- **Soft-Clipping**: Eretzt den harten Limiter durch sanftes `tanh`-Clipping gegen digitale Verzerrung.
+- **EQ + Reverb pro Sound**: Jeder Klang erhält eigene Equalizer-Einstellungen (Hochpass, Tiefpass, Parametric) und einen passenden Raumhall (cathedral, largeChamber, mediumHall etc.).
+- **Button-Tap-Fix**: Chevron-Buttons in FocusSoundControlView haben jetzt `.buttonStyle(.plain)` + `frame(44×44)` + `contentShape(Rectangle())` für zuverlässige Tap-Erkennung ohne Fehlklicks.
+- **Puffer-Erzeugung im Hintergrund**: Kein UI-Einfrieren mehr beim Starten eines Sounds.
+
 ## [2026-07-01] - Lokalisierung & Pro-Feature: Fokus-Timer & Sound-Maschine
+
 - **Vollständige Lokalisierung**: Alle verbleibenden Harttexte im Fokus-Timer (wie Überschriften, Vorbereitungs-Phasen, Buttons und Prioritäts-Labels) wurden vollständig in das native Xcode String Catalog System (`Localizable.xcstrings`) überführt.
 - **Mehrsprachige Vorlagen (Templates)**: Sämtliche 20 Vorschläge und Ziele (z.B. "10 Min Dehnen", "Tiefes Atmen", "Ausgaben tracken" etc.) wurden für alle 11 Projektsprachen (DE, NL, EN, FR, IT, JA, KO, PL, PT, ES, TR) übersetzt und im String Catalog eingetragen.
 - **SwiftUI Code Refactoring**: Veraltete `NSLocalizedString(...)` Aufrufe wurden durch die native SwiftUI-Integration ersetzt. Benutzereingaben werden jetzt direkt unübersetzt dargestellt, während vordefinierte Vorlagen und statische UI-Texte sauber über `String(localized:defaultValue:)` geladen werden.
