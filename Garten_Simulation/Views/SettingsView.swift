@@ -101,13 +101,8 @@ struct SettingsView: View {
                                         } else if !healthManager.isAuthorized {
                                             healthManager.requestAuthorization()
                                         } else {
-                                            // Versuche direkt in die iOS Einstellungen -> Datenschutz zu springen
-                                            if let url = URL(string: "App-Prefs:root=Privacy&path=HEALTH") {
-                                                if UIApplication.shared.canOpenURL(url) {
-                                                    UIApplication.shared.open(url)
-                                                } else if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-                                                    UIApplication.shared.open(settingsUrl)
-                                                }
+                                            if let url = URL(string: "x-apple-health://") {
+                                                UIApplication.shared.open(url)
                                             }
                                         }
                                     } label: {
@@ -118,9 +113,18 @@ struct SettingsView: View {
                                                 .frame(width: 28, height: 28)
                                                 .background(Color.red, in: RoundedRectangle(cornerRadius: 6))
                                             
-                                            Text(String(localized: "settings.health.title", defaultValue: "Apple Health"))
-                                                .font(.system(size: 16, weight: .medium, design: .rounded))
-                                                .foregroundStyle(.primary)
+                                            VStack(alignment: .leading, spacing: 4) {
+                                                Text(String(localized: "settings.health.title", defaultValue: "Apple Health"))
+                                                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                                                    .foregroundStyle(.primary)
+                                                
+                                                if healthManager.isAuthorized {
+                                                    Text(String(localized: "settings.health.instruction", defaultValue: "Profil > Apps > Grovy, um Berechtigungen zu ändern."))
+                                                        .font(.system(size: 10, weight: .regular, design: .rounded))
+                                                        .foregroundStyle(.secondary)
+                                                        .lineLimit(2)
+                                                }
+                                            }
                                             
                                             Spacer()
                                             
@@ -133,10 +137,6 @@ struct SettingsView: View {
                                                     .foregroundStyle(.white)
                                                     .clipShape(Capsule())
                                             } else {
-                                                Text(healthManager.isAuthorized ? String(localized: "settings.on", defaultValue: "An") : String(localized: "settings.off", defaultValue: "Aus"))
-                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                    .foregroundStyle(healthManager.isAuthorized ? Color.gruenPrimary : Color.red)
-                                                    
                                                 Image(systemName: "chevron.right")
                                                     .font(.system(size: 14, weight: .bold))
                                                     .foregroundStyle(.tertiary)
