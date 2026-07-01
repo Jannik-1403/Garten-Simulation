@@ -15,6 +15,7 @@ class AppDependencyContainer: ObservableObject {
     let characterStore: CharacterStore
     let interactiveTourManager: InteractiveTourManager
     let assessmentStore: AssessmentStore
+    let iapStore: IAPStore
     
     init() {
         // Perform cleanup on fresh install or reinstall to wipe out any cached App Group defaults
@@ -44,6 +45,7 @@ class AppDependencyContainer: ObservableObject {
         self.characterStore = CharacterStore()
         self.interactiveTourManager = InteractiveTourManager()
         self.assessmentStore = AssessmentStore()
+        self.iapStore = IAPStore()
         
         garden.titelStore = titel
     }
@@ -105,6 +107,7 @@ struct AppRootView: View {
                 .environmentObject(container.characterStore)
                 .environmentObject(container.interactiveTourManager)
                 .environmentObject(container.assessmentStore)
+                .environmentObject(container.iapStore)
                 .environment(\.locale, Locale(identifier: settingsStore.appLanguage))
                 .preferredColorScheme(.light)
                 .onAppear {

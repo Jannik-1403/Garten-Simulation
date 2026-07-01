@@ -218,7 +218,6 @@ class GardenStore: ObservableObject {
             taeglicherStreakCheck()
             checkUngegossenePflanzen()
             updateWidgetData()
-            checkHealthKitGoals()
         }
     }
 
@@ -237,35 +236,6 @@ class GardenStore: ObservableObject {
         taeglicherStreakCheck()
         checkUngegossenePflanzen()
         updateWidgetData()
-        checkHealthKitGoals()
-    }
-    
-    // MARK: - HealthKit Integration
-    func checkHealthKitGoals() {
-        guard FeatureFlags.isProVersionEnabled else { return }
-        
-        let healthKitPlants = pflanzen.filter { $0.healthKitType != nil && $0.healthKitGoal != nil && !$0.istBewässert }
-        
-        for plant in healthKitPlants {
-            guard let type = plant.healthKitType, let goal = plant.healthKitGoal else { continue }
-            
-            HealthKitManager.shared.fetchTodayValue(for: type) { [weak self] value in
-                if value >= goal {
-                    DispatchQueue.main.async {
-                        guard let self = self, !plant.istBewässert else { return }
-                        plant.istBewässert = true
-                        plant.letzteBewaesserung = Date()
-                        plant.streak += 1
-                        plant.currentXP += plant.xpPerCompletion
-                        self.xpHinzufuegen(amount: plant.xpPerCompletion)
-                        self.coins += GameConstants.coinsProGiessen
-                        self.gesamtGegossen += 1
-                        self.savePlants()
-                        self.saveStats()
-                    }
-                }
-            }
-        }
     }
 
     /// Öffnet das Unkraut-Sheet im Garten (z. B. aus Einstellungen → Debug).

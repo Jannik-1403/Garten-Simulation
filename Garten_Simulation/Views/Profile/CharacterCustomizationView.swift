@@ -26,7 +26,7 @@ struct CharacterCustomizationView: View {
     @EnvironmentObject var characterStore: CharacterStore
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
-    @StateObject private var iapStore = IAPStore()
+    @EnvironmentObject var iapStore: IAPStore
     
     @State private var selectedCategory: CharacterCategory = .body
     @State private var showPurchaseDialog = false

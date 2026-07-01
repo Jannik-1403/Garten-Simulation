@@ -5,7 +5,7 @@ struct CoinsDetailView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var characterStore: CharacterStore
-    @StateObject private var iapStore = IAPStore()
+    @EnvironmentObject var iapStore: IAPStore
     @Environment(\.dismiss) var dismiss
     
     var body: some View {

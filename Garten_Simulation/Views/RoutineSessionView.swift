@@ -62,6 +62,7 @@ struct RoutineSessionView: View {
         .onDisappear {
             isTimerRunning = false
             UIApplication.shared.isIdleTimerDisabled = false
+            FocusAudioManager.shared.stop()
         }
         .onChange(of: state) {
             if state == .running {
@@ -225,6 +226,12 @@ struct RoutineSessionView: View {
             
             Spacer()
             
+            if FeatureFlags.isProVersionEnabled {
+                FocusSoundControlView()
+                    .padding(.horizontal, 32)
+                    .padding(.bottom, 12)
+            }
+            
             Item3DButton(
                 farbe: routine.color,
                 sekundaerFarbe: routine.color.darker(),
@@ -349,6 +356,7 @@ struct RoutineSessionView: View {
     
     private func finishRoutine() {
         isTimerRunning = false
+        FocusAudioManager.shared.stop()
         
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)

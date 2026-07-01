@@ -119,6 +119,7 @@ struct FocusSessionView: View {
             isTimerRunning = false
             UIApplication.shared.isIdleTimerDisabled = false
             stopLiveActivity()
+            FocusAudioManager.shared.stop()
         }
         .onChange(of: state) {
             if state == .timer {
@@ -149,6 +150,7 @@ struct FocusSessionView: View {
                         isTimerRunning = false
                         UIApplication.shared.isIdleTimerDisabled = false
                         stopLiveActivity()
+                        FocusAudioManager.shared.stop()
                         showFailAlert = true
                         
                         let completedSeconds = selectedMinutes * 60 - remainingSeconds
@@ -352,6 +354,12 @@ struct FocusSessionView: View {
                 .padding(.top, 20)
             }
             
+            if FeatureFlags.isProVersionEnabled {
+                FocusSoundControlView()
+                    .padding(.horizontal, 32)
+                    .padding(.bottom, 12)
+            }
+            
             Spacer(minLength: 40)
             
             Button {
@@ -471,6 +479,7 @@ struct FocusSessionView: View {
     private func finishSession() {
         state = .success
         stopLiveActivity()
+        FocusAudioManager.shared.stop()
         
         let xpGained = Int(Double(pflanze.xpPerCompletion) * gardenStore.xpMultiplikator(for: pflanze))
         
