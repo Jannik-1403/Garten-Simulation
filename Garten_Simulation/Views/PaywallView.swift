@@ -4,8 +4,7 @@ import StoreKit
 struct PaywallView: View {
     @EnvironmentObject var iapStore: IAPStore
     @Environment(\.dismiss) var dismiss
-    
-    @State private var isAnimating = false
+
     
     var proProduct: Product? {
         iapStore.products.first(where: { $0.id == "com.gartenapp.pro.lifetime" })
@@ -34,18 +33,12 @@ struct PaywallView: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 32) {
                     // Header Icon
-                    Image(systemName: "crown.fill")
-                        .font(.system(size: 64))
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [Color.goldPrimary, Color.orangePrimary],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
+                    Image("ProFeature")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 120, height: 120)
                         .padding(.top, 40)
-                        .scaleEffect(isAnimating ? 1.05 : 0.95)
-                        .animation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true), value: isAnimating)
+
                     
                     // Title
                     VStack(spacing: 8) {
@@ -161,11 +154,11 @@ struct PaywallView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .onAppear {
-            isAnimating = true
             if !iapStore.hasLoaded {
                 Task { await iapStore.loadProducts() }
             }
         }
+
         }
     }
     
