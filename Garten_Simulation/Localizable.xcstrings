@@ -204611,6 +204611,645 @@
         }
       }
     },
+    "weekly_report.tip.1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipp: Plane kleine, feste Fokus-Blöcke (z.B. 25 Minuten) ein, anstatt zu versuchen, stundenlang durchzuarbeiten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: Schedule small, fixed focus blocks (e.g. 25 minutes) instead of trying to work for hours."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consejo: Planifica bloques de enfoque pequeños y fijos (p.ej. 25 minutos) en lugar de intentar trabajar durante horas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conseil : Planifie de petits blocs de concentration fixes (p.ex. 25 minutes) plutôt que d'essayer de travailler pendant des heures."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consiglio: Pianifica piccoli blocchi di concentrazione fissi (ad es. 25 minuti) invece di cercare di lavorare per ore."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ヒント：何時間も作業しようとするのではなく、小さな固定の集中ブロック（例：25分）を計画しましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "팁: 몇 시간 동안 작업하려 하지 말고 작은 고정 집중 블록(예: 25분)을 계획하세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: Plan kleine, vaste focusblokken (bijv. 25 minuten) in plaats van te proberen urenlang te werken."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wskazówka: Zaplanuj małe, stałe bloki skupienia (np. 25 minut) zamiast próbować pracować przez wiele godzin."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dica: Planeje blocos de foco pequenos e fixos (ex: 25 minutos) em vez de tentar trabalhar por horas."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İpucu: Saatler boyunca çalışmaya çalışmak yerine küçük, sabit odak blokları (ör. 25 dakika) planla."
+          }
+        }
+      }
+    },
+    "weekly_report.tip.2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipp: Versuche, das Handy während deiner Sessions außer Sichtweite zu legen – das reduziert Ablenkungen enorm."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: Try keeping your phone out of sight during sessions – it massively reduces distractions."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consejo: Intenta mantener el teléfono fuera de tu vista durante las sesiones, eso reduce enormemente las distracciones."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conseil : Essaie de garder ton téléphone hors de ta vue pendant tes sessions – cela réduit énormément les distractions."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consiglio: Prova a tenere il telefono fuori dalla vista durante le sessioni – riduce enormemente le distrazioni."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ヒント：セッション中はスマホを視界の外に置くようにしましょう。これで気が散ることが大幅に減ります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "팁: 세션 동안 스마트폰을 보이지 않는 곳에 두어 집중력 분산을 크게 줄이세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: Probeer je telefoon tijdens sessies buiten het zicht te houden – dat vermindert afleidingen enorm."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wskazówka: Staraj się trzymać telefon poza zasięgiem wzroku podczas sesji – to znacznie zmniejsza rozproszenia."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dica: Tente manter o celular fora do seu campo de visão durante as sessões – isso reduz muito as distrações."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İpucu: Seanslar sırasında telefonunu görüş alanının dışında tutmayı dene – bu dikkat dağınıklığını büyük ölçüde azaltır."
+          }
+        }
+      }
+    },
+    "weekly_report.tip.3": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipp: Erledige deine wichtigsten Gewohnheiten direkt morgens. So startest du bereits mit einem kleinen Sieg in den Tag!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: Complete your most important habits first thing in the morning. That way you start the day with a small win!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consejo: Completa tus hábitos más importantes a primera hora de la mañana. ¡Así empezarás el día con una pequeña victoria!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conseil : Effectue tes habitudes les plus importantes dès le matin. Tu commenceras ainsi la journée avec une petite victoire !"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consiglio: Completa le tue abitudini più importanti di mattina. In questo modo inizi la giornata con una piccola vittoria!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ヒント：一番大切な習慣を朝一番に済ませましょう。小さな勝利で一日をスタートできます！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "팁: 가장 중요한 습관을 아침 가장 먼저 완료하세요. 작은 성공으로 하루를 시작할 수 있습니다!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: Voltooi je belangrijkste gewoonten 's ochtends vroeg. Zo begin je de dag al met een kleine overwinning!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wskazówka: Wykonaj swoje najważniejsze nawyki od razu rano. W ten sposób zaczniesz dzień z małym sukcesem!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dica: Conclua seus hábitos mais importantes logo de manhã. Assim você começa o dia com uma pequena vitória!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İpucu: En önemli alışkanlıklarını sabah ilk iş olarak tamamla. Böylece güne küçük bir zaferle başlarsın!"
+          }
+        }
+      }
+    },
+    "weekly_report.tip.4": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipp: Weniger ist manchmal mehr. Konzentriere dich nächste Woche auf 2-3 Kern-Gewohnheiten, um sie wirklich zu festigen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: Less is sometimes more. Focus on 2-3 core habits next week to really cement them."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consejo: A veces menos es más. Concéntrate en 2-3 hábitos clave la próxima semana para consolidarlos de verdad."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conseil : Parfois, moins c'est plus. Concentre-toi sur 2-3 habitudes clés la semaine prochaine pour vraiment les ancrer."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consiglio: A volte meno è meglio. Concentrati su 2-3 abitudini principali la settimana prossima per consolidarle davvero."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ヒント：少ない方がいいこともあります。来週は2〜3つのコア習慣に集中して、しっかり定着させましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "팁: 때로는 적을수록 더 좋습니다. 다음 주에는 2-3가지 핵심 습관에 집중해 확실히 굳혀보세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tip: Soms is minder meer. Richt je volgende week op 2-3 kerngewoonten om ze echt te verankeren."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wskazówka: Mniej znaczy czasem więcej. Skoncentruj się w przyszłym tygodniu na 2-3 podstawowych nawykach, by naprawdę je utrwalić."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dica: Às vezes, menos é mais. Foque em 2-3 hábitos essenciais na próxima semana para realmente consolidá-los."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İpucu: Bazen az daha fazladır. Gelecek hafta 2-3 temel alışkanlığa odaklanarak onları gerçekten pekiştir."
+          }
+        }
+      }
+    },
+    "weekly_report.feedback.desc.positive_base": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Woche lief fantastisch! Du hast deine Fokuszeit im Vergleich zur Vorwoche um %@ gesteigert."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week was fantastic! You increased your focus time compared to last week by %@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Esta semana fue fantástica! Aumentaste tu tiempo de enfoque en comparación con la semana pasada en un %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette semaine a été fantastique ! Tu as augmenté ton temps de concentration par rapport à la semaine dernière de %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa settimana è stata fantastica! Hai aumentato il tuo tempo di concentrazione rispetto alla settimana scorsa del %@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今週は素晴らしかったです！先週より集中時間を%@増やしました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이번 주는 정말 훌륭했습니다! 지난 주보다 집중 시간을 %@ 늘렸습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deze week was geweldig! Je hebt je focustijd ten opzichte van vorige week met %@ vergroot."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ten tydzień był fantastyczny! Zwiększyłeś czas skupienia w porównaniu do poprzedniego tygodnia o %@."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta semana foi fantástica! Você aumentou seu tempo de foco em comparação com a semana passada em %@."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu hafta harikaydı! Geçen haftaya kıyasla odaklanma sürenizi %@ artırdın."
+          }
+        }
+      }
+    },
+    "weekly_report.feedback.desc.negative_base": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Woche war etwas ruhiger und deine Fokuszeit ist um %@ gesunken. Aber mach dir keinen Kopf, Erholung ist genauso wichtig. Nächste Woche greifen wir wieder voll an!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week was a bit quieter and your focus time dropped by %@. But don't worry, recovery is just as important. Next week we'll go full throttle again!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta semana fue un poco más tranquila y tu tiempo de enfoque disminuyó un %@. Pero no te preocupes, la recuperación es igual de importante. ¡La semana que viene volvemos a por todas!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette semaine était un peu plus calme et ton temps de concentration a baissé de %@. Mais ne t'inquiète pas, la récupération est tout aussi importante. La semaine prochaine, on repart à fond !"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa settimana è stata un po' più tranquilla e il tuo tempo di concentrazione è sceso del %@. Ma non preoccuparti, il recupero è altrettanto importante. La settimana prossima ci riprendiamo!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今週は少し落ち着いた週で、集中時間が%@減少しました。でも心配しないでください、回復も同様に重要です。来週はまた全力で頑張りましょう！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이번 주는 조금 조용했고 집중 시간이 %@ 줄었습니다. 하지만 걱정 마세요, 회복도 똑같이 중요합니다. 다음 주에는 다시 전력을 다해봅시다!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deze week was wat rustiger en je focustijd daalde met %@. Maar maak je geen zorgen, herstel is even belangrijk. Volgende week gaan we er weer vol tegenaan!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ten tydzień był nieco spokojniejszy i twój czas skupienia spadł o %@. Ale nie martw się, odpoczynek jest równie ważny. W przyszłym tygodniu wracamy do pełnej mocy!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta semana foi um pouco mais tranquila e seu tempo de foco caiu %@. Mas não se preocupe, a recuperação é igualmente importante. Na próxima semana voltamos com tudo!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu hafta biraz daha sakin geçti ve odaklanma süren %@ düştü. Ama endişelenme, toparlanma da aynı derecede önemli. Gelecek hafta yeniden tam gaz gideceğiz!"
+          }
+        }
+      }
+    },
+    "weekly_report.feedback.desc.neutral_base": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du warst diese Woche sehr konstant und hast deine Zeiten solide gehalten. Konstanz ist der Schlüssel zum langfristigen Erfolg!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You were very consistent this week and solidly maintained your times. Consistency is the key to long-term success!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuiste muy constante esta semana y mantuviste tus tiempos de forma sólida. ¡La constancia es la clave del éxito a largo plazo!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu as été très régulier cette semaine et tu as bien maintenu tes horaires. La régularité est la clé du succès à long terme !"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sei stato molto costante questa settimana e hai mantenuto solidamente i tuoi orari. La costanza è la chiave del successo a lungo termine!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今週はとても安定していて、時間をしっかり維持しました。継続性が長期的な成功の鍵です！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이번 주 매우 일관성 있게 시간을 잘 유지했습니다. 일관성이 장기적인 성공의 열쇠입니다!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je was deze week zeer consistent en hield je tijden goed bij. Consistentie is de sleutel tot succes op lange termijn!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Byłeś bardzo konsekwentny w tym tygodniu i solidnie utrzymywałeś swoje czasy. Konsekwencja to klucz do długoterminowego sukcesu!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você foi muito consistente esta semana e manteve seus tempos de forma sólida. A consistência é a chave para o sucesso a longo prazo!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu hafta çok tutarlıydın ve sürelerini sağlam bir şekilde korudun. Tutarlılık uzun vadeli başarının anahtarıdır!"
+          }
+        }
+      }
+    },
+    "weekly_report.feedback.desc.best_day_focus": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein produktivster Tag für Fokus war %@. Statistisch gesehen bist du an diesem Wochentag besonders leistungsfähig – vielleicht hattest du da am wenigsten Meetings oder eine besonders ruhige Umgebung."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your most productive focus day was %@. Statistically, you're particularly high-performing on this weekday – maybe you had the fewest meetings or a particularly quiet environment."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu día más productivo para el enfoque fue el %@. Estadísticamente, rindes especialmente bien en este día de la semana – quizás tenías menos reuniones o un entorno más tranquilo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ton jour le plus productif pour la concentration était le %@. Statistiquement, tu es particulièrement performant ce jour de la semaine – peut-être avais-tu moins de réunions ou un environnement particulièrement calme."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo giorno più produttivo per la concentrazione è stato %@. Statisticamente sei particolarmente performante in questo giorno della settimana – forse avevi meno riunioni o un ambiente particolarmente tranquillo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "集中力が最も高かった日は%@でした。統計的に見ると、この曜日は特にパフォーマンスが高く、会議が少なかったり環境が静かだったりしたのかもしれません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가장 생산적인 집중 요일은 %@였습니다. 통계적으로 이 요일에 특히 높은 성과를 냅니다 – 아마 회의가 가장 적거나 조용한 환경이었을 것입니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je meest productieve focusdag was %@. Statistisch gezien presteer je op deze weekdag bijzonder goed – misschien had je de minste vergaderingen of een bijzonder rustige omgeving."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twój najbardziej produktywny dzień skupienia to %@. Statystycznie w ten dzień tygodnia jesteś szczególnie wydajny – może miałeś wtedy najmniej spotkań lub szczególnie spokojne otoczenie."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu dia de foco mais produtivo foi %@. Estatisticamente, você tem um desempenho particularmente alto neste dia da semana – talvez você tivesse as menos reuniões ou um ambiente particularmente tranquilo."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En verimli odak günün %@ idi. İstatistiksel olarak bu hafta günü özellikle yüksek performans gösteriyorsun – belki o gün en az toplantın vardı veya ortam özellikle sakin."
+          }
+        }
+      }
+    },
+    "weekly_report.feedback.desc.best_day_habits": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Am %@ hast du die meisten Gewohnheiten abgehakt. Tolle Leistung!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On %@ you checked off the most habits. Great performance!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El %@ completaste la mayor cantidad de hábitos. ¡Excelente rendimiento!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le %@ tu as coché le plus d'habitudes. Belle performance !"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il %@ hai completato il maggior numero di abitudini. Ottima prestazione!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@に最も多くの習慣をチェックしました。素晴らしいパフォーマンスです！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@에 가장 많은 습관을 완료했습니다. 훌륭한 성과입니다!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Op %@ heb je de meeste gewoonten afgevinkt. Geweldige prestatie!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W %@ odhaczyłeś najwięcej nawyków. Świetny wynik!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em %@ você concluiu o maior número de hábitos. Ótimo desempenho!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ gününde en fazla alışkanlığı tamamladın. Harika bir performans!"
+          }
+        }
+      }
+    },
     "weekly_report.navigation.title": {
       "extractionState": "manual",
       "localizations": {
