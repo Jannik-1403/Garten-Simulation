@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum GoalPriority: String, CaseIterable, Equatable {
+enum GoalPriority: String, CaseIterable, Equatable, Codable {
     case low
     case medium
     case high
@@ -22,14 +22,14 @@ enum GoalPriority: String, CaseIterable, Equatable {
     }
 }
 
-struct FocusSubtask: Identifiable, Equatable {
-    let id = UUID()
+struct FocusSubtask: Identifiable, Equatable, Codable {
+    var id = UUID()
     var text: String
     var isCompleted: Bool = false
 }
 
-struct FocusGoal: Identifiable, Equatable {
-    let id = UUID()
+struct FocusGoal: Identifiable, Equatable, Codable {
+    var id = UUID()
     var text: String
     var priority: GoalPriority = .medium
     var subtasks: [FocusSubtask] = []

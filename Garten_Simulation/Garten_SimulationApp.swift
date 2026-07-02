@@ -137,6 +137,13 @@ struct AppRootView: View {
                     container.gardenStore.isProUserProvider = { [weak iapStore = container.iapStore] in
                         iapStore?.isProUser ?? false
                     }
+                    
+                    // Falls eine laufende Fokus-Session beim Beenden der App aktiv war, stelle sie wieder her
+                    if let savedData = UserDefaults.standard.data(forKey: "active_focus_session"),
+                       let saved = try? JSONDecoder().decode(ActiveFocusSessionState.self, from: savedData) {
+                        container.gardenStore.selectedTab = 0
+                        container.gardenStore.activeFocusHabitId = saved.habitId
+                    }
                 }
                 .fullScreenCover(isPresented: .init(
                     get: { !settingsStore.onboardingAbgeschlossen && !showSplash },
