@@ -1,5 +1,7 @@
 ## [2026-07-02] - Hintergrund-Audio, Pro-Rabatt & unbegrenzte Gewohnheiten
 
+- **Münzmangel-Interaktions-Sheet**: Statt einem einfachen Alert wird bei zu wenig Münzen nun ein Custom Sheet angezeigt, das Direktlinks bietet, um Münzen zu kaufen oder auf Grovy Pro zu upgraden.
+- **Paywall-Vorteilsliste**: Der Pflanzen-Rabatt (50%) und der Münz-Bonus (+25%) wurden der offiziellen Pro-Featureliste in `PaywallView` hinzugefügt und vollständig lokalisiert.
 - **Pro-Rabatt & Coin-Bonus**: Pro-User erhalten 50% Rabatt beim Freischalten neuer Gewohnheiten im Shop (400 statt 800 Münzen) sowie einen +25% Multiplikator auf gewonnene Münzen beim Gießen.
 - **Unbegrenzte Gewohnheiten**: Es gibt keine künstlichen Limits für aktive Gewohnheiten mehr (sowohl für Free- als auch Pro-User). Alle Pflanzen können unlimitiert freigeschaltet und gepflanzt werden.
 - **Dynamischer Rückkaufwert**: Der Refund-Betrag einer Pflanze passt sich dem Kaufpreis des Benutzers an (Pro-User erhalten 200 Münzen, Free-User erhalten 400 Münzen zurück), um Exploits zu verhindern.
