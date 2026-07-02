@@ -13,6 +13,7 @@ struct BonusFloatingTextView: View {
         Group {
             if isProMode {
                 Stat3DTitleView(title: text, color: Color(red: 1.0, green: 0.0, blue: 0.8), size: 36)
+                    .fixedSize(horizontal: true, vertical: false)
                     .shadow(color: Color(red: 1.0, green: 0.0, blue: 0.8).opacity(0.8), radius: 15) // Neon glow
             } else {
                 ZStack {
