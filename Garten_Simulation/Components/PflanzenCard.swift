@@ -217,9 +217,18 @@ struct PflanzenCard: View {
                     .zIndex(300)
             }
         }
-        .onChange(of: gardenStore.letzterBonus) { _, bonus in
-            if bonus != nil, gardenStore.letzteBonusPflanzeID == pflanze.id {
-                bonusText = String(localized: "bonus_text")
+        .onChange(of: gardenStore.giessTriggerID) { _, _ in
+            if gardenStore.letzteGiessPflanzeID == pflanze.id {
+                var lines = [
+                    "+\(gardenStore.letzteGiessXP) XP | +\(gardenStore.letzteGiessCoins) 🪙"
+                ]
+                if gardenStore.isProUser {
+                    lines.append(String(localized: "pro_bonus_text", defaultValue: "(PRO BONUS)"))
+                }
+                if gardenStore.letzterBonus != nil {
+                    lines.append(String(localized: "bonus_text"))
+                }
+                bonusText = lines.joined(separator: "\n")
                 zeigeBonusText = true
             }
         }

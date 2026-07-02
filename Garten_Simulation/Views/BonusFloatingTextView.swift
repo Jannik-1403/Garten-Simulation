@@ -13,12 +13,14 @@ struct BonusFloatingTextView: View {
             // 3D-Schatten (Dunkelblau für Tiefe)
             Text(text)
                 .font(.system(size: 28, weight: .black, design: .rounded))
+                .multilineTextAlignment(.center)
                 .foregroundColor(Color(hex: "#1A2744"))
                 .offset(y: 3)
             
             // Haupt-Text (Hellblau/Türkis)
             Text(text)
                 .font(.system(size: 28, weight: .black, design: .rounded))
+                .multilineTextAlignment(.center)
                 .foregroundStyle(
                     LinearGradient(
                         colors: [Color(hex: "#40E0D0"), Color.blauPrimary],

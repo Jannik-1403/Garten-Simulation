@@ -151,6 +151,7 @@ class GardenStore: ObservableObject {
     @Published var letzteBonusPflanzeID: String? = nil
     @Published var letzteGiessXP: Int = 0
     @Published var letzteGiessCoins: Int = 0
+    @Published var letzteGiessPflanzeID: String? = nil
     @Published var giessTriggerID = UUID()
     @Published var coinPopTrigger: Int = 0
     @Published var newlyAchievedRarity: PflanzenSeltenheit? = nil
@@ -369,6 +370,7 @@ class GardenStore: ObservableObject {
         }
         self.letzteGiessXP = finalXPGewonnen
         self.letzteGiessCoins = coinsGewonnen
+        self.letzteGiessPflanzeID = pflanze.id
 
         // XP Verlauf für die Pflanze speichern
         let formatter = DateFormatter()
