@@ -407,13 +407,6 @@ struct PflanzeDetailSheet: View {
             withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
                 pulsieren = true
             }
-            
-            // Falls es eine gespeicherte, laufende Fokus-Session für diese Pflanze gibt, öffne sie direkt
-            if let savedData = UserDefaults.standard.data(forKey: "active_focus_session"),
-               let saved = try? JSONDecoder().decode(ActiveFocusSessionState.self, from: savedData),
-               saved.habitId == pflanze.id {
-                zeigeFocusSession = true
-            }
         }
         // MARK: - Verkaufen Dialog
         .confirmationDialog(

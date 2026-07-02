@@ -5,8 +5,6 @@ struct FocusTimerActivityAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         var endTime: Date
         var title: String
-        var isPaused: Bool
-        var pausedTimeText: String
     }
 
     var habitName: String

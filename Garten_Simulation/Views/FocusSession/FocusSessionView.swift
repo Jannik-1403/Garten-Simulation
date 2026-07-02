@@ -89,7 +89,6 @@ struct FocusSessionView: View {
                             state = .timer
                             isTimerRunning = true
                             startLiveActivity()
-                            saveActiveSessionState()
                         }
                     }
                     .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
@@ -135,24 +134,49 @@ struct FocusSessionView: View {
             }
         }
         .onChange(of: scenePhase) {
-            guard state == .timer else { return }
+            guard state == .timer && isTimerRunning else { return }
             
             if scenePhase == .background || scenePhase == .inactive {
-                if isTimerRunning {
-                    isTimerRunning = false
-                    updateLiveActivity(isPaused: true)
+                if backgroundStartTime == nil {
+                    backgroundStartTime = Date()
                 }
-                saveActiveSessionState()
             } else if scenePhase == .active {
-                // Restore and resume if it was running
-                if let saved = loadActiveSessionState(), saved.isTimerRunning {
-                    isTimerRunning = true
-                    updateLiveActivity(isPaused: false)
+                if let startTime = backgroundStartTime {
+                    let timeAway = Date().timeIntervalSince(startTime)
+                    backgroundStartTime = nil
+                    
+                    if isStrictMode && timeAway > 10 {
+                        // Fail the session
+                        isTimerRunning = false
+                        UIApplication.shared.isIdleTimerDisabled = false
+                        stopLiveActivity()
+                        FocusAudioManager.shared.stop()
+                        showFailAlert = true
+                        
+                        let completedSeconds = selectedMinutes * 60 - remainingSeconds
+                        let durationMinutes = completedSeconds / 60
+                        if durationMinutes > 0 {
+                            let log = FocusSessionLog(
+                                date: Date(),
+                                durationMinutes: durationMinutes,
+                                isCompleted: false,
+                                isRoutine: false,
+                                habitId: pflanze.id,
+                                habitName: pflanze.name,
+                                tasks: sessionGoals.map { $0.text }
+                            )
+                            gardenStore.focusSessions.append(log)
+                        }
+                    } else {
+                        // Subtract the time away from remainingSeconds
+                        let remaining = max(0, remainingSeconds - Int(timeAway))
+                        remainingSeconds = remaining
+                        if remainingSeconds == 0 {
+                            finishSession()
+                        }
+                    }
                 }
             }
-        }
-        .onAppear {
-            restoreSessionIfNeeded()
         }
         .alert(String(localized: "focus.session.cancelled.title", defaultValue: "Fokus abgebrochen"), isPresented: $showFailAlert) {
             Button(String(localized: "common.close", defaultValue: "Schließen"), role: .cancel) {
@@ -572,35 +596,13 @@ struct FocusSessionView: View {
         )
         let state = FocusTimerActivityAttributes.ContentState(
             endTime: endTime,
-            title: goalTitle,
-            isPaused: !isTimerRunning,
-            pausedTimeText: timeString(from: remainingSeconds)
+            title: goalTitle
         )
         
         do {
             focusActivity = try Activity.request(attributes: attributes, content: .init(state: state, staleDate: nil))
         } catch {
             print("Konnte Focus Live Activity nicht starten: \(error)")
-        }
-    }
-    
-    private func updateLiveActivity(isPaused: Bool) {
-        guard let activity = focusActivity else { return }
-        
-        let endTime = Date().addingTimeInterval(TimeInterval(remainingSeconds))
-        let goalTitle = sessionGoals.first(where: { $0.priority == .high })?.text ?? 
-                        sessionGoals.first?.text ?? 
-                        "Focus Session"
-                        
-        let state = FocusTimerActivityAttributes.ContentState(
-            endTime: endTime,
-            title: goalTitle,
-            isPaused: isPaused,
-            pausedTimeText: timeString(from: remainingSeconds)
-        )
-        
-        Task {
-            await activity.update(using: state)
         }
     }
     
@@ -611,43 +613,6 @@ struct FocusSessionView: View {
             // Dismissal immediately because the session is over or aborted
             await activity.end(nil, dismissalPolicy: .immediate)
             focusActivity = nil
-        }
-    }
-    
-    // MARK: - State Restoration Helpers
-    private func saveActiveSessionState() {
-        let stateObj = ActiveFocusSessionState(
-            habitId: pflanze.id,
-            remainingSeconds: remainingSeconds,
-            selectedMinutes: selectedMinutes,
-            sessionGoals: sessionGoals,
-            state: state,
-            isStrictMode: isStrictMode,
-            isTimerRunning: true
-        )
-        if let encoded = try? JSONEncoder().encode(stateObj) {
-            UserDefaults.standard.set(encoded, forKey: "active_focus_session")
-            UserDefaults.standard.synchronize()
-        }
-    }
-
-    private func loadActiveSessionState() -> ActiveFocusSessionState? {
-        guard let savedData = UserDefaults.standard.data(forKey: "active_focus_session") else { return nil }
-        return try? JSONDecoder().decode(ActiveFocusSessionState.self, from: savedData)
-    }
-
-    private func restoreSessionIfNeeded() {
-        if let saved = loadActiveSessionState(), saved.habitId == pflanze.id {
-            self.state = saved.state
-            self.sessionGoals = saved.sessionGoals
-            self.selectedMinutes = saved.selectedMinutes
-            self.remainingSeconds = saved.remainingSeconds
-            self.isStrictMode = saved.isStrictMode
-            self.isTimerRunning = saved.isTimerRunning
-            if saved.isTimerRunning {
-                // Restart Live Activity with updated end time
-                startLiveActivity()
-            }
         }
     }
 }

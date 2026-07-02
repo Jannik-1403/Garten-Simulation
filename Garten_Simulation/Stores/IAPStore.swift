@@ -38,6 +38,7 @@ final class IAPStore: ObservableObject {
     // MARK: - Init / Deinit
 
     init() {
+        self.isProUser = UserDefaults.standard.bool(forKey: "isProUser_active")
         #if DEBUG
         if UserDefaults.standard.bool(forKey: "debug_isProUser") {
             self.isProUser = true
@@ -119,6 +120,8 @@ final class IAPStore: ObservableObject {
                     characterStore?.unlockedGlasses = true
                 } else if product.id == "com.gartenapp.pro.lifetime" {
                     self.isProUser = true
+                    UserDefaults.standard.set(true, forKey: "isProUser_active")
+                    UserDefaults.standard.synchronize()
                 }
                 await transaction.finish()
 
@@ -191,6 +194,8 @@ final class IAPStore: ObservableObject {
             #else
             self.isProUser = hasPro
             #endif
+            UserDefaults.standard.set(self.isProUser, forKey: "isProUser_active")
+            UserDefaults.standard.synchronize()
         }
     }
 

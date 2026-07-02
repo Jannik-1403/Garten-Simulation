@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import Combine
+import ActivityKit
 
 @MainActor
 class AppDependencyContainer: ObservableObject {
@@ -137,13 +138,6 @@ struct AppRootView: View {
                     container.gardenStore.isProUserProvider = { [weak iapStore = container.iapStore] in
                         iapStore?.isProUser ?? false
                     }
-                    
-                    // Falls eine laufende Fokus-Session beim Beenden der App aktiv war, stelle sie wieder her
-                    if let savedData = UserDefaults.standard.data(forKey: "active_focus_session"),
-                       let saved = try? JSONDecoder().decode(ActiveFocusSessionState.self, from: savedData) {
-                        container.gardenStore.selectedTab = 0
-                        container.gardenStore.activeFocusHabitId = saved.habitId
-                    }
                 }
                 .fullScreenCover(isPresented: .init(
                     get: { !settingsStore.onboardingAbgeschlossen && !showSplash },
@@ -158,6 +152,24 @@ struct AppRootView: View {
                 }
                 .task {
                     NotificationManager.shared.scheduleAll(for: container.gardenStore.pflanzen)
+                }
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willTerminateNotification)) { _ in
+                    let semaphore = DispatchSemaphore(value: 0)
+                    let activities = Activity<FocusTimerActivityAttributes>.activities
+                    if activities.isEmpty { return }
+                    
+                    var completedCount = 0
+                    for activity in activities {
+                        Task {
+                            await activity.end(nil, dismissalPolicy: .immediate)
+                            completedCount += 1
+                            if completedCount == activities.count {
+                                semaphore.signal()
+                            }
+                        }
+                    }
+                    
+                    _ = semaphore.wait(timeout: .now() + 1.0)
                 }
                 .onOpenURL { url in
                     if url.scheme == "grovy" {

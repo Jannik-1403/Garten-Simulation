@@ -23,17 +23,10 @@ struct FocusTimerLiveActivity: Widget {
                     
                     Spacer()
                     
-                    if context.state.isPaused {
-                        Text(context.state.pausedTimeText)
-                            .font(.system(.title, design: .monospaced).weight(.black))
-                            .foregroundStyle(.orange)
-                            .multilineTextAlignment(.trailing)
-                    } else {
-                        Text(timerInterval: Date()...context.state.endTime, countsDown: true)
-                            .font(.system(.title, design: .monospaced).weight(.black))
-                            .foregroundStyle(.orange)
-                            .multilineTextAlignment(.trailing)
-                    }
+                    Text(timerInterval: Date()...context.state.endTime, countsDown: true)
+                        .font(.system(.title, design: .monospaced).weight(.black))
+                        .foregroundStyle(.orange)
+                        .multilineTextAlignment(.trailing)
                 }
             }
             .padding()
@@ -50,15 +43,9 @@ struct FocusTimerLiveActivity: Widget {
                         .font(.title2)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    if context.state.isPaused {
-                        Text(context.state.pausedTimeText)
-                            .font(.system(.title3, design: .monospaced).weight(.black))
-                            .foregroundStyle(.orange)
-                    } else {
-                        Text(timerInterval: Date()...context.state.endTime, countsDown: true)
-                            .font(.system(.title3, design: .monospaced).weight(.black))
-                            .foregroundStyle(.orange)
-                    }
+                    Text(timerInterval: Date()...context.state.endTime, countsDown: true)
+                        .font(.system(.title3, design: .monospaced).weight(.black))
+                        .foregroundStyle(.orange)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     VStack {
@@ -75,15 +62,9 @@ struct FocusTimerLiveActivity: Widget {
                 Image(systemName: "timer")
                     .foregroundStyle(.orange)
             } compactTrailing: {
-                if context.state.isPaused {
-                    Text(context.state.pausedTimeText)
-                        .font(.system(size: 12, weight: .black, design: .monospaced))
-                        .foregroundStyle(.orange)
-                } else {
-                    Text(timerInterval: Date()...context.state.endTime, countsDown: true)
-                        .font(.system(size: 12, weight: .black, design: .monospaced))
-                        .foregroundStyle(.orange)
-                }
+                Text(timerInterval: Date()...context.state.endTime, countsDown: true)
+                    .font(.system(size: 12, weight: .black, design: .monospaced))
+                    .foregroundStyle(.orange)
             } minimal: {
                 Image(systemName: "timer")
                     .foregroundStyle(.orange)

@@ -339,7 +339,7 @@ struct UnifiedShopView: View {
                                                 subtitle: plant.symbolism,
                                                 price: p,
                                                 originalPrice: originalP,
-                                                badgeText: isOwned ? String(localized: "shop.owned") : (iapStore.isProUser ? "PRO -50%" : nil),
+                                                badgeText: isOwned ? String(localized: "shop.owned") : nil,
                                                 plant: plant,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(
