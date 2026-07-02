@@ -42,46 +42,49 @@ struct WeeklyReportDashboardView: View {
             // 1. Week Navigation (Liquid Glass)
             weekNavigationHeader
             
-            // 2. Summary Carousel (TabView anstatt 2x2 Grid)
-            TabView {
-                summaryCardAsset(
-                    title: String(localized: "weekly_report.card.focus_time", defaultValue: "Fokuszeit"),
-                    value: "\(report.totalFocusMinutes) Min",
-                    change: report.focusMinutesChangePercentage,
-                    assetIcon: "Timer full",
-                    color: .blauPrimary
-                )
-                .padding(.horizontal, 4)
-                
-                summaryCardAsset(
-                    title: String(localized: "weekly_report.card.habits", defaultValue: "Gewohnheiten"),
-                    value: "\(report.completedHabitsCount)",
-                    change: report.habitsChangePercentage,
-                    assetIcon: "Drop water",
-                    color: .green
-                )
-                .padding(.horizontal, 4)
-                
-                summaryCardAsset(
-                    title: String(localized: "weekly_report.card.sessions", defaultValue: "Sessions"),
-                    value: "\(report.completedSessionsCount)",
-                    change: nil,
-                    assetIcon: "streak",
-                    color: .orangePrimary
-                )
-                .padding(.horizontal, 4)
-                
-                summaryCardAsset(
-                    title: String(localized: "weekly_report.card.xp", defaultValue: "Verdiente XP"),
-                    value: "+\(report.earnedXP)",
-                    change: nil,
-                    assetIcon: "XP",
-                    color: .purple
-                )
-                .padding(.horizontal, 4)
+            // 2. Summary Carousel (ScrollView mit Peek-Effekt)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    summaryCardAsset(
+                        title: String(localized: "weekly_report.card.focus_time", defaultValue: "Fokuszeit"),
+                        value: "\(report.totalFocusMinutes) Min",
+                        change: report.focusMinutesChangePercentage,
+                        assetIcon: "Timer full",
+                        color: .blauPrimary
+                    )
+                    .containerRelativeFrame(.horizontal) { length, _ in length - 32 }
+                    
+                    summaryCardAsset(
+                        title: String(localized: "weekly_report.card.habits", defaultValue: "Gewohnheiten"),
+                        value: "\(report.completedHabitsCount)",
+                        change: report.habitsChangePercentage,
+                        assetIcon: "Drop water",
+                        color: .green
+                    )
+                    .containerRelativeFrame(.horizontal) { length, _ in length - 32 }
+                    
+                    summaryCardAsset(
+                        title: String(localized: "weekly_report.card.sessions", defaultValue: "Sessions"),
+                        value: "\(report.completedSessionsCount)",
+                        change: nil,
+                        assetIcon: "streak",
+                        color: .orangePrimary
+                    )
+                    .containerRelativeFrame(.horizontal) { length, _ in length - 32 }
+                    
+                    summaryCardAsset(
+                        title: String(localized: "weekly_report.card.xp", defaultValue: "Verdiente XP"),
+                        value: "+\(report.earnedXP)",
+                        change: nil,
+                        assetIcon: "XP",
+                        color: .purple
+                    )
+                    .containerRelativeFrame(.horizontal) { length, _ in length - 32 }
+                }
+                .padding(.horizontal, 16)
+                .scrollTargetLayout()
             }
-            .frame(height: 140)
-            .tabViewStyle(.page(indexDisplayMode: .always))
+            .scrollTargetBehavior(.viewAligned)
             .animation(.easeInOut, value: selectedWeekStart)
             
             // 3. Analyse & Feedback (aufklappbar)
@@ -251,53 +254,28 @@ struct WeeklyReportDashboardView: View {
                     
                     let parts = report.feedbackDescription.components(separatedBy: "\n\n")
                     
-                    if parts.count >= 1 {
-                        Text(parts[0])
-                            .font(.system(size: 15, weight: .medium, design: .rounded))
-                            .foregroundColor(.primary.opacity(0.85))
-                            .lineSpacing(4)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    
-                    if parts.count >= 2 {
-                        HStack(alignment: .top, spacing: 6) {
-                            Image(systemName: "calendar.badge.checkmark")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.primary)
-                            Text(parts[1])
-                                .font(.system(size: 14, weight: .semibold, design: .rounded))
-                                .foregroundColor(.primary.opacity(0.8))
-                                .lineSpacing(3)
-                                .fixedSize(horizontal: false, vertical: true)
-                            Spacer(minLength: 0)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 12) {
+                            ForEach(0..<parts.count, id: \.self) { index in
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text(parts[index])
+                                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                        .foregroundColor(.primary.opacity(0.85))
+                                        .lineSpacing(3)
+                                    Spacer(minLength: 0)
+                                }
+                                .padding(12)
+                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                                .frame(minHeight: 80)
+                                .background(.ultraThinMaterial)
+                                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                                .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).stroke(Color.primary.opacity(0.05), lineWidth: 1))
+                                .containerRelativeFrame(.horizontal) { length, _ in length - 32 }
+                            }
                         }
-                        .padding(12)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                        .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).stroke(Color.primary.opacity(0.05), lineWidth: 1))
+                        .scrollTargetLayout()
                     }
-                    
-                    if parts.count >= 3 {
-                        HStack(alignment: .top, spacing: 6) {
-                            SwiftUI.Image("Wachstum")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 56, height: 56)
-                            
-                            Text(parts[2])
-                                .font(.system(size: 14, weight: .semibold, design: .rounded))
-                                .foregroundColor(.primary.opacity(0.8))
-                                .lineSpacing(3)
-                                .fixedSize(horizontal: false, vertical: true)
-                            Spacer(minLength: 0)
-                        }
-                        .padding(12)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                        .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).stroke(Color.primary.opacity(0.05), lineWidth: 1))
-                    }
+                    .scrollTargetBehavior(.viewAligned)
                 }
             } label: {
                 HStack(spacing: 12) {
