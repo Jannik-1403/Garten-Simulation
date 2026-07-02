@@ -7,11 +7,16 @@ struct ShopItemDetailView: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var gartenPfadStore: GartenPfadStore
+    @EnvironmentObject var iapStore: IAPStore
+    @EnvironmentObject var characterStore: CharacterStore
 
     @Environment(\.dismiss) private var dismiss
     @State private var showSuccess = false
     @State private var showInsufficientCoins = false
     @State private var showMysticConfirmation = false
+    @State private var showInsufficientCoinsOptions = false
+    @State private var showPaywallSheet = false
+    @State private var showCoinsShopSheet = false
     
     @State private var selectedDifficulty: PfadSchwierigkeit? = nil
 
@@ -252,9 +257,8 @@ struct ShopItemDetailView: View {
                             } else if !canAfford {
                                 // Zustand 2: Zu wenig Coins
                                 Button {
-                                    // Feedback + Alert
                                     FeedbackManager.shared.playError()
-                                    showInsufficientCoins = true
+                                    showInsufficientCoinsOptions = true
                                 } label: {
                                     Text(String(localized: "shop.not_enough_coins"))
                                 }
@@ -332,6 +336,100 @@ struct ShopItemDetailView: View {
             }
         } message: {
             Text(String(localized: "shop.cheatday.confirm"))
+        }
+        .sheet(isPresented: $showInsufficientCoinsOptions) {
+            VStack(spacing: 24) {
+                Image("coin")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 80, height: 80)
+                    .padding(.top, 24)
+                
+                VStack(spacing: 8) {
+                    Text(String(localized: "shop.insufficient_coins.title", defaultValue: "Nicht genug Münzen!"))
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .multilineTextAlignment(.center)
+                    
+                    let missing = payload.price - gardenStore.coins
+                    Text(String(format: String(localized: "shop.insufficient_coins.message_format", defaultValue: "Dir fehlen noch %@ Münzen, um diese Gewohnheit freizuschalten."), String(missing)))
+                        .font(.system(size: 15))
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 24)
+                }
+                
+                VStack(spacing: 12) {
+                    if !iapStore.isProUser {
+                        Button {
+                            showInsufficientCoinsOptions = false
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                                showPaywallSheet = true
+                            }
+                        } label: {
+                            HStack {
+                                Image(systemName: "crown.fill")
+                                Text(String(localized: "shop.insufficient_coins.get_pro", defaultValue: "Grovy Pro (50% Rabatt erhalten)"))
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(DuolingoButtonStyle(
+                            size: .large,
+                            fillWidth: true,
+                            backgroundColor: .goldPrimary,
+                            shadowColor: .goldPrimary.darker(),
+                            foregroundColor: .white
+                        ))
+                    }
+                    
+                    Button {
+                        showInsufficientCoinsOptions = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                            showCoinsShopSheet = true
+                        }
+                    } label: {
+                        HStack {
+                            Image("coin")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20, height: 20)
+                            Text(String(localized: "shop.insufficient_coins.buy_coins", defaultValue: "Münzen kaufen"))
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(DuolingoButtonStyle(
+                        size: .large,
+                        fillWidth: true,
+                        backgroundColor: .blauPrimary,
+                        shadowColor: .blauPrimary.darker(),
+                        foregroundColor: .white
+                    ))
+                    
+                    Button(String(localized: "common.cancel", defaultValue: "Abbrechen")) {
+                        showInsufficientCoinsOptions = false
+                    }
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 8)
+                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 24)
+            }
+            .presentationDetents([.medium])
+            .presentationDragIndicator(.visible)
+            .presentationCornerRadius(32)
+            .presentationBackground(Color.appHintergrund)
+        }
+        .sheet(isPresented: $showPaywallSheet) {
+            PaywallView()
+                .environmentObject(iapStore)
+                .environmentObject(gardenStore)
+        }
+        .sheet(isPresented: $showCoinsShopSheet) {
+            CoinsDetailView()
+                .environmentObject(gardenStore)
+                .environmentObject(settings)
+                .environmentObject(characterStore)
+                .environmentObject(iapStore)
         }
     }
     

@@ -84,6 +84,20 @@ struct PaywallView: View {
                             description: String(localized: "paywall.feature.focus_sounds.desc", defaultValue: "Entspannende Naturgeräusche und Ambient-Sounds, die dich beim Fokussieren in Tiefenkonzentration bringen."),
                             color: .green
                         )
+
+                        featureRow(
+                            icon: "tag.fill",
+                            title: String(localized: "paywall.feature.shop_discount.title", defaultValue: "50% Pflanzen-Rabatt"),
+                            description: String(localized: "paywall.feature.shop_discount.desc", defaultValue: "Schalte neue Gewohnheiten und Pflanzen dauerhaft zum halben Preis frei (400 statt 800 Münzen)."),
+                            color: .orange
+                        )
+                        
+                        featureRow(
+                            icon: "arrow.up.circle.fill",
+                            title: String(localized: "paywall.feature.coin_bonus.title", defaultValue: "+25% Münz-Bonus"),
+                            description: String(localized: "paywall.feature.coin_bonus.desc", defaultValue: "Verdiene bei jedem Gießen und Erledigen von Aufgaben 25% mehr Münzen, um deinen Garten schneller wachsen zu lassen."),
+                            color: .yellow
+                        )
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 16)

@@ -103,6 +103,7 @@ struct UnifiedShopView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var iapStore: IAPStore
+    @EnvironmentObject var characterStore: CharacterStore
     @State private var searchText = ""
     @State private var detailPayload: ShopDetailPayload? = nil
     @State private var shopCategory: ShopCategory = .gegenstande
@@ -400,6 +401,8 @@ struct UnifiedShopView: View {
                     .environmentObject(gardenStore)
                     .environmentObject(settings)
                     .environmentObject(powerUpStore)
+                    .environmentObject(iapStore)
+                    .environmentObject(characterStore)
             }
         }
     }
