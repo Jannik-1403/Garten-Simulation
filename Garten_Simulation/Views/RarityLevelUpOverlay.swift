@@ -12,10 +12,23 @@ struct RarityLevelUpOverlay: View {
     
     var body: some View {
         ZStack {
-            // Backdrop
-            Color.black.opacity(0.6)
+            // Premium Glassmorphism Backdrop
+            Color.black.opacity(0.4)
                 .ignoresSafeArea()
+                .background(.ultraThinMaterial)
                 .onTapGesture { onDismiss() }
+            
+            // Particles
+            ConfettiParticleView()
+                .opacity(opacity)
+            
+            // Glowing Aura behind card
+            Circle()
+                .fill(rarity.farbe.opacity(0.3))
+                .frame(width: 300, height: 300)
+                .blur(radius: 80)
+                .scaleEffect(iconScale)
+                .opacity(opacity)
             
             // Popup Card
             VStack(spacing: 30) {
@@ -24,8 +37,6 @@ struct RarityLevelUpOverlay: View {
                     .font(.system(size: 26, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.primary)
                 
-
-                
                 // Details
                 VStack(spacing: 8) {
                     Text(String(localized: "level_up.subtitle"))
@@ -33,12 +44,13 @@ struct RarityLevelUpOverlay: View {
                         .foregroundStyle(.secondary)
                     
                     Text(rarity.lokalisiertTitel)
-                        .font(.system(size: 28, weight: .heavy, design: .rounded))
+                        .font(.system(size: 32, weight: .black, design: .rounded))
                         .foregroundStyle(rarity.gradient)
+                        .shadow(color: rarity.farbe.opacity(0.5), radius: 10, x: 0, y: 5)
                         
                     Text(String(localized: "psychology.fact.levelup", defaultValue: "Dein Gehirn bildet gerade neue neuronale Bahnen! Jeder Fortschritt festigt deine neue Identität."))
                         .font(.system(size: 14, weight: .medium, design: .rounded))
-                        .foregroundStyle(.white.opacity(0.8))
+                        .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                         .padding(.top, 16)
                         .padding(.horizontal, 20)
@@ -55,28 +67,34 @@ struct RarityLevelUpOverlay: View {
                     shadowColor: rarity.secondaryColor,
                     foregroundColor: .white
                 ))
+                .padding(.top, 10)
             }
             .padding(32)
-            .background(.ultraThinMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
+            .background(
+                RoundedRectangle(cornerRadius: 32, style: .continuous)
+                    .fill(Color(UIColor.systemBackground).opacity(0.85))
+                    .background(.ultraThinMaterial)
+            )
             .overlay(
                 RoundedRectangle(cornerRadius: 32, style: .continuous)
-                    .stroke(.white.opacity(0.3), lineWidth: 1)
+                    .stroke(rarity.gradient, lineWidth: 2)
+                    .blendMode(.overlay)
             )
-            .shadow(color: .black.opacity(0.2), radius: 40, x: 0, y: 20)
+            .shadow(color: rarity.farbe.opacity(0.25), radius: 40, x: 0, y: 20)
             .padding(.horizontal, 30)
             .offset(y: cardOffset)
             .opacity(opacity)
         }
         .onAppear {
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+            
             withAnimation(.spring(response: 0.5, dampingFraction: 0.72)) {
                 opacity = 1
                 cardOffset = 0
             }
             
-            withAnimation(.spring(response: 0.62, dampingFraction: 0.52).delay(0.25)) {
+            withAnimation(.spring(response: 0.8, dampingFraction: 0.5).delay(0.1)) {
                 iconScale = 1.0
-                iconRotation = 0
             }
         }
     }

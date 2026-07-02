@@ -11,24 +11,41 @@ struct PfadMeilensteinOverlay: View {
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0.85).ignoresSafeArea()
+            // Premium Glassmorphism Backdrop
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
+                .background(.ultraThinMaterial)
+            
+            // Particles behind star
+            ConfettiParticleView()
+                .opacity(zeigeInhalt ? 1.0 : 0.0)
+                
+            // Glowing Aura
+            Circle()
+                .fill(Color.goldPrimary.opacity(0.2))
+                .frame(width: 350, height: 350)
+                .blur(radius: 60)
+                .scaleEffect(zeigeInhalt ? 1.1 : 0.8)
+                .animation(.easeInOut(duration: 2).repeatForever(autoreverses: true), value: zeigeInhalt)
             
             VStack(spacing: 32) {
                 Spacer()
                 
-                // Lottie Banner entfernt wegen Abstürzen
                 Color.clear
                 .frame(width: ScreenSize.width * 1.2, height: ScreenSize.width)
                 .overlay(
                     VStack(spacing: 8) {
                         Image(systemName: "star.fill")
-                            .font(.system(size: 80))
+                            .font(.system(size: 90))
                             .foregroundStyle(Color.goldPrimary.gradient)
-                            .shadow(color: .goldPrimary.opacity(0.5), radius: 20)
+                            .shadow(color: .goldPrimary.opacity(0.6), radius: 25, x: 0, y: 15)
+                            .scaleEffect(zeigeInhalt ? 1.05 : 0.95)
+                            .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: zeigeInhalt)
                         
                         Text(String(localized: "pfad_meilenstein_titel"))
                             .font(.system(size: 36, weight: .black, design: .rounded))
                             .foregroundStyle(.white)
+                            .shadow(color: .black.opacity(0.5), radius: 5, x: 0, y: 2)
                             .multilineTextAlignment(.center)
                     }
                     .offset(y: 40)
@@ -37,11 +54,12 @@ struct PfadMeilensteinOverlay: View {
                 VStack(spacing: 12) {
                     Text(NSLocalizedString(meilensteinTitel, comment: ""))
                         .font(.system(size: 24, weight: .bold, design: .rounded))
-                        .foregroundStyle(.white.opacity(0.9))
+                        .foregroundStyle(.white.opacity(0.95))
                     
                     Text(belohnung)
-                        .font(.system(size: 20, weight: .black, design: .rounded))
+                        .font(.system(size: 22, weight: .black, design: .rounded))
                         .foregroundStyle(Color.goldPrimary)
+                        .shadow(color: .goldPrimary.opacity(0.4), radius: 8, x: 0, y: 4)
                     
                     if gardenStore.isProUser {
                         Stat3DTitleView(title: "pro Bonus", color: .goldPrimary, size: 14)
@@ -63,6 +81,8 @@ struct PfadMeilensteinOverlay: View {
                     onDismiss()
                 } label: {
                     Text(String(localized: "common_continue"))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(DuolingoButtonStyle(
                     size: .large,
@@ -70,13 +90,14 @@ struct PfadMeilensteinOverlay: View {
                     shadowColor: Color.goldPrimary.darker(),
                     foregroundColor: .white
                 ))
-                .padding(.horizontal, 24)
+                .padding(.horizontal, 30)
                 .padding(.bottom, 60)
             }
             .scaleEffect(zeigeInhalt ? 1.0 : 0.8)
             .opacity(zeigeInhalt ? 1.0 : 0.0)
         }
         .onAppear {
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
             withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
                 zeigeInhalt = true
             }

@@ -20,6 +20,9 @@ class FocusAudioManager: ObservableObject {
     private let sampleRate: Double = 44100
     // 16 Sekunden Puffer für hochwertiges, nicht-repetitives Looping
     private var bufferDuration: Double = 16.0
+    
+    // Cache für bereits generierte Buffer
+    private var bufferCache: [FocusSound: AVAudioPCMBuffer] = [:]
 
     private init() {
         setupAudioSession()
@@ -46,7 +49,8 @@ class FocusAudioManager: ObservableObject {
         guard sound != .none else { return }
 
         currentSound = sound
-        isPlaying = true
+        // isPlaying wird erst gesetzt, wenn die Engine wirklich startet
+        // isPlaying = true
 
         do {
             try AVAudioSession.sharedInstance().setActive(true)
@@ -101,20 +105,38 @@ class FocusAudioManager: ObservableObject {
         // Sound-spezifische Effekte konfigurieren
         configureEffects(eq: eq, reverb: reverb, for: sound)
 
-        // Puffer erzeugen
-        guard let buffer = buildBuffer(for: sound, format: format) else { return }
+        // Asynchrone Puffer-Generierung, um den Main-Thread nicht zu blockieren
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            
+            let buffer: AVAudioPCMBuffer
+            if let cached = self.bufferCache[sound] {
+                buffer = cached
+            } else if let newBuffer = self.buildBuffer(for: sound, format: format) {
+                self.bufferCache[sound] = newBuffer
+                buffer = newBuffer
+            } else {
+                return
+            }
 
-        do {
-            try engine.start()
-            player.play()
-            player.scheduleBuffer(buffer, at: nil, options: .loops, completionHandler: nil)
-            self.audioEngine = engine
-            self.playerNode = player
-            self.eqNode = eq
-            self.reverbNode = reverb
-        } catch {
-            print("FocusAudioManager: Engine-Start fehlgeschlagen: \(error)")
-            isPlaying = false
+            DispatchQueue.main.async {
+                // Prüfen, ob der Nutzer in der Zwischenzeit gestoppt oder den Sound gewechselt hat
+                guard self.currentSound == sound else { return }
+
+                do {
+                    try engine.start()
+                    player.play()
+                    player.scheduleBuffer(buffer, at: nil, options: .loops, completionHandler: nil)
+                    self.audioEngine = engine
+                    self.playerNode = player
+                    self.eqNode = eq
+                    self.reverbNode = reverb
+                    self.isPlaying = true
+                } catch {
+                    print("FocusAudioManager: Engine-Start fehlgeschlagen: \(error)")
+                    self.isPlaying = false
+                }
+            }
         }
     }
 
