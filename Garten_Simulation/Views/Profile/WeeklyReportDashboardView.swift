@@ -95,7 +95,7 @@ struct WeeklyReportDashboardView: View {
                             x: .value("Tag", item.dayName),
                             y: .value("Minuten", item.minutes)
                         )
-                        .foregroundStyle(LinearGradient(colors: [.blauPrimary.opacity(0.5), .blauPrimary], startPoint: .bottom, endPoint: .top))
+                        .foregroundStyle(Color.blauPrimary)
                         .cornerRadius(4)
                         
                         if let selected = selectedFocusDay, selected.dayName == item.dayName {
@@ -137,7 +137,7 @@ struct WeeklyReportDashboardView: View {
                             x: .value("Tag", item.dayName),
                             y: .value("Erledigt", item.count)
                         )
-                        .foregroundStyle(LinearGradient(colors: [.green.opacity(0.5), .green], startPoint: .bottom, endPoint: .top))
+                        .foregroundStyle(Color.green)
                         .cornerRadius(4)
                         
                         if let selected = selectedHabitsDay, selected.dayName == item.dayName {
@@ -198,27 +198,33 @@ struct WeeklyReportDashboardView: View {
                 }
             } label: {
                 Image(systemName: "chevron.left")
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: 20, weight: .bold))
                     .foregroundColor(.primary)
-                    .padding(12)
-                    .background(.ultraThinMaterial)
-                    .clipShape(Circle())
-                    .overlay(
-                        Circle().stroke(Color.primary.opacity(0.15), lineWidth: 1)
-                    )
+                    .padding(8)
             }
             
             Spacer()
             
-            VStack(spacing: 2) {
-                Text(String(localized: "weekly_report.navigation.title", defaultValue: "Wochenbericht"))
-                    .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundColor(.secondary)
-                    .textCase(.uppercase)
-                Text(formattedWeekRange)
-                    .font(.system(size: 18, weight: .black, design: .rounded))
-                    .foregroundColor(.primary)
-                    .contentTransition(.numericText())
+            Button {
+                // Future: Date Picker overlay
+            } label: {
+                VStack(spacing: 2) {
+                    Text(String(localized: "weekly_report.navigation.title", defaultValue: "Wochenbericht"))
+                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                        .foregroundColor(.secondary)
+                        .textCase(.uppercase)
+                    Text(formattedWeekRange)
+                        .font(.system(size: 18, weight: .black, design: .rounded))
+                        .foregroundColor(.primary)
+                        .contentTransition(.numericText())
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
+                .background(.ultraThinMaterial)
+                .clipShape(Capsule())
+                .overlay(
+                    Capsule().stroke(Color.primary.opacity(0.1), lineWidth: 1)
+                )
             }
             
             Spacer()
@@ -233,14 +239,9 @@ struct WeeklyReportDashboardView: View {
                 }
             } label: {
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: 20, weight: .bold))
                     .foregroundColor(canGoForward ? .primary : .secondary.opacity(0.3))
-                    .padding(12)
-                    .background(.ultraThinMaterial)
-                    .clipShape(Circle())
-                    .overlay(
-                        Circle().stroke(Color.primary.opacity(canGoForward ? 0.15 : 0.05), lineWidth: 1)
-                    )
+                    .padding(8)
             }
             .disabled(!canGoForward)
         }
@@ -269,7 +270,7 @@ struct WeeklyReportDashboardView: View {
                         HStack(spacing: 10) {
                             Image(systemName: "calendar.badge.checkmark")
                                 .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.orangePrimary)
+                                .foregroundColor(.primary)
                             Text(parts[1])
                                 .font(.system(size: 14, weight: .semibold, design: .rounded))
                                 .foregroundColor(.primary.opacity(0.8))
@@ -277,8 +278,9 @@ struct WeeklyReportDashboardView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         .padding(12)
-                        .background(Color.orangePrimary.opacity(0.08))
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).stroke(Color.primary.opacity(0.05), lineWidth: 1))
                     }
                     
                     if parts.count >= 3 {
@@ -295,8 +297,9 @@ struct WeeklyReportDashboardView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         .padding(12)
-                        .background(Color.green.opacity(0.08))
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).stroke(Color.primary.opacity(0.05), lineWidth: 1))
                     }
                 }
             } label: {
