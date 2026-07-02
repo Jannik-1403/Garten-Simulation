@@ -1,5 +1,9 @@
-## [2026-07-02] - Hintergrund-Audio & Live Activity Deep Link
+## [2026-07-02] - Hintergrund-Audio, Pro-Rabatt & unbegrenzte Gewohnheiten
 
+- **Pro-Rabatt & Coin-Bonus**: Pro-User erhalten 50% Rabatt beim Freischalten neuer Gewohnheiten im Shop (400 statt 800 Münzen) sowie einen +25% Multiplikator auf gewonnene Münzen beim Gießen.
+- **Unbegrenzte Gewohnheiten**: Es gibt keine künstlichen Limits für aktive Gewohnheiten mehr (sowohl für Free- als auch Pro-User). Alle Pflanzen können unlimitiert freigeschaltet und gepflanzt werden.
+- **Dynamischer Rückkaufwert**: Der Refund-Betrag einer Pflanze passt sich dem Kaufpreis des Benutzers an (Pro-User erhalten 200 Münzen, Free-User erhalten 400 Münzen zurück), um Exploits zu verhindern.
+- **Shop UI-Visualisierung**: Pro-User sehen im Shop nun den Originalpreis durchgestrichen sowie den ermäßigten Preis und ein "PRO -50%"-Badge.
 - **Hintergrund-Audio**: `UIBackgroundModes = [audio]` in `Info.plist` eingetragen – Fokus-Sounds (Regen, Kaffeehaus, Zen-Flöte, Weißes/Braunes Rauschen) laufen jetzt weiter, wenn die App in den Hintergrund geht.
 - **Live Activity Tap → Fokus-Timer**: Tippen auf die Live Activity im Sperrbildschirm oder die Dynamic Island öffnet die App direkt im laufenden Fokus-Timer der richtigen Gewohnheit.
 - **Deep Link Architektur**: `grovy://focus?habitId=<id>` – `FocusTimerActivityAttributes` trägt jetzt die `habitId`, Live Activity setzt `widgetURL`, `onOpenURL` im App-Root setzt `gardenStore.activeFocusHabitId`, `GartenView` öffnet daraufhin automatisch das richtige Detail-Sheet.
