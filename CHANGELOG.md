@@ -1,3 +1,9 @@
+## [2026-07-02] - Hintergrund-Audio & Live Activity Deep Link
+
+- **Hintergrund-Audio**: `UIBackgroundModes = [audio]` in `Info.plist` eingetragen – Fokus-Sounds (Regen, Kaffeehaus, Zen-Flöte, Weißes/Braunes Rauschen) laufen jetzt weiter, wenn die App in den Hintergrund geht.
+- **Live Activity Tap → Fokus-Timer**: Tippen auf die Live Activity im Sperrbildschirm oder die Dynamic Island öffnet die App direkt im laufenden Fokus-Timer der richtigen Gewohnheit.
+- **Deep Link Architektur**: `grovy://focus?habitId=<id>` – `FocusTimerActivityAttributes` trägt jetzt die `habitId`, Live Activity setzt `widgetURL`, `onOpenURL` im App-Root setzt `gardenStore.activeFocusHabitId`, `GartenView` öffnet daraufhin automatisch das richtige Detail-Sheet.
+
 ## [2026-07-01] - Audio-Overhaul: Hochwertige Stereo-Synthese & Button-Fix
 
 - **Regen**: Vollständig neue Synthese – mehrschichtiges Stereo-Pink-Noise mit langsamer Windmodulation (LFO) und einer simulierten Einzeltropfen-Schicht für natürliches, lebendiges Regengeräusch.
