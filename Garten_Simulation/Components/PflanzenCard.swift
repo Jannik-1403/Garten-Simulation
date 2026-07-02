@@ -213,23 +213,19 @@ struct PflanzenCard: View {
             }
             
             if zeigeBonusText {
-                BonusFloatingTextView(text: bonusText, isVisible: $zeigeBonusText)
+                BonusFloatingTextView(text: bonusText, isVisible: $zeigeBonusText, isProMode: gardenStore.isProUser)
                     .zIndex(300)
             }
         }
         .onChange(of: gardenStore.giessTriggerID) { _, _ in
             if gardenStore.letzteGiessPflanzeID == pflanze.id {
-                var lines = [
-                    "+\(gardenStore.letzteGiessXP) XP | +\(gardenStore.letzteGiessCoins) 🪙"
-                ]
                 if gardenStore.isProUser {
-                    lines.append(String(localized: "pro_bonus_text", defaultValue: "(PRO BONUS)"))
+                    bonusText = "PRO"
+                    zeigeBonusText = true
+                } else if gardenStore.letzterBonus != nil {
+                    bonusText = String(localized: "bonus_text")
+                    zeigeBonusText = true
                 }
-                if gardenStore.letzterBonus != nil {
-                    lines.append(String(localized: "bonus_text"))
-                }
-                bonusText = lines.joined(separator: "\n")
-                zeigeBonusText = true
             }
         }
         .coordinateSpace(name: "PflanzenCardSpace")

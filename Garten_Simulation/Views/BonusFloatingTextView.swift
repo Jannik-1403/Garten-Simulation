@@ -3,32 +3,40 @@ import SwiftUI
 struct BonusFloatingTextView: View {
     let text: String
     @Binding var isVisible: Bool
+    var isProMode: Bool = false
 
     @State private var opacity: Double = 0
     @State private var scale: CGFloat = 0.3
     @State private var offsetY: CGFloat = 0
 
     var body: some View {
-        ZStack {
-            // 3D-Schatten (Dunkelblau für Tiefe)
-            Text(text)
-                .font(.system(size: 28, weight: .black, design: .rounded))
-                .multilineTextAlignment(.center)
-                .foregroundColor(Color(hex: "#1A2744"))
-                .offset(y: 3)
-            
-            // Haupt-Text (Hellblau/Türkis)
-            Text(text)
-                .font(.system(size: 28, weight: .black, design: .rounded))
-                .multilineTextAlignment(.center)
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [Color(hex: "#40E0D0"), Color.blauPrimary],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
-                .shadow(color: .black.opacity(0.2), radius: 2)
+        Group {
+            if isProMode {
+                Stat3DTitleView(title: text, color: Color(red: 1.0, green: 0.0, blue: 0.8), size: 36)
+                    .shadow(color: Color(red: 1.0, green: 0.0, blue: 0.8).opacity(0.8), radius: 15) // Neon glow
+            } else {
+                ZStack {
+                    // 3D-Schatten (Dunkelblau für Tiefe)
+                    Text(text)
+                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color(hex: "#1A2744"))
+                        .offset(y: 3)
+                    
+                    // Haupt-Text (Hellblau/Türkis)
+                    Text(text)
+                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(
+                            LinearGradient(
+                                colors: [Color(hex: "#40E0D0"), Color.blauPrimary],
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                        )
+                        .shadow(color: .black.opacity(0.2), radius: 2)
+                }
+            }
         }
         .scaleEffect(scale)
         .opacity(opacity)
