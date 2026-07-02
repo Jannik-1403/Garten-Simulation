@@ -6,6 +6,8 @@ import SwiftUI
 struct HabitVerlaufView: View {
     @ObservedObject var pflanze: HabitModel
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var iapStore: IAPStore
+    @State private var showPaywall: Bool = false
 
     private let calendar = Calendar.current
     private let cellSize: CGFloat = 28
@@ -78,19 +80,63 @@ struct HabitVerlaufView: View {
             }
             .frame(maxWidth: .infinity)
         } else {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 24) {
-                    // MARK: Stats Row
-                    statsRow
+            ZStack {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 24) {
+                        // MARK: Stats Row
+                        statsRow
 
-                    // MARK: Heatmap
-                    heatmapSection
+                        // MARK: Heatmap
+                        heatmapSection
 
-                    // MARK: Legend
-                    legendRow
+                        // MARK: Legend
+                        legendRow
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 16)
+                    .blur(radius: iapStore.isProUser ? 0 : 8)
+                    .disabled(!iapStore.isProUser)
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 16)
+                
+                if !iapStore.isProUser {
+                    VStack(spacing: 16) {
+                        Image(systemName: "lock.fill")
+                            .font(.system(size: 40, weight: .bold))
+                            .foregroundStyle(Color.goldPrimary)
+                            .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
+                        
+                        Stat3DTitleView(title: "PRO INSIGHTS")
+                        
+                        Text(String(localized: "paywall.feature.weekly_report.desc", defaultValue: "Lerne dich selbst besser kennen. Entdecke, wann du am produktivsten bist und feiere deinen Fortschritt."))
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 40)
+                        
+                        Item3DButton(
+                            farbe: .goldPrimary,
+                            sekundaerFarbe: .goldPrimary.darker(),
+                            groesse: 60,
+                            shadowDepthFactor: 0.10,
+                            isRectangular: true,
+                            aktion: { showPaywall = true }
+                        ) {
+                            Text(String(localized: "focus.paywall.button", defaultValue: "Pro freischalten"))
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 20)
+                        }
+                        .padding(.top, 8)
+                    }
+                    .padding(24)
+                    .background(Color(UIColor.systemBackground).opacity(0.8))
+                    .cornerRadius(24)
+                    .shadow(color: .black.opacity(0.1), radius: 20, x: 0, y: 10)
+                    .padding(.horizontal, 20)
+                }
+            }
+            .fullScreenCover(isPresented: $showPaywall) {
+                PaywallView()
             }
         }
     }

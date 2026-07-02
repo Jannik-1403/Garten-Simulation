@@ -12,7 +12,7 @@ struct FocusSoundControlView: View {
     }
 
     var body: some View {
-        let isLocked = !iapStore.isProUser
+        let isLocked = !iapStore.isProUser && selectedSound.isPremium
 
         VStack(spacing: 16) {
 

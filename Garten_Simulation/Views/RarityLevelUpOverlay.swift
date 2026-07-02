@@ -48,6 +48,13 @@ struct RarityLevelUpOverlay: View {
                     Text(rarity.lokalisiertTitel)
                         .font(.system(size: 28, weight: .heavy, design: .rounded))
                         .foregroundStyle(rarity.gradient)
+                        
+                    Text(String(localized: "psychology.fact.levelup", defaultValue: "Dein Gehirn bildet gerade neue neuronale Bahnen! Jeder Fortschritt festigt deine neue Identität."))
+                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                        .foregroundStyle(.white.opacity(0.8))
+                        .multilineTextAlignment(.center)
+                        .padding(.top, 16)
+                        .padding(.horizontal, 20)
                 }
                 
                 // Action Button

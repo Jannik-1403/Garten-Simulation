@@ -47,6 +47,13 @@ struct PfadMeilensteinOverlay: View {
                         Stat3DTitleView(title: "pro Bonus", color: .goldPrimary, size: 14)
                             .padding(.top, 2)
                     }
+                    
+                    Text(String(localized: "psychology.fact.milestone", defaultValue: "Dopamin-Ausschüttung erkannt: Du bist auf dem absolut richtigen Weg!"))
+                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                        .foregroundStyle(.white.opacity(0.8))
+                        .multilineTextAlignment(.center)
+                        .padding(.top, 16)
+                        .padding(.horizontal, 20)
                 }
                 .padding(.top, 60)
                 

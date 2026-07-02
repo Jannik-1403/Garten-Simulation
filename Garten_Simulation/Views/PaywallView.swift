@@ -59,8 +59,8 @@ struct PaywallView: View {
                     VStack(alignment: .leading, spacing: 24) {
                         featureRow(
                             icon: "heart.text.square.fill",
-                            title: String(localized: "paywall.feature.health.title", defaultValue: "Apple Health Sync"),
-                            description: String(localized: "paywall.feature.health.desc", defaultValue: "Verknüpfe deine Schritte und Wasserziele direkt mit dem Garten."),
+                            title: String(localized: "paywall.feature.health.title", defaultValue: "Dein täglicher Rhythmus"),
+                            description: String(localized: "paywall.feature.health.desc", defaultValue: "Verbinde deine Bewegung mit deinem Fokus. Dein Körper und dein Geist wachsen synchron."),
                             color: .red
                         )
                         
@@ -73,22 +73,22 @@ struct PaywallView: View {
                         
                         featureRow(
                             icon: "chart.bar.doc.horizontal.fill",
-                            title: String(localized: "paywall.feature.weekly_report.title", defaultValue: "Wochenrückblick & PDF-Export"),
-                            description: String(localized: "paywall.feature.weekly_report.desc", defaultValue: "Detaillierte Auswertung jeder Woche mit interaktiven Charts, Analyse deiner besten Tage und PDF-Export zum Teilen."),
+                            title: String(localized: "paywall.feature.weekly_report.title", defaultValue: "Erkenne deine Muster"),
+                            description: String(localized: "paywall.feature.weekly_report.desc", defaultValue: "Lerne dich selbst besser kennen. Entdecke, wann du am produktivsten bist und feiere deinen Fortschritt."),
                             color: .blauPrimary
                         )
                         
                         featureRow(
                             icon: "waveform.circle.fill",
-                            title: String(localized: "paywall.feature.focus_sounds.title", defaultValue: "Fokus-Sounds"),
-                            description: String(localized: "paywall.feature.focus_sounds.desc", defaultValue: "Entspannende Naturgeräusche und Ambient-Sounds, die dich beim Fokussieren in Tiefenkonzentration bringen."),
+                            title: String(localized: "paywall.feature.focus_sounds.title", defaultValue: "Tiefste Konzentration"),
+                            description: String(localized: "paywall.feature.focus_sounds.desc", defaultValue: "Blend den Alltag aus. Wissenschaftlich fundierte Klänge bringen dein Gehirn sofort in den Flow-State."),
                             color: .green
                         )
 
                         featureRow(
                             icon: "tag.fill",
-                            title: String(localized: "paywall.feature.shop_discount.title", defaultValue: "50% Pflanzen-Rabatt"),
-                            description: String(localized: "paywall.feature.shop_discount.desc", defaultValue: "Schalte neue Gewohnheiten und Pflanzen dauerhaft zum halben Preis frei (400 statt 800 Münzen)."),
+                            title: String(localized: "paywall.feature.shop_discount.title", defaultValue: "Belohne dich schneller"),
+                            description: String(localized: "paywall.feature.shop_discount.desc", defaultValue: "Hol dir doppelt so schnell neue Pflanzen. Dein Erfolg wird direkt sichtbar belohnt (400 statt 800 Münzen)."),
                             color: .orange
                         )
                         
