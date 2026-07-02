@@ -12,10 +12,8 @@ struct RarityLevelUpOverlay: View {
     
     var body: some View {
         ZStack {
-            // Premium Glassmorphism Backdrop
-            Color.black.opacity(0.4)
-                .ignoresSafeArea()
-                .background(.ultraThinMaterial)
+            // Premium Backdrop
+            Color.black.opacity(0.6)
                 .onTapGesture { onDismiss() }
             
             // Particles
@@ -43,16 +41,23 @@ struct RarityLevelUpOverlay: View {
                         .font(.system(size: 16))
                         .foregroundStyle(.secondary)
                     
-                    Text(rarity.lokalisiertTitel)
-                        .font(.system(size: 32, weight: .black, design: .rounded))
-                        .foregroundStyle(rarity.gradient)
-                        .shadow(color: rarity.farbe.opacity(0.5), radius: 10, x: 0, y: 5)
+                    Stat3DTitleView(title: rarity.lokalisiertTitel.uppercased(), color: rarity.farbe, size: 40)
+                        .padding(.vertical, 10)
+                        
+                    if rarity == .diamant {
+                        Text(String(localized: "level_up.diamond.title_unlocked", defaultValue: "Du hast einen neuen Spiel-Titel freigeschaltet!"))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundStyle(Color.goldPrimary)
+                            .multilineTextAlignment(.center)
+                            .padding(.top, 4)
+                            .padding(.bottom, 8)
+                    }
                         
                     Text(String(localized: "psychology.fact.levelup", defaultValue: "Dein Gehirn bildet gerade neue neuronale Bahnen! Jeder Fortschritt festigt deine neue Identität."))
                         .font(.system(size: 14, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
-                        .padding(.top, 16)
+                        .padding(.top, 8)
                         .padding(.horizontal, 20)
                 }
                 
@@ -72,8 +77,7 @@ struct RarityLevelUpOverlay: View {
             .padding(32)
             .background(
                 RoundedRectangle(cornerRadius: 32, style: .continuous)
-                    .fill(Color(UIColor.systemBackground).opacity(0.85))
-                    .background(.ultraThinMaterial)
+                    .fill(Color(UIColor.systemBackground))
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 32, style: .continuous)

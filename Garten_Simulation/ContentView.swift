@@ -71,7 +71,17 @@ struct ContentView: View {
                     .environmentObject(interactiveTourManager)
                     .environmentObject(settings)
                     .environmentObject(activeGardenStore)
-                    .zIndex(99998)
+            }
+            
+            // Rarity Level Up Overlay
+            if let rarity = gardenStore.newlyAchievedRarity {
+                RarityLevelUpOverlay(rarity: rarity) {
+                    withAnimation {
+                        gardenStore.newlyAchievedRarity = nil
+                    }
+                }
+                .environmentObject(settings)
+                .zIndex(10001)
             }
         }
         .sheet(isPresented: $showWeeklyReportPopup) {
