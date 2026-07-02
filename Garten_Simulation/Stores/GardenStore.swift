@@ -132,6 +132,8 @@ class GardenStore: ObservableObject {
     @Published var pendingWeedPowerUpForRitual: ShopDetailPayload?
     @Published var aktivesWetter: WetterEvent = .normal
     @Published var pendingImportURL: URL? = nil
+    /// Wird per Live Activity Deep Link gesetzt, um die passende FocusSessionView zu öffnen
+    @Published var activeFocusHabitId: String? = nil
     
     private var isLoading = false
     

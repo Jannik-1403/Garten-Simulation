@@ -54,6 +54,10 @@
 	<string>Grovy nutzt Apple Health, um deine Gesundheitsziele mit deinem Garten-Fortschritt zu synchronisieren.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Grovy möchte dein exportiertes Statistik- oder Erfolgsbild direkt in deiner Fotogalerie speichern.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

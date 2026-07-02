@@ -579,7 +579,8 @@ struct FocusSessionView: View {
                         "Focus Session"
                         
         let attributes = FocusTimerActivityAttributes(
-            habitName: settings.showHabitInsteadOfName ? pflanze.localizedHabitName : pflanze.localizedName
+            habitName: settings.showHabitInsteadOfName ? pflanze.localizedHabitName : pflanze.localizedName,
+            habitId: pflanze.id
         )
         let state = FocusTimerActivityAttributes.ContentState(
             endTime: endTime,

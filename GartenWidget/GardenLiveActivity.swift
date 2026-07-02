@@ -23,7 +23,6 @@ struct FocusTimerLiveActivity: Widget {
                     
                     Spacer()
                     
-                    // The actual countdown timer using SwiftUI's Text(timerInterval:)
                     Text(timerInterval: Date()...context.state.endTime, countsDown: true)
                         .font(.system(.title, design: .monospaced).weight(.black))
                         .foregroundStyle(.orange)
@@ -33,16 +32,15 @@ struct FocusTimerLiveActivity: Widget {
             .padding()
             .activityBackgroundTint(Color.black.opacity(0.85))
             .activitySystemActionForegroundColor(Color.white)
-            
+            // Tap auf Lock Screen → laufenden Fokus-Timer öffnen
+            .widgetURL(focusDeepLink(habitId: context.attributes.habitId))
+
         } dynamicIsland: { context in
             DynamicIsland {
-                // Expanded View
                 DynamicIslandExpandedRegion(.leading) {
-                    VStack {
-                        Image(systemName: "timer")
-                            .foregroundStyle(.orange)
-                            .font(.title2)
-                    }
+                    Image(systemName: "timer")
+                        .foregroundStyle(.orange)
+                        .font(.title2)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
                     Text(timerInterval: Date()...context.state.endTime, countsDown: true)
@@ -71,8 +69,14 @@ struct FocusTimerLiveActivity: Widget {
                 Image(systemName: "timer")
                     .foregroundStyle(.orange)
             }
-            .widgetURL(URL(string: "grovy://home"))
+            // Tap auf Dynamic Island → laufenden Fokus-Timer öffnen
+            .widgetURL(focusDeepLink(habitId: context.attributes.habitId))
             .keylineTint(Color.orange)
         }
+    }
+
+    /// Erzeugt die Deep-Link-URL für den laufenden Fokus-Timer.
+    private func focusDeepLink(habitId: String) -> URL {
+        URL(string: "grovy://focus?habitId=\(habitId)") ?? URL(string: "grovy://home")!
     }
 }

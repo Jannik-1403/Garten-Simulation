@@ -8,4 +8,5 @@ struct FocusTimerActivityAttributes: ActivityAttributes {
     }
 
     var habitName: String
+    var habitId: String
 }

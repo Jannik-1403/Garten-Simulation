@@ -161,6 +161,14 @@ struct AppRootView: View {
                         case "water":
                             container.gardenStore.selectedTab = 2
                             container.gardenStore.triggerWaterDetail = true
+                        case "focus":
+                            // Live Activity tap → zurück zum laufenden Fokus-Timer
+                            if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+                               let habitIdItem = components.queryItems?.first(where: { $0.name == "habitId" }),
+                               let habitId = habitIdItem.value {
+                                container.gardenStore.selectedTab = 0
+                                container.gardenStore.activeFocusHabitId = habitId
+                            }
                         default:
                             break
                         }

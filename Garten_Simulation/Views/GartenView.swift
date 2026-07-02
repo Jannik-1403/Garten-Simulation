@@ -453,6 +453,14 @@ struct GartenView: View {
             zeigeUnkrautDetail = true
             gardenStore.debugRequestWeedSheet = false
         }
+        .onChange(of: gardenStore.activeFocusHabitId) { _, habitId in
+            guard let habitId else { return }
+            // Pflanze anhand der ID finden und FocusSession direkt öffnen
+            if let pflanze = gardenStore.pflanzen.first(where: { $0.id == habitId }) {
+                ausgewaehltePflanze = pflanze
+            }
+            gardenStore.activeFocusHabitId = nil
+        }
         .overlay {
             if gardenStore.zeigeGameOverOverlay {
                 GameOverOverlayView()
