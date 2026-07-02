@@ -218,13 +218,6 @@ struct WeeklyReportDashboardView: View {
                         .foregroundColor(.primary)
                         .contentTransition(.numericText())
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(.ultraThinMaterial)
-                .clipShape(Capsule())
-                .overlay(
-                    Capsule().stroke(Color.primary.opacity(0.1), lineWidth: 1)
-                )
             }
             
             Spacer()
@@ -288,7 +281,7 @@ struct WeeklyReportDashboardView: View {
                             SwiftUI.Image("Wachstum")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 28, height: 28)
+                                .frame(width: 56, height: 56)
                             
                             Text(parts[2])
                                 .font(.system(size: 14, weight: .semibold, design: .rounded))
