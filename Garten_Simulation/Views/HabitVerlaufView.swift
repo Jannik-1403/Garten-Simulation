@@ -105,7 +105,7 @@ struct HabitVerlaufView: View {
                             .foregroundStyle(Color.goldPrimary)
                             .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
                         
-                        Stat3DTitleView(title: "PRO INSIGHTS")
+                        Stat3DTitleView(title: "PRO INSIGHTS", color: .goldPrimary)
                         
                         Text(String(localized: "paywall.feature.weekly_report.desc", defaultValue: "Lerne dich selbst besser kennen. Entdecke, wann du am produktivsten bist und feiere deinen Fortschritt."))
                             .font(.system(size: 15, weight: .medium, design: .rounded))

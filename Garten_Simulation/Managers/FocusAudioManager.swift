@@ -18,8 +18,8 @@ class FocusAudioManager: ObservableObject {
     @Published var isPlaying: Bool = false
 
     private let sampleRate: Double = 44100
-    // 4 Sekunden Puffer für nahtloses Looping
-    private var bufferDuration: Double = 4.0
+    // 16 Sekunden Puffer für hochwertiges, nicht-repetitives Looping
+    private var bufferDuration: Double = 16.0
 
     private init() {
         setupAudioSession()
@@ -207,26 +207,62 @@ class FocusAudioManager: ObservableObject {
     // MARK: - Puffer-Erzeugung
 
     private func buildBuffer(for sound: FocusSound, format: AVAudioFormat) -> AVAudioPCMBuffer? {
-        let frameCount = AVAudioFrameCount(sampleRate * bufferDuration)
+        let count = Int(sampleRate * bufferDuration)
+        let crossfadeDuration: Double = 1.5 // 1.5 Sekunden Crossfade für extrem weichen Loop-Übergang
+        let crossfadeCount = Int(sampleRate * crossfadeDuration)
+        let totalCount = count + crossfadeCount
+
+        let frameCount = AVAudioFrameCount(count)
         guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCount) else { return nil }
         buffer.frameLength = frameCount
 
         guard let left = buffer.floatChannelData?[0],
               let right = buffer.floatChannelData?[1] else { return nil }
 
-        switch sound {
-        case .rain:
-            fillRain(left: left, right: right, count: Int(frameCount))
-        case .cafe:
-            fillCafe(left: left, right: right, count: Int(frameCount))
-        case .zenFlute:
-            fillZenFlute(left: left, right: right, count: Int(frameCount))
-        case .whiteNoise:
-            fillWhiteNoise(left: left, right: right, count: Int(frameCount))
-        case .brownNoise:
-            fillBrownNoise(left: left, right: right, count: Int(frameCount))
-        case .none:
-            break
+        // Temporäre Puffer erzeugen, um das Signal über das Ende hinaus zu berechnen
+        var tempLeft = [Float](repeating: 0.0, count: totalCount)
+        var tempRight = [Float](repeating: 0.0, count: totalCount)
+
+        tempLeft.withUnsafeMutableBufferPointer { leftPtr in
+            tempRight.withUnsafeMutableBufferPointer { rightPtr in
+                guard let leftBase = leftPtr.baseAddress,
+                      let rightBase = rightPtr.baseAddress else { return }
+
+                switch sound {
+                case .rain:
+                    fillRain(left: leftBase, right: rightBase, count: totalCount)
+                case .cafe:
+                    fillCafe(left: leftBase, right: rightBase, count: totalCount)
+                case .zenFlute:
+                    fillZenFlute(left: leftBase, right: rightBase, count: totalCount)
+                case .whiteNoise:
+                    fillWhiteNoise(left: leftBase, right: rightBase, count: totalCount)
+                case .brownNoise:
+                    fillBrownNoise(left: leftBase, right: rightBase, count: totalCount)
+                case .none:
+                    break
+                }
+            }
+        }
+
+        // Crossfade anwenden: Blende die überhängenden Frames vom Ende (ab `count`)
+        // weich in den Anfang (ab Index 0) des Puffers ein.
+        for i in 0..<crossfadeCount {
+            let t = Float(i) / Float(crossfadeCount) // 0.0 bis 1.0
+            
+            let startValL = tempLeft[i]
+            let endValL = tempLeft[count + i]
+            left[i] = startValL * t + endValL * (1.0 - t)
+            
+            let startValR = tempRight[i]
+            let endValR = tempRight[count + i]
+            right[i] = startValR * t + endValR * (1.0 - t)
+        }
+
+        // Kopiere den restlichen Puffer direkt
+        for i in crossfadeCount..<count {
+            left[i] = tempLeft[i]
+            right[i] = tempRight[i]
         }
 
         return buffer

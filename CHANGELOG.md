@@ -311,3 +311,4 @@
 - Applied keyboard dismiss logic to Apple Health target field
 - UI der Wochenübersicht (WeeklyReportDashboardView) überarbeitet (3D-Karten, schlichte Diagramme analog zu Statistiken)
 - WeeklyReportDashboardView: Asset-Icons (Timer full, Drop water, streak, XP, Wachstum), Tipps-Sektion, Best-Day-Analyse mit Begründung
+- Psychologische Paywall und Teaser-Elemente hinzugefügt
