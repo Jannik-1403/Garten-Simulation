@@ -207,7 +207,7 @@ struct FocusSessionView: View {
         VStack(spacing: 30) {
             Spacer()
             
-            Image("Timer empty")
+            Image("Timer full")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 80, height: 80)
@@ -410,13 +410,10 @@ struct FocusSessionView: View {
         VStack(spacing: 30) {
             Spacer()
             
-            ZStack {
-                Circle().fill(Color.orangePrimary.opacity(0.1))
-                    .frame(width: 140, height: 140)
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 70))
-                    .foregroundStyle(Color.orangePrimary)
-            }
+            Image("Timer empty")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 140, height: 140)
             
             VStack(spacing: 12) {
                 Text(String(localized: "focus.session.done", defaultValue: "Geschafft!"))
