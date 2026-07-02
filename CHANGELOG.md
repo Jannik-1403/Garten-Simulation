@@ -1,7 +1,8 @@
 ## [2026-07-02] - Hintergrund-Audio, Pro-Rabatt & unbegrenzte Gewohnheiten
 
+- **Oranger 3D-Pfeil bei Rabatten**: Im Shop wird nun bei einem rabattierten Preis ein oranges 3D-Pfeil-Symbol (`↓`) mittels `Stat3DTitleView` angezeigt, um die Preissenkung visuell hervorzuheben.
+- **"pro Bonus" 3D-Schriftzug bei Belohnungen**: Wenn ein Pro-User eine Belohnung (Münzen) nach Fokus-Sessions, Routinen oder abgeschlossenen Pfaden und Meilensteinen erhält, wird der Schriftzug **"pro Bonus"** in der plastischen 3D-Schriftart (`Stat3DTitleView`) in Gold angezeigt.
 - **Direkte Weiterleitung bei Münzmangel**: Bei unzureichendem Münzguthaben öffnet sich für Nicht-Pro-User sofort die Paywall (wo nun auch der Pflanzen-Rabatt als Feature gelistet ist), während Pro-User direkt zum Münzen-Kauf-Fenster weitergeleitet werden.
-- **Paywall-Vorteilsliste**: Der Pflanzen-Rabatt (50%) und der Münz-Bonus (+25%) wurden der offiziellen Pro-Featureliste in `PaywallView` hinzugefügt und vollständig lokalisiert.
 - **Pro-Rabatt & Coin-Bonus**: Pro-User erhalten 50% Rabatt beim Freischalten neuer Gewohnheiten im Shop (400 statt 800 Münzen) sowie einen +25% Multiplikator auf gewonnene Münzen beim Gießen.
 - **Unbegrenzte Gewohnheiten**: Es gibt keine künstlichen Limits für aktive Gewohnheiten mehr (sowohl für Free- als auch Pro-User). Alle Pflanzen können unlimitiert freigeschaltet und gepflanzt werden.
 - **Dynamischer Rückkaufwert**: Der Refund-Betrag einer Pflanze passt sich dem Kaufpreis des Benutzers an (Pro-User erhalten 200 Münzen, Free-User erhalten 400 Münzen zurück), um Exploits zu verhindern.

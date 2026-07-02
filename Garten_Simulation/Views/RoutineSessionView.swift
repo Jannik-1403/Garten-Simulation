@@ -290,6 +290,11 @@ struct RoutineSessionView: View {
                         Text(String(localized: "common.coins", defaultValue: "Münzen"))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
+                        
+                        if gardenStore.isProUser {
+                            Stat3DTitleView(title: "pro Bonus", color: .goldPrimary, size: 12)
+                                .padding(.top, 2)
+                        }
                     }
                     
                     // XP (Right)

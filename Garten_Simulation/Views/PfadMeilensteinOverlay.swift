@@ -6,6 +6,7 @@ struct PfadMeilensteinOverlay: View {
     let onDismiss: () -> Void
     
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var gardenStore: GardenStore
     @State private var zeigeInhalt = false
     
     var body: some View {
@@ -41,6 +42,11 @@ struct PfadMeilensteinOverlay: View {
                     Text(belohnung)
                         .font(.system(size: 20, weight: .black, design: .rounded))
                         .foregroundStyle(Color.goldPrimary)
+                    
+                    if gardenStore.isProUser {
+                        Stat3DTitleView(title: "pro Bonus", color: .goldPrimary, size: 14)
+                            .padding(.top, 2)
+                    }
                 }
                 .padding(.top, 60)
                 

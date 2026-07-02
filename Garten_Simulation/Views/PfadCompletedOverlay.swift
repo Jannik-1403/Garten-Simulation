@@ -7,6 +7,7 @@ struct PfadCompletedOverlay: View {
     let onDismiss: () -> Void
     
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var gardenStore: GardenStore
     
     @State private var visible = false
     @State private var cardOffset: CGFloat = 300
@@ -45,19 +46,26 @@ struct PfadCompletedOverlay: View {
                             .multilineTextAlignment(.center)
                         
                         // Reward Box
-                        HStack(spacing: 8) {
-                            Image("coin")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 24, height: 24)
-                            Text("+\(coinsEarned)")
-                                .font(.system(.title3, design: .rounded, weight: .black))
-                                .foregroundColor(Color(hex: "#FFD60A"))
+                        VStack(spacing: 8) {
+                            HStack(spacing: 8) {
+                                Image("coin")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
+                                Text("+\(coinsEarned)")
+                                    .font(.system(.title3, design: .rounded, weight: .black))
+                                    .foregroundColor(Color(hex: "#FFD60A"))
+                            }
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 10)
+                            .background(Color(hex: "#FFD60A").opacity(0.15))
+                            .clipShape(Capsule())
+                            
+                            if gardenStore.isProUser {
+                                Stat3DTitleView(title: "pro Bonus", color: .goldPrimary, size: 12)
+                                    .padding(.top, 2)
+                            }
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 10)
-                        .background(Color(hex: "#FFD60A").opacity(0.15))
-                        .clipShape(Capsule())
                     }
                     
                     // Buttons

@@ -83,6 +83,9 @@ struct ShopItemCard: View {
                                     .foregroundStyle(.secondary)
                             }
                             .padding(.trailing, 4)
+                            
+                            Stat3DTitleView(title: "↓", color: .orange, size: 20)
+                                .padding(.trailing, 4)
                         }
                         GemsIcon(wert: price)
                     }
