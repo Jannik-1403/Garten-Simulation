@@ -7,6 +7,7 @@
 - **Hintergrund-Audio**: `UIBackgroundModes = [audio]` in `Info.plist` eingetragen – Fokus-Sounds (Regen, Kaffeehaus, Zen-Flöte, Weißes/Braunes Rauschen) laufen jetzt weiter, wenn die App in den Hintergrund geht.
 - **Live Activity Tap → Fokus-Timer**: Tippen auf die Live Activity im Sperrbildschirm oder die Dynamic Island öffnet die App direkt im laufenden Fokus-Timer der richtigen Gewohnheit.
 - **Deep Link Architektur**: `grovy://focus?habitId=<id>` – `FocusTimerActivityAttributes` trägt jetzt die `habitId`, Live Activity setzt `widgetURL`, `onOpenURL` im App-Root setzt `gardenStore.activeFocusHabitId`, `GartenView` öffnet daraufhin automatisch das richtige Detail-Sheet.
+- **Kompaktes Sound-Layout**: Die Musikkarte (`FocusSoundControlView`) wurde drastisch verkleinert. Durch die Platzierung der 3D-Bodenlayer direkt im `.background()` der `VStack` statt in einem umschließenden `ZStack` dehnt sich die Karte nicht mehr fälschlicherweise vertikal aus. Zudem ist die maximale Breite nun fest auf `280pt` eingestellt, um perfekt mit dem runden Countdown-Timer zu harmonieren.
 
 ## [2026-07-01] - Audio-Overhaul: Hochwertige Stereo-Synthese & Button-Fix
 
