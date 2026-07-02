@@ -25,6 +25,12 @@ enum GameConstants {
     // MARK: Onboarding
     static let startCoins: Int = 0
     static let gratisPflanzenAnzahl: Int = 2
+    
+    // MARK: - Pro-User Vorteile
+    /// Coin-Multiplikator für Pro-User beim Gießen (+25%)
+    static let proCoinBonus: Double = 1.25
+    /// Rabatt-Faktor auf Pflanzen-Kaufpreis für Pro-User (50% günstiger)
+    static let proUnlockDiscount: Double = 0.5
  
     // MARK: - Lokalisierung — Key-Präfix
     // Alle UI-Texte kommen aus Localizable.strings, nie hardcoden

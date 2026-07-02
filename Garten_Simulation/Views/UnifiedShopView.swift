@@ -15,6 +15,7 @@ struct ShopItemCard: View {
     let name: String
     let subtitle: String
     let price: Int
+    var originalPrice: Int? = nil
     var badgeText: String? = nil
     var rarity: ItemRarity? = nil
     var plant: Plant? = nil
@@ -69,8 +70,23 @@ struct ShopItemCard: View {
                     Stat3DTitleView(title: String(localized: "shop.free"), color: .gruenPrimary, size: 16)
                         .padding(.top, 4)
                 } else {
-                    GemsIcon(wert: price)
-                        .padding(.top, 4)
+                    HStack(alignment: .center, spacing: 6) {
+                        if let original = originalPrice, original != price {
+                            HStack(spacing: 2) {
+                                Image("coin")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20, height: 20)
+                                Text("\(original)")
+                                    .strikethrough()
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                            .padding(.trailing, 4)
+                        }
+                        GemsIcon(wert: price)
+                    }
+                    .padding(.top, 4)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .center)
@@ -86,6 +102,7 @@ struct UnifiedShopView: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var powerUpStore: PowerUpStore
+    @EnvironmentObject var iapStore: IAPStore
     @State private var searchText = ""
     @State private var detailPayload: ShopDetailPayload? = nil
     @State private var shopCategory: ShopCategory = .gegenstande
@@ -305,7 +322,8 @@ struct UnifiedShopView: View {
 
                                     VStack(spacing: 12) {
                                         ForEach(gefiltertePflanzen) { plant in
-                                            let p = plant.basePrice
+                                            let originalP = plant.basePrice
+                                            let p = iapStore.isProUser ? Int(Double(originalP) * GameConstants.proUnlockDiscount) : originalP
                                             let displayName = settings.showHabitInsteadOfName ? plant.habitName : plant.name
                                             let isOwned = shopStore.isPurchased(plant.id)
                                             
@@ -316,7 +334,8 @@ struct UnifiedShopView: View {
                                                 name: displayName,
                                                 subtitle: plant.symbolism,
                                                 price: p,
-                                                badgeText: isOwned ? String(localized: "shop.owned") : nil,
+                                                originalPrice: originalP,
+                                                badgeText: isOwned ? String(localized: "shop.owned") : (iapStore.isProUser ? "PRO -50%" : nil),
                                                 plant: plant,
                                                 onBuy: {
                                                     detailPayload = ShopDetailPayload(

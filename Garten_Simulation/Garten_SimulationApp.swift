@@ -132,6 +132,11 @@ struct AppRootView: View {
                     container.gardenStore.onItemClaimed = { [weak shopStore = container.shopStore] id in
                         shopStore?.purchasedIDs.insert(id)
                     }
+                    
+                    // Link GardenStore isProUserProvider to IAPStore
+                    container.gardenStore.isProUserProvider = { [weak iapStore = container.iapStore] in
+                        iapStore?.isProUser ?? false
+                    }
                 }
                 .fullScreenCover(isPresented: .init(
                     get: { !settingsStore.onboardingAbgeschlossen && !showSplash },

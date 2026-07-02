@@ -37,6 +37,11 @@ class GardenStore: ObservableObject {
         didSet { saveStats() }
     }
     
+    // MARK: - Pro User Integration
+    /// Closure zur Abfrage des Pro-Status – wird aus App.swift via IAPStore verlinkt
+    var isProUserProvider: () -> Bool = { false }
+    var isProUser: Bool { isProUserProvider() }
+    
     // Stats for Achievements
     @Published var dailySpinsVerfuegbar: Bool = true
     @Published var gesamtVerdient: Int = 0
@@ -48,6 +53,7 @@ class GardenStore: ObservableObject {
     @Published var focusSessions: [FocusSessionLog] = [] {
         didSet { saveFocusSessions() }
     }
+
     
     var isMock: Bool = false
     
@@ -881,12 +887,17 @@ class GardenStore: ObservableObject {
         }
         
         // Power-Ups (Coins werden meistens nicht durch Power-Ups beeinflusst, außer explizit)
-        // Aber falls wir welche haben:
         for aktiv in activePowerUps where aktiv.isActive && (aktiv.targetPlantId == nil || aktiv.targetPlantId == pflanze.id) {
             if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }), base.id.contains("coin") {
                 mult *= base.effectMultiplier
             }
         }
+        
+        // 3. Pro-User Coin-Bonus (+25%)
+        if isProUser {
+            mult *= GameConstants.proCoinBonus
+        }
+        
         return mult
     }
 

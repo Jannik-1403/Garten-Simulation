@@ -414,13 +414,14 @@ struct PflanzeDetailSheet: View {
             isPresented: $zeigeVerkaufenDialog,
             titleVisibility: .visible
         ) {
-            let refund = Int(Double(pflanze.basePrice) * 0.5)
+            let actualPrice = iapStore.isProUser ? Int(Double(pflanze.basePrice) * GameConstants.proUnlockDiscount) : pflanze.basePrice
+            let refund = Int(Double(actualPrice) * 0.5)
             Button("\(String(localized: "plant.detail.sell.action")) (+\(refund) \(String(localized: "common.coins")))", role: .destructive) {
                 UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                 let sellTitle = settings.showHabitInsteadOfName 
                     ? NSLocalizedString(pflanze.habitName, comment: "")
                     : NSLocalizedString(pflanze.name, comment: "")
-                shopStore.sell(id: pflanze.id, price: pflanze.basePrice, title: sellTitle)
+                shopStore.sell(id: pflanze.id, price: actualPrice, title: sellTitle)
                 onLoeschen?()
             }
             Button(String(localized: "button.cancel"), role: .cancel) { }
