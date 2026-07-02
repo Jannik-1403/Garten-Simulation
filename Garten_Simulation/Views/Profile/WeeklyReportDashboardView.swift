@@ -39,11 +39,11 @@ struct WeeklyReportDashboardView: View {
     var body: some View {
         VStack(spacing: 24) {
             
-            // 1. Week Navigation
+            // 1. Week Navigation (Liquid Glass)
             weekNavigationHeader
             
-            // 2. Summary Grid (4 Karten mit Asset-Icons)
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 14) {
+            // 2. Summary Carousel (TabView anstatt 2x2 Grid)
+            TabView {
                 summaryCardAsset(
                     title: String(localized: "weekly_report.card.focus_time", defaultValue: "Fokuszeit"),
                     value: "\(report.totalFocusMinutes) Min",
@@ -51,6 +51,8 @@ struct WeeklyReportDashboardView: View {
                     assetIcon: "Timer full",
                     color: .blauPrimary
                 )
+                .padding(.horizontal, 4)
+                
                 summaryCardAsset(
                     title: String(localized: "weekly_report.card.habits", defaultValue: "Gewohnheiten"),
                     value: "\(report.completedHabitsCount)",
@@ -58,6 +60,8 @@ struct WeeklyReportDashboardView: View {
                     assetIcon: "Drop water",
                     color: .green
                 )
+                .padding(.horizontal, 4)
+                
                 summaryCardAsset(
                     title: String(localized: "weekly_report.card.sessions", defaultValue: "Sessions"),
                     value: "\(report.completedSessionsCount)",
@@ -65,6 +69,8 @@ struct WeeklyReportDashboardView: View {
                     assetIcon: "streak",
                     color: .orangePrimary
                 )
+                .padding(.horizontal, 4)
+                
                 summaryCardAsset(
                     title: String(localized: "weekly_report.card.xp", defaultValue: "Verdiente XP"),
                     value: "+\(report.earnedXP)",
@@ -72,12 +78,16 @@ struct WeeklyReportDashboardView: View {
                     assetIcon: "XP",
                     color: .purple
                 )
+                .padding(.horizontal, 4)
             }
+            .frame(height: 140)
+            .tabViewStyle(.page(indexDisplayMode: .always))
+            .animation(.easeInOut, value: selectedWeekStart)
             
             // 3. Analyse & Feedback (aufklappbar)
             analysisCard
             
-            // 4. Chart: Fokuszeit
+            // 4. Chart: Fokuszeit (3D Balken)
             chartContainer(title: String(localized: "weekly_report.chart.focus_title", defaultValue: "Fokuszeit pro Tag")) {
                 Chart {
                     ForEach(report.dailyFocusMinutes) { item in
@@ -85,7 +95,7 @@ struct WeeklyReportDashboardView: View {
                             x: .value("Tag", item.dayName),
                             y: .value("Minuten", item.minutes)
                         )
-                        .foregroundStyle(Color.blauPrimary)
+                        .foregroundStyle(LinearGradient(colors: [.blauPrimary.opacity(0.5), .blauPrimary], startPoint: .bottom, endPoint: .top))
                         .cornerRadius(4)
                         
                         if let selected = selectedFocusDay, selected.dayName == item.dayName {
@@ -98,8 +108,10 @@ struct WeeklyReportDashboardView: View {
                 .chartXSelection(value: Binding(
                     get: { selectedFocusDay?.dayName },
                     set: { newValue in
-                        selectedFocusDay = newValue.flatMap { name in
-                            report.dailyFocusMinutes.first(where: { $0.dayName == name })
+                        withAnimation(.snappy) {
+                            selectedFocusDay = newValue.flatMap { name in
+                                report.dailyFocusMinutes.first(where: { $0.dayName == name })
+                            }
                         }
                     }
                 ))
@@ -112,11 +124,12 @@ struct WeeklyReportDashboardView: View {
                             .foregroundColor(.white)
                             .cornerRadius(8)
                             .offset(y: -24)
+                            .transition(.scale.combined(with: .opacity))
                     }
                 }
             }
             
-            // 5. Chart: Gewohnheiten
+            // 5. Chart: Gewohnheiten (3D Balken)
             chartContainer(title: String(localized: "weekly_report.chart.habits_title", defaultValue: "Erledigte Gewohnheiten")) {
                 Chart {
                     ForEach(report.dailyHabitsCompleted) { item in
@@ -124,7 +137,7 @@ struct WeeklyReportDashboardView: View {
                             x: .value("Tag", item.dayName),
                             y: .value("Erledigt", item.count)
                         )
-                        .foregroundStyle(Color.green)
+                        .foregroundStyle(LinearGradient(colors: [.green.opacity(0.5), .green], startPoint: .bottom, endPoint: .top))
                         .cornerRadius(4)
                         
                         if let selected = selectedHabitsDay, selected.dayName == item.dayName {
@@ -137,8 +150,10 @@ struct WeeklyReportDashboardView: View {
                 .chartXSelection(value: Binding(
                     get: { selectedHabitsDay?.dayName },
                     set: { newValue in
-                        selectedHabitsDay = newValue.flatMap { name in
-                            report.dailyHabitsCompleted.first(where: { $0.dayName == name })
+                        withAnimation(.snappy) {
+                            selectedHabitsDay = newValue.flatMap { name in
+                                report.dailyHabitsCompleted.first(where: { $0.dayName == name })
+                            }
                         }
                     }
                 ))
@@ -151,6 +166,7 @@ struct WeeklyReportDashboardView: View {
                             .foregroundColor(.white)
                             .cornerRadius(8)
                             .offset(y: -24)
+                            .transition(.scale.combined(with: .opacity))
                     }
                 }
             }
@@ -175,7 +191,7 @@ struct WeeklyReportDashboardView: View {
     private var weekNavigationHeader: some View {
         HStack {
             Button {
-                withAnimation {
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                     selectedWeekStart = calendar.date(byAdding: .day, value: -7, to: selectedWeekStart)!
                     selectedFocusDay = nil
                     selectedHabitsDay = nil
@@ -185,8 +201,11 @@ struct WeeklyReportDashboardView: View {
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.primary)
                     .padding(12)
-                    .background(Color.secondary.opacity(0.15))
+                    .background(.ultraThinMaterial)
                     .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.primary.opacity(0.15), lineWidth: 1)
+                    )
             }
             
             Spacer()
@@ -199,13 +218,14 @@ struct WeeklyReportDashboardView: View {
                 Text(formattedWeekRange)
                     .font(.system(size: 18, weight: .black, design: .rounded))
                     .foregroundColor(.primary)
+                    .contentTransition(.numericText())
             }
             
             Spacer()
             
             Button {
                 if canGoForward {
-                    withAnimation {
+                    withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                         selectedWeekStart = calendar.date(byAdding: .day, value: 7, to: selectedWeekStart)!
                         selectedFocusDay = nil
                         selectedHabitsDay = nil
@@ -216,8 +236,11 @@ struct WeeklyReportDashboardView: View {
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(canGoForward ? .primary : .secondary.opacity(0.3))
                     .padding(12)
-                    .background(Color.secondary.opacity(canGoForward ? 0.15 : 0.05))
+                    .background(.ultraThinMaterial)
                     .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.primary.opacity(canGoForward ? 0.15 : 0.05), lineWidth: 1)
+                    )
             }
             .disabled(!canGoForward)
         }
@@ -232,7 +255,6 @@ struct WeeklyReportDashboardView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Divider().padding(.vertical, 8)
                     
-                    // Feedback-Text aufgeteilt: Haupt-Text + Best-Day-Info + Tipp
                     let parts = report.feedbackDescription.components(separatedBy: "\n\n")
                     
                     if parts.count >= 1 {
@@ -290,6 +312,7 @@ struct WeeklyReportDashboardView: View {
                         Text(report.feedbackTitle)
                             .font(.system(size: 16, weight: .black, design: .rounded))
                             .foregroundColor(.primary)
+                            .contentTransition(.numericText())
                         Text(String(localized: "weekly_report.analysis.subtitle", defaultValue: "Deine Fortschritts-Analyse"))
                             .font(.system(size: 12, weight: .bold, design: .rounded))
                             .foregroundColor(.secondary)
@@ -301,12 +324,17 @@ struct WeeklyReportDashboardView: View {
         .padding(16)
         .background(Color(UIColor.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+        )
         .background(
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(Color.black.opacity(0.18))
-                .offset(y: 6)
+                .fill(Color.black.opacity(0.12))
+                .offset(y: 5)
         )
         .padding(.bottom, 6)
+        .animation(.easeInOut, value: isAnalysisExpanded)
     }
     
     // MARK: - Export Button
@@ -391,20 +419,25 @@ struct WeeklyReportDashboardView: View {
             
             VStack(alignment: .leading, spacing: 2) {
                 Text(value)
-                    .font(.system(size: 20, weight: .black, design: .rounded))
+                    .font(.system(size: 24, weight: .black, design: .rounded))
                     .foregroundColor(.primary)
+                    .contentTransition(.numericText())
                 Text(title)
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundColor(.secondary)
             }
         }
-        .padding(14)
+        .padding(20)
         .background(Color(UIColor.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+        )
         .background(
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(Color.black.opacity(0.18))
-                .offset(y: 6)
+                .fill(Color.black.opacity(0.12))
+                .offset(y: 5)
         )
     }
     
@@ -421,13 +454,18 @@ struct WeeklyReportDashboardView: View {
         .padding(20)
         .background(Color(UIColor.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+        )
         .background(
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(Color.black.opacity(0.18))
-                .offset(y: 6)
+                .fill(Color.black.opacity(0.12))
+                .offset(y: 5)
         )
         .padding(.bottom, 6)
     }
 }
+
 
 
