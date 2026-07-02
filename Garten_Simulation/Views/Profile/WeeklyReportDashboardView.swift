@@ -260,7 +260,7 @@ struct WeeklyReportDashboardView: View {
                     }
                     
                     if parts.count >= 2 {
-                        HStack(spacing: 10) {
+                        HStack(alignment: .top, spacing: 6) {
                             Image(systemName: "calendar.badge.checkmark")
                                 .font(.system(size: 16, weight: .bold))
                                 .foregroundColor(.primary)
@@ -269,15 +269,17 @@ struct WeeklyReportDashboardView: View {
                                 .foregroundColor(.primary.opacity(0.8))
                                 .lineSpacing(3)
                                 .fixedSize(horizontal: false, vertical: true)
+                            Spacer(minLength: 0)
                         }
                         .padding(12)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                         .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).stroke(Color.primary.opacity(0.05), lineWidth: 1))
                     }
                     
                     if parts.count >= 3 {
-                        HStack(alignment: .top, spacing: 10) {
+                        HStack(alignment: .top, spacing: 6) {
                             SwiftUI.Image("Wachstum")
                                 .resizable()
                                 .scaledToFit()
@@ -288,8 +290,10 @@ struct WeeklyReportDashboardView: View {
                                 .foregroundColor(.primary.opacity(0.8))
                                 .lineSpacing(3)
                                 .fixedSize(horizontal: false, vertical: true)
+                            Spacer(minLength: 0)
                         }
                         .padding(12)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                         .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).stroke(Color.primary.opacity(0.05), lineWidth: 1))
