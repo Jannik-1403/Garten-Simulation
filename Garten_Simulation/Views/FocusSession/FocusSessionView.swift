@@ -207,7 +207,7 @@ struct FocusSessionView: View {
         VStack(spacing: 30) {
             Spacer()
             
-            Image("Timer full")
+            Image("Timer empty")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 80, height: 80)
