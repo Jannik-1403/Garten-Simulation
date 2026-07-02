@@ -410,15 +410,18 @@ struct FocusSessionView: View {
         VStack(spacing: 30) {
             Spacer()
             
-            Image("Timer full")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 140, height: 140)
+            ZStack {
+                Circle().fill(Color.orangePrimary.opacity(0.1))
+                    .frame(width: 140, height: 140)
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 70))
+                    .foregroundStyle(Color.orangePrimary)
+            }
             
             VStack(spacing: 12) {
                 Text(String(localized: "focus.session.done", defaultValue: "Geschafft!"))
                     .font(.system(size: 32, weight: .black, design: .rounded))
-                Text(String(format: String(localized: "focus.session.completed.xp_shared", defaultValue: "Du warst %lld Minuten lang extrem fokussiert. Die XP werden auf alle deine Pflanzen aufgeteilt!"), selectedMinutes))
+                Text(String(format: String(localized: "focus.session.completed.proud", defaultValue: "Du warst %lld Minuten lang extrem fokussiert. Deine Pflanze ist stolz auf dich!"), selectedMinutes))
                     .font(.system(size: 16, weight: .medium, design: .rounded))
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.secondary)

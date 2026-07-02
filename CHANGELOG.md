@@ -9,7 +9,8 @@
 - **Shop UI-Visualisierung**: Pro-User sehen im Shop nun den Originalpreis durchgestrichen sowie den ermäßigten Preis und einen orangen 3D-Pfeil nach unten. Das störende "PRO -50%"-Badge oben auf den Karten wurde wunschgemäß entfernt.
 - **Pro-Status Persistence**: Der Pro-User-Status wird nun über `UserDefaults` lokal persistiert. Beim Neustarten oder Beenden der App bleibt das freigeschaltete Pro-Abo somit dauerhaft aktiv und muss nicht erneut freigeschaltet werden.
 - **Premium Loop-Synthese (16 Sek. + Crossfade)**: Die synthetische Generierung aller Fokus-Sounds wurde von 4 auf **16 Sekunden Pufferlänge** verlängert. Dadurch klingen die Geräusche (Regen, Zen-Flöte, Kaffeehaus) deutlich natürlicher und weniger repetitiv. Zudem wurde ein **1,5 Sekunden Crossfade** am Loop-Übergang implementiert, um Knackser und hörbare Wiederholungsschnitte vollständig zu eliminieren.
-- **Fehlerbehebung in Statistiken**: Fehlender Farbparameter bei `Stat3DTitleView` im Insights-Bereich (`HabitVerlaufView`) behoben.
+- **Level Up UI Bereinigung**: Das störende Rarity-Icon (Emoji) im Header des Level-Up Overlays (z.B. Bronze zu Silber) wurde komplett entfernt, um den Look eleganter zu gestalten.
+- **Fokus Session Success View**: Der End-Screen der Fokus-Session wurde wunschgemäß auf das alte Design zurückgesetzt. Er zeigt nun wieder das vertraute Checkmark-Symbol und den Text "Deine Pflanze ist stolz auf dich!", während gleichzeitig beide Belohnungen (Münzen und XP) übersichtlich nebeneinander dargestellt werden.
 - **Timer-Weiterlauf im Hintergrund**: Der Fokus-Timer pausiert *nicht* mehr, wenn die App minimiert (Home-Bildschirm) oder das Handy gesperrt wird. Die Zeit im Hintergrund wird beim Öffnen der App automatisch berechnet und abgezogen. Bei aktivem Strict-Mode führt das Verlassen der App nach wie vor nach 10 Sekunden zum Fehlschlag der Session.
 - **Live Activity Beenden bei Force-Close**: Wenn die App vom Benutzer über den App-Switcher komplett geschlossen (weggewischt) wird, fängt die App den Termination-Event (`UIApplication.willTerminateNotification`) ab und beendet alle aktiven Live Activities auf dem Sperrbildschirm sofort.
 - **Hintergrund-Audio**: `UIBackgroundModes = [audio]` in `Info.plist` eingetragen – Fokus-Sounds (Regen, Kaffeehaus, Zen-Flöte, Weißes/Braunes Rauschen) laufen jetzt weiter, wenn die App in den Hintergrund geht.
@@ -314,3 +315,4 @@
 - UI der Wochenübersicht (WeeklyReportDashboardView) überarbeitet (3D-Karten, schlichte Diagramme analog zu Statistiken)
 - WeeklyReportDashboardView: Asset-Icons (Timer full, Drop water, streak, XP, Wachstum), Tipps-Sektion, Best-Day-Analyse mit Begründung
 - Psychologische Paywall und Teaser-Elemente hinzugefügt
+- **Entwickler-Test-Optionen**: Neue Buttons in den Developer Options zum manuellen Triggern der emotionalen Paywall, des Rarity-Level-Ups und des Pfad-Meilenstein-Overlays hinzugefügt.

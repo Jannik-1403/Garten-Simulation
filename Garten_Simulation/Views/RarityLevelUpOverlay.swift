@@ -24,20 +24,7 @@ struct RarityLevelUpOverlay: View {
                     .font(.system(size: 26, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.primary)
                 
-                // Rarity Icon
-                ZStack {
-                    Circle()
-                        .fill(rarity.farbe.opacity(0.15))
-                        .frame(width: 140, height: 140)
-                        .blur(radius: 20)
-                    
-                    Image(systemName: rarity.iconName)
-                        .font(.system(size: 80, weight: .bold))
-                        .foregroundStyle(rarity.gradient)
-                        .scaleEffect(iconScale)
-                        .rotationEffect(.degrees(iconRotation))
-                        .shadow(color: rarity.farbe.opacity(0.3), radius: 15, x: 0, y: 10)
-                }
+
                 
                 // Details
                 VStack(spacing: 8) {
