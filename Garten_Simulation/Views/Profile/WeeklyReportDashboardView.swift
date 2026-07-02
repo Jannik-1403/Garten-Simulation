@@ -42,49 +42,46 @@ struct WeeklyReportDashboardView: View {
             // 1. Week Navigation (Liquid Glass)
             weekNavigationHeader
             
-            // 2. Summary Carousel (ScrollView mit Peek-Effekt)
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    summaryCardAsset(
-                        title: String(localized: "weekly_report.card.focus_time", defaultValue: "Fokuszeit"),
-                        value: "\(report.totalFocusMinutes) Min",
-                        change: report.focusMinutesChangePercentage,
-                        assetIcon: "Timer full",
-                        color: .blauPrimary
-                    )
-                    .containerRelativeFrame(.horizontal) { length, _ in length - 32 }
-                    
-                    summaryCardAsset(
-                        title: String(localized: "weekly_report.card.habits", defaultValue: "Gewohnheiten"),
-                        value: "\(report.completedHabitsCount)",
-                        change: report.habitsChangePercentage,
-                        assetIcon: "Drop water",
-                        color: .green
-                    )
-                    .containerRelativeFrame(.horizontal) { length, _ in length - 32 }
-                    
-                    summaryCardAsset(
-                        title: String(localized: "weekly_report.card.sessions", defaultValue: "Sessions"),
-                        value: "\(report.completedSessionsCount)",
-                        change: nil,
-                        assetIcon: "streak",
-                        color: .orangePrimary
-                    )
-                    .containerRelativeFrame(.horizontal) { length, _ in length - 32 }
-                    
-                    summaryCardAsset(
-                        title: String(localized: "weekly_report.card.xp", defaultValue: "Verdiente XP"),
-                        value: "+\(report.earnedXP)",
-                        change: nil,
-                        assetIcon: "XP",
-                        color: .purple
-                    )
-                    .containerRelativeFrame(.horizontal) { length, _ in length - 32 }
-                }
-                .padding(.horizontal, 16)
-                .scrollTargetLayout()
+            // 2. Summary Carousel (TabView anstatt 2x2 Grid)
+            TabView {
+                summaryCardAsset(
+                    title: String(localized: "weekly_report.card.focus_time", defaultValue: "Fokuszeit"),
+                    value: "\(report.totalFocusMinutes) Min",
+                    change: report.focusMinutesChangePercentage,
+                    assetIcon: "Timer full",
+                    color: .blauPrimary
+                )
+                .padding(.horizontal, 4)
+                
+                summaryCardAsset(
+                    title: String(localized: "weekly_report.card.habits", defaultValue: "Gewohnheiten"),
+                    value: "\(report.completedHabitsCount)",
+                    change: report.habitsChangePercentage,
+                    assetIcon: "Drop water",
+                    color: .green
+                )
+                .padding(.horizontal, 4)
+                
+                summaryCardAsset(
+                    title: String(localized: "weekly_report.card.sessions", defaultValue: "Sessions"),
+                    value: "\(report.completedSessionsCount)",
+                    change: nil,
+                    assetIcon: "streak",
+                    color: .orangePrimary
+                )
+                .padding(.horizontal, 4)
+                
+                summaryCardAsset(
+                    title: String(localized: "weekly_report.card.xp", defaultValue: "Verdiente XP"),
+                    value: "+\(report.earnedXP)",
+                    change: nil,
+                    assetIcon: "XP",
+                    color: .purple
+                )
+                .padding(.horizontal, 4)
             }
-            .scrollTargetBehavior(.viewAligned)
+            .frame(height: 140)
+            .tabViewStyle(.page(indexDisplayMode: .always))
             .animation(.easeInOut, value: selectedWeekStart)
             
             // 3. Analyse & Feedback (aufklappbar)
@@ -254,28 +251,29 @@ struct WeeklyReportDashboardView: View {
                     
                     let parts = report.feedbackDescription.components(separatedBy: "\n\n")
                     
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 12) {
+                    if !parts.isEmpty {
+                        TabView {
                             ForEach(0..<parts.count, id: \.self) { index in
-                                VStack(alignment: .leading, spacing: 0) {
+                                VStack(alignment: .leading, spacing: 6) {
                                     Text(parts[index])
-                                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                        .font(.system(size: 15, weight: .medium, design: .rounded))
                                         .foregroundColor(.primary.opacity(0.85))
-                                        .lineSpacing(3)
+                                        .lineSpacing(4)
+                                        .fixedSize(horizontal: false, vertical: true)
                                     Spacer(minLength: 0)
                                 }
-                                .padding(12)
+                                .padding(16)
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
-                                .frame(minHeight: 80)
                                 .background(.ultraThinMaterial)
                                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                                 .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).stroke(Color.primary.opacity(0.05), lineWidth: 1))
-                                .containerRelativeFrame(.horizontal) { length, _ in length - 32 }
+                                .padding(.horizontal, 4)
                             }
                         }
-                        .scrollTargetLayout()
+                        .frame(height: 140)
+                        .tabViewStyle(.page(indexDisplayMode: .always))
+                        .animation(.easeInOut, value: report.feedbackDescription)
                     }
-                    .scrollTargetBehavior(.viewAligned)
                 }
             } label: {
                 HStack(spacing: 12) {
