@@ -52,10 +52,10 @@ struct FocusSoundControlView: View {
                     Spacer()
 
                     Text(selectedSound.displayName)
-                        .font(.system(size: 17, weight: .bold, design: .rounded))
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundColor(isLocked ? .white : .primary)
                         .multilineTextAlignment(.center)
-                        .frame(minWidth: 130)
+                        .frame(minWidth: 120)
                         .lineLimit(1)
 
                     Spacer()
@@ -77,31 +77,31 @@ struct FocusSoundControlView: View {
                     Item3DButton(
                         farbe: .goldPrimary,
                         sekundaerFarbe: .goldPrimary.darker(),
-                        groesse: 76,
+                        groesse: 60,
                         shadowDepthFactor: 0.10,
                         isRectangular: false,
                         aktion: { showPaywall = true }
                     ) {
                         Image(systemName: "lock.fill")
-                            .font(.system(size: 26, weight: .bold))
+                            .font(.system(size: 22, weight: .bold))
                             .foregroundColor(.white)
                     }
                 } else {
                     Item3DButton(
                         farbe: Color(white: 0.96),
                         sekundaerFarbe: Color(white: 0.80),
-                        groesse: 76,
+                        groesse: 60,
                         shadowDepthFactor: 0.10,
                         isRectangular: false,
                         aktion: { togglePlay() }
                     ) {
                         Image(systemName: isCurrentSoundPlaying ? "stop.fill" : "play.fill")
-                            .font(.system(size: 26, weight: .bold))
+                            .font(.system(size: 22, weight: .bold))
                             .foregroundColor(.primary)
                     }
                 }
             }
-            .padding(.vertical, 18)
+            .padding(.vertical, 12)
             .padding(.horizontal, 20)
         }
         .padding(.bottom, 8)

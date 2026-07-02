@@ -70,6 +70,20 @@ struct PaywallView: View {
                             description: String(localized: "paywall.feature.calendar.desc", defaultValue: "Synchronisiere deine Gewohnheiten und Timer direkt mit deinem Apple Kalender."),
                             color: .goldPrimary
                         )
+                        
+                        featureRow(
+                            icon: "chart.bar.doc.horizontal.fill",
+                            title: String(localized: "paywall.feature.weekly_report.title", defaultValue: "Wochenrückblick & PDF-Export"),
+                            description: String(localized: "paywall.feature.weekly_report.desc", defaultValue: "Detaillierte Auswertung jeder Woche mit interaktiven Charts, Analyse deiner besten Tage und PDF-Export zum Teilen."),
+                            color: .blauPrimary
+                        )
+                        
+                        featureRow(
+                            icon: "waveform.circle.fill",
+                            title: String(localized: "paywall.feature.focus_sounds.title", defaultValue: "Fokus-Sounds"),
+                            description: String(localized: "paywall.feature.focus_sounds.desc", defaultValue: "Entspannende Naturgeräusche und Ambient-Sounds, die dich beim Fokussieren in Tiefenkonzentration bringen."),
+                            color: .green
+                        )
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 16)

@@ -209,7 +209,7 @@ struct FocusSessionView: View {
                 Text(String(localized: "focus.session.title", defaultValue: "Fokus-Session"))
                     .font(.system(size: 32, weight: .black, design: .rounded))
                 
-                Text(settings.showHabitInsteadOfName ? pflanze.displayedHabitName : pflanze.name)
+                Text(settings.showHabitInsteadOfName ? pflanze.localizedHabitName : pflanze.localizedName)
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.goldPrimary)
             }
@@ -270,7 +270,7 @@ struct FocusSessionView: View {
                         .font(.system(size: 64, weight: .black, design: .monospaced))
                         .foregroundStyle(Color.primary)
                     
-                    Text(settings.showHabitInsteadOfName ? pflanze.displayedHabitName : pflanze.name)
+                    Text(settings.showHabitInsteadOfName ? pflanze.localizedHabitName : pflanze.localizedName)
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
@@ -579,7 +579,7 @@ struct FocusSessionView: View {
                         "Focus Session"
                         
         let attributes = FocusTimerActivityAttributes(
-            habitName: settings.showHabitInsteadOfName ? pflanze.displayedHabitName : pflanze.name
+            habitName: settings.showHabitInsteadOfName ? pflanze.localizedHabitName : pflanze.localizedName
         )
         let state = FocusTimerActivityAttributes.ContentState(
             endTime: endTime,

@@ -209707,6 +209707,290 @@
           }
         }
       }
+    },
+    "paywall.feature.weekly_report.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wochenrückblick & PDF-Export"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly Review & PDF Export"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisión semanal y exportación PDF"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bilan hebdomadaire et export PDF"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riepilogo settimanale ed export PDF"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週間レビュー & PDF エクスポート"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "주간 리뷰 & PDF 내보내기"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wekelijks overzicht & PDF-export"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tygodniowy przegląd i eksport PDF"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisão semanal e exportação PDF"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haftalık İnceleme ve PDF Dışa Aktarma"
+          }
+        }
+      }
+    },
+    "paywall.feature.weekly_report.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detaillierte Auswertung jeder Woche mit interaktiven Charts, Analyse deiner besten Tage und PDF-Export zum Teilen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detailed evaluation of every week with interactive charts, analysis of your best days, and PDF export for sharing."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Evaluación detallada de cada semana con gráficos interactivos, análisis de tus mejores días y exportación PDF para compartir."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Évaluation détaillée de chaque semaine avec des graphiques interactifs, l'analyse de tes meilleures journées et l'export PDF pour partager."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valutazione dettagliata di ogni settimana con grafici interattivi, analisi dei tuoi giorni migliori ed esportazione PDF per condividere."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "インタラクティブなチャート、ベストデイ分析、PDF共有エクスポートを備えた毎週の詳細な評価。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "대화형 차트, 베스트 데이 분석, 공유용 PDF 내보내기를 포함한 매주 상세한 평가."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gedetailleerde evaluatie van elke week met interactieve grafieken, analyse van je beste dagen en PDF-export om te delen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Szczegółowa ocena każdego tygodnia z interaktywnymi wykresami, analizą twoich najlepszych dni i eksportem PDF do udostępniania."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avaliação detalhada de cada semana com gráficos interativos, análise dos seus melhores dias e exportação em PDF para compartilhar."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İnteraktif grafikler, en iyi günlerin analizi ve paylaşım için PDF dışa aktarmayla her haftanın ayrıntılı değerlendirmesi."
+          }
+        }
+      }
+    },
+    "paywall.feature.focus_sounds.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fokus-Sounds"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Focus Sounds"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonidos de Concentración"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sons de Concentration"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suoni di Concentrazione"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フォーカスサウンド"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "집중 사운드"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Focusgeluiden"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dźwięki Skupienia"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sons de Foco"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odak Sesleri"
+          }
+        }
+      }
+    },
+    "paywall.feature.focus_sounds.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entspannende Naturgeräusche und Ambient-Sounds, die dich beim Fokussieren in Tiefenkonzentration bringen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relaxing nature sounds and ambient tones that bring you into deep focus during your sessions."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relajantes sonidos de la naturaleza y tonos ambiente que te llevan a una concentración profunda durante tus sesiones."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des sons de nature apaisants et des tons ambiants qui t'amènent à une concentration profonde pendant tes sessions."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suoni della natura rilassanti e toni ambientali che ti portano a una concentrazione profonda durante le sessioni."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "セッション中に深い集中状態へと導く、リラックスできる自然音とアンビエントサウンド。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "세션 중 깊은 집중 상태로 이끄는 편안한 자연 소리와 앰비언트 사운드."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ontspannende natuurgeluiden en omgevingsklanken die je tijdens je sessies in diepe concentratie brengen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relaksujące dźwięki natury i dźwięki otoczenia, które podczas sesji wprowadzają cię w stan głębokiej koncentracji."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sons relaxantes da natureza e tons ambientes que te levam a uma concentração profunda durante as sessões."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seanslarınız sırasında derin bir odak haline girmenizi sağlayan rahatlatıcı doğa sesleri ve ortam tonları."
+          }
+        }
+      }
     }
   },
   "version": "1.1"

@@ -425,6 +425,21 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         return "common.habit" 
     }
 
+    /// Gibt den lokalisierten Gewohnheitsnamen zurück.
+    /// Wenn `displayedHabitName` ein Lokalisierungsschlüssel ist
+    /// (z.B. "habit.frueh_aufstehen"), wird dieser übersetzt. Sonst direkte Ausgabe.
+    var localizedHabitName: String {
+        let raw = displayedHabitName
+        let translated = Bundle.main.localizedString(forKey: raw, value: nil, table: nil)
+        return translated == raw ? raw : translated
+    }
+
+    /// Wie `name`, aber mit Lokalisierung falls der Wert ein Schlüssel ist.
+    var localizedName: String {
+        let translated = Bundle.main.localizedString(forKey: name, value: nil, table: nil)
+        return translated == name ? name : translated
+    }
+
     var color: Color {
         if plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: plantID) == nil {
             return AppColors.color(for: symbolColor)
