@@ -38,9 +38,14 @@ class FeedbackManager {
         triggerHaptic(style: .light)
     }
     
-    /// Feedback for watering action
+    /// Feedback for watering action (upgraded to a satisfying splash)
     func playWatering() {
-        triggerHaptic(style: .soft)
+        let hapticOn = SharedUserDefaults.suite.object(forKey: "isHapticEnabled") as? Bool ?? true
+        if hapticOn {
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
+            generator.notificationOccurred(.success)
+        }
     }
     
     /// Ticking haptic for the wheel of fortune

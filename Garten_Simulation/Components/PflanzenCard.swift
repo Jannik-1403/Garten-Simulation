@@ -18,6 +18,7 @@ struct PflanzenCard: View {
     @State private var showReviveSheet = false
     @State private var zeigeBonusText: Bool = false
     @State private var bonusText: String = ""
+    @State private var showWaterSplash: Bool = false
     
     var body: some View {
         ZStack {
@@ -150,6 +151,13 @@ struct PflanzenCard: View {
                                     FeedbackManager.shared.playTap()
                                     onTap()
                                 }
+                                
+                                if showWaterSplash {
+                                    WaterSplashParticleView(isVisible: $showWaterSplash)
+                                        .frame(width: 200, height: 200)
+                                        .zIndex(250)
+                                        .allowsHitTesting(false)
+                                }
                             }
                         )
                     }
@@ -257,6 +265,7 @@ struct PflanzenCard: View {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.65) {
             FeedbackManager.shared.playWatering()
+            showWaterSplash = true
             onGiessen()
         }
     }

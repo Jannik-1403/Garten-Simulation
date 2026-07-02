@@ -287,6 +287,26 @@ class FocusAudioManager: ObservableObject {
             right[i] = tempRight[i]
         }
 
+        // Normalisierung & NaN-Schutz
+        // Dies behebt das Problem "manche laut, manche leise" und "gar nichts wird abgespielt".
+        var maxVal: Float = 0.0001
+        for i in 0..<count {
+            if left[i].isNaN || right[i].isNaN || left[i].isInfinite || right[i].isInfinite {
+                left[i] = 0
+                right[i] = 0
+            }
+            maxVal = max(maxVal, abs(left[i]), abs(right[i]))
+        }
+        
+        // Alle Töne auf ein einheitliches, angenehmes Level normalisieren (Peak bei 0.6)
+        let targetPeak: Float = 0.6
+        let normGain = targetPeak / maxVal
+        
+        for i in 0..<count {
+            left[i] *= normGain
+            right[i] *= normGain
+        }
+
         return buffer
     }
 
@@ -525,6 +545,7 @@ class FocusAudioManager: ObservableObject {
 
     @inline(__always)
     private func clamp(_ value: Float) -> Float {
+        guard !value.isNaN && !value.isInfinite else { return 0.0 }
         // Sanftes Soft-Clipping statt hartem Limiter
         if value > 0.95 { return 0.95 + tanh((value - 0.95) * 5) * 0.05 }
         if value < -0.95 { return -0.95 + tanh((value + 0.95) * 5) * 0.05 }
