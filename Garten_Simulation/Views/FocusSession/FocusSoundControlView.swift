@@ -14,8 +14,76 @@ struct FocusSoundControlView: View {
     var body: some View {
         let isLocked = !iapStore.isProUser
 
-        ZStack {
-            // ── Hintergrund 3D-Karte ──────────────────────────────────────
+        VStack(spacing: 16) {
+
+            // Sound-Auswahl Header
+            HStack {
+                Button {
+                    withAnimation(.spring(response: 0.3)) { selectPrevious() }
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(isLocked ? .white.opacity(0.85) : .secondary)
+                        .frame(width: 44, height: 44)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+
+                Spacer()
+
+                Text(selectedSound.displayName)
+                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                    .foregroundColor(isLocked ? .white : .primary)
+                    .multilineTextAlignment(.center)
+                    .frame(minWidth: 120)
+                    .lineLimit(1)
+
+                Spacer()
+
+                Button {
+                    withAnimation(.spring(response: 0.3)) { selectNext() }
+                } label: {
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(isLocked ? .white.opacity(0.85) : .secondary)
+                        .frame(width: 44, height: 44)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+            }
+
+            // Play / Lock Button
+            if isLocked {
+                Item3DButton(
+                    farbe: .goldPrimary,
+                    sekundaerFarbe: .goldPrimary.darker(),
+                    groesse: 60,
+                    shadowDepthFactor: 0.10,
+                    isRectangular: false,
+                    aktion: { showPaywall = true }
+                ) {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(.white)
+                }
+            } else {
+                Item3DButton(
+                    farbe: Color(white: 0.96),
+                    sekundaerFarbe: Color(white: 0.80),
+                    groesse: 60,
+                    shadowDepthFactor: 0.10,
+                    isRectangular: false,
+                    aktion: { togglePlay() }
+                ) {
+                    Image(systemName: isCurrentSoundPlaying ? "stop.fill" : "play.fill")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(.primary)
+                }
+            }
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 20)
+        .background(
             ZStack {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .fill(isLocked
@@ -32,78 +100,8 @@ struct FocusSoundControlView: View {
                             .stroke(Color.black.opacity(0.10), lineWidth: 1)
                     )
             }
-
-            // ── Inhalt ────────────────────────────────────────────────────
-            VStack(spacing: 16) {
-
-                // Sound-Auswahl Header
-                HStack {
-                    Button {
-                        withAnimation(.spring(response: 0.3)) { selectPrevious() }
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(isLocked ? .white.opacity(0.85) : .secondary)
-                            .frame(width: 44, height: 44)
-                            .contentShape(Rectangle())
-                    }
-                    .buttonStyle(.plain)
-
-                    Spacer()
-
-                    Text(selectedSound.displayName)
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
-                        .foregroundColor(isLocked ? .white : .primary)
-                        .multilineTextAlignment(.center)
-                        .frame(minWidth: 120)
-                        .lineLimit(1)
-
-                    Spacer()
-
-                    Button {
-                        withAnimation(.spring(response: 0.3)) { selectNext() }
-                    } label: {
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(isLocked ? .white.opacity(0.85) : .secondary)
-                            .frame(width: 44, height: 44)
-                            .contentShape(Rectangle())
-                    }
-                    .buttonStyle(.plain)
-                }
-
-                // Play / Lock Button
-                if isLocked {
-                    Item3DButton(
-                        farbe: .goldPrimary,
-                        sekundaerFarbe: .goldPrimary.darker(),
-                        groesse: 60,
-                        shadowDepthFactor: 0.10,
-                        isRectangular: false,
-                        aktion: { showPaywall = true }
-                    ) {
-                        Image(systemName: "lock.fill")
-                            .font(.system(size: 22, weight: .bold))
-                            .foregroundColor(.white)
-                    }
-                } else {
-                    Item3DButton(
-                        farbe: Color(white: 0.96),
-                        sekundaerFarbe: Color(white: 0.80),
-                        groesse: 60,
-                        shadowDepthFactor: 0.10,
-                        isRectangular: false,
-                        aktion: { togglePlay() }
-                    ) {
-                        Image(systemName: isCurrentSoundPlaying ? "stop.fill" : "play.fill")
-                            .font(.system(size: 22, weight: .bold))
-                            .foregroundColor(.primary)
-                    }
-                }
-            }
-            .padding(.vertical, 12)
-            .padding(.horizontal, 20)
-        }
+        )
+        .frame(width: 280)
         .padding(.bottom, 8)
         .onChange(of: selectedSound) { _, newSound in
             if audioManager.isPlaying {
