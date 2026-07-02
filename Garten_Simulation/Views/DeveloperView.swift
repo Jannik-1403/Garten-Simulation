@@ -15,6 +15,9 @@ struct DeveloperView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var showWeeklyReport = false
+    @State private var showPaywallOverlay = false
+    @State private var showRarityOverlay = false
+    @State private var showMilestoneOverlay = false
 
     
     var body: some View {
@@ -300,10 +303,61 @@ struct DeveloperView: View {
                             }
                         }
                     }
+                    
+                    // Section 7: Premium & Overlays
+                    settingsSection(title: "Premium & Overlays") {
+                        VStack(spacing: 0) {
+                            Button {
+                                showPaywallOverlay = true
+                            } label: {
+                                settingRow(title: "Paywall (Emotional) anzeigen", icon: "creditcard.fill", color: .goldPrimary)
+                            }
+                            
+                            Divider().padding(.leading, 44)
+                            
+                            Button {
+                                showRarityOverlay = true
+                            } label: {
+                                settingRow(title: "Rarity Level Up Overlay (Psychology) anzeigen", icon: "arrow.up.circle.fill", color: .green)
+                            }
+                            
+                            Divider().padding(.leading, 44)
+                            
+                            Button {
+                                showMilestoneOverlay = true
+                            } label: {
+                                settingRow(title: "Pfad Meilenstein Overlay (Psychology) anzeigen", icon: "star.fill", color: .orange)
+                            }
+                        }
+                    }
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 20)
             }
+            
+            // Present Overlays
+            if showRarityOverlay {
+                RarityLevelUpOverlay(rarity: .silber, onDismiss: {
+                    showRarityOverlay = false
+                })
+                .transition(.opacity)
+                .zIndex(100)
+            }
+            
+            if showMilestoneOverlay {
+                PfadMeilensteinOverlay(
+                    meilensteinTitel: "Erster Fokus-Erfolg",
+                    belohnung: "+100 Münzen",
+                    onDismiss: {
+                        showMilestoneOverlay = false
+                    }
+                )
+                .transition(.opacity)
+                .zIndex(100)
+            }
+        }
+        .fullScreenCover(isPresented: $showPaywallOverlay) {
+            PaywallView()
         }
         .navigationTitle(String(localized: "developer.options.title", defaultValue: "Developer Options"))
         .navigationBarTitleDisplayMode(.inline)
