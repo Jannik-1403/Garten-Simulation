@@ -441,10 +441,20 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     }
 
     var color: Color {
-        if plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: plantID) == nil {
-            return AppColors.color(for: symbolColor)
+        let colorString: String
+        if let plant = GameDatabase.shared.plant(for: plantID) {
+            colorString = plant.symbolColor
+        } else {
+            colorString = symbolColor
         }
-        return habitCategory.color
+        
+        let lower = colorString.lowercased()
+        if lower == "red" || lower == "rot" {
+            // Ein helleres Rot, damit es nicht wie "Schlechte Gewohnheit" (rotPrimary) wirkt
+            return Color(red: 1.0, green: 0.45, blue: 0.45)
+        }
+        
+        return AppColors.color(for: colorString)
     }
 
     var seltenheit: PflanzenSeltenheit {
