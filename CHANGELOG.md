@@ -1,6 +1,7 @@
 ## [2026-07-06] - Shop & UI Updates
 
-- **iPadOS Tab Bar Fix**: Die Tab Bar bleibt nun auch auf dem iPad unter iOS 18+ dauerhaft am unteren Bildschirmrand fixiert, statt sich in eine Seitenleiste (Sidebar) umzuwandeln.
+- **iPadOS Tab Bar Fix**: Die Tab Bar bleibt nun auch auf dem iPad unter iOS 18+ dauerhaft am unteren Bildschirmrand fixiert, statt sich in eine Seitenleiste (Sidebar) umzuwandeln. (Über die horizontale Size Class forciert).
+- **iPadOS Layout Anpassung**: Die maximale Breite der Karten und Container wurde auf 850px erhöht, um den Platz auf dem iPad besser auszunutzen und die UI breiter und "länger" wirken zu lassen.
 - **PDF Export Configurator**: Gute Gewohnheiten sind im PDF-Export-Menü nun standardmäßig ausgewählt.
 - **Tägliches Glücksrad im Shop**: Der Button für das tägliche, kostenlose Glücksrad wurde von der Startseite (Gartenansicht) in den Shop verschoben. Er befindet sich nun prominent über den Power-Ups als aufgewertete Shop-Karte (mit "Kostenlos"-Badge und 2.2x größerem Icon), um das Shop-Erlebnis aufzuwerten und die Startseite aufzuräumen. Der Icon-Name wurde zudem zu "Spin" korrigiert. Der Action-Button im Glücksrad zeigt nun unabhängig von der Anzahl immer den generischen Text "Glücksrad drehen" an.
 
