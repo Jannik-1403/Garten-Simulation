@@ -326,3 +326,9 @@
 - Fix: Zähler für schlechte Gewohnheiten wurde beim ersten Auslösen manchmal nicht direkt in der Garten-Ansicht aktualisiert
 
 - Zeitleiste (Timeline): Navigation-Bug behoben (Scrollen bricht Klick nicht mehr ab)
+
+- Timer-Optionen (Notizen, Wiederholungen, Löschen) in der Pflanzen-Ansicht versteckt, wenn der Timer von einer Routine gesteuert wird.
+- Notizen verknüpfen zur Routine-Timer-Ansicht hinzugefügt. Es werden nun alle Notizen aller zugeordneten Pflanzen angezeigt und können für einzelne Tage ausgewählt werden.
+
+- Zeitleiste (Timeline): Routinen werden nun gebündelt dargestellt und der unpassende Text wurde entfernt. 
+- Zeitleiste (Timeline): Navigation-Fix: X-Button schließt die Zeitleiste komplett, normaler Back-Button springt wie gewohnt zur Zeitleiste zurück.

@@ -57,12 +57,31 @@ struct PlantTimelineView: View {
 
     var onClose: (() -> Void)? = nil
 
+    @AppStorage("customRoutinesData") private var customRoutinesData: Data = Data()
+    
     @State private var selectedPlant: HabitModel? = nil
     @State private var isNavigating: Bool = false
+    
+    enum TimelineItem: Identifiable {
+        case routine(RoutineUIData, time: Date, plants: [HabitModel])
+        case plant(HabitModel)
+        
+        var id: String {
+            switch self {
+            case .routine(let r, _, _): return "routine_\(r.id.uuidString)"
+            case .plant(let p): return "plant_\(p.id)"
+            }
+        }
+    }
 
-    // Plants WITH a reminder time, sorted by time
-    var timelinePlants: [HabitModel] {
-        gardenStore.pflanzen
+    // Items WITH a reminder time, sorted by time
+    var timelineItems: [TimelineItem] {
+        let routines = (try? JSONDecoder().decode([RoutineUIData].self, from: customRoutinesData)) ?? []
+        
+        var items: [TimelineItem] = []
+        var processedPlantIDs = Set<String>()
+        
+        let sortedPlants = gardenStore.pflanzen
             .filter { $0.hasActiveReminder && $0.nextActiveReminder != nil }
             .sorted { (p1, p2) -> Bool in
                 guard let t1 = p1.nextActiveReminder?.time, let t2 = p2.nextActiveReminder?.time else { return false }
@@ -73,6 +92,38 @@ struct PlantTimelineView: View {
                 if h1 != h2 { return h1 < h2 }
                 return m1 < m2
             }
+            
+        for pflanze in sortedPlants {
+            if processedPlantIDs.contains(pflanze.id) { continue }
+            
+            if let routine = routines.first(where: { $0.contains(habit: pflanze) && ($0.reminderSchedule != nil || $0.reminderTime != nil) }) {
+                let routinePlants = gardenStore.pflanzen.filter { routine.contains(habit: $0) && $0.hasActiveReminder }
+                for rp in routinePlants { processedPlantIDs.insert(rp.id) }
+                
+                let time = routine.reminderTime ?? pflanze.nextActiveReminder!.time
+                if !items.contains(where: { if case .routine(let r, _, _) = $0 { return r.id == routine.id } else { return false } }) {
+                    items.append(.routine(routine, time: time, plants: routinePlants))
+                }
+            } else {
+                processedPlantIDs.insert(pflanze.id)
+                items.append(.plant(pflanze))
+            }
+        }
+        
+        items.sort { a, b in
+            let t1: Date
+            let t2: Date
+            switch a { case .routine(_, let time, _): t1 = time; case .plant(let p): t1 = p.nextActiveReminder!.time }
+            switch b { case .routine(_, let time, _): t2 = time; case .plant(let p): t2 = p.nextActiveReminder!.time }
+            let h1 = Calendar.current.component(.hour, from: t1)
+            let m1 = Calendar.current.component(.minute, from: t1)
+            let h2 = Calendar.current.component(.hour, from: t2)
+            let m2 = Calendar.current.component(.minute, from: t2)
+            if h1 != h2 { return h1 < h2 }
+            return m1 < m2
+        }
+        
+        return items
     }
 
     // Plants WITHOUT a reminder time
@@ -93,7 +144,7 @@ struct PlantTimelineView: View {
                     VStack(alignment: .leading, spacing: 32) {
 
                         // MARK: - Scheduled notifications section
-                        if !timelinePlants.isEmpty {
+                        if !timelineItems.isEmpty {
                             VStack(alignment: .leading, spacing: 16) {
                                 Text(String(localized: "timeline.scheduled_notifications"))
                                     .font(.system(size: 20, weight: .black, design: .rounded))
@@ -101,10 +152,19 @@ struct PlantTimelineView: View {
                                     .padding(.horizontal, 24)
 
                                 VStack(spacing: 0) {
-                                    ForEach(Array(timelinePlants.enumerated()), id: \.element.id) { index, pflanze in
-                                        TimelineRow(pflanze: pflanze, isLast: index == timelinePlants.count - 1) {
-                                            selectedPlant = pflanze
-                                            isNavigating = true
+                                    ForEach(Array(timelineItems.enumerated()), id: \.element.id) { index, item in
+                                        let isLast = index == timelineItems.count - 1
+                                        switch item {
+                                        case .plant(let pflanze):
+                                            TimelineRow(pflanze: pflanze, isLast: isLast) {
+                                                selectedPlant = pflanze
+                                                isNavigating = true
+                                            }
+                                        case .routine(let routine, let time, let plants):
+                                            RoutineTimelineRow(routine: routine, time: time, plants: plants, isLast: isLast) { pflanze in
+                                                selectedPlant = pflanze
+                                                isNavigating = true
+                                            }
                                         }
                                     }
                                 }
@@ -131,7 +191,7 @@ struct PlantTimelineView: View {
                                 }
                                 .padding(.horizontal, 24)
                             }
-                            .padding(.top, timelinePlants.isEmpty ? 24 : 0)
+                            .padding(.top, timelineItems.isEmpty ? 24 : 0)
                         }
 
                         // MARK: - Empty state
@@ -157,7 +217,7 @@ struct PlantTimelineView: View {
             .standardNavigationX()
             .navigationDestination(isPresented: $isNavigating) {
                 if let pflanze = selectedPlant {
-                    PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter)
+                    PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter, dismissEntireFlow: onClose)
                 }
             }
         }
@@ -263,6 +323,118 @@ struct TimelineRow: View {
             }
             .padding(.bottom, isLast ? 4 : 20)
         }
+    }
+}
+
+// MARK: - Routine Timeline Row
+struct RoutineTimelineRow: View {
+    @EnvironmentObject var settings: SettingsStore
+    let routine: RoutineUIData
+    let time: Date
+    let plants: [HabitModel]
+    let isLast: Bool
+    let onSelect: (HabitModel) -> Void
+
+    var timeString: String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: time)
+    }
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 16) {
+            // Time Column
+            VStack {
+                Text(timeString)
+                    .font(.system(size: 14, weight: .heavy, design: .rounded))
+                    .foregroundStyle(.primary)
+                    .frame(width: 55, alignment: .trailing)
+                    .padding(.top, 14)
+
+                if !isLast {
+                    Rectangle()
+                        .fill(Color.primary.opacity(0.1))
+                        .frame(width: 2)
+                        .frame(maxHeight: .infinity)
+                        .padding(.top, 4)
+                }
+            }
+
+            VStack(alignment: .leading, spacing: 12) {
+                // Routine Header
+                HStack(spacing: 8) {
+                    Image(systemName: routine.icon)
+                        .font(.system(size: 14, weight: .bold))
+                    Text(NSLocalizedString(routine.titleKey, comment: ""))
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .textCase(.uppercase)
+                }
+                .foregroundStyle(routine.color)
+                .padding(.top, 14)
+                .padding(.bottom, 2)
+                .padding(.horizontal, 4)
+                
+                // Cards
+                VStack(spacing: 12) {
+                    ForEach(plants) { pflanze in
+                        RoutinePlantCard(pflanze: pflanze) {
+                            onSelect(pflanze)
+                        }
+                    }
+                }
+            }
+            .padding(.bottom, isLast ? 4 : 20)
+        }
+    }
+}
+
+// MARK: - Routine Plant Card (without the subtitle text)
+struct RoutinePlantCard: View {
+    @EnvironmentObject var settings: SettingsStore
+    let pflanze: HabitModel
+    let onSelect: () -> Void
+
+    @State private var isVisualPressed = false
+
+    var body: some View {
+        Button {
+            isVisualPressed = true
+            FeedbackManager.shared.playTap()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                isVisualPressed = false
+                onSelect()
+            }
+        } label: {
+            HStack(spacing: 12) {
+                Item3DButton(
+                    icon: pflanze.plantImageName,
+                    farbe: pflanze.color,
+                    sekundaerFarbe: pflanze.color.darker(),
+                    groesse: 50,
+                    iconSkalierung: 1.5,
+                    isPermanentlyPressed: isVisualPressed,
+                    aktion: nil
+                )
+                .allowsHitTesting(false)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(settings.showHabitInsteadOfName
+                        ? NSLocalizedString(pflanze.habitName, comment: "")
+                        : NSLocalizedString(pflanze.name, comment: ""))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundStyle(.primary)
+                        .lineLimit(1)
+                }
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(.tertiary)
+            }
+            .padding(12)
+        }
+        .buttonStyle(TimelineCardButtonStyle(isVisualPressed: isVisualPressed))
     }
 }
 

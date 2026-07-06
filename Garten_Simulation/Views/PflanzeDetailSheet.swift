@@ -13,6 +13,7 @@ struct PflanzeDetailSheet: View {
     @EnvironmentObject var iapStore: IAPStore
     @Environment(\.dismiss) private var dismiss
     var onLoeschen: (() -> Void)? = nil
+    var dismissEntireFlow: (() -> Void)? = nil
 
     @State private var zeigeVerkaufenDialog = false
     @State private var zeigeFocusSession = false
@@ -388,10 +389,19 @@ struct PflanzeDetailSheet: View {
         }
         .navigationTitle(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
         .navigationBarTitleDisplayMode(.inline)
-        .standardNavigationX(show: !isTargetFocused)
+        // Zeige standard X nur, wenn wir keinen dismissEntireFlow haben
+        .standardNavigationX(show: dismissEntireFlow == nil && !isTargetFocused)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                if isTargetFocused {
+                if let dismissEntireFlow = dismissEntireFlow, !isTargetFocused {
+                    Button {
+                        dismissEntireFlow()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 24))
+                            .foregroundStyle(.tertiary)
+                    }
+                } else if isTargetFocused {
                     Button {
                         isTargetFocused = false
                     } label: {
