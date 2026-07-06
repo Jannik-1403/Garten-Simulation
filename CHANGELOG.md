@@ -405,3 +405,6 @@
 - UI-Fix: Schildkröten-Icon (Erholungsstatus) bei der Pflanzenansicht auf Skalierung 2.2 vergrößert, während der Button gleich groß bleibt.
 - UI-Fix: Schildkröten-Icon (Erholungsstatus) Skalierung auf 1.9 angepasst.
 - UI-Fix: Schildkröten-Icon (Erholungsstatus) Skalierung auf 1.8 angepasst.
+- Fix: 3D-Buttons in der Pflanzen-Detail-Ansicht (Export/PDF-Notizen) verwenden nun das echte Pflanzen-Icon und die korrekte Pflanzen-Farbe. Komplett rote Pflanzen erhalten einen helleren Rot-Ton, da reines Rot für schlechte Gewohnheiten reserviert ist.
+- 3D-Buttons der Pflanzen (Garten und Startseite) übernehmen nun immer die echte Icon-Farbe der Pflanze anstelle der Habit-Kategorie-Farbe.
+- Ist das Icon rot (wie beim Apfelbaum), wird ein helleres Rot verwendet, um eine Verwechslung mit den tiefroten Farben der schlechten Gewohnheiten zu vermeiden.
