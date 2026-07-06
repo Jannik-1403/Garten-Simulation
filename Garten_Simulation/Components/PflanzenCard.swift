@@ -102,9 +102,17 @@ struct PflanzenCard: View {
                                 .fill(pflanze.seltenheit.farbe.opacity(0.12))
                         )
                         
-                    Text("\(String(localized: "streak.label", defaultValue: "Streak")): \(pflanze.streak)")
-                        .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(.secondary)
+                    HStack(spacing: 4) {
+                        Image("streak")
+                            .renderingMode(.original)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 14, height: 14)
+                        
+                        Text("\(String(localized: "streak.label", defaultValue: "Streak")): \(pflanze.streak)")
+                            .font(.system(size: 14, weight: .black, design: .rounded))
+                    }
+                    .foregroundStyle(Color(hex: "#D95F00"))
                         
                     if gardenStore.isProUser {
                         if let target = pflanze.customTrackerTarget, target > 0 {

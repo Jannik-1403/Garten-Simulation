@@ -64,9 +64,17 @@ struct BadHabitCard: View {
                         .background(Capsule().fill(Color.orangePrimary.opacity(0.12)))
                         
                     let streakDays = calculateBadHabitStreak()
-                    Text("\(String(localized: "streak.label", defaultValue: "Streak")): \(streakDays)")
-                        .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(.secondary)
+                    HStack(spacing: 4) {
+                        Image("streak")
+                            .renderingMode(.original)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 14, height: 14)
+                        
+                        Text("\(String(localized: "streak.label", defaultValue: "Streak")): \(streakDays)")
+                            .font(.system(size: 14, weight: .black, design: .rounded))
+                    }
+                    .foregroundStyle(Color(hex: "#D95F00"))
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.top, 4)
