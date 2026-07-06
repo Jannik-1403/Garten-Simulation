@@ -198,17 +198,10 @@ struct BadHabitCard: View {
             return 0
         }
         
-        let calendar = Calendar.current
-        let startOfDay = calendar.startOfDay(for: Date())
-        
-        let pastExecutions = executions.filter { calendar.startOfDay(for: $0.date) < startOfDay }
-        guard let lastPastExecution = pastExecutions.max(by: { $0.date < $1.date }) else {
-            return 0
+        if let lastDate = executions.max(by: { $0.date < $1.date })?.date {
+            return max(0, Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: lastDate), to: Calendar.current.startOfDay(for: Date())).day ?? 0)
         }
-        
-        let lastExecDay = calendar.startOfDay(for: lastPastExecution.date)
-        let components = calendar.dateComponents([.day], from: lastExecDay, to: startOfDay)
-        return max(0, (components.day ?? 0) - 1)
+        return 0
     }
 }
 
