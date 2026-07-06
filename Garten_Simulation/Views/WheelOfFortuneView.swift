@@ -141,7 +141,7 @@ struct WheelOfFortuneView: View {
                             if gardenStore.pendingDailySpin {
                                 Text(String(localized: "spin_button_gratis"))
                             } else if gardenStore.gluecksradDrehungen > 0 {
-                                Text(String(format: String(localized: "spin_button_mit_anzahl"), gardenStore.gluecksradDrehungen))
+                                Text(String(localized: "dailyspin.button.spin", defaultValue: "Glücksrad drehen"))
                             } else {
                                 Text(String(localized: "spin_button_keine"))
                             }
