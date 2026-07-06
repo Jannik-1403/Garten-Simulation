@@ -745,9 +745,13 @@ struct RoutineTimerEditSheetView: View {
                     VStack(alignment: .leading, spacing: 3) {
                         Text(String(localized: String.LocalizationValue("routine.timer"), locale: Locale(identifier: settings.appLanguage)))
                             .font(.system(size: 22, weight: .black, design: .rounded))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
                         Text(String(localized: String.LocalizationValue(routineName), locale: Locale(identifier: settings.appLanguage)))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
                     }
                     Spacer()
                 }

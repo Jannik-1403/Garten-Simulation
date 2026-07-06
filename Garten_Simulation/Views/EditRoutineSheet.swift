@@ -195,9 +195,15 @@ struct EditRoutineSheet: View {
                     }
                 }
             }
-            .navigationTitle(String(localized: "routine.edit.title"))
+            .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(String(localized: "routine.edit.title"))
+                        .font(.headline)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                }
                 ToolbarItem(placement: .cancellationAction) {
                     Button(String(localized: "common.cancel")) {
                         dismiss()

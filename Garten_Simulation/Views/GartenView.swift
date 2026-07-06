@@ -38,8 +38,10 @@ struct GartenView: View {
     @State private var timerAktuell = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var cardPositions: [CardPositionData] = []
     
-    @State private var showTriggerSheet = false
-    @State private var triggerSheetHabitId = ""
+    struct TriggerSheetItem: Identifiable {
+        let id: String
+    }
+    @State private var triggerSheetItem: TriggerSheetItem? = nil
     
     // Fly-in Animationen
     @State private var flyingCoins: [FlyingCoinItem] = []
@@ -162,8 +164,7 @@ struct GartenView: View {
                                                 BadHabitCard(
                                                     deko: deko,
                                                     onCrossApplied: {
-                                                        triggerSheetHabitId = deko.id
-                                                        showTriggerSheet = true
+                                                        triggerSheetItem = TriggerSheetItem(id: deko.id)
                                                     },
                                                     onTap: {
                                                         ausgewaehltesItem = ShopDetailPayload.from(decoration: deko)
@@ -429,8 +430,8 @@ struct GartenView: View {
             .presentationDragIndicator(.visible)
             .presentationCornerRadius(32)
         }
-        .sheet(isPresented: $showTriggerSheet) {
-            TriggerSelectionSheet(habitId: triggerSheetHabitId)
+        .sheet(item: $triggerSheetItem) { item in
+            TriggerSelectionSheet(habitId: item.id)
                 .environmentObject(gardenStore)
                 .environmentObject(settings)
                 .presentationDetents([.large])

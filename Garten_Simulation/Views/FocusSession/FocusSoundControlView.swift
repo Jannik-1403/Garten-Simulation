@@ -37,6 +37,7 @@ struct FocusSoundControlView: View {
                     .multilineTextAlignment(.center)
                     .frame(minWidth: 120)
                     .lineLimit(1)
+                    .minimumScaleFactor(0.5)
 
                 Spacer()
 
