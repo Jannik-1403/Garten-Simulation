@@ -59,13 +59,6 @@ struct PlantTimelineView: View {
 
     @AppStorage("customRoutinesData") private var customRoutinesData: Data = Data()
     
-    @State private var selectedPlant: HabitModel? = nil
-    
-    struct NavigationWrapper: Identifiable, Hashable {
-        let id: String
-    }
-    @State private var navigationID: NavigationWrapper? = nil
-    
     enum TimelineItem: Identifiable {
         case routine(RoutineUIData, time: Date, plants: [HabitModel])
         case plant(HabitModel)
@@ -160,15 +153,9 @@ struct PlantTimelineView: View {
                                         let isLast = index == timelineItems.count - 1
                                         switch item {
                                         case .plant(let pflanze):
-                                            TimelineRow(pflanze: pflanze, isLast: isLast) {
-                                                selectedPlant = pflanze
-                                                navigationID = NavigationWrapper(id: pflanze.id)
-                                            }
+                                            TimelineRow(pflanze: pflanze, isLast: isLast)
                                         case .routine(let routine, let time, let plants):
-                                            RoutineTimelineRow(routine: routine, time: time, plants: plants, isLast: isLast) { pflanze in
-                                                selectedPlant = pflanze
-                                                navigationID = NavigationWrapper(id: pflanze.id)
-                                            }
+                                            RoutineTimelineRow(routine: routine, time: time, plants: plants, isLast: isLast)
                                         }
                                     }
                                 }
@@ -187,10 +174,7 @@ struct PlantTimelineView: View {
 
                                 LazyVGrid(columns: columns, spacing: 16) {
                                     ForEach(otherPlants) { pflanze in
-                                        SimplePlantCell(pflanze: pflanze) {
-                                            selectedPlant = pflanze
-                                            navigationID = NavigationWrapper(id: pflanze.id)
-                                        }
+                                        SimplePlantCell(pflanze: pflanze)
                                     }
                                 }
                                 .padding(.horizontal, 24)
@@ -219,11 +203,6 @@ struct PlantTimelineView: View {
             .navigationTitle(String(localized: "common.timeline"))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
-            .navigationDestination(item: $navigationID) { _ in
-                if let pflanze = selectedPlant {
-                    PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter, dismissEntireFlow: onClose)
-                }
-            }
         }
     }
 }
@@ -234,10 +213,6 @@ struct TimelineRow: View {
     @EnvironmentObject var gardenStore: GardenStore
     let pflanze: HabitModel
     let isLast: Bool
-    let onSelect: () -> Void
-
-    // Same pattern as PflanzenCard: isVisualPressed for manual animation control
-    @State private var isVisualPressed = false
 
     var timeString: String {
         guard let date = pflanze.nextActiveReminder?.time else { return "--:--" }
@@ -266,64 +241,59 @@ struct TimelineRow: View {
             }
 
             // Plant Card
-            ZStack {
-                // Tappable card — exact same pattern as PflanzenCard
-                Button {
-                    // 1. Immediately set visual pressed state (animation starts)
-                    isVisualPressed = true
-                    FeedbackManager.shared.playTap()
-                    // 2. After 0.12s (same as PflanzenCard), reset and navigate
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                        isVisualPressed = false
-                        onSelect()
-                    }
-                } label: {
-                    HStack(spacing: 12) {
-                        // Icon — passes isPermanentlyPressed so it animates in sync with card
-                        Item3DButton(
-                            icon: pflanze.plantImageName,
-                            farbe: pflanze.color,
-                            sekundaerFarbe: pflanze.color.darker(),
-                            groesse: 50,
-                            iconSkalierung: 1.5,
-                            isPermanentlyPressed: isVisualPressed,
-                            aktion: nil
-                        )
-                        .allowsHitTesting(false)
+            ZStack(alignment: .bottom) {
+                // Shadow base
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(Color(white: 0.78))
+                    .padding(.horizontal, 1)
 
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(settings.showHabitInsteadOfName
-                                ? NSLocalizedString(pflanze.habitName, comment: "")
-                                : NSLocalizedString(pflanze.name, comment: ""))
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundStyle(.primary)
+                // White top surface
+                HStack(spacing: 12) {
+                    Item3DButton(
+                        icon: pflanze.plantImageName,
+                        farbe: pflanze.color,
+                        sekundaerFarbe: pflanze.color.darker(),
+                        groesse: 50,
+                        iconSkalierung: 1.5,
+                        isPermanentlyPressed: false,
+                        aktion: nil
+                    )
+                    .allowsHitTesting(false)
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(settings.showHabitInsteadOfName
+                            ? NSLocalizedString(pflanze.habitName, comment: "")
+                            : NSLocalizedString(pflanze.name, comment: ""))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundStyle(.primary)
+                            .lineLimit(1)
+
+                        if let message = pflanze.customReminderMessage, !message.isEmpty {
+                            Text(message)
+                                .font(.system(size: 12, weight: .medium, design: .rounded))
+                                .foregroundStyle(.secondary)
                                 .lineLimit(1)
-
-                            if let message = pflanze.customReminderMessage, !message.isEmpty {
-                                Text(message)
-                                    .font(.system(size: 12, weight: .medium, design: .rounded))
-                                    .foregroundStyle(.secondary)
-                                    .lineLimit(1)
-                            } else {
-                                let pflanzName = settings.showHabitInsteadOfName
-                                    ? NSLocalizedString(pflanze.habitName, comment: "")
-                                    : NSLocalizedString(pflanze.name, comment: "")
-                                Text(String(format: String(localized: "timer.preview.body.example"), pflanzName))
-                                    .font(.system(size: 12, weight: .medium, design: .rounded))
-                                    .foregroundStyle(.secondary)
-                                    .lineLimit(1)
-                            }
+                        } else {
+                            let pflanzName = settings.showHabitInsteadOfName
+                                ? NSLocalizedString(pflanze.habitName, comment: "")
+                                : NSLocalizedString(pflanze.name, comment: "")
+                            Text(String(format: String(localized: "timer.preview.body.example"), pflanzName))
+                                .font(.system(size: 12, weight: .medium, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
                         }
-
-                        Spacer()
-
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundStyle(.tertiary)
                     }
-                    .padding(12)
+
+                    Spacer()
                 }
-                .buttonStyle(TimelineCardButtonStyle(isVisualPressed: isVisualPressed))
+                .padding(12)
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .stroke(Color.black.opacity(0.1), lineWidth: 1)
+                )
+                .offset(y: -4)
             }
             .padding(.bottom, isLast ? 4 : 20)
         }
@@ -337,7 +307,6 @@ struct RoutineTimelineRow: View {
     let time: Date
     let plants: [HabitModel]
     let isLast: Bool
-    let onSelect: (HabitModel) -> Void
 
     var timeString: String {
         let formatter = DateFormatter()
@@ -381,9 +350,7 @@ struct RoutineTimelineRow: View {
                 // Cards
                 VStack(spacing: 12) {
                     ForEach(plants) { pflanze in
-                        RoutinePlantCard(pflanze: pflanze) {
-                            onSelect(pflanze)
-                        }
+                        RoutinePlantCard(pflanze: pflanze)
                     }
                 }
             }
@@ -396,19 +363,15 @@ struct RoutineTimelineRow: View {
 struct RoutinePlantCard: View {
     @EnvironmentObject var settings: SettingsStore
     let pflanze: HabitModel
-    let onSelect: () -> Void
-
-    @State private var isVisualPressed = false
 
     var body: some View {
-        Button {
-            isVisualPressed = true
-            FeedbackManager.shared.playTap()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                isVisualPressed = false
-                onSelect()
-            }
-        } label: {
+        ZStack(alignment: .bottom) {
+            // Shadow base
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .fill(Color(white: 0.78))
+                .padding(.horizontal, 1)
+
+            // White top surface
             HStack(spacing: 12) {
                 Item3DButton(
                     icon: pflanze.plantImageName,
@@ -416,7 +379,7 @@ struct RoutinePlantCard: View {
                     sekundaerFarbe: pflanze.color.darker(),
                     groesse: 50,
                     iconSkalierung: 1.5,
-                    isPermanentlyPressed: isVisualPressed,
+                    isPermanentlyPressed: false,
                     aktion: nil
                 )
                 .allowsHitTesting(false)
@@ -431,14 +394,16 @@ struct RoutinePlantCard: View {
                 }
 
                 Spacer()
-
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(.tertiary)
             }
             .padding(12)
+            .background(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .stroke(Color.black.opacity(0.1), lineWidth: 1)
+            )
+            .offset(y: -4)
         }
-        .buttonStyle(TimelineCardButtonStyle(isVisualPressed: isVisualPressed))
     }
 }
 
@@ -447,50 +412,45 @@ struct SimplePlantCell: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     let pflanze: HabitModel
-    let onSelect: () -> Void
-
-    // Same pattern as PflanzenCard: isVisualPressed for manual animation control
-    @State private var isVisualPressed = false
 
     var body: some View {
-        ZStack {
-            // Tappable card — exact same pattern as PflanzenCard
-            Button {
-                // 1. Immediately set visual pressed state (animation starts)
-                isVisualPressed = true
-                FeedbackManager.shared.playTap()
-                // 2. After 0.12s (same as PflanzenCard), reset and navigate
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                    isVisualPressed = false
-                    onSelect()
-                }
-            } label: {
-                VStack(spacing: 12) {
-                    // Icon — passes isPermanentlyPressed so it animates in sync with card
-                    Item3DButton(
-                        icon: pflanze.plantImageName,
-                        farbe: pflanze.color,
-                        sekundaerFarbe: pflanze.color.darker(),
-                        groesse: 70,
-                        iconSkalierung: 1.5,
-                        isPermanentlyPressed: isVisualPressed,
-                        aktion: nil
-                    )
-                    .allowsHitTesting(false)
+        ZStack(alignment: .bottom) {
+            // Shadow base
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .fill(Color(white: 0.78))
+                .padding(.horizontal, 1)
 
-                    Text(settings.showHabitInsteadOfName
-                        ? NSLocalizedString(pflanze.habitName, comment: "")
-                        : NSLocalizedString(pflanze.name, comment: ""))
-                        .font(.system(size: 13, weight: .bold, design: .rounded))
-                        .foregroundStyle(.primary)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(2)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
-                .padding(.horizontal, 8)
+            // White top surface
+            VStack(spacing: 12) {
+                Item3DButton(
+                    icon: pflanze.plantImageName,
+                    farbe: pflanze.color,
+                    sekundaerFarbe: pflanze.color.darker(),
+                    groesse: 70,
+                    iconSkalierung: 1.5,
+                    isPermanentlyPressed: false,
+                    aktion: nil
+                )
+                .allowsHitTesting(false)
+
+                Text(settings.showHabitInsteadOfName
+                    ? NSLocalizedString(pflanze.habitName, comment: "")
+                    : NSLocalizedString(pflanze.name, comment: ""))
+                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                    .foregroundStyle(.primary)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
             }
-            .buttonStyle(TimelineCardButtonStyle(isVisualPressed: isVisualPressed))
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 16)
+            .padding(.horizontal, 8)
+            .background(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .stroke(Color.black.opacity(0.1), lineWidth: 1)
+            )
+            .offset(y: -4)
         }
     }
 }
