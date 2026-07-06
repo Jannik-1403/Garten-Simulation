@@ -127,6 +127,7 @@ struct GlobalDragToWater: View {
                         .scaledToFit()
                         .frame(width: 45, height: 45) // Besser sichtbar!
                         .brightness(hoveredCardID != nil ? 0.2 : 0)
+                        .offset(y: -4) // Icon etwas weiter nach oben im Button
                 }
                 .frame(width: 75, height: 75)
                 .contentShape(Circle())
@@ -134,8 +135,8 @@ struct GlobalDragToWater: View {
                 .offset(dragOffset)
                 .gesture(dragGesture)
             }
-            // Position at bottom right, moved up more
-            .position(x: geo.size.width - 50, y: geo.size.height - 140)
+            // Position at bottom right, moved back down
+            .position(x: geo.size.width - 50, y: geo.size.height - 70)
             .sensoryFeedback(.impact, trigger: hoveredCardID != nil)
             .sensoryFeedback(.success, trigger: hapticTrigger)
             .sensoryFeedback(.error, trigger: errorTrigger)
