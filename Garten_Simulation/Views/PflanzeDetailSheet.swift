@@ -993,6 +993,8 @@ struct TimerEditSheetView: View {
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var streakStore: StreakStore
+    @EnvironmentObject var interactiveTourManager: InteractiveTourManager
+    @EnvironmentObject var iapStore: IAPStore
     @Environment(\.dismiss) private var dismiss
 
     @State private var schedule: ReminderSchedule = ReminderSchedule.defaultSchedule(time: Date())
