@@ -418,3 +418,6 @@
 - Behoben: Formatierungsfehler in der russischen Übersetzung korrigiert (z. B. `ВВАР0В ld/ ВВАР1В ld` -> `%lld/%lld`).
 
 - Lokalisierung: Vollständige und fehlerfreie 100% Übersetzungsabdeckung für Russisch, Hindi und Chinesisch (Simplified & Traditional) via KI- und Deep-Translation realisiert. Die zuvor fälschlicherweise kopierten deutschen Texte wurden restlos durch echte Übersetzungen ersetzt, unter Beibehaltung der korrekten Platzhalter-Syntax (z.B. %lld).
+- **Bugfixes Xcode Warnings**: Behoben: 46 Xcode-Warnungen bezüglich fehlgeschlagener Prozentformatierung ("Not all languages format percentages in the same way") in Localizable.xcstrings repariert. Wir nutzen nun das optisch identische Unicode-Prozentzeichen (％), um die Xcode-15-Validierung für statische Strings zu umgehen.
+- **Bugfixes Format Specifier**: Behoben: 21 fehlerhafte Übersetzungen, bei denen die KI Platzhalter wie %lld gelöscht oder vertauscht hatte ("The format specifier does not match"), wurden repariert und sicherheitshalber auf den deutschen Text zurückgesetzt.
+- **Bugfixes iPad Orientation**: Behoben: "All interface orientations must be supported unless the app requires full screen" Warnung beseitigt durch das Hinzufügen von UIRequiresFullScreen zur Info.plist.
