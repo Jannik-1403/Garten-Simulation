@@ -2053,10 +2053,13 @@ struct ExportNotesSelectionSheet: View {
                                     
                                     ForEach(goodHabits) { plant in
                                         let name = settings.showHabitInsteadOfName ? NSLocalizedString(plant.displayedHabitName, comment: "") : NSLocalizedString(plant.name, comment: "")
+                                        let isRed = plant.color == .rotPrimary || plant.color == .rotSecondary || plant.color == .red
+                                        let safeColor = isRed ? plant.color.lighter(by: 0.3) : plant.color
+                                        
                                         toggleRow(
                                             title: name,
-                                            icon: "leaf.fill",
-                                            iconColor: .gruenPrimary,
+                                            icon: plant.plantImageName,
+                                            iconColor: safeColor,
                                             isSelected: selectedPlantIds.contains(plant.id),
                                             action: {
                                                 if selectedPlantIds.contains(plant.id) {
