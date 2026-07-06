@@ -62,6 +62,11 @@ struct BadHabitCard: View {
                         .padding(.horizontal, 10)
                         .padding(.vertical, 4)
                         .background(Capsule().fill(Color.orangePrimary.opacity(0.12)))
+                        
+                    let streakDays = calculateBadHabitStreak()
+                    Text("\(String(localized: "streak.label", defaultValue: "Streak")): \(streakDays)")
+                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.top, 4)
@@ -178,6 +183,24 @@ struct BadHabitCard: View {
                 kreuzUeberButton = false
             }
         }
+    }
+    
+    private func calculateBadHabitStreak() -> Int {
+        guard let executions = gardenStore.badHabitExecutions[deko.id], !executions.isEmpty else {
+            return 0
+        }
+        
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: Date())
+        
+        let pastExecutions = executions.filter { calendar.startOfDay(for: $0.date) < startOfDay }
+        guard let lastPastExecution = pastExecutions.max(by: { $0.date < $1.date }) else {
+            return 0
+        }
+        
+        let lastExecDay = calendar.startOfDay(for: lastPastExecution.date)
+        let components = calendar.dateComponents([.day], from: lastExecDay, to: startOfDay)
+        return max(0, (components.day ?? 0) - 1)
     }
 }
 

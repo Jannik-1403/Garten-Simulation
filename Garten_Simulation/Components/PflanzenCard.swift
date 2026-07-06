@@ -101,6 +101,38 @@ struct PflanzenCard: View {
                             Capsule()
                                 .fill(pflanze.seltenheit.farbe.opacity(0.12))
                         )
+                        
+                    Text("\(String(localized: "streak.label", defaultValue: "Streak")): \(pflanze.streak)")
+                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        
+                    if gardenStore.isProUser {
+                        if let target = pflanze.customTrackerTarget, target > 0 {
+                            VStack(spacing: 2) {
+                                ProgressView(value: min(pflanze.customTrackerProgress, target), total: target)
+                                    .progressViewStyle(LinearProgressViewStyle(tint: pflanze.seltenheit.farbe))
+                                    .frame(height: 6)
+                                    .padding(.horizontal, 24)
+                                
+                                Text("\(Int(pflanze.customTrackerProgress)) / \(Int(target))")
+                                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                            .padding(.top, 2)
+                        } else if let healthTarget = pflanze.healthTarget, healthTarget > 0 {
+                            VStack(spacing: 2) {
+                                ProgressView(value: min(pflanze.customTrackerProgress, healthTarget), total: healthTarget)
+                                    .progressViewStyle(LinearProgressViewStyle(tint: pflanze.seltenheit.farbe))
+                                    .frame(height: 6)
+                                    .padding(.horizontal, 24)
+                                
+                                Text("\(Int(pflanze.customTrackerProgress)) / \(Int(healthTarget))")
+                                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                            .padding(.top, 2)
+                        }
+                    }
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.top, 4)
