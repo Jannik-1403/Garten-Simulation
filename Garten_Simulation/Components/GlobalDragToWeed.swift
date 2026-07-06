@@ -96,7 +96,7 @@ struct GlobalDragToWeed: View {
                     Image("SchlechteGewohnheitKreuz")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 35, height: 35)
+                        .frame(width: 48, height: 48)
                         .brightness(hoveredCardID != nil ? 0.2 : 0)
                         .offset(y: -4) // Icon etwas weiter nach oben im Button
                 }
