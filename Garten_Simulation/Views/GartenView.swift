@@ -15,6 +15,13 @@ struct CardPositionPreferenceKey: PreferenceKey {
     }
 }
 
+struct BadHabitPositionPreferenceKey: PreferenceKey {
+    static var defaultValue: [CardPositionData] = []
+    static func reduce(value: inout [CardPositionData], nextValue: () -> [CardPositionData]) {
+        value.append(contentsOf: nextValue())
+    }
+}
+
 struct GartenView: View {
 
     @EnvironmentObject var settings: SettingsStore
@@ -38,6 +45,7 @@ struct GartenView: View {
     @State private var startAbstandAktiv = true
     @State private var timerAktuell = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var cardPositions: [CardPositionData] = []
+    @State private var badHabitPositions: [CardPositionData] = []
     
     struct TriggerSheetItem: Identifiable {
         let id: String
@@ -163,9 +171,6 @@ struct GartenView: View {
                                             ForEach(gardenStore.placedDecorations) { deko in
                                                 BadHabitCard(
                                                     deko: deko,
-                                                    onCrossApplied: {
-                                                        triggerSheetItem = TriggerSheetItem(id: deko.id)
-                                                    },
                                                     onTap: {
                                                         ausgewaehltesItem = ShopDetailPayload.from(decoration: deko)
                                                     }
@@ -197,7 +202,12 @@ struct GartenView: View {
                         }
                     }
                 }
-                .onPreferenceChange(CardPositionPreferenceKey.self) { cardPositions = $0 }
+                .onPreferenceChange(CardPositionPreferenceKey.self) { prefs in
+                    cardPositions = prefs
+                }
+                .onPreferenceChange(BadHabitPositionPreferenceKey.self) { prefs in
+                    badHabitPositions = prefs
+                }
                 .padding(.top, 0)
                 .simultaneousGesture(
                     DragGesture(minimumDistance: 2)
@@ -541,6 +551,18 @@ struct GartenView: View {
                     .environmentObject(gardenStore)
                     .environmentObject(powerUpStore)
                     .zIndex(100)
+            }
+            
+            // Global Weed FAB
+            if !gardenStore.placedDecorations.isEmpty {
+                GlobalDragToWeed(
+                    cardPositions: badHabitPositions,
+                    onCrossApplied: { hitID in
+                        triggerSheetItem = TriggerSheetItem(id: hitID)
+                    }
+                )
+                .environmentObject(gardenStore)
+                .zIndex(99)
             }
         }
         .onPreferenceChange(HeaderPositionPreferenceKey.self) { prefs in
