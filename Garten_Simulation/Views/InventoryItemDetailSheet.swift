@@ -62,7 +62,7 @@ struct InventoryItemDetailSheet: View {
                         }
                         .frame(width: 80, height: 80)
                         .shadow(color: item.color.opacity(0.25), radius: 12, x: 0, y: 6)
-                        .scaleEffect(animateIcon ? 1.04 : 1.0)
+                        .scaleEffect(animateIcon ? 2.08 : 2.0)
                         .padding(.top, 24)
 
                         // MARK: Title + Subtitle
