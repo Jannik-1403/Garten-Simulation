@@ -30,6 +30,8 @@ struct PflanzeDetailSheet: View {
     @State private var zeigePaywall = false
     @State private var zeigeDeleteTrackerConfirm = false
     @State private var zeigeCustomTrackerAlert = false
+    @State private var zeigeTrackerConfirm = false
+    @State private var zeigeDetailGeschafftPopup = false
     @State private var customTrackerInputName = ""
     @ObservedObject private var healthManager = HealthManager.shared
     @FocusState private var isTargetFocused: Bool
@@ -386,6 +388,11 @@ struct PflanzeDetailSheet: View {
                 }
             }
             } // End of ScrollViewReader
+            
+            if zeigeDetailGeschafftPopup {
+                TargetReachedPopup(isPresented: $zeigeDetailGeschafftPopup)
+                    .zIndex(1000)
+            }
         }
         .navigationTitle(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
         .navigationBarTitleDisplayMode(.inline)
@@ -679,10 +686,13 @@ struct PflanzeDetailSheet: View {
                                                             Slider(value: Binding(
                                                                 get: { pflanze.customTrackerProgress },
                                                                 set: { newValue in
-                                                                    pflanze.customTrackerProgress = newValue
                                                                     if Int(newValue) >= target && !pflanze.istBewässert {
-                                                                        gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
-                                                                        gardenStore.zeigeGeschafftPopup = true
+                                                                        if Int(pflanze.customTrackerProgress) < target {
+                                                                            pflanze.customTrackerProgress = Double(target)
+                                                                            zeigeTrackerConfirm = true
+                                                                        }
+                                                                    } else {
+                                                                        pflanze.customTrackerProgress = newValue
                                                                     }
                                                                 }
                                                             ), in: 0...Double(max(1, target)), step: 1) { editing in
@@ -724,6 +734,18 @@ struct PflanzeDetailSheet: View {
                                                 }
                                             } message: {
                                                 Text(String(localized: "custom.tracker.delete.message", defaultValue: "Bist du sicher, dass du deinen Tracker löschen möchtest? Dein Fortschritt geht dabei verloren."))
+                                            }
+                                            .alert(String(localized: "custom.tracker.complete.confirm", defaultValue: "Bist du dir sicher, dass du fertig bist?"), isPresented: $zeigeTrackerConfirm) {
+                                                Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) { 
+                                                    pflanze.customTrackerProgress = Double(target - 1)
+                                                    gardenStore.savePlants()
+                                                }
+                                                Button(String(localized: "common.confirm", defaultValue: "Fertig")) {
+                                                    gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
+                                                    withAnimation {
+                                                        zeigeDetailGeschafftPopup = true
+                                                    }
+                                                }
                                             }
                                             .padding(20)
                                             .background(

@@ -36,16 +36,20 @@ struct TargetReachedPopup: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
                 
-                Button {
-                    withAnimation { isPresented = false }
-                } label: {
+                Item3DButton(
+                    farbe: .blauPrimary,
+                    sekundaerFarbe: .blauPrimary.darker(),
+                    groesse: 56,
+                    isRectangular: true,
+                    aktion: {
+                        withAnimation { isPresented = false }
+                    }
+                ) {
                     Text(String(localized: "common.awesome", defaultValue: "Super!"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
-                        .background(Color.blauPrimary)
-                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 12)

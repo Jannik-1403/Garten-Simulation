@@ -129,6 +129,31 @@ struct GartenView: View {
                                 .padding(.top, 60)
                                 .padding(.bottom, 40)
                                 
+                                // MARK: - Dekorationen
+                                if !gardenStore.placedDecorations.isEmpty {
+                                    VStack(alignment: .leading, spacing: 12) {
+                                        Text(String(localized: "garden.trash"))
+                                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                                            .foregroundStyle(.primary)
+                                        
+                                        VStack(spacing: 16) {
+                                            ForEach(gardenStore.placedDecorations) { deko in
+                                                BadHabitCard(
+                                                    deko: deko,
+                                                    onTap: {
+                                                        ausgewaehltesItem = ShopDetailPayload.from(decoration: deko)
+                                                    }
+                                                )
+                                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                                                .tourAnchor(.badHabits, condition: deko.id == gardenStore.placedDecorations.first?.id)
+                                            }
+                                        }
+                                    }
+                                    .padding(.top, 24)
+                                    .padding(.horizontal, 16)
+                                    .id(TourStep.badHabits)
+                                }
+
                                 // MARK: - Power-Ups Lager
                                 let powerUps = gardenStore.gekaufteItems.filter { $0.itemType == .powerUp }
                                 if !powerUps.isEmpty {
@@ -158,31 +183,6 @@ struct GartenView: View {
                                     }
                                     .padding(.top, 24)
                                     .padding(.horizontal, 16)
-                                }
-
-                                // MARK: - Dekorationen
-                                if !gardenStore.placedDecorations.isEmpty {
-                                    VStack(alignment: .leading, spacing: 12) {
-                                        Text(String(localized: "garden.trash"))
-                                            .font(.system(size: 20, weight: .bold, design: .rounded))
-                                            .foregroundStyle(.primary)
-                                        
-                                        VStack(spacing: 16) {
-                                            ForEach(gardenStore.placedDecorations) { deko in
-                                                BadHabitCard(
-                                                    deko: deko,
-                                                    onTap: {
-                                                        ausgewaehltesItem = ShopDetailPayload.from(decoration: deko)
-                                                    }
-                                                )
-                                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                                                .tourAnchor(.badHabits, condition: deko.id == gardenStore.placedDecorations.first?.id)
-                                            }
-                                        }
-                                    }
-                                    .padding(.top, 24)
-                                    .padding(.horizontal, 16)
-                                    .id(TourStep.badHabits)
                                 }
                             }
 

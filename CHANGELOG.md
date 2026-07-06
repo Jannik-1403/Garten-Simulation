@@ -394,3 +394,5 @@
 - UI Anpassungen: Schlechte Gewohnheiten werden nun untereinander angezeigt. Die interaktiven Buttons für Wasser und Unkraut sind jetzt rechteckig mit abgerundeten Ecken und wurden untereinander am rechten Rand platziert.
 
 - UI Anpassungen: Die Breite der rechteckigen Gieß- und Unkraut-Buttons wurde fixiert, sodass sie jetzt perfekte Quadrate (wie die runden Buttons vorher) sind.
+
+- UI Anpassungen: Das Kreuz-Icon auf dem Unkraut-Button wurde vergrößert.
