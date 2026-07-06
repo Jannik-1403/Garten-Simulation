@@ -1,6 +1,6 @@
 ## [2026-07-06] - Shop & UI Updates
 
-- **Tägliches Glücksrad im Shop**: Der Button für das tägliche, kostenlose Glücksrad wurde von der Startseite (Gartenansicht) in den Shop verschoben. Er befindet sich nun prominent über den Power-Ups als aufgewertete Shop-Karte (mit "Kostenlos"-Badge und 2.2x größerem Icon), um das Shop-Erlebnis aufzuwerten und die Startseite aufzuräumen.
+- **Tägliches Glücksrad im Shop**: Der Button für das tägliche, kostenlose Glücksrad wurde von der Startseite (Gartenansicht) in den Shop verschoben. Er befindet sich nun prominent über den Power-Ups als aufgewertete Shop-Karte (mit "Kostenlos"-Badge und 2.2x größerem Icon), um das Shop-Erlebnis aufzuwerten und die Startseite aufzuräumen. Der Icon-Name wurde zudem zu "spin" korrigiert.
 
 ## [2026-07-02] - Hintergrund-Audio, Pro-Rabatt & unbegrenzte Gewohnheiten
 

@@ -212,7 +212,7 @@ struct UnifiedShopView: View {
                                         sectionHeader(String(localized: "dailyspin.title", defaultValue: "Glücksrad"))
                                         VStack(spacing: 12) {
                                             ShopItemCard(
-                                                icon: "spin",
+                                                icon: "Spin",
                                                 accentColor: .belohnungGoldMid,
                                                 shadowColor: .belohnungGoldSchatten,
                                                 name: "dailyspin.title",
