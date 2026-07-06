@@ -17,6 +17,18 @@ struct BadHabitCard: View {
     /// true wenn das X auf dem Button "gestempelt" wurde → X auf Button zeigen, unten X weg
     @State private var kreuzAufButton: Bool = false
 
+    private var cleanDays: Int {
+        let executions = gardenStore.badHabitExecutions[deko.id] ?? []
+        guard let lastExecution = executions.max(by: { $0.date < $1.date })?.date else {
+            // Wenn nie ausgeführt, geben wir 0 aus (oder man könnte das Erstellungsdatum nehmen)
+            return 0
+        }
+        let startOfToday = Calendar.current.startOfDay(for: Date())
+        let startOfLast = Calendar.current.startOfDay(for: lastExecution)
+        let diff = Calendar.current.dateComponents([.day], from: startOfLast, to: startOfToday).day ?? 0
+        return max(0, diff)
+    }
+
     private var executionsToday: Int {
         guard let executions = gardenStore.badHabitExecutions[deko.id] else { return 0 }
         let startOfDay = Calendar.current.startOfDay(for: Date())
@@ -62,6 +74,18 @@ struct BadHabitCard: View {
                         .padding(.horizontal, 10)
                         .padding(.vertical, 4)
                         .background(Capsule().fill(Color.orangePrimary.opacity(0.12)))
+                        
+                    if cleanDays > 0 {
+                        HStack(spacing: 4) {
+                            Image(systemName: "shield.fill")
+                                .font(.system(size: 10))
+                                .foregroundStyle(.green)
+                            Text(String(format: String(localized: "bad_habit.clean_streak", defaultValue: "%d Tage sauber"), cleanDays))
+                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .foregroundStyle(.green)
+                        }
+                        .padding(.top, 2)
+                    }
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.top, 4)

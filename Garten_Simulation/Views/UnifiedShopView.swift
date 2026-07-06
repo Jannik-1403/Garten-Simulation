@@ -208,6 +208,28 @@ struct UnifiedShopView: View {
                                 .padding(.bottom, 16)
 
                                 if shopCategory == .gegenstande {
+                                    if gardenStore.isDailySpinAvailable {
+                                        VStack(spacing: 12) {
+                                            sectionHeader(String(localized: "shop.category.daily_spin", defaultValue: "Glücksrad"))
+                                            
+                                            HStack {
+                                                Spacer()
+                                                Item3DButton(
+                                                    icon: "Glücksrad", // Icon von Geschenk zu Glücksrad geändert
+                                                    farbe: .belohnungGoldMid,
+                                                    sekundaerFarbe: .belohnungGoldSchatten,
+                                                    groesse: 100,
+                                                    iconSkalierung: 1.6
+                                                ) {
+                                                    gardenStore.checkDailySpin()
+                                                }
+                                                .transition(.scale.combined(with: .opacity))
+                                                Spacer()
+                                            }
+                                        }
+                                        .padding(.bottom, 24)
+                                    }
+
                                     // Power-Ups
                                     sectionHeader(String(localized: "shop.category.powerups"))
                                     VStack(spacing: 12) {

@@ -714,7 +714,8 @@ struct CreateRoutineSheet: View {
                     routineName: routineName.isEmpty ? String(localized: String.LocalizationValue("routine.create.title"), locale: Locale(identifier: settings.appLanguage)) : routineName,
                     schedule: $schedule,
                     overrideIndividualReminders: $overrideIndividualReminders,
-                    hasReminder: $hasReminder
+                    hasReminder: $hasReminder,
+                    assignedHabits: availableHabits.filter { selectedHabits.contains($0.id) }
                 )
                 .environmentObject(settings)
             }
@@ -731,9 +732,14 @@ struct RoutineTimerEditSheetView: View {
     @Binding var schedule: ReminderSchedule
     @Binding var overrideIndividualReminders: Bool
     @Binding var hasReminder: Bool
+    var assignedHabits: [HabitModel]
     
     @State private var editingDayIndex: Int? = nil
     @State private var isAllDaysEqual: Bool = false
+    
+    @State private var isLinkingNotes: Bool = false
+    @State private var selectedNoteForLinking: String? = nil
+    @State private var selectedDaysForLinking: Set<Int> = []
 
     let daysKeys = ["days.monday", "days.tuesday", "days.wednesday", "days.thursday", "days.friday", "days.saturday", "days.sunday"]
     
@@ -758,6 +764,22 @@ struct RoutineTimerEditSheetView: View {
                 .padding(.horizontal, 24)
                 .padding(.top, 16)
                 .padding(.bottom, 16)
+                
+                if isLinkingNotes, let note = selectedNoteForLinking {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("\(String(localized: "routine.note.assign")) \(note)")
+                            .font(.system(size: 22, weight: .black, design: .rounded))
+                        Text(String(localized: "routine.note.assign.desc"))
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                    .background(Color.orangePrimary.opacity(0.1))
+                    .cornerRadius(12)
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 8)
+                }
                 
                 // Toggle to turn off timer completely
                 Toggle(isOn: $hasReminder.animation()) {
@@ -813,34 +835,84 @@ struct RoutineTimerEditSheetView: View {
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Menu {
+                    if isLinkingNotes {
                         Button {
                             withAnimation {
-                                isAllDaysEqual.toggle()
-                                if isAllDaysEqual {
-                                    applyToAllDays()
-                                }
+                                isLinkingNotes = false
+                                selectedDaysForLinking.removeAll()
+                                selectedNoteForLinking = nil
                             }
                         } label: {
-                            if isAllDaysEqual {
-                                Label(String(localized: "routine.timer.edit_individual", defaultValue: "Tage einzeln bearbeiten"), systemImage: "list.bullet")
-                            } else {
-                                Label(String(localized: String.LocalizationValue("routine.timer.apply_all"), locale: Locale(identifier: settings.appLanguage)), systemImage: "doc.on.doc")
-                            }
+                            Text(String(localized: "common.cancel"))
+                                .font(.system(size: 16, weight: .regular))
+                                .foregroundStyle(.red)
                         }
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .font(.system(size: 20))
-                            .foregroundStyle(.primary)
+                    } else {
+                        Menu {
+                            Button {
+                                withAnimation {
+                                    isAllDaysEqual.toggle()
+                                    if isAllDaysEqual {
+                                        applyToAllDays()
+                                    }
+                                }
+                            } label: {
+                                if isAllDaysEqual {
+                                    Label(String(localized: "routine.timer.edit_individual", defaultValue: "Tage einzeln bearbeiten"), systemImage: "list.bullet")
+                                } else {
+                                    Label(String(localized: String.LocalizationValue("routine.timer.apply_all"), locale: Locale(identifier: settings.appLanguage)), systemImage: "doc.on.doc")
+                                }
+                            }
+                            
+                            let allNotes = Array(Set(assignedHabits.flatMap { $0.notizen })).sorted()
+                            Menu {
+                                if allNotes.isEmpty {
+                                    Text(String(localized: "plant.detail.note.empty"))
+                                } else {
+                                    ForEach(allNotes, id: \.self) { notiz in
+                                        Button(notiz) {
+                                            withAnimation {
+                                                selectedNoteForLinking = notiz
+                                                isLinkingNotes = true
+                                                editingDayIndex = nil
+                                            }
+                                        }
+                                    }
+                                }
+                            } label: {
+                                Label(String(localized: "timer.note.link"), systemImage: "link")
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis")
+                                .font(.system(size: 20))
+                                .foregroundStyle(.primary)
+                        }
                     }
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text(String(localized: String.LocalizationValue("common.done_button"), locale: Locale(identifier: settings.appLanguage)))
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                    if isLinkingNotes {
+                        Button {
+                            withAnimation {
+                                for day in selectedDaysForLinking {
+                                    schedule.weekdays[dayIndex(for: day)].customMessage = selectedNoteForLinking
+                                }
+                                isLinkingNotes = false
+                                selectedDaysForLinking.removeAll()
+                                selectedNoteForLinking = nil
+                            }
+                        } label: {
+                            Text(String(localized: "common.done_button"))
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                        }
+                        .disabled(selectedDaysForLinking.isEmpty)
+                    } else {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Text(String(localized: String.LocalizationValue("common.done_button"), locale: Locale(identifier: settings.appLanguage)))
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                        }
                     }
                 }
             }
@@ -890,10 +962,21 @@ struct RoutineTimerEditSheetView: View {
     private func dayRow(for day: Int, isSingleRow: Bool = false) -> some View {
         let index = dayIndex(for: day)
         let isEnabled = schedule.weekdays[index].isEnabled
+        let isSelectedForLinking = selectedDaysForLinking.contains(day)
         
         VStack(spacing: 12) {
             Button {
-                if !isEnabled {
+                if isLinkingNotes {
+                    if isEnabled {
+                        withAnimation {
+                            if selectedDaysForLinking.contains(day) {
+                                selectedDaysForLinking.remove(day)
+                            } else {
+                                selectedDaysForLinking.insert(day)
+                            }
+                        }
+                    }
+                } else if !isEnabled {
                     withAnimation {
                         schedule.weekdays[index].isEnabled = true
                         if isSingleRow {
@@ -905,6 +988,12 @@ struct RoutineTimerEditSheetView: View {
                 }
             } label: {
                 HStack(spacing: 12) {
+                    if isLinkingNotes {
+                        Image(systemName: isSelectedForLinking ? "checkmark.circle.fill" : "circle")
+                            .font(.system(size: 20))
+                            .foregroundStyle(isSelectedForLinking ? .orange : .secondary.opacity(0.3))
+                    }
+                    
                     Text(isSingleRow ? String(localized: "timer.notification.title") : String(localized: String.LocalizationValue(daysKeys[day-1]), locale: Locale(identifier: settings.appLanguage)))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(isEnabled ? Color.primary : Color.secondary.opacity(0.5))
@@ -912,9 +1001,11 @@ struct RoutineTimerEditSheetView: View {
                     Spacer()
                     
                     if isEnabled {
-                        Text(timeFormatted(schedule.weekdays[index].time))
-                            .font(.system(size: 16, weight: .semibold, design: .rounded))
-                            .foregroundStyle(Color.primary)
+                        if !isLinkingNotes {
+                            Text(timeFormatted(schedule.weekdays[index].time))
+                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .foregroundStyle(Color.primary)
+                        }
                     } else {
                         Text(String(localized: String.LocalizationValue("routine.timer.off"), locale: Locale(identifier: settings.appLanguage)))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
@@ -930,6 +1021,12 @@ struct RoutineTimerEditSheetView: View {
             }
             .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: false))
         }
+        .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+        .listRowBackground(
+            isLinkingNotes && isSelectedForLinking
+                ? Color.orangePrimary.opacity(0.1)
+                : nil
+        )
     }
     
     private func timeFormatted(_ date: Date) -> String {

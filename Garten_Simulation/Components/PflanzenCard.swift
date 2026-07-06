@@ -101,6 +101,31 @@ struct PflanzenCard: View {
                             Capsule()
                                 .fill(pflanze.seltenheit.farbe.opacity(0.12))
                         )
+                        
+                    HStack(spacing: 12) {
+                        if pflanze.streak > 0 {
+                            HStack(spacing: 4) {
+                                Image(systemName: "flame.fill")
+                                    .font(.system(size: 11, weight: .bold))
+                                    .foregroundStyle(.orange)
+                                Text("\(pflanze.streak)")
+                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.orange)
+                            }
+                        }
+                        
+                        if let target = pflanze.customTrackerTarget {
+                            HStack(spacing: 4) {
+                                Image(systemName: "chart.bar.fill")
+                                    .font(.system(size: 10, weight: .bold))
+                                    .foregroundStyle(.secondary)
+                                Text("\(pflanze.customTrackerProgress, specifier: "%.1f") / \(target, specifier: "%.1f")")
+                                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                    .padding(.top, 2)
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.top, 4)

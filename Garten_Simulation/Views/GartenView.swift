@@ -98,29 +98,61 @@ struct GartenView: View {
                                             )
                                         )
                                     
-                                    LazyVGrid(columns: columns, spacing: 30) {
-                                        ForEach(gardenStore.pflanzen) { pflanze in
-                                            PflanzenCard(
-                                                pflanze: pflanze,
-                                                wetterEvent: aktivesEvent,
-                                                onGiessen: {
-                                                    gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
-                                                },
-                                                onTap: {
-                                                    ausgewaehltePflanze = pflanze
-                                                }
-                                            )
-                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                                            .tourAnchor(.intro, condition: pflanze.id == gardenStore.pflanzen.first?.id)
-                                            .id(pflanze.id == gardenStore.pflanzen.first?.id ? TourStep.intro : nil)
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack(spacing: 20) {
+                                            ForEach(gardenStore.pflanzen) { pflanze in
+                                                PflanzenCard(
+                                                    pflanze: pflanze,
+                                                    wetterEvent: aktivesEvent,
+                                                    onGiessen: {
+                                                        gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
+                                                    },
+                                                    onTap: {
+                                                        ausgewaehltePflanze = pflanze
+                                                    }
+                                                )
+                                                .frame(width: 180) // Feste Breite für horizontale Karten
+                                                .tourAnchor(.intro, condition: pflanze.id == gardenStore.pflanzen.first?.id)
+                                                .id(pflanze.id == gardenStore.pflanzen.first?.id ? TourStep.intro : nil)
+                                            }
                                         }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 20)
                                     }
                                     .frame(maxWidth: .infinity)
                                 }
                                 .padding(.horizontal, 8)
                                 .padding(.top, 60)
-                                .padding(.bottom, 40)
+                                .padding(.bottom, 20)
                                 
+                                // MARK: - Dekorationen
+                                if !gardenStore.placedDecorations.isEmpty {
+                                    VStack(alignment: .leading, spacing: 12) {
+                                        Text(String(localized: "garden.trash"))
+                                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                                            .foregroundStyle(.primary)
+
+                                        LazyVGrid(columns: columns, spacing: 30) {
+                                            ForEach(gardenStore.placedDecorations) { deko in
+                                                BadHabitCard(
+                                                    deko: deko,
+                                                    onCrossApplied: {
+                                                        triggerSheetItem = TriggerSheetItem(id: deko.id)
+                                                    },
+                                                    onTap: {
+                                                        ausgewaehltesItem = ShopDetailPayload.from(decoration: deko)
+                                                    }
+                                                )
+                                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                                                .tourAnchor(.badHabits, condition: deko.id == gardenStore.placedDecorations.first?.id)
+                                            }
+                                        }
+                                    }
+                                    .padding(.top, 16)
+                                    .padding(.horizontal, 16)
+                                    .id(TourStep.badHabits)
+                                }
+
                                 // MARK: - Power-Ups Lager
                                 let powerUps = gardenStore.gekaufteItems.filter { $0.itemType == .powerUp }
                                 if !powerUps.isEmpty {
@@ -150,34 +182,6 @@ struct GartenView: View {
                                     }
                                     .padding(.top, 24)
                                     .padding(.horizontal, 16)
-                                }
-
-                                // MARK: - Dekorationen
-                                if !gardenStore.placedDecorations.isEmpty {
-                                    VStack(alignment: .leading, spacing: 12) {
-                                        Text(String(localized: "garden.trash"))
-                                            .font(.system(size: 20, weight: .bold, design: .rounded))
-                                            .foregroundStyle(.primary)
-
-                                        LazyVGrid(columns: columns, spacing: 30) {
-                                            ForEach(gardenStore.placedDecorations) { deko in
-                                                BadHabitCard(
-                                                    deko: deko,
-                                                    onCrossApplied: {
-                                                        triggerSheetItem = TriggerSheetItem(id: deko.id)
-                                                    },
-                                                    onTap: {
-                                                        ausgewaehltesItem = ShopDetailPayload.from(decoration: deko)
-                                                    }
-                                                )
-                                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                                                .tourAnchor(.badHabits, condition: deko.id == gardenStore.placedDecorations.first?.id)
-                                            }
-                                        }
-                                    }
-                                    .padding(.top, 24)
-                                    .padding(.horizontal, 16)
-                                    .id(TourStep.badHabits)
                                 }
                             }
 
@@ -507,22 +511,6 @@ struct GartenView: View {
                     }
                 )
                 .environmentObject(settings)
-            }
-        }
-        .overlay(alignment: .bottomTrailing) {
-            if gardenStore.isDailySpinAvailable {
-                Item3DButton(
-                    icon: "Geschenk",
-                    farbe: .belohnungGoldMid,
-                    sekundaerFarbe: .belohnungGoldSchatten,
-                    groesse: 64,
-                    iconSkalierung: 1.6
-                ) {
-                    gardenStore.checkDailySpin()
-                }
-                .padding(.trailing, 24)
-                .padding(.bottom, 32)
-                .transition(.scale.combined(with: .opacity))
             }
         }
         .overlay(alignment: .topLeading) {

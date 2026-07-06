@@ -332,3 +332,8 @@
 
 - Zeitleiste (Timeline): Routinen werden nun gebündelt dargestellt und der unpassende Text wurde entfernt. 
 - Zeitleiste (Timeline): Navigation-Fix: X-Button schließt die Zeitleiste komplett, normaler Back-Button springt wie gewohnt zur Zeitleiste zurück.
+
+## UI Redesign
+- GartenView: Pflanzen als horizontales ScrollView, Power-Ups nach unten verschoben, Gratis-Button entfernt.
+- HabitCards: Anzeige von Streak & Tagesziel integriert.
+- Shop: Glücksrad ganz oben bei den Gegenständen hinzugefügt.
