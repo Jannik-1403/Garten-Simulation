@@ -1206,6 +1206,8 @@ struct TimerEditSheetView: View {
                     .environmentObject(powerUpStore)
                     .environmentObject(pfadStore)
                     .environmentObject(streakStore)
+                    .environmentObject(interactiveTourManager)
+                    .environmentObject(iapStore)
             }
         }
         .fullScreenCover(isPresented: Binding(
