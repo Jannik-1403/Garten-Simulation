@@ -88,6 +88,7 @@ struct GlobalDragToWeed: View {
                 ) {
                     Color.clear
                 }
+                .frame(width: 65)
                 .allowsHitTesting(false)
                 
                 // Draggable Icon

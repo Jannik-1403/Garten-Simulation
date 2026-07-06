@@ -390,3 +390,5 @@
 - UI Anpassungen: Gießen-Button wurde wieder etwas verkleinert.
 
 - UI Anpassungen: Schlechte Gewohnheiten nutzen nun das horizontale Querformat (wie Pflanzen). Drag-and-Drop Button für schlechte Gewohnheiten wurde als globaler Button neben dem Gieß-Button integriert.
+
+- UI Anpassungen: Schlechte Gewohnheiten werden nun untereinander angezeigt. Die interaktiven Buttons für Wasser und Unkraut sind jetzt rechteckig mit abgerundeten Ecken und wurden untereinander am rechten Rand platziert.
