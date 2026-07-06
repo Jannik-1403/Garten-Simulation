@@ -1,5 +1,7 @@
+- Glücksrad: Belohnungen und Pop-Up-Texte an die angezeigten Zahlen auf dem Rad (10, 25, 50, 150) angepasst.
 ## [2026-07-06] - Shop & UI Updates
 
+- **Wochenstatistik Tipps**: Die Texte der Fortschritt-Analyse (Tipps) wurden in eine ScrollView verpackt und die Kartenhöhe leicht vergrößert. Längere Texte werden dadurch nicht mehr abgeschnitten und der abgerundete Hintergrund bleibt nun auch bei langem Text formstabil.
 - **iPadOS Tab Bar Fix**: Die Tab Bar bleibt nun auch auf dem iPad unter iOS 18+ dauerhaft am unteren Bildschirmrand fixiert, statt sich in eine Seitenleiste (Sidebar) umzuwandeln. (Über die horizontale Size Class forciert).
 - **iPadOS Layout Anpassung**: Die maximale Breite der Karten und Container wurde auf 850px erhöht, um den Platz auf dem iPad besser auszunutzen und die UI breiter und "länger" wirken zu lassen.
 - **PDF Export Configurator**: Gute Gewohnheiten sind im PDF-Export-Menü nun standardmäßig ausgewählt.
