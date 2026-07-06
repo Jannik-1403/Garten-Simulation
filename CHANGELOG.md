@@ -399,3 +399,4 @@
 - Power-Ups wurden nach unten (unter die schlechten Gewohnheiten) verschoben.
 - Beim Tagesziel-Tracker erscheint nun ein Bestätigungs-PopUp ("Bist du dir sicher, dass du fertig bist?"), bevor das Ziel abgeschlossen wird.
 - Das "Geschafft"-PopUp nach Abschluss des Ziels erscheint nun direkt über dem Pflanzen-Detailbildschirm und ist vollständig im 3D-Stil designt. Alle Texte wurden in 11 Sprachen übersetzt.
+- Hartkodierte Strings im PDFExportManager und LiquidGlassDismissButton durch lokalisierte Strings ersetzt und in 11 Sprachen übersetzt.
