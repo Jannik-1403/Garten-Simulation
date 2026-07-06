@@ -404,3 +404,4 @@
 - Fehler behoben: 'developmentRegion' in der Projektdatei auf 'de' gesetzt, um den Konflikt mit .xcstrings zu lösen.
 - UI-Fix: Schildkröten-Icon (Erholungsstatus) bei der Pflanzenansicht auf Skalierung 2.2 vergrößert, während der Button gleich groß bleibt.
 - UI-Fix: Schildkröten-Icon (Erholungsstatus) Skalierung auf 1.9 angepasst.
+- UI-Fix: Schildkröten-Icon (Erholungsstatus) Skalierung auf 1.8 angepasst.
