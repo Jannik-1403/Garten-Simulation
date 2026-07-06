@@ -400,3 +400,6 @@
 - Beim Tagesziel-Tracker erscheint nun ein Bestätigungs-PopUp ("Bist du dir sicher, dass du fertig bist?"), bevor das Ziel abgeschlossen wird.
 - Das "Geschafft"-PopUp nach Abschluss des Ziels erscheint nun direkt über dem Pflanzen-Detailbildschirm und ist vollständig im 3D-Stil designt. Alle Texte wurden in 11 Sprachen übersetzt.
 - Hartkodierte Strings im PDFExportManager und LiquidGlassDismissButton durch lokalisierte Strings ersetzt und in 11 Sprachen übersetzt.
+- Lokalisierung: 100% Übersetzungsabdeckung wiederhergestellt und doppeltes 'Portuguese (Portugal)' entfernt.
+- Fehler behoben: 'developmentRegion' in der Projektdatei auf 'de' gesetzt, um den Konflikt mit .xcstrings zu lösen.
+- UI-Fix: Schildkröten-Icon (Erholungsstatus) bei der Pflanzenansicht auf Skalierung 2.2 vergrößert, während der Button gleich groß bleibt.
