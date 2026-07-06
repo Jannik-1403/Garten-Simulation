@@ -101,15 +101,15 @@ struct PflanzenCard: View {
                                         FeedbackManager.shared.playTap()
                                         onTap()
                                     }
-                                    
-                                    if showWaterSplash {
-                                        WaterSplashParticleView(isVisible: $showWaterSplash)
-                                            .frame(width: 100, height: 100)
-                                            .zIndex(250)
-                                            .allowsHitTesting(false)
-                                    }
                                 }
                             )
+                            
+                            if showWaterSplash {
+                                WaterSplashParticleView(isVisible: $showWaterSplash)
+                                    .frame(width: 100, height: 100)
+                                    .zIndex(250)
+                                    .allowsHitTesting(false)
+                            }
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(

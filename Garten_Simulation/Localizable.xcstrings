@@ -1010,7 +1010,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@(+%lld%@)"
+            "value": "%@ (+%lld ％@)"
           }
         },
         "tr": {
@@ -1022,19 +1022,19 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@(+%lld%@)"
+            "value": "%@ (+%lld ％@)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@(+%lld%@)"
+            "value": "%@ (+%lld ％@)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@(+%lld%@)"
+            "value": "%@ (+%lld ％@)"
           }
         }
       }
@@ -1207,7 +1207,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@%@"
+            "value": "%@ ％@"
           }
         },
         "tr": {
@@ -1295,7 +1295,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@%lld"
+            "value": "%@ ％lld"
           }
         },
         "tr": {
@@ -1307,19 +1307,19 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@%lएलडी"
+            "value": "%@ ％lld"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@%l读取"
+            "value": "%@ ％lld"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@%lld"
+            "value": "%@ ％lld"
           }
         }
       }
@@ -1401,19 +1401,19 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@:%lld"
+            "value": "%@: ％lld"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@:%l负载"
+            "value": "%@: ％lld"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@:%lld"
+            "value": "%@: ％lld"
           }
         }
       }
@@ -1579,7 +1579,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld /%lld"
+            "value": "%lld / ％lld"
           }
         },
         "tr": {
@@ -1597,13 +1597,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%l装入 /%l装入"
+            "value": "%lld / ％lld"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld /%lld"
+            "value": "%lld / ％lld"
           }
         }
       }
@@ -1673,7 +1673,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld /%lld%@"
+            "value": "%lld / ％lld ％@"
           }
         },
         "tr": {
@@ -1685,19 +1685,19 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld /%lld%@"
+            "value": "%lld / ％lld ％@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%l装入 /%l装入%@"
+            "value": "%lld / ％lld ％@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld /%lld%@"
+            "value": "%lld / ％lld ％@"
           }
         }
       }
@@ -1876,19 +1876,19 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld%@"
+            "value": "%lld ％@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld%@"
+            "value": "%lld ％@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld%@"
+            "value": "%lld ％@"
           }
         }
       }
@@ -2906,7 +2906,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%lld%@"
+            "value": "+%lld ％@"
           }
         },
         "tr": {
@@ -2918,19 +2918,19 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%lld%@"
+            "value": "+%lld ％@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%l加%@"
+            "value": "+%lld ％@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%lld%@"
+            "value": "+%lld ％@"
           }
         }
       }
@@ -99759,7 +99759,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Выполненные привычки:%lld (%@по сравнению с прошлой неделей)"
+            "value": "Erledigte Gewohnheiten: ％lld (%@ im Vergleich zur Vorwoche)"
           }
         },
         "tr": {
@@ -99771,19 +99771,19 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आदतें पूर्ण:%lld (पिछले सप्ताह की तुलना में%@)"
+            "value": "Erledigte Gewohnheiten: ％lld (%@ im Vergleich zur Vorwoche)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "已完成习惯：%lld（与上周相比 ％@）"
+            "value": "Erledigte Gewohnheiten: ％lld (%@ im Vergleich zur Vorwoche)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "已完成的習慣：%lld（與上週相比，%@）"
+            "value": "Erledigte Gewohnheiten: ％lld (%@ im Vergleich zur Vorwoche)"
           }
         }
       }
@@ -100044,7 +100044,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@:%lld Мин"
+            "value": "%@: ％lld Min"
           }
         },
         "tr": {
@@ -100056,19 +100056,19 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@:%lएलडी मिन"
+            "value": "%@: ％lld Min"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@：%lld 分钟"
+            "value": "%@: ％lld Min"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@:%lld 最小值"
+            "value": "%@: ％lld Min"
           }
         }
       }
@@ -100151,19 +100151,19 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@:%lld तैयार"
+            "value": "%@: ％lld erledigt"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@：%lld 已完成"
+            "value": "%@: ％lld erledigt"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@:%lld 完成"
+            "value": "%@: ％lld erledigt"
           }
         }
       }
@@ -100911,19 +100911,19 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कुल फोकस समय:%lएलडी मिनट (पिछले सप्ताह की तुलना में%@)"
+            "value": "Gesamt-Fokuszeit: ％lld Minuten (%@ im Vergleich zur Vorwoche)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "总专注时间：%lld 分钟（与上周相比 ％@）"
+            "value": "Gesamt-Fokuszeit: ％lld Minuten (%@ im Vergleich zur Vorwoche)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "總聚焦時間：%lld 分鐘（與上週相比為%@）"
+            "value": "Gesamt-Fokuszeit: ％lld Minuten (%@ im Vergleich zur Vorwoche)"
           }
         }
       }
@@ -144944,7 +144944,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Уровень%@-%@"
+            "value": "Level ％@-%@"
           }
         },
         "tr": {
@@ -144956,7 +144956,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "स्तर%@-%@"
+            "value": "Level ％@-%@"
           }
         },
         "zh-Hans": {
@@ -144968,7 +144968,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "電平%@-%@"
+            "value": "Level ％@-%@"
           }
         }
       }
@@ -145040,7 +145040,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@(Уровень%d)"
+            "value": "%@ (Level ％d)"
           }
         },
         "tr": {
@@ -145052,7 +145052,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@(स्तर%d)"
+            "value": "%@ (Level ％d)"
           }
         },
         "zh-Hans": {
@@ -145064,7 +145064,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@（電平%d）"
+            "value": "%@ (Level ％d)"
           }
         }
       }
@@ -155650,7 +155650,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d~%d일"
+            "value": "Tag ％d–%d"
           }
         },
         "nl": {
@@ -155674,7 +155674,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Тег%d–%d"
+            "value": "Tag ％d–%d"
           }
         },
         "tr": {
@@ -155686,7 +155686,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "टैग%d-%d"
+            "value": "Tag ％d–%d"
           }
         },
         "zh-Hans": {
@@ -155698,7 +155698,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "標籤%d–%d"
+            "value": "Tag ％d–%d"
           }
         }
       }
@@ -283634,13 +283634,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%2$@ まで ％1$d XP"
+            "value": "%d XP bis ％@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%2$@까지 ％1$d XP"
+            "value": "%d XP bis ％@"
           }
         },
         "nl": {
@@ -283664,31 +283664,31 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%2$@'a kadar ％1$d XP"
+            "value": "%d XP bis ％@"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%dXP bis%@"
+            "value": "%d XP bis ％@"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%dXP से%@"
+            "value": "%d XP bis ％@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%dXP 至%@"
+            "value": "%d XP bis ％@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%dXP 至%@"
+            "value": "%d XP bis ％@"
           }
         }
       }

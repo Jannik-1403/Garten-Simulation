@@ -49,7 +49,7 @@ struct BadHabitCard: View {
                 VStack(spacing: 8) {
                     GeometryReader { geo in
                         let scale: CGFloat = 0.8
-                        let baseDim: CGFloat = 110 * scale
+
 
                         ZStack {
                             // 3D-Button

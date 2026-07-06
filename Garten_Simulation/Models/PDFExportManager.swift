@@ -333,7 +333,7 @@ class PDFExportManager {
         assessmentStore: AssessmentStore
     ) -> URL? {
         let report = WeeklyStatsManager.shared.generateReport(for: weekStart, gardenStore: gardenStore)
-        let locale = Locale(identifier: settings.appLanguage)
+
         
         let pdfMetaData = [
             kCGPDFContextCreator: "Grovy Wochenbericht",
