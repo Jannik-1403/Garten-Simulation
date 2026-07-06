@@ -8,9 +8,11 @@ struct GlobalDragToWater: View {
     @State private var dragOffset = CGSize.zero
     @State private var isDragging = false
     @State private var hoveredCardID: String? = nil
+    @State private var hoveredWateredCardID: String? = nil
     
     // Feedback and Animation state
     @State private var hapticTrigger = false
+    @State private var errorTrigger = false
     @State private var tropfenSkalierung: CGFloat = 1.0
 
     private let trefferRadius: CGFloat = 80
@@ -27,20 +29,25 @@ struct GlobalDragToWater: View {
                     
                     // Check intersection with cardPositions
                     var hitID: String? = nil
+                    var hitWateredID: String? = nil
                     for card in cardPositions {
                         let plantCenter = card.center
                         let dist = distance(from: globalLocation, to: plantCenter)
                         
                         if dist < trefferRadius {
                             // Hit
-                            // Check if this plant actually needs watering
-                            if let pflanze = gardenStore.pflanzen.first(where: { $0.id == card.id }),
-                               !pflanze.istBewässert, !pflanze.isDead {
-                                hitID = card.id
+                            if let pflanze = gardenStore.pflanzen.first(where: { $0.id == card.id }), !pflanze.isDead {
+                                if !pflanze.istBewässert {
+                                    hitID = card.id
+                                } else {
+                                    hitWateredID = card.id
+                                }
                                 break
                             }
                         }
                     }
+                    
+                    hoveredWateredCardID = hitWateredID
                     
                     if hitID != hoveredCardID {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
@@ -77,8 +84,20 @@ struct GlobalDragToWater: View {
                                 dragOffset = .zero
                                 isDragging = false
                                 hoveredCardID = nil
+                                hoveredWateredCardID = nil
                                 tropfenSkalierung = 1.0
                             }
+                        }
+                    } else if hoveredWateredCardID != nil {
+                        // Error feedback for dropping on already watered plant
+                        errorTrigger.toggle()
+                        
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) {
+                            dragOffset = .zero
+                            isDragging = false
+                            hoveredCardID = nil
+                            hoveredWateredCardID = nil
+                            tropfenSkalierung = 1.0
                         }
                     } else {
                         // Reset back to original position
@@ -86,6 +105,7 @@ struct GlobalDragToWater: View {
                             dragOffset = .zero
                             isDragging = false
                             hoveredCardID = nil
+                            hoveredWateredCardID = nil
                             tropfenSkalierung = 1.0
                         }
                     }
@@ -93,10 +113,7 @@ struct GlobalDragToWater: View {
             
             // The Button View
             ZStack {
-                Color.clear
-                    .frame(width: 70, height: 70)
-                    .contentShape(Circle())
-                
+                // Stationary Button Background
                 Item3DButton(
                     farbe: .blauPrimary,
                     sekundaerFarbe: .blauPrimary.darker(),
@@ -104,21 +121,29 @@ struct GlobalDragToWater: View {
                     isRectangular: false,
                     aktion: {}
                 ) {
+                    Color.clear
+                }
+                .allowsHitTesting(false)
+                
+                // Draggable Icon
+                ZStack {
                     Image("Drop water")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 35, height: 35)
                         .brightness(hoveredCardID != nil ? 0.2 : 0)
                 }
-                .allowsHitTesting(false)
+                .frame(width: 70, height: 70)
+                .contentShape(Circle())
+                .scaleEffect(tropfenSkalierung)
+                .offset(dragOffset)
+                .gesture(dragGesture)
             }
-            .scaleEffect(tropfenSkalierung)
-            .offset(dragOffset)
-            .gesture(dragGesture)
             // Position at bottom right, moved down
             .position(x: geo.size.width - 50, y: geo.size.height - 70)
             .sensoryFeedback(.impact, trigger: hoveredCardID != nil)
             .sensoryFeedback(.success, trigger: hapticTrigger)
+            .sensoryFeedback(.error, trigger: errorTrigger)
             
         }
         .ignoresSafeArea(.keyboard)

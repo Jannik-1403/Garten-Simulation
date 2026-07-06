@@ -373,3 +373,5 @@
 - GartenView: LazyVGrid durch LazyVStack ersetzt, um die volle Breite für die Karten zu nutzen
 - Fix: PflanzenCard Layout korrigiert (Fortschrittsbalken wieder am Button, Text zentriert, Platz optimiert)
 - Fix: Wassertropfen ist nun ein globaler Drag&Drop-Button in GartenView
+
+- Gieß-Sync & Pop-up hinzugefügt: Tagesziel und Wassertropfen sind jetzt synchronisiert. Wassertropfen unten rechts hat ein Update als echtes 3D-Item bekommen.
