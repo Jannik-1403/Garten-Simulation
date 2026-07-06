@@ -528,7 +528,15 @@ struct GartenView: View {
             .ignoresSafeArea()
             .allowsHitTesting(false)
         }
-
+        .overlay {
+            // Global Watering FAB
+            if gardenStore.pflanzen.contains(where: { !$0.istBewässert && !$0.isDead }) {
+                GlobalDragToWater(cardPositions: cardPositions)
+                    .environmentObject(gardenStore)
+                    .environmentObject(powerUpStore)
+                    .zIndex(100)
+            }
+        }
         .onPreferenceChange(HeaderPositionPreferenceKey.self) { prefs in
             if let c = prefs.first(where: { $0.id == "coins" }) { coinHeaderPosition = c.center }
             if let s = prefs.first(where: { $0.id == "streak" }) { streakHeaderPosition = s.center }

@@ -14,7 +14,6 @@ struct PflanzenCard: View {
     @State private var pflanzenPosition: CGPoint = .zero
     @State private var plantWobble: CGFloat = 1.0
     @State private var greenGlowOpacity: Double = 0
-    @State private var wasserPressAktiv = false
     @State private var showReviveSheet = false
     @State private var zeigeBonusText: Bool = false
     @State private var bonusText: String = ""
@@ -41,9 +40,7 @@ struct PflanzenCard: View {
             }
             .buttonStyle(PflanzenCardHorizontalButtonStyle(
                 isVisualPressed: isVisualPressed,
-                isDead: pflanze.isDead,
-                ringProgress: pflanze.ringFortschritt,
-                ringFarbe: pflanze.seltenheit.farbe
+                isDead: pflanze.isDead
             ))
             .background(
                 GeometryReader { proxy in
@@ -55,15 +52,31 @@ struct PflanzenCard: View {
             )
             
             // MARK: - Layer 1: Interactive Card Content
-            HStack(spacing: 16) {
+            HStack(spacing: 24) {
                 
                 // MARK: Left Column - 3D Plant Button & Rank
                 VStack(spacing: 8) {
                     GeometryReader { geo in
-                        let scale: CGFloat = 0.65
+                        let scale: CGFloat = 0.8
                         let baseDim: CGFloat = 110 * scale
 
                         ZStack {
+                            // Hintergrund-Ring (grau)
+                            Circle()
+                                .stroke(Color.gray.opacity(0.2), lineWidth: 5 * scale)
+                                .frame(width: baseDim, height: baseDim)
+
+                            // Fortschritts-Ring (Seltenheits-Farbe)
+                            Circle()
+                                .trim(from: 0, to: pflanze.ringFortschritt)
+                                .stroke(
+                                    pflanze.seltenheit.farbe,
+                                    style: StrokeStyle(lineWidth: 5 * scale, lineCap: .round)
+                                )
+                                .frame(width: baseDim, height: baseDim)
+                                .rotationEffect(.degrees(-90))
+                                .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
+
                             // Grüner Glow wenn frisch gegossen
                             Circle()
                                 .stroke(Color.gruenPrimary.opacity(greenGlowOpacity * 0.6), lineWidth: 6 * scale)
@@ -77,9 +90,9 @@ struct PflanzenCard: View {
                                 seltenheit: pflanze.seltenheit,
                                 farbe: pflanze.color,
                                 sekundaerFarbe: pflanze.color.darker(),
-                                groesse: baseDim,
+                                groesse: 85 * scale,
                                 fallbackIcon: pflanze.symbolName,
-                                externerPress: wasserPressAktiv,
+                                externerPress: false,
                                 aktion: {
                                     if pflanze.isDead {
                                         showReviveSheet = true
@@ -105,7 +118,7 @@ struct PflanzenCard: View {
                                 .onAppear { updatePflanzenPosition(from: geo) }
                         )
                     }
-                    .frame(width: 70, height: 70)
+                    .frame(width: 90, height: 90)
                     .scaleEffect(plantWobble)
                     .animation(.spring(response: 0.3, dampingFraction: 0.4), value: plantWobble)
                     
@@ -119,24 +132,24 @@ struct PflanzenCard: View {
                                 .fill(pflanze.seltenheit.farbe.opacity(0.12))
                         )
                 }
-                .frame(width: 80)
+                .frame(width: 100)
                 
-                // MARK: Middle Column - Habit Info
-                VStack(alignment: .leading, spacing: 6) {
+                // MARK: Middle Column - Habit Info (Centered)
+                VStack(alignment: .center, spacing: 8) {
                     
                     // Warning & Name Header
-                    HStack(alignment: .top) {
+                    HStack(alignment: .center, spacing: 6) {
                         if !pflanze.istBewässert && pflanze.showWarning {
                             Image("Warndreieck")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 18, height: 18)
-                                .padding(.top, 2)
                         }
                         Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
-                            .font(.system(size: 18, weight: .black, design: .rounded))
+                            .font(.system(size: 20, weight: .black, design: .rounded))
                             .foregroundStyle(Color.primary)
                             .lineLimit(2)
+                            .multilineTextAlignment(.center)
                             .minimumScaleFactor(0.8)
                     }
                     
@@ -153,25 +166,8 @@ struct PflanzenCard: View {
                     }
                     .foregroundStyle(Color(hex: "#D95F00"))
                     
-                    // Daily Target & Progress
-                    if pflanze.isDead {
-                        Text(String(format: String(localized: "pflanze.tot.seit"), pflanze.missedCycles))
-                            .font(.system(size: 12, weight: .regular, design: .rounded))
-                            .foregroundStyle(.secondary)
-                    } else if pflanze.istBewässert {
-                        Text(String(localized: "garden.plant.done"))
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(Color.gruenPrimary)
-                            .padding(.top, 4)
-                    } else {
-                        // Not completed yet
-                        if let target = pflanze.customTrackerTarget, target > 0 {
-                            buildTargetProgressView(current: pflanze.customTrackerProgress, target: target)
-                        } else if let healthTarget = pflanze.healthTarget, healthTarget > 0 {
-                            buildTargetProgressView(current: pflanze.customTrackerProgress, target: healthTarget)
-                        }
-                        
-                        // Timer Info
+                    // Timer Info (Only if not watered)
+                    if !pflanze.istBewässert && !pflanze.isDead {
                         HStack(spacing: 4) {
                             Image(pflanze.timerIconName)
                                 .resizable()
@@ -183,41 +179,34 @@ struct PflanzenCard: View {
                                 .foregroundStyle(pflanze.showWarning ? .orange : .secondary)
                         }
                     }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                
-                // MARK: Right Column - Watering Drop
-                VStack {
-                    Spacer()
+                    
+                    // Daily Target & Progress
                     if pflanze.isDead {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 28, weight: .bold))
-                            .foregroundStyle(.red)
-                            .padding(.trailing, 8)
-                            .padding(.bottom, 8)
-                    } else {
-                        Button {
-                            if !pflanze.istBewässert {
-                                FeedbackManager.shared.playTap()
-                                handleWatering()
-                            }
-                        } label: {
-                            ZStack {
-                                Circle()
-                                    .fill(pflanze.istBewässert ? Color.gruenPrimary : Color.orange)
-                                    .frame(width: 44, height: 44)
-                                    .shadow(color: (pflanze.istBewässert ? Color.gruenPrimary : Color.orange).opacity(0.3), radius: 5, y: 3)
-                                
-                                Image(systemName: pflanze.istBewässert ? "checkmark" : "drop.fill")
-                                    .font(.system(size: 20, weight: .bold))
-                                    .foregroundStyle(.white)
-                            }
+                        Text(String(format: String(localized: "pflanze.tot.seit"), pflanze.missedCycles))
+                            .font(.system(size: 12, weight: .regular, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    } else if pflanze.istBewässert {
+                        HStack(spacing: 6) {
+                            Image(systemName: "checkmark.circle.fill")
+                            Text(String(localized: "garden.plant.done"))
                         }
-                        .disabled(pflanze.istBewässert)
-                        .padding(.trailing, 8)
-                        .padding(.bottom, 8)
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.gruenPrimary)
+                        .padding(.top, 4)
+                    } else {
+                        // Not completed yet
+                        if let target = pflanze.customTrackerTarget, target > 0 {
+                            buildTargetProgressView(current: pflanze.customTrackerProgress, target: target)
+                        } else if let healthTarget = pflanze.healthTarget, healthTarget > 0 {
+                            buildTargetProgressView(current: pflanze.customTrackerProgress, target: healthTarget)
+                        } else {
+                            // Kein Target vorhanden -> Zeige Plus Button anstelle von leerer Progressbar
+                            buildEmptyProgressView()
+                        }
                     }
                 }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.trailing, 16)
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 16)
@@ -234,6 +223,23 @@ struct PflanzenCard: View {
         }
         .onChange(of: gardenStore.giessTriggerID) { _, _ in
             if gardenStore.letzteGiessPflanzeID == pflanze.id {
+                // Wenn gegossen wurde, Wasser-Splash auslösen
+                showWaterSplash = true
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
+                    plantWobble = 1.15
+                    greenGlowOpacity = 1.0
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
+                        plantWobble = 1.0
+                    }
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.48) {
+                    withAnimation(.easeOut(duration: 0.35)) {
+                        greenGlowOpacity = 0
+                    }
+                }
+                
                 if gardenStore.isProUser {
                     bonusText = "PRO"
                     zeigeBonusText = true
@@ -248,7 +254,7 @@ struct PflanzenCard: View {
     
     @ViewBuilder
     private func buildTargetProgressView(current: Double, target: Double) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .center, spacing: 4) {
             ZStack(alignment: .leading) {
                 ProgressView(value: min(current, target), total: target)
                     .progressViewStyle(LinearProgressViewStyle(tint: pflanze.seltenheit.farbe))
@@ -267,37 +273,24 @@ struct PflanzenCard: View {
                 .foregroundStyle(.secondary)
         }
         .padding(.top, 4)
-        .padding(.trailing, 8)
     }
 
-    private func handleWatering() {
-        withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
-            plantWobble = 1.15
-            greenGlowOpacity = 1.0
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
-                plantWobble = 1.0
+    @ViewBuilder
+    private func buildEmptyProgressView() -> some View {
+        HStack(spacing: 8) {
+            ProgressView(value: 0, total: 1)
+                .progressViewStyle(LinearProgressViewStyle(tint: .gray.opacity(0.5)))
+                .frame(height: 6)
+            
+            Button {
+                onTap() // Öffnet die Detail-Ansicht, um ein Ziel hinzuzufügen
+            } label: {
+                Image(systemName: "plus.circle.fill")
+                    .font(.system(size: 18))
+                    .foregroundStyle(.gray)
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.48) {
-            withAnimation(.easeOut(duration: 0.35)) {
-                greenGlowOpacity = 0
-            }
-        }
-        withAnimation {
-            wasserPressAktiv = true
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
-            withAnimation(.spring(.snappy(duration: 0.02))) {
-                wasserPressAktiv = false
-            }
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.65) {
-            FeedbackManager.shared.playWatering()
-            showWaterSplash = true
-            onGiessen()
-        }
+        .padding(.top, 4)
     }
 
     private func updatePflanzenPosition(from geo: GeometryProxy) {
@@ -311,8 +304,6 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
     @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
     let isVisualPressed: Bool
     let isDead: Bool
-    let ringProgress: Double
-    let ringFarbe: Color
     
     private let depth: CGFloat = 5
     private let cornerRadius: CGFloat = 20
@@ -334,15 +325,46 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
                 .background(Color.white)
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
                 .overlay(
-                    ZStack {
-                        RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                            .stroke(Color.black.opacity(0.15), lineWidth: 1.2)
-                        
-                        RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                            .trim(from: 0, to: ringProgress)
-                            .stroke(ringFarbe, style: StrokeStyle(lineWidth: 4, lineCap: .round))
-                            .animation(.spring(response: 0.6), value: ringProgress)
-                    }
+                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                        .stroke(Color.black.opacity(0.15), lineWidth: 1.2)
+                )
+                .offset(y: isPressed ? 0 : -depth)
+        }
+        .scaleEffect(isPressed ? 0.98 : 1.0)
+        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
+        .sensoryFeedback(trigger: isPressed) { _, newValue in
+            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
+        }
+    }
+}
+
+// MARK: - Legacy Button Style (used by BadHabitCard and others)
+struct PflanzenCardButtonStyle: ButtonStyle {
+    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
+    let isVisualPressed: Bool
+    let isDead: Bool
+    private let depth: CGFloat = 5
+    private let cornerRadius: CGFloat = 20
+
+    func makeBody(configuration: Configuration) -> some View {
+        let isPressed = configuration.isPressed || isVisualPressed
+        let baseColor = Color(white: 0.7)
+
+        ZStack(alignment: .bottom) {
+            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                .fill(baseColor)
+                .padding(.horizontal, 1)
+                .frame(maxWidth: .infinity)
+                .frame(minHeight: 320)
+            
+            configuration.label
+                .frame(maxWidth: .infinity)
+                .frame(minHeight: 320)
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
+                .overlay(
+                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                        .stroke(Color.black.opacity(0.15), lineWidth: 1.2)
                 )
                 .offset(y: isPressed ? 0 : -depth)
         }
@@ -476,42 +498,4 @@ struct RevivePlantSheet: View {
     }
     .padding()
     .background(Color.appHintergrund)
-}
-
-// MARK: - Legacy Button Style (used by BadHabitCard and others)
-struct PflanzenCardButtonStyle: ButtonStyle {
-    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
-    let isVisualPressed: Bool
-    let isDead: Bool
-    private let depth: CGFloat = 5
-    private let cornerRadius: CGFloat = 20
-
-    func makeBody(configuration: Configuration) -> some View {
-        let isPressed = configuration.isPressed || isVisualPressed
-        let baseColor = Color(white: 0.7)
-
-        ZStack(alignment: .bottom) {
-            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                .fill(baseColor)
-                .padding(.horizontal, 1)
-                .frame(maxWidth: .infinity)
-                .frame(minHeight: 320)
-            
-            configuration.label
-                .frame(maxWidth: .infinity)
-                .frame(minHeight: 320)
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
-                .overlay(
-                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                        .stroke(Color.black.opacity(0.15), lineWidth: 1.2)
-                )
-                .offset(y: isPressed ? 0 : -depth)
-        }
-        .scaleEffect(isPressed ? 0.98 : 1.0)
-        .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
-        .sensoryFeedback(trigger: isPressed) { _, newValue in
-            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
-        }
-    }
 }

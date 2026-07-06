@@ -371,3 +371,5 @@
 - Fortschrittsbalken: Die Outline/Rahmen der Karte dient nun als Fortschrittsanzeige für Ring-Progress
 - Pro-Progressbar: Wird nun auch für Free-Nutzer (mit Schloss-Symbol) angezeigt
 - GartenView: LazyVGrid durch LazyVStack ersetzt, um die volle Breite für die Karten zu nutzen
+- Fix: PflanzenCard Layout korrigiert (Fortschrittsbalken wieder am Button, Text zentriert, Platz optimiert)
+- Fix: Wassertropfen ist nun ein globaler Drag&Drop-Button in GartenView
