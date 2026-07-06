@@ -1,3 +1,7 @@
+## [2026-07-06] - Shop & UI Updates
+
+- **Tägliches Glücksrad im Shop**: Der Button für das tägliche, kostenlose Glücksrad wurde von der Startseite (Gartenansicht) in den Shop verschoben. Er befindet sich nun prominent über den Power-Ups als aufgewertete Shop-Karte (mit "Kostenlos"-Badge und 2.2x größerem Icon), um das Shop-Erlebnis aufzuwerten und die Startseite aufzuräumen.
+
 ## [2026-07-02] - Hintergrund-Audio, Pro-Rabatt & unbegrenzte Gewohnheiten
 
 - **Wochenübersicht Tipps**: Die Tipp- und Analyse-Texte werden nun nicht mehr alle auf einmal untereinander angezeigt. Stattdessen sind sie in ein kompaktes, seitlich wischbares TabView-Karussell integriert, was deutlich mehr Platz spart und aufgeräumter wirkt.- **Wochenübersicht Feinschliff**: Navigation-Pfeile wurden von störenden Kreisen befreit und die Datums-Anzeige im Header zu einem interaktiven, pillenförmigen Liquid Glass Button aufgewertet.
