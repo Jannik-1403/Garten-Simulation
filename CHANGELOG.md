@@ -423,3 +423,4 @@
 - **Bugfixes iPad Orientation**: Behoben: "All interface orientations must be supported unless the app requires full screen" Warnung beseitigt durch das Hinzufügen von UIRequiresFullScreen zur Info.plist.
 - **Bugfixes Code Warnings**: Behoben: Ungenutzte Variablen in BadHabitCard.swift und PDFExportManager.swift entfernt, sowie den Fehler 'allowsHitTesting is unused' in PflanzenCard.swift korrigiert.
 - **Bugfixes Format Types**: Behoben: 57 weitere Localizable.xcstrings Übersetzungen auf das deutsche Original zurückgesetzt, da sie falsche Platzhaltertypen aufwiesen (z.B. %l statt %lld oder eine vertauschte Reihenfolge ohne Positionsmarker), was Xcode-Build-Fehler ("The format specifier does not match") auslöste.
+- **Bugfixes Xcode Warnings**: Behoben: Einen verwaisten Key (`pro_bonus_text`) aus `Localizable.xcstrings` entfernt, der im Swift-Code nicht mehr verwendet wurde, um die "References to this key could not be found" Warnung zu beseitigen.
