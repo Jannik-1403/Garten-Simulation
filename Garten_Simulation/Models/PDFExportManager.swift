@@ -391,34 +391,34 @@ class PDFExportManager {
             formatter.dateFormat = "dd.MM.yyyy"
             let rangeString = "\(formatter.string(from: report.weekStartDate)) - \(formatter.string(from: report.weekEndDate))"
             
-            drawText("Grovy Wochenbericht", attributes: titleAttributes, yPos: &currentY, offset: 4)
-            drawText("Zeitraum: \(rangeString)", attributes: subtitleAttributes, yPos: &currentY, offset: 25)
+            drawText(String(localized: "export.pdf.report.title", defaultValue: "Grovy Wochenbericht"), attributes: titleAttributes, yPos: &currentY, offset: 4)
+            drawText(String(localized: "export.pdf.report.period", defaultValue: "Zeitraum: %@").replacingOccurrences(of: "%@", with: rangeString), attributes: subtitleAttributes, yPos: &currentY, offset: 25)
             
-            drawText("1. Wochen-Zusammenfassung", attributes: sectionHeaderAttributes, yPos: &currentY, offset: 12, addSpace: 5)
+            drawText(String(localized: "export.pdf.report.summary", defaultValue: "1. Wochen-Zusammenfassung"), attributes: sectionHeaderAttributes, yPos: &currentY, offset: 12, addSpace: 5)
             
             let focusChangeStr = report.focusMinutesChangePercentage >= 0 ? "+\(Int(report.focusMinutesChangePercentage))%" : "\(Int(report.focusMinutesChangePercentage))%"
             let habitsChangeStr = report.habitsChangePercentage >= 0 ? "+\(Int(report.habitsChangePercentage))%" : "\(Int(report.habitsChangePercentage))%"
             
-            drawText("• Gesamt-Fokuszeit: \(report.totalFocusMinutes) Minuten (\(focusChangeStr) im Vergleich zur Vorwoche)", attributes: bodyTextAttributes, yPos: &currentY, offset: 8)
-            drawText("• Erledigte Gewohnheiten: \(report.completedHabitsCount) (\(habitsChangeStr) im Vergleich zur Vorwoche)", attributes: bodyTextAttributes, yPos: &currentY, offset: 8)
-            drawText("• Abgeschlossene Fokus-Sessions: \(report.completedSessionsCount)", attributes: bodyTextAttributes, yPos: &currentY, offset: 8)
-            drawText("• Verdiente Erfahrungspunkte: \(report.earnedXP) XP", attributes: bodyTextAttributes, yPos: &currentY, offset: 20)
+            drawText("• " + String(format: String(localized: "export.pdf.report.total_focus_time", defaultValue: "Gesamt-Fokuszeit: %lld Minuten (%@ im Vergleich zur Vorwoche)"), report.totalFocusMinutes, focusChangeStr), attributes: bodyTextAttributes, yPos: &currentY, offset: 8)
+            drawText("• " + String(format: String(localized: "export.pdf.report.completed_habits", defaultValue: "Erledigte Gewohnheiten: %lld (%@ im Vergleich zur Vorwoche)"), report.completedHabitsCount, habitsChangeStr), attributes: bodyTextAttributes, yPos: &currentY, offset: 8)
+            drawText("• " + String(format: String(localized: "export.pdf.report.completed_sessions", defaultValue: "Abgeschlossene Fokus-Sessions: %lld"), report.completedSessionsCount), attributes: bodyTextAttributes, yPos: &currentY, offset: 8)
+            drawText("• " + String(format: String(localized: "export.pdf.report.earned_xp", defaultValue: "Verdiente Erfahrungspunkte: %lld XP"), report.earnedXP), attributes: bodyTextAttributes, yPos: &currentY, offset: 20)
             
-            drawText("2. Fortschritts-Analyse", attributes: sectionHeaderAttributes, yPos: &currentY, offset: 12, addSpace: 5)
+            drawText(String(localized: "export.pdf.report.progress_analysis", defaultValue: "2. Fortschritts-Analyse"), attributes: sectionHeaderAttributes, yPos: &currentY, offset: 12, addSpace: 5)
             drawText(report.feedbackTitle, attributes: boldTextAttributes, yPos: &currentY, offset: 8)
             drawText(report.feedbackDescription, attributes: bodyTextAttributes, yPos: &currentY, offset: 20)
             
-            drawText("3. Tägliche Aktivitäten", attributes: sectionHeaderAttributes, yPos: &currentY, offset: 15, addSpace: 5)
+            drawText(String(localized: "export.pdf.report.daily_activities", defaultValue: "3. Tägliche Aktivitäten"), attributes: sectionHeaderAttributes, yPos: &currentY, offset: 15, addSpace: 5)
             
-            drawText("Fokus-Minuten:", attributes: boldTextAttributes, yPos: &currentY, offset: 8)
+            drawText(String(localized: "export.pdf.report.focus_minutes", defaultValue: "Fokus-Minuten:"), attributes: boldTextAttributes, yPos: &currentY, offset: 8)
             for item in report.dailyFocusMinutes {
-                drawText("  • \(item.dayName): \(item.minutes) Min", attributes: bodyTextAttributes, yPos: &currentY, offset: 6)
+                drawText("  • " + String(format: String(localized: "export.pdf.report.daily_focus_item", defaultValue: "%@: %lld Min"), item.dayName, item.minutes), attributes: bodyTextAttributes, yPos: &currentY, offset: 6)
             }
             
             currentY += 10
-            drawText("Erledigte Gewohnheiten:", attributes: boldTextAttributes, yPos: &currentY, offset: 8)
+            drawText(String(localized: "export.pdf.report.habits_completed", defaultValue: "Erledigte Gewohnheiten:"), attributes: boldTextAttributes, yPos: &currentY, offset: 8)
             for item in report.dailyHabitsCompleted {
-                drawText("  • \(item.dayName): \(item.count) erledigt", attributes: bodyTextAttributes, yPos: &currentY, offset: 6)
+                drawText("  • " + String(format: String(localized: "export.pdf.report.daily_habit_item", defaultValue: "%@: %lld erledigt"), item.dayName, item.count), attributes: bodyTextAttributes, yPos: &currentY, offset: 6)
             }
         }
         

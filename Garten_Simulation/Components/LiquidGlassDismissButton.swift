@@ -12,7 +12,7 @@ struct LiquidGlassDismissButton: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(Text("Schließen"))
+        .accessibilityLabel(String(localized: "common.close", defaultValue: "Schließen"))
     }
 }
 
