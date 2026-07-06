@@ -414,3 +414,7 @@
 - Ist das Icon rot (wie beim Apfelbaum), wird ein helleres Rot verwendet, um eine Verwechslung mit den tiefroten Farben der schlechten Gewohnheiten zu vermeiden.
 - Pro Upgrade Banner in den Einstellungen mit 3D-Effekt versehen
 - Schattenfarbe des Pro Banners auf schwarz geändert
+- Behoben: 48 Xcode-Warnungen bezüglich fehlgeschlagener Prozentformatierung in `Localizable.xcstrings` entfernt.
+- Behoben: Formatierungsfehler in der russischen Übersetzung korrigiert (z. B. `ВВАР0В ld/ ВВАР1В ld` -> `%lld/%lld`).
+
+- Lokalisierung: Vollständige und fehlerfreie 100% Übersetzungsabdeckung für Russisch, Hindi und Chinesisch (Simplified & Traditional) via KI- und Deep-Translation realisiert. Die zuvor fälschlicherweise kopierten deutschen Texte wurden restlos durch echte Übersetzungen ersetzt, unter Beibehaltung der korrekten Platzhalter-Syntax (z.B. %lld).
