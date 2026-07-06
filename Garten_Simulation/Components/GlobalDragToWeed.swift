@@ -83,7 +83,7 @@ struct GlobalDragToWeed: View {
                     farbe: .red,
                     sekundaerFarbe: Color.red.opacity(0.8), // Assuming darker isn't available or just use opacity
                     groesse: 65,
-                    isRectangular: false,
+                    isRectangular: true,
                     aktion: {}
                 ) {
                     Color.clear
@@ -100,13 +100,13 @@ struct GlobalDragToWeed: View {
                         .offset(y: -4) // Icon etwas weiter nach oben im Button
                 }
                 .frame(width: 65, height: 65)
-                .contentShape(Circle())
+                .contentShape(RoundedRectangle(cornerRadius: 15))
                 .scaleEffect(crossSkalierung)
                 .offset(dragOffset)
                 .gesture(dragGesture)
             }
-            // Position at bottom right, left of the water drop
-            .position(x: geo.size.width - 130, y: geo.size.height - 70)
+            // Position at bottom right, above the water drop
+            .position(x: geo.size.width - 50, y: geo.size.height - 145)
             .sensoryFeedback(.impact, trigger: hoveredCardID != nil)
             .sensoryFeedback(.success, trigger: hapticTrigger)
             

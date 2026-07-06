@@ -166,8 +166,8 @@ struct GartenView: View {
                                         Text(String(localized: "garden.trash"))
                                             .font(.system(size: 20, weight: .bold, design: .rounded))
                                             .foregroundStyle(.primary)
-
-                                        LazyVGrid(columns: columns, spacing: 30) {
+                                        
+                                        VStack(spacing: 16) {
                                             ForEach(gardenStore.placedDecorations) { deko in
                                                 BadHabitCard(
                                                     deko: deko,

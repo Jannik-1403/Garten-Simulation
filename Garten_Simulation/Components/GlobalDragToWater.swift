@@ -113,7 +113,7 @@ struct GlobalDragToWater: View {
                     farbe: .blauPrimary,
                     sekundaerFarbe: .blauPrimary.darker(),
                     groesse: 65,
-                    isRectangular: false,
+                    isRectangular: true,
                     aktion: {}
                 ) {
                     Color.clear
@@ -130,7 +130,7 @@ struct GlobalDragToWater: View {
                         .offset(y: -4) // Icon etwas weiter nach oben im Button
                 }
                 .frame(width: 65, height: 65)
-                .contentShape(Circle())
+                .contentShape(RoundedRectangle(cornerRadius: 15))
                 .scaleEffect(tropfenSkalierung)
                 .offset(dragOffset)
                 .gesture(dragGesture)
