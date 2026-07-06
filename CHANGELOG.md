@@ -396,3 +396,6 @@
 - UI Anpassungen: Die Breite der rechteckigen Gieß- und Unkraut-Buttons wurde fixiert, sodass sie jetzt perfekte Quadrate (wie die runden Buttons vorher) sind.
 
 - UI Anpassungen: Das Kreuz-Icon auf dem Unkraut-Button wurde vergrößert.
+- Power-Ups wurden nach unten (unter die schlechten Gewohnheiten) verschoben.
+- Beim Tagesziel-Tracker erscheint nun ein Bestätigungs-PopUp ("Bist du dir sicher, dass du fertig bist?"), bevor das Ziel abgeschlossen wird.
+- Das "Geschafft"-PopUp nach Abschluss des Ziels erscheint nun direkt über dem Pflanzen-Detailbildschirm und ist vollständig im 3D-Stil designt. Alle Texte wurden in 11 Sprachen übersetzt.

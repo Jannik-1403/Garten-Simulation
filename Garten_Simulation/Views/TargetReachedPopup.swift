@@ -56,9 +56,13 @@ struct TargetReachedPopup: View {
             }
             .padding(.vertical, 32)
             .background(
-                RoundedRectangle(cornerRadius: 32, style: .continuous)
-                    .fill(Color(UIColor.systemBackground))
-                    .shadow(color: .black.opacity(0.15), radius: 20, y: 10)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 32, style: .continuous)
+                        .fill(Color(UIColor.systemGray4))
+                        .offset(y: 8)
+                    RoundedRectangle(cornerRadius: 32, style: .continuous)
+                        .fill(Color(UIColor.systemBackground))
+                }
             )
             .padding(32)
             .transition(.scale(scale: 0.8).combined(with: .opacity))

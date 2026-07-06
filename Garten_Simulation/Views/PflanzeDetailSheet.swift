@@ -701,6 +701,7 @@ struct PflanzeDetailSheet: View {
                                                                 }
                                                             }
                                                             .tint(.orange)
+                                                            .disabled(Int(pflanze.customTrackerProgress) >= target || pflanze.istBewässert)
                                                             
                                                             Text("\(target)")
                                                                 .font(.system(size: 12, weight: .bold, design: .rounded))
@@ -737,7 +738,7 @@ struct PflanzeDetailSheet: View {
                                             }
                                             .alert(String(localized: "custom.tracker.complete.confirm", defaultValue: "Bist du dir sicher, dass du fertig bist?"), isPresented: $zeigeTrackerConfirm) {
                                                 Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) { 
-                                                    pflanze.customTrackerProgress = Double(target - 1)
+                                                    pflanze.customTrackerProgress = Double((pflanze.customTrackerTarget ?? 1) - 1)
                                                     gardenStore.savePlants()
                                                 }
                                                 Button(String(localized: "common.confirm", defaultValue: "Fertig")) {
