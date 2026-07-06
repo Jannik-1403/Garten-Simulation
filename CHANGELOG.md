@@ -387,3 +387,5 @@
 - UI Anpassungen: Gießen-Button wurde wieder an seine ursprüngliche Position verschoben und das Wassertropfen-Icon im Button leicht nach oben gerückt.
 
 - UI Anpassungen: Gießen-Button wurde wieder etwas verkleinert.
+
+- UI Anpassungen: Schlechte Gewohnheiten nutzen nun das horizontale Querformat (wie Pflanzen). Drag-and-Drop Button für schlechte Gewohnheiten wurde als globaler Button neben dem Gieß-Button integriert.

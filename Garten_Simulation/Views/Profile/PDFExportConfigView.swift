@@ -8,7 +8,7 @@ struct PDFExportConfigView: View {
 
     @EnvironmentObject var assessmentStore: AssessmentStore
     
-    @State private var includeGoodHabits = false
+    @State private var includeGoodHabits = true
     @State private var includeNotes = true
     @State private var includeTimer = true // Focus Timer
     @State private var includeStatistics = true
