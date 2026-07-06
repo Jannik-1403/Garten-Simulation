@@ -375,3 +375,5 @@
 - Fix: Wassertropfen ist nun ein globaler Drag&Drop-Button in GartenView
 
 - Gieß-Sync & Pop-up hinzugefügt: Tagesziel und Wassertropfen sind jetzt synchronisiert. Wassertropfen unten rechts hat ein Update als echtes 3D-Item bekommen.
+
+- Drag & Drop für Gießen: Nur noch das Wassertropfen-Icon bewegt sich, der 3D-Button bleibt fest. Fehlermeldung/Vibration beim Ziehen auf bereits gegossene Pflanze.

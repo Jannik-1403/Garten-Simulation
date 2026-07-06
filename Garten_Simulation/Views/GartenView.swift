@@ -5,6 +5,7 @@ import SwiftUI
 struct CardPositionData: Equatable {
     let id: String
     let center: CGPoint
+    let frame: CGRect
 }
 
 struct CardPositionPreferenceKey: PreferenceKey {

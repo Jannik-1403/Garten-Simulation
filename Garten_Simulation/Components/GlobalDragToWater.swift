@@ -15,8 +15,6 @@ struct GlobalDragToWater: View {
     @State private var errorTrigger = false
     @State private var tropfenSkalierung: CGFloat = 1.0
 
-    private let trefferRadius: CGFloat = 80
-
     var body: some View {
         GeometryReader { geo in
             let dragGesture = DragGesture(coordinateSpace: .global)
@@ -27,14 +25,11 @@ struct GlobalDragToWater: View {
                     
                     let globalLocation = value.location
                     
-                    // Check intersection with cardPositions
+                    // Check intersection with cardPositions (using frame)
                     var hitID: String? = nil
                     var hitWateredID: String? = nil
                     for card in cardPositions {
-                        let plantCenter = card.center
-                        let dist = distance(from: globalLocation, to: plantCenter)
-                        
-                        if dist < trefferRadius {
+                        if card.frame.contains(globalLocation) {
                             // Hit
                             if let pflanze = gardenStore.pflanzen.first(where: { $0.id == card.id }), !pflanze.isDead {
                                 if !pflanze.istBewässert {
@@ -130,7 +125,7 @@ struct GlobalDragToWater: View {
                     Image("Drop water")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 35, height: 35)
+                        .frame(width: 45, height: 45) // Besser sichtbar!
                         .brightness(hoveredCardID != nil ? 0.2 : 0)
                 }
                 .frame(width: 70, height: 70)
@@ -147,9 +142,5 @@ struct GlobalDragToWater: View {
             
         }
         .ignoresSafeArea(.keyboard)
-    }
-    
-    private func distance(from: CGPoint, to: CGPoint) -> CGFloat {
-        sqrt(pow(from.x - to.x, 2) + pow(from.y - to.y, 2))
     }
 }

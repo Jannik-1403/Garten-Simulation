@@ -46,7 +46,7 @@ struct PflanzenCard: View {
                 GeometryReader { proxy in
                     Color.clear
                         .preference(key: CardPositionPreferenceKey.self, value: [
-                            CardPositionData(id: pflanze.id, center: proxy.frame(in: .global).center)
+                            CardPositionData(id: pflanze.id, center: proxy.frame(in: .global).center, frame: proxy.frame(in: .global))
                         ])
                 }
             )
