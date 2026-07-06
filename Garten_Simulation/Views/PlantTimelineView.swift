@@ -57,6 +57,9 @@ struct PlantTimelineView: View {
 
     var onClose: (() -> Void)? = nil
 
+    @State private var selectedPlant: HabitModel? = nil
+    @State private var isNavigating: Bool = false
+
     // Plants WITH a reminder time, sorted by time
     var timelinePlants: [HabitModel] {
         gardenStore.pflanzen
@@ -99,7 +102,10 @@ struct PlantTimelineView: View {
 
                                 VStack(spacing: 0) {
                                     ForEach(Array(timelinePlants.enumerated()), id: \.element.id) { index, pflanze in
-                                        TimelineRow(pflanze: pflanze, isLast: index == timelinePlants.count - 1)
+                                        TimelineRow(pflanze: pflanze, isLast: index == timelinePlants.count - 1) {
+                                            selectedPlant = pflanze
+                                            isNavigating = true
+                                        }
                                     }
                                 }
                                 .padding(.horizontal, 24)
@@ -117,7 +123,10 @@ struct PlantTimelineView: View {
 
                                 LazyVGrid(columns: columns, spacing: 16) {
                                     ForEach(otherPlants) { pflanze in
-                                        SimplePlantCell(pflanze: pflanze)
+                                        SimplePlantCell(pflanze: pflanze) {
+                                            selectedPlant = pflanze
+                                            isNavigating = true
+                                        }
                                     }
                                 }
                                 .padding(.horizontal, 24)
@@ -146,6 +155,11 @@ struct PlantTimelineView: View {
             .navigationTitle(String(localized: "common.timeline"))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
+            .navigationDestination(isPresented: $isNavigating) {
+                if let pflanze = selectedPlant {
+                    PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter)
+                }
+            }
         }
     }
 }
@@ -156,10 +170,10 @@ struct TimelineRow: View {
     @EnvironmentObject var gardenStore: GardenStore
     let pflanze: HabitModel
     let isLast: Bool
+    let onSelect: () -> Void
 
     // Same pattern as PflanzenCard: isVisualPressed for manual animation control
     @State private var isVisualPressed = false
-    @State private var navigate = false
 
     var timeString: String {
         guard let date = pflanze.nextActiveReminder?.time else { return "--:--" }
@@ -197,7 +211,7 @@ struct TimelineRow: View {
                     // 2. After 0.12s (same as PflanzenCard), reset and navigate
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
                         isVisualPressed = false
-                        navigate = true
+                        onSelect()
                     }
                 } label: {
                     HStack(spacing: 12) {
@@ -247,9 +261,6 @@ struct TimelineRow: View {
                 }
                 .buttonStyle(TimelineCardButtonStyle(isVisualPressed: isVisualPressed))
             }
-            .navigationDestination(isPresented: $navigate) {
-                PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter)
-            }
             .padding(.bottom, isLast ? 4 : 20)
         }
     }
@@ -260,10 +271,10 @@ struct SimplePlantCell: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     let pflanze: HabitModel
+    let onSelect: () -> Void
 
     // Same pattern as PflanzenCard: isVisualPressed for manual animation control
     @State private var isVisualPressed = false
-    @State private var navigate = false
 
     var body: some View {
         ZStack {
@@ -275,7 +286,7 @@ struct SimplePlantCell: View {
                 // 2. After 0.12s (same as PflanzenCard), reset and navigate
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
                     isVisualPressed = false
-                    navigate = true
+                    onSelect()
                 }
             } label: {
                 VStack(spacing: 12) {
@@ -304,9 +315,6 @@ struct SimplePlantCell: View {
                 .padding(.horizontal, 8)
             }
             .buttonStyle(TimelineCardButtonStyle(isVisualPressed: isVisualPressed))
-        }
-        .navigationDestination(isPresented: $navigate) {
-            PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter)
         }
     }
 }

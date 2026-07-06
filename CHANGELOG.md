@@ -324,3 +324,5 @@
 - **Audio-Performance**: Berechnung der Fokus-Sounds asynchronisiert und mit Puffer-Caching ausgestattet, was das Einfrieren der App beim Starten verhindert (0 Latenz).
 - **Premium Overlays**: Level-Up- und Meilenstein-Overlays mit 'Ultra Thin Material' (Glassmorphism), pulsierenden 3D-Sternen, farbigen Auren, Partikeln und haptischem Feedback ausgestattet.
 - Fix: Zähler für schlechte Gewohnheiten wurde beim ersten Auslösen manchmal nicht direkt in der Garten-Ansicht aktualisiert
+
+- Zeitleiste (Timeline): Navigation-Bug behoben (Scrollen bricht Klick nicht mehr ab)

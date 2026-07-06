@@ -1109,57 +1109,59 @@ struct TimerEditSheetView: View {
                         }
                     } else {
                         Menu {
-                            Button {
-                                withAnimation {
-                                    isAllDaysEqual.toggle()
-                                    if isAllDaysEqual {
-                                        applyToAllDays()
-                                    }
-                                }
-                            } label: {
-                                if isAllDaysEqual {
-                                    Label(String(localized: "routine.timer.edit_individual", defaultValue: "Tage einzeln bearbeiten"), systemImage: "list.bullet")
-                                } else {
-                                    Label(String(localized: "routine.timer.apply_all"), systemImage: "doc.on.doc")
-                                }
-                            }
-                            
-                            // 1. Notizen verknüpfen Sub-Menu
-                            Menu {
-                                if pflanze.notizen.isEmpty {
-                                    Text(String(localized: "plant.detail.note.empty"))
-                                } else {
-                                    ForEach(pflanze.notizen, id: \.self) { notiz in
-                                        Button(notiz) {
-                                            withAnimation {
-                                                selectedNoteForLinking = notiz
-                                                isLinkingNotes = true
-                                                editingDayIndex = nil
-                                            }
+                            if parentRoutineWithReminder == nil {
+                                Button {
+                                    withAnimation {
+                                        isAllDaysEqual.toggle()
+                                        if isAllDaysEqual {
+                                            applyToAllDays()
                                         }
                                     }
+                                } label: {
+                                    if isAllDaysEqual {
+                                        Label(String(localized: "routine.timer.edit_individual", defaultValue: "Tage einzeln bearbeiten"), systemImage: "list.bullet")
+                                    } else {
+                                        Label(String(localized: "routine.timer.apply_all"), systemImage: "doc.on.doc")
+                                    }
                                 }
-                            } label: {
-                                Label(String(localized: "timer.note.link"), systemImage: "link")
-                            }
-                            
-                            // 2. Wiederholung für alle Sub-Menu
-                            Menu {
-                                ForEach(ReminderRepeatMode.allCases, id: \.self) { mode in
-                                    Button {
-                                        withAnimation {
-                                            for i in 0..<schedule.weekdays.count {
-                                                if schedule.weekdays[i].isEnabled {
-                                                    schedule.weekdays[i].repeatMode = mode
+                                
+                                // 1. Notizen verknüpfen Sub-Menu
+                                Menu {
+                                    if pflanze.notizen.isEmpty {
+                                        Text(String(localized: "plant.detail.note.empty"))
+                                    } else {
+                                        ForEach(pflanze.notizen, id: \.self) { notiz in
+                                            Button(notiz) {
+                                                withAnimation {
+                                                    selectedNoteForLinking = notiz
+                                                    isLinkingNotes = true
+                                                    editingDayIndex = nil
                                                 }
                                             }
                                         }
-                                    } label: {
-                                        Label(NSLocalizedString(mode.localizationKey, comment: ""), systemImage: mode.sfSymbol)
                                     }
+                                } label: {
+                                    Label(String(localized: "timer.note.link"), systemImage: "link")
                                 }
-                            } label: {
-                                Label(String(localized: "timer.repeat.title"), systemImage: "repeat")
+                                
+                                // 2. Wiederholung für alle Sub-Menu
+                                Menu {
+                                    ForEach(ReminderRepeatMode.allCases, id: \.self) { mode in
+                                        Button {
+                                            withAnimation {
+                                                for i in 0..<schedule.weekdays.count {
+                                                    if schedule.weekdays[i].isEnabled {
+                                                        schedule.weekdays[i].repeatMode = mode
+                                                    }
+                                                }
+                                            }
+                                        } label: {
+                                            Label(NSLocalizedString(mode.localizationKey, comment: ""), systemImage: mode.sfSymbol)
+                                        }
+                                    }
+                                } label: {
+                                    Label(String(localized: "timer.repeat.title"), systemImage: "repeat")
+                                }
                             }
                             
                             // 3. Zeitleiste (Alle Benachrichtigungen)
@@ -1169,12 +1171,14 @@ struct TimerEditSheetView: View {
                                 Label(String(localized: "common.timeline"), systemImage: "list.bullet.rectangle.portrait")
                             }
                             
-                            // 4. Löschen
-                            Button(role: .destructive) {
-                                gardenStore.timerEntfernen(pflanze: pflanze)
-                                dismiss()
-                            } label: {
-                                Label(String(localized: "plant.detail.timer.delete"), systemImage: "trash")
+                            if parentRoutineWithReminder == nil {
+                                // 4. Löschen
+                                Button(role: .destructive) {
+                                    gardenStore.timerEntfernen(pflanze: pflanze)
+                                    dismiss()
+                                } label: {
+                                    Label(String(localized: "plant.detail.timer.delete"), systemImage: "trash")
+                                }
                             }
                         } label: {
                             Image(systemName: "ellipsis")
