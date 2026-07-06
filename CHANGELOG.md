@@ -364,3 +364,5 @@
 - Zeitleiste (Timeline): "onChange" Endlos-Loop-Warnung bei Navigation auf iOS 16 behoben
 
 - Zeitleiste (Timeline): Weißen Bildschirm beim Öffnen einer Pflanze behoben (fehlende Abhängigkeiten)
+
+- Zeitleiste (Timeline): Pflanzen sind nun nicht mehr anklickbar (rein informativ).
