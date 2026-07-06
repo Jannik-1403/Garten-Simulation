@@ -93,22 +93,30 @@ struct GlobalDragToWater: View {
             
             // The Button View
             ZStack {
-                Circle()
-                    .fill(Color.blauPrimary)
+                Color.clear
                     .frame(width: 70, height: 70)
-                    .shadow(color: Color.blauPrimary.opacity(0.4), radius: 10, y: 5)
+                    .contentShape(Circle())
                 
-                Image("Drop water") // Asset icon
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 35, height: 35)
-                    .brightness(hoveredCardID != nil ? 0.2 : 0)
+                Item3DButton(
+                    farbe: .blauPrimary,
+                    sekundaerFarbe: .blauPrimary.darker(),
+                    groesse: 70,
+                    isRectangular: false,
+                    aktion: {}
+                ) {
+                    Image("Drop water")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 35, height: 35)
+                        .brightness(hoveredCardID != nil ? 0.2 : 0)
+                }
+                .allowsHitTesting(false)
             }
             .scaleEffect(tropfenSkalierung)
             .offset(dragOffset)
             .gesture(dragGesture)
-            // Position at bottom right
-            .position(x: geo.size.width - 50, y: geo.size.height - 120) // Moved up slightly to not overlap tab bar if any
+            // Position at bottom right, moved down
+            .position(x: geo.size.width - 50, y: geo.size.height - 70)
             .sensoryFeedback(.impact, trigger: hoveredCardID != nil)
             .sensoryFeedback(.success, trigger: hapticTrigger)
             

@@ -678,7 +678,13 @@ struct PflanzeDetailSheet: View {
                                                             
                                                             Slider(value: Binding(
                                                                 get: { pflanze.customTrackerProgress },
-                                                                set: { pflanze.customTrackerProgress = $0 }
+                                                                set: { newValue in
+                                                                    pflanze.customTrackerProgress = newValue
+                                                                    if Int(newValue) >= target && !pflanze.istBewässert {
+                                                                        gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
+                                                                        gardenStore.zeigeGeschafftPopup = true
+                                                                    }
+                                                                }
                                                             ), in: 0...Double(max(1, target)), step: 1) { editing in
                                                                 if !editing {
                                                                     gardenStore.savePlants()

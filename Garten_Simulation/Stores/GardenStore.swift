@@ -29,6 +29,7 @@ class GardenStore: ObservableObject {
     @Published var selectedTab: Int = 0
     @Published var triggerStreakDetail: Bool = false
     @Published var triggerWaterDetail: Bool = false
+    @Published var zeigeGeschafftPopup: Bool = false
     @Published var liveActivityDebugLog: String = ""
     @Published var gluecksradDrehungen: Int = 0 {
         didSet { saveStats() }
@@ -322,6 +323,14 @@ class GardenStore: ObservableObject {
     // MARK: Pflanze gießen
     func giessen(pflanze: HabitModel, powerUpStore: PowerUpStore, fromRoutine: Bool = false) {
         guard !pflanze.istBewässert else { return }
+
+        // Tagesziel automatisch erfüllen (Andersrum-Sync)
+        if let target = pflanze.customTrackerTarget, target > 0 {
+            if pflanze.customTrackerProgress < target {
+                pflanze.customTrackerProgress = target
+                zeigeGeschafftPopup = true
+            }
+        }
 
         // 2. XP & Coins berechnen (Multiplikative Logik)
         let xpMult = xpMultiplikator(for: pflanze)
