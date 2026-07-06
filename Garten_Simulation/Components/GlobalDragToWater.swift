@@ -141,7 +141,6 @@ struct GlobalDragToWater: View {
             .sensoryFeedback(.impact, trigger: hoveredCardID != nil)
             .sensoryFeedback(.success, trigger: hapticTrigger)
             .sensoryFeedback(.error, trigger: errorTrigger)
-            
         }
         .ignoresSafeArea(.keyboard)
     }

@@ -15,9 +15,9 @@ struct PflanzenCard: View {
     @State private var plantWobble: CGFloat = 1.0
     @State private var greenGlowOpacity: Double = 0
     @State private var showReviveSheet = false
+    @State private var showWaterSplash: Bool = false
     @State private var zeigeBonusText: Bool = false
     @State private var bonusText: String = ""
-    @State private var showWaterSplash: Bool = false
     
     var body: some View {
         ZStack {
@@ -244,7 +244,7 @@ struct PflanzenCard: View {
                     bonusText = "PRO"
                     zeigeBonusText = true
                 } else if gardenStore.letzterBonus != nil {
-                    bonusText = String(localized: "bonus_text")
+                    bonusText = String(localized: "bonus_text", defaultValue: "Bonus!")
                     zeigeBonusText = true
                 }
             }
