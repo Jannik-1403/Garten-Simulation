@@ -319,7 +319,7 @@
 				};
 			};
 			buildConfigurationList = 1424D4172F6EA14200908588 /* Build configuration list for PBXProject "Garten_Simulation" */;
-			developmentRegion = en;
+			developmentRegion = de;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -334,6 +334,10 @@
 				pl,
 				nl,
 				tr,
+				"zh-Hans",
+				"zh-Hant",
+				ru,
+				hi,
 			);
 			mainGroup = 1424D4132F6EA14200908588;
 			minimizedProjectReferenceProxies = 1;
