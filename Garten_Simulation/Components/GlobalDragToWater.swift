@@ -112,7 +112,7 @@ struct GlobalDragToWater: View {
                 Item3DButton(
                     farbe: .blauPrimary,
                     sekundaerFarbe: .blauPrimary.darker(),
-                    groesse: 85,
+                    groesse: 75,
                     isRectangular: false,
                     aktion: {}
                 ) {
@@ -125,17 +125,17 @@ struct GlobalDragToWater: View {
                     Image("Drop water")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 50, height: 50) // Größer
+                        .frame(width: 45, height: 45) // Besser sichtbar!
                         .brightness(hoveredCardID != nil ? 0.2 : 0)
                 }
-                .frame(width: 85, height: 85)
+                .frame(width: 75, height: 75)
                 .contentShape(Circle())
                 .scaleEffect(tropfenSkalierung)
                 .offset(dragOffset)
                 .gesture(dragGesture)
             }
-            // Position at bottom right, moved up slightly
-            .position(x: geo.size.width - 50, y: geo.size.height - 90)
+            // Position at bottom right, moved up more
+            .position(x: geo.size.width - 50, y: geo.size.height - 140)
             .sensoryFeedback(.impact, trigger: hoveredCardID != nil)
             .sensoryFeedback(.success, trigger: hapticTrigger)
             .sensoryFeedback(.error, trigger: errorTrigger)

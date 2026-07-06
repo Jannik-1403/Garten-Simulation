@@ -379,3 +379,5 @@
 - Drag & Drop für Gießen: Nur noch das Wassertropfen-Icon bewegt sich, der 3D-Button bleibt fest. Fehlermeldung/Vibration beim Ziehen auf bereits gegossene Pflanze.
 
 - Drag & Drop Drop-Bereich korrigiert: Man kann nun auf dem gesamten weißen Hintergrund (Pflanzen-Karte) die Pflanze bewässern. Wasser-Icon wurde vergrößert.
+
+- UI Anpassungen: Gießen-Button wurde vergrößert, etwas nach oben verschoben und die Skalierung beim Ziehen verstärkt.
