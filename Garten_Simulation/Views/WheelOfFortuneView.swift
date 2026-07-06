@@ -270,18 +270,18 @@ struct WheelOfFortuneView: View {
         
         switch result {
         case .klein:
-            gardenStore.coins += 20
+            gardenStore.coins += 10
         case .mittel:
-            gardenStore.coins += 50
+            gardenStore.coins += 25
         case .gross:
-            gardenStore.coins += 100
+            gardenStore.coins += 50
         case .xpBoost:
             if let lowest = gardenStore.pflanzen.sorted(by: { $0.currentXP < $1.currentXP }).first {
                 lowest.currentXP += 100
             }
             gardenStore.xpHinzufuegen(amount: 50)
         case .jackpot:
-            gardenStore.coins += 300
+            gardenStore.coins += 150
         }
         
         gardenStore.saveStats()
@@ -350,11 +350,11 @@ struct SpinResultOverlay: View {
 
     private var overlayTitel: String {
         switch result {
-        case .klein:   return String(format: String(localized: "dailyspin.result.wheel.coins"), 20)
-        case .mittel:  return String(format: String(localized: "dailyspin.result.wheel.coins"), 50)
-        case .gross:   return String(format: String(localized: "dailyspin.result.wheel.coins"), 100)
+        case .klein:   return String(format: String(localized: "dailyspin.result.wheel.coins"), 10)
+        case .mittel:  return String(format: String(localized: "dailyspin.result.wheel.coins"), 25)
+        case .gross:   return String(format: String(localized: "dailyspin.result.wheel.coins"), 50)
         case .xpBoost: return String(format: String(localized: "dailyspin.result.wheel.xp"), 100)
-        case .jackpot: return String(format: String(localized: "dailyspin.result.wheel.coins"), 300)
+        case .jackpot: return String(format: String(localized: "dailyspin.result.wheel.coins"), 150)
         }
     }
 
