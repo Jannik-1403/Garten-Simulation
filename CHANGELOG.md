@@ -377,3 +377,5 @@
 - Gieß-Sync & Pop-up hinzugefügt: Tagesziel und Wassertropfen sind jetzt synchronisiert. Wassertropfen unten rechts hat ein Update als echtes 3D-Item bekommen.
 
 - Drag & Drop für Gießen: Nur noch das Wassertropfen-Icon bewegt sich, der 3D-Button bleibt fest. Fehlermeldung/Vibration beim Ziehen auf bereits gegossene Pflanze.
+
+- Drag & Drop Drop-Bereich korrigiert: Man kann nun auf dem gesamten weißen Hintergrund (Pflanzen-Karte) die Pflanze bewässern. Wasser-Icon wurde vergrößert.

@@ -47,14 +47,14 @@ struct GlobalDragToWater: View {
                     if hitID != hoveredCardID {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
                             hoveredCardID = hitID
-                            tropfenSkalierung = hitID != nil ? 1.4 : 1.2
+                            tropfenSkalierung = hitID != nil ? 1.6 : 1.3
                         }
                         if hitID != nil {
                             hapticTrigger.toggle()
                         }
                     } else if isFirstTick {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
-                            tropfenSkalierung = 1.2
+                            tropfenSkalierung = 1.3
                         }
                     }
                 }
@@ -64,7 +64,7 @@ struct GlobalDragToWater: View {
                         
                         // Watering action
                         withAnimation(.spring(response: 0.15, dampingFraction: 0.6)) {
-                            tropfenSkalierung = 1.6
+                            tropfenSkalierung = 1.8
                         }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                             FeedbackManager.shared.playWatering()
@@ -112,7 +112,7 @@ struct GlobalDragToWater: View {
                 Item3DButton(
                     farbe: .blauPrimary,
                     sekundaerFarbe: .blauPrimary.darker(),
-                    groesse: 70,
+                    groesse: 85,
                     isRectangular: false,
                     aktion: {}
                 ) {
@@ -125,17 +125,17 @@ struct GlobalDragToWater: View {
                     Image("Drop water")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 45, height: 45) // Besser sichtbar!
+                        .frame(width: 50, height: 50) // Größer
                         .brightness(hoveredCardID != nil ? 0.2 : 0)
                 }
-                .frame(width: 70, height: 70)
+                .frame(width: 85, height: 85)
                 .contentShape(Circle())
                 .scaleEffect(tropfenSkalierung)
                 .offset(dragOffset)
                 .gesture(dragGesture)
             }
-            // Position at bottom right, moved down
-            .position(x: geo.size.width - 50, y: geo.size.height - 70)
+            // Position at bottom right, moved up slightly
+            .position(x: geo.size.width - 50, y: geo.size.height - 90)
             .sensoryFeedback(.impact, trigger: hoveredCardID != nil)
             .sensoryFeedback(.success, trigger: hapticTrigger)
             .sensoryFeedback(.error, trigger: errorTrigger)
