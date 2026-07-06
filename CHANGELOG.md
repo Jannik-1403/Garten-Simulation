@@ -366,3 +366,8 @@
 - Zeitleiste (Timeline): Weißen Bildschirm beim Öffnen einer Pflanze behoben (fehlende Abhängigkeiten)
 
 - Zeitleiste (Timeline): Pflanzen sind nun nicht mehr anklickbar (rein informativ).
+- Redesign: PflanzenCard von vertikal zu horizontal ('quer') umgebaut
+- Layout: 3D Button links, Infos in der Mitte, fester Wassertropfen rechts
+- Fortschrittsbalken: Die Outline/Rahmen der Karte dient nun als Fortschrittsanzeige für Ring-Progress
+- Pro-Progressbar: Wird nun auch für Free-Nutzer (mit Schloss-Symbol) angezeigt
+- GartenView: LazyVGrid durch LazyVStack ersetzt, um die volle Breite für die Karten zu nutzen

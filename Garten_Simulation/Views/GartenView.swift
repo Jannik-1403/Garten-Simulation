@@ -98,7 +98,7 @@ struct GartenView: View {
                                             )
                                         )
                                     
-                                    LazyVGrid(columns: columns, spacing: 30) {
+                                    LazyVStack(spacing: 16) {
                                         ForEach(gardenStore.pflanzen) { pflanze in
                                             PflanzenCard(
                                                 pflanze: pflanze,
@@ -110,7 +110,6 @@ struct GartenView: View {
                                                     ausgewaehltePflanze = pflanze
                                                 }
                                             )
-                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                                             .tourAnchor(.intro, condition: pflanze.id == gardenStore.pflanzen.first?.id)
                                             .id(pflanze.id == gardenStore.pflanzen.first?.id ? TourStep.intro : nil)
                                         }
