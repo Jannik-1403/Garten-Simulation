@@ -1,6 +1,6 @@
 ## [2026-07-06] - Shop & UI Updates
 
-- **Tägliches Glücksrad im Shop**: Der Button für das tägliche, kostenlose Glücksrad wurde von der Startseite (Gartenansicht) in den Shop verschoben. Er befindet sich nun prominent über den Power-Ups als aufgewertete Shop-Karte (mit "Kostenlos"-Badge und 2.2x größerem Icon), um das Shop-Erlebnis aufzuwerten und die Startseite aufzuräumen. Der Icon-Name wurde zudem zu "Spin" korrigiert.
+- **Tägliches Glücksrad im Shop**: Der Button für das tägliche, kostenlose Glücksrad wurde von der Startseite (Gartenansicht) in den Shop verschoben. Er befindet sich nun prominent über den Power-Ups als aufgewertete Shop-Karte (mit "Kostenlos"-Badge und 2.2x größerem Icon), um das Shop-Erlebnis aufzuwerten und die Startseite aufzuräumen. Der Icon-Name wurde zudem zu "Spin" korrigiert. Der Action-Button im Glücksrad zeigt nun unabhängig von der Anzahl immer den generischen Text "Glücksrad drehen" an.
 
 ## [2026-07-02] - Hintergrund-Audio, Pro-Rabatt & unbegrenzte Gewohnheiten
 
@@ -348,3 +348,15 @@
 - BadHabitCard: DragToWeedCross durch HoldToConfirmButton ersetzt (0.7s halten)
 - GlobalWaterDropView: Neue eigenständige Komponente
 
+
+- UI-Karten (Gute & Schlechte Gewohnheiten) angepasst: Anzeige des Streaks und des Tagesziel-Fortschritts für Pro-Nutzer hinzugefügt. Emojis entfernt.
+
+- Streak-Anzeige auf Startseite: Nun in orange (#D95F00), mit dem Flammen-Icon (Streak) und im 3D-Schriftstil (.black, .rounded).
+
+- Schlechte Gewohnheiten: Streak-Berechnung auf der Karte an die Logik im Detail-Sheet angeglichen.
+
+- Schlechte Gewohnheiten Karte: Icon deutlich vergrößert, sodass es sich nun absichtlich mit dem darüberstehenden Text überschneidet.
+
+- Detail-Sheet der schlechten Gewohnheiten: Icon deutlich vergrößert (Skalierung 2.0x), sodass es optisch stärker im Fokus steht.
+
+- Übersetzungen: Fehlende Keys 'streak.label' und 'bad_habit.label' in alle 11 Projektsprachen in der Localizable.xcstrings eingepflegt (100% Abdeckung).

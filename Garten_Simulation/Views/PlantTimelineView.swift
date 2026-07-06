@@ -60,7 +60,11 @@ struct PlantTimelineView: View {
     @AppStorage("customRoutinesData") private var customRoutinesData: Data = Data()
     
     @State private var selectedPlant: HabitModel? = nil
-    @State private var isNavigating: Bool = false
+    
+    struct NavigationWrapper: Identifiable, Hashable {
+        let id: String
+    }
+    @State private var navigationID: NavigationWrapper? = nil
     
     enum TimelineItem: Identifiable {
         case routine(RoutineUIData, time: Date, plants: [HabitModel])
@@ -158,12 +162,12 @@ struct PlantTimelineView: View {
                                         case .plant(let pflanze):
                                             TimelineRow(pflanze: pflanze, isLast: isLast) {
                                                 selectedPlant = pflanze
-                                                isNavigating = true
+                                                navigationID = NavigationWrapper(id: pflanze.id)
                                             }
                                         case .routine(let routine, let time, let plants):
                                             RoutineTimelineRow(routine: routine, time: time, plants: plants, isLast: isLast) { pflanze in
                                                 selectedPlant = pflanze
-                                                isNavigating = true
+                                                navigationID = NavigationWrapper(id: pflanze.id)
                                             }
                                         }
                                     }
@@ -185,7 +189,7 @@ struct PlantTimelineView: View {
                                     ForEach(otherPlants) { pflanze in
                                         SimplePlantCell(pflanze: pflanze) {
                                             selectedPlant = pflanze
-                                            isNavigating = true
+                                            navigationID = NavigationWrapper(id: pflanze.id)
                                         }
                                     }
                                 }
@@ -215,7 +219,7 @@ struct PlantTimelineView: View {
             .navigationTitle(String(localized: "common.timeline"))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
-            .navigationDestination(isPresented: $isNavigating) {
+            .navigationDestination(item: $navigationID) { _ in
                 if let pflanze = selectedPlant {
                     PflanzeDetailSheet(pflanze: pflanze, wetterEvent: gardenStore.aktivesWetter, dismissEntireFlow: onClose)
                 }
