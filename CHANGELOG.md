@@ -360,3 +360,5 @@
 - Detail-Sheet der schlechten Gewohnheiten: Icon deutlich vergrößert (Skalierung 2.0x), sodass es optisch stärker im Fokus steht.
 
 - Übersetzungen: Fehlende Keys 'streak.label' und 'bad_habit.label' in alle 11 Projektsprachen in der Localizable.xcstrings eingepflegt (100% Abdeckung).
+
+- Zeitleiste (Timeline): "onChange" Endlos-Loop-Warnung bei Navigation auf iOS 16 behoben
