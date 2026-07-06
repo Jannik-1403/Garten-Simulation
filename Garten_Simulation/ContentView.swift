@@ -209,10 +209,26 @@ struct MainAppTabView: View {
                     Label(String(localized: "tab.profil"), systemImage: "person.fill")
                 }
         }
+        .applyBottomTabBar()
         .tint(.primary)
         .onAppear {
             gartenPfadStore.setContext(modelContext, settings: settings, gardenStore: gardenStore)
         }
+    }
+}
+
+extension View {
+    @ViewBuilder
+    func applyBottomTabBar() -> some View {
+        #if compiler(>=6.0)
+        if #available(iOS 18.0, *) {
+            self.tabViewStyle(.tabBarOnly)
+        } else {
+            self
+        }
+        #else
+        self
+        #endif
     }
 }
 
