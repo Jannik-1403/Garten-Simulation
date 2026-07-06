@@ -383,3 +383,5 @@
 - UI Anpassungen: Gießen-Button wurde vergrößert, etwas nach oben verschoben und die Skalierung beim Ziehen verstärkt.
 
 - UI Anpassungen: Gießen-Button wurde wieder etwas verkleinert und weiter nach oben verschoben, um nicht mit der Tab-Bar zu kollidieren.
+
+- UI Anpassungen: Gießen-Button wurde wieder an seine ursprüngliche Position verschoben und das Wassertropfen-Icon im Button leicht nach oben gerückt.
