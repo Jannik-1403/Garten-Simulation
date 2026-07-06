@@ -37,8 +37,6 @@ struct GartenView: View {
     @State private var startAbstandAktiv = true
     @State private var timerAktuell = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var cardPositions: [CardPositionData] = []
-    // Globaler Wasser-Tropfen
-    @State private var highlightedWaterPlantId: String? = nil
     
     struct TriggerSheetItem: Identifiable {
         let id: String
@@ -100,62 +98,29 @@ struct GartenView: View {
                                             )
                                         )
                                     
-                                    ScrollView(.horizontal, showsIndicators: false) {
-                                        HStack(spacing: 20) {
-                                            ForEach(gardenStore.pflanzen) { pflanze in
-                                                PflanzenCard(
-                                                    pflanze: pflanze,
-                                                    wetterEvent: aktivesEvent,
-                                                    isHighlightedForWatering: highlightedWaterPlantId == pflanze.id,
-                                                    onTap: {
-                                                        ausgewaehltePflanze = pflanze
-                                                    },
-                                                    onGiessen: {
-                                                        gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
-                                                    }
-                                                )
-                                                .frame(width: 185)
-                                                .tourAnchor(.intro, condition: pflanze.id == gardenStore.pflanzen.first?.id)
-                                                .id(pflanze.id == gardenStore.pflanzen.first?.id ? TourStep.intro : nil)
-                                            }
+                                    LazyVGrid(columns: columns, spacing: 30) {
+                                        ForEach(gardenStore.pflanzen) { pflanze in
+                                            PflanzenCard(
+                                                pflanze: pflanze,
+                                                wetterEvent: aktivesEvent,
+                                                onGiessen: {
+                                                    gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
+                                                },
+                                                onTap: {
+                                                    ausgewaehltePflanze = pflanze
+                                                }
+                                            )
+                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                                            .tourAnchor(.intro, condition: pflanze.id == gardenStore.pflanzen.first?.id)
+                                            .id(pflanze.id == gardenStore.pflanzen.first?.id ? TourStep.intro : nil)
                                         }
-                                        .padding(.horizontal, 16)
-                                        .padding(.vertical, 20)
                                     }
                                     .frame(maxWidth: .infinity)
                                 }
                                 .padding(.horizontal, 8)
                                 .padding(.top, 60)
-                                .padding(.bottom, 20)
+                                .padding(.bottom, 40)
                                 
-                                // MARK: - Dekorationen
-                                if !gardenStore.placedDecorations.isEmpty {
-                                    VStack(alignment: .leading, spacing: 12) {
-                                        Text(String(localized: "garden.trash"))
-                                            .font(.system(size: 20, weight: .bold, design: .rounded))
-                                            .foregroundStyle(.primary)
-
-                                        LazyVGrid(columns: columns, spacing: 30) {
-                                            ForEach(gardenStore.placedDecorations) { deko in
-                                                BadHabitCard(
-                                                    deko: deko,
-                                                    onCrossApplied: {
-                                                        triggerSheetItem = TriggerSheetItem(id: deko.id)
-                                                    },
-                                                    onTap: {
-                                                        ausgewaehltesItem = ShopDetailPayload.from(decoration: deko)
-                                                    }
-                                                )
-                                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                                                .tourAnchor(.badHabits, condition: deko.id == gardenStore.placedDecorations.first?.id)
-                                            }
-                                        }
-                                    }
-                                    .padding(.top, 16)
-                                    .padding(.horizontal, 16)
-                                    .id(TourStep.badHabits)
-                                }
-
                                 // MARK: - Power-Ups Lager
                                 let powerUps = gardenStore.gekaufteItems.filter { $0.itemType == .powerUp }
                                 if !powerUps.isEmpty {
@@ -185,6 +150,34 @@ struct GartenView: View {
                                     }
                                     .padding(.top, 24)
                                     .padding(.horizontal, 16)
+                                }
+
+                                // MARK: - Dekorationen
+                                if !gardenStore.placedDecorations.isEmpty {
+                                    VStack(alignment: .leading, spacing: 12) {
+                                        Text(String(localized: "garden.trash"))
+                                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                                            .foregroundStyle(.primary)
+
+                                        LazyVGrid(columns: columns, spacing: 30) {
+                                            ForEach(gardenStore.placedDecorations) { deko in
+                                                BadHabitCard(
+                                                    deko: deko,
+                                                    onCrossApplied: {
+                                                        triggerSheetItem = TriggerSheetItem(id: deko.id)
+                                                    },
+                                                    onTap: {
+                                                        ausgewaehltesItem = ShopDetailPayload.from(decoration: deko)
+                                                    }
+                                                )
+                                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                                                .tourAnchor(.badHabits, condition: deko.id == gardenStore.placedDecorations.first?.id)
+                                            }
+                                        }
+                                    }
+                                    .padding(.top, 24)
+                                    .padding(.horizontal, 16)
+                                    .id(TourStep.badHabits)
                                 }
                             }
 
@@ -516,23 +509,7 @@ struct GartenView: View {
                 .environmentObject(settings)
             }
         }
-        // MARK: - Globaler Wasser-Tropfen Overlay
-        .overlay(alignment: .bottomLeading) {
-            let unwateredPlants = gardenStore.pflanzen.filter { !$0.istBewässert && !$0.isDead }
-            if !unwateredPlants.isEmpty {
-                GlobalWaterDropView(
-                    cardPositions: cardPositions,
-                    pflanzen: gardenStore.pflanzen,
-                    highlightedPlantId: $highlightedWaterPlantId,
-                    onGiessen: { pflanze in
-                        gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
-                    }
-                )
-                .padding(.leading, 16)
-                .padding(.bottom, 100)
-                .transition(.scale.combined(with: .opacity))
-            }
-        }
+
         .overlay(alignment: .topLeading) {
             GeometryReader { overlayGeo in
                 let overlayOrigin = overlayGeo.frame(in: .global).origin

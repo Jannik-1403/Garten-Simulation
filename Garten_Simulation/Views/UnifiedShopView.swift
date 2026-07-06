@@ -209,25 +209,23 @@ struct UnifiedShopView: View {
 
                                 if shopCategory == .gegenstande {
                                     if gardenStore.isDailySpinAvailable {
+                                        sectionHeader(String(localized: "dailyspin.title", defaultValue: "Glücksrad"))
                                         VStack(spacing: 12) {
-                                            sectionHeader(String(localized: "shop.category.daily_spin", defaultValue: "Glücksrad"))
-                                            
-                                            HStack {
-                                                Spacer()
-                                                Item3DButton(
-                                                    icon: "Glücksrad", // Icon von Geschenk zu Glücksrad geändert
-                                                    farbe: .belohnungGoldMid,
-                                                    sekundaerFarbe: .belohnungGoldSchatten,
-                                                    groesse: 100,
-                                                    iconSkalierung: 1.6
-                                                ) {
+                                            ShopItemCard(
+                                                icon: "Glücksrad",
+                                                accentColor: .belohnungGoldMid,
+                                                shadowColor: .belohnungGoldSchatten,
+                                                name: "dailyspin.title",
+                                                subtitle: "dailyspin.subtitle",
+                                                price: 0,
+                                                iconScale: 2.2,
+                                                onBuy: {
                                                     gardenStore.checkDailySpin()
                                                 }
-                                                .transition(.scale.combined(with: .opacity))
-                                                Spacer()
-                                            }
+                                            )
                                         }
-                                        .padding(.bottom, 24)
+                                        .padding(.horizontal, 16)
+                                        .padding(.bottom, 16)
                                     }
 
                                     // Power-Ups

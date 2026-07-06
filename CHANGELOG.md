@@ -337,3 +337,10 @@
 - GartenView: Pflanzen als horizontales ScrollView, Power-Ups nach unten verschoben, Gratis-Button entfernt.
 - HabitCards: Anzeige von Streak & Tagesziel integriert.
 - Shop: Glücksrad ganz oben bei den Gegenständen hinzugefügt.
+
+## Neue Interaktions-Architektur (Garten)
+- GartenView: Globaler Wasser-Tropfen unten links, pulsierend, mit Badge-Zähler
+- PflanzenCard: DragToWater entfernt; Karte leuchtet grün wenn Tropfen hoverd
+- BadHabitCard: DragToWeedCross durch HoldToConfirmButton ersetzt (0.7s halten)
+- GlobalWaterDropView: Neue eigenständige Komponente
+
