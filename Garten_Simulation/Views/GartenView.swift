@@ -188,6 +188,7 @@ struct GartenView: View {
 
                             Spacer().frame(height: 60)
                         }
+                        .frame(maxWidth: 850)
                     }
                     .coordinateSpace(name: "GartenGrid")
                 }
@@ -237,7 +238,7 @@ struct GartenView: View {
                         )
                         .padding(.top, 16)
                         .padding(.bottom, 10)
-                        .frame(maxWidth: 600)
+                        .frame(maxWidth: 850)
 
                         if !gardenStore.pflanzen.isEmpty {
                             DailyWateringRingView(
@@ -250,7 +251,7 @@ struct GartenView: View {
                             .id(TourStep.dailyRingIntro)
                             .padding(.vertical, 8)
                             .padding(.horizontal, 16)
-                            .frame(maxWidth: 600)
+                            .frame(maxWidth: 850)
                         }
 
                         HStack {
@@ -341,7 +342,7 @@ struct GartenView: View {
                                 }
                             }
                         }
-                        .frame(maxWidth: 600)
+                        .frame(maxWidth: 850)
                     }
                     .padding(.horizontal, 16)
                     .background(Color.appHintergrund.ignoresSafeArea(edges: .top))

@@ -220,15 +220,12 @@ struct MainAppTabView: View {
 extension View {
     @ViewBuilder
     func applyBottomTabBar() -> some View {
-        #if compiler(>=6.0)
-        if #available(iOS 18.0, *) {
-            self.tabViewStyle(.tabBarOnly)
-        } else {
-            self
-        }
-        #else
+        // Force the bottom tab bar on iPadOS 18+ by overriding the horizontal size class
+        // This prevents TabView from using the floating sidebar style
         self
-        #endif
+#if os(iOS)
+            .environment(\.horizontalSizeClass, .compact)
+#endif
     }
 }
 
