@@ -323,3 +323,4 @@
 - **Entwickler-Test-Optionen**: Neue Buttons in den Developer Options zum manuellen Triggern der emotionalen Paywall, des Rarity-Level-Ups und des Pfad-Meilenstein-Overlays hinzugefügt.
 - **Audio-Performance**: Berechnung der Fokus-Sounds asynchronisiert und mit Puffer-Caching ausgestattet, was das Einfrieren der App beim Starten verhindert (0 Latenz).
 - **Premium Overlays**: Level-Up- und Meilenstein-Overlays mit 'Ultra Thin Material' (Glassmorphism), pulsierenden 3D-Sternen, farbigen Auren, Partikeln und haptischem Feedback ausgestattet.
+- Fix: Zähler für schlechte Gewohnheiten wurde beim ersten Auslösen manchmal nicht direkt in der Garten-Ansicht aktualisiert
