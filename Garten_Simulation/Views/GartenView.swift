@@ -37,6 +37,8 @@ struct GartenView: View {
     @State private var startAbstandAktiv = true
     @State private var timerAktuell = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var cardPositions: [CardPositionData] = []
+    // Globaler Wasser-Tropfen
+    @State private var highlightedWaterPlantId: String? = nil
     
     struct TriggerSheetItem: Identifiable {
         let id: String
@@ -104,14 +106,15 @@ struct GartenView: View {
                                                 PflanzenCard(
                                                     pflanze: pflanze,
                                                     wetterEvent: aktivesEvent,
-                                                    onGiessen: {
-                                                        gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
-                                                    },
+                                                    isHighlightedForWatering: highlightedWaterPlantId == pflanze.id,
                                                     onTap: {
                                                         ausgewaehltePflanze = pflanze
+                                                    },
+                                                    onGiessen: {
+                                                        gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
                                                     }
                                                 )
-                                                .frame(width: 180) // Feste Breite für horizontale Karten
+                                                .frame(width: 185)
                                                 .tourAnchor(.intro, condition: pflanze.id == gardenStore.pflanzen.first?.id)
                                                 .id(pflanze.id == gardenStore.pflanzen.first?.id ? TourStep.intro : nil)
                                             }
@@ -511,6 +514,23 @@ struct GartenView: View {
                     }
                 )
                 .environmentObject(settings)
+            }
+        }
+        // MARK: - Globaler Wasser-Tropfen Overlay
+        .overlay(alignment: .bottomLeading) {
+            let unwateredPlants = gardenStore.pflanzen.filter { !$0.istBewässert && !$0.isDead }
+            if !unwateredPlants.isEmpty {
+                GlobalWaterDropView(
+                    cardPositions: cardPositions,
+                    pflanzen: gardenStore.pflanzen,
+                    highlightedPlantId: $highlightedWaterPlantId,
+                    onGiessen: { pflanze in
+                        gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
+                    }
+                )
+                .padding(.leading, 16)
+                .padding(.bottom, 100)
+                .transition(.scale.combined(with: .opacity))
             }
         }
         .overlay(alignment: .topLeading) {
