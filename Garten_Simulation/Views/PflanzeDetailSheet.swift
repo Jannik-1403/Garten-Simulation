@@ -187,7 +187,7 @@ struct PflanzeDetailSheet: View {
                             if !aktiveEffekte.isEmpty {
                                 HStack(spacing: 12) {
                                     ForEach(aktiveEffekte) { effekt in
-                                        EffektIkonButton(effekt: effekt, size: 28, iconSkalierung: effekt.typ == .wetter ? 1.5 : (effekt.typ == .status ? 1.9 : 1.0)) {
+                                        EffektIkonButton(effekt: effekt, size: 28, iconSkalierung: effekt.typ == .wetter ? 1.5 : (effekt.typ == .status ? 1.8 : 1.0)) {
                                             ausgewaehlterEffekt = effekt
                                         }
                                     }
