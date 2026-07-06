@@ -247,7 +247,8 @@ struct EditRoutineSheet: View {
                     routineName: tempName.isEmpty ? "Routine" : tempName,
                     schedule: $schedule,
                     overrideIndividualReminders: $overrideIndividualReminders,
-                    hasReminder: $hasReminder
+                    hasReminder: $hasReminder,
+                    assignedHabits: assignedHabits
                 )
                 .environmentObject(settings)
             }
@@ -258,9 +259,9 @@ struct EditRoutineSheet: View {
                         ScrollView {
                             VStack(spacing: 12) {
                                 ForEach(availableHabits) { plant in
-                                    if !assignedHabits.contains(where: { $0.id == plant.id }) {
+                                    if !isHabitAssigned(plant) {
                                         Button {
-                                            if !assignedHabits.contains(where: { $0.id == plant.id }) {
+                                            if !isHabitAssigned(plant) {
                                                 assignedHabits.append(plant)
                                             }
                                             showHabitPicker = false
@@ -270,9 +271,15 @@ struct EditRoutineSheet: View {
                                                     .resizable()
                                                     .scaledToFit()
                                                     .frame(width: 48, height: 48)
-                                                Text(settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(plant.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(plant.name), locale: Locale(identifier: settings.appLanguage)))
-                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                    .foregroundStyle(.primary)
+                                                if settings.showHabitInsteadOfName {
+                                                    Text(String(localized: String.LocalizationValue(plant.displayedHabitName), locale: Locale(identifier: settings.appLanguage)))
+                                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                        .foregroundStyle(.primary)
+                                                } else {
+                                                    Text(String(localized: String.LocalizationValue(plant.name), locale: Locale(identifier: settings.appLanguage)))
+                                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                        .foregroundStyle(.primary)
+                                                }
                                                 Spacer()
                                             }
                                             .padding()
@@ -297,6 +304,10 @@ struct EditRoutineSheet: View {
                 }
             }
         }
+    }
+    
+    private func isHabitAssigned(_ plant: HabitModel) -> Bool {
+        assignedHabits.contains(where: { $0.id == plant.id })
     }
     
     private func moveHabits(from source: IndexSet, to destination: Int) {
