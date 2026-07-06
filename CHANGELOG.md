@@ -1,5 +1,6 @@
 ## [2026-07-06] - Shop & UI Updates
 
+- **iPadOS Tab Bar Fix**: Die Tab Bar bleibt nun auch auf dem iPad unter iOS 18+ dauerhaft am unteren Bildschirmrand fixiert, statt sich in eine Seitenleiste (Sidebar) umzuwandeln.
 - **PDF Export Configurator**: Gute Gewohnheiten sind im PDF-Export-Menü nun standardmäßig ausgewählt.
 - **Tägliches Glücksrad im Shop**: Der Button für das tägliche, kostenlose Glücksrad wurde von der Startseite (Gartenansicht) in den Shop verschoben. Er befindet sich nun prominent über den Power-Ups als aufgewertete Shop-Karte (mit "Kostenlos"-Badge und 2.2x größerem Icon), um das Shop-Erlebnis aufzuwerten und die Startseite aufzuräumen. Der Icon-Name wurde zudem zu "Spin" korrigiert. Der Action-Button im Glücksrad zeigt nun unabhängig von der Anzahl immer den generischen Text "Glücksrad drehen" an.
 
@@ -408,3 +409,5 @@
 - Fix: 3D-Buttons in der Pflanzen-Detail-Ansicht (Export/PDF-Notizen) verwenden nun das echte Pflanzen-Icon und die korrekte Pflanzen-Farbe. Komplett rote Pflanzen erhalten einen helleren Rot-Ton, da reines Rot für schlechte Gewohnheiten reserviert ist.
 - 3D-Buttons der Pflanzen (Garten und Startseite) übernehmen nun immer die echte Icon-Farbe der Pflanze anstelle der Habit-Kategorie-Farbe.
 - Ist das Icon rot (wie beim Apfelbaum), wird ein helleres Rot verwendet, um eine Verwechslung mit den tiefroten Farben der schlechten Gewohnheiten zu vermeiden.
+- Pro Upgrade Banner in den Einstellungen mit 3D-Effekt versehen
+- Schattenfarbe des Pro Banners auf schwarz geändert

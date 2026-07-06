@@ -5,15 +5,20 @@ struct ScrollToTopButton: View {
 
     var body: some View {
         Button(action: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                action()
-            }
+            // Action wird über TapGesture ausgelöst, damit es auch beim Scrollen klappt
         }) {
             Image(systemName: "arrow.up")
                 .font(.system(size: 14, weight: .bold))
                 .foregroundStyle(.white)
         }
         .buttonStyle(ScrollToTopButtonStyle())
+        .simultaneousGesture(
+            TapGesture().onEnded {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                    action()
+                }
+            }
+        )
     }
 }
 

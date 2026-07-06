@@ -71,24 +71,8 @@ struct SettingsView: View {
                                     }
                                     .padding(.horizontal, 16)
                                     .padding(.vertical, 14)
-                                    .background(
-                                        LinearGradient(
-                                            colors: [Color.black.opacity(0.6), Color.black.opacity(0.8)],
-                                            startPoint: .leading,
-                                            endPoint: .trailing
-                                        ),
-                                        in: RoundedRectangle(cornerRadius: 16)
-                                    )
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 16)
-                                            .stroke(LinearGradient(
-                                                colors: [Color.goldPrimary.opacity(0.5), Color.orangePrimary.opacity(0.2)],
-                                                startPoint: .topLeading,
-                                                endPoint: .bottomTrailing
-                                            ), lineWidth: 1)
-                                    )
                                 }
-                                .buttonStyle(.plain)
+                                .buttonStyle(ProUpgradeButtonStyle())
                             }
                             
                             // MARK: - Integrationen (Pro Feature)
@@ -648,6 +632,48 @@ struct DangerButtonStyle: ButtonStyle {
                 .offset(y: isPressed ? depth : 0)
         }
         .frame(height: 54)
+        .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
+        .sensoryFeedback(trigger: isPressed) { _, newValue in
+            (isHapticEnabled && newValue) ? .impact(flexibility: .rigid, intensity: 0.8) : nil
+        }
+    }
+}
+
+// MARK: - Specialized Pro Upgrade Button Style
+
+struct ProUpgradeButtonStyle: ButtonStyle {
+    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
+    private let depth: CGFloat = 4
+    
+    func makeBody(configuration: Configuration) -> some View {
+        let isPressed = configuration.isPressed
+        
+        ZStack {
+            // Shadow
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .fill(Color.black.opacity(0.4))
+                .offset(y: depth)
+            
+            // Base
+            configuration.label
+                .background(
+                    LinearGradient(
+                        colors: [Color.black.opacity(0.6), Color.black.opacity(0.8)],
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    ),
+                    in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .stroke(LinearGradient(
+                            colors: [Color.goldPrimary.opacity(0.5), Color.orangePrimary.opacity(0.2)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ), lineWidth: 1)
+                )
+                .offset(y: isPressed ? depth : 0)
+        }
         .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
         .sensoryFeedback(trigger: isPressed) { _, newValue in
             (isHapticEnabled && newValue) ? .impact(flexibility: .rigid, intensity: 0.8) : nil

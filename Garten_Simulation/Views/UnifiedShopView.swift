@@ -112,6 +112,7 @@ struct UnifiedShopView: View {
     @State private var shopCategory: ShopCategory = .gegenstande
     @State private var selectedHabitCategory: HabitCategory? = nil
     @State private var selectedDecorationCategory: DecorationCategory? = nil
+    @State private var showCoinsDetail = false
 
 
     enum ShopCategory: String, CaseIterable {
@@ -409,8 +410,12 @@ struct UnifiedShopView: View {
             .toolbarBackground(.hidden, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    GemsIcon(wert: coins)
-                        .fixedSize()
+                    Button(action: {
+                        showCoinsDetail = true
+                    }) {
+                        GemsIcon(wert: coins)
+                            .fixedSize()
+                    }
                 }
                 ToolbarItem(placement: .principal) {
                     Text(String(localized: "shop.title"))
@@ -426,6 +431,13 @@ struct UnifiedShopView: View {
                     .environmentObject(powerUpStore)
                     .environmentObject(iapStore)
                     .environmentObject(characterStore)
+            }
+            .sheet(isPresented: $showCoinsDetail) {
+                CoinsDetailView()
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+                    .environmentObject(characterStore)
+                    .environmentObject(iapStore)
             }
         }
     }
