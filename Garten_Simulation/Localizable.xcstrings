@@ -543,7 +543,7 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "(%lld)"
           }
         },
@@ -637,7 +637,7 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "(+%lld)"
           }
         },
@@ -831,7 +831,7 @@
         },
         "hi": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "/ ％lld"
           }
         },
@@ -1394,7 +1394,7 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%@: ％lld"
           }
         },
@@ -1488,7 +1488,7 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%lld"
           }
         },
@@ -1590,7 +1590,7 @@
         },
         "hi": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%lld / ％lld"
           }
         },
@@ -1775,13 +1775,13 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%lld / 5"
           }
         },
         "hi": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%lld / 5"
           }
         },
@@ -1869,7 +1869,7 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%lld ％@"
           }
         },
@@ -2248,7 +2248,7 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%lld."
           }
         },
@@ -2342,7 +2342,7 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%lld/%lld"
           }
         },
@@ -2436,7 +2436,7 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%lld%@"
           }
         },
@@ -2531,7 +2531,7 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "%lldx"
           }
         },
@@ -2815,7 +2815,7 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "+%lld"
           }
         },
@@ -251421,8 +251421,8 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Verkauf: ％@"
+            "state": "translated",
+            "value": "Продажа: %@"
           }
         },
         "hi": {
@@ -273232,8 +273232,8 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "%d Gießvorgänge"
+            "state": "translated",
+            "value": "%d полива"
           }
         },
         "hi": {
@@ -275249,7 +275249,7 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "weather.rule.%@"
           }
         },
@@ -276593,8 +276593,8 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "%d Unkräuter im Garten!"
+            "state": "translated",
+            "value": "%d сорняков в саду!"
           }
         },
         "hi": {
@@ -283093,8 +283093,8 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "%@ einsetzen"
+            "state": "translated",
+            "value": "Использовать %@"
           }
         },
         "hi": {
@@ -283189,8 +283189,8 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
-            "value": "Deine Pflanze \"%@\" ist am Sterben. Willst du das Wunderwasser einsetzen, um sie zu retten?"
+            "state": "translated",
+            "value": "Ваше растение \"%@\" погибает. Хотите использовать Чудо-воду, чтобы спасти его?"
           }
         },
         "hi": {
@@ -283476,7 +283476,7 @@
         },
         "ru": {
           "stringUnit": {
-            "state": "needs_review",
+            "state": "translated",
             "value": "x%@"
           }
         },
