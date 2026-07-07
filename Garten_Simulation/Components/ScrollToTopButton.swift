@@ -5,19 +5,30 @@ struct ScrollToTopButton: View {
 
     var body: some View {
         Button(action: {
-            // Action wird über TapGesture ausgelöst, damit es auch beim Scrollen klappt
+            action()
         }) {
             Image(systemName: "arrow.up")
                 .font(.system(size: 14, weight: .bold))
                 .foregroundStyle(.white)
         }
         .buttonStyle(ScrollToTopButtonStyle())
+        // Ein DragGesture(minimumDistance: 0) fängt den Tap sofort ab, 
+        // auch wenn die ScrollView darunter noch ausrollt (decelerating).
         .simultaneousGesture(
-            TapGesture().onEnded {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+            DragGesture(minimumDistance: 0)
+                .onEnded { value in
+                    // Nur als Tap werten, wenn der Finger nicht weit bewegt wurde
+                    guard abs(value.translation.width) < 10 && abs(value.translation.height) < 10 else { return }
+                    
                     action()
+                    // Mehrfacher Aufruf bricht eine noch laufende Scroll-Animation ab
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                        action()
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                        action()
+                    }
                 }
-            }
         )
     }
 }
