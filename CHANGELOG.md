@@ -1,3 +1,7 @@
+- Design: Habit Boost Card auf 3D-Button (DuolingoButtonStyle) umgebaut und offizielle App Store Icons heruntergeladen/integriert.
+- Design: Habit Boost Card auf 3D-Button () umgebaut und offizielle App Store Icons heruntergeladen/integriert.
+- Refactor: Habit Boosts auf spezifische plantIDs umgestellt (z.B. YAZIO nur bei Kochen).
+- Feature: Habit Boosts (Partner-App Empfehlungen) in PflanzeDetailSheet integriert.
 - Feature: Interaktive Pro-Widgets (Homescreen) zum direkten Gießen und Lock-Screen Streak-Widget hinzugefügt.
 ## 2026-07-07 08:18:18 - Pro Abo Test in Developer Settings
 - Button zum Kündigen des Pro-Abos zu den Developer Settings hinzugefügt.
@@ -432,3 +436,4 @@
 - **UI Bugfixes**: Behoben: Das Text-Layout im `WetterBanner` (Wetter-Button auf der Gartenseite) ragte bei der russischen Sprache über den 3D-Button hinaus. Die minimale Skalierung (`minimumScaleFactor`) wurde von 0.8 auf 0.4 verkleinert, sodass auch lange Übersetzungen problemlos in die vorgegebene Box passen, ohne abgeschnitten zu werden oder überzulaufen.
 - **UI Anpassung**: Den Untertitel im `WetterBanner` komplett entfernt, sodass ab sofort nur noch der Titel des Wetter-Events angezeigt wird (in allen Sprachen). Das löst auch endgültig das Platzproblem für längere Sprachen wie Russisch.
 - **Shop:** Der Scroll-to-Top Button funktioniert nun zuverlässig, auch während die Liste noch scrollt.
+- **Shop:** Der Scroll-to-Top Button löst nun bei Berührung aus (Touch-Down), um zu verhindern, dass die Geste während einer laufenden Scroll-Animation abgebrochen wird.

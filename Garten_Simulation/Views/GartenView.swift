@@ -560,7 +560,8 @@ struct GartenView: View {
                     cardPositions: badHabitPositions,
                     onCrossApplied: { hitID in
                         triggerSheetItem = TriggerSheetItem(id: hitID)
-                    }
+                    },
+                    isWaterVisible: gardenStore.pflanzen.contains(where: { !$0.istBewässert && !$0.isDead })
                 )
                 .environmentObject(gardenStore)
                 .zIndex(99)

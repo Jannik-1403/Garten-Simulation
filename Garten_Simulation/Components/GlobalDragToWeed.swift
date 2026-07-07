@@ -3,6 +3,7 @@ import SwiftUI
 struct GlobalDragToWeed: View {
     let cardPositions: [CardPositionData]
     let onCrossApplied: (String) -> Void
+    var isWaterVisible: Bool = true
 
     @EnvironmentObject var gardenStore: GardenStore
 
@@ -106,8 +107,9 @@ struct GlobalDragToWeed: View {
                 .offset(dragOffset)
                 .gesture(dragGesture)
             }
-            // Position at bottom right, above the water drop
-            .position(x: geo.size.width - 50, y: geo.size.height - 145)
+            // Position at bottom right, conditionally adjust height if water is missing
+            .position(x: geo.size.width - 50, y: isWaterVisible ? geo.size.height - 145 : geo.size.height - 70)
+            .animation(.spring(response: 0.4, dampingFraction: 0.7), value: isWaterVisible)
             .sensoryFeedback(.impact, trigger: hoveredCardID != nil)
             .sensoryFeedback(.success, trigger: hapticTrigger)
             
