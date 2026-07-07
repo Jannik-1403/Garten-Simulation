@@ -331,6 +331,13 @@ struct PflanzeDetailSheet: View {
                     .tourAnchor(.focusTimer)
                     .id(TourStep.focusTimer)
 
+                    // NEU: Habit Boost (Partner-Apps)
+                    if let boost = availableHabitBoosts.first(where: { $0.targetCategory == pflanze.habitCategory }) {
+                        HabitBoostCard(boost: boost)
+                            .padding(.horizontal, 24)
+                            .padding(.top, 16)
+                    }
+
 
 
                     // Verkaufen-Button (Roter Text)
@@ -2271,4 +2278,96 @@ struct PDFExportShareSheet: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
+// MARK: - Habit Boosts
+struct PartnerAppBoost: Identifiable {
+    let id = UUID()
+    let targetCategory: HabitCategory
+    let appName: String
+    let subtitleKey: String
+    let iconName: String
+    let url: String
+    let discountTextKey: String?
+}
+
+let availableHabitBoosts: [PartnerAppBoost] = [
+    PartnerAppBoost(targetCategory: .fitness, appName: "Hevy", subtitleKey: "boost.hevy.subtitle", iconName: "dumbbell.fill", url: "https://www.hevyapp.com", discountTextKey: "boost.hevy.discount"),
+    PartnerAppBoost(targetCategory: .growth, appName: "Blinkist", subtitleKey: "boost.blinkist.subtitle", iconName: "book.fill", url: "https://www.blinkist.com", discountTextKey: "boost.blinkist.discount"),
+    PartnerAppBoost(targetCategory: .mental, appName: "Headspace", subtitleKey: "boost.headspace.subtitle", iconName: "brain.head.profile", url: "https://www.headspace.com", discountTextKey: nil),
+    PartnerAppBoost(targetCategory: .finance, appName: "Duolingo", subtitleKey: "boost.duolingo.subtitle", iconName: "character.book.closed.fill", url: "https://www.duolingo.com", discountTextKey: nil)
+]
+
+struct HabitBoostCard: View {
+    let boost: PartnerAppBoost
+    @Environment(\.openURL) var openURL
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            // Header: "Empfohlenes Tool"
+            HStack {
+                Text(String(localized: "boost.header", defaultValue: "Empfohlenes Tool"))
+                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                    .foregroundStyle(.secondary)
+                    .textCase(.uppercase)
+                Spacer()
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 12)
+            .padding(.bottom, 8)
+            
+            HStack(spacing: 16) {
+                // Icon
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .fill(Color.orangePrimary.opacity(0.15))
+                        .frame(width: 60, height: 60)
+                    
+                    Image(systemName: boost.iconName)
+                        .font(.system(size: 28, weight: .semibold))
+                        .foregroundStyle(Color.orangePrimary)
+                }
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(boost.appName)
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                    
+                    Text(String(localized: String.LocalizationValue(boost.subtitleKey)))
+                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .lineLimit(2)
+                    
+                    if let discountKey = boost.discountTextKey {
+                        Text(String(localized: String.LocalizationValue(discountKey)))
+                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                            .foregroundStyle(.green)
+                            .padding(.top, 2)
+                    }
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 12)
+            
+            // Action Button
+            Button {
+                if let url = URL(string: boost.url) {
+                    openURL(url)
+                }
+            } label: {
+                HStack {
+                    Spacer()
+                    Text(String(localized: "boost.button", defaultValue: "App ansehen"))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                    Spacer()
+                }
+                .padding(.vertical, 14)
+                .background(Color.orangePrimary)
+                .foregroundColor(.white)
+            }
+        }
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+        .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
+    }
 }
