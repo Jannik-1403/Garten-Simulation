@@ -105,12 +105,17 @@ struct RoutineEntityQuery: EntityQuery {
     }
     
     private func fetchAllRoutines() -> [RoutineEntity] {
-        guard let data = SharedUserDefaults.suite.data(forKey: "customRoutinesData") else { return [] }
+        guard let data = SharedUserDefaults.suite.data(forKey: "customRoutinesData") else {
+            return [RoutineEntity(id: "empty", titleKey: "Keine Routine zur Verfügung", icon: "⚠️")]
+        }
         do {
             let routines = try JSONDecoder().decode([WidgetRoutineUIData].self, from: data)
+            if routines.isEmpty {
+                return [RoutineEntity(id: "empty", titleKey: "Keine Routine zur Verfügung", icon: "⚠️")]
+            }
             return routines.map { RoutineEntity(id: $0.id.uuidString, titleKey: $0.titleKey, icon: $0.icon) }
         } catch {
-            return []
+            return [RoutineEntity(id: "empty", titleKey: "Keine Routine zur Verfügung", icon: "⚠️")]
         }
     }
 }
