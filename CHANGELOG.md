@@ -453,3 +453,4 @@
 - **Partner Boost Store**: Auf zweistufige Architektur umgestellt. Exaktes Template-Matching für Präzision und intelligenter Keyword-Parser als Fallback für benutzerdefinierte Gewohnheiten.
 
 - Fixed UI bug where `%lld` and `%@` placeholders were shown instead of values for variables like Streak by forcing verbatim text rendering in SwiftUI views.
+- Hinzugefügt: Navigation durch vergangene Zeiträume in allen Statistik-Ansichten (Tag, Monat, Jahr). Die Statistik-Karten berechnen nun die Werte basierend auf dem ausgewählten Enddatum.
