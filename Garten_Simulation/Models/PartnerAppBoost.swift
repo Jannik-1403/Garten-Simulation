@@ -1,19 +1,98 @@
 import Foundation
 
+// Das Datenmodell für deine Empfehlungs-Karten
 struct PartnerAppBoost: Identifiable {
     let id = UUID()
-    let targetCategories: [HabitCategory]
     let appName: String
-    let subtitleKey: String
-    let iconName: String
-    let url: String
-    let discountTextKey: String?
+    let tagline: String
+    let iconAssetName: String   // Der Name des Bildes in deiner Assets.xcassets
+    let fallbackStoreURL: URL
+    let supportedRegions: [String]? // nil bedeutet: Weltweit verfügbar
 }
 
-let availableHabitBoosts: [PartnerAppBoost] = [
-    PartnerAppBoost(targetCategories: [.fitness], appName: "Hevy", subtitleKey: "boost.hevy.subtitle", iconName: "icon_hevy", url: "https://apps.apple.com/de/app/hevy-krafttraining-logbuch/id1458732410", discountTextKey: "boost.hevy.discount"),
-    PartnerAppBoost(targetCategories: [.growth], appName: "Blinkist", subtitleKey: "boost.blinkist.subtitle", iconName: "icon_blinkist", url: "https://apps.apple.com/de/app/blinkist-gro%C3%9Fes-wissen-in-kurz/id568839295", discountTextKey: "boost.blinkist.discount"),
-    PartnerAppBoost(targetCategories: [.mental], appName: "Headspace", subtitleKey: "boost.headspace.subtitle", iconName: "icon_headspace", url: "https://apps.apple.com/de/app/headspace-meditation-schlaf/id493145008", discountTextKey: nil),
-    PartnerAppBoost(targetCategories: [.health], appName: "YAZIO", subtitleKey: "boost.yazio.subtitle", iconName: "icon_yazio", url: "https://apps.apple.com/de/app/yazio-kalorienz%C3%A4hler-fasten/id946099227", discountTextKey: "boost.yazio.discount"),
-    PartnerAppBoost(targetCategories: [.finance], appName: "Finanzguru", subtitleKey: "boost.finanzguru.subtitle", iconName: "icon_finanzguru", url: "https://apps.apple.com/de/app/finanzguru-konten-vertr%C3%A4ge/id1214803082", discountTextKey: nil)
-]
+// Der zentrale Store, der steuert, wer was sieht
+class PartnerBoostStore {
+    
+    static let shared = PartnerBoostStore()
+    
+    func getBoost(for category: HabitCategory) -> PartnerAppBoost? {
+        // Erkennt automatisch das Land des Nutzers (z.B. "DE", "US", "KR")
+        let userRegion = Locale.current.region?.identifier ?? "DE"
+        
+        switch category {
+        case .finance:
+            // Finanzguru funktioniert NUR in Deutschland und Österreich
+            if userRegion == "DE" || userRegion == "AT" {
+                return PartnerAppBoost(
+                    appName: "Finanzguru",
+                    tagline: String(localized: "partner.finanzguru.tagline", defaultValue: "Brauchst du Hilfe bei deinen Finanzen?"),
+                    iconAssetName: "icon_finanzguru",
+                    fallbackStoreURL: URL(string: "https://apps.apple.com/de/app/id1214803082")!,
+                    supportedRegions: ["DE", "AT"]
+                )
+            }
+            return nil // Für internationale Nutzer unsichtbar
+            
+        case .health:
+            // YAZIO funktioniert global extrem stark
+            return PartnerAppBoost(
+                appName: "YAZIO",
+                tagline: String(localized: "partner.yazio.tagline", defaultValue: "Kalorien zählen & Fasten leicht gemacht."),
+                iconAssetName: "icon_yazio",
+                fallbackStoreURL: URL(string: "https://apps.apple.com/de/app/id946099227")!,
+                supportedRegions: nil
+            )
+            
+        case .fitness:
+            // Strategischer Split: In DE pushen wir Adidas (Equipment), global Freeletics (Workouts)
+            if userRegion == "DE" {
+                return PartnerAppBoost(
+                    appName: "adidas",
+                    tagline: String(localized: "partner.adidas.tagline", defaultValue: "Bereit fürs Training? Hol dir das beste Equipment."),
+                    iconAssetName: "icon_adidas",
+                    fallbackStoreURL: URL(string: "https://apps.apple.com/de/app/id1508115448")!,
+                    supportedRegions: ["DE"]
+                )
+            } else {
+                return PartnerAppBoost(
+                    appName: "Freeletics",
+                    tagline: String(localized: "partner.freeletics.tagline", defaultValue: "Erreiche deine Ziele mit dem Nr. 1 KI-Coach."),
+                    iconAssetName: "icon_freeletics",
+                    fallbackStoreURL: URL(string: "https://apps.apple.com/de/app/id654810212")!,
+                    supportedRegions: nil
+                )
+            }
+            
+        case .growth:
+            // BookBeat für die Lese-Gewohnheit in DACH
+            if userRegion == "DE" || userRegion == "AT" || userRegion == "CH" {
+                return PartnerAppBoost(
+                    appName: "BookBeat",
+                    tagline: String(localized: "partner.bookbeat.tagline", defaultValue: "Tausende Hörbücher direkt auf deinem iPhone."),
+                    iconAssetName: "icon_bookbeat",
+                    fallbackStoreURL: URL(string: "https://apps.apple.com/de/app/id1056652614")!,
+                    supportedRegions: ["DE", "AT", "CH"]
+                )
+            } else {
+                // Babbel als Alternative für Growth international
+                return PartnerAppBoost(
+                    appName: "Babbel",
+                    tagline: String(localized: "partner.babbel.tagline", defaultValue: "Lerne eine neue Sprache in 15 Minuten am Tag."),
+                    iconAssetName: "icon_babbel",
+                    fallbackStoreURL: URL(string: "https://apps.apple.com/de/app/id829587759")!,
+                    supportedRegions: nil
+                )
+            }
+            
+        case .lifestyle, .seeds, .mental:
+            // Babbel als Fallback
+            return PartnerAppBoost(
+                appName: "Babbel",
+                tagline: String(localized: "partner.babbel.tagline", defaultValue: "Lerne eine neue Sprache in 15 Minuten am Tag."),
+                iconAssetName: "icon_babbel",
+                fallbackStoreURL: URL(string: "https://apps.apple.com/de/app/id829587759")!,
+                supportedRegions: nil
+            )
+        }
+    }
+}

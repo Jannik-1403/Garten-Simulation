@@ -332,7 +332,7 @@ struct PflanzeDetailSheet: View {
                     .id(TourStep.focusTimer)
 
                     // NEU: Habit Boost (Partner-Apps)
-                    if let boost = availableHabitBoosts.first(where: { $0.targetCategories.contains(pflanze.habitCategory) }) {
+                    if let boost = PartnerBoostStore.shared.getBoost(for: pflanze.habitCategory) {
                         VStack(spacing: 24) {
                             Divider()
                                 .background(Color.secondary.opacity(0.3))
@@ -342,6 +342,7 @@ struct PflanzeDetailSheet: View {
                                 .padding(.horizontal, 24)
                         }
                         .padding(.top, 24)
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
 
 
@@ -2315,7 +2316,7 @@ struct HabitBoostCard: View {
             
             HStack(spacing: 16) {
                 // Icon
-                Image(boost.iconName)
+                Image(boost.iconAssetName)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 60, height: 60)
@@ -2326,18 +2327,11 @@ struct HabitBoostCard: View {
                     Text(boost.appName)
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                     
-                    Text(String(localized: String.LocalizationValue(boost.subtitleKey)))
+                    Text(boost.tagline)
                         .font(.system(size: 14, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                         .lineLimit(3)
-                    
-                    if let discountKey = boost.discountTextKey {
-                        Text(String(localized: String.LocalizationValue(discountKey)))
-                            .font(.system(size: 12, weight: .bold, design: .rounded))
-                            .foregroundStyle(.green)
-                            .padding(.top, 2)
-                    }
                 }
                 Spacer()
             }
@@ -2352,9 +2346,7 @@ struct HabitBoostCard: View {
                 UserDefaults.standard.set(clicks + 1, forKey: clickKey)
                 print("Habit Boost geklickt! App: \(boost.appName), Bisherige Klicks: \(clicks + 1)")
                 
-                if let url = URL(string: boost.url) {
-                    openURL(url)
-                }
+                openURL(boost.fallbackStoreURL)
             } label: {
                 ZStack {
                     Text(String(localized: "boost.button", defaultValue: "App ansehen")).textCase(.uppercase)

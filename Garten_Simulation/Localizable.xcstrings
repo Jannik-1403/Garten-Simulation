@@ -284564,10 +284564,10 @@
             "value": "Recommended Tool"
           }
         },
-        "nl": {
+        "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aanbevolen tool"
+            "value": "Herramienta recomendada"
           }
         },
         "fr": {
@@ -284585,13 +284585,19 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "推奨ツール"
+            "value": "おすすめのツール"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
             "value": "추천 도구"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aanbevolen tool"
           }
         },
         "pl": {
@@ -284604,12 +284610,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ferramenta recomendada"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herramienta recomendada"
           }
         },
         "tr": {
@@ -284635,10 +284635,10 @@
             "value": "View App"
           }
         },
-        "nl": {
+        "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "App bekijken"
+            "value": "Ver aplicación"
           }
         },
         "fr": {
@@ -284665,6 +284665,12 @@
             "value": "앱 보기"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App bekijken"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
@@ -284674,13 +284680,7 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ver aplicação"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ver aplicación"
+            "value": "Ver aplicativo"
           }
         },
         "tr": {
@@ -285326,6 +285326,432 @@
           "stringUnit": {
             "state": "translated",
             "value": "Finansal yönetiminizde yardıma mı ihtiyacınız var?"
+          }
+        }
+      }
+    },
+    "partner.finanzguru.tagline": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brauchst du Hilfe bei deinen Finanzen?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Need help with your finances?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Necesitas ayuda con tus finanzas?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Besoin d'aide avec vos finances?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hai bisogno di aiuto con le tue finanze?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたの財政に助けが必要ですか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "재정에 도움이 필요하십니까?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hulp nodig bij je financiën?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Potrzebujesz pomocy z finansami?"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Precisa de ajuda com suas finanças?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maliyelerinizde yardıma mı ihtiyacınız var?"
+          }
+        }
+      }
+    },
+    "partner.yazio.tagline": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalorien zählen & Fasten leicht gemacht."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calorie counting & fasting made easy."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contar calorías y ayunar de forma sencilla."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compter les calories et jeûner en toute simplicité."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contare le calorie e digiunare in modo semplice."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カロリー計算と断食が簡単に。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "칼로리 계산과 단식이 쉬워집니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calorieën tellen & vasten gemakkelijk gemaakt."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liczenie kalorii i post w prosty sposób."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contagem de calorias e jejum de forma fácil."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalori sayımı ve oruç tutmak çok kolay."
+          }
+        }
+      }
+    },
+    "partner.adidas.tagline": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bereit fürs Training? Hol dir das beste Equipment."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ready for training? Get the best equipment."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Listo para entrenar? Consigue el mejor equipo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prêt pour l'entraînement ? Obtenez le meilleur équipement."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pronto per l'allenamento? Ottieni la migliore attrezzatura."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "トレーニングの準備はできましたか？最高の機器を手に入れましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "훈련 준비가 되셨습니까? 최고의 장비를 구하십시오."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klaar voor de training? Haal de beste apparatuur."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gotowy na trening? Zdobądź najlepszy sprzęt."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pronto para treinar? Obtenha o melhor equipamento."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antrenmana hazır mısınız? En iyi ekipmanı edinin."
+          }
+        }
+      }
+    },
+    "partner.freeletics.tagline": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreiche deine Ziele mit dem Nr. 1 KI-Coach."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Achieve your goals with the #1 AI Coach."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alcanza tus objetivos con el entrenador de IA n.º 1."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atteignez vos objectifs avec le coach IA n°1."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raggiungi i tuoi obiettivi con l'allenatore AI n° 1."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No.1のAIコーチで目標を達成しましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1위 AI 코치와 함께 목표를 달성하십시오."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bereik je doelen met de nr. 1 AI-coach."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Osiągnij swoje cele dzięki trenerowi AI nr 1."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alcance seus objetivos com o treinador de IA nº 1."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 numaralı yapay zeka koçuyla hedeflerinize ulaşın."
+          }
+        }
+      }
+    },
+    "partner.bookbeat.tagline": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tausende Hörbücher direkt auf deinem iPhone."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thousands of audiobooks right on your iPhone."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miles de audiolibros directamente en tu iPhone."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Des milliers de livres audio directement sur votre iPhone."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Migliaia di audiolibri direttamente sul tuo iPhone."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhoneで数千のオーディオブックを楽しめます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone에서 직접 수천 개의 오디오북을 들을 수 있습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duizenden luisterboeken direct op je iPhone."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tysiące audiobooków prosto na twojego iPhone'a."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Milhares de audiolivros diretamente no seu iPhone."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binlerce sesli kitap doğrudan iPhone'unuzda."
+          }
+        }
+      }
+    },
+    "partner.babbel.tagline": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lerne eine neue Sprache in 15 Minuten am Tag."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learn a new language in 15 minutes a day."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aprende un nuevo idioma en 15 minutos al día."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apprenez une nouvelle langue en 15 minutes par jour."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impara una nuova lingua in 15 minuti al giorno."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1日15分で新しい言語を学びましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "하루 15분 만에 새로운 언어를 배우십시오."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leer een nieuwe taal in 15 minuten per dag."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ucz się nowego języka przez 15 minut dziennie."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aprenda um novo idioma em 15 minutos por dia."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günde 15 dakika ayırarak yeni bir dil öğrenin."
           }
         }
       }
