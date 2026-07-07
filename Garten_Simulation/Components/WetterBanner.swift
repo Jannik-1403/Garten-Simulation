@@ -23,12 +23,12 @@ struct WetterBanner: View {
                         .font(.caption)
                         .opacity(0.85)
                         .lineLimit(2)
-                        .minimumScaleFactor(0.8)
+                        .minimumScaleFactor(0.4)
                     Text(event.titel)
                         .font(.subheadline)
                         .fontWeight(.bold)
                         .lineLimit(2)
-                        .minimumScaleFactor(0.8)
+                        .minimumScaleFactor(0.4)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
