@@ -23,7 +23,7 @@ struct ShopItemCard: View {
     let onBuy: () -> Void
 
     var body: some View {
-        DuolingoCard(action: onBuy, badgeText: badgeText, badgeColor: badgeText != nil ? accentColor : Color.blauPrimary) {
+        DuolingoCard(action: onBuy, badgeText: badgeText, badgeColor: badgeText != nil ? Color.gruenPrimary : Color.blauPrimary) {
             VStack(alignment: .center, spacing: 12) {
                 Group {
                     if let plant = plant {

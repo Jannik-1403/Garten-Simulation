@@ -1,3 +1,4 @@
+- Bugfix: Der Filter im Shop (`UnifiedShopView`), der bereits gekaufte Pflanzen und Dekorationen komplett versteckt hat, wurde entfernt. Gekaufte Items sind jetzt sichtbar und werden mit dem 'Im Besitz'-Label markiert.
 - Architecture: HabitBoost-Zuweisung von der harten Asset-ID (`plantID`) entkoppelt und sauber über die Domänen-Eigenschaft `HabitCategory` (z.B. `.fitness`) gematcht.
 - Refactor: Habit Boost (Partner-Apps) Datenstruktur in eine saubere Datei (Models/PartnerAppBoost.swift) ausgelagert.
 - Design: Padding des App-Store Buttons in der HabitBoostCard erhöht, um besser mit Icon und Text abzuschließen.

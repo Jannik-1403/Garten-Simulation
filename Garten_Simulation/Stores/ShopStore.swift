@@ -87,5 +87,6 @@ class ShopStore: ObservableObject {
     func reset() {
         purchasedIDs.removeAll()
         SharedUserDefaults.suite.removeObject(forKey: "shop_purchased_ids")
+        SharedUserDefaults.suite.synchronize()
     }
 }
