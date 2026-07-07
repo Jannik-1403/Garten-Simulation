@@ -332,7 +332,7 @@ struct PflanzeDetailSheet: View {
                     .id(TourStep.focusTimer)
 
                     // NEU: Habit Boost (Partner-Apps)
-                    if let boost = availableHabitBoosts.first(where: { $0.targetPlantIDs.contains(pflanze.plantID) }) {
+                    if let boost = availableHabitBoosts.first(where: { $0.targetCategories.contains(pflanze.habitCategory) }) {
                         VStack(spacing: 24) {
                             Divider()
                                 .background(Color.secondary.opacity(0.3))
