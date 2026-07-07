@@ -1774,7 +1774,7 @@ struct TimerRowView: View {
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                     if let next = pflanze.nextActiveReminder {
-                        Text(verbatim: "\(next.time, style: .time)")
+                        Text(next.time, style: .time)
                             .font(.system(size: 14, weight: .semibold, design: .rounded))
                     } else {
                         Text(String(localized: "timer.weekday.title"))
