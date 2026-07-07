@@ -333,9 +333,15 @@ struct PflanzeDetailSheet: View {
 
                     // NEU: Habit Boost (Partner-Apps)
                     if let boost = availableHabitBoosts.first(where: { $0.targetPlantIDs.contains(pflanze.plantID) }) {
-                        HabitBoostCard(boost: boost)
-                            .padding(.horizontal, 24)
-                            .padding(.top, 16)
+                        VStack(spacing: 24) {
+                            Divider()
+                                .background(Color.secondary.opacity(0.3))
+                                .padding(.horizontal, 40)
+                            
+                            HabitBoostCard(boost: boost)
+                                .padding(.horizontal, 24)
+                        }
+                        .padding(.top, 24)
                     }
 
 
@@ -2350,6 +2356,12 @@ struct HabitBoostCard: View {
             
             // Action Button
             Button {
+                // Lokales Tracking (für private Testzwecke, sendet nichts ins Internet)
+                let clickKey = "clicks_boost_\(boost.appName)"
+                let clicks = UserDefaults.standard.integer(forKey: clickKey)
+                UserDefaults.standard.set(clicks + 1, forKey: clickKey)
+                print("Habit Boost geklickt! App: \(boost.appName), Bisherige Klicks: \(clicks + 1)")
+                
                 if let url = URL(string: boost.url) {
                     openURL(url)
                 }
