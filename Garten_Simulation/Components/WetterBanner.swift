@@ -19,11 +19,6 @@ struct WetterBanner: View {
                     .frame(width: 90, height: 90)
 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(event.untertitel)
-                        .font(.caption)
-                        .opacity(0.85)
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.4)
                     Text(event.titel)
                         .font(.subheadline)
                         .fontWeight(.bold)
