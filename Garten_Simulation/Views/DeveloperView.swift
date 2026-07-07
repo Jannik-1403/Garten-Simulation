@@ -308,6 +308,15 @@ struct DeveloperView: View {
                     settingsSection(title: "Premium & Overlays") {
                         VStack(spacing: 0) {
                             Button {
+                                iapStore.revokePro()
+                                FeedbackManager.shared.playSuccess()
+                            } label: {
+                                settingRow(title: String(localized: "developer.revoke_pro", defaultValue: "Pro Abo kündigen"), icon: "xmark.seal.fill", color: .red)
+                            }
+                            
+                            Divider().padding(.leading, 44)
+                            
+                            Button {
                                 showPaywallOverlay = true
                             } label: {
                                 settingRow(title: "Paywall (Emotional) anzeigen", icon: "creditcard.fill", color: .goldPrimary)

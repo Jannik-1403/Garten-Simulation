@@ -213,6 +213,15 @@ final class IAPStore: ObservableObject {
         }
     }
 
+    func revokePro() {
+        self.isProUser = false
+        UserDefaults.standard.set(false, forKey: "isProUser_active")
+        #if DEBUG
+        UserDefaults.standard.set(false, forKey: "debug_isProUser")
+        #endif
+        UserDefaults.standard.synchronize()
+    }
+
     // MARK: - Errors
 
     enum StoreError: Error {
