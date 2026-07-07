@@ -1,3 +1,4 @@
+- UX & Tracking: Optische Trennung der Habit-Boost-Karte in der Detailansicht und privates lokales Klick-Tracking integriert.
 - Chore: Habit Boost URLs wurden auf die offiziellen App Store Links aktualisiert.
 - Design: Habit Boost Card auf 3D-Button (DuolingoButtonStyle) umgebaut und offizielle App Store Icons heruntergeladen/integriert.
 - Design: Habit Boost Card auf 3D-Button () umgebaut und offizielle App Store Icons heruntergeladen/integriert.

@@ -2310,8 +2310,15 @@ struct HabitBoostCard: View {
     @Environment(\.openURL) var openURL
     
     var body: some View {
-        VStack(spacing: 0) {
-            // Header: "Empfohlenes Tool"
+        ZStack {
+            // Shadow Edge (Bottom) - Neo-Brutalism Style
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .fill(Color(UIColor.systemGray5))
+                .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+                .offset(y: 6)
+                
+            VStack(spacing: 0) {
+                // Header: "Empfohlenes Tool"
             HStack {
                 Text(String(localized: "boost.header", defaultValue: "Empfohlenes Tool"))
                     .font(.system(size: 13, weight: .bold, design: .rounded))
@@ -2376,13 +2383,15 @@ struct HabitBoostCard: View {
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .medium, fillWidth: true,
-                backgroundColor: .blauPrimary, shadowColor: .blauPrimary.darker(), foregroundColor: .white
+                backgroundColor: Color(UIColor.systemGray), shadowColor: Color(UIColor.darkGray), foregroundColor: .white
             ))
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
         }
         .background(Color(UIColor.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-        .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
+        .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+        }
+        .padding(.bottom, 6)
     }
 }
