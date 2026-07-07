@@ -767,7 +767,7 @@ struct RoutineTimerEditSheetView: View {
                 
                 if isLinkingNotes, let note = selectedNoteForLinking {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("\(String(localized: "routine.note.assign")) \(note)")
+                        Text(verbatim: "\(String(localized: "routine.note.assign")) \(note)")
                             .font(.system(size: 22, weight: .black, design: .rounded))
                         Text(String(localized: "routine.note.assign.desc"))
                             .font(.system(size: 14, weight: .medium, design: .rounded))

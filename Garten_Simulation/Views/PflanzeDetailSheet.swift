@@ -1087,7 +1087,7 @@ struct TimerEditSheetView: View {
                 
                 if isLinkingNotes, let note = selectedNoteForLinking {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("\(String(localized: "routine.note.assign")) \(note)")
+                        Text(verbatim: "\(String(localized: "routine.note.assign")) \(note)")
                             .font(.system(size: 22, weight: .black, design: .rounded))
                         Text(String(localized: "routine.note.assign.desc"))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
@@ -1701,7 +1701,7 @@ struct NoteRowView: View {
                     .scaleEffect(2.5)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("\(String(localized: "plant.detail.note")) \(index + 1)")
+                    Text(verbatim: "\(String(localized: "plant.detail.note")) \(index + 1)")
                         .font(.system(size: 11, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                     Text(pflanze.notizen[index])

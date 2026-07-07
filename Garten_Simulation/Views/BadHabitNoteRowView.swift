@@ -29,7 +29,7 @@ struct BadHabitNoteRowView: View {
                     .scaleEffect(2.5)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("\(String(localized: "plant.detail.note")) \(index + 1)")
+                    Text(verbatim: "\(String(localized: "plant.detail.note")) \(index + 1)")
                         .font(.system(size: 11, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                     Text(text)

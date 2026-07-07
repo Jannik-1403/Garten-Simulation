@@ -120,7 +120,7 @@ struct BadHabitCard: View {
                             .scaledToFit()
                             .frame(width: 14, height: 14)
                         
-                        Text("\(String(localized: "streak.label", defaultValue: "Streak")): \(streakDays)")
+                        Text(verbatim: "\(String(localized: "streak.label", defaultValue: "Streak")): \(streakDays)")
                             .font(.system(size: 14, weight: .black, design: .rounded))
                     }
                     .foregroundStyle(Color(hex: "#D95F00"))

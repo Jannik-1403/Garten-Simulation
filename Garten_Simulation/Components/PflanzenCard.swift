@@ -161,7 +161,7 @@ struct PflanzenCard: View {
                             .scaledToFit()
                             .frame(width: 14, height: 14)
                         
-                        Text("\(String(localized: "streak.label", defaultValue: "Streak")): \(pflanze.streak)")
+                        Text(verbatim: "\(String(localized: "streak.label", defaultValue: "Streak")): \(pflanze.streak)")
                             .font(.system(size: 14, weight: .black, design: .rounded))
                     }
                     .foregroundStyle(Color(hex: "#D95F00"))
