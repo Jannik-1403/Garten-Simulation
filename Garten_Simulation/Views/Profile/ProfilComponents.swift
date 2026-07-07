@@ -368,6 +368,7 @@ struct StatisticsDashboard: View {
     @State private var isGeneratingShareImage = false
     @State private var showPreview = false
     @State private var pendingShareType: ShareCardType?
+    @State private var selectedEndDate: Date = Date()
     
     // MARK: - Computed Data
     
@@ -377,8 +378,8 @@ struct StatisticsDashboard: View {
         
         let days = selectedPeriod.days
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        let now = Date()
+        let today = calendar.startOfDay(for: selectedEndDate)
+        let now = selectedEndDate
         let startDate = calendar.date(byAdding: .day, value: -days, to: today)!
 
         // +1 to include today in the possible count
@@ -467,6 +468,7 @@ struct StatisticsDashboard: View {
                     if selectedPeriod == .week {
                         WeeklyReportDashboardView()
                     } else {
+                        periodNavigationHeader
                         lifeBalanceCard
                         gardenScoreConsistencyCard
                         focusScoreCard
@@ -489,7 +491,7 @@ struct StatisticsDashboard: View {
             }
         }
         .fullScreenCover(item: $expandedStat) { detail in
-            StatDetailFullscreenView(detail: detail, selectedPeriod: selectedPeriod)
+            StatDetailFullscreenView(detail: detail, selectedPeriod: selectedPeriod, selectedEndDate: selectedEndDate)
         }
         .sheet(isPresented: $showPreview) {
             if let type = pendingShareType {
@@ -515,6 +517,91 @@ struct StatisticsDashboard: View {
         case coins
         case focus
         case triggers
+    }
+    
+    private var periodNavigationHeader: some View {
+        HStack {
+            Button {
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                    let calendar = Calendar.current
+                    switch selectedPeriod {
+                    case .day: selectedEndDate = calendar.date(byAdding: .day, value: -1, to: selectedEndDate)!
+                    case .week: selectedEndDate = calendar.date(byAdding: .day, value: -7, to: selectedEndDate)!
+                    case .month: selectedEndDate = calendar.date(byAdding: .month, value: -1, to: selectedEndDate)!
+                    case .year: selectedEndDate = calendar.date(byAdding: .year, value: -1, to: selectedEndDate)!
+                    case .allTime: break
+                    }
+                }
+            } label: {
+                Image(systemName: "chevron.left")
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(selectedPeriod == .allTime ? .secondary.opacity(0.3) : .primary)
+                    .padding(8)
+            }
+            .disabled(selectedPeriod == .allTime)
+            
+            Spacer()
+            
+            VStack(spacing: 2) {
+                Text(NSLocalizedString(selectedPeriod.thisPeriodKey, comment: ""))
+                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                    .foregroundColor(.secondary)
+                    .textCase(.uppercase)
+                
+                Text(formattedDateRange)
+                    .font(.system(size: 18, weight: .black, design: .rounded))
+                    .foregroundColor(.primary)
+                    .contentTransition(.numericText())
+            }
+            
+            Spacer()
+            
+            let canGoForward = Calendar.current.startOfDay(for: selectedEndDate) < Calendar.current.startOfDay(for: Date())
+            Button {
+                if canGoForward {
+                    withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                        let calendar = Calendar.current
+                        switch selectedPeriod {
+                        case .day: selectedEndDate = calendar.date(byAdding: .day, value: 1, to: selectedEndDate)!
+                        case .week: selectedEndDate = calendar.date(byAdding: .day, value: 7, to: selectedEndDate)!
+                        case .month: selectedEndDate = calendar.date(byAdding: .month, value: 1, to: selectedEndDate)!
+                        case .year: selectedEndDate = calendar.date(byAdding: .year, value: 1, to: selectedEndDate)!
+                        case .allTime: break
+                        }
+                    }
+                }
+            } label: {
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(canGoForward && selectedPeriod != .allTime ? .primary : .secondary.opacity(0.3))
+                    .padding(8)
+            }
+            .disabled(!canGoForward || selectedPeriod == .allTime)
+        }
+        .padding(.horizontal, 8)
+    }
+    
+    private var formattedDateRange: String {
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        
+        switch selectedPeriod {
+        case .day:
+            formatter.dateFormat = "dd.MM.yyyy"
+            return formatter.string(from: selectedEndDate)
+        case .week:
+            formatter.dateFormat = "dd.MM."
+            let start = calendar.date(byAdding: .day, value: -7, to: selectedEndDate)!
+            return "\(formatter.string(from: start)) - \(formatter.string(from: selectedEndDate))"
+        case .month:
+            formatter.dateFormat = "MMMM yyyy"
+            return formatter.string(from: selectedEndDate)
+        case .year:
+            formatter.dateFormat = "yyyy"
+            return formatter.string(from: selectedEndDate)
+        case .allTime:
+            return String(localized: "statistik_periode_alle")
+        }
     }
     
     private func initiateShare(_ type: ShareCardType) {
@@ -564,7 +651,7 @@ struct StatisticsDashboard: View {
                 .padding(.trailing, 12)
             }
             
-            RadarChartView(habits: habits, selectedPeriod: selectedPeriod)
+            RadarChartView(habits: habits, selectedPeriod: selectedPeriod, endDate: selectedEndDate)
                 .padding(.vertical, 10)
         }
         .background(Color(UIColor.systemBackground))
@@ -579,7 +666,7 @@ struct StatisticsDashboard: View {
     }
 
     private var gardenScoreConsistencyCard: some View {
-        let history = StatsHelper.getWateringHistory(from: gardenStore.pflanzen, badHabitExecutions: gardenStore.badHabitExecutions, days: selectedPeriod.days)
+        let history = StatsHelper.getWateringHistory(from: gardenStore.pflanzen, badHabitExecutions: gardenStore.badHabitExecutions, days: selectedPeriod.days, endDate: selectedEndDate)
         return VStack(alignment: .leading, spacing: 16) {
             HStack {
                 Label(String(localized: "stats.score.konsistenz"), systemImage: "checkmark.circle.fill")
@@ -659,7 +746,7 @@ struct StatisticsDashboard: View {
     }
 
     private var focusScoreCard: some View {
-        let history = StatsHelper.getFocusHistory(from: gardenStore.focusSessions, days: selectedPeriod.days)
+        let history = StatsHelper.getFocusHistory(from: gardenStore.focusSessions, days: selectedPeriod.days, endDate: selectedEndDate)
         return VStack(alignment: .leading, spacing: 16) {
             HStack {
                 Label(String(localized: "Fokus-Score"), systemImage: "timer")
@@ -760,7 +847,7 @@ struct StatisticsDashboard: View {
 
     private var triggerStatisticsCard: some View {
         let calendar = Calendar.current
-        let today = Date()
+        let today = selectedEndDate
         let startDate: Date
         if selectedPeriod == .allTime {
             startDate = .distantPast
@@ -1042,6 +1129,7 @@ struct Stat3DTitleView: View {
 struct StatDetailFullscreenView: View {
     let detail: StatisticsDashboard.StatDetail
     @State var selectedPeriod: StatsPeriod
+    @State var selectedEndDate: Date
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
@@ -1052,14 +1140,15 @@ struct StatDetailFullscreenView: View {
     @State private var pendingShareType: StatisticsDashboard.ShareCardType? = nil
     @State private var selectedHabitFilter: String = "all"
 
-    init(detail: StatisticsDashboard.StatDetail, selectedPeriod: StatsPeriod) {
+    init(detail: StatisticsDashboard.StatDetail, selectedPeriod: StatsPeriod, selectedEndDate: Date = Date()) {
         self.detail = detail
         self._selectedPeriod = State(initialValue: selectedPeriod)
+        self._selectedEndDate = State(initialValue: selectedEndDate)
     }
     
     private func getXAxisDates(for period: StatsPeriod) -> [Date] {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: selectedEndDate)
         if period == .day { return [] }
         
         if period == .week {
@@ -1114,7 +1203,7 @@ struct StatDetailFullscreenView: View {
     
     private func customXAxisLabel(for date: Date, period: StatsPeriod) -> String {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: selectedEndDate)
         
         switch period {
         case .week:
@@ -1214,7 +1303,7 @@ struct StatDetailFullscreenView: View {
                 }
             }
             .task(id: selectedPeriod) {
-                viewModel.loadData(for: selectedPeriod, detail: detail, gardenStore: gardenStore, settings: settings)
+                viewModel.loadData(for: selectedPeriod, endDate: selectedEndDate, detail: detail, gardenStore: gardenStore, settings: settings)
             }
             .sheet(isPresented: $showPreview) {
                 if let type = pendingShareType {

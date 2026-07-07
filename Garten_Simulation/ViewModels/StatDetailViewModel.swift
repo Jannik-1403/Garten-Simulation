@@ -35,14 +35,14 @@ final class StatDetailViewModel: ObservableObject {
         let betrag: Int
     }
     
-    func loadData(for period: StatsPeriod, detail: StatisticsDashboard.StatDetail, gardenStore: GardenStore, settings: SettingsStore) {
+    func loadData(for period: StatsPeriod, endDate: Date = Date(), detail: StatisticsDashboard.StatDetail, gardenStore: GardenStore, settings: SettingsStore) {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        let targetDate = Date()
+        let today = calendar.startOfDay(for: endDate)
+        let targetDate = endDate
         
         switch detail {
         case .activity:
-            self.wateringHistory = StatsHelper.getWateringHistory(from: gardenStore.pflanzen, badHabitExecutions: gardenStore.badHabitExecutions, days: period.days)
+            self.wateringHistory = StatsHelper.getWateringHistory(from: gardenStore.pflanzen, badHabitExecutions: gardenStore.badHabitExecutions, days: period.days, endDate: endDate)
             
             var newEventDetails: [Date: HabitEventDetail] = [:]
             if period == .day {
@@ -85,7 +85,7 @@ final class StatDetailViewModel: ObservableObject {
             }
             
         case .xp:
-            self.xpHistory = StatsHelper.getXPHistory(from: gardenStore.pflanzen, currentTotalXP: gardenStore.gesamtXP, days: period.days)
+            self.xpHistory = StatsHelper.getXPHistory(from: gardenStore.pflanzen, currentTotalXP: gardenStore.gesamtXP, days: period.days, endDate: endDate)
             var newXPDetails: [Date: XPEventDetail] = [:]
             if period == .day {
                 for plant in gardenStore.pflanzen {
@@ -101,7 +101,7 @@ final class StatDetailViewModel: ObservableObject {
             self.xpDetails = newXPDetails
             
         case .coins:
-            self.coinHistory = StatsHelper.getCoinHistory(from: gardenStore.transactions, currentBalance: gardenStore.coins, days: period.days)
+            self.coinHistory = StatsHelper.getCoinHistory(from: gardenStore.transactions, currentBalance: gardenStore.coins, days: period.days, endDate: endDate)
             var newCoinDetails: [Date: CoinEventDetail] = [:]
             if period == .day {
                 for tx in gardenStore.transactions where calendar.isDate(tx.datum, inSameDayAs: today) {

@@ -3,6 +3,7 @@ import SwiftUI
 struct RadarChartView: View {
     let habits: [HabitModel]
     let selectedPeriod: StatsPeriod
+    var endDate: Date = Date()
     
     @EnvironmentObject var settings: SettingsStore
     
@@ -190,8 +191,8 @@ struct RadarChartView: View {
     
     private func getStats(for category: HabitCategory) -> (percentage: Double, habitsCount: Int, waterings: Int) {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        let now = Date()
+        let today = calendar.startOfDay(for: endDate)
+        let now = endDate
         let days = selectedPeriod.days
         let startDate = calendar.date(byAdding: .day, value: -days, to: today)!
         
@@ -209,8 +210,8 @@ struct RadarChartView: View {
     private func calculateValues(forPreviousPeriod: Bool) -> [HabitCategory: Double] {
         var results: [HabitCategory: Double] = [:]
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        let now = Date()
+        let today = calendar.startOfDay(for: endDate)
+        let now = endDate
         
         let days = selectedPeriod.days
         let startDate: Date

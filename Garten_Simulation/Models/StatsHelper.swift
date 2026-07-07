@@ -35,9 +35,9 @@ struct RarityData: Identifiable {
 }
 
 class StatsHelper {
-    static func getTriggerCounts(from badHabitExecutions: [String: [BadHabitExecution]], days: Int) -> [(key: String, value: Int)] {
+    static func getTriggerCounts(from badHabitExecutions: [String: [BadHabitExecution]], days: Int, endDate: Date = Date()) -> [(key: String, value: Int)] {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: endDate)
         let startDate: Date
         if days == 0 {
             startDate = .distantPast // Assume 0 means all time if not handled, or just pass Int.max
@@ -60,9 +60,9 @@ class StatsHelper {
         return triggerCounts.sorted { $0.value > $1.value }
     }
 
-    static func getWateringHistory(from plants: [HabitModel], badHabitExecutions: [String: [BadHabitExecution]] = [:], days: Int = 7) -> [DailyWatering] {
+    static func getWateringHistory(from plants: [HabitModel], badHabitExecutions: [String: [BadHabitExecution]] = [:], days: Int = 7, endDate: Date = Date()) -> [DailyWatering] {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: endDate)
         
         if days == 1 {
             // Collect all changes today with their exact timestamps
@@ -182,9 +182,9 @@ class StatsHelper {
         return history
     }
 
-    static func getFocusHistory(from sessions: [FocusSessionLog], days: Int = 7) -> [DailyFocus] {
+    static func getFocusHistory(from sessions: [FocusSessionLog], days: Int = 7, endDate: Date = Date()) -> [DailyFocus] {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: endDate)
         
         if days == 1 {
             var hourlyFocus: [Date: (completed: Int, aborted: Int)] = [:]
@@ -256,12 +256,29 @@ class StatsHelper {
         return history
     }
 
-    static func getXPHistory(from plants: [HabitModel], currentTotalXP: Int, days: Int = 7) -> [DailyXP] {
+    static func getXPHistory(from plants: [HabitModel], currentTotalXP: Int, days: Int = 7, endDate: Date = Date()) -> [DailyXP] {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let realToday = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: endDate)
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         
+        var tempXP = currentTotalXP
+        let daysToBacktrack = calendar.dateComponents([.day], from: today, to: realToday).day ?? 0
+        if daysToBacktrack > 0 {
+            for i in 0..<daysToBacktrack {
+                if let d = calendar.date(byAdding: .day, value: -i, to: realToday) {
+                    let dateString = formatter.string(from: d)
+                    for plant in plants {
+                        if let gained = plant.xpHistory[dateString] {
+                            tempXP -= gained
+                        }
+                    }
+                }
+            }
+        }
+        
+
         if days == 1 {
             struct TempEvent {
                 let date: Date
@@ -294,7 +311,7 @@ class StatsHelper {
             
             var history: [DailyXP] = []
             let totalXPToday = tempEvents.map({ $0.amount }).reduce(0, +)
-            var runningTotal = currentTotalXP - totalXPToday
+            var runningTotal = tempXP - totalXPToday
             
             // Start of day
             history.append(DailyXP(date: today, amount: runningTotal))
@@ -354,7 +371,7 @@ class StatsHelper {
         }
         
         var result: [DailyXP] = []
-        var runningTotal = currentTotalXP
+        var runningTotal = tempXP
         let sortedDates = dailyGains.keys.sorted(by: { $0 > $1 })
         
         for date in sortedDates {
@@ -364,9 +381,23 @@ class StatsHelper {
         
         return result.sorted { $0.date < $1.date }
     }
-    static func getCoinHistory(from transactions: [CoinTransaction], currentBalance: Int, days: Int = 7) -> [CoinHistory] {
+    static func getCoinHistory(from transactions: [CoinTransaction], currentBalance: Int, days: Int = 7, endDate: Date = Date()) -> [CoinHistory] {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let realToday = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: endDate)
+        
+        var tempBalanceStart = currentBalance
+        let daysToBacktrack = calendar.dateComponents([.day], from: today, to: realToday).day ?? 0
+        if daysToBacktrack > 0 {
+            for i in 0..<daysToBacktrack {
+                if let d = calendar.date(byAdding: .day, value: -i, to: realToday) {
+                    let dayTxs = transactions.filter { calendar.isDate($0.datum, inSameDayAs: d) }
+                    for tx in dayTxs {
+                        tempBalanceStart -= tx.betrag
+                    }
+                }
+            }
+        }
         
         if days == 1 {
             var tempEvents: [CoinTransaction] = []
@@ -380,7 +411,7 @@ class StatsHelper {
             
             var history: [CoinHistory] = []
             let totalChangeToday = tempEvents.map({ $0.betrag }).reduce(0, +)
-            var runningTotal = currentBalance - totalChangeToday
+            var runningTotal = tempBalanceStart - totalChangeToday
             
             // Start of day
             history.append(CoinHistory(date: today, balance: runningTotal))
@@ -410,7 +441,7 @@ class StatsHelper {
         }
         
         var history: [CoinHistory] = []
-        var tempBalance = currentBalance
+        var tempBalance = tempBalanceStart
         
         let sortedTransactions = transactions.sorted { $0.datum > $1.datum }
         
@@ -428,7 +459,7 @@ class StatsHelper {
         }
         
         if history.isEmpty {
-            history.append(CoinHistory(date: today, balance: currentBalance))
+            history.append(CoinHistory(date: today, balance: tempBalanceStart))
         }
         
         return history.sorted { $0.date < $1.date }
@@ -449,10 +480,10 @@ class StatsHelper {
         ]
     }
     
-    static func getCategoryBalance(from plants: [HabitModel], timeframe: StatsPeriod = .week) -> [HabitCategory: Double] {
+    static func getCategoryBalance(from plants: [HabitModel], timeframe: StatsPeriod = .week, endDate: Date = Date()) -> [HabitCategory: Double] {
         var results: [HabitCategory: Double] = [:]
         let calendar = Calendar.current
-        let today = Date()
+        let today = endDate
         
         let days = timeframe.days
         
@@ -511,9 +542,9 @@ class StatsHelper {
         return formatter
     }()
     
-    static func calculateXPTrend(from plants: [HabitModel], days: Int = 7) -> Double {
+    static func calculateXPTrend(from plants: [HabitModel], days: Int = 7, endDate: Date = Date()) -> Double {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: endDate)
         let startDate = calendar.date(byAdding: .day, value: -days, to: today) ?? today
         
         var recentGain = 0
@@ -536,9 +567,9 @@ class StatsHelper {
         return Double(recentGain)
     }
     
-    static func calculateCoinTrend(from transactions: [CoinTransaction], currentBalance: Int, days: Int = 7) -> Double {
+    static func calculateCoinTrend(from transactions: [CoinTransaction], currentBalance: Int, days: Int = 7, endDate: Date = Date()) -> Double {
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
+        let today = calendar.startOfDay(for: endDate)
         let startDate = calendar.date(byAdding: .day, value: -days, to: today) ?? today
         
         var netChange = 0
