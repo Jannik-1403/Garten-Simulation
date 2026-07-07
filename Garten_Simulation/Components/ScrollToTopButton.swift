@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ScrollToTopButton: View {
     let action: () -> Void
+    @State private var lastTriggerTime: Date = .distantPast
 
     var body: some View {
         Button(action: {
@@ -12,13 +13,15 @@ struct ScrollToTopButton: View {
                 .foregroundStyle(.white)
         }
         .buttonStyle(ScrollToTopButtonStyle())
-        // Ein DragGesture(minimumDistance: 0) fängt den Tap sofort ab, 
-        // auch wenn die ScrollView darunter noch ausrollt (decelerating).
+        // Ein DragGesture(minimumDistance: 0) fängt den Tap sofort ab.
+        // WICHTIG: Wir nutzen .onChanged (Touch Down), weil .onEnded während
+        // einer Scroll-Bewegung von der ScrollView abgebrochen (cancelled) wird!
         .simultaneousGesture(
             DragGesture(minimumDistance: 0)
-                .onEnded { value in
-                    // Nur als Tap werten, wenn der Finger nicht weit bewegt wurde
-                    guard abs(value.translation.width) < 10 && abs(value.translation.height) < 10 else { return }
+                .onChanged { _ in
+                    let now = Date()
+                    guard now.timeIntervalSince(lastTriggerTime) > 0.5 else { return }
+                    lastTriggerTime = now
                     
                     action()
                     // Mehrfacher Aufruf bricht eine noch laufende Scroll-Animation ab
