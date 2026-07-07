@@ -84,7 +84,7 @@ struct GemsIcon: View {
                 .scaledToFit()
                 .frame(width: 32, height: 32)
 
-            Text("\(wert)")
+            Text(verbatim: "\(wert)")
                 .font(.appStats)
                 .foregroundStyle(Color.coinBlue)
         }

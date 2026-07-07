@@ -24,7 +24,7 @@ struct CoinsDetailView: View {
                                     .scaledToFit()
                                     .frame(width: 32, height: 32)
                                 
-                                Text("\(gardenStore.coins)")
+                                Text(verbatim: "\(gardenStore.coins)")
                                     .font(.system(size: 24, weight: .bold, design: .rounded))
                                     .contentTransition(.numericText())
                                     .animation(.spring(response: 0.4), value: gardenStore.coins)

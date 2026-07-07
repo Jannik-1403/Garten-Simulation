@@ -284,7 +284,7 @@ struct RoutineSessionView: View {
                             .scaledToFit()
                             .frame(width: 40, height: 40)
                         
-                        Text("\(totalCoins)")
+                        Text(verbatim: "\(totalCoins)")
                             .font(.system(size: 24, weight: .black, design: .rounded))
                         
                         Text(String(localized: "common.coins", defaultValue: "Münzen"))
@@ -304,7 +304,7 @@ struct RoutineSessionView: View {
                             .scaledToFit()
                             .frame(width: 40, height: 40)
                         
-                        Text("\(totalXP)")
+                        Text(verbatim: "\(totalXP)")
                             .font(.system(size: 24, weight: .black, design: .rounded))
                         
                         Text(String(localized: "common.xp"))

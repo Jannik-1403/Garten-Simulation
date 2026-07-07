@@ -77,7 +77,7 @@ struct BadHabitCard: View {
 
                             // Badge Zähler
                             if executionsToday > 0 {
-                                Text("\(executionsToday)")
+                                Text(verbatim: "\(executionsToday)")
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundColor(.white)
                                     .frame(width: 32, height: 32)

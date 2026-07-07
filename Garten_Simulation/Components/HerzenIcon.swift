@@ -10,7 +10,7 @@ struct HerzenIcon: View {
                 .scaledToFit()
                 .frame(width: 26, height: 26)
             
-            Text("\(wert)")
+            Text(verbatim: "\(wert)")
                 .font(.appStats)
                 .foregroundStyle(Color.rotPrimary)
         }

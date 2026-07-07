@@ -110,7 +110,7 @@ struct StreakIncreaseOverlayView: View {
                         .frame(width: 200, height: 200)
 
                         // ── Number (hard cut, no fade) ───────────────
-                        Text("\(numberPopped ? streak : oldStreak)")
+                        Text(verbatim: "\(numberPopped ? streak : oldStreak)")
                             .font(.system(size: 64, weight: .black, design: .rounded))
                             .foregroundColor(
                                 numberPopped

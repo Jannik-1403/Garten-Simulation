@@ -380,7 +380,7 @@ struct RoutineExpandableSection: View {
                     Spacer()
                     
                     if !habits.isEmpty {
-                        Text("\(habits.count)")
+                        Text(verbatim: "\(habits.count)")
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(color)
                             .padding(.horizontal, 10)

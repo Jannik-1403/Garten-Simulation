@@ -27,7 +27,7 @@ struct InventoryDetailView: View {
                             .shadow(color: Color.orange.opacity(0.2), radius: 15, x: 0, y: 8)
                         
                         VStack(spacing: 4) {
-                            Text("\(gardenStore.totalItemsCount)")
+                            Text(verbatim: "\(gardenStore.totalItemsCount)")
                                 .font(.system(size: 56, weight: .black, design: .rounded))
                         }
                     }
@@ -141,7 +141,7 @@ struct Inventory3DStat: View {
                 aktion: aktion
             )
             
-            Text("\(count)")
+            Text(verbatim: "\(count)")
                 .font(.system(size: 22, weight: .black, design: .rounded))
                 .foregroundStyle(.primary)
             

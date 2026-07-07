@@ -588,7 +588,7 @@ struct PflanzeDetailSheet: View {
                                                                 .font(.system(size: 13, weight: .medium, design: .rounded))
                                                                 .foregroundStyle(.secondary)
                                                             Spacer()
-                                                            Text("\(current) / \(target) \(unit)")
+                                                            Text(verbatim: "\(current) / \(target) \(unit)")
                                                                 .font(.system(size: 13, weight: .bold, design: .rounded))
                                                                 .foregroundStyle(.orange)
                                                         }
@@ -687,7 +687,7 @@ struct PflanzeDetailSheet: View {
                                                                 .font(.system(size: 13, weight: .medium, design: .rounded))
                                                                 .foregroundStyle(.secondary)
                                                             Spacer()
-                                                            Text("\(current) / \(target)")
+                                                            Text(verbatim: "\(current) / \(target)")
                                                                 .font(.system(size: 13, weight: .bold, design: .rounded))
                                                                 .foregroundStyle(.orange)
                                                         }
@@ -717,7 +717,7 @@ struct PflanzeDetailSheet: View {
                                                             .tint(.orange)
                                                             .disabled(Int(pflanze.customTrackerProgress) >= target || pflanze.istBewässert)
                                                             
-                                                            Text("\(target)")
+                                                            Text(verbatim: "\(target)")
                                                                 .font(.system(size: 12, weight: .bold, design: .rounded))
                                                                 .foregroundStyle(.secondary)
                                                         }
@@ -847,7 +847,7 @@ struct PflanzeDetailSheet: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 18, height: 18)
-                    Text("\(pflanze.streak)")
+                    Text(verbatim: "\(pflanze.streak)")
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                 }
                 Text(String(localized: "plant.detail.streak").uppercased())
@@ -865,7 +865,7 @@ struct PflanzeDetailSheet: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 18, height: 18)
-                    Text("\(pflanze.currentXP)")
+                    Text(verbatim: "\(pflanze.currentXP)")
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                 }
                 Text(String(localized: "plant.detail.xp").uppercased())
@@ -1774,7 +1774,7 @@ struct TimerRowView: View {
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                     if let next = pflanze.nextActiveReminder {
-                        Text("\(next.time, style: .time)")
+                        Text(verbatim: "\(next.time, style: .time)")
                             .font(.system(size: 14, weight: .semibold, design: .rounded))
                     } else {
                         Text(String(localized: "timer.weekday.title"))

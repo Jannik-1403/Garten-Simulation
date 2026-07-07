@@ -115,7 +115,7 @@ struct ErfolgDetailSheet: View {
                                     .font(.subheadline.weight(.bold))
                                     .foregroundStyle(.secondary)
                                 Spacer()
-                                Text("\(liveErfolg.aktuellerWert) / \(liveErfolg.zielWert)")
+                                Text(verbatim: "\(liveErfolg.aktuellerWert) / \(liveErfolg.zielWert)")
                                     .font(.headline.weight(.bold))
                                     .foregroundStyle(.primary)
                             }
@@ -329,7 +329,7 @@ struct ShareAchievementCard: View {
                 
                 Spacer()
                 
-                Text("@\(username)")
+                Text(verbatim: "@\(username)")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundColor(textColor.opacity(0.8))
                     .padding(.horizontal, 12)

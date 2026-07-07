@@ -434,7 +434,7 @@ struct FocusSessionView: View {
                             .frame(width: 40, height: 40)
                         
                         let coins = Int(Double(GameConstants.coinsProGiessen) * gardenStore.coinMultiplikator(for: pflanze))
-                        Text("\(coins)")
+                        Text(verbatim: "\(coins)")
                             .font(.system(size: 24, weight: .black, design: .rounded))
                         
                         Text(String(localized: "focus.session.coins", defaultValue: "Münzen"))
@@ -455,7 +455,7 @@ struct FocusSessionView: View {
                             .frame(width: 40, height: 40)
                         
                         let xp = Int(Double(pflanze.xpPerCompletion) * gardenStore.xpMultiplikator(for: pflanze))
-                        Text("\(xp)")
+                        Text(verbatim: "\(xp)")
                             .font(.system(size: 24, weight: .black, design: .rounded))
                         
                         Text(String(localized: "common.xp"))

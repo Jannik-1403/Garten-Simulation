@@ -268,7 +268,7 @@ struct PflanzenCard: View {
                 }
             }
             
-            Text("\(Int(current)) / \(Int(target))")
+            Text(verbatim: "\(Int(current)) / \(Int(target))")
                 .font(.system(size: 10, weight: .semibold, design: .rounded))
                 .foregroundStyle(.secondary)
         }

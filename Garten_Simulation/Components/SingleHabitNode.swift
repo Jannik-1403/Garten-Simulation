@@ -93,7 +93,7 @@ struct SingleHabitNode: View {
                             .frame(width: groesse * 0.6, height: groesse * 0.6)
                             .shadow(color: obereFarbe.opacity(0.3), radius: 10, y: 5)
                         
-                        Text("\(tag.tagNummer)")
+                        Text(verbatim: "\(tag.tagNummer)")
                             .font(.system(size: groesse * 0.28, weight: .black, design: .rounded))
                             .foregroundColor(.white)
                     }

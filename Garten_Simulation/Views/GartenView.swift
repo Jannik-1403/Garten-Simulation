@@ -327,7 +327,7 @@ struct GartenView: View {
                                         }
                                         .frame(maxWidth: .infinity, alignment: .leading)
 
-                                        Text("\(gardenStore.dailyQuestsCompletedSinceWeed)/\(gardenStore.habitsRequiredForCurrentWeed)")
+                                        Text(verbatim: "\(gardenStore.dailyQuestsCompletedSinceWeed)/\(gardenStore.habitsRequiredForCurrentWeed)")
                                             .font(.system(size: 16, weight: .black, design: .rounded))
 
                                         Rectangle()

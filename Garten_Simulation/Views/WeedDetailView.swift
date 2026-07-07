@@ -88,7 +88,7 @@ struct WeedDetailView: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 16, height: 16)
-                                    Text("\(gardenStore.weedRemovalCost)")
+                                    Text(verbatim: "\(gardenStore.weedRemovalCost)")
                                         .font(.system(size: 15, weight: .black))
                                 }
                             }
@@ -268,7 +268,7 @@ struct WeedDetailView: View {
                                 .foregroundStyle(.white)
                                 .offset(y: 2)
                         } else {
-                            Text("\(index + 1)")
+                            Text(verbatim: "\(index + 1)")
                                 .font(.system(size: 18, weight: .bold))
                                 .foregroundStyle(.white.opacity(0.6))
                         }

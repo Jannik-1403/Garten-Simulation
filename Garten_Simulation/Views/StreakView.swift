@@ -47,7 +47,7 @@ struct StreakView: View {
                             .shadow(color: .orangePrimary.opacity(0.3), radius: 30)
                         
                         VStack(spacing: 0) {
-                            Text("\(selectedPlant?.streak ?? streakStore.currentStreak)")
+                            Text(verbatim: "\(selectedPlant?.streak ?? streakStore.currentStreak)")
                                 .font(.system(size: 80, weight: .heavy, design: .rounded))
                                 .foregroundStyle(.orange)
                         }
@@ -205,7 +205,7 @@ struct StreakView: View {
                             let completedAmount = isWeekdayCompletedAmount(index)
                             if isCompleted {
                                 if isBadHabitMode {
-                                    Text("\(completedAmount)")
+                                    Text(verbatim: "\(completedAmount)")
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .foregroundStyle(.white)
                                 } else {
@@ -251,12 +251,12 @@ struct StreakView: View {
                                 let isFrozen = isDateFrozen(date)
                                 Button(action: {}) {
                                     if isBadHabitMode && isCompleted {
-                                        Text("\(completedAmount)")
+                                        Text(verbatim: "\(completedAmount)")
                                             .font(.system(size: 12, weight: .bold))
                                             .foregroundStyle(.white)
                                             .frame(width: 32, height: 32)
                                     } else {
-                                        Text("\(calendar.component(.day, from: date))")
+                                        Text(verbatim: "\(calendar.component(.day, from: date))")
                                             .font(.system(size: 12, weight: .bold))
                                             .foregroundStyle(isCompleted ? .white : .secondary)
                                             .frame(width: 32, height: 32)

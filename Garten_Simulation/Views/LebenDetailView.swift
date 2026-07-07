@@ -24,7 +24,7 @@ struct LebenDetailView: View {
                         }
                         
                         VStack(spacing: 4) {
-                            Text("\(gardenStore.leben) / 5")
+                            Text(verbatim: "\(gardenStore.leben) / 5")
                                 .font(.system(size: 48, weight: .bold, design: .rounded))
                             Text(String(localized: "leben.verbleibend"))
                                 .font(.headline)

@@ -450,3 +450,6 @@
 - Downloaded and applied authentic App Store icons for PartnerAppBoost
 - Improved 3D button styling in PartnerAppBoost to match Neo-Brutalism rules
 - **Partner Boost System**: Neue länderspezifische Architektur für Affiliate-Partner integriert. Finanzguru und Adidas für DE, BookBeat für DACH, Yazio und Freeletics global. UI-Komponente auf Neo-Brutalismus aktualisiert.
+- **Partner Boost Store**: Auf zweistufige Architektur umgestellt. Exaktes Template-Matching für Präzision und intelligenter Keyword-Parser als Fallback für benutzerdefinierte Gewohnheiten.
+
+- Fixed UI bug where `%lld` and `%@` placeholders were shown instead of values for variables like Streak by forcing verbatim text rendering in SwiftUI views.

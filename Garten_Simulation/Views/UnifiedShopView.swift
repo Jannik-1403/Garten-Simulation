@@ -77,7 +77,7 @@ struct ShopItemCard: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 20, height: 20)
-                                Text("\(original)")
+                                Text(verbatim: "\(original)")
                                     .strikethrough()
                                     .font(.system(size: 14, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)

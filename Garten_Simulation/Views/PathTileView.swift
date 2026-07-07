@@ -27,7 +27,7 @@ struct PathTileView: View {
 
                 // 2. DIE ZAHL (Nur anzeigen, wenn NICHT freigeschaltet)
                 if status == .nichtFreigeschalten {
-                    Text("\(dayNumber)")
+                    Text(verbatim: "\(dayNumber)")
                         .font(.system(size: 40, weight: .black, design: .rounded))
                         .foregroundColor(textColor)
                         .shadow(color: shadowColor, radius: 0, x: 0, y: 2)

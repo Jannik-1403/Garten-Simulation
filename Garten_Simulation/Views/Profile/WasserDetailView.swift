@@ -126,7 +126,7 @@ struct WasserRankingRow: View {
                     .fill(rank <= 3 ? rankColor : Color.secondary.opacity(0.3))
                     .frame(width: 32, height: 32)
                 
-                Text("\(rank)")
+                Text(verbatim: "\(rank)")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundStyle(rank <= 3 ? .white : .secondary)
             }

@@ -64,12 +64,12 @@ struct DailyWateringRingView: View {
                         .foregroundStyle(.secondary)
 
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        Text("\(count)")
+                        Text(verbatim: "\(count)")
                             .font(.system(size: 26, weight: .black, design: .rounded))
                             .foregroundStyle(.primary)
                             .contentTransition(.numericText())
 
-                        Text("/ \(total)")
+                        Text(verbatim: "/ \(total)")
                             .font(.system(size: 16, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                     }

@@ -364,7 +364,7 @@ struct CustomPlantCreationView: View {
                         showSeedInfo = true
                         FeedbackManager.shared.playTap()
                     } label: {
-                        Text("\(gardenStore.seeds)")
+                        Text(verbatim: "\(gardenStore.seeds)")
                             .font(.system(size: 17, weight: .black, design: .rounded))
                             .foregroundStyle(.black)
                     }

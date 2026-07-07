@@ -194,7 +194,7 @@ struct DragShieldToWeed: View {
                     .offset(y: -buttonDepth + faceY)
                     .transition(.scale(scale: 0.4).combined(with: .opacity))
             } else {
-                Text("\(index + 1)")
+                Text(verbatim: "\(index + 1)")
                     .font(.system(size: 28, weight: .black, design: .rounded))
                     .foregroundStyle(.white.opacity(highlighted ? 1 : 0.65))
                     .offset(y: -buttonDepth + faceY)

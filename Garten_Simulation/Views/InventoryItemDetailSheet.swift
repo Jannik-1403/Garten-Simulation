@@ -275,7 +275,7 @@ struct InventoryItemDetailSheet: View {
                                         .fill(Color.white)
                                         .frame(width: 38, height: 38)
 
-                                    Text("\(rCount)")
+                                    Text(verbatim: "\(rCount)")
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .foregroundStyle(Color.orangePrimary)
                                 } else {
@@ -364,7 +364,7 @@ struct InventoryItemDetailSheet: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 20)
-                    Text("\(total)")
+                    Text(verbatim: "\(total)")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                 }
                 Text(String(localized: "habit.stats.total").uppercased())
@@ -518,7 +518,7 @@ struct InventoryItemDetailSheet: View {
                                 HStack(spacing: 4) {
                                     Image("coin")
                                         .resizable().scaledToFit().frame(width: 14, height: 14)
-                                    Text("+\(sellPrice)")
+                                    Text(verbatim: "+\(sellPrice)")
                                         .font(.system(size: 14, weight: .black))
                                 }
                             }

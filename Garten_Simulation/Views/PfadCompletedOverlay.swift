@@ -52,7 +52,7 @@ struct PfadCompletedOverlay: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 24, height: 24)
-                                Text("+\(coinsEarned)")
+                                Text(verbatim: "+\(coinsEarned)")
                                     .font(.system(.title3, design: .rounded, weight: .black))
                                     .foregroundColor(Color(hex: "#FFD60A"))
                             }

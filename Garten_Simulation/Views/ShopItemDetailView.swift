@@ -124,7 +124,7 @@ struct ShopItemDetailView: View {
                                     Image("coin")
                                         .resizable().scaledToFit()
                                         .frame(width: 24, height: 24)
-                                    Text("\(payload.price)")
+                                    Text(verbatim: "\(payload.price)")
                                         .font(.system(size: 28, weight: .bold, design: .rounded))
                                         .foregroundStyle(Color.coinBlue)
                                     Spacer()
@@ -135,7 +135,7 @@ struct ShopItemDetailView: View {
                                         Image("coin")
                                             .resizable().scaledToFit()
                                             .frame(width: 14, height: 14)
-                                        Text("\(gardenStore.coins)")
+                                        Text(verbatim: "\(gardenStore.coins)")
                                             .font(.system(size: 13, weight: .semibold))
                                             .foregroundStyle(canAfford ? Color.coinBlue : .red)
                                             .contentTransition(.numericText(countsDown: true))
@@ -243,7 +243,7 @@ struct ShopItemDetailView: View {
                                             HStack(spacing: 4) {
                                                 Image("coin")
                                                     .resizable().scaledToFit().frame(width: 14, height: 14)
-                                                Text("+\(sellPrice)")
+                                                Text(verbatim: "+\(sellPrice)")
                                                     .font(.system(size: 14, weight: .black))
                                             }
                                         }

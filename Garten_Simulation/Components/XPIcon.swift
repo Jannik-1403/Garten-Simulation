@@ -10,7 +10,7 @@ struct XPIcon: View {
                 .scaledToFit()
                 .frame(width: 34, height: 34)
             
-            Text("\(wert)")
+            Text(verbatim: "\(wert)")
                 .font(.appStats)
                 .foregroundStyle(Color.blauPrimary)
         }

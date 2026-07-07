@@ -37,7 +37,7 @@ struct XPInfoSheet: View {
                                     .textCase(.uppercase)
                                 
                                 HStack(alignment: .lastTextBaseline, spacing: 8) {
-                                    Text("\(gardenStore.gesamtXP)")
+                                    Text(verbatim: "\(gardenStore.gesamtXP)")
                                         .font(.system(size: 48, weight: .black, design: .rounded))
                                         .foregroundStyle(Color(hex: "#D9A300")) // Dunkelgelb
                                     

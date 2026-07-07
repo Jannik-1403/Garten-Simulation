@@ -116,7 +116,7 @@ struct FitnessAssessmentQuizView: View {
             .padding(.top, 16)
 
             // Step Counter
-            Text("\(currentIndex + 1) / \(questions.count)")
+            Text(verbatim: "\(currentIndex + 1) / \(questions.count)")
                 .font(.system(size: 16, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .padding(.top, 14)

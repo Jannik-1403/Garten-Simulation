@@ -43,7 +43,7 @@ struct XPStatButton: View {
                 )
                 
                 VStack(spacing: 2) {
-                    Text("\(xp)")
+                    Text(verbatim: "\(xp)")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
                     Text(String(localized: "profile.xp.total"))
@@ -77,7 +77,7 @@ struct InventoryStatButton: View {
                         .font(.system(size: 13, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                     
-                    Text("\(count)")
+                    Text(verbatim: "\(count)")
                         .font(.system(size: 28, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
                 }
@@ -108,7 +108,7 @@ struct StreakStatButton: View {
                 )
                 
                 VStack(spacing: 2) {
-                    Text("\(bestStreak)")
+                    Text(verbatim: "\(bestStreak)")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
                     Text(String(localized: "profile.streak.best"))
@@ -138,7 +138,7 @@ struct ErfolgeStatButton: View {
                 )
                 
                 VStack(spacing: 2) {
-                    Text("\(count)")
+                    Text(verbatim: "\(count)")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
                     Text(String(localized: "profile.achievements"))
@@ -328,7 +328,7 @@ struct NameEditSheet: View {
                                 Text(String(localized: "igel_name_edit_button_free"))
                             } else {
                                 Image("coin").resizable().scaledToFit().frame(width: 22, height: 22)
-                                Text("\(cost)")
+                                Text(verbatim: "\(cost)")
                             }
                         }
                         .font(.headline)
@@ -609,7 +609,7 @@ struct StatisticsDashboard: View {
             // Large Value & Period
             VStack(alignment: .leading, spacing: 2) {
                 let currentScore = history.last?.count ?? 0
-                Text("\(currentScore)")
+                Text(verbatim: "\(currentScore)")
                     .font(.system(size: 32, weight: .black, design: .rounded))
                     .foregroundStyle(Color.gruenPrimary)
                 
@@ -929,7 +929,7 @@ struct StatisticsDashboard: View {
                                         .font(.system(size: 14, weight: .bold, design: .rounded))
                                     Spacer()
                                     if let next = habit.seltenheit.naechste {
-                                        Text("→ \(next.lokalisiertTitel)")
+                                        Text(verbatim: "→ \(next.lokalisiertTitel)")
                                             .font(.caption.weight(.semibold))
                                             .foregroundStyle(next.farbe)
                                     }
@@ -1006,7 +1006,7 @@ struct StatTile: View {
                     if delta != 0 {
                         HStack(spacing: 1) {
                             Image(systemName: delta > 0 ? "arrow.up.right" : "arrow.down.right")
-                            Text("\(abs(delta))")
+                            Text(verbatim: "\(abs(delta))")
                         }
                         .font(.system(size: 10, weight: .bold, design: .rounded))
                         .foregroundStyle(delta > 0 ? .green : .red)
@@ -1765,7 +1765,7 @@ struct StatDetailFullscreenView: View {
                                     .font(.system(size: 18, weight: .bold, design: .rounded))
                                 Spacer()
                                 if let next = habit.seltenheit.naechste {
-                                    Text("→ \(next.lokalisiertTitel)")
+                                    Text(verbatim: "→ \(next.lokalisiertTitel)")
                                         .font(.system(size: 14, weight: .semibold, design: .rounded))
                                         .foregroundStyle(next.farbe)
                                 }
@@ -1948,7 +1948,7 @@ struct StatDetailFullscreenView: View {
                     VStack(spacing: 8) {
                         HStack {
                             HStack(spacing: 10) {
-                                Text("\(index + 1).")
+                                Text(verbatim: "\(index + 1).")
                                     .font(.system(size: 14, weight: .bold, design: .rounded))
                                     .foregroundStyle(.secondary)
                                     .frame(width: 24, alignment: .trailing)
@@ -2144,7 +2144,7 @@ struct StatShareImage<Content: View>: View {
                     
                     Spacer()
                     
-                    Text("@\(username)")
+                    Text(verbatim: "@\(username)")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundColor(textColor.opacity(0.8))
                         .padding(.horizontal, 16)
@@ -2374,7 +2374,7 @@ struct SharePreviewSheet: View {
                     vibrantColor: .gruenPrimary
                 ) {
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("\(currentScore)")
+                        Text(verbatim: "\(currentScore)")
                             .font(.system(size: 32, weight: .black, design: .rounded))
                             .foregroundStyle(Color.gruenPrimary)
                         
@@ -2474,7 +2474,7 @@ struct SharePreviewSheet: View {
                     vibrantColor: .gruenPrimary
                 ) {
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("\(currentScore)")
+                        Text(verbatim: "\(currentScore)")
                             .font(.system(size: 32, weight: .black, design: .rounded))
                             .foregroundStyle(Color.gruenPrimary)
                         
@@ -2528,7 +2528,7 @@ struct SharePreviewSheet: View {
                     vibrantColor: .blauPrimary
                 ) {
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("\(currentScore)")
+                        Text(verbatim: "\(currentScore)")
                             .font(.system(size: 32, weight: .black, design: .rounded))
                             .foregroundStyle(Color.blauPrimary)
                         
@@ -2580,7 +2580,7 @@ struct SharePreviewSheet: View {
                     vibrantColor: .goldPrimary
                 ) {
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("\(currentScore)")
+                        Text(verbatim: "\(currentScore)")
                             .font(.system(size: 32, weight: .black, design: .rounded))
                             .foregroundStyle(Color.goldPrimary)
                         
@@ -2688,7 +2688,7 @@ struct SharePreviewSheet: View {
             VStack(spacing: 12) {
                 ForEach(Array(sortedTriggers.prefix(5).enumerated()), id: \.element.key) { index, item in
                     HStack {
-                        Text("\(index + 1).")
+                        Text(verbatim: "\(index + 1).")
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                             .frame(width: 24, alignment: .trailing)

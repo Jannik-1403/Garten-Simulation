@@ -33,7 +33,7 @@ struct DayPickerView: View {
                                 }
                             ) {
                                 VStack(spacing: 0) {
-                                    Text("\(dayNum)")
+                                    Text(verbatim: "\(dayNum)")
                                         .font(.system(size: 15, weight: .black, design: .rounded))
                                         .foregroundStyle(isSelected ? .white : (isErledigt ? .white : .black))
 
