@@ -332,7 +332,7 @@ struct PflanzeDetailSheet: View {
                     .id(TourStep.focusTimer)
 
                     // NEU: Habit Boost (Partner-Apps)
-                    if let boost = availableHabitBoosts.first(where: { $0.targetCategory == pflanze.habitCategory }) {
+                    if let boost = availableHabitBoosts.first(where: { $0.targetPlantIDs.contains(pflanze.plantID) }) {
                         HabitBoostCard(boost: boost)
                             .padding(.horizontal, 24)
                             .padding(.top, 16)
@@ -2283,7 +2283,7 @@ struct PDFExportShareSheet: UIViewControllerRepresentable {
 // MARK: - Habit Boosts
 struct PartnerAppBoost: Identifiable {
     let id = UUID()
-    let targetCategory: HabitCategory
+    let targetPlantIDs: [String]
     let appName: String
     let subtitleKey: String
     let iconName: String
@@ -2292,10 +2292,11 @@ struct PartnerAppBoost: Identifiable {
 }
 
 let availableHabitBoosts: [PartnerAppBoost] = [
-    PartnerAppBoost(targetCategory: .fitness, appName: "Hevy", subtitleKey: "boost.hevy.subtitle", iconName: "dumbbell.fill", url: "https://www.hevyapp.com", discountTextKey: "boost.hevy.discount"),
-    PartnerAppBoost(targetCategory: .growth, appName: "Blinkist", subtitleKey: "boost.blinkist.subtitle", iconName: "book.fill", url: "https://www.blinkist.com", discountTextKey: "boost.blinkist.discount"),
-    PartnerAppBoost(targetCategory: .mental, appName: "Headspace", subtitleKey: "boost.headspace.subtitle", iconName: "brain.head.profile", url: "https://www.headspace.com", discountTextKey: nil),
-    PartnerAppBoost(targetCategory: .finance, appName: "Duolingo", subtitleKey: "boost.duolingo.subtitle", iconName: "character.book.closed.fill", url: "https://www.duolingo.com", discountTextKey: nil)
+    PartnerAppBoost(targetPlantIDs: ["plant.bambus"], appName: "Hevy", subtitleKey: "boost.hevy.subtitle", iconName: "dumbbell.fill", url: "https://www.hevyapp.com", discountTextKey: "boost.hevy.discount"),
+    PartnerAppBoost(targetPlantIDs: ["plant.weizenfeld"], appName: "Blinkist", subtitleKey: "boost.blinkist.subtitle", iconName: "book.fill", url: "https://www.blinkist.com", discountTextKey: "boost.blinkist.discount"),
+    PartnerAppBoost(targetPlantIDs: ["plant.lotus", "plant.mystic_seed"], appName: "Headspace", subtitleKey: "boost.headspace.subtitle", iconName: "brain.head.profile", url: "https://www.headspace.com", discountTextKey: nil),
+    PartnerAppBoost(targetPlantIDs: ["plant.apfelbaum", "plant.erdbeerpflanze"], appName: "YAZIO", subtitleKey: "boost.yazio.subtitle", iconName: "fork.knife", url: "https://www.yazio.com", discountTextKey: "boost.yazio.discount"),
+    PartnerAppBoost(targetPlantIDs: ["plant.mandelbaum"], appName: "Finanzguru", subtitleKey: "boost.finanzguru.subtitle", iconName: "chart.line.uptrend.xyaxis", url: "https://finanzguru.de", discountTextKey: nil)
 ]
 
 struct HabitBoostCard: View {
