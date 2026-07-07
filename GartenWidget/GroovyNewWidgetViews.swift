@@ -347,8 +347,11 @@ struct StreakSmallWidgetView: View {
                 .padding(.top, 2)
                 .padding(.leading, 10)
                 
-            PNGImage("Igel-Streak")
+            Image(systemName: "target")
+                .resizable()
                 .scaledToFit()
+                .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.8))
+                .scaleEffect(2.2)
                 .frame(width: 160, height: 160)
                 .offset(x: 35, y: 30)
         }
@@ -568,70 +571,133 @@ struct LockScreenStreakWidgetView: View {
     }
 }
 
-// MARK: - INTERACTIVE HABITS WIDGET (Pro)
+// MARK: - INTERACTIVE ROUTINE WIDGET (Pro)
 struct InteractiveHabitsWidgetView: View {
-    let entry: GroovyStreakEntry
+    let entry: GroovyRoutineEntry
     
     var isPro: Bool {
         SharedUserDefaults.suite.bool(forKey: "isProUser_active") || SharedUserDefaults.suite.bool(forKey: "debug_isProUser")
     }
     
-    var unwateredPlants: [WidgetPlantData] {
-        let all = entry.appData?.plants ?? []
-        return all.filter { !$0.isWateredToday }
+    var routinePlants: [WidgetPlantData] {
+        guard let appData = entry.appData, let routine = entry.routine else { return [] }
+        guard let data = SharedUserDefaults.suite.data(forKey: "customRoutinesData"),
+              let routines = try? JSONDecoder().decode([WidgetRoutineUIData].self, from: data),
+              let fullRoutine = routines.first(where: { $0.id.uuidString == routine.id }) else {
+            return []
+        }
+        
+        let allPlants = appData.plants
+        let assigned = fullRoutine.assignedHabitIDs ?? []
+        let matched = allPlants.filter { assigned.contains($0.id) }
+        
+        return matched.sorted { p1, p2 in
+            let idx1 = assigned.firstIndex(of: p1.id) ?? Int.max
+            let idx2 = assigned.firstIndex(of: p2.id) ?? Int.max
+            return idx1 < idx2
+        }
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             if isPro {
-                Text(String(localized: "widget_interactive_habits_header", defaultValue: "Deine Pflanzen"))
-                    .font(.system(size: 14, weight: .black, design: .rounded))
-                    .foregroundStyle(.white)
-                
-                if unwateredPlants.isEmpty {
-                    VStack {
-                        Spacer()
-                        Text(String(localized: "widget_interactive_habits_empty", defaultValue: "Alles gegossen! 🎉"))
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundStyle(.white.opacity(0.8))
-                            .frame(maxWidth: .infinity, alignment: .center)
-                        Spacer()
+                if let routineEntity = entry.routine {
+                    HStack(spacing: 6) {
+                        Text(routineEntity.icon)
+                            .font(.system(size: 14))
+                        Text(String(localized: String.LocalizationValue(routineEntity.titleKey)))
+                            .font(.system(size: 14, weight: .black, design: .rounded))
                     }
-                } else {
-                    let plantsToShow = Array(unwateredPlants.prefix(3))
-                    VStack(spacing: 6) {
-                        ForEach(plantsToShow, id: \.id) { plant in
-                            HStack {
-                                Text(plant.name)
-                                    .font(.system(size: 14, weight: .bold))
-                                    .foregroundStyle(.white)
-                                    .lineLimit(1)
-                                
-                                Spacer()
-                                
-                                Button(intent: WaterPlantIntent(plant: PlantEntity(id: plant.id, name: plant.name, symbolName: plant.imageName))) {
-                                    Image(systemName: "drop.fill")
-                                        .font(.system(size: 14, weight: .bold))
-                                        .foregroundStyle(Color(red: 0.1, green: 0.5, blue: 0.9))
-                                        .padding(6)
-                                        .background(Circle().fill(Color.white))
+                    .foregroundStyle(DuoStyle.contentColor(for: entry.style))
+                    .padding(.bottom, 2)
+                    
+                    let plants = routinePlants
+                    if plants.isEmpty {
+                        VStack {
+                            Spacer()
+                            Text(String(localized: "widget_routine_empty", defaultValue: "Keine Aufgaben."))
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.8))
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            Spacer()
+                        }
+                    } else {
+                        // Taskito-Style Timeline
+                        VStack(alignment: .leading, spacing: 0) {
+                            ForEach(Array(plants.prefix(4).enumerated()), id: \.element.id) { index, plant in
+                                let isLast = index == min(plants.count - 1, 3)
+                                HStack(alignment: .top, spacing: 10) {
+                                    // Timeline Line and Dot
+                                    VStack(spacing: 0) {
+                                        ZStack {
+                                            Circle()
+                                                .strokeBorder(DuoStyle.contentColor(for: entry.style).opacity(plant.isWateredToday ? 0.3 : 1.0), lineWidth: 2)
+                                                .frame(width: 14, height: 14)
+                                                .background(Circle().fill(plant.isWateredToday ? DuoStyle.contentColor(for: entry.style).opacity(0.3) : Color.clear))
+                                            
+                                            if plant.isWateredToday {
+                                                Image(systemName: "checkmark")
+                                                    .font(.system(size: 8, weight: .black))
+                                                    .foregroundStyle(DuoStyle.contentColor(for: entry.style))
+                                            }
+                                        }
+                                        
+                                        if !isLast {
+                                            Rectangle()
+                                                .fill(DuoStyle.contentColor(for: entry.style).opacity(0.2))
+                                                .frame(width: 2)
+                                                .frame(maxHeight: .infinity)
+                                        }
+                                    }
+                                    .frame(width: 14)
+                                    
+                                    // Content
+                                    HStack {
+                                        Text(plant.name)
+                                            .font(.system(size: 13, weight: .bold))
+                                            .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(plant.isWateredToday ? 0.5 : 1.0))
+                                            .strikethrough(plant.isWateredToday)
+                                            .lineLimit(1)
+                                        
+                                        Spacer()
+                                        
+                                        if !plant.isWateredToday {
+                                            Button(intent: WaterPlantIntent(plant: PlantEntity(id: plant.id, name: plant.name, symbolName: plant.imageName))) {
+                                                Image(systemName: "circle")
+                                                    .font(.system(size: 14, weight: .bold))
+                                                    .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.3))
+                                            }
+                                            .buttonStyle(.plain)
+                                        }
+                                    }
+                                    .padding(.bottom, isLast ? 0 : 10)
                                 }
-                                .buttonStyle(.plain)
+                                .padding(.top, index == 0 ? 2 : 0)
                             }
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 6)
-                            .background(RoundedRectangle(cornerRadius: 12).fill(Color.white.opacity(0.2)))
                         }
                     }
+                } else {
+                    VStack(spacing: 8) {
+                        Spacer()
+                        Image(systemName: "list.bullet.circle.fill")
+                            .font(.system(size: 24))
+                            .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.8))
+                        Text(String(localized: "widget_routine_not_selected", defaultValue: "Routine auswählen (Widget bearbeiten)"))
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.8))
+                            .multilineTextAlignment(.center)
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             } else {
                 VStack(spacing: 12) {
                     Image(systemName: "lock.fill")
                         .font(.system(size: 28, weight: .bold))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(DuoStyle.contentColor(for: entry.style))
                     Text(String(localized: "widget_pro_required", defaultValue: "Pro-Version erforderlich"))
                         .font(.system(size: 14, weight: .bold))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(DuoStyle.contentColor(for: entry.style))
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }

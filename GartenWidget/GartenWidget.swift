@@ -98,18 +98,18 @@ struct GroovyLockScreenStreakWidget: Widget {
     }
 }
 
-// MARK: - INTERACTIVE HABITS WIDGET (Pro)
+// MARK: - INTERACTIVE ROUTINE WIDGET (Pro)
 struct GroovyInteractiveHabitsWidget: Widget {
     let kind = "GroovyInteractiveHabitsWidget"
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: SelectStreakIntent.self, provider: StreakSmallTimelineProvider()) { entry in
+        AppIntentConfiguration(kind: kind, intent: SelectRoutineIntent.self, provider: RoutineTimelineProvider()) { entry in
             InteractiveHabitsWidgetView(entry: entry)
                 .containerBackground(for: .widget) {
-                    DuoStyle.backgroundView(for: .colorful, defaultGradient: DuoStyle.blueGradient)
+                    DuoStyle.backgroundView(for: entry.style, defaultGradient: DuoStyle.blueGradient)
                 }
         }
-        .configurationDisplayName(String(localized: "widget_interactive_habits_title", defaultValue: "Pflanzen gießen (Pro)"))
-        .description(String(localized: "widget_interactive_habits_desc", defaultValue: "Gieße deine Pflanzen direkt vom Homescreen."))
+        .configurationDisplayName(String(localized: "widget_interactive_routine_title", defaultValue: "Routine (Pro)"))
+        .description(String(localized: "widget_interactive_routine_desc", defaultValue: "Erledige deine Routinen direkt vom Homescreen."))
         .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

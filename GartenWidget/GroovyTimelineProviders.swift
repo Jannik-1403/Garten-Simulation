@@ -108,3 +108,28 @@ struct StaticLockScreenProvider: TimelineProvider {
         completion(Timeline(entries: [entry], policy: .after(nextRefresh())))
     }
 }
+
+// MARK: - Routine Widget Provider (Interactive)
+struct GroovyRoutineEntry: TimelineEntry {
+    let date: Date
+    let appData: WidgetAppData?
+    let style: WidgetBackgroundStyle
+    let routine: RoutineEntity?
+}
+
+struct RoutineTimelineProvider: AppIntentTimelineProvider {
+    typealias Intent = SelectRoutineIntent
+    typealias Entry = GroovyRoutineEntry
+
+    func placeholder(in context: Context) -> GroovyRoutineEntry {
+        GroovyRoutineEntry(date: .now, appData: nil, style: .colorful, routine: nil)
+    }
+    func snapshot(for intent: SelectRoutineIntent, in context: Context) async -> GroovyRoutineEntry {
+        GroovyRoutineEntry(date: .now, appData: loadWidgetData(), style: intent.style, routine: intent.routine)
+    }
+    func timeline(for intent: SelectRoutineIntent, in context: Context) async -> Timeline<GroovyRoutineEntry> {
+        let entry = GroovyRoutineEntry(date: .now, appData: loadWidgetData(), style: intent.style, routine: intent.routine)
+        return Timeline(entries: [entry], policy: .after(nextRefresh()))
+    }
+}
+

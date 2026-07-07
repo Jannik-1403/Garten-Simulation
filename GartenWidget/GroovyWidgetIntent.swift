@@ -62,3 +62,69 @@ struct SelectHistoryIntent: WidgetConfigurationIntent {
 
     init() {}
 }
+
+// MARK: - Neu: Routine Auswahl
+
+enum WidgetRoutineFilterType: String, Codable {
+    case morning
+    case afternoon
+    case evening
+    case custom
+}
+
+struct WidgetRoutineUIData: Identifiable, Codable {
+    var id: UUID
+    var titleKey: String
+    var icon: String
+    var colorHex: String
+    var filterType: WidgetRoutineFilterType
+    var assignedHabitIDs: [String]?
+}
+
+struct RoutineEntity: AppEntity {
+    var id: String
+    var titleKey: String
+    var icon: String
+
+    static var typeDisplayRepresentation: TypeDisplayRepresentation = "Routine"
+    static var defaultQuery = RoutineEntityQuery()
+
+    var displayRepresentation: DisplayRepresentation {
+        DisplayRepresentation(title: "\(icon) \(String(localized: String.LocalizationValue(titleKey)))")
+    }
+}
+
+struct RoutineEntityQuery: EntityQuery {
+    func entities(for identifiers: [String]) async throws -> [RoutineEntity] {
+        let all = fetchAllRoutines()
+        return all.filter { identifiers.contains($0.id) }
+    }
+
+    func suggestedEntities() async throws -> [RoutineEntity] {
+        return fetchAllRoutines()
+    }
+    
+    private func fetchAllRoutines() -> [RoutineEntity] {
+        guard let data = SharedUserDefaults.suite.data(forKey: "customRoutinesData") else { return [] }
+        do {
+            let routines = try JSONDecoder().decode([WidgetRoutineUIData].self, from: data)
+            return routines.map { RoutineEntity(id: $0.id.uuidString, titleKey: $0.titleKey, icon: $0.icon) }
+        } catch {
+            return []
+        }
+    }
+}
+
+struct SelectRoutineIntent: WidgetConfigurationIntent {
+    static var title: LocalizedStringResource = "Routine-Widget anpassen"
+    static var description = IntentDescription("Wähle eine Routine und den Hintergrund.")
+
+    @Parameter(title: "Routine")
+    var routine: RoutineEntity?
+
+    @Parameter(title: "Hintergrund", default: .dark)
+    var style: WidgetBackgroundStyle
+
+    init() {}
+}
+
