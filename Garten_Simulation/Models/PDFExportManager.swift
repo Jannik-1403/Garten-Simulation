@@ -274,7 +274,7 @@ class PDFExportManager {
                 currentY += 20
                 drawText(String(localized: "export.routines.title", defaultValue: "Routinen", locale: locale), attributes: headerAttributes, yPos: &currentY, addSpace: 15)
                 
-                if let data = UserDefaults.standard.data(forKey: "customRoutinesData") {
+                if let data = SharedUserDefaults.suite.data(forKey: "customRoutinesData") {
                     struct MinimalRoutine: Codable {
                         var titleKey: String
                         var assignedHabitIDs: [String]

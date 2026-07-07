@@ -428,8 +428,8 @@ struct SettingsView: View {
             }
             .alert(String(localized: "settings.reset.final.title"), isPresented: $showFinalResetAlert) {
                 Button(String(localized: "settings.reset.confirm"), role: .destructive) {
-                    UserDefaults.standard.removeObject(forKey: "customRoutinesData")
-                    UserDefaults.standard.set(Data(), forKey: "customRoutinesData") // AppStorage sofort leeren
+                    SharedUserDefaults.suite.removeObject(forKey: "customRoutinesData")
+                    SharedUserDefaults.suite.set(Data(), forKey: "customRoutinesData") // AppStorage sofort leeren
                     settings.routineOnboardingAbgeschlossen = false
                     
                     gardenStore.resetAllData()

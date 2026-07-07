@@ -347,10 +347,8 @@ struct StreakSmallWidgetView: View {
                 .padding(.top, 2)
                 .padding(.leading, 10)
                 
-            Image(systemName: "target")
-                .resizable()
+            PNGImage("Goal")
                 .scaledToFit()
-                .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.8))
                 .scaleEffect(2.2)
                 .frame(width: 160, height: 160)
                 .offset(x: 35, y: 30)

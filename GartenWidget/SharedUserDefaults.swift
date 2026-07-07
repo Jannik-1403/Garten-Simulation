@@ -34,6 +34,16 @@ struct SharedUserDefaults {
         }
         
         shared.set(true, forKey: migrationKey)
+        
+        // Neu: customRoutinesData migrieren (falls noch nicht passiert)
+        let routineMigrationKey = "did_migrate_routines_to_app_group"
+        if !shared.bool(forKey: routineMigrationKey) {
+            if let value = standard.object(forKey: "customRoutinesData") {
+                shared.set(value, forKey: "customRoutinesData")
+            }
+            shared.set(true, forKey: routineMigrationKey)
+        }
+        
         shared.synchronize()
         print("✅ Migration to App Group successful.")
     }

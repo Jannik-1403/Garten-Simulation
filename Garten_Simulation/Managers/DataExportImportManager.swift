@@ -114,7 +114,7 @@ final class DataExportImportManager: ObservableObject {
         defer { isLoading = false }
         
         var customRoutines: [RoutineUIData]? = nil
-        if let customRoutinesData = UserDefaults.standard.data(forKey: "customRoutinesData") {
+        if let customRoutinesData = SharedUserDefaults.suite.data(forKey: "customRoutinesData") {
             customRoutines = try? JSONDecoder().decode([RoutineUIData].self, from: customRoutinesData)
         }
         
@@ -274,7 +274,7 @@ final class DataExportImportManager: ObservableObject {
         
         if let customRoutines = saveFile.customRoutines {
             if let encoded = try? JSONEncoder().encode(customRoutines) {
-                UserDefaults.standard.set(encoded, forKey: "customRoutinesData")
+                SharedUserDefaults.suite.set(encoded, forKey: "customRoutinesData")
             }
         }
         

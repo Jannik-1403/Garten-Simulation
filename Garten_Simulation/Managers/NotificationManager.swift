@@ -49,7 +49,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         
         // 1. Read routines to find overridden habits and schedule routine reminders
         var overriddenHabitIDs = Set<String>()
-        let customRoutinesData = UserDefaults.standard.data(forKey: "customRoutinesData") ?? Data()
+        let customRoutinesData = SharedUserDefaults.suite.data(forKey: "customRoutinesData") ?? Data()
         if let decodedRoutines = try? JSONDecoder().decode([RoutineUIData].self, from: customRoutinesData) {
             for routine in decodedRoutines {
                 if routine.reminderSchedule != nil || routine.reminderTime != nil {

@@ -55,7 +55,7 @@ struct RoutinenView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
     
-    @AppStorage("customRoutinesData") private var customRoutinesData: Data = Data()
+    @AppStorage("customRoutinesData", store: SharedUserDefaults.suite) private var customRoutinesData: Data = Data()
     
     @State private var routines: [RoutineUIData] = []
     

@@ -36,7 +36,7 @@ struct PflanzeDetailSheet: View {
     @ObservedObject private var healthManager = HealthManager.shared
     @FocusState private var isTargetFocused: Bool
     
-    @AppStorage("customRoutinesData") private var customRoutinesData: Data = Data()
+    @AppStorage("customRoutinesData", store: SharedUserDefaults.suite) private var customRoutinesData: Data = Data()
     
     private var parentRoutineWithReminder: RoutineUIData? {
         guard let routines = try? JSONDecoder().decode([RoutineUIData].self, from: customRoutinesData) else { return nil }
@@ -1053,7 +1053,7 @@ struct TimerEditSheetView: View {
 
     let daysKeys = ["days.monday", "days.tuesday", "days.wednesday", "days.thursday", "days.friday", "days.saturday", "days.sunday"]
     
-    @AppStorage("customRoutinesData") private var customRoutinesData: Data = Data()
+    @AppStorage("customRoutinesData", store: SharedUserDefaults.suite) private var customRoutinesData: Data = Data()
     
     private var parentRoutineWithReminder: RoutineUIData? {
         guard let routines = try? JSONDecoder().decode([RoutineUIData].self, from: customRoutinesData) else { return nil }

@@ -57,7 +57,7 @@ struct PlantTimelineView: View {
 
     var onClose: (() -> Void)? = nil
 
-    @AppStorage("customRoutinesData") private var customRoutinesData: Data = Data()
+    @AppStorage("customRoutinesData", store: SharedUserDefaults.suite) private var customRoutinesData: Data = Data()
     
     enum TimelineItem: Identifiable {
         case routine(RoutineUIData, time: Date, plants: [HabitModel])
