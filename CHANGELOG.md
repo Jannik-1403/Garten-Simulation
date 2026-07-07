@@ -1,3 +1,4 @@
+- Architecture: HabitBoost-Zuweisung von der harten Asset-ID (`plantID`) entkoppelt und sauber über die Domänen-Eigenschaft `HabitCategory` (z.B. `.fitness`) gematcht.
 - Refactor: Habit Boost (Partner-Apps) Datenstruktur in eine saubere Datei (Models/PartnerAppBoost.swift) ausgelagert.
 - Design: Padding des App-Store Buttons in der HabitBoostCard erhöht, um besser mit Icon und Text abzuschließen.
 - Design: HabitBoostCard Button in App Store Blue geändert und Kontraste/Umrandungen des App-Icons verstärkt.

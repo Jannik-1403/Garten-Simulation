@@ -139,10 +139,7 @@ struct UnifiedShopView: View {
         if !searchText.isEmpty {
             base = base.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
-        // Filter nach Besitz (Level Filter entfernt)
-        return base.filter { 
-            !shopStore.isPurchased($0.id) 
-        }
+        return base
     }
 
     var gefilterteDekorationen: [DecorationItem] {
@@ -154,7 +151,7 @@ struct UnifiedShopView: View {
 
             base = base.filter { NSLocalizedString(settings.showHabitInsteadOfName ? $0.habitNameKey : $0.objectNameKey, comment: "").localizedCaseInsensitiveContains(searchText) }
         }
-        return base.filter { !shopStore.isPurchased($0.id) }
+        return base
     }
 
     var gefiltertePowerUps: [PowerUpItem] {
