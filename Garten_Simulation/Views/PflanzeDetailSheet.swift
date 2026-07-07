@@ -2358,7 +2358,7 @@ struct HabitBoostCard: View {
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .medium, fillWidth: true,
-                backgroundColor: Color.blauPrimary, shadowColor: Color.blauPrimary.darker(), foregroundColor: .white
+                backgroundColor: Color.blauSecondary, shadowColor: Color.blauSecondary.darker(), foregroundColor: .white
             ))
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
