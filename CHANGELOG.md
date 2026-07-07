@@ -449,3 +449,4 @@
 - Updated Shop item badge color to correctly show green
 - Downloaded and applied authentic App Store icons for PartnerAppBoost
 - Improved 3D button styling in PartnerAppBoost to match Neo-Brutalism rules
+- **Partner Boost System**: Neue länderspezifische Architektur für Affiliate-Partner integriert. Finanzguru und Adidas für DE, BookBeat für DACH, Yazio und Freeletics global. UI-Komponente auf Neo-Brutalismus aktualisiert.
