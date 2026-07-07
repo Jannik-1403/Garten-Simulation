@@ -1,3 +1,4 @@
+- Design: Padding des App-Store Buttons in der HabitBoostCard erhöht, um besser mit Icon und Text abzuschließen.
 - Design: HabitBoostCard Button in App Store Blue geändert und Kontraste/Umrandungen des App-Icons verstärkt.
 - Design: HabitBoostCard an das Neo-Brutalisme 3D Design angepasst und Ad-Button farblich dezentriert.
 - UX & Tracking: Optische Trennung der Habit-Boost-Karte in der Detailansicht und privates lokales Klick-Tracking integriert.
