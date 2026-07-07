@@ -2292,11 +2292,11 @@ struct PartnerAppBoost: Identifiable {
 }
 
 let availableHabitBoosts: [PartnerAppBoost] = [
-    PartnerAppBoost(targetPlantIDs: ["plant.bambus"], appName: "Hevy", subtitleKey: "boost.hevy.subtitle", iconName: "dumbbell.fill", url: "https://www.hevyapp.com", discountTextKey: "boost.hevy.discount"),
-    PartnerAppBoost(targetPlantIDs: ["plant.weizenfeld"], appName: "Blinkist", subtitleKey: "boost.blinkist.subtitle", iconName: "book.fill", url: "https://www.blinkist.com", discountTextKey: "boost.blinkist.discount"),
-    PartnerAppBoost(targetPlantIDs: ["plant.lotus", "plant.mystic_seed"], appName: "Headspace", subtitleKey: "boost.headspace.subtitle", iconName: "brain.head.profile", url: "https://www.headspace.com", discountTextKey: nil),
-    PartnerAppBoost(targetPlantIDs: ["plant.apfelbaum", "plant.erdbeerpflanze"], appName: "YAZIO", subtitleKey: "boost.yazio.subtitle", iconName: "fork.knife", url: "https://www.yazio.com", discountTextKey: "boost.yazio.discount"),
-    PartnerAppBoost(targetPlantIDs: ["plant.mandelbaum"], appName: "Finanzguru", subtitleKey: "boost.finanzguru.subtitle", iconName: "chart.line.uptrend.xyaxis", url: "https://finanzguru.de", discountTextKey: nil)
+    PartnerAppBoost(targetPlantIDs: ["plant.bambus"], appName: "Hevy", subtitleKey: "boost.hevy.subtitle", iconName: "icon_hevy", url: "https://www.hevyapp.com", discountTextKey: "boost.hevy.discount"),
+    PartnerAppBoost(targetPlantIDs: ["plant.weizenfeld"], appName: "Blinkist", subtitleKey: "boost.blinkist.subtitle", iconName: "icon_blinkist", url: "https://www.blinkist.com", discountTextKey: "boost.blinkist.discount"),
+    PartnerAppBoost(targetPlantIDs: ["plant.lotus", "plant.mystic_seed"], appName: "Headspace", subtitleKey: "boost.headspace.subtitle", iconName: "icon_headspace", url: "https://www.headspace.com", discountTextKey: nil),
+    PartnerAppBoost(targetPlantIDs: ["plant.apfelbaum", "plant.erdbeerpflanze"], appName: "YAZIO", subtitleKey: "boost.yazio.subtitle", iconName: "icon_yazio", url: "https://www.yazio.com", discountTextKey: "boost.yazio.discount"),
+    PartnerAppBoost(targetPlantIDs: ["plant.mandelbaum"], appName: "Finanzguru", subtitleKey: "boost.finanzguru.subtitle", iconName: "icon_finanzguru", url: "https://finanzguru.de", discountTextKey: nil)
 ]
 
 struct HabitBoostCard: View {
@@ -2319,15 +2319,12 @@ struct HabitBoostCard: View {
             
             HStack(spacing: 16) {
                 // Icon
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16, style: .continuous)
-                        .fill(Color.orangePrimary.opacity(0.15))
-                        .frame(width: 60, height: 60)
-                    
-                    Image(systemName: boost.iconName)
-                        .font(.system(size: 28, weight: .semibold))
-                        .foregroundStyle(Color.orangePrimary)
-                }
+                Image(boost.iconName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 60, height: 60)
+                    .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                    .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(boost.appName)
@@ -2336,7 +2333,8 @@ struct HabitBoostCard: View {
                     Text(String(localized: String.LocalizationValue(boost.subtitleKey)))
                         .font(.system(size: 14, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
-                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .lineLimit(3)
                     
                     if let discountKey = boost.discountTextKey {
                         Text(String(localized: String.LocalizationValue(discountKey)))
@@ -2348,7 +2346,7 @@ struct HabitBoostCard: View {
                 Spacer()
             }
             .padding(.horizontal, 16)
-            .padding(.bottom, 12)
+            .padding(.bottom, 16)
             
             // Action Button
             Button {
@@ -2356,16 +2354,20 @@ struct HabitBoostCard: View {
                     openURL(url)
                 }
             } label: {
-                HStack {
-                    Spacer()
-                    Text(String(localized: "boost.button", defaultValue: "App ansehen"))
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                    Spacer()
+                ZStack {
+                    Text(String(localized: "boost.button", defaultValue: "App ansehen")).textCase(.uppercase)
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
                 }
-                .padding(.vertical, 14)
-                .background(Color.orangePrimary)
-                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .frame(height: 24)
+                .clipped()
             }
+            .buttonStyle(DuolingoButtonStyle(
+                size: .medium, fillWidth: true,
+                backgroundColor: .blauPrimary, shadowColor: .blauPrimary.darker(), foregroundColor: .white
+            ))
+            .padding(.horizontal, 16)
+            .padding(.bottom, 16)
         }
         .background(Color(UIColor.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
