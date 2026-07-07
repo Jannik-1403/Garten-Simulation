@@ -445,3 +445,7 @@
 - **UI Anpassung**: Den Untertitel im `WetterBanner` komplett entfernt, sodass ab sofort nur noch der Titel des Wetter-Events angezeigt wird (in allen Sprachen). Das löst auch endgültig das Platzproblem für längere Sprachen wie Russisch.
 - **Shop:** Der Scroll-to-Top Button funktioniert nun zuverlässig, auch während die Liste noch scrollt.
 - **Shop:** Der Scroll-to-Top Button löst nun bei Berührung aus (Touch-Down), um zu verhindern, dass die Geste während einer laufenden Scroll-Animation abgebrochen wird.
+- Fixed Shop Reset bug where purchases persisted due to missing UserDefaults synchronization
+- Updated Shop item badge color to correctly show green
+- Downloaded and applied authentic App Store icons for PartnerAppBoost
+- Improved 3D button styling in PartnerAppBoost to match Neo-Brutalism rules
