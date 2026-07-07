@@ -40,19 +40,25 @@ class PDFExportManager {
         
         let data = renderer.pdfData { (context) in
             context.beginPage()
+            UIColor.white.setFill()
+            context.cgContext.fill(pageRect)
             
             // Reusable Attributes
             let headerAttributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 22, weight: .bold)
+                .font: UIFont.systemFont(ofSize: 22, weight: .bold),
+                .foregroundColor: UIColor.black
             ]
             let subheaderAttributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 18, weight: .semibold)
+                .font: UIFont.systemFont(ofSize: 18, weight: .semibold),
+                .foregroundColor: UIColor.black
             ]
             let textAttributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 14, weight: .regular)
+                .font: UIFont.systemFont(ofSize: 14, weight: .regular),
+                .foregroundColor: UIColor.black
             ]
             let boldTextAttributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 14, weight: .bold)
+                .font: UIFont.systemFont(ofSize: 14, weight: .bold),
+                .foregroundColor: UIColor.black
             ]
             
             var currentY: CGFloat = 40.0
@@ -71,6 +77,8 @@ class PDFExportManager {
                 
                 if yPos > pageHeight - 50 {
                     context.beginPage()
+                    UIColor.white.setFill()
+                    context.cgContext.fill(pageRect)
                     yPos = 40.0
                 }
             }
@@ -351,23 +359,31 @@ class PDFExportManager {
         let data = renderer.pdfData { (context) in
             context.beginPage()
             
+            // Explicitly fill background with white to prevent dark mode transparency issues
+            UIColor.white.setFill()
+            context.cgContext.fill(pageRect)
+            
             var currentY: CGFloat = 40.0
             
             let titleAttributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 24, weight: .bold)
+                .font: UIFont.systemFont(ofSize: 24, weight: .bold),
+                .foregroundColor: UIColor.black
             ]
             let subtitleAttributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-                .foregroundColor: UIColor.gray
+                .foregroundColor: UIColor.darkGray
             ]
             let sectionHeaderAttributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 16, weight: .bold)
+                .font: UIFont.systemFont(ofSize: 16, weight: .bold),
+                .foregroundColor: UIColor.black
             ]
             let boldTextAttributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 12, weight: .bold)
+                .font: UIFont.systemFont(ofSize: 12, weight: .bold),
+                .foregroundColor: UIColor.black
             ]
             let bodyTextAttributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 12, weight: .regular)
+                .font: UIFont.systemFont(ofSize: 12, weight: .regular),
+                .foregroundColor: UIColor.black
             ]
             
             func drawText(_ text: String, attributes: [NSAttributedString.Key: Any], yPos: inout CGFloat, offset: CGFloat = 15, addSpace: CGFloat = 0) {
@@ -383,6 +399,8 @@ class PDFExportManager {
                 
                 if yPos > pageHeight - 50 {
                     context.beginPage()
+                    UIColor.white.setFill()
+                    context.cgContext.fill(pageRect)
                     yPos = 40.0
                 }
             }
