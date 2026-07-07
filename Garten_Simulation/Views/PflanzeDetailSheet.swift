@@ -2385,7 +2385,7 @@ struct HabitBoostCard: View {
                 size: .medium, fillWidth: true,
                 backgroundColor: Color(UIColor.systemBlue), shadowColor: Color(UIColor.systemBlue).opacity(0.5), foregroundColor: .white
             ))
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 24)
             .padding(.bottom, 16)
         }
         .background(Color(UIColor.systemBackground))
