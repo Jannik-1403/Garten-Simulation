@@ -9,6 +9,11 @@ struct GroovyWidgetBundle: WidgetBundle {
         GroovyStreakWidget()
         GroovyVerlaufMediumWidget()
         GroovyVerlaufLargeWidget()
+        // Lock Screen (Pro)
+        GroovyLockScreenStreakWidget()
+        
+        // Interactive (Pro)
+        GroovyInteractiveHabitsWidget()
         
         // Live Activities:
         FocusTimerLiveActivity()
@@ -77,5 +82,34 @@ struct GroovyVerlaufLargeWidget: Widget {
         .configurationDisplayName(String(localized: "widget_verlauf_month_title", defaultValue: "Monatsverlauf"))
         .description(String(localized: "widget_verlauf_month_description", defaultValue: "Dein gesamter Monat auf einen Blick."))
         .supportedFamilies([.systemLarge])
+    }
+}
+
+// MARK: - LOCK SCREEN: Streak Widget (Pro)
+struct GroovyLockScreenStreakWidget: Widget {
+    let kind = "GroovyLockScreenStreakWidget"
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: kind, intent: SelectStreakIntent.self, provider: StreakSmallTimelineProvider()) { entry in
+            LockScreenStreakWidgetView(entry: entry)
+        }
+        .configurationDisplayName(String(localized: "widget_lock_streak_title", defaultValue: "Streak (Pro)"))
+        .description(String(localized: "widget_lock_streak_desc", defaultValue: "Dein aktueller Streak auf dem Sperrbildschirm."))
+        .supportedFamilies([.accessoryCircular, .accessoryRectangular])
+    }
+}
+
+// MARK: - INTERACTIVE HABITS WIDGET (Pro)
+struct GroovyInteractiveHabitsWidget: Widget {
+    let kind = "GroovyInteractiveHabitsWidget"
+    var body: some WidgetConfiguration {
+        AppIntentConfiguration(kind: kind, intent: SelectStreakIntent.self, provider: StreakSmallTimelineProvider()) { entry in
+            InteractiveHabitsWidgetView(entry: entry)
+                .containerBackground(for: .widget) {
+                    DuoStyle.backgroundView(for: .colorful, defaultGradient: DuoStyle.blueGradient)
+                }
+        }
+        .configurationDisplayName(String(localized: "widget_interactive_habits_title", defaultValue: "Pflanzen gießen (Pro)"))
+        .description(String(localized: "widget_interactive_habits_desc", defaultValue: "Gieße deine Pflanzen direkt vom Homescreen."))
+        .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

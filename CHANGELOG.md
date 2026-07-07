@@ -1,3 +1,8 @@
+- Feature: Interaktive Pro-Widgets (Homescreen) zum direkten Gießen und Lock-Screen Streak-Widget hinzugefügt.
+## 2026-07-07 08:18:18 - Pro Abo Test in Developer Settings
+- Button zum Kündigen des Pro-Abos zu den Developer Settings hinzugefügt.
+- String für Button-Label in 11 Sprachen übersetzt und zu Localizable.xcstrings hinzugefügt.
+
 - Glücksrad: Belohnungen und Pop-Up-Texte an die angezeigten Zahlen auf dem Rad (10, 25, 50, 150) angepasst.
 ## [2026-07-06] - Shop & UI Updates
 
@@ -426,3 +431,4 @@
 - **Bugfixes Xcode Warnings**: Behoben: Einen verwaisten Key (`pro_bonus_text`) aus `Localizable.xcstrings` entfernt, der im Swift-Code nicht mehr verwendet wurde, um die "References to this key could not be found" Warnung zu beseitigen.
 - **UI Bugfixes**: Behoben: Das Text-Layout im `WetterBanner` (Wetter-Button auf der Gartenseite) ragte bei der russischen Sprache über den 3D-Button hinaus. Die minimale Skalierung (`minimumScaleFactor`) wurde von 0.8 auf 0.4 verkleinert, sodass auch lange Übersetzungen problemlos in die vorgegebene Box passen, ohne abgeschnitten zu werden oder überzulaufen.
 - **UI Anpassung**: Den Untertitel im `WetterBanner` komplett entfernt, sodass ab sofort nur noch der Titel des Wetter-Events angezeigt wird (in allen Sprachen). Das löst auch endgültig das Platzproblem für längere Sprachen wie Russisch.
+- **Shop:** Der Scroll-to-Top Button funktioniert nun zuverlässig, auch während die Liste noch scrollt.

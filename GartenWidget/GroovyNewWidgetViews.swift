@@ -1,5 +1,6 @@
 import SwiftUI
 import WidgetKit
+import AppIntents
 
 private let mlPerWatering: Int = 300
 
@@ -537,35 +538,104 @@ struct VerlaufLargeWidgetView: View {
 struct LockScreenStreakWidgetView: View {
     let entry: GroovyStreakEntry
     var streak: Int { entry.appData?.totalStreak ?? 0 }
+    
+    var isPro: Bool {
+        SharedUserDefaults.suite.bool(forKey: "isProUser_active") || SharedUserDefaults.suite.bool(forKey: "debug_isProUser")
+    }
 
     var body: some View {
         ZStack {
             if #available(iOSApplicationExtension 16.0, *) {
                 AccessoryWidgetBackground()
             }
-            VStack(spacing: 0) {
-                Image(systemName: "flame.fill")
-                    .font(.system(size: 16, weight: .bold))
-                Text("\(streak)")
-                    .font(.system(size: 18, weight: .black, design: .rounded))
+            if isPro {
+                VStack(spacing: 0) {
+                    Image(systemName: "flame.fill")
+                        .font(.system(size: 16, weight: .bold))
+                    Text("\(streak)")
+                        .font(.system(size: 18, weight: .black, design: .rounded))
+                }
+            } else {
+                VStack(spacing: 2) {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 16, weight: .bold))
+                    Text("PRO")
+                        .font(.system(size: 10, weight: .black))
+                }
             }
         }
         .widgetURL(URL(string: "grovy://streak"))
     }
 }
 
-// MARK: - LOCK SCREEN: Timer Widget
-struct LockScreenTimerWidgetView: View {
+// MARK: - INTERACTIVE HABITS WIDGET (Pro)
+struct InteractiveHabitsWidgetView: View {
     let entry: GroovyStreakEntry
-
+    
+    var isPro: Bool {
+        SharedUserDefaults.suite.bool(forKey: "isProUser_active") || SharedUserDefaults.suite.bool(forKey: "debug_isProUser")
+    }
+    
+    var unwateredPlants: [WidgetPlantData] {
+        let all = entry.appData?.plants ?? []
+        return all.filter { !$0.isWateredToday }
+    }
+    
     var body: some View {
-        ZStack {
-            if #available(iOSApplicationExtension 16.0, *) {
-                AccessoryWidgetBackground()
+        VStack(alignment: .leading, spacing: 8) {
+            if isPro {
+                Text(String(localized: "widget_interactive_habits_header", defaultValue: "Deine Pflanzen"))
+                    .font(.system(size: 14, weight: .black, design: .rounded))
+                    .foregroundStyle(.white)
+                
+                if unwateredPlants.isEmpty {
+                    VStack {
+                        Spacer()
+                        Text(String(localized: "widget_interactive_habits_empty", defaultValue: "Alles gegossen! 🎉"))
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundStyle(.white.opacity(0.8))
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        Spacer()
+                    }
+                } else {
+                    let plantsToShow = Array(unwateredPlants.prefix(3))
+                    VStack(spacing: 6) {
+                        ForEach(plantsToShow, id: \.id) { plant in
+                            HStack {
+                                Text(plant.name)
+                                    .font(.system(size: 14, weight: .bold))
+                                    .foregroundStyle(.white)
+                                    .lineLimit(1)
+                                
+                                Spacer()
+                                
+                                Button(intent: WaterPlantIntent(plant: PlantEntity(id: plant.id, name: plant.name, symbolName: plant.imageName))) {
+                                    Image(systemName: "drop.fill")
+                                        .font(.system(size: 14, weight: .bold))
+                                        .foregroundStyle(Color(red: 0.1, green: 0.5, blue: 0.9))
+                                        .padding(6)
+                                        .background(Circle().fill(Color.white))
+                                }
+                                .buttonStyle(.plain)
+                            }
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
+                            .background(RoundedRectangle(cornerRadius: 12).fill(Color.white.opacity(0.2)))
+                        }
+                    }
+                }
+            } else {
+                VStack(spacing: 12) {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundStyle(.white)
+                    Text(String(localized: "widget_pro_required", defaultValue: "Pro-Version erforderlich"))
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundStyle(.white)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            Image(systemName: "timer")
-                .font(.system(size: 30, weight: .bold))
         }
-        .widgetURL(URL(string: "grovy://timer"))
+        .padding(14)
     }
 }

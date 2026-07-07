@@ -121,6 +121,7 @@ final class IAPStore: ObservableObject {
                 } else if product.id == "com.gartenapp.pro.lifetime" {
                     self.isProUser = true
                     UserDefaults.standard.set(true, forKey: "isProUser_active")
+                    UserDefaults(suiteName: "group.com.jannik.grovy")?.set(true, forKey: "isProUser_active")
                     UserDefaults.standard.synchronize()
                 }
                 await transaction.finish()
@@ -195,6 +196,7 @@ final class IAPStore: ObservableObject {
             self.isProUser = hasPro
             #endif
             UserDefaults.standard.set(self.isProUser, forKey: "isProUser_active")
+            UserDefaults(suiteName: "group.com.jannik.grovy")?.set(self.isProUser, forKey: "isProUser_active")
             UserDefaults.standard.synchronize()
         }
     }
@@ -216,8 +218,10 @@ final class IAPStore: ObservableObject {
     func revokePro() {
         self.isProUser = false
         UserDefaults.standard.set(false, forKey: "isProUser_active")
+        UserDefaults(suiteName: "group.com.jannik.grovy")?.set(false, forKey: "isProUser_active")
         #if DEBUG
         UserDefaults.standard.set(false, forKey: "debug_isProUser")
+        UserDefaults(suiteName: "group.com.jannik.grovy")?.set(false, forKey: "debug_isProUser")
         #endif
         UserDefaults.standard.synchronize()
     }
