@@ -2313,8 +2313,8 @@ struct HabitBoostCard: View {
         ZStack {
             // Shadow Edge (Bottom) - Neo-Brutalism Style
             RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .fill(Color(UIColor.systemGray5))
-                .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+                .fill(Color(UIColor.systemGray3))
+                .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).stroke(Color.black.opacity(0.2), lineWidth: 1))
                 .offset(y: 6)
                 
             VStack(spacing: 0) {
@@ -2337,7 +2337,7 @@ struct HabitBoostCard: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 60, height: 60)
                     .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-                    .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+                    .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).stroke(Color.black.opacity(0.2), lineWidth: 1))
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(boost.appName)
@@ -2383,7 +2383,7 @@ struct HabitBoostCard: View {
             }
             .buttonStyle(DuolingoButtonStyle(
                 size: .medium, fillWidth: true,
-                backgroundColor: Color(UIColor.systemGray), shadowColor: Color(UIColor.darkGray), foregroundColor: .white
+                backgroundColor: Color(UIColor.systemBlue), shadowColor: Color(UIColor.systemBlue).opacity(0.5), foregroundColor: .white
             ))
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
