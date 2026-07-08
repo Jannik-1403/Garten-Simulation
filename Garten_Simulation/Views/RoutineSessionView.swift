@@ -24,10 +24,14 @@ struct RoutineSessionView: View {
     @State private var totalXP: Int = 0
     
 
-    // Stopwatch
     @State private var elapsedSeconds: Int = 0
     @State private var isTimerRunning = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    // Screen Time Integration
+    @StateObject private var screenTimeManager = ScreenTimeManager.shared
+    @State private var showStrictModeAlert = false
+    @State private var showScreenTimePicker = false
     
     var timeString: String {
         let min = elapsedSeconds / 60
@@ -84,6 +88,42 @@ struct RoutineSessionView: View {
                     isTimerRunning = true
                 }
             }
+        }
+        .alert(String(localized: "alert.strict_mode.title"), isPresented: $showStrictModeAlert) {
+            Button(String(localized: "alert.strict_mode.no"), role: .destructive) {
+                screenTimeManager.blockAllApps()
+                startSession()
+            }
+            Button(String(localized: "alert.strict_mode.yes")) {
+                if screenTimeManager.isAuthorized {
+                    showScreenTimePicker = true
+                } else {
+                    Task {
+                        await screenTimeManager.requestAuthorization()
+                        showScreenTimePicker = screenTimeManager.isAuthorized
+                    }
+                }
+            }
+            Button(String(localized: "button.cancel"), role: .cancel) {
+                // Do nothing
+            }
+        } message: {
+            Text(String(localized: "alert.strict_mode.message"))
+        }
+        .familyActivityPicker(isPresented: $showScreenTimePicker, selection: $screenTimeManager.allowedSelection)
+        .onChange(of: showScreenTimePicker) { _, isOpen in
+            if !isOpen {
+                screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
+                startSession()
+            }
+        }
+    }
+    
+    private func startSession() {
+        withAnimation {
+            elapsedSeconds = 0
+            state = .running
+            isTimerRunning = true
         }
     }
     
@@ -145,12 +185,7 @@ struct RoutineSessionView: View {
                 groesse: 64,
                 isRectangular: true,
                 aktion: {
-                    withAnimation {
-                        elapsedSeconds = 0
-                        state = .running
-                        isTimerRunning = true
-                        ScreenTimeManager.shared.blockAllApps()
-                    }
+                    showStrictModeAlert = true
                 }
             ) {
                 Text(String(localized: "routine.session.start"))
