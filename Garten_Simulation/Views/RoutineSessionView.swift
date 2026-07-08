@@ -149,7 +149,7 @@ struct RoutineSessionView: View {
                         elapsedSeconds = 0
                         state = .running
                         isTimerRunning = true
-                        ScreenTimeManager.shared.blockApps()
+                        ScreenTimeManager.shared.blockAllApps()
                     }
                 }
             ) {
