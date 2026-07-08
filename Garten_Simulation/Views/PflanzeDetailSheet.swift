@@ -911,20 +911,7 @@ struct PflanzeDetailSheet: View {
             .environmentObject(settings)
         ) {
             VStack(spacing: 0) {
-                HStack(spacing: 8) {
-                    Image("Goal")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                    
-                    Text(String(localized: "plant.streak.current", defaultValue: "Deine aktuelle Garten Streak"))
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundStyle(.white)
-                    
-                    Spacer()
-                }
-                .padding(.horizontal, 16)
-                .padding(.top, 16)
+
 
                 PlantWeeklyStreakView(pflanze: pflanze)
                     .padding(.bottom, 16)
