@@ -463,3 +463,4 @@
 - Restored PNGImage for streak icons so they render correctly, and matched the small streak widget layout to the Water widget layout.
 - Moved the streak icon below the text in the small Streak widget for better layout.
 - Small streak widget now displays streak number and text side-by-side at the top with a larger centered icon.
+- Ersetzt: Pro-Icon in den Einstellungen durch das ProFeature-Bild (Größe 22)
