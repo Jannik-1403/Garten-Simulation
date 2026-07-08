@@ -456,3 +456,5 @@
 - Hinzugefügt: Navigation durch vergangene Zeiträume in allen Statistik-Ansichten (Tag, Monat, Jahr). Die Statistik-Karten berechnen nun die Werte basierend auf dem ausgewählten Enddatum.
 - Fix: Der PDF Export generiert keinen weißen Bildschirm mehr (Transparenz im Dark Mode behoben) und die Texte sind jetzt schwarz auf weißem Grund.
 - Widget: Das interaktive Routine-Widget (Pro) wurde implementiert (Timeline Layout, Farbanpassung).
+- Bugfix: Routine-Widget verlor Daten weil customRoutinesData nicht mit dem App Group Container synchronisiert wurde. Das wurde behoben.
+- Added Goal icon and 'Deine aktuelle Garten Streak' title to the Streak Card
