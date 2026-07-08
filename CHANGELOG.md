@@ -464,3 +464,4 @@
 - Moved the streak icon below the text in the small Streak widget for better layout.
 - Small streak widget now displays streak number and text side-by-side at the top with a larger centered icon.
 - Ersetzt: Pro-Icon in den Einstellungen durch das ProFeature-Bild (Größe 22)
+- Fix: Pro-Icon in den Einstellungen um 2.5x visuell vergrößert, ohne Layout zu verschieben, sowie den Farbverlauf am Rand dunkler und dezenter (weniger Gold) gemacht
