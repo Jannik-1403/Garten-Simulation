@@ -1784,33 +1784,27 @@ class GardenStore: ObservableObject {
     // MARK: - Screen Time Integration
     func checkScreenTimeExceeded() {
         let sharedDefaults = UserDefaults(suiteName: "group.com.jannik.grovy")
-        if sharedDefaults?.bool(forKey: "didExceedScreenTime") == true {
-            // Clear the flag
-            sharedDefaults?.set(false, forKey: "didExceedScreenTime")
-            sharedDefaults?.synchronize()
-            
-            let reason = sharedDefaults?.string(forKey: "screenTimeExceededReason") ?? "Unbekannt"
-            
-            // Look for existing habit
-            if let existing = pflanzen.first(where: { $0.id == "badhabit_screentime" || $0.name == "Zu viel Bildschirmzeit" }) {
-                triggerBadHabitExecution(habit: existing, trigger: reason)
-            } else {
-                // Buy or create it
-                var newBadHabit = HabitModel(
-                    id: "badhabit_screentime",
-                    name: "Zu viel Bildschirmzeit",
-                    baseEmoji: "📱",
-                    difficulty: .mittel,
-                    description: "Bildschirmzeit überschritten",
-                    habitCategory: .none,
-                    isBadHabit: true,
-                    badHabitCost: 50
-                )
-                newBadHabit.dateCreated = Date()
-                pflanzen.append(newBadHabit)
-                saveData()
-                triggerBadHabitExecution(habit: newBadHabit, trigger: reason)
+        guard sharedDefaults?.bool(forKey: "didExceedScreenTime") == true else { return }
+        
+        // Clear the flag immediately so we don't trigger twice
+        sharedDefaults?.set(false, forKey: "didExceedScreenTime")
+        sharedDefaults?.synchronize()
+        
+        let reason = sharedDefaults?.string(forKey: "screenTimeExceededReason") ?? "Bildschirmzeit-Limit überschritten"
+        let habitID = "trash.junk_mail_abo" // DecorationItem ID für "Zu viel Bildschirmzeit"
+        
+        // Kaufe die schlechte Gewohnheit, falls noch nicht vorhanden
+        let alreadyOwned = gekaufteItems.contains(where: { $0.id == habitID })
+                        || placedDecorations.contains(where: { $0.id == habitID })
+        
+        if !alreadyOwned {
+            if let decoration = GameDatabase.allDecorations.first(where: { $0.id == habitID }) {
+                let shopItem = ShopDetailPayload.from(decoration: decoration)
+                itemHinzufuegen(shopItem: shopItem, isFree: true)
             }
         }
+        
+        // Gewohnheit abgehakt: trackBadHabit, der Grund (z.B. meistgenutzte App) wird als Trigger gesetzt
+        trackBadHabit(id: habitID, penaltyCoins: 0, triggers: [reason])
     }
 }
