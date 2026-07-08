@@ -50,6 +50,7 @@ struct SettingsView: View {
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 22, height: 22)
+                                            .scaleEffect(2.5)
                                         
                                         VStack(alignment: .leading, spacing: 2) {
                                             Text(String(localized: "settings.pro.unlock", defaultValue: "Grovy Pro freischalten"))
@@ -662,7 +663,7 @@ struct ProUpgradeButtonStyle: ButtonStyle {
                 .overlay(
                     RoundedRectangle(cornerRadius: 16, style: .continuous)
                         .stroke(LinearGradient(
-                            colors: [Color.goldPrimary.opacity(0.5), Color.orangePrimary.opacity(0.2)],
+                            colors: [Color.white.opacity(0.1), Color.black.opacity(0.3)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ), lineWidth: 1)
