@@ -654,7 +654,7 @@ struct ProUpgradeButtonStyle: ButtonStyle {
             configuration.label
                 .background(
                     LinearGradient(
-                        colors: [Color.black.opacity(0.6), Color.black.opacity(0.8)],
+                        colors: [Color.black, Color(white: 0.08)],
                         startPoint: .leading,
                         endPoint: .trailing
                     ),
