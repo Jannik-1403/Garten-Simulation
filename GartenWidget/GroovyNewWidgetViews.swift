@@ -213,25 +213,25 @@ struct StreakSmallWidgetView: View {
     var streak: Int { entry.appData?.totalStreak ?? 0 }
 
     var body: some View {
-        VStack(spacing: 2) {
-            Text("\(streak)")
-                .font(.system(size: 34, weight: .black, design: .rounded))
-                .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
-                .minimumScaleFactor(0.5)
-                .lineLimit(1)
-
-            Text(String(localized: "widget_streak_days", defaultValue: "TAGE").uppercased())
-                .font(.system(size: 10, weight: .black))
-                .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.7))
-                .tracking(1.2)
-                .padding(.bottom, 2)
+        VStack(spacing: 8) {
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
+                Text("\(streak)")
+                    .font(.system(size: 38, weight: .black, design: .rounded))
+                Text(String(localized: "widget_streak_days", defaultValue: "TAGE").uppercased())
+                    .font(.system(size: 10, weight: .black))
+                    .opacity(0.7)
+            }
+            .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
             
             PNGImage("streak")
                 .scaledToFit()
-                .frame(width: 42, height: 42)
+                .frame(width: 65, height: 65)
+            
+            Spacer()
         }
-        .padding(12)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.top, 16)
+        .padding(.horizontal, 12)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .widgetURL(URL(string: "grovy://streak"))
     }
 }
