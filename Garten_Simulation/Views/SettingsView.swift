@@ -46,15 +46,10 @@ struct SettingsView: View {
                                     zeigePaywall = true
                                 } label: {
                                     HStack(spacing: 12) {
-                                        Image(systemName: "crown.fill")
-                                            .font(.system(size: 24))
-                                            .foregroundStyle(
-                                                LinearGradient(
-                                                    colors: [Color.goldPrimary, Color.orangePrimary],
-                                                    startPoint: .topLeading,
-                                                    endPoint: .bottomTrailing
-                                                )
-                                            )
+                                        Image("ProFeature")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 22, height: 22)
                                         
                                         VStack(alignment: .leading, spacing: 2) {
                                             Text(String(localized: "settings.pro.unlock", defaultValue: "Grovy Pro freischalten"))
