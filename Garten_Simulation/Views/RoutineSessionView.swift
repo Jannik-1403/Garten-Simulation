@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import FamilyControls
 
 enum RoutineSessionState {
     case intro
@@ -32,6 +33,7 @@ struct RoutineSessionView: View {
     @StateObject private var screenTimeManager = ScreenTimeManager.shared
     @State private var showStrictModeAlert = false
     @State private var showScreenTimePicker = false
+    @State private var showBlockNotice = false
     
     var timeString: String {
         let min = elapsedSeconds / 60
@@ -92,7 +94,7 @@ struct RoutineSessionView: View {
         .alert(String(localized: "alert.strict_mode.title"), isPresented: $showStrictModeAlert) {
             Button(String(localized: "alert.strict_mode.no"), role: .destructive) {
                 screenTimeManager.blockAllApps()
-                startSession()
+                showBlockNotice = true
             }
             Button(String(localized: "alert.strict_mode.yes")) {
                 if screenTimeManager.isAuthorized {
@@ -116,6 +118,13 @@ struct RoutineSessionView: View {
                 screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
                 startSession()
             }
+        }
+        .alert("Handy blockiert", isPresented: $showBlockNotice) {
+            Button("Verstanden", role: .cancel) {
+                startSession()
+            }
+        } message: {
+            Text("Alle ablenkenden Apps wurden über Screen Time für die Dauer der Routine blockiert.")
         }
     }
     
