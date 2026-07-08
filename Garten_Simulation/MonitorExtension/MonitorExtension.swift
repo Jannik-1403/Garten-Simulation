@@ -4,9 +4,6 @@ import Foundation
 
 class MonitorExtension: DeviceActivityMonitor {
     
-    // In order to share data between the extension and the main app, use App Groups
-    private let sharedUserDefaults = UserDefaults(suiteName: "group.com.jannik.grovy")
-    
     nonisolated override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
         // Reset the flag for the new day if needed
@@ -22,10 +19,11 @@ class MonitorExtension: DeviceActivityMonitor {
         
         // This is called when the user exceeds their screen time limit!
         if event.rawValue == "screenTimeLimit" {
-            // Signal the main app to buy the bad habit
-            sharedUserDefaults?.set(true, forKey: "didExceedScreenTime")
-            sharedUserDefaults?.set("Limit überschritten", forKey: "screenTimeExceededReason")
-            sharedUserDefaults?.synchronize()
+            // Create UserDefaults locally – avoids @MainActor isolation issues
+            let defaults = UserDefaults(suiteName: "group.com.jannik.grovy")
+            defaults?.set(true, forKey: "didExceedScreenTime")
+            defaults?.set("Limit überschritten", forKey: "screenTimeExceededReason")
+            defaults?.synchronize()
         }
     }
 }
