@@ -23,8 +23,6 @@ struct ProfilView: View {
     @EnvironmentObject var characterStore: CharacterStore
     @EnvironmentObject var tourManager: InteractiveTourManager
     @EnvironmentObject var assessmentStore: AssessmentStore
-    @EnvironmentObject var iapStore: IAPStore
-    @State private var showManageSubscriptions = false
     
     private var freigeschalteteErfolgeAnzahl: Int {
         achievementStore.alleErfolge.filter { $0.istFreigeschaltet }.count
@@ -61,35 +59,12 @@ struct ProfilView: View {
                             Button {
                                 zeigeNameEdit = true
                             } label: {
-                                HStack(spacing: 8) {
-                                    Text(settings.igelCustomization.name.isEmpty
-                                         ? String(localized: "igel_name_placeholder")
-                                         : settings.igelCustomization.name)
-                                        .font(.title2)
-                                        .fontWeight(.heavy)
-                                        .foregroundStyle(.primary)
-                                    
-                                    if iapStore.isProUser {
-                                        Button {
-                                            showManageSubscriptions = true
-                                        } label: {
-                                            HStack(spacing: 4) {
-                                                Image(systemName: "star.fill")
-                                                    .font(.system(size: 10))
-                                                Text("PRO")
-                                                    .font(.system(size: 12, weight: .black, design: .rounded))
-                                            }
-                                            .padding(.horizontal, 8)
-                                            .padding(.vertical, 4)
-                                            .background(
-                                                LinearGradient(colors: [.orange, .yellow], startPoint: .topLeading, endPoint: .bottomTrailing)
-                                            )
-                                            .foregroundStyle(.white)
-                                            .clipShape(Capsule())
-                                            .shadow(color: .orange.opacity(0.4), radius: 4, x: 0, y: 2)
-                                        }
-                                    }
-                                }
+                                Text(settings.igelCustomization.name.isEmpty
+                                     ? String(localized: "igel_name_placeholder")
+                                     : settings.igelCustomization.name)
+                                    .font(.title2)
+                                    .fontWeight(.heavy)
+                                    .foregroundStyle(.primary)
                             }
                             
                             Button {
@@ -247,7 +222,6 @@ struct ProfilView: View {
                     gardenStore.triggerWaterDetail = false
                 }
             }
-            .manageSubscriptionsSheet(isPresented: $showManageSubscriptions)
         }
     }
     

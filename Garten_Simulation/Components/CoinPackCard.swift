@@ -35,7 +35,7 @@ struct CoinPackCard: View {
                     .scaledToFit()
                     .frame(width: 44, height: 44)
                 
-                Text(verbatim: "+\(coinAmount)")
+                Text("+\(coinAmount) \(String(localized: "shop.coins", defaultValue: "Münzen"))")
                     .font(.system(size: 12, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.goldPrimary)
             }

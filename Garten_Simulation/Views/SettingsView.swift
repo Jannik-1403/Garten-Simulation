@@ -1,6 +1,7 @@
 import SwiftUI
 import UniformTypeIdentifiers
 import SwiftData
+import StoreKit
 
 struct SettingsView: View {
     @EnvironmentObject var settings: SettingsStore
@@ -30,18 +31,12 @@ struct SettingsView: View {
     private var aktuelleTierStufe: GartenTierStufe {
         GartenTierStufe.fuer(level: gardenStore.gartenStufe)
     }
-    
-    var body: some View {
-        ZStack {
-                Color.appHintergrund.ignoresSafeArea()
-                
-                ScrollView {
-                    VStack(spacing: 24) {
 
-                        // Sections
-                        VStack(spacing: 32) {
-                            // MARK: - Pro Upgrade
-                            if !iapStore.isProUser {
+    // MARK: - Sub-Views
+    @ViewBuilder
+    private var primarySettingsSections: some View {
+        // MARK: - Pro Upgrade
+                                if !iapStore.isProUser {
                                 Button {
                                     zeigePaywall = true
                                 } label: {
@@ -248,9 +243,11 @@ struct SettingsView: View {
                                         .padding(.bottom, 12)
                                 }
                             }
-
-                            
-                            settingsSection(title: String(localized: "settings.section.privacy")) {
+    }
+    
+    @ViewBuilder
+    private var secondarySettingsSections: some View {
+        settingsSection(title: String(localized: "settings.section.privacy")) {
                                 VStack(spacing: 0) {
                                     Button {
                                         if let url = URL(string: "https://shrouded-parka-be8.notion.site/Privacy-Policy-37dd74b814d28080acc3c9303df218c8") {
@@ -357,6 +354,31 @@ struct SettingsView: View {
                             }
                             .padding(.top, 16)
                             
+                            // MARK: - Manage Subscriptions
+                            if iapStore.isProUser && iapStore.activeProSubscriptionID != "com.jannik.grovy.pro.lifetime" {
+                                Button {
+                                    zeigePaywall = true
+                                } label: {
+                                    HStack(spacing: 8) {
+                                        Image(systemName: "star.fill")
+                                            .font(.system(size: 16))
+                                        Text(String(localized: "settings.manage_subscription", defaultValue: "Abo verwalten"))
+                                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    }
+                                    .foregroundStyle(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 14)
+                                }
+                                .buttonStyle(Item3DButtonStyle(
+                                    farbe: .blauPrimary,
+                                    sekundaerFarbe: .blauSecondary,
+                                    groesse: 50,
+                                    shadowDepthFactor: 0.1,
+                                    isRectangular: true
+                                ))
+                                .padding(.top, 8)
+                            }
+                            
                             // MARK: - Restore Purchases
                             Button(action: {
                                 Task {
@@ -408,6 +430,19 @@ struct SettingsView: View {
                             }
                             .padding(.top, 16)
                             #endif
+    }
+    
+    var body: some View {
+        ZStack {
+                Color.appHintergrund.ignoresSafeArea()
+                
+                ScrollView {
+                    VStack(spacing: 24) {
+
+                        // Sections
+                        VStack(spacing: 32) {
+                            primarySettingsSections
+                            secondarySettingsSections
                         }
                         .padding(.horizontal, 16)
                         .padding(.bottom, 40)

@@ -32,6 +32,7 @@ final class IAPStore: ObservableObject {
     @Published var purchaseError: String? = nil
     @Published var hasLoaded = false
     @Published var isProUser = false
+    @Published var activeProSubscriptionID: String? = nil
 
     // MARK: - Private
 
@@ -65,6 +66,7 @@ final class IAPStore: ObservableObject {
             let loaded = try await withThrowingTaskGroup(of: [Product].self) { group in
                 group.addTask {
                     print(" [IAPStore] Starte Product.products(for:) Anfrage...")
+                    print(" [IAPStore] ACHTUNG: Sende diese IDs an StoreKit: \(IAPStore.productIDs)")
                     let fetchedProducts = try await Product.products(for: IAPStore.productIDs)
                     print(" [IAPStore] Product.products(for:) erfolgreich zurückgekehrt!")
                     return fetchedProducts
@@ -122,7 +124,9 @@ final class IAPStore: ObservableObject {
                     characterStore?.unlockedGlasses = true
                 } else if product.id == "com.jannik.grovy.pro.lifetime" || product.id == "com.jannik.grovy.pro.monthly" || product.id == "com.jannik.grovy.pro.yearly" {
                     self.isProUser = true
+                    self.activeProSubscriptionID = product.id
                     UserDefaults.standard.set(true, forKey: "isProUser_active")
+                    UserDefaults.standard.set(product.id, forKey: "activeProSubscriptionID")
                     UserDefaults(suiteName: "group.com.jannik.grovy")?.set(true, forKey: "isProUser_active")
                     UserDefaults.standard.synchronize()
                 }
@@ -179,6 +183,15 @@ final class IAPStore: ObservableObject {
                 hasGlasses = true
             } else if transaction.productID == "com.jannik.grovy.pro.lifetime" || transaction.productID == "com.jannik.grovy.pro.monthly" || transaction.productID == "com.jannik.grovy.pro.yearly" {
                 hasPro = true
+                
+                // Keep the highest tier if multiple are active
+                if transaction.productID == "com.jannik.grovy.pro.lifetime" {
+                    self.activeProSubscriptionID = transaction.productID
+                } else if transaction.productID == "com.jannik.grovy.pro.yearly" && self.activeProSubscriptionID != "com.jannik.grovy.pro.lifetime" {
+                    self.activeProSubscriptionID = transaction.productID
+                } else if self.activeProSubscriptionID == nil {
+                    self.activeProSubscriptionID = transaction.productID
+                }
             }
         }
         
@@ -219,7 +232,9 @@ final class IAPStore: ObservableObject {
 
     func revokePro() {
         self.isProUser = false
+        self.activeProSubscriptionID = nil
         UserDefaults.standard.set(false, forKey: "isProUser_active")
+        UserDefaults.standard.removeObject(forKey: "activeProSubscriptionID")
         UserDefaults(suiteName: "group.com.jannik.grovy")?.set(false, forKey: "isProUser_active")
         #if DEBUG
         UserDefaults.standard.set(false, forKey: "debug_isProUser")

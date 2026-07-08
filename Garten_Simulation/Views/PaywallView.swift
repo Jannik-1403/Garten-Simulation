@@ -9,15 +9,18 @@ struct PaywallView: View {
     @State private var selectedProductId: String = "com.jannik.grovy.pro.yearly"
 
     var monthlyProduct: Product? {
-        iapStore.products.first(where: { $0.id == "com.jannik.grovy.pro.monthly" })
+        if iapStore.isProUser && iapStore.activeProSubscriptionID != nil { return nil }
+        return iapStore.products.first(where: { $0.id == "com.jannik.grovy.pro.monthly" })
     }
     
     var yearlyProduct: Product? {
-        iapStore.products.first(where: { $0.id == "com.jannik.grovy.pro.yearly" })
+        if iapStore.isProUser && (iapStore.activeProSubscriptionID == "com.jannik.grovy.pro.yearly" || iapStore.activeProSubscriptionID == "com.jannik.grovy.pro.lifetime") { return nil }
+        return iapStore.products.first(where: { $0.id == "com.jannik.grovy.pro.yearly" })
     }
     
     var lifetimeProduct: Product? {
-        iapStore.products.first(where: { $0.id == "com.jannik.grovy.pro.lifetime" })
+        if iapStore.isProUser && iapStore.activeProSubscriptionID == "com.jannik.grovy.pro.lifetime" { return nil }
+        return iapStore.products.first(where: { $0.id == "com.jannik.grovy.pro.lifetime" })
     }
     
     var body: some View {
