@@ -213,24 +213,25 @@ struct StreakSmallWidgetView: View {
     var streak: Int { entry.appData?.totalStreak ?? 0 }
 
     var body: some View {
-        ZStack {
-            Image("streak")
-                .resizable()
+        VStack(spacing: 2) {
+            PNGImage("streak")
                 .scaledToFit()
-                .frame(width: 90, height: 90)
+                .frame(width: 42, height: 42)
+                .padding(.bottom, 2)
+            
+            Text("\(streak)")
+                .font(.system(size: 34, weight: .black, design: .rounded))
+                .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
+                .minimumScaleFactor(0.5)
+                .lineLimit(1)
 
-            HStack(alignment: .firstTextBaseline, spacing: 4) {
-                Text("\(streak)")
-                    .font(.system(size: 38, weight: .black, design: .rounded))
-                Text(String(localized: "widget_streak_days", defaultValue: "TAGE").uppercased())
-                    .font(.system(size: 12, weight: .black))
-                    .opacity(0.7)
-            }
-            .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .padding(.top, 10)
-            .padding(.leading, 14)
+            Text(String(localized: "widget_streak_days", defaultValue: "TAGE").uppercased())
+                .font(.system(size: 10, weight: .black))
+                .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.7))
+                .tracking(1.2)
         }
+        .padding(12)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .widgetURL(URL(string: "grovy://streak"))
     }
 }
@@ -273,8 +274,7 @@ struct VerlaufMediumWidgetView: View {
                 }
                 Spacer()
                 HStack(spacing: 5) {
-                    Image("streak")
-                        .resizable()
+                    PNGImage("streak")
                         .scaledToFit()
                         .frame(width: 24, height: 24)
                     
@@ -368,8 +368,7 @@ struct VerlaufLargeWidgetView: View {
                 }
                 Spacer()
                 HStack(spacing: 6) {
-                    Image("streak")
-                        .resizable()
+                    PNGImage("streak")
                         .scaledToFit()
                         .frame(width: 26, height: 26)
                     
@@ -430,8 +429,7 @@ struct LockScreenStreakWidgetView: View {
             }
             if isPro {
                 VStack(spacing: 0) {
-                    Image("streak")
-                        .resizable()
+                    PNGImage("streak")
                         .scaledToFit()
                         .frame(width: 20, height: 20)
                     Text("\(streak)")
