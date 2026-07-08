@@ -150,6 +150,11 @@ struct FocusSessionPreparationStep: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
                 
+                if iconName == "Handy" {
+                    FocusScreenTimePickerView()
+                        .padding(.top, 8)
+                }
+                
                 if showTextInput {
                     VStack(spacing: 16) {
                         // Vorschläge Chips (ABOVE text input)

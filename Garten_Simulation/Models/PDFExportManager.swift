@@ -438,6 +438,30 @@ class PDFExportManager {
             for item in report.dailyHabitsCompleted {
                 drawText("  • " + String(format: String(localized: "export.pdf.report.daily_habit_item", defaultValue: "%@: %lld erledigt"), item.dayName, item.count), attributes: bodyTextAttributes, yPos: &currentY, offset: 6)
             }
+            
+            // 4. Machine Readable Data
+            currentY += 40
+            let rawDataAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 6, weight: .regular),
+                .foregroundColor: UIColor.systemGray5
+            ]
+            
+            let bestFocusDayIndex = report.dailyFocusMinutes.indices.max(by: { report.dailyFocusMinutes[$0].minutes < report.dailyFocusMinutes[$1].minutes }) ?? 0
+            let bestDayName = report.dailyFocusMinutes[bestFocusDayIndex].minutes > 0 ? report.dailyFocusMinutes[bestFocusDayIndex].dayName : "none"
+            
+            let rawDataStr = """
+            --- MACHINE READABLE DATA START ---
+            total_focus_minutes: \(report.totalFocusMinutes)
+            completed_sessions_count: \(report.completedSessionsCount)
+            completed_habits_count: \(report.completedHabitsCount)
+            earned_xp: \(report.earnedXP)
+            best_focus_day: \(bestDayName)
+            focus_change_percentage: \(report.focusMinutesChangePercentage)
+            habits_change_percentage: \(report.habitsChangePercentage)
+            --- MACHINE READABLE DATA END ---
+            """
+            
+            drawText(rawDataStr, attributes: rawDataAttributes, yPos: &currentY, offset: 0)
         }
         
         let fileManager = FileManager.default
@@ -451,6 +475,32 @@ class PDFExportManager {
             print("Fehler beim Speichern der Wochen-PDF: \(error.localizedDescription)")
             return nil
         }
+    }
+}
+
+extension PDFExportManager {
+    @MainActor
+    static func share(items: [Any]) {
+        guard let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene ?? UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first(where: { $0.isKeyWindow }) ?? windowScene.windows.first,
+              let rootVC = window.rootViewController else {
+            return
+        }
+        
+        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        if let popover = activityVC.popoverPresentationController {
+            popover.sourceView = window
+            popover.sourceRect = CGRect(x: window.bounds.midX, y: window.bounds.midY, width: 0, height: 0)
+            popover.permittedArrowDirections = []
+        }
+        
+        var topVC = rootVC
+        while let presented = topVC.presentedViewController {
+            topVC = presented
+        }
+        
+        topVC.present(activityVC, animated: true)
     }
 }
 

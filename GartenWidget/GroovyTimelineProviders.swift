@@ -30,7 +30,7 @@ struct WaterTimelineProvider: AppIntentTimelineProvider {
     typealias Entry = GroovyStreakEntry
 
     func placeholder(in context: Context) -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .week, backgroundStyle: .colorful)
+        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .week, backgroundStyle: .dark)
     }
     func snapshot(for intent: SelectWaterPeriodIntent, in context: Context) async -> GroovyStreakEntry {
         GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: intent.period, backgroundStyle: intent.style)
@@ -47,7 +47,7 @@ struct StreakSmallTimelineProvider: AppIntentTimelineProvider {
     typealias Entry = GroovyStreakEntry
 
     func placeholder(in context: Context) -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .today, backgroundStyle: .colorful)
+        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .today, backgroundStyle: .dark)
     }
     func snapshot(for intent: SelectStreakIntent, in context: Context) async -> GroovyStreakEntry {
         GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .today, backgroundStyle: intent.style)
@@ -64,7 +64,7 @@ struct VerlaufMediumTimelineProvider: AppIntentTimelineProvider {
     typealias Entry = GroovyStreakEntry
 
     func placeholder(in context: Context) -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .week, backgroundStyle: .colorful)
+        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .week, backgroundStyle: .dark)
     }
     func snapshot(for intent: SelectHistoryIntent, in context: Context) async -> GroovyStreakEntry {
         GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .week, backgroundStyle: intent.style)
@@ -81,7 +81,7 @@ struct VerlaufLargeTimelineProvider: AppIntentTimelineProvider {
     typealias Entry = GroovyStreakEntry
 
     func placeholder(in context: Context) -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .month, backgroundStyle: .colorful)
+        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .month, backgroundStyle: .dark)
     }
     func snapshot(for intent: SelectHistoryIntent, in context: Context) async -> GroovyStreakEntry {
         GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .month, backgroundStyle: intent.style)
@@ -98,13 +98,13 @@ struct StaticLockScreenProvider: TimelineProvider {
     typealias Entry = GroovyStreakEntry
 
     func placeholder(in context: Context) -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .today, backgroundStyle: .colorful)
+        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .today, backgroundStyle: .dark)
     }
     func getSnapshot(in context: Context, completion: @escaping (GroovyStreakEntry) -> Void) {
-        completion(GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .today, backgroundStyle: .colorful))
+        completion(GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .today, backgroundStyle: .dark))
     }
     func getTimeline(in context: Context, completion: @escaping (Timeline<GroovyStreakEntry>) -> Void) {
-        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .today, backgroundStyle: .colorful)
+        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .today, backgroundStyle: .dark)
         completion(Timeline(entries: [entry], policy: .after(nextRefresh())))
     }
 }
@@ -122,7 +122,7 @@ struct RoutineTimelineProvider: AppIntentTimelineProvider {
     typealias Entry = GroovyRoutineEntry
 
     func placeholder(in context: Context) -> GroovyRoutineEntry {
-        GroovyRoutineEntry(date: .now, appData: nil, style: .colorful, routine: nil)
+        GroovyRoutineEntry(date: .now, appData: nil, style: .dark, routine: nil)
     }
     func snapshot(for intent: SelectRoutineIntent, in context: Context) async -> GroovyRoutineEntry {
         GroovyRoutineEntry(date: .now, appData: loadWidgetData(), style: intent.style, routine: intent.routine)

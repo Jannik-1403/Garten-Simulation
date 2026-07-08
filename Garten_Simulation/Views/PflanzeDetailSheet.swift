@@ -2030,7 +2030,6 @@ struct ExportNotesSelectionSheet: View {
     
     // For sharing
     @State private var generatedPDFUrl: URL? = nil
-    @State private var isSharing = false
     
     var body: some View {
         NavigationStack {
@@ -2160,11 +2159,6 @@ struct ExportNotesSelectionSheet: View {
                     selectionMode = .all
                 }
             }
-            .sheet(isPresented: $isSharing) {
-                if let url = generatedPDFUrl {
-                    PDFExportShareSheet(activityItems: [url])
-                }
-            }
         }
     }
     
@@ -2286,21 +2280,9 @@ struct ExportNotesSelectionSheet: View {
             includeRoutines: false
         ) {
             generatedPDFUrl = url
-            isSharing = true
+            PDFExportManager.share(items: [url])
         }
     }
-}
-
-struct PDFExportShareSheet: UIViewControllerRepresentable {
-    var activityItems: [Any]
-    var applicationActivities: [UIActivity]? = nil
-
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
-        return controller
-    }
-
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
 

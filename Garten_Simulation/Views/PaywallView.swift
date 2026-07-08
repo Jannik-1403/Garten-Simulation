@@ -6,7 +6,17 @@ struct PaywallView: View {
     @Environment(\.dismiss) var dismiss
 
     
-    var proProduct: Product? {
+    @State private var selectedProductId: String = "com.gartenapp.pro.yearly"
+
+    var monthlyProduct: Product? {
+        iapStore.products.first(where: { $0.id == "com.gartenapp.pro.monthly" })
+    }
+    
+    var yearlyProduct: Product? {
+        iapStore.products.first(where: { $0.id == "com.gartenapp.pro.yearly" })
+    }
+    
+    var lifetimeProduct: Product? {
         iapStore.products.first(where: { $0.id == "com.gartenapp.pro.lifetime" })
     }
     
@@ -109,21 +119,51 @@ struct PaywallView: View {
                         if iapStore.isPurchasing {
                             ProgressView()
                                 .tint(.white)
-                        } else if let product = proProduct {
+                        } else if monthlyProduct != nil || yearlyProduct != nil || lifetimeProduct != nil {
+                            // Options
+                            VStack(spacing: 12) {
+                                if let yearly = yearlyProduct {
+                                    paywallOptionRow(
+                                        product: yearly,
+                                        title: String(localized: "paywall.option.yearly", defaultValue: "Jährlich"),
+                                        subtitle: String(localized: "paywall.option.yearly.desc", defaultValue: "Am beliebtesten"),
+                                        isSelected: selectedProductId == yearly.id
+                                    )
+                                }
+                                if let monthly = monthlyProduct {
+                                    paywallOptionRow(
+                                        product: monthly,
+                                        title: String(localized: "paywall.option.monthly", defaultValue: "Monatlich"),
+                                        subtitle: String(localized: "paywall.option.monthly.desc", defaultValue: "Jederzeit kündbar"),
+                                        isSelected: selectedProductId == monthly.id
+                                    )
+                                }
+                                if let lifetime = lifetimeProduct {
+                                    paywallOptionRow(
+                                        product: lifetime,
+                                        title: String(localized: "paywall.option.lifetime", defaultValue: "Lifetime"),
+                                        subtitle: String(localized: "paywall.option.lifetime.desc", defaultValue: "Einmalzahlung"),
+                                        isSelected: selectedProductId == lifetime.id
+                                    )
+                                }
+                            }
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 8)
+                            
                             Button {
-                                Task {
-                                    // Dummy CharacterStore since Paywall doesn't need to pass one for Pro
-                                    await iapStore.purchase(product, gardenStore: GardenStore())
-                                    if iapStore.isProUser {
-                                        dismiss()
+                                if let selected = iapStore.products.first(where: { $0.id == selectedProductId }) {
+                                    Task {
+                                        await iapStore.purchase(selected, gardenStore: GardenStore())
+                                        if iapStore.isProUser {
+                                            dismiss()
+                                        }
                                     }
                                 }
                             } label: {
-                                HStack {
-                                    Text(String(localized: "paywall.button.unlock", defaultValue: "Jetzt Freischalten"))
-                                    Spacer()
-                                    Text(product.displayPrice)
-                                }
+                                Text(String(localized: "paywall.button.unlock", defaultValue: "Jetzt freischalten"))
+                                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.8)
                             }
                             .buttonStyle(
                                 DuolingoButtonStyle(
@@ -135,10 +175,6 @@ struct PaywallView: View {
                                 )
                             )
                             .padding(.horizontal, 24)
-                            
-                            Text(String(localized: "paywall.description.lifetime", defaultValue: "Einmalzahlung. Lifetime Zugriff."))
-                                .font(.system(size: 12, weight: .medium))
-                                .foregroundStyle(.white.opacity(0.5))
                             
                         } else {
                             Text(String(localized: "paywall.loading", defaultValue: "Lade Produkte..."))
@@ -174,6 +210,37 @@ struct PaywallView: View {
             }
         }
     }
+    }
+
+    private func paywallOptionRow(product: Product, title: String, subtitle: String, isSelected: Bool) -> some View {
+        Button {
+            selectedProductId = product.id
+        } label: {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title)
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundStyle(isSelected ? .black : .white)
+                    Text(subtitle)
+                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                        .foregroundStyle(isSelected ? .black.opacity(0.7) : .white.opacity(0.7))
+                }
+                Spacer()
+                Text(product.displayPrice)
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundStyle(isSelected ? .black : .white)
+            }
+            .padding(16)
+            .background(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(isSelected ? Color.white : Color.white.opacity(0.1))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .stroke(isSelected ? Color.goldPrimary : Color.clear, lineWidth: 2)
+            )
+        }
+        .buttonStyle(.plain)
     }
 
     private func featureRow(icon: String, title: String, description: String, color: Color) -> some View {

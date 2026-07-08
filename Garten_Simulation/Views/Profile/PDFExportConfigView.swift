@@ -17,7 +17,6 @@ struct PDFExportConfigView: View {
     @State private var includeRoutines = true
     
     @State private var generatedPDFUrl: URL? = nil
-    @State private var isSharing = false
 
     var body: some View {
         NavigationStack {
@@ -65,7 +64,7 @@ struct PDFExportConfigView: View {
                         )
                         if let pdfUrl = pdfUrl {
                             self.generatedPDFUrl = pdfUrl
-                            self.isSharing = true
+                            PDFExportManager.share(items: [pdfUrl])
                         }
                     }
                 ) {
@@ -86,11 +85,6 @@ struct PDFExportConfigView: View {
                         dismiss()
                     }
                 }
-            }
-        }
-        .sheet(isPresented: $isSharing) {
-            if let url = generatedPDFUrl {
-                PDFExportShareSheet(activityItems: [url])
             }
         }
     }
@@ -133,7 +127,7 @@ struct PDFExportConfigView: View {
             includeRoutines: includeRoutines
         ) {
             generatedPDFUrl = url
-            isSharing = true
+            PDFExportManager.share(items: [url])
         }
     }
 }

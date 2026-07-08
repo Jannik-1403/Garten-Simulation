@@ -12,7 +12,6 @@ struct WeeklyReportDashboardView: View {
     @State private var selectedFocusDay: DailyFocusTime? = nil
     @State private var selectedHabitsDay: DailyHabitsCount? = nil
     @State private var generatedPDFUrl: URL? = nil
-    @State private var isSharing = false
     @State private var zeigePaywall = false
     @State private var isAnalysisExpanded = true
     
@@ -175,11 +174,6 @@ struct WeeklyReportDashboardView: View {
             exportButton
         }
         .padding(.horizontal, 8)
-        .sheet(isPresented: $isSharing) {
-            if let url = generatedPDFUrl {
-                PDFExportShareSheet(activityItems: [url])
-            }
-        }
         .sheet(isPresented: $zeigePaywall) {
             PaywallView()
                 .environmentObject(iapStore)
@@ -331,7 +325,7 @@ struct WeeklyReportDashboardView: View {
                     )
                     if let pdfUrl = pdfUrl {
                         self.generatedPDFUrl = pdfUrl
-                        self.isSharing = true
+                        PDFExportManager.share(items: [pdfUrl])
                     }
                 } else {
                     zeigePaywall = true

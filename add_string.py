@@ -4,19 +4,19 @@ path = "Garten_Simulation/Localizable.xcstrings"
 with open(path, "r", encoding="utf-8") as f:
     data = json.load(f)
 
-key = "routine.timer.apply_all"
+key = "plant.streak.current"
 translations = {
-    "de": "Für alle Tage übernehmen",
-    "en": "Apply to all days",
-    "nl": "Op alle dagen toepassen",
-    "fr": "Appliquer à tous les jours",
-    "it": "Applica a tutti i giorni",
-    "ja": "すべての日に適用",
-    "ko": "모든 요일에 적용",
-    "pl": "Zastosuj do wszystkich dni",
-    "pt": "Aplicar a todos os dias",
-    "es": "Aplicar a todos los días",
-    "tr": "Tüm günlere uygula"
+    "de": "Deine aktuelle Garten Streak",
+    "en": "Your current Garden Streak",
+    "nl": "Je huidige Tuinstreak",
+    "fr": "Votre séquence de jardin actuelle",
+    "it": "La tua serie giardino attuale",
+    "ja": "現在のガーデン連続",
+    "ko": "현재 정원 연속",
+    "pl": "Twoja obecna passa ogrodu",
+    "pt": "Sua sequência de jardim atual",
+    "es": "Tu racha de jardín actual",
+    "tr": "Mevcut Bahçe Serisi"
 }
 
 if key not in data["strings"]:

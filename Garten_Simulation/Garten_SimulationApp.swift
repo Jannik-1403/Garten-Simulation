@@ -75,6 +75,7 @@ struct Garten_SimulationApp: App {
                 if newPhase == .active {
                     container.gardenStore.reloadData()
                     container.streakStore.checkForMissedDays()
+                    container.gardenStore.checkScreenTimeExceeded()
                 }
             }
             .onAppear {
@@ -152,6 +153,7 @@ struct AppRootView: View {
                 }
                 .task {
                     NotificationManager.shared.scheduleAll(for: container.gardenStore.pflanzen)
+                    await ScreenTimeManager.shared.requestAuthorization()
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willTerminateNotification)) { _ in
                     let semaphore = DispatchSemaphore(value: 0)

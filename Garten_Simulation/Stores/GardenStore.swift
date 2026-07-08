@@ -1780,4 +1780,37 @@ class GardenStore: ObservableObject {
     }
 
     // MARK: - Live Activity Management (Moved to FocusTimer)
+    
+    // MARK: - Screen Time Integration
+    func checkScreenTimeExceeded() {
+        let sharedDefaults = UserDefaults(suiteName: "group.com.jannik.grovy")
+        if sharedDefaults?.bool(forKey: "didExceedScreenTime") == true {
+            // Clear the flag
+            sharedDefaults?.set(false, forKey: "didExceedScreenTime")
+            sharedDefaults?.synchronize()
+            
+            let reason = sharedDefaults?.string(forKey: "screenTimeExceededReason") ?? "Unbekannt"
+            
+            // Look for existing habit
+            if let existing = pflanzen.first(where: { $0.id == "badhabit_screentime" || $0.name == "Zu viel Bildschirmzeit" }) {
+                triggerBadHabitExecution(habit: existing, trigger: reason)
+            } else {
+                // Buy or create it
+                var newBadHabit = HabitModel(
+                    id: "badhabit_screentime",
+                    name: "Zu viel Bildschirmzeit",
+                    baseEmoji: "📱",
+                    difficulty: .mittel,
+                    description: "Bildschirmzeit überschritten",
+                    habitCategory: .none,
+                    isBadHabit: true,
+                    badHabitCost: 50
+                )
+                newBadHabit.dateCreated = Date()
+                pflanzen.append(newBadHabit)
+                saveData()
+                triggerBadHabitExecution(habit: newBadHabit, trigger: reason)
+            }
+        }
+    }
 }

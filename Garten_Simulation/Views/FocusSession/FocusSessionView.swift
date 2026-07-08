@@ -88,6 +88,7 @@ struct FocusSessionView: View {
                             remainingSeconds = selectedMinutes * 60
                             state = .timer
                             isTimerRunning = true
+                            ScreenTimeManager.shared.blockApps()
                             startLiveActivity()
                         }
                     }
@@ -114,12 +115,12 @@ struct FocusSessionView: View {
                 }
             }
         }
-        // Damit der Timer nicht weiterläuft, wenn man das Sheet schließt
         .onDisappear {
             isTimerRunning = false
             UIApplication.shared.isIdleTimerDisabled = false
             stopLiveActivity()
             FocusAudioManager.shared.stop()
+            ScreenTimeManager.shared.unblockApps()
         }
         .onChange(of: state) {
             if state == .timer {

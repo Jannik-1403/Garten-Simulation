@@ -63,6 +63,7 @@ struct RoutineSessionView: View {
             isTimerRunning = false
             UIApplication.shared.isIdleTimerDisabled = false
             FocusAudioManager.shared.stop()
+            ScreenTimeManager.shared.unblockApps()
         }
         .onChange(of: state) {
             if state == .running {
@@ -148,6 +149,7 @@ struct RoutineSessionView: View {
                         elapsedSeconds = 0
                         state = .running
                         isTimerRunning = true
+                        ScreenTimeManager.shared.blockApps()
                     }
                 }
             ) {

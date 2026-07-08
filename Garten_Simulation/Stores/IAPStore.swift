@@ -14,6 +14,8 @@ final class IAPStore: ObservableObject {
         "com.gartenapp.coins.pack_medium",
         "com.gartenapp.coins.pack_large",
         "com.gartenapp.cosmetics.glasses",
+        "com.gartenapp.pro.monthly",
+        "com.gartenapp.pro.yearly",
         "com.gartenapp.pro.lifetime"
     ]
 
@@ -118,7 +120,7 @@ final class IAPStore: ObservableObject {
                     )
                 } else if product.id == "com.gartenapp.cosmetics.glasses" {
                     characterStore?.unlockedGlasses = true
-                } else if product.id == "com.gartenapp.pro.lifetime" {
+                } else if product.id == "com.gartenapp.pro.lifetime" || product.id == "com.gartenapp.pro.monthly" || product.id == "com.gartenapp.pro.yearly" {
                     self.isProUser = true
                     UserDefaults.standard.set(true, forKey: "isProUser_active")
                     UserDefaults(suiteName: "group.com.jannik.grovy")?.set(true, forKey: "isProUser_active")
@@ -175,7 +177,7 @@ final class IAPStore: ObservableObject {
             
             if transaction.productID == "com.gartenapp.cosmetics.glasses" {
                 hasGlasses = true
-            } else if transaction.productID == "com.gartenapp.pro.lifetime" {
+            } else if transaction.productID == "com.gartenapp.pro.lifetime" || transaction.productID == "com.gartenapp.pro.monthly" || transaction.productID == "com.gartenapp.pro.yearly" {
                 hasPro = true
             }
         }
