@@ -446,7 +446,7 @@ struct LockScreenStreakWidgetView: View {
                 }
             }
         }
-        .widgetURL(URL(string: "grovy://streak"))
+        .widgetURL(URL(string: isPro ? "grovy://streak" : "grovy://pro"))
     }
 }
 
@@ -585,5 +585,6 @@ struct InteractiveHabitsWidgetView: View {
             }
         }
         .padding(14)
+        .widgetURL(URL(string: isPro ? "grovy://routines" : "grovy://pro"))
     }
 }

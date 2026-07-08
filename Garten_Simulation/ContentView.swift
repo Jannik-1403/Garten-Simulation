@@ -138,6 +138,9 @@ struct ContentView: View {
                     .environmentObject(streakStore)
             }
         }
+        .fullScreenCover(isPresented: $gardenStore.triggerPaywall) {
+            PaywallView()
+        }
         .sheet(item: Binding<IdentifiableURL?>(
             get: { gardenStore.pendingImportURL.mapToIdentifiable() },
             set: { gardenStore.pendingImportURL = $0?.url }

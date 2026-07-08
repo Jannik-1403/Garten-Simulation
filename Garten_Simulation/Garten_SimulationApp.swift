@@ -185,6 +185,10 @@ struct AppRootView: View {
                         case "water":
                             container.gardenStore.selectedTab = 2
                             container.gardenStore.triggerWaterDetail = true
+                        case "routines":
+                            container.gardenStore.selectedTab = 4
+                        case "pro":
+                            container.gardenStore.triggerPaywall = true
                         case "focus":
                             // Live Activity tap → zurück zum laufenden Fokus-Timer
                             if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),

@@ -29,6 +29,7 @@ class GardenStore: ObservableObject {
     @Published var selectedTab: Int = 0
     @Published var triggerStreakDetail: Bool = false
     @Published var triggerWaterDetail: Bool = false
+    @Published var triggerPaywall: Bool = false
     @Published var zeigeGeschafftPopup: Bool = false
     @Published var liveActivityDebugLog: String = ""
     @Published var gluecksradDrehungen: Int = 0 {
