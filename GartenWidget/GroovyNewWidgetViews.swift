@@ -213,13 +213,11 @@ struct StreakSmallWidgetView: View {
     var streak: Int { entry.appData?.totalStreak ?? 0 }
 
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            Image("Goal")
+        ZStack {
+            Image("streak")
                 .resizable()
                 .scaledToFit()
-                .scaleEffect(2.2)
-                .frame(width: 160, height: 160)
-                .offset(x: 35, y: 30)
+                .frame(width: 90, height: 90)
 
             HStack(alignment: .firstTextBaseline, spacing: 4) {
                 Text("\(streak)")
@@ -230,8 +228,8 @@ struct StreakSmallWidgetView: View {
             }
             .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .padding(.top, 2)
-            .padding(.leading, 10)
+            .padding(.top, 10)
+            .padding(.leading, 14)
         }
         .widgetURL(URL(string: "grovy://streak"))
     }
@@ -275,7 +273,7 @@ struct VerlaufMediumWidgetView: View {
                 }
                 Spacer()
                 HStack(spacing: 5) {
-                    Image("Goal")
+                    Image("streak")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 24, height: 24)
@@ -370,7 +368,7 @@ struct VerlaufLargeWidgetView: View {
                 }
                 Spacer()
                 HStack(spacing: 6) {
-                    Image("Goal")
+                    Image("streak")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 26, height: 26)
@@ -432,7 +430,7 @@ struct LockScreenStreakWidgetView: View {
             }
             if isPro {
                 VStack(spacing: 0) {
-                    Image("Goal")
+                    Image("streak")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 20)
