@@ -1,6 +1,7 @@
 import SwiftUI
 import Combine
 import ActivityKit
+import FamilyControls
 
 enum FocusSessionState: Int, Codable {
     case intro
