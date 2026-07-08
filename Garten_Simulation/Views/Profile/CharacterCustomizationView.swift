@@ -241,7 +241,7 @@ struct GlassesPurchaseSheet: View {
                 .disabled(gardenStore.coins < 1000)
                 
                 // Buy with IAP
-                if let product = iapStore.products.first(where: { $0.id == "com.gartenapp.cosmetics.glasses" }) {
+                if let product = iapStore.products.first(where: { $0.id == "com.jannik.grovy.cosmetics.glasses" }) {
                     Item3DButton(
                         farbe: Color.blauPrimary,
                         sekundaerFarbe: Color.blauSecondary,

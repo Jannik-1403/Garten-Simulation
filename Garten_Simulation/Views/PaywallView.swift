@@ -6,18 +6,18 @@ struct PaywallView: View {
     @Environment(\.dismiss) var dismiss
 
     
-    @State private var selectedProductId: String = "com.gartenapp.pro.yearly"
+    @State private var selectedProductId: String = "com.jannik.grovy.pro.yearly"
 
     var monthlyProduct: Product? {
-        iapStore.products.first(where: { $0.id == "com.gartenapp.pro.monthly" })
+        iapStore.products.first(where: { $0.id == "com.jannik.grovy.pro.monthly" })
     }
     
     var yearlyProduct: Product? {
-        iapStore.products.first(where: { $0.id == "com.gartenapp.pro.yearly" })
+        iapStore.products.first(where: { $0.id == "com.jannik.grovy.pro.yearly" })
     }
     
     var lifetimeProduct: Product? {
-        iapStore.products.first(where: { $0.id == "com.gartenapp.pro.lifetime" })
+        iapStore.products.first(where: { $0.id == "com.jannik.grovy.pro.lifetime" })
     }
     
     var body: some View {

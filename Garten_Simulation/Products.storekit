@@ -1,26 +1,134 @@
 {
-  "identifier": "NEW_STOREKIT",
+  "appPolicies": {
+    "eula": "",
+    "policies": [
+      {
+        "locale": "en_US",
+        "policyText": "",
+        "policyURL": ""
+      }
+    ]
+  },
+  "identifier": "6D052F4D",
   "nonRenewingSubscriptions": [],
   "products": [
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "EA09CD9F",
+      "localizations": [
+        {
+          "description": "Get 500 extra coins for your garden.",
+          "displayName": "500 Coins",
+          "locale": "en_US"
+        },
+        {
+          "description": "Erhalte 500 M\u00fcnzen f\u00fcr deinen Garten.",
+          "displayName": "500 M\u00fcnzen",
+          "locale": "de"
+        }
+      ],
+      "productID": "com.jannik.grovy.coins.pack_small",
+      "promotionalImageID": "2B5830D1",
+      "referenceName": "500 M\u00fcnzen",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "C7B85975",
+      "localizations": [
+        {
+          "description": "Get 1800 extra coins for your garden.",
+          "displayName": "1800 Coins",
+          "locale": "en_US"
+        },
+        {
+          "description": "Erhalte 1800 M\u00fcnzen f\u00fcr deinen Garten.",
+          "displayName": "1800 M\u00fcnzen",
+          "locale": "de"
+        }
+      ],
+      "productID": "com.jannik.grovy.coins.pack_medium",
+      "promotionalImageID": "4DDC54AB",
+      "referenceName": "1800 M\u00fcnzen",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "98EEE169",
+      "localizations": [
+        {
+          "description": "Get 3500 extra coins for your garden.",
+          "displayName": "3500 Coins",
+          "locale": "en_US"
+        },
+        {
+          "description": "Erhalte 3500 M\u00fcnzen f\u00fcr deinen Garten.",
+          "displayName": "3500 M\u00fcnzen",
+          "locale": "de"
+        }
+      ],
+      "productID": "com.jannik.grovy.coins.pack_large",
+      "promotionalImageID": "72B43FF1",
+      "referenceName": "3500 M\u00fcnzen",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "0.99",
+      "familyShareable": false,
+      "internalID": "A1B2C3D4",
+      "localizations": [
+        {
+          "description": "Stylish sunglasses for your character.",
+          "displayName": "Premium Sunglasses",
+          "locale": "en_US"
+        },
+        {
+          "description": "Eine stylische Sonnenbrille f\u00fcr deinen Charakter.",
+          "displayName": "Premium Sonnenbrille",
+          "locale": "de"
+        }
+      ],
+      "productID": "com.jannik.grovy.cosmetics.glasses",
+      "promotionalImageID": "11A22B33",
+      "referenceName": "Premium Sonnenbrille",
+      "type": "NonConsumable"
+    },
     {
       "displayPrice": "49.99",
       "familyShareable": true,
       "internalID": "PRO_LIFETIME_01",
       "localizations": [
         {
+          "description": "Unlock the full potential of your garden.",
+          "displayName": "Grovy Pro Lifetime",
+          "locale": "en_US"
+        },
+        {
           "description": "Schalte das volle Potenzial deines Gartens frei.",
           "displayName": "Grovy Pro Lifetime",
           "locale": "de"
         }
       ],
-      "productID": "com.gartenapp.pro.lifetime",
+      "productID": "com.jannik.grovy.pro.lifetime",
+      "promotionalImageID": "11A22B44",
       "referenceName": "Grovy Pro Lifetime",
       "type": "NonConsumable"
     }
   ],
   "settings": {
+    "_askToBuyEnabled": false,
+    "_billingGracePeriodEnabled": false,
+    "_billingIssuesEnabled": false,
+    "_disableDialogs": false,
+    "_failTransactionsEnabled": false,
     "_locale": "de_DE",
-    "_storefront": "DEU"
+    "_renewalBillingIssuesEnabled": false,
+    "_storefront": "DEU",
+    "_storeKitErrors": [],
+    "_timeRate": 0
   },
   "subscriptionGroups": [
     {
@@ -42,7 +150,7 @@
               "locale": "de"
             }
           ],
-          "productID": "com.gartenapp.pro.monthly",
+          "productID": "com.jannik.grovy.pro.monthly",
           "recurringSubscriptionPeriod": "P1M",
           "referenceName": "Pro Monthly",
           "type": "RecurringSubscription"
@@ -61,7 +169,7 @@
               "locale": "de"
             }
           ],
-          "productID": "com.gartenapp.pro.yearly",
+          "productID": "com.jannik.grovy.pro.yearly",
           "recurringSubscriptionPeriod": "P1Y",
           "referenceName": "Pro Yearly",
           "type": "RecurringSubscription"
@@ -70,7 +178,7 @@
     }
   ],
   "version": {
-    "major": 2,
+    "major": 5,
     "minor": 0
   }
 }

@@ -18,9 +18,9 @@ struct CoinPackCard: View {
 
     private var packImageName: String {
         switch product.id {
-        case "com.gartenapp.coins.pack_small":  return "coin_100"
-        case "com.gartenapp.coins.pack_medium": return "coin_500"
-        case "com.gartenapp.coins.pack_large":  return "coin_1000"
+        case "com.jannik.grovy.coins.pack_small":  return "coin_100"
+        case "com.jannik.grovy.coins.pack_medium": return "coin_500"
+        case "com.jannik.grovy.coins.pack_large":  return "coin_1000"
         default: return "coin"
         }
     }

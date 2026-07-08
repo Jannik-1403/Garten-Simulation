@@ -10,19 +10,19 @@ final class IAPStore: ObservableObject {
     // MARK: - Product IDs
 
     static let productIDs = [
-        "com.gartenapp.coins.pack_small",
-        "com.gartenapp.coins.pack_medium",
-        "com.gartenapp.coins.pack_large",
-        "com.gartenapp.cosmetics.glasses",
-        "com.gartenapp.pro.monthly",
-        "com.gartenapp.pro.yearly",
-        "com.gartenapp.pro.lifetime"
+        "com.jannik.grovy.coins.pack_small",
+        "com.jannik.grovy.coins.pack_medium",
+        "com.jannik.grovy.coins.pack_large",
+        "com.jannik.grovy.cosmetics.glasses",
+        "com.jannik.grovy.pro.monthly",
+        "com.jannik.grovy.pro.yearly",
+        "com.jannik.grovy.pro.lifetime"
     ]
 
     static let coinAmounts: [String: Int] = [
-        "com.gartenapp.coins.pack_small":  500,
-        "com.gartenapp.coins.pack_medium": 1800,
-        "com.gartenapp.coins.pack_large":  3500
+        "com.jannik.grovy.coins.pack_small":  500,
+        "com.jannik.grovy.coins.pack_medium": 1800,
+        "com.jannik.grovy.coins.pack_large":  3500
     ]
 
     // MARK: - Published State
@@ -118,9 +118,9 @@ final class IAPStore: ObservableObject {
                         coins,
                         reason: product.displayName
                     )
-                } else if product.id == "com.gartenapp.cosmetics.glasses" {
+                } else if product.id == "com.jannik.grovy.cosmetics.glasses" {
                     characterStore?.unlockedGlasses = true
-                } else if product.id == "com.gartenapp.pro.lifetime" || product.id == "com.gartenapp.pro.monthly" || product.id == "com.gartenapp.pro.yearly" {
+                } else if product.id == "com.jannik.grovy.pro.lifetime" || product.id == "com.jannik.grovy.pro.monthly" || product.id == "com.jannik.grovy.pro.yearly" {
                     self.isProUser = true
                     UserDefaults.standard.set(true, forKey: "isProUser_active")
                     UserDefaults(suiteName: "group.com.jannik.grovy")?.set(true, forKey: "isProUser_active")
@@ -175,9 +175,9 @@ final class IAPStore: ObservableObject {
         for await result in Transaction.currentEntitlements {
             guard case .verified(let transaction) = result else { continue }
             
-            if transaction.productID == "com.gartenapp.cosmetics.glasses" {
+            if transaction.productID == "com.jannik.grovy.cosmetics.glasses" {
                 hasGlasses = true
-            } else if transaction.productID == "com.gartenapp.pro.lifetime" || transaction.productID == "com.gartenapp.pro.monthly" || transaction.productID == "com.gartenapp.pro.yearly" {
+            } else if transaction.productID == "com.jannik.grovy.pro.lifetime" || transaction.productID == "com.jannik.grovy.pro.monthly" || transaction.productID == "com.jannik.grovy.pro.yearly" {
                 hasPro = true
             }
         }
