@@ -3,6 +3,11 @@ import DeviceActivity
 import FamilyControls
 import SwiftUI
 
+private extension Int {
+    /// Returns self if > 0, otherwise nil (useful for UserDefaults default fallback)
+    var nonZero: Int? { self > 0 ? self : nil }
+}
+
 @MainActor
 class DeviceActivityManager: ObservableObject {
     static let shared = DeviceActivityManager()
@@ -11,7 +16,13 @@ class DeviceActivityManager: ObservableObject {
     let activityName = DeviceActivityName("ScreenTimeDailyActivity")
     let eventName = DeviceActivityEvent.Name("screenTimeLimit")
     
-    @AppStorage("screenTimeGoalMinutes") var screenTimeGoalMinutes: Int = 120 // Default 2 hours
+    @Published var screenTimeGoalMinutes: Int {
+        didSet { UserDefaults.standard.set(screenTimeGoalMinutes, forKey: "screenTimeGoalMinutes") }
+    }
+    
+    private init() {
+        self.screenTimeGoalMinutes = UserDefaults.standard.integer(forKey: "screenTimeGoalMinutes").nonZero ?? 120
+    }
     
     func scheduleActivity(selection: FamilyActivitySelection) {
         let schedule = DeviceActivitySchedule(
