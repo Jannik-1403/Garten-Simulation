@@ -90,7 +90,6 @@ enum DuoStyle {
 
     static func contentColor(for style: WidgetBackgroundStyle) -> Color {
         switch style {
-        case .colorful: return .white
         case .light:    return .black
         case .dark:     return .white
         }
@@ -98,8 +97,6 @@ enum DuoStyle {
 
     static func blockFill(for style: WidgetBackgroundStyle, completed: Bool) -> Color {
         switch style {
-        case .colorful:
-            return completed ? .white : .white.opacity(0.25)
         case .light:
             return completed ? Color(white: 0.9) : Color(white: 0.8)
         case .dark:
@@ -110,8 +107,6 @@ enum DuoStyle {
     @ViewBuilder
     static func backgroundView(for style: WidgetBackgroundStyle, defaultGradient: LinearGradient) -> some View {
         switch style {
-        case .colorful:
-            defaultGradient
         case .light:
             Color.white
         case .dark:
@@ -126,76 +121,11 @@ struct StreakBackgroundView: View {
     
     var body: some View {
         ZStack {
-            if style == .colorful {
-                // 1. Dynamischer Verlauf (Bernstein zu Goldgelb)
-                RadialGradient(
-                    stops: [
-                        .init(color: Color(red: 1.0, green: 0.95, blue: 0.4), location: 0.0), // Strahlendes Gold
-                        .init(color: Color(red: 1.0, green: 0.6, blue: 0.0), location: 0.4),  // Sattes Orange
-                        .init(color: Color(red: 0.6, green: 0.2, blue: 0.0), location: 1.0)   // Dunkles Bernstein
-                    ],
-                    center: UnitPoint(x: 0.85, y: 0.85), // Hinter dem Igel unten rechts
-                    startRadius: 10,
-                    endRadius: 220
-                )
-                
-                // 2. Volumetrisches Licht (Strahlen)
-                GeometryReader { geo in
-                    ZStack {
-                        ForEach(0..<6) { i in
-                            Rectangle()
-                                .fill(
-                                    LinearGradient(
-                                        colors: [.white.opacity(0.12), .clear],
-                                        startPoint: .bottomTrailing,
-                                        endPoint: .topLeading
-                                    )
-                                )
-                                .frame(width: geo.size.width * 1.5, height: 30)
-                                .rotationEffect(.degrees(Double(i) * 15 - 45), anchor: .bottomTrailing)
-                                .offset(x: geo.size.width * 0.2, y: geo.size.height * 0.2)
-                                .blur(radius: 15)
-                        }
-                    }
-                }
-                
-                // 3. Partikel / Bokeh (Glühende Funken)
-                Canvas { context, size in
-                    for i in 0..<18 {
-                        let seed = Double(i)
-                        let x = (sin(seed * 123.45) * 0.5 + 0.5) * size.width
-                        let y = (cos(seed * 678.90) * 0.5 + 0.5) * size.height
-                        let s = (sin(seed * 99.9) * 0.5 + 0.5) * 4 + 2
-                        
-                        let rect = CGRect(x: x, y: y, width: s, height: s)
-                        let color = Color.white.opacity((sin(seed) * 0.5 + 0.5) * 0.3 + 0.1)
-                        
-                        context.addFilter(.blur(radius: 0.5))
-                        context.fill(Path(ellipseIn: rect), with: .color(color))
-                    }
-                }
-            } else if style == .light {
+            if style == .light {
                 Color.white
             } else {
                 Color.black
             }
-            
-            // 4. Beleuchteter Rahmen (Rim Light / Edge Highlight)
-            RoundedRectangle(cornerRadius: 24) // Widget-Radius Annäherung
-                .strokeBorder(
-                    LinearGradient(
-                        stops: [
-                            .init(color: .white.opacity(0.7), location: 0.0),
-                            .init(color: .white.opacity(0.1), location: 0.2),
-                            .init(color: .clear, location: 0.5),
-                            .init(color: .white.opacity(0.3), location: 1.0)
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ),
-                    lineWidth: 2.5
-                )
-                .blendMode(.overlay)
         }
     }
 }
@@ -206,55 +136,7 @@ struct WaterBackgroundView: View {
     
     var body: some View {
         ZStack {
-            if style == .colorful {
-                // 1. Tiefsee-Verlauf (Cyan zu Marineblau)
-                RadialGradient(
-                    stops: [
-                        .init(color: Color(red: 0.4, green: 0.9, blue: 1.0), location: 0.0), // Helles Türkis/Cyan
-                        .init(color: Color(red: 0.1, green: 0.5, blue: 0.9), location: 0.5), // Sattes Blau
-                        .init(color: Color(red: 0.0, green: 0.2, blue: 0.5), location: 1.0)  // Dunkles Navy
-                    ],
-                    center: .center,
-                    startRadius: 5,
-                    endRadius: 200
-                )
-                
-                // 2. Unterwasser-Lichtstrahlen
-                GeometryReader { geo in
-                    ZStack {
-                        ForEach(0..<4) { i in
-                            Rectangle()
-                                .fill(
-                                    LinearGradient(
-                                        colors: [.white.opacity(0.1), .clear],
-                                        startPoint: .top,
-                                        endPoint: .bottom
-                                    )
-                                )
-                                .frame(width: geo.size.width * 1.2, height: 40)
-                                .rotationEffect(.degrees(Double(i) * 20 - 30))
-                                .offset(y: -20)
-                                .blur(radius: 25)
-                        }
-                    }
-                }
-                
-                // 3. Blasen (Water Bubbles)
-                Canvas { context, size in
-                    for i in 0..<12 {
-                        let seed = Double(i)
-                        let x = (sin(seed * 432.1) * 0.5 + 0.5) * size.width
-                        let y = (cos(seed * 123.4) * 0.5 + 0.5) * size.height
-                        let s = (sin(seed * 77.7) * 0.5 + 0.5) * 8 + 4
-                        
-                        let rect = CGRect(x: x, y: y, width: s, height: s)
-                        let color = Color.white.opacity(0.15)
-                        
-                        context.stroke(Path(ellipseIn: rect), with: .color(color), lineWidth: 1)
-                        context.addFilter(.blur(radius: 0.5))
-                    }
-                }
-            } else if style == .light {
+            if style == .light {
                 Color.white
             } else {
                 Color.black
@@ -601,8 +483,6 @@ struct InteractiveHabitsWidgetView: View {
             if isPro {
                 if let routineEntity = entry.routine {
                     HStack(spacing: 6) {
-                        Text(routineEntity.icon)
-                            .font(.system(size: 14))
                         Text(String(localized: String.LocalizationValue(routineEntity.titleKey)))
                             .font(.system(size: 14, weight: .black, design: .rounded))
                     }
