@@ -68,6 +68,7 @@
 		1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeltenheitProgressRing.swift; sourceTree = "<group>"; };
 		14741A632FFEA96100CA0071 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		451D92332C87A16BD490A21B /* GardenActivityAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GardenActivityAttributes.swift; path = Garten_Simulation/Models/GardenActivityAttributes.swift; sourceTree = "<group>"; };
+		8EBDEF86E50BEB46E8961492 /* Products.storekit */ = {isa = PBXFileReference; includeInIndex = 1; path = Products.storekit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -98,11 +99,15 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1424D42C2F6EA14300908588 /* Garten_SimulationTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Garten_SimulationTests;
 			sourceTree = "<group>";
 		};
 		1424D4362F6EA14300908588 /* Garten_SimulationUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Garten_SimulationUITests;
 			sourceTree = "<group>";
 		};
@@ -175,6 +180,7 @@
 				1424D41D2F6EA14200908588 /* Products */,
 				1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */,
 				451D92332C87A16BD490A21B /* GardenActivityAttributes.swift */,
+				8EBDEF86E50BEB46E8961492 /* Products.storekit */,
 			);
 			sourceTree = "<group>";
 		};
