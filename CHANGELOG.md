@@ -466,3 +466,6 @@
 - Ersetzt: Pro-Icon in den Einstellungen durch das ProFeature-Bild (Größe 22)
 - Fix: Pro-Icon in den Einstellungen um 2.5x visuell vergrößert, ohne Layout zu verschieben, sowie den Farbverlauf am Rand dunkler und dezenter (weniger Gold) gemacht
 - Fix: Hintergrund des Pro-Buttons auf voll deckendes Schwarz/Dunkelgrau gesetzt, damit der 3D-Schatten nicht mehr am oberen Rand durch die Transparenz scheint.
+
+- Screen Time (Family Controls) Integration: Apps können jetzt während des Fokus und Routinen blockiert werden. Eine Bildschirmzeit-Gewohnheit nutzt nun das DeviceActivity API anstatt Apple Health.
+- Hinzugefügt: Monatliches und Jährliches Abo in StoreKitConfig.storekit, IAPStore und Paywall. Button-Hyphenation behoben und Layout auf 3-Optionen-Ansicht umgestellt.
