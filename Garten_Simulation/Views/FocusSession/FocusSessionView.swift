@@ -31,6 +31,9 @@ struct FocusSessionView: View {
     @State private var backgroundStartTime: Date? = nil
     @State private var showFailAlert: Bool = false
     
+    @StateObject private var screenTimeManager = ScreenTimeManager.shared
+    @State private var showScreenTimePicker = false
+    
     // Math Challenge
     @State private var showMathChallenge: Bool = false
     @State private var cancelMathProblem: String = ""
@@ -59,9 +62,6 @@ struct FocusSessionView: View {
                         description: String(localized: "focus.session.dnd_hint", defaultValue: "Schalte dein Handy jetzt auf 'Nicht stören' und lege es nach dieser Einrichtung außer Sichtweite."),
                         buttonText: String(localized: "focus.prep.step1.button", defaultValue: "Erledigt"),
                         isLastStep: false,
-                        onScreenTimeComplete: {
-                            showStrictModeAlert = true
-                        },
                         textInput: $currentGoalInput,
                         goals: $sessionGoals
                     ) {
@@ -192,17 +192,32 @@ struct FocusSessionView: View {
         .alert(String(localized: "alert.strict_mode.title"), isPresented: $showStrictModeAlert) {
             Button(String(localized: "alert.strict_mode.no"), role: .destructive) {
                 isStrictMode = true
+                screenTimeManager.blockAllApps()
                 withAnimation { state = .step2 }
             }
             Button(String(localized: "alert.strict_mode.yes")) {
                 isStrictMode = false
-                withAnimation { state = .step2 }
+                if screenTimeManager.isAuthorized {
+                    showScreenTimePicker = true
+                } else {
+                    Task {
+                        await screenTimeManager.requestAuthorization()
+                        showScreenTimePicker = screenTimeManager.isAuthorized
+                    }
+                }
             }
             Button(String(localized: "button.cancel"), role: .cancel) {
                 // Do nothing, stay on step 1
             }
         } message: {
             Text(String(localized: "alert.strict_mode.message"))
+        }
+        .familyActivityPicker(isPresented: $showScreenTimePicker, selection: $screenTimeManager.allowedSelection)
+        .onChange(of: showScreenTimePicker) { _, isOpen in
+            if !isOpen {
+                screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
+                withAnimation { state = .step2 }
+            }
         }
     }
     
