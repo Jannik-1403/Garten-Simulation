@@ -34,6 +34,7 @@ struct FocusSessionView: View {
     
     @StateObject private var screenTimeManager = ScreenTimeManager.shared
     @State private var showScreenTimePicker = false
+    @State private var showBlockNotice = false
     
     // Math Challenge
     @State private var showMathChallenge: Bool = false
@@ -194,7 +195,7 @@ struct FocusSessionView: View {
             Button(String(localized: "alert.strict_mode.no"), role: .destructive) {
                 isStrictMode = true
                 screenTimeManager.blockAllApps()
-                withAnimation { state = .step2 }
+                showBlockNotice = true
             }
             Button(String(localized: "alert.strict_mode.yes")) {
                 isStrictMode = false
@@ -219,6 +220,13 @@ struct FocusSessionView: View {
                 screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
                 withAnimation { state = .step2 }
             }
+        }
+        .alert("Handy blockiert", isPresented: $showBlockNotice) {
+            Button("Verstanden", role: .cancel) {
+                withAnimation { state = .step2 }
+            }
+        } message: {
+            Text("Alle ablenkenden Apps wurden über Screen Time für die Dauer des Fokus blockiert.")
         }
     }
     
