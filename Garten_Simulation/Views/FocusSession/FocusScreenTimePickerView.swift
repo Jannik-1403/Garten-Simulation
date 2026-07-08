@@ -2,45 +2,98 @@ import SwiftUI
 import FamilyControls
 
 struct FocusScreenTimePickerView: View {
+    /// Called when the user made a choice and we're ready to proceed to the next step
+    let onComplete: () -> Void
+
     @StateObject private var manager = ScreenTimeManager.shared
     @State private var isPickerPresented = false
-    
+    @State private var pickerCompleted = false
+
     var body: some View {
-        VStack(spacing: 12) {
-            if manager.isAuthorized {
-                Button(action: {
+        VStack(spacing: 14) {
+            // --- OHNE HANDY ---
+            Button {
+                manager.blockAllApps()
+                onComplete()
+            } label: {
+                HStack(spacing: 14) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.red.opacity(0.12))
+                            .frame(width: 48, height: 48)
+                        Image(systemName: "iphone.slash")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundStyle(.red)
+                    }
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(String(localized: "focus.screentime.without_phone", defaultValue: "Ohne Handy lernen"))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundStyle(.primary)
+                        Text(String(localized: "focus.screentime.without_phone.subtitle", defaultValue: "Alle Apps werden blockiert"))
+                            .font(.system(size: 13, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
+                    Spacer()
+                    Image(systemName: "checkmark.shield.fill")
+                        .foregroundStyle(.red.opacity(0.7))
+                }
+                .padding(16)
+                .background(Color.red.opacity(0.07))
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.red.opacity(0.2), lineWidth: 1))
+            }
+            .buttonStyle(.plain)
+
+            // --- MIT HANDY ---
+            Button {
+                if manager.isAuthorized {
                     isPickerPresented = true
-                }) {
-                    HStack {
-                        Image(systemName: "app.badge.shield.fill")
-                        Text(String(localized: "focus.screentime.pick_apps", defaultValue: "Apps zum Blockieren wählen"))
+                } else {
+                    Task {
+                        await manager.requestAuthorization()
+                        isPickerPresented = manager.isAuthorized
                     }
                 }
-                .buttonStyle(DuolingoButtonStyle(
-                    size: .medium,
-                    fillWidth: false,
-                    backgroundColor: .gray.opacity(0.2),
-                    shadowColor: .gray.opacity(0.3),
-                    foregroundColor: .primary
-                ))
-                .familyActivityPicker(
-                    isPresented: $isPickerPresented,
-                    selection: $manager.selection
-                )
-                
-                if !manager.selection.applicationTokens.isEmpty || !manager.selection.categoryTokens.isEmpty {
-                    Text(String(localized: "focus.screentime.apps_selected", defaultValue: "Ausgewählte Apps werden im Fokus blockiert."))
-                        .font(.system(size: 12, weight: .medium, design: .rounded))
+            } label: {
+                HStack(spacing: 14) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.green.opacity(0.12))
+                            .frame(width: 48, height: 48)
+                        Image(systemName: "iphone")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundStyle(.green)
+                    }
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(String(localized: "focus.screentime.with_phone", defaultValue: "Mit Handy lernen"))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundStyle(.primary)
+                        Text(String(localized: "focus.screentime.with_phone.subtitle", defaultValue: "Wähle Apps, die NICHT blockiert werden"))
+                            .font(.system(size: 13, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 13, weight: .bold))
                         .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
                 }
-            } else {
-                Text(String(localized: "focus.screentime.unauthorized", defaultValue: "Bildschirmzeit-Berechtigung fehlt. Bitte erlaube den Zugriff in den iOS-Einstellungen, um Apps zu blockieren."))
-                    .font(.system(size: 12, weight: .medium, design: .rounded))
-                    .foregroundStyle(.red.opacity(0.8))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
+                .padding(16)
+                .background(Color.green.opacity(0.07))
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.green.opacity(0.2), lineWidth: 1))
+            }
+            .buttonStyle(.plain)
+            .familyActivityPicker(isPresented: $isPickerPresented, selection: $manager.allowedSelection)
+            .onChange(of: isPickerPresented) { _, isOpen in
+                // When the picker closes, apply the selection and continue
+                if !isOpen && !pickerCompleted {
+                    pickerCompleted = true
+                    manager.blockAllExcept(selection: manager.allowedSelection)
+                    onComplete()
+                }
             }
         }
+        .padding(.horizontal, 24)
+        .padding(.top, 8)
     }
 }

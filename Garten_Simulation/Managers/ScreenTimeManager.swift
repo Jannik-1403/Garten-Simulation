@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import FamilyControls
 import ManagedSettings
@@ -7,12 +8,11 @@ import SwiftUI
 class ScreenTimeManager: ObservableObject {
     static let shared = ScreenTimeManager()
     
-    @AppStorage("screenTimeSelection") private var screenTimeSelectionData: Data?
+    @AppStorage("screenTimeAllowedSelectionData") private var allowedSelectionData: Data?
     
-    @Published var selection = FamilyActivitySelection() {
-        didSet {
-            saveSelection()
-        }
+    /// Apps/Kategorien, die der Nutzer beim "Mit Handy"-Modus NICHT blockiert haben möchte
+    @Published var allowedSelection = FamilyActivitySelection() {
+        didSet { saveAllowedSelection() }
     }
     
     @Published var isAuthorized = false
@@ -20,9 +20,11 @@ class ScreenTimeManager: ObservableObject {
     let store = ManagedSettingsStore()
     
     private init() {
-        loadSelection()
+        loadAllowedSelection()
         checkAuthorizationStatus()
     }
+    
+    // MARK: - Authorization
     
     func requestAuthorization() async {
         do {
@@ -38,33 +40,44 @@ class ScreenTimeManager: ObservableObject {
         self.isAuthorized = AuthorizationCenter.shared.authorizationStatus == .approved
     }
     
-    private func saveSelection() {
-        if let data = try? JSONEncoder().encode(selection) {
-            screenTimeSelectionData = data
-        }
-    }
+    // MARK: - Blocking
     
-    private func loadSelection() {
-        if let data = screenTimeSelectionData,
-           let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
-            self.selection = decoded
-        }
-    }
-    
-    func blockApps() {
+    /// "Ohne Handy" – blockiert alle App-Kategorien komplett
+    func blockAllApps() {
         guard isAuthorized else { return }
-        
-        let applications = selection.applicationTokens
-        let categories = selection.categoryTokens
-        
-        store.shield.applications = applications.isEmpty ? nil : applications
-        store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.specific(categories)
-        store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.specific(categories)
+        store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all()
+        store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all()
+    }
+    
+    /// "Mit Handy" – blockiert alles AUSSER den Kategorien/Apps, die der Nutzer als erlaubt markiert hat
+    func blockAllExcept(selection: FamilyActivitySelection) {
+        guard isAuthorized else { return }
+        let allowedCategories = selection.categoryTokens
+        // Alle Kategorien blockieren, außer den explizit erlaubten
+        store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all(except: allowedCategories)
+        store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all(except: allowedCategories)
+        // Einzelne Apps aus der Auswahl werden nicht explizit geblockt
+        store.shield.applications = nil
     }
     
     func unblockApps() {
         store.shield.applications = nil
         store.shield.applicationCategories = nil
         store.shield.webDomainCategories = nil
+    }
+    
+    // MARK: - Persistence
+    
+    private func saveAllowedSelection() {
+        if let data = try? JSONEncoder().encode(allowedSelection) {
+            allowedSelectionData = data
+        }
+    }
+    
+    private func loadAllowedSelection() {
+        if let data = allowedSelectionData,
+           let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.allowedSelection = decoded
+        }
     }
 }

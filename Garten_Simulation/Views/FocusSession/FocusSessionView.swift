@@ -59,6 +59,9 @@ struct FocusSessionView: View {
                         description: String(localized: "focus.session.dnd_hint", defaultValue: "Schalte dein Handy jetzt auf 'Nicht stören' und lege es nach dieser Einrichtung außer Sichtweite."),
                         buttonText: String(localized: "focus.prep.step1.button", defaultValue: "Erledigt"),
                         isLastStep: false,
+                        onScreenTimeComplete: {
+                            showStrictModeAlert = true
+                        },
                         textInput: $currentGoalInput,
                         goals: $sessionGoals
                     ) {
@@ -88,7 +91,7 @@ struct FocusSessionView: View {
                             remainingSeconds = selectedMinutes * 60
                             state = .timer
                             isTimerRunning = true
-                            ScreenTimeManager.shared.blockApps()
+                            // Blocking already applied in step 1 via FocusScreenTimePickerView
                             startLiveActivity()
                         }
                     }

@@ -80,11 +80,16 @@ struct FocusSessionPreparationStep: View {
     let isLastStep: Bool
     var showTextInput: Bool = false
     var habitCategory: HabitCategory? = nil
+    /// Nur für den Handy-Step: wird aufgerufen, wenn der Nutzer eine Wahl getroffen hat
+    var onScreenTimeComplete: (() -> Void)? = nil
     @Binding var textInput: String
     @Binding var goals: [FocusGoal]
     let action: () -> Void
     
     @EnvironmentObject var settings: SettingsStore
+    
+    /// Handy-Step hat eigene Action-Buttons – kein Haupt-Button nötig
+    private var hideMainButton: Bool { iconName == "Handy" }
     
     private func suggestions(for category: HabitCategory?) -> [String] {
         switch category {
@@ -150,8 +155,8 @@ struct FocusSessionPreparationStep: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
                 
-                if iconName == "Handy" {
-                    FocusScreenTimePickerView()
+                if iconName == "Handy", let onComplete = onScreenTimeComplete {
+                    FocusScreenTimePickerView(onComplete: onComplete)
                         .padding(.top, 8)
                 }
                 
@@ -286,20 +291,22 @@ struct FocusSessionPreparationStep: View {
             .padding(.bottom, 24)
         }
         
-        // Weiter-Button
-        Button(action: action) {
-            Text(buttonText)
+        // Weiter-Button (wird beim Handy-Step ausgeblendet)
+        if !hideMainButton {
+            Button(action: action) {
+                Text(buttonText)
+            }
+                .buttonStyle(DuolingoButtonStyle(
+                    size: .large,
+                    fillWidth: true,
+                    backgroundColor: .goldPrimary,
+                    shadowColor: .goldPrimary.darker(),
+                    foregroundColor: .white
+                ))
+                .padding(.horizontal, 24)
+                .padding(.bottom, 40)
+                .padding(.top, 16)
         }
-            .buttonStyle(DuolingoButtonStyle(
-                size: .large,
-                fillWidth: true,
-                backgroundColor: .goldPrimary,
-                shadowColor: .goldPrimary.darker(),
-                foregroundColor: .white
-            ))
-            .padding(.horizontal, 24)
-            .padding(.bottom, 40)
-            .padding(.top, 16)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(UIColor.systemBackground).ignoresSafeArea())
