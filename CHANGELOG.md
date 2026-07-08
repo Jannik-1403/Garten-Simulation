@@ -458,3 +458,4 @@
 - Widget: Das interaktive Routine-Widget (Pro) wurde implementiert (Timeline Layout, Farbanpassung).
 - Bugfix: Routine-Widget verlor Daten weil customRoutinesData nicht mit dem App Group Container synchronisiert wurde. Das wurde behoben.
 - Added Goal icon and 'Deine aktuelle Garten Streak' title to the Streak Card
+- Completely rebuilt Streak Widgets (Small, Medium, Large, Lockscreen) with native Goal image and explicit 11-language translations to fix blank rendering.
