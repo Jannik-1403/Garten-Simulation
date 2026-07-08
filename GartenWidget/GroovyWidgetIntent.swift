@@ -6,11 +6,10 @@ import Foundation
 
 // MARK: - Neu: Hintergrund-Stil
 enum WidgetBackgroundStyle: String, AppEnum {
-    case colorful, light, dark
+    case light, dark
 
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "Hintergrund-Stil"
     static var caseDisplayRepresentations: [WidgetBackgroundStyle: DisplayRepresentation] = [
-        .colorful: "Farbig (Gradient)",
         .light: "Hell (Weiß)",
         .dark: "Dunkel (Schwarz)"
     ]
@@ -37,7 +36,7 @@ struct SelectWaterPeriodIntent: WidgetConfigurationIntent {
     @Parameter(title: "Zeitraum", default: .week)
     var period: WaterPeriod
 
-    @Parameter(title: "Hintergrund", default: .colorful)
+    @Parameter(title: "Hintergrund", default: .dark)
     var style: WidgetBackgroundStyle
 
     init() {}
@@ -48,7 +47,7 @@ struct SelectWaterPeriodIntent: WidgetConfigurationIntent {
 struct SelectStreakIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Streak-Widget anpassen"
     
-    @Parameter(title: "Hintergrund", default: .colorful)
+    @Parameter(title: "Hintergrund", default: .dark)
     var style: WidgetBackgroundStyle
 
     init() {}
@@ -57,7 +56,7 @@ struct SelectStreakIntent: WidgetConfigurationIntent {
 struct SelectHistoryIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Verlauf-Widget anpassen"
     
-    @Parameter(title: "Hintergrund", default: .colorful)
+    @Parameter(title: "Hintergrund", default: .dark)
     var style: WidgetBackgroundStyle
 
     init() {}
@@ -90,7 +89,7 @@ struct RoutineEntity: AppEntity {
     static var defaultQuery = RoutineEntityQuery()
 
     var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(title: "\(icon) \(String(localized: String.LocalizationValue(titleKey)))")
+        DisplayRepresentation(title: "\(String(localized: String.LocalizationValue(titleKey)))")
     }
 }
 

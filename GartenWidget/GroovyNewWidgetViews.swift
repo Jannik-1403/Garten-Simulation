@@ -110,7 +110,7 @@ enum DuoStyle {
         case .light:
             Color.white
         case .dark:
-            Color.black
+            Color(red: 28/255, green: 28/255, blue: 30/255)
         }
     }
 }
@@ -124,7 +124,7 @@ struct StreakBackgroundView: View {
             if style == .light {
                 Color.white
             } else {
-                Color.black
+                Color(red: 28/255, green: 28/255, blue: 30/255)
             }
         }
     }
@@ -139,7 +139,7 @@ struct WaterBackgroundView: View {
             if style == .light {
                 Color.white
             } else {
-                Color.black
+                Color(red: 28/255, green: 28/255, blue: 30/255)
             }
             
             // 4. Rim Light
