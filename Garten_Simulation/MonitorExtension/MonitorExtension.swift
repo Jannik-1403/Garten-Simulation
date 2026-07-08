@@ -4,6 +4,10 @@ import Foundation
 
 class MonitorExtension: DeviceActivityMonitor {
     
+    nonisolated required init() {
+        super.init()
+    }
+    
     nonisolated override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
         // Reset the flag for the new day if needed
