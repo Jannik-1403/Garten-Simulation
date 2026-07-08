@@ -214,11 +214,6 @@ struct StreakSmallWidgetView: View {
 
     var body: some View {
         VStack(spacing: 2) {
-            PNGImage("streak")
-                .scaledToFit()
-                .frame(width: 42, height: 42)
-                .padding(.bottom, 2)
-            
             Text("\(streak)")
                 .font(.system(size: 34, weight: .black, design: .rounded))
                 .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
@@ -229,6 +224,11 @@ struct StreakSmallWidgetView: View {
                 .font(.system(size: 10, weight: .black))
                 .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.7))
                 .tracking(1.2)
+                .padding(.bottom, 2)
+            
+            PNGImage("streak")
+                .scaledToFit()
+                .frame(width: 42, height: 42)
         }
         .padding(12)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
