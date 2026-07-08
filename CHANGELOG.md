@@ -462,3 +462,4 @@
 - Updated all Streak widgets to use the streak icon instead of the Goal icon, and centered it in the small widget.
 - Restored PNGImage for streak icons so they render correctly, and matched the small streak widget layout to the Water widget layout.
 - Moved the streak icon below the text in the small Streak widget for better layout.
+- Small streak widget now displays streak number and text side-by-side at the top with a larger centered icon.
