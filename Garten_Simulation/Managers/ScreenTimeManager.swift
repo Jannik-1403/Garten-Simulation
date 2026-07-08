@@ -49,15 +49,13 @@ class ScreenTimeManager: ObservableObject {
         store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all()
     }
     
-    /// "Mit Handy" – blockiert alles AUSSER den Kategorien/Apps, die der Nutzer als erlaubt markiert hat
+    /// "Mit Handy" – blockiert alles AUSSER den Apps/Domains, die der Nutzer als erlaubt markiert hat
     func blockAllExcept(selection: FamilyActivitySelection) {
         guard isAuthorized else { return }
-        let allowedCategories = selection.categoryTokens
-        // Alle Kategorien blockieren, außer den explizit erlaubten
-        store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all(except: allowedCategories)
-        store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all(except: allowedCategories)
-        // Einzelne Apps aus der Auswahl werden nicht explizit geblockt
-        store.shield.applications = nil
+        // applicationCategories.all(except:) erwartet Set<ApplicationToken>
+        store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all(except: selection.applicationTokens)
+        // webDomainCategories.all(except:) erwartet Set<WebDomainToken>
+        store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all(except: selection.webDomainTokens)
     }
     
     func unblockApps() {
