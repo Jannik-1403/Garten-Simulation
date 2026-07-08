@@ -461,3 +461,4 @@
 - Completely rebuilt Streak Widgets (Small, Medium, Large, Lockscreen) with native Goal image and explicit 11-language translations to fix blank rendering.
 - Updated all Streak widgets to use the streak icon instead of the Goal icon, and centered it in the small widget.
 - Restored PNGImage for streak icons so they render correctly, and matched the small streak widget layout to the Water widget layout.
+- Moved the streak icon below the text in the small Streak widget for better layout.
