@@ -97,7 +97,7 @@
       "type": "NonConsumable"
     },
     {
-      "displayPrice": "29.99",
+      "displayPrice": "49.99",
       "familyShareable": true,
       "internalID": "PRO_LIFETIME_01",
       "localizations": [
@@ -138,7 +138,7 @@
       "subscriptions": [
         {
           "adHocOffers": [],
-          "displayPrice": "1.99",
+          "displayPrice": "3.99",
           "familyShareable": true,
           "groupNumber": 1,
           "internalID": "SUB_MONTHLY_01",
@@ -148,11 +148,6 @@
               "description": "Monatlicher Pro-Zugang",
               "displayName": "Grovy Pro Monatlich",
               "locale": "de"
-            },
-            {
-              "description": "Monthly Pro Access",
-              "displayName": "Grovy Pro Monthly",
-              "locale": "en_US"
             }
           ],
           "productID": "com.gartenapp.pro.monthly",
@@ -162,25 +157,16 @@
         },
         {
           "adHocOffers": [],
-          "displayPrice": "9.99",
+          "displayPrice": "19.99",
           "familyShareable": true,
           "groupNumber": 1,
           "internalID": "SUB_YEARLY_01",
-          "introductoryOffer": {
-            "internalID": "TRIAL_01",
-            "paymentMode": "free",
-            "subscriptionPeriod": "P1W"
-          },
+          "introductoryOffer": null,
           "localizations": [
             {
               "description": "J\u00e4hrlicher Pro-Zugang",
               "displayName": "Grovy Pro J\u00e4hrlich",
               "locale": "de"
-            },
-            {
-              "description": "Yearly Pro Access",
-              "displayName": "Grovy Pro Yearly",
-              "locale": "en_US"
             }
           ],
           "productID": "com.gartenapp.pro.yearly",

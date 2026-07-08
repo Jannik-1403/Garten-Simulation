@@ -1,0 +1,76 @@
+{
+  "identifier": "NEW_STOREKIT",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "49.99",
+      "familyShareable": true,
+      "internalID": "PRO_LIFETIME_01",
+      "localizations": [
+        {
+          "description": "Schalte das volle Potenzial deines Gartens frei.",
+          "displayName": "Grovy Pro Lifetime",
+          "locale": "de"
+        }
+      ],
+      "productID": "com.gartenapp.pro.lifetime",
+      "referenceName": "Grovy Pro Lifetime",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {
+    "_locale": "de_DE",
+    "_storefront": "DEU"
+  },
+  "subscriptionGroups": [
+    {
+      "id": "21A4B6C8",
+      "localizations": [],
+      "name": "ProSubscriptions",
+      "subscriptions": [
+        {
+          "adHocOffers": [],
+          "displayPrice": "3.99",
+          "familyShareable": true,
+          "groupNumber": 1,
+          "internalID": "SUB_MONTHLY_01",
+          "introductoryOffer": null,
+          "localizations": [
+            {
+              "description": "Monatlicher Pro-Zugang",
+              "displayName": "Grovy Pro Monatlich",
+              "locale": "de"
+            }
+          ],
+          "productID": "com.gartenapp.pro.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "Pro Monthly",
+          "type": "RecurringSubscription"
+        },
+        {
+          "adHocOffers": [],
+          "displayPrice": "19.99",
+          "familyShareable": true,
+          "groupNumber": 1,
+          "internalID": "SUB_YEARLY_01",
+          "introductoryOffer": null,
+          "localizations": [
+            {
+              "description": "J\u00e4hrlicher Pro-Zugang",
+              "displayName": "Grovy Pro J\u00e4hrlich",
+              "locale": "de"
+            }
+          ],
+          "productID": "com.gartenapp.pro.yearly",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Pro Yearly",
+          "type": "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 2,
+    "minor": 0
+  }
+}
