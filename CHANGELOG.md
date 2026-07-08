@@ -469,4 +469,3 @@
 
 - Screen Time (Family Controls) Integration: Apps können jetzt während des Fokus und Routinen blockiert werden. Eine Bildschirmzeit-Gewohnheit nutzt nun das DeviceActivity API anstatt Apple Health.
 - Hinzugefügt: Monatliches und Jährliches Abo in StoreKitConfig.storekit, IAPStore und Paywall. Button-Hyphenation behoben und Layout auf 3-Optionen-Ansicht umgestellt.
-- Removed text and icon header from Medium Streak Widget
