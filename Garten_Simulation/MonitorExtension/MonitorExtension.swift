@@ -4,7 +4,7 @@ import Foundation
 
 class MonitorExtension: DeviceActivityMonitor {
     
-    nonisolated required init() {
+    nonisolated required override init() {
         super.init()
     }
     
