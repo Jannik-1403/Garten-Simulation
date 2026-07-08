@@ -210,30 +210,28 @@ struct WaterWidgetView: View {
 
 struct StreakSmallWidgetView: View {
     let entry: GroovyStreakEntry
-
     var streak: Int { entry.appData?.totalStreak ?? 0 }
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            // Text pushed to the absolute top left
-                HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text("\(streak)")
-                        .font(.system(size: 38, weight: .black, design: .rounded))
-                    
-                    Text(String(localized: "widget_streak_days", defaultValue: "TAGE").uppercased())
-                        .font(.system(size: 12, weight: .black))
-                        .opacity(0.7)
-                }
-                .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                .padding(.top, 2)
-                .padding(.leading, 10)
-                
-            PNGImage("Goal")
+            Image("Goal")
+                .resizable()
                 .scaledToFit()
                 .scaleEffect(2.2)
                 .frame(width: 160, height: 160)
                 .offset(x: 35, y: 30)
+
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
+                Text("\(streak)")
+                    .font(.system(size: 38, weight: .black, design: .rounded))
+                Text(String(localized: "widget_streak_days", defaultValue: "TAGE").uppercased())
+                    .font(.system(size: 12, weight: .black))
+                    .opacity(0.7)
+            }
+            .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .padding(.top, 2)
+            .padding(.leading, 10)
         }
         .widgetURL(URL(string: "grovy://streak"))
     }
@@ -266,48 +264,49 @@ struct VerlaufMediumWidgetView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                    VStack(alignment: .leading, spacing: 1) {
-                        Text(String(localized: "widget_verlauf_week_title", defaultValue: "WOCHENVERLAUF").uppercased())
-                            .font(.system(size: 11, weight: .black))
-                            .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.8))
-                            .tracking(1)
-                        Text(String(format: String(localized: "widget_streak_current", defaultValue: "Aktuell: %d"), streak))
-                            .font(.system(size: 12, weight: .bold))
-                            .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
-                    }
-                    Spacer()
-                    HStack(spacing: 5) {
-                        PNGImage("streak")
-                            .scaledToFit()
-                            .frame(width: 20, height: 20)
-                        
-                        Text("\(streak)")
-                            .font(.system(size: 24, weight: .black, design: .rounded))
-                            .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
-                    }
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(String(localized: "widget_verlauf_week_title", defaultValue: "WOCHENVERLAUF").uppercased())
+                        .font(.system(size: 11, weight: .black))
+                        .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.8))
+                        .tracking(1)
+                    Text(String(format: String(localized: "widget_streak_current", defaultValue: "Aktuell: %d"), streak))
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
                 }
+                Spacer()
+                HStack(spacing: 5) {
+                    Image("Goal")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                    
+                    Text("\(streak)")
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                        .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
+                }
+            }
 
-                HStack(spacing: 0) {
-                    ForEach(last7Days, id: \.date) { day in
-                        VStack(spacing: 6) {
-                            ZStack {
-                                Circle()
-                                    .fill(DuoStyle.blockFill(for: entry.backgroundStyle, completed: day.completed))
-                                    .frame(width: 36, height: 36)
-                                
-                                if day.completed {
-                                    Image(systemName: "checkmark")
-                                        .font(.system(size: 16, weight: .bold))
-                                        .foregroundStyle(Color.orange)
-                                }
+            HStack(spacing: 0) {
+                ForEach(last7Days, id: \.date) { day in
+                    VStack(spacing: 6) {
+                        ZStack {
+                            Circle()
+                                .fill(DuoStyle.blockFill(for: entry.backgroundStyle, completed: day.completed))
+                                .frame(width: 36, height: 36)
+                            
+                            if day.completed {
+                                Image(systemName: "checkmark")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundStyle(Color.orange)
                             }
-                            Text(day.label)
-                                .font(.system(size: 10, weight: .black))
-                                .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.8))
                         }
-                        .frame(maxWidth: .infinity)
+                        Text(day.label)
+                            .font(.system(size: 10, weight: .black))
+                            .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.8))
                     }
+                    .frame(maxWidth: .infinity)
                 }
+            }
         }
         .padding(16)
         .widgetURL(URL(string: "grovy://streak"))
@@ -338,7 +337,6 @@ struct VerlaufLargeWidgetView: View {
         let daysInMonth = monthRange.count
         let weekdayOfFirst = cal.component(.weekday, from: startOfMonth)
         
-        // Montag-basiertes Padding (Mo=0, ..., So=6)
         let paddingCount = (weekdayOfFirst + 5) % 7
         
         var result: [(date: Date?, completed: Bool)] = Array(repeating: (nil, false), count: paddingCount)
@@ -361,55 +359,56 @@ struct VerlaufLargeWidgetView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                    VStack(alignment: .leading, spacing: 1) {
-                        Text(currentMonthName)
-                            .font(.system(size: 12, weight: .black))
-                            .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.8))
-                            .tracking(1)
-                        Text(String(localized: "widget_verlauf_month_title", defaultValue: "Monatsverlauf"))
-                            .font(.system(size: 13, weight: .bold))
-                            .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
-                    }
-                    Spacer()
-                    HStack(spacing: 6) {
-                        PNGImage("streak")
-                            .scaledToFit()
-                            .frame(width: 26, height: 26)
-                        
-                        Text("\(streak)")
-                            .font(.system(size: 32, weight: .black, design: .rounded))
-                            .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
-                    }
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(currentMonthName)
+                        .font(.system(size: 12, weight: .black))
+                        .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.8))
+                        .tracking(1)
+                    Text(String(localized: "widget_verlauf_month_title", defaultValue: "Monatsverlauf"))
+                        .font(.system(size: 13, weight: .bold))
+                        .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
                 }
-
-                HStack(spacing: 0) {
-                    ForEach(weekdayHeaders, id: \.self) { day in
-                        Text(day)
-                            .font(.system(size: 11, weight: .black))
-                            .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.6))
-                            .frame(maxWidth: .infinity)
-                    }
+                Spacer()
+                HStack(spacing: 6) {
+                    Image("Goal")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 26, height: 26)
+                    
+                    Text("\(streak)")
+                        .font(.system(size: 32, weight: .black, design: .rounded))
+                        .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
                 }
+            }
 
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 7), spacing: 6) {
-                    ForEach(Array(gridDays.enumerated()), id: \.offset) { _, day in
-                        if let _ = day.date {
-                            ZStack {
-                                Circle()
-                                    .fill(DuoStyle.blockFill(for: entry.backgroundStyle, completed: day.completed))
-                                
-                                if day.completed {
-                                    Image(systemName: "checkmark")
-                                        .font(.system(size: 10, weight: .bold))
-                                        .foregroundStyle(Color.orange)
-                                }
+            HStack(spacing: 0) {
+                ForEach(weekdayHeaders, id: \.self) { day in
+                    Text(day)
+                        .font(.system(size: 11, weight: .black))
+                        .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.6))
+                        .frame(maxWidth: .infinity)
+                }
+            }
+
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 7), spacing: 6) {
+                ForEach(Array(gridDays.enumerated()), id: \.offset) { _, day in
+                    if let _ = day.date {
+                        ZStack {
+                            Circle()
+                                .fill(DuoStyle.blockFill(for: entry.backgroundStyle, completed: day.completed))
+                            
+                            if day.completed {
+                                Image(systemName: "checkmark")
+                                    .font(.system(size: 10, weight: .bold))
+                                    .foregroundStyle(Color.orange)
                             }
-                            .aspectRatio(1, contentMode: .fit)
-                        } else {
-                            Color.clear.aspectRatio(1, contentMode: .fit)
                         }
+                        .aspectRatio(1, contentMode: .fit)
+                    } else {
+                        Color.clear.aspectRatio(1, contentMode: .fit)
                     }
                 }
+            }
         }
         .padding(18)
         .widgetURL(URL(string: "grovy://streak"))
@@ -433,8 +432,10 @@ struct LockScreenStreakWidgetView: View {
             }
             if isPro {
                 VStack(spacing: 0) {
-                    Image(systemName: "flame.fill")
-                        .font(.system(size: 16, weight: .bold))
+                    Image("Goal")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
                     Text("\(streak)")
                         .font(.system(size: 18, weight: .black, design: .rounded))
                 }
