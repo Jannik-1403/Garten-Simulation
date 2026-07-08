@@ -78,7 +78,7 @@ struct CoinsDetailView: View {
                             .frame(height: 200)
                         } else {
                             VStack(spacing: 12) {
-                                ForEach(iapStore.products.filter { $0.id != "com.jannik.grovy.cosmetics.glasses" }, id: \.id) { product in
+                                ForEach(iapStore.products.filter { $0.id.contains(".coins.") }, id: \.id) { product in
                                     CoinPackCard(
                                         product: product,
                                         isPurchasing: iapStore.isPurchasing
