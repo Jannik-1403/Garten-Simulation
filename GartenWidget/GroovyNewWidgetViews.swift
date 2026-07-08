@@ -439,8 +439,10 @@ struct LockScreenStreakWidgetView: View {
                 VStack(spacing: 2) {
                     Image(systemName: "lock.fill")
                         .font(.system(size: 16, weight: .bold))
+                        .foregroundStyle(Color(red: 1.0, green: 0.84, blue: 0.0))
                     Text("PRO")
                         .font(.system(size: 10, weight: .black))
+                        .foregroundStyle(Color(red: 1.0, green: 0.84, blue: 0.0))
                 }
             }
         }
@@ -566,13 +568,18 @@ struct InteractiveHabitsWidgetView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             } else {
-                VStack(spacing: 12) {
+                VStack(spacing: 8) {
                     Image(systemName: "lock.fill")
-                        .font(.system(size: 28, weight: .bold))
-                        .foregroundStyle(DuoStyle.contentColor(for: entry.style))
+                        .font(.system(size: 32, weight: .bold))
+                        .foregroundStyle(Color(red: 1.0, green: 0.84, blue: 0.0))
+                    
+                    Text("PRO")
+                        .font(.system(size: 20, weight: .black, design: .rounded))
+                        .foregroundStyle(Color(red: 1.0, green: 0.84, blue: 0.0))
+                    
                     Text(String(localized: "widget_pro_required", defaultValue: "Pro-Version erforderlich"))
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundStyle(DuoStyle.contentColor(for: entry.style))
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.7))
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
