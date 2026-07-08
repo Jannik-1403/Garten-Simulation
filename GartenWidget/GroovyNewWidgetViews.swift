@@ -262,27 +262,7 @@ struct VerlaufMediumWidgetView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                VStack(alignment: .leading, spacing: 1) {
-                    Text(String(localized: "widget_verlauf_week_title", defaultValue: "WOCHENVERLAUF").uppercased())
-                        .font(.system(size: 11, weight: .black))
-                        .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.8))
-                        .tracking(1)
-                    Text(String(format: String(localized: "widget_streak_current", defaultValue: "Aktuell: %d"), streak))
-                        .font(.system(size: 12, weight: .bold))
-                        .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
-                }
-                Spacer()
-                HStack(spacing: 5) {
-                    PNGImage("streak")
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                    
-                    Text("\(streak)")
-                        .font(.system(size: 24, weight: .black, design: .rounded))
-                        .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
-                }
-            }
+
 
             HStack(spacing: 0) {
                 ForEach(last7Days, id: \.date) { day in
