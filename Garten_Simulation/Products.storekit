@@ -29,7 +29,6 @@
         }
       ],
       "productID": "com.jannik.grovy.coins.pack_small",
-      "promotionalImageID": "2B5830D1",
       "referenceName": "500 M\u00fcnzen",
       "type": "Consumable"
     },
@@ -50,7 +49,6 @@
         }
       ],
       "productID": "com.jannik.grovy.coins.pack_medium",
-      "promotionalImageID": "4DDC54AB",
       "referenceName": "1800 M\u00fcnzen",
       "type": "Consumable"
     },
@@ -71,7 +69,6 @@
         }
       ],
       "productID": "com.jannik.grovy.coins.pack_large",
-      "promotionalImageID": "72B43FF1",
       "referenceName": "3500 M\u00fcnzen",
       "type": "Consumable"
     },
@@ -92,7 +89,6 @@
         }
       ],
       "productID": "com.jannik.grovy.cosmetics.glasses",
-      "promotionalImageID": "11A22B33",
       "referenceName": "Premium Sonnenbrille",
       "type": "NonConsumable"
     },
@@ -113,7 +109,6 @@
         }
       ],
       "productID": "com.jannik.grovy.pro.lifetime",
-      "promotionalImageID": "11A22B44",
       "referenceName": "Grovy Pro Lifetime",
       "type": "NonConsumable"
     }

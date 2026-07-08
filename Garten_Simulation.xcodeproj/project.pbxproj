@@ -68,7 +68,7 @@
 		1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeltenheitProgressRing.swift; sourceTree = "<group>"; };
 		14741A632FFEA96100CA0071 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		451D92332C87A16BD490A21B /* GardenActivityAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GardenActivityAttributes.swift; path = Garten_Simulation/Models/GardenActivityAttributes.swift; sourceTree = "<group>"; };
-		8EBDEF86E50BEB46E8961492 /* Products.storekit */ = {isa = PBXFileReference; includeInIndex = 1; path = Products.storekit; sourceTree = "<group>"; };
+		8EBDEF86E50BEB46E8961492 /* Products.storekit */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storekit; path = Products.storekit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
