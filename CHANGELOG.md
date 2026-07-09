@@ -526,3 +526,4 @@
 - **Screen Time Domains**: Implemented direct programmatic blocking of web domains using `webContent.blockedByFilter` so suggestions can be added instantly without Apple's Family Activity Picker.
 - **Item3DButton UI**: Upgraded all Screen Time cards (Permanent Blocks, Suggestions, Weekday List) to strictly use the `Item3DButton` styling for a uniform and premium visual experience.
 - **Screen Time Overhaul**: Per-Wochentag Zeitplan (DaySchedule-Modell), Quick-Copy für Mo-Fr/Sa-So, horizontale Block-Karten, ehrliche Vorschlags-Karten die Apple Picker öffnen, Custom-Domain-Fake-Code entfernt
+- **Background Schedule (DeviceActivityMonitor)**: Der ScreenTimeMonitor läuft jetzt echt im Hintergrund. Beim Speichern werden via DeviceActivityCenter pro aktivem Wochentag eigene Schedules registriert. Die Extension aktiviert/deaktiviert den ManagedSettings-Shield automatisch ohne dass die App offen sein muss.

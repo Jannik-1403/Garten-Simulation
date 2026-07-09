@@ -385,6 +385,10 @@ struct ScreenTimeSettingsView: View {
         manager.permanentBlockSelection = permanentBlockSelection
         manager.isAdultFilterEnabled = isAdultFilterEnabled
         manager.applyPermanentBlocks()
+        
+        // Register/update DeviceActivity background schedules
+        let blockData = try? JSONEncoder().encode(blockSelection)
+        manager.scheduleBlockActivities(daySchedules: daySchedules, blockSelectionData: blockData)
     }
     
     @ViewBuilder

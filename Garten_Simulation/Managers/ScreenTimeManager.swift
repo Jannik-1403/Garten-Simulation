@@ -2,6 +2,7 @@ import Combine
 import Foundation
 import FamilyControls
 import ManagedSettings
+import DeviceActivity
 import SwiftUI
 
 // MARK: - Per-Day Schedule
@@ -159,6 +160,59 @@ class ScreenTimeManager: ObservableObject {
             store.webContent.blockedByFilter = .auto()
         } else {
             store.webContent.blockedByFilter = nil
+        }
+    }
+    
+    // MARK: - DeviceActivity Scheduling
+    
+    static let activityNamePrefix = "com.jannik.grovy.screentime.block"
+    
+    /// Registers DeviceActivitySchedule entries for all active days.
+    /// The MonitorExtension picks these up and activates/deactivates the shield automatically.
+    func scheduleBlockActivities(daySchedules: [Int: DaySchedule], blockSelectionData: Data?) {
+        let center = DeviceActivityCenter()
+        
+        // Cancel all existing schedules first
+        center.stopMonitoring()
+        
+        // Save blockSelection data to App Group so the extension can read it
+        let defaults = UserDefaults(suiteName: SharedUserDefaults.suiteName)
+        defaults?.set(blockSelectionData, forKey: "screenTimeBlockSelectionData_appGroup")
+        defaults?.synchronize()
+        
+        guard isScheduleActive else { return }
+        
+        let calendar = Calendar.current
+        
+        for (weekday, schedule) in daySchedules {
+            guard schedule.isActive else { continue }
+            
+            let activityName = DeviceActivityName("\(Self.activityNamePrefix).\(weekday)")
+            
+            var startComponents = DateComponents()
+            startComponents.weekday = weekday
+            startComponents.hour = schedule.startHour
+            startComponents.minute = schedule.startMinute
+            
+            var endComponents = DateComponents()
+            // If end is on the next day (over-midnight), we keep the same weekday for end
+            // DeviceActivity handles same-day intervals. For over-midnight, we use next weekday.
+            let isOverMidnight = (schedule.startHour * 60 + schedule.startMinute) > (schedule.endHour * 60 + schedule.endMinute)
+            endComponents.weekday = isOverMidnight ? (weekday % 7) + 1 : weekday
+            endComponents.hour = schedule.endHour
+            endComponents.minute = schedule.endMinute
+            
+            let activitySchedule = DeviceActivitySchedule(
+                intervalStart: startComponents,
+                intervalEnd: endComponents,
+                repeats: true
+            )
+            
+            do {
+                try center.startMonitoring(activityName, during: activitySchedule)
+            } catch {
+                print("Failed to schedule activity for weekday \(weekday): \(error)")
+            }
         }
     }
     
