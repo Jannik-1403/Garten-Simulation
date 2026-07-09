@@ -4,6 +4,21 @@ import FamilyControls
 import ManagedSettings
 import SwiftUI
 
+// MARK: - Per-Day Schedule
+
+struct DaySchedule: Codable, Equatable {
+    var isActive: Bool
+    var startHour: Int
+    var startMinute: Int
+    var endHour: Int
+    var endMinute: Int
+    
+    static let defaultWeekday = DaySchedule(isActive: true, startHour: 9, startMinute: 0, endHour: 17, endMinute: 0)
+    static let defaultWeekend = DaySchedule(isActive: false, startHour: 10, startMinute: 0, endHour: 14, endMinute: 0)
+}
+
+// MARK: - ScreenTimeManager
+
 @MainActor
 class ScreenTimeManager: ObservableObject {
     static let shared = ScreenTimeManager()
@@ -25,37 +40,37 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
-    @AppStorage("screenTimeCustomDomainsData") private var customBlockedDomainsData: Data = Data()
-    var customBlockedDomains: Set<String> {
+    // MARK: - Block Schedule (Per-Day)
+    @AppStorage("isScreenTimeScheduleActive") var isScheduleActive: Bool = false
+    
+    /// Weekday schedule: key = Calendar weekday (1=Sun, 2=Mon ... 7=Sat)
+    @AppStorage("screenTimeDaySchedulesData") private var daySchedulesData: Data = {
+        let defaults: [Int: DaySchedule] = [
+            1: .defaultWeekend,  // Sunday
+            2: .defaultWeekday,  // Monday
+            3: .defaultWeekday,  // Tuesday
+            4: .defaultWeekday,  // Wednesday
+            5: .defaultWeekday,  // Thursday
+            6: .defaultWeekday,  // Friday
+            7: .defaultWeekend   // Saturday
+        ]
+        return (try? JSONEncoder().encode(defaults)) ?? Data()
+    }()
+    
+    var daySchedules: [Int: DaySchedule] {
         get {
-            (try? JSONDecoder().decode(Set<String>.self, from: customBlockedDomainsData)) ?? Set()
+            (try? JSONDecoder().decode([Int: DaySchedule].self, from: daySchedulesData)) ?? defaultSchedules
         }
         set {
             if let data = try? JSONEncoder().encode(newValue) {
-                customBlockedDomainsData = data
+                daySchedulesData = data
             }
-            applyPermanentBlocks()
         }
     }
     
-    // MARK: - Block Schedule
-    @AppStorage("isScreenTimeScheduleActive") var isScheduleActive: Bool = false
-    @AppStorage("screenTimeBlockStartHour") var blockStartHour: Int = 9
-    @AppStorage("screenTimeBlockStartMinute") var blockStartMinute: Int = 0
-    @AppStorage("screenTimeBlockEndHour") var blockEndHour: Int = 17
-    @AppStorage("screenTimeBlockEndMinute") var blockEndMinute: Int = 0
-    
-    // 1: Sunday, 2: Monday, 3: Tuesday, 4: Wednesday, 5: Thursday, 6: Friday, 7: Saturday
-    @AppStorage("screenTimeActiveWeekdays") private var activeWeekdaysData: Data = (try? JSONEncoder().encode(Set([2,3,4,5,6]))) ?? Data()
-    var activeWeekdays: Set<Int> {
-        get {
-            (try? JSONDecoder().decode(Set<Int>.self, from: activeWeekdaysData)) ?? Set([2,3,4,5,6])
-        }
-        set {
-            if let data = try? JSONEncoder().encode(newValue) {
-                activeWeekdaysData = data
-            }
-        }
+    private var defaultSchedules: [Int: DaySchedule] {
+        [1: .defaultWeekend, 2: .defaultWeekday, 3: .defaultWeekday,
+         4: .defaultWeekday, 5: .defaultWeekday, 6: .defaultWeekday, 7: .defaultWeekend]
     }
     
     var isCurrentlyInBlockWindow: Bool {
@@ -65,30 +80,36 @@ class ScreenTimeManager: ObservableObject {
         let currentWeekday = calendar.component(.weekday, from: now)
         let previousWeekday = currentWeekday == 1 ? 7 : currentWeekday - 1
         
+        let schedules = daySchedules
+        
         let currentHour = calendar.component(.hour, from: now)
         let currentMinute = calendar.component(.minute, from: now)
         let currentTime = currentHour * 60 + currentMinute
-        let startTime = blockStartHour * 60 + blockStartMinute
-        let endTime = blockEndHour * 60 + blockEndMinute
         
-        if startTime <= endTime {
-            // Same day block
-            guard activeWeekdays.contains(currentWeekday) else { return false }
-            return currentTime >= startTime && currentTime < endTime
-        } else {
-            // Over midnight block
-            if currentTime >= startTime {
-                // Started today
-                return activeWeekdays.contains(currentWeekday)
-            } else if currentTime < endTime {
-                // Started yesterday
-                return activeWeekdays.contains(previousWeekday)
+        // Check today's schedule
+        if let todaySchedule = schedules[currentWeekday], todaySchedule.isActive {
+            let startTime = todaySchedule.startHour * 60 + todaySchedule.startMinute
+            let endTime = todaySchedule.endHour * 60 + todaySchedule.endMinute
+            
+            if startTime <= endTime {
+                if currentTime >= startTime && currentTime < endTime { return true }
+            } else {
+                // Over-midnight: started today
+                if currentTime >= startTime { return true }
             }
-            return false
         }
+        
+        // Check if we're in the tail of yesterday's over-midnight block
+        if let yesterdaySchedule = schedules[previousWeekday], yesterdaySchedule.isActive {
+            let startTime = yesterdaySchedule.startHour * 60 + yesterdaySchedule.startMinute
+            let endTime = yesterdaySchedule.endHour * 60 + yesterdaySchedule.endMinute
+            if startTime > endTime && currentTime < endTime { return true }
+        }
+        
+        return false
     }
     
-    /// Apps/Kategorien, die der Nutzer beim "Mit Handy"-Modus NICHT blockiert haben möchte
+    /// Apps/Kategorien, die der Nutzer beim „Mit Handy"-Modus NICHT blockiert haben möchte
     @Published var allowedSelection = FamilyActivitySelection() {
         didSet { saveAllowedSelection() }
     }
@@ -131,32 +152,17 @@ class ScreenTimeManager: ObservableObject {
     
     func applyPermanentBlocks() {
         guard isAuthorized else { return }
-        // Set specific apps/domains to be always blocked
         store.shield.applications = permanentBlockSelection.applicationTokens
         store.shield.webDomains = permanentBlockSelection.webDomainTokens
         
-        // Handle Adult Content filter and custom domains
-        let customDomains = Set(customBlockedDomains.map { WebDomain(domain: $0) })
-        
         if isAdultFilterEnabled {
-            // Auto blocks adult content. We can't easily combine auto and specific blocked domains in one policy,
-            // but we can prioritize specific if they exist, or just use auto. We'll use auto if adult is enabled and no custom domains.
-            // If custom domains exist, we must use specific to block them.
-            if !customDomains.isEmpty {
-                store.webContent.blockedByFilter = .specific(customDomains)
-            } else {
-                store.webContent.blockedByFilter = .auto()
-            }
+            store.webContent.blockedByFilter = .auto()
         } else {
-            if !customDomains.isEmpty {
-                store.webContent.blockedByFilter = .specific(customDomains)
-            } else {
-                store.webContent.blockedByFilter = nil
-            }
+            store.webContent.blockedByFilter = nil
         }
     }
     
-    /// "Ohne Handy" – blockiert alle App-Kategorien komplett
+    /// „Ohne Handy" – blockiert alle App-Kategorien komplett
     func blockAllApps() {
         guard isAuthorized else { return }
         store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all()
@@ -164,12 +170,10 @@ class ScreenTimeManager: ObservableObject {
         applyPermanentBlocks()
     }
     
-    /// "Mit Handy" – blockiert alles AUSSER den Apps/Domains, die der Nutzer als erlaubt markiert hat
+    /// „Mit Handy" – blockiert alles AUSSER den Apps/Domains, die der Nutzer als erlaubt markiert hat
     func blockAllExcept(selection: FamilyActivitySelection) {
         guard isAuthorized else { return }
-        // applicationCategories.all(except:) erwartet Set<ApplicationToken>
         store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all(except: selection.applicationTokens)
-        // webDomainCategories.all(except:) erwartet Set<WebDomainToken>
         store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all(except: selection.webDomainTokens)
         applyPermanentBlocks()
     }
