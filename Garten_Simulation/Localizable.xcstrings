@@ -1265,12 +1265,6 @@
         }
       }
     },
-    "%lld h" : {
-
-    },
-    "%lld m" : {
-
-    },
     "%lld Min" : {
       "localizations" : {
         "de" : {
@@ -1552,16 +1546,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld%@"
-          }
-        }
-      }
-    },
-    "%lldh %lldm" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lldh %2$lldm"
           }
         }
       }
@@ -210070,35 +210054,13 @@
         }
       }
     },
-    "screenTime.layer2.unblock" : {
+    "screenTime.openSystemSettings" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Apps entsperren"
-          }
-        }
-      }
-    },
-    "screenTime.limit.picker.nav" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Limit festlegen"
-          }
-        }
-      }
-    },
-    "screenTime.limit.picker.title" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Wie lange darfst du die Apps in Ebene 1 maximal am Tag nutzen?"
+            "value" : "iOS Bildschirmzeit öffnen"
           }
         }
       }

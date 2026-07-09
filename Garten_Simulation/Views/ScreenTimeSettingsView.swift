@@ -201,79 +201,34 @@ struct ScreenTimeSettingsView: View {
     private var settingsScrollView: some View {
         ScrollView {
             VStack(spacing: 24) {
-                if !manager.isAuthorized {
-                    authorizationBanner
-                }
-                
-                if manager.isScheduleActive || !dailyLimitSelection.applicationTokens.isEmpty || !permanentBlockSelection.applicationTokens.isEmpty {
-                    Item3DButton(
-                        farbe: Color.orange,
-                        sekundaerFarbe: Color.orange.darker(),
-                        groesse: 56,
-                        shadowDepthFactor: 0.07,
-                        isRectangular: true,
-                        aktion: { showWalkOfShame = true }
-                    ) {
-                        HStack {
-                            Image(systemName: "lock.open.fill")
-                                .foregroundStyle(.white)
-                            Text(String(localized: "screenTime.layer1.unblock", defaultValue: "Apps entsperren"))
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundStyle(.white)
-                            Spacer()
-                        }
-                        .padding(.horizontal, 8)
-                    }
-                }
+
                 
                 dailyLimitSection
                 permanentBlockSection
                 scheduleSection
                 infoSection
                 
-                // Bottom System Link
-                Button(action: {
-                    if let url = URL(string: "App-prefs:SCREEN_TIME") {
-                        UIApplication.shared.open(url)
+                // Bottom Authorization Link
+                if !manager.isAuthorized {
+                    Button(action: {
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(url)
+                        }
+                    }) {
+                        Text(String(localized: "screenTime.auth.request", defaultValue: "Bildschirmzeit-Zugriff erlauben"))
+                            .font(.system(size: 13, weight: .medium, design: .rounded))
+                            .foregroundColor(.orange)
+                            .underline()
                     }
-                }) {
-                    Text(String(localized: "screenTime.openSystemSettings", defaultValue: "iOS Bildschirmzeit öffnen"))
-                        .font(.system(size: 13, weight: .medium, design: .rounded))
-                        .foregroundColor(.secondary)
-                        .underline()
+                    .padding(.top, 24)
+                    .padding(.bottom, 40)
                 }
-                .padding(.top, 24)
-                .padding(.bottom, 40)
             }
             .padding()
         }
     }
     
-    // MARK: - Authorization Banner
-    
-    private var authorizationBanner: some View {
-        Item3DButton(
-            farbe: Color.orange,
-            sekundaerFarbe: Color.orange.darker(),
-            groesse: 56,
-            isRectangular: true,
-            aktion: {
-                if let url = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url)
-                }
-            }
-        ) {
-            HStack {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .foregroundStyle(.white)
-                Text(String(localized: "screenTime.auth.request", defaultValue: "Bildschirmzeit-Zugriff erlauben"))
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(.white)
-                Spacer()
-            }
-            .padding(.horizontal, 8)
-        }
-    }
+
     
     // MARK: - Ebene 1: Zeitlimit
     private var dailyLimitSection: some View {
@@ -304,6 +259,25 @@ struct ScreenTimeSettingsView: View {
                 .familyActivityPicker(isPresented: $isDailyLimitPickerPresented, selection: $dailyLimitSelection)
                 
                 Spacer()
+                
+                if manager.isScheduleActive || !dailyLimitSelection.applicationTokens.isEmpty || !permanentBlockSelection.applicationTokens.isEmpty {
+                    Item3DButton(
+                        farbe: Color.orange,
+                        sekundaerFarbe: Color.orange.darker(),
+                        groesse: 36,
+                        shadowDepthFactor: 0.15,
+                        isRectangular: true,
+                        aktion: { showWalkOfShame = true }
+                    ) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "lock.open.fill")
+                            Text(String(localized: "screenTime.layer1.unblock.short", defaultValue: "Entsperren"))
+                        }
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 16)
+                    }
+                }
             }
             .padding(.horizontal)
             

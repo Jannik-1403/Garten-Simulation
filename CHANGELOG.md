@@ -552,3 +552,7 @@
 - **Walk of Shame**: ScrollView und iOS Liquid Glass (Material) Layout integriert, sowie Copy-Paste für Textvorlage blockiert.
 - **Screen Time**: Exploit geschlossen – Einmal hinzugefügte Apps können nicht mehr über den Picker entfernt ("weggeklickt") werden. Zum Entfernen muss die "Walk of Shame" Ebene abgeschlossen werden.
 - **Walk of Shame**: Der Schließen-Button entspricht nun nativen iOS-Design-Richtlinien (xmark.circle.fill).
+- Implementiert individuelle Zeitlimits pro App (Ebene 1)
+- Walk of Shame nutzt jetzt nativen NavigationStack für iOS-Look
+- 'Apps entsperren' 3D-Button an die Spitze der Einstellungen verschoben
+- System-Bildschirmzeit Link am Ende der Einstellungsseite hinzugefügt
