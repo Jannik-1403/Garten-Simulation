@@ -36,6 +36,10 @@ struct PflanzeDetailSheet: View {
     @ObservedObject private var healthManager = HealthManager.shared
     @FocusState private var isTargetFocused: Bool
     
+    @State private var screenTimeHours: Int = 2
+    @State private var screenTimeMinutes: Int = 0
+    @State private var showScreenTimeConfirm = false
+    
     @AppStorage("customRoutinesData", store: SharedUserDefaults.suite) private var customRoutinesData: Data = Data()
     
     private var parentRoutineWithReminder: RoutineUIData? {
@@ -438,6 +442,11 @@ struct PflanzeDetailSheet: View {
             withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
                 pulsieren = true
             }
+            if pflanze.habitName == "habit.bildschirmzeit" {
+                let totalMins = Int(pflanze.customTrackerTarget ?? 120.0)
+                screenTimeHours = totalMins / 60
+                screenTimeMinutes = totalMins % 60
+            }
         }
         // MARK: - Verkaufen Dialog
         .confirmationDialog(
@@ -660,66 +669,137 @@ struct PflanzeDetailSheet: View {
                                                         }
                                                     }
                                                     
-                                                    HStack {
-                                                        Text(String(localized: "custom.tracker.target", defaultValue: "Ziel"))
-                                                            .font(.system(size: 15, weight: .semibold, design: .rounded))
-                                                        Spacer()
-                                                        TextField("0", value: Binding(
-                                                            get: { pflanze.customTrackerTarget },
-                                                            set: { pflanze.customTrackerTarget = $0; gardenStore.savePlants() }
-                                                        ), format: .number)
-                                                        .keyboardType(.numberPad)
-                                                        .focused($isTargetFocused)
-                                                        .multilineTextAlignment(.trailing)
-                                                        .frame(width: 100)
-                                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                        .foregroundStyle(.orange)
-                                                        .padding(8)
-                                                        .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
-                                                    }
-                                                    
-                                                    let current = Int(pflanze.customTrackerProgress)
-                                                    let target = Int(pflanze.customTrackerTarget ?? 1)
-                                                    
-                                                    VStack(spacing: 8) {
-                                                        HStack {
-                                                            Text(String(localized: "custom.tracker.progress", defaultValue: "Fortschritt heute"))
-                                                                .font(.system(size: 13, weight: .medium, design: .rounded))
-                                                                .foregroundStyle(.secondary)
-                                                            Spacer()
-                                                            Text(verbatim: "\(current) / \(target)")
-                                                                .font(.system(size: 13, weight: .bold, design: .rounded))
-                                                                .foregroundStyle(.orange)
-                                                        }
-                                                        
-                                                        HStack(spacing: 12) {
-                                                            Text("0")
-                                                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                                                .foregroundStyle(.secondary)
+                                                    if pflanze.habitName == "habit.bildschirmzeit" {
+                                                        VStack(spacing: 12) {
+                                                            HStack {
+                                                                Text(String(localized: "custom.tracker.target", defaultValue: "Ziel"))
+                                                                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                                                                Spacer()
+                                                            }
                                                             
-                                                            Slider(value: Binding(
-                                                                get: { pflanze.customTrackerProgress },
-                                                                set: { newValue in
-                                                                    if Int(newValue) >= target && !pflanze.istBewässert {
-                                                                        if Int(pflanze.customTrackerProgress) < target {
-                                                                            pflanze.customTrackerProgress = Double(target)
-                                                                            zeigeTrackerConfirm = true
-                                                                        }
-                                                                    } else {
-                                                                        pflanze.customTrackerProgress = newValue
+                                                            HStack {
+                                                                Picker(String(localized: "common.hours", defaultValue: "Stunden"), selection: $screenTimeHours) {
+                                                                    ForEach(0...23, id: \.self) { h in
+                                                                        Text("\(h) \(String(localized: "common.hours.short", defaultValue: "Std."))").tag(h)
                                                                     }
                                                                 }
-                                                            ), in: 0...Double(max(1, target)), step: 1) { editing in
-                                                                if !editing {
-                                                                    gardenStore.savePlants()
+                                                                .pickerStyle(.wheel)
+                                                                .frame(height: 100)
+                                                                .clipped()
+                                                                
+                                                                Picker(String(localized: "common.minutes", defaultValue: "Minuten"), selection: $screenTimeMinutes) {
+                                                                    ForEach(Array(stride(from: 0, to: 60, by: 5)), id: \.self) { m in
+                                                                        Text("\(m) \(String(localized: "common.minutes.short", defaultValue: "Min."))").tag(m)
+                                                                    }
                                                                 }
+                                                                .pickerStyle(.wheel)
+                                                                .frame(height: 100)
+                                                                .clipped()
                                                             }
-                                                            .tint(.orange)
-                                                            .disabled(Int(pflanze.customTrackerProgress) >= target || pflanze.istBewässert)
+                                                            .background(Color.secondary.opacity(0.05), in: RoundedRectangle(cornerRadius: 12))
                                                             
-                                                            Text(verbatim: "\(target)")
-                                                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                                            Button {
+                                                                showScreenTimeConfirm = true
+                                                            } label: {
+                                                                Text(String(localized: "common.save", defaultValue: "Speichern"))
+                                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                                    .foregroundColor(.white)
+                                                                    .frame(maxWidth: .infinity)
+                                                                    .padding(12)
+                                                                    .background(Color.orange, in: RoundedRectangle(cornerRadius: 12))
+                                                            }
+                                                            .alert(String(localized: "screentime.tracker.confirm_title", defaultValue: "Limit speichern?"), isPresented: $showScreenTimeConfirm) {
+                                                                Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) { }
+                                                                Button(String(localized: "common.save", defaultValue: "Speichern")) {
+                                                                    pflanze.customTrackerTarget = Double(screenTimeHours * 60 + screenTimeMinutes)
+                                                                    gardenStore.savePlants()
+                                                                    DeviceActivityManager.shared.screenTimeGoalMinutes = Int(pflanze.customTrackerTarget ?? 120)
+                                                                }
+                                                            } message: {
+                                                                // String concatenation to avoid format argument issues with variables in localized string
+                                                                Text(String(localized: "screentime.tracker.confirm_msg", defaultValue: "Möchtest du das Limit wirklich auf das neue Ziel ändern?"))
+                                                            }
+                                                            
+                                                            Text(String(localized: "screentime.tracker.no_live", defaultValue: "Die Bildschirmzeit wird automatisch im Hintergrund geprüft. Aus Datenschutzgründen von Apple kann der Live-Fortschritt hier nicht angezeigt werden."))
+                                                                .font(.system(size: 12, weight: .medium, design: .rounded))
                                                                 .foregroundStyle(.secondary)
+                                                                .multilineTextAlignment(.leading)
+                                                                .padding(.top, 4)
+                                                                
+                                                            NavigationLink(destination: ScreenTimeSettingsView()) {
+                                                                HStack {
+                                                                    Image(systemName: "gear")
+                                                                    Text(String(localized: "screentime.tracker.settings", defaultValue: "Blocker-Einstellungen"))
+                                                                }
+                                                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                                                .foregroundColor(.blue)
+                                                                .frame(maxWidth: .infinity)
+                                                                .padding(12)
+                                                                .background(Color.blue.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
+                                                            }
+                                                        }
+                                                    } else {
+                                                        HStack {
+                                                            Text(String(localized: "custom.tracker.target", defaultValue: "Ziel"))
+                                                                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                                                            Spacer()
+                                                            TextField("0", value: Binding(
+                                                                get: { pflanze.customTrackerTarget },
+                                                                set: { pflanze.customTrackerTarget = $0; gardenStore.savePlants() }
+                                                            ), format: .number)
+                                                            .keyboardType(.numberPad)
+                                                            .focused($isTargetFocused)
+                                                            .multilineTextAlignment(.trailing)
+                                                            .frame(width: 100)
+                                                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                            .foregroundStyle(.orange)
+                                                            .padding(8)
+                                                            .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
+                                                        }
+                                                        
+                                                        let current = Int(pflanze.customTrackerProgress)
+                                                        let target = Int(pflanze.customTrackerTarget ?? 1)
+                                                        
+                                                        VStack(spacing: 8) {
+                                                            HStack {
+                                                                Text(String(localized: "custom.tracker.progress", defaultValue: "Fortschritt heute"))
+                                                                    .font(.system(size: 13, weight: .medium, design: .rounded))
+                                                                    .foregroundStyle(.secondary)
+                                                                Spacer()
+                                                                Text(verbatim: "\(current) / \(target)")
+                                                                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                                                                    .foregroundStyle(.orange)
+                                                            }
+                                                            
+                                                            HStack(spacing: 12) {
+                                                                Text("0")
+                                                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                                                    .foregroundStyle(.secondary)
+                                                                
+                                                                Slider(value: Binding(
+                                                                    get: { pflanze.customTrackerProgress },
+                                                                    set: { newValue in
+                                                                        if Int(newValue) >= target && !pflanze.istBewässert {
+                                                                            if Int(pflanze.customTrackerProgress) < target {
+                                                                                pflanze.customTrackerProgress = Double(target)
+                                                                                zeigeTrackerConfirm = true
+                                                                            }
+                                                                        } else {
+                                                                            pflanze.customTrackerProgress = newValue
+                                                                        }
+                                                                    }
+                                                                ), in: 0...Double(max(1, target)), step: 1) { editing in
+                                                                    if !editing {
+                                                                        gardenStore.savePlants()
+                                                                    }
+                                                                }
+                                                                .tint(.orange)
+                                                                .disabled(Int(pflanze.customTrackerProgress) >= target || pflanze.istBewässert)
+                                                                
+                                                                Text(verbatim: "\(target)")
+                                                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                                                    .foregroundStyle(.secondary)
+                                                            }
                                                         }
                                                     }
                                                 }

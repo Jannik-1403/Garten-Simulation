@@ -40,12 +40,20 @@ class ScreenTimeManager: ObservableObject {
         didSet { saveAllowedSelection() }
     }
     
+    @AppStorage("screenTimeBlockSelectionData") private var blockSelectionData: Data?
+    
+    /// Apps/Kategorien, die explizit im Block-Zeitplan gesperrt werden sollen
+    @Published var blockSelection = FamilyActivitySelection() {
+        didSet { saveBlockSelection() }
+    }
+    
     @Published var isAuthorized = false
     
     let store = ManagedSettingsStore()
     
     private init() {
         loadAllowedSelection()
+        loadBlockSelection()
         checkAuthorizationStatus()
     }
     
@@ -101,6 +109,19 @@ class ScreenTimeManager: ObservableObject {
         if let data = allowedSelectionData,
            let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
             self.allowedSelection = decoded
+        }
+    }
+    
+    private func saveBlockSelection() {
+        if let data = try? JSONEncoder().encode(blockSelection) {
+            blockSelectionData = data
+        }
+    }
+    
+    private func loadBlockSelection() {
+        if let data = blockSelectionData,
+           let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.blockSelection = decoded
         }
     }
 }

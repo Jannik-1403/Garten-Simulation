@@ -705,23 +705,23 @@ class GardenStore: ObservableObject {
         let screenTimeLimitExceeded = SharedUserDefaults.suite.bool(forKey: "screenTimeLimitExceededToday")
         if screenTimeLimitExceeded {
             // Bad habit log
-            if let badHabit = pflanzen.first(where: { $0.id == "bad_habit_screen_time" }) {
+            if let badHabit = pflanzen.first(where: { $0.id == "bad_habit_screen_time" || $0.plantID == "trash.junk_mail_abo" }) {
                 let execution = BadHabitExecution(date: Date(), coinsLost: 0, triggers: [String(localized: "screenTime.reason.exceeded", defaultValue: "Tageslimit überschritten")])
                 badHabitExecutions[badHabit.id, default: []].append(execution)
             } else {
                 let bad = HabitModel(
                     id: "bad_habit_screen_time",
-                    name: String(localized: "bad_habit.screen_time.name", defaultValue: "Zu viel Bildschirmzeit"),
+                    name: String(localized: "trash.junk_mail_abo.name", defaultValue: "Zuviel Bildschirmzeit"),
                     symbolName: "hourglass.bottomhalf.filled",
                     symbolColor: "red",
                     habitCategory: .health,
                     symbolism: String(localized: "bad_habit.screen_time.desc", defaultValue: "Rückfall"),
-                    habitName: String(localized: "bad_habit.screen_time.name", defaultValue: "Bildschirmzeit überschritten"),
+                    habitName: String(localized: "trash.junk_mail_abo.name", defaultValue: "Zuviel Bildschirmzeit"),
                     maxLevel: 10,
                     xpPerCompletion: 0,
                     waterNeedPerDay: 0,
                     decayDays: 0,
-                    plantID: "custom_bad_screen_time",
+                    plantID: "trash.junk_mail_abo",
                     isNegative: true
                 )
                 pflanzen.append(bad)
@@ -729,8 +729,8 @@ class GardenStore: ObservableObject {
                 badHabitExecutions[bad.id, default: []].append(execution)
             }
         } else {
-            // Auto-water the tracker
-            if let tracker = pflanzen.first(where: { $0.id == "screen_time_tracker" }) {
+            // Auto-water the tracker (using Aloe Vera / Bildschirmzeit)
+            if let tracker = pflanzen.first(where: { $0.habitName == "habit.bildschirmzeit" }) {
                 tracker.istBewässert = true
                 tracker.letzteBewaesserung = Date()
                 tracker.wateringDates.append(Date())
@@ -1509,35 +1509,14 @@ class GardenStore: ObservableObject {
             }
             
             pflanzen = decoded
+            
+            // Delete legacy custom screen time tracker if it exists
+            if pflanzen.contains(where: { $0.id == "screen_time_tracker" }) {
+                pflanzen.removeAll { $0.id == "screen_time_tracker" }
+                savePlants()
+            }
         } else {
             pflanzen = []
-        }
-        
-        // Auto-add Screen Time Tracker if missing
-        if !pflanzen.contains(where: { $0.id == "screen_time_tracker" }) {
-            let screenTimeHabit = HabitModel(
-                id: "screen_time_tracker",
-                name: String(localized: "habit.screen_time.name", defaultValue: "Bildschirmzeit"),
-                symbolName: "hourglass",
-                symbolColor: "blue",
-                habitCategory: .health,
-                symbolism: String(localized: "habit.screen_time.desc", defaultValue: "Digital Detox"),
-                habitName: String(localized: "habit.screen_time.name", defaultValue: "Bildschirmzeit"),
-                maxLevel: 10,
-                xpPerCompletion: 100,
-                waterNeedPerDay: 1,
-                decayDays: 2,
-                plantID: "custom_screen_time"
-            )
-            screenTimeHabit.customTrackerName = String(localized: "screenTime.target.label", defaultValue: "Limit (Std)")
-            screenTimeHabit.customTrackerTarget = 2.0 // Default 2 hours
-            pflanzen.append(screenTimeHabit)
-            
-            // Dispatch async to avoid saving during init if it causes issues, 
-            // but we can just call savePlants directly.
-            DispatchQueue.main.async {
-                self.savePlants()
-            }
         }
     }
 

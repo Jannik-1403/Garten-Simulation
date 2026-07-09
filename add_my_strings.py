@@ -156,6 +156,58 @@ new_strings = [
         "translations": {
             "de": "Bildschirmzeit eingehalten", "en": "Screen time limit respected", "nl": "Schermtijdlimiet gerespecteerd", "fr": "Limite de temps d'écran respectée", "it": "Limite tempo di utilizzo rispettato", "ja": "スクリーンタイム制限を守りました", "ko": "화면 시간 제한 준수됨", "pl": "Przestrzegano limitu czasu ekranu", "pt": "Limite de tempo de ecrã respeitado", "es": "Límite de tiempo en pantalla respetado", "tr": "Ekran süresi sınırına uyuldu"
         }
+    },
+    {
+        "key": "common.hours",
+        "translations": {
+            "de": "Stunden", "en": "Hours", "es": "Horas", "fr": "Heures", "it": "Ore", "pt": "Horas", "ja": "時間", "ko": "시간", "pl": "Godziny", "nl": "Uur", "tr": "Saat"
+        }
+    },
+    {
+        "key": "common.hours.short",
+        "translations": {
+            "de": "Std.", "en": "hrs", "es": "h", "fr": "h", "it": "h", "pt": "h", "ja": "時間", "ko": "시간", "pl": "godz.", "nl": "uur", "tr": "sa"
+        }
+    },
+    {
+        "key": "common.minutes",
+        "translations": {
+            "de": "Minuten", "en": "Minutes", "es": "Minutos", "fr": "Minutes", "it": "Minuti", "pt": "Minutos", "ja": "分", "ko": "분", "pl": "Minuty", "nl": "Minuten", "tr": "Dakika"
+        }
+    },
+    {
+        "key": "common.minutes.short",
+        "translations": {
+            "de": "Min.", "en": "m", "es": "m", "fr": "m", "it": "m", "pt": "m", "ja": "分", "ko": "분", "pl": "min", "nl": "min", "tr": "dk"
+        }
+    },
+    {
+        "key": "screentime.tracker.no_live",
+        "translations": {
+            "de": "Die Bildschirmzeit wird automatisch im Hintergrund geprüft. Aus Datenschutzgründen von Apple kann der Live-Fortschritt hier nicht angezeigt werden.",
+            "en": "Screen time is automatically checked in the background. For Apple privacy reasons, live progress cannot be shown here.",
+            "es": "El tiempo de pantalla se verifica automáticamente en segundo plano. Por razones de privacidad de Apple, el progreso en vivo no se puede mostrar aquí.",
+            "fr": "Le temps d'écran est automatiquement vérifié en arrière-plan. Pour des raisons de confidentialité d'Apple, la progression en direct ne peut pas être affichée ici.",
+            "it": "Il tempo di utilizzo dello schermo viene controllato automaticamente in background. Per motivi di privacy di Apple, i progressi in tempo reale non possono essere mostrati qui.",
+            "pt": "O tempo de ecrã é verificado automaticamente em segundo plano. Por razões de privacidade da Apple, o progresso ao vivo não pode ser mostrado aqui.",
+            "ja": "スクリーンタイムはバックグラウンドで自動的にチェックされます。Apple のプライバシー上の理由から、ここにはライブの進行状況を表示できません。",
+            "ko": "화면 시간은 백그라운드에서 자동으로 확인됩니다. Apple의 개인정보 보호 정책으로 인해 라이브 진행률은 여기에 표시할 수 없습니다.",
+            "pl": "Czas korzystania z ekranu jest sprawdzany automatycznie w tle. Ze względu na prywatność Apple nie można tutaj wyświetlać postępów na żywo.",
+            "nl": "Schermtijd wordt automatisch op de achtergrond gecontroleerd. Om privacyredenen van Apple kan de live voortgang hier niet worden weergegeven.",
+            "tr": "Ekran süresi arka planda otomatik olarak kontrol edilir. Apple'ın gizlilik nedenleriyle canlı ilerleme burada gösterilemez."
+        }
+    },
+    {
+        "key": "screentime.tracker.settings",
+        "translations": {
+            "de": "Blocker-Einstellungen", "en": "Blocker Settings", "es": "Ajustes del bloqueador", "fr": "Paramètres du bloqueur", "it": "Impostazioni blocco", "pt": "Definições do bloqueador", "ja": "ブロッカー設定", "ko": "차단기 설정", "pl": "Ustawienia blokady", "nl": "Blokkeringsinstellingen", "tr": "Engelleyici Ayarları"
+        }
+    },
+    {
+        "key": "screenTime.schedule.select_apps",
+        "translations": {
+            "de": "Apps & Kategorien auswählen", "en": "Select Apps & Categories", "es": "Seleccionar aplicaciones y categorías", "fr": "Sélectionner des applications et catégories", "it": "Seleziona app e categorie", "pt": "Selecionar aplicações e categorias", "ja": "アプリとカテゴリを選択", "ko": "앱 및 카테고리 선택", "pl": "Wybierz aplikacje i kategorie", "nl": "Selecteer apps en categorieën", "tr": "Uygulamaları ve Kategorileri Seçin"
+        }
     }
 ]
 

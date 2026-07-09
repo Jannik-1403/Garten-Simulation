@@ -10,6 +10,9 @@ struct ScreenTimeSettingsView: View {
     @State private var endTime: Date = Date()
     @State private var isScheduleActive: Bool = false
     
+    @State private var isPickerPresented = false
+    @State private var blockSelection = FamilyActivitySelection()
+    
     var body: some View {
         ZStack {
             Color.appHintergrund.ignoresSafeArea()
@@ -57,29 +60,32 @@ struct ScreenTimeSettingsView: View {
                         VStack(alignment: .leading, spacing: 16) {
                             Toggle(String(localized: "screenTime.schedule.active", defaultValue: "Block-Zeitplan aktivieren"), isOn: $isScheduleActive)
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .tint(.gruenPrimary)
-                                .onChange(of: isScheduleActive) { _, newValue in
-                                    manager.isScheduleActive = newValue
-                                }
+                                .tint(Color.gruenPrimary)
                             
                             if isScheduleActive {
                                 Divider()
                                 
                                 DatePicker(String(localized: "screenTime.schedule.start", defaultValue: "Startzeit"), selection: $startTime, displayedComponents: .hourAndMinute)
                                     .font(.system(size: 16, weight: .medium, design: .rounded))
-                                    .onChange(of: startTime) { _, newTime in
-                                        let calendar = Calendar.current
-                                        manager.blockStartHour = calendar.component(.hour, from: newTime)
-                                        manager.blockStartMinute = calendar.component(.minute, from: newTime)
-                                    }
                                 
                                 DatePicker(String(localized: "screenTime.schedule.end", defaultValue: "Endzeit"), selection: $endTime, displayedComponents: .hourAndMinute)
                                     .font(.system(size: 16, weight: .medium, design: .rounded))
-                                    .onChange(of: endTime) { _, newTime in
-                                        let calendar = Calendar.current
-                                        manager.blockEndHour = calendar.component(.hour, from: newTime)
-                                        manager.blockEndMinute = calendar.component(.minute, from: newTime)
+                                    
+                                Divider()
+                                
+                                Button {
+                                    isPickerPresented = true
+                                } label: {
+                                    HStack {
+                                        Text(String(localized: "screenTime.schedule.select_apps", defaultValue: "Apps & Kategorien auswählen"))
+                                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                                            .foregroundStyle(.primary)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .foregroundStyle(.secondary)
                                     }
+                                }
+                                .familyActivityPicker(isPresented: $isPickerPresented, selection: $blockSelection)
                             }
                         }
                         .padding()
@@ -104,12 +110,32 @@ struct ScreenTimeSettingsView: View {
         .navigationTitle(String(localized: "screenTime.title", defaultValue: "Bildschirmzeit"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                LiquidGlassDismissButton { dismiss() }
+            if !manager.isCurrentlyInBlockWindow {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(String(localized: "common.done", defaultValue: "Fertig")) {
+                        saveSettings()
+                        dismiss()
+                    }
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundStyle(Color.gruenPrimary)
+                }
+                
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(String(localized: "common.cancel", defaultValue: "Abbrechen")) {
+                        dismiss()
+                    }
+                    .font(.system(size: 16, weight: .regular, design: .rounded))
+                }
+            } else {
+                ToolbarItem(placement: .topBarTrailing) {
+                    LiquidGlassDismissButton { dismiss() }
+                }
             }
         }
+        .navigationBarBackButtonHidden(true)
         .onAppear {
             isScheduleActive = manager.isScheduleActive
+            blockSelection = manager.blockSelection
             
             let calendar = Calendar.current
             if let start = calendar.date(bySettingHour: manager.blockStartHour, minute: manager.blockStartMinute, second: 0, of: Date()) {
@@ -119,5 +145,16 @@ struct ScreenTimeSettingsView: View {
                 endTime = end
             }
         }
+    }
+    
+    private func saveSettings() {
+        let calendar = Calendar.current
+        manager.blockStartHour = calendar.component(.hour, from: startTime)
+        manager.blockStartMinute = calendar.component(.minute, from: startTime)
+        manager.blockEndHour = calendar.component(.hour, from: endTime)
+        manager.blockEndMinute = calendar.component(.minute, from: endTime)
+        
+        manager.blockSelection = blockSelection
+        manager.isScheduleActive = isScheduleActive
     }
 }

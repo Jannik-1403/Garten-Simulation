@@ -1516,6 +1516,88 @@
         }
       }
     },
+    "%lldh %lldm": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lldh %2$lldm"
+          }
+        }
+      }
+    },
     "%lldx": {
       "extractionState": "manual",
       "localizations": {
@@ -6296,6 +6378,12 @@
             "state": "translated",
             "value": "在例行程序期間，所有分散注意力的應用程式都會透過「螢幕時間」被阻止。"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ""
+          }
         }
       }
     },
@@ -6383,6 +6471,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "在焦點持續時間內，所有分散注意力的應用程式都會透過「螢幕時間」被阻止。"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ""
           }
         }
       }
@@ -68183,6 +68277,172 @@
         }
       }
     },
+    "bad_habit.screen_time.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rückfall"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relapse"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recaída"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechute"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ricaduta"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再発"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "재발"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terugval"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nawrót"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recaída"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nüksetme"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rückfall"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rückfall"
+          }
+        }
+      }
+    },
+    "bad_habit.screen_time.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu viel Bildschirmzeit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Too much screen time"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demasiado tiempo en pantalla"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trop de temps d'écran"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Troppo tempo di utilizzo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スクリーンタイムの使いすぎ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 너무 많이 사용"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te veel schermtijd"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Za dużo czasu przed ekranem"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demasiado tempo de ecrã"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çok fazla ekran süresi"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu viel Bildschirmzeit"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu viel Bildschirmzeit"
+          }
+        }
+      }
+    },
     "banner.start_journey": {
       "extractionState": "manual",
       "localizations": {
@@ -68401,6 +68661,12 @@
             "value": "20% de réduction"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "20% छूट"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -68437,22 +68703,16 @@
             "value": "20% de Desconto"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%20 İndirim"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "20% छूट"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Скидка 20%"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%20 İndirim"
           }
         },
         "zh-Hans": {
@@ -68496,6 +68756,12 @@
             "value": "Vous voulez lire plus mais n'avez pas le temps ?"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आप और अधिक पढ़ना चाहते हैं लेकिन आपके पास समय नहीं है?"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -68532,22 +68798,16 @@
             "value": "Quer ler mais mas não tem tempo?"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daha fazla okumak istiyor ama zaman bulamıyor musunuz?"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "क्या आप और अधिक पढ़ना चाहते हैं लेकिन आपके पास समय नहीं है?"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Хотите читать больше, но у вас нет времени?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daha fazla okumak istiyor ama zaman bulamıyor musunuz?"
           }
         },
         "zh-Hans": {
@@ -68591,6 +68851,12 @@
             "value": "Voir l'application"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ऐप देखें"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -68627,22 +68893,16 @@
             "value": "Ver aplicativo"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Uygulamayı Görüntüle"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ऐप देखें"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Посмотреть приложение"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulamayı Görüntüle"
           }
         },
         "zh-Hans": {
@@ -68686,6 +68946,12 @@
             "value": "L'apprentissage des langues rendu facile"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "भाषाएँ सीखना आसान हो गया"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -68722,22 +68988,16 @@
             "value": "Aprender idiomas de forma fácil"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dil öğrenmek artık çok kolay"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "भाषाएँ सीखना आसान हो गया"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Изучение языков стало проще"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dil öğrenmek artık çok kolay"
           }
         },
         "zh-Hans": {
@@ -68781,6 +69041,12 @@
             "value": "Besoin d'aide avec votre gestion financière ?"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आपको अपने वित्तीय प्रबंधन में सहायता की आवश्यकता है?"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -68817,22 +69083,16 @@
             "value": "Precisa de ajuda com a sua gestão financeira?"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Finansal yönetiminizde yardıma mı ihtiyacınız var?"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "क्या आपको अपने वित्तीय प्रबंधन में सहायता की आवश्यकता है?"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Вам нужна помощь в управлении финансами?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finansal yönetiminizde yardıma mı ihtiyacınız var?"
           }
         },
         "zh-Hans": {
@@ -68876,6 +69136,12 @@
             "value": "Outil recommandé"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एम्पफोहलेन्स टूल"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -68912,22 +69178,16 @@
             "value": "Ferramenta recomendada"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Önerilen Araç"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "एम्पफोहलेन्स टूल"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Инструмент Эмпфолен"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Önerilen Araç"
           }
         },
         "zh-Hans": {
@@ -68971,6 +69231,12 @@
             "value": "Besoin d'aide pour décompresser et méditer ?"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आपको स्विच ऑफ करने और ध्यान करने में सहायता की आवश्यकता है?"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -69007,22 +69273,16 @@
             "value": "Precisa de ajuda para relaxar e meditar?"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rahatlamak ve meditasyon yapmak için yardıma mı ihtiyacınız var?"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "क्या आपको स्विच ऑफ करने और ध्यान करने में सहायता की आवश्यकता है?"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Вам нужна помощь, чтобы отключиться и медитировать?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rahatlamak ve meditasyon yapmak için yardıma mı ihtiyacınız var?"
           }
         },
         "zh-Hans": {
@@ -69066,6 +69326,12 @@
             "value": "Gratuit"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मुक्त करने के लिए"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -69102,22 +69368,16 @@
             "value": "Grátis"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ücretsiz"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "मुक्त करने के लिए"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Бесплатно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ücretsiz"
           }
         },
         "zh-Hans": {
@@ -69161,6 +69421,12 @@
             "value": "Vous voulez vous muscler et suivre vos poids ?"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आप मांसपेशियाँ बनाना और वज़न ट्रैक करना चाहते हैं?"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -69197,22 +69463,16 @@
             "value": "Quer construir músculos e rastrear pesos?"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kas yapmak ve ağırlıkları takip etmek ister misiniz?"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "क्या आप मांसपेशियाँ बनाना और वज़न ट्रैक करना चाहते हैं?"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Вы хотите нарастить мышечную массу и следить за весом?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kas yapmak ve ağırlıkları takip etmek ister misiniz?"
           }
         },
         "zh-Hans": {
@@ -69256,6 +69516,12 @@
             "value": "Gratuit"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मुक्त करने के लिए"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -69292,22 +69558,16 @@
             "value": "Grátis"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ücretsiz"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "मुक्त करने के लिए"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Бесплатно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ücretsiz"
           }
         },
         "zh-Hans": {
@@ -69351,6 +69611,12 @@
             "value": "Vous voulez manger plus sainement et suivre vos calories ?"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आप स्वस्थ भोजन करना और कैलोरी पर नज़र रखना चाहते हैं?"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -69387,22 +69653,16 @@
             "value": "Quer comer de forma mais saudável e controlar calorias?"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daha sağlıklı beslenmek ve kalori takip etmek ister misiniz?"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "क्या आप स्वस्थ भोजन करना और कैलोरी पर नज़र रखना चाहते हैं?"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Хотите питаться здоровее и отслеживать калории?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daha sağlıklı beslenmek ve kalori takip etmek ister misiniz?"
           }
         },
         "zh-Hans": {
@@ -77653,6 +77913,172 @@
         }
       }
     },
+    "common.hours": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stunden"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hours"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heures"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ore"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "時間"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uur"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Godziny"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horas"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saat"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stunden"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stunden"
+          }
+        }
+      }
+    },
+    "common.hours.short": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Std."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hrs"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "h"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "h"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "h"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "時間"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "uur"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "godz."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "h"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sa"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Std."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Std."
+          }
+        }
+      }
+    },
     "common.in_stock": {
       "comment": "",
       "extractionState": "manual",
@@ -78129,6 +78555,172 @@
           "stringUnit": {
             "state": "translated",
             "value": "米"
+          }
+        }
+      }
+    },
+    "common.minutes": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutes"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "분"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuty"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minutos"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dakika"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuten"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuten"
+          }
+        }
+      }
+    },
+    "common.minutes.short": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Min."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "m"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "m"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "m"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "m"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "분"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "m"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dk"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Min."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Min."
           }
         }
       }
@@ -87170,6 +87762,12 @@
             "value": "Annuler l'abonnement Pro"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रो सदस्यता रद्द करें"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -87206,22 +87804,16 @@
             "value": "Cancelar assinatura Pro"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pro Aboneliğini İptal Et"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "प्रो सदस्यता रद्द करें"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Отменить подписку Pro"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Aboneliğini İptal Et"
           }
         },
         "zh-Hans": {
@@ -104350,7 +104942,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Mit Handy lernen"
           }
         },
@@ -104445,7 +105037,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Wähle Apps, die NICHT blockiert werden"
           }
         },
@@ -104540,7 +105132,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Ohne Handy lernen"
           }
         },
@@ -104635,7 +105227,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Alle Apps werden blockiert"
           }
         },
@@ -114344,6 +114936,172 @@
         }
       }
     },
+    "habit.screen_time.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digital Detox"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digital Detox"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desintoxicación digital"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désintoxication numérique"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detox digitale"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デジタルデトックス"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "디지털 디톡스"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digital Detox"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cyfrowy detoks"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desintoxicação digital"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dijital Detoks"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digital Detox"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digital Detox"
+          }
+        }
+      }
+    },
+    "habit.screen_time.name": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen Time"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiempo en pantalla"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temps d'écran"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo di utilizzo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スクリーンタイム"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 시간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermtijd"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czas przed ekranem"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo de ecrã"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekran Süresi"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit"
+          }
+        }
+      }
+    },
     "habit.selfcare": {
       "comment": "",
       "extractionState": "manual",
@@ -115292,6 +116050,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "手機被屏蔽了"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ""
           }
         }
       }
@@ -134198,6 +134962,89 @@
         }
       }
     },
+    "note.auto.screentime_success": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit eingehalten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen time limit respected"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Límite de tiempo en pantalla respetado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite de temps d'écran respectée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite tempo di utilizzo rispettato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スクリーンタイム制限を守りました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 시간 제한 준수됨"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermtijdlimiet gerespecteerd"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przestrzegano limitu czasu ekranu"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite de tempo de ecrã respeitado"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekran süresi sınırına uyuldu"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit eingehalten"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit eingehalten"
+          }
+        }
+      }
+    },
     "notification.evening.1.body": {
       "comment": "",
       "extractionState": "manual",
@@ -145072,6 +145919,12 @@
             "value": "Prêt pour l'entraînement ? Obtenez le meilleur équipement."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रशिक्षण के लिए तैयार हैं? सर्वोत्तम उपकरण प्राप्त करें."
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -145108,22 +145961,16 @@
             "value": "Pronto para treinar? Obtenha o melhor equipamento."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Antrenmana hazır mısınız? En iyi ekipmanı edinin."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "प्रशिक्षण के लिए तैयार हैं? सर्वोत्तम उपकरण प्राप्त करें."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Готовы к обучению? Приобретайте лучшее оборудование."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antrenmana hazır mısınız? En iyi ekipmanı edinin."
           }
         },
         "zh-Hans": {
@@ -145167,6 +146014,12 @@
             "value": "Apprenez une nouvelle langue en 15 minutes par jour."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रतिदिन 15 मिनट में एक नई भाषा सीखें।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -145203,22 +146056,16 @@
             "value": "Aprenda um novo idioma em 15 minutos por dia."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Günde 15 dakika ayırarak yeni bir dil öğrenin."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "प्रतिदिन 15 मिनट में एक नई भाषा सीखें।"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Изучайте новый язык за 15 минут в день."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günde 15 dakika ayırarak yeni bir dil öğrenin."
           }
         },
         "zh-Hans": {
@@ -145262,6 +146109,12 @@
             "value": "Des milliers de livres audio directement sur votre iPhone."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके iPhone पर हज़ारों ऑडियोबुक्स।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -145298,22 +146151,16 @@
             "value": "Milhares de audiolivros diretamente no seu iPhone."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Binlerce sesli kitap doğrudan iPhone'unuzda."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपके iPhone पर हज़ारों ऑडियोबुक्स।"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Тысячи аудиокниг прямо на вашем iPhone."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binlerce sesli kitap doğrudan iPhone'unuzda."
           }
         },
         "zh-Hans": {
@@ -145357,6 +146204,12 @@
             "value": "Besoin d'aide avec vos finances?"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आपको अपने वित्त के संबंध में सहायता की आवश्यकता है?"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -145393,22 +146246,16 @@
             "value": "Precisa de ajuda com suas finanças?"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Maliyelerinizde yardıma mı ihtiyacınız var?"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "क्या आपको अपने वित्त के संबंध में सहायता की आवश्यकता है?"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Вам нужна помощь с вашими финансами?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maliyelerinizde yardıma mı ihtiyacınız var?"
           }
         },
         "zh-Hans": {
@@ -145452,6 +146299,12 @@
             "value": "Atteignez vos objectifs avec le coach IA n°1."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "#1 AI कोच के साथ अपने लक्ष्यों तक पहुँचें।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -145488,22 +146341,16 @@
             "value": "Alcance seus objetivos com o treinador de IA nº 1."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "1 numaralı yapay zeka koçuyla hedeflerinize ulaşın."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "#1 AI कोच के साथ अपने लक्ष्यों तक पहुँचें।"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Достигайте своих целей с тренером по искусственному интеллекту №1."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 numaralı yapay zeka koçuyla hedeflerinize ulaşın."
           }
         },
         "zh-Hans": {
@@ -145547,6 +146394,12 @@
             "value": "Compter les calories et jeûner en toute simplicité."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कैलोरी गिनना और उपवास करना आसान हो गया।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -145583,22 +146436,16 @@
             "value": "Contagem de calorias e jejum de forma fácil."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kalori sayımı ve oruç tutmak çok kolay."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "कैलोरी गिनना और उपवास करना आसान हो गया।"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Подсчет калорий и голодание стало проще."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalori sayımı ve oruç tutmak çok kolay."
           }
         },
         "zh-Hans": {
@@ -148218,6 +149065,12 @@
             "value": "À vie"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जीवनभर"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -148254,22 +149107,16 @@
             "value": "Vitalício"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ömür boyu"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "जीवनभर"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Продолжительность жизни"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ömür boyu"
           }
         },
         "zh-Hans": {
@@ -148313,6 +149160,12 @@
             "value": "Paiement unique"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एकमुश्त भुगतान"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -148349,22 +149202,16 @@
             "value": "Pagamento único"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tek seferlik ödeme"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "एकमुश्त भुगतान"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Единовременный платеж"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tek seferlik ödeme"
           }
         },
         "zh-Hans": {
@@ -148408,6 +149255,12 @@
             "value": "Mensuel"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "महीने के"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -148444,22 +149297,16 @@
             "value": "Mensal"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aylık"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "महीने के"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Ежемесячно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık"
           }
         },
         "zh-Hans": {
@@ -148503,6 +149350,12 @@
             "value": "Annulez à tout moment"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "किसी भी समय रद्द किया जा सकता है"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -148539,22 +149392,16 @@
             "value": "Cancele a qualquer momento"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "İstediğiniz zaman iptal edin"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "किसी भी समय रद्द किया जा सकता है"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Можно отменить в любой момент"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İstediğiniz zaman iptal edin"
           }
         },
         "zh-Hans": {
@@ -148598,6 +149445,12 @@
             "value": "Annuel"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सालाना"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -148634,22 +149487,16 @@
             "value": "Anual"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yıllık"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सालाना"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Ежегодно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yıllık"
           }
         },
         "zh-Hans": {
@@ -148693,6 +149540,12 @@
             "value": "Plus populaire"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सबसे लोकप्रिय"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -148729,22 +149582,16 @@
             "value": "Mais popular"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "En popüler"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सबसे लोकप्रिय"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Самый популярный"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En popüler"
           }
         },
         "zh-Hans": {
@@ -179211,6 +180058,12 @@
             "value": "Votre séquence de jardin actuelle"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी वर्तमान उद्यान रेखा"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -179247,22 +180100,16 @@
             "value": "Sua sequência de jardim atual"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mevcut Bahçe Serisi"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपकी वर्तमान उद्यान रेखा"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Ваше нынешнее увлечение садом"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mevcut Bahçe Serisi"
           }
         },
         "zh-Hans": {
@@ -208160,6 +209007,1500 @@
         }
       }
     },
+    "screenTime.auth.request": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit-Zugriff erlauben"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Screen Time Access"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir acceso al tiempo en pantalla"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autoriser l'accès au temps d'écran"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consenti l'accesso al tempo di utilizzo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スクリーンタイムのアクセスを許可する"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 시간 액세스 허용"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermtijd toegang toestaan"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zezwól na dostęp do czasu przed ekranem"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir acesso ao Tempo de Ecrã"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekran Süresi erişimine izin ver"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit-Zugriff erlauben"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit-Zugriff erlauben"
+          }
+        }
+      }
+    },
+    "screenTime.blocked.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du befindest dich gerade in deiner aktiven Block-Zeit. Du kannst diese Einstellungen erst ändern, wenn die Block-Zeit abgelaufen ist."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You are currently in your active block time. You can only change these settings when the block time has expired."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actualmente te encuentras en tu tiempo de bloqueo activo. Solo puedes cambiar estos ajustes cuando el tiempo expire."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous êtes actuellement dans votre temps de blocage actif. Vous ne pourrez modifier ces paramètres qu'une fois le temps écoulé."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ti trovi attualmente nel tuo tempo di blocco attivo. Puoi modificare queste impostazioni solo al termine del blocco."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "現在アクティブなブロック時間中です。ブロック時間が終了するまでこの設定は変更できません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "현재 활성 차단 시간입니다. 차단 시간이 만료된 후에만 이 설정을 변경할 수 있습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je bevindt je momenteel in je actieve blokkeertijd. Je kunt deze instellingen pas wijzigen als de blokkeertijd is verstreken."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obecnie znajdujesz się w aktywnym czasie blokady. Możesz zmienić te ustawienia dopiero po upływie czasu blokady."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encontra-se atualmente no seu tempo de bloqueio ativo. Só pode alterar estas definições quando o tempo expirar."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şu anda aktif engelleme sürenizdesiniz. Bu ayarları ancak engelleme süresi dolduğunda değiştirebilirsiniz."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du befindest dich gerade in deiner aktiven Block-Zeit. Du kannst diese Einstellungen erst ändern, wenn die Block-Zeit abgelaufen ist."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du befindest dich gerade in deiner aktiven Block-Zeit. Du kannst diese Einstellungen erst ändern, wenn die Block-Zeit abgelaufen ist."
+          }
+        }
+      }
+    },
+    "screenTime.blocked.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit blockiert"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen Time Blocked"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiempo en pantalla bloqueado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temps d'écran bloqué"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo di utilizzo bloccato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スクリーンタイムがブロックされました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 시간 차단됨"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermtijd geblokkeerd"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czas przed ekranem zablokowany"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo de ecrã bloqueado"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekran Süresi Engellendi"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit blockiert"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit blockiert"
+          }
+        }
+      }
+    },
+    "screenTime.info.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Während der aktiven Block-Zeit kannst du den Blocker hier nicht mehr deaktivieren. Wenn du ein Tagesziel überschreitest, wird automatisch die Gewohnheit 'Zu viel Bildschirmzeit' gekauft/abgehakt. Hältst du das Ziel ein, wird deine Pflanze automatisch am Tagesende gegossen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "During the active block time, you cannot deactivate the blocker here. If you exceed a daily limit, the 'Too much screen time' habit will automatically be bought/checked off. If you stick to the limit, your plant will be watered automatically at the end of the day."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durante el tiempo de bloqueo, no puedes desactivarlo aquí. Si excedes un límite, se marcará el hábito 'Demasiado tiempo en pantalla'. Si respetas el límite, tu planta se regará al final del día."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pendant le temps de blocage, vous ne pouvez pas désactiver le bloqueur ici. Si vous dépassez une limite, l'habitude 'Trop de temps d'écran' sera cochée. Si vous respectez la limite, votre plante sera arrosée à la fin de la journée."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durante il tempo di blocco, non puoi disattivare il blocco qui. Se superi un limite, verrà aggiunta l'abitudine 'Troppo tempo di utilizzo'. Se rispetti il limite, la tua pianta verrà annaffiata a fine giornata."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブロック中はブロッカーを無効にできません。制限を超えると「スクリーンタイムの使いすぎ」の習慣が記録されます。制限を守れば、一日の終わりに植物に水が与えられます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "차단 중에는 차단기를 비활성화할 수 없습니다. 제한을 초과하면 '화면 너무 많이 사용' 습관이 확인됩니다. 제한을 지키면 하루가 끝날 때 식물에 물을 줍니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tijdens de actieve blokkeertijd kun je de blokkering hier niet deactiveren. Als je een dagelijkse limiet overschrijdt, wordt automatisch de gewoonte 'Te veel schermtijd' afgevinkt. Als je je aan de limiet houdt, wordt je plant aan het einde van de dag automatisch water gegeven."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podczas aktywnej blokady nie możesz jej wyłączyć tutaj. Jeśli przekroczysz limit, zostanie odhaczony nawyk 'Za dużo czasu przed ekranem'. Jeśli go przestrzegasz, roślina zostanie podlana pod koniec dnia."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durante o tempo de bloqueio, não pode desativá-lo aqui. Se exceder um limite, o hábito 'Demasiado tempo de ecrã' será registado. Se respeitar o limite, a sua planta será regada no final do dia."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engelleme sırasında engelleyiciyi devre dışı bırakamazsınız. Sınırı aşarsanız, 'Çok fazla ekran süresi' alışkanlığı kaydedilir. Sınıra uyarsanız, günün sonunda bitkiniz sulanır."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Während der aktiven Block-Zeit kannst du den Blocker hier nicht mehr deaktivieren. Wenn du ein Tagesziel überschreitest, wird automatisch die Gewohnheit 'Zu viel Bildschirmzeit' gekauft/abgehakt. Hältst du das Ziel ein, wird deine Pflanze automatisch am Tagesende gegossen."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Während der aktiven Block-Zeit kannst du den Blocker hier nicht mehr deaktivieren. Wenn du ein Tagesziel überschreitest, wird automatisch die Gewohnheit 'Zu viel Bildschirmzeit' gekauft/abgehakt. Hältst du das Ziel ein, wird deine Pflanze automatisch am Tagesende gegossen."
+          }
+        }
+      }
+    },
+    "screenTime.info.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wie funktioniert das?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How does it work?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Cómo funciona?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comment ça marche ?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Come funziona?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "どのように機能しますか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "어떻게 작동하나요?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoe werkt het?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jak to działa?"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Como funciona?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nasıl çalışır?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wie funktioniert das?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wie funktioniert das?"
+          }
+        }
+      }
+    },
+    "screentime.preprompt.button": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verstanden"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Understood"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entendido"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compris"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capito"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "了解しました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이해했습니다"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begrepen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zrozumiałem"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entendi"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anladım"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verstanden"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verstanden"
+          }
+        }
+      }
+    },
+    "screentime.preprompt.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Damit dein Garten wachsen kann und das Unkraut keine Chance hat, müssen wir deine Ablenkungen aussperren. Bitte erlaube den Screen-Time-Zugriff im nächsten Fenster, damit Grovy dich schützen kann."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To let your garden grow and give weeds no chance, we need to lock out your distractions. Please allow Screen Time access in the next window so Grovy can protect you."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para que tu jardín crezca y las malas hierbas no tengan oportunidad, debemos bloquear tus distracciones. Permita el acceso al tiempo de pantalla en la siguiente ventana para que Grovy pueda protegerlo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour laisser votre jardin pousser et ne donner aucune chance aux mauvaises herbes, nous devons bloquer vos distractions. Veuillez autoriser l'accès au temps d'écran dans la fenêtre suivante afin que Grovy puisse vous protéger."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per far crescere il tuo giardino e non dare scampo alle erbacce, dobbiamo bloccare le tue distrazioni. Consenti l'accesso al tempo di utilizzo nella finestra successiva in modo che Grovy possa proteggerti."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "庭を育て、雑草にチャンスを与えないために、気晴らしをブロックする必要があります。Grovyがあなたを守れるように、次のウィンドウでスクリーンタイムへのアクセスを許可してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "정원이 자라게 하고 잡초가 자라지 못하게 하려면 주의가 산만해지는 것을 막아야 합니다. Grovy가 사용자를 보호할 수 있도록 다음 창에서 화면 시간 액세스를 허용하세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Om je tuin te laten groeien en onkruid geen kans te geven, moeten we je afleidingen buitensluiten. Sta schermtoegang toe in het volgende venster, zodat Grovy je kan beschermen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aby Twój ogród mógł rosnąć i nie dać szans chwastom, musimy zablokować Twoje czynniki rozpraszające. Zezwól na dostęp do czasu przed ekranem w następnym oknie, aby Grovy mógł Cię chronić."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para deixar o seu jardim crescer e não dar hipótese às ervas daninhas, precisamos de bloquear as suas distrações. Por favor, permita o acesso ao Tempo de Ecrã na janela seguinte para que o Grovy possa protegê-lo."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bahçenizin büyümesini sağlamak ve yabani otlara şans tanımamak için dikkatinizi dağıtan şeyleri dışarıda bırakmalıyız. Grovy'nin sizi koruyabilmesi için lütfen sonraki pencerede Ekran Süresi erişimine izin verin."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Damit dein Garten wachsen kann und das Unkraut keine Chance hat, müssen wir deine Ablenkungen aussperren. Bitte erlaube den Screen-Time-Zugriff im nächsten Fenster, damit Grovy dich schützen kann."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Damit dein Garten wachsen kann und das Unkraut keine Chance hat, müssen wir deine Ablenkungen aussperren. Bitte erlaube den Screen-Time-Zugriff im nächsten Fenster, damit Grovy dich schützen kann."
+          }
+        }
+      }
+    },
+    "screentime.preprompt.subtitle": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        }
+      }
+    },
+    "screentime.preprompt.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schütze deinen Fokus"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protect your focus"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protege tu concentración"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protégez votre concentration"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteggi la tua concentrazione"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "集中力を守る"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "집중력 보호"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bescherm je focus"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chroń swoje skupienie"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proteja o seu foco"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odaklanmanı koru"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schütze deinen Fokus"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schütze deinen Fokus"
+          }
+        }
+      }
+    },
+    "screenTime.reason.exceeded": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tageslimit überschritten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily limit exceeded"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Límite diario superado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite quotidienne dépassée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite giornaliero superato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一日の制限を超過しました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "일일 한도 초과됨"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dagelijkse limiet overschreden"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzienny limit przekroczony"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite diário excedido"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günlük sınır aşıldı"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tageslimit überschritten"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tageslimit überschritten"
+          }
+        }
+      }
+    },
+    "screenTime.schedule.active": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Block-Zeitplan aktivieren"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activate Block Schedule"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activar horario de bloqueo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activer le programme de blocage"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attiva programma di blocco"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブロックスケジュールを有効にする"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "차단 일정 활성화"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blokkeerschema activeren"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktywuj harmonogram blokady"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ativar horário de bloqueio"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engelleme Programını Etkinleştir"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Block-Zeitplan aktivieren"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Block-Zeitplan aktivieren"
+          }
+        }
+      }
+    },
+    "screenTime.schedule.end": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endzeit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End Time"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hora de finalización"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heure de fin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ora di fine"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "終了時間"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "종료 시간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eindtijd"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czas zakończenia"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hora de fim"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitiş Zamanı"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endzeit"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endzeit"
+          }
+        }
+      }
+    },
+    "screenTime.schedule.select_apps": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps & Kategorien auswählen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select Apps & Categories"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleccionar aplicaciones y categorías"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sélectionner des applications et catégories"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleziona app e categorie"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アプリとカテゴリを選択"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "앱 및 카테고리 선택"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecteer apps en categorieën"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wybierz aplikacje i kategorie"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecionar aplicações e categorias"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygulamaları ve Kategorileri Seçin"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps & Kategorien auswählen"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps & Kategorien auswählen"
+          }
+        }
+      }
+    },
+    "screenTime.schedule.start": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Startzeit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Time"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hora de inicio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heure de début"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ora di inizio"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開始時間"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시작 시간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starttijd"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czas rozpoczęcia"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hora de início"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başlangıç Zamanı"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Startzeit"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Startzeit"
+          }
+        }
+      }
+    },
+    "screenTime.target.label": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limit (Std)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limit (Hrs)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Límite (Hrs)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite (H)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite (Ore)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "制限（時間）"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "제한 (시간)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limiet (Uur)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limit (Godz)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite (Hrs)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sınır (Saat)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limit (Std)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limit (Std)"
+          }
+        }
+      }
+    },
+    "screenTime.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen Time"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiempo en pantalla"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temps d'écran"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo di utilizzo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スクリーンタイム"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 시간"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermtijd"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czas przed ekranem"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo de ecrã"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekran Süresi"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildschirmzeit"
+          }
+        }
+      }
+    },
+    "screentime.tracker.no_live": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Bildschirmzeit wird automatisch im Hintergrund geprüft. Aus Datenschutzgründen von Apple kann der Live-Fortschritt hier nicht angezeigt werden."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen time is automatically checked in the background. For Apple privacy reasons, live progress cannot be shown here."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El tiempo de pantalla se verifica automáticamente en segundo plano. Por razones de privacidad de Apple, el progreso en vivo no se puede mostrar aquí."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le temps d'écran est automatiquement vérifié en arrière-plan. Pour des raisons de confidentialité d'Apple, la progression en direct ne peut pas être affichée ici."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tempo di utilizzo dello schermo viene controllato automaticamente in background. Per motivi di privacy di Apple, i progressi in tempo reale non possono essere mostrati qui."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スクリーンタイムはバックグラウンドで自動的にチェックされます。Apple のプライバシー上の理由から、ここにはライブの進行状況を表示できません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 시간은 백그라운드에서 자동으로 확인됩니다. Apple의 개인정보 보호 정책으로 인해 라이브 진행률은 여기에 표시할 수 없습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schermtijd wordt automatisch op de achtergrond gecontroleerd. Om privacyredenen van Apple kan de live voortgang hier niet worden weergegeven."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czas korzystania z ekranu jest sprawdzany automatycznie w tle. Ze względu na prywatność Apple nie można tutaj wyświetlać postępów na żywo."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O tempo de ecrã é verificado automaticamente em segundo plano. Por razões de privacidade da Apple, o progresso ao vivo não pode ser mostrado aqui."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekran süresi arka planda otomatik olarak kontrol edilir. Apple'ın gizlilik nedenleriyle canlı ilerleme burada gösterilemez."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Bildschirmzeit wird automatisch im Hintergrund geprüft. Aus Datenschutzgründen von Apple kann der Live-Fortschritt hier nicht angezeigt werden."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Bildschirmzeit wird automatisch im Hintergrund geprüft. Aus Datenschutzgründen von Apple kann der Live-Fortschritt hier nicht angezeigt werden."
+          }
+        }
+      }
+    },
+    "screentime.tracker.settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocker-Einstellungen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocker Settings"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes del bloqueador"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paramètres du bloqueur"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impostazioni blocco"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブロッカー設定"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "차단기 설정"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blokkeringsinstellingen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ustawienia blokady"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Definições do bloqueador"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engelleyici Ayarları"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocker-Einstellungen"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocker-Einstellungen"
+          }
+        }
+      }
+    },
     "Selected Coins": {
       "extractionState": "manual",
       "localizations": {
@@ -212483,7 +214824,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Abo verwalten"
           }
         },
@@ -214484,6 +216825,89 @@
           "stringUnit": {
             "state": "translated",
             "value": "您已經購買了嗎？您可以在此處將它們恢復到該設備。"
+          }
+        }
+      }
+    },
+    "settings.screenTime.instruction": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwalte Block-Zeiten und Limits."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage block times and limits."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gestionar tiempos de bloqueo y límites."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gérer les temps et limites de blocage."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gestisci orari e limiti di blocco."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブロック時間と制限を管理する"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "차단 시간 및 제한 관리"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beheer blokkeertijden en limieten."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zarządzaj czasem blokady i limitami."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gerir tempos e limites de bloqueio."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engelleme sürelerini ve sınırları yönetin."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwalte Block-Zeiten und Limits."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwalte Block-Zeiten und Limits."
           }
         }
       }
@@ -274359,6 +276783,12 @@
             "state": "translated",
             "value": "明白了"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": ""
+          }
         }
       }
     },
@@ -282230,7 +284660,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit (mind. 30 Min.) oder hake Gewohnheiten ab (mind. 3), um eine tiefgehende Analyse und Tipps zu erhalten. Jeder kleine Schritt zählt!"
           }
         },
@@ -283180,7 +285610,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Mehr Daten benötigt"
           }
         },
@@ -284035,7 +286465,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Tipp: Du hast >50% deiner Fokuszeit am Nachmittag verbracht. Nutze dieses Zeitfenster auch nächste Woche für fokussiertes Arbeiten."
           }
         },
@@ -284130,7 +286560,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Tipp: Du hast >50% deiner Fokuszeit am Abend verbracht. Wenn das für dich funktioniert, plane deine Deep-Work-Sessions ab 18 Uhr."
           }
         },
@@ -284225,7 +286655,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Tipp: Du hast >50% deiner Fokuszeit am Vormittag verbracht. Versuche, deine wichtigsten Blöcke weiterhin vor 12 Uhr zu planen, um diesen Flow zu nutzen."
           }
         },
@@ -284320,7 +286750,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Tipp: Zu wenig Daten für eine detaillierte Tageszeit-Analyse. Sammle mehr Fokus-Sessions (mind. 100 Min), um präzise Tipps zu erhalten."
           }
         },
@@ -285685,6 +288115,12 @@
             "value": "Arrosez vos plantes depuis l'écran d'accueil."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपने पौधों को सीधे होम स्क्रीन से पानी दें।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -285721,22 +288157,16 @@
             "value": "Regue suas plantas diretamente da tela inicial."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bitkilerini doğrudan ana ekrandan sula."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अपने पौधों को सीधे होम स्क्रीन से पानी दें।"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Поливайте растения прямо с главного экрана."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitkilerini doğrudan ana ekrandan sula."
           }
         },
         "zh-Hans": {
@@ -285780,6 +288210,12 @@
             "value": "Tout arrosé ! 🎉"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सब कुछ डाला! 🎉"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -285816,22 +288252,16 @@
             "value": "Tudo regado! 🎉"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hepsi sulandı! 🎉"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सब कुछ डाला! 🎉"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Всё вылилось! 🎉"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hepsi sulandı! 🎉"
           }
         },
         "zh-Hans": {
@@ -285875,6 +288305,12 @@
             "value": "Vos Plantes"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके पौधे"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -285911,22 +288347,16 @@
             "value": "Suas Plantas"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bitkileriniz"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपके पौधे"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Ваши растения"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitkileriniz"
           }
         },
         "zh-Hans": {
@@ -285970,6 +288400,12 @@
             "value": "Arroser (Pro)"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पौधों को पानी देना (प्रो)"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -286006,22 +288442,16 @@
             "value": "Regar Plantas (Pro)"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bitki Sula (Pro)"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "पौधों को पानी देना (प्रो)"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Полив растений (Pro)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitki Sula (Pro)"
           }
         },
         "zh-Hans": {
@@ -286065,6 +288495,12 @@
             "value": "Terminez vos routines directement depuis l'écran d'accueil."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपनी दिनचर्या सीधे होम स्क्रीन से पूरी करें।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -286101,22 +288537,16 @@
             "value": "Conclua suas rotinas diretamente na tela inicial."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rutinlerinizi doğrudan ana ekrandan tamamlayın."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अपनी दिनचर्या सीधे होम स्क्रीन से पूरी करें।"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Выполняйте свои процедуры прямо с главного экрана."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rutinlerinizi doğrudan ana ekrandan tamamlayın."
           }
         },
         "zh-Hans": {
@@ -286160,6 +288590,12 @@
             "value": "Routine (Pro)"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नियमित (प्रो)"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -286196,22 +288632,16 @@
             "value": "Rotina (Pro)"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rutin (Pro)"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "नियमित (प्रो)"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Рутина (Про)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rutin (Pro)"
           }
         },
         "zh-Hans": {
@@ -286255,6 +288685,12 @@
             "value": "Votre série actuelle sur l'écran de verrouillage."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लॉक स्क्रीन पर आपकी वर्तमान स्ट्रीक."
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -286291,22 +288727,16 @@
             "value": "Sua sequência atual na tela de bloqueio."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kilit ekranındaki mevcut serin."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "लॉक स्क्रीन पर आपकी वर्तमान स्ट्रीक."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Ваша текущая полоса на экране блокировки."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilit ekranındaki mevcut serin."
           }
         },
         "zh-Hans": {
@@ -286350,6 +288780,12 @@
             "value": "Série (Pro)"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्ट्रीक (प्रो)"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -286386,22 +288822,16 @@
             "value": "Sequência (Pro)"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seri (Pro)"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "स्ट्रीक (प्रो)"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Стрик (Про)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seri (Pro)"
           }
         },
         "zh-Hans": {
@@ -286445,6 +288875,12 @@
             "value": "Version Pro requise"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रो संस्करण आवश्यक है"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -286481,22 +288917,16 @@
             "value": "Versão Pro necessária"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pro sürüm gereklidir"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "प्रो संस्करण आवश्यक है"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Требуется Pro-версия"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro sürüm gereklidir"
           }
         },
         "zh-Hans": {
@@ -286540,6 +288970,12 @@
             "value": "Aucune tâche."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई कार्य नहीं."
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -286576,22 +289012,16 @@
             "value": "Sem tarefas."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Görev yok."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "कोई कार्य नहीं."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Никаких задач."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Görev yok."
           }
         },
         "zh-Hans": {
@@ -286635,6 +289065,12 @@
             "value": "Sélectionner la routine (Modifier le widget)"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दिनचर्या का चयन करें (विजेट संपादित करें)"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -286671,22 +289107,16 @@
             "value": "Selecionar rotina (Editar widget)"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rutin seç (Widget'ı düzenle)"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "दिनचर्या का चयन करें (विजेट संपादित करें)"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Выбрать программу (редактировать виджет)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rutin seç (Widget'ı düzenle)"
           }
         },
         "zh-Hans": {
@@ -286730,6 +289160,12 @@
             "value": "Actuel: %d"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वर्तमान:%d"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -286766,22 +289202,16 @@
             "value": "Atual: %d"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mevcut: %d"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "वर्तमान:%d"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Ток:%d"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mevcut: %d"
           }
         },
         "zh-Hans": {
@@ -286825,6 +289255,12 @@
             "value": "JOURS"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लेना"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -286861,22 +289297,16 @@
             "value": "DIAS"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "GÜN"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "लेना"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "БРАТЬ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GÜN"
           }
         },
         "zh-Hans": {
@@ -286920,6 +289350,12 @@
             "value": "Votre séquence actuelle."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी वर्तमान शृंखला."
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -286950,18 +289386,6 @@
             "value": "Twoja obecna passa."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Şu anki seriniz."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपकी वर्तमान शृंखला."
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
@@ -286972,6 +289396,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ваша текущая серия."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şu anki seriniz."
           }
         },
         "zh-Hans": {
@@ -287015,6 +289445,12 @@
             "value": "Traînée"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "धारी"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -287045,18 +289481,6 @@
             "value": "Pasemko"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rüzgâr gibi geçmek"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "धारी"
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
@@ -287067,6 +289491,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Полоса"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rüzgâr gibi geçmek"
           }
         },
         "zh-Hans": {
@@ -287110,6 +289540,12 @@
             "value": "Votre mois entier en un coup d'œil."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका पूरा महीना एक नज़र में."
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -287140,18 +289576,6 @@
             "value": "Cały miesiąc w skrócie."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bir bakışta tüm ayınız."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपका पूरा महीना एक नज़र में."
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
@@ -287162,6 +289586,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Весь ваш месяц как на ладони."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir bakışta tüm ayınız."
           }
         },
         "zh-Hans": {
@@ -287205,6 +289635,12 @@
             "value": "Historique Mensuel"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मासिक पाठ्यक्रम"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -287241,22 +289677,16 @@
             "value": "Histórico Mensal"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aylık Geçmiş"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "मासिक पाठ्यक्रम"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Месячный курс"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aylık Geçmiş"
           }
         },
         "zh-Hans": {
@@ -287300,6 +289730,12 @@
             "value": "Les 7 derniers jours en un coup d'œil."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 7 दिन एक नज़र में."
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -287330,18 +289766,6 @@
             "value": "Ostatnie 7 dni w skrócie."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bir bakışta son 7 gün."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "पिछले 7 दिन एक नज़र में."
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
@@ -287352,6 +289776,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Краткий обзор последних 7 дней."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir bakışta son 7 gün."
           }
         },
         "zh-Hans": {
@@ -287395,6 +289825,12 @@
             "value": "HISTORIQUE HEBDO"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साप्ताहिक"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -287431,22 +289867,16 @@
             "value": "HISTÓRICO SEMANAL"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "HAFTALIK GEÇMİŞ"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "साप्ताहिक"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "ЕЖЕНЕДЕЛЬНО"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HAFTALIK GEÇMİŞ"
           }
         },
         "zh-Hans": {
@@ -287490,6 +289920,12 @@
             "value": "EN TOUT"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुल मिलाकर"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -287520,18 +289956,6 @@
             "value": "W SUMIE"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "TOPLAMDA"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "कुल मिलाकर"
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
@@ -287542,6 +289966,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ВСЕГО"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TOPLAMDA"
           }
         },
         "zh-Hans": {
@@ -287585,6 +290015,12 @@
             "value": "L'eau que tu as bu."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जो पानी तुमने पिया."
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -287615,18 +290051,6 @@
             "value": "Woda, którą wypiłeś."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "İçtiğin su."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "जो पानी तुमने पिया."
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
@@ -287637,6 +290061,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Вода, которую ты пил."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İçtiğin su."
           }
         },
         "zh-Hans": {
@@ -287680,6 +290110,12 @@
             "value": "%dfois"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%dख़राब"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -287710,18 +290146,6 @@
             "value": "%drazy"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%dkez"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%dख़राब"
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
@@ -287732,6 +290156,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "%dплохой"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%dkez"
           }
         },
         "zh-Hans": {
@@ -287775,6 +290205,12 @@
             "value": "Eau"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पानी"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -287805,18 +290241,6 @@
             "value": "Woda"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "su"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "पानी"
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
@@ -287827,6 +290251,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Вода"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "su"
           }
         },
         "zh-Hans": {
@@ -288894,1426 +291324,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "例行時間：%@"
-          }
-        }
-      }
-    },
-    "screentime.preprompt.title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schütze deinen Fokus"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Protect your focus"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bescherm je focus"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Protégez votre concentration"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Proteggi la tua concentrazione"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "集中力を守る"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "집중력 보호"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Chroń swoje skupienie"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Proteja o seu foco"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Protege tu concentración"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Odaklanmanı koru"
-          }
-        }
-      }
-    },
-    "screentime.preprompt.desc": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Damit dein Garten wachsen kann und das Unkraut keine Chance hat, müssen wir deine Ablenkungen aussperren. Bitte erlaube den Screen-Time-Zugriff im nächsten Fenster, damit Grovy dich schützen kann."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To let your garden grow and give weeds no chance, we need to lock out your distractions. Please allow Screen Time access in the next window so Grovy can protect you."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Om je tuin te laten groeien en onkruid geen kans te geven, moeten we je afleidingen buitensluiten. Sta schermtoegang toe in het volgende venster, zodat Grovy je kan beschermen."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pour laisser votre jardin pousser et ne donner aucune chance aux mauvaises herbes, nous devons bloquer vos distractions. Veuillez autoriser l'accès au temps d'écran dans la fenêtre suivante afin que Grovy puisse vous protéger."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Per far crescere il tuo giardino e non dare scampo alle erbacce, dobbiamo bloccare le tue distrazioni. Consenti l'accesso al tempo di utilizzo nella finestra successiva in modo che Grovy possa proteggerti."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "庭を育て、雑草にチャンスを与えないために、気晴らしをブロックする必要があります。Grovyがあなたを守れるように、次のウィンドウでスクリーンタイムへのアクセスを許可してください。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "정원이 자라게 하고 잡초가 자라지 못하게 하려면 주의가 산만해지는 것을 막아야 합니다. Grovy가 사용자를 보호할 수 있도록 다음 창에서 화면 시간 액세스를 허용하세요."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aby Twój ogród mógł rosnąć i nie dać szans chwastom, musimy zablokować Twoje czynniki rozpraszające. Zezwól na dostęp do czasu przed ekranem w następnym oknie, aby Grovy mógł Cię chronić."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Para deixar o seu jardim crescer e não dar hipótese às ervas daninhas, precisamos de bloquear as suas distrações. Por favor, permita o acesso ao Tempo de Ecrã na janela seguinte para que o Grovy possa protegê-lo."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Para que tu jardín crezca y las malas hierbas no tengan oportunidad, debemos bloquear tus distracciones. Permita el acceso al tiempo de pantalla en la siguiente ventana para que Grovy pueda protegerlo."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bahçenizin büyümesini sağlamak ve yabani otlara şans tanımamak için dikkatinizi dağıtan şeyleri dışarıda bırakmalıyız. Grovy'nin sizi koruyabilmesi için lütfen sonraki pencerede Ekran Süresi erişimine izin verin."
-          }
-        }
-      }
-    },
-    "screentime.preprompt.button": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verstanden"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Understood"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Begrepen"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compris"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Capito"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "了解しました"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이해했습니다"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zrozumiałem"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entendi"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entendido"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Anladım"
-          }
-        }
-      }
-    },
-    "screenTime.blocked.title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bildschirmzeit blockiert"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Screen Time Blocked"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schermtijd geblokkeerd"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Temps d'écran bloqué"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tempo di utilizzo bloccato"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "スクリーンタイムがブロックされました"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "화면 시간 차단됨"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Czas przed ekranem zablokowany"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tempo de ecrã bloqueado"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tiempo en pantalla bloqueado"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ekran Süresi Engellendi"
-          }
-        }
-      }
-    },
-    "screenTime.blocked.desc": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Du befindest dich gerade in deiner aktiven Block-Zeit. Du kannst diese Einstellungen erst ändern, wenn die Block-Zeit abgelaufen ist."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You are currently in your active block time. You can only change these settings when the block time has expired."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je bevindt je momenteel in je actieve blokkeertijd. Je kunt deze instellingen pas wijzigen als de blokkeertijd is verstreken."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vous êtes actuellement dans votre temps de blocage actif. Vous ne pourrez modifier ces paramètres qu'une fois le temps écoulé."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ti trovi attualmente nel tuo tempo di blocco attivo. Puoi modificare queste impostazioni solo al termine del blocco."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "現在アクティブなブロック時間中です。ブロック時間が終了するまでこの設定は変更できません。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "현재 활성 차단 시간입니다. 차단 시간이 만료된 후에만 이 설정을 변경할 수 있습니다."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obecnie znajdujesz się w aktywnym czasie blokady. Możesz zmienić te ustawienia dopiero po upływie czasu blokady."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Encontra-se atualmente no seu tempo de bloqueio ativo. Só pode alterar estas definições quando o tempo expirar."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Actualmente te encuentras en tu tiempo de bloqueo activo. Solo puedes cambiar estos ajustes cuando el tiempo expire."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Şu anda aktif engelleme sürenizdesiniz. Bu ayarları ancak engelleme süresi dolduğunda değiştirebilirsiniz."
-          }
-        }
-      }
-    },
-    "screenTime.auth.request": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bildschirmzeit-Zugriff erlauben"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Allow Screen Time Access"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schermtijd toegang toestaan"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autoriser l'accès au temps d'écran"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Consenti l'accesso al tempo di utilizzo"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "スクリーンタイムのアクセスを許可する"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "화면 시간 액세스 허용"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zezwól na dostęp do czasu przed ekranem"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Permitir acesso ao Tempo de Ecrã"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Permitir acceso al tiempo en pantalla"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ekran Süresi erişimine izin ver"
-          }
-        }
-      }
-    },
-    "screenTime.schedule.active": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Block-Zeitplan aktivieren"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Activate Block Schedule"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blokkeerschema activeren"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Activer le programme de blocage"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Attiva programma di blocco"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ブロックスケジュールを有効にする"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "차단 일정 활성화"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aktywuj harmonogram blokady"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ativar horário de bloqueio"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Activar horario de bloqueo"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Engelleme Programını Etkinleştir"
-          }
-        }
-      }
-    },
-    "screenTime.schedule.start": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Startzeit"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Start Time"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Starttijd"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heure de début"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ora di inizio"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "開始時間"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "시작 시간"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Czas rozpoczęcia"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hora de início"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hora de inicio"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Başlangıç Zamanı"
-          }
-        }
-      }
-    },
-    "screenTime.schedule.end": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Endzeit"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "End Time"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eindtijd"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heure de fin"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ora di fine"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "終了時間"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "종료 시간"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Czas zakończenia"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hora de fim"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hora de finalización"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bitiş Zamanı"
-          }
-        }
-      }
-    },
-    "screenTime.info.title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wie funktioniert das?"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "How does it work?"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hoe werkt het?"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comment ça marche ?"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Come funziona?"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "どのように機能しますか？"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "어떻게 작동하나요?"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jak to działa?"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Como funciona?"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¿Cómo funciona?"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nasıl çalışır?"
-          }
-        }
-      }
-    },
-    "screenTime.info.desc": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Während der aktiven Block-Zeit kannst du den Blocker hier nicht mehr deaktivieren. Wenn du ein Tagesziel überschreitest, wird automatisch die Gewohnheit 'Zu viel Bildschirmzeit' gekauft/abgehakt. Hältst du das Ziel ein, wird deine Pflanze automatisch am Tagesende gegossen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "During the active block time, you cannot deactivate the blocker here. If you exceed a daily limit, the 'Too much screen time' habit will automatically be bought/checked off. If you stick to the limit, your plant will be watered automatically at the end of the day."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tijdens de actieve blokkeertijd kun je de blokkering hier niet deactiveren. Als je een dagelijkse limiet overschrijdt, wordt automatisch de gewoonte 'Te veel schermtijd' afgevinkt. Als je je aan de limiet houdt, wordt je plant aan het einde van de dag automatisch water gegeven."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pendant le temps de blocage, vous ne pouvez pas désactiver le bloqueur ici. Si vous dépassez une limite, l'habitude 'Trop de temps d'écran' sera cochée. Si vous respectez la limite, votre plante sera arrosée à la fin de la journée."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Durante il tempo di blocco, non puoi disattivare il blocco qui. Se superi un limite, verrà aggiunta l'abitudine 'Troppo tempo di utilizzo'. Se rispetti il limite, la tua pianta verrà annaffiata a fine giornata."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ブロック中はブロッカーを無効にできません。制限を超えると「スクリーンタイムの使いすぎ」の習慣が記録されます。制限を守れば、一日の終わりに植物に水が与えられます。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "차단 중에는 차단기를 비활성화할 수 없습니다. 제한을 초과하면 '화면 너무 많이 사용' 습관이 확인됩니다. 제한을 지키면 하루가 끝날 때 식물에 물을 줍니다."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Podczas aktywnej blokady nie możesz jej wyłączyć tutaj. Jeśli przekroczysz limit, zostanie odhaczony nawyk 'Za dużo czasu przed ekranem'. Jeśli go przestrzegasz, roślina zostanie podlana pod koniec dnia."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Durante o tempo de bloqueio, não pode desativá-lo aqui. Se exceder um limite, o hábito 'Demasiado tempo de ecrã' será registado. Se respeitar o limite, a sua planta será regada no final do dia."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Durante el tiempo de bloqueo, no puedes desactivarlo aquí. Si excedes un límite, se marcará el hábito 'Demasiado tiempo en pantalla'. Si respetas el límite, tu planta se regará al final del día."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Engelleme sırasında engelleyiciyi devre dışı bırakamazsınız. Sınırı aşarsanız, 'Çok fazla ekran süresi' alışkanlığı kaydedilir. Sınıra uyarsanız, günün sonunda bitkiniz sulanır."
-          }
-        }
-      }
-    },
-    "screenTime.title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bildschirmzeit"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Screen Time"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schermtijd"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Temps d'écran"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tempo di utilizzo"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "スクリーンタイム"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "화면 시간"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Czas przed ekranem"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tempo de ecrã"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tiempo en pantalla"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ekran Süresi"
-          }
-        }
-      }
-    },
-    "settings.screenTime.instruction": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verwalte Block-Zeiten und Limits."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Manage block times and limits."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beheer blokkeertijden en limieten."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gérer les temps et limites de blocage."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gestisci orari e limiti di blocco."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ブロック時間と制限を管理する"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "차단 시간 및 제한 관리"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zarządzaj czasem blokady i limitami."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gerir tempos e limites de bloqueio."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gestionar tiempos de bloqueo y límites."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Engelleme sürelerini ve sınırları yönetin."
-          }
-        }
-      }
-    },
-    "habit.screen_time.name": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bildschirmzeit"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Screen Time"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schermtijd"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Temps d'écran"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tempo di utilizzo"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "スクリーンタイム"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "화면 시간"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Czas przed ekranem"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tempo de ecrã"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tiempo en pantalla"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ekran Süresi"
-          }
-        }
-      }
-    },
-    "habit.screen_time.desc": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Digital Detox"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Digital Detox"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Digital Detox"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Désintoxication numérique"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Detox digitale"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "デジタルデトックス"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "디지털 디톡스"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cyfrowy detoks"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Desintoxicação digital"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Desintoxicación digital"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dijital Detoks"
-          }
-        }
-      }
-    },
-    "screenTime.target.label": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limit (Std)"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limit (Hrs)"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limiet (Uur)"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite (H)"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite (Ore)"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "制限（時間）"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "제한 (시간)"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limit (Godz)"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite (Hrs)"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Límite (Hrs)"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sınır (Saat)"
-          }
-        }
-      }
-    },
-    "screenTime.reason.exceeded": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tageslimit überschritten"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daily limit exceeded"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dagelijkse limiet overschreden"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite quotidienne dépassée"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite giornaliero superato"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "一日の制限を超過しました"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "일일 한도 초과됨"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dzienny limit przekroczony"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite diário excedido"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Límite diario superado"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Günlük sınır aşıldı"
-          }
-        }
-      }
-    },
-    "bad_habit.screen_time.name": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zu viel Bildschirmzeit"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Too much screen time"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Te veel schermtijd"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trop de temps d'écran"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Troppo tempo di utilizzo"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "スクリーンタイムの使いすぎ"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "화면 너무 많이 사용"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Za dużo czasu przed ekranem"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Demasiado tempo de ecrã"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Demasiado tiempo en pantalla"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Çok fazla ekran süresi"
-          }
-        }
-      }
-    },
-    "bad_habit.screen_time.desc": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rückfall"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Relapse"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Terugval"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rechute"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ricaduta"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "再発"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "재발"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nawrót"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recaída"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recaída"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nüksetme"
-          }
-        }
-      }
-    },
-    "note.auto.screentime_success": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bildschirmzeit eingehalten"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Screen time limit respected"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schermtijdlimiet gerespecteerd"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite de temps d'écran respectée"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite tempo di utilizzo rispettato"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "スクリーンタイム制限を守りました"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "화면 시간 제한 준수됨"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Przestrzegano limitu czasu ekranu"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite de tempo de ecrã respeitado"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Límite de tiempo en pantalla respetado"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ekran süresi sınırına uyuldu"
           }
         }
       }

@@ -12,6 +12,8 @@
 		142BB4502F9CA800002CDBD0 /* GartenWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 142BB4412F9CA800002CDBD0 /* GartenWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		14595B622F9E6A9E00C69460 /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14595B612F9E6A9E00C69460 /* ActivityKit.framework */; };
 		14660BE12FFF6CED007F2E2E /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 14660BE02FFF6CED007F2E2E /* Products.storekit */; };
+		14660BEC2FFF7780007F2E2E /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14660BEB2FFF7780007F2E2E /* DeviceActivity.framework */; };
+		14660BF42FFF7780007F2E2E /* ScreenTimeMonitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 14660BEA2FFF7780007F2E2E /* ScreenTimeMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1470B3D42F77100D00FBAB1D /* DotLottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1470B3D32F77100D00FBAB1D /* DotLottie */; };
 		1473815F2F73A8470070F455 /* SeltenheitProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */; };
 		14741A642FFEA96100CA0071 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14741A632FFEA96100CA0071 /* StoreKit.framework */; };
@@ -41,6 +43,13 @@
 			remoteGlobalIDString = 142BB4402F9CA800002CDBD0;
 			remoteInfo = GartenWidgetExtension;
 		};
+		14660BF22FFF7780007F2E2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1424D4142F6EA14200908588 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14660BE92FFF7780007F2E2E;
+			remoteInfo = ScreenTimeMonitor;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +59,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				14660BF42FFF7780007F2E2E /* ScreenTimeMonitor.appex in Embed Foundation Extensions */,
 				142BB4502F9CA800002CDBD0 /* GartenWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -67,6 +77,8 @@
 		142BB4602F9CABC8002CDBD0 /* GartenWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GartenWidgetExtension.entitlements; sourceTree = "<group>"; };
 		14595B612F9E6A9E00C69460 /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActivityKit.framework; path = System/Library/Frameworks/ActivityKit.framework; sourceTree = SDKROOT; };
 		14660BE02FFF6CED007F2E2E /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
+		14660BEA2FFF7780007F2E2E /* ScreenTimeMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ScreenTimeMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		14660BEB2FFF7780007F2E2E /* DeviceActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceActivity.framework; path = System/Library/Frameworks/DeviceActivity.framework; sourceTree = SDKROOT; };
 		1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeltenheitProgressRing.swift; sourceTree = "<group>"; };
 		14741A632FFEA96100CA0071 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		451D92332C87A16BD490A21B /* GardenActivityAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GardenActivityAttributes.swift; path = Garten_Simulation/Models/GardenActivityAttributes.swift; sourceTree = "<group>"; };
@@ -94,6 +106,13 @@
 				Models/PowerUpWeedSupport.swift,
 			);
 			target = 142BB4402F9CA800002CDBD0 /* GartenWidgetExtension */;
+		};
+		14660BF82FFF7780007F2E2E /* Exceptions for "ScreenTimeMonitor" folder in "ScreenTimeMonitor" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 14660BE92FFF7780007F2E2E /* ScreenTimeMonitor */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -123,6 +142,14 @@
 				145E3EFB2FD7C853005708E5 /* Exceptions for "Garten_Simulation" folder in "GartenWidgetExtension" target */,
 			);
 			path = Garten_Simulation;
+			sourceTree = "<group>";
+		};
+		14660BED2FFF7780007F2E2E /* ScreenTimeMonitor */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				14660BF82FFF7780007F2E2E /* Exceptions for "ScreenTimeMonitor" folder in "ScreenTimeMonitor" target */,
+			);
+			path = ScreenTimeMonitor;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -162,6 +189,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		14660BE72FFF7780007F2E2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14660BEC2FFF7780007F2E2E /* DeviceActivity.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -173,6 +208,7 @@
 				1424D42C2F6EA14300908588 /* Garten_SimulationTests */,
 				1424D4362F6EA14300908588 /* Garten_SimulationUITests */,
 				142BB4462F9CA800002CDBD0 /* GartenWidget */,
+				14660BED2FFF7780007F2E2E /* ScreenTimeMonitor */,
 				147B21B02F6F269C00741BF8 /* Frameworks */,
 				1424D41D2F6EA14200908588 /* Products */,
 				1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */,
@@ -188,6 +224,7 @@
 				1424D4292F6EA14300908588 /* Garten_SimulationTests.xctest */,
 				1424D4332F6EA14300908588 /* Garten_SimulationUITests.xctest */,
 				142BB4412F9CA800002CDBD0 /* GartenWidgetExtension.appex */,
+				14660BEA2FFF7780007F2E2E /* ScreenTimeMonitor.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -199,6 +236,7 @@
 				14595B612F9E6A9E00C69460 /* ActivityKit.framework */,
 				142BB4422F9CA800002CDBD0 /* WidgetKit.framework */,
 				142BB4442F9CA800002CDBD0 /* SwiftUI.framework */,
+				14660BEB2FFF7780007F2E2E /* DeviceActivity.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -219,6 +257,7 @@
 			);
 			dependencies = (
 				142BB44F2F9CA800002CDBD0 /* PBXTargetDependency */,
+				14660BF32FFF7780007F2E2E /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				145797BB2F6FED1A00C51D53 /* Garten_Simulation */,
@@ -294,6 +333,28 @@
 			productReference = 142BB4412F9CA800002CDBD0 /* GartenWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		14660BE92FFF7780007F2E2E /* ScreenTimeMonitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14660BF52FFF7780007F2E2E /* Build configuration list for PBXNativeTarget "ScreenTimeMonitor" */;
+			buildPhases = (
+				14660BE62FFF7780007F2E2E /* Sources */,
+				14660BE72FFF7780007F2E2E /* Frameworks */,
+				14660BE82FFF7780007F2E2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				14660BED2FFF7780007F2E2E /* ScreenTimeMonitor */,
+			);
+			name = ScreenTimeMonitor;
+			packageProductDependencies = (
+			);
+			productName = ScreenTimeMonitor;
+			productReference = 14660BEA2FFF7780007F2E2E /* ScreenTimeMonitor.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -301,7 +362,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2640;
+				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					1424D41B2F6EA14200908588 = {
@@ -322,6 +383,9 @@
 					};
 					142BB4402F9CA800002CDBD0 = {
 						CreatedOnToolsVersion = 26.4.1;
+					};
+					14660BE92FFF7780007F2E2E = {
+						CreatedOnToolsVersion = 26.6;
 					};
 				};
 			};
@@ -361,6 +425,7 @@
 				1424D4282F6EA14300908588 /* Garten_SimulationTests */,
 				1424D4322F6EA14300908588 /* Garten_SimulationUITests */,
 				142BB4402F9CA800002CDBD0 /* GartenWidgetExtension */,
+				14660BE92FFF7780007F2E2E /* ScreenTimeMonitor */,
 			);
 		};
 /* End PBXProject section */
@@ -389,6 +454,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		142BB43F2F9CA800002CDBD0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14660BE82FFF7780007F2E2E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -428,6 +500,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		14660BE62FFF7780007F2E2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -445,6 +524,11 @@
 			isa = PBXTargetDependency;
 			target = 142BB4402F9CA800002CDBD0 /* GartenWidgetExtension */;
 			targetProxy = 142BB44E2F9CA800002CDBD0 /* PBXContainerItemProxy */;
+		};
+		14660BF32FFF7780007F2E2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14660BE92FFF7780007F2E2E /* ScreenTimeMonitor */;
+			targetProxy = 14660BF22FFF7780007F2E2E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -820,6 +904,67 @@
 			};
 			name = Release;
 		};
+		14660BF62FFF7780007F2E2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ScreenTimeMonitor/ScreenTimeMonitor.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenTimeMonitor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimeMonitor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jannik.grovy.ScreenTimeMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		14660BF72FFF7780007F2E2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ScreenTimeMonitor/ScreenTimeMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R2ZRSFCKZ5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ScreenTimeMonitor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ScreenTimeMonitor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jannik.grovy.ScreenTimeMonitor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -864,6 +1009,15 @@
 			buildConfigurations = (
 				142BB4522F9CA800002CDBD0 /* Debug */,
 				142BB4532F9CA800002CDBD0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14660BF52FFF7780007F2E2E /* Build configuration list for PBXNativeTarget "ScreenTimeMonitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14660BF62FFF7780007F2E2E /* Debug */,
+				14660BF72FFF7780007F2E2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

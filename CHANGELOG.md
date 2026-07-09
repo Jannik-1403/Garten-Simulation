@@ -485,3 +485,12 @@
 - Hinzugefügt: Psychologischer 'Screen Time Pre-Prompt' vor der Systemabfrage, um die Zustimmungsrate zu erhöhen. Vollständig in 11 Sprachen übersetzt und in Focus- sowie Routine-Sessions integriert.
 - Behoben: Swift 6 Concurrency-Fehler in IAPStore (MainActor-Isolation für static properties)
 - Behoben: Veraltete (stale) Einträge aus Localizable.xcstrings entfernt, um Xcode-Warnungen über fehlende Referenzen und falsche Format Specifiers zu lösen
+- Hinzufügen von Bildschirmzeit-Tracker, Block-Zeitplan UI und Auto-Bewaesserung/Rückfall System.
+- UI-Überarbeitung der Bildschirmzeit-Einstellungen (Fertig-Button, Kategorie-Auswahl)
+- Integration der bestehenden Gewohnheit 'Bildschirmzeit' (Aloe Vera) für Limits
+- Stunden & Minuten Picker in der Gewohnheits-Ansicht hinzugefügt
+- Lokalisierung für neue Bildschirmzeit-Elemente ergänzt
+- Bildschirmzeit-Layout auf nebeneinanderliegende Stunden- und Minuten-Auswahl geändert inkl. Bestätigungs-Dialog
+- 100% Übersetzungsabdeckung in allen 11 Sprachen erzwungen
+- Zurück-Button in Blocker-Einstellungen entfernt (nur noch X-Button)
+- Veraltete Custom-Tracker-Gewohnheit restlos aus der Datenbank entfernt

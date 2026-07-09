@@ -84,7 +84,7 @@ struct SettingsView: View {
                                                     .font(.system(size: 16, weight: .medium, design: .rounded))
                                                     .foregroundStyle(.primary)
                                                 
-                                                Text(String(localized: "settings.screenTime.instruction", defaultValue: "Verwalte Block-Zeiten und Limits."))
+                                                Text(String(localized: "settings.screenTime.instruction", defaultValue: "Verwalte Block-Zeiten und App-Kategorien."))
                                                     .font(.system(size: 10, weight: .regular, design: .rounded))
                                                     .foregroundStyle(.secondary)
                                                     .lineLimit(2)
