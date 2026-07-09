@@ -550,3 +550,5 @@
 - **Screen Time**: Minutengenauer Picker für Ebene 1 Limits (Stunden + Minuten) integriert.
 - **Screen Time Ebenen**: Mutually Exclusive Logic hinzugefügt (Apps werden automatisch aus Ebene 1 entfernt, wenn sie zu Ebene 2 hinzugefügt werden und umgekehrt).
 - **Walk of Shame**: ScrollView und iOS Liquid Glass (Material) Layout integriert, sowie Copy-Paste für Textvorlage blockiert.
+- **Screen Time**: Exploit geschlossen – Einmal hinzugefügte Apps können nicht mehr über den Picker entfernt ("weggeklickt") werden. Zum Entfernen muss die "Walk of Shame" Ebene abgeschlossen werden.
+- **Walk of Shame**: Der Schließen-Button entspricht nun nativen iOS-Design-Richtlinien (xmark.circle.fill).

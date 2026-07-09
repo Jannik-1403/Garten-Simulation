@@ -18,6 +18,7 @@ struct ScreenTimeSettingsView: View {
     
     @State private var isDailyLimitPickerPresented = false
     @State private var dailyLimitSelection = FamilyActivitySelection()
+    @State private var oldDailyLimitSelection = FamilyActivitySelection()
     @State private var dailyLimitMinutes: Int = 0
     
     @State private var isTimePickerPresented = false
@@ -26,6 +27,7 @@ struct ScreenTimeSettingsView: View {
     
     @State private var isPermanentPickerPresented = false
     @State private var permanentBlockSelection = FamilyActivitySelection()
+    @State private var oldPermanentBlockSelection = FamilyActivitySelection()
     @State private var isAdultFilterEnabled = false
     
     @State private var showWalkOfShame = false
@@ -85,8 +87,12 @@ struct ScreenTimeSettingsView: View {
             }
             isScheduleActive = manager.isScheduleActive
             blockSelection = manager.blockSelection
-            permanentBlockSelection = manager.permanentBlockSelection
+            
             dailyLimitSelection = manager.dailyLimitSelection
+            oldDailyLimitSelection = manager.dailyLimitSelection
+            permanentBlockSelection = manager.permanentBlockSelection
+            oldPermanentBlockSelection = manager.permanentBlockSelection
+            
             dailyLimitMinutes = manager.dailyLimitMinutes
             isAdultFilterEnabled = manager.isAdultFilterEnabled
             daySchedules = manager.daySchedules
@@ -95,25 +101,72 @@ struct ScreenTimeSettingsView: View {
             tempMinutes = manager.dailyLimitMinutes % 60
         }
         .onChange(of: dailyLimitSelection) { newValue in
+            var enforcedSelection = newValue
+            
+            // Verhindern, dass etwas abgewählt wird (Wegklicken)
+            enforcedSelection.applicationTokens.formUnion(oldDailyLimitSelection.applicationTokens)
+            enforcedSelection.categoryTokens.formUnion(oldDailyLimitSelection.categoryTokens)
+            enforcedSelection.webDomainTokens.formUnion(oldDailyLimitSelection.webDomainTokens)
+            
+            // Wenn in Ebene 1 ausgewählt, aus Ebene 2 entfernen
             var newPermanent = permanentBlockSelection
-            newPermanent.applicationTokens.subtract(newValue.applicationTokens)
-            newPermanent.categoryTokens.subtract(newValue.categoryTokens)
-            newPermanent.webDomainTokens.subtract(newValue.webDomainTokens)
+            newPermanent.applicationTokens.subtract(enforcedSelection.applicationTokens)
+            newPermanent.categoryTokens.subtract(enforcedSelection.categoryTokens)
+            newPermanent.webDomainTokens.subtract(enforcedSelection.webDomainTokens)
             if newPermanent != permanentBlockSelection {
                 permanentBlockSelection = newPermanent
+                oldPermanentBlockSelection = newPermanent
             }
+            
+            if dailyLimitSelection != enforcedSelection {
+                dailyLimitSelection = enforcedSelection
+            }
+            oldDailyLimitSelection = enforcedSelection
         }
         .onChange(of: permanentBlockSelection) { newValue in
+            var enforcedSelection = newValue
+            
+            // Verhindern, dass etwas abgewählt wird (Wegklicken)
+            enforcedSelection.applicationTokens.formUnion(oldPermanentBlockSelection.applicationTokens)
+            enforcedSelection.categoryTokens.formUnion(oldPermanentBlockSelection.categoryTokens)
+            enforcedSelection.webDomainTokens.formUnion(oldPermanentBlockSelection.webDomainTokens)
+            
+            // Wenn in Ebene 2 ausgewählt, aus Ebene 1 entfernen (da Ebene 2 stärker ist)
             var newDaily = dailyLimitSelection
-            newDaily.applicationTokens.subtract(newValue.applicationTokens)
-            newDaily.categoryTokens.subtract(newValue.categoryTokens)
-            newDaily.webDomainTokens.subtract(newValue.webDomainTokens)
+            newDaily.applicationTokens.subtract(enforcedSelection.applicationTokens)
+            newDaily.categoryTokens.subtract(enforcedSelection.categoryTokens)
+            newDaily.webDomainTokens.subtract(enforcedSelection.webDomainTokens)
             if newDaily != dailyLimitSelection {
                 dailyLimitSelection = newDaily
+                oldDailyLimitSelection = newDaily
             }
+            
+            if permanentBlockSelection != enforcedSelection {
+                permanentBlockSelection = enforcedSelection
+            }
+            oldPermanentBlockSelection = enforcedSelection
         }
         .sheet(isPresented: $isTimePickerPresented) {
             timePickerSheet
+        }
+        .fullScreenCover(isPresented: $showWalkOfShame) {
+            WalkOfShameView(
+                onConfirmGiveUp: {
+                    // Unblock everything
+                    permanentBlockSelection = FamilyActivitySelection()
+                    oldPermanentBlockSelection = FamilyActivitySelection()
+                    manager.permanentBlockSelection = FamilyActivitySelection()
+                    
+                    dailyLimitSelection = FamilyActivitySelection()
+                    oldDailyLimitSelection = FamilyActivitySelection()
+                    manager.dailyLimitSelection = FamilyActivitySelection()
+                    
+                    showWalkOfShame = false
+                },
+                onCancel: {
+                    showWalkOfShame = false
+                }
+            )
         }
         .onDisappear {
             saveSettings()
@@ -267,6 +320,23 @@ struct ScreenTimeSettingsView: View {
                     }
                 }
                 .padding(.horizontal)
+                
+                // Unblock Button Ebene 1 (Walk of Shame)
+                Button {
+                    showWalkOfShame = true
+                } label: {
+                    HStack {
+                        Image(systemName: "lock.open.fill")
+                        Text(String(localized: "screenTime.layer1.unblock", defaultValue: "Apps entsperren"))
+                    }
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.orange)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+                }
+                .padding(.horizontal)
             }
         }
     }
@@ -336,27 +406,22 @@ struct ScreenTimeSettingsView: View {
                 }
                 .padding(.horizontal)
                 
-                // Unblock Button (Walk of Shame)
+                // Unblock Button Ebene 2 (Walk of Shame)
                 Button {
                     showWalkOfShame = true
                 } label: {
-                    Text(String(localized: "screenTime.layer2.unblock", defaultValue: "Apps entsperren"))
+                    HStack {
+                        Image(systemName: "lock.open.fill")
+                        Text(String(localized: "screenTime.layer2.unblock", defaultValue: "Apps entsperren"))
+                    }
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.orange)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
                 }
-                .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: .orange, shadowColor: .orange.darker()))
                 .padding(.horizontal)
-                .fullScreenCover(isPresented: $showWalkOfShame) {
-                    WalkOfShameView(
-                        onConfirmGiveUp: {
-                            // Unblock permanent blocks!
-                            permanentBlockSelection = FamilyActivitySelection()
-                            manager.permanentBlockSelection = FamilyActivitySelection()
-                            showWalkOfShame = false
-                        },
-                        onCancel: {
-                            showWalkOfShame = false
-                        }
-                    )
-                }
             }
         }
     }

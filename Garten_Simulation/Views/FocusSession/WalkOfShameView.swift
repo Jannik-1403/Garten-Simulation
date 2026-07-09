@@ -49,13 +49,9 @@ struct WalkOfShameView: View {
                                 onCancel()
                             }
                         } label: {
-                            Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark")
-                                .font(.system(size: 20, weight: .bold))
-                                .foregroundStyle(.primary)
-                                .padding()
-                                .background(.regularMaterial)
-                                .clipShape(Circle())
-                                .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
+                            Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark.circle.fill")
+                                .font(.system(size: 28, weight: .semibold))
+                                .foregroundStyle(Color(UIColor.tertiaryLabel), Color(UIColor.tertiarySystemFill))
                         }
                         .padding(.trailing, 24)
                         .padding(.top, 16)
