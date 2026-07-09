@@ -204,8 +204,8 @@ struct FocusSessionView: View {
                         await screenTimeManager.requestAuthorization()
                         if screenTimeManager.isAuthorized {
                             screenTimeManager.blockAllApps()
-                            withAnimation { state = .step2 }
                         }
+                        withAnimation { state = .step2 }
                     }
                 }
             }
@@ -228,6 +228,8 @@ struct FocusSessionView: View {
                                 screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
                                 withAnimation { state = .step2 }
                             }
+                        } else {
+                            withAnimation { state = .step2 }
                         }
                     }
                 }

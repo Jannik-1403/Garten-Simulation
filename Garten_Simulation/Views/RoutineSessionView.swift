@@ -105,18 +105,32 @@ struct RoutineSessionView: View {
                         if screenTimeManager.isAuthorized {
                             screenTimeManager.blockAllApps()
                             showBlockNotice = true
+                        } else {
+                            startSession()
                         }
                     }
                 }
             }
             Button(String(localized: "alert.strict_mode.yes")) {
                 if screenTimeManager.isAuthorized {
-                    showScreenTimePicker = true
+                    if screenTimeManager.allowedSelection.applicationTokens.isEmpty && screenTimeManager.allowedSelection.webDomainTokens.isEmpty && screenTimeManager.allowedSelection.categoryTokens.isEmpty {
+                        showScreenTimePicker = true
+                    } else {
+                        screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
+                        startSession()
+                    }
                 } else {
                     Task {
                         await screenTimeManager.requestAuthorization()
                         if screenTimeManager.isAuthorized {
-                            showScreenTimePicker = true
+                            if screenTimeManager.allowedSelection.applicationTokens.isEmpty && screenTimeManager.allowedSelection.webDomainTokens.isEmpty && screenTimeManager.allowedSelection.categoryTokens.isEmpty {
+                                showScreenTimePicker = true
+                            } else {
+                                screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
+                                startSession()
+                            }
+                        } else {
+                            startSession()
                         }
                     }
                 }
