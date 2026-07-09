@@ -117,7 +117,6 @@ struct ScreenTimeSettingsView: View {
                 }
                 
                 permanentBlockSection
-                suggestionsSection
                 scheduleSection
                 infoSection
             }
@@ -148,123 +147,71 @@ struct ScreenTimeSettingsView: View {
     // MARK: - Permanent Block Section
     
     private var permanentBlockSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
                 Text(String(localized: "screenTime.permanent.title", defaultValue: "Für immer blockieren"))
                     .font(.system(size: 20, weight: .bold, design: .rounded))
-                Text(String(localized: "screenTime.permanent.desc", defaultValue: "Diese Apps & Kategorien sind unabhängig vom Zeitplan immer gesperrt."))
-                    .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(.secondary)
+                Spacer()
+                // Adult Filter Toggle pill
+                Button {
+                    isAdultFilterEnabled.toggle()
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "exclamationmark.shield.fill")
+                            .font(.system(size: 14))
+                        Text(String(localized: "screenTime.suggestions.adult.title", defaultValue: "Adult Filter"))
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 7)
+                    .background(isAdultFilterEnabled ? Color.red : Color(UIColor.tertiarySystemGroupedBackground))
+                    .foregroundStyle(isAdultFilterEnabled ? .white : .primary)
+                    .clipShape(Capsule())
+                }
             }
             .padding(.horizontal)
             
-            // Horizontal scroll of cards
+            // Horizontal scroll – compact pill cards, left to right
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    // App-Cards
-                    ForEach(Array(permanentBlockSelection.applicationTokens), id: \.self) { token in
-                        PermanentBlockCard {
-                            Label(token)
-                        }
-                    }
-                    // Category-Cards
-                    ForEach(Array(permanentBlockSelection.categoryTokens), id: \.self) { token in
-                        PermanentBlockCard {
-                            Label(token)
-                        }
-                    }
-                    // Web Domain-Cards
-                    ForEach(Array(permanentBlockSelection.webDomainTokens), id: \.self) { token in
-                        PermanentBlockCard {
-                            Label(token)
-                        }
-                    }
-                    
-                    // Adult Filter Card
-                    Item3DButton(
-                        farbe: isAdultFilterEnabled ? Color.red : Color(UIColor.secondarySystemGroupedBackground),
-                        sekundaerFarbe: isAdultFilterEnabled ? Color.red.darker() : Color(UIColor.tertiarySystemGroupedBackground),
-                        groesse: 100,
-                        isRectangular: true,
-                        aktion: { isAdultFilterEnabled.toggle() }
-                    ) {
-                        VStack(spacing: 8) {
-                            Image(systemName: "exclamationmark.shield.fill")
-                                .font(.system(size: 28))
-                                .foregroundStyle(isAdultFilterEnabled ? .white : .red)
-                            Text(String(localized: "screenTime.suggestions.adult.title", defaultValue: "Adult Filter"))
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                .foregroundStyle(isAdultFilterEnabled ? .white : .primary)
-                                .multilineTextAlignment(.center)
-                        }
-                    }
-                    
-                    // + Add Button
-                    Item3DButton(
-                        farbe: Color(UIColor.secondarySystemGroupedBackground),
-                        sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground),
-                        groesse: 100,
-                        isRectangular: true,
-                        aktion: { isPermanentPickerPresented = true }
-                    ) {
-                        VStack(spacing: 8) {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.system(size: 28))
-                                .foregroundStyle(Color.gruenPrimary)
+                HStack(spacing: 10) {
+                    // + Add Button always first
+                    Button {
+                        isPermanentPickerPresented = true
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: "plus")
+                                .font(.system(size: 15, weight: .bold))
                             Text(String(localized: "common.add", defaultValue: "Hinzufügen"))
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                .foregroundStyle(.primary)
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
                         }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                        .background(Color.gruenPrimary)
+                        .foregroundStyle(.white)
+                        .clipShape(Capsule())
                     }
                     .familyActivityPicker(isPresented: $isPermanentPickerPresented, selection: $permanentBlockSelection)
+                    
+                    // App tokens
+                    ForEach(Array(permanentBlockSelection.applicationTokens), id: \.self) { token in
+                        BlockPill { Label(token) }
+                    }
+                    // Category tokens
+                    ForEach(Array(permanentBlockSelection.categoryTokens), id: \.self) { token in
+                        BlockPill { Label(token) }
+                    }
+                    // Web domain tokens
+                    ForEach(Array(permanentBlockSelection.webDomainTokens), id: \.self) { token in
+                        BlockPill { Label(token) }
+                    }
                 }
                 .padding(.horizontal)
-                .padding(.vertical, 12)
+                .padding(.vertical, 4)
             }
         }
     }
     
-    // MARK: - Suggestions Section
-    
-    private var suggestionsSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(String(localized: "screenTime.suggestions.title", defaultValue: "Vorschläge zum Blockieren"))
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                Text(String(localized: "screenTime.suggestions.desc", defaultValue: "Tippe auf eine Kategorie – der Apple-Picker öffnet sich, wo du die Apps auswählen kannst."))
-                    .font(.system(size: 13, weight: .medium, design: .rounded))
-                    .foregroundStyle(.secondary)
-            }
-            .padding(.horizontal)
-            
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-                SuggestionCard(
-                    icon: "music.note.tv.fill",
-                    color: Color(hex: "#FF2D55"),
-                    title: String(localized: "screenTime.suggestions.social.title", defaultValue: "Social Media")
-                ) { isPermanentPickerPresented = true }
-                
-                SuggestionCard(
-                    icon: "dice.fill",
-                    color: .purple,
-                    title: String(localized: "screenTime.suggestions.casino.title", defaultValue: "Glücksspiel")
-                ) { isPermanentPickerPresented = true }
-                
-                SuggestionCard(
-                    icon: "takeoutbag.and.cup.and.straw.fill",
-                    color: .orange,
-                    title: String(localized: "screenTime.suggestions.food.title", defaultValue: "Lieferdienste")
-                ) { isPermanentPickerPresented = true }
-                
-                SuggestionCard(
-                    icon: "gamecontroller.fill",
-                    color: Color(hex: "#5856D6"),
-                    title: String(localized: "screenTime.suggestions.games.title", defaultValue: "Games")
-                ) { isPermanentPickerPresented = true }
-            }
-            .padding(.horizontal)
-        }
-    }
+
     
     // MARK: - Schedule Section
     
@@ -512,7 +459,9 @@ struct DayScheduleRow: View {
 
 // MARK: - Subviews
 
-struct PermanentBlockCard<Content: View>: View {
+// MARK: - BlockPill
+
+struct BlockPill<Content: View>: View {
     let content: Content
     
     init(@ViewBuilder content: () -> Content) {
@@ -520,48 +469,13 @@ struct PermanentBlockCard<Content: View>: View {
     }
     
     var body: some View {
-        Item3DButton(
-            farbe: Color(UIColor.secondarySystemGroupedBackground),
-            sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground),
-            groesse: 100,
-            isRectangular: true,
-            aktion: nil
-        ) {
-            VStack(alignment: .center, spacing: 6) {
-                content
-                    .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-            }
-        }
-    }
-}
-
-struct SuggestionCard: View {
-    let icon: String
-    let color: Color
-    let title: String
-    let action: () -> Void
-    
-    var body: some View {
-        Item3DButton(
-            farbe: color.opacity(0.12),
-            sekundaerFarbe: color.opacity(0.2),
-            groesse: 100,
-            isRectangular: true,
-            aktion: action
-        ) {
-            VStack(spacing: 10) {
-                Image(systemName: icon)
-                    .font(.system(size: 28))
-                    .foregroundStyle(color)
-                
-                Text(title)
-                    .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .multilineTextAlignment(.center)
-                    .foregroundStyle(.primary)
-            }
-        }
+        content
+            .font(.system(size: 13, weight: .semibold, design: .rounded))
+            .lineLimit(1)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
+            .background(Color(UIColor.secondarySystemGroupedBackground))
+            .clipShape(Capsule())
     }
 }
 
