@@ -440,6 +440,7 @@ struct FocusSessionView: View {
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 32)
+                    .opacity(pflanze.isGenericFocus ? 0 : 1) // Hide the text about the plant being proud
                 
                 // Belohnung anzeigen
                 HStack(spacing: 60) {
@@ -450,7 +451,8 @@ struct FocusSessionView: View {
                             .scaledToFit()
                             .frame(width: 40, height: 40)
                         
-                        let coins = Int(Double(GameConstants.coinsProGiessen) * gardenStore.coinMultiplikator(for: pflanze))
+                        let baseCoins = pflanze.isGenericFocus ? selectedMinutes : GameConstants.coinsProGiessen
+                        let coins = Int(Double(baseCoins) * gardenStore.coinMultiplikator(for: pflanze))
                         Text(verbatim: "\(coins)")
                             .font(.system(size: 24, weight: .black, design: .rounded))
                         
@@ -479,6 +481,7 @@ struct FocusSessionView: View {
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                     }
+                    .opacity(pflanze.isGenericFocus ? 0 : 1)
                 }
                 .padding(.top, 24)
             }
@@ -510,29 +513,48 @@ struct FocusSessionView: View {
         stopLiveActivity()
         FocusAudioManager.shared.stop()
         
-        let xpGained = Int(Double(pflanze.xpPerCompletion) * gardenStore.xpMultiplikator(for: pflanze))
-        
-        // Triggert den Habit-Abschluss
-        gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
-        
-        // XP von der spezifischen Pflanze abziehen und auf alle aufteilen
-        if !gardenStore.pflanzen.isEmpty {
-            pflanze.currentXP -= xpGained
+        if pflanze.isGenericFocus {
+            let baseCoins = selectedMinutes
+            let coinsEarned = Int(Double(baseCoins) * gardenStore.coinMultiplikator(for: pflanze))
             
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            let key = formatter.string(from: Date())
-            if let currentHistory = pflanze.xpHistory[key] {
-                pflanze.xpHistory[key] = max(0, currentHistory - xpGained)
-            }
+            gardenStore.coins += coinsEarned
+            gardenStore.gesamtVerdient += coinsEarned
             
-            let share = max(1, xpGained / gardenStore.pflanzen.count)
-            let remainder = xpGained % gardenStore.pflanzen.count
+            let transaction = CoinTransaction(
+                datum: Date(),
+                beschreibung: String(localized: "focus.generic.reward", defaultValue: "Fokus-Session: \(pflanze.name)"),
+                betrag: coinsEarned,
+                icon: "timer",
+                farbeHex: "#FF9500" // orange
+            )
+            gardenStore.transactions.insert(transaction, at: 0)
+            gardenStore.saveTransactions()
+            gardenStore.saveStats()
+        } else {
+            let xpGained = Int(Double(pflanze.xpPerCompletion) * gardenStore.xpMultiplikator(for: pflanze))
             
-            for (index, p) in gardenStore.pflanzen.enumerated() {
-                let amount = share + (index == 0 ? remainder : 0)
-                p.currentXP += amount
-                p.xpHistory[key] = (p.xpHistory[key] ?? 0) + amount
+            // Triggert den Habit-Abschluss
+            gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
+            
+            // XP von der spezifischen Pflanze abziehen und auf alle aufteilen
+            if !gardenStore.pflanzen.isEmpty {
+                pflanze.currentXP -= xpGained
+                
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                let key = formatter.string(from: Date())
+                if let currentHistory = pflanze.xpHistory[key] {
+                    pflanze.xpHistory[key] = max(0, currentHistory - xpGained)
+                }
+                
+                let share = max(1, xpGained / gardenStore.pflanzen.count)
+                let remainder = xpGained % gardenStore.pflanzen.count
+                
+                for (index, p) in gardenStore.pflanzen.enumerated() {
+                    let amount = share + (index == 0 ? remainder : 0)
+                    p.currentXP += amount
+                    p.xpHistory[key] = (p.xpHistory[key] ?? 0) + amount
+                }
             }
         }
         

@@ -63,7 +63,7 @@ struct InventoryStatButton: View {
     
     var body: some View {
         DuolingoCard(action: { showDetail = true }) {
-            HStack(spacing: 20) {
+            VStack(spacing: 12) {
                 Item3DButton(
                     icon: "Inventar",
                     farbe: Color(hex: "#8B4513"),
@@ -72,20 +72,44 @@ struct InventoryStatButton: View {
                     aktion: nil
                 )
                 
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(String(localized: "profile.inventory"))
-                        .font(.system(size: 13, weight: .bold, design: .rounded))
-                        .foregroundStyle(.secondary)
-                    
+                VStack(spacing: 2) {
                     Text(verbatim: "\(count)")
-                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
+                    Text(String(localized: "profile.inventory"))
+                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.secondary)
                 }
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundStyle(.quaternary)
             }
+            .frame(maxWidth: .infinity)
+        }
+}
+
+struct FocusTimerStatButton: View {
+    @Binding var showFocusSheet: Bool
+    @EnvironmentObject var settings: SettingsStore
+    
+    var body: some View {
+        DuolingoCard(action: { showFocusSheet = true }) {
+            VStack(spacing: 12) {
+                Item3DButton(
+                    icon: "timer",
+                    farbe: Color.orangePrimary,
+                    sekundaerFarbe: Color.orangePrimary.darker(),
+                    groesse: 60,
+                    aktion: nil
+                )
+                
+                VStack(spacing: 2) {
+                    Text(String(localized: "profile.focus.title", defaultValue: "Fokus"))
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                        .foregroundStyle(.primary)
+                    Text(String(localized: "profile.focus.start", defaultValue: "Starten"))
+                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity)
         }
     }
 }

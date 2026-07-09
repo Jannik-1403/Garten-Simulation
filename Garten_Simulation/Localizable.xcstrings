@@ -206339,6 +206339,35 @@
         }
       }
     },
+    "routine.habit.add": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Gewohnheit"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "рутина.привычка.добавить"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रूटीन.आदत.जोड़ें"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日常.习惯.添加"
+          }
+        }
+      }
+    },
     "routine.habits": {
       "localizations": {
         "de": {
@@ -209696,16 +209725,16 @@
             "value": "Eigenes To-Do"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "рутина.делать.Добавить"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "रूटीन.काम.जोड़ें"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "рутина.делать.Добавить"
           }
         },
         "zh-Hans": {
@@ -209725,16 +209754,16 @@
             "value": "Pflanzen-Icon"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "рутинная.задача.иконка"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "रूटीन.काम.चिह्न"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "рутинная.задача.иконка"
           }
         },
         "zh-Hans": {
@@ -209754,16 +209783,16 @@
             "value": "To-Do Name"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "рутинное.дело.название"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "रूटीन.काम.नाम"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "рутинное.дело.название"
           }
         },
         "zh-Hans": {
@@ -209783,16 +209812,16 @@
             "value": "z.B. Müll rausbringen"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "название_задачи_рутины"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "रूटीन.टूडू.नाम.प्लेसहोल्डर"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "название_задачи_рутины"
           }
         },
         "zh-Hans": {
@@ -209812,16 +209841,16 @@
             "value": "Eigenes To-Do"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "рутинное.дела.заголовок"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "रूटीन.काम.शीर्षक"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "рутинное.дела.заголовок"
           }
         },
         "zh-Hans": {

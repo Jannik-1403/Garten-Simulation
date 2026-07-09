@@ -353,6 +353,9 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     // Custom ToDos in Routines
     @Published var isRoutineOnly: Bool = false
     
+    // Generic Focus Session (not tied to a specific plant)
+    @Published var isGenericFocus: Bool = false
+    
     /// Hat die Pflanze einen aktiven (nicht abgelaufenen) Erinnerungs-Schedule?
     var hasActiveReminder: Bool {
         guard let schedule = reminderSchedule else {
@@ -576,7 +579,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         reminderTime: Date? = nil,
         customReminderMessage: String? = nil,
         isNegative: Bool = false,
-        isRoutineOnly: Bool = false
+        isRoutineOnly: Bool = false,
+        isGenericFocus: Bool = false
     ) {
         self.id = id
         self.name = name
@@ -593,6 +597,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.lastNotifiedCycle = lastNotifiedCycle
         self.isNegative = isNegative
         self.isRoutineOnly = isRoutineOnly
+        self.isGenericFocus = isGenericFocus
         self.wiederbelebtAm = nil
         self.strafTage = 3
         self.reminderTime = reminderTime
@@ -639,6 +644,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case linkedHealthMetric, healthTarget
         case customTrackerName, customTrackerTarget, customTrackerProgress
         case isRoutineOnly
+        case isGenericFocus
     }
 
     required init(from decoder: Decoder) throws {
@@ -725,6 +731,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         customTrackerTarget = try container.decodeIfPresent(Double.self, forKey: .customTrackerTarget)
         customTrackerProgress = try container.decodeIfPresent(Double.self, forKey: .customTrackerProgress) ?? 0
         isRoutineOnly = try container.decodeIfPresent(Bool.self, forKey: .isRoutineOnly) ?? false
+        isGenericFocus = try container.decodeIfPresent(Bool.self, forKey: .isGenericFocus) ?? false
     }
 
     func encode(to encoder: Encoder) throws {
@@ -776,6 +783,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encodeIfPresent(customTrackerTarget, forKey: .customTrackerTarget)
         try container.encode(customTrackerProgress, forKey: .customTrackerProgress)
         try container.encode(isRoutineOnly, forKey: .isRoutineOnly)
+        try container.encode(isGenericFocus, forKey: .isGenericFocus)
     }
 }
 

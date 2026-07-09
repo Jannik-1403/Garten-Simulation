@@ -14,6 +14,7 @@ struct ProfilView: View {
     @State private var showCharacterCustomization = false
     @State private var ausgewaehlterErfolg: Erfolg? = nil
     @State private var showAssessment = false
+    @State private var showFocusSheet = false
     
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
@@ -98,9 +99,13 @@ struct ProfilView: View {
                                 .id(TourStep.streak)
                             }
                             
-                            InventoryStatButton(count: gardenStore.totalItemsCount, showDetail: $showPflanzenDetail)
-                                .tourAnchor(.inventory)
-                                .id(TourStep.inventory)
+                            HStack(spacing: 20) {
+                                InventoryStatButton(count: gardenStore.totalItemsCount, showDetail: $showPflanzenDetail)
+                                    .tourAnchor(.inventory)
+                                    .id(TourStep.inventory)
+                                
+                                FocusTimerStatButton(showFocusSheet: $showFocusSheet)
+                            }
                             
                             AssessmentStatButton(
                                 result: assessmentStore.financeResult,
@@ -198,6 +203,9 @@ struct ProfilView: View {
                 AssessmentCategoryView()
                     .environmentObject(assessmentStore)
                     .environmentObject(settings)
+            }
+            .sheet(isPresented: $showFocusSheet) {
+                GenericFocusTimerSetupSheet()
             }
             .overlay {
                 if let neuerTitel = titelStore.neuerTitelZumAnzeigen {
