@@ -738,7 +738,12 @@ struct DayScheduleRow: View {
     }
     
     private func timeString(h: Int, m: Int) -> String {
-        String(format: "%02d:%02d", h, m)
+        guard let date = Calendar.current.date(bySettingHour: h, minute: m, second: 0, of: Date()) else {
+            return String(format: "%02d:%02d", h, m)
+        }
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
     }
 }
 

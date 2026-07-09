@@ -573,3 +573,4 @@
 - Walk Of Shame: Chunk-Blocker implementiert (verhindert Diktieren und predictive text), Rechtschreibprüfung & Autokorrektur deaktiviert.
 - Walk Of Shame: 5 neue 'Höllen-Texte' implementiert und in 14 Sprachen lokalisiert
 - Bugfix: Rohe Keys in Screen Time und Walk of Shame behoben. Zahlen in Höllen-Texten komplett ausgeschrieben.
+- Übersetzungen für alle Sprachen abgeschlossen
