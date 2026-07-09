@@ -1265,6 +1265,12 @@
         }
       }
     },
+    "%lld h" : {
+
+    },
+    "%lld m" : {
+
+    },
     "%lld Min" : {
       "localizations" : {
         "de" : {
@@ -1546,6 +1552,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld%@"
+          }
+        }
+      }
+    },
+    "%lldh %lldm" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lldh %2$lldm"
           }
         }
       }
@@ -7954,9 +7970,6 @@
           }
         }
       }
-    },
-    "Apps entsperren" : {
-
     },
     "assessment.btn.next" : {
       "comment" : "",
@@ -66605,9 +66618,6 @@
         }
       }
     },
-    "Aus" : {
-
-    },
     "Auswahl" : {
       "localizations" : {
         "de" : {
@@ -78949,6 +78959,17 @@
         }
       }
     },
+    "common.off" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Aus"
+          }
+        }
+      }
+    },
     "common.open" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -87907,12 +87928,6 @@
           }
         }
       }
-    },
-    "Ebene 1: Tägliches Zeitlimit" : {
-
-    },
-    "Ebene 2: Immer blockiert" : {
-
     },
     "effekt.erholung.beschreibung" : {
       "comment" : "",
@@ -104267,24 +104282,13 @@
         }
       }
     },
-    "focus.giveup.walkofshame.button" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Aufgeben & Apps entsperren"
-          }
-        }
-      }
-    },
     "focus.giveup.walkofshame.subtitle" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Du bist dabei, deinen Fokus abzubrechen. Tippe diesen Text exakt und fehlerfrei ab, um zu bestätigen:"
+            "value" : "Tippe diesen Text exakt und fehlerfrei ab, um zu bestätigen, dass du die Sperre aufheben willst:"
           }
         }
       }
@@ -104295,7 +104299,18 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Der Walk of Shame"
+            "value" : "Bewusste Entscheidung"
+          }
+        }
+      }
+    },
+    "focus.giveup.walkofshame.verify" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Überprüfen & Entsperren"
           }
         }
       }
@@ -132510,9 +132525,6 @@
         }
       }
     },
-    "Limit" : {
-
-    },
     "lucky_wheel_locked_hint" : {
       "comment" : "",
       "extractionState" : "manual",
@@ -134815,9 +134827,6 @@
           }
         }
       }
-    },
-    "Nach Ablauf dieser Zeit werden die ausgewählten Apps für den Rest des Tages blockiert." : {
-
     },
     "Neues Hauptziel..." : {
       "extractionState" : "manual",
@@ -210013,6 +210022,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "這是如何運作的？"
+          }
+        }
+      }
+    },
+    "screenTime.layer1.desc" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Nach Ablauf dieser Zeit werden die ausgewählten Apps für den Rest des Tages blockiert."
+          }
+        }
+      }
+    },
+    "screenTime.layer1.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Ebene 1: Tägliches Zeitlimit"
+          }
+        }
+      }
+    },
+    "screenTime.layer2.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Ebene 2: Immer blockiert"
+          }
+        }
+      }
+    },
+    "screenTime.layer2.unblock" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Apps entsperren"
+          }
+        }
+      }
+    },
+    "screenTime.limit.picker.nav" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Limit festlegen"
+          }
+        }
+      }
+    },
+    "screenTime.limit.picker.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Wie lange darfst du die Apps in Ebene 1 maximal am Tag nutzen?"
           }
         }
       }

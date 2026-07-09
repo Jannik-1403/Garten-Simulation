@@ -24,89 +24,103 @@ struct WalkOfShameView: View {
     
     var body: some View {
         ZStack {
-            // Bright background for the new clean look
-            Color(UIColor.secondarySystemBackground).edgesIgnoringSafeArea(.all)
-                .onTapGesture { isFocused = false }
-            
-            VStack(spacing: 20) {
-                // Top bar with morphing dismiss/cancel button
-                HStack {
-                    Spacer()
-                    Button {
-                        if isFocused {
-                            isFocused = false
-                        } else {
-                            onCancel()
-                        }
-                    } label: {
-                        Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundStyle(.primary)
-                            .padding()
-                            .background(Color(UIColor.tertiarySystemGroupedBackground))
-                            .clipShape(Circle())
-                            .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
-                    }
-                    .padding(.trailing, 24)
-                    .padding(.top, 16)
-                }
-                
-                Text(String(localized: "focus.giveup.walkofshame.title", defaultValue: "Bewusste Entscheidung"))
-                    .font(.system(size: 28, weight: .black, design: .rounded))
-                    .foregroundColor(.primary)
-                
-                Text(String(localized: "focus.giveup.walkofshame.subtitle", defaultValue: "Tippe diesen Text exakt und fehlerfrei ab, um zu bestätigen, dass du die Sperre aufheben willst:"))
-                    .font(.system(size: 15, weight: .medium, design: .rounded))
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 24)
-                
-                // Required Text Box (3D White)
-                Text(requiredText)
-                    .font(.system(size: 15, weight: .semibold))
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color(UIColor.systemBackground))
-                    .foregroundColor(.primary)
-                    .cornerRadius(12)
-                    .shadow(color: .black.opacity(0.05), radius: 0, x: 0, y: 3)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.black.opacity(0.05), lineWidth: 1)
-                    )
-                    .padding(.horizontal, 24)
-                
-                // Anti-Paste Editor
-                AntiPasteTextEditor(text: $typedText)
-                    .focused($isFocused)
-                    .frame(height: 180)
-                    .padding()
-                    .background(Color(UIColor.systemBackground))
-                    .cornerRadius(12)
-                    .shadow(color: .black.opacity(0.03), radius: 0, x: 0, y: 2)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(hasError ? Color.red : Color.black.opacity(0.05), lineWidth: 2)
-                    )
-                    .offset(x: shakeOffset)
-                    .padding(.horizontal, 24)
-                
-                Spacer()
-                
-                // Verify button
-                Button(action: {
-                    if typedText == requiredText {
-                        onConfirmGiveUp()
-                    } else {
-                        triggerShake()
-                    }
-                }) {
-                    Text(String(localized: "focus.giveup.walkofshame.verify", defaultValue: "Überprüfen & Entsperren"))
-                }
-                .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: Color.blue, shadowColor: Color.blue.darker()))
-                .padding(.horizontal, 24)
-                .padding(.bottom, 40)
+            // Premium Liquid Glass Background
+            ZStack {
+                LinearGradient(
+                    colors: [Color.blue.opacity(0.15), Color.purple.opacity(0.15)],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                Rectangle()
+                    .fill(.ultraThinMaterial)
             }
+            .ignoresSafeArea(.all)
+            .onTapGesture { isFocused = false }
+            
+            ScrollView {
+                VStack(spacing: 20) {
+                    // Top bar with morphing dismiss/cancel button
+                    HStack {
+                        Spacer()
+                        Button {
+                            if isFocused {
+                                isFocused = false
+                            } else {
+                                onCancel()
+                            }
+                        } label: {
+                            Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundStyle(.primary)
+                                .padding()
+                                .background(.regularMaterial)
+                                .clipShape(Circle())
+                                .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
+                        }
+                        .padding(.trailing, 24)
+                        .padding(.top, 16)
+                    }
+                    
+                    Text(String(localized: "focus.giveup.walkofshame.title", defaultValue: "Bewusste Entscheidung"))
+                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .foregroundColor(.primary)
+                    
+                    Text(String(localized: "focus.giveup.walkofshame.subtitle", defaultValue: "Tippe diesen Text exakt und fehlerfrei ab, um zu bestätigen, dass du die Sperre aufheben willst:"))
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 24)
+                    
+                    // Required Text Box (3D Liquid Glass)
+                    Text(requiredText)
+                        .font(.system(size: 15, weight: .semibold))
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(.regularMaterial)
+                        .foregroundColor(.primary)
+                        .cornerRadius(12)
+                        .shadow(color: .black.opacity(0.05), radius: 0, x: 0, y: 3)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.white.opacity(0.5), lineWidth: 1)
+                        )
+                        .padding(.horizontal, 24)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .textSelection(.disabled)
+                    
+                    // Anti-Paste Editor (Liquid Glass)
+                    AntiPasteTextEditor(text: $typedText)
+                        .focused($isFocused)
+                        .frame(minHeight: 180)
+                        .padding()
+                        .background(.regularMaterial)
+                        .cornerRadius(12)
+                        .shadow(color: .black.opacity(0.03), radius: 0, x: 0, y: 2)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(hasError ? Color.red : Color.white.opacity(0.5), lineWidth: 2)
+                        )
+                        .offset(x: shakeOffset)
+                        .padding(.horizontal, 24)
+                    
+                    Spacer(minLength: 40)
+                    
+                    // Verify button
+                    Button(action: {
+                        if typedText == requiredText {
+                            onConfirmGiveUp()
+                        } else {
+                            triggerShake()
+                        }
+                    }) {
+                        Text(String(localized: "focus.giveup.walkofshame.verify", defaultValue: "Überprüfen & Entsperren"))
+                    }
+                    .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: Color.blue, shadowColor: Color.blue.darker()))
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 40)
+                }
+            }
+            .scrollBounceBehavior(.basedOnSize)
         }
         .onAppear {
             requiredText = sentencePool.randomElement()!
