@@ -15,11 +15,11 @@ struct WalkOfShameView: View {
     @FocusState private var isFocused: Bool
     
     let sentencePool = [
-        "Ich bin mir vollkommen bewusst, dass ich gerade den einfachsten Ausweg wähle. Anstatt mich meiner eigentlichen Aufgabe zu widmen und produktiv an meinen Zielen zu arbeiten, entscheide ich mich freiwillig dafür, meine Zeit mit billigem Dopamin zu verschwenden. Ich gebe hiermit offiziell auf und akzeptiere die Konsequenzen meiner mangelnden Disziplin.",
-        
-        "Anstatt an mir selbst zu arbeiten und meine Konzentration zu trainieren, lasse ich mich lieber ablenken. Ich habe nicht die mentale Stärke, diesen Fokus durchzuhalten, und entscheide mich ganz bewusst dafür, meine Ziele zu ignorieren. Ich weiß, dass ich es später bereuen werde, aber ich wähle trotzdem den Weg des geringsten Widerstands.",
-        
-        "Ich breche diesen Vorgang ab, weil ich meine eigenen Vorgaben nicht einhalten kann. Es ist mir wichtiger, mich sofort belohnen zu lassen, als langfristig an meinen Zielen festzuhalten. Ich entscheide mich aktiv gegen meine eigene Produktivität und nehme in Kauf, dass ich dadurch meine Gewohnheiten sabotiere und meine Zeit sinnlos verstreichen lasse."
+        "Ich entscheide mich bewusst dafür, meine produktive Zeit zu opfern und stattdessen sinnlos auf einen Bildschirm zu starren. Ich weiß, dass mich dies nicht weiterbringt, aber ich gebe meiner Bequemlichkeit nach.",
+        "Mein Fokus ist mir in diesem Moment weniger wichtig als schnelle Ablenkung. Anstatt an meinen Zielen zu arbeiten, wähle ich den einfachen Weg und akzeptiere, dass ich dadurch meine eigene Entwicklung blockiere.",
+        "Ich breche meine eigenen Regeln und entsperre diese App, obwohl ich mir vorgenommen hatte, diszipliniert zu bleiben. Ich bin mir der Konsequenzen bewusst und entscheide mich aktiv gegen meine eigentlichen Vorhaben.",
+        "Trotz meiner guten Vorsätze lasse ich mich jetzt ablenken. Ich gestehe mir ein, dass ich in diesem Moment nicht die Willenskraft aufbringe, meine Aufgaben zu erledigen, und vergeude meine wertvolle Zeit.",
+        "Ich wähle kurzfristige Befriedigung anstelle von langfristigem Erfolg. Ich verstehe, dass jeder Moment, den ich hier verschwende, mir fehlt, um meine Träume zu verwirklichen, aber ich tue es trotzdem."
     ]
     
     var body: some View {
@@ -110,7 +110,7 @@ struct WalkOfShameView: View {
                         }
                     } label: {
                         Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark")
-                            .font(.system(size: 28, weight: .semibold))
+                            .font(.system(size: 16, weight: .semibold))
                             .foregroundStyle(.primary)
                     }
                 }

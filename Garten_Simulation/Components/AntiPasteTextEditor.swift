@@ -42,17 +42,7 @@ struct AntiPasteTextEditor: UIViewRepresentable {
 // 2. Die Magie: UIKit knallhart übersteuern
 class CustomTextView: UITextView {
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        // Wenn die Aktion "Einfügen" (Paste) ist -> Blockieren!
-        if action == #selector(UIResponderStandardEditActions.paste(_:)) {
-            return false
-        }
-        
-        // Copy & Cut blockieren
-        if action == #selector(UIResponderStandardEditActions.copy(_:)) ||
-           action == #selector(UIResponderStandardEditActions.cut(_:)) {
-            return false
-        }
-        
-        return super.canPerformAction(action, withSender: sender)
+        // Blockiert das komplette Kontextmenü (Einfügen, Kopieren, Live Text / Text scannen, etc.)
+        return false
     }
 }

@@ -20,6 +20,9 @@ struct ScreenTimeSettingsView: View {
     @State private var dailyLimitSelection = FamilyActivitySelection()
     @State private var oldDailyLimitSelection = FamilyActivitySelection()
     
+    @State private var showEbene2ConfirmAlert: Bool = false
+    @State private var pendingEbene2Selection: FamilyActivitySelection? = nil
+    
     @State private var isPermanentPickerPresented = false
     @State private var permanentBlockSelection = FamilyActivitySelection()
     @State private var oldPermanentBlockSelection = FamilyActivitySelection()
@@ -125,6 +128,20 @@ struct ScreenTimeSettingsView: View {
             enforcedSelection.categoryTokens.formUnion(oldPermanentBlockSelection.categoryTokens)
             enforcedSelection.webDomainTokens.formUnion(oldPermanentBlockSelection.webDomainTokens)
             
+            let hasNewItems = !enforcedSelection.applicationTokens.isSubset(of: oldPermanentBlockSelection.applicationTokens) ||
+                              !enforcedSelection.categoryTokens.isSubset(of: oldPermanentBlockSelection.categoryTokens) ||
+                              !enforcedSelection.webDomainTokens.isSubset(of: oldPermanentBlockSelection.webDomainTokens)
+                              
+            if hasNewItems {
+                pendingEbene2Selection = enforcedSelection
+                showEbene2ConfirmAlert = true
+                
+                if permanentBlockSelection != oldPermanentBlockSelection {
+                    permanentBlockSelection = oldPermanentBlockSelection
+                }
+                return
+            }
+            
             // Wenn in Ebene 2 ausgewählt, aus Ebene 1 entfernen (da Ebene 2 stärker ist)
             var newDaily = dailyLimitSelection
             newDaily.applicationTokens.subtract(enforcedSelection.applicationTokens)
@@ -158,6 +175,28 @@ struct ScreenTimeSettingsView: View {
                     showWalkOfShame = false
                 }
             )
+        }
+        .alert(String(localized: "screenTime.layer2.confirm.title", defaultValue: "Bist du sicher?"), isPresented: $showEbene2ConfirmAlert) {
+            Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) {
+                pendingEbene2Selection = nil
+            }
+            Button(String(localized: "common.confirm", defaultValue: "Bestätigen")) {
+                if let pending = pendingEbene2Selection {
+                    permanentBlockSelection = pending
+                    oldPermanentBlockSelection = pending
+                    
+                    var newDaily = dailyLimitSelection
+                    newDaily.applicationTokens.subtract(pending.applicationTokens)
+                    newDaily.categoryTokens.subtract(pending.categoryTokens)
+                    newDaily.webDomainTokens.subtract(pending.webDomainTokens)
+                    dailyLimitSelection = newDaily
+                    oldDailyLimitSelection = newDaily
+                    
+                    pendingEbene2Selection = nil
+                }
+            }
+        } message: {
+            Text(String(localized: "screenTime.layer2.confirm.message", defaultValue: "Wenn du dies bestätigst, kann es nicht mehr rückgängig gemacht werden, außer du entsperrst es mühsam."))
         }
         .onDisappear {
             saveSettings()
