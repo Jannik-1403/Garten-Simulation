@@ -520,3 +520,6 @@
 - **Permanent App Blocking**: Added feature to permanently block apps, categories and web domains with a 3D UI card design.
 - **Block Suggestions**: Added one-click suggestions for Adult Content, Social Media, Casino and Food Delivery with native Apple web filtering where possible.
 - **Emergency Screen Time Unlock**: Added a button to immediately remove active screen time blocks to modify the schedule settings.
+- **Screen Time Copy-to-Paste Suggestions**: Reworked suggestion cards to automatically copy the domain to the clipboard and directly launch the block picker for immediate usage.
+- **Clean UI**: Removed heavy 3D shadow and rotation effects from the block cards for a modern, flat look.
+- **Weekday Scheduling**: Added the ability to choose specific weekdays for the active screen time block schedule.

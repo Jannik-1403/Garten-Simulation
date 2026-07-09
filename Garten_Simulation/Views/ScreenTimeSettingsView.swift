@@ -13,6 +13,9 @@ struct ScreenTimeSettingsView: View {
     @State private var isPickerPresented = false
     @State private var blockSelection = FamilyActivitySelection()
     
+    @State private var activeWeekdays: Set<Int> = Set([2,3,4,5,6])
+    let allWeekdays = [(2, "Mo"), (3, "Di"), (4, "Mi"), (5, "Do"), (6, "Fr"), (7, "Sa"), (1, "So")]
+    
     // Permanent Block States
     @State private var isPermanentPickerPresented = false
     @State private var permanentBlockSelection = FamilyActivitySelection()
@@ -122,8 +125,7 @@ struct ScreenTimeSettingsView: View {
                                         .frame(width: 120, height: 120)
                                         .background(Color(UIColor.secondarySystemGroupedBackground))
                                         .cornerRadius(24)
-                                        .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 10)
-                                        .rotation3DEffect(.degrees(10), axis: (x: 1, y: -1, z: 0))
+                                        .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
                                     }
                                     .familyActivityPicker(isPresented: $isPermanentPickerPresented, selection: $permanentBlockSelection)
                                 }
@@ -156,7 +158,7 @@ struct ScreenTimeSettingsView: View {
                                     title: String(localized: "screenTime.suggestions.social.title", defaultValue: "Social Media (TikTok etc.)"),
                                     isActive: false
                                 ) {
-                                    showSuggestionInstructions(title: String(localized: "screenTime.suggestions.social.title", defaultValue: "Social Media"), appName: "TikTok, Instagram")
+                                    copyAndOpenPicker(domain: "tiktok.com")
                                 }
                                 
                                 // Casino
@@ -166,7 +168,7 @@ struct ScreenTimeSettingsView: View {
                                     title: String(localized: "screenTime.suggestions.casino.title", defaultValue: "Glücksspiel & Casino"),
                                     isActive: false
                                 ) {
-                                    showSuggestionInstructions(title: String(localized: "screenTime.suggestions.casino.title", defaultValue: "Glücksspiel"), appName: "Tipico, Casino")
+                                    copyAndOpenPicker(domain: "tipico.de")
                                 }
                                 
                                 // Food Delivery
@@ -176,7 +178,7 @@ struct ScreenTimeSettingsView: View {
                                     title: String(localized: "screenTime.suggestions.food.title", defaultValue: "Lieferdienste"),
                                     isActive: false
                                 ) {
-                                    showSuggestionInstructions(title: String(localized: "screenTime.suggestions.food.title", defaultValue: "Lieferdienste"), appName: "Lieferando, Uber Eats")
+                                    copyAndOpenPicker(domain: "lieferando.de")
                                 }
                             }
                             .padding(.horizontal)
@@ -195,7 +197,34 @@ struct ScreenTimeSettingsView: View {
                                     .font(.system(size: 16, weight: .medium, design: .rounded))
                                 
                                 DatePicker(String(localized: "screenTime.schedule.end", defaultValue: "Endzeit"), selection: $endTime, displayedComponents: .hourAndMinute)
-                                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                                Divider()
+                                
+                                HStack {
+                                    ForEach(allWeekdays, id: \.0) { item in
+                                        Button {
+                                            if activeWeekdays.contains(item.0) {
+                                                if activeWeekdays.count > 1 {
+                                                    activeWeekdays.remove(item.0)
+                                                }
+                                            } else {
+                                                activeWeekdays.insert(item.0)
+                                            }
+                                        } label: {
+                                            Text(item.1)
+                                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                                .frame(maxWidth: .infinity)
+                                                .padding(.vertical, 8)
+                                                .background(activeWeekdays.contains(item.0) ? Color.gruenPrimary : Color(UIColor.tertiarySystemGroupedBackground))
+                                                .foregroundStyle(activeWeekdays.contains(item.0) ? .white : .primary)
+                                                .clipShape(Circle())
+                                        }
+                                    }
+                                }
+                                .padding(.vertical, 8)
+                                
+                                Text(String(localized: "screenTime.schedule.summary", defaultValue: "Der Zeitplan ist an den ausgewählten Tagen aktiv."))
+                                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                                    .foregroundStyle(.secondary)
                                     
                                 Divider()
                                 
@@ -273,19 +302,25 @@ struct ScreenTimeSettingsView: View {
             
             permanentBlockSelection = manager.permanentBlockSelection
             isAdultFilterEnabled = manager.isAdultFilterEnabled
+            activeWeekdays = manager.activeWeekdays
         }
         .alert(suggestionAlertTitle, isPresented: $showSuggestionAlert) {
-            Button(String(localized: "common.understood", defaultValue: "Verstanden")) {
+            Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) {
                 showSuggestionAlert = false
+            }
+            Button(String(localized: "common.open", defaultValue: "Öffnen")) {
+                showSuggestionAlert = false
+                isPermanentPickerPresented = true
             }
         } message: {
             Text(suggestionAlertMessage)
         }
     }
     
-    private func showSuggestionInstructions(title: String, appName: String) {
-        suggestionAlertTitle = title
-        suggestionAlertMessage = String(localized: "screenTime.suggestions.instruction", defaultValue: "Apple erlaubt aus Datenschutzgründen keine automatische Sperrung. Bitte tippe bei 'Für immer blockieren' auf Hinzufügen, suche nach \(appName) und wähle es aus.")
+    private func copyAndOpenPicker(domain: String) {
+        UIPasteboard.general.string = domain
+        suggestionAlertTitle = String(localized: "screenTime.suggestions.copied.title", defaultValue: "Link kopiert!")
+        suggestionAlertMessage = String(localized: "screenTime.suggestions.copied.desc", defaultValue: "Wir haben '\(domain)' für dich in die Zwischenablage kopiert. Tippe auf 'Öffnen', klicke oben ins Suchfeld und wähle 'Einsetzen', um es zu blockieren.")
         showSuggestionAlert = true
     }
     
@@ -298,6 +333,7 @@ struct ScreenTimeSettingsView: View {
         
         manager.blockSelection = blockSelection
         manager.isScheduleActive = isScheduleActive
+        manager.activeWeekdays = activeWeekdays
         
         manager.permanentBlockSelection = permanentBlockSelection
         manager.isAdultFilterEnabled = isAdultFilterEnabled
@@ -324,8 +360,7 @@ struct PermanentBlockCard<Content: View>: View {
         .padding()
         .background(Color(UIColor.secondarySystemGroupedBackground))
         .cornerRadius(24)
-        .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 10)
-        .rotation3DEffect(.degrees(10), axis: (x: 1, y: -1, z: 0))
+        .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
 }
 
@@ -353,7 +388,7 @@ struct SuggestionCard: View {
             .padding()
             .background(isActive ? color : Color(UIColor.secondarySystemGroupedBackground))
             .cornerRadius(20)
-            .shadow(color: isActive ? color.opacity(0.4) : .black.opacity(0.05), radius: 8, x: 0, y: 4)
+            .shadow(color: isActive ? color.opacity(0.4) : .black.opacity(0.05), radius: 4, x: 0, y: 2)
         }
     }
 }

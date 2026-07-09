@@ -32,21 +32,46 @@ class ScreenTimeManager: ObservableObject {
     @AppStorage("screenTimeBlockEndHour") var blockEndHour: Int = 17
     @AppStorage("screenTimeBlockEndMinute") var blockEndMinute: Int = 0
     
+    // 1: Sunday, 2: Monday, 3: Tuesday, 4: Wednesday, 5: Thursday, 6: Friday, 7: Saturday
+    @AppStorage("screenTimeActiveWeekdays") private var activeWeekdaysData: Data = (try? JSONEncoder().encode(Set([2,3,4,5,6]))) ?? Data()
+    var activeWeekdays: Set<Int> {
+        get {
+            (try? JSONDecoder().decode(Set<Int>.self, from: activeWeekdaysData)) ?? Set([2,3,4,5,6])
+        }
+        set {
+            if let data = try? JSONEncoder().encode(newValue) {
+                activeWeekdaysData = data
+            }
+        }
+    }
+    
     var isCurrentlyInBlockWindow: Bool {
         guard isScheduleActive else { return false }
         let now = Date()
         let calendar = Calendar.current
+        let currentWeekday = calendar.component(.weekday, from: now)
+        let previousWeekday = currentWeekday == 1 ? 7 : currentWeekday - 1
+        
         let currentHour = calendar.component(.hour, from: now)
         let currentMinute = calendar.component(.minute, from: now)
         let currentTime = currentHour * 60 + currentMinute
         let startTime = blockStartHour * 60 + blockStartMinute
         let endTime = blockEndHour * 60 + blockEndMinute
         
-        if startTime < endTime {
-            return currentTime >= startTime && currentTime <= endTime
+        if startTime <= endTime {
+            // Same day block
+            guard activeWeekdays.contains(currentWeekday) else { return false }
+            return currentTime >= startTime && currentTime < endTime
         } else {
-            // Over midnight
-            return currentTime >= startTime || currentTime <= endTime
+            // Over midnight block
+            if currentTime >= startTime {
+                // Started today
+                return activeWeekdays.contains(currentWeekday)
+            } else if currentTime < endTime {
+                // Started yesterday
+                return activeWeekdays.contains(previousWeekday)
+            }
+            return false
         }
     }
     
