@@ -42,6 +42,7 @@ struct RoutineSessionView: View {
     }
     @State private var pendingScreenTimeAction: PendingScreenTimeAction = .none
     @State private var showScreenTimePrePrompt = false
+    @State private var showBlockNotice = false
     
     var timeString: String {
         let min = elapsedSeconds / 60
