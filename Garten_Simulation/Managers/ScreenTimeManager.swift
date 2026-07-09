@@ -143,13 +143,13 @@ class ScreenTimeManager: ObservableObject {
             // but we can prioritize specific if they exist, or just use auto. We'll use auto if adult is enabled and no custom domains.
             // If custom domains exist, we must use specific to block them.
             if !customDomains.isEmpty {
-                store.webContent.blockedByFilter = .specific(blockedDomains: customDomains)
+                store.webContent.blockedByFilter = .specific(customDomains)
             } else {
                 store.webContent.blockedByFilter = .auto()
             }
         } else {
             if !customDomains.isEmpty {
-                store.webContent.blockedByFilter = .specific(blockedDomains: customDomains)
+                store.webContent.blockedByFilter = .specific(customDomains)
             } else {
                 store.webContent.blockedByFilter = nil
             }
