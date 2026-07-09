@@ -533,3 +533,4 @@
 - **Screen Time Lokalisierung**: Titel umbenannt zu "Blockierte Apps", alle 24 Screen-Time-Strings vollständig in alle 11 Sprachen übersetzt (de, en, es, fr, it, ja, ko, nl, pl, pt, tr).
 - **Screen Time UI Tweaks**: Schriftgröße des Titels "Blockierte Apps" von 20 auf 18 verkleinert. Schriftgröße der blockierten Apps (BlockRow) von 14 auf 13 verkleinert.
 - **Screen Time Lokalisierung Fix**: Alle Screen Time Strings wurden für fehlende Sprachen (Chinesisch zh-Hant & zh-Hans, Russisch, Hindi) nachgeliefert. Zuvor gab es hier einen Fallback auf Deutsch.
+- **Screen Time Speicher-Fix**: Einstellungen werden jetzt auch dann zu 100% gespeichert, wenn der Nutzer das Fenster einfach nach unten wegwischt (OnDisappear-Autosave), anstatt auf 'Fertig' zu klicken.

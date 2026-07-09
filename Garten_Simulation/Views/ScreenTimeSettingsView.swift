@@ -44,7 +44,6 @@ struct ScreenTimeSettingsView: View {
             if !manager.isCurrentlyInBlockWindow {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(String(localized: "common.done", defaultValue: "Fertig")) {
-                        saveSettings()
                         dismiss()
                     }
                     .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -69,6 +68,9 @@ struct ScreenTimeSettingsView: View {
             permanentBlockSelection = manager.permanentBlockSelection
             isAdultFilterEnabled = manager.isAdultFilterEnabled
             daySchedules = manager.daySchedules
+        }
+        .onDisappear {
+            saveSettings()
         }
     }
     
