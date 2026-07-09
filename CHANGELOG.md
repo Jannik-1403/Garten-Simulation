@@ -568,3 +568,5 @@
 - Design: Unnötigen Toggle-Schalter neben 'Ebene 2: Immer blockiert' entfernt
 - Lokalisierung: Das Python Skript hat erfolgreich die 100% Übersetzungsabdeckung in allen 11 Sprachen für die neuen Screen Time Texte hergestellt
 - Lokalisierung: Das Skript wurde angepasst und alle fehlenden Strings für alle 14 europäischen/asiatischen Sprachen erfolgreich übersetzt (100% erreicht)
+- Walk Of Shame: iOS Live-Text/Scan komplett blockiert. X-Icon & Tastatur verkleinert. 5 neue Abschreibe-Texte hinzugefügt.
+- Screen Time: Neues Pop-up Warnfenster hinzugefügt, wenn man Apps in Ebene 2 hinzufügt.

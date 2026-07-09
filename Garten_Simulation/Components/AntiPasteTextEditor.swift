@@ -12,6 +12,7 @@ struct AntiPasteTextEditor: UIViewRepresentable {
         textView.backgroundColor = .clear
         textView.textColor = .white
         textView.autocorrectionType = .no // Keine Autokorrektur-Hilfe!
+        textView.spellCheckingType = .no // Keine Rechtschreibprüfung
         textView.smartInsertDeleteType = .no // Kein schlaues Kopieren
         return textView
     }
@@ -35,6 +36,23 @@ struct AntiPasteTextEditor: UIViewRepresentable {
         
         func textViewDidChange(_ textView: UITextView) {
             parent.text = textView.text
+        }
+        
+        // HIER IST DIE NEUE FALLE
+        func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            // 1. Erlaube das Löschen (Rücktaste erzeugt einen leeren String)
+            if text.isEmpty {
+                return true
+            }
+            
+            // 2. Der Chunk-Blocker: Wenn mehr als 1 Zeichen auf einmal kommt -> Blockieren!
+            // Das vernichtet die Diktierfunktion und Auto-Fill komplett.
+            if text.count > 1 {
+                print("🚨 Cheat-Versuch erkannt: Diktierfunktion oder Copy-Paste blockiert!")
+                return false
+            }
+            
+            return true
         }
     }
 }
