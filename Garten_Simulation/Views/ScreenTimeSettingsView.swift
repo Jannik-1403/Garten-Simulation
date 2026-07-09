@@ -44,6 +44,7 @@ struct ScreenTimeSettingsView: View {
             if !manager.isCurrentlyInBlockWindow {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(String(localized: "common.done", defaultValue: "Fertig")) {
+                        saveSettings()
                         dismiss()
                     }
                     .font(.system(size: 16, weight: .bold, design: .rounded))

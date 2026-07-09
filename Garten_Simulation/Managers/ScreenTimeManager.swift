@@ -27,7 +27,6 @@ class ScreenTimeManager: ObservableObject {
     @AppStorage("screenTimeAllowedSelectionData") private var allowedSelectionData: Data?
     
     // MARK: - Permanent Blocks
-    @AppStorage("screenTimePermanentBlockData") private var permanentBlockSelectionData: Data?
     @Published var permanentBlockSelection = FamilyActivitySelection() {
         didSet {
             savePermanentBlockSelection()
@@ -112,8 +111,6 @@ class ScreenTimeManager: ObservableObject {
     @Published var allowedSelection = FamilyActivitySelection() {
         didSet { saveAllowedSelection() }
     }
-    
-    @AppStorage("screenTimeBlockSelectionData") private var blockSelectionData: Data?
     
     /// Apps/Kategorien, die explizit im Block-Zeitplan gesperrt werden sollen
     @Published var blockSelection = FamilyActivitySelection() {
@@ -244,40 +241,40 @@ class ScreenTimeManager: ObservableObject {
     
     private func saveAllowedSelection() {
         if let data = try? JSONEncoder().encode(allowedSelection) {
-            allowedSelectionData = data
+            UserDefaults.standard.set(data, forKey: "screenTimeAllowedSelectionData")
         }
     }
     
     private func loadAllowedSelection() {
-        if let data = allowedSelectionData,
-           let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
-            self.allowedSelection = decoded
+        if let data = UserDefaults.standard.data(forKey: "screenTimeAllowedSelectionData"),
+           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.allowedSelection = selection
         }
     }
     
     private func saveBlockSelection() {
         if let data = try? JSONEncoder().encode(blockSelection) {
-            blockSelectionData = data
+            UserDefaults.standard.set(data, forKey: "screenTimeBlockSelectionData")
         }
     }
     
     private func loadBlockSelection() {
-        if let data = blockSelectionData,
-           let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
-            self.blockSelection = decoded
+        if let data = UserDefaults.standard.data(forKey: "screenTimeBlockSelectionData"),
+           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.blockSelection = selection
         }
     }
     
     private func savePermanentBlockSelection() {
         if let data = try? JSONEncoder().encode(permanentBlockSelection) {
-            permanentBlockSelectionData = data
+            UserDefaults.standard.set(data, forKey: "screenTimePermanentBlockData")
         }
     }
     
     private func loadPermanentBlockSelection() {
-        if let data = permanentBlockSelectionData,
-           let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
-            self.permanentBlockSelection = decoded
+        if let data = UserDefaults.standard.data(forKey: "screenTimePermanentBlockData"),
+           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.permanentBlockSelection = selection
         }
     }
 }

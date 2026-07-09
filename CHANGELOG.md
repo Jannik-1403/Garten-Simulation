@@ -535,3 +535,4 @@
 - **Screen Time Lokalisierung Fix**: Alle Screen Time Strings wurden für fehlende Sprachen (Chinesisch zh-Hant & zh-Hans, Russisch, Hindi) nachgeliefert. Zuvor gab es hier einen Fallback auf Deutsch.
 - **Screen Time Speicher-Fix**: Einstellungen werden jetzt auch dann zu 100% gespeichert, wenn der Nutzer das Fenster einfach nach unten wegwischt (OnDisappear-Autosave), anstatt auf 'Fertig' zu klicken.
 - **Screen Time Speicher-Fix Teil 2**: @AppStorage im ScreenTimeManager komplett durch @Published + manuelles Speichern ersetzt, da iOS @AppStorage-Eigenschaften in Background-Objekten manchmal einfach wieder verwirft (Toggle-Bug).
+- **Screen Time Fix 3**: saveSettings() wieder zusätzlich auf den Fertig-Button gelegt, um doppelt abzusichern, falls onDisappear im Sheet-Transition verschluckt wird.
