@@ -678,35 +678,36 @@ struct PflanzeDetailSheet: View {
                                                                 Spacer()
                                                             }
                                                             
-                                                            Button {
-                                                                isEditingScreenTime = true
-                                                            } label: {
-                                                                HStack {
-                                                                    Text("\(screenTimeHours) \(String(localized: "common.hours.short", defaultValue: "Std.")) \(screenTimeMinutes) \(String(localized: "common.minutes.short", defaultValue: "Min."))")
-                                                                        .font(.system(size: 24, weight: .bold, design: .rounded))
-                                                                        .foregroundColor(.primary)
-                                                                    Spacer()
+                                                            HStack {
+                                                                Text("\(screenTimeHours) \(String(localized: "common.hours.short", defaultValue: "Std.")) \(screenTimeMinutes) \(String(localized: "common.minutes.short", defaultValue: "Min."))")
+                                                                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                                                                    .foregroundColor(.primary)
+                                                                Spacer()
+                                                                Item3DButton(
+                                                                    farbe: Color(white: 0.8),
+                                                                    sekundaerFarbe: Color(white: 0.7),
+                                                                    groesse: 56,
+                                                                    isRectangular: true,
+                                                                    aktion: { isEditingScreenTime = true }
+                                                                ) {
                                                                     Image(systemName: "pencil")
-                                                                        .font(.title2)
-                                                                        .foregroundColor(.primary)
+                                                                        .font(.system(size: 20, weight: .bold))
+                                                                        .foregroundStyle(.white)
                                                                 }
-                                                                .padding(14)
-                                                                .frame(maxWidth: .infinity)
+                                                                .frame(width: 64)
                                                             }
-                                                            .buttonStyle(Item3DButtonStyle(farbe: Color(uiColor: .secondarySystemBackground), sekundaerFarbe: Color(uiColor: .systemGray4), groesse: 50, iconSkalierung: 1.0, shadowDepthFactor: 0.08, isRectangular: true, isPermanentlyPressed: false, isDisabled: false))
-                                                            .sheet(isPresented: $isEditingScreenTime) {
+                                                            .fullScreenCover(isPresented: $isEditingScreenTime) {
                                                                 ScreenTimePickerSheet(
                                                                     screenTimeHours: $screenTimeHours,
                                                                     screenTimeMinutes: $screenTimeMinutes,
                                                                     isPresented: $isEditingScreenTime,
                                                                     onSave: {
-                                                                        let totalMinutes = screenTimeHours * 60 + screenTimeMinutes
-                                                                        pflanze.customTrackerTarget = Double(totalMinutes)
+                                                                        let newTotalMinutes = (screenTimeHours * 60) + screenTimeMinutes
+                                                                        pflanze.customTrackerTarget = Double(newTotalMinutes)
                                                                         gardenStore.savePlants()
                                                                         DeviceActivityManager.shared.screenTimeGoalMinutes = Int(pflanze.customTrackerTarget ?? 120)
                                                                     }
                                                                 )
-                                                                .presentationDetents([.height(350), .medium])
                                                             }
                                                             
                                                             Text(String(localized: "screentime.tracker.no_live", defaultValue: "Die Bildschirmzeit wird automatisch im Hintergrund geprüft. Aus Datenschutzgründen von Apple kann der Live-Fortschritt hier nicht angezeigt werden."))
@@ -2433,45 +2434,53 @@ struct ScreenTimePickerSheet: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 24) {
-                HStack {
-                    Picker(String(localized: "common.hours", defaultValue: "Stunden"), selection: $screenTimeHours) {
-                        ForEach(0...23, id: \.self) { h in
-                            Text("\(h) \(String(localized: "common.hours.short", defaultValue: "Std."))").tag(h)
+            VStack(spacing: 0) {
+                Form {
+                    Section {
+                        HStack {
+                            Picker(String(localized: "common.hours", defaultValue: "Stunden"), selection: $screenTimeHours) {
+                                ForEach(0...23, id: \.self) { h in
+                                    Text("\(h) \(String(localized: "common.hours.short", defaultValue: "Std."))").tag(h)
+                                }
+                            }
+                            .pickerStyle(.wheel)
+                            .frame(height: 150)
+                            .clipped()
+                            
+                            Picker(String(localized: "common.minutes", defaultValue: "Minuten"), selection: $screenTimeMinutes) {
+                                ForEach(Array(stride(from: 0, to: 60, by: 5)), id: \.self) { m in
+                                    Text("\(m) \(String(localized: "common.minutes.short", defaultValue: "Min."))").tag(m)
+                                }
+                            }
+                            .pickerStyle(.wheel)
+                            .frame(height: 150)
+                            .clipped()
                         }
+                    } footer: {
+                        Text(String(localized: "screentime.tracker.form_footer", defaultValue: "Wähle das tägliche Bildschirmzeit-Ziel aus."))
                     }
-                    .pickerStyle(.wheel)
-                    .frame(height: 150)
-                    .clipped()
-                    
-                    Picker(String(localized: "common.minutes", defaultValue: "Minuten"), selection: $screenTimeMinutes) {
-                        ForEach(Array(stride(from: 0, to: 60, by: 5)), id: \.self) { m in
-                            Text("\(m) \(String(localized: "common.minutes.short", defaultValue: "Min."))").tag(m)
-                        }
+                }
+                .scrollDisabled(true)
+                
+                VStack {
+                    Button {
+                        onSave()
+                        isPresented = false
+                    } label: {
+                        Text(String(localized: "common.save", defaultValue: "Speichern"))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                            .padding(14)
+                            .frame(maxWidth: .infinity)
                     }
-                    .pickerStyle(.wheel)
-                    .frame(height: 150)
-                    .clipped()
+                    .buttonStyle(Item3DButtonStyle(farbe: .orange, sekundaerFarbe: .orange.darker(), groesse: 50, iconSkalierung: 1.0, shadowDepthFactor: 0.08, isRectangular: true, isPermanentlyPressed: false, isDisabled: false))
+                    .padding(.horizontal)
                 }
-                .background(Color.secondary.opacity(0.05), in: RoundedRectangle(cornerRadius: 16))
-                .padding(.horizontal)
-                
-                Button {
-                    onSave()
-                    isPresented = false
-                } label: {
-                    Text(String(localized: "common.save", defaultValue: "Speichern"))
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .padding(14)
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(Item3DButtonStyle(farbe: .orange, sekundaerFarbe: .orange.darker(), groesse: 50, iconSkalierung: 1.0, shadowDepthFactor: 0.08, isRectangular: true, isPermanentlyPressed: false, isDisabled: false))
-                .padding(.horizontal)
-                
-                Spacer()
+                .padding(.bottom, 32)
+                .padding(.top, 16)
+                .background(Color(UIColor.systemGroupedBackground))
             }
-            .padding(.top, 24)
+            .background(Color(UIColor.systemGroupedBackground))
             .navigationTitle(String(localized: "screentime.tracker.confirm_title", defaultValue: "Limit speichern?"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
