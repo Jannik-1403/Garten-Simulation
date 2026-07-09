@@ -109,7 +109,7 @@ struct WalkOfShameView: View {
                             onCancel()
                         }
                     } label: {
-                        Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark.circle.fill")
+                        Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark")
                             .font(.system(size: 28, weight: .semibold))
                             .foregroundStyle(.primary)
                     }

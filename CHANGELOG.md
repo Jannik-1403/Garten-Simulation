@@ -563,3 +563,4 @@
 - Fehler behoben: Walk of Shame Navigation Bar (X-Button) wird nun korrekt angezeigt
 - Feature: Bestätigungs-Dialog beim erstmaligen Festlegen eines Limits hinzugefügt
 - Fehler behoben: Limits werden nach Neustart der App nicht mehr auf 'Aus' zurückgesetzt (komplettes Refactoring der Persistenz-Schicht)
+- Design: Walk of Shame Hintergrund angepasst (Liquid Glass) und X-Button schwarz/weiß gemacht
