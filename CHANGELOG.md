@@ -511,3 +511,6 @@
 - UI-Schatten bei den 3D-Buttons im PflanzeDetailSheet (besonders beim orangenen Speichern-Button) durch angepasstes Padding und solidere Farben repariert.
 - Fokus-Session: Unendliche Schleife behoben (der Screen Time Picker und die Hinweise werden nun nach Bestätigung korrekt übersprungen).
 - Screen Time XP Glitch behoben (Auto-Watering führt nicht mehr zu unzähligen XP-Popups bei App-Neustarts, da nun ein täglicher Timestamp gesichert wird).
+
+- ScreenTimePickerSheet UI aktualisiert: Wird nun als Vollbild (fullScreenCover) geöffnet und verwendet die Standard iOS Form/Section Optik, während der Speichern-Button sein 3D-Design behält.
+- Der Bearbeitungs-Stift (Pencil) bei der Bildschirmzeit-Zieleinstellung verwendet nun den isolierten quadratischen 3D-Button aus den Routinen, um den unerwünschten Hintergrund zu entfernen.

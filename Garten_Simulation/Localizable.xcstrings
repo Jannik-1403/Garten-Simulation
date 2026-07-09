@@ -1156,6 +1156,18 @@
             "state": "translated",
             "value": "%lld %@ %lld %@"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld %@ %lld %@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld %@ %lld %@"
+          }
         }
       }
     },
@@ -210780,6 +210792,18 @@
             "state": "translated",
             "value": "screentime.tracker.target"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screentime.tracker.target"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screentime.tracker.target"
+          }
         }
       }
     },
@@ -293059,6 +293083,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "दैनिक स्क्रीन समय लक्ष्य चुनें।"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择每日屏幕时间目标。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇每日螢幕時間目標。"
           }
         }
       }
