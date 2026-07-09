@@ -7,6 +7,8 @@ struct ScreenTimeSettingsView: View {
     @StateObject private var manager = ScreenTimeManager.shared
     @Environment(\.dismiss) var dismiss
     
+    @AppStorage("hasRequestedScreenTimeAuth") private var hasRequestedAuth: Bool = false
+    
     @State private var isScheduleActive: Bool = false
     @State private var daySchedules: [Int: DaySchedule] = [:]
     @State private var expandedDay: Int? = nil
@@ -64,6 +66,12 @@ struct ScreenTimeSettingsView: View {
         }
         .navigationBarBackButtonHidden(true)
         .onAppear {
+            if !hasRequestedAuth {
+                Task {
+                    await manager.requestAuthorization()
+                    hasRequestedAuth = true
+                }
+            }
             isScheduleActive = manager.isScheduleActive
             blockSelection = manager.blockSelection
             permanentBlockSelection = manager.permanentBlockSelection

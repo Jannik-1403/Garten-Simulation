@@ -537,3 +537,4 @@
 - **Screen Time Speicher-Fix Teil 2**: @AppStorage im ScreenTimeManager komplett durch @Published + manuelles Speichern ersetzt, da iOS @AppStorage-Eigenschaften in Background-Objekten manchmal einfach wieder verwirft (Toggle-Bug).
 - **Screen Time Fix 3**: saveSettings() wieder zusätzlich auf den Fertig-Button gelegt, um doppelt abzusichern, falls onDisappear im Sheet-Transition verschluckt wird.
 - **Screen Time Core Fix**: Kategorien-Sperre repariert (App-Gruppen-Blacklist statt all(except:)). Berechtigungs-Banner leitet jetzt in die iOS-Einstellungen weiter. UI aufgeräumt (Nur "Zeit" als Titel, reines Plus-Icon).
+- **Screen Time Auto-Auth**: Bildschirmzeit-Rechte werden jetzt automatisch genau einmal beim allerersten Öffnen der Seite per Apple-Dialog angefragt. Bei künftigen Besuchen greift sofort der Button mit der iOS-Weiterleitung, falls die Rechte fehlen.
