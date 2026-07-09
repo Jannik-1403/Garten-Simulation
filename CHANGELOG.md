@@ -564,3 +564,4 @@
 - Feature: Bestätigungs-Dialog beim erstmaligen Festlegen eines Limits hinzugefügt
 - Fehler behoben: Limits werden nach Neustart der App nicht mehr auf 'Aus' zurückgesetzt (komplettes Refactoring der Persistenz-Schicht)
 - Design: Walk of Shame Hintergrund angepasst (Liquid Glass) und X-Button schwarz/weiß gemacht
+- Design: Walk of Shame X-Button nun als pures Icon ohne Hintergrundkreis

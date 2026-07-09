@@ -376,11 +376,6 @@ struct ScreenTimeSettingsView: View {
             HStack {
                 Text(String(localized: "screenTime.layer2.title", defaultValue: "Ebene 2: Immer blockiert"))
                     .font(.system(size: 18, weight: .bold, design: .rounded))
-                
-                Spacer()
-                
-                Toggle("", isOn: $isAdultFilterEnabled)
-                    .labelsHidden()
             }
             .padding(.horizontal)
             
