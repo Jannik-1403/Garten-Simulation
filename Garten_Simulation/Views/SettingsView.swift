@@ -69,6 +69,41 @@ struct SettingsView: View {
                             // MARK: - Integrationen (Pro Feature)
                             settingsSection(title: String(localized: "settings.section.integrations", defaultValue: "Integrationen")) {
                                 VStack(alignment: .leading, spacing: 0) {
+                                    NavigationLink {
+                                        ScreenTimeSettingsView()
+                                    } label: {
+                                        HStack(spacing: 12) {
+                                            Image(systemName: "hourglass")
+                                                .font(.system(size: 20, weight: .medium))
+                                                .foregroundStyle(.white)
+                                                .frame(width: 28, height: 28)
+                                                .background(Color.blue, in: RoundedRectangle(cornerRadius: 6))
+                                            
+                                            VStack(alignment: .leading, spacing: 4) {
+                                                Text(String(localized: "screenTime.title", defaultValue: "Bildschirmzeit"))
+                                                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                                                    .foregroundStyle(.primary)
+                                                
+                                                Text(String(localized: "settings.screenTime.instruction", defaultValue: "Verwalte Block-Zeiten und Limits."))
+                                                    .font(.system(size: 10, weight: .regular, design: .rounded))
+                                                    .foregroundStyle(.secondary)
+                                                    .lineLimit(2)
+                                            }
+                                            
+                                            Spacer()
+                                            
+                                            Image(systemName: "chevron.right")
+                                                .font(.system(size: 14, weight: .bold))
+                                                .foregroundStyle(.tertiary)
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 12)
+                                        .contentShape(Rectangle())
+                                    }
+                                    .buttonStyle(.plain)
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
                                     Button {
                                         if !iapStore.isProUser {
                                             UIImpactFeedbackGenerator(style: .medium).impactOccurred()

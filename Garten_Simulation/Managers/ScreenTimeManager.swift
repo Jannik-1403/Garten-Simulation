@@ -10,6 +10,31 @@ class ScreenTimeManager: ObservableObject {
     
     @AppStorage("screenTimeAllowedSelectionData") private var allowedSelectionData: Data?
     
+    // MARK: - Block Schedule
+    @AppStorage("isScreenTimeScheduleActive") var isScheduleActive: Bool = false
+    @AppStorage("screenTimeBlockStartHour") var blockStartHour: Int = 9
+    @AppStorage("screenTimeBlockStartMinute") var blockStartMinute: Int = 0
+    @AppStorage("screenTimeBlockEndHour") var blockEndHour: Int = 17
+    @AppStorage("screenTimeBlockEndMinute") var blockEndMinute: Int = 0
+    
+    var isCurrentlyInBlockWindow: Bool {
+        guard isScheduleActive else { return false }
+        let now = Date()
+        let calendar = Calendar.current
+        let currentHour = calendar.component(.hour, from: now)
+        let currentMinute = calendar.component(.minute, from: now)
+        let currentTime = currentHour * 60 + currentMinute
+        let startTime = blockStartHour * 60 + blockStartMinute
+        let endTime = blockEndHour * 60 + blockEndMinute
+        
+        if startTime < endTime {
+            return currentTime >= startTime && currentTime <= endTime
+        } else {
+            // Over midnight
+            return currentTime >= startTime || currentTime <= endTime
+        }
+    }
+    
     /// Apps/Kategorien, die der Nutzer beim "Mit Handy"-Modus NICHT blockiert haben möchte
     @Published var allowedSelection = FamilyActivitySelection() {
         didSet { saveAllowedSelection() }

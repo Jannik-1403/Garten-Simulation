@@ -701,6 +701,52 @@ class GardenStore: ObservableObject {
 
     // MARK: Streak-Check (täglich aufrufen, z.B. in .onReceive(timer))
     func taeglicherStreakCheck() {
+        // --- Screen Time Auto-Processing ---
+        let screenTimeLimitExceeded = SharedUserDefaults.suite.bool(forKey: "screenTimeLimitExceededToday")
+        if screenTimeLimitExceeded {
+            // Bad habit log
+            if let badHabit = pflanzen.first(where: { $0.id == "bad_habit_screen_time" }) {
+                let execution = BadHabitExecution(date: Date(), coinsLost: 0, triggers: [String(localized: "screenTime.reason.exceeded", defaultValue: "Tageslimit überschritten")])
+                badHabitExecutions[badHabit.id, default: []].append(execution)
+            } else {
+                let bad = HabitModel(
+                    id: "bad_habit_screen_time",
+                    name: String(localized: "bad_habit.screen_time.name", defaultValue: "Zu viel Bildschirmzeit"),
+                    symbolName: "hourglass.bottomhalf.filled",
+                    symbolColor: "red",
+                    habitCategory: .health,
+                    symbolism: String(localized: "bad_habit.screen_time.desc", defaultValue: "Rückfall"),
+                    habitName: String(localized: "bad_habit.screen_time.name", defaultValue: "Bildschirmzeit überschritten"),
+                    maxLevel: 10,
+                    xpPerCompletion: 0,
+                    waterNeedPerDay: 0,
+                    decayDays: 0,
+                    plantID: "custom_bad_screen_time",
+                    isNegative: true
+                )
+                pflanzen.append(bad)
+                let execution = BadHabitExecution(date: Date(), coinsLost: 0, triggers: [String(localized: "screenTime.reason.exceeded", defaultValue: "Tageslimit überschritten")])
+                badHabitExecutions[bad.id, default: []].append(execution)
+            }
+        } else {
+            // Auto-water the tracker
+            if let tracker = pflanzen.first(where: { $0.id == "screen_time_tracker" }) {
+                tracker.istBewässert = true
+                tracker.letzteBewaesserung = Date()
+                tracker.wateringDates.append(Date())
+                tracker.streak += 1
+                tracker.currentXP += tracker.xpPerCompletion
+                tracker.missedCycles = 0
+                xpHinzufuegen(amount: tracker.xpPerCompletion)
+                
+                let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
+                let noteText = "\(timeString) - \(String(localized: "note.auto.screentime_success", defaultValue: "Bildschirmzeit eingehalten"))"
+                tracker.notizen.insert(noteText, at: 0)
+            }
+        }
+        // Reset the limit for the new day
+        SharedUserDefaults.suite.set(false, forKey: "screenTimeLimitExceededToday")
+        
         for pflanze in pflanzen {
             let isProtected = activePowerUps.contains(where: { $0.powerUpId == "powerup.zeitkapsel" && $0.targetPlantId == pflanze.id && $0.isActive })
             if pflanze.streakAbgelaufen && !isProtected {
@@ -1465,6 +1511,33 @@ class GardenStore: ObservableObject {
             pflanzen = decoded
         } else {
             pflanzen = []
+        }
+        
+        // Auto-add Screen Time Tracker if missing
+        if !pflanzen.contains(where: { $0.id == "screen_time_tracker" }) {
+            let screenTimeHabit = HabitModel(
+                id: "screen_time_tracker",
+                name: String(localized: "habit.screen_time.name", defaultValue: "Bildschirmzeit"),
+                symbolName: "hourglass",
+                symbolColor: "blue",
+                habitCategory: .health,
+                symbolism: String(localized: "habit.screen_time.desc", defaultValue: "Digital Detox"),
+                habitName: String(localized: "habit.screen_time.name", defaultValue: "Bildschirmzeit"),
+                maxLevel: 10,
+                xpPerCompletion: 100,
+                waterNeedPerDay: 1,
+                decayDays: 2,
+                plantID: "custom_screen_time"
+            )
+            screenTimeHabit.customTrackerName = String(localized: "screenTime.target.label", defaultValue: "Limit (Std)")
+            screenTimeHabit.customTrackerTarget = 2.0 // Default 2 hours
+            pflanzen.append(screenTimeHabit)
+            
+            // Dispatch async to avoid saving during init if it causes issues, 
+            // but we can just call savePlants directly.
+            DispatchQueue.main.async {
+                self.savePlants()
+            }
         }
     }
 
