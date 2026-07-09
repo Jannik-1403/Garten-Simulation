@@ -131,6 +131,11 @@ class ScreenTimeManager: ObservableObject {
         loadBlockSelection()
         loadPermanentBlockSelection()
         checkAuthorizationStatus()
+        
+        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.checkAuthorizationStatus()
+            self?.applyPermanentBlocks()
+        }
     }
     
     // MARK: - Authorization
@@ -138,15 +143,22 @@ class ScreenTimeManager: ObservableObject {
     func requestAuthorization() async {
         do {
             try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
-            self.isAuthorized = AuthorizationCenter.shared.authorizationStatus == .approved
+            DispatchQueue.main.async {
+                self.checkAuthorizationStatus()
+            }
         } catch {
             print("Failed to authorize Family Controls: \(error.localizedDescription)")
-            self.isAuthorized = false
+            DispatchQueue.main.async {
+                self.isAuthorized = false
+            }
         }
     }
     
     func checkAuthorizationStatus() {
         self.isAuthorized = AuthorizationCenter.shared.authorizationStatus == .approved
+        if self.isAuthorized {
+            applyPermanentBlocks()
+        }
     }
     
     // MARK: - Blocking
