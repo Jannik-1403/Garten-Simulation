@@ -578,56 +578,6 @@ struct FocusSessionView: View {
         gardenStore.focusSessions.append(log)
         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
     }
-    
-    private func generateCancelMathProblem() {
-        let isThreeNumbers = Int.random(in: 1...5) == 1 // 20% chance
-        let operations = ["+", "-", "*"]
-        let op1 = operations.randomElement()!
-        
-        var num1 = 0
-        var num2 = 0
-        var result = 0
-        var problem = ""
-        
-        if op1 == "*" {
-            num1 = Int.random(in: 0...10)
-            num2 = Int.random(in: 0...10)
-            result = num1 * num2
-            problem = "\(num1) × \(num2)"
-        } else {
-            num1 = Int.random(in: 0...1000)
-            num2 = Int.random(in: 0...1000)
-            if op1 == "-" {
-                if num1 < num2 { swap(&num1, &num2) }
-                result = num1 - num2
-                problem = "\(num1) - \(num2)"
-            } else {
-                result = num1 + num2
-                problem = "\(num1) + \(num2)"
-            }
-        }
-        
-        if isThreeNumbers {
-            let op2 = ["+", "-"].randomElement()!
-            let num3 = Int.random(in: 0...100)
-            if op2 == "+" {
-                result += num3
-                problem += " + \(num3)"
-            } else {
-                if result < num3 {
-                    result += num3
-                    problem += " + \(num3)"
-                } else {
-                    result -= num3
-                    problem += " - \(num3)"
-                }
-            }
-        }
-        
-        self.cancelMathProblem = problem
-        self.cancelMathAnswer = result
-    }
-    
     // MARK: - Live Activity Management
     private func startLiveActivity() {
         guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
