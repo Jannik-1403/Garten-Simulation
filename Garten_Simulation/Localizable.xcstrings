@@ -7955,6 +7955,9 @@
         }
       }
     },
+    "Apps entsperren" : {
+
+    },
     "assessment.btn.next" : {
       "comment" : "",
       "extractionState" : "manual",
@@ -66602,6 +66605,9 @@
         }
       }
     },
+    "Aus" : {
+
+    },
     "Auswahl" : {
       "localizations" : {
         "de" : {
@@ -87902,6 +87908,12 @@
         }
       }
     },
+    "Ebene 1: Tägliches Zeitlimit" : {
+
+    },
+    "Ebene 2: Immer blockiert" : {
+
+    },
     "effekt.erholung.beschreibung" : {
       "comment" : "",
       "extractionState" : "manual",
@@ -104261,7 +104273,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Aufgeben & Garten sterben lassen"
+            "value" : "Aufgeben & Apps entsperren"
           }
         }
       }
@@ -104273,17 +104285,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Du bist dabei, deinen Fokus abzubrechen. Tippe diesen Text exakt und fehlerfrei ab, um zu bestätigen:"
-          }
-        }
-      }
-    },
-    "focus.giveup.walkofshame.text" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Ich gebe hiermit auf. Ich entscheide mich bewusst für billiges Dopamin und lasse meinen Garten im Stich."
           }
         }
       }
@@ -132509,6 +132510,9 @@
         }
       }
     },
+    "Limit" : {
+
+    },
     "lucky_wheel_locked_hint" : {
       "comment" : "",
       "extractionState" : "manual",
@@ -134811,6 +134815,9 @@
           }
         }
       }
+    },
+    "Nach Ablauf dieser Zeit werden die ausgewählten Apps für den Rest des Tages blockiert." : {
+
     },
     "Neues Hauptziel..." : {
       "extractionState" : "manual",

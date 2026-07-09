@@ -19,7 +19,10 @@ struct ScreenTimeSettingsView: View {
     @State private var isDailyLimitPickerPresented = false
     @State private var dailyLimitSelection = FamilyActivitySelection()
     @State private var dailyLimitMinutes: Int = 0
-    let limitOptions = [15, 30, 45, 60, 90, 120, 180, 240]
+    
+    @State private var isTimePickerPresented = false
+    @State private var tempHours: Int = 0
+    @State private var tempMinutes: Int = 0
     
     @State private var isPermanentPickerPresented = false
     @State private var permanentBlockSelection = FamilyActivitySelection()
@@ -87,6 +90,30 @@ struct ScreenTimeSettingsView: View {
             dailyLimitMinutes = manager.dailyLimitMinutes
             isAdultFilterEnabled = manager.isAdultFilterEnabled
             daySchedules = manager.daySchedules
+            
+            tempHours = manager.dailyLimitMinutes / 60
+            tempMinutes = manager.dailyLimitMinutes % 60
+        }
+        .onChange(of: dailyLimitSelection) { newValue in
+            var newPermanent = permanentBlockSelection
+            newPermanent.applicationTokens.subtract(newValue.applicationTokens)
+            newPermanent.categoryTokens.subtract(newValue.categoryTokens)
+            newPermanent.webDomainTokens.subtract(newValue.webDomainTokens)
+            if newPermanent != permanentBlockSelection {
+                permanentBlockSelection = newPermanent
+            }
+        }
+        .onChange(of: permanentBlockSelection) { newValue in
+            var newDaily = dailyLimitSelection
+            newDaily.applicationTokens.subtract(newValue.applicationTokens)
+            newDaily.categoryTokens.subtract(newValue.categoryTokens)
+            newDaily.webDomainTokens.subtract(newValue.webDomainTokens)
+            if newDaily != dailyLimitSelection {
+                dailyLimitSelection = newDaily
+            }
+        }
+        .sheet(isPresented: $isTimePickerPresented) {
+            timePickerSheet
         }
         .onDisappear {
             saveSettings()
@@ -175,11 +202,11 @@ struct ScreenTimeSettingsView: View {
     // MARK: - Ebene 1: Zeitlimit
     private var dailyLimitSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Ebene 1: Tägliches Zeitlimit")
+            Text(String(localized: "screenTime.layer1.title", defaultValue: "Ebene 1: Tägliches Zeitlimit"))
                 .font(.system(size: 18, weight: .bold, design: .rounded))
                 .padding(.horizontal)
             
-            Text("Nach Ablauf dieser Zeit werden die ausgewählten Apps für den Rest des Tages blockiert.")
+            Text(String(localized: "screenTime.layer1.desc", defaultValue: "Nach Ablauf dieser Zeit werden die ausgewählten Apps für den Rest des Tages blockiert."))
                 .font(.system(size: 14, weight: .regular, design: .rounded))
                 .foregroundStyle(.secondary)
                 .padding(.horizontal)
@@ -202,17 +229,31 @@ struct ScreenTimeSettingsView: View {
                 
                 Spacer()
                 
-                Picker("Limit", selection: $dailyLimitMinutes) {
-                    Text("Aus").tag(0)
-                    ForEach(limitOptions, id: \.self) { min in
-                        Text("\(min) Min").tag(min)
+                Button(action: {
+                    tempHours = dailyLimitMinutes / 60
+                    tempMinutes = dailyLimitMinutes % 60
+                    isTimePickerPresented = true
+                }) {
+                    HStack {
+                        if dailyLimitMinutes == 0 {
+                            Text(String(localized: "common.off", defaultValue: "Aus"))
+                        } else {
+                            if dailyLimitMinutes >= 60 {
+                                Text("\(dailyLimitMinutes / 60)h \(dailyLimitMinutes % 60)m")
+                            } else {
+                                Text("\(dailyLimitMinutes) \(String(localized: "common.minutes.short", defaultValue: "Min"))")
+                            }
+                        }
+                        Image(systemName: "chevron.up.chevron.down")
+                            .font(.system(size: 12))
                     }
+                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                    .foregroundStyle(.primary)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(Color(UIColor.secondarySystemGroupedBackground))
+                    .cornerRadius(12)
                 }
-                .pickerStyle(.menu)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
-                .background(Color(UIColor.secondarySystemGroupedBackground))
-                .cornerRadius(12)
             }
             .padding(.horizontal)
             
@@ -236,7 +277,7 @@ struct ScreenTimeSettingsView: View {
         VStack(alignment: .leading, spacing: 12) {
             // Header: Title + [+] + [Adult Filter]
             HStack(spacing: 8) {
-                Text("Ebene 2: Immer blockiert")
+                Text(String(localized: "screenTime.layer2.title", defaultValue: "Ebene 2: Immer blockiert"))
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                 Spacer()
                 
@@ -299,7 +340,7 @@ struct ScreenTimeSettingsView: View {
                 Button {
                     showWalkOfShame = true
                 } label: {
-                    Text("Apps entsperren")
+                    Text(String(localized: "screenTime.layer2.unblock", defaultValue: "Apps entsperren"))
                 }
                 .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: .orange, shadowColor: .orange.darker()))
                 .padding(.horizontal)
@@ -468,6 +509,55 @@ struct ScreenTimeSettingsView: View {
                 .foregroundStyle(.white)
                 .padding(.horizontal, 8)
         }
+    }
+    
+    // MARK: - Time Picker Sheet
+    
+    private var timePickerSheet: some View {
+        NavigationStack {
+            VStack {
+                Text(String(localized: "screenTime.limit.picker.title", defaultValue: "Wie lange darfst du die Apps in Ebene 1 maximal am Tag nutzen?"))
+                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
+                HStack(spacing: 0) {
+                    Picker(String(localized: "common.hours", defaultValue: "Stunden"), selection: $tempHours) {
+                        ForEach(0..<24) { h in
+                            Text("\(h) h").tag(h)
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                    .frame(maxWidth: .infinity)
+                    .clipped()
+                    
+                    Picker(String(localized: "common.minutes", defaultValue: "Minuten"), selection: $tempMinutes) {
+                        ForEach(0..<60) { m in
+                            Text("\(m) m").tag(m)
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                    .frame(maxWidth: .infinity)
+                    .clipped()
+                }
+                .padding(.horizontal)
+                
+                Spacer()
+            }
+            .navigationTitle(String(localized: "screenTime.limit.picker.nav", defaultValue: "Limit festlegen"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(String(localized: "common.done", defaultValue: "Fertig")) {
+                        dailyLimitMinutes = tempHours * 60 + tempMinutes
+                        isTimePickerPresented = false
+                    }
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                }
+            }
+        }
+        .presentationDetents([.height(350)])
     }
 }
 

@@ -546,3 +546,6 @@
 - **Architektur-Update**: Fokus-Timer nutzt jetzt wieder die Matheaufgabe (`MathChallengeView`) mit deutlich schwereren Problemen.
 - **Screen Time Settings**: "Walk of Shame" wurde in die Einstellungen verschoben, um dauerhaft gesperrte Apps (Ebene 2) freizuschalten.
 - **Tägliches Zeitlimit**: Neues "Ebene 1" System eingeführt, das Apps nach einer definierten Nutzungsdauer (`DeviceActivityEvent`) pro Tag automatisch sperrt.
+- **Walk of Shame**: Redesign in weißer 3D-Optik, lange Bestrafungs-Sätze, X-Button als Keyboard-Toggle und verzögerte Fehlerprüfung implementiert.
+- **Screen Time**: Minutengenauer Picker für Ebene 1 Limits (Stunden + Minuten) integriert.
+- **Screen Time Ebenen**: Mutually Exclusive Logic hinzugefügt (Apps werden automatisch aus Ebene 1 entfernt, wenn sie zu Ebene 2 hinzugefügt werden und umgekehrt).

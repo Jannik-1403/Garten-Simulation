@@ -15,85 +15,85 @@ struct WalkOfShameView: View {
     @FocusState private var isFocused: Bool
     
     let sentencePool = [
-        "Ich bin schwach und wähle den einfachen Weg, weil ich keine Disziplin habe.",
-        "Anstatt produktiv zu sein, verschwende ich meine Zeit mit billigem Dopamin.",
-        "Ich entscheide mich bewusst dafür, meine Ziele zu ignorieren und aufzugeben.",
-        "Ich habe nicht die mentale Stärke, diesen Fokus durchzuhalten."
+        "Ich bin mir vollkommen bewusst, dass ich gerade den einfachsten Ausweg wähle. Anstatt mich meiner eigentlichen Aufgabe zu widmen und produktiv an meinen Zielen zu arbeiten, entscheide ich mich freiwillig dafür, meine Zeit mit billigem Dopamin zu verschwenden. Ich gebe hiermit offiziell auf und akzeptiere die Konsequenzen meiner mangelnden Disziplin.",
+        
+        "Anstatt an mir selbst zu arbeiten und meine Konzentration zu trainieren, lasse ich mich lieber ablenken. Ich habe nicht die mentale Stärke, diesen Fokus durchzuhalten, und entscheide mich ganz bewusst dafür, meine Ziele zu ignorieren. Ich weiß, dass ich es später bereuen werde, aber ich wähle trotzdem den Weg des geringsten Widerstands.",
+        
+        "Ich breche diesen Vorgang ab, weil ich meine eigenen Vorgaben nicht einhalten kann. Es ist mir wichtiger, mich sofort belohnen zu lassen, als langfristig an meinen Zielen festzuhalten. Ich entscheide mich aktiv gegen meine eigene Produktivität und nehme in Kauf, dass ich dadurch meine Gewohnheiten sabotiere und meine Zeit sinnlos verstreichen lasse."
     ]
     
     var body: some View {
         ZStack {
-            // Dark background for the "Walk of Shame"
-            Color.black.edgesIgnoringSafeArea(.all)
+            // Bright background for the new clean look
+            Color(UIColor.secondarySystemBackground).edgesIgnoringSafeArea(.all)
                 .onTapGesture { isFocused = false }
             
             VStack(spacing: 20) {
-                // Top bar with dismiss keyboard button
+                // Top bar with morphing dismiss/cancel button
                 HStack {
                     Spacer()
                     Button {
-                        isFocused = false
+                        if isFocused {
+                            isFocused = false
+                        } else {
+                            onCancel()
+                        }
                     } label: {
-                        Image(systemName: "keyboard.chevron.compact.down")
+                        Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark")
                             .font(.system(size: 20, weight: .bold))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.primary)
                             .padding()
-                            .background(Color.white.opacity(0.2))
+                            .background(Color(UIColor.tertiarySystemGroupedBackground))
                             .clipShape(Circle())
+                            .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
                     }
                     .padding(.trailing, 24)
                     .padding(.top, 16)
                 }
                 
-                // Warning Icon
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.system(size: 50))
-                    .foregroundColor(.red)
-                
-                Text(String(localized: "focus.giveup.walkofshame.title", defaultValue: "Der Walk of Shame"))
+                Text(String(localized: "focus.giveup.walkofshame.title", defaultValue: "Bewusste Entscheidung"))
                     .font(.system(size: 28, weight: .black, design: .rounded))
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                 
-                Text(String(localized: "focus.giveup.walkofshame.subtitle", defaultValue: "Du bist dabei, deinen Fokus abzubrechen. Tippe diesen Text exakt und fehlerfrei ab, um zu bestätigen:"))
-                    .font(.system(size: 16, weight: .medium, design: .rounded))
-                    .foregroundColor(.gray)
+                Text(String(localized: "focus.giveup.walkofshame.subtitle", defaultValue: "Tippe diesen Text exakt und fehlerfrei ab, um zu bestätigen, dass du die Sperre aufheben willst:"))
+                    .font(.system(size: 15, weight: .medium, design: .rounded))
+                    .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
                 
-                // Required Text Box
+                // Required Text Box (3D White)
                 Text(requiredText)
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: 15, weight: .semibold))
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color.red.opacity(0.15))
-                    .foregroundColor(.red)
+                    .background(Color(UIColor.systemBackground))
+                    .foregroundColor(.primary)
                     .cornerRadius(12)
+                    .shadow(color: .black.opacity(0.05), radius: 0, x: 0, y: 3)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.red.opacity(0.5), lineWidth: 1)
+                            .stroke(Color.black.opacity(0.05), lineWidth: 1)
                     )
                     .padding(.horizontal, 24)
                 
                 // Anti-Paste Editor
                 AntiPasteTextEditor(text: $typedText)
                     .focused($isFocused)
-                    .frame(height: 120)
+                    .frame(height: 180)
                     .padding()
-                    .background(Color.gray.opacity(0.1))
+                    .background(Color(UIColor.systemBackground))
                     .cornerRadius(12)
+                    .shadow(color: .black.opacity(0.03), radius: 0, x: 0, y: 2)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(hasError ? Color.red : Color.gray.opacity(0.3), lineWidth: 2)
+                            .stroke(hasError ? Color.red : Color.black.opacity(0.05), lineWidth: 2)
                     )
                     .offset(x: shakeOffset)
                     .padding(.horizontal, 24)
-                    .onChange(of: typedText) { newValue in
-                        checkTextForErrors(newValue)
-                    }
                 
                 Spacer()
                 
-                // Give up button (disabled until perfect)
+                // Verify button
                 Button(action: {
                     if typedText == requiredText {
                         onConfirmGiveUp()
@@ -101,20 +101,10 @@ struct WalkOfShameView: View {
                         triggerShake()
                     }
                 }) {
-                    Text(String(localized: "focus.giveup.walkofshame.button", defaultValue: "Aufgeben & Apps entsperren"))
+                    Text(String(localized: "focus.giveup.walkofshame.verify", defaultValue: "Überprüfen & Entsperren"))
                 }
-                .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: typedText == requiredText ? .red : Color.gray.opacity(0.3), shadowColor: typedText == requiredText ? .red.darker() : .clear))
-                .disabled(typedText != requiredText)
+                .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: Color.blue, shadowColor: Color.blue.darker()))
                 .padding(.horizontal, 24)
-                
-                // Go back button (Salvation)
-                Button(action: {
-                    onCancel()
-                }) {
-                    Text(String(localized: "common.cancel", defaultValue: "Abbrechen & Zurück zum Fokus"))
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundColor(.green)
-                }
                 .padding(.bottom, 40)
             }
         }
@@ -123,21 +113,9 @@ struct WalkOfShameView: View {
         }
     }
     
-    // Checks if the user made a typo along the way
+    // Checks if the user made a typo along the way (no longer used for real-time validation, but kept for logical completeness if needed)
     private func checkTextForErrors(_ newText: String) {
-        // If the typed text is longer than required, it's definitely an error
-        if newText.count > requiredText.count {
-            triggerShake()
-            return
-        }
-        
-        // Compare what's typed so far with the required text prefix
-        let prefix = String(requiredText.prefix(newText.count))
-        if newText != prefix {
-            triggerShake()
-        } else {
-            hasError = false
-        }
+        // Obsolete function since user wants delayed checking. 
     }
     
     // Punishes the user with a red shaking border
