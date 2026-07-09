@@ -9,24 +9,37 @@ struct FocusScreenTimePickerView: View {
     @State private var isPickerPresented = false
     @State private var pickerCompleted = false
     
-    enum PendingScreenTimeAction {
-        case blockAll
-        case pickApps
-        case none
-    }
-    @State private var pendingScreenTimeAction: PendingScreenTimeAction = .none
-    @State private var showScreenTimePrePrompt = false
+
 
     var body: some View {
         VStack(spacing: 14) {
+            if !manager.isAuthorized {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(String(localized: "screentime.preprompt.title", defaultValue: "Schütze deinen Fokus"))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundStyle(.primary)
+                    Text(String(localized: "screentime.preprompt.subtitle", defaultValue: "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."))
+                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                }
+                .padding()
+                .background(Color.gruenPrimary.opacity(0.1))
+                .cornerRadius(12)
+                .padding(.bottom, 8)
+            }
             // --- OHNE HANDY ---
             Button {
                 if manager.isAuthorized {
                     manager.blockAllApps()
                     onComplete()
                 } else {
-                    pendingScreenTimeAction = .blockAll
-                    showScreenTimePrePrompt = true
+                    Task {
+                        await manager.requestAuthorization()
+                        if manager.isAuthorized {
+                            manager.blockAllApps()
+                            onComplete()
+                        }
+                    }
                 }
             } label: {
                 HStack(spacing: 14) {
@@ -62,8 +75,12 @@ struct FocusScreenTimePickerView: View {
                 if manager.isAuthorized {
                     isPickerPresented = true
                 } else {
-                    pendingScreenTimeAction = .pickApps
-                    showScreenTimePrePrompt = true
+                    Task {
+                        await manager.requestAuthorization()
+                        if manager.isAuthorized {
+                            isPickerPresented = true
+                        }
+                    }
                 }
             } label: {
                 HStack(spacing: 14) {
@@ -106,20 +123,5 @@ struct FocusScreenTimePickerView: View {
         }
         .padding(.horizontal, 24)
         .padding(.top, 8)
-        .sheet(isPresented: $showScreenTimePrePrompt) {
-            ScreenTimePrePromptView {
-                Task {
-                    await manager.requestAuthorization()
-                    if manager.isAuthorized {
-                        if pendingScreenTimeAction == .blockAll {
-                            manager.blockAllApps()
-                            onComplete()
-                        } else if pendingScreenTimeAction == .pickApps {
-                            isPickerPresented = true
-                        }
-                    }
-                }
-            }
-        }
     }
 }

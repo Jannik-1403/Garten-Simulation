@@ -483,3 +483,5 @@
 - 100% Übersetzungsabdeckung für alle verbleibenden 14 Sprachen (inkl. Chinesisch, Russisch, Hindi etc.) erzwungen und fehlende Einträge generiert.
 
 - Hinzugefügt: Psychologischer 'Screen Time Pre-Prompt' vor der Systemabfrage, um die Zustimmungsrate zu erhöhen. Vollständig in 11 Sprachen übersetzt und in Focus- sowie Routine-Sessions integriert.
+- Behoben: Swift 6 Concurrency-Fehler in IAPStore (MainActor-Isolation für static properties)
+- Behoben: Veraltete (stale) Einträge aus Localizable.xcstrings entfernt, um Xcode-Warnungen über fehlende Referenzen und falsche Format Specifiers zu lösen

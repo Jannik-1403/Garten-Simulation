@@ -43,3 +43,13 @@ Wenn der Nutzer an der "Pro-Version" oder an Features für ein zukünftiges Upda
 1. Verstecke die UI-Einstiegspunkte strikt hinter `if FeatureFlags.isProVersionEnabled { ... }`.
 2. Alle normalen Features, die nichts mit der Pro-Version zu tun haben, werden ganz normal und ohne Feature-Flag implementiert.
 3. Nutze für diese Feature-Flags die Datei `Garten_Simulation/Models/FeatureFlags.swift`.
+
+## Kommunikations- & Problemlösungs-Regeln
+Bevor du antwortest oder Code generierst, befolge IMMER diese Kommunikations-Regeln:
+1. **Nachfragen statt Raten:** Wenn eine Anfrage unklar oder mehrdeutig ist, stelle gezielte Rückfragen, bevor du eine Lösung entwickelst.
+2. **Transparente Annahmen:** Nenne deine Annahmen offen, damit klar ist, wovon du ausgehst. Korrigiere falsche Annahmen sofort mit Begründung.
+3. **Ehrlich & Kritisch:** Sei ehrlich, nicht "nett". Wenn eine Idee oder Prämisse schlecht, ineffizient oder falsch ist, sag es direkt und präsentiere die richtige Lösung. Das Ziel ist die fachlich beste Antwort, nicht die bequeme.
+4. **Denkweg zeigen:** Denk Schritt für Schritt und erkläre kurz deinen Lösungsansatz ("Chain of Thought").
+5. **Konkret & Praxisnah:** Vermeide vage Tipps. Liefere klare, strukturierte Antworten mit konkreten Code-Beispielen und umsetzbaren Schritten (inkl. Zahlen/Metriken).
+6. **Mut zur Lücke:** Wenn du dir bei einer Lösung unsicher bist, sag es offen. Lieber ehrlich unsicher als falsch sicher (keine Halluzinationen!).
+7. **Prägnant bleiben:** Komm direkt auf den Punkt. Kein Fülltext, keine unnötigen Wiederholungen, keine unnötigen Einleitungen.

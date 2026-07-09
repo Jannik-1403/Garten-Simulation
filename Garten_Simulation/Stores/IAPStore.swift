@@ -9,7 +9,7 @@ final class IAPStore: ObservableObject {
 
     // MARK: - Product IDs
 
-    static let productIDs = [
+    nonisolated static let productIDs = [
         "com.jannik.grovy.coins.pack_small",
         "com.jannik.grovy.coins.pack_medium",
         "com.jannik.grovy.coins.pack_large",
@@ -19,7 +19,7 @@ final class IAPStore: ObservableObject {
         "com.jannik.grovy.pro.lifetime"
     ]
 
-    static let coinAmounts: [String: Int] = [
+    nonisolated static let coinAmounts: [String: Int] = [
         "com.jannik.grovy.coins.pack_small":  500,
         "com.jannik.grovy.coins.pack_medium": 1800,
         "com.jannik.grovy.coins.pack_large":  3500
