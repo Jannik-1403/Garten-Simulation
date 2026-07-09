@@ -41,6 +41,22 @@ struct ScreenTimeSettingsView: View {
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 32)
+                        
+                    Button(role: .destructive) {
+                        manager.isScheduleActive = false
+                        isScheduleActive = false
+                        manager.unblockApps()
+                    } label: {
+                        Text(String(localized: "screenTime.emergency.unlock", defaultValue: "Notfall-Entsperrung"))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.red.opacity(0.1))
+                            .foregroundStyle(.red)
+                            .cornerRadius(16)
+                    }
+                    .padding(.horizontal, 32)
+                    .padding(.top, 16)
                 }
             } else {
                 // Normal settings
@@ -64,8 +80,6 @@ struct ScreenTimeSettingsView: View {
                                 .background(Color(UIColor.secondarySystemGroupedBackground))
                                 .cornerRadius(16)
                             }
-                        }
-                        
                         }
                         
                         // MARK: - Permanent Blocks (Für immer geblockt)
