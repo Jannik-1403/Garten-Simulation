@@ -119,6 +119,10 @@ struct ScreenTimeSettingsView: View {
                 dailyLimitSelection = enforcedSelection
             }
             oldDailyLimitSelection = enforcedSelection
+            
+            // Sync limitSelections AFTER the picker changes so new tokens
+            // get properly initialized. Uses same token instances → no mismatch.
+            manager.syncLimitsAfterPickerChange()
         }
         .onChange(of: permanentBlockSelection) { newValue in
             var enforcedSelection = newValue
@@ -604,7 +608,11 @@ struct ScreenTimeSettingsView: View {
     private func saveSettings() {
         manager.isScheduleActive = isScheduleActive
         manager.blockSelection = blockSelection
-        manager.dailyLimitSelection = dailyLimitSelection
+        // Assign dailyLimitSelection directly on the manager so it's saved.
+        // limitSelections are already saved live via manager.setLimit().
+        // We do NOT reassign manager.dailyLimitSelection here to avoid triggering
+        // syncIndividualLimits with potentially mismatched tokens.
+        manager.saveDailyLimitSelectionPublic(dailyLimitSelection)
         manager.daySchedules = daySchedules
         manager.permanentBlockSelection = permanentBlockSelection
         manager.isAdultFilterEnabled = isAdultFilterEnabled

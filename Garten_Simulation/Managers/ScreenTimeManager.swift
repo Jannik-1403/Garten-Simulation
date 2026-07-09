@@ -120,7 +120,9 @@ class ScreenTimeManager: ObservableObject {
     @Published var dailyLimitSelection = FamilyActivitySelection() {
         didSet { 
             saveDailyLimitSelection()
-            syncIndividualLimits()
+            // NOTE: syncIndividualLimits() is NOT called here automatically.
+            // It must be called explicitly from the View when the user changes
+            // the picker selection, to avoid wiping limits on every assignment.
         }
     }
     
@@ -177,8 +179,11 @@ class ScreenTimeManager: ObservableObject {
             self.limitSelections = dict
         }
         
-        // Sync limits after everything is loaded to clean up orphans without triggering didSet prematurely
-        syncIndividualLimits()
+        // NOTE: syncIndividualLimits() is intentionally NOT called here.
+        // Calling it during init causes token identity mismatches because
+        // FamilyActivitySelection.applicationTokens from two separate
+        // JSONDecoder calls are NOT Set-equal, which causes formIntersection
+        // to wipe all saved limits on every app launch.
         
         checkAuthorizationStatus()
         
@@ -353,9 +358,16 @@ class ScreenTimeManager: ObservableObject {
     private func saveDailyLimitSelection() {
         if let data = try? JSONEncoder().encode(dailyLimitSelection) {
             UserDefaults.standard.set(data, forKey: "screenTimeDailyLimitSelection")
+            UserDefaults.standard.synchronize()
         }
     }
     
+    /// Updates and saves dailyLimitSelection without triggering syncIndividualLimits.
+    /// Use this from the View's saveSettings() to avoid token-identity mismatch issues.
+    func saveDailyLimitSelectionPublic(_ selection: FamilyActivitySelection) {
+        self.dailyLimitSelection = selection
+        // didSet only saves – syncIndividualLimits is NOT in didSet anymore
+    }
     
     // MARK: - Limit Getters & Setters
     
@@ -430,6 +442,11 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
+    /// Expose sync for use by the View when dailyLimitSelection changes via picker
+    func syncLimitsAfterPickerChange() {
+        syncIndividualLimits()
+    }
+    
     private func saveIndividualLimits() {
         var entries = [LimitEntry]()
         for (limit, selection) in limitSelections {
@@ -437,6 +454,7 @@ class ScreenTimeManager: ObservableObject {
         }
         if let data = try? JSONEncoder().encode(entries) {
             UserDefaults.standard.set(data, forKey: "st_limitSelectionsArray")
+            UserDefaults.standard.synchronize()
         }
     }
     
