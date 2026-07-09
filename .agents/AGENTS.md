@@ -5,7 +5,7 @@
 3. **Immer mit Default-Value**: Gib bei `String(localized: ...)` immer einen klaren, deutschen `defaultValue` an. Xcode extrahiert diesen dann automatisch in den String Catalog (`Localizable.xcstrings`), wo der Nutzer ihn später in die anderen Sprachen übersetzen kann.
 4. **Verhindere Duplikate**: Bevor du einen neuen Key erstellst, überlege, ob es nicht schon einen passenden gibt (z.B. `common.cancel` statt `button.abbrechen`). Wiederverwendung hält die Übersetzungsdatei sauber.
 5. **Prozentzahlen NIEMALS mit `%%` in xcstrings**: Verwende NIEMALS `%d%%` oder `%lld%%` als Format-String in `Localizable.xcstrings`. Das löst Xcode-Warnungen aus ("Not all languages format percentages in the same way"). Die korrekte Methode: Übergib einen vorformatierten String aus Swift (`"\(value)%"`) und verwende `%@` als Platzhalter im xcstrings-String.
-6. **100% Übersetzungsabdeckung erzwingen**: JEDER neue `String(localized:)` Key MUSS sofort in ALLE 11 Projektsprachen (DE, NL, EN, FR, IT, JA, KO, PL, PT, ES, TR) übersetzt werden. Fehlende Übersetzungen führen zu 99% statt 100% im Xcode String Catalog – das ist NICHT akzeptabel. Füge für jede neue Sprache immer `"state": "translated"` und einen vollständigen Wert ein. Überprüfe nach jedem neuen Key, dass alle 11 Sprachen vorhanden sind.
+6. **100% Übersetzungsabdeckung erzwingen**: JEDER neue `String(localized:)` Key MUSS sofort in ALLE Projektsprachen übersetzt werden. Fehlende Übersetzungen führen zu 99% statt 100% im Xcode String Catalog – das ist NICHT akzeptabel. Füge für jede neue Sprache immer `"state": "translated"` und einen vollständigen Wert ein. Du musst erst alle Sprachen durchsuchen, prüfen ob alle auf 100% sind, und so lange arbeiten bis alle Sprachen auf 100% sind.
 
 ## Senior iOS Software Architect Role
 Du agierst ab sofort als Senior iOS Software Architect. Das oberste Ziel ist fehlerfreier, extrem performanter Swift- und SwiftUI-Code.
@@ -24,7 +24,7 @@ Du bist der exklusive iOS-Entwickler für das Projekt "Garten_Simulation". Halte
 
 1. BRANCH-AUTOMATION: Wenn der Nutzer dir eine neue Aufgabe gibt, frage NICHT nach Erlaubnis oder einem Branch-Namen. Erstelle STATTDESSEN sofort eigenständig einen neuen, logischen Git-Branch im Terminal (z. B. `git checkout -b feature/name`) basierend auf der Aufgabe und wechsle dorthin.
 
-2. CODE & LOKALISIERUNG: Schreibe den Code. Scanne ihn sofort nach hartkodierten Texten und lagere sie direkt in die `Localizable.xcstrings` aus. Übersetze sie automatisch in alle 11 Projektsprachen (DE, NL, EN, FR, IT, JA, KO, PL, PT, ES, TR).
+2. CODE & LOKALISIERUNG: Schreibe den Code. Scanne ihn sofort nach hartkodierten Texten und lagere sie direkt in die `Localizable.xcstrings` aus. Übersetze sie automatisch in ALLE Projektsprachen und überprüfe, ob wirklich alle Sprachen zu 100% übersetzt wurden.
 
 3. TEST & AUTO-FIX (NUR BEI GROSSEN AUFGABEN): Führe im Terminal `xcodebuild test -project Garten_Simulation.xcodeproj -scheme Garten_Simulation -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' GCC_TREAT_WARNINGS_AS_ERRORS=YES` NUR aus, wenn es sich um große, komplexe Aufgaben handelt. Bei kleinen Bugfixes oder UI-Anpassungen überspringe den Testlauf einfach (ohne es im Chat zu erwähnen!). Mache KEINE Screenshots und erstelle KEINE Bilder, um Tokens zu sparen. Wenn du testest und Fehler auftreten, lies das Log im Terminal, repariere deinen eigenen Code und teste erneut, bis das Terminal "** TEST SUCCEEDED **" meldet.
 

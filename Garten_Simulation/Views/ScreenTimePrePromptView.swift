@@ -6,7 +6,7 @@ struct ScreenTimePrePromptView: View {
     
     var body: some View {
         ZStack {
-            Color.bgBeige
+            Color(UIColor.systemBackground)
                 .ignoresSafeArea()
             
             VStack(spacing: 32) {
@@ -15,8 +15,8 @@ struct ScreenTimePrePromptView: View {
                 // Icon
                 Image(systemName: "shield.fill")
                     .font(.system(size: 100))
-                    .foregroundStyle(Color.greenPrimary)
-                    .shadow(color: Color.greenPrimary.opacity(0.3), radius: 20, x: 0, y: 10)
+                    .foregroundStyle(Color.gruenPrimary)
+                    .shadow(color: Color.gruenPrimary.opacity(0.3), radius: 20, x: 0, y: 10)
                 
                 VStack(spacing: 16) {
                     // Titel
@@ -51,8 +51,8 @@ struct ScreenTimePrePromptView: View {
                     DuolingoButtonStyle(
                         size: .large,
                         fillWidth: true,
-                        backgroundColor: Color.greenPrimary,
-                        shadowColor: Color.greenPrimary.darker(),
+                        backgroundColor: Color.gruenPrimary,
+                        shadowColor: Color.gruenPrimary.darker(),
                         foregroundColor: .white
                     )
                 )
