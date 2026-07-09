@@ -1,3 +1,5 @@
+- Feature: Generic Focus Timer auf dem Profil-Dashboard hinzugefügt (mit individueller Benennung, Belohnung durch Münzen und Erfassung in den Statistiken).
+- Refactor: Inventory-Button auf dem Profil-Dashboard in ein vertikales Layout (Item3DButton) umgebaut.
 - Bugfix: Der Filter im Shop (`UnifiedShopView`), der bereits gekaufte Pflanzen und Dekorationen komplett versteckt hat, wurde entfernt. Gekaufte Items sind jetzt sichtbar und werden mit dem 'Im Besitz'-Label markiert.
 - Architecture: HabitBoost-Zuweisung von der harten Asset-ID (`plantID`) entkoppelt und sauber über die Domänen-Eigenschaft `HabitCategory` (z.B. `.fitness`) gematcht.
 - Refactor: Habit Boost (Partner-Apps) Datenstruktur in eine saubere Datei (Models/PartnerAppBoost.swift) ausgelagert.

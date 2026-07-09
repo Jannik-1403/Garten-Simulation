@@ -83,6 +83,7 @@ struct InventoryStatButton: View {
             }
             .frame(maxWidth: .infinity)
         }
+    }
 }
 
 struct FocusTimerStatButton: View {
