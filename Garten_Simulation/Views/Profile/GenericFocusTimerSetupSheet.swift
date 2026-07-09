@@ -8,6 +8,7 @@ struct GenericFocusTimerSetupSheet: View {
     @State private var taskName: String = ""
     @State private var zeigeFocusSession = false
     @State private var dummyHabit: HabitModel?
+    @FocusState private var isTextFieldFocused: Bool
     
     // We need PowerUpStore for FocusSessionView
     @StateObject private var powerUpStore = PowerUpStore()
@@ -15,11 +16,10 @@ struct GenericFocusTimerSetupSheet: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 24) {
-                Image(systemName: "timer")
+                Image("Timer full")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 80, height: 80)
-                    .foregroundStyle(Color.orangePrimary)
+                    .frame(width: 100, height: 100)
                     .padding(.top, 40)
                 
                 Text(String(localized: "focus.generic.title", defaultValue: "Fokus Starten"))
@@ -31,35 +31,46 @@ struct GenericFocusTimerSetupSheet: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
                 
-                TextField(String(localized: "focus.generic.placeholder", defaultValue: "z.B. Hausaufgaben, Lesen, ..."), text: $taskName)
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
-                    .padding(16)
-                    .background(Color(UIColor.secondarySystemBackground))
-                    .cornerRadius(16)
-                    .padding(.horizontal, 24)
+                Item3DButton(
+                    farbe: Color(UIColor.secondarySystemBackground),
+                    sekundaerFarbe: Color(UIColor.systemGray4),
+                    groesse: 60,
+                    isRectangular: true,
+                    aktion: {
+                        isTextFieldFocused = true
+                    }
+                ) {
+                    TextField(String(localized: "focus.generic.placeholder", defaultValue: "z.B. Hausaufgaben, Lesen, ..."), text: $taskName)
+                        .focused($isTextFieldFocused)
+                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                        .padding(.horizontal, 6)
+                }
+                .padding(.horizontal, 24)
                 
-                Button {
-                    // Create dummy habit
-                    let habit = HabitModel(
-                        name: taskName,
-                        symbolName: "timer",
-                        habitCategory: .lifestyle,
-                        habitName: taskName,
-                        xpPerCompletion: 0,
-                        isGenericFocus: true
-                    )
-                    self.dummyHabit = habit
-                    self.zeigeFocusSession = true
-                } label: {
+                Item3DButton(
+                    farbe: taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color.gray : Color.orangePrimary,
+                    sekundaerFarbe: taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color.gray.darker() : Color.orangePrimary.darker(),
+                    groesse: 60,
+                    isRectangular: true,
+                    isDisabled: taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                    aktion: {
+                        let habit = HabitModel(
+                            name: taskName,
+                            symbolName: "timer",
+                            habitCategory: .lifestyle,
+                            habitName: taskName,
+                            xpPerCompletion: 0,
+                            isGenericFocus: true
+                        )
+                        self.dummyHabit = habit
+                        self.zeigeFocusSession = true
+                    }
+                ) {
                     Text(String(localized: "button.continue", defaultValue: "Weiter"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color.gray : Color.orangePrimary)
-                        .cornerRadius(16)
                 }
-                .disabled(taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 .padding(.horizontal, 24)
                 .padding(.top, 8)
                 
