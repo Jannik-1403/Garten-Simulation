@@ -7262,8 +7262,182 @@
         }
       }
     },
-    "Alle ablenkenden Apps wurden über Screen Time für die Dauer der Routine blockiert.": {},
-    "Alle ablenkenden Apps wurden über Screen Time für die Dauer des Fokus blockiert.": {},
+    "Alle ablenkenden Apps wurden über Screen Time für die Dauer der Routine blockiert.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All distracting apps were blocked via Screen Time for the duration of the routine."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas las aplicaciones que distraen se bloquearon a través de Screen Time durante la rutina."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toutes les applications distrayantes ont été bloquées via Screen Time pendant toute la durée de la routine."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दिनचर्या की अवधि के लिए सभी ध्यान भटकाने वाले ऐप्स को स्क्रीन टाइम के माध्यम से ब्लॉक कर दिया गया था।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutte le app che distraggono sono state bloccate tramite Screen Time per la durata della routine."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ルーチンの間、気が散るアプリはすべてスクリーンタイム経由でブロックされました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "루틴이 진행되는 동안 방해가 되는 모든 앱은 스크린 타임을 통해 차단되었습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle afleidende apps werden gedurende de hele routine via Screen Time geblokkeerd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wszystkie rozpraszające aplikacje zostały zablokowane przez funkcję Czas przed ekranem na czas trwania rutyny."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os aplicativos que distraem foram bloqueados pelo Screen Time durante a rotina."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все отвлекающие приложения были заблокированы через Screen Time на время выступления."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rutin süresince tüm dikkat dağıtıcı uygulamalar Ekran Süresi aracılığıyla engellendi."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在例行程序期间，所有分散注意力的应用程序都会通过“屏幕时间”被阻止。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在例行程序期間，所有分散注意力的應用程式都會透過「螢幕時間」被阻止。"
+          }
+        }
+      }
+    },
+    "Alle ablenkenden Apps wurden über Screen Time für die Dauer des Fokus blockiert.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All distracting apps were blocked via Screen Time for the duration of the focus."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas las aplicaciones que distraen se bloquearon a través de Screen Time durante la duración del enfoque."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toutes les applications gênantes ont été bloquées via Screen Time pendant toute la durée de la mise au point."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फोकस की अवधि के लिए सभी ध्यान भटकाने वाले ऐप्स को स्क्रीन टाइम के माध्यम से ब्लॉक कर दिया गया था।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutte le app che distraggono sono state bloccate tramite Screen Time per la durata del focus."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "集中している間、気が散るアプリはすべてスクリーンタイム経由でブロックされました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "집중하는 동안 방해가 되는 모든 앱은 스크린 타임을 통해 차단되었습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle afleidende apps werden gedurende de focus geblokkeerd via Screen Time."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wszystkie rozpraszające aplikacje zostały zablokowane przez funkcję Screen Time na czas fokusu."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos os aplicativos que distraem foram bloqueados pelo Screen Time durante o foco."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все отвлекающие приложения были заблокированы через «Экранное время» на время фокусировки."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dikkat dağıtıcı tüm uygulamalar, odaklama süresi boyunca Ekran Süresi aracılığıyla engellendi."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在焦点持续时间内，所有分散注意力的应用程序都会通过“屏幕时间”被阻止。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在焦點持續時間內，所有分散注意力的應用程式都會透過「螢幕時間」被阻止。"
+          }
+        }
+      }
+    },
     "app.name": {
       "comment": "",
       "extractionState": "manual",
@@ -69319,6 +69493,30 @@
             "state": "translated",
             "value": "%20 İndirim"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "20% छूट"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скидка 20%"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "20% 折扣"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "20% 折扣"
+          }
         }
       }
     },
@@ -69389,6 +69587,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Daha fazla okumak istiyor ama zaman bulamıyor musunuz?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आप और अधिक पढ़ना चाहते हैं लेकिन आपके पास समय नहीं है?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хотите читать больше, но у вас нет времени?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您想阅读更多内容但没有时间吗？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您想閱讀更多內容但沒有時間嗎？"
           }
         }
       }
@@ -69461,6 +69683,30 @@
             "state": "translated",
             "value": "Uygulamayı Görüntüle"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ऐप देखें"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Посмотреть приложение"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看应用程序"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看應用程式"
+          }
         }
       }
     },
@@ -69531,6 +69777,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dil öğrenmek artık çok kolay"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "भाषाएँ सीखना आसान हो गया"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изучение языков стало проще"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "学习语言变得简单"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "學習語言變簡單"
           }
         }
       }
@@ -69603,6 +69873,30 @@
             "state": "translated",
             "value": "Finansal yönetiminizde yardıma mı ihtiyacınız var?"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आपको अपने वित्तीय प्रबंधन में सहायता की आवश्यकता है?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вам нужна помощь в управлении финансами?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您需要财务管理方面的帮助吗？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您需要財務管理的協助嗎？"
+          }
         }
       }
     },
@@ -69673,6 +69967,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Önerilen Araç"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एम्पफोहलेन्स टूल"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Инструмент Эмпфолен"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "员工工具"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "員工工具"
           }
         }
       }
@@ -69745,6 +70063,30 @@
             "state": "translated",
             "value": "Rahatlamak ve meditasyon yapmak için yardıma mı ihtiyacınız var?"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आपको स्विच ऑफ करने और ध्यान करने में सहायता की आवश्यकता है?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вам нужна помощь, чтобы отключиться и медитировать?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您需要帮助关闭电源并进行冥想吗？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您需要幫助關閉電源並進行冥想嗎？"
+          }
         }
       }
     },
@@ -69815,6 +70157,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ücretsiz"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मुक्त करने के लिए"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бесплатно"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "免费"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "免費"
           }
         }
       }
@@ -69887,6 +70253,30 @@
             "state": "translated",
             "value": "Kas yapmak ve ağırlıkları takip etmek ister misiniz?"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आप मांसपेशियाँ बनाना और वज़न ट्रैक करना चाहते हैं?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы хотите нарастить мышечную массу и следить за весом?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您想增强肌肉并追踪体重吗？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您想增強肌肉並追蹤體重嗎？"
+          }
         }
       }
     },
@@ -69958,6 +70348,30 @@
             "state": "translated",
             "value": "Ücretsiz"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मुक्त करने के लिए"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бесплатно"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "免费"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "免費"
+          }
         }
       }
     },
@@ -70028,6 +70442,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Daha sağlıklı beslenmek ve kalori takip etmek ister misiniz?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आप स्वस्थ भोजन करना और कैलोरी पर नज़र रखना चाहते हैं?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хотите питаться здоровее и отслеживать калории?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您想吃得更健康并追踪卡路里吗？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您想吃得更健康並追蹤卡路里嗎？"
           }
         }
       }
@@ -87824,6 +88262,30 @@
             "state": "translated",
             "value": "Pro Aboneliğini İptal Et"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रो सदस्यता रद्द करें"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отменить подписку Pro"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消专业版订阅"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消專業版訂閱"
+          }
         }
       }
     },
@@ -104942,6 +105404,90 @@
             "state": "new",
             "value": "Mit Handy lernen"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "enfoque.tiempo de pantalla.con_teléfono"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फोकस.स्क्रीनटाइम.साथ_फोन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.con_telefono"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フォーカス.スクリーンタイム.with_phone"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fokus.czas ekranu.z_telefonem"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "foco.screentime.with_phone"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone"
+          }
         }
       }
     },
@@ -104952,6 +105498,90 @@
           "stringUnit": {
             "state": "new",
             "value": "Wähle Apps, die NICHT blockiert werden"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone.subtitle"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone.subtitle"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone.subtitle"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फोकस.स्क्रीनटाइम.साथ_फ़ोन.उपशीर्षक"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.con_sottotitoli.telefono"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone.subtitle"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone.subtitle"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone.subtitle"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone.subtitle"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone.subtitle"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone.subtitle"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone.subtitle"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.with_phone.subtitle"
           }
         }
       }
@@ -104964,6 +105594,90 @@
             "state": "new",
             "value": "Ohne Handy lernen"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "enfoque.tiempo de pantalla.sin_teléfono"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फोकस.स्क्रीनटाइम.बिना_फ़ोन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.zonder_telefoon"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.bez_telefonu"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone"
+          }
         }
       }
     },
@@ -104974,6 +105688,90 @@
           "stringUnit": {
             "state": "new",
             "value": "Alle Apps werden blockiert"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone.subtitle"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "enfoque.tiempo de pantalla.sin_teléfono.subtítulo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone.subtitle"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फोकस.स्क्रीनटाइम.बिना_फ़ोन.उपशीर्षक"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.senza_telefono.sottotitolo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone.subtitle"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone.subtitle"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.zonder_telefoon.ondertitel"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone.subtitle"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone.subtitle"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone.subtitle"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone.subtitle"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone.subtitle"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.screentime.without_phone.subtitle"
           }
         }
       }
@@ -115461,7 +116259,94 @@
         }
       }
     },
-    "Handy blockiert": {},
+    "Handy blockiert": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cell phone blocked"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "celular bloqueado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Téléphone portable bloqué"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सेल फ़ोन ब्लॉक कर दिया गया"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cellulare bloccato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "携帯電話がブロックされている"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "휴대폰이 차단됨"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mobiele telefoon geblokkeerd"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefon komórkowy zablokowany"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Celular bloqueado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сотовый телефон заблокирован"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cep telefonu engellendi"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手机被屏蔽了"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手機被屏蔽了"
+          }
+        }
+      }
+    },
     "health.metric.mindfulness": {
       "extractionState": "manual",
       "localizations": {
@@ -145279,6 +146164,30 @@
             "state": "translated",
             "value": "Antrenmana hazır mısınız? En iyi ekipmanı edinin."
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रशिक्षण के लिए तैयार हैं? सर्वोत्तम उपकरण प्राप्त करें."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Готовы к обучению? Приобретайте лучшее оборудование."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "准备好训练了吗？获得最好的装备。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "準備好訓練了嗎？獲得最好的裝備。"
+          }
         }
       }
     },
@@ -145349,6 +146258,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Günde 15 dakika ayırarak yeni bir dil öğrenin."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रतिदिन 15 मिनट में एक नई भाषा सीखें।"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изучайте новый язык за 15 минут в день."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每天 15 分钟学习一门新语言。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每天 15 分鐘學習一門新語言。"
           }
         }
       }
@@ -145421,6 +146354,30 @@
             "state": "translated",
             "value": "Binlerce sesli kitap doğrudan iPhone'unuzda."
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके iPhone पर हज़ारों ऑडियोबुक्स।"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тысячи аудиокниг прямо на вашем iPhone."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数以千计的有声读物就在您的 iPhone 上。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "數以千計的有聲書就在您的 iPhone 上。"
+          }
         }
       }
     },
@@ -145491,6 +146448,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Maliyelerinizde yardıma mı ihtiyacınız var?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आपको अपने वित्त के संबंध में सहायता की आवश्यकता है?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вам нужна помощь с вашими финансами?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您需要财务方面的帮助吗？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您需要財務上的協助嗎？"
           }
         }
       }
@@ -145563,6 +146544,30 @@
             "state": "translated",
             "value": "1 numaralı yapay zeka koçuyla hedeflerinize ulaşın."
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "#1 AI कोच के साथ अपने लक्ष्यों तक पहुँचें।"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Достигайте своих целей с тренером по искусственному интеллекту №1."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "与排名第一的人工智能教练一起实现您的目标。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "與排名第一的人工智慧教練一起實現您的目標。"
+          }
         }
       }
     },
@@ -145633,6 +146638,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kalori sayımı ve oruç tutmak çok kolay."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कैलोरी गिनना और उपवास करना आसान हो गया।"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подсчет калорий и голодание стало проще."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "计算卡路里和禁食变得容易。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "計算卡路里和禁食變得容易。"
           }
         }
       }
@@ -148281,6 +149310,30 @@
             "state": "translated",
             "value": "Ömür boyu"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जीवनभर"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Продолжительность жизни"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "寿命"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "壽命"
+          }
         }
       }
     },
@@ -148351,6 +149404,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tek seferlik ödeme"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एकमुश्त भुगतान"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Единовременный платеж"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一次性付款"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一次付款"
           }
         }
       }
@@ -148423,6 +149500,30 @@
             "state": "translated",
             "value": "Aylık"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "महीने के"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ежемесячно"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每月"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每月"
+          }
         }
       }
     },
@@ -148493,6 +149594,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "İstediğiniz zaman iptal edin"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "किसी भी समय रद्द किया जा सकता है"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Можно отменить в любой момент"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可以随时取消"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可以隨時取消"
           }
         }
       }
@@ -148565,6 +149690,30 @@
             "state": "translated",
             "value": "Yıllık"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सालाना"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ежегодно"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每年"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每年"
+          }
         }
       }
     },
@@ -148635,6 +149784,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "En popüler"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सबसे लोकप्रिय"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Самый популярный"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最受欢迎"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最受歡迎"
           }
         }
       }
@@ -179129,6 +180302,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mevcut Bahçe Serisi"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी वर्तमान उद्यान रेखा"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваше нынешнее увлечение садом"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您当前的花园条纹"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您目前的花園條紋"
           }
         }
       }
@@ -212340,6 +213537,90 @@
             "state": "new",
             "value": "Abo verwalten"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "settings.manage_subscription"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "configuración.manage_subscription"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "paramètres.manage_subscription"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सेटिंग्स.प्रबंधन_सदस्यता"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "settings.manage_subscription"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定.管理_サブスクリプション"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "설정.관리_구독"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "settings.manage_subscription"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ustawienia.zarządzanie_subskrypcją"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "configurações.manage_subscription"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "settings.manage_subscription"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "settings.manage_subscription"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置.管理订阅"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定.管理訂閱"
+          }
         }
       }
     },
@@ -217322,17 +218603,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "兌換作弊日？"
-          }
-        }
-      }
-    },
-    "shop.coins": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Münzen"
           }
         }
       }
@@ -274055,7 +275325,94 @@
         }
       }
     },
-    "Verstanden": {},
+    "Verstanden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Understood"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprendido"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compris"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "समझा"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inteso"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "理解した"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이해했다"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begrepen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zrozumiany"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entendido"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Понял"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anlaşıldı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "明白了"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "明白了"
+          }
+        }
+      }
+    },
     "Vorbereitung starten": {
       "comment": "A button label that starts the preparation phase of a focus session.",
       "extractionState": "manual",
@@ -281927,6 +283284,90 @@
             "state": "new",
             "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit (mind. 30 Min.) oder hake Gewohnheiten ab (mind. 3), um eine tiefgehende Analyse und Tipps zu erhalten. Jeder kleine Schritt zählt!"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "weekly_report.feedback.desc.insufficient"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "informe_semanal.feedback.desc.insuficiente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hebdomadaire_report.feedback.desc.insuffisant"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साप्ताहिक_रिपोर्ट.फ़ीडबैक.desc.अपर्याप्त"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "settimanale_report.feedback.desc.insufficiente"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly_report.フィードバック.記述が不十分です"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly_report.feedback.desc.불충분"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "wekelijkse_report.feedback.desc.onvoldoende"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "raport_tygodniowy.feedback.desc.inufficient"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "relatório_semanal.feedback.desc.insuficiente"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "еженедельный_report.feedback.desc.insufficient"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "haftalık_report.feedback.desc.yetersiz"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.feedback.desc.insufficient"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.feedback.desc.insufficient"
+          }
         }
       }
     },
@@ -282793,6 +284234,90 @@
             "state": "new",
             "value": "Mehr Daten benötigt"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "weekly_report.feedback.title.insufficient"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "informe_semanal.feedback.title.insuficiente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "rapport_hebdomadaire.feedback.title.insuffisant"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साप्ताहिक_रिपोर्ट.प्रतिक्रिया.शीर्षक.अपर्याप्त"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "resoconto_settimanale.feedback.title.insufficiente"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウィークリー_レポート.フィードバック.タイトル.不十分"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly_report.feedback.title.불충분"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "wekelijks_rapport.feedback.title.onvoldoende"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "raport_tygodniowy.feedback.tytuł.niewystarczający"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "relatório_semanal.feedback.título.insuficiente"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "еженедельный_report.feedback.title.insufficient"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "haftalık_report.feedback.title.yetersiz"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.feedback.title.insufficient"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.feedback.title.insufficient"
+          }
         }
       }
     },
@@ -283564,6 +285089,90 @@
             "state": "new",
             "value": "Tipp: Du hast >50% deiner Fokuszeit am Nachmittag verbracht. Nutze dieses Zeitfenster auch nächste Woche für fokussiertes Arbeiten."
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "weekly_report.tip.actionable_afternoon"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "informe_semanal.tip.actionable_afternoon"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.actionable_afternoon"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साप्ताहिक_रिपोर्ट.टिप.क्रियायोग्य_दोपहर"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.actionable_afternoon"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly_report.tip.actionable_afternoon"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly_report.tip.actionable_afternoon"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "wekelijkse_rapport.tip.actiebare_middag"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "raport_tygodniowy.tip.actionable_popołudnie"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "relatório_semanal.tip.actionable_afternoon"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "еженедельный_report.tip.actionable_afternoon"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "haftalık_report.tip.actionable_afternoon"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.actionable_afternoon"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.actionable_afternoon"
+          }
         }
       }
     },
@@ -283574,6 +285183,90 @@
           "stringUnit": {
             "state": "new",
             "value": "Tipp: Du hast >50% deiner Fokuszeit am Abend verbracht. Wenn das für dich funktioniert, plane deine Deep-Work-Sessions ab 18 Uhr."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "weekly_report.tip.actionable_evening"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "informe_semanal.tip.actionable_evening"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.actionable_evening"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साप्ताहिक_रिपोर्ट.टिप.क्रियायोग्य_शाम"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.actionable_evening"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly_report.tip.actionable_evening"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly_report.tip.actionable_evening"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "wekelijks_rapport.tip.actiegerichte_avond"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "raport_tygodniowy.tip.actionable_evening"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "relatório_semanal.tip.actionable_evening"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "еженедельный_report.tip.actionable_evening"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "haftalık_report.tip.actionable_evening"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.actionable_evening"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.actionable_evening"
           }
         }
       }
@@ -283586,6 +285279,90 @@
             "state": "new",
             "value": "Tipp: Du hast >50% deiner Fokuszeit am Vormittag verbracht. Versuche, deine wichtigsten Blöcke weiterhin vor 12 Uhr zu planen, um diesen Flow zu nutzen."
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "weekly_report.tip.actionable_morning"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "informe_semanal.tip.actionable_morning"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.actionable_morning"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साप्ताहिक_रिपोर्ट.टिप.क्रियायोग्य_सुबह"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.actionable_morning"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly_report.tip.actionable_Morning"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly_report.tip.actionable_morning"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "wekelijks_rapport.tip.actiebare_ochtend"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "raport_tygodniowy.tip.actionable_morning"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "relatório_semanal.tip.actionable_morning"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly_report.tip.actionable_morning"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "haftalık_report.tip.actionable_morning"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.actionable_morning"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.actionable_morning"
+          }
         }
       }
     },
@@ -283596,6 +285373,90 @@
           "stringUnit": {
             "state": "new",
             "value": "Tipp: Zu wenig Daten für eine detaillierte Tageszeit-Analyse. Sammle mehr Fokus-Sessions (mind. 100 Min), um präzise Tipps zu erhalten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "weekly_report.tip.low_confidence"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "informe_semanal.tip.low_confidence"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "week_report.tip.low_confidence"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साप्ताहिक_रिपोर्ट.टिप.कम_आत्मविश्वास"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "settimanale_report.tip.low_confidence"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly_report.tip.low_confidence"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly_report.tip.low_confidence"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "wekelijks_rapport.tip.laag_vertrouwen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "raport_tygodniowy.tip.niska_pewność"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "relatório_semanal.tip.low_confidence"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "еженедельный_отчет.tip.low_confidence"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "haftalık_report.tip.low_confidence"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周报告.tip.low_confidence"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每週報告.tip.low_confidence"
           }
         }
       }
@@ -284916,6 +286777,30 @@
             "state": "translated",
             "value": "Bitkilerini doğrudan ana ekrandan sula."
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपने पौधों को सीधे होम स्क्रीन से पानी दें।"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поливайте растения прямо с главного экрана."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直接从主屏幕给植物浇水。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直接從主螢幕給植物澆水。"
+          }
         }
       }
     },
@@ -284986,6 +286871,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hepsi sulandı! 🎉"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सब कुछ डाला! 🎉"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Всё вылилось! 🎉"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一切都倒了！ 🎉"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一切都倒了！ 🎉"
           }
         }
       }
@@ -285058,6 +286967,30 @@
             "state": "translated",
             "value": "Bitkileriniz"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपके पौधे"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваши растения"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的植物"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的植物"
+          }
         }
       }
     },
@@ -285128,6 +287061,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bitki Sula (Pro)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पौधों को पानी देना (प्रो)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Полив растений (Pro)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "给植物浇水（专业版）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "給植物澆水（專業版）"
           }
         }
       }
@@ -285201,10 +287158,28 @@
             "value": "Rutinlerinizi doğrudan ana ekrandan tamamlayın."
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Complete suas rotinas diretamente na tela inicial."
+            "value": "अपनी दिनचर्या सीधे होम स्क्रीन से पूरी करें।"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выполняйте свои процедуры прямо с главного экрана."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直接从主屏幕完成您的日常工作。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直接從主畫面完成您的日常工作。"
           }
         }
       }
@@ -285278,10 +287253,28 @@
             "value": "Rutin (Pro)"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rotina (Pró)"
+            "value": "नियमित (प्रो)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Рутина (Про)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "常规（专业版）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "常規（專業版）"
           }
         }
       }
@@ -285355,10 +287348,28 @@
             "value": "Kilit ekranındaki mevcut serin."
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sua sequência atual na tela de bloqueio."
+            "value": "लॉक स्क्रीन पर आपकी वर्तमान स्ट्रीक."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваша текущая полоса на экране блокировки."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您当前在锁定屏幕上的连续记录。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您目前在鎖定畫面上的連續記錄。"
           }
         }
       }
@@ -285432,10 +287443,28 @@
             "value": "Seri (Pro)"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sequência (Pró)"
+            "value": "स्ट्रीक (प्रो)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Стрик (Про)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连胜（专业版）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連勝（專業版）"
           }
         }
       }
@@ -285509,10 +287538,28 @@
             "value": "Pro sürüm gereklidir"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versão Pro necessária"
+            "value": "प्रो संस्करण आवश्यक है"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Требуется Pro-версия"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "需要专业版"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "需要專業版"
           }
         }
       }
@@ -285586,10 +287633,28 @@
             "value": "Görev yok."
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sem tarefas."
+            "value": "कोई कार्य नहीं."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Никаких задач."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有任务。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有任務。"
           }
         }
       }
@@ -285663,10 +287728,28 @@
             "value": "Rutin seç (Widget'ı düzenle)"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selecione rotina (editar widget)"
+            "value": "दिनचर्या का चयन करें (विजेट संपादित करें)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выбрать программу (редактировать виджет)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择例程（编辑小部件）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇例程（編輯小工具）"
           }
         }
       }
@@ -285740,10 +287823,28 @@
             "value": "Mevcut: %d"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Atual:%d"
+            "value": "वर्तमान:%d"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ток:%d"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "电流：%d"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "電流：%d"
           }
         }
       }
@@ -285817,10 +287918,313 @@
             "value": "GÜN"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "DIAS"
+            "value": "लेना"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "БРАТЬ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拿"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拿"
+          }
+        }
+      }
+    },
+    "widget_streak_description": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein aktueller Streak."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your current streak."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu racha actual."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre séquence actuelle."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La tua serie attuale."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたの現在の成績。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "현재 연속 기록."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je huidige reeks."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twoja obecna passa."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şu anki seriniz."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी वर्तमान शृंखला."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua sequência atual."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваша текущая серия."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你目前的连胜纪录。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你目前的連勝紀錄。"
+          }
+        }
+      }
+    },
+    "widget_streak_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Streak"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Streak"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Racha"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traînée"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strisciante"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ストリーク"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "줄"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Streep"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasemko"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rüzgâr gibi geçmek"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "धारी"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Onda"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Полоса"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "条纹"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "條紋"
+          }
+        }
+      }
+    },
+    "widget_verlauf_month_description": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein gesamter Monat auf einen Blick."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your entire month at a glance."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo tu mes de un vistazo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre mois entier en un coup d'œil."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutto il tuo mese in un colpo d'occhio."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 か月全体が一目でわかります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "한 달 전체를 한눈에 볼 수 있습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hele maand in één oogopslag."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cały miesiąc w skrócie."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir bakışta tüm ayınız."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका पूरा महीना एक नज़र में."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resumo do seu mês inteiro."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Весь ваш месяц как на ладони."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您的整个月一目了然。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您的整個月一目了然。"
           }
         }
       }
@@ -285894,10 +288298,123 @@
             "value": "Aylık Geçmiş"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Curso mensal"
+            "value": "मासिक पाठ्यक्रम"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Месячный курс"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每月课程"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每月課程"
+          }
+        }
+      }
+    },
+    "widget_verlauf_week_description": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die letzten 7 Tage im Überblick."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The last 7 days at a glance."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los últimos 7 días de un vistazo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les 7 derniers jours en un coup d'œil."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gli ultimi 7 giorni in uno sguardo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去 7 日間をひと目で確認できます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지난 7일을 한눈에 살펴보세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De afgelopen 7 dagen in één oogopslag."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ostatnie 7 dni w skrócie."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir bakışta son 7 gün."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पिछले 7 दिन एक नज़र में."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resumo dos últimos 7 dias."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Краткий обзор последних 7 дней."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过去 7 天一目了然。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去 7 天一目了然。"
           }
         }
       }
@@ -285971,10 +288488,408 @@
             "value": "HAFTALIK GEÇMİŞ"
           }
         },
-        "pt-BR": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "SEMANALMENTE"
+            "value": "साप्ताहिक"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ЕЖЕНЕДЕЛЬНО"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每週"
+          }
+        }
+      }
+    },
+    "widget_water_alltime": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GESAMT"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN TOTAL"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "EN TOTAL"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "EN TOUT"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN TOTALE"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "合計で"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "합계"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IN TOTAAL"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W SUMIE"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TOPLAMDA"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुल मिलाकर"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NO TOTAL"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ВСЕГО"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "总计"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "總計"
+          }
+        }
+      }
+    },
+    "widget_water_description": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein getrunkenes Wasser."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The water you drank."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El agua que bebiste."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'eau que tu as bu."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'acqua che hai bevuto."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "あなたが飲んだ水。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "당신이 마신 물."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het water dat je dronk."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Woda, którą wypiłeś."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İçtiğin su."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जो पानी तुमने पिया."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A água que você bebeu."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вода, которую ты пил."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你喝的水。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你喝的水。"
+          }
+        }
+      }
+    },
+    "widget_water_times": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d mal"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%dtimes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%dveces"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%dfois"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%dvolte"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d回"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d회"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d-tijden"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%drazy"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%dkez"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%dख़राब"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%dmal"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%dплохой"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d坏"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d壞"
+          }
+        }
+      }
+    },
+    "widget_water_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wasser"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agua"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eau"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acqua"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "물"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Water"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Woda"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "su"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पानी"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Água"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вода"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水"
           }
         }
       }
@@ -287030,574 +289945,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "例行時間：%@"
-          }
-        }
-      }
-    },
-    "widget_water_alltime": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "GESAMT"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "IN TOTAAL"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "IN TOTAL"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "EN TOUT"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "IN TOTALE"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "合計で"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "합계"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "W SUMIE"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "NO TOTAL"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "EN TOTAL"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "TOPLAMDA"
-          }
-        }
-      }
-    },
-    "widget_water_times": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%d mal"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%d-tijden"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%dtimes"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%dfois"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%dvolte"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%d回"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%d회"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%drazy"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%dvezes"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%dveces"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%dkez"
-          }
-        }
-      }
-    },
-    "widget_water_title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wasser"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Water"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Water"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eau"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Acqua"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "水"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "물"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Woda"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Água"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Agua"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "su"
-          }
-        }
-      }
-    },
-    "widget_water_description": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dein getrunkenes Wasser."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Het water dat je dronk."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The water you drank."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "L'eau que tu as bu."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "L'acqua che hai bevuto."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "あなたが飲んだ水。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "당신이 마신 물."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Woda, którą wypiłeś."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A água que você bebeu."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "El agua que bebiste."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "İçtiğin su."
-          }
-        }
-      }
-    },
-    "widget_streak_title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Streak"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Streep"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Streak"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Traînée"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strisciante"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ストリーク"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "줄"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pasemko"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Onda"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Racha"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rüzgâr gibi geçmek"
-          }
-        }
-      }
-    },
-    "widget_streak_description": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dein aktueller Streak."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je huidige reeks."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your current streak."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Votre séquence actuelle."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La tua serie attuale."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "あなたの現在の成績。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "현재 연속 기록."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Twoja obecna passa."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sua sequência atual."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu racha actual."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Şu anki seriniz."
-          }
-        }
-      }
-    },
-    "widget_verlauf_week_description": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Die letzten 7 Tage im Überblick."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "De afgelopen 7 dagen in één oogopslag."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The last 7 days at a glance."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Les 7 derniers jours en un coup d'œil."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gli ultimi 7 giorni in uno sguardo."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "過去 7 日間をひと目で確認できます。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "지난 7일을 한눈에 살펴보세요."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ostatnie 7 dni w skrócie."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Resumo dos últimos 7 dias."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Los últimos 7 días de un vistazo."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bir bakışta son 7 gün."
-          }
-        }
-      }
-    },
-    "widget_verlauf_month_description": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dein gesamter Monat auf einen Blick."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Je hele maand in één oogopslag."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your entire month at a glance."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Votre mois entier en un coup d'œil."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tutto il tuo mese in un colpo d'occhio."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "1 か月全体が一目でわかります。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "한 달 전체를 한눈에 볼 수 있습니다."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cały miesiąc w skrócie."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Resumo do seu mês inteiro."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todo tu mes de un vistazo."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bir bakışta tüm ayınız."
           }
         }
       }
