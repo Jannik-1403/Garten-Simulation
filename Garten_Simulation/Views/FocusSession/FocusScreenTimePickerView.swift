@@ -8,13 +8,26 @@ struct FocusScreenTimePickerView: View {
     @StateObject private var manager = ScreenTimeManager.shared
     @State private var isPickerPresented = false
     @State private var pickerCompleted = false
+    
+    enum PendingScreenTimeAction {
+        case blockAll
+        case pickApps
+        case none
+    }
+    @State private var pendingScreenTimeAction: PendingScreenTimeAction = .none
+    @State private var showScreenTimePrePrompt = false
 
     var body: some View {
         VStack(spacing: 14) {
             // --- OHNE HANDY ---
             Button {
-                manager.blockAllApps()
-                onComplete()
+                if manager.isAuthorized {
+                    manager.blockAllApps()
+                    onComplete()
+                } else {
+                    pendingScreenTimeAction = .blockAll
+                    showScreenTimePrePrompt = true
+                }
             } label: {
                 HStack(spacing: 14) {
                     ZStack {
@@ -49,10 +62,8 @@ struct FocusScreenTimePickerView: View {
                 if manager.isAuthorized {
                     isPickerPresented = true
                 } else {
-                    Task {
-                        await manager.requestAuthorization()
-                        isPickerPresented = manager.isAuthorized
-                    }
+                    pendingScreenTimeAction = .pickApps
+                    showScreenTimePrePrompt = true
                 }
             } label: {
                 HStack(spacing: 14) {
@@ -95,5 +106,20 @@ struct FocusScreenTimePickerView: View {
         }
         .padding(.horizontal, 24)
         .padding(.top, 8)
+        .sheet(isPresented: $showScreenTimePrePrompt) {
+            ScreenTimePrePromptView {
+                Task {
+                    await manager.requestAuthorization()
+                    if manager.isAuthorized {
+                        if pendingScreenTimeAction == .blockAll {
+                            manager.blockAllApps()
+                            onComplete()
+                        } else if pendingScreenTimeAction == .pickApps {
+                            isPickerPresented = true
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -36,6 +36,14 @@ struct FocusSessionView: View {
     @State private var showScreenTimePicker = false
     @State private var showBlockNotice = false
     
+    enum PendingScreenTimeAction {
+        case blockAll
+        case pickApps
+        case none
+    }
+    @State private var pendingScreenTimeAction: PendingScreenTimeAction = .none
+    @State private var showScreenTimePrePrompt = false
+    
     // Math Challenge
     @State private var showMathChallenge: Bool = false
     @State private var cancelMathProblem: String = ""
@@ -194,18 +202,21 @@ struct FocusSessionView: View {
         .alert(String(localized: "alert.strict_mode.title"), isPresented: $showStrictModeAlert) {
             Button(String(localized: "alert.strict_mode.no"), role: .destructive) {
                 isStrictMode = true
-                screenTimeManager.blockAllApps()
-                showBlockNotice = true
+                if screenTimeManager.isAuthorized {
+                    screenTimeManager.blockAllApps()
+                    showBlockNotice = true
+                } else {
+                    pendingScreenTimeAction = .blockAll
+                    showScreenTimePrePrompt = true
+                }
             }
             Button(String(localized: "alert.strict_mode.yes")) {
                 isStrictMode = false
                 if screenTimeManager.isAuthorized {
                     showScreenTimePicker = true
                 } else {
-                    Task {
-                        await screenTimeManager.requestAuthorization()
-                        showScreenTimePicker = screenTimeManager.isAuthorized
-                    }
+                    pendingScreenTimeAction = .pickApps
+                    showScreenTimePrePrompt = true
                 }
             }
             Button(String(localized: "button.cancel"), role: .cancel) {
@@ -227,6 +238,21 @@ struct FocusSessionView: View {
             }
         } message: {
             Text("Alle ablenkenden Apps wurden über Screen Time für die Dauer des Fokus blockiert.")
+        }
+        .sheet(isPresented: $showScreenTimePrePrompt) {
+            ScreenTimePrePromptView {
+                Task {
+                    await screenTimeManager.requestAuthorization()
+                    if screenTimeManager.isAuthorized {
+                        if pendingScreenTimeAction == .blockAll {
+                            screenTimeManager.blockAllApps()
+                            showBlockNotice = true
+                        } else if pendingScreenTimeAction == .pickApps {
+                            showScreenTimePicker = true
+                        }
+                    }
+                }
+            }
         }
     }
     

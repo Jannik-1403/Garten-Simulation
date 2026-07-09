@@ -153,7 +153,6 @@ struct AppRootView: View {
                 }
                 .task {
                     NotificationManager.shared.scheduleAll(for: container.gardenStore.pflanzen)
-                    await ScreenTimeManager.shared.requestAuthorization()
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willTerminateNotification)) { _ in
                     let semaphore = DispatchSemaphore(value: 0)

@@ -472,3 +472,12 @@
 - Removed text and icon header from Streak Card in PflanzeDetailSheet
 - Angepasst: Abo-Preise in StoreKit (Products.storekit & Configuration.storekit) auf 3,99 € (Monat), 19,99 € (Jahr) und 49,99 € (Lifetime) gesetzt.
 - Korrigiert: Alle Product-IDs in StoreKit und Swift auf echte Bundle ID (com.jannik.grovy) umgestellt und redundante .storekit-Dateien entfernt. Nur noch Products.storekit wird genutzt.
+- Münzen-Ansicht im Shop angepasst (Icon vergrößert, Text 'Münzen' entfernt, Betrag nach rechts gerückt)
+- Stern-Icon vom 'Abo verwalten'-Button entfernt
+- Übersetzungen via Skript synchronisiert
+
+## [2026-07-09] - Widget Lokalisierung
+- Fehlende Widget-Texte (Wasserverbrauch, Streak, Verläufe, Routinen) in die `Localizable.xcstrings` aufgenommen.
+- Alle Widget-Strings automatisch in die 11 unterstützten Projektsprachen (DE, NL, EN, FR, IT, JA, KO, PL, PT, ES, TR) übersetzt.
+- Brasilianisches Portugiesisch (pt-BR) komplett entfernt.
+- 100% Übersetzungsabdeckung für alle verbleibenden 14 Sprachen (inkl. Chinesisch, Russisch, Hindi etc.) erzwungen und fehlende Einträge generiert.
