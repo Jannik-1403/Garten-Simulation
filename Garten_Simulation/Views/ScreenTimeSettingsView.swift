@@ -260,7 +260,7 @@ struct ScreenTimeSettingsView: View {
                 
                 Spacer()
                 
-                if manager.isScheduleActive || !dailyLimitSelection.applicationTokens.isEmpty || !permanentBlockSelection.applicationTokens.isEmpty {
+                if !manager.appLimits.isEmpty || !manager.categoryLimits.isEmpty || !manager.webLimits.isEmpty {
                     Item3DButton(
                         farbe: Color.orange,
                         sekundaerFarbe: Color.orange.darker(),
@@ -318,10 +318,13 @@ struct ScreenTimeSettingsView: View {
     
     private func limitMenu(for minutesBinding: Binding<Int>) -> some View {
         Menu {
-            Picker("", selection: minutesBinding) {
-                ForEach([0, 5, 10, 15, 30, 45, 60, 90, 120, 180], id: \.self) { min in
-                    Text(min == 0 ? String(localized: "common.off", defaultValue: "Aus") : "\(min) \(String(localized: "common.minutes.short", defaultValue: "Min"))").tag(min)
+            ForEach([0, 5, 10, 15, 30, 45, 60, 90, 120, 180], id: \.self) { min in
+                Button(action: {
+                    minutesBinding.wrappedValue = min
+                }) {
+                    Text(min == 0 ? String(localized: "common.off", defaultValue: "Aus") : "\(min) \(String(localized: "common.minutes.short", defaultValue: "Min"))")
                 }
+                .disabled(minutesBinding.wrappedValue != 0 && min > minutesBinding.wrappedValue)
             }
         } label: {
             HStack {
@@ -342,13 +345,23 @@ struct ScreenTimeSettingsView: View {
     
     private var permanentBlockSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            // Header: Title + [+] + [Adult Filter]
-            HStack(spacing: 8) {
+            HStack {
                 Text(String(localized: "screenTime.layer2.title", defaultValue: "Ebene 2: Immer blockiert"))
                     .font(.system(size: 18, weight: .bold, design: .rounded))
+                
                 Spacer()
                 
-                // + Add Button (rectangular 3D, left of adult filter)
+                Toggle("", isOn: $isAdultFilterEnabled)
+                    .labelsHidden()
+            }
+            .padding(.horizontal)
+            
+            Text(String(localized: "screenTime.layer2.desc", defaultValue: "Diese Apps und Webseiten sind immer blockiert und können nur durch den Notfall-Unlock entsperrt werden."))
+                .font(.system(size: 14, weight: .regular, design: .rounded))
+                .foregroundStyle(.secondary)
+                .padding(.horizontal)
+            
+            HStack {
                 Item3DButton(
                     farbe: Color.gruenPrimary,
                     sekundaerFarbe: Color.gruenPrimary.darker(),
@@ -364,24 +377,25 @@ struct ScreenTimeSettingsView: View {
                 }
                 .familyActivityPicker(isPresented: $isPermanentPickerPresented, selection: $permanentBlockSelection)
                 
-                // Adult Filter 3D Button
-                Item3DButton(
-                    farbe: isAdultFilterEnabled ? Color.red : Color(UIColor.secondarySystemGroupedBackground),
-                    sekundaerFarbe: isAdultFilterEnabled ? Color.red.darker() : Color(UIColor.tertiarySystemGroupedBackground),
-                    groesse: 40,
-                    shadowDepthFactor: 0.1,
-                    isRectangular: true,
-                    aktion: { isAdultFilterEnabled.toggle() }
-                ) {
-                    HStack(spacing: 4) {
-                        Image(systemName: "exclamationmark.shield.fill")
-                            .font(.system(size: 13))
-                            .foregroundStyle(isAdultFilterEnabled ? .white : .red)
-                        Text(String(localized: "screenTime.suggestions.adult.title", defaultValue: "Adult Filter"))
-                            .font(.system(size: 12, weight: .bold, design: .rounded))
-                            .foregroundStyle(isAdultFilterEnabled ? .white : .primary)
+                Spacer()
+                
+                if !permanentBlockSelection.applicationTokens.isEmpty || !permanentBlockSelection.categoryTokens.isEmpty || !permanentBlockSelection.webDomainTokens.isEmpty {
+                    Item3DButton(
+                        farbe: Color.orange,
+                        sekundaerFarbe: Color.orange.darker(),
+                        groesse: 36,
+                        shadowDepthFactor: 0.15,
+                        isRectangular: true,
+                        aktion: { showWalkOfShame = true }
+                    ) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "lock.open.fill")
+                            Text(String(localized: "screenTime.layer1.unblock.short", defaultValue: "Entsperren"))
+                        }
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 16)
                     }
-                    .padding(.horizontal, 4)
                 }
             }
             .padding(.horizontal)

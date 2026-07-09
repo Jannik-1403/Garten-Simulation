@@ -210032,13 +210032,13 @@
         }
       }
     },
-    "screenTime.layer1.unblock" : {
+    "screenTime.layer1.unblock.short" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Apps entsperren"
+            "value" : "Entsperren"
           }
         }
       }
@@ -210050,17 +210050,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Ebene 2: Immer blockiert"
-          }
-        }
-      }
-    },
-    "screenTime.openSystemSettings" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "iOS Bildschirmzeit öffnen"
           }
         }
       }

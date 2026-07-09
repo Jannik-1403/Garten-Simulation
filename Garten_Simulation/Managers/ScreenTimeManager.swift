@@ -391,20 +391,20 @@ class ScreenTimeManager: ObservableObject {
         categoryLimits.removeAll { !dailyLimitSelection.categoryTokens.contains($0.token) }
         webLimits.removeAll { !dailyLimitSelection.webDomainTokens.contains($0.token) }
         
-        // Add new tokens with default limit (15 minutes)
+        // Add new tokens with default limit (0 minutes)
         for token in dailyLimitSelection.applicationTokens {
             if !appLimits.contains(where: { $0.token == token }) {
-                appLimits.append(AppLimit(token: token, minutes: 15))
+                appLimits.append(AppLimit(token: token, minutes: 0))
             }
         }
         for token in dailyLimitSelection.categoryTokens {
             if !categoryLimits.contains(where: { $0.token == token }) {
-                categoryLimits.append(CategoryLimit(token: token, minutes: 15))
+                categoryLimits.append(CategoryLimit(token: token, minutes: 0))
             }
         }
         for token in dailyLimitSelection.webDomainTokens {
             if !webLimits.contains(where: { $0.token == token }) {
-                webLimits.append(WebLimit(token: token, minutes: 15))
+                webLimits.append(WebLimit(token: token, minutes: 0))
             }
         }
     }

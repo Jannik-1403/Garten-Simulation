@@ -556,3 +556,5 @@
 - Walk of Shame nutzt jetzt nativen NavigationStack für iOS-Look
 - 'Apps entsperren' 3D-Button an die Spitze der Einstellungen verschoben
 - System-Bildschirmzeit Link am Ende der Einstellungsseite hinzugefügt
+- 'Bildschirmzeit-Zugriff erlauben' wurde als kleiner Link ganz nach unten verschoben
+- 'Apps entsperren' (Notfallentsperrung) wurde als kleinerer 3D-Button direkt neben das Plus-Symbol in Ebene 1 verschoben
