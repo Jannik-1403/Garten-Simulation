@@ -106,14 +106,27 @@ struct ScreenTimeSettingsView: View {
                                     ForEach(Array(permanentBlockSelection.applicationTokens), id: \.self) { token in
                                         PermanentBlockCard { Label(token) }
                                     }
-                                    // Web Domains
-                                    ForEach(Array(permanentBlockSelection.webDomainTokens), id: \.self) { token in
-                                        PermanentBlockCard { Label(token) }
+                                    // Custom Domains
+                                    ForEach(Array(manager.customBlockedDomains), id: \.self) { domain in
+                                        PermanentBlockCard(deleteAction: {
+                                            manager.customBlockedDomains.remove(domain)
+                                        }) {
+                                            VStack {
+                                                Image(systemName: "globe")
+                                                Text(domain)
+                                            }
+                                        }
                                     }
                                     
-                                    Button {
-                                        isPermanentPickerPresented = true
-                                    } label: {
+                                    Item3DButton(
+                                        farbe: Color(UIColor.secondarySystemGroupedBackground),
+                                        sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground),
+                                        groesse: 120,
+                                        isRectangular: true,
+                                        aktion: {
+                                            isPermanentPickerPresented = true
+                                        }
+                                    ) {
                                         VStack(spacing: 8) {
                                             Image(systemName: "plus.circle.fill")
                                                 .font(.system(size: 32))
@@ -122,10 +135,6 @@ struct ScreenTimeSettingsView: View {
                                                 .font(.system(size: 14, weight: .bold, design: .rounded))
                                                 .foregroundStyle(.primary)
                                         }
-                                        .frame(width: 120, height: 120)
-                                        .background(Color(UIColor.secondarySystemGroupedBackground))
-                                        .cornerRadius(24)
-                                        .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
                                     }
                                     .familyActivityPicker(isPresented: $isPermanentPickerPresented, selection: $permanentBlockSelection)
                                 }
@@ -158,7 +167,8 @@ struct ScreenTimeSettingsView: View {
                                     title: String(localized: "screenTime.suggestions.social.title", defaultValue: "Social Media (TikTok etc.)"),
                                     isActive: false
                                 ) {
-                                    copyAndOpenPicker(domain: "tiktok.com")
+                                    addCustomDomain("tiktok.com")
+                                    addCustomDomain("instagram.com")
                                 }
                                 
                                 // Casino
@@ -168,7 +178,8 @@ struct ScreenTimeSettingsView: View {
                                     title: String(localized: "screenTime.suggestions.casino.title", defaultValue: "Glücksspiel & Casino"),
                                     isActive: false
                                 ) {
-                                    copyAndOpenPicker(domain: "tipico.de")
+                                    addCustomDomain("tipico.de")
+                                    addCustomDomain("casino.com")
                                 }
                                 
                                 // Food Delivery
@@ -178,7 +189,8 @@ struct ScreenTimeSettingsView: View {
                                     title: String(localized: "screenTime.suggestions.food.title", defaultValue: "Lieferdienste"),
                                     isActive: false
                                 ) {
-                                    copyAndOpenPicker(domain: "lieferando.de")
+                                    addCustomDomain("lieferando.de")
+                                    addCustomDomain("ubereats.com")
                                 }
                             }
                             .padding(.horizontal)
@@ -199,24 +211,33 @@ struct ScreenTimeSettingsView: View {
                                 DatePicker(String(localized: "screenTime.schedule.end", defaultValue: "Endzeit"), selection: $endTime, displayedComponents: .hourAndMinute)
                                 Divider()
                                 
-                                HStack {
+                                VStack(spacing: 12) {
                                     ForEach(allWeekdays, id: \.0) { item in
-                                        Button {
-                                            if activeWeekdays.contains(item.0) {
-                                                if activeWeekdays.count > 1 {
-                                                    activeWeekdays.remove(item.0)
+                                        let isActive = activeWeekdays.contains(item.0)
+                                        Item3DButton(
+                                            farbe: isActive ? .white : Color(UIColor.secondarySystemGroupedBackground),
+                                            sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground),
+                                            groesse: 64,
+                                            isRectangular: true,
+                                            aktion: {
+                                                if isActive {
+                                                    if activeWeekdays.count > 1 {
+                                                        activeWeekdays.remove(item.0)
+                                                    }
+                                                } else {
+                                                    activeWeekdays.insert(item.0)
                                                 }
-                                            } else {
-                                                activeWeekdays.insert(item.0)
                                             }
-                                        } label: {
-                                            Text(item.1)
-                                                .font(.system(size: 14, weight: .bold, design: .rounded))
-                                                .frame(maxWidth: .infinity)
-                                                .padding(.vertical, 8)
-                                                .background(activeWeekdays.contains(item.0) ? Color.gruenPrimary : Color(UIColor.tertiarySystemGroupedBackground))
-                                                .foregroundStyle(activeWeekdays.contains(item.0) ? .white : .primary)
-                                                .clipShape(Circle())
+                                        ) {
+                                            HStack {
+                                                Text(item.1)
+                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                    .foregroundStyle(.primary)
+                                                Spacer()
+                                                Toggle("", isOn: Binding(get: { isActive }, set: { _ in }))
+                                                    .labelsHidden()
+                                                    .disabled(true)
+                                            }
                                         }
                                     }
                                 }
@@ -317,10 +338,10 @@ struct ScreenTimeSettingsView: View {
         }
     }
     
-    private func copyAndOpenPicker(domain: String) {
-        UIPasteboard.general.string = domain
-        suggestionAlertTitle = String(localized: "screenTime.suggestions.copied.title", defaultValue: "Link kopiert!")
-        suggestionAlertMessage = String(localized: "screenTime.suggestions.copied.desc", defaultValue: "Wir haben '\(domain)' für dich in die Zwischenablage kopiert. Tippe auf 'Öffnen', klicke oben ins Suchfeld und wähle 'Einsetzen', um es zu blockieren.")
+    private func addCustomDomain(_ domain: String) {
+        manager.customBlockedDomains.insert(domain)
+        suggestionAlertTitle = String(localized: "common.success", defaultValue: "Erfolgreich!")
+        suggestionAlertMessage = String(localized: "screenTime.suggestions.added", defaultValue: "Die Webseite \(domain) wurde hinzugefügt und ist ab sofort blockiert.")
         showSuggestionAlert = true
     }
     
@@ -344,23 +365,42 @@ struct ScreenTimeSettingsView: View {
 
 struct PermanentBlockCard<Content: View>: View {
     let content: Content
+    var deleteAction: (() -> Void)? = nil
     
-    init(@ViewBuilder content: () -> Content) {
+    init(deleteAction: (() -> Void)? = nil, @ViewBuilder content: () -> Content) {
+        self.deleteAction = deleteAction
         self.content = content()
     }
     
     var body: some View {
-        VStack(alignment: .center, spacing: 8) {
-            content
-                .font(.system(size: 14, weight: .bold, design: .rounded))
-                .multilineTextAlignment(.center)
-                .lineLimit(2)
+        Item3DButton(
+            farbe: Color(UIColor.secondarySystemGroupedBackground),
+            sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground),
+            groesse: 120,
+            isRectangular: true,
+            aktion: deleteAction
+        ) {
+            VStack(alignment: .center, spacing: 8) {
+                if deleteAction != nil {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.secondary)
+                            .font(.system(size: 18))
+                    }
+                    .padding(.bottom, -16)
+                }
+                
+                Spacer()
+                
+                content
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                    
+                Spacer()
+            }
         }
-        .frame(width: 120, height: 120)
-        .padding()
-        .background(Color(UIColor.secondarySystemGroupedBackground))
-        .cornerRadius(24)
-        .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
 }
 
@@ -372,7 +412,13 @@ struct SuggestionCard: View {
     let action: () -> Void
     
     var body: some View {
-        Button(action: action) {
+        Item3DButton(
+            farbe: isActive ? color : Color(UIColor.secondarySystemGroupedBackground),
+            sekundaerFarbe: isActive ? color.darker() : Color(UIColor.tertiarySystemGroupedBackground),
+            groesse: 100,
+            isRectangular: true,
+            aktion: action
+        ) {
             VStack(spacing: 12) {
                 Image(systemName: icon)
                     .font(.system(size: 32))
@@ -383,12 +429,6 @@ struct SuggestionCard: View {
                     .multilineTextAlignment(.center)
                     .foregroundStyle(isActive ? .white : .primary)
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 100)
-            .padding()
-            .background(isActive ? color : Color(UIColor.secondarySystemGroupedBackground))
-            .cornerRadius(20)
-            .shadow(color: isActive ? color.opacity(0.4) : .black.opacity(0.05), radius: 4, x: 0, y: 2)
         }
     }
 }

@@ -78943,6 +78943,77 @@
         }
       }
     },
+    "common.open": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffnen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開く"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "열기"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwórz"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aç"
+          }
+        }
+      }
+    },
     "common.plant_fallback": {
       "comment": "",
       "extractionState": "manual",
@@ -80284,17 +80355,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "D"
-          }
-        }
-      }
-    },
-    "common.understood": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Verstanden"
           }
         }
       }
@@ -209455,6 +209515,77 @@
         }
       }
     },
+    "screenTime.emergency.unlock": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notfall-Entsperrung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emergency Unlock"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloqueo de emergencia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déverrouillage d'urgence"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sblocco di emergenza"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "緊急ロック解除"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "긴급 잠금 해제"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noodontgrendeling"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odblokowanie awaryjne"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloqueio de emergência"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acil Kilit Açma"
+          }
+        }
+      }
+    },
     "screenTime.info.desc": {
       "extractionState": "manual",
       "localizations": {
@@ -210451,6 +210582,77 @@
         }
       }
     },
+    "screenTime.schedule.summary": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Zeitplan ist an den ausgewählten Tagen aktiv."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The schedule is active on the selected days."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El horario está activo en los días seleccionados."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le programme est actif les jours sélectionnés."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il programma è attivo nei giorni selezionati."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スケジュールは選択された日に有効です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "선택한 날짜에 일정이 활성화됩니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het schema is actief op de geselecteerde dagen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harmonogram jest aktywny w wybrane dni."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O horário está ativo nos dias selecionados."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Program seçilen günlerde etkindir."
+          }
+        }
+      }
+    },
     "screenTime.suggestions.adult.title": {
       "extractionState": "manual",
       "localizations": {
@@ -210589,6 +210791,148 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kumar ve Casino"
+          }
+        }
+      }
+    },
+    "screenTime.suggestions.copied.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wir haben %@ für dich in die Zwischenablage kopiert. Tippe auf 'Öffnen', klicke oben ins Suchfeld und wähle 'Einsetzen', um es zu blockieren."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We copied %@ to your clipboard. Tap 'Open', tap the search bar, and select 'Paste' to block it."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiamos %@ en el portapapeles. Toca 'Abrir', selecciona la barra de búsqueda y pega para bloquearlo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nous avons copié %@ dans votre presse-papiers. Appuyez sur 'Ouvrir', appuyez sur la barre de recherche et collez pour bloquer."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abbiamo copiato %@ negli appunti. Tocca 'Apri', tocca la barra di ricerca e incolla per bloccarlo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "クリップボードに%@をコピーしました。「開く」をタップし、検索バーをタップして「ペースト」を選択し、ブロックしてください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "클립보드에 %@을(를) 복사했습니다. '열기'를 탭하고 검색 표시줄을 탭한 다음 '붙여넣기'를 선택하여 차단하세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We hebben %@ naar je klembord gekopieerd. Tik op 'Openen', tik op de zoekbalk en plak om het te blokkeren."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skopiowaliśmy %@ do schowka. Stuknij 'Otwórz', stuknij pasek wyszukiwania i wybierz 'Wklej', aby zablokować."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiamos %@ para a sua área de transferência. Toque em 'Abrir', toque na barra de pesquisa e cole para bloquear."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ panoya kopyalandı. 'Aç'a dokunun, arama çubuğuna dokunun ve engellemek için yapıştırın."
+          }
+        }
+      }
+    },
+    "screenTime.suggestions.copied.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link kopiert!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link copied!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Enlace copiado!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lien copié !"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link copiato!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リンクをコピーしました！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "링크 복사됨!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link gekopieerd!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skopiowano link!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link copiado!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bağlantı kopyalandı!"
           }
         }
       }
@@ -293679,357 +294023,144 @@
         }
       }
     },
-    "screenTime.emergency.unlock": {
+    "common.success": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Notfall-Entsperrung"
+            "value": "Erfolgreich!"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noodontgrendeling"
+            "value": "Succes!"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Emergency Unlock"
+            "value": "Success!"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Déverrouillage d'urgence"
+            "value": "Succès !"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sblocco di emergenza"
+            "value": "Successo!"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "緊急ロック解除"
+            "value": "成功しました！"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "긴급 잠금 해제"
+            "value": "성공!"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Odblokowanie awaryjne"
+            "value": "Sukces!"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Desbloqueio de emergência"
+            "value": "Sucesso!"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Desbloqueo de emergencia"
+            "value": "¡Éxito!"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Acil Kilit Açma"
+            "value": "Başarılı!"
           }
         }
       }
     },
-    "screenTime.schedule.summary": {
+    "screenTime.suggestions.added": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Der Zeitplan ist an den ausgewählten Tagen aktiv."
+            "value": "Die Webseite %@ wurde hinzugefügt und ist ab sofort blockiert."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Het schema is actief op de geselecteerde dagen."
+            "value": "De website %@ is toegevoegd en is nu geblokkeerd."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The schedule is active on the selected days."
+            "value": "The website %@ has been added and is now blocked."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le programme est actif les jours sélectionnés."
+            "value": "Le site %@ a été ajouté et est désormais bloqué."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il programma è attivo nei giorni selezionati."
+            "value": "Il sito web %@ è stato aggiunto ed è ora bloccato."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "スケジュールは選択された日に有効です。"
+            "value": "ウェブサイト %@ が追加され、ブロックされました。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "선택한 날짜에 일정이 활성화됩니다."
+            "value": "웹사이트 %@ 이(가) 추가되어 이제 차단되었습니다."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Harmonogram jest aktywny w wybrane dni."
+            "value": "Witryna %@ została dodana i jest teraz zablokowana."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O horário está ativo nos dias selecionados."
+            "value": "O site %@ foi adicionado e agora está bloqueado."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El horario está activo en los días seleccionados."
+            "value": "El sitio web %@ se ha añadido y ahora está bloqueado."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Program seçilen günlerde etkindir."
-          }
-        }
-      }
-    },
-    "screenTime.suggestions.copied.title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Link kopiert!"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Link gekopieerd!"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Link copied!"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lien copié !"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Link copiato!"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "リンクをコピーしました！"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "링크 복사됨!"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skopiowano link!"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Link copiado!"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¡Enlace copiado!"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bağlantı kopyalandı!"
-          }
-        }
-      }
-    },
-    "screenTime.suggestions.copied.desc": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wir haben %@ für dich in die Zwischenablage kopiert. Tippe auf 'Öffnen', klicke oben ins Suchfeld und wähle 'Einsetzen', um es zu blockieren."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "We hebben %@ naar je klembord gekopieerd. Tik op 'Openen', tik op de zoekbalk en plak om het te blokkeren."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "We copied %@ to your clipboard. Tap 'Open', tap the search bar, and select 'Paste' to block it."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nous avons copié %@ dans votre presse-papiers. Appuyez sur 'Ouvrir', appuyez sur la barre de recherche et collez pour bloquer."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abbiamo copiato %@ negli appunti. Tocca 'Apri', tocca la barra di ricerca e incolla per bloccarlo."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "クリップボードに%@をコピーしました。「開く」をタップし、検索バーをタップして「ペースト」を選択し、ブロックしてください。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "클립보드에 %@을(를) 복사했습니다. '열기'를 탭하고 검색 표시줄을 탭한 다음 '붙여넣기'를 선택하여 차단하세요."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skopiowaliśmy %@ do schowka. Stuknij 'Otwórz', stuknij pasek wyszukiwania i wybierz 'Wklej', aby zablokować."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Copiamos %@ para a sua área de transferência. Toque em 'Abrir', toque na barra de pesquisa e cole para bloquear."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Copiamos %@ en el portapapeles. Toca 'Abrir', selecciona la barra de búsqueda y pega para bloquearlo."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ panoya kopyalandı. 'Aç'a dokunun, arama çubuğuna dokunun ve engellemek için yapıştırın."
-          }
-        }
-      }
-    },
-    "common.open": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Öffnen"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apri"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "開く"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "열기"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Otwórz"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abrir"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abrir"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aç"
+            "value": "%@ web sitesi eklendi ve artık engellendi."
           }
         }
       }

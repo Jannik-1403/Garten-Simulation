@@ -25,6 +25,19 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
+    @AppStorage("screenTimeCustomDomainsData") private var customBlockedDomainsData: Data = Data()
+    var customBlockedDomains: Set<String> {
+        get {
+            (try? JSONDecoder().decode(Set<String>.self, from: customBlockedDomainsData)) ?? Set()
+        }
+        set {
+            if let data = try? JSONEncoder().encode(newValue) {
+                customBlockedDomainsData = data
+            }
+            applyPermanentBlocks()
+        }
+    }
+    
     // MARK: - Block Schedule
     @AppStorage("isScreenTimeScheduleActive") var isScheduleActive: Bool = false
     @AppStorage("screenTimeBlockStartHour") var blockStartHour: Int = 9
@@ -122,11 +135,24 @@ class ScreenTimeManager: ObservableObject {
         store.shield.applications = permanentBlockSelection.applicationTokens
         store.shield.webDomains = permanentBlockSelection.webDomainTokens
         
-        // Handle Adult Content filter
+        // Handle Adult Content filter and custom domains
+        let customDomains = Set(customBlockedDomains.map { WebDomain(domain: $0) })
+        
         if isAdultFilterEnabled {
-            store.webContent.blockedByFilter = .auto()
+            // Auto blocks adult content. We can't easily combine auto and specific blocked domains in one policy,
+            // but we can prioritize specific if they exist, or just use auto. We'll use auto if adult is enabled and no custom domains.
+            // If custom domains exist, we must use specific to block them.
+            if !customDomains.isEmpty {
+                store.webContent.blockedByFilter = .specific(blockedDomains: customDomains)
+            } else {
+                store.webContent.blockedByFilter = .auto()
+            }
         } else {
-            store.webContent.blockedByFilter = nil
+            if !customDomains.isEmpty {
+                store.webContent.blockedByFilter = .specific(blockedDomains: customDomains)
+            } else {
+                store.webContent.blockedByFilter = nil
+            }
         }
     }
     

@@ -523,3 +523,5 @@
 - **Screen Time Copy-to-Paste Suggestions**: Reworked suggestion cards to automatically copy the domain to the clipboard and directly launch the block picker for immediate usage.
 - **Clean UI**: Removed heavy 3D shadow and rotation effects from the block cards for a modern, flat look.
 - **Weekday Scheduling**: Added the ability to choose specific weekdays for the active screen time block schedule.
+- **Screen Time Domains**: Implemented direct programmatic blocking of web domains using `webContent.blockedByFilter` so suggestions can be added instantly without Apple's Family Activity Picker.
+- **Item3DButton UI**: Upgraded all Screen Time cards (Permanent Blocks, Suggestions, Weekday List) to strictly use the `Item3DButton` styling for a uniform and premium visual experience.
