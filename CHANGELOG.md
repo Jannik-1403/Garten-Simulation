@@ -501,3 +501,5 @@
 - Richtige 11-sprachige Übersetzungen für Bildschirmzeit-Keys integriert (statt nur deutsche Platzhalter)
 - Xcode Warnung wegen ungenutzter Keys (z.B. '%lldh %lldm') behoben, indem sie restlos entfernt wurden
 - 100% Übersetzungsabdeckung bei Chinesisch (zh-Hans & zh-Hant) wiederhergestellt
+- Screen Time Edit UI: Komplettes Rework auf Item3DButton und Pop-Up Sheet umgestellt, wie gewünscht.
+- Lokalisierung: Fehlerhafte 'new' states in der xcstrings für Deutsche Keys auf 'translated' korrigiert und verwaiste Keys endgültig entfernt, um 100% wiederherzustellen.

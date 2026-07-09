@@ -679,71 +679,33 @@ struct PflanzeDetailSheet: View {
                                                             }
                                                             
                                                             Button {
-                                                                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
-                                                                    isEditingScreenTime.toggle()
-                                                                }
+                                                                isEditingScreenTime = true
                                                             } label: {
                                                                 HStack {
                                                                     Text("\(screenTimeHours) \(String(localized: "common.hours.short", defaultValue: "Std.")) \(screenTimeMinutes) \(String(localized: "common.minutes.short", defaultValue: "Min."))")
                                                                         .font(.system(size: 24, weight: .bold, design: .rounded))
                                                                         .foregroundColor(.primary)
                                                                     Spacer()
-                                                                    Image(systemName: isEditingScreenTime ? "chevron.up.circle.fill" : "pencil.circle.fill")
+                                                                    Image(systemName: "pencil")
                                                                         .font(.title2)
-                                                                        .foregroundColor(.orange)
+                                                                        .foregroundColor(.primary)
                                                                 }
-                                                                .padding()
-                                                                .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 16))
+                                                                .padding(14)
+                                                                .frame(maxWidth: .infinity)
                                                             }
-                                                            
-                                                            if isEditingScreenTime {
-                                                                HStack {
-                                                                    Picker(String(localized: "common.hours", defaultValue: "Stunden"), selection: $screenTimeHours) {
-                                                                        ForEach(0...23, id: \.self) { h in
-                                                                            Text("\(h) \(String(localized: "common.hours.short", defaultValue: "Std."))").tag(h)
-                                                                        }
-                                                                    }
-                                                                    .pickerStyle(.wheel)
-                                                                    .frame(height: 100)
-                                                                    .clipped()
-                                                                    
-                                                                    Picker(String(localized: "common.minutes", defaultValue: "Minuten"), selection: $screenTimeMinutes) {
-                                                                        ForEach(Array(stride(from: 0, to: 60, by: 5)), id: \.self) { m in
-                                                                            Text("\(m) \(String(localized: "common.minutes.short", defaultValue: "Min."))").tag(m)
-                                                                        }
-                                                                    }
-                                                                    .pickerStyle(.wheel)
-                                                                    .frame(height: 100)
-                                                                    .clipped()
-                                                                }
-                                                                .background(Color.secondary.opacity(0.05), in: RoundedRectangle(cornerRadius: 12))
-                                                                .transition(.opacity.combined(with: .scale(scale: 0.95)))
-                                                                
-                                                                Button {
-                                                                    showScreenTimeConfirm = true
-                                                                } label: {
-                                                                    Text(String(localized: "common.save", defaultValue: "Speichern"))
-                                                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                                        .foregroundColor(.white)
-                                                                        .frame(maxWidth: .infinity)
-                                                                        .padding(14)
-                                                                        .background(Color.orange, in: RoundedRectangle(cornerRadius: 14))
-                                                                        .shadow(color: .orange.opacity(0.4), radius: 8, x: 0, y: 4)
-                                                                }
-                                                                .alert(String(localized: "screentime.tracker.confirm_title", defaultValue: "Limit speichern?"), isPresented: $showScreenTimeConfirm) {
-                                                                    Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) { }
-                                                                    Button(String(localized: "common.save", defaultValue: "Speichern")) {
+                                                            .buttonStyle(Item3DButtonStyle(farbe: Color(uiColor: .secondarySystemBackground), sekundaerFarbe: Color(uiColor: .systemGray4), iconSkalierung: 1.0, isRectangular: true, isPermanentlyPressed: false, shadowDepthFactor: 0.08, isDisabled: false))
+                                                            .sheet(isPresented: $isEditingScreenTime) {
+                                                                ScreenTimePickerSheet(
+                                                                    screenTimeHours: $screenTimeHours,
+                                                                    screenTimeMinutes: $screenTimeMinutes,
+                                                                    isPresented: $isEditingScreenTime,
+                                                                    onSave: {
                                                                         pflanze.customTrackerTarget = Double(screenTimeHours * 60 + screenTimeMinutes)
                                                                         gardenStore.savePlants()
                                                                         DeviceActivityManager.shared.screenTimeGoalMinutes = Int(pflanze.customTrackerTarget ?? 120)
-                                                                        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
-                                                                            isEditingScreenTime = false
-                                                                        }
                                                                     }
-                                                                } message: {
-                                                                    Text(String(localized: "screentime.tracker.confirm_msg", defaultValue: "Möchtest du das Limit wirklich auf das neue Ziel ändern?"))
-                                                                }
-                                                                .transition(.opacity.combined(with: .scale(scale: 0.95)))
+                                                                )
+                                                                .presentationDetents([.height(350), .medium])
                                                             }
                                                             
                                                             Text(String(localized: "screentime.tracker.no_live", defaultValue: "Die Bildschirmzeit wird automatisch im Hintergrund geprüft. Aus Datenschutzgründen von Apple kann der Live-Fortschritt hier nicht angezeigt werden."))
@@ -761,9 +723,8 @@ struct PflanzeDetailSheet: View {
                                                                 .foregroundColor(.white)
                                                                 .frame(maxWidth: .infinity)
                                                                 .padding(14)
-                                                                .background(Color.blue, in: RoundedRectangle(cornerRadius: 14))
-                                                                .shadow(color: .blue.opacity(0.4), radius: 8, x: 0, y: 4)
                                                             }
+                                                            .buttonStyle(Item3DButtonStyle(farbe: .blue, sekundaerFarbe: .blue.opacity(0.6), iconSkalierung: 1.0, isRectangular: true, isPermanentlyPressed: false, shadowDepthFactor: 0.08, isDisabled: false))
                                                         }
                                                     } else {
                                                         HStack {
@@ -2460,5 +2421,65 @@ struct HabitBoostCard: View {
         .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
         }
         .padding(.bottom, 6)
+    }
+}
+
+struct ScreenTimePickerSheet: View {
+    @Binding var screenTimeHours: Int
+    @Binding var screenTimeMinutes: Int
+    @Binding var isPresented: Bool
+    let onSave: () -> Void
+    
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 24) {
+                HStack {
+                    Picker(String(localized: "common.hours", defaultValue: "Stunden"), selection: $screenTimeHours) {
+                        ForEach(0...23, id: \.self) { h in
+                            Text("\(h) \(String(localized: "common.hours.short", defaultValue: "Std."))").tag(h)
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                    .frame(height: 150)
+                    .clipped()
+                    
+                    Picker(String(localized: "common.minutes", defaultValue: "Minuten"), selection: $screenTimeMinutes) {
+                        ForEach(Array(stride(from: 0, to: 60, by: 5)), id: \.self) { m in
+                            Text("\(m) \(String(localized: "common.minutes.short", defaultValue: "Min."))").tag(m)
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                    .frame(height: 150)
+                    .clipped()
+                }
+                .background(Color.secondary.opacity(0.05), in: RoundedRectangle(cornerRadius: 16))
+                .padding(.horizontal)
+                
+                Button {
+                    onSave()
+                    isPresented = false
+                } label: {
+                    Text(String(localized: "common.save", defaultValue: "Speichern"))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(14)
+                }
+                .buttonStyle(Item3DButtonStyle(farbe: .orange, sekundaerFarbe: .orange.opacity(0.8), iconSkalierung: 1.0, isRectangular: true, isPermanentlyPressed: false, shadowDepthFactor: 0.08, isDisabled: false))
+                .padding(.horizontal)
+                
+                Spacer()
+            }
+            .padding(.top, 24)
+            .navigationTitle(String(localized: "screentime.tracker.confirm_title", defaultValue: "Limit speichern?"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(String(localized: "common.cancel", defaultValue: "Abbrechen")) {
+                        isPresented = false
+                    }
+                }
+            }
+        }
     }
 }

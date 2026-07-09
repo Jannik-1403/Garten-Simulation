@@ -210078,7 +210078,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Möchtest du das Limit wirklich auf das neue Ziel ändern?"
           }
         },
@@ -210173,7 +210173,7 @@
       "localizations": {
         "de": {
           "stringUnit": {
-            "state": "new",
+            "state": "translated",
             "value": "Limit speichern?"
           }
         },
