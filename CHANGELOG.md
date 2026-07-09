@@ -543,3 +543,6 @@
 - **Walk of Shame (Anti-Cheat)**: Das Abbrechen einer Session erfordert nun das Abtippen eines demütigenden Textes ("Ich entscheide mich bewusst für billiges Dopamin..."). Der neue `AntiPasteTextEditor` blockiert gnadenlos das Einfügen über die Zwischenablage oder iOS Live Text. Bei Fehlern wackelt die Box und wird rot.
 - **AntiPasteTextEditor Fix**: Kompilierungsfehler bezüglich `UIResponderStandardEditActions.replace` behoben, da diese Methode in UIKit nicht standardmäßig zur Verfügung steht. Copy und Paste bleiben blockiert.
 - **Cleanup**: Entfernung von veralteten `generateCancelMathProblem`-Funktionen in `FocusSessionView`, da die Matheaufgabe vollständig durch den neuen "Walk of Shame" ersetzt wurde.
+- **Architektur-Update**: Fokus-Timer nutzt jetzt wieder die Matheaufgabe (`MathChallengeView`) mit deutlich schwereren Problemen.
+- **Screen Time Settings**: "Walk of Shame" wurde in die Einstellungen verschoben, um dauerhaft gesperrte Apps (Ebene 2) freizuschalten.
+- **Tägliches Zeitlimit**: Neues "Ebene 1" System eingeführt, das Apps nach einer definierten Nutzungsdauer (`DeviceActivityEvent`) pro Tag automatisch sperrt.

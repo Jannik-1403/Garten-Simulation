@@ -117,6 +117,16 @@ class ScreenTimeManager: ObservableObject {
         didSet { saveBlockSelection() }
     }
     
+    /// Ebene 1: Tägliches Zeitlimit Apps
+    @Published var dailyLimitSelection = FamilyActivitySelection() {
+        didSet { saveDailyLimitSelection() }
+    }
+    
+    /// Ebene 1: Zeitlimit in Minuten
+    @Published var dailyLimitMinutes: Int = 0 {
+        didSet { saveDailyLimitMinutes() }
+    }
+    
     @Published var isAuthorized = false
     
     let permanentStore = ManagedSettingsStore(named: .init("permanent"))
@@ -130,6 +140,8 @@ class ScreenTimeManager: ObservableObject {
         loadAllowedSelection()
         loadBlockSelection()
         loadPermanentBlockSelection()
+        loadDailyLimitSelection()
+        loadDailyLimitMinutes()
         checkAuthorizationStatus()
         
         NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] _ in
@@ -192,7 +204,30 @@ class ScreenTimeManager: ObservableObject {
         // Save blockSelection data to App Group so the extension can read it
         let defaults = UserDefaults(suiteName: SharedUserDefaults.suiteName)
         defaults?.set(blockSelectionData, forKey: "screenTimeBlockSelectionData_appGroup")
+        
+        let dailyData = try? JSONEncoder().encode(dailyLimitSelection)
+        defaults?.set(dailyData, forKey: "screenTimeDailyLimitSelectionData_appGroup")
         defaults?.synchronize()
+        
+        // Start monitoring for daily limit if active
+        if dailyLimitMinutes > 0 && (!dailyLimitSelection.applicationTokens.isEmpty || !dailyLimitSelection.categoryTokens.isEmpty || !dailyLimitSelection.webDomainTokens.isEmpty) {
+            let dailySchedule = DeviceActivitySchedule(
+                intervalStart: DateComponents(hour: 0, minute: 0),
+                intervalEnd: DateComponents(hour: 23, minute: 59),
+                repeats: true
+            )
+            let dailyEvent = DeviceActivityEvent(
+                applications: dailyLimitSelection.applicationTokens,
+                categories: dailyLimitSelection.categoryTokens,
+                webDomains: dailyLimitSelection.webDomainTokens,
+                threshold: DateComponents(minute: dailyLimitMinutes)
+            )
+            do {
+                try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).dailyLimit"), during: dailySchedule, events: [.init("dailyLimitEvent"): dailyEvent])
+            } catch {
+                print("Failed to schedule daily limit: \(error)")
+            }
+        }
         
         guard isScheduleActive else { return }
         
@@ -295,5 +330,26 @@ class ScreenTimeManager: ObservableObject {
            let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
             self.permanentBlockSelection = selection
         }
+    }
+    
+    private func saveDailyLimitSelection() {
+        if let data = try? JSONEncoder().encode(dailyLimitSelection) {
+            UserDefaults.standard.set(data, forKey: "screenTimeDailyLimitSelection")
+        }
+    }
+    
+    private func loadDailyLimitSelection() {
+        if let data = UserDefaults.standard.data(forKey: "screenTimeDailyLimitSelection"),
+           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.dailyLimitSelection = selection
+        }
+    }
+    
+    private func saveDailyLimitMinutes() {
+        UserDefaults.standard.set(dailyLimitMinutes, forKey: "screenTimeDailyLimitMinutes")
+    }
+    
+    private func loadDailyLimitMinutes() {
+        self.dailyLimitMinutes = UserDefaults.standard.integer(forKey: "screenTimeDailyLimitMinutes")
     }
 }

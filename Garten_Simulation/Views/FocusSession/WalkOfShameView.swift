@@ -10,20 +10,45 @@ struct WalkOfShameView: View {
     @State private var typedText: String = ""
     @State private var shakeOffset: CGFloat = 0
     @State private var hasError: Bool = false
+    @State private var requiredText: String = ""
     
-    let requiredText = String(localized: "focus.giveup.walkofshame.text", defaultValue: "Ich gebe hiermit auf. Ich entscheide mich bewusst für billiges Dopamin und lasse meinen Garten im Stich.")
+    @FocusState private var isFocused: Bool
+    
+    let sentencePool = [
+        "Ich bin schwach und wähle den einfachen Weg, weil ich keine Disziplin habe.",
+        "Anstatt produktiv zu sein, verschwende ich meine Zeit mit billigem Dopamin.",
+        "Ich entscheide mich bewusst dafür, meine Ziele zu ignorieren und aufzugeben.",
+        "Ich habe nicht die mentale Stärke, diesen Fokus durchzuhalten."
+    ]
     
     var body: some View {
         ZStack {
             // Dark background for the "Walk of Shame"
             Color.black.edgesIgnoringSafeArea(.all)
+                .onTapGesture { isFocused = false }
             
-            VStack(spacing: 30) {
+            VStack(spacing: 20) {
+                // Top bar with dismiss keyboard button
+                HStack {
+                    Spacer()
+                    Button {
+                        isFocused = false
+                    } label: {
+                        Image(systemName: "keyboard.chevron.compact.down")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundStyle(.white)
+                            .padding()
+                            .background(Color.white.opacity(0.2))
+                            .clipShape(Circle())
+                    }
+                    .padding(.trailing, 24)
+                    .padding(.top, 16)
+                }
+                
                 // Warning Icon
                 Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.system(size: 60))
+                    .font(.system(size: 50))
                     .foregroundColor(.red)
-                    .padding(.top, 40)
                 
                 Text(String(localized: "focus.giveup.walkofshame.title", defaultValue: "Der Walk of Shame"))
                     .font(.system(size: 28, weight: .black, design: .rounded))
@@ -51,6 +76,7 @@ struct WalkOfShameView: View {
                 
                 // Anti-Paste Editor
                 AntiPasteTextEditor(text: $typedText)
+                    .focused($isFocused)
                     .frame(height: 120)
                     .padding()
                     .background(Color.gray.opacity(0.1))
@@ -75,14 +101,9 @@ struct WalkOfShameView: View {
                         triggerShake()
                     }
                 }) {
-                    Text(String(localized: "focus.giveup.walkofshame.button", defaultValue: "Aufgeben & Garten sterben lassen"))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(typedText == requiredText ? Color.red : Color.gray.opacity(0.3))
-                        .cornerRadius(16)
+                    Text(String(localized: "focus.giveup.walkofshame.button", defaultValue: "Aufgeben & Apps entsperren"))
                 }
+                .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: typedText == requiredText ? .red : Color.gray.opacity(0.3), shadowColor: typedText == requiredText ? .red.darker() : .clear))
                 .disabled(typedText != requiredText)
                 .padding(.horizontal, 24)
                 
@@ -96,6 +117,9 @@ struct WalkOfShameView: View {
                 }
                 .padding(.bottom, 40)
             }
+        }
+        .onAppear {
+            requiredText = sentencePool.randomElement()!
         }
     }
     

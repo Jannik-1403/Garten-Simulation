@@ -38,8 +38,10 @@ struct FocusSessionView: View {
     
 
     
-    // Walk of Shame
-    @State private var showWalkOfShame: Bool = false
+    // Math Challenge
+    @State private var showMathChallenge: Bool = false
+    @State private var cancelMathProblem: String = ""
+    @State private var cancelMathAnswer: Int = 0
     
     // Timer default 25 mins
     @State private var selectedMinutes: Int = 25
@@ -134,7 +136,11 @@ struct FocusSessionView: View {
                 UIApplication.shared.isIdleTimerDisabled = false
             }
         }
-        // No math problem generation needed for WalkOfShame
+        .onChange(of: showMathChallenge) {
+            if showMathChallenge && cancelMathProblem.isEmpty {
+                generateHardMathProblem()
+            }
+        }
         .onChange(of: scenePhase) {
             guard state == .timer && isTimerRunning else { return }
             
@@ -411,7 +417,7 @@ struct FocusSessionView: View {
             }
             
             Button {
-                showWalkOfShame = true
+                showMathChallenge = true
             } label: {
                 Text(String(localized: "button.cancel"))
                     .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -422,15 +428,14 @@ struct FocusSessionView: View {
         .frame(maxWidth: .infinity, minHeight: geometry.size.height)
         }
         }
-        .fullScreenCover(isPresented: $showWalkOfShame) {
-            WalkOfShameView(
-                onConfirmGiveUp: {
-                    showWalkOfShame = false
-                    isTimerRunning = false
-                    UIApplication.shared.isIdleTimerDisabled = false
-                    dismiss()
-                    
-                    let completedSeconds = selectedMinutes * 60 - remainingSeconds
+        .fullScreenCover(isPresented: $showMathChallenge) {
+            MathChallengeView(problemString: cancelMathProblem, correctAnswer: cancelMathAnswer) {
+                showMathChallenge = false
+                isTimerRunning = false
+                UIApplication.shared.isIdleTimerDisabled = false
+                dismiss()
+                
+                let completedSeconds = selectedMinutes * 60 - remainingSeconds
                     let durationMinutes = completedSeconds / 60
                     if durationMinutes > 0 {
                         let log = FocusSessionLog(
@@ -444,11 +449,7 @@ struct FocusSessionView: View {
                         )
                         gardenStore.focusSessions.append(log)
                     }
-                },
-                onCancel: {
-                    showWalkOfShame = false
-                }
-            )
+            }
         }
     }
     
@@ -578,6 +579,37 @@ struct FocusSessionView: View {
         gardenStore.focusSessions.append(log)
         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
     }
+    private func generateHardMathProblem() {
+        // Harder math problems! e.g. (A * B) + C or A - (B * C)
+        let operations = ["+", "-"]
+        let op = operations.randomElement()!
+        
+        let num1 = Int.random(in: 12...35)
+        let num2 = Int.random(in: 3...15)
+        let product = num1 * num2
+        
+        let num3 = Int.random(in: 50...500)
+        
+        var result = 0
+        var problem = ""
+        
+        if op == "+" {
+            result = product + num3
+            problem = "(\(num1) × \(num2)) + \(num3)"
+        } else {
+            if product > num3 {
+                result = product - num3
+                problem = "(\(num1) × \(num2)) - \(num3)"
+            } else {
+                result = num3 - product
+                problem = "\(num3) - (\(num1) × \(num2))"
+            }
+        }
+        
+        self.cancelMathProblem = problem
+        self.cancelMathAnswer = result
+    }
+    
     // MARK: - Live Activity Management
     private func startLiveActivity() {
         guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }

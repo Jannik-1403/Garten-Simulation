@@ -15,9 +15,17 @@ struct ScreenTimeSettingsView: View {
     
     @State private var isPickerPresented = false
     @State private var blockSelection = FamilyActivitySelection()
+    
+    @State private var isDailyLimitPickerPresented = false
+    @State private var dailyLimitSelection = FamilyActivitySelection()
+    @State private var dailyLimitMinutes: Int = 0
+    let limitOptions = [15, 30, 45, 60, 90, 120, 180, 240]
+    
     @State private var isPermanentPickerPresented = false
     @State private var permanentBlockSelection = FamilyActivitySelection()
     @State private var isAdultFilterEnabled = false
+    
+    @State private var showWalkOfShame = false
     
     // Weekday data: (weekdayInt, shortName, fullName)
     let allWeekdays: [(Int, String, String)] = [
@@ -75,6 +83,8 @@ struct ScreenTimeSettingsView: View {
             isScheduleActive = manager.isScheduleActive
             blockSelection = manager.blockSelection
             permanentBlockSelection = manager.permanentBlockSelection
+            dailyLimitSelection = manager.dailyLimitSelection
+            dailyLimitMinutes = manager.dailyLimitMinutes
             isAdultFilterEnabled = manager.isAdultFilterEnabled
             daySchedules = manager.daySchedules
         }
@@ -127,6 +137,7 @@ struct ScreenTimeSettingsView: View {
                     authorizationBanner
                 }
                 
+                dailyLimitSection
                 permanentBlockSection
                 scheduleSection
                 infoSection
@@ -159,16 +170,73 @@ struct ScreenTimeSettingsView: View {
             }
             .padding(.horizontal, 8)
         }
-        .frame(maxWidth: .infinity)
     }
     
-    // MARK: - Permanent Block Section
+    // MARK: - Ebene 1: Zeitlimit
+    private var dailyLimitSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Ebene 1: Tägliches Zeitlimit")
+                .font(.system(size: 18, weight: .bold, design: .rounded))
+                .padding(.horizontal)
+            
+            Text("Nach Ablauf dieser Zeit werden die ausgewählten Apps für den Rest des Tages blockiert.")
+                .font(.system(size: 14, weight: .regular, design: .rounded))
+                .foregroundStyle(.secondary)
+                .padding(.horizontal)
+            
+            HStack {
+                Item3DButton(
+                    farbe: Color.gruenPrimary,
+                    sekundaerFarbe: Color.gruenPrimary.darker(),
+                    groesse: 36,
+                    shadowDepthFactor: 0.15,
+                    isRectangular: true,
+                    aktion: { isDailyLimitPickerPresented = true }
+                ) {
+                    Image(systemName: "plus")
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 16)
+                }
+                .familyActivityPicker(isPresented: $isDailyLimitPickerPresented, selection: $dailyLimitSelection)
+                
+                Spacer()
+                
+                Picker("Limit", selection: $dailyLimitMinutes) {
+                    Text("Aus").tag(0)
+                    ForEach(limitOptions, id: \.self) { min in
+                        Text("\(min) Min").tag(min)
+                    }
+                }
+                .pickerStyle(.menu)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
+                .background(Color(UIColor.secondarySystemGroupedBackground))
+                .cornerRadius(12)
+            }
+            .padding(.horizontal)
+            
+            if !dailyLimitSelection.applicationTokens.isEmpty || !dailyLimitSelection.categoryTokens.isEmpty || !dailyLimitSelection.webDomainTokens.isEmpty {
+                VStack(spacing: 8) {
+                    ForEach(Array(dailyLimitSelection.applicationTokens), id: \.self) { token in
+                        BlockRow { Label(token) }
+                    }
+                    ForEach(Array(dailyLimitSelection.categoryTokens), id: \.self) { token in
+                        BlockRow { Label(token) }
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
+    }
+    
+    // MARK: - Ebene 2: Permanent Block Section
     
     private var permanentBlockSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             // Header: Title + [+] + [Adult Filter]
             HStack(spacing: 8) {
-                Text(String(localized: "screenTime.blocked.apps.title", defaultValue: "Blockierte Apps"))
+                Text("Ebene 2: Immer blockiert")
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                 Spacer()
                 
@@ -226,6 +294,28 @@ struct ScreenTimeSettingsView: View {
                     }
                 }
                 .padding(.horizontal)
+                
+                // Unblock Button (Walk of Shame)
+                Button {
+                    showWalkOfShame = true
+                } label: {
+                    Text("Apps entsperren")
+                }
+                .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: .orange, shadowColor: .orange.darker()))
+                .padding(.horizontal)
+                .fullScreenCover(isPresented: $showWalkOfShame) {
+                    WalkOfShameView(
+                        onConfirmGiveUp: {
+                            // Unblock permanent blocks!
+                            permanentBlockSelection = FamilyActivitySelection()
+                            manager.permanentBlockSelection = FamilyActivitySelection()
+                            showWalkOfShame = false
+                        },
+                        onCancel: {
+                            showWalkOfShame = false
+                        }
+                    )
+                }
             }
         }
     }
@@ -352,12 +442,13 @@ struct ScreenTimeSettingsView: View {
     private func saveSettings() {
         manager.isScheduleActive = isScheduleActive
         manager.blockSelection = blockSelection
+        manager.dailyLimitSelection = dailyLimitSelection
+        manager.dailyLimitMinutes = dailyLimitMinutes
         manager.daySchedules = daySchedules
         manager.permanentBlockSelection = permanentBlockSelection
         manager.isAdultFilterEnabled = isAdultFilterEnabled
         manager.applyPermanentBlocks()
         
-        // Register/update DeviceActivity background schedules
         let blockData = try? JSONEncoder().encode(blockSelection)
         manager.scheduleBlockActivities(daySchedules: daySchedules, blockSelectionData: blockData)
     }

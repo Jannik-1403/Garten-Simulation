@@ -13,15 +13,26 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     // Shared App Group so this extension can read the block selection stored by the main app
     let sharedDefaults = UserDefaults(suiteName: "group.com.jannik.grovy")
     let store = ManagedSettingsStore(named: .init("scheduled"))
+    let dailyLimitStore = ManagedSettingsStore(named: .init("dailyLimit"))
     
     // MARK: - Interval Start → Block apps
     
     override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
         
-        guard activity.rawValue.hasPrefix("com.jannik.grovy.screentime.block") else {
-            // Not one of our block activities — handle screentime limit tracking
+        if activity.rawValue == "com.jannik.grovy.screentime.block.dailyLimit" {
+            // New day started for daily limit tracker, clear the shield
+            dailyLimitStore.shield.applications = nil
+            dailyLimitStore.shield.applicationCategories = nil
+            dailyLimitStore.shield.webDomains = nil
+            dailyLimitStore.shield.webDomainCategories = nil
             sharedDefaults?.set(false, forKey: "screenTimeLimitExceededToday")
+            sharedDefaults?.synchronize()
+            return
+        }
+        
+        guard activity.rawValue.hasPrefix("com.jannik.grovy.screentime.block") else {
+            // Not one of our block activities
             return
         }
         
@@ -71,9 +82,18 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventDidReachThreshold(event, activity: activity)
         
-        if event.rawValue == "screenTimeLimit" {
-            sharedDefaults?.set(true, forKey: "screenTimeLimitExceededToday")
-            sharedDefaults?.synchronize()
+        if event.rawValue == "dailyLimitEvent" {
+            // Threshold reached! Block the apps
+            if let data = sharedDefaults?.data(forKey: "screenTimeDailyLimitSelectionData_appGroup"),
+               let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+                dailyLimitStore.shield.applications = selection.applicationTokens
+                dailyLimitStore.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.specific(selection.categoryTokens)
+                dailyLimitStore.shield.webDomains = selection.webDomainTokens
+                dailyLimitStore.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.specific(selection.categoryTokens)
+                
+                sharedDefaults?.set(true, forKey: "screenTimeLimitExceededToday")
+                sharedDefaults?.synchronize()
+            }
         }
     }
     
