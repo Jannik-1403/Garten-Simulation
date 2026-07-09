@@ -53,9 +53,9 @@ for apple_lang, google_lang in langs.items():
         if apple_lang not in locs or locs[apple_lang].get('stringUnit', {}).get('state') != 'translated':
             # Use English or German as source if available, else key
             src = key
-            if 'de' in locs and locs['de'].get('stringUnit', {}).get('state') == 'translated':
+            if 'de' in locs and 'value' in locs['de'].get('stringUnit', {}):
                 src = locs['de']['stringUnit']['value']
-            elif 'en' in locs and locs['en'].get('stringUnit', {}).get('state') == 'translated':
+            elif 'en' in locs and 'value' in locs['en'].get('stringUnit', {}):
                 src = locs['en']['stringUnit']['value']
             
             keys_to_translate.append(key)

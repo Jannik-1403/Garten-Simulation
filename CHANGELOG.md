@@ -571,3 +571,4 @@
 - Walk Of Shame: iOS Live-Text/Scan komplett blockiert. X-Icon & Tastatur verkleinert. 5 neue Abschreibe-Texte hinzugefügt.
 - Screen Time: Neues Pop-up Warnfenster hinzugefügt, wenn man Apps in Ebene 2 hinzufügt.
 - Walk Of Shame: Chunk-Blocker implementiert (verhindert Diktieren und predictive text), Rechtschreibprüfung & Autokorrektur deaktiviert.
+- Walk Of Shame: 5 neue 'Höllen-Texte' implementiert und in 14 Sprachen lokalisiert

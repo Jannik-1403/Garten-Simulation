@@ -15,11 +15,11 @@ struct WalkOfShameView: View {
     @FocusState private var isFocused: Bool
     
     let sentencePool = [
-        "Ich kapituliere zu 100%! Statt an meinen Zielen zu arbeiten, wähle ich den 0-8-15 Weg. Ich opfere meine #Disziplin für 5 Min. billiges Dopamin. Das ist armselig; aber ich tue es trotzdem (und akzeptiere den HP-Verlust).",
-        "[Achtung] Ich bin zu schwach für 99% meiner Aufgaben. Ich breche ab: X-Y-Z statt A-B-C. Mein Fokus sinkt auf 0.00; ich wähle #Versagen über #Wachstum. Warum? Weil mein Dopamin-Spiegel < 10% ist.",
-        "Fehler-Code 404: Willenskraft nicht gefunden! Ich tausche meine 1. Priorität gegen 10 Min. sinnlosen Feed-Scroll. Ist das schlau? Nein. Mache ich es trotzdem? Ja!! (Tschüss, wertvolle Zeit...)",
-        "Ich bestätige hiermit den Abbruch (Status: 100% undiszipliniert). Statt +1 Schritt nach vorne, mache ich -3 Schritte zurück. Meine #Ziele sind mir gerade egal; ich klicke auf [Entsperren] & vergeude 1/2 Stunde.",
-        "Warum aufgeben? Weil ich 0% Frustrationstoleranz habe. Ich wähle den Shortcut (Typ B) und ignoriere Regel #1: Bleib fokussiert! Meine HP sinken um -15.0 Punkte; das ist der Preis für 2 Min. Schwäche."
+        String(localized: "focus.giveup.walkofshame.sentence1", defaultValue: "Ich kapituliere zu einhundert Prozent! Statt an meinen Zielen zu arbeiten, wähle ich den null-acht-fünfzehn Weg. Ich opfere meine #Disziplin für fünf Min. billiges Dopamin. Das ist armselig; aber ich tue es trotzdem (und akzeptiere den HP-Verlust)."),
+        String(localized: "focus.giveup.walkofshame.sentence2", defaultValue: "[Achtung] Ich bin zu schwach für neunundneunzig Prozent meiner Aufgaben. Ich breche ab: X-Y-Z statt A-B-C. Mein Fokus sinkt auf null Punkt null; ich wähle #Versagen über #Wachstum. Warum? Weil mein Dopamin-Spiegel < zehn Prozent ist."),
+        String(localized: "focus.giveup.walkofshame.sentence3", defaultValue: "Fehler-Code vierhundertvier: Willenskraft nicht gefunden! Ich tausche meine erste Priorität gegen zehn Min. sinnlosen Feed-Scroll. Ist das schlau? Nein. Mache ich es trotzdem? Ja!! (Tschüss, wertvolle Zeit...)"),
+        String(localized: "focus.giveup.walkofshame.sentence4", defaultValue: "Ich bestätige hiermit den Abbruch (Status: einhundert Prozent undiszipliniert). Statt plus eins Schritt nach vorne, mache ich minus drei Schritte zurück. Meine #Ziele sind mir gerade egal; ich klicke auf [Entsperren] & vergeude eine halbe Stunde."),
+        String(localized: "focus.giveup.walkofshame.sentence5", defaultValue: "Warum aufgeben? Weil ich null Prozent Frustrationstoleranz habe. Ich wähle den Shortcut (Typ B) und ignoriere Regel Nummer eins: Bleib fokussiert! Meine HP sinken um minus fünfzehn Punkte; das ist der Preis für zwei Min. Schwäche.")
     ]
     
     var body: some View {
@@ -116,7 +116,8 @@ struct WalkOfShameView: View {
                 }
             }
             .onAppear {
-                requiredText = sentencePool.randomElement()!
+                let randomSentence = sentencePool.randomElement()!
+                requiredText = randomizeCase(of: randomSentence)
             }
             } // Close ZStack
         } // Close NavigationStack
@@ -138,12 +139,31 @@ struct WalkOfShameView: View {
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             withAnimation(.default) { shakeOffset = -10 }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                withAnimation(.default) { shakeOffset = 0 }
+            }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            withAnimation(.default) { shakeOffset = 10 }
+    }
+    
+    // Zerstört das Tipp-Gedächtnis komplett, indem wahllos Zeichen groß und klein gemacht werden
+    private func randomizeCase(of text: String) -> String {
+        var result = ""
+        for char in text {
+            if char.isLetter {
+                // 40% Chance die Groß-/Kleinschreibung zu invertieren
+                if Bool.random() && Bool.random() {
+                    if char.isUppercase {
+                        result.append(char.lowercased())
+                    } else {
+                        result.append(char.uppercased())
+                    }
+                } else {
+                    result.append(char)
+                }
+            } else {
+                result.append(char)
+            }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-            withAnimation(.default) { shakeOffset = 0 }
-        }
+        return result
     }
 }
