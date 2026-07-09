@@ -53,11 +53,6 @@ class CustomTextView: UITextView {
             return false
         }
         
-        // Auch "Ersetzen" oder andere Vorschläge blockieren, die das Tippen erleichtern
-        if action == #selector(UIResponderStandardEditActions.replace(_:withText:)) {
-            return false
-        }
-        
         return super.canPerformAction(action, withSender: sender)
     }
 }
