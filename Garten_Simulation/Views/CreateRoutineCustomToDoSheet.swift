@@ -113,7 +113,7 @@ struct CreateRoutineCustomToDoSheet: View {
             name: "habit.custom.todo",
             symbolName: plant.symbolName,
             symbolColor: plant.symbolColor,
-            habitCategory: .custom,
+            habitCategory: .lifestyle,
             symbolism: plant.symbolism,
             habitName: todoName,
             maxLevel: plant.maxLevel,

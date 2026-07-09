@@ -576,3 +576,5 @@
 - Übersetzungen für alle Sprachen abgeschlossen
 - Bugfix: Lokalisierung für Aktivitäten-Auswahl hinzugefügt und Uhrzeit-Formatierung für US-Zeiten (AM/PM) korrigiert.
 - Removed strict mode auto-close feature from Focus Session Timer
+
+- Hinzufügen von individuellen To-Dos in Routinen, welche nicht im restlichen Garten erscheinen.
