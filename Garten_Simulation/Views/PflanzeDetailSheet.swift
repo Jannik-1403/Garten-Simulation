@@ -693,7 +693,7 @@ struct PflanzeDetailSheet: View {
                                                                 .padding(14)
                                                                 .frame(maxWidth: .infinity)
                                                             }
-                                                            .buttonStyle(Item3DButtonStyle(farbe: Color(uiColor: .secondarySystemBackground), sekundaerFarbe: Color(uiColor: .systemGray4), groesse: 50, iconSkalierung: 1.0, isRectangular: true, isPermanentlyPressed: false, shadowDepthFactor: 0.08, isDisabled: false))
+                                                            .buttonStyle(Item3DButtonStyle(farbe: Color(uiColor: .secondarySystemBackground), sekundaerFarbe: Color(uiColor: .systemGray4), groesse: 50, iconSkalierung: 1.0, shadowDepthFactor: 0.08, isRectangular: true, isPermanentlyPressed: false, isDisabled: false))
                                                             .sheet(isPresented: $isEditingScreenTime) {
                                                                 ScreenTimePickerSheet(
                                                                     screenTimeHours: $screenTimeHours,
@@ -725,7 +725,7 @@ struct PflanzeDetailSheet: View {
                                                                 .frame(maxWidth: .infinity)
                                                                 .padding(14)
                                                             }
-                                                            .buttonStyle(Item3DButtonStyle(farbe: .blue, sekundaerFarbe: .blue.opacity(0.6), groesse: 50, iconSkalierung: 1.0, isRectangular: true, isPermanentlyPressed: false, shadowDepthFactor: 0.08, isDisabled: false))
+                                                            .buttonStyle(Item3DButtonStyle(farbe: .blue, sekundaerFarbe: .blue.opacity(0.6), groesse: 50, iconSkalierung: 1.0, shadowDepthFactor: 0.08, isRectangular: true, isPermanentlyPressed: false, isDisabled: false))
                                                         }
                                                     } else {
                                                         HStack {
@@ -2466,7 +2466,7 @@ struct ScreenTimePickerSheet: View {
                         .frame(maxWidth: .infinity)
                         .padding(14)
                 }
-                .buttonStyle(Item3DButtonStyle(farbe: .orange, sekundaerFarbe: .orange.opacity(0.8), groesse: 50, iconSkalierung: 1.0, isRectangular: true, isPermanentlyPressed: false, shadowDepthFactor: 0.08, isDisabled: false))
+                .buttonStyle(Item3DButtonStyle(farbe: .orange, sekundaerFarbe: .orange.opacity(0.8), groesse: 50, iconSkalierung: 1.0, shadowDepthFactor: 0.08, isRectangular: true, isPermanentlyPressed: false, isDisabled: false))
                 .padding(.horizontal)
                 
                 Spacer()
