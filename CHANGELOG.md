@@ -514,3 +514,6 @@
 
 - ScreenTimePickerSheet UI aktualisiert: Wird nun als Vollbild (fullScreenCover) geöffnet und verwendet die Standard iOS Form/Section Optik, während der Speichern-Button sein 3D-Design behält.
 - Der Bearbeitungs-Stift (Pencil) bei der Bildschirmzeit-Zieleinstellung verwendet nun den isolierten quadratischen 3D-Button aus den Routinen, um den unerwünschten Hintergrund zu entfernen.
+
+- Focus Timer und Routinen starten nun trotzdem weiter, auch wenn die Bildschirmzeit-Freigabe vom Nutzer verweigert wird (Kein Blockieren der UI mehr).
+- Bei Routinen wird die ScreenTime-Zieleinstellung übersprungen, falls bereits Apps ausgewählt wurden (gleiches Verhalten wie beim Focus Timer).
