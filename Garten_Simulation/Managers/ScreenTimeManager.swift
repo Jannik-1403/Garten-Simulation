@@ -18,6 +18,12 @@ struct DaySchedule: Codable, Equatable {
     static let defaultWeekend = DaySchedule(isActive: false, startHour: 10, startMinute: 0, endHour: 14, endMinute: 0)
 }
 
+struct LimitEntry: Codable {
+    var limit: Int
+    var selection: FamilyActivitySelection
+}
+
+
 
 // MARK: - ScreenTimeManager
 
@@ -159,8 +165,15 @@ class ScreenTimeManager: ObservableObject {
             self.dailyLimitSelection = selection
         }
         
-        if let data = UserDefaults.standard.data(forKey: "st_limitSelections"),
-           let dict = try? JSONDecoder().decode([Int: FamilyActivitySelection].self, from: data) {
+        if let data = UserDefaults.standard.data(forKey: "st_limitSelectionsArray"),
+           let entries = try? JSONDecoder().decode([LimitEntry].self, from: data) {
+            var loadedDict = [Int: FamilyActivitySelection]()
+            for entry in entries {
+                loadedDict[entry.limit] = entry.selection
+            }
+            self.limitSelections = loadedDict
+        } else if let data = UserDefaults.standard.data(forKey: "st_limitSelections"),
+                  let dict = try? JSONDecoder().decode([Int: FamilyActivitySelection].self, from: data) {
             self.limitSelections = dict
         }
         
@@ -418,8 +431,12 @@ class ScreenTimeManager: ObservableObject {
     }
     
     private func saveIndividualLimits() {
-        if let data = try? JSONEncoder().encode(limitSelections) {
-            UserDefaults.standard.set(data, forKey: "st_limitSelections")
+        var entries = [LimitEntry]()
+        for (limit, selection) in limitSelections {
+            entries.append(LimitEntry(limit: limit, selection: selection))
+        }
+        if let data = try? JSONEncoder().encode(entries) {
+            UserDefaults.standard.set(data, forKey: "st_limitSelectionsArray")
         }
     }
     
