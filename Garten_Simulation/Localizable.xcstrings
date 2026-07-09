@@ -209320,7 +209320,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "允許訪問螢幕使用時間"
+            "value": "允許存取螢幕使用時間"
           }
         }
       }
@@ -209355,7 +209355,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आप वर्तमान में अपने सक्रिय ब्लॉक समय में हैं। आप ब्लॉक समय समाप्त होने के बाद ही इन सेटिंग्स को बदल सकते हैं।"
+            "value": "आप वर्तमान में अपने सक्रिय ब्लॉक विंडो में हैं।"
           }
         },
         "it": {
@@ -209397,7 +209397,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "В настоящее время действует время блокировки. Вы сможете изменить эти настройки только после истечения времени."
+            "value": "Вы сейчас находитесь в активном окне блокировки."
           }
         },
         "tr": {
@@ -209409,13 +209409,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "您目前处于活动阻止时间内。阻止时间结束后，您才能更改这些设置。"
+            "value": "您目前正处于活动阻止时间段内。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "您目前處於活動阻止時間內。阻止時間結束後，您才能更改這些設置。"
+            "value": "您目前正處於活動封鎖時間段內。"
           }
         }
       }
@@ -209450,7 +209450,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "स्क्रीन टाइम ब्लॉक किया गया"
+            "value": "स्क्रीन टाइम सक्रिय"
           }
         },
         "it": {
@@ -209492,7 +209492,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Экранное время заблокировано"
+            "value": "Экранное время активно"
           }
         },
         "tr": {
@@ -209504,13 +209504,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "屏幕使用时间被阻止"
+            "value": "屏幕使用时间已激活"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "螢幕使用時間被阻止"
+            "value": "螢幕使用時間已啟動"
           }
         }
       }
@@ -209583,6 +209583,30 @@
             "state": "translated",
             "value": "Acil Kilit Açma"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपातकालीन अनलॉक"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Экстренная разблокировка"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "紧急解锁"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "緊急解鎖"
+          }
         }
       }
     },
@@ -209616,7 +209640,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सक्रिय ब्लॉक समय के दौरान, आप यहाँ ब्लॉकर को अक्षम नहीं कर सकते हैं। यदि आप सीमा से अधिक हैं, तो स्क्रीन टाइम आदत स्वचालित रूप से खरीदी जाती है। यदि आप सीमा पर टिके रहते हैं, तो आपके पौधे को दिन के अंत में स्वचालित रूप से पानी दिया जाता है।"
+            "value": "शील्ड ब्लॉक ऐप्स पर चेतावनी ओवरले दिखाता है। प्रभावित ऐप्स हटाए नहीं जाते हैं और अभी भी (पुष्टि के साथ) खोले जा सकते हैं। वयस्क फ़िल्टर केवल सफारी में लागू होता है।"
           }
         },
         "it": {
@@ -209658,7 +209682,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Во время активной блокировки вы не можете отключить блокировщик. При превышении лимита привычка экранного времени срабатывает автоматически. Если лимит соблюден, растение будет полито в конце дня."
+            "value": "Блок щита показывает предупреждение поверх приложений. Пострадавшие приложения не удаляются и все еще могут быть открыты (с подтверждением). Фильтр для взрослых применяется только в Safari."
           }
         },
         "tr": {
@@ -209670,13 +209694,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "在活动阻止时间内，您无法禁用拦截器。如果超限，屏幕使用时间习惯会自动应用。如果遵守限制，您的植物将在一天结束时自动浇水。"
+            "value": "屏蔽阻止在应用程序上显示警告覆盖。受影响的应用程序不会被删除，并且仍然可以（确认后）打开。成人内容过滤器仅适用于Safari。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "在活動阻止時間內，您無法禁用攔截器。如果超限，螢幕使用時間習慣會自動應用。如果遵守限制，您的植物將在一天結束時自動澆水。"
+            "value": "封鎖會在應用程式上顯示警告覆蓋。受影響的應用程式不會被刪除，並且仍然可以（確認後）打開。成人內容過濾器僅適用於Safari。"
           }
         }
       }
@@ -209765,13 +209789,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "它是如何工作的？"
+            "value": "这是如何工作的？"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "它是如何工作的？"
+            "value": "這是如何運作的？"
           }
         }
       }
@@ -210232,7 +210256,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "ब्लॉक अनुसूची सक्षम करें"
+            "value": "अनुसूची सक्षम करें"
           }
         },
         "it": {
@@ -210274,7 +210298,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Включить расписание блокировки"
+            "value": "Включить график"
           }
         },
         "tr": {
@@ -210286,13 +210310,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "启用阻止时间表"
+            "value": "启用计划"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "啟用阻止時間表"
+            "value": "啟用排程"
           }
         }
       }
@@ -210327,7 +210351,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "समाप्ति समय"
+            "value": "अंत समय"
           }
         },
         "it": {
@@ -210422,7 +210446,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "ऐप्स और श्रेणियां चुनें"
+            "value": "अनुसूची के लिए ऐप्स और श्रेणियां"
           }
         },
         "it": {
@@ -210464,7 +210488,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Выбрать приложения и категории"
+            "value": "Приложения и категории для графика"
           }
         },
         "tr": {
@@ -210476,13 +210500,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "选择应用和类别"
+            "value": "计划的应用程序和类别"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "選擇應用和類別"
+            "value": "排程的應用程式與類別"
           }
         }
       }
@@ -210517,7 +210541,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "प्रारंभ समय"
+            "value": "आरंभ समय"
           }
         },
         "it": {
@@ -210720,6 +210744,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Yetişkin Filtresi"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वयस्क फ़िल्टर"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фильтр для взрослых"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成人内容过滤器"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成人內容過濾器"
           }
         }
       }
@@ -294233,6 +294281,30 @@
             "state": "translated",
             "value": "Pazartesi"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोमवार"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Понедельник"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期一"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期一"
+          }
         }
       }
     },
@@ -294303,6 +294375,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Salı"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मंगलवार"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вторник"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期二"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期二"
           }
         }
       }
@@ -294375,6 +294471,30 @@
             "state": "translated",
             "value": "Çarşamba"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बुधवार"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Среда"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期三"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期三"
+          }
         }
       }
     },
@@ -294445,6 +294565,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Perşembe"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "गुरुवार"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Четверг"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期四"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期四"
           }
         }
       }
@@ -294517,6 +294661,30 @@
             "state": "translated",
             "value": "Cuma"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शुक्रवार"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пятница"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期五"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期五"
+          }
         }
       }
     },
@@ -294587,6 +294755,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cumartesi"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शनिवार"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Суббота"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期六"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期六"
           }
         }
       }
@@ -294659,6 +294851,30 @@
             "state": "translated",
             "value": "Pazar"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रविवार"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Воскресенье"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期日"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "星期日"
+          }
         }
       }
     },
@@ -294729,6 +294945,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Engelleme Takvimi"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ब्लॉक अनुसूची"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "График блокировки"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "阻止计划"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "封鎖排程"
           }
         }
       }
@@ -294801,6 +295041,30 @@
             "state": "translated",
             "value": "Pzt–Cum Uygula"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सोम-शुक्र लागू करें"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Применить Пн-Пт"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "应用周一至周五"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "應用週一至週五"
+          }
         }
       }
     },
@@ -294872,6 +295136,30 @@
             "state": "translated",
             "value": "Cmt–Paz Uygula"
           }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शनि-रवि लागू करें"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Применить Сб-Вс"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "应用周六至周日"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "應用週六至週日"
+          }
         }
       }
     },
@@ -294942,6 +295230,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Etkin Değil"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निष्क्रिय"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Неактивно"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未激活"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未啟用"
           }
         }
       }
@@ -295155,6 +295467,30 @@
           "stringUnit": {
             "state": "translated",
             "value": "Engellenen Uygulamalar"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ब्लॉक किए गए ऐप्स"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Заблокированные приложения"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "阻止的应用程序"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "封鎖的應用程式"
           }
         }
       }

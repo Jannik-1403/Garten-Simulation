@@ -532,3 +532,4 @@
 - **Screen Time UI**: Horizontaler Scroll entfernt; blockierte Items als vertikale BlockRow-Liste. + Button im Header links neben Adult Filter. Mo-Fr/Sa-So Schnellwahl und Apps-Picker sind jetzt Item3DButton. Schatten der Wochentag-Zeilen korrekt schwarz.
 - **Screen Time Lokalisierung**: Titel umbenannt zu "Blockierte Apps", alle 24 Screen-Time-Strings vollständig in alle 11 Sprachen übersetzt (de, en, es, fr, it, ja, ko, nl, pl, pt, tr).
 - **Screen Time UI Tweaks**: Schriftgröße des Titels "Blockierte Apps" von 20 auf 18 verkleinert. Schriftgröße der blockierten Apps (BlockRow) von 14 auf 13 verkleinert.
+- **Screen Time Lokalisierung Fix**: Alle Screen Time Strings wurden für fehlende Sprachen (Chinesisch zh-Hant & zh-Hans, Russisch, Hindi) nachgeliefert. Zuvor gab es hier einen Fallback auf Deutsch.
