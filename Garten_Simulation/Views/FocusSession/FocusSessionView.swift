@@ -38,10 +38,8 @@ struct FocusSessionView: View {
     
 
     
-    // Math Challenge
-    @State private var showMathChallenge: Bool = false
-    @State private var cancelMathProblem: String = ""
-    @State private var cancelMathAnswer: Int = 0
+    // Walk of Shame
+    @State private var showWalkOfShame: Bool = false
     
     // Timer default 25 mins
     @State private var selectedMinutes: Int = 25
@@ -136,11 +134,7 @@ struct FocusSessionView: View {
                 UIApplication.shared.isIdleTimerDisabled = false
             }
         }
-        .onChange(of: showMathChallenge) {
-            if showMathChallenge && cancelMathProblem.isEmpty {
-                generateCancelMathProblem()
-            }
-        }
+        // No math problem generation needed for WalkOfShame
         .onChange(of: scenePhase) {
             guard state == .timer && isTimerRunning else { return }
             
@@ -417,7 +411,7 @@ struct FocusSessionView: View {
             }
             
             Button {
-                showMathChallenge = true
+                showWalkOfShame = true
             } label: {
                 Text(String(localized: "button.cancel"))
                     .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -428,27 +422,33 @@ struct FocusSessionView: View {
         .frame(maxWidth: .infinity, minHeight: geometry.size.height)
         }
         }
-        .fullScreenCover(isPresented: $showMathChallenge) {
-            MathChallengeView(problemString: cancelMathProblem, correctAnswer: cancelMathAnswer) {
-                isTimerRunning = false
-                UIApplication.shared.isIdleTimerDisabled = false
-                dismiss()
-                
-                let completedSeconds = selectedMinutes * 60 - remainingSeconds
-                let durationMinutes = completedSeconds / 60
-                if durationMinutes > 0 {
-                    let log = FocusSessionLog(
-                        date: Date(),
-                        durationMinutes: durationMinutes,
-                        isCompleted: false,
-                        isRoutine: false,
-                        habitId: pflanze.id,
-                        habitName: pflanze.name,
-                        tasks: sessionGoals.map { $0.text }
-                    )
-                    gardenStore.focusSessions.append(log)
+        .fullScreenCover(isPresented: $showWalkOfShame) {
+            WalkOfShameView(
+                onConfirmGiveUp: {
+                    showWalkOfShame = false
+                    isTimerRunning = false
+                    UIApplication.shared.isIdleTimerDisabled = false
+                    dismiss()
+                    
+                    let completedSeconds = selectedMinutes * 60 - remainingSeconds
+                    let durationMinutes = completedSeconds / 60
+                    if durationMinutes > 0 {
+                        let log = FocusSessionLog(
+                            date: Date(),
+                            durationMinutes: durationMinutes,
+                            isCompleted: false,
+                            isRoutine: false,
+                            habitId: pflanze.id,
+                            habitName: pflanze.name,
+                            tasks: sessionGoals.map { $0.text }
+                        )
+                        gardenStore.focusSessions.append(log)
+                    }
+                },
+                onCancel: {
+                    showWalkOfShame = false
                 }
-            }
+            )
         }
     }
     
