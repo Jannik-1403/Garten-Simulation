@@ -1516,89 +1516,6 @@
         }
       }
     },
-    "%lldh %lldm": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lldh %2$lldm"
-          }
-        }
-      }
-    },
     "%lldx": {
       "extractionState": "manual",
       "localizations": {
@@ -68358,88 +68275,17 @@
             "state": "translated",
             "value": "Nüksetme"
           }
-        }
-      }
-    },
-    "bad_habit.screen_time.name": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
+        },
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zu viel Bildschirmzeit"
+            "value": "复发"
           }
         },
-        "en": {
+        "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Too much screen time"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Demasiado tiempo en pantalla"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trop de temps d'écran"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zu viel Bildschirmzeit"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Troppo tempo di utilizzo"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "スクリーンタイムの使いすぎ"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "화면 너무 많이 사용"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Te veel schermtijd"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Za dużo czasu przed ekranem"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Demasiado tempo de ecrã"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zu viel Bildschirmzeit"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Çok fazla ekran süresi"
+            "value": "復發"
           }
         }
       }
@@ -77994,6 +77840,18 @@
             "state": "translated",
             "value": "Saat"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小时"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小時"
+          }
         }
       }
     },
@@ -78076,6 +77934,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "sa"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小时"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小時"
           }
         }
       }
@@ -78640,6 +78510,18 @@
             "state": "translated",
             "value": "Dakika"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分钟"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分鐘"
+          }
         }
       }
     },
@@ -78722,6 +78604,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "dk"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分钟"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分鐘"
           }
         }
       }
@@ -115013,88 +114907,17 @@
             "state": "translated",
             "value": "Dijital Detoks"
           }
-        }
-      }
-    },
-    "habit.screen_time.name": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
+        },
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bildschirmzeit"
+            "value": "数字排毒"
           }
         },
-        "en": {
+        "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Screen Time"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tiempo en pantalla"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Temps d'écran"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bildschirmzeit"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tempo di utilizzo"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "スクリーンタイム"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "화면 시간"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schermtijd"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Czas przed ekranem"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tempo de ecrã"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bildschirmzeit"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ekran Süresi"
+            "value": "數字排毒"
           }
         }
       }
@@ -135038,6 +134861,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ekran süresi sınırına uyuldu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "屏幕时间限制得到遵守"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "螢幕時間限制得到遵守"
           }
         }
       }
@@ -209479,172 +209314,6 @@
         }
       }
     },
-    "screentime.preprompt.button": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verstanden"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Understood"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entendido"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compris"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verstanden"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Capito"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "了解しました"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이해했습니다"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Begrepen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zrozumiałem"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entendi"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verstanden"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Anladım"
-          }
-        }
-      }
-    },
-    "screentime.preprompt.desc": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Damit dein Garten wachsen kann und das Unkraut keine Chance hat, müssen wir deine Ablenkungen aussperren. Bitte erlaube den Screen-Time-Zugriff im nächsten Fenster, damit Grovy dich schützen kann."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To let your garden grow and give weeds no chance, we need to lock out your distractions. Please allow Screen Time access in the next window so Grovy can protect you."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Para que tu jardín crezca y las malas hierbas no tengan oportunidad, debemos bloquear tus distracciones. Permita el acceso al tiempo de pantalla en la siguiente ventana para que Grovy pueda protegerlo."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pour laisser votre jardin pousser et ne donner aucune chance aux mauvaises herbes, nous devons bloquer vos distractions. Veuillez autoriser l'accès au temps d'écran dans la fenêtre suivante afin que Grovy puisse vous protéger."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Damit dein Garten wachsen kann und das Unkraut keine Chance hat, müssen wir deine Ablenkungen aussperren. Bitte erlaube den Screen-Time-Zugriff im nächsten Fenster, damit Grovy dich schützen kann."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Per far crescere il tuo giardino e non dare scampo alle erbacce, dobbiamo bloccare le tue distrazioni. Consenti l'accesso al tempo di utilizzo nella finestra successiva in modo che Grovy possa proteggerti."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "庭を育て、雑草にチャンスを与えないために、気晴らしをブロックする必要があります。Grovyがあなたを守れるように、次のウィンドウでスクリーンタイムへのアクセスを許可してください。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "정원이 자라게 하고 잡초가 자라지 못하게 하려면 주의가 산만해지는 것을 막아야 합니다. Grovy가 사용자를 보호할 수 있도록 다음 창에서 화면 시간 액세스를 허용하세요."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Om je tuin te laten groeien en onkruid geen kans te geven, moeten we je afleidingen buitensluiten. Sta schermtoegang toe in het volgende venster, zodat Grovy je kan beschermen."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aby Twój ogród mógł rosnąć i nie dać szans chwastom, musimy zablokować Twoje czynniki rozpraszające. Zezwól na dostęp do czasu przed ekranem w następnym oknie, aby Grovy mógł Cię chronić."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Para deixar o seu jardim crescer e não dar hipótese às ervas daninhas, precisamos de bloquear as suas distrações. Por favor, permita o acesso ao Tempo de Ecrã na janela seguinte para que o Grovy possa protegê-lo."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Damit dein Garten wachsen kann und das Unkraut keine Chance hat, müssen wir deine Ablenkungen aussperren. Bitte erlaube den Screen-Time-Zugriff im nächsten Fenster, damit Grovy dich schützen kann."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bahçenizin büyümesini sağlamak ve yabani otlara şans tanımamak için dikkatinizi dağıtan şeyleri dışarıda bırakmalıyız. Grovy'nin sizi koruyabilmesi için lütfen sonraki pencerede Ekran Süresi erişimine izin verin."
-          }
-        }
-      }
-    },
     "screentime.preprompt.subtitle": {
       "localizations": {
         "de": {
@@ -209723,6 +209392,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Erlaube den Zugriff auf die Bildschirmzeit, damit Grovy ablenkende Apps blockieren kann."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "允许访问屏幕使用时间，以便 Grovy 可以阻止分心的应用程序。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "允許訪問螢幕使用時間，以便 Grovy 可以阻止分心的應用程式。"
           }
         }
       }
@@ -209807,6 +209488,18 @@
             "state": "translated",
             "value": "Odaklanmanı koru"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保护你的专注力"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保護你的專注力"
+          }
         }
       }
     },
@@ -209889,6 +209582,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Günlük sınır aşıldı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "超出每日限制"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "超出每日限制"
           }
         }
       }
@@ -210269,89 +209974,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "開始時間"
-          }
-        }
-      }
-    },
-    "screenTime.target.label": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limit (Std)"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limit (Hrs)"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Límite (Hrs)"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite (H)"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limit (Std)"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite (Ore)"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "制限（時間）"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "제한 (시간)"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limiet (Uur)"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limit (Godz)"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limite (Hrs)"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limit (Std)"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sınır (Saat)"
           }
         }
       }
@@ -217237,6 +216859,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Engelleme sürelerini ve sınırları yönetin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "管理拦截时间和限制。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "管理攔截時間和限制。"
           }
         }
       }
