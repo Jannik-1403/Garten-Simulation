@@ -85,7 +85,7 @@ struct RoutinenView: View {
                 displayedIDs.insert(h.id)
             }
         }
-        return gardenStore.pflanzen.filter { !displayedIDs.contains($0.id) }
+        return gardenStore.pflanzen.filter { !displayedIDs.contains($0.id) && !$0.isRoutineOnly }
     }
 
     private func isRoutineCompleted(_ routine: RoutineUIData) -> Bool {
@@ -557,8 +557,16 @@ struct CreateRoutineSheet: View {
     @State private var overrideIndividualReminders: Bool = true
     
     @State private var showTimerSheet = false
+    @State private var showCustomTodoSheet = false
     
     let colors: [String] = ["#AF52DE", "#007AFF", "#32ADE6", "#00C7BE", "#34C759", "#FFCC00", "#FF9500", "#FF2D55", "#FF3B30", "#5856D6"]
+    
+    var displayedHabits: [HabitModel] {
+        let newlyCreated = gardenStore.pflanzen.filter { $0.isRoutineOnly && selectedHabits.contains($0.id) }
+        var all = availableHabits + newlyCreated
+        var seen = Set<String>()
+        return all.filter { if seen.contains($0.id) { return false } else { seen.insert($0.id); return true } }
+    }
     
     var body: some View {
         NavigationStack {
@@ -644,19 +652,36 @@ struct CreateRoutineSheet: View {
                         
                         // Habit Selection
                         VStack(alignment: .leading, spacing: 16) {
-                            Text(String(localized: String.LocalizationValue("routine.edit.habits.add"), locale: Locale(identifier: settings.appLanguage)))
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundStyle(.primary)
-                                .padding(.horizontal, 24)
+                            HStack {
+                                Text(String(localized: String.LocalizationValue("routine.edit.habits.add"), locale: Locale(identifier: settings.appLanguage)))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.primary)
+                                Spacer()
+                                Button {
+                                    showCustomTodoSheet = true
+                                } label: {
+                                    HStack {
+                                        Image(systemName: "plus.circle.fill")
+                                        Text(String(localized: "routine.todo.add", defaultValue: "Eigenes To-Do"))
+                                    }
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(Color.green)
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 6)
+                                    .background(Color.green.opacity(0.15))
+                                    .clipShape(Capsule())
+                                }
+                            }
+                            .padding(.horizontal, 24)
                             
-                            if availableHabits.isEmpty {
+                            if displayedHabits.isEmpty {
                                 Text(String(localized: String.LocalizationValue("routine.edit.habits.empty"), locale: Locale(identifier: settings.appLanguage)))
                                     .font(.system(size: 14, weight: .medium, design: .rounded))
                                     .foregroundStyle(.secondary)
                                     .padding(.horizontal, 24)
                             } else {
                                 VStack(spacing: 12) {
-                                    ForEach(availableHabits) { plant in
+                                    ForEach(displayedHabits) { plant in
                                         SelectableHabitCard(
                                             pflanze: plant,
                                             isSelected: selectedHabits.contains(plant.id)
@@ -718,6 +743,9 @@ struct CreateRoutineSheet: View {
                     assignedHabits: availableHabits.filter { selectedHabits.contains($0.id) }
                 )
                 .environmentObject(settings)
+            }
+            .sheet(isPresented: $showCustomTodoSheet) {
+                CreateRoutineCustomToDoSheet(selectedHabits: $selectedHabits)
             }
         }
     }

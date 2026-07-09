@@ -350,6 +350,9 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var customTrackerTarget: Double? = nil
     @Published var customTrackerProgress: Double = 0
     
+    // Custom ToDos in Routines
+    @Published var isRoutineOnly: Bool = false
+    
     /// Hat die Pflanze einen aktiven (nicht abgelaufenen) Erinnerungs-Schedule?
     var hasActiveReminder: Bool {
         guard let schedule = reminderSchedule else {
@@ -572,7 +575,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         plantID: String? = nil,
         reminderTime: Date? = nil,
         customReminderMessage: String? = nil,
-        isNegative: Bool = false
+        isNegative: Bool = false,
+        isRoutineOnly: Bool = false
     ) {
         self.id = id
         self.name = name
@@ -588,6 +592,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.missedCycles = missedCycles
         self.lastNotifiedCycle = lastNotifiedCycle
         self.isNegative = isNegative
+        self.isRoutineOnly = isRoutineOnly
         self.wiederbelebtAm = nil
         self.strafTage = 3
         self.reminderTime = reminderTime
@@ -633,6 +638,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case individualSchwierigkeit
         case linkedHealthMetric, healthTarget
         case customTrackerName, customTrackerTarget, customTrackerProgress
+        case isRoutineOnly
     }
 
     required init(from decoder: Decoder) throws {
@@ -718,6 +724,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         customTrackerName = try container.decodeIfPresent(String.self, forKey: .customTrackerName)
         customTrackerTarget = try container.decodeIfPresent(Double.self, forKey: .customTrackerTarget)
         customTrackerProgress = try container.decodeIfPresent(Double.self, forKey: .customTrackerProgress) ?? 0
+        isRoutineOnly = try container.decodeIfPresent(Bool.self, forKey: .isRoutineOnly) ?? false
     }
 
     func encode(to encoder: Encoder) throws {
@@ -768,6 +775,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encodeIfPresent(customTrackerName, forKey: .customTrackerName)
         try container.encodeIfPresent(customTrackerTarget, forKey: .customTrackerTarget)
         try container.encode(customTrackerProgress, forKey: .customTrackerProgress)
+        try container.encode(isRoutineOnly, forKey: .isRoutineOnly)
     }
 }
 

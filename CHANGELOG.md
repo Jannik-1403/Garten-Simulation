@@ -575,3 +575,4 @@
 - Bugfix: Rohe Keys in Screen Time und Walk of Shame behoben. Zahlen in Höllen-Texten komplett ausgeschrieben.
 - Übersetzungen für alle Sprachen abgeschlossen
 - Bugfix: Lokalisierung für Aktivitäten-Auswahl hinzugefügt und Uhrzeit-Formatierung für US-Zeiten (AM/PM) korrigiert.
+- Removed strict mode auto-close feature from Focus Session Timer

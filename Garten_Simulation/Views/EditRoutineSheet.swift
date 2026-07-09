@@ -17,6 +17,7 @@ struct EditRoutineSheet: View {
     @State private var schedule: ReminderSchedule = ReminderSchedule.defaultSchedule(time: Date())
     @State private var overrideIndividualReminders: Bool = true
     @State private var showTimerSheet = false
+    @State private var showCustomTodoSheet = false
     
     let colors: [String] = ["#AF52DE", "#007AFF", "#32ADE6", "#00C7BE", "#34C759", "#FFCC00", "#FF9500", "#FF2D55", "#FF3B30", "#5856D6"]
     
@@ -130,11 +131,25 @@ struct EditRoutineSheet: View {
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .foregroundStyle(.primary)
                                     Spacer()
+                                    Button {
+                                        showCustomTodoSheet = true
+                                    } label: {
+                                        HStack {
+                                            Image(systemName: "plus.circle.fill")
+                                            Text(String(localized: "routine.todo.add", defaultValue: "Eigenes To-Do"))
+                                        }
+                                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                                        .foregroundStyle(Color.green)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 6)
+                                        .background(Color.green.opacity(0.15))
+                                        .clipShape(Capsule())
+                                    }
                                     if !availableHabits.isEmpty {
                                         Button {
                                             showHabitPicker = true
                                         } label: {
-                                            Image(systemName: "plus.circle.fill")
+                                            Image(systemName: "list.bullet.circle.fill")
                                                 .font(.system(size: 24))
                                                 .foregroundStyle(Color.green)
                                         }
@@ -303,6 +318,12 @@ struct EditRoutineSheet: View {
                     }
                 }
             }
+            .sheet(isPresented: $showCustomTodoSheet) {
+                // Here we need to map the Set<String> of selected habits back to [HabitModel] 
+                // but since assignedHabits is an array of HabitModels in this view, 
+                // we'll pass a binding to a temporary set, and then sync it.
+                CreateRoutineCustomToDoSheetWrapper(assignedHabits: $assignedHabits)
+            }
         }
     }
     
@@ -321,5 +342,28 @@ struct EditRoutineSheet: View {
             }
         }
         assignedHabits.remove(atOffsets: offsets)
+    }
+}
+
+// Wrapper to sync Set<String> with [HabitModel] for EditRoutineSheet
+struct CreateRoutineCustomToDoSheetWrapper: View {
+    @Binding var assignedHabits: [HabitModel]
+    @State private var tempSelectedHabits: Set<String> = []
+    @EnvironmentObject var gardenStore: GardenStore
+    
+    var body: some View {
+        CreateRoutineCustomToDoSheet(selectedHabits: $tempSelectedHabits)
+            .onAppear {
+                tempSelectedHabits = Set(assignedHabits.map { $0.id })
+            }
+            .onChange(of: tempSelectedHabits) { _, newSet in
+                // Find newly added habits in gardenStore and append them
+                for habitID in newSet {
+                    if !assignedHabits.contains(where: { $0.id == habitID }),
+                       let newHabit = gardenStore.pflanzen.first(where: { $0.id == habitID }) {
+                        assignedHabits.append(newHabit)
+                    }
+                }
+            }
     }
 }
