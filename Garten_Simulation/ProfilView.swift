@@ -204,7 +204,7 @@ struct ProfilView: View {
                     .environmentObject(assessmentStore)
                     .environmentObject(settings)
             }
-            .sheet(isPresented: $showFocusSheet) {
+            .fullScreenCover(isPresented: $showFocusSheet) {
                 GenericFocusTimerSetupSheet()
             }
             .overlay {

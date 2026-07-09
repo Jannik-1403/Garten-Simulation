@@ -48,8 +48,8 @@ struct GenericFocusTimerSetupSheet: View {
                 .padding(.horizontal, 24)
                 
                 Item3DButton(
-                    farbe: taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color.gray : Color.orangePrimary,
-                    sekundaerFarbe: taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color.gray.darker() : Color.orangePrimary.darker(),
+                    farbe: taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color(white: 0.7) : Color.orangePrimary,
+                    sekundaerFarbe: taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color(white: 0.5) : Color.orangePrimary.darker(),
                     groesse: 60,
                     isRectangular: true,
                     isDisabled: taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
@@ -82,9 +82,9 @@ struct GenericFocusTimerSetupSheet: View {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 24))
-                            .foregroundStyle(Color(UIColor.tertiaryLabel))
+                        Image(systemName: "xmark")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundStyle(.black)
                     }
                 }
             }

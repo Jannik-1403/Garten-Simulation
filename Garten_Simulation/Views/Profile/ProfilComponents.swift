@@ -94,12 +94,16 @@ struct FocusTimerStatButton: View {
         DuolingoCard(action: { showFocusSheet = true }) {
             VStack(spacing: 12) {
                 Item3DButton(
-                    icon: "timer",
                     farbe: Color.orangePrimary,
                     sekundaerFarbe: Color.orangePrimary.darker(),
                     groesse: 60,
                     aktion: nil
-                )
+                ) {
+                    Image("Timer full")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                }
                 
                 VStack(spacing: 2) {
                     Text(String(localized: "profile.focus.title", defaultValue: "Fokus"))
