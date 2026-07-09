@@ -481,3 +481,5 @@
 - Alle Widget-Strings automatisch in die 11 unterstützten Projektsprachen (DE, NL, EN, FR, IT, JA, KO, PL, PT, ES, TR) übersetzt.
 - Brasilianisches Portugiesisch (pt-BR) komplett entfernt.
 - 100% Übersetzungsabdeckung für alle verbleibenden 14 Sprachen (inkl. Chinesisch, Russisch, Hindi etc.) erzwungen und fehlende Einträge generiert.
+
+- Hinzugefügt: Psychologischer 'Screen Time Pre-Prompt' vor der Systemabfrage, um die Zustimmungsrate zu erhöhen. Vollständig in 11 Sprachen übersetzt und in Focus- sowie Routine-Sessions integriert.
