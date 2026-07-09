@@ -703,10 +703,10 @@ class GardenStore: ObservableObject {
     func taeglicherStreakCheck() {
         // --- Screen Time Auto-Processing ---
         let screenTimeLastProcessed = UserDefaults.standard.double(forKey: "screenTimeLastProcessedDate")
-        let heute = Calendar.current.startOfDay(for: Date())
+        let heuteStart = Calendar.current.startOfDay(for: Date())
         let letztesProcessedTag = Calendar.current.startOfDay(for: Date(timeIntervalSince1970: screenTimeLastProcessed))
         
-        if heute > letztesProcessedTag {
+        if heuteStart > letztesProcessedTag {
             UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "screenTimeLastProcessedDate")
             
             let screenTimeLimitExceeded = SharedUserDefaults.suite.bool(forKey: "screenTimeLimitExceededToday")
