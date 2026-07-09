@@ -13,7 +13,10 @@ struct AntiPasteTextEditor: UIViewRepresentable {
         textView.textColor = .white
         textView.autocorrectionType = .no // Keine Autokorrektur-Hilfe!
         textView.spellCheckingType = .no // Keine Rechtschreibprüfung
+        textView.smartQuotesType = .no // Verhindert automatische Anführungszeichen
+        textView.smartDashesType = .no // Verhindert automatische Gedankenstriche
         textView.smartInsertDeleteType = .no // Kein schlaues Kopieren
+        textView.keyboardType = .asciiCapable // Erzwingt die Standard-Tastatur ohne Schnickschnack
         return textView
     }
     

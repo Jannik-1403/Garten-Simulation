@@ -15,11 +15,11 @@ struct WalkOfShameView: View {
     @FocusState private var isFocused: Bool
     
     let sentencePool = [
-        "Ich entscheide mich bewusst dafür, meine produktive Zeit zu opfern und stattdessen sinnlos auf einen Bildschirm zu starren. Ich weiß, dass mich dies nicht weiterbringt, aber ich gebe meiner Bequemlichkeit nach.",
-        "Mein Fokus ist mir in diesem Moment weniger wichtig als schnelle Ablenkung. Anstatt an meinen Zielen zu arbeiten, wähle ich den einfachen Weg und akzeptiere, dass ich dadurch meine eigene Entwicklung blockiere.",
-        "Ich breche meine eigenen Regeln und entsperre diese App, obwohl ich mir vorgenommen hatte, diszipliniert zu bleiben. Ich bin mir der Konsequenzen bewusst und entscheide mich aktiv gegen meine eigentlichen Vorhaben.",
-        "Trotz meiner guten Vorsätze lasse ich mich jetzt ablenken. Ich gestehe mir ein, dass ich in diesem Moment nicht die Willenskraft aufbringe, meine Aufgaben zu erledigen, und vergeude meine wertvolle Zeit.",
-        "Ich wähle kurzfristige Befriedigung anstelle von langfristigem Erfolg. Ich verstehe, dass jeder Moment, den ich hier verschwende, mir fehlt, um meine Träume zu verwirklichen, aber ich tue es trotzdem."
+        "Ich kapituliere zu 100%! Statt an meinen Zielen zu arbeiten, wähle ich den 0-8-15 Weg. Ich opfere meine #Disziplin für 5 Min. billiges Dopamin. Das ist armselig; aber ich tue es trotzdem (und akzeptiere den HP-Verlust).",
+        "[Achtung] Ich bin zu schwach für 99% meiner Aufgaben. Ich breche ab: X-Y-Z statt A-B-C. Mein Fokus sinkt auf 0.00; ich wähle #Versagen über #Wachstum. Warum? Weil mein Dopamin-Spiegel < 10% ist.",
+        "Fehler-Code 404: Willenskraft nicht gefunden! Ich tausche meine 1. Priorität gegen 10 Min. sinnlosen Feed-Scroll. Ist das schlau? Nein. Mache ich es trotzdem? Ja!! (Tschüss, wertvolle Zeit...)",
+        "Ich bestätige hiermit den Abbruch (Status: 100% undiszipliniert). Statt +1 Schritt nach vorne, mache ich -3 Schritte zurück. Meine #Ziele sind mir gerade egal; ich klicke auf [Entsperren] & vergeude 1/2 Stunde.",
+        "Warum aufgeben? Weil ich 0% Frustrationstoleranz habe. Ich wähle den Shortcut (Typ B) und ignoriere Regel #1: Bleib fokussiert! Meine HP sinken um -15.0 Punkte; das ist der Preis für 2 Min. Schwäche."
     ]
     
     var body: some View {
