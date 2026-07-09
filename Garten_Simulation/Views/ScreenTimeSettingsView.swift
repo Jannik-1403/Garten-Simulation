@@ -155,7 +155,7 @@ struct ScreenTimeSettingsView: View {
         VStack(alignment: .leading, spacing: 12) {
             // Header: Title + [+] + [Adult Filter]
             HStack(spacing: 8) {
-                Text(String(localized: "screenTime.permanent.title", defaultValue: "Für immer blockieren"))
+                Text(String(localized: "screenTime.blocked.apps.title", defaultValue: "Blockierte Apps"))
                     .font(.system(size: 20, weight: .bold, design: .rounded))
                 Spacer()
                 

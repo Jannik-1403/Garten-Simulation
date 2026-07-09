@@ -209266,37 +209266,37 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Consenti l'accesso al tempo di utilizzo"
+            "value": "Consenti accesso al tempo di utilizzo"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "スクリーンタイムアクセスを許可"
+            "value": "スクリーンタイムのアクセスを許可"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "스크린타임 접근 허용"
+            "value": "화면 시간 접근 허용"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schermtijd toegang toestaan"
+            "value": "Schermtijdtoegang toestaan"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zezwól na dostęp do Czasu przed ekranem"
+            "value": "Zezwól na dostęp do czasu ekranu"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permitir acesso ao Tempo de Tela"
+            "value": "Permitir acesso ao tempo de ecrã"
           }
         },
         "ru": {
@@ -209331,25 +209331,25 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du befindest dich gerade in deiner aktiven Block-Zeit. Du kannst diese Einstellungen erst ändern, wenn die Block-Zeit abgelaufen ist."
+            "value": "Du befindest dich gerade in deiner aktiven Block-Zeit."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are currently in your active block time. You can only change these settings once the block time has expired."
+            "value": "You are currently in your active block window."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Estás en tu tiempo de bloqueo activo. Solo puedes cambiar estos ajustes una vez que expire el tiempo."
+            "value": "Estás actualmente en tu ventana de bloqueo activa."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vous êtes actuellement dans votre temps de blocage actif. Vous ne pouvez modifier ces paramètres qu'une fois le temps expiré."
+            "value": "Vous êtes actuellement dans votre plage de blocage active."
           }
         },
         "hi": {
@@ -209361,37 +209361,37 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sei attualmente nel tuo periodo di blocco attivo. Puoi modificare queste impostazioni solo al termine del blocco."
+            "value": "Sei attualmente nel tuo intervallo di blocco attivo."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "現在、有効なブロック時間中です。ブロック時間が終了するまで設定を変更できません。"
+            "value": "現在アクティブなブロック時間帯です。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "현재 활성 차단 시간입니다. 차단 시간이 만료되어야만 이 설정을 변경할 수 있습니다."
+            "value": "현재 활성 차단 시간대에 있습니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je bevindt je momenteel in je actieve bloktijd. Je kunt deze instellingen pas wijzigen nadat de bloktijd is verstreken."
+            "value": "Je bevindt je momenteel in je actieve blokkeerperiode."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jesteś obecnie w aktywnym czasie blokady. Możesz zmienić te ustawienia dopiero po upływie czasu blokady."
+            "value": "Jesteś obecnie w aktywnym oknie blokady."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Você está atualmente em seu tempo de bloqueio ativo. Você só pode alterar essas configurações após o término do tempo."
+            "value": "Está atualmente na sua janela de bloqueio ativa."
           }
         },
         "ru": {
@@ -209403,7 +209403,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Şu anda aktif engelleme sürenizdesiniz. Bu ayarları yalnızca engelleme süresi dolduğunda değiştirebilirsiniz."
+            "value": "Şu anda aktif engelleme pencerenizdesiniz."
           }
         },
         "zh-Hans": {
@@ -209426,25 +209426,25 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bildschirmzeit blockiert"
+            "value": "Bildschirmzeit aktiv"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Screen Time Blocked"
+            "value": "Screen Time Active"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tiempo de pantalla bloqueado"
+            "value": "Tiempo de pantalla activo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Temps d'écran bloqué"
+            "value": "Temps d'écran actif"
           }
         },
         "hi": {
@@ -209456,37 +209456,37 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tempo di Schermo Bloccato"
+            "value": "Tempo di utilizzo attivo"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "スクリーンタイムブロック中"
+            "value": "スクリーンタイム有効中"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "스크린타임 차단됨"
+            "value": "화면 시간 활성 중"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schermtijd geblokkeerd"
+            "value": "Schermtijd actief"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Czas przed ekranem zablokowany"
+            "value": "Czas ekranu aktywny"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tempo de Tela Bloqueado"
+            "value": "Tempo de ecrã ativo"
           }
         },
         "ru": {
@@ -209498,7 +209498,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ekran Süresi Engellendi"
+            "value": "Ekran Süresi Etkin"
           }
         },
         "zh-Hans": {
@@ -209569,7 +209569,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Odblokowanie awaryjne"
+            "value": "Awaryjne odblokowanie"
           }
         },
         "pt": {
@@ -209598,19 +209598,19 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The shield block shows a warning overlay over apps. Affected apps are not deleted and can still be opened by the user (with confirmation). The adult filter only applies in Safari."
+            "value": "The shield block shows a warning overlay over apps. Affected apps are not deleted and can still be opened (with confirmation). The adult filter only applies in Safari."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El bloqueo shield muestra una superposición de advertencia sobre las apps. Las apps afectadas no se eliminan y aún pueden ser abiertas por el usuario (con confirmación). El filtro adulto solo aplica en Safari."
+            "value": "El bloqueo escudo muestra una superposición de advertencia sobre las apps. Las apps no se eliminan y aún pueden abrirse (con confirmación). El filtro adulto solo aplica en Safari."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le blocage shield affiche une superposition d'avertissement sur les apps. Les apps concernées ne sont pas supprimées et peuvent toujours être ouvertes par l'utilisateur (avec confirmation). Le filtre adulte ne s'applique qu'à Safari."
+            "value": "Le blocage shield affiche une superposition d'avertissement sur les apps. Les apps ne sont pas supprimées et peuvent toujours être ouvertes (avec confirmation). Le filtre adulte ne s'applique qu'à Safari."
           }
         },
         "hi": {
@@ -209622,37 +209622,37 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il blocco shield mostra una sovrapposizione di avviso sulle app. Le app interessate non vengono eliminate e possono ancora essere aperte dall'utente (con conferma). Il filtro adulti si applica solo in Safari."
+            "value": "Il blocco shield mostra una sovrapposizione di avviso sulle app. Le app non vengono eliminate e possono ancora essere aperte (con conferma). Il filtro adulti si applica solo in Safari."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "シールドブロックはアプリ上に警告オーバーレイを表示します。対象アプリは削除されず、ユーザーは確認後に引き続き開くことができます。アダルトフィルターはSafariのみに適用されます。"
+            "value": "シールドブロックはアプリ上に警告を表示します。対象アプリは削除されず、確認後に開くことができます。アダルトフィルターはSafariのみ有効です。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "쉴드 차단은 앱 위에 경고 오버레이를 표시합니다. 영향을 받는 앱은 삭제되지 않으며 사용자가 확인 후 계속 열 수 있습니다. 성인 필터는 Safari에만 적용됩니다."
+            "value": "쉴드 차단은 앱 위에 경고를 표시합니다. 앱은 삭제되지 않으며 확인 후 열 수 있습니다. 성인 필터는 Safari에만 적용됩니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Het shield-blok toont een waarschuwingsoverlay over apps. De getroffen apps worden niet verwijderd en kunnen nog steeds worden geopend (met bevestiging). Het volwassenenfilter geldt alleen in Safari."
+            "value": "Het shield-blok toont een waarschuwing over apps. Apps worden niet verwijderd en kunnen nog worden geopend (met bevestiging). Het volwassenenfilter geldt alleen in Safari."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Blokada shield wyświetla nakładkę ostrzegawczą nad aplikacjami. Dotknięte aplikacje nie są usuwane i nadal mogą być otwierane przez użytkownika (z potwierdzeniem). Filtr dla dorosłych działa tylko w Safari."
+            "value": "Blokada shield wyświetla ostrzeżenie nad aplikacjami. Aplikacje nie są usuwane i nadal można je otworzyć (z potwierdzeniem). Filtr dla dorosłych działa tylko w Safari."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "O bloqueio shield mostra uma sobreposição de aviso sobre os apps. Os apps afetados não são excluídos e ainda podem ser abertos pelo utilizador (com confirmação). O filtro adulto aplica-se apenas no Safari."
+            "value": "O bloqueio shield mostra um aviso sobre os apps. Os apps não são eliminados e ainda podem ser abertos (com confirmação). O filtro adulto aplica-se apenas no Safari."
           }
         },
         "ru": {
@@ -209664,7 +209664,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalkan bloğu, uygulamalar üzerinde bir uyarı katmanı gösterir. Etkilenen uygulamalar silinmez ve kullanıcı tarafından hâlâ açılabilir (onay ile). Yetişkin filtresi yalnızca Safari'de geçerlidir."
+            "value": "Kalkan bloğu uygulamalar üzerinde uyarı gösterir. Uygulamalar silinmez ve onay ile açılabilir. Yetişkin filtresi yalnızca Safari'de geçerlidir."
           }
         },
         "zh-Hans": {
@@ -209693,7 +209693,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "How does it work?"
+            "value": "How does this work?"
           }
         },
         "es": {
@@ -209705,7 +209705,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Comment ça marche ?"
+            "value": "Comment ça fonctionne ?"
           }
         },
         "hi": {
@@ -209723,7 +209723,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "仕組みは？"
+            "value": "どのように機能しますか？"
           }
         },
         "ko": {
@@ -209735,7 +209735,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hoe werkt het?"
+            "value": "Hoe werkt dit?"
           }
         },
         "pl": {
@@ -209759,7 +209759,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nasıl çalışır?"
+            "value": "Bu nasıl çalışır?"
           }
         },
         "zh-Hans": {
@@ -210208,25 +210208,25 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Block-Zeitplan aktivieren"
+            "value": "Zeitplan aktivieren"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Block Schedule"
+            "value": "Enable Schedule"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Activar horario de bloqueo"
+            "value": "Activar horario"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Activer le calendrier de blocage"
+            "value": "Activer la plage"
           }
         },
         "hi": {
@@ -210238,37 +210238,37 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abilita programma di blocco"
+            "value": "Attiva piano"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ブロックスケジュールを有効にする"
+            "value": "スケジュールを有効にする"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "차단 일정 활성화"
+            "value": "일정 활성화"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Blokschema inschakelen"
+            "value": "Plan activeren"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Włącz harmonogram blokady"
+            "value": "Włącz harmonogram"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ativar Cronograma de Bloqueio"
+            "value": "Ativar agenda"
           }
         },
         "ru": {
@@ -210280,7 +210280,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Engelleme Planını Etkinleştir"
+            "value": "Takvimi Etkinleştir"
           }
         },
         "zh-Hans": {
@@ -210315,7 +210315,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hora de finalización"
+            "value": "Hora de fin"
           }
         },
         "fr": {
@@ -210339,7 +210339,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "終了時間"
+            "value": "終了時刻"
           }
         },
         "ko": {
@@ -210363,7 +210363,7 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hora de Término"
+            "value": "Hora de fim"
           }
         },
         "ru": {
@@ -210398,25 +210398,25 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apps & Kategorien auswählen"
+            "value": "Apps & Kategorien für Zeitplan"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Apps & Categories"
+            "value": "Apps & Categories for Schedule"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seleccionar aplicaciones y categorías"
+            "value": "Apps y categorías para el horario"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sélectionner des applications et catégories"
+            "value": "Apps et catégories pour la plage"
           }
         },
         "hi": {
@@ -210428,37 +210428,37 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seleziona App e Categorie"
+            "value": "App e categorie per il piano"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "アプリとカテゴリを選択"
+            "value": "スケジュール用アプリとカテゴリ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "앱 및 카테고리 선택"
+            "value": "일정용 앱 및 카테고리"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selecteer apps en categorieën"
+            "value": "Apps en categorieën voor plan"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wybierz aplikacje i kategorie"
+            "value": "Aplikacje i kategorie dla planu"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Selecionar Apps e Categorias"
+            "value": "Apps e categorias para a agenda"
           }
         },
         "ru": {
@@ -210470,7 +210470,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uygulamaları ve Kategorileri Seçin"
+            "value": "Takvim için Uygulamalar ve Kategoriler"
           }
         },
         "zh-Hans": {
@@ -210529,7 +210529,7 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "開始時間"
+            "value": "開始時刻"
           }
         },
         "ko": {
@@ -210541,7 +210541,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starttijd"
+            "value": "Begintijd"
           }
         },
         "pl": {
@@ -210553,7 +210553,7 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hora de Início"
+            "value": "Hora de início"
           }
         },
         "ru": {
@@ -210659,67 +210659,67 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erwachsenen-Inhalte"
+            "value": "Adult Filter"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Adult Content"
+            "value": "Adult Filter"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Contenido para adultos"
+            "value": "Filtro adulto"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Contenu pour adultes"
+            "value": "Filtre adulte"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Contenuti per adulti"
+            "value": "Filtro adulti"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "アダルトコンテンツ"
+            "value": "アダルトフィルター"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "성인 콘텐츠"
+            "value": "성인 필터"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inhoud voor volwassenen"
+            "value": "Volwassenenfilter"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Treści dla dorosłych"
+            "value": "Filtr dla dorosłych"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Conteúdo adulto"
+            "value": "Filtro adulto"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yetişkin İçeriği"
+            "value": "Yetişkin Filtresi"
           }
         }
       }
@@ -211257,7 +211257,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tempo di Utilizzo"
+            "value": "Tempo di utilizzo"
           }
         },
         "ja": {
@@ -211269,7 +211269,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "스크린타임"
+            "value": "화면 시간"
           }
         },
         "nl": {
@@ -211281,13 +211281,13 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Czas przed ekranem"
+            "value": "Czas ekranu"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tempo de Tela"
+            "value": "Tempo de ecrã"
           }
         },
         "ru": {
@@ -294799,7 +294799,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pzt–Cum uygula"
+            "value": "Pzt–Cum Uygula"
           }
         }
       }
@@ -294870,7 +294870,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cmt–Paz uygula"
+            "value": "Cmt–Paz Uygula"
           }
         }
       }
@@ -294941,7 +294941,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Etkin değil"
+            "value": "Etkin Değil"
           }
         }
       }
@@ -295084,6 +295084,77 @@
           "stringUnit": {
             "state": "translated",
             "value": "Oyunlar"
+          }
+        }
+      }
+    },
+    "screenTime.blocked.apps.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blockierte Apps"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geblokkeerde apps"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocked Apps"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps bloquées"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App bloccate"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブロック済みアプリ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "차단된 앱"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zablokowane aplikacje"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps bloqueados"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps bloqueadas"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engellenen Uygulamalar"
           }
         }
       }

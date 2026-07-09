@@ -530,3 +530,4 @@
 - **Screen Time UI Cleanup**: Vorschläge-Sektion entfernt (nutzlos), "Für immer blockieren" als kompakte horizontale Capsule-Pills (links nach rechts scrollend, wie Pflanzen im Garten), Adult Filter als Capsule-Toggle oben rechts im Header
 - **Screen Time 3D Buttons**: Auth-Banner, Adult Filter und + Hinzufügen Button nutzen jetzt Item3DButton (isRectangular). DayScheduleRow bekommt 3D-Schatten-Look.
 - **Screen Time UI**: Horizontaler Scroll entfernt; blockierte Items als vertikale BlockRow-Liste. + Button im Header links neben Adult Filter. Mo-Fr/Sa-So Schnellwahl und Apps-Picker sind jetzt Item3DButton. Schatten der Wochentag-Zeilen korrekt schwarz.
+- **Screen Time Lokalisierung**: Titel umbenannt zu "Blockierte Apps", alle 24 Screen-Time-Strings vollständig in alle 11 Sprachen übersetzt (de, en, es, fr, it, ja, ko, nl, pl, pt, tr).
