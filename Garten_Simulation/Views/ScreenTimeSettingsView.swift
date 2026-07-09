@@ -156,7 +156,7 @@ struct ScreenTimeSettingsView: View {
             // Header: Title + [+] + [Adult Filter]
             HStack(spacing: 8) {
                 Text(String(localized: "screenTime.blocked.apps.title", defaultValue: "Blockierte Apps"))
-                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
                 Spacer()
                 
                 // + Add Button (rectangular 3D, left of adult filter)
@@ -496,10 +496,10 @@ struct BlockRow<Content: View>: View {
     var body: some View {
         HStack {
             Image(systemName: "lock.fill")
-                .font(.system(size: 13))
+                .font(.system(size: 12))
                 .foregroundStyle(.red)
             content
-                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .font(.system(size: 13, weight: .semibold, design: .rounded))
                 .lineLimit(1)
             Spacer()
         }
