@@ -35,36 +35,25 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
-    @AppStorage("screenTimeAdultFilterEnabled") var isAdultFilterEnabled: Bool = false {
+    @Published var isAdultFilterEnabled: Bool = false {
         didSet {
+            UserDefaults.standard.set(isAdultFilterEnabled, forKey: "screenTimeAdultFilterEnabled")
             applyPermanentBlocks()
         }
     }
     
     // MARK: - Block Schedule (Per-Day)
-    @AppStorage("isScreenTimeScheduleActive") var isScheduleActive: Bool = false
+    @Published var isScheduleActive: Bool = false {
+        didSet {
+            UserDefaults.standard.set(isScheduleActive, forKey: "isScreenTimeScheduleActive")
+        }
+    }
     
     /// Weekday schedule: key = Calendar weekday (1=Sun, 2=Mon ... 7=Sat)
-    @AppStorage("screenTimeDaySchedulesData") private var daySchedulesData: Data = {
-        let defaults: [Int: DaySchedule] = [
-            1: .defaultWeekend,  // Sunday
-            2: .defaultWeekday,  // Monday
-            3: .defaultWeekday,  // Tuesday
-            4: .defaultWeekday,  // Wednesday
-            5: .defaultWeekday,  // Thursday
-            6: .defaultWeekday,  // Friday
-            7: .defaultWeekend   // Saturday
-        ]
-        return (try? JSONEncoder().encode(defaults)) ?? Data()
-    }()
-    
-    var daySchedules: [Int: DaySchedule] {
-        get {
-            (try? JSONDecoder().decode([Int: DaySchedule].self, from: daySchedulesData)) ?? defaultSchedules
-        }
-        set {
-            if let data = try? JSONEncoder().encode(newValue) {
-                daySchedulesData = data
+    @Published var daySchedules: [Int: DaySchedule] = [:] {
+        didSet {
+            if let data = try? JSONEncoder().encode(daySchedules) {
+                UserDefaults.standard.set(data, forKey: "screenTimeDaySchedulesData")
             }
         }
     }
@@ -72,6 +61,15 @@ class ScreenTimeManager: ObservableObject {
     private var defaultSchedules: [Int: DaySchedule] {
         [1: .defaultWeekend, 2: .defaultWeekday, 3: .defaultWeekday,
          4: .defaultWeekday, 5: .defaultWeekday, 6: .defaultWeekday, 7: .defaultWeekend]
+    }
+    
+    private func loadDaySchedules() {
+        if let data = UserDefaults.standard.data(forKey: "screenTimeDaySchedulesData"),
+           let decoded = try? JSONDecoder().decode([Int: DaySchedule].self, from: data) {
+            self.daySchedules = decoded
+        } else {
+            self.daySchedules = defaultSchedules
+        }
     }
     
     var isCurrentlyInBlockWindow: Bool {
@@ -127,6 +125,10 @@ class ScreenTimeManager: ObservableObject {
     let store = ManagedSettingsStore()
     
     private init() {
+        self.isAdultFilterEnabled = UserDefaults.standard.bool(forKey: "screenTimeAdultFilterEnabled")
+        self.isScheduleActive = UserDefaults.standard.bool(forKey: "isScreenTimeScheduleActive")
+        loadDaySchedules()
+        
         loadAllowedSelection()
         loadBlockSelection()
         loadPermanentBlockSelection()
