@@ -499,3 +499,5 @@
 - Bildschirmzeit UI: Neue ausklappbare Timer-Ansicht hinzugefügt, um Platz zu sparen
 - Bildschirmzeit UI: Bestätigungs- und Einstellungs-Buttons in elegantes 3D-Design (Neo-Brutalism) umgewandelt
 - Richtige 11-sprachige Übersetzungen für Bildschirmzeit-Keys integriert (statt nur deutsche Platzhalter)
+- Xcode Warnung wegen ungenutzter Keys (z.B. '%lldh %lldm') behoben, indem sie restlos entfernt wurden
+- 100% Übersetzungsabdeckung bei Chinesisch (zh-Hans & zh-Hant) wiederhergestellt
