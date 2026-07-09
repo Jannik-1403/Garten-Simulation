@@ -127,21 +127,26 @@ struct ScreenTimeSettingsView: View {
     // MARK: - Authorization Banner
     
     private var authorizationBanner: some View {
-        Button {
-            Task { await manager.requestAuthorization() }
-        } label: {
+        Item3DButton(
+            farbe: Color.orange,
+            sekundaerFarbe: Color.orange.darker(),
+            groesse: 56,
+            isRectangular: true,
+            aktion: {
+                Task { await manager.requestAuthorization() }
+            }
+        ) {
             HStack {
                 Image(systemName: "exclamationmark.triangle.fill")
-                    .foregroundStyle(.yellow)
+                    .foregroundStyle(.white)
                 Text(String(localized: "screenTime.auth.request", defaultValue: "Bildschirmzeit-Zugriff erlauben"))
                     .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(.white)
+                Spacer()
             }
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(Color(UIColor.secondarySystemGroupedBackground))
-            .cornerRadius(16)
+            .padding(.horizontal, 8)
         }
+        .frame(maxWidth: .infinity)
     }
     
     // MARK: - Permanent Block Section
@@ -152,43 +157,49 @@ struct ScreenTimeSettingsView: View {
                 Text(String(localized: "screenTime.permanent.title", defaultValue: "Für immer blockieren"))
                     .font(.system(size: 20, weight: .bold, design: .rounded))
                 Spacer()
-                // Adult Filter Toggle pill
-                Button {
-                    isAdultFilterEnabled.toggle()
-                } label: {
-                    HStack(spacing: 6) {
+                // Adult Filter as 3D Button
+                Item3DButton(
+                    farbe: isAdultFilterEnabled ? Color.red : Color(UIColor.secondarySystemGroupedBackground),
+                    sekundaerFarbe: isAdultFilterEnabled ? Color.red.darker() : Color(UIColor.tertiarySystemGroupedBackground),
+                    groesse: 40,
+                    shadowDepthFactor: 0.1,
+                    isRectangular: true,
+                    aktion: { isAdultFilterEnabled.toggle() }
+                ) {
+                    HStack(spacing: 5) {
                         Image(systemName: "exclamationmark.shield.fill")
-                            .font(.system(size: 14))
+                            .font(.system(size: 13))
+                            .foregroundStyle(isAdultFilterEnabled ? .white : .red)
                         Text(String(localized: "screenTime.suggestions.adult.title", defaultValue: "Adult Filter"))
-                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                            .foregroundStyle(isAdultFilterEnabled ? .white : .primary)
                     }
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 7)
-                    .background(isAdultFilterEnabled ? Color.red : Color(UIColor.tertiarySystemGroupedBackground))
-                    .foregroundStyle(isAdultFilterEnabled ? .white : .primary)
-                    .clipShape(Capsule())
+                    .padding(.horizontal, 4)
                 }
             }
             .padding(.horizontal)
             
-            // Horizontal scroll – compact pill cards, left to right
+            // Horizontal scroll – pills + 3D add button
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
-                    // + Add Button always first
-                    Button {
-                        isPermanentPickerPresented = true
-                    } label: {
-                        HStack(spacing: 6) {
+                    // + Add Button as 3D rectangular button
+                    Item3DButton(
+                        farbe: Color.gruenPrimary,
+                        sekundaerFarbe: Color.gruenPrimary.darker(),
+                        groesse: 44,
+                        shadowDepthFactor: 0.1,
+                        isRectangular: true,
+                        aktion: { isPermanentPickerPresented = true }
+                    ) {
+                        HStack(spacing: 5) {
                             Image(systemName: "plus")
-                                .font(.system(size: 15, weight: .bold))
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundStyle(.white)
                             Text(String(localized: "common.add", defaultValue: "Hinzufügen"))
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .font(.system(size: 13, weight: .bold, design: .rounded))
+                                .foregroundStyle(.white)
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 10)
-                        .background(Color.gruenPrimary)
-                        .foregroundStyle(.white)
-                        .clipShape(Capsule())
+                        .padding(.horizontal, 4)
                     }
                     .familyActivityPicker(isPresented: $isPermanentPickerPresented, selection: $permanentBlockSelection)
                     
@@ -206,7 +217,7 @@ struct ScreenTimeSettingsView: View {
                     }
                 }
                 .padding(.horizontal)
-                .padding(.vertical, 4)
+                .padding(.vertical, 8)
             }
         }
     }
@@ -424,7 +435,15 @@ struct DayScheduleRow: View {
             }
         }
         .background(Color(UIColor.secondarySystemGroupedBackground))
-        .cornerRadius(16)
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .shadow(
+            color: Color(UIColor.secondarySystemGroupedBackground).opacity(0.8),
+            radius: 0, x: 0, y: 4
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .stroke(Color.black.opacity(0.07), lineWidth: 1)
+        )
         .animation(.spring(response: 0.3), value: isExpanded)
     }
     

@@ -528,3 +528,4 @@
 - **Screen Time Overhaul**: Per-Wochentag Zeitplan (DaySchedule-Modell), Quick-Copy für Mo-Fr/Sa-So, horizontale Block-Karten, ehrliche Vorschlags-Karten die Apple Picker öffnen, Custom-Domain-Fake-Code entfernt
 - **Background Schedule (DeviceActivityMonitor)**: Der ScreenTimeMonitor läuft jetzt echt im Hintergrund. Beim Speichern werden via DeviceActivityCenter pro aktivem Wochentag eigene Schedules registriert. Die Extension aktiviert/deaktiviert den ManagedSettings-Shield automatisch ohne dass die App offen sein muss.
 - **Screen Time UI Cleanup**: Vorschläge-Sektion entfernt (nutzlos), "Für immer blockieren" als kompakte horizontale Capsule-Pills (links nach rechts scrollend, wie Pflanzen im Garten), Adult Filter als Capsule-Toggle oben rechts im Header
+- **Screen Time 3D Buttons**: Auth-Banner, Adult Filter und + Hinzufügen Button nutzen jetzt Item3DButton (isRectangular). DayScheduleRow bekommt 3D-Schatten-Look.
