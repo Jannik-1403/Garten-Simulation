@@ -574,3 +574,4 @@
 - Walk Of Shame: 5 neue 'Höllen-Texte' implementiert und in 14 Sprachen lokalisiert
 - Bugfix: Rohe Keys in Screen Time und Walk of Shame behoben. Zahlen in Höllen-Texten komplett ausgeschrieben.
 - Übersetzungen für alle Sprachen abgeschlossen
+- Bugfix: Lokalisierung für Aktivitäten-Auswahl hinzugefügt und Uhrzeit-Formatierung für US-Zeiten (AM/PM) korrigiert.
