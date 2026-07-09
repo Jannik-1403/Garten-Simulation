@@ -153,45 +153,14 @@ struct FocusSessionView: View {
                     let timeAway = Date().timeIntervalSince(startTime)
                     backgroundStartTime = nil
                     
-                    if isStrictMode && timeAway > 10 {
-                        // Fail the session
-                        isTimerRunning = false
-                        UIApplication.shared.isIdleTimerDisabled = false
-                        stopLiveActivity()
-                        FocusAudioManager.shared.stop()
-                        showFailAlert = true
-                        
-                        let completedSeconds = selectedMinutes * 60 - remainingSeconds
-                        let durationMinutes = completedSeconds / 60
-                        if durationMinutes > 0 {
-                            let log = FocusSessionLog(
-                                date: Date(),
-                                durationMinutes: durationMinutes,
-                                isCompleted: false,
-                                isRoutine: false,
-                                habitId: pflanze.id,
-                                habitName: pflanze.name,
-                                tasks: sessionGoals.map { $0.text }
-                            )
-                            gardenStore.focusSessions.append(log)
-                        }
-                    } else {
-                        // Subtract the time away from remainingSeconds
-                        let remaining = max(0, remainingSeconds - Int(timeAway))
-                        remainingSeconds = remaining
-                        if remainingSeconds == 0 {
-                            finishSession()
-                        }
+                    // Subtract the time away from remainingSeconds
+                    let remaining = max(0, remainingSeconds - Int(timeAway))
+                    remainingSeconds = remaining
+                    if remainingSeconds == 0 {
+                        finishSession()
                     }
                 }
             }
-        }
-        .alert(String(localized: "focus.session.cancelled.title", defaultValue: "Fokus abgebrochen"), isPresented: $showFailAlert) {
-            Button(String(localized: "common.close", defaultValue: "Schließen"), role: .cancel) {
-                dismiss()
-            }
-        } message: {
-            Text(String(localized: "focus.session.cancelled.app_left", defaultValue: "Du hast die App zu lange verlassen. Dein Fokus-Timer wurde abgebrochen."))
         }
         .alert(String(localized: "alert.strict_mode.title"), isPresented: $showStrictModeAlert) {
             Button(String(localized: "alert.strict_mode.no"), role: .destructive) {
