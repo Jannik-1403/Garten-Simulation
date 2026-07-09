@@ -12,7 +12,7 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     
     // Shared App Group so this extension can read the block selection stored by the main app
     let sharedDefaults = UserDefaults(suiteName: "group.com.jannik.grovy")
-    let store = ManagedSettingsStore()
+    let store = ManagedSettingsStore(named: .init("scheduled"))
     
     // MARK: - Interval Start → Block apps
     
@@ -28,16 +28,18 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         // Load the saved blockSelection from the App Group
         if let data = sharedDefaults?.data(forKey: "screenTimeBlockSelectionData_appGroup"),
            let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data),
-           !selection.applicationTokens.isEmpty || !selection.categoryTokens.isEmpty {
+           !selection.applicationTokens.isEmpty || !selection.categoryTokens.isEmpty || !selection.webDomainTokens.isEmpty {
             // Block only the selected apps/categories
             store.shield.applications = selection.applicationTokens
             store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.specific(selection.categoryTokens)
             store.shield.webDomains = selection.webDomainTokens
             store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.specific(selection.categoryTokens)
         } else {
-            // No specific selection → block all categories
-            store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all()
-            store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all()
+            // No specific selection → block NOTHING
+            store.shield.applications = nil
+            store.shield.applicationCategories = nil
+            store.shield.webDomains = nil
+            store.shield.webDomainCategories = nil
         }
         
         // Store in App Group so the main app knows the block is active

@@ -119,7 +119,8 @@ class ScreenTimeManager: ObservableObject {
     
     @Published var isAuthorized = false
     
-    let store = ManagedSettingsStore()
+    let permanentStore = ManagedSettingsStore(named: .init("permanent"))
+    let scheduledStore = ManagedSettingsStore(named: .init("scheduled"))
     
     private init() {
         self.isAdultFilterEnabled = UserDefaults.standard.bool(forKey: "screenTimeAdultFilterEnabled")
@@ -152,15 +153,15 @@ class ScreenTimeManager: ObservableObject {
     
     func applyPermanentBlocks() {
         guard isAuthorized else { return }
-        store.shield.applications = permanentBlockSelection.applicationTokens
-        store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.specific(permanentBlockSelection.categoryTokens)
-        store.shield.webDomains = permanentBlockSelection.webDomainTokens
-        store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.specific(permanentBlockSelection.categoryTokens)
+        permanentStore.shield.applications = permanentBlockSelection.applicationTokens
+        permanentStore.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.specific(permanentBlockSelection.categoryTokens)
+        permanentStore.shield.webDomains = permanentBlockSelection.webDomainTokens
+        permanentStore.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.specific(permanentBlockSelection.categoryTokens)
         
         if isAdultFilterEnabled {
-            store.webContent.blockedByFilter = .auto()
+            permanentStore.webContent.blockedByFilter = .auto()
         } else {
-            store.webContent.blockedByFilter = nil
+            permanentStore.webContent.blockedByFilter = nil
         }
     }
     
@@ -217,25 +218,29 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
-    /// „Ohne Handy" – blockiert alle App-Kategorien komplett
+    /// „Ohne Handy" – blockiert alle App-Kategorien komplett (überschreibt Notfall-Modus)
     func blockAllApps() {
         guard isAuthorized else { return }
-        store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all()
-        store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all()
+        scheduledStore.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all()
+        scheduledStore.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all()
         applyPermanentBlocks()
     }
     
     /// „Mit Handy" – blockiert alles AUSSER den Apps/Domains, die der Nutzer als erlaubt markiert hat
     func blockAllExcept(selection: FamilyActivitySelection) {
         guard isAuthorized else { return }
-        store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all(except: selection.applicationTokens)
-        store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all(except: selection.webDomainTokens)
+        scheduledStore.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all(except: selection.applicationTokens)
+        scheduledStore.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all(except: selection.webDomainTokens)
         applyPermanentBlocks()
     }
     
     func unblockApps() {
-        store.shield.applicationCategories = nil
-        store.shield.webDomainCategories = nil
+        scheduledStore.shield.applications = nil
+        scheduledStore.shield.applicationCategories = nil
+        scheduledStore.shield.webDomains = nil
+        scheduledStore.shield.webDomainCategories = nil
+        // Permanent blocks should remain active even in emergency unlock, 
+        // as they are "permanent".
         applyPermanentBlocks()
     }
     
