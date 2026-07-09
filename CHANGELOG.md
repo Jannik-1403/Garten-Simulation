@@ -504,3 +504,4 @@
 - Screen Time Edit UI: Komplettes Rework auf Item3DButton und Pop-Up Sheet umgestellt, wie gewünscht.
 - Lokalisierung: Fehlerhafte 'new' states in der xcstrings für Deutsche Keys auf 'translated' korrigiert und verwaiste Keys endgültig entfernt, um 100% wiederherzustellen.
 - Alle Widgets (Wasser, Streak, Routinen, Verlauf) vollständig lokalisiert (Swift 6 String Catalogs) und auf 100% Übersetzungsstatus in allen 11 Sprachen gebracht.
+- Compiler-Fehler in PflanzeDetailSheet.swift behoben (Typisierung von screenTime und fehlender Button-Parameter 'groesse' ergänzt).

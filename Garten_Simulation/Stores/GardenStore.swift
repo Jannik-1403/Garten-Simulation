@@ -702,50 +702,58 @@ class GardenStore: ObservableObject {
     // MARK: Streak-Check (täglich aufrufen, z.B. in .onReceive(timer))
     func taeglicherStreakCheck() {
         // --- Screen Time Auto-Processing ---
-        let screenTimeLimitExceeded = SharedUserDefaults.suite.bool(forKey: "screenTimeLimitExceededToday")
-        if screenTimeLimitExceeded {
-            // Bad habit log
-            if let badHabit = pflanzen.first(where: { $0.id == "bad_habit_screen_time" || $0.plantID == "trash.junk_mail_abo" }) {
-                let execution = BadHabitExecution(date: Date(), coinsLost: 0, triggers: [String(localized: "screenTime.reason.exceeded", defaultValue: "Tageslimit überschritten")])
-                badHabitExecutions[badHabit.id, default: []].append(execution)
+        let screenTimeLastProcessed = UserDefaults.standard.double(forKey: "screenTimeLastProcessedDate")
+        let heute = Calendar.current.startOfDay(for: Date())
+        let letztesProcessedTag = Calendar.current.startOfDay(for: Date(timeIntervalSince1970: screenTimeLastProcessed))
+        
+        if heute > letztesProcessedTag {
+            UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "screenTimeLastProcessedDate")
+            
+            let screenTimeLimitExceeded = SharedUserDefaults.suite.bool(forKey: "screenTimeLimitExceededToday")
+            if screenTimeLimitExceeded {
+                // Bad habit log
+                if let badHabit = pflanzen.first(where: { $0.id == "bad_habit_screen_time" || $0.plantID == "trash.junk_mail_abo" }) {
+                    let execution = BadHabitExecution(date: Date(), coinsLost: 0, triggers: [String(localized: "screenTime.reason.exceeded", defaultValue: "Tageslimit überschritten")])
+                    badHabitExecutions[badHabit.id, default: []].append(execution)
+                } else {
+                    let bad = HabitModel(
+                        id: "bad_habit_screen_time",
+                        name: String(localized: "trash.junk_mail_abo.name", defaultValue: "Zuviel Bildschirmzeit"),
+                        symbolName: "hourglass.bottomhalf.filled",
+                        symbolColor: "red",
+                        habitCategory: .health,
+                        symbolism: String(localized: "bad_habit.screen_time.desc", defaultValue: "Rückfall"),
+                        habitName: String(localized: "trash.junk_mail_abo.name", defaultValue: "Zuviel Bildschirmzeit"),
+                        maxLevel: 10,
+                        xpPerCompletion: 0,
+                        waterNeedPerDay: 0,
+                        decayDays: 0,
+                        plantID: "trash.junk_mail_abo",
+                        isNegative: true
+                    )
+                    pflanzen.append(bad)
+                    let execution = BadHabitExecution(date: Date(), coinsLost: 0, triggers: [String(localized: "screenTime.reason.exceeded", defaultValue: "Tageslimit überschritten")])
+                    badHabitExecutions[bad.id, default: []].append(execution)
+                }
             } else {
-                let bad = HabitModel(
-                    id: "bad_habit_screen_time",
-                    name: String(localized: "trash.junk_mail_abo.name", defaultValue: "Zuviel Bildschirmzeit"),
-                    symbolName: "hourglass.bottomhalf.filled",
-                    symbolColor: "red",
-                    habitCategory: .health,
-                    symbolism: String(localized: "bad_habit.screen_time.desc", defaultValue: "Rückfall"),
-                    habitName: String(localized: "trash.junk_mail_abo.name", defaultValue: "Zuviel Bildschirmzeit"),
-                    maxLevel: 10,
-                    xpPerCompletion: 0,
-                    waterNeedPerDay: 0,
-                    decayDays: 0,
-                    plantID: "trash.junk_mail_abo",
-                    isNegative: true
-                )
-                pflanzen.append(bad)
-                let execution = BadHabitExecution(date: Date(), coinsLost: 0, triggers: [String(localized: "screenTime.reason.exceeded", defaultValue: "Tageslimit überschritten")])
-                badHabitExecutions[bad.id, default: []].append(execution)
+                // Auto-water the tracker (using Aloe Vera / Bildschirmzeit)
+                if let tracker = pflanzen.first(where: { $0.habitName == "habit.bildschirmzeit" }) {
+                    tracker.istBewässert = true
+                    tracker.letzteBewaesserung = Date()
+                    tracker.wateringDates.append(Date())
+                    tracker.streak += 1
+                    tracker.currentXP += tracker.xpPerCompletion
+                    tracker.missedCycles = 0
+                    xpHinzufuegen(amount: tracker.xpPerCompletion)
+                    
+                    let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
+                    let noteText = "\(timeString) - \(String(localized: "note.auto.screentime_success", defaultValue: "Bildschirmzeit eingehalten"))"
+                    tracker.notizen.insert(noteText, at: 0)
+                }
             }
-        } else {
-            // Auto-water the tracker (using Aloe Vera / Bildschirmzeit)
-            if let tracker = pflanzen.first(where: { $0.habitName == "habit.bildschirmzeit" }) {
-                tracker.istBewässert = true
-                tracker.letzteBewaesserung = Date()
-                tracker.wateringDates.append(Date())
-                tracker.streak += 1
-                tracker.currentXP += tracker.xpPerCompletion
-                tracker.missedCycles = 0
-                xpHinzufuegen(amount: tracker.xpPerCompletion)
-                
-                let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
-                let noteText = "\(timeString) - \(String(localized: "note.auto.screentime_success", defaultValue: "Bildschirmzeit eingehalten"))"
-                tracker.notizen.insert(noteText, at: 0)
-            }
+            // Reset the limit for the new day
+            SharedUserDefaults.suite.set(false, forKey: "screenTimeLimitExceededToday")
         }
-        // Reset the limit for the new day
-        SharedUserDefaults.suite.set(false, forKey: "screenTimeLimitExceededToday")
         
         for pflanze in pflanzen {
             let isProtected = activePowerUps.contains(where: { $0.powerUpId == "powerup.zeitkapsel" && $0.targetPlantId == pflanze.id && $0.isActive })

@@ -673,7 +673,7 @@ struct PflanzeDetailSheet: View {
                                                     if pflanze.habitName == "habit.bildschirmzeit" {
                                                         VStack(spacing: 12) {
                                                             HStack {
-                                                                Text(String(localized: "custom.tracker.target", defaultValue: "Ziel"))
+                                                                Text(String(localized: "screentime.tracker.target", defaultValue: "Bildschirmzeit Ziel"))
                                                                     .font(.system(size: 15, weight: .semibold, design: .rounded))
                                                                 Spacer()
                                                             }
@@ -722,10 +722,10 @@ struct PflanzeDetailSheet: View {
                                                                 }
                                                                 .font(.system(size: 14, weight: .bold, design: .rounded))
                                                                 .foregroundColor(.white)
-                                                                .frame(maxWidth: .infinity)
                                                                 .padding(14)
+                                                                .frame(maxWidth: .infinity)
                                                             }
-                                                            .buttonStyle(Item3DButtonStyle(farbe: .blue, sekundaerFarbe: .blue.opacity(0.6), groesse: 50, iconSkalierung: 1.0, shadowDepthFactor: 0.08, isRectangular: true, isPermanentlyPressed: false, isDisabled: false))
+                                                            .buttonStyle(Item3DButtonStyle(farbe: .blue, sekundaerFarbe: .blue.darker(), groesse: 50, iconSkalierung: 1.0, shadowDepthFactor: 0.08, isRectangular: true, isPermanentlyPressed: false, isDisabled: false))
                                                         }
                                                     } else {
                                                         HStack {
@@ -2463,10 +2463,10 @@ struct ScreenTimePickerSheet: View {
                     Text(String(localized: "common.save", defaultValue: "Speichern"))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
                         .padding(14)
+                        .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(Item3DButtonStyle(farbe: .orange, sekundaerFarbe: .orange.opacity(0.8), groesse: 50, iconSkalierung: 1.0, shadowDepthFactor: 0.08, isRectangular: true, isPermanentlyPressed: false, isDisabled: false))
+                .buttonStyle(Item3DButtonStyle(farbe: .orange, sekundaerFarbe: .orange.darker(), groesse: 50, iconSkalierung: 1.0, shadowDepthFactor: 0.08, isRectangular: true, isPermanentlyPressed: false, isDisabled: false))
                 .padding(.horizontal)
                 
                 Spacer()

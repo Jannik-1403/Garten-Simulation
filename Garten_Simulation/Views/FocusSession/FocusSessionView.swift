@@ -198,13 +198,13 @@ struct FocusSessionView: View {
                 isStrictMode = true
                 if screenTimeManager.isAuthorized {
                     screenTimeManager.blockAllApps()
-                    showBlockNotice = true
+                    withAnimation { state = .step2 }
                 } else {
                     Task {
                         await screenTimeManager.requestAuthorization()
                         if screenTimeManager.isAuthorized {
                             screenTimeManager.blockAllApps()
-                            showBlockNotice = true
+                            withAnimation { state = .step2 }
                         }
                     }
                 }
@@ -212,12 +212,22 @@ struct FocusSessionView: View {
             Button(String(localized: "alert.strict_mode.yes")) {
                 isStrictMode = false
                 if screenTimeManager.isAuthorized {
-                    showScreenTimePicker = true
+                    if screenTimeManager.allowedSelection.applicationTokens.isEmpty && screenTimeManager.allowedSelection.webDomainTokens.isEmpty && screenTimeManager.allowedSelection.categoryTokens.isEmpty {
+                        showScreenTimePicker = true
+                    } else {
+                        screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
+                        withAnimation { state = .step2 }
+                    }
                 } else {
                     Task {
                         await screenTimeManager.requestAuthorization()
                         if screenTimeManager.isAuthorized {
-                            showScreenTimePicker = true
+                            if screenTimeManager.allowedSelection.applicationTokens.isEmpty && screenTimeManager.allowedSelection.webDomainTokens.isEmpty && screenTimeManager.allowedSelection.categoryTokens.isEmpty {
+                                showScreenTimePicker = true
+                            } else {
+                                screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
+                                withAnimation { state = .step2 }
+                            }
                         }
                     }
                 }
@@ -234,13 +244,6 @@ struct FocusSessionView: View {
                 screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
                 withAnimation { state = .step2 }
             }
-        }
-        .alert("Handy blockiert", isPresented: $showBlockNotice) {
-            Button("Verstanden", role: .cancel) {
-                withAnimation { state = .step2 }
-            }
-        } message: {
-            Text("Alle ablenkenden Apps wurden über Screen Time für die Dauer des Fokus blockiert.")
         }
     }
     
