@@ -101,28 +101,28 @@ struct WalkOfShameView: View {
                 }
             }
             .scrollBounceBehavior(.basedOnSize)
-        }
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    if isFocused {
-                        isFocused = false
-                    } else {
-                        onCancel()
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        if isFocused {
+                            isFocused = false
+                        } else {
+                            onCancel()
+                        }
+                    } label: {
+                        Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark.circle.fill")
+                            .font(.system(size: 28, weight: .semibold))
+                            .foregroundStyle(Color(UIColor.tertiaryLabel), Color(UIColor.tertiarySystemFill))
                     }
-                } label: {
-                    Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark.circle.fill")
-                        .font(.system(size: 28, weight: .semibold))
-                        .foregroundStyle(Color(UIColor.tertiaryLabel), Color(UIColor.tertiarySystemFill))
                 }
             }
-        }
-        .onAppear {
-            requiredText = sentencePool.randomElement()!
-        }
-    }
+            .onAppear {
+                requiredText = sentencePool.randomElement()!
+            }
+            } // Close ZStack
+        } // Close NavigationStack
+    } // Close body
     
     // Checks if the user made a typo along the way (no longer used for real-time validation, but kept for logical completeness if needed)
     private func checkTextForErrors(_ newText: String) {

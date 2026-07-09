@@ -1,15 +1,9 @@
 import Foundation
+import FamilyControls
 
-// Copying just enough of HabitModel to test encoding
-struct TestModel: Codable {
-    var customTrackerProgress: Double
+struct AppLimit: Codable {
+    let token: ApplicationToken
+    var minutes: Int
 }
-
-let m = TestModel(customTrackerProgress: 0)
-let encoder = JSONEncoder()
-do {
-    let data = try encoder.encode(m)
-    print("Success: \(data)")
-} catch {
-    print("Error: \(error)")
-}
+let sel = FamilyActivitySelection()
+let limit = AppLimit(token: ApplicationToken(), minutes: 15) // cannot instantiate ApplicationToken() directly

@@ -558,3 +558,5 @@
 - System-Bildschirmzeit Link am Ende der Einstellungsseite hinzugefügt
 - 'Bildschirmzeit-Zugriff erlauben' wurde als kleiner Link ganz nach unten verschoben
 - 'Apps entsperren' (Notfallentsperrung) wurde als kleinerer 3D-Button direkt neben das Plus-Symbol in Ebene 1 verschoben
+- Anti-Cheat: Erhöhung von App-Limits nach der Festlegung blockiert (benötigt komplettes Entsperren)
+- Fehler behoben: Entsperren-Buttons werden nun in Ebene 1 und Ebene 2 korrekt angezeigt

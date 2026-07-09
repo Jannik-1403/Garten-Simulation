@@ -27,6 +27,9 @@ struct ScreenTimeSettingsView: View {
     
     @State private var showWalkOfShame = false
     
+    @State private var showConfirmAlert = false
+    @State private var pendingLimitAction: (() -> Void)? = nil
+    
     // Weekday data: (weekdayInt, shortName, fullName)
     let allWeekdays: [(Int, String, String)] = [
         (2, "Mo", String(localized: "weekday.monday", defaultValue: "Montag")),
@@ -159,6 +162,17 @@ struct ScreenTimeSettingsView: View {
         .onDisappear {
             saveSettings()
         }
+        .alert(String(localized: "screenTime.limit.confirm.title", defaultValue: "Bist du dir sicher?"), isPresented: $showConfirmAlert) {
+            Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) {
+                pendingLimitAction = nil
+            }
+            Button(String(localized: "common.confirm", defaultValue: "Bestätigen")) {
+                pendingLimitAction?()
+                pendingLimitAction = nil
+            }
+        } message: {
+            Text(String(localized: "screenTime.limit.confirm.message", defaultValue: "Sobald das Limit festgelegt ist, kannst du es heute nicht mehr erhöhen!"))
+        }
     }
     
     // MARK: - Blocked State
@@ -260,7 +274,7 @@ struct ScreenTimeSettingsView: View {
                 
                 Spacer()
                 
-                if !manager.appLimits.isEmpty || !manager.categoryLimits.isEmpty || !manager.webLimits.isEmpty {
+                if !dailyLimitSelection.applicationTokens.isEmpty || !dailyLimitSelection.categoryTokens.isEmpty || !dailyLimitSelection.webDomainTokens.isEmpty {
                     Item3DButton(
                         farbe: Color.orange,
                         sekundaerFarbe: Color.orange.darker(),
@@ -281,32 +295,41 @@ struct ScreenTimeSettingsView: View {
             }
             .padding(.horizontal)
             
-            if !manager.appLimits.isEmpty || !manager.categoryLimits.isEmpty || !manager.webLimits.isEmpty {
+            if !dailyLimitSelection.applicationTokens.isEmpty || !dailyLimitSelection.categoryTokens.isEmpty || !dailyLimitSelection.webDomainTokens.isEmpty {
                 VStack(spacing: 8) {
-                    ForEach($manager.appLimits) { $limit in
+                    ForEach(Array(dailyLimitSelection.applicationTokens), id: \.self) { token in
                         BlockRow {
                             HStack {
-                                Label(limit.token)
+                                Label(token)
                                 Spacer()
-                                limitMenu(for: $limit.minutes)
+                                limitMenu(for: Binding(
+                                    get: { manager.getLimit(for: token) },
+                                    set: { manager.setLimit(for: token, limit: $0) }
+                                ))
                             }
                         }
                     }
-                    ForEach($manager.categoryLimits) { $limit in
+                    ForEach(Array(dailyLimitSelection.categoryTokens), id: \.self) { token in
                         BlockRow {
                             HStack {
-                                Label(limit.token)
+                                Label(token)
                                 Spacer()
-                                limitMenu(for: $limit.minutes)
+                                limitMenu(for: Binding(
+                                    get: { manager.getLimit(for: token) },
+                                    set: { manager.setLimit(for: token, limit: $0) }
+                                ))
                             }
                         }
                     }
-                    ForEach($manager.webLimits) { $limit in
+                    ForEach(Array(dailyLimitSelection.webDomainTokens), id: \.self) { token in
                         BlockRow {
                             HStack {
-                                Label(limit.token)
+                                Label(token)
                                 Spacer()
-                                limitMenu(for: $limit.minutes)
+                                limitMenu(for: Binding(
+                                    get: { manager.getLimit(for: token) },
+                                    set: { manager.setLimit(for: token, limit: $0) }
+                                ))
                             }
                         }
                     }
@@ -320,7 +343,12 @@ struct ScreenTimeSettingsView: View {
         Menu {
             ForEach([0, 5, 10, 15, 30, 45, 60, 90, 120, 180], id: \.self) { min in
                 Button(action: {
-                    minutesBinding.wrappedValue = min
+                    if minutesBinding.wrappedValue == 0 && min > 0 {
+                        pendingLimitAction = { minutesBinding.wrappedValue = min }
+                        showConfirmAlert = true
+                    } else {
+                        minutesBinding.wrappedValue = min
+                    }
                 }) {
                     Text(min == 0 ? String(localized: "common.off", defaultValue: "Aus") : "\(min) \(String(localized: "common.minutes.short", defaultValue: "Min"))")
                 }

@@ -18,23 +18,6 @@ struct DaySchedule: Codable, Equatable {
     static let defaultWeekend = DaySchedule(isActive: false, startHour: 10, startMinute: 0, endHour: 14, endMinute: 0)
 }
 
-struct AppLimit: Codable, Hashable, Identifiable {
-    var id = UUID()
-    let token: ApplicationToken
-    var minutes: Int
-}
-
-struct CategoryLimit: Codable, Hashable, Identifiable {
-    var id = UUID()
-    let token: ActivityCategoryToken
-    var minutes: Int
-}
-
-struct WebLimit: Codable, Hashable, Identifiable {
-    var id = UUID()
-    let token: WebDomainToken
-    var minutes: Int
-}
 
 // MARK: - ScreenTimeManager
 
@@ -143,13 +126,7 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
-    @Published var appLimits: [AppLimit] = [] {
-        didSet { saveIndividualLimits() }
-    }
-    @Published var categoryLimits: [CategoryLimit] = [] {
-        didSet { saveIndividualLimits() }
-    }
-    @Published var webLimits: [WebLimit] = [] {
+    @Published var limitSelections: [Int: FamilyActivitySelection] = [:] {
         didSet { saveIndividualLimits() }
     }
     
@@ -242,30 +219,14 @@ class ScreenTimeManager: ObservableObject {
             repeats: true
         )
         
-        for (index, appLimit) in appLimits.enumerated() {
-            if appLimit.minutes > 0 {
-                let event = DeviceActivityEvent(applications: [appLimit.token], threshold: DateComponents(minute: appLimit.minutes))
+        var index = 0
+        for (minutes, selection) in limitSelections {
+            if minutes > 0 {
+                let event = DeviceActivityEvent(applications: selection.applicationTokens, categories: selection.categoryTokens, webDomains: selection.webDomainTokens, threshold: DateComponents(minute: minutes))
                 do {
-                    try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).app.\(index)"), during: dailySchedule, events: [.init("limitEvent"): event])
-                } catch { print("Failed to schedule app limit: \(error)") }
-            }
-        }
-        
-        for (index, catLimit) in categoryLimits.enumerated() {
-            if catLimit.minutes > 0 {
-                let event = DeviceActivityEvent(categories: [catLimit.token], threshold: DateComponents(minute: catLimit.minutes))
-                do {
-                    try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).cat.\(index)"), during: dailySchedule, events: [.init("limitEvent"): event])
-                } catch { print("Failed to schedule cat limit: \(error)") }
-            }
-        }
-        
-        for (index, webLimit) in webLimits.enumerated() {
-            if webLimit.minutes > 0 {
-                let event = DeviceActivityEvent(webDomains: [webLimit.token], threshold: DateComponents(minute: webLimit.minutes))
-                do {
-                    try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).web.\(index)"), during: dailySchedule, events: [.init("limitEvent"): event])
-                } catch { print("Failed to schedule web limit: \(error)") }
+                    try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).limit.\(index)"), during: dailySchedule, events: [.init("limitEvent"): event])
+                    index += 1
+                } catch { print("Failed to schedule limit: \(error)") }
             }
         }
         
@@ -385,39 +346,89 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
+    // MARK: - Limit Getters & Setters
+    
+    func getLimit(for token: ApplicationToken) -> Int {
+        for (limit, selection) in limitSelections {
+            if selection.applicationTokens.contains(token) { return limit }
+        }
+        return 0
+    }
+    func getLimit(for token: ActivityCategoryToken) -> Int {
+        for (limit, selection) in limitSelections {
+            if selection.categoryTokens.contains(token) { return limit }
+        }
+        return 0
+    }
+    func getLimit(for token: WebDomainToken) -> Int {
+        for (limit, selection) in limitSelections {
+            if selection.webDomainTokens.contains(token) { return limit }
+        }
+        return 0
+    }
+    
+    func setLimit(for token: ApplicationToken, limit: Int) {
+        for key in limitSelections.keys { limitSelections[key]?.applicationTokens.remove(token) }
+        var selection = limitSelections[limit] ?? FamilyActivitySelection()
+        selection.applicationTokens.insert(token)
+        limitSelections[limit] = selection
+    }
+    func setLimit(for token: ActivityCategoryToken, limit: Int) {
+        for key in limitSelections.keys { limitSelections[key]?.categoryTokens.remove(token) }
+        var selection = limitSelections[limit] ?? FamilyActivitySelection()
+        selection.categoryTokens.insert(token)
+        limitSelections[limit] = selection
+    }
+    func setLimit(for token: WebDomainToken, limit: Int) {
+        for key in limitSelections.keys { limitSelections[key]?.webDomainTokens.remove(token) }
+        var selection = limitSelections[limit] ?? FamilyActivitySelection()
+        selection.webDomainTokens.insert(token)
+        limitSelections[limit] = selection
+    }
+    
     private func syncIndividualLimits() {
-        // Remove limits that are no longer in selection
-        appLimits.removeAll { !dailyLimitSelection.applicationTokens.contains($0.token) }
-        categoryLimits.removeAll { !dailyLimitSelection.categoryTokens.contains($0.token) }
-        webLimits.removeAll { !dailyLimitSelection.webDomainTokens.contains($0.token) }
+        // Clean up tokens that are no longer in dailyLimitSelection
+        for (limit, selection) in limitSelections {
+            var newSelection = selection
+            newSelection.applicationTokens.formIntersection(dailyLimitSelection.applicationTokens)
+            newSelection.categoryTokens.formIntersection(dailyLimitSelection.categoryTokens)
+            newSelection.webDomainTokens.formIntersection(dailyLimitSelection.webDomainTokens)
+            limitSelections[limit] = newSelection
+        }
         
-        // Add new tokens with default limit (0 minutes)
-        for token in dailyLimitSelection.applicationTokens {
-            if !appLimits.contains(where: { $0.token == token }) {
-                appLimits.append(AppLimit(token: token, minutes: 0))
-            }
+        // Find tokens that are in dailyLimitSelection but not in any limitSelections
+        var assignedAppTokens = Set<ApplicationToken>()
+        var assignedCatTokens = Set<ActivityCategoryToken>()
+        var assignedWebTokens = Set<WebDomainToken>()
+        for selection in limitSelections.values {
+            assignedAppTokens.formUnion(selection.applicationTokens)
+            assignedCatTokens.formUnion(selection.categoryTokens)
+            assignedWebTokens.formUnion(selection.webDomainTokens)
         }
-        for token in dailyLimitSelection.categoryTokens {
-            if !categoryLimits.contains(where: { $0.token == token }) {
-                categoryLimits.append(CategoryLimit(token: token, minutes: 0))
-            }
-        }
-        for token in dailyLimitSelection.webDomainTokens {
-            if !webLimits.contains(where: { $0.token == token }) {
-                webLimits.append(WebLimit(token: token, minutes: 0))
-            }
+        
+        let unassignedAppTokens = dailyLimitSelection.applicationTokens.subtracting(assignedAppTokens)
+        let unassignedCatTokens = dailyLimitSelection.categoryTokens.subtracting(assignedCatTokens)
+        let unassignedWebTokens = dailyLimitSelection.webDomainTokens.subtracting(assignedWebTokens)
+        
+        if !unassignedAppTokens.isEmpty || !unassignedCatTokens.isEmpty || !unassignedWebTokens.isEmpty {
+            var zeroSelection = limitSelections[0] ?? FamilyActivitySelection()
+            zeroSelection.applicationTokens.formUnion(unassignedAppTokens)
+            zeroSelection.categoryTokens.formUnion(unassignedCatTokens)
+            zeroSelection.webDomainTokens.formUnion(unassignedWebTokens)
+            limitSelections[0] = zeroSelection
         }
     }
     
     private func saveIndividualLimits() {
-        if let d1 = try? JSONEncoder().encode(appLimits) { UserDefaults.standard.set(d1, forKey: "st_appLimits") }
-        if let d2 = try? JSONEncoder().encode(categoryLimits) { UserDefaults.standard.set(d2, forKey: "st_catLimits") }
-        if let d3 = try? JSONEncoder().encode(webLimits) { UserDefaults.standard.set(d3, forKey: "st_webLimits") }
+        if let data = try? JSONEncoder().encode(limitSelections) {
+            UserDefaults.standard.set(data, forKey: "st_limitSelections")
+        }
     }
     
     private func loadIndividualLimits() {
-        if let d1 = UserDefaults.standard.data(forKey: "st_appLimits"), let a1 = try? JSONDecoder().decode([AppLimit].self, from: d1) { self.appLimits = a1 }
-        if let d2 = UserDefaults.standard.data(forKey: "st_catLimits"), let a2 = try? JSONDecoder().decode([CategoryLimit].self, from: d2) { self.categoryLimits = a2 }
-        if let d3 = UserDefaults.standard.data(forKey: "st_webLimits"), let a3 = try? JSONDecoder().decode([WebLimit].self, from: d3) { self.webLimits = a3 }
+        if let data = UserDefaults.standard.data(forKey: "st_limitSelections"),
+           let dict = try? JSONDecoder().decode([Int: FamilyActivitySelection].self, from: data) {
+            self.limitSelections = dict
+        }
     }
 }

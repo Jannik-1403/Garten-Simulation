@@ -210043,6 +210043,17 @@
         }
       }
     },
+    "screenTime.layer2.desc" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Diese Apps und Webseiten sind immer blockiert und können nur durch den Notfall-Unlock entsperrt werden."
+          }
+        }
+      }
+    },
     "screenTime.layer2.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
