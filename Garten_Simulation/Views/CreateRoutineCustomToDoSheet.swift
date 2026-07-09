@@ -68,6 +68,7 @@ struct CreateRoutineCustomToDoSheet: View {
                                                 .resizable()
                                                 .scaledToFit()
                                                 .frame(width: 40, height: 40)
+                                                .scaleEffect(plant.id == "plant.seeds" ? 0.6 : 1.0)
                                         }
                                         .frame(height: 60)
                                     }

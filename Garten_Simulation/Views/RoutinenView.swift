@@ -658,19 +658,19 @@ struct CreateRoutineSheet: View {
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                                 Spacer()
-                                Button {
-                                    showCustomTodoSheet = true
-                                } label: {
+                                Item3DButton(
+                                    farbe: Color(hex: "#34C759"),
+                                    sekundaerFarbe: Color(hex: "#34C759").darker(),
+                                    groesse: 36,
+                                    isRectangular: true,
+                                    aktion: { showCustomTodoSheet = true }
+                                ) {
                                     HStack {
                                         Image(systemName: "plus.circle.fill")
                                         Text(String(localized: "routine.todo.add", defaultValue: "Eigenes To-Do"))
                                     }
                                     .font(.system(size: 14, weight: .bold, design: .rounded))
-                                    .foregroundStyle(Color.green)
-                                    .padding(.horizontal, 12)
-                                    .padding(.vertical, 6)
-                                    .background(Color.green.opacity(0.15))
-                                    .clipShape(Capsule())
+                                    .foregroundStyle(.white)
                                 }
                             }
                             .padding(.horizontal, 24)

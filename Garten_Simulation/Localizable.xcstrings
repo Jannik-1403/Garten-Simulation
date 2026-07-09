@@ -104485,16 +104485,16 @@
             "value": "Je me rends à cent pour cent ! Au lieu de travailler sur mes objectifs, je choisis la route zéro-huit-quinze. Je sacrifie ma #discipline pour cinq minutes de dopamine bon marché. C'est pathétique ; mais je le fais quand même (et accepte la perte de HP)."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मैं सौ प्रतिशत समर्पण करता हूँ! मैं अपने लक्ष्यों पर काम करने के बजाय शून्य-आठ-पंद्रह का रास्ता चुनता हूं। मैं पाँच मिनट के सस्ते डोपामाइन के लिए अपने #अनुशासन का बलिदान देता हूँ। वह दयनीय है; लेकिन मैं इसे वैसे भी करता हूं (और एचपी हानि स्वीकार करता हूं)।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Mi arrendo al cento per cento! Invece di lavorare sui miei obiettivi, scelgo il percorso zero-otto-quindici. Sacrifico la mia #disciplina per cinque minuti di dopamina a buon mercato. È patetico; ma lo faccio comunque (e accetto la perdita di HP)."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eu me rendo cem por cento! Em vez de trabalhar em meus objetivos, escolho o caminho zero-oito-quinze. Eu sacrifico minha #disciplina por cinco minutos de dopamina barata. Isso é patético; mas faço isso mesmo assim (e aceito a perda de HP)."
           }
         },
         "ja": {
@@ -104509,22 +104509,22 @@
             "value": "나는 백퍼센트 항복한다! 나는 목표를 향해 노력하는 대신 0-8-15 경로를 선택합니다. 나는 5분간의 값싼 도파민을 위해 #기강을 희생합니다. 정말 한심하네요. 하지만 어쨌든 나는 그것을 한다(그리고 HP 손실을 받아들인다)."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Poddaję się w stu procentach! Zamiast pracować nad swoimi celami, wybieram trasę zero-osiem-piętnaście. Poświęcam moją #dyscyplinę dla pięciu minut taniej dopaminy. To żałosne; ale i tak to robię (i akceptuję utratę HP)."
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Ik geef me honderd procent over! In plaats van aan mijn doelen te werken, kies ik voor de nul-acht-vijftien route. Ik offer mijn #discipline op voor vijf minuten goedkope dopamine. Dat is zielig; maar ik doe het toch (en accepteer het HP-verlies)."
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yüzde yüz teslim oluyorum! Hedeflerim üzerinde çalışmak yerine sıfır-sekiz-onbeş yolunu seçiyorum. Beş dakikalık ucuz dopamin için #disiplinimi feda ediyorum. Bu çok acınası; ama yine de yapıyorum (ve HP kaybını kabul ediyorum)."
+            "value": "Poddaję się w stu procentach! Zamiast pracować nad swoimi celami, wybieram trasę zero-osiem-piętnaście. Poświęcam moją #dyscyplinę dla pięciu minut taniej dopaminy. To żałosne; ale i tak to robię (i akceptuję utratę HP)."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eu me rendo cem por cento! Em vez de trabalhar em meus objetivos, escolho o caminho zero-oito-quinze. Eu sacrifico minha #disciplina por cinco minutos de dopamina barata. Isso é patético; mas faço isso mesmo assim (e aceito a perda de HP)."
           }
         },
         "ru": {
@@ -104533,10 +104533,10 @@
             "value": "Я отдаюсь на сто процентов! Вместо того, чтобы работать над своими целями, я выбираю маршрут ноль восемь пятнадцать. Я жертвую своей #дисциплиной ради пяти минут дешевого дофамина. Это жалко; но я все равно делаю это (и принимаю потерю HP)."
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "मैं सौ प्रतिशत समर्पण करता हूँ! मैं अपने लक्ष्यों पर काम करने के बजाय शून्य-आठ-पंद्रह का रास्ता चुनता हूं। मैं पाँच मिनट के सस्ते डोपामाइन के लिए अपने #अनुशासन का बलिदान देता हूँ। वह दयनीय है; लेकिन मैं इसे वैसे भी करता हूं (और एचपी हानि स्वीकार करता हूं)।"
+            "value": "Yüzde yüz teslim oluyorum! Hedeflerim üzerinde çalışmak yerine sıfır-sekiz-onbeş yolunu seçiyorum. Beş dakikalık ucuz dopamin için #disiplinimi feda ediyorum. Bu çok acınası; ama yine de yapıyorum (ve HP kaybını kabul ediyorum)."
           }
         },
         "zh-Hans": {
@@ -104580,16 +104580,16 @@
             "value": "[Avertissement] Je suis trop faible pour quatre-vingt-dix-neuf pour cent de mes tâches. J'annule : X-Y-Z au lieu de A-B-C. Ma concentration tombe à zéro point zéro ; Je choisis l’#échec plutôt que la #croissance. Pourquoi? Parce que mon niveau de dopamine est < dix pour cent."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[चेतावनी] मैं अपने निन्यानवे प्रतिशत कार्यों के लिए बहुत कमज़ोर हूँ। मैं रद्द करता हूं: ए-बी-सी के बजाय एक्स-वाई-जेड। मेरा ध्यान शून्य दशमलव शून्य पर चला जाता है; मैं #विकास के स्थान पर #असफलता को चुनता हूं। क्यों? क्योंकि मेरा डोपामाइन स्तर <दस प्रतिशत है।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "[Avvertimento] Sono troppo debole per il novantanove per cento dei miei compiti. Annullo: X-Y-Z invece di A-B-C. La mia attenzione scende al punto zero; Scelgo il #fallimento piuttosto che la #crescita. Perché? Perché il mio livello di dopamina è <10%."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "[Aviso] Estou muito fraco para noventa e nove por cento das minhas tarefas. Eu cancelo: X-Y-Z em vez de A-B-C. Meu foco cai para zero ponto zero; Eu escolho #fracasso em vez de #crescimento. Por que? Porque meu nível de dopamina é <dez por cento."
           }
         },
         "ja": {
@@ -104604,22 +104604,22 @@
             "value": "[경고] 나는 내 작업의 99%를 수행하기에는 너무 약합니다. 취소합니다: A-B-C 대신 X-Y-Z. 내 초점은 0점 0점으로 떨어집니다. 나는 #성장보다 #실패를 선택한다. 왜? 내 도파민 수치가 10퍼센트 미만이거든요."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "[Uwaga] Jestem za słaby na dziewięćdziesiąt dziewięć procent moich zadań. Anuluję: X-Y-Z zamiast A-B-C. Moja koncentracja spada do punktu zerowego; Wybieram #porażkę zamiast #rozwoju. Dlaczego? Ponieważ mój poziom dopaminy wynosi < dziesięć procent."
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "[Waarschuwing] Ik ben te zwak voor negenennegentig procent van mijn taken. Ik annuleer: X-Y-Z in plaats van A-B-C. Mijn focus zakt naar nul komma nul; Ik kies voor #falen boven #groei. Waarom? Omdat mijn dopamineniveau < tien procent is."
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Uyarı] Görevlerimin yüzde doksan dokuzu için çok zayıfım. İptal ediyorum: A-B-C yerine X-Y-Z. Odak noktam sıfır nokta sıfıra düşüyor; #Büyüme yerine #başarısızlığı seçiyorum. Neden? Çünkü dopamin seviyem yüzde onun altında."
+            "value": "[Uwaga] Jestem za słaby na dziewięćdziesiąt dziewięć procent moich zadań. Anuluję: X-Y-Z zamiast A-B-C. Moja koncentracja spada do punktu zerowego; Wybieram #porażkę zamiast #rozwoju. Dlaczego? Ponieważ mój poziom dopaminy wynosi < dziesięć procent."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Aviso] Estou muito fraco para noventa e nove por cento das minhas tarefas. Eu cancelo: X-Y-Z em vez de A-B-C. Meu foco cai para zero ponto zero; Eu escolho #fracasso em vez de #crescimento. Por que? Porque meu nível de dopamina é <dez por cento."
           }
         },
         "ru": {
@@ -104628,10 +104628,10 @@
             "value": "[Предупреждение] Я слишком слаб для девяноста девяти процентов своих задач. Отменяю: X-Y-Z вместо A-B-C. Мое внимание падает до нуля; Я предпочитаю #неудачи #росту. Почему? Потому что мой уровень дофамина < десяти процентов."
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "[चेतावनी] मैं अपने निन्यानवे प्रतिशत कार्यों के लिए बहुत कमज़ोर हूँ। मैं रद्द करता हूं: ए-बी-सी के बजाय एक्स-वाई-जेड। मेरा ध्यान शून्य दशमलव शून्य पर चला जाता है; मैं #विकास के स्थान पर #असफलता को चुनता हूं। क्यों? क्योंकि मेरा डोपामाइन स्तर <दस प्रतिशत है।"
+            "value": "[Uyarı] Görevlerimin yüzde doksan dokuzu için çok zayıfım. İptal ediyorum: A-B-C yerine X-Y-Z. Odak noktam sıfır nokta sıfıra düşüyor; #Büyüme yerine #başarısızlığı seçiyorum. Neden? Çünkü dopamin seviyem yüzde onun altında."
           }
         },
         "zh-Hans": {
@@ -104675,16 +104675,16 @@
             "value": "Code d'erreur quatre cent quatre : Volonté introuvable ! J'échange ma première priorité contre dix minutes de défilement inutile du flux. Est-ce intelligent ? Non. Est-ce que je le fais quand même ? Oui!! (Au revoir, temps précieux...)"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "त्रुटि कोड चार सौ चार: इच्छाशक्ति नहीं मिली! मैं दस मिनट की व्यर्थ फ़ीड स्क्रॉलिंग के लिए अपनी पहली प्राथमिकता बदलता हूं। क्या वह स्मार्ट है? नहीं, क्या मैं इसे वैसे भी करता हूँ? हाँ!! (अलविदा, बहुमूल्य समय...)"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Codice errore quattrocentoquattro: Forza di volontà non trovata! Scambio la mia prima priorità con dieci minuti di inutile scorrimento del feed. È intelligente? No. Lo faccio comunque? SÌ!! (Ciao, tempo prezioso...)"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Código de erro quatrocentos e quatro: Força de vontade não encontrada! Troco minha primeira prioridade por dez minutos de rolagem inútil do feed. Isso é inteligente? Não. Eu faço isso mesmo assim? Sim!! (Tchau, tempo valioso...)"
           }
         },
         "ja": {
@@ -104699,22 +104699,22 @@
             "value": "오류 코드 444: 의지력을 찾을 수 없습니다! 나는 10분간의 무의미한 피드 스크롤로 최우선 순위를 바꿉니다. 그거 똑똑해요? 아뇨. 그래도 제가 합니까? 예!! (안녕, 소중한 시간...)"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kod błędu czterysta cztery: Nie znaleziono siły woli! Zmieniam swój pierwszy priorytet na dziesięć minut bezsensownego przewijania kanału. Czy to mądre? Nie. Czy mimo to to robię? Tak!! (Cześć, cenny czas...)"
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Foutcode vierhonderdvier: Wilskracht niet gevonden! Ik verruil mijn eerste prioriteit voor tien minuten zinloos feedscrollen. Is dat slim? Nee. Doe ik het toch? Ja!! (Dag, kostbare tijd...)"
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hata kodu dört yüz dört: İrade bulunamadı! Birinci önceliğimi on dakikalık anlamsız içerik kaydırmayla değiştiriyorum. Bu akıllıca mı? Hayır. Yine de yapacak mıyım? Evet!! (Güle güle, değerli zaman...)"
+            "value": "Kod błędu czterysta cztery: Nie znaleziono siły woli! Zmieniam swój pierwszy priorytet na dziesięć minut bezsensownego przewijania kanału. Czy to mądre? Nie. Czy mimo to to robię? Tak!! (Cześć, cenny czas...)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Código de erro quatrocentos e quatro: Força de vontade não encontrada! Troco minha primeira prioridade por dez minutos de rolagem inútil do feed. Isso é inteligente? Não. Eu faço isso mesmo assim? Sim!! (Tchau, tempo valioso...)"
           }
         },
         "ru": {
@@ -104723,10 +104723,10 @@
             "value": "Код ошибки четыреста четыре: Сила воли не найдена! Я меняю свой главный приоритет на десять минут бессмысленного пролистывания ленты. Это умно? Нет. Я все равно это сделаю? Да!! (Пока, драгоценное время...)"
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "त्रुटि कोड चार सौ चार: इच्छाशक्ति नहीं मिली! मैं दस मिनट की व्यर्थ फ़ीड स्क्रॉलिंग के लिए अपनी पहली प्राथमिकता बदलता हूं। क्या वह स्मार्ट है? नहीं, क्या मैं इसे वैसे भी करता हूँ? हाँ!! (अलविदा, बहुमूल्य समय...)"
+            "value": "Hata kodu dört yüz dört: İrade bulunamadı! Birinci önceliğimi on dakikalık anlamsız içerik kaydırmayla değiştiriyorum. Bu akıllıca mı? Hayır. Yine de yapacak mıyım? Evet!! (Güle güle, değerli zaman...)"
           }
         },
         "zh-Hans": {
@@ -104770,16 +104770,16 @@
             "value": "Je confirme par la présente l'annulation (statut : cent pour cent indiscipliné). Au lieu de faire un pas en avant, je recule de trois pas. Je ne me soucie pas de mes #objectifs pour le moment ; Je clique sur [Déverrouiller] et je perds une demi-heure."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मैं इसके द्वारा रद्दीकरण की पुष्टि करता हूं (स्थिति: एक सौ प्रतिशत अनुशासनहीन)। प्लस वन कदम आगे बढ़ने के बजाय, मैं माइनस तीन कदम पीछे जाता हूं। मुझे अभी अपने #लक्ष्यों की परवाह नहीं है; मैं [अनलॉक] पर क्लिक करता हूं और आधा घंटा बर्बाद करता हूं।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Con la presente confermo la cancellazione (status: indisciplinato al cento per cento). Invece di fare un passo avanti, faccio tre passi indietro. Non mi interessano i miei #obiettivi in ​​questo momento; Faccio clic su [Sblocca] e perdo mezz'ora."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Venho por este meio confirmar o cancelamento (status: cem por cento indisciplinado). Em vez de dar mais um passo à frente, dou menos três passos para trás. Não me importo com meus #objetivos agora; Clico em [Desbloquear] e perco meia hora."
           }
         },
         "ja": {
@@ -104794,22 +104794,22 @@
             "value": "이에 따라 취소를 확인합니다(상태: 100% 규율 미달). 나는 플러스 한 걸음 앞으로 나아가는 대신 마이너스 세 걸음 뒤로 물러납니다. 나는 지금 내 #목표에 관심이 없습니다. [잠금 해제]를 클릭하고 30분을 낭비했습니다."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Niniejszym potwierdzam rezygnację (status: stuprocentowo niezdyscyplinowany). Zamiast zrobić plus jeden krok do przodu, robię minus trzy kroki w tył. Nie interesują mnie teraz moje #cele; Klikam [Odblokuj] i tracę pół godziny."
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Hierbij bevestig ik de annulering (status: honderd procent ongedisciplineerd). In plaats van een stap plus één vooruit te zetten, doe ik een stap min drie achteruit. Ik geef momenteel niets om mijn #doelen; Ik klik op [Ontgrendelen] en verspil een half uur."
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "İptali onaylıyorum (durum: yüzde yüz disiplinsiz). Artı bir adım ileri gitmek yerine, eksi üç adım geri atıyorum. Şu anda #hedeflerim umurumda değil; [Kilidi Aç]'a tıklıyorum ve yarım saatimi boşa harcıyorum."
+            "value": "Niniejszym potwierdzam rezygnację (status: stuprocentowo niezdyscyplinowany). Zamiast zrobić plus jeden krok do przodu, robię minus trzy kroki w tył. Nie interesują mnie teraz moje #cele; Klikam [Odblokuj] i tracę pół godziny."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Venho por este meio confirmar o cancelamento (status: cem por cento indisciplinado). Em vez de dar mais um passo à frente, dou menos três passos para trás. Não me importo com meus #objetivos agora; Clico em [Desbloquear] e perco meia hora."
           }
         },
         "ru": {
@@ -104818,10 +104818,10 @@
             "value": "Настоящим подтверждаю отмену (статус: стопроцентно недисциплинирован). Вместо того, чтобы сделать плюс один шаг вперед, я делаю минус три шага назад. Меня сейчас не волнуют мои #цели; Я нажимаю [Разблокировать] и теряю полчаса."
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "मैं इसके द्वारा रद्दीकरण की पुष्टि करता हूं (स्थिति: एक सौ प्रतिशत अनुशासनहीन)। प्लस वन कदम आगे बढ़ने के बजाय, मैं माइनस तीन कदम पीछे जाता हूं। मुझे अभी अपने #लक्ष्यों की परवाह नहीं है; मैं [अनलॉक] पर क्लिक करता हूं और आधा घंटा बर्बाद करता हूं।"
+            "value": "İptali onaylıyorum (durum: yüzde yüz disiplinsiz). Artı bir adım ileri gitmek yerine, eksi üç adım geri atıyorum. Şu anda #hedeflerim umurumda değil; [Kilidi Aç]'a tıklıyorum ve yarım saatimi boşa harcıyorum."
           }
         },
         "zh-Hans": {
@@ -104865,16 +104865,16 @@
             "value": "Pourquoi abandonner ? Parce que j'ai une tolérance à la frustration de zéro pour cent. Je choisis le raccourci (Type B) et ignore la règle numéro un : Restez concentré ! Mes PV chutent de moins quinze points ; C'est le prix de deux minutes de faiblesse."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हार क्यों मानें? क्योंकि मुझमें शून्य प्रतिशत निराशा सहनशीलता है। मैं शॉर्टकट (टाइप बी) चुनता हूं और नियम नंबर एक को नजरअंदाज करता हूं: केंद्रित रहें! मेरा एचपी शून्य से पंद्रह अंक नीचे चला गया; यह दो मिनट की कमजोरी की कीमत है।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Perché arrendersi? Perché ho una tolleranza alla frustrazione pari allo zero per cento. Scelgo la scorciatoia (Tipo B) e ignoro la regola numero uno: resta concentrato! I miei HP scendono di meno quindici punti; Questo è il prezzo per due minuti di debolezza."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Por que desistir? Porque tenho zero por cento de tolerância à frustração. Escolho o atalho (Tipo B) e ignoro a regra número um: Mantenha o foco! Meu HP cai menos quinze pontos; Esse é o preço por dois minutos de fraqueza."
           }
         },
         "ja": {
@@ -104889,22 +104889,22 @@
             "value": "왜 포기합니까? 나는 좌절감이 0%이기 때문입니다. 나는 지름길(유형 B)을 선택하고 첫 번째 규칙을 무시합니다. 집중하세요! 내 HP가 마이너스 15포인트 떨어졌습니다. 그것은 약 2분의 대가입니다."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dlaczego się poddawać? Ponieważ mam zerową tolerancję na frustrację. Wybieram skrót (typ B) i ignoruję zasadę numer jeden: Bądź skupiony! Moje HP spada o minus piętnaście punktów; Taka jest cena za dwie minuty słabości."
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Waarom opgeven? Omdat ik een frustratietolerantie van nul procent heb. Ik kies de snelkoppeling (Type B) en negeer regel nummer één: blijf gefocust! Mijn HP daalt met min vijftien punten; Dat is de prijs voor twee minuten zwakte."
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Neden vazgeçiyorsun? Çünkü hayal kırıklığı toleransım yüzde sıfırdır. Kısayolu seçiyorum (B Tipi) ve bir numaralı kuralı görmezden geliyorum: Odaklanın! HP'm eksi on beş puan düşüyor; İki dakikalık zayıflığın bedeli bu."
+            "value": "Dlaczego się poddawać? Ponieważ mam zerową tolerancję na frustrację. Wybieram skrót (typ B) i ignoruję zasadę numer jeden: Bądź skupiony! Moje HP spada o minus piętnaście punktów; Taka jest cena za dwie minuty słabości."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por que desistir? Porque tenho zero por cento de tolerância à frustração. Escolho o atalho (Tipo B) e ignoro a regra número um: Mantenha o foco! Meu HP cai menos quinze pontos; Esse é o preço por dois minutos de fraqueza."
           }
         },
         "ru": {
@@ -104913,10 +104913,10 @@
             "value": "Зачем сдаваться? Потому что у меня нулевой процент терпимости к разочарованию. Я выбираю короткий путь (тип Б) и игнорирую правило номер один: оставаться сосредоточенным! Мои HP падают на минус пятнадцать пунктов; Это цена за две минуты слабости."
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "हार क्यों मानें? क्योंकि मुझमें शून्य प्रतिशत निराशा सहनशीलता है। मैं शॉर्टकट (टाइप बी) चुनता हूं और नियम नंबर एक को नजरअंदाज करता हूं: केंद्रित रहें! मेरा एचपी शून्य से पंद्रह अंक नीचे चला गया; यह दो मिनट की कमजोरी की कीमत है।"
+            "value": "Neden vazgeçiyorsun? Çünkü hayal kırıklığı toleransım yüzde sıfırdır. Kısayolu seçiyorum (B Tipi) ve bir numaralı kuralı görmezden geliyorum: Odaklanın! HP'm eksi on beş puan düşüyor; İki dakikalık zayıflığın bedeli bu."
           }
         },
         "zh-Hans": {
@@ -104960,16 +104960,16 @@
             "value": "Tapez ce texte exactement et sans erreur pour confirmer que vous souhaitez lever le ban :"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "यह पुष्टि करने के लिए कि आप प्रतिबंध हटाना चाहते हैं, इस पाठ को सटीक और त्रुटियों के बिना टाइप करें:"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Digita questo testo esattamente e senza errori per confermare che desideri rimuovere il divieto:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Digite este texto exatamente e sem erros para confirmar que deseja remover o banimento:"
           }
         },
         "ja": {
@@ -104984,22 +104984,22 @@
             "value": "차단 해제를 확인하려면 다음 텍스트를 오류 없이 정확하게 입력하세요."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wpisz ten tekst dokładnie i bez błędów, aby potwierdzić, że chcesz usunąć ban:"
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Typ deze tekst precies en zonder fouten om te bevestigen dat je de ban wilt opheffen:"
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yasağı kaldırmak istediğinizi onaylamak için bu metni aynen ve hatasız olarak yazın:"
+            "value": "Wpisz ten tekst dokładnie i bez błędów, aby potwierdzić, że chcesz usunąć ban:"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digite este texto exatamente e sem erros para confirmar que deseja remover o banimento:"
           }
         },
         "ru": {
@@ -105008,10 +105008,10 @@
             "value": "Введите этот текст точно и без ошибок, чтобы подтвердить, что вы хотите снять бан:"
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "यह पुष्टि करने के लिए कि आप प्रतिबंध हटाना चाहते हैं, इस पाठ को सटीक और त्रुटियों के बिना टाइप करें:"
+            "value": "Yasağı kaldırmak istediğinizi onaylamak için bu metni aynen ve hatasız olarak yazın:"
           }
         },
         "zh-Hans": {
@@ -105055,16 +105055,16 @@
             "value": "Décision consciente"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सचेत निर्णय"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Decisione consapevole"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Decisão consciente"
           }
         },
         "ja": {
@@ -105079,22 +105079,22 @@
             "value": "의식적인 결정"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Świadoma decyzja"
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Bewuste beslissing"
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bilinçli karar"
+            "value": "Świadoma decyzja"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decisão consciente"
           }
         },
         "ru": {
@@ -105103,10 +105103,10 @@
             "value": "Осознанное решение"
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "सचेत निर्णय"
+            "value": "Bilinçli karar"
           }
         },
         "zh-Hans": {
@@ -105150,16 +105150,16 @@
             "value": "Vérifier et déverrouiller"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सत्यापित करें और अनलॉक करें"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Verifica e sblocca"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verifique e desbloqueie"
           }
         },
         "ja": {
@@ -105174,22 +105174,22 @@
             "value": "확인 및 잠금 해제"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zweryfikuj i odblokuj"
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Verifiëren en ontgrendelen"
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Doğrula ve Kilidini Aç"
+            "value": "Zweryfikuj i odblokuj"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verifique e desbloqueie"
           }
         },
         "ru": {
@@ -105198,10 +105198,10 @@
             "value": "Подтвердить и разблокировать"
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "सत्यापित करें और अनलॉक करें"
+            "value": "Doğrula ve Kilidini Aç"
           }
         },
         "zh-Hans": {
@@ -106444,6 +106444,7 @@
       }
     },
     "focus.session.cancelled.title": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -209686,6 +209687,151 @@
         }
       }
     },
+    "routine.todo.add": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Eigenes To-Do"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "рутина.делать.Добавить"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रूटीन.काम.जोड़ें"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "例行任务.待办.添加"
+          }
+        }
+      }
+    },
+    "routine.todo.icon": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Pflanzen-Icon"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "рутинная.задача.иконка"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रूटीन.काम.चिह्न"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "例行任务.待办事项.图标"
+          }
+        }
+      }
+    },
+    "routine.todo.name": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "To-Do Name"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "рутинное.дело.название"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रूटीन.काम.नाम"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "例行任务.待办事项.名称"
+          }
+        }
+      }
+    },
+    "routine.todo.name.placeholder": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "z.B. Müll rausbringen"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "название_задачи_рутины"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रूटीन.टूडू.नाम.प्लेसहोल्डर"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "例行事项待办名称占位符"
+          }
+        }
+      }
+    },
+    "routine.todo.title": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Eigenes To-Do"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "рутинное.дела.заголовок"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रूटीन.काम.शीर्षक"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "例行事项.todo.标题"
+          }
+        }
+      }
+    },
     "routine.without": {
       "comment": "",
       "extractionState": "manual",
@@ -210956,16 +211102,16 @@
             "value": "Passé ce délai, les applications sélectionnées seront bloquées pour le reste de la journée."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस समय के बाद, चयनित ऐप्स को शेष दिन के लिए ब्लॉक कर दिया जाएगा।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Trascorso questo tempo, le app selezionate verranno bloccate per il resto della giornata."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Após esse horário, os aplicativos selecionados ficarão bloqueados pelo resto do dia."
           }
         },
         "ja": {
@@ -210980,22 +211126,22 @@
             "value": "이 시간이 지나면 선택한 앱이 하루 종일 차단됩니다."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Po tym czasie wybrane aplikacje zostaną zablokowane na resztę dnia."
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Na deze tijd worden de geselecteerde apps voor de rest van de dag geblokkeerd."
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bu sürenin sonunda seçilen uygulamalar günün geri kalanında engellenecektir."
+            "value": "Po tym czasie wybrane aplikacje zostaną zablokowane na resztę dnia."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Após esse horário, os aplicativos selecionados ficarão bloqueados pelo resto do dia."
           }
         },
         "ru": {
@@ -211004,10 +211150,10 @@
             "value": "По истечении этого времени выбранные приложения будут заблокированы до конца дня."
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "इस समय के बाद, चयनित ऐप्स को शेष दिन के लिए ब्लॉक कर दिया जाएगा।"
+            "value": "Bu sürenin sonunda seçilen uygulamalar günün geri kalanında engellenecektir."
           }
         },
         "zh-Hans": {
@@ -211051,16 +211197,16 @@
             "value": "Niveau 1 : Délai journalier"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्तर 1: दैनिक समय सीमा"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Livello 1: limite temporale giornaliero"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nível 1: limite de tempo diário"
           }
         },
         "ja": {
@@ -211075,22 +211221,22 @@
             "value": "레벨 1: 일일 시간 제한"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Poziom 1: Dzienny limit czasu"
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Niveau 1: Dagelijkse tijdslimiet"
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seviye 1: Günlük zaman sınırı"
+            "value": "Poziom 1: Dzienny limit czasu"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nível 1: limite de tempo diário"
           }
         },
         "ru": {
@@ -211099,10 +211245,10 @@
             "value": "Уровень 1: Ежедневный лимит времени"
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "स्तर 1: दैनिक समय सीमा"
+            "value": "Seviye 1: Günlük zaman sınırı"
           }
         },
         "zh-Hans": {
@@ -211146,16 +211292,16 @@
             "value": "Ouvrir"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अनलॉक"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Sbloccare"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Desbloquear"
           }
         },
         "ja": {
@@ -211170,22 +211316,22 @@
             "value": "터놓다"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Odblokować"
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Ontgrendelen"
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kilidi aç"
+            "value": "Odblokować"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloquear"
           }
         },
         "ru": {
@@ -211194,10 +211340,10 @@
             "value": "Разблокировать"
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "अनलॉक"
+            "value": "Kilidi aç"
           }
         },
         "zh-Hans": {
@@ -211241,16 +211387,16 @@
             "value": "Une fois que vous avez confirmé cela, il ne peut être annulé que si vous le déverrouillez laborieusement."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एक बार जब आप इसकी पुष्टि कर लेते हैं, तो इसे तब तक पूर्ववत नहीं किया जा सकता जब तक आप परिश्रमपूर्वक इसे अनलॉक नहीं करते।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Una volta confermato, non è possibile annullarlo a meno che non lo sblocchi faticosamente."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Depois de confirmar isso, não será possível desfazê-lo, a menos que você o desbloqueie laboriosamente."
           }
         },
         "ja": {
@@ -211265,22 +211411,22 @@
             "value": "이를 확인한 후에는 힘들게 잠금을 해제하지 않는 한 취소할 수 없습니다."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gdy to potwierdzisz, nie będzie można tego cofnąć, chyba że mozolnie go odblokujesz."
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Zodra u dit bevestigt, kan dit niet meer ongedaan worden gemaakt, tenzij u het moeizaam ontgrendelt."
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bunu onayladıktan sonra, zahmetli bir şekilde kilidini açmadığınız sürece bu işlem geri alınamaz."
+            "value": "Gdy to potwierdzisz, nie będzie można tego cofnąć, chyba że mozolnie go odblokujesz."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depois de confirmar isso, não será possível desfazê-lo, a menos que você o desbloqueie laboriosamente."
           }
         },
         "ru": {
@@ -211289,10 +211435,10 @@
             "value": "Как только вы подтвердите это, его нельзя будет отменить, если вы не разблокируете его с большим трудом."
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "एक बार जब आप इसकी पुष्टि कर लेते हैं, तो इसे तब तक पूर्ववत नहीं किया जा सकता जब तक आप परिश्रमपूर्वक इसे अनलॉक नहीं करते।"
+            "value": "Bunu onayladıktan sonra, zahmetli bir şekilde kilidini açmadığınız sürece bu işlem geri alınamaz."
           }
         },
         "zh-Hans": {
@@ -211336,16 +211482,16 @@
             "value": "Es-tu sûr?"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या आपको यकीन है?"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Sei sicuro?"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tem certeza?"
           }
         },
         "ja": {
@@ -211360,22 +211506,22 @@
             "value": "확실합니까?"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Czy jesteś pewien?"
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Weet je het zeker?"
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Emin misin?"
+            "value": "Czy jesteś pewien?"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tem certeza?"
           }
         },
         "ru": {
@@ -211384,10 +211530,10 @@
             "value": "Вы уверены?"
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "क्या आपको यकीन है?"
+            "value": "Emin misin?"
           }
         },
         "zh-Hans": {
@@ -211431,16 +211577,16 @@
             "value": "Ces applications et sites Web sont toujours bloqués et ne peuvent être débloqués qu'à l'aide du déverrouillage d'urgence."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ये ऐप्स और वेबसाइटें हमेशा ब्लॉक रहती हैं और इन्हें केवल आपातकालीन अनलॉक का उपयोग करके अनब्लॉक किया जा सकता है।"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Queste app e questi siti Web sono sempre bloccati e possono essere sbloccati solo utilizzando lo sblocco di emergenza."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Esses aplicativos e sites estão sempre bloqueados e só podem ser desbloqueados usando o Desbloqueio de Emergência."
           }
         },
         "ja": {
@@ -211455,22 +211601,22 @@
             "value": "이러한 앱과 웹사이트는 항상 차단되어 있으며 긴급 잠금 해제를 통해서만 차단을 해제할 수 있습니다."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Te aplikacje i strony internetowe są zawsze blokowane i można je odblokować wyłącznie za pomocą odblokowania awaryjnego."
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Deze apps en websites zijn altijd geblokkeerd en kunnen alleen worden gedeblokkeerd via Noodontgrendeling."
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bu uygulamalar ve web siteleri her zaman engellenir ve yalnızca Acil Durum Kilit Açma kullanılarak engeli kaldırılabilir."
+            "value": "Te aplikacje i strony internetowe są zawsze blokowane i można je odblokować wyłącznie za pomocą odblokowania awaryjnego."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esses aplicativos e sites estão sempre bloqueados e só podem ser desbloqueados usando o Desbloqueio de Emergência."
           }
         },
         "ru": {
@@ -211479,10 +211625,10 @@
             "value": "Эти приложения и веб-сайты всегда блокируются, и их можно разблокировать только с помощью аварийной разблокировки."
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "ये ऐप्स और वेबसाइटें हमेशा ब्लॉक रहती हैं और इन्हें केवल आपातकालीन अनलॉक का उपयोग करके अनब्लॉक किया जा सकता है।"
+            "value": "Bu uygulamalar ve web siteleri her zaman engellenir ve yalnızca Acil Durum Kilit Açma kullanılarak engeli kaldırılabilir."
           }
         },
         "zh-Hans": {
@@ -211526,16 +211672,16 @@
             "value": "Niveau 2 : toujours bloqué"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्तर 2: हमेशा अवरुद्ध"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Livello 2: Sempre bloccato"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nível 2: sempre bloqueado"
           }
         },
         "ja": {
@@ -211550,22 +211696,22 @@
             "value": "수준 2: 항상 차단됨"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Poziom 2: Zawsze zablokowany"
-          }
-        },
         "nl": {
           "stringUnit": {
             "state": "translated",
             "value": "Niveau 2: Altijd geblokkeerd"
           }
         },
-        "tr": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seviye 2: Her zaman engellendi"
+            "value": "Poziom 2: Zawsze zablokowany"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nível 2: sempre bloqueado"
           }
         },
         "ru": {
@@ -211574,10 +211720,10 @@
             "value": "Уровень 2: Всегда заблокирован"
           }
         },
-        "hi": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "स्तर 2: हमेशा अवरुद्ध"
+            "value": "Seviye 2: Her zaman engellendi"
           }
         },
         "zh-Hans": {
