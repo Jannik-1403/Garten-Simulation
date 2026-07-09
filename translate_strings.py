@@ -9,6 +9,16 @@ with open(file_path, 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 langs = {
+    'en': 'en',
+    'es': 'es',
+    'fr': 'fr',
+    'it': 'it',
+    'pt': 'pt',
+    'ja': 'ja',
+    'ko': 'ko',
+    'pl': 'pl',
+    'nl': 'nl',
+    'tr': 'tr',
     'ru': 'ru',
     'hi': 'hi',
     'zh-Hans': 'zh-CN',

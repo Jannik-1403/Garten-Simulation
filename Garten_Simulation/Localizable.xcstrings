@@ -1168,6 +1168,66 @@
             "state": "translated",
             "value": "%lld %@ %lld %@"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%@%lld%@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%@%lld%@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%@%lld%@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%@%lld%@"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%@%lld%@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%@%lld%@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%@%lld%@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%@%lld%@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%@%lld%@"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%@%lld%@"
+          }
         }
       }
     },
@@ -78975,6 +79035,66 @@
             "state": "translated",
             "value": "共同關閉"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "common.off"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "común.apagado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "commun.off"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "comune.off"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "comum.desligado"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "共通.オフ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공통.오프"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "wspólne.wył"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "gemeenschappelijk.uit"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ortak kapalı"
+          }
         }
       }
     },
@@ -104370,6 +104490,66 @@
             "state": "translated",
             "value": "focus.giveup.walkofshame.subtitle"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.subtitle"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.renunciar.walkofshame.subtítulo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.subtitle"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.subtitle"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "foco.giveup.walkofshame.subtitle"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フォーカス.ギブアップ.ウォークオブシェイム.サブタイトル"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.자막"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.napisy"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.subtitle"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.subtitle"
+          }
         }
       }
     },
@@ -104405,6 +104585,66 @@
             "state": "translated",
             "value": "focus.giveup.walkofshame.title"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.title"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.título"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.titre"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.title"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "foco.giveup.walkofshame.title"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フォーカス.ギブアップ.ウォークオブシェイム.タイトル"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.제목"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.title"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.title"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.title"
+          }
         }
       }
     },
@@ -104436,6 +104676,66 @@
           }
         },
         "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.verify"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.verify"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "enfoque.renunciar.caminarporlavergüenza.verificar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.verify"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.verify"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "foco.giveup.walkofshame.verify"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フォーカス.ギブアップ.ウォークオブシェイム.ベリファイ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.verify"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.verify"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.giveup.walkofshame.verify"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "focus.giveup.walkofshame.verify"
@@ -210186,6 +210486,66 @@
             "state": "translated",
             "value": "screenTime.layer1.desc"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.desc"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.capa1.desc"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.desc"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.desc"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.desc"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.desc"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.desc"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ekranCzas.warstwa1.desc"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.desc"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.desc"
+          }
         }
       }
     },
@@ -210221,6 +210581,66 @@
             "state": "translated",
             "value": "screenTime.layer1.標題"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.title"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.capa1.título"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.title"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.title"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.title"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.title"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.title"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ekranCzas.warstwa1.tytuł"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.title"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.title"
+          }
         }
       }
     },
@@ -210252,6 +210672,66 @@
           }
         },
         "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.unblock.short"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.unblock.short"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.unblock.short"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.unblock.short"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.unblock.short"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.unblock.short"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.unblock.short"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.unblock.short"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.unblock.short"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer1.unblock.short"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "screenTime.layer1.unblock.short"
@@ -210291,6 +210771,66 @@
             "state": "translated",
             "value": "screenTime.layer2.desc"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.desc"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.desc"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.desc"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.desc"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.desc"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.desc"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.desc"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ekranCzas.warstwa2.desc"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.desc"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.desc"
+          }
         }
       }
     },
@@ -210325,6 +210865,66 @@
           "stringUnit": {
             "state": "translated",
             "value": "screenTime.layer2.標題"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.title"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.capa2.título"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.title"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.title"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.title"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.title"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.title"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ekranCzas.warstwa2.tytuł"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.title"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.layer2.title"
           }
         }
       }
@@ -210361,6 +210961,66 @@
             "state": "translated",
             "value": "screenTime.limit.confirm.message"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.message"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mensaje.de.confirmación.de.límite.de.tiempo.de.pantalla"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.message"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.message"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.message"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.メッセージ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.message"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "wiadomość.limit.ekranu.potwierdź.wiadomość"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.bericht"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.message"
+          }
         }
       }
     },
@@ -210392,6 +211052,66 @@
           }
         },
         "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.title"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.title"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.title"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.title"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.title"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.title"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.title"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.title"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.potwierdź.tytuł"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screenTime.limit.confirm.title"
+          }
+        },
+        "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "screenTime.limit.confirm.title"
@@ -213184,6 +213904,66 @@
             "state": "translated",
             "value": "選擇每日螢幕時間目標。"
           }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select the daily screen time goal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleccione el objetivo de tiempo de pantalla diario."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sélectionnez l'objectif quotidien de temps d'écran."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleziona l'obiettivo giornaliero del tempo di utilizzo."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecione a meta diária de tempo de tela."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 日のスクリーンタイムの目標を選択します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "일일 화면 시간 목표를 선택하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wybierz dzienny cel czasu przed ekranem."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecteer het dagelijkse schermtijddoel."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Günlük ekran süresi hedefini seçin."
+          }
         }
       }
     },
@@ -213408,6 +214188,66 @@
           "stringUnit": {
             "state": "translated",
             "value": "screentime.tracker.target"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screentime.tracker.target"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tiempo de pantalla.tracker.objetivo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screentime.tracker.target"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screentime.tracker.target"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tempo de tela.tracker.target"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スクリーンタイム.トラッカー.ターゲット"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "스크린타임.트래커.타겟"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screentime.tracker.target"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "schermtijd.tracker.target"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "screentime.tracker.hedef"
           }
         }
       }
@@ -242286,6 +243126,66 @@
           "stringUnit": {
             "state": "translated",
             "value": "建議"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suggestions"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sugerencias"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suggestions"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suggerimenti"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sugestões"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "提案"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "제안"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sugestie"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suggesties"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öneriler"
           }
         }
       }

@@ -566,3 +566,4 @@
 - Design: Walk of Shame Hintergrund angepasst (Liquid Glass) und X-Button schwarz/weiß gemacht
 - Design: Walk of Shame X-Button nun als pures Icon ohne Hintergrundkreis
 - Design: Unnötigen Toggle-Schalter neben 'Ebene 2: Immer blockiert' entfernt
+- Lokalisierung: Das Python Skript hat erfolgreich die 100% Übersetzungsabdeckung in allen 11 Sprachen für die neuen Screen Time Texte hergestellt
