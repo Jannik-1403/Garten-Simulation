@@ -210065,6 +210065,28 @@
         }
       }
     },
+    "screenTime.limit.confirm.message" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sobald das Limit festgelegt ist, kannst du es heute nicht mehr erhöhen!"
+          }
+        }
+      }
+    },
+    "screenTime.limit.confirm.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Bist du dir sicher?"
+          }
+        }
+      }
+    },
     "screenTime.permanent.desc" : {
       "extractionState" : "manual",
       "localizations" : {

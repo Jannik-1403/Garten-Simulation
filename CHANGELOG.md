@@ -560,3 +560,6 @@
 - 'Apps entsperren' (Notfallentsperrung) wurde als kleinerer 3D-Button direkt neben das Plus-Symbol in Ebene 1 verschoben
 - Anti-Cheat: Erhöhung von App-Limits nach der Festlegung blockiert (benötigt komplettes Entsperren)
 - Fehler behoben: Entsperren-Buttons werden nun in Ebene 1 und Ebene 2 korrekt angezeigt
+- Fehler behoben: Walk of Shame Navigation Bar (X-Button) wird nun korrekt angezeigt
+- Feature: Bestätigungs-Dialog beim erstmaligen Festlegen eines Limits hinzugefügt
+- Fehler behoben: Limits werden nach Neustart der App nicht mehr auf 'Aus' zurückgesetzt (komplettes Refactoring der Persistenz-Schicht)

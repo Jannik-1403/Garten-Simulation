@@ -56,7 +56,6 @@ struct WalkOfShameView: View {
                         .font(.system(size: 15, weight: .semibold))
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(.regularMaterial)
                         .foregroundColor(.primary)
                         .cornerRadius(12)
                         .shadow(color: .black.opacity(0.05), radius: 0, x: 0, y: 3)
@@ -73,7 +72,6 @@ struct WalkOfShameView: View {
                         .focused($isFocused)
                         .frame(minHeight: 180)
                         .padding()
-                        .background(.regularMaterial)
                         .cornerRadius(12)
                         .shadow(color: .black.opacity(0.03), radius: 0, x: 0, y: 2)
                         .overlay(
@@ -113,7 +111,7 @@ struct WalkOfShameView: View {
                     } label: {
                         Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark.circle.fill")
                             .font(.system(size: 28, weight: .semibold))
-                            .foregroundStyle(Color(UIColor.tertiaryLabel), Color(UIColor.tertiarySystemFill))
+                            .foregroundStyle(.primary)
                     }
                 }
             }
