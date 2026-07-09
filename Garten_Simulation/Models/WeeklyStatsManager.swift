@@ -208,11 +208,11 @@ final class WeeklyStatsManager {
                 let eveningPct = Double(eveningMins) / Double(totalMins)
                 
                 if morningPct > 0.5 {
-                    actionableTip = String(localized: "weekly_report.tip.actionable_morning", defaultValue: "Tipp: Du hast >50% deiner Fokuszeit am Vormittag verbracht. Versuche, deine wichtigsten Blöcke weiterhin vor 12 Uhr zu planen, um diesen Flow zu nutzen.")
+                    actionableTip = String(format: String(localized: "weekly_report.tip.actionable_morning", defaultValue: "Tipp: Du hast %@ deiner Fokuszeit am Vormittag verbracht. Versuche, deine wichtigsten Blöcke weiterhin vor 12 Uhr zu planen, um diesen Flow zu nutzen."), ">50%")
                 } else if afternoonPct > 0.5 {
-                    actionableTip = String(localized: "weekly_report.tip.actionable_afternoon", defaultValue: "Tipp: Du hast >50% deiner Fokuszeit am Nachmittag verbracht. Nutze dieses Zeitfenster auch nächste Woche für fokussiertes Arbeiten.")
+                    actionableTip = String(format: String(localized: "weekly_report.tip.actionable_afternoon", defaultValue: "Tipp: Du hast %@ deiner Fokuszeit am Nachmittag verbracht. Nutze dieses Zeitfenster auch nächste Woche für fokussiertes Arbeiten."), ">50%")
                 } else if eveningPct > 0.5 {
-                    actionableTip = String(localized: "weekly_report.tip.actionable_evening", defaultValue: "Tipp: Du hast >50% deiner Fokuszeit am Abend verbracht. Wenn das für dich funktioniert, plane deine Deep-Work-Sessions ab 18 Uhr.")
+                    actionableTip = String(format: String(localized: "weekly_report.tip.actionable_evening", defaultValue: "Tipp: Du hast %@ deiner Fokuszeit am Abend verbracht. Wenn das für dich funktioniert, plane deine Deep-Work-Sessions ab 18 Uhr."), ">50%")
                 } else {
                     let tips = [
                         String(localized: "weekly_report.tip.1", defaultValue: "Tipp: Plane kleine, feste Fokus-Blöcke (z.B. 25 Minuten) ein, anstatt zu versuchen, stundenlang durchzuarbeiten."),

@@ -494,3 +494,8 @@
 - 100% Übersetzungsabdeckung in allen 11 Sprachen erzwungen
 - Zurück-Button in Blocker-Einstellungen entfernt (nur noch X-Button)
 - Veraltete Custom-Tracker-Gewohnheit restlos aus der Datenbank entfernt
+- Xcode Warnungen bezüglich fehlerhafter Prozent-Formatierungen in der Localizable.xcstrings behoben
+- Positional Specifiers in Localizable.xcstrings eingeführt, um Format-Mismatches (z.B. %d und %@) zu korrigieren
+- Bildschirmzeit UI: Neue ausklappbare Timer-Ansicht hinzugefügt, um Platz zu sparen
+- Bildschirmzeit UI: Bestätigungs- und Einstellungs-Buttons in elegantes 3D-Design (Neo-Brutalism) umgewandelt
+- Richtige 11-sprachige Übersetzungen für Bildschirmzeit-Keys integriert (statt nur deutsche Platzhalter)
