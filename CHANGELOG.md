@@ -517,3 +517,5 @@
 
 - Focus Timer und Routinen starten nun trotzdem weiter, auch wenn die Bildschirmzeit-Freigabe vom Nutzer verweigert wird (Kein Blockieren der UI mehr).
 - Bei Routinen wird die ScreenTime-Zieleinstellung übersprungen, falls bereits Apps ausgewählt wurden (gleiches Verhalten wie beim Focus Timer).
+- **Permanent App Blocking**: Added feature to permanently block apps, categories and web domains with a 3D UI card design.
+- **Block Suggestions**: Added one-click suggestions for Adult Content, Social Media, Casino and Food Delivery with native Apple web filtering where possible.

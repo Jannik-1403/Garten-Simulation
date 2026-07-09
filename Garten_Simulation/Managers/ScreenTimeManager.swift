@@ -10,6 +10,21 @@ class ScreenTimeManager: ObservableObject {
     
     @AppStorage("screenTimeAllowedSelectionData") private var allowedSelectionData: Data?
     
+    // MARK: - Permanent Blocks
+    @AppStorage("screenTimePermanentBlockData") private var permanentBlockSelectionData: Data?
+    @Published var permanentBlockSelection = FamilyActivitySelection() {
+        didSet {
+            savePermanentBlockSelection()
+            applyPermanentBlocks()
+        }
+    }
+    
+    @AppStorage("screenTimeAdultFilterEnabled") var isAdultFilterEnabled: Bool = false {
+        didSet {
+            applyPermanentBlocks()
+        }
+    }
+    
     // MARK: - Block Schedule
     @AppStorage("isScreenTimeScheduleActive") var isScheduleActive: Bool = false
     @AppStorage("screenTimeBlockStartHour") var blockStartHour: Int = 9
@@ -54,6 +69,7 @@ class ScreenTimeManager: ObservableObject {
     private init() {
         loadAllowedSelection()
         loadBlockSelection()
+        loadPermanentBlockSelection()
         checkAuthorizationStatus()
     }
     
@@ -75,11 +91,26 @@ class ScreenTimeManager: ObservableObject {
     
     // MARK: - Blocking
     
+    func applyPermanentBlocks() {
+        guard isAuthorized else { return }
+        // Set specific apps/domains to be always blocked
+        store.shield.applications = permanentBlockSelection.applicationTokens
+        store.shield.webDomains = permanentBlockSelection.webDomainTokens
+        
+        // Handle Adult Content filter
+        if isAdultFilterEnabled {
+            store.webContent.blockedByFilter = .auto()
+        } else {
+            store.webContent.blockedByFilter = nil
+        }
+    }
+    
     /// "Ohne Handy" – blockiert alle App-Kategorien komplett
     func blockAllApps() {
         guard isAuthorized else { return }
         store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all()
         store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all()
+        applyPermanentBlocks()
     }
     
     /// "Mit Handy" – blockiert alles AUSSER den Apps/Domains, die der Nutzer als erlaubt markiert hat
@@ -89,12 +120,13 @@ class ScreenTimeManager: ObservableObject {
         store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all(except: selection.applicationTokens)
         // webDomainCategories.all(except:) erwartet Set<WebDomainToken>
         store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.all(except: selection.webDomainTokens)
+        applyPermanentBlocks()
     }
     
     func unblockApps() {
-        store.shield.applications = nil
         store.shield.applicationCategories = nil
         store.shield.webDomainCategories = nil
+        applyPermanentBlocks()
     }
     
     // MARK: - Persistence
@@ -122,6 +154,19 @@ class ScreenTimeManager: ObservableObject {
         if let data = blockSelectionData,
            let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
             self.blockSelection = decoded
+        }
+    }
+    
+    private func savePermanentBlockSelection() {
+        if let data = try? JSONEncoder().encode(permanentBlockSelection) {
+            permanentBlockSelectionData = data
+        }
+    }
+    
+    private func loadPermanentBlockSelection() {
+        if let data = permanentBlockSelectionData,
+           let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.permanentBlockSelection = decoded
         }
     }
 }
