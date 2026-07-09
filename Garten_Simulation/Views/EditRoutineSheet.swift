@@ -146,12 +146,19 @@ struct EditRoutineSheet: View {
                                         .foregroundStyle(.white)
                                     }
                                     if !availableHabits.isEmpty {
-                                        Button {
-                                            showHabitPicker = true
-                                        } label: {
-                                            Image(systemName: "list.bullet.circle.fill")
-                                                .font(.system(size: 24))
-                                                .foregroundStyle(Color.green)
+                                        Item3DButton(
+                                            farbe: Color.white,
+                                            sekundaerFarbe: Color(white: 0.90),
+                                            groesse: 36,
+                                            isRectangular: true,
+                                            aktion: { showHabitPicker = true }
+                                        ) {
+                                            HStack {
+                                                Image(systemName: "plus")
+                                                Text(String(localized: "routine.habit.add", defaultValue: "Gewohnheit"))
+                                            }
+                                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                                            .foregroundStyle(Color.primary)
                                         }
                                     }
                                 }
