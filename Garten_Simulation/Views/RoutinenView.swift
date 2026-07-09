@@ -543,6 +543,7 @@ struct RoutineHabitCard: View {
 struct CreateRoutineSheet: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var gardenStore: GardenStore
     
     @Binding var routines: [RoutineUIData]
     let availableHabits: [HabitModel]
