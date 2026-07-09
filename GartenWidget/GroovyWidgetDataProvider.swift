@@ -76,13 +76,13 @@ struct GroovyWidgetDataProvider {
             var finalName = habit.displayedHabitName
             
             if finalName.contains(".") {
-                finalName = NSLocalizedString(finalName, comment: "")
+                finalName = String(localized: String.LocalizationValue(finalName))
             }
             
             // Fallback: If it's still a raw key (e.g. translation failed), use the plant's actual display name
             if finalName.isEmpty || finalName.contains(".") {
                 if let dbPlant = GameDatabase.allPlants.first(where: { $0.id.lowercased() == habit.plantID.lowercased() }) {
-                    finalName = NSLocalizedString(dbPlant.name, comment: "")
+                    finalName = String(localized: String.LocalizationValue(dbPlant.name))
                 }
             }
             
