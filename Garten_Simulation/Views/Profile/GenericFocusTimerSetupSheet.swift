@@ -2,16 +2,11 @@ import SwiftUI
 
 struct GenericFocusTimerSetupSheet: View {
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject var gardenStore: GardenStore
-    @EnvironmentObject var settings: SettingsStore
     
     @State private var taskName: String = ""
-    @State private var zeigeFocusSession = false
-    @State private var dummyHabit: HabitModel?
     @FocusState private var isTextFieldFocused: Bool
     
-    // We need PowerUpStore for FocusSessionView
-    @StateObject private var powerUpStore = PowerUpStore()
+    var onStart: (HabitModel) -> Void
     
     var body: some View {
         NavigationStack {
@@ -47,12 +42,14 @@ struct GenericFocusTimerSetupSheet: View {
                 }
                 .padding(.horizontal, 24)
                 
+                let isTaskEmpty = taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                
                 Item3DButton(
-                    farbe: taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color(white: 0.7) : Color.orangePrimary,
-                    sekundaerFarbe: taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? Color(white: 0.5) : Color.orangePrimary.darker(),
+                    farbe: isTaskEmpty ? Color(UIColor.systemBackground) : Color.orangePrimary,
+                    sekundaerFarbe: isTaskEmpty ? Color(UIColor.systemGray4) : Color.orangePrimary.darker(),
                     groesse: 60,
                     isRectangular: true,
-                    isDisabled: taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                    isDisabled: isTaskEmpty,
                     aktion: {
                         let habit = HabitModel(
                             name: taskName,
@@ -62,13 +59,17 @@ struct GenericFocusTimerSetupSheet: View {
                             xpPerCompletion: 0,
                             isGenericFocus: true
                         )
-                        self.dummyHabit = habit
-                        self.zeigeFocusSession = true
+                        dismiss()
+                        
+                        // Wait for sheet to start dismissing before triggering presentation
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            onStart(habit)
+                        }
                     }
                 ) {
                     Text(String(localized: "button.continue", defaultValue: "Weiter"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(isTaskEmpty ? Color.secondary : Color.white)
                         .frame(maxWidth: .infinity)
                 }
                 .padding(.horizontal, 24)
@@ -88,17 +89,20 @@ struct GenericFocusTimerSetupSheet: View {
                     }
                 }
             }
-            .fullScreenCover(isPresented: $zeigeFocusSession, onDismiss: {
-                // If the user closed the focus session, dismiss this sheet as well
-                dismiss()
-            }) {
-                if let habit = dummyHabit {
-                    FocusSessionView(pflanze: habit)
-                        .environmentObject(gardenStore)
-                        .environmentObject(settings)
-                        .environmentObject(powerUpStore) // Need to provide it since FocusSessionView requires it
-                }
-            }
         }
+    }
+}
+
+struct GenericFocusSessionContainer: View {
+    let habit: HabitModel
+    @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
+    @StateObject private var powerUpStore = PowerUpStore()
+    
+    var body: some View {
+        FocusSessionView(pflanze: habit)
+            .environmentObject(gardenStore)
+            .environmentObject(settings)
+            .environmentObject(powerUpStore)
     }
 }

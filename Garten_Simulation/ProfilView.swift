@@ -15,6 +15,7 @@ struct ProfilView: View {
     @State private var ausgewaehlterErfolg: Erfolg? = nil
     @State private var showAssessment = false
     @State private var showFocusSheet = false
+    @State private var genericFocusHabit: HabitModel?
     
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
@@ -205,7 +206,12 @@ struct ProfilView: View {
                     .environmentObject(settings)
             }
             .fullScreenCover(isPresented: $showFocusSheet) {
-                GenericFocusTimerSetupSheet()
+                GenericFocusTimerSetupSheet { habit in
+                    genericFocusHabit = habit
+                }
+            }
+            .fullScreenCover(item: $genericFocusHabit) { habit in
+                GenericFocusSessionContainer(habit: habit)
             }
             .overlay {
                 if let neuerTitel = titelStore.neuerTitelZumAnzeigen {
