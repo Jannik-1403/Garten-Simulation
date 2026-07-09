@@ -153,7 +153,9 @@ class ScreenTimeManager: ObservableObject {
     func applyPermanentBlocks() {
         guard isAuthorized else { return }
         store.shield.applications = permanentBlockSelection.applicationTokens
+        store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.specific(permanentBlockSelection.categoryTokens)
         store.shield.webDomains = permanentBlockSelection.webDomainTokens
+        store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.specific(permanentBlockSelection.categoryTokens)
         
         if isAdultFilterEnabled {
             store.webContent.blockedByFilter = .auto()

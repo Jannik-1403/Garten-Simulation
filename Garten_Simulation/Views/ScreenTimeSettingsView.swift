@@ -38,7 +38,7 @@ struct ScreenTimeSettingsView: View {
                 settingsScrollView
             }
         }
-        .navigationTitle(String(localized: "screenTime.title", defaultValue: "Bildschirmzeit"))
+        .navigationTitle(String(localized: "screenTime.title.short", defaultValue: "Zeit"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             if !manager.isCurrentlyInBlockWindow {
@@ -136,7 +136,9 @@ struct ScreenTimeSettingsView: View {
             groesse: 56,
             isRectangular: true,
             aktion: {
-                Task { await manager.requestAuthorization() }
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
             }
         ) {
             HStack {
@@ -166,20 +168,15 @@ struct ScreenTimeSettingsView: View {
                 Item3DButton(
                     farbe: Color.gruenPrimary,
                     sekundaerFarbe: Color.gruenPrimary.darker(),
-                    groesse: 40,
-                    shadowDepthFactor: 0.1,
+                    groesse: 36,
+                    shadowDepthFactor: 0.15,
                     isRectangular: true,
                     aktion: { isPermanentPickerPresented = true }
                 ) {
-                    HStack(spacing: 4) {
-                        Image(systemName: "plus")
-                            .font(.system(size: 13, weight: .bold))
-                            .foregroundStyle(.white)
-                        Text(String(localized: "common.add", defaultValue: "Hinzufügen"))
-                            .font(.system(size: 12, weight: .bold, design: .rounded))
-                            .foregroundStyle(.white)
-                    }
-                    .padding(.horizontal, 4)
+                    Image(systemName: "plus")
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 16)
                 }
                 .familyActivityPicker(isPresented: $isPermanentPickerPresented, selection: $permanentBlockSelection)
                 

@@ -30,7 +30,10 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
            let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data),
            !selection.applicationTokens.isEmpty || !selection.categoryTokens.isEmpty {
             // Block only the selected apps/categories
-            store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all(except: selection.applicationTokens)
+            store.shield.applications = selection.applicationTokens
+            store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.specific(selection.categoryTokens)
+            store.shield.webDomains = selection.webDomainTokens
+            store.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.specific(selection.categoryTokens)
         } else {
             // No specific selection → block all categories
             store.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.all()
@@ -52,7 +55,9 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         }
         
         // Remove all scheduled shields
+        store.shield.applications = nil
         store.shield.applicationCategories = nil
+        store.shield.webDomains = nil
         store.shield.webDomainCategories = nil
         
         sharedDefaults?.set(false, forKey: "screenTimeBlockCurrentlyActive")
