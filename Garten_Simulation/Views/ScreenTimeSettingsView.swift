@@ -153,11 +153,34 @@ struct ScreenTimeSettingsView: View {
     
     private var permanentBlockSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            HStack {
+            // Header: Title + [+] + [Adult Filter]
+            HStack(spacing: 8) {
                 Text(String(localized: "screenTime.permanent.title", defaultValue: "Für immer blockieren"))
                     .font(.system(size: 20, weight: .bold, design: .rounded))
                 Spacer()
-                // Adult Filter as 3D Button
+                
+                // + Add Button (rectangular 3D, left of adult filter)
+                Item3DButton(
+                    farbe: Color.gruenPrimary,
+                    sekundaerFarbe: Color.gruenPrimary.darker(),
+                    groesse: 40,
+                    shadowDepthFactor: 0.1,
+                    isRectangular: true,
+                    aktion: { isPermanentPickerPresented = true }
+                ) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "plus")
+                            .font(.system(size: 13, weight: .bold))
+                            .foregroundStyle(.white)
+                        Text(String(localized: "common.add", defaultValue: "Hinzufügen"))
+                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white)
+                    }
+                    .padding(.horizontal, 4)
+                }
+                .familyActivityPicker(isPresented: $isPermanentPickerPresented, selection: $permanentBlockSelection)
+                
+                // Adult Filter 3D Button
                 Item3DButton(
                     farbe: isAdultFilterEnabled ? Color.red : Color(UIColor.secondarySystemGroupedBackground),
                     sekundaerFarbe: isAdultFilterEnabled ? Color.red.darker() : Color(UIColor.tertiarySystemGroupedBackground),
@@ -166,7 +189,7 @@ struct ScreenTimeSettingsView: View {
                     isRectangular: true,
                     aktion: { isAdultFilterEnabled.toggle() }
                 ) {
-                    HStack(spacing: 5) {
+                    HStack(spacing: 4) {
                         Image(systemName: "exclamationmark.shield.fill")
                             .font(.system(size: 13))
                             .foregroundStyle(isAdultFilterEnabled ? .white : .red)
@@ -179,45 +202,22 @@ struct ScreenTimeSettingsView: View {
             }
             .padding(.horizontal)
             
-            // Horizontal scroll – pills + 3D add button
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
-                    // + Add Button as 3D rectangular button
-                    Item3DButton(
-                        farbe: Color.gruenPrimary,
-                        sekundaerFarbe: Color.gruenPrimary.darker(),
-                        groesse: 44,
-                        shadowDepthFactor: 0.1,
-                        isRectangular: true,
-                        aktion: { isPermanentPickerPresented = true }
-                    ) {
-                        HStack(spacing: 5) {
-                            Image(systemName: "plus")
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundStyle(.white)
-                            Text(String(localized: "common.add", defaultValue: "Hinzufügen"))
-                                .font(.system(size: 13, weight: .bold, design: .rounded))
-                                .foregroundStyle(.white)
-                        }
-                        .padding(.horizontal, 4)
-                    }
-                    .familyActivityPicker(isPresented: $isPermanentPickerPresented, selection: $permanentBlockSelection)
-                    
-                    // App tokens
+            // Blocked items – vertical list
+            if !permanentBlockSelection.applicationTokens.isEmpty ||
+               !permanentBlockSelection.categoryTokens.isEmpty ||
+               !permanentBlockSelection.webDomainTokens.isEmpty {
+                VStack(spacing: 8) {
                     ForEach(Array(permanentBlockSelection.applicationTokens), id: \.self) { token in
-                        BlockPill { Label(token) }
+                        BlockRow { Label(token) }
                     }
-                    // Category tokens
                     ForEach(Array(permanentBlockSelection.categoryTokens), id: \.self) { token in
-                        BlockPill { Label(token) }
+                        BlockRow { Label(token) }
                     }
-                    // Web domain tokens
                     ForEach(Array(permanentBlockSelection.webDomainTokens), id: \.self) { token in
-                        BlockPill { Label(token) }
+                        BlockRow { Label(token) }
                     }
                 }
                 .padding(.horizontal)
-                .padding(.vertical, 8)
             }
         }
     }
@@ -272,23 +272,28 @@ struct ScreenTimeSettingsView: View {
                         .padding(.horizontal)
                     }
                     
-                    // Block Selection
-                    Button {
-                        isPickerPresented = true
-                    } label: {
+                    // Block Selection – 3D Button
+                    Item3DButton(
+                        farbe: Color(UIColor.secondarySystemGroupedBackground),
+                        sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground),
+                        groesse: 56,
+                        shadowDepthFactor: 0.07,
+                        isRectangular: true,
+                        aktion: { isPickerPresented = true }
+                    ) {
                         HStack {
                             Image(systemName: "app.badge.fill")
-                                .foregroundStyle(Color.gruenPrimary)
+                                .foregroundStyle(.blue)
+                                .font(.system(size: 16))
                             Text(String(localized: "screenTime.schedule.select_apps", defaultValue: "Apps & Kategorien für Zeitplan"))
                                 .font(.system(size: 15, weight: .medium, design: .rounded))
                                 .foregroundStyle(.primary)
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .foregroundStyle(.secondary)
+                                .font(.system(size: 13))
                         }
-                        .padding()
-                        .background(Color(UIColor.secondarySystemGroupedBackground))
-                        .cornerRadius(16)
+                        .padding(.horizontal, 8)
                     }
                     .familyActivityPicker(isPresented: $isPickerPresented, selection: $blockSelection)
                     .padding(.horizontal)
@@ -351,14 +356,18 @@ struct ScreenTimeSettingsView: View {
     
     @ViewBuilder
     private func quickApplyButton(label: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
+        Item3DButton(
+            farbe: Color.gruenPrimary,
+            sekundaerFarbe: Color.gruenPrimary.darker(),
+            groesse: 42,
+            shadowDepthFactor: 0.1,
+            isRectangular: true,
+            aktion: action
+        ) {
             Text(label)
-                .font(.system(size: 13, weight: .semibold, design: .rounded))
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
-                .background(Color.gruenPrimary.opacity(0.15))
-                .foregroundStyle(Color.gruenPrimary)
-                .cornerRadius(10)
+                .font(.system(size: 13, weight: .bold, design: .rounded))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 8)
         }
     }
 }
@@ -436,10 +445,7 @@ struct DayScheduleRow: View {
         }
         .background(Color(UIColor.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .shadow(
-            color: Color(UIColor.secondarySystemGroupedBackground).opacity(0.8),
-            radius: 0, x: 0, y: 4
-        )
+        .shadow(color: .black.opacity(0.08), radius: 0, x: 0, y: 4)
         .overlay(
             RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .stroke(Color.black.opacity(0.07), lineWidth: 1)
@@ -478,9 +484,9 @@ struct DayScheduleRow: View {
 
 // MARK: - Subviews
 
-// MARK: - BlockPill
+// MARK: - BlockRow (vertical, full-width)
 
-struct BlockPill<Content: View>: View {
+struct BlockRow<Content: View>: View {
     let content: Content
     
     init(@ViewBuilder content: () -> Content) {
@@ -488,13 +494,24 @@ struct BlockPill<Content: View>: View {
     }
     
     var body: some View {
-        content
-            .font(.system(size: 13, weight: .semibold, design: .rounded))
-            .lineLimit(1)
-            .padding(.horizontal, 14)
-            .padding(.vertical, 10)
-            .background(Color(UIColor.secondarySystemGroupedBackground))
-            .clipShape(Capsule())
+        HStack {
+            Image(systemName: "lock.fill")
+                .font(.system(size: 13))
+                .foregroundStyle(.red)
+            content
+                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                .lineLimit(1)
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(Color(UIColor.secondarySystemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .shadow(color: .black.opacity(0.06), radius: 0, x: 0, y: 3)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .stroke(Color.black.opacity(0.06), lineWidth: 1)
+        )
     }
 }
 
