@@ -18,6 +18,24 @@ struct DaySchedule: Codable, Equatable {
     static let defaultWeekend = DaySchedule(isActive: false, startHour: 10, startMinute: 0, endHour: 14, endMinute: 0)
 }
 
+struct AppLimit: Codable, Hashable, Identifiable {
+    var id = UUID()
+    let token: ApplicationToken
+    var minutes: Int
+}
+
+struct CategoryLimit: Codable, Hashable, Identifiable {
+    var id = UUID()
+    let token: ActivityCategoryToken
+    var minutes: Int
+}
+
+struct WebLimit: Codable, Hashable, Identifiable {
+    var id = UUID()
+    let token: WebDomainToken
+    var minutes: Int
+}
+
 // MARK: - ScreenTimeManager
 
 @MainActor
@@ -119,12 +137,20 @@ class ScreenTimeManager: ObservableObject {
     
     /// Ebene 1: Tägliches Zeitlimit Apps
     @Published var dailyLimitSelection = FamilyActivitySelection() {
-        didSet { saveDailyLimitSelection() }
+        didSet { 
+            saveDailyLimitSelection()
+            syncIndividualLimits()
+        }
     }
     
-    /// Ebene 1: Zeitlimit in Minuten
-    @Published var dailyLimitMinutes: Int = 0 {
-        didSet { saveDailyLimitMinutes() }
+    @Published var appLimits: [AppLimit] = [] {
+        didSet { saveIndividualLimits() }
+    }
+    @Published var categoryLimits: [CategoryLimit] = [] {
+        didSet { saveIndividualLimits() }
+    }
+    @Published var webLimits: [WebLimit] = [] {
+        didSet { saveIndividualLimits() }
     }
     
     @Published var isAuthorized = false
@@ -141,7 +167,7 @@ class ScreenTimeManager: ObservableObject {
         loadBlockSelection()
         loadPermanentBlockSelection()
         loadDailyLimitSelection()
-        loadDailyLimitMinutes()
+        loadIndividualLimits()
         checkAuthorizationStatus()
         
         NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] _ in
@@ -209,23 +235,37 @@ class ScreenTimeManager: ObservableObject {
         defaults?.set(dailyData, forKey: "screenTimeDailyLimitSelectionData_appGroup")
         defaults?.synchronize()
         
-        // Start monitoring for daily limit if active
-        if dailyLimitMinutes > 0 && (!dailyLimitSelection.applicationTokens.isEmpty || !dailyLimitSelection.categoryTokens.isEmpty || !dailyLimitSelection.webDomainTokens.isEmpty) {
-            let dailySchedule = DeviceActivitySchedule(
-                intervalStart: DateComponents(hour: 0, minute: 0),
-                intervalEnd: DateComponents(hour: 23, minute: 59),
-                repeats: true
-            )
-            let dailyEvent = DeviceActivityEvent(
-                applications: dailyLimitSelection.applicationTokens,
-                categories: dailyLimitSelection.categoryTokens,
-                webDomains: dailyLimitSelection.webDomainTokens,
-                threshold: DateComponents(minute: dailyLimitMinutes)
-            )
-            do {
-                try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).dailyLimit"), during: dailySchedule, events: [.init("dailyLimitEvent"): dailyEvent])
-            } catch {
-                print("Failed to schedule daily limit: \(error)")
+        // Start individual monitoring for daily limits if active
+        let dailySchedule = DeviceActivitySchedule(
+            intervalStart: DateComponents(hour: 0, minute: 0),
+            intervalEnd: DateComponents(hour: 23, minute: 59),
+            repeats: true
+        )
+        
+        for (index, appLimit) in appLimits.enumerated() {
+            if appLimit.minutes > 0 {
+                let event = DeviceActivityEvent(applications: [appLimit.token], threshold: DateComponents(minute: appLimit.minutes))
+                do {
+                    try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).app.\(index)"), during: dailySchedule, events: [.init("limitEvent"): event])
+                } catch { print("Failed to schedule app limit: \(error)") }
+            }
+        }
+        
+        for (index, catLimit) in categoryLimits.enumerated() {
+            if catLimit.minutes > 0 {
+                let event = DeviceActivityEvent(categories: [catLimit.token], threshold: DateComponents(minute: catLimit.minutes))
+                do {
+                    try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).cat.\(index)"), during: dailySchedule, events: [.init("limitEvent"): event])
+                } catch { print("Failed to schedule cat limit: \(error)") }
+            }
+        }
+        
+        for (index, webLimit) in webLimits.enumerated() {
+            if webLimit.minutes > 0 {
+                let event = DeviceActivityEvent(webDomains: [webLimit.token], threshold: DateComponents(minute: webLimit.minutes))
+                do {
+                    try center.startMonitoring(DeviceActivityName("\(Self.activityNamePrefix).web.\(index)"), during: dailySchedule, events: [.init("limitEvent"): event])
+                } catch { print("Failed to schedule web limit: \(error)") }
             }
         }
         
@@ -345,11 +385,39 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
-    private func saveDailyLimitMinutes() {
-        UserDefaults.standard.set(dailyLimitMinutes, forKey: "screenTimeDailyLimitMinutes")
+    private func syncIndividualLimits() {
+        // Remove limits that are no longer in selection
+        appLimits.removeAll { !dailyLimitSelection.applicationTokens.contains($0.token) }
+        categoryLimits.removeAll { !dailyLimitSelection.categoryTokens.contains($0.token) }
+        webLimits.removeAll { !dailyLimitSelection.webDomainTokens.contains($0.token) }
+        
+        // Add new tokens with default limit (15 minutes)
+        for token in dailyLimitSelection.applicationTokens {
+            if !appLimits.contains(where: { $0.token == token }) {
+                appLimits.append(AppLimit(token: token, minutes: 15))
+            }
+        }
+        for token in dailyLimitSelection.categoryTokens {
+            if !categoryLimits.contains(where: { $0.token == token }) {
+                categoryLimits.append(CategoryLimit(token: token, minutes: 15))
+            }
+        }
+        for token in dailyLimitSelection.webDomainTokens {
+            if !webLimits.contains(where: { $0.token == token }) {
+                webLimits.append(WebLimit(token: token, minutes: 15))
+            }
+        }
     }
     
-    private func loadDailyLimitMinutes() {
-        self.dailyLimitMinutes = UserDefaults.standard.integer(forKey: "screenTimeDailyLimitMinutes")
+    private func saveIndividualLimits() {
+        if let d1 = try? JSONEncoder().encode(appLimits) { UserDefaults.standard.set(d1, forKey: "st_appLimits") }
+        if let d2 = try? JSONEncoder().encode(categoryLimits) { UserDefaults.standard.set(d2, forKey: "st_catLimits") }
+        if let d3 = try? JSONEncoder().encode(webLimits) { UserDefaults.standard.set(d3, forKey: "st_webLimits") }
+    }
+    
+    private func loadIndividualLimits() {
+        if let d1 = UserDefaults.standard.data(forKey: "st_appLimits"), let a1 = try? JSONDecoder().decode([AppLimit].self, from: d1) { self.appLimits = a1 }
+        if let d2 = UserDefaults.standard.data(forKey: "st_catLimits"), let a2 = try? JSONDecoder().decode([CategoryLimit].self, from: d2) { self.categoryLimits = a2 }
+        if let d3 = UserDefaults.standard.data(forKey: "st_webLimits"), let a3 = try? JSONDecoder().decode([WebLimit].self, from: d3) { self.webLimits = a3 }
     }
 }

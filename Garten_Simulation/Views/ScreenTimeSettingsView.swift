@@ -19,11 +19,6 @@ struct ScreenTimeSettingsView: View {
     @State private var isDailyLimitPickerPresented = false
     @State private var dailyLimitSelection = FamilyActivitySelection()
     @State private var oldDailyLimitSelection = FamilyActivitySelection()
-    @State private var dailyLimitMinutes: Int = 0
-    
-    @State private var isTimePickerPresented = false
-    @State private var tempHours: Int = 0
-    @State private var tempMinutes: Int = 0
     
     @State private var isPermanentPickerPresented = false
     @State private var permanentBlockSelection = FamilyActivitySelection()
@@ -93,12 +88,8 @@ struct ScreenTimeSettingsView: View {
             permanentBlockSelection = manager.permanentBlockSelection
             oldPermanentBlockSelection = manager.permanentBlockSelection
             
-            dailyLimitMinutes = manager.dailyLimitMinutes
             isAdultFilterEnabled = manager.isAdultFilterEnabled
             daySchedules = manager.daySchedules
-            
-            tempHours = manager.dailyLimitMinutes / 60
-            tempMinutes = manager.dailyLimitMinutes % 60
         }
         .onChange(of: dailyLimitSelection) { newValue in
             var enforcedSelection = newValue
@@ -145,9 +136,6 @@ struct ScreenTimeSettingsView: View {
                 permanentBlockSelection = enforcedSelection
             }
             oldPermanentBlockSelection = enforcedSelection
-        }
-        .sheet(isPresented: $isTimePickerPresented) {
-            timePickerSheet
         }
         .fullScreenCover(isPresented: $showWalkOfShame) {
             WalkOfShameView(
@@ -217,10 +205,45 @@ struct ScreenTimeSettingsView: View {
                     authorizationBanner
                 }
                 
+                if manager.isScheduleActive || !dailyLimitSelection.applicationTokens.isEmpty || !permanentBlockSelection.applicationTokens.isEmpty {
+                    Item3DButton(
+                        farbe: Color.orange,
+                        sekundaerFarbe: Color.orange.darker(),
+                        groesse: 56,
+                        shadowDepthFactor: 0.07,
+                        isRectangular: true,
+                        aktion: { showWalkOfShame = true }
+                    ) {
+                        HStack {
+                            Image(systemName: "lock.open.fill")
+                                .foregroundStyle(.white)
+                            Text(String(localized: "screenTime.layer1.unblock", defaultValue: "Apps entsperren"))
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundStyle(.white)
+                            Spacer()
+                        }
+                        .padding(.horizontal, 8)
+                    }
+                }
+                
                 dailyLimitSection
                 permanentBlockSection
                 scheduleSection
                 infoSection
+                
+                // Bottom System Link
+                Button(action: {
+                    if let url = URL(string: "App-prefs:SCREEN_TIME") {
+                        UIApplication.shared.open(url)
+                    }
+                }) {
+                    Text(String(localized: "screenTime.openSystemSettings", defaultValue: "iOS Bildschirmzeit öffnen"))
+                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                        .foregroundColor(.secondary)
+                        .underline()
+                }
+                .padding(.top, 24)
+                .padding(.bottom, 40)
             }
             .padding()
         }
@@ -281,63 +304,63 @@ struct ScreenTimeSettingsView: View {
                 .familyActivityPicker(isPresented: $isDailyLimitPickerPresented, selection: $dailyLimitSelection)
                 
                 Spacer()
-                
-                Button(action: {
-                    tempHours = dailyLimitMinutes / 60
-                    tempMinutes = dailyLimitMinutes % 60
-                    isTimePickerPresented = true
-                }) {
-                    HStack {
-                        if dailyLimitMinutes == 0 {
-                            Text(String(localized: "common.off", defaultValue: "Aus"))
-                        } else {
-                            if dailyLimitMinutes >= 60 {
-                                Text("\(dailyLimitMinutes / 60)h \(dailyLimitMinutes % 60)m")
-                            } else {
-                                Text("\(dailyLimitMinutes) \(String(localized: "common.minutes.short", defaultValue: "Min"))")
-                            }
-                        }
-                        Image(systemName: "chevron.up.chevron.down")
-                            .font(.system(size: 12))
-                    }
-                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                    .foregroundStyle(.primary)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 10)
-                    .background(Color(UIColor.secondarySystemGroupedBackground))
-                    .cornerRadius(12)
-                }
             }
             .padding(.horizontal)
             
-            if !dailyLimitSelection.applicationTokens.isEmpty || !dailyLimitSelection.categoryTokens.isEmpty || !dailyLimitSelection.webDomainTokens.isEmpty {
+            if !manager.appLimits.isEmpty || !manager.categoryLimits.isEmpty || !manager.webLimits.isEmpty {
                 VStack(spacing: 8) {
-                    ForEach(Array(dailyLimitSelection.applicationTokens), id: \.self) { token in
-                        BlockRow { Label(token) }
+                    ForEach($manager.appLimits) { $limit in
+                        BlockRow {
+                            HStack {
+                                Label(limit.token)
+                                Spacer()
+                                limitMenu(for: $limit.minutes)
+                            }
+                        }
                     }
-                    ForEach(Array(dailyLimitSelection.categoryTokens), id: \.self) { token in
-                        BlockRow { Label(token) }
+                    ForEach($manager.categoryLimits) { $limit in
+                        BlockRow {
+                            HStack {
+                                Label(limit.token)
+                                Spacer()
+                                limitMenu(for: $limit.minutes)
+                            }
+                        }
                     }
-                }
-                .padding(.horizontal)
-                
-                // Unblock Button Ebene 1 (Walk of Shame)
-                Button {
-                    showWalkOfShame = true
-                } label: {
-                    HStack {
-                        Image(systemName: "lock.open.fill")
-                        Text(String(localized: "screenTime.layer1.unblock", defaultValue: "Apps entsperren"))
+                    ForEach($manager.webLimits) { $limit in
+                        BlockRow {
+                            HStack {
+                                Label(limit.token)
+                                Spacer()
+                                limitMenu(for: $limit.minutes)
+                            }
+                        }
                     }
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.orange)
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
                 }
                 .padding(.horizontal)
             }
+        }
+    }
+    
+    private func limitMenu(for minutesBinding: Binding<Int>) -> some View {
+        Menu {
+            Picker("", selection: minutesBinding) {
+                ForEach([0, 5, 10, 15, 30, 45, 60, 90, 120, 180], id: \.self) { min in
+                    Text(min == 0 ? String(localized: "common.off", defaultValue: "Aus") : "\(min) \(String(localized: "common.minutes.short", defaultValue: "Min"))").tag(min)
+                }
+            }
+        } label: {
+            HStack {
+                Text(minutesBinding.wrappedValue == 0 ? String(localized: "common.off", defaultValue: "Aus") : "\(minutesBinding.wrappedValue) \(String(localized: "common.minutes.short", defaultValue: "Min"))")
+                Image(systemName: "chevron.up.chevron.down")
+                    .font(.system(size: 10))
+            }
+            .font(.system(size: 14, weight: .bold, design: .rounded))
+            .foregroundColor(.primary)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .background(Color(UIColor.tertiarySystemGroupedBackground))
+            .cornerRadius(8)
         }
     }
     
@@ -403,23 +426,6 @@ struct ScreenTimeSettingsView: View {
                     ForEach(Array(permanentBlockSelection.webDomainTokens), id: \.self) { token in
                         BlockRow { Label(token) }
                     }
-                }
-                .padding(.horizontal)
-                
-                // Unblock Button Ebene 2 (Walk of Shame)
-                Button {
-                    showWalkOfShame = true
-                } label: {
-                    HStack {
-                        Image(systemName: "lock.open.fill")
-                        Text(String(localized: "screenTime.layer2.unblock", defaultValue: "Apps entsperren"))
-                    }
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.orange)
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
                 }
                 .padding(.horizontal)
             }
@@ -549,7 +555,6 @@ struct ScreenTimeSettingsView: View {
         manager.isScheduleActive = isScheduleActive
         manager.blockSelection = blockSelection
         manager.dailyLimitSelection = dailyLimitSelection
-        manager.dailyLimitMinutes = dailyLimitMinutes
         manager.daySchedules = daySchedules
         manager.permanentBlockSelection = permanentBlockSelection
         manager.isAdultFilterEnabled = isAdultFilterEnabled
@@ -574,55 +579,6 @@ struct ScreenTimeSettingsView: View {
                 .foregroundStyle(.white)
                 .padding(.horizontal, 8)
         }
-    }
-    
-    // MARK: - Time Picker Sheet
-    
-    private var timePickerSheet: some View {
-        NavigationStack {
-            VStack {
-                Text(String(localized: "screenTime.limit.picker.title", defaultValue: "Wie lange darfst du die Apps in Ebene 1 maximal am Tag nutzen?"))
-                    .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                
-                HStack(spacing: 0) {
-                    Picker(String(localized: "common.hours", defaultValue: "Stunden"), selection: $tempHours) {
-                        ForEach(0..<24) { h in
-                            Text("\(h) h").tag(h)
-                        }
-                    }
-                    .pickerStyle(.wheel)
-                    .frame(maxWidth: .infinity)
-                    .clipped()
-                    
-                    Picker(String(localized: "common.minutes", defaultValue: "Minuten"), selection: $tempMinutes) {
-                        ForEach(0..<60) { m in
-                            Text("\(m) m").tag(m)
-                        }
-                    }
-                    .pickerStyle(.wheel)
-                    .frame(maxWidth: .infinity)
-                    .clipped()
-                }
-                .padding(.horizontal)
-                
-                Spacer()
-            }
-            .navigationTitle(String(localized: "screenTime.limit.picker.nav", defaultValue: "Limit festlegen"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(String(localized: "common.done", defaultValue: "Fertig")) {
-                        dailyLimitMinutes = tempHours * 60 + tempMinutes
-                        isTimePickerPresented = false
-                    }
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                }
-            }
-        }
-        .presentationDetents([.height(350)])
     }
 }
 

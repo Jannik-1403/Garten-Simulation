@@ -210048,6 +210048,17 @@
         }
       }
     },
+    "screenTime.layer1.unblock" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Apps entsperren"
+          }
+        }
+      }
+    },
     "screenTime.layer2.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {

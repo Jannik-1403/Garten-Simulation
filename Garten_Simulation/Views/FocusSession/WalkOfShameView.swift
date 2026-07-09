@@ -23,43 +23,27 @@ struct WalkOfShameView: View {
     ]
     
     var body: some View {
-        ZStack {
-            // Premium Liquid Glass Background
+        NavigationStack {
             ZStack {
-                LinearGradient(
-                    colors: [Color.blue.opacity(0.15), Color.purple.opacity(0.15)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-                Rectangle()
-                    .fill(.ultraThinMaterial)
-            }
-            .ignoresSafeArea(.all)
-            .onTapGesture { isFocused = false }
-            
-            ScrollView {
-                VStack(spacing: 20) {
-                    // Top bar with morphing dismiss/cancel button
-                    HStack {
-                        Spacer()
-                        Button {
-                            if isFocused {
-                                isFocused = false
-                            } else {
-                                onCancel()
-                            }
-                        } label: {
-                            Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark.circle.fill")
-                                .font(.system(size: 28, weight: .semibold))
-                                .foregroundStyle(Color(UIColor.tertiaryLabel), Color(UIColor.tertiarySystemFill))
-                        }
-                        .padding(.trailing, 24)
-                        .padding(.top, 16)
-                    }
-                    
-                    Text(String(localized: "focus.giveup.walkofshame.title", defaultValue: "Bewusste Entscheidung"))
-                        .font(.system(size: 28, weight: .black, design: .rounded))
-                        .foregroundColor(.primary)
+                // Premium Liquid Glass Background
+                ZStack {
+                    LinearGradient(
+                        colors: [Color.blue.opacity(0.15), Color.purple.opacity(0.15)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                    Rectangle()
+                        .fill(.ultraThinMaterial)
+                }
+                .ignoresSafeArea(.all)
+                .onTapGesture { isFocused = false }
+                
+                ScrollView {
+                    VStack(spacing: 20) {
+                        Text(String(localized: "focus.giveup.walkofshame.title", defaultValue: "Bewusste Entscheidung"))
+                            .font(.system(size: 28, weight: .black, design: .rounded))
+                            .foregroundColor(.primary)
+                            .padding(.top, 24)
                     
                     Text(String(localized: "focus.giveup.walkofshame.subtitle", defaultValue: "Tippe diesen Text exakt und fehlerfrei ab, um zu bestätigen, dass du die Sperre aufheben willst:"))
                         .font(.system(size: 15, weight: .medium, design: .rounded))
@@ -117,6 +101,23 @@ struct WalkOfShameView: View {
                 }
             }
             .scrollBounceBehavior(.basedOnSize)
+        }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    if isFocused {
+                        isFocused = false
+                    } else {
+                        onCancel()
+                    }
+                } label: {
+                    Image(systemName: isFocused ? "keyboard.chevron.compact.down" : "xmark.circle.fill")
+                        .font(.system(size: 28, weight: .semibold))
+                        .foregroundStyle(Color(UIColor.tertiaryLabel), Color(UIColor.tertiarySystemFill))
+                }
+            }
         }
         .onAppear {
             requiredText = sentencePool.randomElement()!
