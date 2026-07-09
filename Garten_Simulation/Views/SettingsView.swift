@@ -360,8 +360,6 @@ struct SettingsView: View {
                                     zeigePaywall = true
                                 } label: {
                                     HStack(spacing: 8) {
-                                        Image(systemName: "star.fill")
-                                            .font(.system(size: 16))
                                         Text(String(localized: "settings.manage_subscription", defaultValue: "Abo verwalten"))
                                             .font(.system(size: 16, weight: .bold, design: .rounded))
                                     }

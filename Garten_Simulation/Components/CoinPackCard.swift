@@ -29,17 +29,17 @@ struct CoinPackCard: View {
         HStack(spacing: 14) {
 
             // MARK: Coin Icon + Amount
-            VStack(spacing: 4) {
+            HStack(spacing: 4) {
                 Image(packImageName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 44, height: 44)
+                    .frame(width: 52, height: 52)
                 
-                Text("+\(coinAmount) \(String(localized: "shop.coins", defaultValue: "Münzen"))")
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                Text("+\(coinAmount)")
+                    .font(.system(size: 16, weight: .black, design: .rounded))
                     .foregroundStyle(Color.goldPrimary)
             }
-            .frame(width: 64)
+            .frame(minWidth: 80)
 
             // MARK: Name & Description
             VStack(alignment: .leading, spacing: 3) {
