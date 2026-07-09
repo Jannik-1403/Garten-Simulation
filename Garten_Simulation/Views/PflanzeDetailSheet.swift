@@ -693,14 +693,15 @@ struct PflanzeDetailSheet: View {
                                                                 .padding(14)
                                                                 .frame(maxWidth: .infinity)
                                                             }
-                                                            .buttonStyle(Item3DButtonStyle(farbe: Color(uiColor: .secondarySystemBackground), sekundaerFarbe: Color(uiColor: .systemGray4), iconSkalierung: 1.0, isRectangular: true, isPermanentlyPressed: false, shadowDepthFactor: 0.08, isDisabled: false))
+                                                            .buttonStyle(Item3DButtonStyle(farbe: Color(uiColor: .secondarySystemBackground), sekundaerFarbe: Color(uiColor: .systemGray4), groesse: 50, iconSkalierung: 1.0, isRectangular: true, isPermanentlyPressed: false, shadowDepthFactor: 0.08, isDisabled: false))
                                                             .sheet(isPresented: $isEditingScreenTime) {
                                                                 ScreenTimePickerSheet(
                                                                     screenTimeHours: $screenTimeHours,
                                                                     screenTimeMinutes: $screenTimeMinutes,
                                                                     isPresented: $isEditingScreenTime,
                                                                     onSave: {
-                                                                        pflanze.customTrackerTarget = Double(screenTimeHours * 60 + screenTimeMinutes)
+                                                                        let totalMinutes = screenTimeHours * 60 + screenTimeMinutes
+                                                                        pflanze.customTrackerTarget = Double(totalMinutes)
                                                                         gardenStore.savePlants()
                                                                         DeviceActivityManager.shared.screenTimeGoalMinutes = Int(pflanze.customTrackerTarget ?? 120)
                                                                     }
@@ -724,7 +725,7 @@ struct PflanzeDetailSheet: View {
                                                                 .frame(maxWidth: .infinity)
                                                                 .padding(14)
                                                             }
-                                                            .buttonStyle(Item3DButtonStyle(farbe: .blue, sekundaerFarbe: .blue.opacity(0.6), iconSkalierung: 1.0, isRectangular: true, isPermanentlyPressed: false, shadowDepthFactor: 0.08, isDisabled: false))
+                                                            .buttonStyle(Item3DButtonStyle(farbe: .blue, sekundaerFarbe: .blue.opacity(0.6), groesse: 50, iconSkalierung: 1.0, isRectangular: true, isPermanentlyPressed: false, shadowDepthFactor: 0.08, isDisabled: false))
                                                         }
                                                     } else {
                                                         HStack {
@@ -2465,7 +2466,7 @@ struct ScreenTimePickerSheet: View {
                         .frame(maxWidth: .infinity)
                         .padding(14)
                 }
-                .buttonStyle(Item3DButtonStyle(farbe: .orange, sekundaerFarbe: .orange.opacity(0.8), iconSkalierung: 1.0, isRectangular: true, isPermanentlyPressed: false, shadowDepthFactor: 0.08, isDisabled: false))
+                .buttonStyle(Item3DButtonStyle(farbe: .orange, sekundaerFarbe: .orange.opacity(0.8), groesse: 50, iconSkalierung: 1.0, isRectangular: true, isPermanentlyPressed: false, shadowDepthFactor: 0.08, isDisabled: false))
                 .padding(.horizontal)
                 
                 Spacer()
