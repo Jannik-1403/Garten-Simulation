@@ -63,14 +63,6 @@ class ScreenTimeManager: ObservableObject {
          4: .defaultWeekday, 5: .defaultWeekday, 6: .defaultWeekday, 7: .defaultWeekend]
     }
     
-    private func loadDaySchedules() {
-        if let data = UserDefaults.standard.data(forKey: "screenTimeDaySchedulesData"),
-           let decoded = try? JSONDecoder().decode([Int: DaySchedule].self, from: data) {
-            self.daySchedules = decoded
-        } else {
-            self.daySchedules = defaultSchedules
-        }
-    }
     
     var isCurrentlyInBlockWindow: Bool {
         guard isScheduleActive else { return false }
@@ -138,13 +130,43 @@ class ScreenTimeManager: ObservableObject {
     private init() {
         self.isAdultFilterEnabled = UserDefaults.standard.bool(forKey: "screenTimeAdultFilterEnabled")
         self.isScheduleActive = UserDefaults.standard.bool(forKey: "isScreenTimeScheduleActive")
-        loadDaySchedules()
         
-        loadAllowedSelection()
-        loadBlockSelection()
-        loadPermanentBlockSelection()
-        loadDailyLimitSelection()
-        loadIndividualLimits()
+        if let data = UserDefaults.standard.data(forKey: "screenTimeDaySchedulesData"),
+           let decoded = try? JSONDecoder().decode([Int: DaySchedule].self, from: data) {
+            self.daySchedules = decoded
+        } else {
+            self.daySchedules = [1: .defaultWeekend, 2: .defaultWeekday, 3: .defaultWeekday,
+                                 4: .defaultWeekday, 5: .defaultWeekday, 6: .defaultWeekday, 7: .defaultWeekend]
+        }
+        
+        if let data = UserDefaults.standard.data(forKey: "screenTimeAllowedSelectionData"),
+           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.allowedSelection = selection
+        }
+        
+        if let data = UserDefaults.standard.data(forKey: "screenTimeBlockSelectionData"),
+           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.blockSelection = selection
+        }
+        
+        if let data = UserDefaults.standard.data(forKey: "screenTimePermanentBlockData"),
+           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.permanentBlockSelection = selection
+        }
+        
+        if let data = UserDefaults.standard.data(forKey: "screenTimeDailyLimitSelection"),
+           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.dailyLimitSelection = selection
+        }
+        
+        if let data = UserDefaults.standard.data(forKey: "st_limitSelections"),
+           let dict = try? JSONDecoder().decode([Int: FamilyActivitySelection].self, from: data) {
+            self.limitSelections = dict
+        }
+        
+        // Sync limits after everything is loaded to clean up orphans without triggering didSet prematurely
+        syncIndividualLimits()
+        
         checkAuthorizationStatus()
         
         NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] _ in
@@ -300,12 +322,6 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
-    private func loadAllowedSelection() {
-        if let data = UserDefaults.standard.data(forKey: "screenTimeAllowedSelectionData"),
-           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
-            self.allowedSelection = selection
-        }
-    }
     
     private func saveBlockSelection() {
         if let data = try? JSONEncoder().encode(blockSelection) {
@@ -313,12 +329,6 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
-    private func loadBlockSelection() {
-        if let data = UserDefaults.standard.data(forKey: "screenTimeBlockSelectionData"),
-           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
-            self.blockSelection = selection
-        }
-    }
     
     private func savePermanentBlockSelection() {
         if let data = try? JSONEncoder().encode(permanentBlockSelection) {
@@ -326,12 +336,6 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
-    private func loadPermanentBlockSelection() {
-        if let data = UserDefaults.standard.data(forKey: "screenTimePermanentBlockData"),
-           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
-            self.permanentBlockSelection = selection
-        }
-    }
     
     private func saveDailyLimitSelection() {
         if let data = try? JSONEncoder().encode(dailyLimitSelection) {
@@ -339,12 +343,6 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
-    private func loadDailyLimitSelection() {
-        if let data = UserDefaults.standard.data(forKey: "screenTimeDailyLimitSelection"),
-           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
-            self.dailyLimitSelection = selection
-        }
-    }
     
     // MARK: - Limit Getters & Setters
     
@@ -425,10 +423,4 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
-    private func loadIndividualLimits() {
-        if let data = UserDefaults.standard.data(forKey: "st_limitSelections"),
-           let dict = try? JSONDecoder().decode([Int: FamilyActivitySelection].self, from: data) {
-            self.limitSelections = dict
-        }
-    }
 }
