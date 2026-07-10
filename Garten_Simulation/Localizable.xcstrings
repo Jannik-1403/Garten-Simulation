@@ -151978,49 +151978,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kalender Synchronisation"
+            "value": "Apple Kalender Sync"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Calendar Synchronization"
+            "value": "Apple Calendar Sync"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sincronización de calendario"
+            "value": "Apple Calendar Sync"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Synchronisation du calendrier"
+            "value": "Apple Calendar Sync"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कैलेंडर तुल्यकालन"
+            "value": "Apple Calendar Sync"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sincronizzazione del calendario"
+            "value": "Apple Calendar Sync"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "カレンダー同期"
+            "value": "Apple Calendar Sync"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "캘린더 동기화"
+            "value": "Apple Calendar Sync"
           }
         },
         "nl": {
@@ -152044,7 +152044,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Синхронизация календаря"
+            "value": "Apple Calendar Sync"
           }
         },
         "tr": {
@@ -152056,13 +152056,19 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "日历同步"
+            "value": "Apple Calendar Sync"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
             "value": "行事曆同步"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Calendar Sync"
           }
         }
       }
@@ -152358,49 +152364,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tiefste Konzentration"
+            "value": "Premium Fokus-Klänge"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deepest Concentration"
+            "value": "Premium Focus Sounds"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Concentración Profunda"
+            "value": "Premium Focus Sounds"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Concentration Profonde"
+            "value": "Premium Focus Sounds"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "गहनतम एकाग्रता"
+            "value": "Premium Focus Sounds"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Concentrazione Profonda"
+            "value": "Premium Focus Sounds"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "深い集中"
+            "value": "Premium Focus Sounds"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "가장 깊은 집중"
+            "value": "Premium Focus Sounds"
           }
         },
         "nl": {
@@ -152424,7 +152430,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Глубочайшая концентрация"
+            "value": "Premium Focus Sounds"
           }
         },
         "tr": {
@@ -152436,13 +152442,19 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "深度专注"
+            "value": "Premium Focus Sounds"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
             "value": "最深濃度"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Premium Focus Sounds"
           }
         }
       }
@@ -152548,49 +152560,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dein täglicher Rhythmus"
+            "value": "Apple Health Integration"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Daily Rhythm"
+            "value": "Apple Health Integration"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu Ritmo Diario"
+            "value": "Apple Health Integration"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ton Rythme Quotidien"
+            "value": "Apple Health Integration"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आपकी दैनिक लय"
+            "value": "Apple Health Integration"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il Tuo Ritmo Quotidiano"
+            "value": "Apple Health Integration"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "毎日のリズム"
+            "value": "Apple Health Integration"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "당신의 일일 리듬"
+            "value": "Apple Health Integration"
           }
         },
         "nl": {
@@ -152614,7 +152626,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Твой ежедневный ритм"
+            "value": "Apple Health Integration"
           }
         },
         "tr": {
@@ -152626,13 +152638,19 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "您的日常节奏"
+            "value": "Apple Health Integration"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
             "value": "你的日常節奏"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health Integration"
           }
         }
       }
@@ -152928,49 +152946,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erkenne deine Muster"
+            "value": "Detaillierte Analysen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover Your Patterns"
+            "value": "Detailed Analytics"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Descubre Tus Patrones"
+            "value": "Detailed Analytics"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Découvre Tes Habitudes"
+            "value": "Detailed Analytics"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अपने पैटर्न को पहचानें"
+            "value": "Detailed Analytics"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Scopri i Tuoi Modelli"
+            "value": "Detailed Analytics"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "自分のパターンを発見"
+            "value": "Detailed Analytics"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "당신의 패턴 발견"
+            "value": "Detailed Analytics"
           }
         },
         "nl": {
@@ -152994,7 +153012,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Осознай свои шаблоны"
+            "value": "Detailed Analytics"
           }
         },
         "tr": {
@@ -153006,13 +153024,19 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "识别您的模式"
+            "value": "Detailed Analytics"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
             "value": "認識你的模式"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detailed Analytics"
           }
         }
       }
@@ -301929,6 +301953,1142 @@
           "stringUnit": {
             "state": "translated",
             "value": "热门"
+          }
+        }
+      }
+    },
+    "paywall.feature.health.bullet1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinde deine Bewegung direkt mit deinem Fokus."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your movement directly with your focus."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your movement directly with your focus."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your movement directly with your focus."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your movement directly with your focus."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your movement directly with your focus."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your movement directly with your focus."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your movement directly with your focus."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your movement directly with your focus."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your movement directly with your focus."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your movement directly with your focus."
+          }
+        }
+      }
+    },
+    "paywall.feature.health.bullet2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schließe Ringe und schalte extra Belohnungen frei."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close rings and unlock extra rewards."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close rings and unlock extra rewards."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close rings and unlock extra rewards."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close rings and unlock extra rewards."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close rings and unlock extra rewards."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close rings and unlock extra rewards."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close rings and unlock extra rewards."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close rings and unlock extra rewards."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close rings and unlock extra rewards."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close rings and unlock extra rewards."
+          }
+        }
+      }
+    },
+    "paywall.feature.health.bullet3": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Körper und Geist wachsen synchron."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body and mind grow in sync."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body and mind grow in sync."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body and mind grow in sync."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body and mind grow in sync."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body and mind grow in sync."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body and mind grow in sync."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body and mind grow in sync."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body and mind grow in sync."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body and mind grow in sync."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body and mind grow in sync."
+          }
+        }
+      }
+    },
+    "paywall.feature.calendar.bullet1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blockt Fokus-Zeiten automatisch in deinem Kalender."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically blocks focus times in your calendar."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically blocks focus times in your calendar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically blocks focus times in your calendar."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically blocks focus times in your calendar."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically blocks focus times in your calendar."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically blocks focus times in your calendar."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically blocks focus times in your calendar."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically blocks focus times in your calendar."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically blocks focus times in your calendar."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatically blocks focus times in your calendar."
+          }
+        }
+      }
+    },
+    "paywall.feature.calendar.bullet2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vermeidet Doppelbuchungen & schützt deine Zeit."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prevents double bookings & protects your time."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prevents double bookings & protects your time."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prevents double bookings & protects your time."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prevents double bookings & protects your time."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prevents double bookings & protects your time."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prevents double bookings & protects your time."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prevents double bookings & protects your time."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prevents double bookings & protects your time."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prevents double bookings & protects your time."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prevents double bookings & protects your time."
+          }
+        }
+      }
+    },
+    "paywall.feature.calendar.bullet3": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voller Überblick über deine Tagesplanung."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full overview of your daily planning."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full overview of your daily planning."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full overview of your daily planning."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full overview of your daily planning."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full overview of your daily planning."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full overview of your daily planning."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full overview of your daily planning."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full overview of your daily planning."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full overview of your daily planning."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full overview of your daily planning."
+          }
+        }
+      }
+    },
+    "paywall.feature.weekly_report.bullet1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erkenne, an welchen Tagen du am produktivsten bist."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discover which days you are most productive."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discover which days you are most productive."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discover which days you are most productive."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discover which days you are most productive."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discover which days you are most productive."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discover which days you are most productive."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discover which days you are most productive."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discover which days you are most productive."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discover which days you are most productive."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Discover which days you are most productive."
+          }
+        }
+      }
+    },
+    "paywall.feature.weekly_report.bullet2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verfolge deinen Fortschritt mit interaktiven Graphen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track your progress with interactive graphs."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track your progress with interactive graphs."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track your progress with interactive graphs."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track your progress with interactive graphs."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track your progress with interactive graphs."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track your progress with interactive graphs."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track your progress with interactive graphs."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track your progress with interactive graphs."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track your progress with interactive graphs."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Track your progress with interactive graphs."
+          }
+        }
+      }
+    },
+    "paywall.feature.weekly_report.bullet3": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optimiere deine Arbeitsweise anhand deiner Daten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optimize your workflow based on your data."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optimize your workflow based on your data."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optimize your workflow based on your data."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optimize your workflow based on your data."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optimize your workflow based on your data."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optimize your workflow based on your data."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optimize your workflow based on your data."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optimize your workflow based on your data."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optimize your workflow based on your data."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optimize your workflow based on your data."
+          }
+        }
+      }
+    },
+    "paywall.feature.focus_sounds.bullet1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zugriff auf alle wissenschaftlich fundierten Sounds."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access to all scientifically backed sounds."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access to all scientifically backed sounds."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access to all scientifically backed sounds."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access to all scientifically backed sounds."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access to all scientifically backed sounds."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access to all scientifically backed sounds."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access to all scientifically backed sounds."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access to all scientifically backed sounds."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access to all scientifically backed sounds."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access to all scientifically backed sounds."
+          }
+        }
+      }
+    },
+    "paywall.feature.focus_sounds.bullet2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bringe dein Gehirn schneller in den Flow-Zustand."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get your brain into the flow state faster."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get your brain into the flow state faster."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get your brain into the flow state faster."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get your brain into the flow state faster."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get your brain into the flow state faster."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get your brain into the flow state faster."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get your brain into the flow state faster."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get your brain into the flow state faster."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get your brain into the flow state faster."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get your brain into the flow state faster."
+          }
+        }
+      }
+    },
+    "paywall.feature.focus_sounds.bullet3": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blende störende Hintergrundgeräusche effektiv aus."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effectively block out distracting background noise."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effectively block out distracting background noise."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effectively block out distracting background noise."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effectively block out distracting background noise."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effectively block out distracting background noise."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effectively block out distracting background noise."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effectively block out distracting background noise."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effectively block out distracting background noise."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effectively block out distracting background noise."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effectively block out distracting background noise."
+          }
+        }
+      }
+    },
+    "paywall.feature.pro_gardener.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro-Gärtner Vorteile"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Gardener Benefits"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Gardener Benefits"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Gardener Benefits"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Gardener Benefits"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Gardener Benefits"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Gardener Benefits"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Gardener Benefits"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Gardener Benefits"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Gardener Benefits"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Gardener Benefits"
+          }
+        }
+      }
+    },
+    "paywall.feature.pro_gardener.bullet1": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Pflanzen kosten dauerhaft 50% weniger Münzen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All plants cost 50% fewer coins permanently."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All plants cost 50% fewer coins permanently."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All plants cost 50% fewer coins permanently."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All plants cost 50% fewer coins permanently."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All plants cost 50% fewer coins permanently."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All plants cost 50% fewer coins permanently."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All plants cost 50% fewer coins permanently."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All plants cost 50% fewer coins permanently."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All plants cost 50% fewer coins permanently."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All plants cost 50% fewer coins permanently."
+          }
+        }
+      }
+    },
+    "paywall.feature.pro_gardener.bullet2": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erhalte 25% mehr Münzen für jeden Timer & Aufgabe."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get 25% more coins for every timer & task."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get 25% more coins for every timer & task."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get 25% more coins for every timer & task."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get 25% more coins for every timer & task."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get 25% more coins for every timer & task."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get 25% more coins for every timer & task."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get 25% more coins for every timer & task."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get 25% more coins for every timer & task."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get 25% more coins for every timer & task."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get 25% more coins for every timer & task."
+          }
+        }
+      }
+    },
+    "paywall.feature.pro_gardener.bullet3": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schalte seltene Dekorationen viel schneller frei."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock rare decorations much faster."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock rare decorations much faster."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock rare decorations much faster."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock rare decorations much faster."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock rare decorations much faster."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock rare decorations much faster."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock rare decorations much faster."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock rare decorations much faster."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock rare decorations much faster."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock rare decorations much faster."
           }
         }
       }

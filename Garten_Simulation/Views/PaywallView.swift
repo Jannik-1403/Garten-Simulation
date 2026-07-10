@@ -56,44 +56,57 @@ struct PaywallView: View {
                         VStack(spacing: 16) {
                             featureRow(
                                 icon: "heart.text.square.fill",
-                                title: String(localized: "paywall.feature.health.title", defaultValue: "Dein täglicher Rhythmus"),
-                                description: String(localized: "paywall.feature.health.desc", defaultValue: "Verbinde deine Bewegung mit deinem Fokus. Dein Körper und Geist wachsen synchron."),
+                                title: String(localized: "paywall.feature.health.title", defaultValue: "Apple Health Integration"),
+                                bullets: [
+                                    String(localized: "paywall.feature.health.bullet1", defaultValue: "Verbinde deine Bewegung direkt mit deinem Fokus."),
+                                    String(localized: "paywall.feature.health.bullet2", defaultValue: "Schließe Ringe und schalte extra Belohnungen frei."),
+                                    String(localized: "paywall.feature.health.bullet3", defaultValue: "Körper und Geist wachsen synchron.")
+                                ],
                                 color: .red
                             )
                             
                             featureRow(
                                 icon: "calendar.badge.plus",
-                                title: String(localized: "paywall.feature.calendar.title", defaultValue: "Kalender Synchronisation"),
-                                description: String(localized: "paywall.feature.calendar.desc", defaultValue: "Synchronisiere deine Gewohnheiten und Timer direkt mit deinem Apple Kalender."),
+                                title: String(localized: "paywall.feature.calendar.title", defaultValue: "Apple Kalender Sync"),
+                                bullets: [
+                                    String(localized: "paywall.feature.calendar.bullet1", defaultValue: "Blockt Fokus-Zeiten automatisch in deinem Kalender."),
+                                    String(localized: "paywall.feature.calendar.bullet2", defaultValue: "Vermeidet Doppelbuchungen & schützt deine Zeit."),
+                                    String(localized: "paywall.feature.calendar.bullet3", defaultValue: "Voller Überblick über deine Tagesplanung.")
+                                ],
                                 color: .goldPrimary
                             )
                             
                             featureRow(
                                 icon: "chart.bar.doc.horizontal.fill",
-                                title: String(localized: "paywall.feature.weekly_report.title", defaultValue: "Erkenne deine Muster"),
-                                description: String(localized: "paywall.feature.weekly_report.desc", defaultValue: "Entdecke, wann du am produktivsten bist und feiere deinen Fortschritt mit Reporten."),
+                                title: String(localized: "paywall.feature.weekly_report.title", defaultValue: "Detaillierte Analysen"),
+                                bullets: [
+                                    String(localized: "paywall.feature.weekly_report.bullet1", defaultValue: "Erkenne, an welchen Tagen du am produktivsten bist."),
+                                    String(localized: "paywall.feature.weekly_report.bullet2", defaultValue: "Verfolge deinen Fortschritt mit interaktiven Graphen."),
+                                    String(localized: "paywall.feature.weekly_report.bullet3", defaultValue: "Optimiere deine Arbeitsweise anhand deiner Daten.")
+                                ],
                                 color: .blauPrimary
                             )
                             
                             featureRow(
                                 icon: "waveform.circle.fill",
-                                title: String(localized: "paywall.feature.focus_sounds.title", defaultValue: "Tiefste Konzentration"),
-                                description: String(localized: "paywall.feature.focus_sounds.desc", defaultValue: "Wissenschaftlich fundierte Klänge bringen dein Gehirn sofort in den Flow-State."),
+                                title: String(localized: "paywall.feature.focus_sounds.title", defaultValue: "Premium Fokus-Klänge"),
+                                bullets: [
+                                    String(localized: "paywall.feature.focus_sounds.bullet1", defaultValue: "Zugriff auf alle wissenschaftlich fundierten Sounds."),
+                                    String(localized: "paywall.feature.focus_sounds.bullet2", defaultValue: "Bringe dein Gehirn schneller in den Flow-Zustand."),
+                                    String(localized: "paywall.feature.focus_sounds.bullet3", defaultValue: "Blende störende Hintergrundgeräusche effektiv aus.")
+                                ],
                                 color: .green
                             )
 
                             featureRow(
                                 icon: "tag.fill",
-                                title: String(localized: "paywall.feature.shop_discount.title", defaultValue: "Belohne dich schneller"),
-                                description: String(localized: "paywall.feature.shop_discount.desc", defaultValue: "Hol dir doppelt so schnell neue Pflanzen. Dein Erfolg wird sofort belohnt."),
+                                title: String(localized: "paywall.feature.pro_gardener.title", defaultValue: "Pro-Gärtner Vorteile"),
+                                bullets: [
+                                    String(localized: "paywall.feature.pro_gardener.bullet1", defaultValue: "Alle Pflanzen kosten dauerhaft 50% weniger Münzen."),
+                                    String(localized: "paywall.feature.pro_gardener.bullet2", defaultValue: "Erhalte 25% mehr Münzen für jeden Timer & Aufgabe."),
+                                    String(localized: "paywall.feature.pro_gardener.bullet3", defaultValue: "Schalte seltene Dekorationen viel schneller frei.")
+                                ],
                                 color: .orange
-                            )
-                            
-                            featureRow(
-                                icon: "arrow.up.circle.fill",
-                                title: String(localized: "paywall.feature.coin_bonus.title", defaultValue: "+25% Münz-Bonus"),
-                                description: String(localized: "paywall.feature.coin_bonus.desc", defaultValue: "Verdiene mehr Münzen bei Aufgaben, um deinen Garten schneller wachsen zu lassen."),
-                                color: .yellow
                             )
                         }
                         .padding(.horizontal, 24)
@@ -232,7 +245,7 @@ struct PaywallView: View {
         .buttonStyle(PaywallOptionButtonStyle(isSelected: isSelected))
     }
 
-    private func featureRow(icon: String, title: String, description: String, color: Color) -> some View {
+    private func featureRow(icon: String, title: String, bullets: [String], color: Color) -> some View {
         HStack(alignment: .top, spacing: 16) {
             ZStack {
                 Circle()
@@ -243,15 +256,24 @@ struct PaywallView: View {
                     .foregroundStyle(color)
             }
             
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(title)
                     .font(.system(size: 16, weight: .black, design: .rounded))
                     .foregroundStyle(Color.primary)
                 
-                Text(description)
-                    .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(Color.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
+                VStack(alignment: .leading, spacing: 4) {
+                    ForEach(bullets, id: \.self) { bullet in
+                        HStack(alignment: .top, spacing: 6) {
+                            Text("•")
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .foregroundStyle(color)
+                            Text(bullet)
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundStyle(Color.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                }
             }
             Spacer(minLength: 0)
         }
