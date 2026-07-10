@@ -163851,6 +163851,17 @@
         }
       }
     },
+    "pfad_schwierigkeit_profi_desc" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Meistere diese Gewohnheit auf höchstem Niveau."
+          }
+        }
+      }
+    },
     "pfad_schwierigkeit_starten" : {
       "comment" : "",
       "extractionState" : "manual",

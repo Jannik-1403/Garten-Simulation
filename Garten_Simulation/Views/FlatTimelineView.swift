@@ -305,7 +305,7 @@ struct WeekRingView: View {
         let topNodeY = linePos(index: 0, total: total).y
 
         Item3DButton(
-            farbe: Color(hex: "#111d2e"),
+            farbe: Color(hex: "#20304a"),
             sekundaerFarbe: Color(hex: "#0b1524"),
             groesse: 36,
             isRectangular: true,
