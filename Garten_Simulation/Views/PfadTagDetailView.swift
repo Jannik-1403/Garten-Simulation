@@ -90,32 +90,31 @@ struct PfadTagDetailView: View {
                             Image(tag.igelAsset)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 140, height: 140)
+                                .frame(width: 200, height: 200)
                                 .padding(.top, 24)
                         }
 
                         // Status Badge
                         if tag.istErledigt {
-                            Text(String(format: String(localized: "pfad_done_prefix"), String(localized: "erledigt_status")))
-                                .font(.system(size: 14, weight: .bold))
+                            Text(String(localized: "pfad_tag_erledigt_badge", defaultValue: "Erledigt"))
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 6)
                                 .background(Color.green.opacity(0.15))
                                 .foregroundColor(.green)
                                 .clipShape(Capsule())
-                        } else if !isToday(tag: tag) {
-                            lockedStateView
                                 .padding(.top, -8)
-                        } else {
+                        } else if isToday(tag: tag) {
                             Text(String(localized: "heute_status"))
-                                .font(.system(size: 14, weight: .bold))
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 6)
-                                .background(themeColor.opacity(0.15))
-                                .foregroundColor(themeColor)
+                                .background(Color.green.opacity(0.15))
+                                .foregroundColor(.green)
                                 .clipShape(Capsule())
+                                .padding(.top, -8)
                         }
-
+                        
                         // Task Title
                         Text(localizedTitle(for: tag))
                             .font(.system(size: 26, weight: .black, design: .rounded))
@@ -138,61 +137,60 @@ struct PfadTagDetailView: View {
                 // Footer: Unified Completion Button
                 // Footer: Unified Completion Button
                 if !tag.istErledigt {
-                    let isClickable = isToday(tag: tag)
-                    VStack(spacing: 16) {
-                        if let s = tag.strang, let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
-                            Button {
-                                if isClickable { showingFocusSession = true }
-                            } label: {
-                                Text(String(localized: "fokus.starten", defaultValue: "Fokus Timer"))
-                            }
-                            .buttonStyle(DuolingoButtonStyle(
-                                size: .large,
-                                backgroundColor: isClickable ? themeColor : Color(hex: "#2c3e50"),
-                                shadowColor: isClickable ? themeColor.darker() : Color(hex: "#1a252f"),
-                                foregroundColor: isClickable ? .white : .white.opacity(0.5)
-                            ))
-                            .disabled(!isClickable)
-                            .fullScreenCover(isPresented: $showingFocusSession) {
-                                FocusSessionView(pflanze: habit)
-                            }
-                            
-                            Button {
-                                if isClickable {
+                    if isToday(tag: tag) {
+                        VStack(spacing: 16) {
+                            if let s = tag.strang, let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
+                                Button {
+                                    showingFocusSession = true
+                                } label: {
+                                    Text(String(localized: "fokus.starten", defaultValue: "Fokus Timer"))
+                                }
+                                .buttonStyle(DuolingoButtonStyle(
+                                    size: .large,
+                                    backgroundColor: themeColor,
+                                    shadowColor: themeColor.darker(),
+                                    foregroundColor: .white
+                                ))
+                                .fullScreenCover(isPresented: $showingFocusSession) {
+                                    FocusSessionView(pflanze: habit)
+                                }
+                                
+                                Button {
                                     pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                                         dismiss()
                                     }
+                                } label: {
+                                    Text(String(localized: "jetzt.abschliessen", defaultValue: "Jetzt abschließen"))
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        .foregroundColor(.secondary)
                                 }
-                            } label: {
-                                Text(String(localized: "jetzt.abschliessen", defaultValue: "Jetzt abschließen"))
-                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                    .foregroundColor(isClickable ? .secondary : .secondary.opacity(0.4))
-                            }
-                            .disabled(!isClickable)
-                            
-                        } else {
-                            Button {
-                                if isClickable {
+                                
+                            } else {
+                                Button {
                                     pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                                         dismiss()
                                     }
+                                } label: {
+                                    Text(String(localized: "pfad_tag_erledigen", defaultValue: "Erledigen"))
                                 }
-                            } label: {
-                                Text(String(localized: "pfad_tag_erledigen", defaultValue: "Erledigen"))
+                                .buttonStyle(DuolingoButtonStyle(
+                                    size: .large,
+                                    backgroundColor: themeColor,
+                                    shadowColor: themeColor.darker(),
+                                    foregroundColor: .white
+                                ))
                             }
-                            .buttonStyle(DuolingoButtonStyle(
-                                size: .large,
-                                backgroundColor: isClickable ? themeColor : Color(hex: "#2c3e50"),
-                                shadowColor: isClickable ? themeColor.darker() : Color(hex: "#1a252f"),
-                                foregroundColor: isClickable ? .white : .white.opacity(0.5)
-                            ))
-                            .disabled(!isClickable)
                         }
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 40)
+                    } else {
+                        // Tag in der Zukunft / noch gelocked
+                        lockedStateView
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 40)
                     }
-                    .padding(.horizontal, 24)
-                    .padding(.bottom, 40)
                 }
             }
         }
@@ -216,7 +214,7 @@ struct PfadTagDetailView: View {
             Image(assetName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 120, height: 120)
+                .frame(width: 180, height: 180)
                 .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
                 .grayscale(isDone ? 0 : 0.4)
                 .animation(.spring(response: 0.4, dampingFraction: 0.6), value: isDone)
@@ -235,29 +233,29 @@ struct PfadTagDetailView: View {
                     let diffHours = Calendar.current.dateComponents([.hour], from: Date(), to: nextMidnight).hour ?? 0
                     
                     Text(String(localized: "pfad_morgen_verfuegbar", defaultValue: "Verfügbar in \(diffHours) Std."))
-                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 6)
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
                         .background(Color.orange.opacity(0.15))
                         .foregroundColor(.orange)
-                        .clipShape(Capsule())
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
                 } else {
                     Text(String(localized: "pfad_tag_gesperrt", defaultValue: "Gesperrt"))
-                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 6)
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
                         .background(Color.gray.opacity(0.15))
                         .foregroundColor(.gray)
-                        .clipShape(Capsule())
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
             } else {
                 Text(String(localized: "pfad_tag_gesperrt", defaultValue: "Gesperrt"))
-                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 6)
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
                     .background(Color.gray.opacity(0.15))
                     .foregroundColor(.gray)
-                    .clipShape(Capsule())
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
             }
         }
     }
