@@ -591,3 +591,5 @@
 - Erhöhung der Basis-Münzen pro Gewohnheit von 10 auf 20.
 - Fokus-Timer-Münzen sind nun unabhängig von der Pflanzen-Seltenheit.
 - Fokus Timer: Fehlende Übersetzungen für alle unterstützten Sprachen ergänzt, damit auf Englisch nicht mehr die deutschen Fallbacks angezeigt werden.
+- Hinzugefügt: Benutzerdefinierter Dateiname für PDF-Exporte (Wochenbericht & Einstellungen)
+- 90-Tage Challenge Rework: Joker System und Milestone Rewards implementiert. Lokalisierung angepasst.
