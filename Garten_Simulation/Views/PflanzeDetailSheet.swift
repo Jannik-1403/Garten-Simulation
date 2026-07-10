@@ -367,8 +367,6 @@ struct PflanzeDetailSheet: View {
                 } // end uebersicht tab
 
                 if selectedTab == .verlauf {
-                    challengeCardView
-
                     if pflanze.plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: pflanze.plantID) == nil {
                         HabitVerlaufView(pflanze: pflanze)
                             .frame(maxWidth: .infinity)
@@ -1056,50 +1054,7 @@ struct PflanzeDetailSheet: View {
         .padding(.vertical, 8)
     }
 
-    private var challengeCardView: some View {
-        HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("90 Tage Challenge")
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color.gruenPrimary)
-                    
-                    HStack(spacing: 4) {
-                        ForEach(0..<pflanze.maxChallengeJokers, id: \.self) { i in
-                            Image(systemName: i < pflanze.challengeJokers ? "shield.fill" : "shield")
-                                .foregroundColor(i < pflanze.challengeJokers ? Color.gruenPrimary : .gray.opacity(0.4))
-                                .font(.system(size: 14))
-                        }
-                    }
-                }
-                Spacer()
-                
-                let nextMilestone = [7, 14, 21, 30, 45, 60, 90].first(where: { $0 > pflanze.streak }) ?? 90
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text("Meilenstein Tag \(nextMilestone)")
-                        .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(.secondary)
-                    Text("Noch \(max(0, nextMilestone - pflanze.streak)) Tage")
-                        .font(.system(size: 14, weight: .black, design: .rounded))
-                        .foregroundStyle(Color.gruenPrimary)
-                }
-            }
-            .padding(16)
-            .background(
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .fill(Color.gruenSecondary)
-                        .offset(y: 4)
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .fill(Color(UIColor.secondarySystemGroupedBackground))
-                }
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .stroke(Color.gruenPrimary.opacity(0.2), lineWidth: 1.5)
-            )
-        .padding(.horizontal, 24)
-        .padding(.bottom, 8)
-    }
+
 }
 
 // MARK: - Notiz Sheet
