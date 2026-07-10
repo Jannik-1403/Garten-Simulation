@@ -214,7 +214,7 @@ struct SettingsView: View {
                                         
                                         Spacer()
                                         
-                                        let langCode = Locale.current.language.languageCode?.identifier ?? "de"
+                                        let langCode = Bundle.main.preferredLocalizations.first ?? "de"
                                         Text(Locale(identifier: langCode).localizedString(forIdentifier: langCode) ?? "Deutsch")
                                             .font(.system(size: 16, weight: .bold, design: .rounded))
                                             .foregroundStyle(.secondary)
