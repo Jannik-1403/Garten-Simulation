@@ -610,6 +610,11 @@ class GardenStore: ObservableObject {
                     source: .decoration
                 )
                 
+                // Wenn im Shop gekauft (nicht isFree) und es ist eine schlechte Gewohnheit:
+                if shopItem.id.hasPrefix("trash.") && !isFree {
+                    trackBadHabit(id: shopItem.id, penaltyCoins: 0, triggers: [String(localized: "badhabit.initial_trigger", defaultValue: "Schlechte Gewohnheit gekauft")])
+                }
+                
             } else {
                 gekaufteItems.append(shopItem)
                 saveInventory()
