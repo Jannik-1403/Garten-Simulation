@@ -36,8 +36,11 @@ struct FocusSessionView: View {
     @State private var showScreenTimePicker = false
     @State private var showBlockNotice = false
     
-
-    
+    enum FocusSelectionMode {
+        case full
+        case partial
+    }
+    @State private var currentFocusMode: FocusSelectionMode = .full
     // Math Challenge
     @State private var showMathChallenge: Bool = false
     @State private var cancelMathProblem: String = ""
@@ -162,41 +165,33 @@ struct FocusSessionView: View {
                 }
             }
         }
-        .alert(String(localized: "alert.strict_mode.title"), isPresented: $showStrictModeAlert) {
-            Button(String(localized: "alert.strict_mode.no"), role: .destructive) {
+        .alert(String(localized: "focus.phone_prompt.title", defaultValue: "Wirst du das Handy weglegen?"), isPresented: $showStrictModeAlert) {
+            Button(String(localized: "focus.phone_prompt.yes", defaultValue: "Ja, weglegen")) {
                 isStrictMode = true
+                currentFocusMode = .full
                 if screenTimeManager.isAuthorized {
-                    screenTimeManager.blockAllApps()
-                    withAnimation { state = .step2 }
+                    showScreenTimePicker = true
                 } else {
                     Task {
                         await screenTimeManager.requestAuthorization()
                         if screenTimeManager.isAuthorized {
-                            screenTimeManager.blockAllApps()
+                            showScreenTimePicker = true
+                        } else {
+                            withAnimation { state = .step2 }
                         }
-                        withAnimation { state = .step2 }
                     }
                 }
             }
-            Button(String(localized: "alert.strict_mode.yes")) {
+            Button(String(localized: "focus.phone_prompt.no", defaultValue: "Nein, ich brauche es")) {
                 isStrictMode = false
+                currentFocusMode = .partial
                 if screenTimeManager.isAuthorized {
-                    if screenTimeManager.allowedSelection.applicationTokens.isEmpty && screenTimeManager.allowedSelection.webDomainTokens.isEmpty && screenTimeManager.allowedSelection.categoryTokens.isEmpty {
-                        showScreenTimePicker = true
-                    } else {
-                        screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
-                        withAnimation { state = .step2 }
-                    }
+                    showScreenTimePicker = true
                 } else {
                     Task {
                         await screenTimeManager.requestAuthorization()
                         if screenTimeManager.isAuthorized {
-                            if screenTimeManager.allowedSelection.applicationTokens.isEmpty && screenTimeManager.allowedSelection.webDomainTokens.isEmpty && screenTimeManager.allowedSelection.categoryTokens.isEmpty {
-                                showScreenTimePicker = true
-                            } else {
-                                screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
-                                withAnimation { state = .step2 }
-                            }
+                            showScreenTimePicker = true
                         } else {
                             withAnimation { state = .step2 }
                         }
@@ -207,12 +202,24 @@ struct FocusSessionView: View {
                 // Do nothing, stay on step 1
             }
         } message: {
-            Text(String(localized: "alert.strict_mode.message"))
+            Text(String(localized: "focus.phone_prompt.message", defaultValue: "Wähle danach die Apps aus, die für diesen Fokus blockiert werden sollen."))
         }
-        .familyActivityPicker(isPresented: $showScreenTimePicker, selection: $screenTimeManager.allowedSelection)
+        .familyActivityPicker(isPresented: $showScreenTimePicker, selection: Binding(
+            get: {
+                currentFocusMode == .full ? screenTimeManager.focusFullBlockSelection : screenTimeManager.focusPartialBlockSelection
+            },
+            set: { newValue in
+                if currentFocusMode == .full {
+                    screenTimeManager.focusFullBlockSelection = newValue
+                } else {
+                    screenTimeManager.focusPartialBlockSelection = newValue
+                }
+            }
+        ))
         .onChange(of: showScreenTimePicker) { _, isOpen in
             if !isOpen {
-                screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
+                let selection = currentFocusMode == .full ? screenTimeManager.focusFullBlockSelection : screenTimeManager.focusPartialBlockSelection
+                screenTimeManager.applyFocusBlock(selection: selection)
                 withAnimation { state = .step2 }
             }
         }

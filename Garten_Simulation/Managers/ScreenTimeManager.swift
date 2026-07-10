@@ -111,6 +111,16 @@ class ScreenTimeManager: ObservableObject {
         didSet { saveAllowedSelection() }
     }
     
+    /// Auswahl für Focus Timer "Handy weglegen" (alles was blockiert werden soll)
+    @Published var focusFullBlockSelection = FamilyActivitySelection() {
+        didSet { saveFocusFullBlockSelection() }
+    }
+    
+    /// Auswahl für Focus Timer "Handy behalten" (ausgewählte Apps, die blockiert werden sollen)
+    @Published var focusPartialBlockSelection = FamilyActivitySelection() {
+        didSet { saveFocusPartialBlockSelection() }
+    }
+    
     /// Apps/Kategorien, die explizit im Block-Zeitplan gesperrt werden sollen
     @Published var blockSelection = FamilyActivitySelection() {
         didSet { saveBlockSelection() }
@@ -160,6 +170,16 @@ class ScreenTimeManager: ObservableObject {
         if let data = UserDefaults.standard.data(forKey: "screenTimePermanentBlockData"),
            let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
             self.permanentBlockSelection = selection
+        }
+        
+        if let data = UserDefaults.standard.data(forKey: "focusFullBlockSelectionData"),
+           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.focusFullBlockSelection = selection
+        }
+        
+        if let data = UserDefaults.standard.data(forKey: "focusPartialBlockSelectionData"),
+           let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+            self.focusPartialBlockSelection = selection
         }
         
         if let data = UserDefaults.standard.data(forKey: "screenTimeDailyLimitSelection"),
@@ -322,6 +342,16 @@ class ScreenTimeManager: ObservableObject {
         applyPermanentBlocks()
     }
     
+    /// Wendet spezifische Blockaden für die Focus Session an (Blacklist Ansatz)
+    func applyFocusBlock(selection: FamilyActivitySelection) {
+        guard isAuthorized else { return }
+        scheduledStore.shield.applications = selection.applicationTokens
+        scheduledStore.shield.applicationCategories = ShieldSettings.ActivityCategoryPolicy.specific(selection.categoryTokens)
+        scheduledStore.shield.webDomains = selection.webDomainTokens
+        scheduledStore.shield.webDomainCategories = ShieldSettings.ActivityCategoryPolicy.specific(selection.categoryTokens)
+        applyPermanentBlocks()
+    }
+    
     func unblockApps() {
         scheduledStore.shield.applications = nil
         scheduledStore.shield.applicationCategories = nil
@@ -337,6 +367,18 @@ class ScreenTimeManager: ObservableObject {
     private func saveAllowedSelection() {
         if let data = try? JSONEncoder().encode(allowedSelection) {
             UserDefaults.standard.set(data, forKey: "screenTimeAllowedSelectionData")
+        }
+    }
+    
+    private func saveFocusFullBlockSelection() {
+        if let data = try? JSONEncoder().encode(focusFullBlockSelection) {
+            UserDefaults.standard.set(data, forKey: "focusFullBlockSelectionData")
+        }
+    }
+    
+    private func saveFocusPartialBlockSelection() {
+        if let data = try? JSONEncoder().encode(focusPartialBlockSelection) {
+            UserDefaults.standard.set(data, forKey: "focusPartialBlockSelectionData")
         }
     }
     
