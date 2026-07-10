@@ -755,6 +755,19 @@ class GardenStore: ObservableObject {
             SharedUserDefaults.suite.set(false, forKey: "screenTimeLimitExceededToday")
         }
         
+        // --- Tracker Auto-Reset ---
+        let trackerLastReset = UserDefaults.standard.double(forKey: "trackerLastResetDate")
+        let letztesTrackerResetTag = Calendar.current.startOfDay(for: Date(timeIntervalSince1970: trackerLastReset))
+        
+        if heuteStart > letztesTrackerResetTag {
+            UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "trackerLastResetDate")
+            for pflanze in pflanzen {
+                if pflanze.customTrackerTarget != nil {
+                    pflanze.customTrackerProgress = 0
+                }
+            }
+        }
+        
         for pflanze in pflanzen {
             let isProtected = activePowerUps.contains(where: { $0.powerUpId == "powerup.zeitkapsel" && $0.targetPlantId == pflanze.id && $0.isActive })
             if pflanze.streakAbgelaufen && !isProtected {
@@ -978,6 +991,9 @@ class GardenStore: ObservableObject {
         if isProUser {
             mult *= GameConstants.proCoinBonus
         }
+        
+        // 4. Pflanzen-Seltenheit Bonus
+        mult *= pflanze.seltenheit.coinMultiplikator
         
         return mult
     }
