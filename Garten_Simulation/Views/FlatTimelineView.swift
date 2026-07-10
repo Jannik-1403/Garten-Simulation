@@ -199,7 +199,7 @@ struct WeekRingView: View {
         )
     }
     private func sizeFor(idx: Int, total: Int) -> CGFloat {
-        idx == total - 1 ? nodeLastSize : nodeSize
+        idx == total - 1 ? nodeSize + (nodeLastSize - nodeSize) * expandProgress : nodeSize
     }
 
     private var frameHeight: CGFloat {
@@ -318,7 +318,7 @@ struct WeekRingView: View {
             .padding(.horizontal, 14)
         }
         .offset(y: topNodeY - nodeLastSize / 2 - 34)
-        .opacity(max(0, (expandProgress - 0.65) * 2.8))
+        .opacity(expandProgress)
         .allowsHitTesting(expandProgress > 0.8)
     }
 
@@ -343,50 +343,35 @@ struct WeekRingView: View {
     @ViewBuilder
     private func dayNode(dayNumber: Int, dayIndex: Int, nodeIdx: Int, total: Int, completed: Bool, current: Bool) -> some View {
         let size = sizeFor(idx: nodeIdx, total: total)
-        let depth: CGFloat = size * 0.14
 
-        Button(action: {
-            if isExpanded {
-                haptic()
-                onSelectDay(dayIndex)
-            } else {
-                haptic()
-                withAnimation { expandedWeek = weekIndex }
+        Item3DButton(
+            farbe: completed ? Color(hex: "#58CC02") : current ? Color(hex: "#FF9600") : bgColor,
+            sekundaerFarbe: nodeShadowCol(completed: completed, current: current),
+            groesse: size,
+            shadowDepthFactor: 0.14,
+            aktion: {
+                if isExpanded {
+                    haptic()
+                    onSelectDay(dayIndex)
+                } else {
+                    haptic()
+                    withAnimation { expandedWeek = weekIndex }
+                }
             }
-        }) {
-            ZStack {
-                // Shadow / 3D-Boden
-                Circle()
-                    .fill(nodeShadowCol(completed: completed, current: current))
-                    .overlay(Circle().stroke(Color.black.opacity(0.15), lineWidth: 1))
-                    .frame(width: size, height: size)
-                
-                // Top-Fläche
-                Circle()
-                    .fill(nodeGradient(completed: completed, current: current))
-                    .overlay(Circle().stroke(
-                        Color.white.opacity(completed ? 0.28 : current ? 0.25 : 0.0),
-                        lineWidth: 1
-                    ))
-                    .overlay {
-                        if expandProgress > 0.55 {
-                            Text("\(dayNumber)")
-                                .font(.system(size: size * 0.30, weight: .black, design: .rounded))
-                                .foregroundColor(completed || current ? .white : nodeIconColor(completed: completed, current: current))
-                                .opacity(min(1, (expandProgress - 0.55) * 2.5))
-                        } else {
-                            Image(systemName: completed ? "checkmark" : current ? "arrow.right" : "circle.fill")
-                                .font(.system(size: size * 0.26, weight: .bold))
-                                .foregroundColor(nodeIconColor(completed: completed, current: current))
-                                .opacity(max(0, 1 - expandProgress * 3.0))
-                        }
-                    }
-                    .frame(width: size, height: size)
-                    .offset(y: -depth) // WICHTIG: 3D Offset
+        ) {
+            Group {
+                if expandProgress > 0.55 {
+                    Text("\(dayNumber)")
+                        .font(.system(size: size * 0.30, weight: .black, design: .rounded))
+                        .opacity(min(1, (expandProgress - 0.55) * 2.5))
+                } else {
+                    Image(systemName: completed ? "checkmark" : current ? "arrow.right" : "circle.fill")
+                        .font(.system(size: size * 0.26, weight: .bold))
+                        .opacity(max(0, 1 - expandProgress * 3.0))
+                }
             }
-            .frame(width: size + 4, height: size + depth + 4)
+            .foregroundColor(.white)
         }
-        .buttonStyle(PlainButtonStyle())
     }
 
     private func haptic() {
