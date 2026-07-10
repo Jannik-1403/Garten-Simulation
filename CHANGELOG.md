@@ -1,3 +1,9 @@
+## 2026-07-10
+- **UI**: Komplettes Redesign des Abo-Felds (Paywall) und der Münzenseite.
+- **UI**: Integration von klickbaren 3D-Buttons (Duolingo Style) für Produkt- und Coin-Pakete.
+- **Design**: Schlichteres und aufgeräumteres Layout mit besserem Fokus auf das Premium-Erlebnis.
+- **Localization**: Strings für das Redesign direkt in den String Catalog (.xcstrings) aufgenommen.
+
 ## [Unreleased]
 - **Bugfix**: Schlechte Gewohnheiten, die im Shop gekauft werden, zeichnen nun automatisch beim Kauf einen initialen Rückfall ("Schlechte Gewohnheit gekauft") auf. Das stellt sicher, dass der Streak direkt nach dem Kauf korrekt gestartet bzw. resettet wird.
 - **Timer Icon (Challenge)**: Der Countdown-Text beim grünen Status-Badge wurde auf Wunsch entfernt, sodass nur noch das kompakte Sanduhr-Icon ohne Zeitangabe zu sehen ist.

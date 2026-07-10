@@ -23,16 +23,6 @@ struct CoinPackCard: View {
         }
     }
     
-    // Determine the tier based on the pack size for different colors
-    private var cardTier: SuccessTier {
-        switch product.id {
-        case "com.jannik.grovy.coins.pack_small": return .bronze
-        case "com.jannik.grovy.coins.pack_medium": return .silver
-        case "com.jannik.grovy.coins.pack_large": return .gold
-        default: return .bronze
-        }
-    }
-    
     private var badgeText: String? {
         if product.id == "com.jannik.grovy.coins.pack_large" {
             return String(localized: "shop.badge.best_value", defaultValue: "Bestes Angebot")
