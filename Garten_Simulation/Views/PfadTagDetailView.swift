@@ -1,310 +1,593 @@
 import SwiftUI
 import Combine
 
+// MARK: - To-Do Item Model
+struct PfadToDo: Identifiable {
+    let id = UUID()
+    var text: String
+    var isDone: Bool = false
+}
+
+// MARK: - PfadTagDetailView (iOS-Native Sheet Design)
 struct PfadTagDetailView: View {
     let tag: PfadStrangTag
     @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
-    
+
     @Environment(\.dismiss) var dismiss
     @State private var showingFocusSession = false
-    
+    @State private var todos: [PfadToDo] = []
+    @State private var newTodoText: String = ""
+    @State private var showAddTodo: Bool = false
+    @State private var timeRemaining: TimeInterval = 0
+    @State private var timerCancellable: AnyCancellable? = nil
+    @FocusState private var isTodoFieldFocused: Bool
+
     private var themeColor: Color {
         Color(hex: tag.strang?.farbe ?? "#58CC02")
     }
-    
-    var body: some View {
-        ZStack {
-            // GARDEN BACKGROUND LAYER
-            gardenBackground
-            
-            VStack(spacing: 0) {
-                // Header
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        let headerKey = String(localized: "pfad_tag_header")
-                        Text(String(format: headerKey, tag.tagNummer))
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                        
-                        let phaseLabel: String = {
-                            if tag.phase == PfadPhase.einstieg { return String(localized: "pfad_phase_tag_titel_einstieg", defaultValue: "Phase 1: Einstieg") }
-                            if tag.phase == PfadPhase.aufbau { return String(localized: "pfad_phase_tag_titel_aufbau", defaultValue: "Phase 2: Aufbau") }
-                            if tag.phase == PfadPhase.vertiefung { return String(localized: "pfad_phase_tag_titel_vertiefung", defaultValue: "Phase 3: Vertiefung") }
-                            if tag.phase == PfadPhase.meisterschaft { return String(localized: "pfad_phase_tag_titel_meisterschaft", defaultValue: "Phase 4: Meisterschaft") }
-                            return String(localized: "pfad_phase_tag_titel_einstieg", defaultValue: "Phase 1: Einstieg")
-                        }()
-                        Text(phaseLabel)
-                            .font(.system(size: 16, weight: .black, design: .rounded))
-                            .foregroundStyle(tag.phase.farbe)
-                    }
-                    Spacer()
-                    Button(action: { dismiss() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 28))
-                            .foregroundColor(Color(uiColor: .systemGray3))
-                    }
-                }
-                .padding(24)
-                .background(.ultraThinMaterial.opacity(0.8))
-                
-                Divider().padding(.horizontal, 24)
-                
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(alignment: .center, spacing: 24) {
-                        
-                        // Hero Plant Display
-                        if let s = tag.strang, 
-                           let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }),
-                           let plant = GameDatabase.shared.plant(for: habit.plantID) {
-                            ZStack(alignment: .bottomTrailing) {
-                                heroPlantImage(plant: plant, isDone: tag.istErledigt)
-                                    .frame(width: 140, height: 140)
-                                    
-                                if tag.istMeilenstein {
-                                    let rewardIcon: String? = {
-                                        switch tag.tagNummer {
-                                        case 7, 21, 45: return "coin"
-                                        case 14: return "Unkraut_Schild"
-                                        case 30: return "Powerup-Zeitkapsel"
-                                        case 60: return "Powerup-Glückssegen"
-                                        case 90: return "Achievment_Gold"
-                                        default: return nil
-                                        }
-                                    }()
-                                    
-                                    if let icon = rewardIcon {
-                                        Image(icon)
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 48, height: 48)
-                                            .background(Circle().fill(.white).shadow(radius: 4))
-                                            .offset(x: 10, y: 10)
-                                    }
-                                }
-                            }
-                            .padding(.top, 24)
-                        } else {
-                            // Fallback Igel
-                            Image(tag.igelAsset)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 200, height: 200)
-                                .padding(.top, 24)
-                        }
 
-                        // Status Badge
-                        if tag.istErledigt {
-                            Text(String(localized: "pfad_tag_erledigt_badge", defaultValue: "Erledigt"))
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 6)
-                                .background(Color.green.opacity(0.15))
-                                .foregroundColor(.green)
-                                .clipShape(Capsule())
-                                .padding(.top, -8)
-                        } else if isToday(tag: tag) {
-                            Text(String(localized: "heute_status"))
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 6)
-                                .background(Color.green.opacity(0.15))
-                                .foregroundColor(.green)
-                                .clipShape(Capsule())
-                                .padding(.top, -8)
-                        }
-                        
-                        // Task Title
+    private var plant: Plant? {
+        guard let s = tag.strang,
+              let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID })
+        else { return nil }
+        return GameDatabase.shared.plant(for: habit.plantID)
+    }
+
+    private var habitModel: HabitModel? {
+        guard let s = tag.strang else { return nil }
+        return gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID })
+    }
+
+    private var isActionable: Bool {
+        guard !tag.istErledigt else { return false }
+        return isCurrentDay && !isLockedUntilTomorrow
+    }
+
+    private var isCurrentDay: Bool {
+        guard let strang = tag.strang else { return false }
+        let alleTags = strang.tags.sorted { $0.tagNummer < $1.tagNummer }
+        guard let firstIncomplete = alleTags.first(where: { !$0.istErledigt }) else { return false }
+        return tag.id == firstIncomplete.id
+    }
+
+    private var isLockedUntilTomorrow: Bool {
+        guard tag.tagNummer > 1, let strang = tag.strang else { return false }
+        let alleTags = strang.tags.sorted { $0.tagNummer < $1.tagNummer }
+        if let prevTag = alleTags.first(where: { $0.tagNummer == tag.tagNummer - 1 }),
+           let completionDate = prevTag.datum {
+            return Calendar.current.isDateInToday(completionDate)
+        }
+        return false
+    }
+
+    private var isFutureDay: Bool {
+        guard !tag.istErledigt else { return false }
+        guard let strang = tag.strang else { return true }
+        let alleTags = strang.tags.sorted { $0.tagNummer < $1.tagNummer }
+        guard let firstIncomplete = alleTags.first(where: { !$0.istErledigt }) else { return false }
+        return tag.id != firstIncomplete.id
+    }
+
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color(uiColor: .systemBackground).ignoresSafeArea()
+
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 0) {
+                        // Hero Section
+                        heroSection
+                            .padding(.top, 12)
+
+                        // Countdown / Status Badge
+                        statusSection
+                            .padding(.top, 20)
+                            .padding(.horizontal, 24)
+
+                        // Title
                         Text(localizedTitle(for: tag))
-                            .font(.system(size: 26, weight: .black, design: .rounded))
+                            .font(.system(size: 28, weight: .black, design: .rounded))
                             .multilineTextAlignment(.center)
                             .foregroundStyle(.primary)
+                            .padding(.top, 16)
                             .padding(.horizontal, 24)
-                        
-                        // Task Description
+
+                        // Description
                         Text(localizedDescription(for: tag))
-                            .font(.system(size: 17, weight: .medium, design: .rounded))
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
                             .multilineTextAlignment(.center)
                             .foregroundStyle(.secondary)
                             .lineSpacing(4)
+                            .padding(.top, 10)
                             .padding(.horizontal, 32)
-                            .padding(.bottom, 24)
-                    }
-                }
-                .padding(.bottom, 40)
-                
-                // Footer: Unified Completion Button
-                // Footer: Unified Completion Button
-                if !tag.istErledigt {
-                    if isToday(tag: tag) {
-                        VStack(spacing: 16) {
-                            if let s = tag.strang, let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
-                                Button {
-                                    showingFocusSession = true
-                                } label: {
-                                    Text(String(localized: "fokus.starten", defaultValue: "Fokus Timer"))
-                                }
-                                .buttonStyle(DuolingoButtonStyle(
-                                    size: .large,
-                                    backgroundColor: themeColor,
-                                    shadowColor: themeColor.darker(),
-                                    foregroundColor: .white
-                                ))
-                                .fullScreenCover(isPresented: $showingFocusSession) {
-                                    FocusSessionView(pflanze: habit)
-                                }
-                                
-                                Button {
-                                    pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                        dismiss()
-                                    }
-                                } label: {
-                                    Text(String(localized: "jetzt.abschliessen", defaultValue: "Jetzt abschließen"))
-                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                        .foregroundColor(.secondary)
-                                }
-                                
-                            } else {
-                                Button {
-                                    pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                        dismiss()
-                                    }
-                                } label: {
-                                    Text(String(localized: "pfad_tag_erledigen", defaultValue: "Erledigen"))
-                                }
-                                .buttonStyle(DuolingoButtonStyle(
-                                    size: .large,
-                                    backgroundColor: themeColor,
-                                    shadowColor: themeColor.darker(),
-                                    foregroundColor: .white
-                                ))
-                            }
-                        }
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 40)
-                    } else {
-                        // Tag in der Zukunft / noch gelocked
-                        lockedStateView
+
+                        // Progress Bar
+                        progressSection
+                            .padding(.top, 24)
                             .padding(.horizontal, 24)
-                            .padding(.bottom, 40)
+
+                        // To-Do List
+                        if !todos.isEmpty || isActionable {
+                            todoSection
+                                .padding(.top, 24)
+                                .padding(.horizontal, 24)
+                        }
+
+                        // Action Buttons
+                        actionSection
+                            .padding(.top, 28)
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 50)
                     }
                 }
             }
-        }
-        .background(Color(uiColor: .systemBackground))
-    }
-    
-    @ViewBuilder
-    private var gardenBackground: some View {
-        ZStack {
-            // Environmental Gradient
-            LinearGradient(colors: [Color(uiColor: .systemBackground), themeColor.opacity(0.05)], startPoint: .top, endPoint: .bottom)
-        }
-        .ignoresSafeArea()
-    }
-
-
-
-    @ViewBuilder
-    private func heroPlantImage(plant: Plant, isDone: Bool) -> some View {
-        if let assetName = plant.assetName {
-            Image(assetName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 180, height: 180)
-                .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
-                .grayscale(isDone ? 0 : 0.4)
-                .animation(.spring(response: 0.4, dampingFraction: 0.6), value: isDone)
-        }
-    }
-
-
-
-    @ViewBuilder
-    private var lockedStateView: some View {
-        if !tag.istErledigt {
-            if let strang = tag.strang {
-                let alleTags = strang.tags.sorted(by: { $0.tagNummer < $1.tagNummer })
-                if let firstIncomplete = alleTags.first(where: { !$0.istErledigt }), tag.id == firstIncomplete.id {
-                    let nextMidnight = Calendar.current.startOfDay(for: Date()).addingTimeInterval(86400)
-                    let diffHours = Calendar.current.dateComponents([.hour], from: Date(), to: nextMidnight).hour ?? 0
-                    
-                    Text(String(localized: "pfad_morgen_verfuegbar", defaultValue: "Verfügbar in \(diffHours) Std."))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                        .background(Color.orange.opacity(0.15))
-                        .foregroundColor(.orange)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                } else {
-                    Text(String(localized: "pfad_tag_gesperrt", defaultValue: "Gesperrt"))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                        .background(Color.gray.opacity(0.15))
-                        .foregroundColor(.gray)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(String(format: String(localized: "pfad_tag_header"), tag.tagNummer))
+                        .font(.system(size: 16, weight: .black, design: .rounded))
+                        .foregroundStyle(.primary)
                 }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 26))
+                            .foregroundStyle(Color(uiColor: .systemGray3))
+                            .symbolRenderingMode(.hierarchical)
+                    }
+                }
+            }
+            .fullScreenCover(isPresented: $showingFocusSession) {
+                if let habit = habitModel {
+                    FocusSessionView(pflanze: habit)
+                }
+            }
+        }
+        .onAppear {
+            setupCountdown()
+        }
+        .onDisappear {
+            timerCancellable?.cancel()
+        }
+    }
+
+    // MARK: - Hero Section
+    @ViewBuilder
+    private var heroSection: some View {
+        ZStack {
+            // Subtle gradient bg
+            Circle()
+                .fill(
+                    RadialGradient(
+                        colors: [themeColor.opacity(0.15), themeColor.opacity(0.0)],
+                        center: .center,
+                        startRadius: 40,
+                        endRadius: 130
+                    )
+                )
+                .frame(width: 260, height: 260)
+
+            if let p = plant, let assetName = p.assetName {
+                Image(assetName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 160, height: 160)
+                    .shadow(color: .black.opacity(0.1), radius: 12, y: 6)
+                    .grayscale(tag.istErledigt ? 0 : (isFutureDay ? 0.7 : 0.2))
+                    .opacity(isFutureDay ? 0.6 : 1.0)
+                    .scaleEffect(tag.istErledigt ? 1.05 : 1.0)
+                    .animation(.spring(response: 0.4, dampingFraction: 0.7), value: tag.istErledigt)
             } else {
-                Text(String(localized: "pfad_tag_gesperrt", defaultValue: "Gesperrt"))
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                Image(tag.igelAsset)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 160, height: 160)
+                    .opacity(isFutureDay ? 0.5 : 1.0)
+            }
+
+            // Milestone badge
+            if tag.istMeilenstein {
+                VStack {
+                    HStack {
+                        Spacer()
+                        milestoneIcon
+                            .offset(x: 10, y: -10)
+                    }
+                    Spacer()
+                }
+                .frame(width: 160, height: 160)
+            }
+
+            // Lock overlay
+            if isFutureDay && !isLockedUntilTomorrow {
+                VStack {
+                    Spacer()
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 40, weight: .bold))
+                        .foregroundStyle(.white)
+                        .padding(16)
+                        .background(
+                            Circle().fill(Color(uiColor: .systemGray3))
+                        )
+                        .shadow(radius: 8)
+                }
+                .frame(height: 160)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var milestoneIcon: some View {
+        let iconName: String = {
+            switch tag.tagNummer {
+            case 7, 21, 45: return "coin"
+            case 14: return "Unkraut_Schild"
+            case 30: return "Powerup-Zeitkapsel"
+            case 60: return "Powerup-Glückssegen"
+            case 90: return "Achievment_Gold"
+            default: return "coin"
+            }
+        }()
+        Image(iconName)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 44, height: 44)
+            .background(Circle().fill(.white).shadow(radius: 4))
+    }
+
+    // MARK: - Status Section
+    @ViewBuilder
+    private var statusSection: some View {
+        if tag.istErledigt {
+            HStack(spacing: 8) {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundStyle(.green)
+                Text(String(localized: "pfad_tag_erledigt_badge", defaultValue: "Erledigt"))
+                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                    .foregroundStyle(.green)
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            .background(Color.green.opacity(0.12), in: Capsule())
+        } else if isActionable {
+            // Countdown until midnight
+            countdownBadge
+        } else if isLockedUntilTomorrow {
+            morgenBadge
+        } else if isFutureDay {
+            lockedBadge
+        }
+    }
+
+    @ViewBuilder
+    private var countdownBadge: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "clock.fill")
+                .font(.system(size: 15))
+                .foregroundStyle(themeColor)
+            Text(countdownString)
+                .font(.system(size: 15, weight: .bold, design: .rounded).monospacedDigit())
+                .foregroundStyle(themeColor)
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 10)
+        .background(themeColor.opacity(0.12), in: Capsule())
+    }
+
+    @ViewBuilder
+    private var morgenBadge: some View {
+        let nextMidnight = Calendar.current.startOfDay(for: Date()).addingTimeInterval(86400)
+        let diffHours = Calendar.current.dateComponents([.hour], from: Date(), to: nextMidnight).hour ?? 0
+        HStack(spacing: 8) {
+            Image(systemName: "moon.stars.fill")
+                .font(.system(size: 15))
+                .foregroundStyle(.orange)
+            Text(String(format: String(localized: "pfad_morgen_verfuegbar", defaultValue: "Verfügbar in %lld Std."), diffHours))
+                .font(.system(size: 15, weight: .bold, design: .rounded))
+                .foregroundStyle(.orange)
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 10)
+        .background(Color.orange.opacity(0.12), in: Capsule())
+    }
+
+    @ViewBuilder
+    private var lockedBadge: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "lock.fill")
+                .font(.system(size: 14))
+                .foregroundStyle(.secondary)
+            Text(String(localized: "pfad_tag_gesperrt", defaultValue: "Gesperrt"))
+                .font(.system(size: 15, weight: .bold, design: .rounded))
+                .foregroundStyle(.secondary)
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 10)
+        .background(Color(uiColor: .systemGray5), in: Capsule())
+    }
+
+    // MARK: - Progress Section
+    @ViewBuilder
+    private var progressSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text(String(format: String(localized: "path.day_progress_format"), String(tag.tagNummer)))
+                    .font(.system(size: 13, weight: .black, design: .rounded))
+                Spacer()
+                Text(String(localized: "pfad_phase_tag_titel_\(tag.phase.rawValue)"))
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                    .foregroundStyle(tag.phase.farbe)
+            }
+
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    Capsule()
+                        .fill(Color(uiColor: .systemGray5))
+                    Capsule()
+                        .fill(
+                            LinearGradient(
+                                colors: [tag.phase.farbe.opacity(0.8), tag.phase.farbe],
+                                startPoint: .leading, endPoint: .trailing
+                            )
+                        )
+                        .frame(width: geo.size.width * CGFloat(tag.tagNummer) / 90.0)
+                }
+            }
+            .frame(height: 8)
+
+            Text(String(localized: "pfad_phase_beschreibung_\(tag.phase.rawValue)"))
+                .font(.system(size: 12, weight: .medium, design: .rounded))
+                .foregroundStyle(.secondary)
+        }
+        .padding(16)
+        .background(Color(uiColor: .secondarySystemBackground), in: RoundedRectangle(cornerRadius: 20))
+    }
+
+    // MARK: - To-Do Section
+    @ViewBuilder
+    private var todoSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Label(
+                    String(localized: "challenge.todos.title", defaultValue: "Deine To-Dos"),
+                    systemImage: "checklist"
+                )
+                .font(.system(size: 15, weight: .black, design: .rounded))
+                Spacer()
+                if isActionable {
+                    Button {
+                        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                            showAddTodo.toggle()
+                            isTodoFieldFocused = showAddTodo
+                        }
+                    } label: {
+                        Image(systemName: showAddTodo ? "xmark.circle.fill" : "plus.circle.fill")
+                            .font(.system(size: 22))
+                            .foregroundStyle(showAddTodo ? Color.red.opacity(0.7) : themeColor)
+                    }
+                }
+            }
+
+            // Existing todos
+            ForEach($todos) { $todo in
+                HStack(spacing: 12) {
+                    Button {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            todo.isDone.toggle()
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        }
+                    } label: {
+                        Image(systemName: todo.isDone ? "checkmark.circle.fill" : "circle")
+                            .font(.system(size: 22))
+                            .foregroundStyle(todo.isDone ? themeColor : Color(uiColor: .systemGray3))
+                    }
+                    Text(todo.text)
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                        .foregroundStyle(todo.isDone ? .secondary : .primary)
+                        .strikethrough(todo.isDone, color: .secondary)
+                        .animation(.easeInOut(duration: 0.2), value: todo.isDone)
+                    Spacer()
+                    if isActionable {
+                        Button {
+                            withAnimation {
+                                todos.removeAll { $0.id == todo.id }
+                            }
+                        } label: {
+                            Image(systemName: "trash")
+                                .font(.system(size: 14))
+                                .foregroundStyle(.red.opacity(0.5))
+                        }
+                    }
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 10)
+                .background(
+                    RoundedRectangle(cornerRadius: 14)
+                        .fill(todo.isDone ? themeColor.opacity(0.06) : Color(uiColor: .tertiarySystemBackground))
+                )
+                .animation(.spring(response: 0.3, dampingFraction: 0.8), value: todo.isDone)
+            }
+
+            // Add new todo field
+            if showAddTodo && isActionable {
+                HStack(spacing: 10) {
+                    Image(systemName: "plus.circle")
+                        .font(.system(size: 20))
+                        .foregroundStyle(themeColor)
+                    TextField(
+                        String(localized: "challenge.todos.placeholder", defaultValue: "Neues To-Do hinzufügen..."),
+                        text: $newTodoText
+                    )
+                    .font(.system(size: 15, weight: .medium, design: .rounded))
+                    .focused($isTodoFieldFocused)
+                    .submitLabel(.done)
+                    .onSubmit {
+                        addTodo()
+                    }
+                    if !newTodoText.isEmpty {
+                        Button {
+                            addTodo()
+                        } label: {
+                            Image(systemName: "arrow.up.circle.fill")
+                                .font(.system(size: 22))
+                                .foregroundStyle(themeColor)
+                        }
+                    }
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 12)
+                .background(
+                    RoundedRectangle(cornerRadius: 14)
+                        .fill(Color(uiColor: .tertiarySystemBackground))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(themeColor.opacity(0.4), lineWidth: 1.5)
+                        )
+                )
+            }
+        }
+        .padding(16)
+        .background(Color(uiColor: .secondarySystemBackground), in: RoundedRectangle(cornerRadius: 20))
+    }
+
+    // MARK: - Action Section
+    @ViewBuilder
+    private var actionSection: some View {
+        if tag.istErledigt {
+            // Already done
+            VStack(spacing: 12) {
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.system(size: 44))
+                    .foregroundStyle(themeColor)
+                Text(String(localized: "erledigt_status", defaultValue: "Abgeschlossen"))
+                    .font(.system(size: 16, weight: .black, design: .rounded))
+                    .foregroundStyle(themeColor)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 24)
+        } else if isActionable {
+            VStack(spacing: 12) {
+                // Focus Timer Button (primary)
+                if habitModel != nil {
+                    Button {
+                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                        showingFocusSession = true
+                    } label: {
+                        HStack(spacing: 10) {
+                            Image(systemName: "timer")
+                                .font(.system(size: 18, weight: .bold))
+                            Text(String(localized: "fokus.starten", defaultValue: "Fokus Timer"))
+                                .font(.system(size: 17, weight: .black, design: .rounded))
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 4)
+                    }
+                    .buttonStyle(DuolingoButtonStyle(
+                        size: .large,
+                        backgroundColor: themeColor,
+                        shadowColor: themeColor.darker(),
+                        foregroundColor: .white
+                    ))
+                }
+
+                // Complete Button (secondary)
+                Button {
+                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                    pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        dismiss()
+                    }
+                } label: {
+                    HStack(spacing: 8) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 16, weight: .bold))
+                        Text(String(localized: "jetzt.abschliessen", defaultValue: "Jetzt abschließen"))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                    }
+                    .foregroundStyle(themeColor)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
-                    .background(Color.gray.opacity(0.15))
-                    .foregroundColor(.gray)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .background(themeColor.opacity(0.1), in: RoundedRectangle(cornerRadius: 16))
+                }
+                .buttonStyle(.plain)
             }
+        } else if isLockedUntilTomorrow {
+            // Next day locked until midnight
+            VStack(spacing: 8) {
+                Image(systemName: "moon.stars.fill")
+                    .font(.system(size: 32))
+                    .foregroundStyle(.orange)
+                Text(String(localized: "challenge.locked_tomorrow", defaultValue: "Komm morgen wieder!"))
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundStyle(.secondary)
+                Text(String(localized: "challenge.locked_tomorrow_hint", defaultValue: "Der nächste Tag öffnet sich um Mitternacht."))
+                    .font(.system(size: 13, weight: .medium, design: .rounded))
+                    .foregroundStyle(.tertiary)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 20)
+        } else {
+            // Future day – just locked
+            VStack(spacing: 8) {
+                Image(systemName: "lock.circle.fill")
+                    .font(.system(size: 32))
+                    .foregroundStyle(Color(uiColor: .systemGray3))
+                Text(String(localized: "pfad_tag_gesperrt", defaultValue: "Gesperrt"))
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundStyle(.secondary)
+                Text(String(localized: "challenge.locked_future_hint", defaultValue: "Schließ zuerst den aktuellen Tag ab."))
+                    .font(.system(size: 13, weight: .medium, design: .rounded))
+                    .foregroundStyle(.tertiary)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 20)
         }
     }
 
-    // Existing helpers remain same...
-    private func isToday(tag: PfadStrangTag) -> Bool {
-        guard let strang = tag.strang else { return false }
-        
-        // 1. Tag ist bereits fertig? -> Nicht heute (also nicht anklickbar)
-        if tag.istErledigt { return false }
-        
-        // 2. Finde den ersten NICHT erledigten Tag im Strang
-        let alleTags = strang.tags.sorted(by: { $0.tagNummer < $1.tagNummer })
-        guard let firstIncomplete = alleTags.first(where: { !$0.istErledigt }) else {
-            return false // Alles erledigt
-        }
-        
-        // Es ist nur "heute" (actionable), wenn es dieser ERSTE nicht erledigte Tag ist
-        if tag.id != firstIncomplete.id { return false }
-        
-        // 3. Wenn es nicht Tag 1 ist, prüfen wir den VORHERIGEN Tag.
-        if tag.tagNummer > 1 {
-            if let prevTag = alleTags.first(where: { $0.tagNummer == tag.tagNummer - 1 }) {
-                // Wenn prevTag.datum (Erledigungs-Datum) == HEUTE ist, dann ist Tag "locked" bis morgen.
-                if let completionDate = prevTag.datum {
-                    if Calendar.current.isDateInToday(completionDate) {
-                        return false // Geht erst morgen weiter!
-                    }
-                }
+    // MARK: - Countdown Timer
+    private var countdownString: String {
+        let hours = Int(timeRemaining) / 3600
+        let minutes = (Int(timeRemaining) % 3600) / 60
+        let seconds = Int(timeRemaining) % 60
+        let timeStr = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        return String(format: String(localized: "challenge.countdown_label", defaultValue: "Noch %@"), timeStr)
+    }
+
+    private func setupCountdown() {
+        let nextMidnight = Calendar.current.startOfDay(for: Date()).addingTimeInterval(86400)
+        timeRemaining = nextMidnight.timeIntervalSince(Date())
+        timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { _ in
+                let remaining = nextMidnight.timeIntervalSince(Date())
+                timeRemaining = max(0, remaining)
             }
+    }
+
+    // MARK: - To-Do Helpers
+    private func addTodo() {
+        let text = newTodoText.trimmingCharacters(in: .whitespaces)
+        guard !text.isEmpty else { return }
+        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+            todos.append(PfadToDo(text: text))
+            newTodoText = ""
         }
-        
-        return true
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
     }
-    
-    private func countdownText(for datum: Date) -> String {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.locale = Locale(identifier: settings.appLanguage)
-        formatter.unitsStyle = .abbreviated
-        return String(format: String(localized: "pfad_tag_verfuegbar_in"), formatter.localizedString(for: datum, relativeTo: Date()))
-    }
-    
+
+    // MARK: - Localization Helpers
     private func habitName(for t: PfadStrangTag) -> String {
         guard let s = t.strang else { return "" }
-        // 1. User habit
         if let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
             return NSLocalizedString(habit.displayedHabitName, comment: "")
         }
-        // 2. GameDatabase fallback
         if let plant = GameDatabase.shared.plant(for: s.pflanzenID) {
             return NSLocalizedString(plant.habitCategory.localizationKey, comment: "")
         }
@@ -313,25 +596,20 @@ struct PfadTagDetailView: View {
 
     private func localizedTitle(for tag: PfadStrangTag) -> String {
         var raw = NSLocalizedString(tag.titelKey, comment: "")
-        
-        // Failsafe: Wenn der Key nicht übersetzt wurde (roher Schlüssel)
         if raw == tag.titelKey {
-            // Versuche generic fallback
-            let fallbackKey = tag.titelKey.replacingOccurrences(of: #"pfad_.*_day_"#, with: "pfad_generic_day_", options: .regularExpression)
-                                          .replacingOccurrences(of: #"pfad_.*_phase_"#, with: "pfad_generic_phase_", options: .regularExpression)
+            let fallbackKey = tag.titelKey
+                .replacingOccurrences(of: #"pfad_.*_day_"#, with: "pfad_generic_day_", options: .regularExpression)
+                .replacingOccurrences(of: #"pfad_.*_phase_"#, with: "pfad_generic_phase_", options: .regularExpression)
             let fallbackRaw = NSLocalizedString(fallbackKey, comment: "")
             if fallbackRaw != fallbackKey {
                 raw = fallbackRaw
             } else if tag.istMeilenstein {
-                raw = String(localized: "pfad_meilenstein_titel") // Generic fallback
+                raw = String(localized: "pfad_meilenstein_titel")
             } else {
                 raw = String(localized: "pfad_aufgabe_titel")
             }
         }
-        
-        // Bereinigen falls Unterstriche auftauchen, obwohl es kein Key mehr sein sollte
         if raw == tag.titelKey { raw = String(localized: "routine_titel") }
-        
         return raw.replacingOccurrences(of: "[HABIT]", with: habitName(for: tag))
     }
 
@@ -342,19 +620,15 @@ struct PfadTagDetailView: View {
             }
             return "anfaenger"
         }()
-        
         if let plantID = tag.strang?.pflanzenID,
            let dynamicDesc = HabitProgressionGenerator.generateDescription(for: plantID, dayNum: tag.tagNummer, difficulty: diff, language: settings.appLanguage) {
             return dynamicDesc.replacingOccurrences(of: "[HABIT]", with: habitName(for: tag))
         }
-
         var raw = NSLocalizedString(tag.beschreibungKey, comment: "")
-        
-        // Failsafe: Wenn der Key roh zurückkommt, generischen probieren
         if raw == tag.beschreibungKey {
-            let fallbackKey = tag.beschreibungKey.replacingOccurrences(of: #"pfad_.*_day_"#, with: "pfad_generic_day_", options: .regularExpression)
-                                                 .replacingOccurrences(of: #"pfad_.*_phase_"#, with: "pfad_generic_phase_", options: .regularExpression)
-            
+            let fallbackKey = tag.beschreibungKey
+                .replacingOccurrences(of: #"pfad_.*_day_"#, with: "pfad_generic_day_", options: .regularExpression)
+                .replacingOccurrences(of: #"pfad_.*_phase_"#, with: "pfad_generic_phase_", options: .regularExpression)
             let fallbackRaw = NSLocalizedString(fallbackKey, comment: "")
             if fallbackRaw != fallbackKey {
                 raw = fallbackRaw
@@ -368,67 +642,19 @@ struct PfadTagDetailView: View {
                 }
             }
         }
-        
         return raw.replacingOccurrences(of: "[HABIT]", with: habitName(for: tag))
     }
-    
-    
-    @ViewBuilder
-    private var journeyProgressBar: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                Text(String(format: String(localized: "pfad_progress_format"), tag.tagNummer))
-                    .font(.system(size: 14, weight: .black, design: .rounded))
-                    .foregroundStyle(.primary)
-                
-                Spacer()
-                
-                let phaseLabel = String(localized: "pfad_phase_tag_titel_\(tag.phase.rawValue)")
-                Text(phaseLabel)
-                    .font(.system(size: 12, weight: .bold))
-                    .foregroundStyle(tag.phase.farbe)
-            }
-            
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    Capsule().fill(Color(uiColor: .systemGray6))
-                    Capsule()
-                        .fill(
-                            LinearGradient(
-                                colors: [tag.phase.farbe.opacity(0.8), tag.phase.farbe],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                        .frame(width: geo.size.width * CGFloat(tag.tagNummer) / 90.0)
-                }
-            }
-            .frame(height: 8)
-            
-            Text(journeyPhaseDescription)
-                .font(.system(size: 11, weight: .bold))
-                .foregroundStyle(.secondary)
-        }
-        .padding(16)
-        .background(Color(uiColor: .secondarySystemBackground).opacity(0.4), in: RoundedRectangle(cornerRadius: 20))
-    }
-    
-    private var journeyPhaseDescription: String {
-        String(localized: "pfad_phase_beschreibung_\(tag.phase.rawValue)")
-    }
-    
-
 }
 
-// MARK: - Garden Aesthetics Components
+// MARK: - Garden Aesthetics Components (kept for backward compat)
 
 struct ButterflyView: View {
     @State private var position = CGPoint(x: CGFloat.random(in: 0...50), y: CGFloat.random(in: 0...50))
     @State private var opacity: Double = 0.5
     @State private var scale: CGFloat = 0.5
-    
+
     let timer = Timer.publish(every: 4, on: .main, in: .common).autoconnect()
-    
+
     var body: some View {
         Image(systemName: "butterfly.fill")
             .font(.system(size: 14))
@@ -464,4 +690,19 @@ struct GrassTuftView: View {
             .opacity(0.15)
             .grayscale(0.5)
     }
+}
+
+#Preview {
+    let tag = PfadStrangTag(
+        tagNummer: 5,
+        titelKey: "Starte die Gewohnheit",
+        beschreibungKey: "Mach heute deinen ersten Schritt.",
+        istErledigt: false,
+        istMeilenstein: false
+    )
+    let settings = SettingsStore()
+    PfadTagDetailView(tag: tag)
+        .environmentObject(GartenPfadStore(settings: settings))
+        .environmentObject(GardenStore())
+        .environmentObject(settings)
 }

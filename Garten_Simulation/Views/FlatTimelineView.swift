@@ -4,6 +4,9 @@ import SwiftUI
 struct FlatTimelineView: View {
     @ObservedObject var habit: HabitModel
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var pfadStore: GartenPfadStore
+    @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var settings: SettingsStore
 
     private let totalDays = 90
     private let milestones = Set([7, 14, 21, 30, 45, 60, 90])
@@ -66,8 +69,11 @@ struct FlatTimelineView: View {
                 }
                 headerOverlay
             }
-            .fullScreenCover(item: $selectedDay) { item in
+            .sheet(item: $selectedDay) { item in
                 PfadTagDetailView(tag: makeFakePfadStrangTag(index: item.index))
+                    .environmentObject(pfadStore)
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
             }
         }
     }
@@ -136,12 +142,23 @@ struct FlatTimelineView: View {
             istErledigt: index < firstUnwateredIndex, istMeilenstein: milestones.contains(index + 1)
         )
         let strang = PfadStrang(pflanzenID: habit.id, farbe: "#58CC02", istAktiv: true, reihenfolgeIndex: 0)
+        // Build a minimal strang with sibling info so lock logic works
         tag.strang = strang
         return tag
+    }
+
+    private func isDaySelectable(index: Int) -> Bool {
+        // Completed days: always selectable (read-only view)
+        if index < firstUnwateredIndex { return true }
+        // Current day: selectable
+        if index == firstUnwateredIndex { return true }
+        // Future days: NOT selectable
+        return false
     }
 }
 
 // MARK: - WeekRingView
+
 struct WeekRingView: View {
     let weekIndex: Int
     @ObservedObject var habit: HabitModel
@@ -345,6 +362,7 @@ struct WeekRingView: View {
     @ViewBuilder
     private func dayNode(dayNumber: Int, dayIndex: Int, nodeIdx: Int, total: Int, completed: Bool, current: Bool) -> some View {
         let size = sizeFor(idx: nodeIdx, total: total)
+        let isFuture = !completed && !current  // locked / not yet reachable
 
         Item3DButton(
             farbe: completed ? Color(hex: "#58CC02") : current ? Color(hex: "#FF9600") : bgColor,
@@ -353,8 +371,11 @@ struct WeekRingView: View {
             shadowDepthFactor: 0.14,
             aktion: {
                 if isExpanded {
-                    haptic()
-                    onSelectDay(dayIndex)
+                    if !isFuture {
+                        haptic()
+                        onSelectDay(dayIndex)
+                    }
+                    // Future days: tap does nothing
                 } else {
                     haptic()
                     withAnimation { expandedWeek = weekIndex }
@@ -363,18 +384,26 @@ struct WeekRingView: View {
         ) {
             Group {
                 if expandProgress > 0.55 {
-                    Text("\(dayNumber)")
-                        .font(.system(size: size * 0.30, weight: .black, design: .rounded))
-                        .opacity(min(1, (expandProgress - 0.55) * 2.5))
+                    if isFuture {
+                        Image(systemName: "lock.fill")
+                            .font(.system(size: size * 0.26, weight: .bold))
+                            .opacity(min(1, (expandProgress - 0.55) * 2.5))
+                    } else {
+                        Text("\(dayNumber)")
+                            .font(.system(size: size * 0.30, weight: .black, design: .rounded))
+                            .opacity(min(1, (expandProgress - 0.55) * 2.5))
+                    }
                 } else {
-                    Image(systemName: completed ? "checkmark" : current ? "arrow.right" : "circle.fill")
+                    Image(systemName: completed ? "checkmark" : current ? "arrow.right" : "lock.fill")
                         .font(.system(size: size * 0.26, weight: .bold))
                         .opacity(max(0, 1 - expandProgress * 3.0))
                 }
             }
-            .foregroundColor(.white)
+            .foregroundColor(isFuture ? Color.white.opacity(0.25) : .white)
         }
+        .opacity(isFuture ? 0.55 : 1.0)
     }
+
 
     private func haptic() {
         guard isHapticEnabled else { return }
