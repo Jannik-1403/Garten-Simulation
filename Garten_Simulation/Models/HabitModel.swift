@@ -356,6 +356,10 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     // Generic Focus Session (not tied to a specific plant)
     @Published var isGenericFocus: Bool = false
     
+    // 90-Tage Challenge Joker System
+    @Published var challengeJokers: Int = 0
+    let maxChallengeJokers: Int = 3
+    
     /// Hat die Pflanze einen aktiven (nicht abgelaufenen) Erinnerungs-Schedule?
     var hasActiveReminder: Bool {
         guard let schedule = reminderSchedule else {
@@ -598,6 +602,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.isNegative = isNegative
         self.isRoutineOnly = isRoutineOnly
         self.isGenericFocus = isGenericFocus
+        self.challengeJokers = 0
         self.wiederbelebtAm = nil
         self.strafTage = 3
         self.reminderTime = reminderTime
@@ -645,6 +650,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case customTrackerName, customTrackerTarget, customTrackerProgress
         case isRoutineOnly
         case isGenericFocus
+        case challengeJokers
     }
 
     required init(from decoder: Decoder) throws {
@@ -732,6 +738,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         customTrackerProgress = try container.decodeIfPresent(Double.self, forKey: .customTrackerProgress) ?? 0
         isRoutineOnly = try container.decodeIfPresent(Bool.self, forKey: .isRoutineOnly) ?? false
         isGenericFocus = try container.decodeIfPresent(Bool.self, forKey: .isGenericFocus) ?? false
+        challengeJokers = try container.decodeIfPresent(Int.self, forKey: .challengeJokers) ?? 0
     }
 
     func encode(to encoder: Encoder) throws {
@@ -784,6 +791,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(customTrackerProgress, forKey: .customTrackerProgress)
         try container.encode(isRoutineOnly, forKey: .isRoutineOnly)
         try container.encode(isGenericFocus, forKey: .isGenericFocus)
+        try container.encode(challengeJokers, forKey: .challengeJokers)
     }
 }
 

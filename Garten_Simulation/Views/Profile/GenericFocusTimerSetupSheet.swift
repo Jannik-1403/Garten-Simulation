@@ -44,34 +44,32 @@ struct GenericFocusTimerSetupSheet: View {
                 
                 let isTaskEmpty = taskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
                 
-                Item3DButton(
-                    farbe: isTaskEmpty ? Color(UIColor.systemBackground) : Color.orangePrimary,
-                    sekundaerFarbe: isTaskEmpty ? Color(UIColor.systemGray4) : Color.orangePrimary.darker(),
-                    groesse: 60,
-                    isRectangular: true,
-                    isDisabled: isTaskEmpty,
-                    aktion: {
-                        let habit = HabitModel(
-                            name: taskName,
-                            symbolName: "timer",
-                            habitCategory: .lifestyle,
-                            habitName: taskName,
-                            xpPerCompletion: 0,
-                            isGenericFocus: true
-                        )
-                        dismiss()
-                        
-                        // Wait for sheet to start dismissing before triggering presentation
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            onStart(habit)
-                        }
+                Button(action: {
+                    let habit = HabitModel(
+                        name: taskName,
+                        symbolName: "timer",
+                        habitCategory: .lifestyle,
+                        habitName: taskName,
+                        xpPerCompletion: 0,
+                        isGenericFocus: true
+                    )
+                    dismiss()
+                    
+                    // Wait for sheet to start dismissing before triggering presentation
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        onStart(habit)
                     }
-                ) {
+                }) {
                     Text(String(localized: "button.continue", defaultValue: "Weiter"))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundStyle(isTaskEmpty ? Color.secondary : Color.white)
                         .frame(maxWidth: .infinity)
                 }
+                .buttonStyle(DuolingoButtonStyle(
+                    size: .large,
+                    backgroundColor: .orangePrimary,
+                    shadowColor: .orangePrimary.darker()
+                ))
+                .disabled(isTaskEmpty)
+                .animation(.easeInOut(duration: 0.2), value: isTaskEmpty)
                 .padding(.horizontal, 24)
                 .padding(.top, 8)
                 

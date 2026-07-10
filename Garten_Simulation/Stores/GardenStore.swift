@@ -399,6 +399,12 @@ class GardenStore: ObservableObject {
         pflanze.letzteBewaesserung = Date()
         pflanze.wateringDates.append(Date()) // Log für Verlauf-Tab
         pflanze.streak += 1
+        if pflanze.streak > 0 && pflanze.streak % 7 == 0 && pflanze.challengeJokers < pflanze.maxChallengeJokers {
+            pflanze.challengeJokers += 1
+        }
+        
+        verteileChallengeBelohnung(fuer: pflanze)
+        
         pflanze.missedCycles = 0 // Reset Gesundheit
         pflanze.lastNotifiedCycle = 0 // Reset Herz-Abzug-Trigger
         pflanze.totalMlGegossen += GameConstants.mlProGiessen
@@ -742,6 +748,12 @@ class GardenStore: ObservableObject {
                     tracker.letzteBewaesserung = Date()
                     tracker.wateringDates.append(Date())
                     tracker.streak += 1
+                    if tracker.streak > 0 && tracker.streak % 7 == 0 && tracker.challengeJokers < tracker.maxChallengeJokers {
+                        tracker.challengeJokers += 1
+                    }
+                    
+                    verteileChallengeBelohnung(fuer: tracker)
+                    
                     tracker.currentXP += tracker.xpPerCompletion
                     tracker.missedCycles = 0
                     xpHinzufuegen(amount: tracker.xpPerCompletion)
@@ -771,7 +783,21 @@ class GardenStore: ObservableObject {
         for pflanze in pflanzen {
             let isProtected = activePowerUps.contains(where: { $0.powerUpId == "powerup.zeitkapsel" && $0.targetPlantId == pflanze.id && $0.isActive })
             if pflanze.streakAbgelaufen && !isProtected {
-                pflanze.streak = 0
+                if pflanze.challengeJokers > 0 {
+                    // Joker wird eingesetzt
+                    pflanze.challengeJokers -= 1
+                    
+                    // Setze letzteBewaesserung auf gestern, damit der heutige Tag gerettet ist
+                    if let gestern = Calendar.current.date(byAdding: .day, value: -1, to: Date()) {
+                        pflanze.letzteBewaesserung = gestern
+                    }
+                    
+                    let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
+                    let noteText = "\(timeString) - \(String(localized: "note.joker_used", defaultValue: "Schutzschild (Joker) automatisch aktiviert. Streak gerettet!"))"
+                    pflanze.notizen.insert(noteText, at: 0)
+                } else {
+                    pflanze.streak = 0
+                }
             }
         }
         // Mitternacht: istBewässert zurücksetzen
@@ -998,7 +1024,20 @@ class GardenStore: ObservableObject {
         return mult
     }
 
-
+    func focusCoinMultiplikator() -> Double {
+        var mult = GartenLevel.coinMultiplikator(fuerLevel: gartenStufe)
+        
+        // 1. Wetter
+        mult *= aktivesWetter.gemMultiplikator
+        
+        // 2. Pro-User Coin-Bonus (+25%)
+        if isProUser {
+            mult *= GameConstants.proCoinBonus
+        }
+        
+        // Fokus ist unabhängig von Pflanzen-Seltenheit!
+        return mult
+    }
 
 
 
@@ -1882,5 +1921,57 @@ class GardenStore: ObservableObject {
         
         // Gewohnheit abgehakt: trackBadHabit, der Grund (z.B. meistgenutzte App) wird als Trigger gesetzt
         trackBadHabit(id: habitID, penaltyCoins: 0, triggers: [reason])
+    }
+
+    // MARK: - Challenge Belohnungen
+    private func verteileChallengeBelohnung(fuer pflanze: HabitModel) {
+        let bekannteTage = [7, 14, 21, 30, 45, 60, 90]
+        guard bekannteTage.contains(pflanze.streak) else { return }
+        
+        let belohnungText: String
+        switch pflanze.streak {
+        case 7:
+            self.coins += 100
+            belohnungText = "100 \(String(localized: "common.coins"))"
+        case 14:
+            belohnungText = String(localized: "item.unkraut_schild.name")
+            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == "powerup.gartenschutz" }) {
+                let payload = ShopDetailPayload.from(powerUp: pu)
+                itemHinzufuegen(shopItem: payload, isFree: true)
+            }
+        case 21:
+            self.coins += 250
+            belohnungText = "250 \(String(localized: "common.coins"))"
+        case 30:
+            belohnungText = String(localized: "item.zeitkapsel.name")
+            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == "powerup.zeitkapsel" }) {
+                let payload = ShopDetailPayload.from(powerUp: pu)
+                itemHinzufuegen(shopItem: payload, isFree: true)
+            }
+        case 45:
+            self.coins += 500
+            belohnungText = "500 \(String(localized: "common.coins"))"
+        case 60:
+            belohnungText = String(localized: "item.gluecks_segen.name")
+            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == "powerup.gluecks_segen" }) {
+                let payload = ShopDetailPayload.from(powerUp: pu)
+                itemHinzufuegen(shopItem: payload, isFree: true)
+            }
+        case 90:
+            belohnungText = String(localized: "item.diamant_erde.name")
+            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == "powerup.diamant_erde" }) {
+                let payload = ShopDetailPayload.from(powerUp: pu)
+                itemHinzufuegen(shopItem: payload, isFree: true)
+            }
+            completed90DayChallenges += 1
+        default:
+            belohnungText = ""
+        }
+        
+        if !belohnungText.isEmpty {
+            let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
+            let noteText = "\(timeString) - 🎉 \(String(localized: "challenge.milestone.reached", defaultValue: "Meilenstein erreicht! Belohnung:")) \(belohnungText)"
+            pflanze.notizen.insert(noteText, at: 0)
+        }
     }
 }

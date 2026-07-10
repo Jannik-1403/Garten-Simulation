@@ -17,6 +17,7 @@ struct PDFExportConfigView: View {
     @State private var includeRoutines = true
     
     @State private var generatedPDFUrl: URL? = nil
+    @State private var pdfFileName: String = String(localized: "export.pdf.default_filename", defaultValue: "Garten_Bericht")
 
     var body: some View {
         NavigationStack {
@@ -40,6 +41,20 @@ struct PDFExportConfigView: View {
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 16)
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(String(localized: "export.pdf.filename_title", defaultValue: "PDF Dateiname"))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                        
+                        TextField(String(localized: "export.pdf.filename_placeholder", defaultValue: "Name eingeben"), text: $pdfFileName)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(12)
+                            .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 16)
                 }
                 
                 // Export Button
@@ -49,7 +64,9 @@ struct PDFExportConfigView: View {
                     groesse: 56,
                     isRectangular: true,
                     aktion: {
+                        let fileNameToUse = pdfFileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "Garten_Bericht" : pdfFileName
                         let pdfUrl = PDFExportManager.shared.generatePDF(
+                            fileName: fileNameToUse,
                             gardenStore: gardenStore,
                             settings: settings,
                             streakStore: streakStore,
@@ -113,7 +130,9 @@ struct PDFExportConfigView: View {
     }
     
     private func generateAndShare() {
+        let fileNameToUse = pdfFileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "Garten_Bericht" : pdfFileName
         if let url = PDFExportManager.shared.generatePDF(
+            fileName: fileNameToUse,
             gardenStore: gardenStore,
             settings: settings,
             streakStore: streakStore,

@@ -67,8 +67,8 @@ struct Item3DButton: View {
             }
         }
         .buttonStyle(Item3DButtonStyle(
-            farbe: isDisabled ? Color(hex: "#E5E5EA") : farbe,
-            sekundaerFarbe: isDisabled ? Color(hex: "#C7C7CC") : sekundaerFarbe,
+            farbe: isDisabled ? Color(UIColor.systemGray3) : farbe,
+            sekundaerFarbe: isDisabled ? Color(UIColor.systemGray) : sekundaerFarbe,
             groesse: groesse,
             iconSkalierung: iconSkalierung,
             shadowDepthFactor: shadowDepthFactor,
@@ -88,16 +88,15 @@ struct Item3DButton: View {
                     .resizable()
                     .scaledToFit()
                     .grayscale(isDisabled ? 1.0 : 0.0)
-                    .opacity(isDisabled ? 0.5 : 1.0)
             } else if let _ = UIImage(systemName: icon) {
                 Image(systemName: icon)
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(isDisabled ? Color(hex: "#AEAEB2") : .white)
+                    .foregroundStyle(isDisabled ? Color.white : .white)
             } else {
                 Text(icon)
                     .font(.system(size: groesse * 0.45))
-                    .foregroundStyle(isDisabled ? Color(hex: "#AEAEB2") : .white)
+                    .foregroundStyle(isDisabled ? Color.white : .white)
             }
         }
     }
@@ -157,6 +156,5 @@ struct Item3DButtonStyle: ButtonStyle {
         .sensoryFeedback(trigger: configuration.isPressed) { _, newValue in
             (isHapticEnabled && newValue && !forcePressed) ? .impact(flexibility: .soft, intensity: 0.8) : nil
         }
-        .opacity(isDisabled ? 0.5 : 1.0)
     }
 }

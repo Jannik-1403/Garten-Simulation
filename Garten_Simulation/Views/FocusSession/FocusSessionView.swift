@@ -458,8 +458,8 @@ struct FocusSessionView: View {
                             .scaledToFit()
                             .frame(width: 40, height: 40)
                         
-                        let baseCoins = pflanze.isGenericFocus ? selectedMinutes : GameConstants.coinsProGiessen
-                        let coins = Int(Double(baseCoins) * gardenStore.coinMultiplikator(for: pflanze))
+                        let baseCoins = selectedMinutes
+                        let coins = Int(Double(baseCoins) * gardenStore.focusCoinMultiplikator())
                         Text(verbatim: "\(coins)")
                             .font(.system(size: 24, weight: .black, design: .rounded))
                         
@@ -520,24 +520,22 @@ struct FocusSessionView: View {
         stopLiveActivity()
         FocusAudioManager.shared.stop()
         
-        if pflanze.isGenericFocus {
-            let baseCoins = selectedMinutes
-            let coinsEarned = Int(Double(baseCoins) * gardenStore.coinMultiplikator(for: pflanze))
-            
-            gardenStore.coins += coinsEarned
-            gardenStore.gesamtVerdient += coinsEarned
-            
-            let transaction = CoinTransaction(
-                datum: Date(),
-                beschreibung: String(localized: "focus.generic.reward", defaultValue: "Fokus-Session: \(pflanze.name)"),
-                betrag: coinsEarned,
-                icon: "timer",
-                farbeHex: "#FF9500" // orange
-            )
-            gardenStore.transactions.insert(transaction, at: 0)
-            gardenStore.saveTransactions()
-            gardenStore.saveStats()
-        } else {
+        let baseCoins = selectedMinutes
+        let coinsEarned = Int(Double(baseCoins) * gardenStore.focusCoinMultiplikator())
+        
+        gardenStore.coins += coinsEarned
+        gardenStore.gesamtVerdient += coinsEarned
+        
+        let transaction = CoinTransaction(
+            datum: Date(),
+            beschreibung: String(localized: "focus.generic.reward", defaultValue: "Fokus-Session: \(pflanze.name)"),
+            betrag: coinsEarned,
+            icon: "timer",
+            farbeHex: "#FF9500" // orange
+        )
+        gardenStore.transactions.insert(transaction, at: 0)
+        
+        if !pflanze.isGenericFocus {
             let xpGained = Int(Double(pflanze.xpPerCompletion) * gardenStore.xpMultiplikator(for: pflanze))
             
             // Triggert den Habit-Abschluss
@@ -564,6 +562,9 @@ struct FocusSessionView: View {
                 }
             }
         }
+        
+        gardenStore.saveTransactions()
+        gardenStore.saveStats()
         
         let log = FocusSessionLog(
             date: Date(),

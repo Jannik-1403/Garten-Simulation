@@ -12,6 +12,7 @@ struct WeeklyReportDashboardView: View {
     @State private var selectedFocusDay: DailyFocusTime? = nil
     @State private var selectedHabitsDay: DailyHabitsCount? = nil
     @State private var generatedPDFUrl: URL? = nil
+    @State private var pdfFileName: String = String(localized: "weekly_report.pdf.default_filename", defaultValue: "Grovy_Wochenbericht")
     @State private var zeigePaywall = false
     @State private var isAnalysisExpanded = true
     
@@ -170,7 +171,22 @@ struct WeeklyReportDashboardView: View {
                 }
             }
             
+            
             // 6. PDF Export Button
+            VStack(alignment: .leading, spacing: 8) {
+                Text(String(localized: "export.pdf.filename_title", defaultValue: "PDF Dateiname"))
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 12)
+                
+                TextField(String(localized: "export.pdf.filename_placeholder", defaultValue: "Name eingeben"), text: $pdfFileName)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
+            }
+            .padding(.top, 16)
+            
             exportButton
         }
         .padding(.horizontal, 8)
@@ -316,7 +332,9 @@ struct WeeklyReportDashboardView: View {
         VStack(spacing: 8) {
             Button {
                 if iapStore.isProUser {
+                    let fileNameToUse = pdfFileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "Grovy_Wochenbericht" : pdfFileName
                     let pdfUrl = PDFExportManager.shared.generateWeeklyPDFReport(
+                        fileName: fileNameToUse,
                         for: selectedWeekStart,
                         gardenStore: gardenStore,
                         settings: settings,

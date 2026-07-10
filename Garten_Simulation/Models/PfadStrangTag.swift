@@ -22,6 +22,19 @@ class PfadStrangTag: Identifiable {
         return .meisterschaft
     }
     
+    var belohnung: PfadBelohnung? {
+        switch tagNummer {
+        case 7: return .coins(100)
+        case 14: return .powerup("powerup.gartenschutz")
+        case 21: return .coins(250)
+        case 30: return .powerup("powerup.zeitkapsel")
+        case 45: return .coins(500)
+        case 60: return .powerup("powerup.gluecks_segen")
+        case 90: return .powerup("powerup.diamant_erde")
+        default: return nil
+        }
+    }
+    
     init(tagNummer: Int, 
          titelKey: String, 
          beschreibungKey: String, 

@@ -252,6 +252,13 @@ struct KombinierterStrangNode: View {
                     miniBadge(icon: "lock.fill", color: .gray, nodeSize: s)
                 } else if tag.istErledigt {
                     miniBadge(icon: "checkmark", color: Color(hex: "#58CC02"), nodeSize: s)
+                } else if let reward = tag.belohnung {
+                    switch reward {
+                    case .coins:
+                        miniBadge(icon: "bitcoinsign.circle.fill", color: .yellow, nodeSize: s)
+                    case .powerup:
+                        miniBadge(icon: "gift.fill", color: .purple, nodeSize: s)
+                    }
                 } else if tag.istMeilenstein {
                     let mColor = getMilestoneColor()
                     miniBadge(icon: "trophy.fill", color: mColor, nodeSize: s)

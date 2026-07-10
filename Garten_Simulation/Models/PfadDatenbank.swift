@@ -1,5 +1,10 @@
 import Foundation
 
+enum PfadBelohnung: Equatable {
+    case coins(Int)
+    case powerup(String)
+}
+
 struct PfadTagVorlage {
     let tagNummer: Int
     let titelKey: String
@@ -7,6 +12,7 @@ struct PfadTagVorlage {
     let phase: PfadPhase
     let istMeilenstein: Bool
     let neuerPflanzenHinweis: String?
+    let belohnung: PfadBelohnung?
 }
 
 class PfadDatenbank {
@@ -25,17 +31,22 @@ class PfadDatenbank {
             var istMeilenstein = false
             var neuerPflanzenHinweis: String? = nil
             
+            var belohnung: PfadBelohnung? = nil
             if i <= 14 {
-                if i == 7 || i == 14 { istMeilenstein = true }
+                if i == 7 { istMeilenstein = true; belohnung = .coins(100) }
+                if i == 14 { istMeilenstein = true; belohnung = .powerup("powerup.gartenschutz") }
             } else if i <= 30 {
-                if i == 21 || i == 30 { istMeilenstein = true }
+                if i == 21 { istMeilenstein = true; belohnung = .coins(250) }
                 if i == 30 {
+                    istMeilenstein = true
+                    belohnung = .powerup("powerup.zeitkapsel")
                     neuerPflanzenHinweis = empfohleneDrittePflanze(fuer: zielSchluessel)
                 }
             } else if i <= 60 {
-                if i == 45 || i == 60 { istMeilenstein = true }
+                if i == 45 { istMeilenstein = true; belohnung = .coins(500) }
+                if i == 60 { istMeilenstein = true; belohnung = .powerup("powerup.gluecks_segen") }
             } else {
-                if i == 90 { istMeilenstein = true }
+                if i == 90 { istMeilenstein = true; belohnung = .powerup("powerup.diamant_erde") }
             }
             
             // Hierarchische Key-Logik (Schritt 1)
@@ -60,7 +71,8 @@ class PfadDatenbank {
                 beschreibungKey: beschreibungKey,
                 phase: phase,
                 istMeilenstein: istMeilenstein,
-                neuerPflanzenHinweis: neuerPflanzenHinweis
+                neuerPflanzenHinweis: neuerPflanzenHinweis,
+                belohnung: belohnung
             ))
         }
         
@@ -101,6 +113,18 @@ class PfadDatenbank {
             let phase = phaseForTag(i)
             let istMeilenstein = [7, 14, 21, 30, 45, 60, 90].contains(i)
             let bekannteTage = [1, 2, 7, 14, 21, 30, 45, 60, 90]
+            
+            var belohnung: PfadBelohnung? = nil
+            switch i {
+            case 7: belohnung = .coins(100)
+            case 14: belohnung = .powerup("powerup.gartenschutz")
+            case 21: belohnung = .coins(250)
+            case 30: belohnung = .powerup("powerup.zeitkapsel")
+            case 45: belohnung = .coins(500)
+            case 60: belohnung = .powerup("powerup.gluecks_segen")
+            case 90: belohnung = .powerup("powerup.diamant_erde")
+            default: break
+            }
 
             // Prüfen ob Tag verschmolzen ist
             _ = (verschmelzungTag != nil && i >= (verschmelzungTag ?? 999))
@@ -154,7 +178,8 @@ class PfadDatenbank {
                 beschreibungKey: beschreibungKey,
                 phase: phase,
                 istMeilenstein: istMeilenstein,
-                neuerPflanzenHinweis: i == 30 ? empfohleneDrittePflanze(fuer: zielSchluessel) : nil
+                neuerPflanzenHinweis: i == 30 ? empfohleneDrittePflanze(fuer: zielSchluessel) : nil,
+                belohnung: belohnung
             ))
         }
         return tags

@@ -8,6 +8,7 @@ class PDFExportManager {
 
     @MainActor
     func generatePDF(
+        fileName: String = "Garten_Bericht",
         for plantIds: Set<String>? = nil,
         badHabitIds: Set<String>? = nil,
         gardenStore: GardenStore,
@@ -321,7 +322,9 @@ class PDFExportManager {
         
         let fileManager = FileManager.default
         let tempDir = fileManager.temporaryDirectory
-        let fileURL = tempDir.appendingPathComponent("Garten_Bericht.pdf")
+        // Sanitize the filename to prevent path traversal or invalid characters
+        let safeFileName = fileName.replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "\\", with: "_")
+        let fileURL = tempDir.appendingPathComponent("\(safeFileName).pdf")
         
         do {
             try data.write(to: fileURL)
@@ -334,6 +337,7 @@ class PDFExportManager {
     
     @MainActor
     func generateWeeklyPDFReport(
+        fileName: String = "Grovy_Wochenbericht",
         for weekStart: Date,
         gardenStore: GardenStore,
         settings: SettingsStore,
@@ -466,7 +470,9 @@ class PDFExportManager {
         
         let fileManager = FileManager.default
         let tempDir = fileManager.temporaryDirectory
-        let fileURL = tempDir.appendingPathComponent("Grovy_Wochenbericht.pdf")
+        // Sanitize the filename to prevent path traversal or invalid characters
+        let safeFileName = fileName.replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "\\", with: "_")
+        let fileURL = tempDir.appendingPathComponent("\(safeFileName).pdf")
         
         do {
             try data.write(to: fileURL)

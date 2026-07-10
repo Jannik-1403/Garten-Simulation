@@ -97,9 +97,9 @@ private struct DuolingoButtonVisualView: View {
         let pressed = configuration.isPressed
         let depth = size.shadowDepth
         
-        let actualBackground = isEnabled ? backgroundColor : Color(hex: "#E5E5EA")
-        let actualShadow = isEnabled ? shadowColor : Color(hex: "#C7C7CC")
-        let actualForeground = isEnabled ? foregroundColor : Color(hex: "#AEAEB2")
+        let actualBackground = isEnabled ? backgroundColor : Color(UIColor.systemGray3)
+        let actualShadow = isEnabled ? shadowColor : Color(UIColor.systemGray)
+        let actualForeground = isEnabled ? foregroundColor : .white
         
         return configuration.label
             .font(size.font)

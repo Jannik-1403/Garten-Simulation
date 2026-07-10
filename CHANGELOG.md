@@ -585,3 +585,9 @@
 - Fixed a bug where individual Screen Time limits were sometimes lost on app restart due to dictionary serialization failing. Changed storage format to a robust array.
 
 - Added coin multiplier to plant rarity (Silver 1.5x, Gold 2.0x, Diamond 2.5x) to scale daily coin rewards and help Pro users reach ~120 coins/day.
+- Fokus Timer: Übersetzungen für 'Fokus starten' und Setup-Strings hinzugefügt und in alle Sprachen übersetzt.
+- Fokus Timer: 'Handy weglegen' (Ja/Nein) Flow überarbeitet, sodass die App-Auswahl je nach Modus unabhängig gespeichert wird.
+
+- Erhöhung der Basis-Münzen pro Gewohnheit von 10 auf 20.
+- Fokus-Timer-Münzen sind nun unabhängig von der Pflanzen-Seltenheit.
+- Fokus Timer: Fehlende Übersetzungen für alle unterstützten Sprachen ergänzt, damit auf Englisch nicht mehr die deutschen Fallbacks angezeigt werden.

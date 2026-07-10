@@ -236,12 +236,24 @@ struct MultiStrangCanvas: View {
         HStack {
             Spacer()
             
-            VStack(spacing: 0) {
+            VStack(spacing: 8) {
                 Text(String(format: String(localized: "common.day_format"), String(selectedDay)))
                     .font(.system(size: 32 * min(1.0, scale * 1.2), weight: .black, design: .rounded))
                     .foregroundColor(.black)
                 
-                // Wir haben kein globales "HEUTE" mehr, weil jeder Strang einzeln fortschreitet
+                if let habit = filterHabit {
+                    HStack(spacing: 6) {
+                        ForEach(0..<habit.maxChallengeJokers, id: \.self) { i in
+                            Image(systemName: i < habit.challengeJokers ? "shield.fill" : "shield")
+                                .foregroundColor(i < habit.challengeJokers ? Color.blauPrimary : .gray.opacity(0.4))
+                                .font(.system(size: 16 * scale))
+                                .shadow(radius: i < habit.challengeJokers ? 2 : 0)
+                        }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Color.white.opacity(0.8), in: Capsule())
+                }
             }
             
             Spacer()

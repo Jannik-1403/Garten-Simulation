@@ -59,6 +59,15 @@ enum PflanzenSeltenheit: String, Codable, CaseIterable {
         }
     }
 
+    var coinMultiplikator: Double {
+        switch self {
+        case .bronze:  return 1.0
+        case .silber:  return 1.5
+        case .gold:    return 2.0
+        case .diamant: return 2.5
+        }
+    }
+
     /// Nächste Seltenheit
     var naechste: PflanzenSeltenheit? {
         switch self {
