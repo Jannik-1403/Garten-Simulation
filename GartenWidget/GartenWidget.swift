@@ -27,6 +27,7 @@ struct GroovyWaterWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectWaterPeriodIntent.self, provider: WaterTimelineProvider()) { entry in
             WaterWidgetView(entry: entry)
+                .environment(\.locale, Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"))
                 .containerBackground(for: .widget) {
                     WaterBackgroundView(style: entry.backgroundStyle)
                 }
@@ -43,6 +44,7 @@ struct GroovyStreakWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectStreakIntent.self, provider: StreakSmallTimelineProvider()) { entry in
             StreakSmallWidgetView(entry: entry)
+                .environment(\.locale, Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"))
                 .containerBackground(for: .widget) {
                     StreakBackgroundView(style: entry.backgroundStyle)
                 }
@@ -59,6 +61,7 @@ struct GroovyVerlaufMediumWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectHistoryIntent.self, provider: VerlaufMediumTimelineProvider()) { entry in
             VerlaufMediumWidgetView(entry: entry)
+                .environment(\.locale, Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"))
                 .containerBackground(for: .widget) {
                     DuoStyle.backgroundView(for: entry.backgroundStyle, defaultGradient: DuoStyle.orangeGradient)
                 }
@@ -75,6 +78,7 @@ struct GroovyVerlaufLargeWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectHistoryIntent.self, provider: VerlaufLargeTimelineProvider()) { entry in
             VerlaufLargeWidgetView(entry: entry)
+                .environment(\.locale, Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"))
                 .containerBackground(for: .widget) {
                     DuoStyle.backgroundView(for: entry.backgroundStyle, defaultGradient: DuoStyle.orangeGradient)
                 }
@@ -91,6 +95,7 @@ struct GroovyLockScreenStreakWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectStreakIntent.self, provider: StreakSmallTimelineProvider()) { entry in
             LockScreenStreakWidgetView(entry: entry)
+                .environment(\.locale, Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"))
         }
         .configurationDisplayName(String(localized: "widget_lock_streak_title", defaultValue: "Streak (Pro)"))
         .description(String(localized: "widget_lock_streak_desc", defaultValue: "Dein aktueller Streak auf dem Sperrbildschirm."))
@@ -104,6 +109,7 @@ struct GroovyInteractiveHabitsWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectRoutineIntent.self, provider: RoutineTimelineProvider()) { entry in
             InteractiveHabitsWidgetView(entry: entry)
+                .environment(\.locale, Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"))
                 .containerBackground(for: .widget) {
                     DuoStyle.backgroundView(for: entry.style, defaultGradient: DuoStyle.blueGradient)
                 }

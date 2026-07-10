@@ -29,6 +29,7 @@ struct FocusTimerLiveActivity: Widget {
                         .multilineTextAlignment(.trailing)
                 }
             }
+            .environment(\.locale, Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"))
             .padding()
             .activityBackgroundTint(Color.black.opacity(0.85))
             .activitySystemActionForegroundColor(Color.white)

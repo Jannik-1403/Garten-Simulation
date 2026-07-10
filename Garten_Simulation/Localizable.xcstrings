@@ -2083,6 +2083,9 @@
         }
       }
     },
+    "90 Tage Challenge" : {
+
+    },
     "100" : {
       "localizations" : {
         "de" : {
@@ -135156,6 +135159,9 @@
         }
       }
     },
+    "Meilenstein Tag %lld" : {
+
+    },
     "Minuten" : {
       "localizations" : {
         "de" : {
@@ -136977,6 +136983,9 @@
           }
         }
       }
+    },
+    "Noch %lld Tage" : {
+
     },
     "note.auto.completed" : {
       "extractionState" : "manual",

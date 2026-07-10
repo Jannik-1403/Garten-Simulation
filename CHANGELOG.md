@@ -601,3 +601,9 @@
 - Screen Time: Zeitleiste (Schedule) blockiert während der aktiven Zeit nun nicht mehr das gesamte Fenster, sondern erlaubt weiterhin das Hinzufügen von Apps (Entfernen ist gesperrt). Zudem wurde gegenseitiger Ausschluss zwischen Zeitleiste und permanenten Blockaden (Ebene 2) implementiert.
 
 - Fixed: Settings view now correctly displays the name of the currently selected app language instead of the system language.
+
+## [Unreleased]
+- 90-Tage Challenge komplett überarbeitet
+- Wechsel von 3D Isometric View zu 2D Flat Timeline View für bessere Performance
+- Meilenstein-Anzeigen (Belohnungs-Icons) zur Timeline hinzugefügt
+- Alte 3D Assets und zugehörige Views (`IsometricPathView`, `PathTileView`) entfernt
