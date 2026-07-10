@@ -614,3 +614,27 @@
 - Gradient-Hintergrund, adaptiv für Dark/Light Mode
 - Aktiver Tag pulsiert mit Spring-Animation
 - Screen Time Zeitleiste: Während aktiver Block-Zeit ist der gesamte Zeitplan-Bereich read-only gesperrt (kein Picker, keine Zeitänderung, keine Tages-Toggles). Roter Lock-Banner wird angezeigt. Außerhalb der aktiven Zeit sind alle Bearbeitungen wie gewohnt möglich. Neue ScheduleBlockRow-Liste zeigt ausgewählte Zeitplan-Apps mit Clock-Icon an.
+
+## [2026-07-10] Challenge Day Detail Overhaul
+
+### Neue Features
+- **PfadTagDetailView** komplett neu gebaut (iOS-native Sheet-Design):
+  - X-Button oben rechts zum Schließen
+  - Tag-Name in der Mitte der NavigationBar
+  - Großes Pflanzenbild/Icon mit RadialGradient-Hintergrund
+  - Live-Countdown-Timer bis Mitternacht (HH:MM:SS Anzeige)
+  - Fokus-Timer Button (primär, in der Strang-Farbe)
+  - „Jetzt abschließen" Button (sekundär, untergeordnet)
+  - Interaktive To-Do-Liste: Aufgaben hinzufügen, abhaken, löschen
+  - Fortschrittsbalken mit Phase-Label
+  - Konsistentes Design für alle Zustände (erledigt, heute, warten, gesperrt)
+
+### Bugfixes / Verbesserungen
+- **FlatTimelineView**: Zukünftige Tage sind jetzt nicht mehr anklickbar
+  - Lock-Icon erscheint bei gesperrten Nodes im expanded Zustand
+  - Nodes ausgegraut (Transparenz 55%) für visuelle Unterscheidung
+  - Taps auf gesperrte Nodes werden komplett ignoriert
+  - EnvironmentObjects korrekt an Sheet-Präsentation weitergegeben
+
+### Lokalisierung
+- Neue Keys in allen 11 Sprachen: `challenge.countdown_label`, `challenge.locked_tomorrow`, `challenge.locked_tomorrow_hint`, `challenge.locked_future_hint`, `challenge.todos.title`, `challenge.todos.placeholder`

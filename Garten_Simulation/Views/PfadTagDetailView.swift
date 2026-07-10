@@ -16,12 +16,15 @@ struct PfadTagDetailView: View {
     @EnvironmentObject var settings: SettingsStore
 
     @Environment(\.dismiss) var dismiss
+
     @State private var showingFocusSession = false
     @State private var todos: [PfadToDo] = []
     @State private var newTodoText: String = ""
     @State private var showAddTodo: Bool = false
     @State private var timeRemaining: TimeInterval = 0
     @State private var timerCancellable: AnyCancellable? = nil
+    @State private var tagIstErledigt: Bool = false   // lokaler Mirror für sofortiges UI-Update
+    @State private var showingNewTodoInput: Bool = false
     @FocusState private var isTodoFieldFocused: Bool
 
     private var themeColor: Color {
@@ -40,11 +43,12 @@ struct PfadTagDetailView: View {
         return gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID })
     }
 
-    private var isActionable: Bool {
-        guard !tag.istErledigt else { return false }
-        return isCurrentDay && !isLockedUntilTomorrow
+    // Tag abgeschlossen (SwiftData + lokaler Mirror)
+    private var istErledigt: Bool {
+        tagIstErledigt || tag.istErledigt
     }
 
+    // Tag ist der aktuell aktive (erster unerledigte)
     private var isCurrentDay: Bool {
         guard let strang = tag.strang else { return false }
         let alleTags = strang.tags.sorted { $0.tagNummer < $1.tagNummer }
@@ -52,6 +56,7 @@ struct PfadTagDetailView: View {
         return tag.id == firstIncomplete.id
     }
 
+    // Vorheriger Tag heute abgeschlossen → bis Mitternacht warten
     private var isLockedUntilTomorrow: Bool {
         guard tag.tagNummer > 1, let strang = tag.strang else { return false }
         let alleTags = strang.tags.sorted { $0.tagNummer < $1.tagNummer }
@@ -62,12 +67,24 @@ struct PfadTagDetailView: View {
         return false
     }
 
+    // Noch nicht dran (weder aktuell noch gesperrt bis morgen)
     private var isFutureDay: Bool {
-        guard !tag.istErledigt else { return false }
+        guard !istErledigt else { return false }
         guard let strang = tag.strang else { return true }
         let alleTags = strang.tags.sorted { $0.tagNummer < $1.tagNummer }
         guard let firstIncomplete = alleTags.first(where: { !$0.istErledigt }) else { return false }
         return tag.id != firstIncomplete.id
+    }
+
+    // Kann abgeschlossen werden
+    private var isActionable: Bool {
+        guard !istErledigt else { return false }
+        return isCurrentDay && !isLockedUntilTomorrow
+    }
+
+    // Tag 2 ist der nächste nach Tag-1-Abschluss (heute gesperrt aber offen zum Ansehen)
+    private var isNextDayAfterCompletion: Bool {
+        return isLockedUntilTomorrow && !istErledigt
     }
 
     var body: some View {
@@ -81,7 +98,7 @@ struct PfadTagDetailView: View {
                         heroSection
                             .padding(.top, 12)
 
-                        // Countdown / Status Badge
+                        // Status Badge / Countdown
                         statusSection
                             .padding(.top, 20)
                             .padding(.horizontal, 24)
@@ -108,8 +125,8 @@ struct PfadTagDetailView: View {
                             .padding(.top, 24)
                             .padding(.horizontal, 24)
 
-                        // To-Do List
-                        if !todos.isEmpty || isActionable {
+                        // To-Do List (nur bei aktiven oder abgeschlossenen Tagen)
+                        if !todos.isEmpty || isActionable || istErledigt {
                             todoSection
                                 .padding(.top, 24)
                                 .padding(.horizontal, 24)
@@ -134,11 +151,13 @@ struct PfadTagDetailView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 26))
-                            .foregroundStyle(Color(uiColor: .systemGray3))
-                            .symbolRenderingMode(.hierarchical)
+                        Image(systemName: "xmark")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundStyle(.secondary)
+                            .frame(width: 30, height: 30)
+                            .background(.regularMaterial, in: Circle())
                     }
+                    .buttonStyle(.plain)
                 }
             }
             .fullScreenCover(isPresented: $showingFocusSession) {
@@ -148,6 +167,7 @@ struct PfadTagDetailView: View {
             }
         }
         .onAppear {
+            tagIstErledigt = tag.istErledigt
             setupCountdown()
         }
         .onDisappear {
@@ -159,7 +179,6 @@ struct PfadTagDetailView: View {
     @ViewBuilder
     private var heroSection: some View {
         ZStack {
-            // Subtle gradient bg
             Circle()
                 .fill(
                     RadialGradient(
@@ -177,10 +196,10 @@ struct PfadTagDetailView: View {
                     .scaledToFit()
                     .frame(width: 160, height: 160)
                     .shadow(color: .black.opacity(0.1), radius: 12, y: 6)
-                    .grayscale(tag.istErledigt ? 0 : (isFutureDay ? 0.7 : 0.2))
+                    .grayscale(istErledigt ? 0 : (isFutureDay ? 0.7 : 0.2))
                     .opacity(isFutureDay ? 0.6 : 1.0)
-                    .scaleEffect(tag.istErledigt ? 1.05 : 1.0)
-                    .animation(.spring(response: 0.4, dampingFraction: 0.7), value: tag.istErledigt)
+                    .scaleEffect(istErledigt ? 1.05 : 1.0)
+                    .animation(.spring(response: 0.4, dampingFraction: 0.7), value: istErledigt)
             } else {
                 Image(tag.igelAsset)
                     .resizable()
@@ -189,7 +208,6 @@ struct PfadTagDetailView: View {
                     .opacity(isFutureDay ? 0.5 : 1.0)
             }
 
-            // Milestone badge
             if tag.istMeilenstein {
                 VStack {
                     HStack {
@@ -202,18 +220,16 @@ struct PfadTagDetailView: View {
                 .frame(width: 160, height: 160)
             }
 
-            // Lock overlay
+            // Lock overlay nur für echte Zukunftstage (nicht morgen-gesperrt)
             if isFutureDay && !isLockedUntilTomorrow {
                 VStack {
                     Spacer()
                     Image(systemName: "lock.fill")
-                        .font(.system(size: 40, weight: .bold))
+                        .font(.system(size: 36, weight: .bold))
                         .foregroundStyle(.white)
-                        .padding(16)
-                        .background(
-                            Circle().fill(Color(uiColor: .systemGray3))
-                        )
-                        .shadow(radius: 8)
+                        .padding(14)
+                        .background(Circle().fill(Color(uiColor: .systemGray3)))
+                        .shadow(radius: 6)
                 }
                 .frame(height: 160)
             }
@@ -242,7 +258,7 @@ struct PfadTagDetailView: View {
     // MARK: - Status Section
     @ViewBuilder
     private var statusSection: some View {
-        if tag.istErledigt {
+        if istErledigt {
             HStack(spacing: 8) {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: 18, weight: .bold))
@@ -255,7 +271,6 @@ struct PfadTagDetailView: View {
             .padding(.vertical, 10)
             .background(Color.green.opacity(0.12), in: Capsule())
         } else if isActionable {
-            // Countdown until midnight
             countdownBadge
         } else if isLockedUntilTomorrow {
             morgenBadge
@@ -352,6 +367,7 @@ struct PfadTagDetailView: View {
     @ViewBuilder
     private var todoSection: some View {
         VStack(alignment: .leading, spacing: 12) {
+            // Header
             HStack {
                 Label(
                     String(localized: "challenge.todos.title", defaultValue: "Deine To-Dos"),
@@ -359,16 +375,22 @@ struct PfadTagDetailView: View {
                 )
                 .font(.system(size: 15, weight: .black, design: .rounded))
                 Spacer()
+                // Plus-Button als Item3DButton
                 if isActionable {
-                    Button {
-                        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                            showAddTodo.toggle()
-                            isTodoFieldFocused = showAddTodo
+                    Item3DButton(
+                        farbe: showAddTodo ? Color(hex: "#CC2222") : themeColor,
+                        sekundaerFarbe: showAddTodo ? Color(hex: "#881111") : themeColor.darker(),
+                        groesse: 36,
+                        aktion: {
+                            withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                                showAddTodo.toggle()
+                                isTodoFieldFocused = showAddTodo
+                            }
                         }
-                    } label: {
-                        Image(systemName: showAddTodo ? "xmark.circle.fill" : "plus.circle.fill")
-                            .font(.system(size: 22))
-                            .foregroundStyle(showAddTodo ? Color.red.opacity(0.7) : themeColor)
+                    ) {
+                        Image(systemName: showAddTodo ? "xmark" : "plus")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.white)
                     }
                 }
             }
@@ -376,16 +398,22 @@ struct PfadTagDetailView: View {
             // Existing todos
             ForEach($todos) { $todo in
                 HStack(spacing: 12) {
-                    Button {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                            todo.isDone.toggle()
-                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    // Checkbox als Item3DButton
+                    Item3DButton(
+                        farbe: todo.isDone ? themeColor : Color(uiColor: .systemGray4),
+                        sekundaerFarbe: todo.isDone ? themeColor.darker() : Color(uiColor: .systemGray),
+                        groesse: 32,
+                        aktion: {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                todo.isDone.toggle()
+                            }
                         }
-                    } label: {
-                        Image(systemName: todo.isDone ? "checkmark.circle.fill" : "circle")
-                            .font(.system(size: 22))
-                            .foregroundStyle(todo.isDone ? themeColor : Color(uiColor: .systemGray3))
+                    ) {
+                        Image(systemName: todo.isDone ? "checkmark" : "")
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundColor(.white)
                     }
+
                     Text(todo.text)
                         .font(.system(size: 15, weight: .medium, design: .rounded))
                         .foregroundStyle(todo.isDone ? .secondary : .primary)
@@ -402,6 +430,7 @@ struct PfadTagDetailView: View {
                                 .font(.system(size: 14))
                                 .foregroundStyle(.red.opacity(0.5))
                         }
+                        .buttonStyle(.plain)
                     }
                 }
                 .padding(.horizontal, 14)
@@ -413,12 +442,9 @@ struct PfadTagDetailView: View {
                 .animation(.spring(response: 0.3, dampingFraction: 0.8), value: todo.isDone)
             }
 
-            // Add new todo field
+            // Add new todo input
             if showAddTodo && isActionable {
                 HStack(spacing: 10) {
-                    Image(systemName: "plus.circle")
-                        .font(.system(size: 20))
-                        .foregroundStyle(themeColor)
                     TextField(
                         String(localized: "challenge.todos.placeholder", defaultValue: "Neues To-Do hinzufügen..."),
                         text: $newTodoText
@@ -429,13 +455,20 @@ struct PfadTagDetailView: View {
                     .onSubmit {
                         addTodo()
                     }
+
+                    // Senden-Button als Item3DButton
                     if !newTodoText.isEmpty {
-                        Button {
-                            addTodo()
-                        } label: {
-                            Image(systemName: "arrow.up.circle.fill")
-                                .font(.system(size: 22))
-                                .foregroundStyle(themeColor)
+                        Item3DButton(
+                            farbe: themeColor,
+                            sekundaerFarbe: themeColor.darker(),
+                            groesse: 36,
+                            aktion: {
+                                addTodo()
+                            }
+                        ) {
+                            Image(systemName: "arrow.up")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(.white)
                         }
                     }
                 }
@@ -458,72 +491,83 @@ struct PfadTagDetailView: View {
     // MARK: - Action Section
     @ViewBuilder
     private var actionSection: some View {
-        if tag.istErledigt {
-            // Already done
-            VStack(spacing: 12) {
-                Image(systemName: "checkmark.seal.fill")
-                    .font(.system(size: 44))
-                    .foregroundStyle(themeColor)
+        if istErledigt {
+            // ✅ Tag ist abgeschlossen – großes Celebration-Visual
+            VStack(spacing: 16) {
+                ZStack {
+                    Circle()
+                        .fill(Color.green.opacity(0.12))
+                        .frame(width: 90, height: 90)
+                    Image(systemName: "checkmark.seal.fill")
+                        .font(.system(size: 50))
+                        .foregroundStyle(Color.green)
+                }
                 Text(String(localized: "erledigt_status", defaultValue: "Abgeschlossen"))
-                    .font(.system(size: 16, weight: .black, design: .rounded))
-                    .foregroundStyle(themeColor)
+                    .font(.system(size: 18, weight: .black, design: .rounded))
+                    .foregroundStyle(.green)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 24)
+
         } else if isActionable {
-            VStack(spacing: 12) {
-                // Focus Timer Button (primary)
+            VStack(spacing: 14) {
+                // Fokus Timer Button – mit Asset-Icon "Timer full"
                 if habitModel != nil {
-                    Button {
-                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                        showingFocusSession = true
-                    } label: {
+                    Item3DButton(
+                        farbe: themeColor,
+                        sekundaerFarbe: themeColor.darker(),
+                        groesse: 56,
+                        isRectangular: true,
+                        aktion: {
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            showingFocusSession = true
+                        }
+                    ) {
                         HStack(spacing: 10) {
-                            Image(systemName: "timer")
-                                .font(.system(size: 18, weight: .bold))
+                            Image("Timer full")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
                             Text(String(localized: "fokus.starten", defaultValue: "Fokus Timer"))
                                 .font(.system(size: 17, weight: .black, design: .rounded))
+                                .foregroundColor(.white)
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 4)
+                        .padding(.horizontal, 20)
                     }
-                    .buttonStyle(DuolingoButtonStyle(
-                        size: .large,
-                        backgroundColor: themeColor,
-                        shadowColor: themeColor.darker(),
-                        foregroundColor: .white
-                    ))
+                    .frame(maxWidth: .infinity)
                 }
 
-                // Complete Button (secondary)
-                Button {
-                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-                    pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        dismiss()
+                // "Jetzt abschließen" – grüner Item3DButton, kein Icon, kein Hintergrundbox
+                Item3DButton(
+                    farbe: Color(hex: "#58CC02"),
+                    sekundaerFarbe: Color(hex: "#3a8000"),
+                    groesse: 52,
+                    isRectangular: true,
+                    aktion: {
+                        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                        // Lokaler State sofort setzen für UI-Reaktion
+                        withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                            tagIstErledigt = true
+                        }
+                        pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
                     }
-                } label: {
-                    HStack(spacing: 8) {
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 16, weight: .bold))
-                        Text(String(localized: "jetzt.abschliessen", defaultValue: "Jetzt abschließen"))
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
-                    }
-                    .foregroundStyle(themeColor)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .background(themeColor.opacity(0.1), in: RoundedRectangle(cornerRadius: 16))
+                ) {
+                    Text(String(localized: "jetzt.abschliessen", defaultValue: "Jetzt abschließen"))
+                        .font(.system(size: 16, weight: .black, design: .rounded))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 20)
                 }
-                .buttonStyle(.plain)
+                .frame(maxWidth: .infinity)
             }
+
         } else if isLockedUntilTomorrow {
-            // Next day locked until midnight
-            VStack(spacing: 8) {
+            // Tag N+1: sichtbar, offen, aber nicht abschließbar
+            VStack(spacing: 10) {
                 Image(systemName: "moon.stars.fill")
-                    .font(.system(size: 32))
+                    .font(.system(size: 36))
                     .foregroundStyle(.orange)
                 Text(String(localized: "challenge.locked_tomorrow", defaultValue: "Komm morgen wieder!"))
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .font(.system(size: 17, weight: .bold, design: .rounded))
                     .foregroundStyle(.secondary)
                 Text(String(localized: "challenge.locked_tomorrow_hint", defaultValue: "Der nächste Tag öffnet sich um Mitternacht."))
                     .font(.system(size: 13, weight: .medium, design: .rounded))
@@ -532,14 +576,15 @@ struct PfadTagDetailView: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 20)
+
         } else {
-            // Future day – just locked
-            VStack(spacing: 8) {
+            // Echter Zukunftstag – gesperrt
+            VStack(spacing: 10) {
                 Image(systemName: "lock.circle.fill")
-                    .font(.system(size: 32))
+                    .font(.system(size: 36))
                     .foregroundStyle(Color(uiColor: .systemGray3))
                 Text(String(localized: "pfad_tag_gesperrt", defaultValue: "Gesperrt"))
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .font(.system(size: 17, weight: .bold, design: .rounded))
                     .foregroundStyle(.secondary)
                 Text(String(localized: "challenge.locked_future_hint", defaultValue: "Schließ zuerst den aktuellen Tag ab."))
                     .font(.system(size: 13, weight: .medium, design: .rounded))
@@ -578,6 +623,8 @@ struct PfadTagDetailView: View {
         withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
             todos.append(PfadToDo(text: text))
             newTodoText = ""
+            isTodoFieldFocused = false
+            showAddTodo = false
         }
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
     }
