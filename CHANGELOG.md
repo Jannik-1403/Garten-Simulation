@@ -669,3 +669,4 @@
 - `pfad_tag_erledigt_badge`: alle 15 Sprachen
 - 90-Tage Challenge: Architektur-Update mit strukturierten Phasen und Auto-Sync von Tagesaufgaben in den Fokus Timer.
 - 90-Tage Challenge: Tägliche Checklisten (To-Dos) für ALLE Gewohnheiten hinzugefügt, die automatisch in den Fokus-Timer synchronisiert werden.
+- 90-Tage Challenge: Komplette Architektur-Erweiterung – Jede der 18 Gewohnheiten hat nun einen individuellen, echten 13-Wochen-Trainingsplan mit 7-Tage-Zyklen und spezifischen Tages-To-Dos bekommen.

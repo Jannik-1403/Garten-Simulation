@@ -81,25 +81,8 @@ struct FlatTimelineView: View {
     }
 
     private var headerOverlay: some View {
-        let diffEnum = PfadSchwierigkeit(rawValue: habit.individualSchwierigkeit ?? "") ?? .anfaenger
         return VStack(spacing: 0) {
             HStack(spacing: 12) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .fill(diffEnum.farbe.opacity(0.55))
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .fill(diffEnum.farbe)
-                        .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).stroke(Color.white.opacity(0.25), lineWidth: 1))
-                        .overlay {
-                            HStack(spacing: 5) {
-                                Image(systemName: diffEnum.icon).font(.system(size: 13, weight: .bold))
-                                Text(NSLocalizedString(diffEnum.titelKey, comment: ""))
-                                    .font(.system(size: 13, weight: .bold, design: .rounded))
-                            }
-                            .foregroundColor(.white).padding(.horizontal, 12)
-                        }
-                        .offset(y: -4)
-                }.frame(height: 44)
                 Spacer()
                 Item3DButton(
                     farbe: Color(hex: "#1e2d42"),

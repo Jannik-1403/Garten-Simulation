@@ -211,8 +211,6 @@ struct PflanzeDetailSheet: View {
                     streakCardView
                         .tourAnchor(.plantStreak)
                         .id("streakCard")
-                        
-                    challengeCardView
 
                 // MARK: - ACTIONS (Zone 3)
                 VStack(spacing: 12) {
@@ -369,6 +367,8 @@ struct PflanzeDetailSheet: View {
                 } // end uebersicht tab
 
                 if selectedTab == .verlauf {
+                    challengeCardView
+
                     if pflanze.plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: pflanze.plantID) == nil {
                         HabitVerlaufView(pflanze: pflanze)
                             .frame(maxWidth: .infinity)
@@ -1057,10 +1057,7 @@ struct PflanzeDetailSheet: View {
     }
 
     private var challengeCardView: some View {
-        Button(action: {
-            selectedTab = .verlauf
-        }) {
-            HStack {
+        HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("90 Tage Challenge")
                         .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -1100,8 +1097,6 @@ struct PflanzeDetailSheet: View {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .stroke(Color.gruenPrimary.opacity(0.2), lineWidth: 1.5)
             )
-        }
-        .buttonStyle(PlainButtonStyle())
         .padding(.horizontal, 24)
         .padding(.bottom, 8)
     }
