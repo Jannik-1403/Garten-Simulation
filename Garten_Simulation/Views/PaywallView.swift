@@ -30,18 +30,9 @@ struct PaywallView: View {
             Color(red: 0.05, green: 0.05, blue: 0.08)
                 .ignoresSafeArea()
             
-            // Subtle ambient glows
-            Circle()
-                .fill(Color.orangePrimary.opacity(0.15))
-                .frame(width: 300, height: 300)
-                .blur(radius: 60)
-                .offset(x: -100, y: -200)
-            
-            Circle()
-                .fill(Color.blauPrimary.opacity(0.15))
-                .frame(width: 300, height: 300)
-                .blur(radius: 60)
-                .offset(x: 100, y: 200)
+            // Clean dark background without neon glows
+            Color(red: 0.05, green: 0.05, blue: 0.08)
+                .ignoresSafeArea()
             
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 32) {

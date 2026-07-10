@@ -22,7 +22,6 @@ struct CoinsDetailView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 44, height: 44)
-                                .shadow(color: Color.goldPrimary.opacity(0.4), radius: 8, y: 4)
                             
                             Text(verbatim: "\(gardenStore.coins)")
                                 .font(.system(size: 38, weight: .black, design: .rounded))
@@ -33,14 +32,19 @@ struct CoinsDetailView: View {
                         .padding(.horizontal, 32)
                         .padding(.vertical, 16)
                         .background(
-                            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                .fill(Color(UIColor.systemBackground))
-                                .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                    .fill(Color(UIColor.systemGray4))
+                                    .offset(y: 6)
+                                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                    .fill(Color(UIColor.systemBackground))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                            .stroke(Color(UIColor.systemGray5), lineWidth: 2)
+                                    )
+                            }
                         )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                                .stroke(Color.goldPrimary.opacity(0.3), lineWidth: 2)
-                        )
+                        .padding(.bottom, 6)
 
                         Text(String(localized: "profile.coins.available"))
                             .font(.system(size: 15, weight: .bold, design: .rounded))

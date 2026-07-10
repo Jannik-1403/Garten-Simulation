@@ -1,528 +1,200 @@
 {
-  "appPolicies": {
-    "eula": "",
-    "policies": [
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
       {
-        "locale": "en_US",
-        "policyText": "",
-        "policyURL": ""
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
       }
     ]
   },
-  "identifier": "89B5A84A",
-  "nonRenewingSubscriptions": [],
-  "products": [
+  "identifier" : "89B5A84A",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
     {
-      "displayPrice": "49.99",
-      "familyShareable": false,
-      "internalID": "E9B855F1",
-      "localizations": [
+      "displayPrice" : "49.99",
+      "familyShareable" : false,
+      "internalID" : "E9B855F1",
+      "localizations" : [
         {
-          "locale": "en",
-          "displayName": "Grovy Pro Lifetime",
-          "description": "Unlock the full potential forever."
-        },
-        {
-          "locale": "de",
-          "displayName": "Grovy Pro Lifetime",
-          "description": "Schalte das volle Potenzial f\u00fcr immer frei."
-        },
-        {
-          "locale": "es",
-          "displayName": "Grovy Pro de por vida",
-          "description": "Desbloquea todo el potencial para siempre."
-        },
-        {
-          "locale": "fr",
-          "displayName": "Grovy Pro \u00e0 vie",
-          "description": "D\u00e9bloquez tout le potentiel pour toujours."
-        },
-        {
-          "locale": "it",
-          "displayName": "Grovy Pro a vita",
-          "description": "Sblocca l'intero potenziale per sempre."
-        },
-        {
-          "locale": "nl",
-          "displayName": "Grovy Pro Levenslang",
-          "description": "Ontgrendel het volledige potentieel voor altijd."
-        },
-        {
-          "locale": "ja",
-          "displayName": "Grovy Pro \u30e9\u30a4\u30d5\u30bf\u30a4\u30e0",
-          "description": "\u6c38\u9060\u306b\u6700\u5927\u9650\u306e\u53ef\u80fd\u6027\u3092\u89e3\u304d\u653e\u3061\u307e\u3059\u3002"
-        },
-        {
-          "locale": "ko",
-          "displayName": "Grovy Pro \ud3c9\uc0dd",
-          "description": "\uc601\uc6d0\ud788 \ubaa8\ub4e0 \uc7a0\uc7ac\ub825\uc744 \uc7a0\uae08 \ud574\uc81c\ud558\uc2ed\uc2dc\uc624."
-        },
-        {
-          "locale": "pl",
-          "displayName": "Grovy Pro Do\u017cywotnio",
-          "description": "Odblokuj pe\u0142ny potencja\u0142 na zawsze."
-        },
-        {
-          "locale": "pt",
-          "displayName": "Grovy Pro Vital\u00edcio",
-          "description": "Desbloqueie todo o potencial para sempre."
-        },
-        {
-          "locale": "tr",
-          "displayName": "Grovy Pro \u00d6m\u00fcr Boyu",
-          "description": "T\u00fcm potansiyeli sonsuza dek ortaya \u00e7\u0131kar\u0131n."
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
         }
       ],
-      "productID": "com.jannik.grovy.pro.lifetime",
-      "referenceName": "Pro Lifetime",
-      "type": "NonConsumable"
+      "productID" : "com.jannik.grovy.pro.lifetime",
+      "referenceName" : "Pro Lifetime",
+      "type" : "NonConsumable"
     },
     {
-      "displayPrice": "0.99",
-      "familyShareable": false,
-      "internalID": "9CE94C9D",
-      "localizations": [
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "9CE94C9D",
+      "localizations" : [
         {
-          "locale": "en",
-          "displayName": "Premium Glasses",
-          "description": "Stylish glasses for your characters."
-        },
-        {
-          "locale": "de",
-          "displayName": "Premium Brille",
-          "description": "Stylische Brille f\u00fcr deine Charaktere."
-        },
-        {
-          "locale": "es",
-          "displayName": "Gafas Premium",
-          "description": "Gafas elegantes para tus personajes."
-        },
-        {
-          "locale": "fr",
-          "displayName": "Lunettes Premium",
-          "description": "Lunettes \u00e9l\u00e9gantes pour vos personnages."
-        },
-        {
-          "locale": "it",
-          "displayName": "Occhiali Premium",
-          "description": "Occhiali alla moda per i tuoi personaggi."
-        },
-        {
-          "locale": "nl",
-          "displayName": "Premium Bril",
-          "description": "Stijlvolle bril voor je personages."
-        },
-        {
-          "locale": "ja",
-          "displayName": "\u30d7\u30ec\u30df\u30a2\u30e0\u30e1\u30ac\u30cd",
-          "description": "\u30ad\u30e3\u30e9\u30af\u30bf\u30fc\u5411\u3051\u306e\u30b9\u30bf\u30a4\u30ea\u30c3\u30b7\u30e5\u306a\u30e1\u30ac\u30cd\u3002"
-        },
-        {
-          "locale": "ko",
-          "displayName": "\ud504\ub9ac\ubbf8\uc5c4 \uc548\uacbd",
-          "description": "\uce90\ub9ad\ud130\ub97c \uc704\ud55c \uc138\ub828\ub41c \uc548\uacbd."
-        },
-        {
-          "locale": "pl",
-          "displayName": "Okulary Premium",
-          "description": "Stylowe okulary dla twoich postaci."
-        },
-        {
-          "locale": "pt",
-          "displayName": "\u00d3culos Premium",
-          "description": "\u00d3culos elegantes para seus personagens."
-        },
-        {
-          "locale": "tr",
-          "displayName": "Premium G\u00f6zl\u00fck",
-          "description": "Karakterleriniz i\u00e7in \u015f\u0131k g\u00f6zl\u00fckler."
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
         }
       ],
-      "productID": "com.jannik.grovy.cosmetics.glasses",
-      "referenceName": "Premium Glasses",
-      "type": "NonConsumable"
+      "productID" : "com.jannik.grovy.cosmetics.glasses",
+      "referenceName" : "Premium Glasses",
+      "type" : "NonConsumable"
     },
     {
-      "displayPrice": "0.99",
-      "familyShareable": false,
-      "internalID": "1BE6FFB5",
-      "localizations": [
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "1BE6FFB5",
+      "localizations" : [
         {
-          "locale": "en",
-          "displayName": "Small Coin Pack",
-          "description": "A small pile of coins."
-        },
-        {
-          "locale": "de",
-          "displayName": "Kleines M\u00fcnzpaket",
-          "description": "Ein kleiner Haufen M\u00fcnzen."
-        },
-        {
-          "locale": "es",
-          "displayName": "Paquete Peque\u00f1o de Monedas",
-          "description": "Una peque\u00f1a pila de monedas."
-        },
-        {
-          "locale": "fr",
-          "displayName": "Petit Pack de Pi\u00e8ces",
-          "description": "Une petite pile de pi\u00e8ces."
-        },
-        {
-          "locale": "it",
-          "displayName": "Piccolo Pacchetto di Monete",
-          "description": "Un piccolo mucchio di monete."
-        },
-        {
-          "locale": "nl",
-          "displayName": "Klein Muntenpakket",
-          "description": "Een kleine stapel munten."
-        },
-        {
-          "locale": "ja",
-          "displayName": "\u5c0f\u3055\u306a\u30b3\u30a4\u30f3\u30d1\u30c3\u30af",
-          "description": "\u5c0f\u3055\u306a\u30b3\u30a4\u30f3\u306e\u5c71\u3002"
-        },
-        {
-          "locale": "ko",
-          "displayName": "\uc791\uc740 \ucf54\uc778 \ud329",
-          "description": "\uc791\uc740 \ub3d9\uc804 \ub354\ubbf8."
-        },
-        {
-          "locale": "pl",
-          "displayName": "Ma\u0142y Pakiet Monet",
-          "description": "Ma\u0142y stos monet."
-        },
-        {
-          "locale": "pt",
-          "displayName": "Pequeno Pacote de Moedas",
-          "description": "Uma pequena pilha de moedas."
-        },
-        {
-          "locale": "tr",
-          "displayName": "K\u00fc\u00e7\u00fck Jeton Paketi",
-          "description": "K\u00fc\u00e7\u00fck bir jeton y\u0131\u011f\u0131n\u0131."
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
         }
       ],
-      "productID": "com.jannik.grovy.coins.pack_small",
-      "referenceName": "Coins Small",
-      "type": "Consumable"
+      "productID" : "com.jannik.grovy.coins.pack_small",
+      "referenceName" : "Coins Small",
+      "type" : "Consumable"
     },
     {
-      "displayPrice": "2.99",
-      "familyShareable": false,
-      "internalID": "FB7DE139",
-      "localizations": [
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "FB7DE139",
+      "localizations" : [
         {
-          "locale": "en",
-          "displayName": "Medium Coin Pack",
-          "description": "A decent amount of coins."
-        },
-        {
-          "locale": "de",
-          "displayName": "Mittleres M\u00fcnzpaket",
-          "description": "Eine ordentliche Menge M\u00fcnzen."
-        },
-        {
-          "locale": "es",
-          "displayName": "Paquete Mediano de Monedas",
-          "description": "Una cantidad decente de monedas."
-        },
-        {
-          "locale": "fr",
-          "displayName": "Pack de Pi\u00e8ces Moyen",
-          "description": "Une quantit\u00e9 d\u00e9cente de pi\u00e8ces."
-        },
-        {
-          "locale": "it",
-          "displayName": "Pacchetto Medio di Monete",
-          "description": "Una discreta quantit\u00e0 di monete."
-        },
-        {
-          "locale": "nl",
-          "displayName": "Middelgroot Muntenpakket",
-          "description": "Een behoorlijke hoeveelheid munten."
-        },
-        {
-          "locale": "ja",
-          "displayName": "\u4e2d\u304f\u3089\u3044\u306e\u30b3\u30a4\u30f3\u30d1\u30c3\u30af",
-          "description": "\u307e\u3068\u3082\u306a\u91cf\u306e\u30b3\u30a4\u30f3\u3002"
-        },
-        {
-          "locale": "ko",
-          "displayName": "\uc911\uac04 \ucf54\uc778 \ud329",
-          "description": "\uc801\ub2f9\ud55c \uc591\uc758 \ub3d9\uc804."
-        },
-        {
-          "locale": "pl",
-          "displayName": "\u015aredni Pakiet Monet",
-          "description": "Przyzwoita ilo\u015b\u0107 monet."
-        },
-        {
-          "locale": "pt",
-          "displayName": "Pacote M\u00e9dio de Moedas",
-          "description": "Uma quantidade decente de moedas."
-        },
-        {
-          "locale": "tr",
-          "displayName": "Orta Jeton Paketi",
-          "description": "\u0130yi miktarda jeton."
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
         }
       ],
-      "productID": "com.jannik.grovy.coins.pack_medium",
-      "referenceName": "Coins Medium",
-      "type": "Consumable"
+      "productID" : "com.jannik.grovy.coins.pack_medium",
+      "referenceName" : "Coins Medium",
+      "type" : "Consumable"
     },
     {
-      "displayPrice": "4.99",
-      "familyShareable": false,
-      "internalID": "7E003613",
-      "localizations": [
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "7E003613",
+      "localizations" : [
         {
-          "locale": "en",
-          "displayName": "Large Coin Pack",
-          "description": "A massive pile of coins."
-        },
-        {
-          "locale": "de",
-          "displayName": "Gro\u00dfes M\u00fcnzpaket",
-          "description": "Ein riesiger Haufen M\u00fcnzen."
-        },
-        {
-          "locale": "es",
-          "displayName": "Paquete Grande de Monedas",
-          "description": "Una pila masiva de monedas."
-        },
-        {
-          "locale": "fr",
-          "displayName": "Grand Pack de Pi\u00e8ces",
-          "description": "Une pile massive de pi\u00e8ces."
-        },
-        {
-          "locale": "it",
-          "displayName": "Grande Pacchetto di Monete",
-          "description": "Un'enorme pila di monete."
-        },
-        {
-          "locale": "nl",
-          "displayName": "Groot Muntenpakket",
-          "description": "Een enorme stapel munten."
-        },
-        {
-          "locale": "ja",
-          "displayName": "\u5927\u304d\u306a\u30b3\u30a4\u30f3\u30d1\u30c3\u30af",
-          "description": "\u5927\u91cf\u306e\u30b3\u30a4\u30f3\u306e\u5c71\u3002"
-        },
-        {
-          "locale": "ko",
-          "displayName": "\ud070 \ucf54\uc778 \ud329",
-          "description": "\uac70\ub300\ud55c \ub3d9\uc804 \ub354\ubbf8."
-        },
-        {
-          "locale": "pl",
-          "displayName": "Du\u017cy Pakiet Monet",
-          "description": "Ogromny stos monet."
-        },
-        {
-          "locale": "pt",
-          "displayName": "Grande Pacote de Moedas",
-          "description": "Uma enorme pilha de moedas."
-        },
-        {
-          "locale": "tr",
-          "displayName": "B\u00fcy\u00fck Jeton Paketi",
-          "description": "B\u00fcy\u00fck bir jeton y\u0131\u011f\u0131n\u0131."
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
         }
       ],
-      "productID": "com.jannik.grovy.coins.pack_large",
-      "referenceName": "Coins Large",
-      "type": "Consumable"
+      "productID" : "com.jannik.grovy.coins.pack_large",
+      "referenceName" : "Coins Large",
+      "type" : "Consumable"
     }
   ],
-  "settings": {
-    "_askToBuyEnabled": false,
-    "_billingGracePeriodEnabled": false,
-    "_billingIssuesEnabled": false,
-    "_disableDialogs": false,
-    "_failTransactionsEnabled": false,
-    "_locale": "id",
-    "_renewalBillingIssuesEnabled": false,
-    "_storefront": "CHN",
-    "_storeKitErrors": [],
-    "_timeRate": 0
+  "settings" : {
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
+    "_disableDialogs" : false,
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_renewalBillingIssuesEnabled" : false,
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ],
+    "_timeRate" : 0
   },
-  "subscriptionGroups": [
+  "subscriptionGroups" : [
     {
-      "id": "F12D5F6E",
-      "localizations": [],
-      "name": "ProSubscriptions",
-      "subscriptions": [
+      "id" : "F12D5F6E",
+      "localizations" : [
+
+      ],
+      "name" : "ProSubscriptions",
+      "subscriptions" : [
         {
-          "adHocOffers": [],
-          "billingPlans": [
+          "adHocOffers" : [
+
+          ],
+          "billingPlans" : [
             {
-              "billingPlanType": "BILLED_UPFRONT",
-              "commitmentDisplayPrice": "3.99",
-              "displayPrice": "3.99",
-              "internalID": "AB70767D",
-              "isEnabled": true
+              "billingPlanType" : "BILLED_UPFRONT",
+              "commitmentDisplayPrice" : "3.99",
+              "displayPrice" : "3.99",
+              "internalID" : "AB70767D",
+              "isEnabled" : true
             }
           ],
-          "codeOffers": [],
-          "displayPrice": "3.99",
-          "familyShareable": false,
-          "groupNumber": 1,
-          "internalID": "1B6725A5",
-          "introductoryOffers": [],
-          "localizations": [
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "3.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "1B6725A5",
+          "introductoryOffers" : [
+
+          ],
+          "localizations" : [
             {
-              "locale": "en",
-              "displayName": "Grovy Pro Monthly",
-              "description": "Monthly pro access to your garden."
-            },
-            {
-              "locale": "de",
-              "displayName": "Grovy Pro Monatlich",
-              "description": "Monatlicher Pro-Zugang f\u00fcr deinen Garten."
-            },
-            {
-              "locale": "es",
-              "displayName": "Grovy Pro Mensual",
-              "description": "Acceso pro mensual para tu jard\u00edn."
-            },
-            {
-              "locale": "fr",
-              "displayName": "Grovy Pro Mensuel",
-              "description": "Acc\u00e8s pro mensuel pour votre jardin."
-            },
-            {
-              "locale": "it",
-              "displayName": "Grovy Pro Mensile",
-              "description": "Accesso pro mensile per il tuo giardino."
-            },
-            {
-              "locale": "nl",
-              "displayName": "Grovy Pro Maandelijks",
-              "description": "Maandelijkse pro-toegang voor je tuin."
-            },
-            {
-              "locale": "ja",
-              "displayName": "Grovy Pro \u30de\u30f3\u30b9\u30ea\u30fc",
-              "description": "\u5ead\u3078\u306e\u6bce\u6708\u306e\u30d7\u30ed\u30a2\u30af\u30bb\u30b9\u3002"
-            },
-            {
-              "locale": "ko",
-              "displayName": "Grovy Pro \uc6d4\uac04",
-              "description": "\uc815\uc6d0\uc5d0 \ub300\ud55c \uc6d4\uac04 \ud504\ub85c \uc561\uc138\uc2a4."
-            },
-            {
-              "locale": "pl",
-              "displayName": "Grovy Pro Miesi\u0119cznie",
-              "description": "Miesi\u0119czny dost\u0119p pro do twojego ogrodu."
-            },
-            {
-              "locale": "pt",
-              "displayName": "Grovy Pro Mensal",
-              "description": "Acesso pro mensal para o seu jardim."
-            },
-            {
-              "locale": "tr",
-              "displayName": "Grovy Pro Ayl\u0131k",
-              "description": "Bah\u00e7eniz i\u00e7in ayl\u0131k pro eri\u015fimi."
+              "description" : "",
+              "displayName" : "",
+              "locale" : "en_US"
             }
           ],
-          "productID": "com.jannik.grovy.pro.monthly",
-          "recurringSubscriptionPeriod": "P1M",
-          "referenceName": "Pro Monthly",
-          "subscriptionGroupID": "F12D5F6E",
-          "type": "RecurringSubscription",
-          "winbackOffers": []
+          "productID" : "com.jannik.grovy.pro.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Pro Monthly",
+          "subscriptionGroupID" : "F12D5F6E",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
         },
         {
-          "adHocOffers": [],
-          "billingPlans": [
+          "adHocOffers" : [
+
+          ],
+          "billingPlans" : [
             {
-              "billingPlanType": "BILLED_UPFRONT",
-              "commitmentDisplayPrice": "19.99",
-              "displayPrice": "19.99",
-              "internalID": "ECCF69A6",
-              "isEnabled": true
+              "billingPlanType" : "BILLED_UPFRONT",
+              "commitmentDisplayPrice" : "19.99",
+              "displayPrice" : "19.99",
+              "internalID" : "ECCF69A6",
+              "isEnabled" : true
             }
           ],
-          "codeOffers": [],
-          "displayPrice": "19.99",
-          "familyShareable": false,
-          "groupNumber": 1,
-          "internalID": "A4E02D99",
-          "introductoryOffers": [],
-          "localizations": [
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "19.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "A4E02D99",
+          "introductoryOffers" : [
+
+          ],
+          "localizations" : [
             {
-              "locale": "en",
-              "displayName": "Grovy Pro Yearly",
-              "description": "Yearly pro access."
-            },
-            {
-              "locale": "de",
-              "displayName": "Grovy Pro J\u00e4hrlich",
-              "description": "J\u00e4hrlicher Pro-Zugang."
-            },
-            {
-              "locale": "es",
-              "displayName": "Grovy Pro Anual",
-              "description": "Acceso pro anual."
-            },
-            {
-              "locale": "fr",
-              "displayName": "Grovy Pro Annuel",
-              "description": "Acc\u00e8s pro annuel."
-            },
-            {
-              "locale": "it",
-              "displayName": "Grovy Pro Annuale",
-              "description": "Accesso pro annuale."
-            },
-            {
-              "locale": "nl",
-              "displayName": "Grovy Pro Jaarlijks",
-              "description": "Jaarlijkse pro-toegang."
-            },
-            {
-              "locale": "ja",
-              "displayName": "Grovy Pro \u5e74\u9593",
-              "description": "\u5e74\u9593\u30d7\u30ed\u30a2\u30af\u30bb\u30b9\u3002"
-            },
-            {
-              "locale": "ko",
-              "displayName": "Grovy Pro \uc5f0\uac04",
-              "description": "\uc5f0\uac04 \ud504\ub85c \uc561\uc138\uc2a4."
-            },
-            {
-              "locale": "pl",
-              "displayName": "Grovy Pro Rocznie",
-              "description": "Roczny dost\u0119p pro."
-            },
-            {
-              "locale": "pt",
-              "displayName": "Grovy Pro Anual",
-              "description": "Acesso pro anual."
-            },
-            {
-              "locale": "tr",
-              "displayName": "Grovy Pro Y\u0131ll\u0131k",
-              "description": "Y\u0131ll\u0131k pro eri\u015fimi."
+              "description" : "",
+              "displayName" : "",
+              "locale" : "en_US"
             }
           ],
-          "productID": "com.jannik.grovy.pro.yearly",
-          "recurringSubscriptionPeriod": "P1Y",
-          "referenceName": "Pro Yearly",
-          "subscriptionGroupID": "F12D5F6E",
-          "type": "RecurringSubscription",
-          "winbackOffers": []
+          "productID" : "com.jannik.grovy.pro.yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Pro Yearly",
+          "subscriptionGroupID" : "F12D5F6E",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
         }
       ]
     }
   ],
-  "version": {
-    "major": 5,
-    "minor": 0
+  "version" : {
+    "major" : 5,
+    "minor" : 0
   }
 }

@@ -82,10 +82,15 @@ struct CoinPackCard: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
                     .background(
-                        Color.blauPrimary,
-                        in: Capsule()
+                        ZStack {
+                            Capsule()
+                                .fill(Color.blauPrimary.darker())
+                                .offset(y: 4)
+                            Capsule()
+                                .fill(Color.blauPrimary)
+                        }
                     )
-                    .shadow(color: Color.blauPrimary.opacity(0.3), radius: 5, y: 3)
+                    .padding(.bottom, 4)
             }
             .padding(16)
             .opacity(isPurchasing ? 0.6 : 1.0)
