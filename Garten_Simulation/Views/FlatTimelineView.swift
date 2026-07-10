@@ -96,22 +96,20 @@ struct FlatTimelineView: View {
                 Button(action: {
                     showingIceInfo = true
                 }) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Color(hex: "#111d2e"))
-                        RoundedRectangle(cornerRadius: 14, style: .continuous)
-                            .fill(Color(hex: "#1e2d42"))
-                            .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).stroke(Color.white.opacity(0.12), lineWidth: 1))
-                            .overlay {
-                                HStack(spacing: 6) {
-                                    ForEach(0..<habit.maxChallengeJokers, id: \.self) { i in
-                                        Image(systemName: i < habit.challengeJokers ? "flame.fill" : "flame")
-                                            .font(.system(size: 18, weight: .bold))
-                                            .foregroundColor(i < habit.challengeJokers ? Color.cyan : Color.white.opacity(0.2))
-                                    }
-                                }.padding(.horizontal, 14)
-                            }
-                            .offset(y: -4)
-                    }.frame(height: 44)
+                    HStack(spacing: 6) {
+                        ForEach(0..<habit.maxChallengeJokers, id: \.self) { i in
+                            Image("Streak_Eis")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
+                                .grayscale(i < habit.challengeJokers ? 0 : 1)
+                                .opacity(i < habit.challengeJokers ? 1 : 0.3)
+                        }
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(Color.black.opacity(0.15))
+                    .clipShape(Capsule())
                 }
                 .buttonStyle(PlainButtonStyle())
             }
@@ -298,34 +296,26 @@ struct WeekRingView: View {
     }
 
 
-    // MARK: - Collapse Button als Item3DButton
+    // MARK: - Collapse Button
+    @ViewBuilder
     private var collapseButton: some View {
         let total = dayIndices.count
         let topNodeY = linePos(index: 0, total: total).y
 
-        return Item3DButton(
-            farbe: weekIsCurrent ? Color(hex: "#FF9600") : (weekIsFullyDone ? Color(hex: "#58CC02") : (colorScheme == .dark ? Color(hex: "#1e2d42") : Color(hex: "#8aaccc"))),
-            sekundaerFarbe: weekIsCurrent ? Color(hex: "#a85e00") : (weekIsFullyDone ? Color(hex: "#3a8000") : (colorScheme == .dark ? Color(hex: "#0d1520") : Color(hex: "#5580a0"))),
-            groesse: 38,
-            shadowDepthFactor: 0.12,
+        Item3DButton(
+            farbe: Color(hex: "#111d2e"),
+            sekundaerFarbe: Color(hex: "#0b1524"),
+            groesse: 36,
             isRectangular: true,
             aktion: {
                 haptic()
-                isCollapsing = true
-                withAnimation(.spring(response: 0.95, dampingFraction: 0.90)) {
-                    expandedWeek = nil
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { isCollapsing = false }
+                withAnimation { expandedWeek = nil }
             }
         ) {
-            HStack(spacing: 5) {
-                Image(systemName: "chevron.up")
-                    .font(.system(size: 11, weight: .bold))
-                Text(String(localized: "pfad.schliessen", defaultValue: "Schließen"))
-                    .font(.system(size: 12, weight: .bold, design: .rounded))
-            }
-            .foregroundColor(.white)
-            .padding(.horizontal, 14)
+            Text(String(localized: "pfad_schliessen"))
+                .font(.system(size: 14, weight: .bold, design: .rounded))
+                .foregroundColor(.white)
+                .padding(.horizontal, 16)
         }
         .offset(y: topNodeY - nodeLastSize / 2 - 34)
         .opacity(expandProgress)

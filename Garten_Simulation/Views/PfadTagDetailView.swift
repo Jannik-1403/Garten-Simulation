@@ -8,6 +8,7 @@ struct PfadTagDetailView: View {
     @EnvironmentObject var settings: SettingsStore
     
     @Environment(\.dismiss) var dismiss
+    @State private var showingFocusSession = false
     
     private var themeColor: Color {
         Color(hex: tag.strang?.farbe ?? "#58CC02")
@@ -119,33 +120,47 @@ struct PfadTagDetailView: View {
                             .lineSpacing(4)
                             .padding(.horizontal, 32)
                             .padding(.bottom, 24)
-                            
-                        // Journey Progress Bar
-                        journeyProgressBar
-                            .padding(.horizontal, 24)
-                            .padding(.bottom, 32)
                     }
                 }
                 .padding(.bottom, 40)
                 
                 // Footer: Unified Completion Button
                 if isToday(tag: tag) && !tag.istErledigt {
-                    Button {
-                        pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            dismiss()
+                    if let s = tag.strang, let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
+                        Button {
+                            showingFocusSession = true
+                        } label: {
+                            Text(String(localized: "fokus.starten", defaultValue: "Fokus Timer Starten"))
                         }
-                    } label: {
-                        Text(String(localized: "pfad_tag_erledigen"))
+                        .buttonStyle(DuolingoButtonStyle(
+                            size: .large,
+                            backgroundColor: themeColor,
+                            shadowColor: themeColor.darker(),
+                            foregroundColor: .white
+                        ))
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 40)
+                        .fullScreenCover(isPresented: $showingFocusSession) {
+                            FocusSessionView(pflanze: habit)
+                        }
+                    } else {
+                        Button {
+                            pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                dismiss()
+                            }
+                        } label: {
+                            Text(String(localized: "pfad_tag_erledigen"))
+                        }
+                        .buttonStyle(DuolingoButtonStyle(
+                            size: .large,
+                            backgroundColor: themeColor,
+                            shadowColor: themeColor.darker(),
+                            foregroundColor: .white
+                        ))
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 40)
                     }
-                    .buttonStyle(DuolingoButtonStyle(
-                        size: .large,
-                        backgroundColor: themeColor,
-                        shadowColor: themeColor.darker(),
-                        foregroundColor: .white
-                    ))
-                    .padding(.horizontal, 24)
-                    .padding(.bottom, 40)
                 }
             }
         }
