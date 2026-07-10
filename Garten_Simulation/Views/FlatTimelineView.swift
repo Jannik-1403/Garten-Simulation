@@ -7,6 +7,7 @@ struct FlatTimelineView: View {
     @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var powerUpStore: PowerUpStore
 
     private let totalDays = 90
     private let milestones = Set([7, 14, 21, 30, 45, 60, 90])
@@ -74,6 +75,7 @@ struct FlatTimelineView: View {
                     .environmentObject(pfadStore)
                     .environmentObject(gardenStore)
                     .environmentObject(settings)
+                    .environmentObject(powerUpStore)
             }
         }
     }

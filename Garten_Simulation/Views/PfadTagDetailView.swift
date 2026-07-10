@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 import Combine
 
 // MARK: - To-Do Item Model (Codable für Persistenz)
@@ -20,6 +21,7 @@ struct PfadTagDetailView: View {
     @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var powerUpStore: PowerUpStore
 
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
@@ -28,8 +30,6 @@ struct PfadTagDetailView: View {
     @State private var todos: [PfadToDo] = []
     @State private var newTodoText: String = ""
     @State private var showAddTodo: Bool = false
-    @State private var timeRemaining: TimeInterval = 0
-    @State private var timerCancellable: AnyCancellable? = nil
     @State private var tagIstErledigt: Bool = false
     @FocusState private var isTodoFieldFocused: Bool
 
@@ -63,6 +63,13 @@ struct PfadTagDetailView: View {
     }
 
     private var isLockedUntilTomorrow: Bool {
+        if let habit = habitModel {
+            if let lastDate = habit.letzteBewaesserung {
+                return Calendar.current.isDateInToday(lastDate)
+            }
+            return false
+        }
+        
         guard tag.tagNummer > 1, let strang = tag.strang else { return false }
         let alleTags = strang.tags.sorted { $0.tagNummer < $1.tagNummer }
         if let prevTag = alleTags.first(where: { $0.tagNummer == tag.tagNummer - 1 }),
@@ -173,10 +180,8 @@ struct PfadTagDetailView: View {
         .onAppear {
             tagIstErledigt = tag.istErledigt
             loadTodos()
-            setupCountdown()
         }
         .onDisappear {
-            timerCancellable?.cancel()
             saveTodos()
         }
     }
@@ -256,15 +261,10 @@ struct PfadTagDetailView: View {
                 }
             } else if isActionable {
                 badge(color: themeColor) {
-                    HStack(spacing: 6) {
-                        Image("Timer empty")
-                            .resizable().scaledToFit()
-                            .frame(width: 16, height: 16)
-                            .colorMultiply(themeColor)
-                        Text(countdownString)
-                            .foregroundStyle(themeColor)
-                            .monospacedDigit()
-                    }
+                    Image("Timer empty")
+                        .resizable().scaledToFit()
+                        .frame(width: 16, height: 16)
+                        .colorMultiply(themeColor)
                 }
             } else if isLockedUntilTomorrow {
                 let h = Calendar.current.dateComponents([.hour], from: Date(), to: Calendar.current.startOfDay(for: Date()).addingTimeInterval(86400)).hour ?? 0
@@ -551,7 +551,14 @@ struct PfadTagDetailView: View {
                         withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
                             tagIstErledigt = true
                         }
-                        pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
+                        
+                        if let h = habitModel {
+                            gardenStore.giessen(pflanze: h, powerUpStore: powerUpStore)
+                        }
+                        
+                        if tag.modelContext != nil {
+                            pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
+                        }
                     }
                 ) {
                     Text(String(localized: "jetzt.abschliessen", defaultValue: "Jetzt abschließen"))
@@ -626,23 +633,6 @@ struct PfadTagDetailView: View {
                         )
                 }
             )
-    }
-
-    // MARK: - Countdown
-    private var countdownString: String {
-        let h = Int(timeRemaining) / 3600
-        let m = (Int(timeRemaining) % 3600) / 60
-        let s = Int(timeRemaining) % 60
-        let timeStr = String(format: "%02d:%02d:%02d", h, m, s)
-        return String(format: String(localized: "challenge.countdown_label", defaultValue: "Noch %@"), timeStr)
-    }
-
-    private func setupCountdown() {
-        let midnight = Calendar.current.startOfDay(for: Date()).addingTimeInterval(86400)
-        timeRemaining = midnight.timeIntervalSince(Date())
-        timerCancellable = Timer.publish(every: 1, on: .main, in: .common).autoconnect().sink { _ in
-            timeRemaining = max(0, midnight.timeIntervalSince(Date()))
-        }
     }
 
     // MARK: - Persistenz
