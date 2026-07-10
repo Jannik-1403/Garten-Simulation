@@ -668,3 +668,4 @@
 - `fokus.starten`: alle 15 Sprachen
 - `pfad_tag_erledigt_badge`: alle 15 Sprachen
 - 90-Tage Challenge: Architektur-Update mit strukturierten Phasen und Auto-Sync von Tagesaufgaben in den Fokus Timer.
+- 90-Tage Challenge: Tägliche Checklisten (To-Dos) für ALLE Gewohnheiten hinzugefügt, die automatisch in den Fokus-Timer synchronisiert werden.
