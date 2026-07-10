@@ -1,4 +1,7 @@
 ## [Unreleased]
+- **Timer Icon (Challenge)**: Der Countdown-Text beim grünen Status-Badge wurde auf Wunsch entfernt, sodass nur noch das kompakte Sanduhr-Icon ohne Zeitangabe zu sehen ist.
+- **Challenge Persistenz-Bug**: Das Abschließen ("Jetzt erledigen") von Tagen in der generischen Profil-Historie (`FlatTimelineView`) wurde komplett überarbeitet. Es löst nun serverseitig und lokal den regulären Bewässerungsvorgang für die Pflanze aus, sodass der Zustand sofort und dauerhaft gespeichert wird (und beim erneuten Öffnen nicht zurückspringt).
+- **Fehlende Übersetzungen**: Über ein Skript wurden 120 fehlende Übersetzungen für den veralteten Präfix `path_phase_*` zu den String-Catalogs hinzugefügt. Das verhindert unübersetzte, grüne rohe Entwickler-Texte in allen 15 Sprachen.
 - **3D-Karten Layout (Challenge)**: Ein gravierender Bug in der Höhe und Breite der 3D-Karten (`card3D`) wurde behoben. Die Karten (Tagesziel & To-Dos) kollabieren nun nicht mehr und nehmen die volle, korrekte Bildschirmbreite ein, sodass sie nicht mehr mit den grünen Buttons kollidieren.
 - **Inaktive 3D-Buttons**: Die Buttons für "Gesperrt" und "Komm morgen wieder" in der Pfad-Ansicht (Challenge) sind nun echte, interaktive `Item3DButton`-Elemente in Dunkelgrau und nehmen die volle Bildschirmbreite ein, genau wie die aktiven Buttons.
 - **Challenge Layout-Fixes**: Status-Badge im Detail-Sheet skaliert nicht mehr fälschlicherweise auf die volle Breite (`fixedSize()` hinzugefügt).

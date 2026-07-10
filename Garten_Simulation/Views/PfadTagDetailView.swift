@@ -319,7 +319,7 @@ struct PfadTagDetailView: View {
                         .font(.system(size: 13, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
                     Spacer()
-                    Text(String(localized: "pfad_phase_tag_titel_\(tag.phase.rawValue)"))
+                    Text(tag.phase.localizedTitle)
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundStyle(tag.phase.farbe)
                 }
@@ -345,7 +345,7 @@ struct PfadTagDetailView: View {
                 .frame(height: 12)
 
                 // Phase-Beschreibung
-                Text(String(localized: "pfad_phase_beschreibung_\(tag.phase.rawValue)"))
+                Text(tag.phase.localizedDescription)
                     .font(.system(size: 12, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
             }
@@ -554,6 +554,12 @@ struct PfadTagDetailView: View {
                         
                         if let h = habitModel {
                             gardenStore.giessen(pflanze: h, powerUpStore: powerUpStore)
+                            
+                            let today = Calendar.current.startOfDay(for: Date())
+                            if !h.pfadCheckedDates.contains(today) {
+                                h.pfadCheckedDates.append(today)
+                                gardenStore.savePlants()
+                            }
                         }
                         
                         if tag.modelContext != nil {

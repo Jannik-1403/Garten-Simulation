@@ -60,6 +60,25 @@ enum PfadPhase: String, Codable, CaseIterable {
     case vertiefung  // Tag 31–60
     case meisterschaft // Tag 61–90
     
+
+    var localizedTitle: String {
+        switch self {
+        case .einstieg: return String(localized: "pfad_phase_tag_titel_einstieg", defaultValue: "Einstieg")
+        case .aufbau: return String(localized: "pfad_phase_tag_titel_aufbau", defaultValue: "Aufbau")
+        case .vertiefung: return String(localized: "pfad_phase_tag_titel_vertiefung", defaultValue: "Vertiefung")
+        case .meisterschaft: return String(localized: "pfad_phase_tag_titel_meisterschaft", defaultValue: "Meisterschaft")
+        }
+    }
+    
+    var localizedDescription: String {
+        switch self {
+        case .einstieg: return String(localized: "pfad_phase_beschreibung_einstieg", defaultValue: "Tag 1–14")
+        case .aufbau: return String(localized: "pfad_phase_beschreibung_aufbau", defaultValue: "Tag 15–30")
+        case .vertiefung: return String(localized: "pfad_phase_beschreibung_vertiefung", defaultValue: "Tag 31–60")
+        case .meisterschaft: return String(localized: "pfad_phase_beschreibung_meisterschaft", defaultValue: "Tag 61–90")
+        }
+    }
+
     var farbe: Color {
         switch self {
         case .einstieg: return Color.green
