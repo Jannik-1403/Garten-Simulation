@@ -10,6 +10,7 @@ struct FlatTimelineView: View {
 
     @State private var expandedWeek: Int? = nil
     @State private var selectedDay: SelectedDay? = nil
+    @State private var showingIceInfo = false
 
     struct SelectedDay: Identifiable {
         let id = UUID()
@@ -92,22 +93,27 @@ struct FlatTimelineView: View {
                         .offset(y: -4)
                 }.frame(height: 44)
                 Spacer()
-                ZStack {
-                    RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Color(hex: "#111d2e"))
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .fill(Color(hex: "#1e2d42"))
-                        .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).stroke(Color.white.opacity(0.12), lineWidth: 1))
-                        .overlay {
-                            HStack(spacing: 6) {
-                                ForEach(0..<habit.maxChallengeJokers, id: \.self) { i in
-                                    Image(systemName: i < habit.challengeJokers ? "shield.fill" : "shield")
-                                        .font(.system(size: 18, weight: .bold))
-                                        .foregroundColor(i < habit.challengeJokers ? Color(hex: "#58CC02") : Color.white.opacity(0.2))
-                                }
-                            }.padding(.horizontal, 14)
-                        }
-                        .offset(y: -4)
-                }.frame(height: 44)
+                Button(action: {
+                    showingIceInfo = true
+                }) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Color(hex: "#111d2e"))
+                        RoundedRectangle(cornerRadius: 14, style: .continuous)
+                            .fill(Color(hex: "#1e2d42"))
+                            .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).stroke(Color.white.opacity(0.12), lineWidth: 1))
+                            .overlay {
+                                HStack(spacing: 6) {
+                                    ForEach(0..<habit.maxChallengeJokers, id: \.self) { i in
+                                        Image(systemName: i < habit.challengeJokers ? "flame.fill" : "flame")
+                                            .font(.system(size: 18, weight: .bold))
+                                            .foregroundColor(i < habit.challengeJokers ? Color.cyan : Color.white.opacity(0.2))
+                                    }
+                                }.padding(.horizontal, 14)
+                            }
+                            .offset(y: -4)
+                    }.frame(height: 44)
+                }
+                .buttonStyle(PlainButtonStyle())
             }
             .padding(.horizontal, 20).padding(.top, 60).padding(.bottom, 20)
             .background(
@@ -117,6 +123,10 @@ struct FlatTimelineView: View {
                 )
             )
             Spacer()
+        }
+        .sheet(isPresented: $showingIceInfo) {
+            StreakIceInfoPopup()
+                .presentationDetents([.height(350)])
         }
     }
 
