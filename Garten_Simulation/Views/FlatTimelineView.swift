@@ -355,7 +355,13 @@ struct WeekRingView: View {
             }
         }) {
             ZStack {
-                // Node (kein Shadow, kein Hintergrund-Disk)
+                // Shadow / 3D-Boden
+                Circle()
+                    .fill(nodeShadowCol(completed: completed, current: current))
+                    .overlay(Circle().stroke(Color.black.opacity(0.15), lineWidth: 1))
+                    .frame(width: size, height: size)
+                
+                // Top-Fläche
                 Circle()
                     .fill(nodeGradient(completed: completed, current: current))
                     .overlay(Circle().stroke(
@@ -376,8 +382,9 @@ struct WeekRingView: View {
                         }
                     }
                     .frame(width: size, height: size)
+                    .offset(y: -depth) // WICHTIG: 3D Offset
             }
-            .frame(width: size + 4, height: size + 4)
+            .frame(width: size + 4, height: size + depth + 4)
         }
         .buttonStyle(PlainButtonStyle())
     }
