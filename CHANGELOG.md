@@ -1,3 +1,4 @@
+- Bugfix: Tracker-Fortschritt bei Gewohnheiten wird nun jeden Tag um Mitternacht zusammen mit der Bewässerung korrekt zurückgesetzt.
 - Feature: Generic Focus Timer auf dem Profil-Dashboard hinzugefügt (mit individueller Benennung, Belohnung durch Münzen und Erfassung in den Statistiken).
 - Refactor: Inventory-Button auf dem Profil-Dashboard in ein vertikales Layout (Item3DButton) umgebaut.
 - Bugfix: Der Filter im Shop (`UnifiedShopView`), der bereits gekaufte Pflanzen und Dekorationen komplett versteckt hat, wurde entfernt. Gekaufte Items sind jetzt sichtbar und werden mit dem 'Im Besitz'-Label markiert.
@@ -580,3 +581,7 @@
 - Removed strict mode auto-close feature from Focus Session Timer
 
 - Hinzufügen von individuellen To-Dos in Routinen, welche nicht im restlichen Garten erscheinen.
+- Fixed a bug where individual Screen Time limits were not saved properly because they were overwritten during application initialization.
+- Fixed a bug where individual Screen Time limits were sometimes lost on app restart due to dictionary serialization failing. Changed storage format to a robust array.
+
+- Added coin multiplier to plant rarity (Silver 1.5x, Gold 2.0x, Diamond 2.5x) to scale daily coin rewards and help Pro users reach ~120 coins/day.
