@@ -201,10 +201,6 @@ struct WeekRingView: View {
             : colorScheme == .dark ? Color(hex: "#0d1520") : Color(hex: "#8aaccc")
     }
 
-    // Hintergrundfarbe für inaktive Nodes (= exakter Hintergrund)
-    private var bgColor: Color {
-        colorScheme == .dark ? Color(hex: "#0f1923") : Color(hex: "#e8f0f7")
-    }
 
     // MARK: - Position math
     private func ringPos(index: Int, total: Int) -> CGPoint {
@@ -237,26 +233,13 @@ struct WeekRingView: View {
     }
 
     // MARK: - Node colors
-    private func nodeGradient(completed: Bool, current: Bool) -> LinearGradient {
-        if completed {
-            return LinearGradient(colors: [Color(hex: "#67dd10"), Color(hex: "#48aa00")], startPoint: .topLeading, endPoint: .bottomTrailing)
-        } else if current {
-            return LinearGradient(colors: [Color(hex: "#ffaa22"), Color(hex: "#e07800")], startPoint: .topLeading, endPoint: .bottomTrailing)
-        } else {
-            // Inaktiv = Hintergrundfarbe (unsichtbar im Ring)
-            return colorScheme == .dark
-                ? LinearGradient(colors: [Color(hex: "#0f1923"), Color(hex: "#0d1520")], startPoint: .topLeading, endPoint: .bottomTrailing)
-                : LinearGradient(colors: [Color(hex: "#e8f0f7"), Color(hex: "#d4e4f0")], startPoint: .topLeading, endPoint: .bottomTrailing)
-        }
-    }
     private func nodeShadowCol(completed: Bool, current: Bool) -> Color {
         completed ? Color(hex: "#3a8000")
             : current ? Color(hex: "#a85e00")
-            : colorScheme == .dark ? Color(hex: "#080d14") : Color(hex: "#b0c8e0")
+            : colorScheme == .dark ? Color(hex: "#0a1220") : Color(hex: "#8090a8")
     }
-    private func nodeIconColor(completed: Bool, current: Bool) -> Color {
-        if completed || current { return .white }
-        return colorScheme == .dark ? Color(hex: "#0f1923") : Color(hex: "#e8f0f7") // icon same as bg = invisible
+    private func inactiveTopColor() -> Color {
+        colorScheme == .dark ? Color(hex: "#2a3d58") : Color(hex: "#b8cce0")
     }
 
     // MARK: - Body
@@ -364,9 +347,15 @@ struct WeekRingView: View {
         let size = sizeFor(idx: nodeIdx, total: total)
         let isFuture = !completed && !current  // locked / not yet reachable
 
+        // Farben: abgeschlossen=grün, aktuell=orange, zukünftig=dunkelgrau (echtes 3D sichtbar)
+        let topColor: Color = completed ? Color(hex: "#58CC02")
+            : current ? Color(hex: "#FF9600")
+            : inactiveTopColor()
+        let shadowColor: Color = nodeShadowCol(completed: completed, current: current)
+
         Item3DButton(
-            farbe: completed ? Color(hex: "#58CC02") : current ? Color(hex: "#FF9600") : bgColor,
-            sekundaerFarbe: nodeShadowCol(completed: completed, current: current),
+            farbe: topColor,
+            sekundaerFarbe: shadowColor,
             groesse: size,
             shadowDepthFactor: 0.14,
             aktion: {
@@ -375,7 +364,7 @@ struct WeekRingView: View {
                         haptic()
                         onSelectDay(dayIndex)
                     }
-                    // Future days: tap does nothing
+                    // Future days: tap registers but does nothing (no dim, no opacity trick)
                 } else {
                     haptic()
                     withAnimation { expandedWeek = weekIndex }
@@ -399,9 +388,9 @@ struct WeekRingView: View {
                         .opacity(max(0, 1 - expandProgress * 3.0))
                 }
             }
-            .foregroundColor(isFuture ? Color.white.opacity(0.25) : .white)
+            .foregroundColor(.white)  // immer weiß, sichtbar auf allen 3D-Buttons
         }
-        .opacity(isFuture ? 0.55 : 1.0)
+        // kein opacity-Dimmen mehr – Farbe kommuniziert Status
     }
 
 

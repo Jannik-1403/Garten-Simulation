@@ -638,3 +638,23 @@
 
 ### Lokalisierung
 - Neue Keys in allen 11 Sprachen: `challenge.countdown_label`, `challenge.locked_tomorrow`, `challenge.locked_tomorrow_hint`, `challenge.locked_future_hint`, `challenge.todos.title`, `challenge.todos.placeholder`
+
+## [2026-07-10] Challenge Detail View Polish
+
+### UI-Verbesserungen
+- **X-Button**: Kein `xmark.circle.fill` mehr — jetzt sauberes `xmark` mit `.regularMaterial` Circle-Background (Liquid Glass Look)
+- **Fokus-Timer-Button**: `Item3DButton` (rectangular) mit eigenem `Timer full`-Asset statt SF Symbol
+- **Jetzt abschließen**: Reiner grüner `Item3DButton` — kein Icon, kein Container, kein Hintergrund
+- **To-Do Plus-Button**: `Item3DButton` rund (Farbe/Rot je nach Zustand)
+- **To-Do Checkbox**: `Item3DButton` rund (grau/grün)
+- **To-Do Senden-Button**: `Item3DButton` rund mit Pfeil-Up
+
+### Bugfixes
+- **Sofortige UI-Reaktion**: `@State tagIstErledigt` als SwiftData-Mirror → Sheet zeigt sofort "Abgeschlossen" nach Klick auf "Jetzt abschließen"
+- **Kein Auto-Dismiss**: Sheet bleibt offen und zeigt Erfolgs-State — kein unkontrolliertes Schließen mehr
+- **Tag N+1 nach Abschluss**: Öffenbar, zeigt "Komm morgen wieder!" — nicht abschließbar
+
+### Lokalisierung (100% in 15 Sprachen)
+- `jetzt.abschliessen`: DE, EN, ES, FR, HI, IT, JA, KO, NL, PL, PT, RU, TR, ZH-Hans, ZH-Hant
+- `fokus.starten`: alle 15 Sprachen
+- `pfad_tag_erledigt_badge`: alle 15 Sprachen
