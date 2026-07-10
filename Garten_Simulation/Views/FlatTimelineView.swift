@@ -123,7 +123,6 @@ struct FlatTimelineView: View {
         
         let isCompleted = i < firstUnwateredIndex
         let isCurrent = i == firstUnwateredIndex && !isFuture
-        let isLocked = i > firstUnwateredIndex || (i == firstUnwateredIndex && isFuture)
         
         let rewardIcon = getRewardIcon(for: dayNumber)
         
@@ -209,30 +208,20 @@ struct FlatTimelineView: View {
     }
     
     private func makeFakePfadStrangTag(index: Int) -> PfadStrangTag {
-        let dummyStrang = GartenPfadStrang(
-            id: UUID(),
-            nameKey: "challenge.90days",
-            beschreibungKey: "challenge.90days.desc",
-            farbe: "#58CC02",
-            voraussetzungKey: nil,
-            pflanzenID: habit.id,
-            reihenfolge: 0,
-            tage: [],
-            istAktiv: true
-        )
-        return PfadStrangTag(
-            id: UUID(),
+        let tag = PfadStrangTag(
             tagNummer: index + 1,
-            strang: dummyStrang,
             titelKey: "Tag \(index + 1)",
             beschreibungKey: "Beschreibung",
-            phase: (index + 1) <= 14 ? .einstieg : ((index + 1) <= 45 ? .aufbau : .meisterschaft),
-            istMeilenstein: milestones.contains(index + 1),
-            neuerPflanzenHinweis: nil,
-            reward: nil,
             istErledigt: false,
-            freigeschaltetAm: nil,
-            abgeschlossenAm: nil
+            istMeilenstein: milestones.contains(index + 1)
         )
+        let strang = PfadStrang(
+            pflanzenID: habit.id,
+            farbe: "#58CC02",
+            istAktiv: true,
+            reihenfolgeIndex: 0
+        )
+        tag.strang = strang
+        return tag
     }
 }

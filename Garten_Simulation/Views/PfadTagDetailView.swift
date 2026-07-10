@@ -46,9 +46,33 @@ struct PfadTagDetailView: View {
                         if let s = tag.strang, 
                            let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }),
                            let plant = GameDatabase.shared.plant(for: habit.plantID) {
-                            heroPlantImage(plant: plant, isDone: tag.istErledigt)
-                                .frame(width: 140, height: 140)
-                                .padding(.top, 24)
+                            ZStack(alignment: .bottomTrailing) {
+                                heroPlantImage(plant: plant, isDone: tag.istErledigt)
+                                    .frame(width: 140, height: 140)
+                                    
+                                if tag.istMeilenstein {
+                                    let rewardIcon: String? = {
+                                        switch tag.tagNummer {
+                                        case 7, 21, 45: return "coin"
+                                        case 14: return "Unkraut_Schild"
+                                        case 30: return "Powerup-Zeitkapsel"
+                                        case 60: return "Powerup-Glückssegen"
+                                        case 90: return "Achievment_Gold"
+                                        default: return nil
+                                        }
+                                    }()
+                                    
+                                    if let icon = rewardIcon {
+                                        Image(icon)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 48, height: 48)
+                                            .background(Circle().fill(.white).shadow(radius: 4))
+                                            .offset(x: 10, y: 10)
+                                    }
+                                }
+                            }
+                            .padding(.top, 24)
                         } else {
                             // Fallback Igel
                             Image(tag.igelAsset)
