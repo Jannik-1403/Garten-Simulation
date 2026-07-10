@@ -609,20 +609,23 @@ struct PfadTagDetailView: View {
         radius: CGFloat,
         @ViewBuilder content: () -> Content
     ) -> some View {
-        ZStack(alignment: .top) {
-            // Boden (Schatten-Schicht)
-            RoundedRectangle(cornerRadius: radius, style: .continuous)
-                .fill(shadowColor)
-                .offset(y: 4)
-            // Oben (Inhalt-Schicht)
-            RoundedRectangle(cornerRadius: radius, style: .continuous)
-                .fill(topColor)
-                .overlay(
+        content()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                ZStack {
+                    // Boden (Schatten-Schicht)
                     RoundedRectangle(cornerRadius: radius, style: .continuous)
-                        .stroke(Color.black.opacity(0.07), lineWidth: 1)
-                )
-                .overlay(content(), alignment: .top)
-        }
+                        .fill(shadowColor)
+                        .offset(y: 4)
+                    // Oben (Inhalt-Schicht)
+                    RoundedRectangle(cornerRadius: radius, style: .continuous)
+                        .fill(topColor)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: radius, style: .continuous)
+                                .stroke(Color.black.opacity(0.07), lineWidth: 1)
+                        )
+                }
+            )
     }
 
     // MARK: - Countdown

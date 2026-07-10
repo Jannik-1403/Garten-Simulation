@@ -1,4 +1,5 @@
 ## [Unreleased]
+- **Inaktive 3D-Buttons**: Die Buttons für "Gesperrt" und "Komm morgen wieder" in der Pfad-Ansicht (Challenge) sind nun echte, interaktive `Item3DButton`-Elemente in Dunkelgrau und nehmen die volle Bildschirmbreite ein, genau wie die aktiven Buttons.
 - **Challenge Layout-Fixes**: Status-Badge im Detail-Sheet skaliert nicht mehr fälschlicherweise auf die volle Breite (`fixedSize()` hinzugefügt).
 - **Fehlende Übersetzungen**: Die Phasen-Beschreibungen für die Pfad-Ansicht (Einstieg, Aufbau, Vertiefung, Meisterschaft) wurden in alle 15 Sprachen zur `Localizable.xcstrings` hinzugefügt und werden nun im Detail-Sheet korrekt geladen.
 - **Proportionen korrigiert**: Das generelle Layout der Progress-Card und ToDo-Card wurde visuell überarbeitet, sodass die Abstände, Rahmen und Schatten harmonischer wirken (Kollisionen behoben, Padding verfeinert).
