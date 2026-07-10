@@ -165419,13 +165419,13 @@
         }
       }
     },
-    "pfad.meilenstein" : {
+    "pfad.woche" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Meilenstein"
+            "value" : "Woche"
           }
         }
       }
