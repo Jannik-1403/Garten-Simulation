@@ -33,12 +33,7 @@ struct FlatTimelineView: View {
             PfadActivationOverlay(habit: habit)
         } else {
             ZStack(alignment: .top) {
-                LinearGradient(
-                    colors: colorScheme == .dark
-                        ? [Color(hex: "#0f1923"), Color(hex: "#1a2638")]
-                        : [Color(hex: "#e8f0f7"), Color(hex: "#d4e4f0")],
-                    startPoint: .top, endPoint: .bottom
-                ).ignoresSafeArea()
+                Color.appHintergrund.ignoresSafeArea()
 
                 ScrollViewReader { proxy in
                     ScrollView(showsIndicators: false) {
@@ -115,12 +110,12 @@ struct FlatTimelineView: View {
                 }.frame(height: 44)
             }
             .padding(.horizontal, 20).padding(.top, 60).padding(.bottom, 20)
-            .background(LinearGradient(
-                colors: colorScheme == .dark
-                    ? [Color(hex: "#0f1923"), Color(hex: "#0f1923").opacity(0)]
-                    : [Color(hex: "#e8f0f7"), Color(hex: "#e8f0f7").opacity(0)],
-                startPoint: .top, endPoint: .bottom
-            ))
+            .background(
+                LinearGradient(
+                    colors: [Color.appHintergrund, Color.appHintergrund.opacity(0)],
+                    startPoint: .top, endPoint: .bottom
+                )
+            )
             Spacer()
         }
     }
@@ -240,10 +235,6 @@ struct WeekRingView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            // 3D Disk (Item3DButton-Stil, wie Profil-Charakter)
-            platformDisk
-            // Expanded connector
-            expandedConnector
             // Collapse button (Item3DButton)
             collapseButton
             // Nodes
@@ -296,68 +287,6 @@ struct WeekRingView: View {
         .onAppear { expandProgress = isExpanded ? 1.0 : 0.0 }
     }
 
-    // MARK: - 3D Platform Disk (wie Profil-Charakter mit Item3DButton)
-    private var platformDisk: some View {
-        let diameter = ringRadius * 2 + 60  // Großer Hintergrund
-
-        return ZStack {
-            // Elliptischer Schatten unten (Perspektiv-Effekt)
-            Ellipse()
-                .fill(diskSideColor.opacity(colorScheme == .dark ? 0.6 : 0.35))
-                .frame(width: diameter * 1.1, height: diameter * 0.22)
-                .blur(radius: 16)
-                .offset(y: diameter * 0.52)
-
-            // Seite (unten = 3D-Kante sichtbar)
-            Circle()
-                .fill(diskSideColor)
-                .overlay(Circle().stroke(Color.black.opacity(0.15), lineWidth: 1))
-                .frame(width: diameter, height: diameter)
-
-            // Top-Fläche (leicht nach oben versetzt — coinDepth)
-            Circle()
-                .fill(
-                    LinearGradient(
-                        colors: [diskTopColor.opacity(colorScheme == .dark ? 0.18 : 0.22),
-                                 diskTopColor.opacity(colorScheme == .dark ? 0.06 : 0.08)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-                .overlay(
-                    Circle()
-                        .stroke(diskTopColor.opacity(colorScheme == .dark ? 0.45 : 0.55), lineWidth: 2.5)
-                )
-                .frame(width: diameter, height: diameter)
-                .offset(y: -coinDepth) // 3D-Tiefe wie Item3DButton
-        }
-        .opacity(max(0, 1 - expandProgress * 1.4))
-    }
-
-    // MARK: - Expanded 3D Connector
-    private var expandedConnector: some View {
-        let total = dayIndices.count
-        guard total > 1 else { return AnyView(EmptyView()) }
-        let h = CGFloat(total - 1) * lineSpacing
-        let isActive = weekIsFullyDone
-        let topC: Color = isActive ? Color(hex: "#58CC02") : bgColor
-        let sideC: Color = isActive ? Color(hex: "#3a8000") : (colorScheme == .dark ? Color(hex: "#080d14") : Color(hex: "#b0c8e0"))
-
-        return AnyView(
-            ZStack {
-                RoundedRectangle(cornerRadius: 5, style: .continuous)
-                    .fill(sideC)
-                    .overlay(RoundedRectangle(cornerRadius: 5, style: .continuous).stroke(Color.black.opacity(0.10), lineWidth: 0.5))
-                    .frame(width: 11, height: h)
-                RoundedRectangle(cornerRadius: 5, style: .continuous)
-                    .fill(topC)
-                    .overlay(RoundedRectangle(cornerRadius: 5, style: .continuous).stroke(Color.white.opacity(isActive ? 0.18 : 0.0), lineWidth: 0.5))
-                    .frame(width: 11, height: h)
-                    .offset(x: -2, y: -3)
-            }
-            .opacity(max(0, (expandProgress - 0.42) * 2.0))
-        )
-    }
 
     // MARK: - Collapse Button als Item3DButton
     private var collapseButton: some View {
@@ -426,12 +355,7 @@ struct WeekRingView: View {
             }
         }) {
             ZStack {
-                // Shadow
-                Circle()
-                    .fill(nodeShadowCol(completed: completed, current: current))
-                    .overlay(Circle().stroke(Color.black.opacity(0.15), lineWidth: 1))
-                    .frame(width: size, height: size)
-                // Top (Hintergrundfarbe wenn inaktiv)
+                // Node (kein Shadow, kein Hintergrund-Disk)
                 Circle()
                     .fill(nodeGradient(completed: completed, current: current))
                     .overlay(Circle().stroke(
@@ -452,9 +376,8 @@ struct WeekRingView: View {
                         }
                     }
                     .frame(width: size, height: size)
-                    .offset(y: -depth)
             }
-            .frame(width: size + 4, height: size + depth + 4)
+            .frame(width: size + 4, height: size + 4)
         }
         .buttonStyle(PlainButtonStyle())
     }
