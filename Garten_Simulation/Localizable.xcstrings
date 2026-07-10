@@ -72785,6 +72785,101 @@
         }
       }
     },
+    "challenge.milestone.reached": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meilenstein erreicht! Belohnung:"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Milestone reached! Reward:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Hito alcanzado! Recompensa:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Étape franchie ! Récompense :"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traguardo raggiunto! Ricompensa:"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "マイルストーン到達！報酬："
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "마일스톤 달성! 보상:"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mijlpaal bereikt! Beloning:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kamień milowy osiągnięty! Nagroda:"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marco alcançado! Recompensa:"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilometre taşına ulaşıldı! Ödül:"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पड़ाव पूरा हुआ! इनाम:"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этап пройден! Награда:"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "达到里程碑！奖励："
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "達到里程碑！獎勵："
+          }
+        }
+      }
+    },
     "character.category.%@": {
       "extractionState": "manual",
       "localizations": {
@@ -100272,6 +100367,159 @@
         }
       }
     },
+    "export.pdf.default_filename": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Garten_Bericht"
+          }
+        }
+      }
+    },
+    "export.pdf.filename_placeholder": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name eingeben"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter name"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Introducir nombre"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrez le nom"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci nome"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名前を入力"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이름 입력"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voer naam in"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wpisz nazwę"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Introduzir nome"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adı girin"
+          }
+        }
+      }
+    },
+    "export.pdf.filename_title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF Dateiname"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF Filename"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre de archivo PDF"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom du fichier PDF"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome file PDF"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDFファイル名"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF 파일 이름"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF Bestandsnaam"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nazwa pliku PDF"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome do ficheiro PDF"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF Dosya Adı"
+          }
+        }
+      }
+    },
     "export.pdf.focus.habit_name": {
       "localizations": {
         "de": {
@@ -104467,34 +104715,10 @@
             "value": "z.B. Hausaufgaben, Lesen, ..."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "фокус.общий.заполнитель"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ध्यान दें.सामान्य.स्थानधारी"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "专注.通用.占位符"
-          }
-        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "e.g. Homework, Reading, ..."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ex. Devoirs, Lecture, ..."
           }
         },
         "es": {
@@ -104503,16 +104727,34 @@
             "value": "ej. Tareas, Leer, ..."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ex. Devoirs, Lecture, ..."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ध्यान दें.सामान्य.स्थानधारी"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "es. Compiti, Lettura, ..."
           }
         },
-        "pt": {
+        "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ex. Lição de casa, Leitura, ..."
+            "value": "例：宿題、読書など..."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "예: 숙제, 독서..."
           }
         },
         "nl": {
@@ -104527,22 +104769,28 @@
             "value": "np. Zadania domowe, Czytanie, ..."
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ex. Lição de casa, Leitura, ..."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "фокус.общий.заполнитель"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "ör. Ödev, Okuma, ..."
           }
         },
-        "ja": {
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "例：宿題、読書など..."
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "예: 숙제, 독서..."
+            "value": "专注.通用.占位符"
           }
         },
         "zh-Hant": {
@@ -104562,16 +104810,16 @@
             "value": "Fokus-Session: %@"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "фокус.общая.награда"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "ध्यान.सामान्य.इनाम"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "фокус.общая.награда"
           }
         },
         "zh-Hans": {
@@ -104591,34 +104839,10 @@
             "value": "Was möchtest du in dieser Session erreichen?"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "focus.generic.subtitle"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "फ़ोकस.सामान्य.उपशीर्षक"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "焦点.通用.字幕"
-          }
-        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "What do you want to achieve in this session?"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Que souhaitez-vous accomplir lors de cette session ?"
           }
         },
         "es": {
@@ -104627,16 +104851,34 @@
             "value": "¿Qué quieres lograr en esta sesión?"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Que souhaitez-vous accomplir lors de cette session ?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ोकस.सामान्य.उपशीर्षक"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Cosa vuoi ottenere in questa sessione?"
           }
         },
-        "pt": {
+        "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "O que você quer alcançar nesta sessão?"
+            "value": "このセッションで何を達成したいですか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이번 세션에서 무엇을 달성하고 싶나요?"
           }
         },
         "nl": {
@@ -104651,22 +104893,28 @@
             "value": "Co chcesz osiągnąć podczas tej sesji?"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O que você quer alcançar nesta sessão?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.generic.subtitle"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Bu oturumda ne başarmak istiyorsunuz?"
           }
         },
-        "ja": {
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "このセッションで何を達成したいですか？"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이번 세션에서 무엇을 달성하고 싶나요?"
+            "value": "焦点.通用.字幕"
           }
         },
         "zh-Hant": {
@@ -104686,34 +104934,10 @@
             "value": "Fokus Starten"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "focus.generic.title"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ध्यान.generic.शीर्षक"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "通用标题"
-          }
-        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Start Focus"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Démarrer la concentration"
           }
         },
         "es": {
@@ -104722,16 +104946,34 @@
             "value": "Iniciar enfoque"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarrer la concentration"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ध्यान.generic.शीर्षक"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Inizia concentrazione"
           }
         },
-        "pt": {
+        "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iniciar foco"
+            "value": "集中を開始"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "집중 시작"
           }
         },
         "nl": {
@@ -104746,22 +104988,28 @@
             "value": "Rozpocznij skupienie"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar foco"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "focus.generic.title"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Odaklanmayı başlat"
           }
         },
-        "ja": {
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "集中を開始"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "집중 시작"
+            "value": "通用标题"
           }
         },
         "zh-Hant": {
@@ -105624,6 +105872,386 @@
           "stringUnit": {
             "state": "translated",
             "value": "立即解鎖"
+          }
+        }
+      }
+    },
+    "focus.phone_prompt.message": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle danach die Apps aus, die für diesen Fokus blockiert werden sollen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afterwards, select the apps that should be blocked for this focus."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Después, selecciona las aplicaciones que deben bloquearse para este enfoque."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ensuite, sélectionnez les applications qui doivent être bloquées pour cette session de concentration."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इसके बाद उन ऐप्स को चुनें जिन्हें इस फोकस के लिए ब्लॉक किया जाना चाहिए।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Successivamente, seleziona le app che dovrebbero essere bloccate per questa concentrazione."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "その後、この集中のためにブロックするアプリを選択してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "그런 다음 이 집중에 대해 차단해야 하는 앱을 선택하세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecteer daarna de apps die voor deze focus geblokkeerd moeten worden."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Następnie wybierz aplikacje, które powinny zostać zablokowane na czas tego skupienia."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Em seguida, selecione os aplicativos que devem ser bloqueados para este foco."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выберите затем приложения, которые должны быть заблокированы для этого фокуса."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ardından, bu odak için engellenmesi gereken uygulamaları seçin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "然后选择要为此焦点阻止的应用程序。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "然後選擇要為此焦點阻止的應用程式。"
+          }
+        }
+      }
+    },
+    "focus.phone_prompt.no": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nein, ich brauche es"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No, I need it"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No, lo necesito"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non, j'en ai besoin"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नहीं, मुझे इसकी ज़रूरत है"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No, mi serve"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "いいえ、必要です"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "아니요, 필요합니다"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nee, ik heb het nodig"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie, potrzebuję go"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não, eu preciso"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет, мне это нужно"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hayır, ihtiyacım var"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不，我需要它"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不，我需要它"
+          }
+        }
+      }
+    },
+    "focus.phone_prompt.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wirst du das Handy weglegen?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Will you put the phone away?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Dejarás el teléfono a un lado?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allez-vous ranger votre téléphone ?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्या तुम फोन रख दोगे?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metterai via il telefono?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スマホを置きますか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "휴대폰을 치우시겠습니까?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leg je de telefoon weg?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odłożysz telefon?"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vai guardar o telemóvel?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ты уберёшь телефон?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonu bir kenara koyacak mısın?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你会把手机放下吗？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你會把手機放下嗎？"
+          }
+        }
+      }
+    },
+    "focus.phone_prompt.yes": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja, weglegen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yes, put away"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sí, guardarlo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oui, le ranger"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हाँ, रख दें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sì, mettilo via"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "はい、置きます"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "네, 치워둡니다"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja, wegleggen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tak, odłożę"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sim, guardar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Да, отложить"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Evet, uzağa koy"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "是的，放下"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "是的，放下"
           }
         }
       }
@@ -136613,6 +137241,101 @@
           "stringUnit": {
             "state": "translated",
             "value": "螢幕時間限制得到遵守"
+          }
+        }
+      }
+    },
+    "note.joker_used": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schutzschild (Joker) automatisch aktiviert. Streak gerettet!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shield (Joker) automatically activated. Streak saved!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escudo (Joker) activado automáticamente. ¡Racha guardada!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bouclier (Joker) activé automatiquement. Série sauvegardée !"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scudo (Joker) attivato automaticamente. Serie salvata!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "シールド（ジョーカー）が自動的にアクティブ化されました。ストリークが保存されました！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "실드(조커)가 자동으로 활성화되었습니다. 연속 기록이 저장되었습니다!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schild (Joker) automatisch geactiveerd. Reeks opgeslagen!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarcza (Joker) aktywowana automatycznie. Seria uratowana!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escudo (Joker) ativado automaticamente. Sequência salva!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalkan (Joker) otomatik olarak etkinleştirildi. Seri kaydedildi!"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शील्ड (जोकर) अपने आप सक्रिय हो गया। स्ट्रीक बच गई!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Щит (Джокер) автоматически активирован. Серия спасена!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "护盾（Joker）已自动激活。连击保住了！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "護盾（Joker）已自動激活。連擊保住了！"
           }
         }
       }
@@ -189288,34 +190011,10 @@
             "value": "Starten"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "профиль.фокус.начать"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "प्रोफ़ाइल.फोकस.शुरू"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "配置文件.焦点.开始"
-          }
-        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Start"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Démarrer"
           }
         },
         "es": {
@@ -189324,16 +190023,34 @@
             "value": "Iniciar"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarrer"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रोफ़ाइल.फोकस.शुरू"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Inizia"
           }
         },
-        "pt": {
+        "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iniciar"
+            "value": "開始"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시작"
           }
         },
         "nl": {
@@ -189348,22 +190065,28 @@
             "value": "Rozpocznij"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "профиль.фокус.начать"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Başlat"
           }
         },
-        "ja": {
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "開始"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "시작"
+            "value": "配置文件.焦点.开始"
           }
         },
         "zh-Hant": {
@@ -189383,34 +190106,10 @@
             "value": "Fokus"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "профиль.фокус.заголовок"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "प्रोफ़ाइल.focus.शीरषक"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "个人资料.焦点.标题"
-          }
-        },
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Focus"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Concentration"
           }
         },
         "es": {
@@ -189419,16 +190118,34 @@
             "value": "Enfoque"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Concentration"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रोफ़ाइल.focus.शीरषक"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Concentrazione"
           }
         },
-        "pt": {
+        "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Foco"
+            "value": "集中"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "집중"
           }
         },
         "nl": {
@@ -189443,22 +190160,28 @@
             "value": "Skupienie"
           }
         },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foco"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "профиль.фокус.заголовок"
+          }
+        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Odak"
           }
         },
-        "ja": {
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "集中"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "집중"
+            "value": "个人资料.焦点.标题"
           }
         },
         "zh-Hant": {
@@ -291937,6 +292660,17 @@
         }
       }
     },
+    "weekly_report.pdf.default_filename": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Grovy_Wochenbericht"
+          }
+        }
+      }
+    },
     "weekly_report.tip.1": {
       "extractionState": "manual",
       "localizations": {
@@ -298602,670 +299336,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "例行時間：%@"
-          }
-        }
-      }
-    },
-    "focus.phone_prompt.title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wirst du das Handy weglegen?"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ты уберёшь телефон?"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "क्या तुम फोन रख दोगे?"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你会把手机放下吗？"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Will you put the phone away?"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Allez-vous ranger votre téléphone ?"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¿Dejarás el teléfono a un lado?"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Metterai via il telefono?"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vai guardar o telemóvel?"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Leg je de telefoon weg?"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Odłożysz telefon?"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Telefonu bir kenara koyacak mısın?"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "スマホを置きますか？"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "휴대폰을 치우시겠습니까?"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你會把手機放下嗎？"
-          }
-        }
-      }
-    },
-    "focus.phone_prompt.yes": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ja, weglegen"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Да, отложить"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "हाँ, रख दें"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "是的，放下"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yes, put away"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Oui, le ranger"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sí, guardarlo"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sì, mettilo via"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sim, guardar"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ja, wegleggen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tak, odłożę"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Evet, uzağa koy"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "はい、置きます"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "네, 치워둡니다"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "是的，放下"
-          }
-        }
-      }
-    },
-    "focus.phone_prompt.no": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nein, ich brauche es"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Нет, мне это нужно"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "नहीं, मुझे इसकी ज़रूरत है"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不，我需要它"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No, I need it"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Non, j'en ai besoin"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No, lo necesito"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No, mi serve"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Não, eu preciso"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nee, ik heb het nodig"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nie, potrzebuję go"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hayır, ihtiyacım var"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "いいえ、必要です"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "아니요, 필요합니다"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不，我需要它"
-          }
-        }
-      }
-    },
-    "focus.phone_prompt.message": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wähle danach die Apps aus, die für diesen Fokus blockiert werden sollen."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Выберите затем приложения, которые должны быть заблокированы для этого фокуса."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "इसके बाद उन ऐप्स को चुनें जिन्हें इस फोकस के लिए ब्लॉक किया जाना चाहिए।"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "然后选择要为此焦点阻止的应用程序。"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afterwards, select the apps that should be blocked for this focus."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ensuite, sélectionnez les applications qui doivent être bloquées pour cette session de concentration."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Después, selecciona las aplicaciones que deben bloquearse para este enfoque."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Successivamente, seleziona le app che dovrebbero essere bloccate per questa concentrazione."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Em seguida, selecione os aplicativos que devem ser bloqueados para este foco."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Selecteer daarna de apps die voor deze focus geblokkeerd moeten worden."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Następnie wybierz aplikacje, które powinny zostać zablokowane na czas tego skupienia."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ardından, bu odak için engellenmesi gereken uygulamaları seçin."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "その後、この集中のためにブロックするアプリを選択してください。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "그런 다음 이 집중에 대해 차단해야 하는 앱을 선택하세요."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "然後選擇要為此焦點阻止的應用程式。"
-          }
-        }
-      }
-    },
-    "note.joker_used": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schutzschild (Joker) automatisch aktiviert. Streak gerettet!"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Shield (Joker) automatically activated. Streak saved!"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escudo (Joker) activado automáticamente. ¡Racha guardada!"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bouclier (Joker) activé automatiquement. Série sauvegardée !"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escudo (Joker) ativado automaticamente. Sequência salva!"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Scudo (Joker) attivato automaticamente. Serie salvata!"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "シールド（ジョーカー）が自動的にアクティブ化されました。ストリークが保存されました！"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "실드(조커)가 자동으로 활성화되었습니다. 연속 기록이 저장되었습니다!"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tarcza (Joker) aktywowana automatycznie. Seria uratowana!"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schild (Joker) automatisch geactiveerd. Reeks opgeslagen!"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kalkan (Joker) otomatik olarak etkinleştirildi. Seri kaydedildi!"
-          }
-        }
-      }
-    },
-    "challenge.milestone.reached": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meilenstein erreicht! Belohnung:"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Milestone reached! Reward:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¡Hito alcanzado! Recompensa:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Étape franchie ! Récompense :"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Marco alcançado! Recompensa:"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Traguardo raggiunto! Ricompensa:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "マイルストーン到達！報酬："
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "마일스톤 달성! 보상:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kamień milowy osiągnięty! Nagroda:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mijlpaal bereikt! Beloning:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kilometre taşına ulaşıldı! Ödül:"
-          }
-        }
-      }
-    },
-    "export.pdf.filename_title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "PDF Dateiname"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "PDF Filename"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "PDF Bestandsnaam"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nom du fichier PDF"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nome file PDF"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "PDFファイル名"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "PDF 파일 이름"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nazwa pliku PDF"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nome do ficheiro PDF"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nombre de archivo PDF"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "PDF Dosya Adı"
-          }
-        }
-      }
-    },
-    "export.pdf.filename_placeholder": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name eingeben"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enter name"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Voer naam in"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entrez le nom"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inserisci nome"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "名前を入力"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이름 입력"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wpisz nazwę"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Introduzir nome"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Introducir nombre"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Adı girin"
           }
         }
       }
