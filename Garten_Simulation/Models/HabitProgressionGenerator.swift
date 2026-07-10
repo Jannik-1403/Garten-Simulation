@@ -134,12 +134,12 @@ class HabitProgressionGenerator {
         ))
     ]
     
-    static func generateDescription(for plantID: String, dayNum: Int, difficulty: String, language: String) -> String? {
+    static func generateProgression(for plantID: String, dayNum: Int, difficulty: String, language: String) -> ProgressionData? {
         guard let prog = progressions[plantID.lowercased()] else { return nil }
         
         switch prog.type {
         case .strategy(let strategy):
-            return strategy.generateDescription(dayNum: dayNum, difficulty: difficulty)
+            return strategy.generateProgression(dayNum: dayNum, difficulty: difficulty)
             
         case .linear(let baseAnf, let incAnf, let baseFort, let incFort, let baseExp, let incExp, let unitKey, let templateKey):
             let baseValue: Double
@@ -158,33 +158,38 @@ class HabitProgressionGenerator {
             }
             
             let targetValue = baseValue + (Double(dayNum - 1) * dailyIncrease)
-            
             let isIntegerUnit = ["progression_unit_reps", "progression_unit_min", "progression_unit_sec", "progression_unit_things", "progression_unit_portions"].contains(unitKey)
             
             let formattedValue = isIntegerUnit ? String(format: "%.0f", targetValue) : String(format: "%.1f", targetValue)
-            let formattedValueStr = formattedValue.replacingOccurrences(of: ".", with: ",") // For German locale compatibility if needed, but AppStrings format uses %@
+            let formattedValueStr = formattedValue.replacingOccurrences(of: ".", with: ",") 
             
             let template = NSLocalizedString(templateKey, comment: "")
             let unitText = NSLocalizedString(unitKey, comment: "")
-            
             let motIndex = (dayNum % 5) + 1
             let motivation = NSLocalizedString("progression_mot_\(motIndex)", comment: "")
-            
-            // Replaces %@ with value and unit
-            // Note: Make sure the template in AppStrings uses `%1$@` and `%2$@` or `%@` sequentially
             let baseText = String(format: template, formattedValueStr, unitText)
             
-            return "\(baseText) \(motivation)"
+            let fullDesc = "\(baseText) \(motivation)"
+            let phaseNum = min(13, max(1, ((dayNum - 1) / 7) + 1))
+            
+            return ProgressionData(
+                phaseNumber: phaseNum,
+                phaseTitle: "Woche \(phaseNum)",
+                phaseDescription: "Konsistenz aufbauen",
+                dailyTitle: "Tagesaufgabe",
+                dailyDescription: fullDesc,
+                dailyTodos: []
+            )
             
         case .phase(let einstiegKey, let aufbauKey, let vertiefungKey, let meisterschaftKey):
             let phaseKey: String
-            if dayNum <= 14 { phaseKey = einstiegKey }
-            else if dayNum <= 45 { phaseKey = aufbauKey }
-            else if dayNum <= 75 { phaseKey = vertiefungKey }
-            else { phaseKey = meisterschaftKey }
+            let phaseTitle: String
+            if dayNum <= 14 { phaseKey = einstiegKey; phaseTitle = "Einstieg" }
+            else if dayNum <= 45 { phaseKey = aufbauKey; phaseTitle = "Aufbau" }
+            else if dayNum <= 75 { phaseKey = vertiefungKey; phaseTitle = "Vertiefung" }
+            else { phaseKey = meisterschaftKey; phaseTitle = "Meisterschaft" }
             
             let text = NSLocalizedString(phaseKey, comment: "")
-            
             var diffText = ""
             if difficulty.lowercased() == "experte" {
                 diffText = NSLocalizedString("progression_diff_experte_prefix", comment: "") + " "
@@ -192,7 +197,17 @@ class HabitProgressionGenerator {
                 diffText = NSLocalizedString("progression_diff_fortgeschritten_prefix", comment: "") + " "
             }
             
-            return "\(diffText)\(text)"
+            let fullDesc = "\(diffText)\(text)"
+            let phaseNum = min(13, max(1, ((dayNum - 1) / 7) + 1))
+            
+            return ProgressionData(
+                phaseNumber: phaseNum,
+                phaseTitle: phaseTitle,
+                phaseDescription: "Bleibe am Ball",
+                dailyTitle: "Fokus für heute",
+                dailyDescription: fullDesc,
+                dailyTodos: []
+            )
         }
     }
 }

@@ -331,9 +331,10 @@ struct DailyTaskCardView: View {
             return "anfaenger"
         }()
         
-        if let plantID = tag.strang?.pflanzenID,
-           let dynamicDesc = HabitProgressionGenerator.generateDescription(for: plantID, dayNum: tag.tagNummer, difficulty: diff, language: settings.appLanguage) {
-            return dynamicDesc.replacingOccurrences(of: "[HABIT]", with: habitName)
+        let h = tag.strang.flatMap { s in gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) }
+        if let plantID = h?.plantID,
+           let dyn = HabitProgressionGenerator.generateProgression(for: plantID, dayNum: tag.tagNummer, difficulty: diff, language: settings.appLanguage) {
+            return dyn.dailyDescription.replacingOccurrences(of: "[HABIT]", with: habitName)
         }
 
         var raw = NSLocalizedString(tag.beschreibungKey, comment: "")

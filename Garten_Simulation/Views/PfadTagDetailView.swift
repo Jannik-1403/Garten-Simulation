@@ -27,6 +27,7 @@ struct PfadTagDetailView: View {
     @Environment(\.colorScheme) var colorScheme
 
     @State private var showingFocusSession = false
+    @State private var progressionData: ProgressionData? = nil
     @State private var todos: [PfadToDo] = []
     @State private var newTodoText: String = ""
     @State private var showAddTodo: Bool = false
@@ -120,7 +121,7 @@ struct PfadTagDetailView: View {
                         .padding(.top, 18)
 
                     // ── Titel ─────────────────────────────────────────
-                    Text(localizedTitle(for: tag))
+                    Text(progressionData?.dailyTitle ?? localizedTitle(for: tag))
                         .font(.system(size: 26, weight: .black, design: .rounded))
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.primary)
@@ -128,7 +129,8 @@ struct PfadTagDetailView: View {
                         .padding(.horizontal, 28)
 
                     // ── Beschreibung ──────────────────────────────────
-                    if let attrString = try? AttributedString(markdown: localizedDescription(for: tag), options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace)) {
+                    let descText = progressionData?.dailyDescription ?? localizedDescription(for: tag)
+                    if let attrString = try? AttributedString(markdown: descText, options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace)) {
                         Text(attrString)
                             .font(.system(size: 15, weight: .medium, design: .rounded))
                             .multilineTextAlignment(.leading)
@@ -137,7 +139,7 @@ struct PfadTagDetailView: View {
                             .padding(.top, 8)
                             .padding(.horizontal, 32)
                     } else {
-                        Text(localizedDescription(for: tag))
+                        Text(descText)
                             .font(.system(size: 15, weight: .medium, design: .rounded))
                             .multilineTextAlignment(.leading)
                             .foregroundStyle(.secondary)
@@ -184,12 +186,16 @@ struct PfadTagDetailView: View {
                 }
             }
             .fullScreenCover(isPresented: $showingFocusSession) {
-                if let habit = habitModel { FocusSessionView(pflanze: habit) }
+                if let habit = habitModel { 
+                    let uncompletedTodos = todos.filter { !$0.isDone }.map { $0.text }
+                    FocusSessionView(pflanze: habit, initialGoals: uncompletedTodos) 
+                }
             }
         }
         .onAppear {
             tagIstErledigt = tag.istErledigt
             loadTodos()
+            loadProgressionData()
         }
         .onDisappear {
             saveTodos()
@@ -329,7 +335,7 @@ struct PfadTagDetailView: View {
                         .font(.system(size: 13, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
                     Spacer()
-                    Text(tag.phase.localizedTitle)
+                    Text(progressionData?.phaseTitle ?? tag.phase.localizedTitle)
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundStyle(tag.phase.farbe)
                 }
@@ -355,7 +361,7 @@ struct PfadTagDetailView: View {
                 .frame(height: 12)
 
                 // Phase-Beschreibung
-                Text(tag.phase.localizedDescription)
+                Text(progressionData?.phaseDescription ?? tag.phase.localizedDescription)
                     .font(.system(size: 12, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
             }
@@ -663,6 +669,30 @@ struct PfadTagDetailView: View {
               let loaded = try? JSONDecoder().decode([PfadToDo].self, from: data) else { return }
         todos = loaded
     }
+    
+    private func loadProgressionData() {
+        let h = tag.strang.flatMap { s in gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) }
+        let diff = h?.individualSchwierigkeit ?? "anfaenger"
+        
+        if let plantID = h?.plantID,
+           let data = HabitProgressionGenerator.generateProgression(for: plantID, dayNum: tag.tagNummer, difficulty: diff, language: settings.appLanguage) {
+            
+            var mutatedData = data
+            mutatedData.dailyTitle = mutatedData.dailyTitle.replacingOccurrences(of: "[HABIT]", with: habitName(for: tag))
+            mutatedData.dailyDescription = mutatedData.dailyDescription.replacingOccurrences(of: "[HABIT]", with: habitName(for: tag))
+            self.progressionData = mutatedData
+            
+            // Auto-populate todos if first run and empty
+            let hasLoadedKey = "hasLoadedTodos_\(todoPersistenceKey)"
+            if !UserDefaults.standard.bool(forKey: hasLoadedKey) {
+                UserDefaults.standard.set(true, forKey: hasLoadedKey)
+                if todos.isEmpty && !mutatedData.dailyTodos.isEmpty {
+                    todos = mutatedData.dailyTodos.map { PfadToDo(text: $0) }
+                    saveTodos()
+                }
+            }
+        }
+    }
 
     private func addTodo() {
         let text = newTodoText.trimmingCharacters(in: .whitespaces)
@@ -709,8 +739,8 @@ struct PfadTagDetailView: View {
         let diff = h?.individualSchwierigkeit ?? "anfaenger"
         
         if let plantID = h?.plantID,
-           let dyn = HabitProgressionGenerator.generateDescription(for: plantID, dayNum: tag.tagNummer, difficulty: diff, language: settings.appLanguage) {
-            return dyn.replacingOccurrences(of: "[HABIT]", with: habitName(for: tag))
+           let dyn = HabitProgressionGenerator.generateProgression(for: plantID, dayNum: tag.tagNummer, difficulty: diff, language: settings.appLanguage) {
+            return dyn.dailyDescription.replacingOccurrences(of: "[HABIT]", with: habitName(for: tag))
         }
         var raw = NSLocalizedString(tag.beschreibungKey, comment: "")
         if raw == tag.beschreibungKey {

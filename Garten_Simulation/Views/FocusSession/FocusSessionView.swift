@@ -13,6 +13,8 @@ enum FocusSessionState: Int, Codable {
 
 struct FocusSessionView: View {
     @ObservedObject var pflanze: HabitModel
+    var initialGoals: [String] = []
+    
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var powerUpStore: PowerUpStore
@@ -123,6 +125,11 @@ struct FocusSessionView: View {
                         finishSession()
                     }
                 }
+            }
+        }
+        .onAppear {
+            if sessionGoals.isEmpty && !initialGoals.isEmpty {
+                sessionGoals = initialGoals.map { FocusGoal(text: $0) }
             }
         }
         .onDisappear {
