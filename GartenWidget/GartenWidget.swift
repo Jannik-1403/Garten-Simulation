@@ -2,31 +2,21 @@ import WidgetKit
 import SwiftUI
 
 @main
-struct GroovyMainWidgetBundle: WidgetBundle {
-    var body: some Widget {
-        GroovyWidgetBundle1()
-        GroovyWidgetBundle2()
-        // Live Activities:
-        FocusTimerLiveActivity()
-    }
-}
-
-struct GroovyWidgetBundle1: WidgetBundle {
+struct GroovyWidgetBundle: WidgetBundle {
     var body: some Widget {
         // Neue Widgets:
         GroovyWaterWidget()
         GroovyStreakWidget()
         GroovyVerlaufMediumWidget()
         GroovyVerlaufLargeWidget()
-    }
-}
-
-struct GroovyWidgetBundle2: WidgetBundle {
-    var body: some Widget {
         // Lock Screen (Pro)
         GroovyLockScreenStreakWidget()
+        
         // Interactive (Pro)
         GroovyInteractiveHabitsWidget()
+        
+        // Live Activities:
+        FocusTimerLiveActivity()
     }
 }
 
