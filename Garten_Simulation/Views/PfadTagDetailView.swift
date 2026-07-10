@@ -562,26 +562,42 @@ struct PfadTagDetailView: View {
             }
 
         } else if isLockedUntilTomorrow {
-            VStack(spacing: 8) {
-                Image(systemName: "moon.stars.fill").font(.system(size: 32)).foregroundStyle(.orange)
-                Text(String(localized: "challenge.locked_tomorrow", defaultValue: "Komm morgen wieder!"))
-                    .font(.system(size: 16, weight: .bold, design: .rounded)).foregroundStyle(.secondary)
-                Text(String(localized: "challenge.locked_tomorrow_hint", defaultValue: "Der nächste Tag öffnet sich um Mitternacht."))
-                    .font(.system(size: 13, weight: .medium, design: .rounded))
-                    .foregroundStyle(.tertiary).multilineTextAlignment(.center)
+            Item3DButton(
+                farbe: colorScheme == .dark ? Color(hex: "#2a3d58") : Color(hex: "#b8cce0"),
+                sekundaerFarbe: colorScheme == .dark ? Color(hex: "#0a1220") : Color(hex: "#8090a8"),
+                groesse: 52,
+                isRectangular: true,
+                aktion: { UIImpactFeedbackGenerator(style: .rigid).impactOccurred() }
+            ) {
+                HStack(spacing: 8) {
+                    Image(systemName: "moon.stars.fill")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.orange)
+                    Text(String(localized: "challenge.locked_tomorrow", defaultValue: "Komm morgen wieder!"))
+                        .font(.system(size: 16, weight: .black, design: .rounded))
+                        .foregroundColor(.white)
+                }
             }
-            .frame(maxWidth: .infinity).padding(.vertical, 16)
+            .frame(maxWidth: .infinity)
 
         } else {
-            VStack(spacing: 8) {
-                Image(systemName: "lock.circle.fill").font(.system(size: 32)).foregroundStyle(Color(uiColor: .systemGray3))
-                Text(String(localized: "pfad_tag_gesperrt", defaultValue: "Gesperrt"))
-                    .font(.system(size: 16, weight: .bold, design: .rounded)).foregroundStyle(.secondary)
-                Text(String(localized: "challenge.locked_future_hint", defaultValue: "Schließ zuerst den aktuellen Tag ab."))
-                    .font(.system(size: 13, weight: .medium, design: .rounded))
-                    .foregroundStyle(.tertiary).multilineTextAlignment(.center)
+            Item3DButton(
+                farbe: colorScheme == .dark ? Color(hex: "#2a3d58") : Color(hex: "#b8cce0"),
+                sekundaerFarbe: colorScheme == .dark ? Color(hex: "#0a1220") : Color(hex: "#8090a8"),
+                groesse: 52,
+                isRectangular: true,
+                aktion: { UIImpactFeedbackGenerator(style: .rigid).impactOccurred() }
+            ) {
+                HStack(spacing: 8) {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(Color.white.opacity(0.7))
+                    Text(String(localized: "pfad_tag_gesperrt", defaultValue: "Gesperrt"))
+                        .font(.system(size: 16, weight: .black, design: .rounded))
+                        .foregroundColor(Color.white.opacity(0.7))
+                }
             }
-            .frame(maxWidth: .infinity).padding(.vertical, 16)
+            .frame(maxWidth: .infinity)
         }
     }
 
