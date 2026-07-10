@@ -129,58 +129,50 @@ struct PfadTagDetailView: View {
                 .padding(.bottom, 40)
                 
                 // Footer: Unified Completion Button
-                if !tag.istErledigt {
-                    let isClickable = isToday(tag: tag)
+                if !tag.istErledigt && isToday(tag: tag) {
                     VStack(spacing: 16) {
                         if let s = tag.strang, let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
                             Button {
-                                if isClickable { showingFocusSession = true }
+                                showingFocusSession = true
                             } label: {
                                 Text(String(localized: "fokus.starten", defaultValue: "Fokus Timer"))
                             }
                             .buttonStyle(DuolingoButtonStyle(
                                 size: .large,
-                                backgroundColor: isClickable ? themeColor : Color.gray,
-                                shadowColor: isClickable ? themeColor.darker() : Color.gray.darker(),
+                                backgroundColor: themeColor,
+                                shadowColor: themeColor.darker(),
                                 foregroundColor: .white
                             ))
-                            .disabled(!isClickable)
                             .fullScreenCover(isPresented: $showingFocusSession) {
                                 FocusSessionView(pflanze: habit)
                             }
                             
                             Button {
-                                if isClickable {
-                                    pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                        dismiss()
-                                    }
+                                pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                    dismiss()
                                 }
                             } label: {
                                 Text(String(localized: "jetzt.abschliessen", defaultValue: "Jetzt abschließen"))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
-                                    .foregroundColor(isClickable ? .secondary : .secondary.opacity(0.5))
+                                    .foregroundColor(.secondary)
                             }
-                            .disabled(!isClickable)
                             
                         } else {
                             Button {
-                                if isClickable {
-                                    pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                        dismiss()
-                                    }
+                                pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                    dismiss()
                                 }
                             } label: {
                                 Text(String(localized: "pfad_tag_erledigen", defaultValue: "Erledigen"))
                             }
                             .buttonStyle(DuolingoButtonStyle(
                                 size: .large,
-                                backgroundColor: isClickable ? themeColor : Color.gray,
-                                shadowColor: isClickable ? themeColor.darker() : Color.gray.darker(),
+                                backgroundColor: themeColor,
+                                shadowColor: themeColor.darker(),
                                 foregroundColor: .white
                             ))
-                            .disabled(!isClickable)
                         }
                     }
                     .padding(.horizontal, 24)
@@ -208,7 +200,7 @@ struct PfadTagDetailView: View {
             Image(assetName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 70, height: 70)
+                .frame(width: 120, height: 120)
                 .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
                 .grayscale(isDone ? 0 : 0.4)
                 .animation(.spring(response: 0.4, dampingFraction: 0.6), value: isDone)
@@ -220,27 +212,36 @@ struct PfadTagDetailView: View {
     @ViewBuilder
     private var lockedStateView: some View {
         if !tag.istErledigt {
-            // Finde heraus, ob es wegen eines ZUKÜNFTIGEN Datums (Datum von Gestern ist HEUTE) gesperrt ist
             if let strang = tag.strang {
                 let alleTags = strang.tags.sorted(by: { $0.tagNummer < $1.tagNummer })
                 if let firstIncomplete = alleTags.first(where: { !$0.istErledigt }), tag.id == firstIncomplete.id {
-                    // Es ist der erste unfertige Tag. Warum ist er gesperrt? Weil Vorgänger heute erledigt wurde!
-                    Text(String(localized: "pfad_morgen_verfuegbar"))
-                        .font(.system(size: 14, weight: .medium, design: .rounded))
-                        .foregroundColor(.secondary)
-                        .padding(.bottom, 40)
+                    let nextMidnight = Calendar.current.startOfDay(for: Date()).addingTimeInterval(86400)
+                    let diffHours = Calendar.current.dateComponents([.hour], from: Date(), to: nextMidnight).hour ?? 0
+                    
+                    Text(String(localized: "pfad_morgen_verfuegbar", defaultValue: "Verfügbar in \(diffHours) Std."))
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 6)
+                        .background(Color.orange.opacity(0.15))
+                        .foregroundColor(.orange)
+                        .clipShape(Capsule())
                 } else {
-                    // Komplett in der Zukunft
-                    Text(String(localized: "pfad_tag_gesperrt"))
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundStyle(.secondary)
-                        .padding(.bottom, 40)
+                    Text(String(localized: "pfad_tag_gesperrt", defaultValue: "Gesperrt"))
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 6)
+                        .background(Color.gray.opacity(0.15))
+                        .foregroundColor(.gray)
+                        .clipShape(Capsule())
                 }
             } else {
-                Text(String(localized: "pfad_tag_gesperrt"))
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(.secondary)
-                    .padding(.bottom, 40)
+                Text(String(localized: "pfad_tag_gesperrt", defaultValue: "Gesperrt"))
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 6)
+                    .background(Color.gray.opacity(0.15))
+                    .foregroundColor(.gray)
+                    .clipShape(Capsule())
             }
         }
     }
@@ -344,7 +345,13 @@ struct PfadTagDetailView: View {
             if fallbackRaw != fallbackKey {
                 raw = fallbackRaw
             } else {
-                raw = String(localized: "pfad_schwierigkeit_\(diff)_desc")
+                if diff == "fortgeschritten" {
+                    raw = String(localized: "pfad_schwierigkeit_fortgeschritten_desc", defaultValue: "Steigere die Intensität und festige deine Routine.")
+                } else if diff == "profi" {
+                    raw = String(localized: "pfad_schwierigkeit_profi_desc", defaultValue: "Meistere diese Gewohnheit auf höchstem Niveau.")
+                } else {
+                    raw = String(localized: "pfad_schwierigkeit_anfaenger_desc", defaultValue: "Beginne leicht und lerne die Grundlagen dieser Gewohnheit.")
+                }
             }
         }
         

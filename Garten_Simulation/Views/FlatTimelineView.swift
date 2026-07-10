@@ -94,8 +94,8 @@ struct FlatTimelineView: View {
                 }.frame(height: 44)
                 Spacer()
                 Item3DButton(
-                    farbe: Color(hex: "#111d2e"),
-                    sekundaerFarbe: Color(hex: "#0b1524"),
+                    farbe: Color(hex: "#1e2d42"),
+                    sekundaerFarbe: Color(hex: "#111d2e"),
                     groesse: 44,
                     isRectangular: true,
                     aktion: {
