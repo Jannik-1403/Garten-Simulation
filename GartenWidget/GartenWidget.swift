@@ -2,28 +2,38 @@ import WidgetKit
 import SwiftUI
 
 @main
-struct GroovyWidgetBundle: WidgetBundle {
+struct GroovyMainWidgetBundle: WidgetBundle {
+    var body: some Widget {
+        GroovyWidgetBundle1()
+        GroovyWidgetBundle2()
+        // Live Activities:
+        FocusTimerLiveActivity()
+    }
+}
+
+struct GroovyWidgetBundle1: WidgetBundle {
     var body: some Widget {
         // Neue Widgets:
         GroovyWaterWidget()
         GroovyStreakWidget()
         GroovyVerlaufMediumWidget()
         GroovyVerlaufLargeWidget()
+    }
+}
+
+struct GroovyWidgetBundle2: WidgetBundle {
+    var body: some Widget {
         // Lock Screen (Pro)
         GroovyLockScreenStreakWidget()
-        
         // Interactive (Pro)
         GroovyInteractiveHabitsWidget()
-        
-        // Live Activities:
-        FocusTimerLiveActivity()
     }
 }
 
 
 // MARK: - Wasser-Widget (Small, konfigurierbar)
 struct GroovyWaterWidget: Widget {
-    let kind = "GroovyWaterWidgetV2"
+    let kind = "GroovyWaterWidgetV3"
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectWaterPeriodIntent.self, provider: WaterTimelineProvider()) { entry in
             WaterWidgetView(entry: entry)
@@ -40,7 +50,7 @@ struct GroovyWaterWidget: Widget {
 
 // MARK: - Streak-Widget (Small, nicht konfigurierbar)
 struct GroovyStreakWidget: Widget {
-    let kind = "GroovyStreakWidgetV2"
+    let kind = "GroovyStreakWidgetV3"
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectStreakIntent.self, provider: StreakSmallTimelineProvider()) { entry in
             StreakSmallWidgetView(entry: entry)
@@ -57,7 +67,7 @@ struct GroovyStreakWidget: Widget {
 
 // MARK: - Verlauf Medium (7 Tage)
 struct GroovyVerlaufMediumWidget: Widget {
-    let kind = "GroovyVerlaufMediumV2"
+    let kind = "GroovyVerlaufMediumV3"
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectHistoryIntent.self, provider: VerlaufMediumTimelineProvider()) { entry in
             VerlaufMediumWidgetView(entry: entry)
@@ -74,7 +84,7 @@ struct GroovyVerlaufMediumWidget: Widget {
 
 // MARK: - Verlauf Large (Aktueller Monat)
 struct GroovyVerlaufLargeWidget: Widget {
-    let kind = "GroovyVerlaufLargeV2"
+    let kind = "GroovyVerlaufLargeV3"
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectHistoryIntent.self, provider: VerlaufLargeTimelineProvider()) { entry in
             VerlaufLargeWidgetView(entry: entry)
@@ -91,7 +101,7 @@ struct GroovyVerlaufLargeWidget: Widget {
 
 // MARK: - LOCK SCREEN: Streak Widget (Pro)
 struct GroovyLockScreenStreakWidget: Widget {
-    let kind = "GroovyLockScreenStreakWidgetV2"
+    let kind = "GroovyLockScreenStreakWidgetV3"
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectStreakIntent.self, provider: StreakSmallTimelineProvider()) { entry in
             LockScreenStreakWidgetView(entry: entry)
@@ -105,7 +115,7 @@ struct GroovyLockScreenStreakWidget: Widget {
 
 // MARK: - INTERACTIVE ROUTINE WIDGET (Pro)
 struct GroovyInteractiveHabitsWidget: Widget {
-    let kind = "GroovyInteractiveHabitsWidgetV2"
+    let kind = "GroovyInteractiveHabitsWidgetV3"
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectRoutineIntent.self, provider: RoutineTimelineProvider()) { entry in
             InteractiveHabitsWidgetView(entry: entry)
