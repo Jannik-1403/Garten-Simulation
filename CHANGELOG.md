@@ -613,3 +613,4 @@
 - Verbindungslinien: Grüner Glow-Effekt auf erledigten Tagen
 - Gradient-Hintergrund, adaptiv für Dark/Light Mode
 - Aktiver Tag pulsiert mit Spring-Animation
+- Screen Time Zeitleiste: Während aktiver Block-Zeit ist der gesamte Zeitplan-Bereich read-only gesperrt (kein Picker, keine Zeitänderung, keine Tages-Toggles). Roter Lock-Banner wird angezeigt. Außerhalb der aktiven Zeit sind alle Bearbeitungen wie gewohnt möglich. Neue ScheduleBlockRow-Liste zeigt ausgewählte Zeitplan-Apps mit Clock-Icon an.
