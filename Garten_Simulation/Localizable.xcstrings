@@ -165419,13 +165419,13 @@
         }
       }
     },
-    "pfad.woche" : {
+    "pfad.schliessen" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Woche"
+            "value" : "Schließen"
           }
         }
       }
