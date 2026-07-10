@@ -6,6 +6,7 @@ enum ProgressionType {
                 baseExperte: Double, incExperte: Double, 
                 unitKey: String, templateKey: String)
     case phase(einstiegKey: String, aufbauKey: String, vertiefungKey: String, meisterschaftKey: String)
+    case strategy(HabitProgressionStrategy)
 }
 
 struct HabitProgression {
@@ -22,12 +23,7 @@ class HabitProgressionGenerator {
             baseExperte: 10.0, incExperte: 0.25, 
             unitKey: "progression_unit_km", templateKey: "progression_template_run"
         )),
-        "plant.bambus": HabitProgression(plantID: "plant.bambus", type: .linear(
-            baseAnfaenger: 10, incAnfaenger: 0.5, 
-            baseFortgeschritten: 20, incFortgeschritten: 1.0, 
-            baseExperte: 40, incExperte: 2.0, 
-            unitKey: "progression_unit_reps", templateKey: "progression_template_strength"
-        )),
+        "plant.bambus": HabitProgression(plantID: "plant.bambus", type: .strategy(StrengthProgressionStrategy())),
         "plant.efeu": HabitProgression(plantID: "plant.efeu", type: .linear(
             baseAnfaenger: 5, incAnfaenger: 0.2, 
             baseFortgeschritten: 10, incFortgeschritten: 0.3, 
@@ -142,6 +138,9 @@ class HabitProgressionGenerator {
         guard let prog = progressions[plantID.lowercased()] else { return nil }
         
         switch prog.type {
+        case .strategy(let strategy):
+            return strategy.generateDescription(dayNum: dayNum, difficulty: difficulty)
+            
         case .linear(let baseAnf, let incAnf, let baseFort, let incFort, let baseExp, let incExp, let unitKey, let templateKey):
             let baseValue: Double
             let dailyIncrease: Double

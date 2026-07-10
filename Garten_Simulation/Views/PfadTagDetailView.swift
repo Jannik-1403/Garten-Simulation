@@ -128,13 +128,23 @@ struct PfadTagDetailView: View {
                         .padding(.horizontal, 28)
 
                     // ── Beschreibung ──────────────────────────────────
-                    Text(localizedDescription(for: tag))
-                        .font(.system(size: 15, weight: .medium, design: .rounded))
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.secondary)
-                        .lineSpacing(4)
-                        .padding(.top, 8)
-                        .padding(.horizontal, 32)
+                    if let attrString = try? AttributedString(markdown: localizedDescription(for: tag), options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace)) {
+                        Text(attrString)
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
+                            .multilineTextAlignment(.leading)
+                            .foregroundStyle(.secondary)
+                            .lineSpacing(4)
+                            .padding(.top, 8)
+                            .padding(.horizontal, 32)
+                    } else {
+                        Text(localizedDescription(for: tag))
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
+                            .multilineTextAlignment(.leading)
+                            .foregroundStyle(.secondary)
+                            .lineSpacing(4)
+                            .padding(.top, 8)
+                            .padding(.horizontal, 32)
+                    }
 
                     // ── Progress-Karte ────────────────────────────────
                     progressCard
