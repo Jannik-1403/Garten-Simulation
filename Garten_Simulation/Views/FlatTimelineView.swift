@@ -41,7 +41,7 @@ struct FlatTimelineView: View {
                     ScrollView(showsIndicators: false) {
                         LazyVStack(spacing: 0) {
                             Color.clear.frame(height: 130)
-                            ForEach((0..<totalDays).reversed(), id: \.self) { i in
+                            ForEach(0..<totalDays, id: \.self) { i in
                                 timelineNode(for: i).id(i)
                             }
                             Color.clear.frame(height: 80)
@@ -121,21 +121,7 @@ struct FlatTimelineView: View {
                 }
                 .frame(height: 44)
 
-                // Dismiss (3D)
-                Button(action: { dismiss() }) {
-                    ZStack {
-                        Circle().fill(Color(hex: "#111d2e")).frame(width: 44, height: 44)
-                        Circle().fill(Color(hex: "#273d54"))
-                            .overlay(Circle().stroke(Color.white.opacity(0.15), lineWidth: 1))
-                            .frame(width: 44, height: 44)
-                            .overlay {
-                                Image(systemName: "xmark")
-                                    .font(.system(size: 13, weight: .bold))
-                                    .foregroundColor(.white.opacity(0.8))
-                            }
-                            .offset(y: -4)
-                    }
-                }
+
             }
             .padding(.horizontal, 20)
             .padding(.top, 60)
@@ -165,8 +151,10 @@ struct FlatTimelineView: View {
         let rewardIcon = getRewardIcon(for: dayNumber)
 
         VStack(spacing: 0) {
-            if i < totalDays - 1 {
-                connectorLine(isActive: isCompleted || isCurrent, tall: isMilestone)
+            // Linie OBERHALB des Nodes (zum vorherigen Tag i-1)
+            if i > 0 {
+                let prevCompleted = (i - 1) < firstUnwateredIndex
+                connectorLine(isActive: prevCompleted || isCompleted)
             }
             if isMilestone {
                 milestoneCard(dayNumber: dayNumber, rewardIcon: rewardIcon,
@@ -176,25 +164,38 @@ struct FlatTimelineView: View {
                 normalPill(dayNumber: dayNumber, isCompleted: isCompleted,
                            isCurrent: isCurrent, index: i)
             }
-            if i > 0 {
-                connectorLine(isActive: isCompleted, tall: false)
+            // Linie UNTERHALB des Nodes (zum nächsten Tag i+1)
+            if i < totalDays - 1 {
+                connectorLine(isActive: isCompleted || isCurrent)
             }
         }
     }
 
-    private func connectorLine(isActive: Bool, tall: Bool) -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 3)
-                .fill(Color.white.opacity(0.08))
-                .frame(width: 6, height: tall ? 28 : 14)
-            if isActive {
-                RoundedRectangle(cornerRadius: 3)
-                    .fill(LinearGradient(colors: [Color(hex: "#58CC02"), Color(hex: "#3d9e00")],
-                                        startPoint: .top, endPoint: .bottom))
-                    .frame(width: 6, height: tall ? 28 : 14)
-                    .shadow(color: Color(hex: "#58CC02").opacity(0.55), radius: 4)
-            }
+    private func connectorLine(isActive: Bool) -> some View {
+        // 3D-Stab: Breiter Shadow-Stab + schmalerer Top-Stab leicht nach links versetzt = Depth-Illusion
+        let topColor: Color = isActive ? Color(hex: "#58CC02") : (colorScheme == .dark ? Color(hex: "#243447") : Color(hex: "#9ab5cf"))
+        let shadowColor: Color = isActive ? Color(hex: "#3a8000") : (colorScheme == .dark ? Color(hex: "#141e2d") : Color(hex: "#7295b5"))
+        return ZStack(alignment: .leading) {
+            // Shadow-Schicht (rechts/unten)
+            RoundedRectangle(cornerRadius: 4, style: .continuous)
+                .fill(shadowColor)
+                .frame(width: 10, height: 22)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 4, style: .continuous)
+                        .stroke(Color.black.opacity(0.12), lineWidth: 0.5)
+                )
+            // Top-Schicht (leicht versetzt nach oben/links = 3D-Effekt)
+            RoundedRectangle(cornerRadius: 4, style: .continuous)
+                .fill(topColor)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 4, style: .continuous)
+                        .stroke(Color.white.opacity(isActive ? 0.25 : 0.08), lineWidth: 0.5)
+                )
+                .frame(width: 10, height: 22)
+                .offset(x: -2, y: -3)
         }
+        .frame(width: 10, height: 22)
+        .padding(.leading, 0)
     }
 
     // MARK: - Milestone 3D Card
