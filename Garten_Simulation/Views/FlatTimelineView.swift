@@ -1,14 +1,14 @@
 import SwiftUI
 
-// MARK: - 3D Timeline View für 90-Tage Challenge
+// MARK: - FlatTimelineView (Ring-basierte 90-Tage Challenge)
 struct FlatTimelineView: View {
     @ObservedObject var habit: HabitModel
-    @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
 
     private let totalDays = 90
-    private let milestones = [7, 14, 21, 30, 45, 60, 90]
+    private let milestones = Set([7, 14, 21, 30, 45, 60, 90])
 
+    @State private var expandedWeek: Int? = nil
     @State private var selectedDay: SelectedDay? = nil
 
     struct SelectedDay: Identifiable {
@@ -16,11 +16,15 @@ struct FlatTimelineView: View {
         let index: Int
     }
 
+    private var totalWeeks: Int { (totalDays + 6) / 7 }
+
     private var firstUnwateredIndex: Int {
         let calendar = Calendar.current
         let checkedDays = Set(habit.pfadCheckedDates.map { calendar.startOfDay(for: $0) })
+        let start = habit.pfadAktiviertAm ?? Date()
         return (0..<totalDays).first { i in
-            !checkedDays.contains(calendar.startOfDay(for: dayAt(index: i)))
+            let date = calendar.date(byAdding: .day, value: i, to: start) ?? Date()
+            return !checkedDays.contains(calendar.startOfDay(for: date))
         } ?? (totalDays - 1)
     }
 
@@ -34,24 +38,34 @@ struct FlatTimelineView: View {
                         ? [Color(hex: "#0f1923"), Color(hex: "#1a2638")]
                         : [Color(hex: "#e8f0f7"), Color(hex: "#d4e4f0")],
                     startPoint: .top, endPoint: .bottom
-                )
-                .ignoresSafeArea()
+                ).ignoresSafeArea()
 
                 ScrollViewReader { proxy in
                     ScrollView(showsIndicators: false) {
-                        LazyVStack(spacing: 0) {
-                            Color.clear.frame(height: 130)
-                            ForEach(0..<totalDays, id: \.self) { i in
-                                timelineNode(for: i).id(i)
+                        VStack(spacing: 32) {
+                            Color.clear.frame(height: 110)
+
+                            ForEach(0..<totalWeeks, id: \.self) { weekIndex in
+                                WeekRingView(
+                                    weekIndex: weekIndex,
+                                    habit: habit,
+                                    firstUnwateredIndex: firstUnwateredIndex,
+                                    expandedWeek: $expandedWeek,
+                                    onSelectDay: { dayIndex in
+                                        selectedDay = SelectedDay(index: dayIndex)
+                                    }
+                                )
+                                .id(weekIndex)
                             }
-                            Color.clear.frame(height: 80)
+
+                            Color.clear.frame(height: 60)
                         }
                     }
                     .onAppear {
-                        let target = firstUnwateredIndex
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        let currentWeek = firstUnwateredIndex / 7
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                             withAnimation(.easeInOut(duration: 0.5)) {
-                                proxy.scrollTo(target, anchor: .center)
+                                proxy.scrollTo(currentWeek, anchor: .center)
                             }
                         }
                     }
@@ -71,7 +85,6 @@ struct FlatTimelineView: View {
 
         return VStack(spacing: 0) {
             HStack(spacing: 12) {
-                // Difficulty Badge (3D)
                 ZStack {
                     RoundedRectangle(cornerRadius: 14, style: .continuous)
                         .fill(diffEnum.farbe.opacity(0.55))
@@ -96,7 +109,6 @@ struct FlatTimelineView: View {
 
                 Spacer()
 
-                // Joker Shields (3D)
                 ZStack {
                     RoundedRectangle(cornerRadius: 14, style: .continuous)
                         .fill(Color(hex: "#111d2e"))
@@ -112,7 +124,6 @@ struct FlatTimelineView: View {
                                     Image(systemName: i < habit.challengeJokers ? "shield.fill" : "shield")
                                         .font(.system(size: 18, weight: .bold))
                                         .foregroundColor(i < habit.challengeJokers ? Color(hex: "#58CC02") : Color.white.opacity(0.2))
-                                        .shadow(color: i < habit.challengeJokers ? Color(hex: "#58CC02").opacity(0.7) : .clear, radius: 5)
                                 }
                             }
                             .padding(.horizontal, 14)
@@ -120,8 +131,6 @@ struct FlatTimelineView: View {
                         .offset(y: -4)
                 }
                 .frame(height: 44)
-
-
             }
             .padding(.horizontal, 20)
             .padding(.top, 60)
@@ -136,207 +145,6 @@ struct FlatTimelineView: View {
             )
             Spacer()
         }
-    }
-
-    // MARK: - Timeline Node
-    @ViewBuilder
-    private func timelineNode(for i: Int) -> some View {
-        let dayNumber = i + 1
-        let isMilestone = milestones.contains(dayNumber)
-        let calendar = Calendar.current
-        let dateOfTile = dayAt(index: i)
-        let isFuture = calendar.startOfDay(for: dateOfTile) > calendar.startOfDay(for: Date())
-        let isCompleted = i < firstUnwateredIndex
-        let isCurrent = i == firstUnwateredIndex && !isFuture
-        let rewardIcon = getRewardIcon(for: dayNumber)
-
-        VStack(spacing: 0) {
-            // Linie OBERHALB des Nodes (zum vorherigen Tag i-1)
-            if i > 0 {
-                let prevCompleted = (i - 1) < firstUnwateredIndex
-                connectorLine(isActive: prevCompleted || isCompleted)
-            }
-            if isMilestone {
-                milestoneCard(dayNumber: dayNumber, rewardIcon: rewardIcon,
-                              isCompleted: isCompleted, isCurrent: isCurrent,
-                              isFuture: isFuture, index: i)
-            } else {
-                normalPill(dayNumber: dayNumber, isCompleted: isCompleted,
-                           isCurrent: isCurrent, index: i)
-            }
-            // Linie UNTERHALB des Nodes (zum nächsten Tag i+1)
-            if i < totalDays - 1 {
-                connectorLine(isActive: isCompleted || isCurrent)
-            }
-        }
-    }
-
-    private func connectorLine(isActive: Bool) -> some View {
-        // 3D-Stab: Breiter Shadow-Stab + schmalerer Top-Stab leicht nach links versetzt = Depth-Illusion
-        let topColor: Color = isActive ? Color(hex: "#58CC02") : (colorScheme == .dark ? Color(hex: "#243447") : Color(hex: "#9ab5cf"))
-        let shadowColor: Color = isActive ? Color(hex: "#3a8000") : (colorScheme == .dark ? Color(hex: "#141e2d") : Color(hex: "#7295b5"))
-        return ZStack(alignment: .leading) {
-            // Shadow-Schicht (rechts/unten)
-            RoundedRectangle(cornerRadius: 4, style: .continuous)
-                .fill(shadowColor)
-                .frame(width: 10, height: 22)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 4, style: .continuous)
-                        .stroke(Color.black.opacity(0.12), lineWidth: 0.5)
-                )
-            // Top-Schicht (leicht versetzt nach oben/links = 3D-Effekt)
-            RoundedRectangle(cornerRadius: 4, style: .continuous)
-                .fill(topColor)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 4, style: .continuous)
-                        .stroke(Color.white.opacity(isActive ? 0.25 : 0.08), lineWidth: 0.5)
-                )
-                .frame(width: 10, height: 22)
-                .offset(x: -2, y: -3)
-        }
-        .frame(width: 10, height: 22)
-        .padding(.leading, 0)
-    }
-
-    // MARK: - Milestone 3D Card
-    private func milestoneCard(dayNumber: Int, rewardIcon: String?, isCompleted: Bool, isCurrent: Bool, isFuture: Bool, index: Int) -> some View {
-        let topColor: Color = isCompleted ? Color(hex: "#58CC02")
-            : isCurrent ? Color(hex: "#FF9600")
-            : colorScheme == .dark ? Color(hex: "#2c3e50") : Color(hex: "#8fa8bf")
-        let shadowColor: Color = isCompleted ? Color(hex: "#3a8000")
-            : isCurrent ? Color(hex: "#a85e00")
-            : colorScheme == .dark ? Color(hex: "#1a2533") : Color(hex: "#6d8aaa")
-
-        return Button(action: { selectedDay = SelectedDay(index: index) }) {
-            HStack {
-                Spacer()
-                ZStack {
-                    // Base shadow
-                    RoundedRectangle(cornerRadius: 22, style: .continuous)
-                        .fill(shadowColor)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 22, style: .continuous)
-                                .stroke(Color.black.opacity(0.18), lineWidth: 1)
-                        )
-                    // Top layer
-                    RoundedRectangle(cornerRadius: 22, style: .continuous)
-                        .fill(LinearGradient(
-                            colors: [topColor, topColor.opacity(0.8)],
-                            startPoint: .topLeading, endPoint: .bottomTrailing))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 22, style: .continuous)
-                                .stroke(Color.white.opacity(isCompleted || isCurrent ? 0.3 : 0.1), lineWidth: 1)
-                        )
-                        .overlay {
-                            HStack(spacing: 14) {
-                                // Reward Icon
-                                ZStack {
-                                    Circle().fill(Color.black.opacity(0.18)).frame(width: 52, height: 52)
-                                    if let icon = rewardIcon {
-                                        Image(icon).resizable().scaledToFit().frame(width: 36, height: 36)
-                                    } else {
-                                        Image(systemName: isCurrent ? "star.fill" : "flag.fill")
-                                            .font(.system(size: 22, weight: .bold))
-                                            .foregroundColor(.white)
-                                    }
-                                }
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(String(localized: "pfad.meilenstein", defaultValue: "Meilenstein"))
-                                        .font(.system(size: 10, weight: .bold, design: .rounded))
-                                        .foregroundColor(.white.opacity(0.7))
-                                        .textCase(.uppercase)
-                                        .tracking(1)
-                                    Text(String(format: String(localized: "pfad_tag_header"), dayNumber))
-                                        .font(.system(size: 24, weight: .black, design: .rounded))
-                                        .foregroundColor(.white)
-                                }
-                                Spacer()
-                                ZStack {
-                                    Circle().fill(Color.black.opacity(0.18)).frame(width: 36, height: 36)
-                                    Image(systemName: isCompleted ? "checkmark" : isCurrent ? "play.fill" : "lock.fill")
-                                        .font(.system(size: 14, weight: .bold))
-                                        .foregroundColor(isFuture ? .white.opacity(0.3) : .white)
-                                }
-                            }
-                            .padding(.horizontal, 16)
-                        }
-                        .offset(y: -5)
-                }
-                .frame(width: 320, height: 76)
-                .shadow(color: topColor.opacity(isCurrent ? 0.55 : isCompleted ? 0.28 : 0), radius: isCurrent ? 14 : 6, x: 0, y: 4)
-                Spacer()
-            }
-        }
-        .buttonStyle(PlainButtonStyle())
-        .scaleEffect(isCurrent ? 1.025 : 1.0)
-        .animation(isCurrent ? .easeInOut(duration: 1.5).repeatForever(autoreverses: true) : .default, value: isCurrent)
-    }
-
-    // MARK: - Normal 3D Pill
-    private func normalPill(dayNumber: Int, isCompleted: Bool, isCurrent: Bool, index: Int) -> some View {
-        let topColor: Color = isCompleted ? Color(hex: "#58CC02")
-            : isCurrent ? Color(hex: "#FF9600")
-            : colorScheme == .dark ? Color(hex: "#243447") : Color(hex: "#9ab5cf")
-        let shadowColor: Color = isCompleted ? Color(hex: "#3a8000")
-            : isCurrent ? Color(hex: "#a85e00")
-            : colorScheme == .dark ? Color(hex: "#141e2d") : Color(hex: "#7295b5")
-
-        return Button(action: { selectedDay = SelectedDay(index: index) }) {
-            HStack {
-                Spacer()
-                ZStack {
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .fill(shadowColor)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                                .stroke(Color.black.opacity(0.12), lineWidth: 1)
-                        )
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .fill(topColor)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                                .stroke(Color.white.opacity(isCompleted || isCurrent ? 0.22 : 0.07), lineWidth: 1)
-                        )
-                        .overlay {
-                            HStack(spacing: 10) {
-                                ZStack {
-                                    Circle().fill(Color.black.opacity(0.15)).frame(width: 26, height: 26)
-                                    Image(systemName: isCompleted ? "checkmark" : isCurrent ? "arrow.right" : "minus")
-                                        .font(.system(size: 11, weight: .bold))
-                                        .foregroundColor(isCompleted || isCurrent ? .white : .white.opacity(0.3))
-                                }
-                                Text(String(format: String(localized: "pfad_tag_header"), dayNumber))
-                                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                                    .foregroundColor(isCompleted || isCurrent ? .white : .white.opacity(0.45))
-                                Spacer()
-                            }
-                            .padding(.horizontal, 12)
-                        }
-                        .offset(y: -3)
-                }
-                .frame(width: 200, height: 44)
-                Spacer()
-            }
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-
-    // MARK: - Helpers
-    private func getRewardIcon(for day: Int) -> String? {
-        switch day {
-        case 7, 21, 45: return "coin"
-        case 14: return "Unkraut_Schild"
-        case 30: return "Powerup-Zeitkapsel"
-        case 60: return "Powerup-Glückssegen"
-        case 90: return "Achievment_Gold"
-        default: return nil
-        }
-    }
-
-    private func dayAt(index: Int) -> Date {
-        let cal = Calendar.current
-        let start = habit.pfadAktiviertAm ?? Date()
-        return cal.date(byAdding: .day, value: index, to: start) ?? Date()
     }
 
     private func makeFakePfadStrangTag(index: Int) -> PfadStrangTag {
@@ -355,5 +163,292 @@ struct FlatTimelineView: View {
         )
         tag.strang = strang
         return tag
+    }
+}
+
+// MARK: - WeekRingView
+struct WeekRingView: View {
+    let weekIndex: Int
+    @ObservedObject var habit: HabitModel
+    let firstUnwateredIndex: Int
+    @Binding var expandedWeek: Int?
+    var onSelectDay: (Int) -> Void
+    @Environment(\.colorScheme) var colorScheme
+
+    private let ringRadius: CGFloat = 72
+    private let nodeNormalSize: CGFloat = 36
+    private let nodeMilestoneSize: CGFloat = 50
+    private let lineSpacing: CGFloat = 64
+    private let milestones = Set([7, 14, 21, 30, 45, 60, 90])
+
+    @State private var expandProgress: CGFloat = 0
+
+    private var isExpanded: Bool { expandedWeek == weekIndex }
+
+    private var dayIndices: [Int] {
+        let start = weekIndex * 7
+        let end = min(start + 7, 90)
+        return Array(start..<end)
+    }
+
+    private var weekCompletedCount: Int {
+        dayIndices.filter { $0 < firstUnwateredIndex }.count
+    }
+    private var weekIsFullyDone: Bool { weekCompletedCount == dayIndices.count }
+    private var weekIsCurrent: Bool { dayIndices.contains(firstUnwateredIndex) }
+
+    private var ringTopColor: Color {
+        weekIsFullyDone ? Color(hex: "#58CC02")
+            : weekIsCurrent ? Color(hex: "#FF9600")
+            : colorScheme == .dark ? Color(hex: "#243447") : Color(hex: "#9ab5cf")
+    }
+    private var ringShadowColor: Color {
+        weekIsFullyDone ? Color(hex: "#3a8000")
+            : weekIsCurrent ? Color(hex: "#a85e00")
+            : colorScheme == .dark ? Color(hex: "#141e2d") : Color(hex: "#7295b5")
+    }
+
+    // MARK: - Position Math
+    private func ringPos(index: Int, total: Int) -> CGPoint {
+        let angle = (2 * Double.pi / Double(total)) * Double(index) - Double.pi / 2
+        return CGPoint(x: cos(angle) * Double(ringRadius), y: sin(angle) * Double(ringRadius))
+    }
+
+    private func linePos(index: Int, total: Int) -> CGPoint {
+        let totalH = CGFloat(total - 1) * lineSpacing
+        return CGPoint(x: 0, y: CGFloat(index) * lineSpacing - totalH / 2)
+    }
+
+    private func currentPos(index: Int, total: Int) -> CGPoint {
+        let rp = ringPos(index: index, total: total)
+        let lp = linePos(index: index, total: total)
+        let t = expandProgress
+
+        // Last node (bottom of week) swings left during mid-animation
+        let swing = index == total - 1 ? CGFloat(sin(Double(t) * Double.pi)) * -24 : 0
+
+        return CGPoint(
+            x: CGFloat(rp.x) + (lp.x - CGFloat(rp.x)) * t + swing,
+            y: CGFloat(rp.y) + (lp.y - CGFloat(rp.y)) * t
+        )
+    }
+
+    private var frameHeight: CGFloat {
+        let total = CGFloat(dayIndices.count)
+        let collapsed = ringRadius * 2 + 56
+        let expanded = (total - 1) * lineSpacing + nodeMilestoneSize + 72
+        return collapsed + (expanded - collapsed) * expandProgress
+    }
+
+    // MARK: - Body
+    var body: some View {
+        ZStack {
+            // Ring background disk (fades when expanding)
+            ringBackground
+
+            // Connector line (appears when expanded)
+            expandedConnector
+
+            // Day nodes
+            ForEach(Array(dayIndices.enumerated()), id: \.element) { idx, dayIndex in
+                let total = dayIndices.count
+                let pos = currentPos(index: idx, total: total)
+                let dayNumber = dayIndex + 1
+                let completed = dayIndex < firstUnwateredIndex
+                let current = dayIndex == firstUnwateredIndex
+                let milestone = milestones.contains(dayNumber)
+
+                dayNode(
+                    dayNumber: dayNumber,
+                    dayIndex: dayIndex,
+                    completed: completed,
+                    current: current,
+                    milestone: milestone
+                )
+                .offset(x: pos.x, y: pos.y)
+                .animation(
+                    .spring(response: 0.52, dampingFraction: 0.70)
+                        .delay(Double(idx) * 0.042),
+                    value: expandProgress
+                )
+                .zIndex(Double(total - idx))
+            }
+
+            // Center label
+            centerLabel
+                .opacity(max(0, 1 - expandProgress * 2.5))
+                .allowsHitTesting(false)
+        }
+        .frame(height: frameHeight)
+        .animation(.spring(response: 0.5, dampingFraction: 0.76), value: frameHeight)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            if isExpanded {
+                withAnimation { expandedWeek = nil }
+            }
+        }
+        .onChange(of: isExpanded) { _, newValue in
+            withAnimation(.spring(response: 0.58, dampingFraction: 0.72)) {
+                expandProgress = newValue ? 1.0 : 0.0
+            }
+        }
+        .onAppear {
+            expandProgress = isExpanded ? 1.0 : 0.0
+        }
+    }
+
+    // MARK: - Ring Background
+    private var ringBackground: some View {
+        ZStack {
+            // Shadow disk
+            Circle()
+                .fill(ringShadowColor.opacity(0.45))
+                .frame(width: ringRadius * 2 + 12, height: ringRadius * 2 + 12)
+            // Top disk
+            Circle()
+                .fill(
+                    RadialGradient(
+                        colors: [ringTopColor.opacity(0.14), ringTopColor.opacity(0.04)],
+                        center: .center, startRadius: 0, endRadius: ringRadius
+                    )
+                )
+                .overlay(
+                    Circle()
+                        .stroke(
+                            LinearGradient(
+                                colors: [ringTopColor.opacity(0.6), ringTopColor.opacity(0.2)],
+                                startPoint: .topLeading, endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 2.5
+                        )
+                )
+                .frame(width: ringRadius * 2 + 12, height: ringRadius * 2 + 12)
+                .offset(y: -4)
+        }
+        .opacity(max(0, 1 - expandProgress * 1.8))
+    }
+
+    // MARK: - Expanded 3D Connector Line
+    private var expandedConnector: some View {
+        let total = dayIndices.count
+        let connectorHeight = CGFloat(total - 1) * lineSpacing
+        let active = weekIsFullyDone
+        let topColor: Color = active ? Color(hex: "#58CC02") : (colorScheme == .dark ? Color(hex: "#243447") : Color(hex: "#9ab5cf"))
+        let shadowCol: Color = active ? Color(hex: "#3a8000") : (colorScheme == .dark ? Color(hex: "#141e2d") : Color(hex: "#7295b5"))
+
+        return ZStack {
+            // Shadow bar
+            RoundedRectangle(cornerRadius: 5, style: .continuous)
+                .fill(shadowCol)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5, style: .continuous)
+                        .stroke(Color.black.opacity(0.15), lineWidth: 0.5)
+                )
+                .frame(width: 12, height: connectorHeight)
+            // Top bar with 3D offset
+            RoundedRectangle(cornerRadius: 5, style: .continuous)
+                .fill(topColor)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5, style: .continuous)
+                        .stroke(Color.white.opacity(active ? 0.22 : 0.08), lineWidth: 0.5)
+                )
+                .frame(width: 12, height: connectorHeight)
+                .offset(x: -2, y: -3)
+        }
+        .opacity(max(0, (expandProgress - 0.38) * 2.2))
+    }
+
+    // MARK: - Center Label
+    private var centerLabel: some View {
+        VStack(spacing: 3) {
+            Text(String(localized: "pfad.woche", defaultValue: "Woche"))
+                .font(.system(size: 9, weight: .bold, design: .rounded))
+                .foregroundColor(ringTopColor.opacity(0.75))
+                .textCase(.uppercase)
+                .tracking(1.5)
+            Text("\(weekIndex + 1)")
+                .font(.system(size: 30, weight: .black, design: .rounded))
+                .foregroundColor(ringTopColor)
+            HStack(spacing: 4) {
+                ForEach(0..<dayIndices.count, id: \.self) { i in
+                    Circle()
+                        .fill(dayIndices[i] < firstUnwateredIndex ? ringTopColor : ringTopColor.opacity(0.25))
+                        .frame(width: 5, height: 5)
+                }
+            }
+        }
+    }
+
+    // MARK: - Day Node
+    @ViewBuilder
+    private func dayNode(dayNumber: Int, dayIndex: Int, completed: Bool, current: Bool, milestone: Bool) -> some View {
+        let nodeSize: CGFloat = milestone ? nodeMilestoneSize : nodeNormalSize
+        let topColor: Color = completed ? Color(hex: "#58CC02")
+            : current ? Color(hex: "#FF9600")
+            : colorScheme == .dark ? Color(hex: "#243447") : Color(hex: "#9ab5cf")
+        let nodeShadow: Color = completed ? Color(hex: "#3a8000")
+            : current ? Color(hex: "#a85e00")
+            : colorScheme == .dark ? Color(hex: "#141e2d") : Color(hex: "#7295b5")
+
+        Button(action: {
+            if isExpanded {
+                onSelectDay(dayIndex)
+            } else {
+                withAnimation(.spring(response: 0.5, dampingFraction: 0.75)) {
+                    expandedWeek = weekIndex
+                }
+            }
+        }) {
+            ZStack {
+                // Shadow circle (3D base)
+                Circle()
+                    .fill(nodeShadow)
+                    .overlay(Circle().stroke(Color.black.opacity(0.18), lineWidth: 1))
+
+                // Top circle (3D surface)
+                Circle()
+                    .fill(
+                        LinearGradient(
+                            colors: [topColor, topColor.opacity(0.82)],
+                            startPoint: .topLeading, endPoint: .bottomTrailing
+                        )
+                    )
+                    .overlay(Circle().stroke(Color.white.opacity(completed || current ? 0.28 : 0.08), lineWidth: 1))
+                    .overlay {
+                        if expandProgress > 0.6 {
+                            // Expanded: day number / status icon
+                            Group {
+                                if milestone {
+                                    Image(systemName: completed ? "checkmark" : current ? "star.fill" : "lock.fill")
+                                        .font(.system(size: nodeSize * 0.3, weight: .bold))
+                                        .foregroundColor(completed || current ? .white : .white.opacity(0.3))
+                                } else {
+                                    Text("\(dayNumber)")
+                                        .font(.system(size: nodeSize * 0.35, weight: .black, design: .rounded))
+                                        .foregroundColor(completed || current ? .white : .white.opacity(0.4))
+                                }
+                            }
+                            .opacity(min(1, (expandProgress - 0.6) * 3))
+                        } else {
+                            // Collapsed: checkmark / arrow
+                            Image(systemName: completed ? "checkmark" : current ? "arrow.right" : "minus")
+                                .font(.system(size: nodeSize * 0.28, weight: .bold))
+                                .foregroundColor(completed || current ? .white : .white.opacity(0.28))
+                                .opacity(max(0, 1 - expandProgress * 3))
+                        }
+                    }
+                    .frame(width: nodeSize, height: nodeSize)
+                    .offset(y: -(nodeSize * 0.13)) // 3D top-layer lift
+            }
+            .frame(width: nodeSize + 6, height: nodeSize + 6)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .scaleEffect(current && expandProgress > 0.85 ? 1.07 : 1.0)
+        .animation(
+            current && expandProgress > 0.85
+                ? .easeInOut(duration: 1.4).repeatForever(autoreverses: true)
+                : .default,
+            value: current && expandProgress > 0.85
+        )
     }
 }
