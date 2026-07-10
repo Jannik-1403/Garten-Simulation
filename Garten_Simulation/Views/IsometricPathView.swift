@@ -190,6 +190,19 @@ struct IsometricPathView: View {
                             .background(diffEnum.farbe)
                             .cornerRadius(16)
                             .shadow(color: diffEnum.farbe.darker(), radius: 0, x: 0, y: 4)
+                            
+                            // Joker / Shields
+                            HStack(spacing: 4) {
+                                ForEach(0..<habit.maxChallengeJokers, id: \.self) { i in
+                                    Image(systemName: i < habit.challengeJokers ? "shield.fill" : "shield")
+                                        .foregroundColor(i < habit.challengeJokers ? Color(hex: "#58CC02") : .white.opacity(0.4))
+                                        .shadow(radius: i < habit.challengeJokers ? 2 : 0)
+                                }
+                            }
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(Color.black.opacity(0.2))
+                            .cornerRadius(16)
                         }
                         .padding(.horizontal, 16)
                         .padding(.top, 16)
@@ -517,9 +530,21 @@ struct IsometricPathView: View {
             } else { return .nichtFreigeschalten }
         }()
         
-        PathTileView(
+        let rewardIcon: String? = {
+            switch i + 1 {
+            case 7, 21, 45: return "coin"
+            case 14: return "Unkraut_Schild"
+            case 30: return "Powerup-Zeitkapsel"
+            case 60: return "Powerup-Glückssegen"
+            case 90: return "Achievment_Gold"
+            default: return nil
+            }
+        }()
+        
+        return PathTileView(
             dayNumber: i + 1,
             status: status,
+            rewardIcon: rewardIcon,
             action: {
                 withAnimation(.spring()) {
                     selectedDay = SelectedDay(index: i)

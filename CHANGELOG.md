@@ -1,3 +1,7 @@
+## [Unreleased]
+- Joker-Schilder im Header des neuen IsometricPathView hinzugefügt.
+- Meilenstein-Belohnungs-Icons (Geschenk, Unkrautschild, Zeitkapsel, Glückssegen, Achievment Gold) auf den jeweiligen Stufen (Tag 14, 30, 60, 90) im IsometricPathView hinzugefügt.
+
 - Bugfix: Tracker-Fortschritt bei Gewohnheiten wird nun jeden Tag um Mitternacht zusammen mit der Bewässerung korrekt zurückgesetzt.
 - Feature: Generic Focus Timer auf dem Profil-Dashboard hinzugefügt (mit individueller Benennung, Belohnung durch Münzen und Erfassung in den Statistiken).
 - Refactor: Inventory-Button auf dem Profil-Dashboard in ein vertikales Layout (Item3DButton) umgebaut.
@@ -593,3 +597,4 @@
 - Fokus Timer: Fehlende Übersetzungen für alle unterstützten Sprachen ergänzt, damit auf Englisch nicht mehr die deutschen Fallbacks angezeigt werden.
 - Hinzugefügt: Benutzerdefinierter Dateiname für PDF-Exporte (Wochenbericht & Einstellungen)
 - 90-Tage Challenge Rework: Joker System und Milestone Rewards implementiert. Lokalisierung angepasst.
+- Added a toggle for Apple Health habits to allow manual tracking alongside HealthKit synchronization.

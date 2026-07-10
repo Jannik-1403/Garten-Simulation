@@ -3,6 +3,7 @@ import SwiftUI
 struct PathTileView: View {
     let dayNumber: Int
     let status: TileStatus
+    var rewardIcon: String? = nil
     let action: () -> Void
 
     enum TileStatus {
@@ -32,6 +33,16 @@ struct PathTileView: View {
                         .foregroundColor(textColor)
                         .shadow(color: shadowColor, radius: 0, x: 0, y: 2)
                         .offset(y: -8)
+                }
+                
+                // 3. Reward Icon (falls vorhanden)
+                if let rewardIcon = rewardIcon {
+                    Image(rewardIcon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 40, height: 40)
+                        .offset(y: -20)
+                        .shadow(radius: 2)
                 }
             }
         }
