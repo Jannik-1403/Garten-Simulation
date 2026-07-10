@@ -667,3 +667,4 @@
 - `jetzt.abschliessen`: DE, EN, ES, FR, HI, IT, JA, KO, NL, PL, PT, RU, TR, ZH-Hans, ZH-Hant
 - `fokus.starten`: alle 15 Sprachen
 - `pfad_tag_erledigt_badge`: alle 15 Sprachen
+- 90-Tage Challenge: Architektur-Update mit strukturierten Phasen und Auto-Sync von Tagesaufgaben in den Fokus Timer.

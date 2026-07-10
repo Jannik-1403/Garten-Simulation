@@ -172,13 +172,29 @@ class HabitProgressionGenerator {
             let fullDesc = "\(baseText) \(motivation)"
             let phaseNum = min(13, max(1, ((dayNum - 1) / 7) + 1))
             
+            let dynamicTodo: String
+            switch plantID.lowercased() {
+            case "plant.wildgras": dynamicTodo = "Laufe \(formattedValueStr) \(unitText)"
+            case "plant.efeu": dynamicTodo = "Dehne dich für \(formattedValueStr) \(unitText)"
+            case "plant.lotus": dynamicTodo = "Meditiere \(formattedValueStr) \(unitText)"
+            case "plant.klee": dynamicTodo = "Notiere \(formattedValueStr) \(unitText)"
+            case "plant.zitronenbaum": dynamicTodo = "Trinke \(formattedValueStr) \(unitText) Wasser"
+            case "plant.erdbeerpflanze": dynamicTodo = "Iss \(formattedValueStr) \(unitText)"
+            case "plant.kaktus": dynamicTodo = "Dusche \(formattedValueStr) \(unitText) kalt"
+            case "plant.weizenfeld": dynamicTodo = "Arbeite \(formattedValueStr) \(unitText) fokussiert"
+            case "plant.chrysantheme": dynamicTodo = "Räume \(formattedValueStr) \(unitText) auf"
+            case "plant.mandelbaum": dynamicTodo = "Lege \(formattedValueStr) \(unitText) beiseite"
+            case "plant.mystic_seed": dynamicTodo = "Mache \(formattedValueStr) \(unitText) Atemübungen"
+            default: dynamicTodo = "Tagesziel: \(formattedValueStr) \(unitText)"
+            }
+            
             return ProgressionData(
                 phaseNumber: phaseNum,
                 phaseTitle: "Woche \(phaseNum)",
                 phaseDescription: "Konsistenz aufbauen",
                 dailyTitle: "Tagesaufgabe",
                 dailyDescription: fullDesc,
-                dailyTodos: []
+                dailyTodos: [dynamicTodo, "Fortschritt im Timer fokussiert"]
             )
             
         case .phase(let einstiegKey, let aufbauKey, let vertiefungKey, let meisterschaftKey):
@@ -200,13 +216,25 @@ class HabitProgressionGenerator {
             let fullDesc = "\(diffText)\(text)"
             let phaseNum = min(13, max(1, ((dayNum - 1) / 7) + 1))
             
+            let phaseTodos: [String]
+            switch plantID.lowercased() {
+            case "plant.kirschbaum": phaseTodos = ["Zeit für dich genommen", "Achtsamkeits-Routine durchgeführt"]
+            case "plant.aloe_vera": phaseTodos = ["Bildschirmzeit-Limit eingehalten", "Handyfreie Zone respektiert"]
+            case "plant.minzpflanze": phaseTodos = ["Zähne geputzt", "Zahnseide benutzt"]
+            case "plant.weinrebe": phaseTodos = ["Erfolgreich verzichtet", "Bewusst für eine Alternative entschieden"]
+            case "plant.apfelbaum": phaseTodos = ["Frisch gekocht", "Ausgewogene Zutaten gewählt"]
+            case "plant.lavendel": phaseTodos = ["Zur Zielzeit im Bett", "Kein Screen im Bett"]
+            case "plant.sonnenblume": phaseTodos = ["Beim ersten Wecker aufgestanden", "Morgenroutine gestartet"]
+            default: phaseTodos = ["Tagesziel erreicht", "Fortschritt reflektiert"]
+            }
+            
             return ProgressionData(
                 phaseNumber: phaseNum,
                 phaseTitle: phaseTitle,
                 phaseDescription: "Bleibe am Ball",
                 dailyTitle: "Fokus für heute",
                 dailyDescription: fullDesc,
-                dailyTodos: []
+                dailyTodos: phaseTodos
             )
         }
     }
