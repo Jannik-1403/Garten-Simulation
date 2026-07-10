@@ -598,3 +598,4 @@
 - Hinzugefügt: Benutzerdefinierter Dateiname für PDF-Exporte (Wochenbericht & Einstellungen)
 - 90-Tage Challenge Rework: Joker System und Milestone Rewards implementiert. Lokalisierung angepasst.
 - Added a toggle for Apple Health habits to allow manual tracking alongside HealthKit synchronization.
+- Screen Time: Zeitleiste (Schedule) blockiert während der aktiven Zeit nun nicht mehr das gesamte Fenster, sondern erlaubt weiterhin das Hinzufügen von Apps (Entfernen ist gesperrt). Zudem wurde gegenseitiger Ausschluss zwischen Zeitleiste und permanenten Blockaden (Ebene 2) implementiert.
