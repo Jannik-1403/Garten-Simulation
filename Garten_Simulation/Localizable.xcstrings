@@ -100375,6 +100375,24 @@
             "state": "new",
             "value": "Garten_Bericht"
           }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "export.pdf.имя_файла_по_умолчанию"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निर्यात.pdf.डिफ़ॉल्ट_फ़ाइलनाम"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导出.pdf.默认文件名"
+          }
         }
       }
     },
@@ -100446,6 +100464,24 @@
             "state": "translated",
             "value": "Adı girin"
           }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Введите имя"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नाम दर्ज करें"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "输入姓名"
+          }
         }
       }
     },
@@ -100516,6 +100552,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "PDF Dosya Adı"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Имя файла PDF"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पीडीएफ फ़ाइल नाम"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF 文件名"
           }
         }
       }
@@ -292668,6 +292722,24 @@
             "state": "new",
             "value": "Grovy_Wochenbericht"
           }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "weekly_report.pdf.default_filename"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "weekly_report.pdf.default_filename"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "weekly_report.pdf.默认文件名"
+          }
         }
       }
     },
@@ -299389,6 +299461,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "手动输入"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "साथ ही मैन्युअली दर्ज करें"
           }
         }
       }

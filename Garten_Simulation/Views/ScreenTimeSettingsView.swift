@@ -15,6 +15,7 @@ struct ScreenTimeSettingsView: View {
     
     @State private var isPickerPresented = false
     @State private var blockSelection = FamilyActivitySelection()
+    @State private var oldBlockSelection = FamilyActivitySelection()
     
     @State private var isDailyLimitPickerPresented = false
     @State private var dailyLimitSelection = FamilyActivitySelection()
@@ -47,35 +48,24 @@ struct ScreenTimeSettingsView: View {
     var body: some View {
         ZStack {
             Color.appHintergrund.ignoresSafeArea()
-            
-            if manager.isCurrentlyInBlockWindow {
-                blockedStateView
-            } else {
-                settingsScrollView
-            }
+            settingsScrollView
         }
         .navigationTitle(String(localized: "screenTime.title.short", defaultValue: "Zeit"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            if !manager.isCurrentlyInBlockWindow {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(String(localized: "common.done", defaultValue: "Fertig")) {
-                        saveSettings()
-                        dismiss()
-                    }
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(Color.gruenPrimary)
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(String(localized: "common.done", defaultValue: "Fertig")) {
+                    saveSettings()
+                    dismiss()
                 }
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(String(localized: "common.cancel", defaultValue: "Abbrechen")) {
-                        dismiss()
-                    }
-                    .font(.system(size: 16, weight: .regular, design: .rounded))
+                .font(.system(size: 16, weight: .bold, design: .rounded))
+                .foregroundStyle(Color.gruenPrimary)
+            }
+            ToolbarItem(placement: .topBarLeading) {
+                Button(String(localized: "common.cancel", defaultValue: "Abbrechen")) {
+                    dismiss()
                 }
-            } else {
-                ToolbarItem(placement: .topBarTrailing) {
-                    LiquidGlassDismissButton { dismiss() }
-                }
+                .font(.system(size: 16, weight: .regular, design: .rounded))
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -88,6 +78,7 @@ struct ScreenTimeSettingsView: View {
             }
             isScheduleActive = manager.isScheduleActive
             blockSelection = manager.blockSelection
+            oldBlockSelection = manager.blockSelection
             
             dailyLimitSelection = manager.dailyLimitSelection
             oldDailyLimitSelection = manager.dailyLimitSelection
@@ -124,6 +115,31 @@ struct ScreenTimeSettingsView: View {
             // get properly initialized. Uses same token instances → no mismatch.
             manager.syncLimitsAfterPickerChange()
         }
+        .onChange(of: blockSelection) { newValue in
+            var enforcedSelection = newValue
+            
+            // Wenn wir in der aktiven Block-Zeit sind, darf man nichts abwählen (wegmachen)
+            if manager.isCurrentlyInBlockWindow {
+                enforcedSelection.applicationTokens.formUnion(oldBlockSelection.applicationTokens)
+                enforcedSelection.categoryTokens.formUnion(oldBlockSelection.categoryTokens)
+                enforcedSelection.webDomainTokens.formUnion(oldBlockSelection.webDomainTokens)
+            }
+            
+            // Wenn in Zeitleiste ausgewählt, aus Ebene 2 (permanentBlockSelection) entfernen
+            var newPermanent = permanentBlockSelection
+            newPermanent.applicationTokens.subtract(enforcedSelection.applicationTokens)
+            newPermanent.categoryTokens.subtract(enforcedSelection.categoryTokens)
+            newPermanent.webDomainTokens.subtract(enforcedSelection.webDomainTokens)
+            if newPermanent != permanentBlockSelection {
+                permanentBlockSelection = newPermanent
+                oldPermanentBlockSelection = newPermanent
+            }
+            
+            if blockSelection != enforcedSelection {
+                blockSelection = enforcedSelection
+            }
+            oldBlockSelection = enforcedSelection
+        }
         .onChange(of: permanentBlockSelection) { newValue in
             var enforcedSelection = newValue
             
@@ -154,6 +170,16 @@ struct ScreenTimeSettingsView: View {
             if newDaily != dailyLimitSelection {
                 dailyLimitSelection = newDaily
                 oldDailyLimitSelection = newDaily
+            }
+            
+            // Auch aus Zeitleiste (blockSelection) entfernen
+            var newBlock = blockSelection
+            newBlock.applicationTokens.subtract(enforcedSelection.applicationTokens)
+            newBlock.categoryTokens.subtract(enforcedSelection.categoryTokens)
+            newBlock.webDomainTokens.subtract(enforcedSelection.webDomainTokens)
+            if newBlock != blockSelection {
+                blockSelection = newBlock
+                oldBlockSelection = newBlock
             }
             
             if permanentBlockSelection != enforcedSelection {
@@ -215,41 +241,6 @@ struct ScreenTimeSettingsView: View {
             }
         } message: {
             Text(String(localized: "screenTime.limit.confirm.message", defaultValue: "Sobald das Limit festgelegt ist, kannst du es heute nicht mehr erhöhen!"))
-        }
-    }
-    
-    // MARK: - Blocked State
-    
-    private var blockedStateView: some View {
-        VStack(spacing: 24) {
-            Image(systemName: "lock.shield.fill")
-                .font(.system(size: 64))
-                .foregroundStyle(.red)
-            
-            Text(String(localized: "screenTime.blocked.title", defaultValue: "Bildschirmzeit blockiert"))
-                .font(.system(size: 24, weight: .bold, design: .rounded))
-            
-            Text(String(localized: "screenTime.blocked.desc", defaultValue: "Du befindest dich gerade in deiner aktiven Block-Zeit."))
-                .font(.system(size: 16, weight: .medium, design: .rounded))
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 32)
-                
-            Button(role: .destructive) {
-                manager.isScheduleActive = false
-                isScheduleActive = false
-                manager.unblockApps()
-            } label: {
-                Text(String(localized: "screenTime.emergency.unlock", defaultValue: "Notfall-Entsperrung"))
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.red.opacity(0.1))
-                    .foregroundStyle(.red)
-                    .cornerRadius(16)
-            }
-            .padding(.horizontal, 32)
-            .padding(.top, 16)
         }
     }
     
@@ -534,6 +525,18 @@ struct ScreenTimeSettingsView: View {
                             }
                         )
                         .padding(.horizontal)
+                    }
+                    
+                    if manager.isCurrentlyInBlockWindow {
+                        HStack(spacing: 8) {
+                            Image(systemName: "lock.shield.fill")
+                                .foregroundStyle(.red)
+                            Text(String(localized: "screenTime.schedule.locked.info", defaultValue: "Die Zeitleiste ist gerade aktiv. Du kannst Apps hinzufügen, aber keine entfernen."))
+                                .font(.system(size: 13, weight: .medium, design: .rounded))
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.horizontal)
+                        .padding(.top, 4)
                     }
                     
                     // Block Selection – 3D Button
