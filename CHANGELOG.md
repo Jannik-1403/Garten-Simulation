@@ -1,4 +1,5 @@
 ## [Unreleased]
+- **Bugfix**: Schlechte Gewohnheiten, die im Shop gekauft werden, zeichnen nun automatisch beim Kauf einen initialen Rückfall ("Schlechte Gewohnheit gekauft") auf. Das stellt sicher, dass der Streak direkt nach dem Kauf korrekt gestartet bzw. resettet wird.
 - **Timer Icon (Challenge)**: Der Countdown-Text beim grünen Status-Badge wurde auf Wunsch entfernt, sodass nur noch das kompakte Sanduhr-Icon ohne Zeitangabe zu sehen ist.
 - **Challenge Persistenz-Bug**: Das Abschließen ("Jetzt erledigen") von Tagen in der generischen Profil-Historie (`FlatTimelineView`) wurde komplett überarbeitet. Es löst nun serverseitig und lokal den regulären Bewässerungsvorgang für die Pflanze aus, sodass der Zustand sofort und dauerhaft gespeichert wird (und beim erneuten Öffnen nicht zurückspringt).
 - **Fehlende Übersetzungen**: Über ein Skript wurden 120 fehlende Übersetzungen für den veralteten Präfix `path_phase_*` zu den String-Catalogs hinzugefügt. Das verhindert unübersetzte, grüne rohe Entwickler-Texte in allen 15 Sprachen.
