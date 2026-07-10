@@ -344,6 +344,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     // Apple Health Integration (Pro Version)
     @Published var linkedHealthMetric: HealthMetricType? = nil
     @Published var healthTarget: Double? = nil
+    @Published var allowManualTrackingForHealth: Bool = false
     
     // Eigener Tracker (Manuell)
     @Published var customTrackerName: String? = nil
@@ -611,6 +612,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.pfadCheckedDates = []
         self.linkedHealthMetric = nil
         self.healthTarget = nil
+        self.allowManualTrackingForHealth = false
         
         // Wenn reminderTime gesetzt → automatisch Schedule erstellen
         if let rt = reminderTime {
@@ -646,7 +648,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case reminderSchedule
         case pfadAktiviertAm, pfadCheckedDates
         case individualSchwierigkeit
-        case linkedHealthMetric, healthTarget
+        case linkedHealthMetric, healthTarget, allowManualTrackingForHealth
         case customTrackerName, customTrackerTarget, customTrackerProgress
         case isRoutineOnly
         case isGenericFocus
@@ -733,6 +735,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         individualSchwierigkeit = try container.decodeIfPresent(String.self, forKey: .individualSchwierigkeit)
         linkedHealthMetric = try container.decodeIfPresent(HealthMetricType.self, forKey: .linkedHealthMetric)
         healthTarget = try container.decodeIfPresent(Double.self, forKey: .healthTarget)
+        allowManualTrackingForHealth = try container.decodeIfPresent(Bool.self, forKey: .allowManualTrackingForHealth) ?? false
         customTrackerName = try container.decodeIfPresent(String.self, forKey: .customTrackerName)
         customTrackerTarget = try container.decodeIfPresent(Double.self, forKey: .customTrackerTarget)
         customTrackerProgress = try container.decodeIfPresent(Double.self, forKey: .customTrackerProgress) ?? 0
@@ -785,6 +788,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encodeIfPresent(individualSchwierigkeit, forKey: .individualSchwierigkeit)
         try container.encodeIfPresent(linkedHealthMetric, forKey: .linkedHealthMetric)
         try container.encodeIfPresent(healthTarget, forKey: .healthTarget)
+        try container.encode(allowManualTrackingForHealth, forKey: .allowManualTrackingForHealth)
         
         try container.encodeIfPresent(customTrackerName, forKey: .customTrackerName)
         try container.encodeIfPresent(customTrackerTarget, forKey: .customTrackerTarget)

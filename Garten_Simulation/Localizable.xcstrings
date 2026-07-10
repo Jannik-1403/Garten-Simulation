@@ -150674,25 +150674,25 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verbinde deine Bewegung mit deinem Fokus. Dein Körper und dein Geist wachsen synchron."
+            "value": "Verknüpfe deine Schritte und Wasserziele direkt mit dem Garten."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Connect your movement with your focus. Your body and mind grow in sync."
+            "value": "Link your steps and water goals directly to the garden."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Conecta tu movimiento con tu enfoque. Tu cuerpo y mente crecen en sincronía."
+            "value": "Vincula tus pasos y objetivos de agua directamente con el jardín."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Connecte ton mouvement à ta concentration. Ton corps et ton esprit grandissent en synchronisation."
+            "value": "Liez vos pas et vos objectifs d'eau directement au jardin."
           }
         },
         "hi": {
@@ -150704,37 +150704,37 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Collega il tuo movimento alla tua concentrazione. Corpo e mente crescono in sintonia."
+            "value": "Collega i tuoi passi e gli obiettivi dell'acqua direttamente al giardino."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "運動と集中力を結びつけましょう。心と体が同調して成長します。"
+            "value": "歩数と水の目標を庭に直接リンクします。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "움직임과 집중력을 연결하세요. 몸과 마음이 동기화되어 성장합니다."
+            "value": "걸음 수와 물 목표를 정원에 직접 연결하세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verbind je beweging met je focus. Je lichaam en geest groeien synchroon."
+            "value": "Koppel uw stappen en waterdoelen rechtstreeks aan de tuin."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Połącz swój ruch z koncentracją. Twoje ciało i umysł rosną w synchronizacji."
+            "value": "Połącz swoje kroki i cele związane z wodą bezpośrednio z ogrodem."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Conecte seu movimento com seu foco. Seu corpo e mente crescem em sincronia."
+            "value": "Vincule seus passos e metas de água diretamente ao jardim."
           }
         },
         "ru": {
@@ -150746,7 +150746,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hareketini odaklanmanla birleştir. Bedenin ve zihnin senkronize bir şekilde büyür."
+            "value": "Adımlarınızı ve su hedeflerinizi doğrudan bahçeye bağlayın."
           }
         },
         "zh-Hans": {
@@ -299336,6 +299336,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "例行時間：%@"
+          }
+        }
+      }
+    },
+    "apple.health.allow_manual": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zusätzlich manuell eintragen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Also track manually"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrar manualmente también"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrer manuellement aussi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手動で入力する"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "수동으로도 입력하기"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Также вводить вручную"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手动输入"
           }
         }
       }

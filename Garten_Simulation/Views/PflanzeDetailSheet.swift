@@ -569,7 +569,7 @@ struct PflanzeDetailSheet: View {
                                                     }
                                                     
                                                     // Progress
-                                                    let current: Int = {
+                                                    let healthCurrent: Int = {
                                                         switch metric {
                                                         case .steps: return Int(healthManager.todaysSteps)
                                                         case .water: return Int(healthManager.todaysWater)
@@ -579,6 +579,8 @@ struct PflanzeDetailSheet: View {
                                                         case .strengthTraining: return Int(healthManager.todaysStrengthTraining)
                                                         }
                                                     }()
+                                                    
+                                                    let current = healthCurrent + Int(pflanze.customTrackerProgress)
                                                     
                                                     let target = Int(pflanze.healthTarget ?? 0)
                                                     let unit: String = {
@@ -616,6 +618,47 @@ struct PflanzeDetailSheet: View {
                                                             }
                                                         }
                                                         .frame(height: 8)
+                                                    }
+                                                    
+                                                    Toggle(String(localized: "apple.health.allow_manual", defaultValue: "Zusätzlich manuell eintragen"), isOn: Binding(
+                                                        get: { pflanze.allowManualTrackingForHealth },
+                                                        set: { pflanze.allowManualTrackingForHealth = $0; gardenStore.savePlants() }
+                                                    ))
+                                                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                                                    .tint(.orange)
+                                                    .padding(.top, 8)
+                                                    
+                                                    if pflanze.allowManualTrackingForHealth {
+                                                        Divider().padding(.vertical, 4)
+                                                        
+                                                        HStack(spacing: 12) {
+                                                            Text("0")
+                                                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                                                .foregroundStyle(.secondary)
+                                                            
+                                                            Slider(value: Binding(
+                                                                get: { pflanze.customTrackerProgress },
+                                                                set: { newValue in
+                                                                    let newTotal = healthCurrent + Int(newValue)
+                                                                    if newTotal >= target && !pflanze.istBewässert {
+                                                                        if current < target {
+                                                                            pflanze.customTrackerProgress = Double(target - healthCurrent)
+                                                                            zeigeTrackerConfirm = true
+                                                                        }
+                                                                    } else {
+                                                                        pflanze.customTrackerProgress = newValue
+                                                                    }
+                                                                }
+                                                            ), in: 0...Double(max(1, target)), step: 1) { editing in
+                                                                if !editing { gardenStore.savePlants() }
+                                                            }
+                                                            .tint(.orange)
+                                                            .disabled(current >= target || pflanze.istBewässert)
+                                                            
+                                                            Text(verbatim: "\(target)")
+                                                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                                                .foregroundStyle(.secondary)
+                                                        }
                                                     }
                                                 }
                                             }
