@@ -116,29 +116,18 @@ struct ScreenTimeSettingsView: View {
             manager.syncLimitsAfterPickerChange()
         }
         .onChange(of: blockSelection) { newValue in
-            var enforcedSelection = newValue
-            
-            // Wenn wir in der aktiven Block-Zeit sind, darf man nichts abwählen (wegmachen)
-            if manager.isCurrentlyInBlockWindow {
-                enforcedSelection.applicationTokens.formUnion(oldBlockSelection.applicationTokens)
-                enforcedSelection.categoryTokens.formUnion(oldBlockSelection.categoryTokens)
-                enforcedSelection.webDomainTokens.formUnion(oldBlockSelection.webDomainTokens)
-            }
-            
-            // Wenn in Zeitleiste ausgewählt, aus Ebene 2 (permanentBlockSelection) entfernen
+            // Der Picker ist während der aktiven Zeitleiste komplett disabled,
+            // daher brauchen wir hier keine Enforce-Logik für das Sperren.
+            // Gegenseitiger Ausschluss: Wenn in Zeitleiste ausgewählt, aus Ebene 2 entfernen
             var newPermanent = permanentBlockSelection
-            newPermanent.applicationTokens.subtract(enforcedSelection.applicationTokens)
-            newPermanent.categoryTokens.subtract(enforcedSelection.categoryTokens)
-            newPermanent.webDomainTokens.subtract(enforcedSelection.webDomainTokens)
+            newPermanent.applicationTokens.subtract(newValue.applicationTokens)
+            newPermanent.categoryTokens.subtract(newValue.categoryTokens)
+            newPermanent.webDomainTokens.subtract(newValue.webDomainTokens)
             if newPermanent != permanentBlockSelection {
                 permanentBlockSelection = newPermanent
                 oldPermanentBlockSelection = newPermanent
             }
-            
-            if blockSelection != enforcedSelection {
-                blockSelection = enforcedSelection
-            }
-            oldBlockSelection = enforcedSelection
+            oldBlockSelection = newValue
         }
         .onChange(of: permanentBlockSelection) { newValue in
             var enforcedSelection = newValue
@@ -481,44 +470,78 @@ struct ScreenTimeSettingsView: View {
     
     // MARK: - Schedule Section
     
+    /// Wahr, wenn der Zeitplan gerade läuft – dann ist alles read-only
+    private var isScheduleLocked: Bool {
+        manager.isCurrentlyInBlockWindow
+    }
+
     private var scheduleSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(String(localized: "screenTime.schedule.title", defaultValue: "Block-Zeitplan"))
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                     .padding(.horizontal)
-                
+
                 Toggle(isOn: $isScheduleActive) {
                     Text(String(localized: "screenTime.schedule.active", defaultValue: "Zeitplan aktivieren"))
                         .font(.system(size: 15, weight: .medium, design: .rounded))
                 }
                 .tint(Color.gruenPrimary)
+                .disabled(isScheduleLocked)
                 .padding(.horizontal)
             }
-            
+
             if isScheduleActive {
                 VStack(spacing: 8) {
-                    // Quick Copy Buttons
-                    HStack(spacing: 8) {
-                        quickApplyButton(
-                            label: String(localized: "screenTime.schedule.applyWeekdays", defaultValue: "Mo–Fr gleich"),
-                            action: applyWeekdaysToAll
+
+                    // Lock-Banner wenn Zeitplan gerade aktiv
+                    if isScheduleLocked {
+                        HStack(spacing: 10) {
+                            Image(systemName: "lock.shield.fill")
+                                .foregroundStyle(.red)
+                                .font(.system(size: 16))
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(String(localized: "screenTime.schedule.locked.title", defaultValue: "Zeitplan läuft gerade"))
+                                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                                Text(String(localized: "screenTime.schedule.locked.info", defaultValue: "Während der aktiven Zeit können keine Änderungen vorgenommen werden."))
+                                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        .padding(12)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.red.opacity(0.08))
+                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                .stroke(Color.red.opacity(0.18), lineWidth: 1)
                         )
-                        quickApplyButton(
-                            label: String(localized: "screenTime.schedule.applyWeekend", defaultValue: "Sa–So gleich"),
-                            action: applyWeekendToAll
-                        )
+                        .padding(.horizontal)
+                    } else {
+                        // Quick Copy Buttons – nur wenn nicht gesperrt
+                        HStack(spacing: 8) {
+                            quickApplyButton(
+                                label: String(localized: "screenTime.schedule.applyWeekdays", defaultValue: "Mo–Fr gleich"),
+                                action: applyWeekdaysToAll
+                            )
+                            quickApplyButton(
+                                label: String(localized: "screenTime.schedule.applyWeekend", defaultValue: "Sa–So gleich"),
+                                action: applyWeekendToAll
+                            )
+                        }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
-                    
+
                     // Per-Day Rows
                     ForEach(allWeekdays, id: \.0) { (dayInt, short, full) in
                         DayScheduleRow(
                             dayName: full,
                             shortName: short,
                             schedule: binding(for: dayInt),
-                            isExpanded: expandedDay == dayInt,
+                            isExpanded: expandedDay == dayInt && !isScheduleLocked,
+                            isLocked: isScheduleLocked,
                             onToggleExpand: {
+                                guard !isScheduleLocked else { return }
                                 withAnimation(.spring(response: 0.3)) {
                                     expandedDay = expandedDay == dayInt ? nil : dayInt
                                 }
@@ -526,44 +549,52 @@ struct ScreenTimeSettingsView: View {
                         )
                         .padding(.horizontal)
                     }
-                    
-                    if manager.isCurrentlyInBlockWindow {
-                        HStack(spacing: 8) {
-                            Image(systemName: "lock.shield.fill")
-                                .foregroundStyle(.red)
-                            Text(String(localized: "screenTime.schedule.locked.info", defaultValue: "Die Zeitleiste ist gerade aktiv. Du kannst Apps hinzufügen, aber keine entfernen."))
-                                .font(.system(size: 13, weight: .medium, design: .rounded))
-                                .foregroundStyle(.secondary)
+
+                    // App-Picker – nur wenn nicht gesperrt
+                    if !isScheduleLocked {
+                        Item3DButton(
+                            farbe: Color(UIColor.secondarySystemGroupedBackground),
+                            sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground),
+                            groesse: 56,
+                            shadowDepthFactor: 0.07,
+                            isRectangular: true,
+                            aktion: { isPickerPresented = true }
+                        ) {
+                            HStack {
+                                Image(systemName: "app.badge.fill")
+                                    .foregroundStyle(.blue)
+                                    .font(.system(size: 16))
+                                Text(String(localized: "screenTime.schedule.select_apps", defaultValue: "Apps & Kategorien für Zeitplan"))
+                                    .font(.system(size: 15, weight: .medium, design: .rounded))
+                                    .foregroundStyle(.primary)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundStyle(.secondary)
+                                    .font(.system(size: 13))
+                            }
+                            .padding(.horizontal, 8)
+                        }
+                        .familyActivityPicker(isPresented: $isPickerPresented, selection: $blockSelection)
+                        .padding(.horizontal)
+                    }
+
+                    // Liste der ausgewählten Apps (wie Ebene 2)
+                    if !blockSelection.applicationTokens.isEmpty ||
+                       !blockSelection.categoryTokens.isEmpty ||
+                       !blockSelection.webDomainTokens.isEmpty {
+                        VStack(spacing: 8) {
+                            ForEach(Array(blockSelection.applicationTokens), id: \.self) { token in
+                                ScheduleBlockRow { Label(token) }
+                            }
+                            ForEach(Array(blockSelection.categoryTokens), id: \.self) { token in
+                                ScheduleBlockRow { Label(token) }
+                            }
+                            ForEach(Array(blockSelection.webDomainTokens), id: \.self) { token in
+                                ScheduleBlockRow { Label(token) }
+                            }
                         }
                         .padding(.horizontal)
-                        .padding(.top, 4)
                     }
-                    
-                    // Block Selection – 3D Button
-                    Item3DButton(
-                        farbe: Color(UIColor.secondarySystemGroupedBackground),
-                        sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground),
-                        groesse: 56,
-                        shadowDepthFactor: 0.07,
-                        isRectangular: true,
-                        aktion: { isPickerPresented = true }
-                    ) {
-                        HStack {
-                            Image(systemName: "app.badge.fill")
-                                .foregroundStyle(.blue)
-                                .font(.system(size: 16))
-                            Text(String(localized: "screenTime.schedule.select_apps", defaultValue: "Apps & Kategorien für Zeitplan"))
-                                .font(.system(size: 15, weight: .medium, design: .rounded))
-                                .foregroundStyle(.primary)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundStyle(.secondary)
-                                .font(.system(size: 13))
-                        }
-                        .padding(.horizontal, 8)
-                    }
-                    .familyActivityPicker(isPresented: $isPickerPresented, selection: $blockSelection)
-                    .padding(.horizontal)
                 }
             }
         }
@@ -650,24 +681,27 @@ struct DayScheduleRow: View {
     let shortName: String
     @Binding var schedule: DaySchedule
     let isExpanded: Bool
+    var isLocked: Bool = false
     let onToggleExpand: () -> Void
-    
+
     var body: some View {
         VStack(spacing: 0) {
             // Header Row
             Button(action: onToggleExpand) {
                 HStack {
-                    // Active Toggle
+                    // Active Toggle – bei Sperre nicht bedienbar
                     Toggle("", isOn: $schedule.isActive)
                         .labelsHidden()
                         .tint(Color.gruenPrimary)
+                        .disabled(isLocked)
                         .onTapGesture {} // Prevent row expansion on toggle tap
-                    
+
                     Text(dayName)
                         .font(.system(size: 16, weight: .bold, design: .rounded))
-                    
+                        .foregroundStyle(isLocked ? .secondary : .primary)
+
                     Spacer()
-                    
+
                     if schedule.isActive {
                         Text(timeString(h: schedule.startHour, m: schedule.startMinute) + " – " + timeString(h: schedule.endHour, m: schedule.endMinute))
                             .font(.system(size: 14, weight: .medium, design: .rounded))
@@ -677,19 +711,23 @@ struct DayScheduleRow: View {
                             .font(.system(size: 14, weight: .medium, design: .rounded))
                             .foregroundStyle(.tertiary)
                     }
-                    
-                    Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                        .font(.system(size: 12, weight: .semibold))
-                        .foregroundStyle(.secondary)
+
+                    // Kein Expand-Pfeil wenn gesperrt
+                    if !isLocked {
+                        Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 .padding()
             }
             .buttonStyle(.plain)
-            
-            // Expanded Time Pickers
-            if isExpanded && schedule.isActive {
+            .disabled(isLocked)
+
+            // Expanded Time Pickers – nur wenn nicht gesperrt
+            if isExpanded && schedule.isActive && !isLocked {
                 Divider().padding(.horizontal)
-                
+
                 VStack(spacing: 0) {
                     DatePicker(
                         String(localized: "screenTime.schedule.start", defaultValue: "Startzeit"),
@@ -699,9 +737,9 @@ struct DayScheduleRow: View {
                     .font(.system(size: 15, weight: .medium, design: .rounded))
                     .padding(.horizontal)
                     .padding(.vertical, 8)
-                    
+
                     Divider().padding(.horizontal)
-                    
+
                     DatePicker(
                         String(localized: "screenTime.schedule.end", defaultValue: "Endzeit"),
                         selection: endTimeBinding,
@@ -715,15 +753,16 @@ struct DayScheduleRow: View {
             }
         }
         .background(Color(UIColor.secondarySystemGroupedBackground))
+        .opacity(isLocked ? 0.7 : 1.0)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .shadow(color: .black.opacity(0.08), radius: 0, x: 0, y: 4)
         .overlay(
             RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .stroke(Color.black.opacity(0.07), lineWidth: 1)
+                .stroke(isLocked ? Color.red.opacity(0.25) : Color.black.opacity(0.07), lineWidth: 1)
         )
         .animation(.spring(response: 0.3), value: isExpanded)
     }
-    
+
     private var startTimeBinding: Binding<Date> {
         Binding(
             get: {
@@ -735,7 +774,7 @@ struct DayScheduleRow: View {
             }
         )
     }
-    
+
     private var endTimeBinding: Binding<Date> {
         Binding(
             get: {
@@ -747,7 +786,7 @@ struct DayScheduleRow: View {
             }
         )
     }
-    
+
     private func timeString(h: Int, m: Int) -> String {
         guard let date = Calendar.current.date(bySettingHour: h, minute: m, second: 0, of: Date()) else {
             return String(format: "%02d:%02d", h, m)
@@ -755,6 +794,37 @@ struct DayScheduleRow: View {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         return formatter.string(from: date)
+    }
+}
+
+// MARK: - ScheduleBlockRow (für Zeitleisten-Apps, Clock-Icon)
+
+struct ScheduleBlockRow<Content: View>: View {
+    let content: Content
+
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+
+    var body: some View {
+        HStack {
+            Image(systemName: "clock.fill")
+                .font(.system(size: 12))
+                .foregroundStyle(.blue)
+            content
+                .font(.system(size: 13, weight: .semibold, design: .rounded))
+                .lineLimit(1)
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(Color(UIColor.secondarySystemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .shadow(color: .black.opacity(0.06), radius: 0, x: 0, y: 3)
+        .overlay(
+            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                .stroke(Color.black.opacity(0.06), lineWidth: 1)
+        )
     }
 }
 

@@ -607,3 +607,9 @@
 - Wechsel von 3D Isometric View zu 2D Flat Timeline View für bessere Performance
 - Meilenstein-Anzeigen (Belohnungs-Icons) zur Timeline hinzugefügt
 - Alte 3D Assets und zugehörige Views (`IsometricPathView`, `PathTileView`) entfernt
+- 90-Tage Challenge: Komplettes Redesign mit echtem 3D-Depth-Effekt (identisch zu Item3DButton)
+- Milestone-Nodes: Große 3D-Karten (320×76pt) mit Reward-Icon, Status-Indikator und Glow
+- Normal-Nodes: Kompakte 3D-Pills mit Top/Shadow-Layering
+- Verbindungslinien: Grüner Glow-Effekt auf erledigten Tagen
+- Gradient-Hintergrund, adaptiv für Dark/Light Mode
+- Aktiver Tag pulsiert mit Spring-Animation
