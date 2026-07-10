@@ -672,3 +672,6 @@
 - 90-Tage Challenge: Komplette Architektur-Erweiterung – Jede der 18 Gewohnheiten hat nun einen individuellen, echten 13-Wochen-Trainingsplan mit 7-Tage-Zyklen und spezifischen Tages-To-Dos bekommen.
 - UI-Anpassung: 90-Tage Challenge Übersicht in den Verlauf verschoben und Schwierigkeits-Button im Verlauf entfernt.
 - UI-Anpassung: 90-Tage Challenge Banner komplett aus der App entfernt.
+- Feature: To-Do Liste ist jetzt dauerhaft auf der Tagesansicht sichtbar und es können jederzeit eigene Aufgaben hinzugefügt oder entfernt werden.
+- Schlechte Gewohnheiten kosten nun keine Samen mehr bei der Erstellung (gute Gewohnheiten kosten weiterhin 10 Samen)
+- Der Preis für 1 Samen im Shop wurde auf 50 Münzen festgelegt

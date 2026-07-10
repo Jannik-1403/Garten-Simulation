@@ -1090,9 +1090,11 @@ class GardenStore: ObservableObject {
 
 
     func addCustomPlant(name: String, habit: String, icon: String, color: String, category: HabitCategory, isNegative: Bool = false) {
-        guard seeds >= 10 else { return }
-        seeds -= 10
-        saveStats()
+        if !isNegative {
+            guard seeds >= 10 else { return }
+            seeds -= 10
+            saveStats()
+        }
         
         createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category, isNegative: isNegative)
     }

@@ -482,7 +482,7 @@ struct InteractiveHabitsWidgetView: View {
             if isPro {
                 if let routineEntity = entry.routine {
                     HStack(spacing: 6) {
-                        Text(String(localized: String.LocalizationValue(routineEntity.titleKey)))
+                        Text(LocalizedStringKey(routineEntity.titleKey))
                             .font(.system(size: 14, weight: .black, design: .rounded))
                     }
                     .foregroundStyle(DuoStyle.contentColor(for: entry.style))

@@ -38,7 +38,7 @@ struct CustomPlantCreationView: View {
     var isFormValid: Bool {
         !plantName.trimmingCharacters(in: .whitespaces).isEmpty &&
         !habitName.trimmingCharacters(in: .whitespaces).isEmpty &&
-        gardenStore.seeds >= 10
+        (isNegative || gardenStore.seeds >= 10)
     }
     
     var body: some View {
@@ -334,7 +334,7 @@ struct CustomPlantCreationView: View {
                             ))
                             .disabled(!isFormValid)
                             
-                            if gardenStore.seeds < 10 {
+                            if !isNegative && gardenStore.seeds < 10 {
                                 Text(String(localized: "plant.create.insufficient_seeds"))
                                     .font(.system(size: 13, weight: .bold, design: .rounded))
                                     .foregroundStyle(.red)
@@ -345,10 +345,12 @@ struct CustomPlantCreationView: View {
                         .padding(.horizontal, 24)
                         .padding(.top, 10)
                         
-                        Text(String(format: String(localized: "inventory.create_plant.cost_format"), 10))
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                            .padding(.bottom, 40)
+                        if !isNegative {
+                            Text(String(format: String(localized: "inventory.create_plant.cost_format"), 10))
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .padding(.bottom, 40)
+                        }
                     }
                 }
             }
