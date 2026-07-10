@@ -671,3 +671,4 @@
 - 90-Tage Challenge: Tägliche Checklisten (To-Dos) für ALLE Gewohnheiten hinzugefügt, die automatisch in den Fokus-Timer synchronisiert werden.
 - 90-Tage Challenge: Komplette Architektur-Erweiterung – Jede der 18 Gewohnheiten hat nun einen individuellen, echten 13-Wochen-Trainingsplan mit 7-Tage-Zyklen und spezifischen Tages-To-Dos bekommen.
 - UI-Anpassung: 90-Tage Challenge Übersicht in den Verlauf verschoben und Schwierigkeits-Button im Verlauf entfernt.
+- UI-Anpassung: 90-Tage Challenge Banner komplett aus der App entfernt.

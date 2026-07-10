@@ -154,11 +154,9 @@ struct PfadTagDetailView: View {
                         .padding(.horizontal, 20)
 
                     // ── To-Do-Karte ───────────────────────────────────
-                    if !todos.isEmpty || isActionable || istErledigt {
-                        todoCard
-                            .padding(.top, 16)
-                            .padding(.horizontal, 20)
-                    }
+                    todoCard
+                        .padding(.top, 16)
+                        .padding(.horizontal, 20)
 
                     // ── Aktions-Buttons ───────────────────────────────
                     actionButtons
@@ -383,22 +381,20 @@ struct PfadTagDetailView: View {
                     )
                     .font(.system(size: 15, weight: .black, design: .rounded))
                     Spacer()
-                    if isActionable {
-                        Item3DButton(
-                            farbe: showAddTodo ? Color(hex: "#CC2222") : themeColor,
-                            sekundaerFarbe: showAddTodo ? Color(hex: "#881111") : themeColor.darker(),
-                            groesse: 34,
-                            aktion: {
-                                withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
-                                    showAddTodo.toggle()
-                                    isTodoFieldFocused = showAddTodo
-                                }
+                    Item3DButton(
+                        farbe: showAddTodo ? Color(hex: "#CC2222") : themeColor,
+                        sekundaerFarbe: showAddTodo ? Color(hex: "#881111") : themeColor.darker(),
+                        groesse: 34,
+                        aktion: {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                                showAddTodo.toggle()
+                                isTodoFieldFocused = showAddTodo
                             }
-                        ) {
-                            Image(systemName: showAddTodo ? "xmark" : "plus")
-                                .font(.system(size: 13, weight: .bold))
-                                .foregroundColor(.white)
                         }
+                    ) {
+                        Image(systemName: showAddTodo ? "xmark" : "plus")
+                            .font(.system(size: 13, weight: .bold))
+                            .foregroundColor(.white)
                     }
                 }
 
@@ -413,7 +409,7 @@ struct PfadTagDetailView: View {
                 }
 
                 // Input-Zeile
-                if showAddTodo && isActionable {
+                if showAddTodo {
                     Divider().opacity(0.4)
                     todoInput
                 }
@@ -453,21 +449,19 @@ struct PfadTagDetailView: View {
 
             Spacer()
 
-            if isActionable {
-                Button {
-                    withAnimation {
-                        todos.removeAll { $0.id == todo.wrappedValue.id }
-                        saveTodos()
-                    }
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 11, weight: .bold))
-                        .foregroundStyle(.secondary)
-                        .frame(width: 22, height: 22)
-                        .background(Circle().fill(Color(uiColor: .systemGray5)))
+            Button {
+                withAnimation {
+                    todos.removeAll { $0.id == todo.wrappedValue.id }
+                    saveTodos()
                 }
-                .buttonStyle(.plain)
+            } label: {
+                Image(systemName: "xmark")
+                    .font(.system(size: 11, weight: .bold))
+                    .foregroundStyle(.secondary)
+                    .frame(width: 22, height: 22)
+                    .background(Circle().fill(Color(uiColor: .systemGray5)))
             }
+            .buttonStyle(.plain)
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
