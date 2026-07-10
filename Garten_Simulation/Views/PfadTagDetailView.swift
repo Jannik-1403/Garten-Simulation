@@ -705,14 +705,11 @@ struct PfadTagDetailView: View {
     }
 
     private func localizedDescription(for tag: PfadStrangTag) -> String {
-        let diff: String = {
-            guard let s = tag.strang,
-                  let h = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID })
-            else { return "anfaenger" }
-            return h.individualSchwierigkeit ?? "anfaenger"
-        }()
-        if let pid = tag.strang?.pflanzenID,
-           let dyn = HabitProgressionGenerator.generateDescription(for: pid, dayNum: tag.tagNummer, difficulty: diff, language: settings.appLanguage) {
+        let h = tag.strang.flatMap { s in gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) }
+        let diff = h?.individualSchwierigkeit ?? "anfaenger"
+        
+        if let plantID = h?.plantID,
+           let dyn = HabitProgressionGenerator.generateDescription(for: plantID, dayNum: tag.tagNummer, difficulty: diff, language: settings.appLanguage) {
             return dyn.replacingOccurrences(of: "[HABIT]", with: habitName(for: tag))
         }
         var raw = NSLocalizedString(tag.beschreibungKey, comment: "")
