@@ -257,14 +257,19 @@ struct PaywallView: View {
         }
         .padding(16)
         .background(
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(Color(UIColor.systemBackground))
+            ZStack {
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(Color(UIColor.systemGray4))
+                    .offset(y: 5)
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(Color(UIColor.systemBackground))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20, style: .continuous)
+                            .stroke(Color(UIColor.systemGray5), lineWidth: 2)
+                    )
+            }
         )
-        .overlay(
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .stroke(Color.gray.opacity(0.15), lineWidth: 1)
-        )
-        .shadow(color: Color.black.opacity(0.03), radius: 6, y: 3)
+        .padding(.bottom, 5)
     }
     
     @ViewBuilder
@@ -294,8 +299,8 @@ struct PaywallOptionButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         let isPressed = configuration.isPressed
         let mainColor = isSelected ? Color.goldPrimary : Color(UIColor.systemBackground)
-        let shadowColor = isSelected ? Color.goldPrimary.darker() : Color.gray.opacity(0.3)
-        let strokeColor = isSelected ? Color.white.opacity(0.3) : Color.gray.opacity(0.2)
+        let shadowColor = isSelected ? Color.goldPrimary.darker() : Color(UIColor.systemGray4)
+        let strokeColor = isSelected ? Color.white.opacity(0.3) : Color(UIColor.systemGray5)
         
         ZStack {
             // Shadow / Base layer
@@ -304,14 +309,14 @@ struct PaywallOptionButtonStyle: ButtonStyle {
                 .offset(y: 6)
             
             // Top layer
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(mainColor)
+            configuration.label
+                .background(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .fill(mainColor)
+                )
                 .overlay(
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
                         .stroke(strokeColor, lineWidth: 2)
-                )
-                .overlay(
-                    configuration.label
                 )
                 .offset(y: isPressed ? 6 : 0)
         }
