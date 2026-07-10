@@ -93,9 +93,15 @@ struct FlatTimelineView: View {
                         .offset(y: -4)
                 }.frame(height: 44)
                 Spacer()
-                Button(action: {
-                    showingIceInfo = true
-                }) {
+                Item3DButton(
+                    farbe: Color(hex: "#111d2e"),
+                    sekundaerFarbe: Color(hex: "#0b1524"),
+                    groesse: 44,
+                    isRectangular: true,
+                    aktion: {
+                        showingIceInfo = true
+                    }
+                ) {
                     HStack(spacing: 6) {
                         ForEach(0..<habit.maxChallengeJokers, id: \.self) { i in
                             Image("Streak_Eis")
@@ -106,12 +112,8 @@ struct FlatTimelineView: View {
                                 .opacity(i < habit.challengeJokers ? 1 : 0.3)
                         }
                     }
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
-                    .background(Color.black.opacity(0.15))
-                    .clipShape(Capsule())
+                    .padding(.horizontal, 14)
                 }
-                .buttonStyle(PlainButtonStyle())
             }
             .padding(.horizontal, 20).padding(.top, 60).padding(.bottom, 20)
             .background(
@@ -312,7 +314,7 @@ struct WeekRingView: View {
                 withAnimation { expandedWeek = nil }
             }
         ) {
-            Text(String(localized: "pfad_schliessen"))
+            Text(String(localized: "pfad.schliessen", defaultValue: "Schließen"))
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
                 .padding(.horizontal, 16)

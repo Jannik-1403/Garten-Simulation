@@ -33,7 +33,11 @@ struct PfadTagDetailView: View {
                             .foregroundStyle(tag.phase.farbe)
                     }
                     Spacer()
-                    LiquidGlassDismissButton { dismiss() }
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 28))
+                            .foregroundColor(Color(uiColor: .systemGray3))
+                    }
                 }
                 .padding(24)
                 .background(.ultraThinMaterial.opacity(0.8))
@@ -125,42 +129,62 @@ struct PfadTagDetailView: View {
                 .padding(.bottom, 40)
                 
                 // Footer: Unified Completion Button
-                if isToday(tag: tag) && !tag.istErledigt {
-                    if let s = tag.strang, let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
-                        Button {
-                            showingFocusSession = true
-                        } label: {
-                            Text(String(localized: "fokus.starten", defaultValue: "Fokus Timer Starten"))
-                        }
-                        .buttonStyle(DuolingoButtonStyle(
-                            size: .large,
-                            backgroundColor: themeColor,
-                            shadowColor: themeColor.darker(),
-                            foregroundColor: .white
-                        ))
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 40)
-                        .fullScreenCover(isPresented: $showingFocusSession) {
-                            FocusSessionView(pflanze: habit)
-                        }
-                    } else {
-                        Button {
-                            pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                dismiss()
+                if !tag.istErledigt {
+                    let isClickable = isToday(tag: tag)
+                    VStack(spacing: 16) {
+                        if let s = tag.strang, let habit = gardenStore.pflanzen.first(where: { $0.id == s.pflanzenID }) {
+                            Button {
+                                if isClickable { showingFocusSession = true }
+                            } label: {
+                                Text(String(localized: "fokus.starten", defaultValue: "Fokus Timer"))
                             }
-                        } label: {
-                            Text(String(localized: "pfad_tag_erledigen"))
+                            .buttonStyle(DuolingoButtonStyle(
+                                size: .large,
+                                backgroundColor: isClickable ? themeColor : Color.gray,
+                                shadowColor: isClickable ? themeColor.darker() : Color.gray.darker(),
+                                foregroundColor: .white
+                            ))
+                            .disabled(!isClickable)
+                            .fullScreenCover(isPresented: $showingFocusSession) {
+                                FocusSessionView(pflanze: habit)
+                            }
+                            
+                            Button {
+                                if isClickable {
+                                    pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                        dismiss()
+                                    }
+                                }
+                            } label: {
+                                Text(String(localized: "jetzt.abschliessen", defaultValue: "Jetzt abschließen"))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .foregroundColor(isClickable ? .secondary : .secondary.opacity(0.5))
+                            }
+                            .disabled(!isClickable)
+                            
+                        } else {
+                            Button {
+                                if isClickable {
+                                    pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                        dismiss()
+                                    }
+                                }
+                            } label: {
+                                Text(String(localized: "pfad_tag_erledigen", defaultValue: "Erledigen"))
+                            }
+                            .buttonStyle(DuolingoButtonStyle(
+                                size: .large,
+                                backgroundColor: isClickable ? themeColor : Color.gray,
+                                shadowColor: isClickable ? themeColor.darker() : Color.gray.darker(),
+                                foregroundColor: .white
+                            ))
+                            .disabled(!isClickable)
                         }
-                        .buttonStyle(DuolingoButtonStyle(
-                            size: .large,
-                            backgroundColor: themeColor,
-                            shadowColor: themeColor.darker(),
-                            foregroundColor: .white
-                        ))
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 40)
                     }
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 40)
                 }
             }
         }
