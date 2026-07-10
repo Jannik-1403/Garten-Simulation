@@ -217,33 +217,52 @@ struct PaywallView: View {
 
     private func paywallOptionRow(product: Product, title: String, subtitle: String, isSelected: Bool) -> some View {
         Button {
-            selectedProductId = product.id
+            let impactLight = UIImpactFeedbackGenerator(style: .soft)
+            impactLight.impactOccurred(intensity: 0.8)
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                selectedProductId = product.id
+            }
         } label: {
             HStack {
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 6) {
                     Text(title)
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundStyle(isSelected ? .black : .white)
+                        .font(.system(size: 18, weight: .black, design: .rounded))
+                        .foregroundStyle(isSelected ? .white : .black)
+                    
                     Text(subtitle)
-                        .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(isSelected ? .black.opacity(0.7) : .white.opacity(0.7))
+                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                        .foregroundStyle(isSelected ? .white.opacity(0.8) : .black.opacity(0.6))
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(
+                            Capsule().fill(isSelected ? Color.white.opacity(0.2) : Color.black.opacity(0.08))
+                        )
                 }
                 Spacer()
                 Text(product.displayPrice)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(isSelected ? .black : .white)
+                    .font(.system(size: 20, weight: .black, design: .rounded))
+                    .foregroundStyle(isSelected ? .white : .black)
             }
-            .padding(16)
+            .padding(20)
             .background(
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(isSelected ? Color.white : Color.white.opacity(0.1))
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(isSelected ? Color.goldPrimary : Color.white)
             )
             .overlay(
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .stroke(isSelected ? Color.goldPrimary : Color.clear, lineWidth: 2)
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .stroke(isSelected ? Color.white.opacity(0.5) : Color.gray.opacity(0.2), lineWidth: 2)
             )
+            // 3D Shadow / Offset effect
+            .background(
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(isSelected ? Color.goldPrimary.darker() : Color.gray.opacity(0.3))
+                    .offset(y: isSelected ? 0 : 6)
+            )
+            .offset(y: isSelected ? 6 : 0)
         }
         .buttonStyle(.plain)
+        .padding(.bottom, isSelected ? 0 : 6) // Compensate for the offset
+        .padding(.top, isSelected ? 6 : 0)
     }
 
     private func featureRow(icon: String, title: String, description: String, color: Color) -> some View {

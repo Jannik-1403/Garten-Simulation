@@ -16,45 +16,51 @@ struct CoinsDetailView: View {
                 VStack(spacing: 28) {
 
                     // MARK: - Current Balance (Hero)
-                    VStack(spacing: 12) {
-                        Button(action: {}) {
-                            VStack(spacing: 4) {
-                                Image("coin")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 32, height: 32)
-                                
-                                Text(verbatim: "\(gardenStore.coins)")
-                                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                                    .contentTransition(.numericText())
-                                    .animation(.spring(response: 0.4), value: gardenStore.coins)
-                            }
-                            .foregroundStyle(.primary)
+                    VStack(spacing: 16) {
+                        HStack(spacing: 12) {
+                            Image("coin")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 44, height: 44)
+                                .shadow(color: Color.goldPrimary.opacity(0.4), radius: 8, y: 4)
+                            
+                            Text(verbatim: "\(gardenStore.coins)")
+                                .font(.system(size: 38, weight: .black, design: .rounded))
+                                .foregroundStyle(Color.primary)
+                                .contentTransition(.numericText())
+                                .animation(.spring(response: 0.4), value: gardenStore.coins)
                         }
-                        .buttonStyle(Item3DButtonStyle(
-                            farbe: Color(UIColor.systemBackground).opacity(0.8),
-                            sekundaerFarbe: Color.black.opacity(0.05),
-                            groesse: 110
-                        ))
-                        .disabled(true)
+                        .padding(.horizontal, 32)
+                        .padding(.vertical, 16)
+                        .background(
+                            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                .fill(Color(UIColor.systemBackground))
+                                .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                .stroke(Color.goldPrimary.opacity(0.3), lineWidth: 2)
+                        )
 
                         Text(String(localized: "profile.coins.available"))
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .font(.system(size: 15, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
-                            .opacity(0.8)
+                            .textCase(.uppercase)
                     }
-                    .padding(.top, 20)
+                    .padding(.top, 24)
+                    .padding(.bottom, 8)
 
                     // MARK: - Products Section
-                    VStack(spacing: 20) {
+                    VStack(spacing: 24) {
                         // Section Header
-                        VStack(spacing: 6) {
+                        VStack(spacing: 8) {
                             Text(String(localized: "coin_shop_title"))
-                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .font(.system(size: 24, weight: .black, design: .rounded))
                             Text(String(localized: "coin_shop_subtitle"))
-                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .font(.system(size: 15, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .multilineTextAlignment(.center)
+                                .padding(.horizontal, 32)
                         }
                         
                         if !iapStore.hasLoaded {

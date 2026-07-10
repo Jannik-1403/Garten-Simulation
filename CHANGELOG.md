@@ -675,3 +675,6 @@
 - Feature: To-Do Liste ist jetzt dauerhaft auf der Tagesansicht sichtbar und es können jederzeit eigene Aufgaben hinzugefügt oder entfernt werden.
 - Schlechte Gewohnheiten kosten nun keine Samen mehr bei der Erstellung (gute Gewohnheiten kosten weiterhin 10 Samen)
 - Der Preis für 1 Samen im Shop wurde auf 50 Münzen festgelegt
+- Fix: Widget visibility by changing kind strings to V2
+- Fix: Widget visibility by changing kind strings to V2
+- Fix: Widget bundle limits and set kinds to V3
