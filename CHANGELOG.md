@@ -1,3 +1,6 @@
+## 2026-07-11
+- **Bugfix**: Ein hartnäckiger SwiftUI Crash ("A view controller not containing an alert controller was asked for its contained alert controller") in der `ExportImportView` wurde final behoben. Die Präsentations-Modifikatoren (.alert, .sheet, .fileImporter) wurden nun direkt und isoliert an die entsprechenden auslösenden Buttons gehängt, um Konflikte im View-Tree komplett zu vermeiden.
+
 ## 2026-07-10
 - **UI**: Komplettes Redesign des Abo-Felds (Paywall) und der Münzenseite.
 - **UI**: Integration von klickbaren 3D-Buttons (Duolingo Style) für Produkt- und Coin-Pakete.
@@ -691,3 +694,15 @@
 - Feature: Hintergrundsicherer Fokus-Timer. Die App speichert nun den Endzeitpunkt und die Ziele persistent ab. Wird die App geschlossen oder weggewischt, wird der Timer beim nächsten Öffnen nahtlos fortgesetzt oder direkt als erfolgreich abgeschlossen gewertet, wenn die Zeit abgelaufen ist.
 
 - UI Update: CheatPunishmentOverlay ist nun minimalistisch, hat einen sauberen weißen Hintergrund, ein Warn-Icon und nutzt den etablierten Item3DButton.
+- Bugfix: Der Erfolgs-Screen (Münzen & XP) wurde bei abgelaufenen Timern im Hintergrund manchmal übersprungen. Dies wurde behoben, sodass der Screen jetzt immer zuverlässig angezeigt wird.
+- Anpassung der TabBar in ContentView, um eigene Image Assets statt System Icons zu verwenden.
+- Anpassung der PaywallView (Abo-Seite), um eigene Image Assets statt System Icons in der Feature-Liste zu verwenden.
+- Verkleinerung der Custom-Icons in der Paywall auf 24x24
+- Entfernung des Hintergrundkreises für Paywall-Icons und Skalierung auf 2.2
+- Anpassung der Icon-Größe in der Paywall auf 48x48
+- Icon-Größe in PaywallView mittels scaleEffect verdoppelt, um das Layout-Grid beizubehalten
+- Analyse-Icon in der Paywall individuell auf 2.3 skaliert
+- Das Header-Icon in PaywallView doppelt so groß (scaleEffect) skaliert und weiter nach unten verschoben
+- Paywall Titel überlappt nun das Header Icon
+
+- Unkraut-Banner: Texte verkürzt und `.minimumScaleFactor(0.8)` hinzugefügt, um abgeschnittene Texte ('...') zu verhindern.
