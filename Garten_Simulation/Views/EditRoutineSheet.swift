@@ -126,39 +126,47 @@ struct EditRoutineSheet: View {
                             
                             // Habit Reordering (List)
                             VStack(alignment: .leading, spacing: 12) {
-                                HStack {
+                                VStack(spacing: 16) {
                                     Text(String(localized: String.LocalizationValue(routine.filterType == .custom ? "routine.edit.habits.reorder" : "routine.edit.habits.included"), locale: Locale(identifier: settings.appLanguage)))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .foregroundStyle(.primary)
-                                    Spacer()
-                                    Item3DButton(
-                                        farbe: Color(hex: "#34C759"),
-                                        sekundaerFarbe: Color(hex: "#34C759").darker(),
-                                        groesse: 36,
-                                        isRectangular: true,
-                                        aktion: { showCustomTodoSheet = true }
-                                    ) {
-                                        HStack {
-                                            Image(systemName: "plus.circle.fill")
-                                            Text(String(localized: "routine.todo.add", defaultValue: "Eigenes To-Do"))
-                                        }
-                                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                                        .foregroundStyle(.white)
-                                    }
-                                    if !availableHabits.isEmpty {
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                    
+                                    HStack(spacing: 16) {
                                         Item3DButton(
-                                            farbe: Color.white,
-                                            sekundaerFarbe: Color(white: 0.90),
-                                            groesse: 36,
+                                            farbe: Color(hex: "#34C759"),
+                                            sekundaerFarbe: Color(hex: "#34C759").darker(),
+                                            groesse: 44,
                                             isRectangular: true,
-                                            aktion: { showHabitPicker = true }
+                                            aktion: { showCustomTodoSheet = true }
                                         ) {
                                             HStack {
-                                                Image(systemName: "plus")
-                                                Text(String(localized: "routine.habit.add", defaultValue: "Gewohnheit"))
+                                                Image(systemName: "plus.circle.fill")
+                                                Text(String(localized: "routine.todo.add.short", defaultValue: "To-do"))
+                                                    .lineLimit(1)
                                             }
                                             .font(.system(size: 14, weight: .bold, design: .rounded))
-                                            .foregroundStyle(Color.primary)
+                                            .foregroundStyle(.white)
+                                            .frame(maxWidth: .infinity)
+                                        }
+                                        
+                                        if !availableHabits.isEmpty {
+                                            Item3DButton(
+                                                farbe: Color.white,
+                                                sekundaerFarbe: Color(white: 0.90),
+                                                groesse: 44,
+                                                isRectangular: true,
+                                                aktion: { showHabitPicker = true }
+                                            ) {
+                                                HStack {
+                                                    Image(systemName: "plus")
+                                                    Text(String(localized: "routine.habit.add.short", defaultValue: "Gewohnheit"))
+                                                        .lineLimit(1)
+                                                }
+                                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                                .foregroundStyle(Color.primary)
+                                                .frame(maxWidth: .infinity)
+                                            }
                                         }
                                     }
                                 }
@@ -221,7 +229,7 @@ struct EditRoutineSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text(String(localized: "routine.edit.title"))
+                    Text(String(localized: "common.edit", defaultValue: "Bearbeiten"))
                         .font(.headline)
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
