@@ -98,6 +98,10 @@ struct FocusSessionView: View {
                                 return pOrder[$0.priority]! > pOrder[$1.priority]!
                             }
                             remainingSeconds = selectedMinutes * 60
+                            
+                            let endTime = Date().addingTimeInterval(TimeInterval(remainingSeconds))
+                            FocusTimerRecovery.shared.saveState(endTime: endTime, totalSeconds: remainingSeconds, plantId: pflanze.id, goals: sessionGoals)
+                            
                             state = .timer
                             isTimerRunning = true
                             // Blocking already applied in step 1 via FocusScreenTimePickerView
@@ -128,8 +132,26 @@ struct FocusSessionView: View {
             }
         }
         .onAppear {
-            if sessionGoals.isEmpty && !initialGoals.isEmpty {
-                sessionGoals = initialGoals.map { FocusGoal(text: $0) }
+            if FocusTimerRecovery.shared.isActive && FocusTimerRecovery.shared.plantId == pflanze.id {
+                let endTime = Date(timeIntervalSince1970: FocusTimerRecovery.shared.endTime)
+                let now = Date()
+                
+                self.selectedMinutes = FocusTimerRecovery.shared.totalSeconds / 60
+                self.sessionGoals = FocusTimerRecovery.shared.getGoals()
+                
+                if now < endTime {
+                    self.remainingSeconds = Int(endTime.timeIntervalSince(now))
+                    self.state = .timer
+                    self.isTimerRunning = true
+                } else {
+                    self.remainingSeconds = 0
+                    self.isTimerRunning = false
+                    finishSession()
+                }
+            } else {
+                if sessionGoals.isEmpty && !initialGoals.isEmpty {
+                    sessionGoals = initialGoals.map { FocusGoal(text: $0) }
+                }
             }
         }
         .onDisappear {
@@ -419,6 +441,7 @@ struct FocusSessionView: View {
                 dismiss()
                 
                 let completedSeconds = selectedMinutes * 60 - remainingSeconds
+                FocusTimerRecovery.shared.clearState()
                     let durationMinutes = completedSeconds / 60
                     if durationMinutes > 0 {
                         let log = FocusSessionLog(
@@ -526,6 +549,7 @@ struct FocusSessionView: View {
         state = .success
         stopLiveActivity()
         FocusAudioManager.shared.stop()
+        FocusTimerRecovery.shared.clearState()
         
         let baseCoins = selectedMinutes
         let coinsEarned = Int(Double(baseCoins) * gardenStore.focusCoinMultiplikator())

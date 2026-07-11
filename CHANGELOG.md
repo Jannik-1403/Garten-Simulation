@@ -684,3 +684,7 @@
 - Fix: Widget visibility by changing kind strings to V2
 - Fix: Widget visibility by changing kind strings to V2
 - Fix: Widget bundle limits and set kinds to V3
+
+- Anti-Cheat-System implementiert: Duplikate in Zeitlimits werden gelöscht (sanitizeSelections)
+- Systemzugriff blockiert Overlay hinzugefügt bei Deaktivierung von ScreenTime (.denied)
+- HP-Bestrafung bei Cheating integriert (-1 Leben pro Trigger)
