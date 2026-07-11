@@ -131,48 +131,60 @@ struct ExportImportView: View {
             .navigationTitle(String(localized: "backup_title"))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
-            .sheet(isPresented: $showShareSheet, onDismiss: { exportURL = nil }) {
-                if let url = exportURL {
-                    ShareSheet(activityItems: [url])
-                }
-            }
-            .fileImporter(
-                isPresented: $showFilePicker,
-                allowedContentTypes: [UTType(filenameExtension: "gartensave") ?? .data],
-                allowsMultipleSelection: false
-            ) { result in
-                switch result {
-                case .success(let urls):
-                    if let url = urls.first {
-                        importURL = url
-                        showImportConfirm = true
+            .background(
+                Color.clear
+                    .sheet(isPresented: $showShareSheet, onDismiss: { exportURL = nil }) {
+                        if let url = exportURL {
+                            ShareSheet(activityItems: [url])
+                        }
                     }
-                case .failure(let error):
-                    errorMessage = error.localizedDescription
-                }
-            }
-            .alert(String(localized: "backup_import_bestaetigung_titel"), isPresented: $showImportConfirm) {
-                Button(String(localized: "backup_import_bestaetigung_ja"), role: .destructive) {
-                    if let url = importURL {
-                        performImport(from: url)
+            )
+            .background(
+                Color.clear
+                    .fileImporter(
+                        isPresented: $showFilePicker,
+                        allowedContentTypes: [UTType(filenameExtension: "gartensave") ?? .data],
+                        allowsMultipleSelection: false
+                    ) { result in
+                        switch result {
+                        case .success(let urls):
+                            if let url = urls.first {
+                                importURL = url
+                                showImportConfirm = true
+                            }
+                        case .failure(let error):
+                            errorMessage = error.localizedDescription
+                        }
                     }
-                }
-                Button(String(localized: "button.cancel"), role: .cancel) {
-                    importURL = nil
-                }
-            } message: {
-                Text(String(localized: "backup_import_bestaetigung_text"))
-            }
-            .alert(String(localized: "backup_fehler_titel"), isPresented: Binding(
-                get: { errorMessage != nil },
-                set: { if !$0 { errorMessage = nil } }
-            )) {
-                Button(String(localized: "button.ok"), role: .cancel) {}
-            } message: {
-                if let msg = errorMessage {
-                    Text(msg)
-                }
-            }
+            )
+            .background(
+                Color.clear
+                    .alert(String(localized: "backup_import_bestaetigung_titel"), isPresented: $showImportConfirm) {
+                        Button(String(localized: "backup_import_bestaetigung_ja"), role: .destructive) {
+                            if let url = importURL {
+                                performImport(from: url)
+                            }
+                        }
+                        Button(String(localized: "button.cancel"), role: .cancel) {
+                            importURL = nil
+                        }
+                    } message: {
+                        Text(String(localized: "backup_import_bestaetigung_text"))
+                    }
+            )
+            .background(
+                Color.clear
+                    .alert(String(localized: "backup_fehler_titel"), isPresented: Binding(
+                        get: { errorMessage != nil },
+                        set: { if !$0 { errorMessage = nil } }
+                    )) {
+                        Button(String(localized: "button.ok"), role: .cancel) {}
+                    } message: {
+                        if let msg = errorMessage {
+                            Text(msg)
+                        }
+                    }
+            )
             .onAppear {
                 if let url = preselectedImportURL {
                     self.importURL = url
