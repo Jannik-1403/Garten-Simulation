@@ -593,6 +593,17 @@ class GardenStore: ObservableObject {
             zeigeGameOverOverlay = true
         }
     }
+    
+    // MARK: - Cheat Punishment
+    func punishForCheating() {
+        withAnimation(.spring) {
+            leben = max(0, leben - 1)
+            saveStats()
+        }
+        if leben <= 0 {
+            gartenGameOver()
+        }
+    }
 
     // MARK: - Item aus Shop hinzufügen (Wunder-Box etc.)
     func itemHinzufuegen(shopItem: ShopDetailPayload, isFree: Bool = false) {

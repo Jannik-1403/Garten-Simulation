@@ -37,6 +37,7 @@ class ScreenTimeManager: ObservableObject {
     @Published var permanentBlockSelection = FamilyActivitySelection() {
         didSet {
             savePermanentBlockSelection()
+            sanitizeSelections()
             applyPermanentBlocks()
         }
     }
@@ -141,6 +142,7 @@ class ScreenTimeManager: ObservableObject {
     }
     
     @Published var isAuthorized = false
+    @Published var isDenied = false
     
     let permanentStore = ManagedSettingsStore(named: .init("permanent"))
     let scheduledStore = ManagedSettingsStore(named: .init("scheduled"))
@@ -230,7 +232,9 @@ class ScreenTimeManager: ObservableObject {
     }
     
     func checkAuthorizationStatus() {
-        self.isAuthorized = AuthorizationCenter.shared.authorizationStatus == .approved
+        let status = AuthorizationCenter.shared.authorizationStatus
+        self.isAuthorized = status == .approved
+        self.isDenied = status == .denied
         if self.isAuthorized {
             applyPermanentBlocks()
         }
@@ -486,6 +490,25 @@ class ScreenTimeManager: ObservableObject {
     
     /// Expose sync for use by the View when dailyLimitSelection changes via picker
     func syncLimitsAfterPickerChange() {
+        syncIndividualLimits()
+    }
+    
+    func sanitizeSelections() {
+        let permanentTokens = permanentBlockSelection.applicationTokens
+        let permanentCategories = permanentBlockSelection.categoryTokens
+        let permanentWebDomains = permanentBlockSelection.webDomainTokens
+        
+        dailyLimitSelection.applicationTokens.subtract(permanentTokens)
+        dailyLimitSelection.categoryTokens.subtract(permanentCategories)
+        dailyLimitSelection.webDomainTokens.subtract(permanentWebDomains)
+        
+        for id in limitSelections.keys {
+            limitSelections[id]?.applicationTokens.subtract(permanentTokens)
+            limitSelections[id]?.categoryTokens.subtract(permanentCategories)
+            limitSelections[id]?.webDomainTokens.subtract(permanentWebDomains)
+        }
+        
+        applyPermanentBlocks()
         syncIndividualLimits()
     }
     

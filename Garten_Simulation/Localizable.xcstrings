@@ -303092,6 +303092,338 @@
           }
         }
       }
+    },
+    "cheat_punishment.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 SYSTEMZUGRIFF BLOCKIERT"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 SYSTEM ACCESS BLOCKED"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 ACCESO AL SISTEMA BLOQUEADO"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 ACCÈS AU SYSTÈME BLOQUÉ"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 सिस्टम पहुँच अवरुद्ध"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 ACCESSO AL SISTEMA BLOCCATO"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 システムアクセスがブロックされました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 시스템 액세스 차단됨"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 SYSTEEMTOEGANG GEBLOKKEERD"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 DOSTĘP DO SYSTEMU ZABLOKOWANY"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 ACESSO AO SISTEMA BLOQUEADO"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 ДОСТУП К СИСТЕМЕ ЗАБЛОКИРОВАН"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🚨 SİSTEM ERİŞİMİ ENGELLENDİ"
+          }
+        }
+      }
+    },
+    "cheat_punishment.message": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast die App- & Website-Aktivitäten in den iOS-Einstellungen deaktiviert. Damit hast du das Fundament deines Gartens zerstört."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have disabled App & Website Activities in the iOS settings. With this, you have destroyed the foundation of your garden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Has desactivado las Actividades de Apps y Sitios Web en los ajustes de iOS. Con esto, has destruido los cimientos de tu jardín."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous avez désactivé les Activités des apps et des sites web dans les réglages d'iOS. Avec cela, vous avez détruit les fondations de votre jardin."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपने iOS सेटिंग्स में ऐप और वेबसाइट गतिविधियों को अक्षम कर दिया है। इसके साथ, आपने अपने बगीचे की नींव नष्ट कर दी है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hai disabilitato le Attività di app e siti web nelle impostazioni di iOS. Con questo, hai distrutto le fondamenta del tuo giardino."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOSの設定でアプリとウェブサイトのアクティビティを無効にしました。これにより、あなたは庭の基盤を破壊しました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 설정에서 앱 및 웹사이트 활동을 비활성화했습니다. 이로써 정원의 기반이 파괴되었습니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hebt App- en website-activiteiten uitgeschakeld in de iOS-instellingen. Hiermee heb je de fundering van je tuin vernietigd."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wyłączyłeś Aktywność aplikacji i witryn w ustawieniach iOS. Tym samym zniszczyłeś fundamenty swojego ogrodu."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você desativou as Atividades de Apps e Sites nos ajustes do iOS. Com isso, você destruiu os alicerces do seu jardim."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы отключили активность приложений и веб-сайтов в настройках iOS. Тем самым вы разрушили фундамент своего сада."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS ayarlarında Uygulama ve Web Sitesi Etkinliklerini devre dışı bıraktınız. Bununla bahçenizin temelini yok ettiniz."
+          }
+        }
+      }
+    },
+    "cheat_punishment.warning": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Garten verliert aktuell jede Stunde 1 Leben. Schalte die Bildschirmzeit in den Einstellungen wieder ein, um das Sterben zu stoppen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your garden is currently losing 1 life every hour. Turn Screen Time back on in the settings to stop the dying."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu jardín está perdiendo actualmente 1 vida cada hora. Vuelve a activar el Tiempo de uso en los ajustes para detener la muerte."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Votre jardin perd actuellement 1 vie toutes les heures. Réactivez le Temps d'écran dans les réglages pour arrêter la mort."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका बगीचा वर्तमान में हर घंटे 1 जीवन खो रहा है। मरने से रोकने के लिए सेटिंग्स में स्क्रीन टाइम वापस चालू करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il tuo giardino sta attualmente perdendo 1 vita ogni ora. Riattiva il Tempo di utilizzo nelle impostazioni per fermare la morte."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "現在、あなたの庭は1時間ごとに1つのライフを失っています。死を止めるには、設定でスクリーンタイムを再びオンにしてください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "현재 정원은 매시간 1개의 생명을 잃고 있습니다. 죽음을 막으려면 설정에서 스크린 타임을 다시 켜세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je tuin verliest momenteel 1 leven per uur. Schakel Schermtijd weer in de instellingen in om het sterven te stoppen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twój ogród traci obecnie 1 życie co godzinę. Włącz ponownie Czas przed ekranem w ustawieniach, aby zatrzymać umieranie."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu jardim está perdendo 1 vida a cada hora. Ative o Tempo de Uso novamente nos ajustes para parar a morte."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В настоящее время ваш сад теряет 1 жизнь каждый час. Снова включите Экранное время в настройках, чтобы остановить смерть."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bahçeniz şu anda her saat 1 can kaybediyor. Ölümü durdurmak için ayarlardan Ekran Süresini tekrar açın."
+          }
+        }
+      }
+    },
+    "cheat_punishment.button.settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu den Einstellungen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To Settings"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A los Ajustes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vers les Réglages"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सेटिंग्स पर जाएं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vai alle Impostazioni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定へ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "설정으로 이동"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naar instellingen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do ustawień"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para os Ajustes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В настройки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayarlara Git"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

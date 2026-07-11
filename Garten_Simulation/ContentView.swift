@@ -12,6 +12,8 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var realShopStore: ShopStore
     
+    @StateObject private var screenTimeManager = ScreenTimeManager.shared
+    
     @State private var showWeeklyReportPopup = false
     
     @StateObject private var mockGardenStore = TourSimulationStore.createMockGardenStore()
@@ -24,6 +26,12 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
+            if screenTimeManager.isDenied {
+                CheatPunishmentOverlay()
+                    .environmentObject(activeGardenStore)
+                    .zIndex(100000)
+            }
+            
             MainAppTabView()
                 .environmentObject(activeGardenStore)
                 .environmentObject(activeStreakStore)
