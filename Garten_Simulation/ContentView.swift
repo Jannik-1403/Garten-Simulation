@@ -16,6 +16,7 @@ struct ContentView: View {
     
     @State private var showWeeklyReportPopup = false
     @State private var showRecoveredTimer = false
+    @State private var recoveredPlantId: String? = nil
     
     @StateObject private var mockGardenStore = TourSimulationStore.createMockGardenStore()
     @StateObject private var mockStreakStore = TourSimulationStore.createMockStreakStore()
@@ -121,6 +122,7 @@ struct ContentView: View {
         .onAppear {
             checkAndShowSundayWeeklyReport()
             if FocusTimerRecovery.shared.isActive {
+                recoveredPlantId = FocusTimerRecovery.shared.plantId
                 // Kurze Verzögerung, damit die UI bereit ist
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     showRecoveredTimer = true
@@ -128,8 +130,7 @@ struct ContentView: View {
             }
         }
         .fullScreenCover(isPresented: $showRecoveredTimer) {
-            let plantId = FocusTimerRecovery.shared.plantId
-            if let pflanze = gardenStore.pflanzen.first(where: { $0.id == plantId }) {
+            if let plantId = recoveredPlantId, let pflanze = gardenStore.pflanzen.first(where: { $0.id == plantId }) {
                 FocusSessionView(pflanze: pflanze)
                     .environmentObject(gardenStore)
                     .environmentObject(settings)

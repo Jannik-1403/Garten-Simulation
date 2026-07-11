@@ -688,3 +688,6 @@
 - Anti-Cheat-System implementiert: Duplikate in Zeitlimits werden gelöscht (sanitizeSelections)
 - Systemzugriff blockiert Overlay hinzugefügt bei Deaktivierung von ScreenTime (.denied)
 - HP-Bestrafung bei Cheating integriert (-1 Leben pro Trigger)
+- Feature: Hintergrundsicherer Fokus-Timer. Die App speichert nun den Endzeitpunkt und die Ziele persistent ab. Wird die App geschlossen oder weggewischt, wird der Timer beim nächsten Öffnen nahtlos fortgesetzt oder direkt als erfolgreich abgeschlossen gewertet, wenn die Zeit abgelaufen ist.
+
+- UI Update: CheatPunishmentOverlay ist nun minimalistisch, hat einen sauberen weißen Hintergrund, ein Warn-Icon und nutzt den etablierten Item3DButton.

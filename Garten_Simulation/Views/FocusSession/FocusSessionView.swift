@@ -146,7 +146,9 @@ struct FocusSessionView: View {
                 } else {
                     self.remainingSeconds = 0
                     self.isTimerRunning = false
-                    finishSession()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        finishSession()
+                    }
                 }
             } else {
                 if sessionGoals.isEmpty && !initialGoals.isEmpty {

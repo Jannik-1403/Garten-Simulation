@@ -75,20 +75,54 @@ class GartenPfadStore: ObservableObject {
         var hasChanges = false
         for pflanze in gardenStore.pflanzen {
             let pflanzeID = pflanze.id
-            // Check if ANY strand belongs to this plant instance
-            let existing = straenge.first(where: { $0.pflanzenID == pflanzeID })
+            
+            // Clean up duplicates: if there are multiple active strands for the same plant instance, keep the one with the most progress (highest number of completed tags)
+            let existingStrands = straenge.filter { $0.pflanzenID == pflanzeID && $0.istAktiv }
+            var strangToKeep: PfadStrang? = nil
+            
+            if existingStrands.count > 1 {
+                print("[PfadStore] VORSICHT: Mehrere Stränge für \(pflanze.name) gefunden. Bereinige Duplikate...")
+                let sortedByProgress = existingStrands.sorted { s1, s2 in
+                    let count1 = alleTags.filter { $0.strang?.id == s1.id && $0.istErledigt }.count
+                    let count2 = alleTags.filter { $0.strang?.id == s2.id && $0.istErledigt }.count
+                    return count1 > count2
+                }
+                
+                strangToKeep = sortedByProgress.first
+                
+                // Delete the others
+                for strand in sortedByProgress.dropFirst() {
+                    context.delete(strand)
+                    hasChanges = true
+                }
+                
+                // Reload after deletion
+                if hasChanges {
+                    try? context.save()
+                    ladePfad()
+                }
+            } else {
+                strangToKeep = existingStrands.first
+            }
             
             if pflanze.plantID.hasPrefix("custom_") {
-                if let existingStrang = existing {
+                if let existingStrang = strangToKeep {
                     context.delete(existingStrang)
                     hasChanges = true
                 }
                 continue
             }
             
-            if existing == nil || (existing?.tags.count ?? 0) == 0 {
+            // Verwende alleTags zum Zählen der Tags anstatt strangToKeep?.tags.count um SwiftData Lazy-Loading Bugs zu vermeiden
+            let tagsCount = strangToKeep != nil ? alleTags.filter { $0.strang?.id == strangToKeep!.id }.count : 0
+            
+            if strangToKeep == nil || tagsCount == 0 {
                 // Completely missing or broken (no tags)
                 print("[PfadStore] Erstelle/Repariere Pfad für: \(pflanze.name) (\(pflanzeID))")
+                if let brokenStrang = strangToKeep {
+                    context.delete(brokenStrang) // Falls es ein broken Strang ohne Tags war
+                }
+                
                 let ziel = settings.ausgewaehltesZiel.isEmpty ? "fit" : settings.ausgewaehltesZiel
                 let sRaw = pflanze.individualSchwierigkeit ?? PfadSchwierigkeit.anfaenger.rawValue
                 let difficulty = PfadSchwierigkeit(rawValue: sRaw) ?? .anfaenger
