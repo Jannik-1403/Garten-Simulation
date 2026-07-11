@@ -706,3 +706,4 @@
 - Paywall Titel überlappt nun das Header Icon
 
 - Unkraut-Banner: Texte verkürzt und `.minimumScaleFactor(0.8)` hinzugefügt, um abgeschnittene Texte ('...') zu verhindern.
+- Fokus Button auf der Profilseite ist nun lila statt orange, passend zum Icon.

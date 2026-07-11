@@ -36,8 +36,9 @@ struct PaywallView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 200, height: 200)
-                            .padding(.top, 20)
-                            .padding(.bottom, -15)
+                            .scaleEffect(2.0)
+                            .padding(.top, 60)
+                            .padding(.bottom, -60)
 
                         // Title
                         VStack(spacing: 8) {
@@ -55,7 +56,7 @@ struct PaywallView: View {
                         // Feature Cards
                         VStack(spacing: 16) {
                             featureRow(
-                                icon: "heart.text.square.fill",
+                                icon: "ProIconHealth",
                                 title: String(localized: "paywall.feature.health.title", defaultValue: "Apple Health Integration"),
                                 bullets: [
                                     String(localized: "paywall.feature.health.bullet1", defaultValue: "Verbinde deine Bewegung direkt mit deinem Fokus."),
@@ -66,7 +67,7 @@ struct PaywallView: View {
                             )
                             
                             featureRow(
-                                icon: "calendar.badge.plus",
+                                icon: "ProIconCalendar",
                                 title: String(localized: "paywall.feature.calendar.title", defaultValue: "Apple Kalender Sync"),
                                 bullets: [
                                     String(localized: "paywall.feature.calendar.bullet1", defaultValue: "Blockt Fokus-Zeiten automatisch in deinem Kalender."),
@@ -77,18 +78,19 @@ struct PaywallView: View {
                             )
                             
                             featureRow(
-                                icon: "chart.bar.doc.horizontal.fill",
+                                icon: "ProIconAnalytics",
                                 title: String(localized: "paywall.feature.weekly_report.title", defaultValue: "Detaillierte Analysen"),
                                 bullets: [
                                     String(localized: "paywall.feature.weekly_report.bullet1", defaultValue: "Erkenne, an welchen Tagen du am produktivsten bist."),
                                     String(localized: "paywall.feature.weekly_report.bullet2", defaultValue: "Verfolge deinen Fortschritt mit interaktiven Graphen."),
                                     String(localized: "paywall.feature.weekly_report.bullet3", defaultValue: "Optimiere deine Arbeitsweise anhand deiner Daten.")
                                 ],
-                                color: .blauPrimary
+                                color: .blauPrimary,
+                                scale: 2.3
                             )
                             
                             featureRow(
-                                icon: "waveform.circle.fill",
+                                icon: "ProIconSounds",
                                 title: String(localized: "paywall.feature.focus_sounds.title", defaultValue: "Premium Fokus-Klänge"),
                                 bullets: [
                                     String(localized: "paywall.feature.focus_sounds.bullet1", defaultValue: "Zugriff auf alle wissenschaftlich fundierten Sounds."),
@@ -99,7 +101,7 @@ struct PaywallView: View {
                             )
 
                             featureRow(
-                                icon: "tag.fill",
+                                icon: "ProIconGardener",
                                 title: String(localized: "paywall.feature.pro_gardener.title", defaultValue: "Pro-Gärtner Vorteile"),
                                 bullets: [
                                     String(localized: "paywall.feature.pro_gardener.bullet1", defaultValue: "Alle Pflanzen kosten dauerhaft 50% weniger Münzen."),
@@ -245,16 +247,14 @@ struct PaywallView: View {
         .buttonStyle(PaywallOptionButtonStyle(isSelected: isSelected))
     }
 
-    private func featureRow(icon: String, title: String, bullets: [String], color: Color) -> some View {
+    private func featureRow(icon: String, title: String, bullets: [String], color: Color, scale: CGFloat = 2.0) -> some View {
         HStack(alignment: .top, spacing: 16) {
-            ZStack {
-                Circle()
-                    .fill(color.opacity(0.15))
-                    .frame(width: 46, height: 46)
-                Image(systemName: icon)
-                    .font(.system(size: 22, weight: .bold))
-                    .foregroundStyle(color)
-            }
+            Image(icon)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 48, height: 48)
+                .scaleEffect(scale)
+                .foregroundStyle(color)
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(title)

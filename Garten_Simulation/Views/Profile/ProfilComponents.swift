@@ -94,8 +94,8 @@ struct FocusTimerStatButton: View {
         DuolingoCard(action: { showFocusSheet = true }) {
             VStack(spacing: 12) {
                 Item3DButton(
-                    farbe: Color.orangePrimary,
-                    sekundaerFarbe: Color.orangePrimary.darker(),
+                    farbe: Color.lilaPrimary,
+                    sekundaerFarbe: Color.lilaPrimary.darker(),
                     groesse: 60,
                     aktion: nil
                 ) {
