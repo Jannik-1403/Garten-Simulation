@@ -710,3 +710,4 @@
 - Routine Bearbeiten: Layout-Anpassungen ('Reihenfolge anpassen' zentriert, To-do und Gewohnheit Buttons nebeneinander in voller Breite)
 - Routine Bearbeiten: Kürzere und klarere Button-Beschriftungen ('To-do' und 'Gewohnheit')
 - Routine Bearbeiten: Titel der Ansicht auf 'Bearbeiten' verkürzt
+- Inventar-Seite durch direkte Samen-Seite auf dem Profil ersetzt und ungenutzte Inventar-Unterseiten entfernt

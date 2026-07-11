@@ -496,26 +496,27 @@ struct ScreenTimeSettingsView: View {
 
                     // Lock-Banner wenn Zeitplan gerade aktiv
                     if isScheduleLocked {
-                        HStack(spacing: 10) {
-                            Image(systemName: "lock.shield.fill")
-                                .foregroundStyle(.red)
-                                .font(.system(size: 16))
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(String(localized: "screenTime.schedule.locked.title", defaultValue: "Zeitplan läuft gerade"))
-                                    .font(.system(size: 13, weight: .bold, design: .rounded))
-                                Text(String(localized: "screenTime.schedule.locked.info", defaultValue: "Während der aktiven Zeit können keine Änderungen vorgenommen werden."))
-                                    .font(.system(size: 12, weight: .medium, design: .rounded))
-                                    .foregroundStyle(.secondary)
+                        Item3DButton(
+                            farbe: Color(UIColor.secondarySystemGroupedBackground),
+                            sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground),
+                            groesse: 64,
+                            shadowDepthFactor: 0.05,
+                            isRectangular: true,
+                            isDisabled: true
+                        ) {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(String(localized: "screenTime.schedule.locked.title", defaultValue: "Zeitplan läuft gerade"))
+                                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.primary)
+                                    Text(String(localized: "screenTime.schedule.locked.info", defaultValue: "Während der aktiven Zeit können keine Änderungen vorgenommen werden."))
+                                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                }
+                                Spacer()
                             }
+                            .padding(.horizontal, 4)
                         }
-                        .padding(12)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.red.opacity(0.08))
-                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12, style: .continuous)
-                                .stroke(Color.red.opacity(0.18), lineWidth: 1)
-                        )
                         .padding(.horizontal)
                     } else {
                         // Quick Copy Buttons – nur wenn nicht gesperrt
@@ -758,7 +759,7 @@ struct DayScheduleRow: View {
         .shadow(color: .black.opacity(0.08), radius: 0, x: 0, y: 4)
         .overlay(
             RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .stroke(isLocked ? Color.red.opacity(0.25) : Color.black.opacity(0.07), lineWidth: 1)
+                .stroke(Color.black.opacity(0.07), lineWidth: 1)
         )
         .animation(.spring(response: 0.3), value: isExpanded)
     }
