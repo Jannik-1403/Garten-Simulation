@@ -316,6 +316,7 @@ struct GartenView: View {
                                                 .font(.caption)
                                                 .opacity(0.85)
                                                 .lineLimit(1)
+                                                .minimumScaleFactor(0.8)
                                             Text(
                                                 gardenStore.weedCount > 1
                                                     ? String(format: String(localized: "weed_banner_title_multi"), gardenStore.weedCount)
@@ -324,6 +325,7 @@ struct GartenView: View {
                                                 .font(.subheadline)
                                                 .fontWeight(.bold)
                                                 .lineLimit(1)
+                                                .minimumScaleFactor(0.8)
                                         }
                                         .frame(maxWidth: .infinity, alignment: .leading)
 

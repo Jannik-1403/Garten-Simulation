@@ -289207,13 +289207,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Heute nur %@ Belohnung"
+            "value": "Nur %@ Belohnung"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Only %@ reward today"
+            "value": "Only %@ reward"
           }
         },
         "es": {
@@ -289303,13 +289303,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unkraut wächst!"
+            "value": "Unkraut!"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weeds Growing!"
+            "value": "Weeds!"
           }
         },
         "es": {
@@ -289399,13 +289399,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d Unkräuter im Garten!"
+            "value": "%d Unkräuter"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d weeds in the garden!"
+            "value": "%d Weeds"
           }
         },
         "es": {
