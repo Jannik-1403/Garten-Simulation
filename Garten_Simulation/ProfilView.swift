@@ -101,7 +101,7 @@ struct ProfilView: View {
                             }
                             
                             HStack(spacing: 20) {
-                                InventoryStatButton(count: gardenStore.totalItemsCount, showDetail: $showPflanzenDetail)
+                                SeedStatButton(count: gardenStore.seeds, showDetail: $showPflanzenDetail)
                                     .tourAnchor(.inventory)
                                     .id(TourStep.inventory)
                                 
@@ -149,8 +149,8 @@ struct ProfilView: View {
                     .environmentObject(gardenStore)
                     .environmentObject(settings)
             }
-            .navigationDestination(isPresented: $showPflanzenDetail) {
-                InventoryDetailView()
+            .fullScreenCover(isPresented: $showPflanzenDetail) {
+                CustomPlantCreationView()
                     .environmentObject(gardenStore)
                     .environmentObject(settings)
             }

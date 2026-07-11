@@ -707,3 +707,6 @@
 
 - Unkraut-Banner: Texte verkürzt und `.minimumScaleFactor(0.8)` hinzugefügt, um abgeschnittene Texte ('...') zu verhindern.
 - Fokus Button auf der Profilseite ist nun lila statt orange, passend zum Icon.
+- Routine Bearbeiten: Layout-Anpassungen ('Reihenfolge anpassen' zentriert, To-do und Gewohnheit Buttons nebeneinander in voller Breite)
+- Routine Bearbeiten: Kürzere und klarere Button-Beschriftungen ('To-do' und 'Gewohnheit')
+- Routine Bearbeiten: Titel der Ansicht auf 'Bearbeiten' verkürzt

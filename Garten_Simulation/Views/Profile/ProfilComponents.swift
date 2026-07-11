@@ -56,7 +56,7 @@ struct XPStatButton: View {
     }
 }
 
-struct InventoryStatButton: View {
+struct SeedStatButton: View {
     let count: Int
     @Binding var showDetail: Bool
     @EnvironmentObject var settings: SettingsStore
@@ -65,7 +65,7 @@ struct InventoryStatButton: View {
         DuolingoCard(action: { showDetail = true }) {
             VStack(spacing: 12) {
                 Item3DButton(
-                    icon: "Inventar",
+                    icon: "Samen",
                     farbe: Color(hex: "#8B4513"),
                     sekundaerFarbe: Color(hex: "#5C2E0B"),
                     groesse: 60,
@@ -76,7 +76,7 @@ struct InventoryStatButton: View {
                     Text(verbatim: "\(count)")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundStyle(.primary)
-                    Text(String(localized: "profile.inventory"))
+                    Text(String(localized: "inventory.seeds", defaultValue: "Samen"))
                         .font(.system(size: 12, weight: .semibold, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
