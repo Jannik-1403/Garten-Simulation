@@ -64,6 +64,21 @@ struct ExportImportView: View {
                                 backgroundColor: Color(red: 0.33, green: 0.76, blue: 0.01), // Duo Green
                                 shadowColor: Color(red: 0.35, green: 0.65, blue: 0.00)
                             ))
+                            .sheet(isPresented: $showShareSheet, onDismiss: { exportURL = nil }) {
+                                if let url = exportURL {
+                                    ShareSheet(activityItems: [url])
+                                }
+                            }
+                            .alert(String(localized: "backup_fehler_titel"), isPresented: Binding(
+                                get: { errorMessage != nil },
+                                set: { if !$0 { errorMessage = nil } }
+                            )) {
+                                Button(String(localized: "button.ok"), role: .cancel) {}
+                            } message: {
+                                if let msg = errorMessage {
+                                    Text(msg)
+                                }
+                            }
                             
                             // MARK: Import Button
                             Button {
@@ -78,6 +93,33 @@ struct ExportImportView: View {
                                 backgroundColor: Color(red: 0.11, green: 0.70, blue: 0.93), // Duo Blue
                                 shadowColor: Color(red: 0.10, green: 0.58, blue: 0.78)
                             ))
+                            .fileImporter(
+                                isPresented: $showFilePicker,
+                                allowedContentTypes: [UTType(filenameExtension: "gartensave") ?? .data],
+                                allowsMultipleSelection: false
+                            ) { result in
+                                switch result {
+                                case .success(let urls):
+                                    if let url = urls.first {
+                                        importURL = url
+                                        showImportConfirm = true
+                                    }
+                                case .failure(let error):
+                                    errorMessage = error.localizedDescription
+                                }
+                            }
+                            .alert(String(localized: "backup_import_bestaetigung_titel"), isPresented: $showImportConfirm) {
+                                Button(String(localized: "backup_import_bestaetigung_ja"), role: .destructive) {
+                                    if let url = importURL {
+                                        performImport(from: url)
+                                    }
+                                }
+                                Button(String(localized: "button.cancel"), role: .cancel) {
+                                    importURL = nil
+                                }
+                            } message: {
+                                Text(String(localized: "backup_import_bestaetigung_text"))
+                            }
                         }
                         .padding(.horizontal, 20)
                         
@@ -131,60 +173,7 @@ struct ExportImportView: View {
             .navigationTitle(String(localized: "backup_title"))
             .navigationBarTitleDisplayMode(.inline)
             .standardNavigationX()
-            .background(
-                Color.clear
-                    .sheet(isPresented: $showShareSheet, onDismiss: { exportURL = nil }) {
-                        if let url = exportURL {
-                            ShareSheet(activityItems: [url])
-                        }
-                    }
-            )
-            .background(
-                Color.clear
-                    .fileImporter(
-                        isPresented: $showFilePicker,
-                        allowedContentTypes: [UTType(filenameExtension: "gartensave") ?? .data],
-                        allowsMultipleSelection: false
-                    ) { result in
-                        switch result {
-                        case .success(let urls):
-                            if let url = urls.first {
-                                importURL = url
-                                showImportConfirm = true
-                            }
-                        case .failure(let error):
-                            errorMessage = error.localizedDescription
-                        }
-                    }
-            )
-            .background(
-                Color.clear
-                    .alert(String(localized: "backup_import_bestaetigung_titel"), isPresented: $showImportConfirm) {
-                        Button(String(localized: "backup_import_bestaetigung_ja"), role: .destructive) {
-                            if let url = importURL {
-                                performImport(from: url)
-                            }
-                        }
-                        Button(String(localized: "button.cancel"), role: .cancel) {
-                            importURL = nil
-                        }
-                    } message: {
-                        Text(String(localized: "backup_import_bestaetigung_text"))
-                    }
-            )
-            .background(
-                Color.clear
-                    .alert(String(localized: "backup_fehler_titel"), isPresented: Binding(
-                        get: { errorMessage != nil },
-                        set: { if !$0 { errorMessage = nil } }
-                    )) {
-                        Button(String(localized: "button.ok"), role: .cancel) {}
-                    } message: {
-                        if let msg = errorMessage {
-                            Text(msg)
-                        }
-                    }
-            )
+
             .onAppear {
                 if let url = preselectedImportURL {
                     self.importURL = url
