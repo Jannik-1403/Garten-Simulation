@@ -15,6 +15,7 @@ struct ContentView: View {
     @StateObject private var screenTimeManager = ScreenTimeManager.shared
     
     @State private var showWeeklyReportPopup = false
+    @State private var showWeeklyReviewTeaser = false
     @State private var showRecoveredTimer = false
     @State private var recoveredPlantId: String? = nil
     
@@ -92,6 +93,17 @@ struct ContentView: View {
                 }
                 .environmentObject(settings)
                 .zIndex(10001)
+            }
+            
+            if showWeeklyReviewTeaser {
+                WeeklyReviewTeaserPopup {
+                    showWeeklyReviewTeaser = false
+                    // Slightly delay opening the report to allow the teaser to disappear
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        showWeeklyReportPopup = true
+                    }
+                }
+                .zIndex(10002)
             }
         }
         .sheet(isPresented: $showWeeklyReportPopup) {
@@ -205,7 +217,7 @@ struct ContentView: View {
         // Kurze Verzögerung damit andere Overlays zuerst erscheinen
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             UserDefaults.standard.set(true, forKey: key)
-            showWeeklyReportPopup = true
+            showWeeklyReviewTeaser = true
         }
     }
 }
