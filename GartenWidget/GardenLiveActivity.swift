@@ -13,9 +13,11 @@ struct FocusTimerLiveActivity: Widget {
                             .font(.system(.headline, design: .rounded))
                             .fontWeight(.black)
                             .foregroundColor(.white)
-                        Text(context.state.title)
-                            .font(.system(.subheadline, design: .rounded))
-                            .foregroundStyle(.white.opacity(0.8))
+                        if context.state.title != context.attributes.habitName {
+                            Text(context.state.title)
+                                .font(.system(.subheadline, design: .rounded))
+                                .foregroundStyle(.white.opacity(0.8))
+                        }
                     }
                     
                     Spacer()
@@ -44,21 +46,22 @@ struct FocusTimerLiveActivity: Widget {
                     }
                 }
                 
-                if let tasks = context.state.tasks, !tasks.isEmpty {
+                let filteredTasks = (context.state.tasks ?? []).filter { $0 != context.state.title }
+                if !filteredTasks.isEmpty {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(String(localized: "focus.live_activity.tasks", defaultValue: "Aufgaben:"))
                             .font(.system(.caption, design: .rounded).weight(.bold))
                             .foregroundColor(.white.opacity(0.8))
                             .padding(.top, 4)
                         
-                        ForEach(tasks.prefix(3), id: \.self) { task in
+                        ForEach(filteredTasks.prefix(3), id: \.self) { task in
                             Text("• \(task)")
                                 .font(.system(.caption, design: .rounded))
                                 .foregroundColor(.white)
                                 .lineLimit(1)
                         }
-                        if tasks.count > 3 {
-                            let remaining = tasks.count - 3
+                        if filteredTasks.count > 3 {
+                            let remaining = filteredTasks.count - 3
                             let localizedString = String(localized: "focus.live_activity.more_tasks", defaultValue: "+ %@ weitere")
                             Text(verbatim: String(format: localizedString, "\(remaining)"))
                                 .font(.system(.caption2, design: .rounded))
@@ -97,9 +100,11 @@ struct FocusTimerLiveActivity: Widget {
                         Text(context.attributes.habitName)
                             .font(.system(.headline, design: .rounded))
                             .fontWeight(.black)
-                        Text(context.state.title)
-                            .font(.system(.footnote, design: .rounded))
-                            .foregroundStyle(.secondary)
+                        if context.state.title != context.attributes.habitName {
+                            Text(context.state.title)
+                                .font(.system(.footnote, design: .rounded))
+                                .foregroundStyle(.secondary)
+                        }
                         
                         if context.state.isProUser, let music = context.state.musicName {
                             Text(music)
