@@ -24,13 +24,16 @@ struct FlatTimelineView: View {
     private var totalWeeks: Int { (totalDays + 6) / 7 }
 
     private var firstUnwateredIndex: Int {
-        let calendar = Calendar.current
-        let checkedDays = Set(habit.pfadCheckedDates.map { calendar.startOfDay(for: $0) })
-        let start = habit.pfadAktiviertAm ?? Date()
-        return (0..<totalDays).first { i in
-            let date = calendar.date(byAdding: .day, value: i, to: start) ?? Date()
-            return !checkedDays.contains(calendar.startOfDay(for: date))
-        } ?? (totalDays - 1)
+        if let strang = pfadStore.straenge.first(where: { $0.pflanzenID == habit.id }) {
+            let sortedTags = strang.tags.sorted(by: { $0.tagNummer < $1.tagNummer })
+            if let firstIncompleteIndex = sortedTags.firstIndex(where: { !$0.istErledigt }) {
+                return firstIncompleteIndex
+            } else {
+                return totalDays - 1
+            }
+        }
+        // Fallback if no path is found
+        return min(habit.pfadCheckedDates.count, totalDays - 1)
     }
 
     var body: some View {
@@ -71,7 +74,7 @@ struct FlatTimelineView: View {
                 headerOverlay
             }
             .sheet(item: $selectedDay) { item in
-                PfadTagDetailView(tag: makeFakePfadStrangTag(index: item.index))
+                PfadTagDetailView(tag: getRealTag(index: item.index))
                     .environmentObject(pfadStore)
                     .environmentObject(gardenStore)
                     .environmentObject(settings)
@@ -119,6 +122,16 @@ struct FlatTimelineView: View {
             StreakIceInfoPopup()
                 .presentationDetents([.height(350)])
         }
+    }
+
+    private func getRealTag(index: Int) -> PfadStrangTag {
+        if let strang = pfadStore.straenge.first(where: { $0.pflanzenID == habit.id }) {
+            let sortedTags = strang.tags.sorted(by: { $0.tagNummer < $1.tagNummer })
+            if index < sortedTags.count {
+                return sortedTags[index]
+            }
+        }
+        return makeFakePfadStrangTag(index: index)
     }
 
     private func makeFakePfadStrangTag(index: Int) -> PfadStrangTag {
