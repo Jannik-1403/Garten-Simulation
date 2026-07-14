@@ -210,8 +210,10 @@ class ScreenTimeManager: ObservableObject {
         checkAuthorizationStatus()
         
         NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] _ in
-            self?.checkAuthorizationStatus()
-            self?.applyPermanentBlocks()
+            Task { @MainActor in
+                self?.checkAuthorizationStatus()
+                self?.applyPermanentBlocks()
+            }
         }
     }
     
@@ -295,8 +297,6 @@ class ScreenTimeManager: ObservableObject {
         }
         
         guard isScheduleActive else { return }
-        
-        let calendar = Calendar.current
         
         for (weekday, schedule) in daySchedules {
             guard schedule.isActive else { continue }

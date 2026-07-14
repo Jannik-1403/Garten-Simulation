@@ -564,7 +564,7 @@ struct CreateRoutineSheet: View {
     
     var displayedHabits: [HabitModel] {
         let newlyCreated = gardenStore.pflanzen.filter { $0.isRoutineOnly && selectedHabits.contains($0.id) }
-        var all = availableHabits + newlyCreated
+        let all = availableHabits + newlyCreated
         var seen = Set<String>()
         return all.filter { if seen.contains($0.id) { return false } else { seen.insert($0.id); return true } }
     }

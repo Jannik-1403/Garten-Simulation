@@ -489,7 +489,6 @@ struct RoutineSessionView: View {
         )
         
         // endTime is used as startTime for counting up when isRoutine is true
-        let currentHabitName = habits.indices.contains(currentHabitIndex) ? habits[currentHabitIndex].localizedName : ""
         let currentMusic = FocusAudioManager.shared.isPlaying ? FocusAudioManager.shared.currentSound.displayName : nil
         
         // Show remaining habits as tasks

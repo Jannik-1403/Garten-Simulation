@@ -88,7 +88,7 @@ struct ScreenTimeSettingsView: View {
             isAdultFilterEnabled = manager.isAdultFilterEnabled
             daySchedules = manager.daySchedules
         }
-        .onChange(of: dailyLimitSelection) { newValue in
+        .onChange(of: dailyLimitSelection) { _, newValue in
             var enforcedSelection = newValue
             
             // Verhindern, dass etwas abgewählt wird (Wegklicken)
@@ -115,7 +115,7 @@ struct ScreenTimeSettingsView: View {
             // get properly initialized. Uses same token instances → no mismatch.
             manager.syncLimitsAfterPickerChange()
         }
-        .onChange(of: blockSelection) { newValue in
+        .onChange(of: blockSelection) { _, newValue in
             // Der Picker ist während der aktiven Zeitleiste komplett disabled,
             // daher brauchen wir hier keine Enforce-Logik für das Sperren.
             // Gegenseitiger Ausschluss: Wenn in Zeitleiste ausgewählt, aus Ebene 2 entfernen
@@ -129,7 +129,7 @@ struct ScreenTimeSettingsView: View {
             }
             oldBlockSelection = newValue
         }
-        .onChange(of: permanentBlockSelection) { newValue in
+        .onChange(of: permanentBlockSelection) { _, newValue in
             var enforcedSelection = newValue
             
             // Verhindern, dass etwas abgewählt wird (Wegklicken)
