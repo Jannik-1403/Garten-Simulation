@@ -727,3 +727,5 @@
 - Developer-Button hinzugefügt, um das neue Wochenrückblick-Popup manuell zu testen.
 
 - Design des Wochenrückblick-Popups überarbeitet: Das gesamte Popup ist nun ein schlichter Item3DButton und nicht mehr 'neon'.
+
+- Finale Anpassung des Wochenrückblick-Popups: Der Hintergrund ist nun eine unklickbare 3D-Karte (ähnlich dem Kauf-Erfolgs-Popup), das Icon ist das detaillierte Analyse-Icon aus der Paywall ('ProIconAnalytics'), Texte werden nicht mehr abgeschnitten und der Action-Button ist nun ein dunkelblauer, klickbarer Item3DButton.

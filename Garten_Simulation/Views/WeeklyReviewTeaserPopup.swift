@@ -17,6 +17,8 @@ struct WeeklyReviewTeaserPopup: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 70, height: 70)
+                    .scaleEffect(2.5)
+                    .zIndex(1)
                     .padding(.top, 10)
                 
                 // Textbereich
