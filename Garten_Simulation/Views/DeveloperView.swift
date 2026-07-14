@@ -92,6 +92,15 @@ struct DeveloperView: View {
                             } label: {
                                 settingRow(title: "Wochenbericht testen", icon: "calendar.badge.plus", color: .goldPrimary)
                             }
+                            
+                            Divider().padding(.leading, 44)
+                            
+                            Button {
+                                setupAppStoreScreenshotData()
+                                FeedbackManager.shared.playSuccess()
+                            } label: {
+                                settingRow(title: "App Store Screenshot Daten", icon: "camera.fill", color: .pink)
+                            }
                         }
                     }
 
@@ -463,5 +472,82 @@ struct DeveloperView: View {
                 .padding(.vertical, 10)
                 .background(RoundedRectangle(cornerRadius: 12).fill(Color.indigo))
         }
+    }
+    
+    private func setupAppStoreScreenshotData() {
+        // 1. Set Streak to 123
+        streakStore.currentStreak = 123
+        streakStore.bestStreak = 123
+        
+        var newCompletedDates: Set<Date> = []
+        let cal = Calendar.current
+        let today = cal.startOfDay(for: Date())
+        
+        for i in 0..<123 {
+            if let d = cal.date(byAdding: .day, value: -i, to: today) {
+                newCompletedDates.insert(d)
+            }
+        }
+        streakStore.completedDates = newCompletedDates
+        
+        // 2. Weekly Stats (Injecting Focus Sessions)
+        // Clear old recent sessions and add beautiful fake ones for the last 7 days
+        gardenStore.focusSessions.removeAll(where: { session in
+            let daysAgo = cal.dateComponents([.day], from: session.date, to: today).day ?? 0
+            return daysAgo <= 14
+        })
+        
+        let focusMinutesPerDay = [120, 90, 150, 45, 180, 200, 110] // Mo - So
+        let monday = WeeklyStatsManager.shared.startOfWeek(for: today)
+        
+        for i in 0..<7 {
+            if let dayDate = cal.date(byAdding: .day, value: i, to: monday) {
+                let session = FocusSessionLog(
+                    id: UUID(),
+                    date: dayDate.addingTimeInterval(3600 * 10), // 10 AM
+                    durationMinutes: focusMinutesPerDay[i],
+                    isCompleted: true
+                )
+                gardenStore.focusSessions.append(session)
+            }
+        }
+        
+        // 3. Populate plants watering dates for the charts
+        for plant in gardenStore.pflanzen {
+            for i in 0..<14 {
+                if let dayDate = cal.date(byAdding: .day, value: -i, to: today) {
+                    if !plant.wateringDates.contains(where: { cal.isDate($0, inSameDayAs: dayDate) }) {
+                        plant.wateringDates.append(dayDate)
+                    }
+                }
+            }
+        }
+        
+        // Add some global XP
+        gardenStore.xpHinzufuegen(amount: 4500)
+        
+        // 4. Pfad-System: Simulate path progress to a cool milestone (e.g., day 45)
+        for strang in pfadStore.straenge {
+            let sortedTags = strang.tags.sorted(by: { $0.tagNummer < $1.tagNummer })
+            for tag in sortedTags {
+                if tag.tagNummer < 45 {
+                    tag.istErledigt = true
+                    let daysAgo = 45 - tag.tagNummer
+                    tag.datum = Date().addingTimeInterval(-TimeInterval(daysAgo) * 24 * 3600)
+                } else if tag.tagNummer == 45 {
+                    tag.istErledigt = true
+                    tag.datum = Date()
+                } else {
+                    tag.istErledigt = false
+                    tag.datum = nil
+                }
+            }
+        }
+        
+        gardenStore.coinsGutschreiben(amount: 4500, beschreibung: "Screenshot Data")
+        
+        // Save
+        gardenStore.savePlants()
+        gardenStore.saveFocusSessions()
     }
 }

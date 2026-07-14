@@ -30,7 +30,6 @@ class GardenStore: ObservableObject {
     @Published var triggerStreakDetail: Bool = false
     @Published var triggerWaterDetail: Bool = false
     @Published var triggerPaywall: Bool = false
-    @Published var zeigeGeschafftPopup: Bool = false
     @Published var liveActivityDebugLog: String = ""
     @Published var gluecksradDrehungen: Int = 0 {
         didSet { saveStats() }
@@ -329,7 +328,6 @@ class GardenStore: ObservableObject {
         if let target = pflanze.customTrackerTarget, target > 0 {
             if pflanze.customTrackerProgress < target {
                 pflanze.customTrackerProgress = target
-                zeigeGeschafftPopup = true
             }
         }
 

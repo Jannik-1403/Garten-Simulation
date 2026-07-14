@@ -31,7 +31,6 @@ struct PflanzeDetailSheet: View {
     @State private var zeigeDeleteTrackerConfirm = false
     @State private var zeigeCustomTrackerAlert = false
     @State private var zeigeTrackerConfirm = false
-    @State private var zeigeDetailGeschafftPopup = false
     @State private var customTrackerInputName = ""
     @ObservedObject private var healthManager = HealthManager.shared
     @FocusState private var isTargetFocused: Bool
@@ -406,11 +405,6 @@ struct PflanzeDetailSheet: View {
                 }
             }
             } // End of ScrollViewReader
-            
-            if zeigeDetailGeschafftPopup {
-                TargetReachedPopup(isPresented: $zeigeDetailGeschafftPopup)
-                    .zIndex(1000)
-            }
         }
         .navigationTitle(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
         .navigationBarTitleDisplayMode(.inline)
@@ -869,9 +863,6 @@ struct PflanzeDetailSheet: View {
                                                 }
                                                 Button(String(localized: "common.confirm", defaultValue: "Fertig")) {
                                                     gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
-                                                    withAnimation {
-                                                        zeigeDetailGeschafftPopup = true
-                                                    }
                                                 }
                                             }
                                             .padding(20)

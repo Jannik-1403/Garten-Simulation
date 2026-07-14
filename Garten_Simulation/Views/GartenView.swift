@@ -521,11 +521,6 @@ struct GartenView: View {
                 )
                 .environmentObject(settings)
             }
-            
-            if gardenStore.zeigeGeschafftPopup {
-                TargetReachedPopup(isPresented: $gardenStore.zeigeGeschafftPopup)
-                    .zIndex(1000)
-            }
         }
 
         .overlay(alignment: .topLeading) {
