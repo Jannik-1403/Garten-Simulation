@@ -41,6 +41,18 @@ struct GartenSaveFile: Codable {
     let transactions: [CoinTransaction]?
     let assessmentData: AssessmentSaveData?
     let customRoutines: [RoutineUIData]?
+    
+    // V3 Extensions
+    let streakCompletedDates: [Date]?
+    let streakBestStreak: Int?
+    let streakGoal: Int?
+    let streakFreezes: Int?
+    let streakFrozenDates: [Date]?
+    let streakLastShown: Int?
+    
+    let screenTimeAdultFilterEnabled: Bool?
+    let isScreenTimeScheduleActive: Bool?
+    let screenTimeDaySchedulesData: Data?
 }
 
 struct AssessmentSaveData: Codable {
@@ -59,6 +71,36 @@ struct PflanzenSaveData: Codable {
     let streak: Int
     let letzteBewaesserung: Date?
     let customName: String?
+    let gekauftAm: Date?
+    let istBewässert: Bool?
+    let missedCycles: Int?
+    let lastNotifiedCycle: Int?
+    let totalMlGegossen: Double?
+    let lebenBereitsAbgezogen: Bool?
+    let isDead: Bool?
+    let isNegative: Bool?
+    let wiederbelebtAm: Date?
+    let strafTage: Int?
+    let notizen: [String]?
+    let timerDatum: Date?
+    let reminderTime: Date?
+    let customReminderMessage: String?
+    let reminderSchedule: ReminderSchedule?
+    let individualSchwierigkeit: String?
+    let pfadAktiviertAm: Date?
+    let pfadCheckedDates: [Date]?
+    let linkedHealthMetric: HealthMetricType?
+    let healthTarget: Double?
+    let allowManualTrackingForHealth: Bool?
+    let customTrackerName: String?
+    let customTrackerTarget: Double?
+    let customTrackerProgress: Double?
+    let isRoutineOnly: Bool?
+    let isGenericFocus: Bool?
+    let challengeJokers: Int?
+    let xpHistory: [String: Int]?
+    let totalCoinsEarned: Int?
+    let wateringDates: [Date]?
 }
 
 struct ErfolgSaveData: Codable {
@@ -70,6 +112,19 @@ struct ErfolgSaveData: Codable {
 struct EinstellungenSaveData: Codable {
     let sprache: String                     // "de" / "en"
     let benachrichtigungenAktiv: Bool
+    
+    let isHapticEnabled: Bool?
+    let isAnalyticsEnabled: Bool?
+    let showHabitInsteadOfName: Bool?
+    let onboardingAbgeschlossen: Bool?
+    let appTourPromptShown: Bool?
+    let appTourAbgeschlossen: Bool?
+    let routineOnboardingAbgeschlossen: Bool?
+    let ausgewaehltesZiel: String?
+    let habitStartStunde: Int?
+    let ritualReihenfolgeIDs: [String]?
+    let igelCustomizationData: Data?
+    let erinnerungsZeitInternal: Double?
 }
 
 // MARK: - Errors
@@ -131,7 +186,37 @@ final class DataExportImportManager: ObservableObject {
                     xp: habit.currentXP,
                     streak: habit.streak,
                     letzteBewaesserung: habit.letzteBewaesserung,
-                    customName: habit.habitName
+                    customName: habit.habitName,
+                    gekauftAm: habit.gekauftAm,
+                    istBewässert: habit.istBewässert,
+                    missedCycles: habit.missedCycles,
+                    lastNotifiedCycle: habit.lastNotifiedCycle,
+                    totalMlGegossen: habit.totalMlGegossen,
+                    lebenBereitsAbgezogen: habit.lebenBereitsAbgezogen,
+                    isDead: habit.isDead,
+                    isNegative: habit.isNegative,
+                    wiederbelebtAm: habit.wiederbelebtAm,
+                    strafTage: habit.strafTage,
+                    notizen: habit.notizen,
+                    timerDatum: habit.timerDatum,
+                    reminderTime: habit.reminderTime,
+                    customReminderMessage: habit.customReminderMessage,
+                    reminderSchedule: habit.reminderSchedule,
+                    individualSchwierigkeit: habit.individualSchwierigkeit,
+                    pfadAktiviertAm: habit.pfadAktiviertAm,
+                    pfadCheckedDates: habit.pfadCheckedDates,
+                    linkedHealthMetric: habit.linkedHealthMetric,
+                    healthTarget: habit.healthTarget,
+                    allowManualTrackingForHealth: habit.allowManualTrackingForHealth,
+                    customTrackerName: habit.customTrackerName,
+                    customTrackerTarget: habit.customTrackerTarget,
+                    customTrackerProgress: habit.customTrackerProgress,
+                    isRoutineOnly: habit.isRoutineOnly,
+                    isGenericFocus: habit.isGenericFocus,
+                    challengeJokers: habit.challengeJokers,
+                    xpHistory: habit.xpHistory,
+                    totalCoinsEarned: habit.totalCoinsEarned,
+                    wateringDates: habit.wateringDates
                 )
             },
             gekauftePflanzenIDs: Array(shopStore.purchasedIDs).filter { $0.starts(with: "plant.") },
@@ -145,7 +230,19 @@ final class DataExportImportManager: ObservableObject {
             },
             einstellungen: EinstellungenSaveData(
                 sprache: settingsStore.appLanguage,
-                benachrichtigungenAktiv: settingsStore.isNotificationsEnabled
+                benachrichtigungenAktiv: settingsStore.isNotificationsEnabled,
+                isHapticEnabled: settingsStore.isHapticEnabled,
+                isAnalyticsEnabled: settingsStore.isAnalyticsEnabled,
+                showHabitInsteadOfName: settingsStore.showHabitInsteadOfName,
+                onboardingAbgeschlossen: settingsStore.onboardingAbgeschlossen,
+                appTourPromptShown: settingsStore.appTourPromptShown,
+                appTourAbgeschlossen: settingsStore.appTourAbgeschlossen,
+                routineOnboardingAbgeschlossen: settingsStore.routineOnboardingAbgeschlossen,
+                ausgewaehltesZiel: settingsStore.ausgewaehltesZiel,
+                habitStartStunde: settingsStore.habitStartStunde,
+                ritualReihenfolgeIDs: settingsStore.ritualReihenfolgeIDs,
+                igelCustomizationData: try? JSONEncoder().encode(settingsStore.igelCustomization),
+                erinnerungsZeitInternal: UserDefaults.standard.object(forKey: "erinnerungsZeit") as? Double
             ),
             achievementTiers: achievementStore.achievementTiers,
             achievementUnlockDatesV2: SharedUserDefaults.suite.dictionary(forKey: "achievement_unlock_dates_v2") as? [String: TimeInterval],
@@ -173,7 +270,16 @@ final class DataExportImportManager: ObservableObject {
                 fitnessResult: assessmentStore.fitnessResult,
                 lifestyleResult: assessmentStore.lifestyleResult
             ),
-            customRoutines: customRoutines
+            customRoutines: customRoutines,
+            streakCompletedDates: Array(streakStore.completedDates),
+            streakBestStreak: streakStore.bestStreak,
+            streakGoal: streakStore.streakGoal,
+            streakFreezes: streakStore.streakFreezes,
+            streakFrozenDates: Array(streakStore.frozenDates),
+            streakLastShown: streakStore.lastShownStreak,
+            screenTimeAdultFilterEnabled: UserDefaults.standard.bool(forKey: "screenTimeAdultFilterEnabled"),
+            isScreenTimeScheduleActive: UserDefaults.standard.bool(forKey: "isScreenTimeScheduleActive"),
+            screenTimeDaySchedulesData: UserDefaults.standard.data(forKey: "screenTimeDaySchedulesData")
         )
         
         // Serialize
@@ -246,6 +352,16 @@ final class DataExportImportManager: ObservableObject {
             streakStore.currentStreak = importedStreak
         }
         
+        if let completedDates = saveFile.streakCompletedDates {
+            streakStore.completedDates = Set(completedDates)
+        }
+        if let bestStreak = saveFile.streakBestStreak { streakStore.bestStreak = bestStreak }
+        if let streakGoal = saveFile.streakGoal { streakStore.streakGoal = streakGoal }
+        if let streakFreezes = saveFile.streakFreezes { streakStore.streakFreezes = streakFreezes }
+        if let frozenDates = saveFile.streakFrozenDates { streakStore.frozenDates = Set(frozenDates) }
+        if let lastShown = saveFile.streakLastShown { streakStore.lastShownStreak = lastShown }
+        streakStore.calculateStreak(shouldAnimate: false)
+        
         if let leben = saveFile.leben { gardenStore.leben = leben }
         if let gestorbenePflanzenLog = saveFile.gestorbenePflanzenLog { gardenStore.gestorbenePflanzenLog = gestorbenePflanzenLog }
         if let gluecksradDrehungen = saveFile.gluecksradDrehungen { gardenStore.gluecksradDrehungen = gluecksradDrehungen }
@@ -278,6 +394,16 @@ final class DataExportImportManager: ObservableObject {
             }
         }
         
+        if let adultFilter = saveFile.screenTimeAdultFilterEnabled {
+            UserDefaults.standard.set(adultFilter, forKey: "screenTimeAdultFilterEnabled")
+        }
+        if let stScheduleActive = saveFile.isScreenTimeScheduleActive {
+            UserDefaults.standard.set(stScheduleActive, forKey: "isScreenTimeScheduleActive")
+        }
+        if let stSchedulesData = saveFile.screenTimeDaySchedulesData {
+            UserDefaults.standard.set(stSchedulesData, forKey: "screenTimeDaySchedulesData")
+        }
+        
         // Pflanzen neu aufbauen
         gardenStore.pflanzen = saveFile.pflanzen.map { data in
             let plantID = data.plantID
@@ -302,6 +428,37 @@ final class DataExportImportManager: ObservableObject {
             habit.currentXP = data.xp
             habit.streak = data.streak
             habit.letzteBewaesserung = data.letzteBewaesserung
+            
+            if let gekauftAm = data.gekauftAm { habit.gekauftAm = gekauftAm }
+            if let istBewässert = data.istBewässert { habit.istBewässert = istBewässert }
+            if let missedCycles = data.missedCycles { habit.missedCycles = missedCycles }
+            if let lastNotifiedCycle = data.lastNotifiedCycle { habit.lastNotifiedCycle = lastNotifiedCycle }
+            if let totalMlGegossen = data.totalMlGegossen { habit.totalMlGegossen = totalMlGegossen }
+            if let lebenBereitsAbgezogen = data.lebenBereitsAbgezogen { habit.lebenBereitsAbgezogen = lebenBereitsAbgezogen }
+            if let isDead = data.isDead { habit.isDead = isDead }
+            if let isNegative = data.isNegative { habit.isNegative = isNegative }
+            if let wiederbelebtAm = data.wiederbelebtAm { habit.wiederbelebtAm = wiederbelebtAm }
+            if let strafTage = data.strafTage { habit.strafTage = strafTage }
+            if let notizen = data.notizen { habit.notizen = notizen }
+            if let timerDatum = data.timerDatum { habit.timerDatum = timerDatum }
+            if let reminderTime = data.reminderTime { habit.reminderTime = reminderTime }
+            if let customReminderMessage = data.customReminderMessage { habit.customReminderMessage = customReminderMessage }
+            if let reminderSchedule = data.reminderSchedule { habit.reminderSchedule = reminderSchedule }
+            if let individualSchwierigkeit = data.individualSchwierigkeit { habit.individualSchwierigkeit = individualSchwierigkeit }
+            if let pfadAktiviertAm = data.pfadAktiviertAm { habit.pfadAktiviertAm = pfadAktiviertAm }
+            if let pfadCheckedDates = data.pfadCheckedDates { habit.pfadCheckedDates = pfadCheckedDates }
+            if let linkedHealthMetric = data.linkedHealthMetric { habit.linkedHealthMetric = linkedHealthMetric }
+            if let healthTarget = data.healthTarget { habit.healthTarget = healthTarget }
+            if let allowManualTrackingForHealth = data.allowManualTrackingForHealth { habit.allowManualTrackingForHealth = allowManualTrackingForHealth }
+            if let customTrackerName = data.customTrackerName { habit.customTrackerName = customTrackerName }
+            if let customTrackerTarget = data.customTrackerTarget { habit.customTrackerTarget = customTrackerTarget }
+            if let customTrackerProgress = data.customTrackerProgress { habit.customTrackerProgress = customTrackerProgress }
+            if let isRoutineOnly = data.isRoutineOnly { habit.isRoutineOnly = isRoutineOnly }
+            if let isGenericFocus = data.isGenericFocus { habit.isGenericFocus = isGenericFocus }
+            if let challengeJokers = data.challengeJokers { habit.challengeJokers = challengeJokers }
+            if let xpHistory = data.xpHistory { habit.xpHistory = xpHistory }
+            if let totalCoinsEarned = data.totalCoinsEarned { habit.totalCoinsEarned = totalCoinsEarned }
+            if let wateringDates = data.wateringDates { habit.wateringDates = wateringDates }
             
             return habit
         }
@@ -334,6 +491,26 @@ final class DataExportImportManager: ObservableObject {
         // Einstellungen
         settingsStore.appLanguage = saveFile.einstellungen.sprache
         settingsStore.isNotificationsEnabled = saveFile.einstellungen.benachrichtigungenAktiv
+        
+        if let isHapticEnabled = saveFile.einstellungen.isHapticEnabled { settingsStore.isHapticEnabled = isHapticEnabled }
+        if let isAnalyticsEnabled = saveFile.einstellungen.isAnalyticsEnabled { settingsStore.isAnalyticsEnabled = isAnalyticsEnabled }
+        if let showHabitInsteadOfName = saveFile.einstellungen.showHabitInsteadOfName { settingsStore.showHabitInsteadOfName = showHabitInsteadOfName }
+        if let onboardingAbgeschlossen = saveFile.einstellungen.onboardingAbgeschlossen { settingsStore.onboardingAbgeschlossen = onboardingAbgeschlossen }
+        if let appTourPromptShown = saveFile.einstellungen.appTourPromptShown { settingsStore.appTourPromptShown = appTourPromptShown }
+        if let appTourAbgeschlossen = saveFile.einstellungen.appTourAbgeschlossen { settingsStore.appTourAbgeschlossen = appTourAbgeschlossen }
+        if let routineOnboardingAbgeschlossen = saveFile.einstellungen.routineOnboardingAbgeschlossen { settingsStore.routineOnboardingAbgeschlossen = routineOnboardingAbgeschlossen }
+        if let ausgewaehltesZiel = saveFile.einstellungen.ausgewaehltesZiel { settingsStore.ausgewaehltesZiel = ausgewaehltesZiel }
+        if let habitStartStunde = saveFile.einstellungen.habitStartStunde { settingsStore.habitStartStunde = habitStartStunde }
+        if let ritualReihenfolgeIDs = saveFile.einstellungen.ritualReihenfolgeIDs { settingsStore.ritualReihenfolgeIDs = ritualReihenfolgeIDs }
+        
+        if let igelData = saveFile.einstellungen.igelCustomizationData,
+           let igel = try? JSONDecoder().decode(IgelCustomization.self, from: igelData) {
+            settingsStore.igelCustomization = igel
+        }
+        
+        if let erinnerungsZeitInternal = saveFile.einstellungen.erinnerungsZeitInternal {
+            UserDefaults.standard.set(erinnerungsZeitInternal, forKey: "erinnerungsZeit")
+        }
         
         // Persistence trigger
         gardenStore.savePlants()

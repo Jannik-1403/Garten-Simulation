@@ -1,6 +1,7 @@
 import SwiftUI
 import Combine
 import FamilyControls
+import ActivityKit
 
 enum RoutineSessionState {
     case intro
@@ -23,6 +24,8 @@ struct RoutineSessionView: View {
     @State private var currentHabitIndex: Int = 0
     @State private var totalCoins: Int = 0
     @State private var totalXP: Int = 0
+    
+    @State private var routineActivity: Activity<FocusTimerActivityAttributes>? = nil
     
 
     @State private var elapsedSeconds: Int = 0
@@ -73,6 +76,7 @@ struct RoutineSessionView: View {
             UIApplication.shared.isIdleTimerDisabled = false
             FocusAudioManager.shared.stop()
             ScreenTimeManager.shared.unblockApps()
+            stopLiveActivity()
         }
         .onChange(of: state) {
             if state == .running {
@@ -92,6 +96,11 @@ struct RoutineSessionView: View {
                     UIApplication.shared.isIdleTimerDisabled = true
                     isTimerRunning = true
                 }
+            }
+        }
+        .onReceive(FocusAudioManager.shared.objectWillChange) { _ in
+            if routineActivity != nil {
+                updateLiveActivity()
             }
         }
         .alert(String(localized: "alert.strict_mode.title"), isPresented: $showStrictModeAlert) {
@@ -163,6 +172,7 @@ struct RoutineSessionView: View {
             state = .running
             isTimerRunning = true
         }
+        startLiveActivity()
     }
     
     // MARK: - Intro View
@@ -427,6 +437,7 @@ struct RoutineSessionView: View {
             withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                 if currentHabitIndex < habits.count - 1 {
                     currentHabitIndex += 1
+                    updateLiveActivity()
                 } else {
                     finishRoutine()
                 }
@@ -437,6 +448,7 @@ struct RoutineSessionView: View {
     private func finishRoutine() {
         isTimerRunning = false
         FocusAudioManager.shared.stop()
+        stopLiveActivity()
         
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
@@ -463,6 +475,77 @@ struct RoutineSessionView: View {
         onComplete?()
         
         state = .success
+    }
+    
+    // MARK: - Live Activity
+    private func startLiveActivity() {
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
+        
+        let routineName = String(localized: String.LocalizationValue(routine.titleKey))
+        let attributes = FocusTimerActivityAttributes(
+            habitName: routineName,
+            habitId: "routine"
+        )
+        
+        // endTime is used as startTime for counting up when isRoutine is true
+        let currentHabitName = habits.indices.contains(currentHabitIndex) ? habits[currentHabitIndex].localizedName : ""
+        let currentMusic = FocusAudioManager.shared.isPlaying ? FocusAudioManager.shared.currentSound.displayName : nil
+        
+        // Show remaining habits as tasks
+        var tasks: [String]? = nil
+        if currentHabitIndex < habits.count {
+            let remaining = habits[currentHabitIndex..<habits.count]
+            tasks = remaining.map { $0.localizedName }
+        }
+        
+        let state = FocusTimerActivityAttributes.ContentState(
+            endTime: Date(), 
+            title: String(localized: "routine.session.progress", defaultValue: "Schritt \(currentHabitIndex + 1) von \(habits.count)"),
+            musicName: currentMusic,
+            tasks: tasks,
+            isProUser: settings.isProUser,
+            isRoutine: true
+        )
+        
+        do {
+            routineActivity = try Activity.request(attributes: attributes, content: .init(state: state, staleDate: nil))
+        } catch {
+            print("Konnte Routine Live Activity nicht starten: \(error)")
+        }
+    }
+    
+    private func updateLiveActivity() {
+        guard let activity = routineActivity else { return }
+        
+        let currentMusic = FocusAudioManager.shared.isPlaying ? FocusAudioManager.shared.currentSound.displayName : nil
+        
+        var tasks: [String]? = nil
+        if currentHabitIndex < habits.count {
+            let remaining = habits[currentHabitIndex..<habits.count]
+            tasks = remaining.map { $0.localizedName }
+        }
+        
+        let state = FocusTimerActivityAttributes.ContentState(
+            endTime: Date().addingTimeInterval(TimeInterval(-elapsedSeconds)), // Keep the start time consistent
+            title: String(localized: "routine.session.progress", defaultValue: "Schritt \(currentHabitIndex + 1) von \(habits.count)"),
+            musicName: currentMusic,
+            tasks: tasks,
+            isProUser: settings.isProUser,
+            isRoutine: true
+        )
+        
+        Task {
+            await activity.update(ActivityContent(state: state, staleDate: nil))
+        }
+    }
+    
+    private func stopLiveActivity() {
+        guard let activity = routineActivity else { return }
+        
+        Task {
+            await activity.end(nil, dismissalPolicy: .immediate)
+            routineActivity = nil
+        }
     }
 }
 

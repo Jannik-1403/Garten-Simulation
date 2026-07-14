@@ -8,6 +8,7 @@
 - **Localization**: Strings für das Redesign direkt in den String Catalog (.xcstrings) aufgenommen.
 
 ## [Unreleased]
+- **Export**: Der Datenexport (`DataExportImportManager`) wurde stark erweitert. Es werden nun alle Detail-Eigenschaften von Pflanzen (inkl. 90-Tage Challenge Fortschritt), alle Einstellungen (Profilname, Avatar, etc.), der komplette Streak-Kalender und die allgemeinen Bildschirmzeit-Einstellungen (Zeitplan, Adult-Filter) exportiert, sodass Backups vollständig sind.
 - **Bugfix**: Schlechte Gewohnheiten, die im Shop gekauft werden, zeichnen nun automatisch beim Kauf einen initialen Rückfall ("Schlechte Gewohnheit gekauft") auf. Das stellt sicher, dass der Streak direkt nach dem Kauf korrekt gestartet bzw. resettet wird.
 - **Timer Icon (Challenge)**: Der Countdown-Text beim grünen Status-Badge wurde auf Wunsch entfernt, sodass nur noch das kompakte Sanduhr-Icon ohne Zeitangabe zu sehen ist.
 - **Challenge Persistenz-Bug**: Das Abschließen ("Jetzt erledigen") von Tagen in der generischen Profil-Historie (`FlatTimelineView`) wurde komplett überarbeitet. Es löst nun serverseitig und lokal den regulären Bewässerungsvorgang für die Pflanze aus, sodass der Zustand sofort und dauerhaft gespeichert wird (und beim erneuten Öffnen nicht zurückspringt).
@@ -717,3 +718,6 @@
 - Behoben: 90-Tage Challenge berechnet freigeschaltete Tage nun anhand der erledigten Tags in der Datenbank anstatt per Kalender-Datum. Dies löst Fehler, bei denen Tage blockiert blieben, wenn man an einem vorherigen Tag pausiert hat, und stellt sicher, dass Tag 2 direkt sichtbar wird (aber bis zum nächsten Tag fürs Abschließen gesperrt bleibt).
 
 - Das Warndreieck über Pflanzen bei abgelaufenem Timer wurde optisch verdoppelt, ohne das Layout anderer Elemente zu verschieben.
+
+- 3D-Popup 'WeeklyReviewTeaserPopup' für den Wochenrückblick am Sonntag hinzugefügt. Das Popup erscheint vor dem eigentlichen Wochenbericht.
+- Neue lokalisierte Texte (in allen Sprachen) für das Popup implementiert.

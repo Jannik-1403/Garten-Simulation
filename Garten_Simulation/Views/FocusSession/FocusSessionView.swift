@@ -247,6 +247,19 @@ struct FocusSessionView: View {
                 }
             }
         ))
+        .onChange(of: scenePhase) {
+            handleScenePhaseChange(newPhase: scenePhase)
+        }
+        .onChange(of: sessionGoals) {
+            if focusActivity != nil {
+                updateLiveActivity()
+            }
+        }
+        .onReceive(FocusAudioManager.shared.objectWillChange) { _ in
+            if focusActivity != nil {
+                updateLiveActivity()
+            }
+        }
         .onChange(of: showScreenTimePicker) { _, isOpen in
             if !isOpen {
                 let selection = currentFocusMode == .full ? screenTimeManager.focusFullBlockSelection : screenTimeManager.focusPartialBlockSelection
@@ -650,14 +663,21 @@ struct FocusSessionView: View {
         let goalTitle = sessionGoals.first(where: { $0.priority == .high })?.text ?? 
                         sessionGoals.first?.text ?? 
                         "Focus Session"
-                        
+        let currentMusic = FocusAudioManager.shared.isPlaying ? FocusAudioManager.shared.currentSound.displayName : nil
+        let tasks = sessionGoals.isEmpty ? nil : sessionGoals.map { $0.text }
+        let isPro = iapStore.isProUser
+        
         let attributes = FocusTimerActivityAttributes(
             habitName: settings.showHabitInsteadOfName ? pflanze.localizedHabitName : pflanze.localizedName,
             habitId: pflanze.id
         )
         let state = FocusTimerActivityAttributes.ContentState(
             endTime: endTime,
-            title: goalTitle
+            title: goalTitle,
+            musicName: currentMusic,
+            tasks: tasks,
+            isProUser: isPro,
+            isRoutine: false
         )
         
         do {
@@ -674,6 +694,32 @@ struct FocusSessionView: View {
             // Dismissal immediately because the session is over or aborted
             await activity.end(nil, dismissalPolicy: .immediate)
             focusActivity = nil
+        }
+    }
+    
+    private func updateLiveActivity() {
+        guard let activity = focusActivity else { return }
+        
+        let endTime = Date().addingTimeInterval(TimeInterval(remainingSeconds))
+        let goalTitle = sessionGoals.first(where: { $0.priority == .high })?.text ?? 
+                        sessionGoals.first?.text ?? 
+                        "Focus Session"
+                        
+        let currentMusic = FocusAudioManager.shared.isPlaying ? FocusAudioManager.shared.currentSound.displayName : nil
+        let tasks = sessionGoals.isEmpty ? nil : sessionGoals.map { $0.text }
+        let isPro = iapStore.isProUser
+        
+        let state = FocusTimerActivityAttributes.ContentState(
+            endTime: endTime,
+            title: goalTitle,
+            musicName: currentMusic,
+            tasks: tasks,
+            isProUser: isPro,
+            isRoutine: false
+        )
+        
+        Task {
+            await activity.update(ActivityContent(state: state, staleDate: nil))
         }
     }
 }
