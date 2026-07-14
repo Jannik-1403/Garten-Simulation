@@ -621,6 +621,7 @@
 - Fixed: Settings view now correctly displays the name of the currently selected app language instead of the system language.
 
 ## [Unreleased]
+- Entfernung des Pop-ups ("Geschafft!"), wenn das Tagesziel einer Pflanze erreicht wird. Das Pop-up taucht nun nicht mehr auf, unabhängig davon wie das Tagesziel abgeschlossen wurde.
 - 90-Tage Challenge komplett überarbeitet
 - Wechsel von 3D Isometric View zu 2D Flat Timeline View für bessere Performance
 - Meilenstein-Anzeigen (Belohnungs-Icons) zur Timeline hinzugefügt
