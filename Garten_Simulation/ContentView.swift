@@ -135,9 +135,15 @@ struct ContentView: View {
             checkAndShowSundayWeeklyReport()
             if FocusTimerRecovery.shared.isActive {
                 recoveredPlantId = FocusTimerRecovery.shared.plantId
-                // Kurze Verzögerung, damit die UI bereit ist
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    showRecoveredTimer = true
+                
+                // Nur fortsetzen, wenn die Pflanze auch noch existiert
+                if gardenStore.pflanzen.contains(where: { $0.id == recoveredPlantId }) {
+                    // Kurze Verzögerung, damit die UI bereit ist
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        showRecoveredTimer = true
+                    }
+                } else {
+                    FocusTimerRecovery.shared.clearState()
                 }
             }
         }

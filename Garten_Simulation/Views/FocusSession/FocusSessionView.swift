@@ -152,6 +152,10 @@ struct FocusSessionView: View {
                     }
                 }
             } else {
+                if FocusTimerRecovery.shared.isActive {
+                    FocusTimerRecovery.shared.clearState()
+                }
+                
                 if sessionGoals.isEmpty && !initialGoals.isEmpty {
                     sessionGoals = initialGoals.map { FocusGoal(text: $0) }
                 }
