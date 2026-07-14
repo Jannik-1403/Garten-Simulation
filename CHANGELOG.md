@@ -725,3 +725,5 @@
 - **Routine Live Activity**: Live Activity wird nun auch beim Starten einer Routine angezeigt und zählt korrekterweise hochwärts.
 
 - Developer-Button hinzugefügt, um das neue Wochenrückblick-Popup manuell zu testen.
+
+- Design des Wochenrückblick-Popups überarbeitet: Das gesamte Popup ist nun ein schlichter Item3DButton und nicht mehr 'neon'.

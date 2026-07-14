@@ -297824,91 +297824,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tippe, um die Analyse anzusehen"
+            "value": "Analyse ansehen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tap to view analysis"
+            "value": "View Analysis"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Toca para ver el análisis"
+            "value": "Ver Análisis"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Appuyez pour voir l'analyse"
+            "value": "Voir l'analyse"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विश्लेषण देखने के लिए टैप करें"
+            "value": "विश्लेषण देखें"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tocca per visualizzare l'analisi"
+            "value": "Visualizza Analisi"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "タップして分析を見る"
+            "value": "分析を見る"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "탭하여 분석 보기"
+            "value": "분석 보기"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tik om analyse te bekijken"
+            "value": "Bekijk Analyse"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dotknij, aby zobaczyć analizę"
+            "value": "Zobacz Analizę"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Toque para ver a análise"
+            "value": "Ver Análise"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нажмите, чтобы посмотреть анализ"
+            "value": "Посмотреть анализ"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Analizi görmek için dokunun"
+            "value": "Analizi Görüntüle"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "点击查看分析"
+            "value": "查看分析"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "點擊查看分析"
+            "value": "查看分析"
           }
         }
       }

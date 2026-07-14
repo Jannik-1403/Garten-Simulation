@@ -2,53 +2,80 @@ import SwiftUI
 
 struct WeeklyReviewTeaserPopup: View {
     let onShowAnalysis: () -> Void
+    @State private var contentOpacity: Double = 0
     
     var body: some View {
         ZStack {
-            // Semi-transparent background
-            Color.black.opacity(0.4)
+            // Dunkler, semi-transparenter Hintergrund
+            Color.black.opacity(0.45)
                 .ignoresSafeArea()
             
-            // The whole card is an Item3DButton
-            Item3DButton(
-                farbe: Color(UIColor.systemBackground),
-                sekundaerFarbe: Color(UIColor.systemGray4),
-                groesse: 60, // Used for shadow calculation
-                shadowDepthFactor: 0.15,
-                isRectangular: true,
-                aktion: {
-                    withAnimation {
-                        onShowAnalysis()
-                    }
-                }
-            ) {
-                VStack(spacing: 20) {
-                    Image(systemName: "calendar.badge.checkmark")
-                        .font(.system(size: 50, weight: .semibold))
-                        .foregroundColor(.blue)
-                        .padding(.top, 20)
-                    
+            VStack(spacing: 32) {
+                
+                // Icon
+                Image("ProIconAnalytics")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 70, height: 70)
+                    .padding(.top, 10)
+                
+                // Textbereich
+                VStack(spacing: 12) {
                     Text(String(localized: "weekly_teaser.title", defaultValue: "Woche gemeistert!"))
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
+                        .font(.system(size: 26, weight: .black, design: .rounded))
+                        .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
                     
                     Text(String(localized: "weekly_teaser.message", defaultValue: "Herzlichen Glückwunsch! Du hast die Woche erfolgreich überstanden. Lass uns schauen, wie du abgeschnitten hast."))
-                        .font(.body)
-                        .foregroundColor(.secondary)
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
-                        .padding(.horizontal, 10)
-                    
-                    Text(String(localized: "weekly_teaser.button", defaultValue: "Tippe, um die Analyse anzusehen"))
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                        .foregroundColor(.secondary)
-                        .padding(.bottom, 10)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                .padding(.vertical, 10)
+                
+                // Item 3D Button (dunkelblau)
+                Item3DButton(
+                    farbe: Color.indigo,
+                    sekundaerFarbe: Color.indigo.opacity(0.6),
+                    groesse: 60,
+                    shadowDepthFactor: 0.1,
+                    isRectangular: true,
+                    aktion: {
+                        withAnimation {
+                            onShowAnalysis()
+                        }
+                    }
+                ) {
+                    Text(String(localized: "weekly_teaser.button", defaultValue: "Analyse ansehen"))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                        .padding(.vertical, 8)
+                }
             }
-            .padding(30)
+            .padding(28)
+            .background(
+                ZStack(alignment: .bottom) {
+                    // 3D Shadow Layer (Base)
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .fill(Color(hex: "#E0E0E0"))
+                        .offset(y: 8)
+                    
+                    // Main White Surface
+                    RoundedRectangle(cornerRadius: 24, style: .continuous)
+                        .fill(Color.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                                .stroke(Color.black.opacity(0.1), lineWidth: 1.5)
+                        )
+                }
+            )
+            .padding(.horizontal, 32)
+            .opacity(contentOpacity)
+        }
+        .onAppear {
+            withAnimation(.spring(response: 0.42, dampingFraction: 0.8)) {
+                contentOpacity = 1.0
+            }
         }
     }
 }
