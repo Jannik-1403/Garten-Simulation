@@ -711,3 +711,8 @@
 - Routine Bearbeiten: Kürzere und klarere Button-Beschriftungen ('To-do' und 'Gewohnheit')
 - Routine Bearbeiten: Titel der Ansicht auf 'Bearbeiten' verkürzt
 - Inventar-Seite durch direkte Samen-Seite auf dem Profil ersetzt und ungenutzte Inventar-Unterseiten entfernt
+- Design der Bildschirmzeit-Seite bei aktivem Zeitplan angepasst: Lock-Banner ist nun ein ausgegrauter 3D-Item Button ohne rotes Icon, und der rote Ring bei blockierten Tagen wurde durch ein unauffälliges graues Design ersetzt.
+- Design der Bildschirmzeit-Seite bei aktivem Zeitplan angepasst: Lock-Banner ist nun ein ausgegrauter 3D-Item Button ohne rotes Icon, und der rote Ring bei blockierten Tagen wurde durch ein unauffälliges graues Design ersetzt.
+- Behoben: 90-Tage Challenge berechnet freigeschaltete Tage nun anhand der erledigten Tags in der Datenbank anstatt per Kalender-Datum. Dies löst Fehler, bei denen Tage blockiert blieben, wenn man an einem vorherigen Tag pausiert hat, und stellt sicher, dass Tag 2 direkt sichtbar wird (aber bis zum nächsten Tag fürs Abschließen gesperrt bleibt).
+
+- Das Warndreieck über Pflanzen bei abgelaufenem Timer wurde optisch verdoppelt, ohne das Layout anderer Elemente zu verschieben.
