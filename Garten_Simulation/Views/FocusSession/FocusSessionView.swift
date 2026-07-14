@@ -19,6 +19,7 @@ struct FocusSessionView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var iapStore: IAPStore
     @Environment(\.scenePhase) var scenePhase
     
     @State private var state: FocusSessionState = .intro
@@ -247,9 +248,6 @@ struct FocusSessionView: View {
                 }
             }
         ))
-        .onChange(of: scenePhase) {
-            handleScenePhaseChange(newPhase: scenePhase)
-        }
         .onChange(of: sessionGoals) {
             if focusActivity != nil {
                 updateLiveActivity()

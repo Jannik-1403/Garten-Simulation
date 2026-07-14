@@ -19,6 +19,7 @@ struct RoutineSessionView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var iapStore: IAPStore
     
     @State private var state: RoutineSessionState = .intro
     @State private var currentHabitIndex: Int = 0
@@ -503,7 +504,7 @@ struct RoutineSessionView: View {
             title: String(localized: "routine.session.progress", defaultValue: "Schritt \(currentHabitIndex + 1) von \(habits.count)"),
             musicName: currentMusic,
             tasks: tasks,
-            isProUser: settings.isProUser,
+            isProUser: iapStore.isProUser,
             isRoutine: true
         )
         
@@ -530,7 +531,7 @@ struct RoutineSessionView: View {
             title: String(localized: "routine.session.progress", defaultValue: "Schritt \(currentHabitIndex + 1) von \(habits.count)"),
             musicName: currentMusic,
             tasks: tasks,
-            isProUser: settings.isProUser,
+            isProUser: iapStore.isProUser,
             isRoutine: true
         )
         

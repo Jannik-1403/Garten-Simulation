@@ -58,7 +58,7 @@ struct FocusTimerLiveActivity: Widget {
                                 .lineLimit(1)
                         }
                         if tasks.count > 3 {
-                            Text(String(localized: "focus.live_activity.more_tasks", defaultValue: "+ %lld weitere", options: String.LocalizationOptions(replacements: [tasks.count - 3])))
+                            Text(String(format: String(localized: "focus.live_activity.more_tasks", defaultValue: "+ %lld weitere"), tasks.count - 3))
                                 .font(.system(.caption2, design: .rounded))
                                 .foregroundColor(.white.opacity(0.6))
                         }
