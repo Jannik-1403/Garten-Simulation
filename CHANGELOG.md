@@ -8,6 +8,7 @@
 - **Localization**: Strings für das Redesign direkt in den String Catalog (.xcstrings) aufgenommen.
 
 ## [Unreleased]
+- **Bugfix**: Ein Fehler wurde behoben, durch den man in einer endlosen "Fokus-Timer erstellen" Schleife festhing, wenn man einen Fokus-Timer abgebrochen hat und die Pflanze nicht mehr übereinstimmte.
 - **Export**: Der Datenexport (`DataExportImportManager`) wurde stark erweitert. Es werden nun alle Detail-Eigenschaften von Pflanzen (inkl. 90-Tage Challenge Fortschritt), alle Einstellungen (Profilname, Avatar, etc.), der komplette Streak-Kalender und die allgemeinen Bildschirmzeit-Einstellungen (Zeitplan, Adult-Filter) exportiert, sodass Backups vollständig sind.
 - **Bugfix**: Schlechte Gewohnheiten, die im Shop gekauft werden, zeichnen nun automatisch beim Kauf einen initialen Rückfall ("Schlechte Gewohnheit gekauft") auf. Das stellt sicher, dass der Streak direkt nach dem Kauf korrekt gestartet bzw. resettet wird.
 - **Timer Icon (Challenge)**: Der Countdown-Text beim grünen Status-Badge wurde auf Wunsch entfernt, sodass nur noch das kompakte Sanduhr-Icon ohne Zeitangabe zu sehen ist.
@@ -729,3 +730,5 @@
 - Design des Wochenrückblick-Popups überarbeitet: Das gesamte Popup ist nun ein schlichter Item3DButton und nicht mehr 'neon'.
 
 - Finale Anpassung des Wochenrückblick-Popups: Der Hintergrund ist nun eine unklickbare 3D-Karte (ähnlich dem Kauf-Erfolgs-Popup), das Icon ist das detaillierte Analyse-Icon aus der Paywall ('ProIconAnalytics'), Texte werden nicht mehr abgeschnitten und der Action-Button ist nun ein dunkelblauer, klickbarer Item3DButton.
+
+- Das Icon im Wochenrückblick-Popup wurde um das 2,5-fache visuell vergrößert, ohne das Layout oder Texte zu verschieben.

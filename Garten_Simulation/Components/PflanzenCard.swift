@@ -140,14 +140,13 @@ struct PflanzenCard: View {
                     // Warning & Name Header
                     HStack(alignment: .center, spacing: 6) {
                         if !pflanze.istBewässert && pflanze.showWarning {
-                            Color.clear
-                                .frame(width: 18, height: 18)
-                                .overlay(
-                                    Image("Warndreieck")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 36, height: 36)
-                                )
+                            ZStack {
+                                Image("Warndreieck")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 36, height: 36)
+                            }
+                            .frame(width: 18, height: 18)
                         }
                         Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
                             .font(.system(size: 20, weight: .black, design: .rounded))
