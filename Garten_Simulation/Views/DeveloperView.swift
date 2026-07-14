@@ -15,6 +15,7 @@ struct DeveloperView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var showWeeklyReport = false
+    @State private var showWeeklyReviewTeaser = false
     @State private var showPaywallOverlay = false
     @State private var showRarityOverlay = false
     @State private var showMilestoneOverlay = false
@@ -100,6 +101,14 @@ struct DeveloperView: View {
                                 FeedbackManager.shared.playSuccess()
                             } label: {
                                 settingRow(title: "App Store Screenshot Daten", icon: "camera.fill", color: .pink)
+                            }
+                            
+                            Divider().padding(.leading, 44)
+                            
+                            Button {
+                                showWeeklyReviewTeaser = true
+                            } label: {
+                                settingRow(title: "Test: Wochenrückblick Teaser", icon: "star.fill", color: .yellow)
                             }
                         }
                     }
@@ -377,6 +386,19 @@ struct DeveloperView: View {
         .fullScreenCover(isPresented: $showPaywallOverlay) {
             PaywallView()
         }
+        .overlay(
+            Group {
+                if showWeeklyReviewTeaser {
+                    WeeklyReviewTeaserPopup {
+                        showWeeklyReviewTeaser = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            showWeeklyReport = true
+                        }
+                    }
+                    .zIndex(100)
+                }
+            }
+        )
         .navigationTitle(String(localized: "developer.options.title", defaultValue: "Developer Options"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
