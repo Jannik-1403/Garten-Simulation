@@ -732,3 +732,4 @@
 - Finale Anpassung des Wochenrückblick-Popups: Der Hintergrund ist nun eine unklickbare 3D-Karte (ähnlich dem Kauf-Erfolgs-Popup), das Icon ist das detaillierte Analyse-Icon aus der Paywall ('ProIconAnalytics'), Texte werden nicht mehr abgeschnitten und der Action-Button ist nun ein dunkelblauer, klickbarer Item3DButton.
 
 - Das Icon im Wochenrückblick-Popup wurde um das 2,5-fache visuell vergrößert, ohne das Layout oder Texte zu verschieben.
+- Behoben: Warndreieck über Pflanzen blitzt nicht mehr kurz auf, wenn man von anderen Seiten zurück zur Garten-Ansicht navigiert. Das Icon wird nun sauber gerendert und weiterhin nur angezeigt, wenn die Zeit dringlich ist.
