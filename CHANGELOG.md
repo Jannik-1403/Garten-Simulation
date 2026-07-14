@@ -721,3 +721,5 @@
 
 - 3D-Popup 'WeeklyReviewTeaserPopup' für den Wochenrückblick am Sonntag hinzugefügt. Das Popup erscheint vor dem eigentlichen Wochenbericht.
 - Neue lokalisierte Texte (in allen Sprachen) für das Popup implementiert.
+- **Live Activity Verbesserungen**: UI für Sperrbildschirm überarbeitet (bessere Sichtbarkeit, keine Emojis), Musik-Anzeige für Pro-Nutzer hinzugefügt, Aufgaben-Anzeige integriert.
+- **Routine Live Activity**: Live Activity wird nun auch beim Starten einer Routine angezeigt und zählt korrekterweise hochwärts.
