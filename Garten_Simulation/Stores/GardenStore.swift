@@ -823,16 +823,7 @@ class GardenStore: ObservableObject {
             }
         }
         
-        // Unkraut Ausbreitung (ältestes Unkraut zählt)
-        if isWeedActive, let spawnDate = weedSpawnDate {
-            let daysActive = Calendar.current.dateComponents([.day], from: spawnDate, to: Date()).day ?? 0
-            if daysActive >= GameConstants.weedSpreadDays {
-                // Infiziert gesunde Pflanzen (sie kränkeln / Health sinkt künstlich)
-                for pflanze in pflanzen {
-                    pflanze.missedCycles = min(2, pflanze.missedCycles + 1)
-                }
-            }
-        }
+        // Unkraut Ausbreitung (Logik wurde in pruefePflanzenStatus verlagert)
         
         objectWillChange.send() // UI-Update erzwingen
         savePlants()
@@ -1820,6 +1811,15 @@ class GardenStore: ObservableObject {
         let now = Date()
         var changed = false
         
+        // Unkraut-Strafe berechnen
+        var weedPenalty = 0
+        if isWeedActive, let spawnDate = weedSpawnDate {
+            let daysActive = Calendar.current.dateComponents([.day], from: spawnDate, to: Date()).day ?? 0
+            if daysActive >= GameConstants.weedSpreadDays {
+                weedPenalty = 1
+            }
+        }
+        
         for pflanze in pflanzen {
             let hours = pflanze.hoursSinceThirstStarted
             
@@ -1830,6 +1830,9 @@ class GardenStore: ObservableObject {
             } else if hours >= 36 {
                 verpasst = 1
             }
+            
+            // Unkraut-Strafe aufschlagen
+            verpasst = min(2, verpasst + weedPenalty)
             
             // Wächter-Turm (Sturmfest) Rettung vor dem sicheren Tod
             if verpasst >= 2 {
