@@ -209,8 +209,8 @@ class ScreenTimeManager: ObservableObject {
         
         checkAuthorizationStatus()
         
-        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] _ in
-            Task { @MainActor in
+        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { _ in
+            Task { @MainActor [weak self] in
                 self?.checkAuthorizationStatus()
                 self?.applyPermanentBlocks()
             }
