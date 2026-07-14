@@ -451,6 +451,7 @@ struct FocusSessionView: View {
                 showMathChallenge = false
                 isTimerRunning = false
                 UIApplication.shared.isIdleTimerDisabled = false
+                stopLiveActivity()
                 dismiss()
                 
                 let completedSeconds = selectedMinutes * 60 - remainingSeconds
