@@ -105,7 +105,8 @@ class GartenPfadStore: ObservableObject {
                 strangToKeep = existingStrands.first
             }
             
-            if pflanze.plantID.hasPrefix("custom_") {
+            let isTrivial = (GameDatabase.shared.plant(for: pflanze.plantID)?.has90DayChallenge == false)
+            if pflanze.plantID.hasPrefix("custom_") || isTrivial {
                 if let existingStrang = strangToKeep {
                     context.delete(existingStrang)
                     hasChanges = true

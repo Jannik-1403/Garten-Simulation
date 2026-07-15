@@ -261,12 +261,6 @@ struct DailyTaskCardView: View {
     }
     
     private var isLockedUntilTomorrow: Bool {
-        guard tag.tagNummer > 1, let strang = tag.strang else { return false }
-        let alleTags = strang.tags.sorted(by: { $0.tagNummer < $1.tagNummer })
-        if let prevTag = alleTags.first(where: { $0.tagNummer == tag.tagNummer - 1 }),
-           let completionDate = prevTag.datum {
-            return Calendar.current.isDateInToday(completionDate)
-        }
         return false
     }
     

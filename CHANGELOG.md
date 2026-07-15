@@ -736,3 +736,4 @@
 - Behoben: Unkraut-Strafe wurde in die zentrale 'pruefePflanzenStatus'-Logik verlagert, um zu verhindern, dass Timer und Warndreiecke beim Navigieren zwischen den Ansichten kurz aufblitzen und sich zurücksetzen.
 - Fokus-Timer-Button in der 90-Tage Challenge wurde auf Orange fixiert
 - Fokus-Timer in der 90-Tage Challenge setzt nun den aktuellen Pfad-Tag automatisch auf 'Erledigt' und schreitet fort
+- In der 90-Tage Challenge kann man nun an jedem Tag ein Foto und Notizen festhalten (Tagebuch-Funktion)

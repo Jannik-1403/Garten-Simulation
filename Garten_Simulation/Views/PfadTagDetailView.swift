@@ -69,19 +69,6 @@ struct PfadTagDetailView: View {
     }
 
     private var isLockedUntilTomorrow: Bool {
-        if let habit = habitModel {
-            if let lastDate = habit.letzteBewaesserung {
-                return Calendar.current.isDateInToday(lastDate)
-            }
-            return false
-        }
-        
-        guard tag.tagNummer > 1, let strang = tag.strang else { return false }
-        let alleTags = strang.tags.sorted { $0.tagNummer < $1.tagNummer }
-        if let prevTag = alleTags.first(where: { $0.tagNummer == tag.tagNummer - 1 }),
-           let completionDate = prevTag.datum {
-            return Calendar.current.isDateInToday(completionDate)
-        }
         return false
     }
 
@@ -308,13 +295,6 @@ struct PfadTagDetailView: View {
                         Text(String(localized: "pfad_tag_erledigt_badge", defaultValue: "Erledigt"))
                             .foregroundStyle(.green)
                     }
-                }
-            } else if isActionable {
-                badge(color: themeColor) {
-                    Image("Timer empty")
-                        .resizable().scaledToFit()
-                        .frame(width: 16, height: 16)
-                        .colorMultiply(themeColor)
                 }
             } else if isLockedUntilTomorrow {
                 let h = Calendar.current.dateComponents([.hour], from: Date(), to: Calendar.current.startOfDay(for: Date()).addingTimeInterval(86400)).hour ?? 0
