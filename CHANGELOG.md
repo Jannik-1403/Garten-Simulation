@@ -739,3 +739,4 @@
 - In der 90-Tage Challenge kann man nun an jedem Tag ein Foto und Notizen festhalten (Tagebuch-Funktion)
 - 90-Tage Challenge wurde aufgeräumt: Unnötige Basis-Habits haben keinen Pfad mehr, Tages-Timer-Sperre wurde entfernt, UI wurde gesäubert
 - Tagebuch UI Update: Bilder werden als kleine Polaroid-Vorschau angezeigt, Notizfeld ist größer, Klick auf Bild öffnet Detailansicht
+- Journaling unterstützt jetzt bis zu 5 Bilder gleichzeitig als scrollbare Polaroid-Liste, UI Fehler behoben

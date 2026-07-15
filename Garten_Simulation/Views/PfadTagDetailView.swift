@@ -245,28 +245,32 @@ struct PfadTagDetailView: View {
             try? tag.modelContext?.save()
         }
         .fullScreenCover(isPresented: $showingFullPhoto) {
-            if let data = fullScreenPhotoData, let uiImage = UIImage(data: data) {
-                NavigationStack {
-                    ZStack {
-                        Color.white.ignoresSafeArea()
+            NavigationStack {
+                ZStack {
+                    Color.white.ignoresSafeArea()
+                    
+                    if let data = fullScreenPhotoData, let uiImage = UIImage(data: data) {
                         Image(uiImage: uiImage)
                             .resizable()
                             .scaledToFit()
-                            .ignoresSafeArea()
+                            .ignoresSafeArea(edges: .bottom)
+                    } else {
+                        ProgressView()
                     }
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button {
-                                showingFullPhoto = false
-                            } label: {
-                                Image(systemName: "xmark")
-                                    .font(.system(size: 20, weight: .bold))
-                                    .foregroundStyle(.black)
-                            }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            showingFullPhoto = false
+                        } label: {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundStyle(.black)
+                                .padding(8)
                         }
                     }
-                    .toolbarBackground(.hidden, for: .navigationBar)
                 }
+                .toolbarBackground(.hidden, for: .navigationBar)
             }
         }
     }
