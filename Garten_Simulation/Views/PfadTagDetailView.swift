@@ -186,7 +186,14 @@ struct PfadTagDetailView: View {
             .fullScreenCover(isPresented: $showingFocusSession) {
                 if let habit = habitModel { 
                     let uncompletedTodos = todos.filter { !$0.isDone }.map { $0.text }
-                    FocusSessionView(pflanze: habit, initialGoals: uncompletedTodos) 
+                    FocusSessionView(pflanze: habit, initialGoals: uncompletedTodos) {
+                        withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                            tagIstErledigt = true
+                        }
+                        if tag.modelContext != nil {
+                            pfadStore.tagErledigen(tag: tag, gardenStore: gardenStore, settings: settings)
+                        }
+                    }
                 }
             }
         }
@@ -529,8 +536,8 @@ struct PfadTagDetailView: View {
                 // Fokus Timer
                 if habitModel != nil {
                     Item3DButton(
-                        farbe: themeColor,
-                        sekundaerFarbe: themeColor.darker(),
+                        farbe: .orangePrimary,
+                        sekundaerFarbe: .orangeSecondary,
                         groesse: 54,
                         isRectangular: true,
                         aktion: {

@@ -14,6 +14,7 @@ enum FocusSessionState: Int, Codable {
 struct FocusSessionView: View {
     @ObservedObject var pflanze: HabitModel
     var initialGoals: [String] = []
+    var onSessionCompleted: (() -> Void)? = nil
     
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var gardenStore: GardenStore
@@ -626,6 +627,8 @@ struct FocusSessionView: View {
         )
         gardenStore.focusSessions.append(log)
         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        
+        onSessionCompleted?()
     }
     private func generateHardMathProblem() {
         // Harder math problems! e.g. (A * B) + C or A - (B * C)
