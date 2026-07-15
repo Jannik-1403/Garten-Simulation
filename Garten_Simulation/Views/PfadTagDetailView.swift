@@ -16,6 +16,11 @@ struct PfadToDo: Identifiable, Codable {
     }
 }
 
+struct FullScreenPhotoData: Identifiable {
+    let id = UUID()
+    let data: Data
+}
+
 // MARK: - PfadTagDetailView
 struct PfadTagDetailView: View {
     let tag: PfadStrangTag
@@ -38,8 +43,7 @@ struct PfadTagDetailView: View {
     @State private var userNote: String = ""
     @State private var selectedPhotoItems: [PhotosPickerItem] = []
     @State private var photoDatas: [Data] = []
-    @State private var fullScreenPhotoData: Data? = nil
-    @State private var showingFullPhoto: Bool = false
+    @State private var fullScreenPhoto: FullScreenPhotoData? = nil
 
     private var todoPersistenceKey: String {
         "pfadTodos_\(tag.strang?.pflanzenID ?? "")_\(tag.tagNummer)"
@@ -244,33 +248,34 @@ struct PfadTagDetailView: View {
             tag.userNote = newValue
             try? tag.modelContext?.save()
         }
-        .fullScreenCover(isPresented: $showingFullPhoto) {
-            NavigationStack {
-                ZStack {
-                    Color.white.ignoresSafeArea()
-                    
-                    if let data = fullScreenPhotoData, let uiImage = UIImage(data: data) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFit()
-                            .ignoresSafeArea(edges: .bottom)
-                    } else {
-                        ProgressView()
-                    }
+        .fullScreenCover(item: $fullScreenPhoto) { photoWrapper in
+            ZStack {
+                Color.white.ignoresSafeArea()
+                
+                if let uiImage = UIImage(data: photoWrapper.data) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFit()
+                        .ignoresSafeArea(edges: .bottom)
+                } else {
+                    Text("Bild fehlerhaft")
+                        .foregroundColor(.gray)
                 }
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
+                
+                VStack {
+                    HStack {
+                        Spacer()
                         Button {
-                            showingFullPhoto = false
+                            fullScreenPhoto = nil
                         } label: {
                             Image(systemName: "xmark")
-                                .font(.system(size: 20, weight: .bold))
-                                .foregroundStyle(.black)
-                                .padding(8)
+                                .font(.system(size: 24, weight: .bold))
+                                .foregroundColor(.black)
+                                .padding(20)
                         }
                     }
+                    Spacer()
                 }
-                .toolbarBackground(.hidden, for: .navigationBar)
             }
         }
     }
@@ -529,8 +534,7 @@ struct PfadTagDetailView: View {
                                 if let uiImage = UIImage(data: data) {
                                     ZStack(alignment: .topTrailing) {
                                         Button {
-                                            fullScreenPhotoData = data
-                                            showingFullPhoto = true
+                                            fullScreenPhoto = FullScreenPhotoData(data: data)
                                         } label: {
                                             Image(uiImage: uiImage)
                                                 .resizable()
