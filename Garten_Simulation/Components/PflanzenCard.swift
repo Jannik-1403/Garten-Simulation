@@ -183,28 +183,18 @@ struct PflanzenCard: View {
                         }
                     }
                     
-                    // Daily Target & Progress
+                    // 90-Tage Challenge Progress
                     if pflanze.isDead {
                         Text(String(format: String(localized: "pflanze.tot.seit"), pflanze.missedCycles))
                             .font(.system(size: 12, weight: .regular, design: .rounded))
                             .foregroundStyle(.secondary)
-                    } else if pflanze.istBewässert {
-                        HStack(spacing: 6) {
-                            Image(systemName: "checkmark.circle.fill")
-                            Text(String(localized: "garden.plant.done"))
-                        }
-                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color.gruenPrimary)
-                        .padding(.top, 4)
                     } else {
-                        // Not completed yet
-                        if let target = pflanze.customTrackerTarget, target > 0 {
-                            buildTargetProgressView(current: pflanze.customTrackerProgress, target: target)
-                        } else if let healthTarget = pflanze.healthTarget, healthTarget > 0 {
-                            buildTargetProgressView(current: pflanze.customTrackerProgress, target: healthTarget)
+                        if pflanze.pfadAktiviertAm != nil {
+                            // Pfad ist aktiviert
+                            build90DayProgressView()
                         } else {
-                            // Kein Target vorhanden -> Zeige Plus Button anstelle von leerer Progressbar
-                            buildEmptyProgressView()
+                            // Pfad ist nicht aktiviert
+                            buildPfadNotActivatedView()
                         }
                     }
                 }
@@ -256,22 +246,18 @@ struct PflanzenCard: View {
     }
     
     @ViewBuilder
-    private func buildTargetProgressView(current: Double, target: Double) -> some View {
+    private func build90DayProgressView() -> some View {
+        let current = Double(pflanze.pfadCheckedDates.count)
+        let target = 90.0
+        
         VStack(alignment: .center, spacing: 4) {
             ZStack(alignment: .leading) {
                 ProgressView(value: min(current, target), total: target)
                     .progressViewStyle(LinearProgressViewStyle(tint: pflanze.seltenheit.farbe))
                     .frame(height: 6)
-                
-                if !gardenStore.isProUser {
-                    Image(systemName: "lock.fill")
-                        .font(.system(size: 10, weight: .bold))
-                        .foregroundStyle(.secondary)
-                        .padding(.leading, 4)
-                }
             }
             
-            Text(verbatim: "\(Int(current)) / \(Int(target))")
+            Text(String(format: String(localized: "plant.card.challenge.progress", defaultValue: "Tag %d von %d"), Int(current), Int(target)))
                 .font(.system(size: 10, weight: .semibold, design: .rounded))
                 .foregroundStyle(.secondary)
         }
@@ -279,20 +265,13 @@ struct PflanzenCard: View {
     }
 
     @ViewBuilder
-    private func buildEmptyProgressView() -> some View {
-        HStack(spacing: 8) {
-            ProgressView(value: 0, total: 1)
-                .progressViewStyle(LinearProgressViewStyle(tint: .gray.opacity(0.5)))
-                .frame(height: 6)
-            
-            Button {
-                onTap() // Öffnet die Detail-Ansicht, um ein Ziel hinzuzufügen
-            } label: {
-                Image(systemName: "plus.circle.fill")
-                    .font(.system(size: 18))
-                    .foregroundStyle(.gray)
-            }
+    private func buildPfadNotActivatedView() -> some View {
+        HStack(spacing: 6) {
+            Image(systemName: "lock.fill")
+            Text(String(localized: "plant.card.challenge.not_activated", defaultValue: "Noch nicht aktiviert"))
         }
+        .font(.system(size: 10, weight: .semibold, design: .rounded))
+        .foregroundStyle(.secondary)
         .padding(.top, 4)
     }
 
