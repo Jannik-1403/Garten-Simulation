@@ -27,6 +27,9 @@ struct FocusSessionView: View {
     @State private var currentGoalInput: String = ""
     @State private var sessionGoals: [FocusGoal] = []
     
+    @State private var draggedGoal: FocusGoal?
+    @State private var newGoalText: String = ""
+    
     // Live Activity
     @State private var focusActivity: Activity<FocusTimerActivityAttributes>? = nil
     
@@ -353,11 +356,12 @@ struct FocusSessionView: View {
                 }
             }
             
-            if !sessionGoals.isEmpty {
-                VStack(alignment: .leading, spacing: 12) {
-                        Text(String(localized: "focus.session.your_goals", defaultValue: "Deine Ziele"))
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
-                            .padding(.bottom, 4)
+            VStack(alignment: .leading, spacing: 12) {
+                if !sessionGoals.isEmpty {
+                    Text(String(localized: "focus.session.your_goals", defaultValue: "Deine Ziele"))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .padding(.bottom, 4)
+                }
                         
                         ForEach($sessionGoals) { $goal in
                             VStack(alignment: .leading, spacing: 8) {
@@ -377,14 +381,23 @@ struct FocusSessionView: View {
                                     .disabled(!goal.subtasks.isEmpty)
                                     .buttonStyle(.plain)
                                     
-                                    HStack(spacing: 4) {
-                                        Image(systemName: "exclamationmark.circle.fill")
-                                        Text(goal.priority.displayName)
+                                    Button {
+                                        withAnimation {
+                                            goal.cyclePriority()
+                                        }
+                                    } label: {
+                                        HStack(spacing: 4) {
+                                            Image(systemName: "exclamationmark.circle.fill")
+                                            Text(goal.priority.displayName)
+                                        }
+                                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 4)
+                                        .foregroundStyle(goal.priority.color)
+                                        .background(goal.priority.color.opacity(0.15))
+                                        .cornerRadius(8)
                                     }
-                                    .font(.system(size: 12, weight: .bold, design: .rounded))
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .foregroundStyle(goal.priority.color)
+                                    .buttonStyle(.plain)
                                     
                                     Text(goal.text)
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -425,11 +438,48 @@ struct FocusSessionView: View {
                             .padding()
                             .background(.ultraThinMaterial)
                             .cornerRadius(12)
+                            .onDrag {
+                                self.draggedGoal = goal
+                                return NSItemProvider(object: goal.id.uuidString as NSString)
+                            }
+                            .onDrop(of: [.text], delegate: GoalDropDelegate(item: goal, items: $sessionGoals, draggedItem: $draggedGoal))
                         }
+                        
+                        // Add new goal on the fly
+                        HStack {
+                            TextField(String(localized: "focus.session.goal.add", defaultValue: "Ziel hinzufügen..."), text: $newGoalText)
+                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                                .submitLabel(.done)
+                                .onSubmit {
+                                    if !newGoalText.trimmingCharacters(in: .whitespaces).isEmpty {
+                                        withAnimation {
+                                            sessionGoals.append(FocusGoal(text: newGoalText.trimmingCharacters(in: .whitespaces)))
+                                            newGoalText = ""
+                                        }
+                                    }
+                                }
+                            
+                            Button {
+                                if !newGoalText.trimmingCharacters(in: .whitespaces).isEmpty {
+                                    withAnimation {
+                                        sessionGoals.append(FocusGoal(text: newGoalText.trimmingCharacters(in: .whitespaces)))
+                                        newGoalText = ""
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.system(size: 24))
+                                    .foregroundStyle(newGoalText.isEmpty ? Color.gray : Color.goldPrimary)
+                            }
+                            .disabled(newGoalText.isEmpty)
+                        }
+                        .padding()
+                        .background(.ultraThinMaterial)
+                        .cornerRadius(12)
+                        .padding(.top, 4)
                     }
                 .padding(.horizontal, 32)
                 .padding(.top, 20)
-            }
             
             Spacer()
             

@@ -741,3 +741,4 @@
 - Tagebuch UI Update: Bilder werden als kleine Polaroid-Vorschau angezeigt, Notizfeld ist größer, Klick auf Bild öffnet Detailansicht
 - Journaling unterstützt jetzt bis zu 5 Bilder gleichzeitig als scrollbare Polaroid-Liste, UI Fehler behoben
 - Bugfix: Weißer Screen bei Klick auf Journal-Foto behoben
+- Fix: Fokus Timer State wird beim App-Neustart nicht mehr falsch wiederhergestellt (AppStorage Bug behoben)

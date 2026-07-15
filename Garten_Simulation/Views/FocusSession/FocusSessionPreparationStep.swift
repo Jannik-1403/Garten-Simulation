@@ -1,4 +1,28 @@
 import SwiftUI
+import UniformTypeIdentifiers
+
+struct GoalDropDelegate: DropDelegate {
+    let item: FocusGoal
+    @Binding var items: [FocusGoal]
+    @Binding var draggedItem: FocusGoal?
+
+    func dropEntered(info: DropInfo) {
+        guard let draggedItem,
+              draggedItem != item,
+              let from = items.firstIndex(of: draggedItem),
+              let to = items.firstIndex(of: item) else { return }
+
+        withAnimation(.default) {
+            items.move(fromOffsets: IndexSet(integer: from),
+                       toOffset: to > from ? to + 1 : to)
+        }
+    }
+
+    func performDrop(info: DropInfo) -> Bool {
+        draggedItem = nil
+        return true
+    }
+}
 
 enum GoalPriority: String, CaseIterable, Equatable, Codable {
     case low
@@ -45,6 +69,14 @@ struct FocusGoal: Identifiable, Equatable, Codable {
             if subtasks.isEmpty { _isCompleted = newValue }
         }
     }
+    
+    mutating func cyclePriority() {
+        switch priority {
+        case .low: priority = .medium
+        case .medium: priority = .high
+        case .high: priority = .low
+        }
+    }
 }
 
 struct SubtaskInputField: View {
@@ -84,6 +116,8 @@ struct FocusSessionPreparationStep: View {
     @Binding var textInput: String
     @Binding var goals: [FocusGoal]
     let action: () -> Void
+    
+    @State private var draggedGoal: FocusGoal?
     
     @EnvironmentObject var settings: SettingsStore
     
@@ -212,11 +246,9 @@ struct FocusSessionPreparationStep: View {
                                                 
                                                 Spacer()
                                                 
-                                                Menu {
-                                                    Picker(String(localized: "focus.session.priority", defaultValue: "Priorität"), selection: $goal.priority) {
-                                                        ForEach(GoalPriority.allCases, id: \.self) { priority in
-                                                            Text(priority.displayName).tag(priority)
-                                                        }
+                                                Button {
+                                                    withAnimation {
+                                                        goal.cyclePriority()
                                                     }
                                                 } label: {
                                                     HStack(spacing: 4) {
@@ -227,7 +259,10 @@ struct FocusSessionPreparationStep: View {
                                                     .padding(.horizontal, 8)
                                                     .padding(.vertical, 4)
                                                     .foregroundStyle(goal.priority.color)
+                                                    .background(goal.priority.color.opacity(0.15))
+                                                    .cornerRadius(8)
                                                 }
+                                                .buttonStyle(.plain)
                                                 
                                                 Button {
                                                     if let index = goals.firstIndex(where: { $0.id == goal.id }) {
