@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import Combine
+import PhotosUI
 
 // MARK: - To-Do Item Model (Codable für Persistenz)
 struct PfadToDo: Identifiable, Codable {
@@ -33,6 +34,10 @@ struct PfadTagDetailView: View {
     @State private var showAddTodo: Bool = false
     @State private var tagIstErledigt: Bool = false
     @FocusState private var isTodoFieldFocused: Bool
+
+    @State private var userNote: String = ""
+    @State private var selectedPhotoItem: PhotosPickerItem?
+    @State private var photoData: Data?
 
     private var todoPersistenceKey: String {
         "pfadTodos_\(tag.strang?.pflanzenID ?? "")_\(tag.tagNummer)"
@@ -158,6 +163,13 @@ struct PfadTagDetailView: View {
                         .padding(.top, 16)
                         .padding(.horizontal, 20)
 
+                    // ── Tagebuch-Karte ────────────────────────────────
+                    if istErledigt || isActionable {
+                        journalCard
+                            .padding(.top, 16)
+                            .padding(.horizontal, 20)
+                    }
+
                     // ── Aktions-Buttons ───────────────────────────────
                     actionButtons
                         .padding(.top, 24)
@@ -199,11 +211,28 @@ struct PfadTagDetailView: View {
         }
         .onAppear {
             tagIstErledigt = tag.istErledigt
+            userNote = tag.userNote ?? ""
+            photoData = tag.userPhotoData
             loadTodos()
             loadProgressionData()
         }
         .onDisappear {
             saveTodos()
+            tag.userNote = userNote
+            try? tag.modelContext?.save()
+        }
+        .onChange(of: selectedPhotoItem) { _, newItem in
+            Task {
+                if let data = try? await newItem?.loadTransferable(type: Data.self) {
+                    photoData = data
+                    tag.userPhotoData = data
+                    try? tag.modelContext?.save()
+                }
+            }
+        }
+        .onChange(of: userNote) { _, newValue in
+            tag.userNote = newValue
+            try? tag.modelContext?.save()
         }
     }
 
@@ -420,6 +449,78 @@ struct PfadTagDetailView: View {
                     Divider().opacity(0.4)
                     todoInput
                 }
+            }
+            .padding(16)
+        }
+    }
+
+    // MARK: - Journal Card (3D)
+    @ViewBuilder
+    private var journalCard: some View {
+        card3D(top: cardTop, shadow: cardShadow, radius: 20) {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Label(
+                        String(localized: "challenge.journal.title", defaultValue: "Mein Tagebuch"),
+                        systemImage: "book.pages"
+                    )
+                    .font(.system(size: 15, weight: .black, design: .rounded))
+                    
+                    Spacer()
+                    
+                    PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
+                        ZStack {
+                            Circle()
+                                .fill(themeColor)
+                                .frame(width: 34, height: 34)
+                                .shadow(color: themeColor.darker().opacity(0.6), radius: 2, y: 2)
+                            Image(systemName: "camera")
+                                .font(.system(size: 13, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                    }
+                }
+                
+                Divider().opacity(0.4)
+                
+                if let data = photoData, let uiImage = UIImage(data: data) {
+                    ZStack(alignment: .topTrailing) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 180)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .clipped()
+                            
+                        Button {
+                            withAnimation {
+                                photoData = nil
+                                tag.userPhotoData = nil
+                                selectedPhotoItem = nil
+                                try? tag.modelContext?.save()
+                            }
+                        } label: {
+                            Image(systemName: "trash.circle.fill")
+                                .font(.system(size: 26))
+                                .foregroundStyle(.white, .red)
+                                .padding(8)
+                                .shadow(radius: 4)
+                        }
+                    }
+                    .padding(.bottom, 6)
+                }
+                
+                TextField(
+                    String(localized: "challenge.journal.placeholder", defaultValue: "Wie lief's heute? Notiere deine Gedanken..."),
+                    text: $userNote,
+                    axis: .vertical
+                )
+                .font(.system(size: 15, weight: .medium, design: .rounded))
+                .lineLimit(3...8)
+                .padding(12)
+                .background(rowTop, in: RoundedRectangle(cornerRadius: 12))
+                .overlay(RoundedRectangle(cornerRadius: 12).stroke(rowShadow.opacity(0.4), lineWidth: 0.8))
             }
             .padding(16)
         }

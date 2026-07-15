@@ -15,6 +15,9 @@ class PfadStrangTag: Identifiable {
     var igelAsset: String
     var strang: PfadStrang?
     
+    @Attribute(.externalStorage) var userPhotoData: Data?
+    var userNote: String?
+    
     var phase: PfadPhase {
         if tagNummer <= 14 { return .einstieg }
         if tagNummer <= 30 { return .aufbau }

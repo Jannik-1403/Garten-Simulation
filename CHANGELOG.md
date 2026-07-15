@@ -734,3 +734,5 @@
 - Das Icon im Wochenrückblick-Popup wurde um das 2,5-fache visuell vergrößert, ohne das Layout oder Texte zu verschieben.
 - Behoben: Warndreieck über Pflanzen blitzt nicht mehr kurz auf, wenn man von anderen Seiten zurück zur Garten-Ansicht navigiert. Das Icon wird nun sauber gerendert und weiterhin nur angezeigt, wenn die Zeit dringlich ist.
 - Behoben: Unkraut-Strafe wurde in die zentrale 'pruefePflanzenStatus'-Logik verlagert, um zu verhindern, dass Timer und Warndreiecke beim Navigieren zwischen den Ansichten kurz aufblitzen und sich zurücksetzen.
+- Fokus-Timer-Button in der 90-Tage Challenge wurde auf Orange fixiert
+- Fokus-Timer in der 90-Tage Challenge setzt nun den aktuellen Pfad-Tag automatisch auf 'Erledigt' und schreitet fort
