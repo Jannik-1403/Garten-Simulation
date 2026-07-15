@@ -3,12 +3,26 @@ import SwiftUI
 class FocusTimerRecovery {
     static let shared = FocusTimerRecovery()
     
-    @AppStorage("focusTimerIsActive") var isActive: Bool = false
-    @AppStorage("focusTimerEndTime") var endTime: Double = 0
-    @AppStorage("focusTimerTotalSeconds") var totalSeconds: Int = 0
-    @AppStorage("focusTimerPlantId") var plantId: String = ""
-    @AppStorage("focusTimerGoalsData") var goalsData: Data = Data()
-    
+    var isActive: Bool {
+        get { UserDefaults.standard.bool(forKey: "focusTimerIsActive") }
+        set { UserDefaults.standard.set(newValue, forKey: "focusTimerIsActive") }
+    }
+    var endTime: Double {
+        get { UserDefaults.standard.double(forKey: "focusTimerEndTime") }
+        set { UserDefaults.standard.set(newValue, forKey: "focusTimerEndTime") }
+    }
+    var totalSeconds: Int {
+        get { UserDefaults.standard.integer(forKey: "focusTimerTotalSeconds") }
+        set { UserDefaults.standard.set(newValue, forKey: "focusTimerTotalSeconds") }
+    }
+    var plantId: String {
+        get { UserDefaults.standard.string(forKey: "focusTimerPlantId") ?? "" }
+        set { UserDefaults.standard.set(newValue, forKey: "focusTimerPlantId") }
+    }
+    var goalsData: Data {
+        get { UserDefaults.standard.data(forKey: "focusTimerGoalsData") ?? Data() }
+        set { UserDefaults.standard.set(newValue, forKey: "focusTimerGoalsData") }
+    }    
     func saveState(endTime: Date, totalSeconds: Int, plantId: String, goals: [FocusGoal]) {
         self.endTime = endTime.timeIntervalSince1970
         self.totalSeconds = totalSeconds
