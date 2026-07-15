@@ -744,3 +744,5 @@
 - Journaling unterstützt jetzt bis zu 5 Bilder gleichzeitig als scrollbare Polaroid-Liste, UI Fehler behoben
 - Bugfix: Weißer Screen bei Klick auf Journal-Foto behoben
 - Fix: Fokus Timer State wird beim App-Neustart nicht mehr falsch wiederhergestellt (AppStorage Bug behoben)
+
+- Lokalisierung (100% in 15 Sprachen): Alle restlichen Strings aufgefüllt und übersetzt, pt-BR komplett integriert.
