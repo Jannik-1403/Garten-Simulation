@@ -8,6 +8,7 @@
 - **Localization**: Strings für das Redesign direkt in den String Catalog (.xcstrings) aufgenommen.
 
 ## [Unreleased]
+- **Focus Timer**: To-Dos können nun on-the-fly während der Session hinzugefügt werden. Drag & Drop zum Umsortieren sowie Priority-Cycling (Antippen zum Wechseln) wurden implementiert.
 - **Bugfix**: Ein Fehler wurde behoben, durch den man in einer endlosen "Fokus-Timer erstellen" Schleife festhing, wenn man einen Fokus-Timer abgebrochen hat und die Pflanze nicht mehr übereinstimmte.
 - **Export**: Der Datenexport (`DataExportImportManager`) wurde stark erweitert. Es werden nun alle Detail-Eigenschaften von Pflanzen (inkl. 90-Tage Challenge Fortschritt), alle Einstellungen (Profilname, Avatar, etc.), der komplette Streak-Kalender und die allgemeinen Bildschirmzeit-Einstellungen (Zeitplan, Adult-Filter) exportiert, sodass Backups vollständig sind.
 - **Bugfix**: Schlechte Gewohnheiten, die im Shop gekauft werden, zeichnen nun automatisch beim Kauf einen initialen Rückfall ("Schlechte Gewohnheit gekauft") auf. Das stellt sicher, dass der Streak direkt nach dem Kauf korrekt gestartet bzw. resettet wird.
@@ -623,6 +624,7 @@
 - Fixed: Settings view now correctly displays the name of the currently selected app language instead of the system language.
 
 ## [Unreleased]
+- **Focus Timer**: To-Dos können nun on-the-fly während der Session hinzugefügt werden. Drag & Drop zum Umsortieren sowie Priority-Cycling (Antippen zum Wechseln) wurden implementiert.
 - Entfernung des Pop-ups ("Geschafft!"), wenn das Tagesziel einer Pflanze erreicht wird. Das Pop-up taucht nun nicht mehr auf, unabhängig davon wie das Tagesziel abgeschlossen wurde.
 - 90-Tage Challenge komplett überarbeitet
 - Wechsel von 3D Isometric View zu 2D Flat Timeline View für bessere Performance
