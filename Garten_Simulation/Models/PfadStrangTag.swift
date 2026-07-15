@@ -16,6 +16,7 @@ class PfadStrangTag: Identifiable {
     var strang: PfadStrang?
     
     @Attribute(.externalStorage) var userPhotoData: Data?
+    @Attribute(.externalStorage) var userPhotos: [Data]? = []
     var userNote: String?
     
     var phase: PfadPhase {

@@ -36,8 +36,9 @@ struct PfadTagDetailView: View {
     @FocusState private var isTodoFieldFocused: Bool
 
     @State private var userNote: String = ""
-    @State private var selectedPhotoItem: PhotosPickerItem?
-    @State private var photoData: Data?
+    @State private var selectedPhotoItems: [PhotosPickerItem] = []
+    @State private var photoDatas: [Data] = []
+    @State private var fullScreenPhotoData: Data? = nil
     @State private var showingFullPhoto: Bool = false
 
     private var todoPersistenceKey: String {
@@ -200,7 +201,19 @@ struct PfadTagDetailView: View {
         .onAppear {
             tagIstErledigt = tag.istErledigt
             userNote = tag.userNote ?? ""
-            photoData = tag.userPhotoData
+            
+            // Migration
+            if let oldPhoto = tag.userPhotoData {
+                if tag.userPhotos == nil {
+                    tag.userPhotos = []
+                }
+                if !tag.userPhotos!.contains(oldPhoto) {
+                    tag.userPhotos!.append(oldPhoto)
+                }
+                tag.userPhotoData = nil
+            }
+            photoDatas = tag.userPhotos ?? []
+            
             loadTodos()
             loadProgressionData()
         }
@@ -209,12 +222,21 @@ struct PfadTagDetailView: View {
             tag.userNote = userNote
             try? tag.modelContext?.save()
         }
-        .onChange(of: selectedPhotoItem) { _, newItem in
+        .onChange(of: selectedPhotoItems) { _, newItems in
             Task {
-                if let data = try? await newItem?.loadTransferable(type: Data.self) {
-                    photoData = data
-                    tag.userPhotoData = data
-                    try? tag.modelContext?.save()
+                var newDatas: [Data] = []
+                for item in newItems {
+                    if let data = try? await item.loadTransferable(type: Data.self) {
+                        newDatas.append(data)
+                    }
+                }
+                if !newDatas.isEmpty {
+                    DispatchQueue.main.async {
+                        photoDatas.append(contentsOf: newDatas)
+                        tag.userPhotos = photoDatas
+                        try? tag.modelContext?.save()
+                        selectedPhotoItems = []
+                    }
                 }
             }
         }
@@ -223,10 +245,10 @@ struct PfadTagDetailView: View {
             try? tag.modelContext?.save()
         }
         .fullScreenCover(isPresented: $showingFullPhoto) {
-            if let data = photoData, let uiImage = UIImage(data: data) {
+            if let data = fullScreenPhotoData, let uiImage = UIImage(data: data) {
                 NavigationStack {
                     ZStack {
-                        Color.black.ignoresSafeArea()
+                        Color.white.ignoresSafeArea()
                         Image(uiImage: uiImage)
                             .resizable()
                             .scaledToFit()
@@ -237,13 +259,12 @@ struct PfadTagDetailView: View {
                             Button {
                                 showingFullPhoto = false
                             } label: {
-                                Image(systemName: "xmark.circle.fill")
-                                    .font(.system(size: 24))
-                                    .foregroundStyle(.white, .gray.opacity(0.5))
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundStyle(.black)
                             }
                         }
                     }
-                    // Entfernt den Standard-Hintergrund der NavigationBar
                     .toolbarBackground(.hidden, for: .navigationBar)
                 }
             }
@@ -487,7 +508,7 @@ struct PfadTagDetailView: View {
                                 .foregroundColor(.white)
                         }
                         
-                        PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
+                        PhotosPicker(selection: $selectedPhotoItems, maxSelectionCount: 5, matching: .images) {
                             Color.clear
                                 .frame(width: 34, height: 34)
                         }
@@ -496,53 +517,61 @@ struct PfadTagDetailView: View {
                 
                 Divider().opacity(0.4)
                 
-                if let data = photoData, let uiImage = UIImage(data: data) {
-                    HStack(alignment: .bottom, spacing: 12) {
-                        Button {
-                            showingFullPhoto = true
-                        } label: {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 80, height: 80)
-                                .clipShape(RoundedRectangle(cornerRadius: 6))
-                                .padding(4)
-                                .background(Color.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .shadow(color: .black.opacity(0.15), radius: 3, x: 0, y: 2)
-                                .overlay(
-                                    Image(systemName: "magnifyingglass")
-                                        .font(.system(size: 16, weight: .bold))
-                                        .foregroundStyle(.white)
-                                        .padding(4)
-                                        .background(Color.black.opacity(0.4), in: Circle())
-                                        .padding(8),
-                                    alignment: .bottomTrailing
-                                )
-                        }
-                        .buttonStyle(.plain)
-                        
-                        Spacer()
-                        
-                        Item3DButton(
-                            farbe: Color(hex: "#CC2222"),
-                            sekundaerFarbe: Color(hex: "#881111"),
-                            groesse: 34,
-                            aktion: {
-                                withAnimation {
-                                    photoData = nil
-                                    tag.userPhotoData = nil
-                                    selectedPhotoItem = nil
-                                    try? tag.modelContext?.save()
+                if !photoDatas.isEmpty {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 12) {
+                            ForEach(photoDatas.indices, id: \.self) { index in
+                                let data = photoDatas[index]
+                                if let uiImage = UIImage(data: data) {
+                                    ZStack(alignment: .topTrailing) {
+                                        Button {
+                                            fullScreenPhotoData = data
+                                            showingFullPhoto = true
+                                        } label: {
+                                            Image(uiImage: uiImage)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 80, height: 80)
+                                                .clipShape(RoundedRectangle(cornerRadius: 6))
+                                                .padding(4)
+                                                .background(Color.white)
+                                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                                .shadow(color: .black.opacity(0.15), radius: 3, x: 0, y: 2)
+                                                .overlay(
+                                                    Image(systemName: "magnifyingglass")
+                                                        .font(.system(size: 16, weight: .bold))
+                                                        .foregroundStyle(.white)
+                                                        .padding(4)
+                                                        .background(Color.black.opacity(0.4), in: Circle())
+                                                        .padding(8),
+                                                    alignment: .bottomTrailing
+                                                )
+                                        }
+                                        .buttonStyle(.plain)
+                                        
+                                        Button {
+                                            withAnimation {
+                                                photoDatas.remove(at: index)
+                                                tag.userPhotos = photoDatas
+                                                try? tag.modelContext?.save()
+                                            }
+                                        } label: {
+                                            Image(systemName: "minus.circle.fill")
+                                                .font(.system(size: 20))
+                                                .foregroundStyle(.white, .red)
+                                                .shadow(radius: 2)
+                                        }
+                                        .offset(x: 8, y: -8)
+                                    }
+                                    .padding(.top, 8)
+                                    .padding(.trailing, 8)
                                 }
                             }
-                        ) {
-                            Image(systemName: "trash")
-                                .font(.system(size: 13, weight: .bold))
-                                .foregroundColor(.white)
                         }
+                        .padding(.bottom, 6)
+                        .padding(.horizontal, 4)
                     }
-                    .padding(.bottom, 6)
+                    Divider().opacity(0.4)
                 }
                 
                 TextField(
