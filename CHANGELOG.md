@@ -737,3 +737,4 @@
 - Fokus-Timer-Button in der 90-Tage Challenge wurde auf Orange fixiert
 - Fokus-Timer in der 90-Tage Challenge setzt nun den aktuellen Pfad-Tag automatisch auf 'Erledigt' und schreitet fort
 - In der 90-Tage Challenge kann man nun an jedem Tag ein Foto und Notizen festhalten (Tagebuch-Funktion)
+- 90-Tage Challenge wurde aufgeräumt: Unnötige Basis-Habits haben keinen Pfad mehr, Tages-Timer-Sperre wurde entfernt, UI wurde gesäubert

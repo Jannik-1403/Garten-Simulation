@@ -38,6 +38,7 @@ struct PfadTagDetailView: View {
     @State private var userNote: String = ""
     @State private var selectedPhotoItem: PhotosPickerItem?
     @State private var photoData: Data?
+    @State private var showingFullPhoto: Bool = false
 
     private var todoPersistenceKey: String {
         "pfadTodos_\(tag.strang?.pflanzenID ?? "")_\(tag.tagNummer)"
@@ -220,6 +221,32 @@ struct PfadTagDetailView: View {
         .onChange(of: userNote) { _, newValue in
             tag.userNote = newValue
             try? tag.modelContext?.save()
+        }
+        .fullScreenCover(isPresented: $showingFullPhoto) {
+            if let data = photoData, let uiImage = UIImage(data: data) {
+                NavigationStack {
+                    ZStack {
+                        Color.black.ignoresSafeArea()
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFit()
+                            .ignoresSafeArea()
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button {
+                                showingFullPhoto = false
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .font(.system(size: 24))
+                                    .foregroundStyle(.white, .gray.opacity(0.5))
+                            }
+                        }
+                    }
+                    // Entfernt den Standard-Hintergrund der NavigationBar
+                    .toolbarBackground(.hidden, for: .navigationBar)
+                }
+            }
         }
     }
 
@@ -448,15 +475,21 @@ struct PfadTagDetailView: View {
                     
                     Spacer()
                     
-                    PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
-                        ZStack {
-                            Circle()
-                                .fill(themeColor)
-                                .frame(width: 34, height: 34)
-                                .shadow(color: themeColor.darker().opacity(0.6), radius: 2, y: 2)
+                    ZStack {
+                        Item3DButton(
+                            farbe: themeColor,
+                            sekundaerFarbe: themeColor.darker(),
+                            groesse: 34,
+                            aktion: { } // Dummy, wird vom overlay Picker gefangen
+                        ) {
                             Image(systemName: "camera")
                                 .font(.system(size: 13, weight: .bold))
                                 .foregroundColor(.white)
+                        }
+                        
+                        PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
+                            Color.clear
+                                .frame(width: 34, height: 34)
                         }
                     }
                 }
@@ -464,28 +497,49 @@ struct PfadTagDetailView: View {
                 Divider().opacity(0.4)
                 
                 if let data = photoData, let uiImage = UIImage(data: data) {
-                    ZStack(alignment: .topTrailing) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 180)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .clipped()
-                            
+                    HStack(alignment: .bottom, spacing: 12) {
                         Button {
-                            withAnimation {
-                                photoData = nil
-                                tag.userPhotoData = nil
-                                selectedPhotoItem = nil
-                                try? tag.modelContext?.save()
-                            }
+                            showingFullPhoto = true
                         } label: {
-                            Image(systemName: "trash.circle.fill")
-                                .font(.system(size: 26))
-                                .foregroundStyle(.white, .red)
-                                .padding(8)
-                                .shadow(radius: 4)
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 80, height: 80)
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
+                                .padding(4)
+                                .background(Color.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .shadow(color: .black.opacity(0.15), radius: 3, x: 0, y: 2)
+                                .overlay(
+                                    Image(systemName: "magnifyingglass")
+                                        .font(.system(size: 16, weight: .bold))
+                                        .foregroundStyle(.white)
+                                        .padding(4)
+                                        .background(Color.black.opacity(0.4), in: Circle())
+                                        .padding(8),
+                                    alignment: .bottomTrailing
+                                )
+                        }
+                        .buttonStyle(.plain)
+                        
+                        Spacer()
+                        
+                        Item3DButton(
+                            farbe: Color(hex: "#CC2222"),
+                            sekundaerFarbe: Color(hex: "#881111"),
+                            groesse: 34,
+                            aktion: {
+                                withAnimation {
+                                    photoData = nil
+                                    tag.userPhotoData = nil
+                                    selectedPhotoItem = nil
+                                    try? tag.modelContext?.save()
+                                }
+                            }
+                        ) {
+                            Image(systemName: "trash")
+                                .font(.system(size: 13, weight: .bold))
+                                .foregroundColor(.white)
                         }
                     }
                     .padding(.bottom, 6)
@@ -497,8 +551,9 @@ struct PfadTagDetailView: View {
                     axis: .vertical
                 )
                 .font(.system(size: 15, weight: .medium, design: .rounded))
-                .lineLimit(3...8)
+                .lineLimit(6...12)
                 .padding(12)
+                .frame(minHeight: 120, alignment: .topLeading)
                 .background(rowTop, in: RoundedRectangle(cornerRadius: 12))
                 .overlay(RoundedRectangle(cornerRadius: 12).stroke(rowShadow.opacity(0.4), lineWidth: 0.8))
             }
