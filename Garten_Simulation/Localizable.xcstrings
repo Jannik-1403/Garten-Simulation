@@ -133393,97 +133393,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dein Inventar ist leer"
+            "value": "Du hast keine Samen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your inventory is empty"
+            "value": "You have no seeds"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu inventario está vacío"
+            "value": "No tienes semillas"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ton inventaire est vide"
+            "value": "Tu n'as pas de graines"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आपकी इन्वेंट्री खाली है"
+            "value": "आपके पास कोई बीज नहीं है"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il tuo inventario è vuoto"
+            "value": "Non hai semi"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "インベントリは空です"
+            "value": "種がありません"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "인벤토리가 비어 있습니다"
+            "value": "씨앗이 없습니다"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je inventaris is leeg"
+            "value": "Je hebt geen zaden"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Twój ekwipunek jest pusty"
+            "value": "Nie masz nasion"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seu inventário está vazio"
+            "value": "Não tens sementes"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seu inventário está vazio"
+            "value": "Não tem sementes"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Твой инвентарь пуст"
+            "value": "У вас нет семян"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Envanteriniz boş"
+            "value": "Tohumun yok"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的物品栏是空的"
+            "value": "你没有种子"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "您的庫存已空"
+            "value": "你沒有種子"
           }
         }
       }
@@ -208057,97 +208057,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inventar"
+            "value": "Samen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inventory"
+            "value": "Seeds"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inventario"
+            "value": "Semillas"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inventaire"
+            "value": "Graines"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सूची"
+            "value": "बीज"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inventario"
+            "value": "Semi"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "インベントリ"
+            "value": "種"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "인벤토리"
+            "value": "씨앗"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inventaris"
+            "value": "Zaden"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ekwipunek"
+            "value": "Nasiona"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inventário"
+            "value": "Sementes"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inventário"
+            "value": "Sementes"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "инвентарь"
+            "value": "Семена"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Envanter"
+            "value": "Tohumlar"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "物品栏"
+            "value": "种子"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "存貨"
+            "value": "種子"
           }
         }
       }
@@ -282987,97 +282987,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hier findest du all deine Power-Ups, Schlechte Gewohnheiten und Pflanzen. Außerdem kannst du hier deine ganz eigenen Pflanzen und Gewohnheiten erstellen!"
+            "value": "Hier findest du all deine Samen. Außerdem kannst du hier deine ganz eigenen Pflanzen erstellen!"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Here you will find all your power-ups, bad habits, and plants. You can also create your very own plants and habits here!"
+            "value": "Here you will find all your seeds. You can also create your very own plants here!"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aquí encontrarás todos tus potenciadores, decoraciones y plantas. ¡También puedes crear tus propias plantas y hábitos aquí!"
+            "value": "Aquí encontrarás todas tus semillas. ¡También puedes crear tus propias plantas aquí!"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vous trouverez ici tous vos power-ups, décorations et plantes. Vous pouvez également créer vos propres plantes et habitudes ici !"
+            "value": "Vous trouverez ici toutes vos graines. Vous pouvez également créer vos propres plantes ici !"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "यहाँ आप अपने सभी पावर-अप, बुरी आदतें और पौधों को पाएंगे। इसके अलावा, आप यहाँ अपने खुद के पौधे और आदतें भी बना सकते हैं!"
+            "value": "यहाँ आपको अपने सभी बीज मिलेंगे। आप यहाँ अपने खुद के पौधे भी बना सकते हैं!"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Qui troverai tutti i tuoi power-up, decorazioni e piante. Puoi anche creare le tue piante e abitudini qui!"
+            "value": "Qui troverai tutti i tuoi semi. Puoi anche creare le tue piante qui!"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ここには、すべてのパワーアップ、装飾、植物があります。また、ここで独自の植物や習慣を作成することもできます！"
+            "value": "ここにはすべての種があります。また、ここで独自の植物を作成することもできます！"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "여기에서 모든 파워업, 장식 및 식물을 찾을 수 있습니다. 여기서 나만의 식물과 습관을 만들 수도 있습니다!"
+            "value": "여기에 모든 씨앗이 있습니다. 여기서 나만의 식물을 만들 수도 있습니다!"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hier vind je al je power-ups, decoraties en planten. Je kunt hier ook je eigen planten en gewoonten creëren!"
+            "value": "Hier vind je al je zaden. Je kunt hier ook je eigen planten creëren!"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tutaj znajdziesz wszystkie swoje ulepszenia, dekoracje i rośliny. Możesz tutaj również tworzyć własne rośliny i nawyki!"
+            "value": "Tutaj znajdziesz wszystkie swoje nasiona. Możesz tutaj również tworzyć własne rośliny!"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aqui você encontrará todos os seus power-ups, decorações e plantas. Você também pode criar suas próprias plantas e hábitos aqui!"
+            "value": "Aqui você encontrará todas as suas sementes. Você também pode criar suas próprias plantas aqui!"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aqui você encontrará todos os seus power-ups, decorações e plantas. Você também pode criar suas próprias plantas e hábitos aqui!"
+            "value": "Aqui você encontrará todas as suas sementes. Você também pode criar suas próprias plantas aqui!"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Здесь вы найдете все свои бонусы, вредные привычки и растения. Кроме того, здесь вы можете создавать свои собственные растения и привычки!"
+            "value": "Здесь вы найдете все свои семена. Вы также можете создавать свои собственные растения здесь!"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Burada tüm güçlendiricilerinizi, dekorasyonlarınızı ve bitkilerinizi bulacaksınız. Ayrıca burada kendi bitkilerinizi ve alışkanlıklarınızı oluşturabilirsiniz!"
+            "value": "Burada tüm tohumlarınızı bulacaksınız. Ayrıca burada kendi bitkilerinizi de oluşturabilirsiniz!"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "在这里你会找到所有的能量、坏习惯和植物。另外，您可以在这里创造自己的植物和习惯！"
+            "value": "在这里你会找到所有的种子。你也可以在这里创建自己的植物！"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "在這裡你會找到所有的能量、壞習慣和植物。另外，您可以在這裡創造自己的植物和習慣！"
+            "value": "在這裡你會找到所有的種子。你也可以在這裡創建自己的植物！"
           }
         }
       }
@@ -283089,97 +283089,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dein Inventar"
+            "value": "Deine Samen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Inventory"
+            "value": "Your Seeds"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu Inventario"
+            "value": "Tus Semillas"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Votre Inventaire"
+            "value": "Vos Graines"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "तुमारा इन्वेंटरी"
+            "value": "आपके बीज"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il Tuo Inventario"
+            "value": "I Tuoi Semi"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "あなたのインベントリ"
+            "value": "あなたの種"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "당신의 인벤토리"
+            "value": "당신의 씨앗"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jouw Inventaris"
+            "value": "Jouw Zaden"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Twój Ekwipunek"
+            "value": "Twoje Nasiona"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seu Inventário"
+            "value": "Suas Sementes"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seu Inventário"
+            "value": "Suas Sementes"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ваш инвентарь"
+            "value": "Твои семена"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Envanteriniz"
+            "value": "Tohumlarınız"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "您的库存"
+            "value": "你的种子"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "您的庫存"
+            "value": "你的種子"
           }
         }
       }
