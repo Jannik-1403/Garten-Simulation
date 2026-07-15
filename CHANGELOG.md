@@ -8,6 +8,7 @@
 - **Localization**: Strings für das Redesign direkt in den String Catalog (.xcstrings) aufgenommen.
 
 ## [Unreleased]
+- **Tour/Intro**: Texte in der Einführungstour für das ehemalige "Inventar" (jetzt Samen-Seite) wurden in allen Sprachen aktualisiert, sodass sie das Erstellen eigener Pflanzen besser bewerben.
 - **Focus Timer**: To-Dos können nun on-the-fly während der Session hinzugefügt werden. Drag & Drop zum Umsortieren sowie Priority-Cycling (Antippen zum Wechseln) wurden implementiert.
 - **Bugfix**: Ein Fehler wurde behoben, durch den man in einer endlosen "Fokus-Timer erstellen" Schleife festhing, wenn man einen Fokus-Timer abgebrochen hat und die Pflanze nicht mehr übereinstimmte.
 - **Export**: Der Datenexport (`DataExportImportManager`) wurde stark erweitert. Es werden nun alle Detail-Eigenschaften von Pflanzen (inkl. 90-Tage Challenge Fortschritt), alle Einstellungen (Profilname, Avatar, etc.), der komplette Streak-Kalender und die allgemeinen Bildschirmzeit-Einstellungen (Zeitplan, Adult-Filter) exportiert, sodass Backups vollständig sind.
