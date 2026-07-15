@@ -219,10 +219,7 @@ struct DailyTaskCardView: View {
                         .padding(.bottom, 20)
                     } else if tag.istErledigt {
                         VStack(spacing: 8) {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: 32))
-                                .foregroundStyle(.green)
-                            Text(String(localized: "erledigt_status").uppercased())
+                            Text(String(localized: "pfad_tag_abgeschlossen_text").uppercased())
                                 .font(.system(size: 16, weight: .black, design: .rounded))
                                 .foregroundStyle(.green)
                         }

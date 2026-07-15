@@ -693,12 +693,7 @@ struct PfadTagDetailView: View {
         if istErledigt {
             // Abgeschlossen-State
             VStack(spacing: 12) {
-                ZStack {
-                    Circle().fill(Color.green.opacity(0.12)).frame(width: 80, height: 80)
-                    Image(systemName: "checkmark.seal.fill")
-                        .font(.system(size: 44)).foregroundStyle(.green)
-                }
-                Text(String(localized: "erledigt_status", defaultValue: "Abgeschlossen"))
+                Text(String(localized: "pfad_tag_abgeschlossen_text", defaultValue: "Abgeschlossen"))
                     .font(.system(size: 17, weight: .black, design: .rounded))
                     .foregroundStyle(.green)
             }

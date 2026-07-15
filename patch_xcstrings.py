@@ -46,6 +46,11 @@ translations = {
         'ja': '分', 'ko': '분', 'nl': 'Minuten', 'pl': 'Minuty',
         'pt': 'Minutos', 'es': 'Minutos', 'tr': 'Dakika'
     },
+    'pfad_tag_abgeschlossen_text': {
+        'de': 'Abgeschlossen', 'en': 'Completed', 'fr': 'Terminé', 'it': 'Completato',
+        'ja': '完了', 'ko': '완료됨', 'nl': 'Voltooid', 'pl': 'Zakończony',
+        'pt': 'Concluído', 'es': 'Completado', 'tr': 'Tamamlandı'
+    },
     'target.reached.message': {
         'pt': 'Você atingiu sua meta diária e sua planta foi regada!'
     },
