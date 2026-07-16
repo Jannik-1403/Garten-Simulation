@@ -93,20 +93,17 @@ struct OnboardingScreenTimeView: View {
                 
                 if !showContinueButton {
                     // Arrow pointing up to "Continue" (Left Button)
-                    Item3DButton(
-                        farbe: Color.blauPrimary,
-                        sekundaerFarbe: Color.blauPrimary.darker(),
-                        groesse: 56,
-                        iconSkalierung: 0.5,
-                        aktion: {
-                            handleAllow()
-                        }
-                    ) {
-                        Image(systemName: "arrow.up")
-                            .font(.system(size: 28, weight: .bold))
-                            .foregroundStyle(.white)
+                    Button {
+                        handleAllow()
+                    } label: {
+                        Image(systemName: "arrowshape.up.fill")
+                            .font(.system(size: 40, weight: .bold))
+                            .foregroundStyle(Color.blauPrimary)
+                            .shadow(color: Color.blauPrimary.darker(), radius: 0, x: 0, y: 4)
                     }
-                    .padding(.trailing, 150) // Move to the left side (under "Continue")
+                    .buttonStyle(.plain)
+                    .padding(.top, -10)
+                    .padding(.trailing, 140) // Move to the left side (under "Continue")
                 } else {
                     Spacer().frame(height: 56) // To keep layout stable
                 }
