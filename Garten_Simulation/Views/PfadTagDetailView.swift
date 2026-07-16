@@ -288,24 +288,6 @@ struct PfadTagDetailView: View {
                 milestoneIcon
             }
 
-            ZStack {
-                if let p = plant, let assetName = p.assetName {
-                    Image(assetName)
-                        .resizable().scaledToFit()
-                        .frame(width: 150, height: 150)
-                        .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
-                        .grayscale(isFutureDay ? 0.8 : 0)
-                        .opacity(isFutureDay ? 0.55 : 1.0)
-                        .scaleEffect(istErledigt ? 1.05 : 1.0)
-                        .animation(.spring(response: 0.4, dampingFraction: 0.7), value: istErledigt)
-                } else {
-                    Image(tag.igelAsset)
-                        .resizable().scaledToFit()
-                        .frame(width: 150, height: 150)
-                        .opacity(isFutureDay ? 0.5 : 1.0)
-                }
-            }
-
             if isFutureDay && !isLockedUntilTomorrow {
                 Image(systemName: "lock.fill")
                     .font(.system(size: 28, weight: .bold)).foregroundStyle(.secondary)
