@@ -55,3 +55,5 @@
 - **Interaktiver Fokus-Button in Assessments**:
   - Der "Fokus-Modus testen" Button (in den Verbesserungstipps) ist nun ein echter animierter 3D-Button (`DuolingoButtonStyle`), der beim Drücken grafisch reagiert.
   - Wenn man den Button drückt, öffnet sich direkt das individuelle Setup für eine Fokus-Session (Generic Focus Timer), aus der heraus man direkt eine Session starten kann.
+
+- 100% Übersetzungsabdeckung in allen Sprachen hergestellt.

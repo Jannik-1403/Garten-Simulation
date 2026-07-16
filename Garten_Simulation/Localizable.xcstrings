@@ -328409,6 +328409,54 @@
             "state": "translated",
             "value": "Was man verbessern kann"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "需要改进的地方"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "需要改進的地方"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Что можно улучшить"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "改善すべき点"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "개선할 점"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obszary do poprawy"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbeterpunten"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सुधार के क्षेत्र"
+          }
         }
       }
     },
@@ -328461,6 +328509,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Im Moment sieht alles gut aus! Bleib am Ball."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前看起来都不错！继续保持。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前看起來都不錯！繼續保持。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На данный момент все выглядит отлично! Так держать."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今のところすべて順調です！この調子で頑張りましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "현재까지 모두 좋아 보입니다! 계속 유지하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na razie wszystko wygląda dobrze! Tak trzymaj."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Op dit moment ziet alles er goed uit! Ga zo door."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अभी सब कुछ अच्छा लग रहा है! इसे जारी रखें।"
           }
         }
       }
@@ -328515,6 +328611,54 @@
             "state": "translated",
             "value": "Details ansehen"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看详情"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查看詳情"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Смотреть детали"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "詳細を見る"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "세부 정보 보기"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zobacz szczegóły"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Details bekijken"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "विवरण देखें"
+          }
         }
       }
     },
@@ -328567,6 +328711,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Erinnerung setzen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置提醒"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定提醒"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Установить напоминание"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リマインダーを設定する"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "알림 설정"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ustaw przypomnienie"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herinnering instellen"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रिमाइंडर सेट करें"
           }
         }
       }
@@ -328621,6 +328813,54 @@
             "state": "translated",
             "value": "Fokus-Modus testen"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "测试专注模式"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測試專注模式"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Протестировать режим фокусировки"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "集中モードをテストする"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "집중 모드 테스트"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przetestuj tryb skupienia"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Focusmodus testen"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ोकस मोड का परीक्षण करें"
+          }
         }
       }
     },
@@ -328673,6 +328913,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Challenge annehmen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接受挑战"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接受挑戰"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Принять вызов"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "チャレンジを受ける"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "챌린지 수락"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podejmij wyzwanie"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uitdaging accepteren"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चुनौती स्वीकार करें"
           }
         }
       }
@@ -328727,6 +329015,54 @@
             "state": "translated",
             "value": "Keine Finanz-Gewohnheit"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有财务习惯"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有財務習慣"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет финансовых привычек"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "財務の習慣がありません"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "재정 습관 없음"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brak nawyków finansowych"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geen financiële gewoonte"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई वित्तीय आदत नहीं"
+          }
         }
       }
     },
@@ -328779,6 +329115,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du hast bisher keine Finanzen-Gewohnheit hinzugefügt. Das ist der erste Schritt zur Kontrolle."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你还没有添加财务习惯。这是控制的第一步。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你還沒有添加財務習慣。這是控制的第一步。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы еще не добавили финансовую привычку. Это первый шаг к контролю."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "まだ財務の習慣を追加していません。これがコントロールの第一歩です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "아직 재정 습관을 추가하지 않았습니다. 이것이 통제의 첫걸음입니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie dodałeś jeszcze nawyku finansowego. To pierwszy krok do kontroli."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hebt nog geen financiële gewoonte toegevoegd. Dit is de eerste stap naar controle."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपने अभी तक कोई वित्तीय आदत नहीं जोड़ी है। नियंत्रण की दिशा में यह पहला कदम है。"
           }
         }
       }
@@ -328833,6 +329217,54 @@
             "state": "translated",
             "value": "Erinnerung fehlt"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缺少提醒"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缺少提醒"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет напоминания"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リマインダーがありません"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "알림 누락"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brak przypomnienia"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herinnering ontbreekt"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "रिमाइंडर गायब है"
+          }
         }
       }
     },
@@ -328885,6 +329317,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du hast für einige Gewohnheiten keine Erinnerungen gesetzt. Kontinuität braucht Systeme."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你没有为一些习惯设置提醒。坚持需要系统。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你沒有為一些習慣設定提醒。堅持需要系統。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы не установили напоминания для некоторых привычек. Для непрерывности нужна система."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一部の習慣にリマインダーを設定していません。継続にはシステムが必要です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "일부 습관에 알림을 설정하지 않았습니다. 지속성을 위해서는 시스템이 필요합니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie ustawiłeś przypomnień dla niektórych nawyków. Ciągłość wymaga systemu."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hebt voor sommige gewoontes geen herinneringen ingesteld. Continuïteit vereist systemen."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपने कुछ आदतों के लिए रिमाइंडर सेट नहीं किए हैं। निरंतरता के लिए सिस्टम की आवश्यकता होती है。"
           }
         }
       }
@@ -328939,6 +329419,54 @@
             "state": "translated",
             "value": "Fehlende Basis"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缺乏基础"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "缺乏基礎"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отсутствует база"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "基礎がありません"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기반 부족"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brak podstaw"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ontbrekende basis"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "बुनियाद की कमी"
+          }
         }
       }
     },
@@ -328991,6 +329519,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du hast weder Gesundheits- noch Fitness-Gewohnheiten aktiviert. Dein Körper ist dein Kapital."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你还没有激活健康或健身习惯。身体是你的资本。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你還沒有激活健康或健身習慣。身體是你的資本。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы не активировали привычки для здоровья или фитнеса. Ваше тело - ваш капитал."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "健康やフィットネスの習慣をアクティブにしていません。体はあなたの資本です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "건강 또는 피트니스 습관을 활성화하지 않았습니다. 당신의 몸이 곧 자본입니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie aktywowałeś żadnych nawyków związanych ze zdrowiem lub kondycją. Twoje ciało to twój kapitał."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hebt geen gezondheids- of fitnessgewoontes geactiveerd. Je lichaam is je kapitaal."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपने स्वास्थ्य या फिटनेस से जुड़ी कोई आदत सक्रिय नहीं की है। आपका शरीर आपकी पूंजी है。"
           }
         }
       }
@@ -329045,6 +329621,54 @@
             "state": "translated",
             "value": "Streak in Gefahr"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连续记录处于危险中"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連續記錄處於危險中"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Серия под угрозой"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連続記録の危機"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연속 기록 위기"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seria zagrożona"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reeks in gevaar"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लगातार रिकॉर्ड खतरे में"
+          }
         }
       }
     },
@@ -329097,6 +329721,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du bist bei einer Gewohnheit unter 3 Tagen Streak. Lass sie nicht abreißen!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的一个习惯连续天数不到3天。不要让它中断！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的一個習慣連續天數不到3天。不要讓它中斷！"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваша серия для одной из привычек меньше 3 дней. Не прерывайте ее!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ある習慣の連続記録が3日未満です。途切れさせないでください！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "한 습관의 연속 기록이 3일 미만입니다. 끊기지 않게 하세요!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twoja seria dla jednego z nawyków wynosi mniej niż 3 dni. Nie pozwól jej przerwać!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je hebt voor een gewoonte een reeks van minder dan 3 dagen. Laat het niet afbreken!"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी किसी आदत की स्ट्रीक 3 दिनों से कम है। इसे टूटने न दें!"
           }
         }
       }
@@ -329151,6 +329823,54 @@
             "state": "translated",
             "value": "Fokus-Modus ungenutzt"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "专注模式未使用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "專注模式未使用"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим фокусировки не используется"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "集中モード未使用"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "집중 모드 미사용"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryb skupienia nieużywany"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Focusmodus ongebruikt"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ोकस मोड अप्रयुक्त"
+          }
         }
       }
     },
@@ -329203,6 +329923,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du hast noch keine Fokus-Sessions gestartet. Tiefenarbeit ist der Schlüssel zu mehr Effizienz."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你还没有开始专注阶段。深度工作是提高效率的关键。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你還沒有開始專注階段。深度工作是提高效率的關鍵。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы еще не начинали сеансы фокусировки. Глубокая работа - ключ к большей эффективности."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "まだ集中セッションを開始していません。ディープワークは効率向上の鍵です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "아직 집중 세션을 시작하지 않았습니다. 딥 워크는 효율성 향상의 핵심입니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie rozpocząłeś jeszcze żadnych sesji skupienia. Głęboka praca to klucz do większej wydajności."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je bent nog geen focussessies gestart. Diep werk is de sleutel tot meer efficiëntie."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपने अभी तक कोई फ़ोकस सत्र शुरू नहीं किया है। डीप वर्क अधिक दक्षता की कुंजी है。"
           }
         }
       }
@@ -329257,6 +330025,54 @@
             "state": "translated",
             "value": "Guter Fokus"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "良好的专注"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "良好的專注"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хорошая концентрация"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "良い集中力"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "좋은 집중력"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dobre skupienie"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goede focus"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अच्छा फ़ोकस"
+          }
         }
       }
     },
@@ -329309,6 +330125,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du nutzt den Fokus-Modus bereits. Weiter so!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你已经在使用专注模式了。继续保持！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你已經在使用專注模式了。繼續保持！"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы уже используете режим фокусировки. Продолжайте в том же духе!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すでに集中モードを使用しています。この調子で頑張りましょう！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이미 집중 모드를 사용 중입니다. 계속 유지하세요!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Już używasz trybu skupienia. Tak trzymaj!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je gebruikt de focusmodus al. Ga zo door!"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप पहले से ही फ़ोकस मोड का उपयोग कर रहे हैं। इसे जारी रखें!"
           }
         }
       }
@@ -329363,6 +330227,54 @@
             "state": "translated",
             "value": "Umgebung prüfen"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检查环境"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "檢查環境"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Проверка окружения"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "環境の確認"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "환경 점검"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprawdź środowisko"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omgeving controleren"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पर्यावरण की जाँच करें"
+          }
         }
       }
     },
@@ -329415,6 +330327,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Deine Umgebung formt dich. Optimiere deinen Alltag weiter."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "环境塑造你。继续优化你的日常生活。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "環境塑造你。繼續優化你的日常生活。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваше окружение формирует вас. Продолжайте оптимизировать свою повседневную жизнь."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "環境があなたを形成します。日常生活の最適化を続けましょう。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "환경이 당신을 만듭니다. 일상 생활을 계속 최적화하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twoje środowisko cię kształtuje. Kontynuuj optymalizację swojego codziennego życia."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je omgeving vormt je. Blijf je dagelijks leven optimaliseren."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका परिवेश आपको आकार देता है। अपने दैनिक जीवन को अनुकूलित करना जारी रखें。"
           }
         }
       }
@@ -329469,6 +330429,54 @@
             "state": "translated",
             "value": "90-Tage Challenge"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90天挑战"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90天挑戰"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90-дневный вызов"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90日間チャレンジ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90일 챌린지"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wyzwanie 90-dniowe"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90-dagen uitdaging"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90-दिन की चुनौती"
+          }
         }
       }
     },
@@ -329521,6 +330529,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Du bist bereit für eine 90-Tage Challenge, hast aber noch keine abgeschlossen. Gib alles!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你已准备好迎接90天挑战，但还没有完成。全力以赴吧！"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你已準備好迎接90天挑戰，但還沒有完成。全力以赴吧！"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы готовы к 90-дневному вызову, но еще не завершили его. Выложитесь на полную!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90日間チャレンジの準備はできていますが、まだ完了していません。全力を尽くしましょう！"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90일 챌린지를 할 준비가 되었지만, 아직 완료하지 않았습니다. 최선을 다하세요!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jesteś gotowy na wyzwanie 90-dniowe, ale jeszcze żadnego nie ukończyłeś. Daj z siebie wszystko!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je bent klaar voor een 90-dagen uitdaging, maar hebt er nog geen voltooid. Geef alles!"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप 90-दिन की चुनौती के लिए तैयार हैं, लेकिन अभी तक एक भी पूरी नहीं की है। अपना सर्वश्रेष्ठ दें!"
           }
         }
       }
@@ -330383,6 +331439,54 @@
             "state": "translated",
             "value": "Beginner"
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "初学者"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "初學者"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Новичок"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "初心者"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "초보자"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Początkujący"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginner"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शुरुआती"
+          }
         }
       }
     },
@@ -330435,6 +331539,54 @@
           "stringUnit": {
             "state": "translated",
             "value": "Top 1%"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前 1%"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前 1%"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Топ 1%"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "トップ 1%"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "상위 1%"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Top 1%"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Top 1%"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "शीर्ष 1%"
           }
         }
       }
