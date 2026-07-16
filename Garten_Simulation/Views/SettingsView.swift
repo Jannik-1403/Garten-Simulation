@@ -92,6 +92,11 @@ struct SettingsView: View {
                                             
                                             Spacer()
                                             
+                                            
+                                            Text(ScreenTimeManager.shared.isAuthorized ? String(localized: "settings.on", defaultValue: "Ein") : String(localized: "settings.off", defaultValue: "Aus"))
+                                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                .foregroundStyle(ScreenTimeManager.shared.isAuthorized ? Color.gruenPrimary : Color.red)
+                                            
                                             Image(systemName: "chevron.right")
                                                 .font(.system(size: 14, weight: .bold))
                                                 .foregroundStyle(.tertiary)

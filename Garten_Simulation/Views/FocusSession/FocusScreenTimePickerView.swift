@@ -33,13 +33,7 @@ struct FocusScreenTimePickerView: View {
                     manager.blockAllApps()
                     onComplete()
                 } else {
-                    Task {
-                        await manager.requestAuthorization()
-                        if manager.isAuthorized {
-                            manager.blockAllApps()
-                            onComplete()
-                        }
-                    }
+                    // Do nothing if not authorized
                 }
             } label: {
                 HStack(spacing: 14) {
@@ -75,12 +69,7 @@ struct FocusScreenTimePickerView: View {
                 if manager.isAuthorized {
                     isPickerPresented = true
                 } else {
-                    Task {
-                        await manager.requestAuthorization()
-                        if manager.isAuthorized {
-                            isPickerPresented = true
-                        }
-                    }
+                    // Do nothing if not authorized
                 }
             } label: {
                 HStack(spacing: 14) {

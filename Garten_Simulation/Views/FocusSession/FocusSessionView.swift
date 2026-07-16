@@ -213,14 +213,7 @@ struct FocusSessionView: View {
                 if screenTimeManager.isAuthorized {
                     showScreenTimePicker = true
                 } else {
-                    Task {
-                        await screenTimeManager.requestAuthorization()
-                        if screenTimeManager.isAuthorized {
-                            showScreenTimePicker = true
-                        } else {
-                            withAnimation { state = .step2 }
-                        }
-                    }
+                    withAnimation { state = .step2 }
                 }
             }
             Button(String(localized: "focus.phone_prompt.no", defaultValue: "Nein, ich brauche es")) {
@@ -229,14 +222,7 @@ struct FocusSessionView: View {
                 if screenTimeManager.isAuthorized {
                     showScreenTimePicker = true
                 } else {
-                    Task {
-                        await screenTimeManager.requestAuthorization()
-                        if screenTimeManager.isAuthorized {
-                            showScreenTimePicker = true
-                        } else {
-                            withAnimation { state = .step2 }
-                        }
-                    }
+                    withAnimation { state = .step2 }
                 }
             }
             Button(String(localized: "button.cancel"), role: .cancel) {

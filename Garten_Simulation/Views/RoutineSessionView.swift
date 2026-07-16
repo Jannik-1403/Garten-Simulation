@@ -110,15 +110,7 @@ struct RoutineSessionView: View {
                     screenTimeManager.blockAllApps()
                     showBlockNotice = true
                 } else {
-                    Task {
-                        await screenTimeManager.requestAuthorization()
-                        if screenTimeManager.isAuthorized {
-                            screenTimeManager.blockAllApps()
-                            showBlockNotice = true
-                        } else {
-                            startSession()
-                        }
-                    }
+                    startSession()
                 }
             }
             Button(String(localized: "alert.strict_mode.yes")) {
@@ -130,19 +122,8 @@ struct RoutineSessionView: View {
                         startSession()
                     }
                 } else {
-                    Task {
-                        await screenTimeManager.requestAuthorization()
-                        if screenTimeManager.isAuthorized {
-                            if screenTimeManager.allowedSelection.applicationTokens.isEmpty && screenTimeManager.allowedSelection.webDomainTokens.isEmpty && screenTimeManager.allowedSelection.categoryTokens.isEmpty {
-                                showScreenTimePicker = true
-                            } else {
-                                screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
-                                startSession()
-                            }
-                        } else {
-                            startSession()
-                        }
-                    }
+                    // Do nothing, or start session without strict mode
+                    startSession()
                 }
             }
             Button(String(localized: "button.cancel"), role: .cancel) {

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct OnboardingNotificationView: View {
+struct OnboardingScreenTimeView: View {
     @EnvironmentObject var data: OnboardingData
     @Environment(\.colorScheme) var colorScheme
     
@@ -12,7 +12,7 @@ struct OnboardingNotificationView: View {
             VStack(spacing: 0) {
                 OnboardingIgelView(
                     pose: .erklaert,
-                    sprechblasenText: String(localized: "onboarding_notification_bubble_title", defaultValue: "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!")
+                    sprechblasenText: String(localized: "onboarding_screentime_bubble_title", defaultValue: "Damit ich dir helfen kann, fokussiert zu bleiben, brauche ich Zugriff auf die Bildschirmzeit!")
                 )
                 .padding(.top, 20)
                 
@@ -22,7 +22,7 @@ struct OnboardingNotificationView: View {
                     Button {
                         finish()
                     } label: {
-                        Text(String(localized: "onboarding_notification_continue", defaultValue: "Weiter"))
+                        Text(String(localized: "onboarding_screentime_continue", defaultValue: "Weiter"))
                     }
                     .buttonStyle(DuolingoButtonStyle(
                         size: .large,
@@ -38,16 +38,16 @@ struct OnboardingNotificationView: View {
                 }
             }
             
-            // Mock iOS Notification Permission Alert - Perfectly centered
+            // Mock iOS Screen Time Permission Alert - Perfectly centered
             VStack(spacing: 16) {
                 VStack(spacing: 24) {
                     VStack(spacing: 8) {
-                        Text(String(localized: "onboarding_notification_mock_title", defaultValue: "\"Grovy\" möchte dir Mitteilungen senden"))
+                        Text(String(localized: "onboarding_screentime_mock_title", defaultValue: "\"Grovy\" möchte auf die Bildschirmzeit zugreifen"))
                             .font(.system(size: 20, weight: .bold))
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        Text(String(localized: "onboarding_notification_mock_desc", defaultValue: "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."))
+                        Text(String(localized: "onboarding_screentime_mock_desc", defaultValue: "Dies ermöglicht es der App, deine Bildschirmzeit-Daten zu verwenden, um dir bei der Konzentration zu helfen."))
                             .font(.system(size: 16, weight: .regular))
                             .foregroundStyle(Color.secondary)
                             .multilineTextAlignment(.leading)
@@ -60,7 +60,7 @@ struct OnboardingNotificationView: View {
                         Button {
                             handleDeny()
                         } label: {
-                            Text(String(localized: "onboarding_notification_mock_dont_allow", defaultValue: "Nicht erlauben"))
+                            Text(String(localized: "onboarding_screentime_mock_dont_allow", defaultValue: "Nicht erlauben"))
                                 .font(.system(size: 17, weight: .medium))
                                 .foregroundStyle(.primary)
                                 .frame(maxWidth: .infinity)
@@ -72,7 +72,7 @@ struct OnboardingNotificationView: View {
                         Button {
                             handleAllow()
                         } label: {
-                            Text(String(localized: "onboarding_notification_mock_allow", defaultValue: "Erlauben"))
+                            Text(String(localized: "onboarding_screentime_mock_allow", defaultValue: "Erlauben"))
                                 .font(.system(size: 17, weight: .medium))
                                 .foregroundStyle(.primary)
                                 .frame(maxWidth: .infinity)
@@ -125,8 +125,8 @@ struct OnboardingNotificationView: View {
         FeedbackManager.shared.playTap()
         
         Task {
-            // Request native permission
-            _ = await NotificationManager.shared.requestPermission()
+            // Request native screen time permission
+            await ScreenTimeManager.shared.requestAuthorization()
             
             await MainActor.run {
                 withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
@@ -146,6 +146,6 @@ struct OnboardingNotificationView: View {
 }
 
 #Preview {
-    OnboardingNotificationView()
+    OnboardingScreenTimeView()
         .environmentObject(OnboardingData())
 }
