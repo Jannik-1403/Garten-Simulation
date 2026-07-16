@@ -1,3 +1,6 @@
+## 2026-07-16
+- **Bugfix**: Der 90-Tage Challenge Balken bei den Pflanzen (Gartenseite) zeigt nun den tatsächlichen Fortschritt (Streak) an, anstatt auf Tag 1 hängen zu bleiben.
+
 ## 2026-07-11
 - **Bugfix**: Ein hartnäckiger SwiftUI Crash ("A view controller not containing an alert controller was asked for its contained alert controller") in der `ExportImportView` wurde final behoben. Die Präsentations-Modifikatoren (.alert, .sheet, .fileImporter) wurden nun direkt und isoliert an die entsprechenden auslösenden Buttons gehängt, um Konflikte im View-Tree komplett zu vermeiden.
 
@@ -753,3 +756,5 @@
 - Fixed hardcoded English texts in the Coin Shop
 - Pflanzen-Zeitleiste wurde vollständig aus der App entfernt.
 - Behobener Bug: Eigene schlechte Gewohnheiten wurden im PDF-Export und in Profil-Ansichten mit technischen IDs (trash.custom_...) angezeigt. Sie werden nun korrekt aus dem GardenStore geladen.
+- Fixed layout truncation in Coin Shop
+- UI: Pflanzen-Icon komplett aus dem 90 Tage Challenge Detail-Overlay (PfadTagDetailView) entfernt, wie gewünscht.
