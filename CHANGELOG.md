@@ -57,3 +57,4 @@
   - Wenn man den Button drückt, öffnet sich direkt das individuelle Setup für eine Fokus-Session (Generic Focus Timer), aus der heraus man direkt eine Session starten kann.
 
 - 100% Übersetzungsabdeckung in allen Sprachen hergestellt.
+- Bugfix: Zeitzonenwechsel führen nicht mehr zu unfairem Streak-Verlust (Grace Period basierend auf absoluter Zeit eingeführt).
