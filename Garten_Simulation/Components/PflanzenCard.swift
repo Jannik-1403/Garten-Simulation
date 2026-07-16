@@ -9,6 +9,7 @@ struct PflanzenCard: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var powerUpStore: PowerUpStore
+    @EnvironmentObject var pfadStore: GartenPfadStore
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
     @State private var isVisualPressed = false
     @State private var pflanzenPosition: CGPoint = .zero
@@ -247,7 +248,7 @@ struct PflanzenCard: View {
     
     @ViewBuilder
     private func build90DayProgressView() -> some View {
-        let current = Double(pflanze.streak)
+        let current = Double(pfadStore.tagHeute(for: pflanze.id))
         let target = 90.0
         
         VStack(alignment: .center, spacing: 4) {
@@ -480,4 +481,8 @@ struct RevivePlantSheet: View {
     }
     .padding()
     .background(Color.appHintergrund)
+    .environmentObject(SettingsStore())
+    .environmentObject(GardenStore())
+    .environmentObject(PowerUpStore())
+    .environmentObject(GartenPfadStore())
 }

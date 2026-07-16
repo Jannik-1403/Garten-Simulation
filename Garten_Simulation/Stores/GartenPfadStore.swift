@@ -442,6 +442,17 @@ class GartenPfadStore: ObservableObject {
         return offeneTags.map { $0.tagNummer }.min() ?? 1
     }
 
+    func tagHeute(for pflanzenID: String) -> Int {
+        let aktiveStraengeIDs = Set(straenge.filter { $0.pflanzenID == pflanzenID && $0.istAktiv }.map { $0.id })
+        let relevanteTags = alleTags.filter { tag in tag.strang.map { aktiveStraengeIDs.contains($0.id) } ?? false }
+        let offeneTags = relevanteTags.filter { !$0.istErledigt }
+        
+        if offeneTags.isEmpty && !relevanteTags.isEmpty {
+            return 90 // Pfad ist komplett abgeschlossen
+        }
+        return offeneTags.map { $0.tagNummer }.min() ?? 1
+    }
+
     func istTagVollstaendigErledigt(tagNummer: Int) -> Bool {
         // Ein Tag ist vollständig erledigt, wenn JEDER aktive Strang an diesem Tag 'istErledigt' ist
         let relevanteTags = alleTags.filter { $0.tagNummer == tagNummer }
