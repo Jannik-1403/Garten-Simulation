@@ -20,7 +20,7 @@ struct OnboardingNotificationView: View {
             VStack(spacing: 16) {
                 VStack(spacing: 0) {
                     VStack(spacing: 4) {
-                        Text(String(localized: "onboarding_notification_mock_title", defaultValue: "\"Garten\" möchte dir Mitteilungen senden"))
+                        Text(String(localized: "onboarding_notification_mock_title", defaultValue: "Grovy möchte dir Mitteilungen senden"))
                             .font(.system(size: 17, weight: .semibold))
                             .multilineTextAlignment(.center)
                             .padding(.horizontal, 16)
@@ -36,25 +36,31 @@ struct OnboardingNotificationView: View {
                     Divider()
                     
                     HStack(spacing: 0) {
-                        Text(String(localized: "onboarding_notification_mock_dont_allow", defaultValue: "Nicht erlauben"))
-                            .font(.system(size: 17, weight: .regular))
-                            .foregroundStyle(.blue)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 44)
+                        Button {
+                            // Dummy
+                        } label: {
+                            Text(String(localized: "onboarding_notification_mock_dont_allow", defaultValue: "Nicht erlauben"))
+                                .font(.system(size: 17, weight: .regular))
+                                .foregroundStyle(.primary)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }
                         
                         Divider()
                         
-                        Text(String(localized: "onboarding_notification_mock_allow", defaultValue: "Erlauben"))
-                            .font(.system(size: 17, weight: .semibold))
-                            .foregroundStyle(.blue)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 44)
+                        Button {
+                            // Dummy
+                        } label: {
+                            Text(String(localized: "onboarding_notification_mock_allow", defaultValue: "Erlauben"))
+                                .font(.system(size: 17, weight: .semibold))
+                                .foregroundStyle(.blue)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }
                     }
+                    .frame(height: 44)
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .fill(colorScheme == .dark ? Color(white: 0.2) : Color.white)
-                        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+                        .fill(colorScheme == .dark ? Color(white: 0.15) : Color(white: 0.95))
                 )
                 .frame(width: 270)
                 
