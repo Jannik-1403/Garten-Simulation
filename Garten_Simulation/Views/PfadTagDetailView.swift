@@ -283,44 +283,32 @@ struct PfadTagDetailView: View {
     // MARK: - Hero
     @ViewBuilder
     private var heroSection: some View {
-        ZStack {
-            Circle()
-                .fill(RadialGradient(
-                    colors: [themeColor.opacity(0.18), .clear],
-                    center: .center, startRadius: 30, endRadius: 120
-                ))
-                .frame(width: 240, height: 240)
-
-            if let p = plant, let assetName = p.assetName {
-                Image(assetName)
-                    .resizable().scaledToFit()
-                    .frame(width: 150, height: 150)
-                    .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
-                    .grayscale(isFutureDay ? 0.8 : 0)
-                    .opacity(isFutureDay ? 0.55 : 1.0)
-                    .scaleEffect(istErledigt ? 1.05 : 1.0)
-                    .animation(.spring(response: 0.4, dampingFraction: 0.7), value: istErledigt)
-            } else {
-                Image(tag.igelAsset)
-                    .resizable().scaledToFit()
-                    .frame(width: 150, height: 150)
-                    .opacity(isFutureDay ? 0.5 : 1.0)
+        VStack(spacing: 16) {
+            if tag.istMeilenstein {
+                milestoneIcon
             }
 
-            if tag.istMeilenstein {
-                VStack { HStack { Spacer(); milestoneIcon.offset(x: 10, y: -10) }; Spacer() }
-                    .frame(width: 150, height: 150)
+            ZStack {
+                if let p = plant, let assetName = p.assetName {
+                    Image(assetName)
+                        .resizable().scaledToFit()
+                        .frame(width: 150, height: 150)
+                        .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
+                        .grayscale(isFutureDay ? 0.8 : 0)
+                        .opacity(isFutureDay ? 0.55 : 1.0)
+                        .scaleEffect(istErledigt ? 1.05 : 1.0)
+                        .animation(.spring(response: 0.4, dampingFraction: 0.7), value: istErledigt)
+                } else {
+                    Image(tag.igelAsset)
+                        .resizable().scaledToFit()
+                        .frame(width: 150, height: 150)
+                        .opacity(isFutureDay ? 0.5 : 1.0)
+                }
             }
 
             if isFutureDay && !isLockedUntilTomorrow {
-                VStack {
-                    Spacer()
-                    Image(systemName: "lock.fill")
-                        .font(.system(size: 32, weight: .bold)).foregroundStyle(.white)
-                        .padding(12)
-                        .background(Circle().fill(Color(uiColor: .systemGray3)))
-                }
-                .frame(height: 150)
+                Image(systemName: "lock.fill")
+                    .font(.system(size: 28, weight: .bold)).foregroundStyle(.secondary)
             }
         }
     }
@@ -338,7 +326,6 @@ struct PfadTagDetailView: View {
         }()
         Image(name).resizable().scaledToFit()
             .frame(width: 40, height: 40)
-            .background(Circle().fill(.white).shadow(radius: 4))
     }
 
     // MARK: - Status Badge (kompakt, nie full-width)
@@ -704,8 +691,8 @@ struct PfadTagDetailView: View {
                 // Fokus Timer
                 if habitModel != nil {
                     Item3DButton(
-                        farbe: .orangePrimary,
-                        sekundaerFarbe: .orangeSecondary,
+                        farbe: themeColor,
+                        sekundaerFarbe: themeColor.darker(),
                         groesse: 54,
                         isRectangular: true,
                         aktion: {
@@ -727,8 +714,8 @@ struct PfadTagDetailView: View {
 
                 // Jetzt abschließen
                 Item3DButton(
-                    farbe: Color(hex: "#58CC02"),
-                    sekundaerFarbe: Color(hex: "#3a8000"),
+                    farbe: themeColor,
+                    sekundaerFarbe: themeColor.darker(),
                     groesse: 52,
                     isRectangular: true,
                     aktion: {
@@ -761,8 +748,8 @@ struct PfadTagDetailView: View {
 
         } else if isLockedUntilTomorrow {
             Item3DButton(
-                farbe: colorScheme == .dark ? Color(hex: "#2a3d58") : Color(hex: "#b8cce0"),
-                sekundaerFarbe: colorScheme == .dark ? Color(hex: "#0a1220") : Color(hex: "#8090a8"),
+                farbe: themeColor,
+                sekundaerFarbe: themeColor.darker(),
                 groesse: 52,
                 isRectangular: true,
                 aktion: { UIImpactFeedbackGenerator(style: .rigid).impactOccurred() }
@@ -780,8 +767,8 @@ struct PfadTagDetailView: View {
 
         } else {
             Item3DButton(
-                farbe: colorScheme == .dark ? Color(hex: "#2a3d58") : Color(hex: "#b8cce0"),
-                sekundaerFarbe: colorScheme == .dark ? Color(hex: "#0a1220") : Color(hex: "#8090a8"),
+                farbe: themeColor,
+                sekundaerFarbe: themeColor.darker(),
                 groesse: 52,
                 isRectangular: true,
                 aktion: { UIImpactFeedbackGenerator(style: .rigid).impactOccurred() }
