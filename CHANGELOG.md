@@ -29,3 +29,5 @@
 - Design: Die Höhe (Spacing/Padding) der Mock-Dialoge wurde noch etwas reduziert (enger zusammengezogen), damit sie wirklich exakt wie die echten nativen Apple-Dialoge aussehen.
 - Assessment detailed analysis implementation (Reality Check & Roadmap)
 - Assessments (Dynamic Insights): Ersetzt statische Empfehlungen mit datenbasierten Insights, generiert aus User-Verhalten (Habits, Screen Time, 90 Day Challenge) sowie Einführung eines 'Reality Checks' (die harte Wahrheit) pro Kategorie.
+- Added highly detailed, premium assessment analysis UI that breaks down the user's specific strengths, weaknesses, pitfalls, and benchmark comparison based on their raw scores.
+- Localized and expanded all assessment insight texts in Localizable.xcstrings.

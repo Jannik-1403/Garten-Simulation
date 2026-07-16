@@ -1,147 +1,260 @@
 import SwiftUI
 
+// MARK: - Data Source Model
+struct AssessmentDataSource: Identifiable {
+    let id = UUID()
+    let sectionTitle: String
+    let items: [String]
+}
+
+// MARK: - Neumorphic Helpers
+extension View {
+    func neumorphicCard(cornerRadius: CGFloat = 16) -> some View {
+        self
+            .background(Color(UIColor.systemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+            .shadow(color: Color.black.opacity(0.09), radius: 8, x: 5, y: 5)
+            .shadow(color: Color.white.opacity(0.95), radius: 8, x: -5, y: -5)
+    }
+}
+
+// MARK: - Analysis Row Item (Tippable)
+struct AnalysisRowItem: View {
+    let icon: String
+    let iconColor: Color
+    let title: String
+    let subtitle: String
+    let dataSource: [AssessmentDataSource]
+
+    @State private var showingSource = false
+
+    var body: some View {
+        Button(action: { showingSource = true }) {
+            HStack(alignment: .top, spacing: 14) {
+                // Neumorphic Icon
+                ZStack {
+                    Circle()
+                        .fill(Color(UIColor.systemBackground))
+                        .frame(width: 42, height: 42)
+                        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 3, y: 3)
+                        .shadow(color: Color.white.opacity(0.9), radius: 4, x: -3, y: -3)
+                    Image(systemName: icon)
+                        .font(.system(size: 17, weight: .medium))
+                        .foregroundStyle(iconColor)
+                }
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title)
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(.primary)
+                    Text(subtitle)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .lineLimit(4)
+                }
+
+                Spacer(minLength: 0)
+
+                Image(systemName: "chevron.right")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.tertiary)
+                    .padding(.top, 4)
+            }
+            .padding(16)
+        }
+        .buttonStyle(.plain)
+        .neumorphicCard()
+        .sheet(isPresented: $showingSource) {
+            DataSourceSheet(title: title, dataSources: dataSource)
+        }
+    }
+}
+
+// MARK: - Data Source Sheet
+struct DataSourceSheet: View {
+    let title: String
+    let dataSources: [AssessmentDataSource]
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text(String(localized: "assessment.source.intro", defaultValue: "So haben wir diese Einschätzung berechnet:"))
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 8)
+
+                    ForEach(dataSources) { source in
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(source.sectionTitle)
+                                .font(.footnote.weight(.semibold))
+                                .foregroundStyle(.secondary)
+                                .textCase(.uppercase)
+                                .padding(.horizontal, 20)
+
+                            VStack(spacing: 0) {
+                                ForEach(Array(source.items.enumerated()), id: \.offset) { index, item in
+                                    HStack(alignment: .top, spacing: 10) {
+                                        Image(systemName: "circle.fill")
+                                            .font(.system(size: 5))
+                                            .foregroundStyle(.secondary)
+                                            .padding(.top, 7)
+                                        Text(item)
+                                            .font(.subheadline)
+                                            .foregroundStyle(.primary)
+                                        Spacer()
+                                    }
+                                    .padding(.vertical, 10)
+                                    .padding(.horizontal, 16)
+
+                                    if index < source.items.count - 1 {
+                                        Divider().padding(.leading, 16)
+                                    }
+                                }
+                            }
+                            .background(Color(UIColor.secondarySystemGroupedBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .padding(.horizontal, 20)
+                        }
+                    }
+                }
+                .padding(.bottom, 40)
+            }
+            .background(Color(UIColor.systemGroupedBackground))
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(String(localized: "common.done", defaultValue: "Fertig")) { dismiss() }
+                        .fontWeight(.semibold)
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Benchmark Section
+struct BenchmarkCard: View {
+    let percentile: Double // 0.0 = worst, 1.0 = best
+    let label: String
+    let labelColor: Color
+    let description: String
+    let dataSources: [AssessmentDataSource]
+
+    @State private var showingSource = false
+
+    var body: some View {
+        Button(action: { showingSource = true }) {
+            VStack(alignment: .leading, spacing: 14) {
+                HStack {
+                    Text(String(localized: "assessment.analysis.benchmark_title", defaultValue: "Benchmark"))
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(.primary)
+                    Spacer()
+                    Text(label)
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(labelColor)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(labelColor.opacity(0.12))
+                        .clipShape(Capsule())
+
+                    Image(systemName: "chevron.right")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.tertiary)
+                }
+
+                // Neumorphic inset track
+                GeometryReader { geo in
+                    ZStack(alignment: .leading) {
+                        // Track (inset look)
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(Color(UIColor.systemBackground))
+                            .frame(height: 10)
+                            .shadow(color: Color.black.opacity(0.08), radius: 3, x: 2, y: 2)
+                            .shadow(color: Color.white.opacity(0.9), radius: 3, x: -2, y: -2)
+
+                        // Fill
+                        let fillW = max(10.0, geo.size.width * percentile)
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(LinearGradient(
+                                colors: [labelColor.opacity(0.45), labelColor],
+                                startPoint: .leading, endPoint: .trailing))
+                            .frame(width: fillW, height: 10)
+                    }
+                }
+                .frame(height: 10)
+
+                HStack {
+                    Text(String(localized: "benchmark.label.bottom", defaultValue: "Einsteiger"))
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
+                    Spacer()
+                    Text(String(localized: "benchmark.label.top", defaultValue: "Elite"))
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
+                }
+
+                Text(description)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .padding(16)
+        }
+        .buttonStyle(.plain)
+        .neumorphicCard()
+        .sheet(isPresented: $showingSource) {
+            DataSourceSheet(
+                title: String(localized: "assessment.analysis.benchmark_title", defaultValue: "Benchmark"),
+                dataSources: dataSources
+            )
+        }
+    }
+}
+
+// MARK: - Main View
 struct DetailedAssessmentAnalysisView: View {
     let result: DetailedAssessmentResult
     let color: Color
-    
+
     var body: some View {
-        VStack(spacing: 24) {
-            
-            // 1. TOP STRENGTH
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    Image(systemName: "star.circle.fill")
-                        .font(.title2)
-                        .foregroundStyle(.green)
-                    Text(String(localized: "assessment.analysis.strength_title", defaultValue: "Deine größte Stärke"))
-                        .font(.headline)
-                        .foregroundStyle(.green)
-                    Spacer()
-                }
-                
-                Text(String(localized: String.LocalizationValue(result.topStrengthKey)))
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .padding(20)
-            .background(.ultraThinMaterial)
-            .cornerRadius(20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(LinearGradient(colors: [.green.opacity(0.6), .clear], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1.5)
+        VStack(spacing: 16) {
+
+            AnalysisRowItem(
+                icon: result.strengthIcon,
+                iconColor: .green,
+                title: String(localized: "assessment.analysis.strength_title", defaultValue: "Deine Stärke"),
+                subtitle: String(localized: String.LocalizationValue(result.topStrengthKey)),
+                dataSource: result.strengthDataSources
             )
-            .shadow(color: .green.opacity(0.1), radius: 10, x: 0, y: 5)
-            
-            // 2. BIGGEST WEAKNESS (REALITY CHECK)
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .font(.title2)
-                        .foregroundStyle(.red)
-                    Text(String(localized: "assessment.analysis.weakness_title", defaultValue: "Die harte Wahrheit"))
-                        .font(.headline)
-                        .foregroundStyle(.red)
-                    Spacer()
-                }
-                
-                Text(String(localized: String.LocalizationValue(result.biggestWeaknessKey)))
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .padding(20)
-            .background(.ultraThinMaterial)
-            .cornerRadius(20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(LinearGradient(colors: [.red.opacity(0.6), .clear], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1.5)
+
+            AnalysisRowItem(
+                icon: result.weaknessIcon,
+                iconColor: .red,
+                title: String(localized: "assessment.analysis.weakness_title", defaultValue: "Deine Schwäche"),
+                subtitle: String(localized: String.LocalizationValue(result.biggestWeaknessKey)),
+                dataSource: result.weaknessDataSources
             )
-            .shadow(color: .red.opacity(0.1), radius: 10, x: 0, y: 5)
-            
-            // 3. PITFALL TO AVOID
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    Image(systemName: "xmark.octagon.fill")
-                        .font(.title2)
-                        .foregroundStyle(.orange)
-                    Text(String(localized: "assessment.analysis.pitfall_title", defaultValue: "Gefahrenzone: Was du vermeiden musst"))
-                        .font(.headline)
-                        .foregroundStyle(.orange)
-                    Spacer()
-                }
-                
-                Text(String(localized: String.LocalizationValue(result.pitfallKey)))
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .padding(20)
-            .background(.ultraThinMaterial)
-            .cornerRadius(20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(LinearGradient(colors: [.orange.opacity(0.6), .clear], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1.5)
+
+            AnalysisRowItem(
+                icon: "exclamationmark.triangle.fill",
+                iconColor: .orange,
+                title: String(localized: "assessment.analysis.pitfall_title", defaultValue: "Was du vermeiden musst"),
+                subtitle: String(localized: String.LocalizationValue(result.pitfallKey)),
+                dataSource: result.pitfallDataSources
             )
-            .shadow(color: .orange.opacity(0.1), radius: 10, x: 0, y: 5)
-            
-            // 4. BENCHMARK
-            VStack(alignment: .leading, spacing: 16) {
-                HStack {
-                    Image(systemName: "chart.bar.fill")
-                        .font(.title2)
-                        .foregroundStyle(color)
-                    Text(String(localized: "assessment.analysis.benchmark_title", defaultValue: "Dein Benchmark-Score"))
-                        .font(.headline)
-                        .foregroundStyle(color)
-                    Spacer()
-                }
-                
-                Text(String(localized: String.LocalizationValue(result.benchmarkKey)))
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-                
-                // Visual progress bar
-                GeometryReader { geo in
-                    ZStack(alignment: .leading) {
-                        Capsule()
-                            .fill(Color.gray.opacity(0.2))
-                            .frame(height: 12)
-                        
-                        Capsule()
-                            .fill(LinearGradient(colors: [color.opacity(0.6), color], startPoint: .leading, endPoint: .trailing))
-                            .frame(width: geo.size.width * result.benchmarkPercentile, height: 12)
-                        
-                        // Marker
-                        Circle()
-                            .fill(Color.white)
-                            .frame(width: 16, height: 16)
-                            .shadow(radius: 2)
-                            .offset(x: (geo.size.width * result.benchmarkPercentile) - 8)
-                    }
-                }
-                .frame(height: 16)
-                
-                HStack {
-                    Text(String(localized: "benchmark.bottom", defaultValue: "Anfänger"))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                    Text(String(localized: "benchmark.top", defaultValue: "Top 1%"))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            .padding(20)
-            .background(.ultraThinMaterial)
-            .cornerRadius(20)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(LinearGradient(colors: [color.opacity(0.6), .clear], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1.5)
+
+            BenchmarkCard(
+                percentile: result.benchmarkPercentile,
+                label: result.benchmarkLabel,
+                labelColor: color,
+                description: String(localized: String.LocalizationValue(result.benchmarkKey)),
+                dataSources: result.benchmarkDataSources
             )
-            .shadow(color: color.opacity(0.1), radius: 10, x: 0, y: 5)
-            
         }
         .padding(.horizontal, 20)
     }

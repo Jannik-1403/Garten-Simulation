@@ -83436,25 +83436,25 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "FERTIG"
+            "value": "Fertig"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "DONE"
+            "value": "Done"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "LISTO"
+            "value": "Done"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "TERMINÉ"
+            "value": "Done"
           }
         },
         "hi": {
@@ -83466,7 +83466,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "FATTO"
+            "value": "Done"
           }
         },
         "ja": {
@@ -83496,13 +83496,13 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "CONCLUÍDO"
+            "value": "Done"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "CONCLUÍDO"
+            "value": "Done"
           }
         },
         "ru": {
@@ -83514,7 +83514,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "TAMAMLAMAK"
+            "value": "Done"
           }
         },
         "zh-Hans": {
@@ -332913,6 +332913,218 @@
           "stringUnit": {
             "state": "translated",
             "value": "Don't waste time complaining about politics or the economy. Focus on your circle of influence."
+          }
+        }
+      }
+    },
+    "assessment.source.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "So haben wir diese Einschätzung berechnet:"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is how we calculated this assessment:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is how we calculated this assessment:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is how we calculated this assessment:"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is how we calculated this assessment:"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is how we calculated this assessment:"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is how we calculated this assessment:"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is how we calculated this assessment:"
+          }
+        }
+      }
+    },
+    "assessment.source.tap_hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Woher kommt dieser Score?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where does this score come from?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where does this score come from?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where does this score come from?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where does this score come from?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where does this score come from?"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where does this score come from?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Where does this score come from?"
+          }
+        }
+      }
+    },
+    "benchmark.label.bottom": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einsteiger"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginner"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginner"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginner"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginner"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginner"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginner"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beginner"
+          }
+        }
+      }
+    },
+    "benchmark.label.top": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elite"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elite"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elite"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elite"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elite"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elite"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elite"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elite"
           }
         }
       }
