@@ -83448,13 +83448,13 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Done"
+            "value": "Listo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Done"
+            "value": "Terminé"
           }
         },
         "hi": {
@@ -83466,7 +83466,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Done"
+            "value": "Fatto"
           }
         },
         "ja": {
@@ -83496,13 +83496,13 @@
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Done"
+            "value": "Concluído"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Done"
+            "value": "Concluído"
           }
         },
         "ru": {
@@ -83514,7 +83514,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Done"
+            "value": "Tamam"
           }
         },
         "zh-Hans": {
@@ -329531,49 +329531,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine größte Stärke"
+            "value": "Deine Stärke"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Greatest Strength"
+            "value": "Your Strength"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Greatest Strength"
+            "value": "Tu fortaleza"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Greatest Strength"
+            "value": "Ton point fort"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Greatest Strength"
+            "value": "Il tuo punto di forza"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Greatest Strength"
+            "value": "Güçlü yönün"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Greatest Strength"
+            "value": "O teu ponto forte"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Greatest Strength"
+            "value": "Seu ponto forte"
           }
         }
       }
@@ -329584,49 +329584,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die harte Wahrheit"
+            "value": "Deine Schwäche"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Hard Truth"
+            "value": "Your Weakness"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Hard Truth"
+            "value": "Tu debilidad"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Hard Truth"
+            "value": "Ton point faible"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Hard Truth"
+            "value": "Il tuo punto debole"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Hard Truth"
+            "value": "Zayıf yönün"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Hard Truth"
+            "value": "O teu ponto fraco"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "The Hard Truth"
+            "value": "Seu ponto fraco"
           }
         }
       }
@@ -329637,49 +329637,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gefahrenzone: Was du vermeiden musst"
+            "value": "Was du vermeiden musst"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Danger Zone: What to Avoid"
+            "value": "What You Must Avoid"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Danger Zone: What to Avoid"
+            "value": "Lo que debes evitar"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Danger Zone: What to Avoid"
+            "value": "Ce que tu dois éviter"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Danger Zone: What to Avoid"
+            "value": "Cosa devi evitare"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Danger Zone: What to Avoid"
+            "value": "Kaçınman gerekenler"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Danger Zone: What to Avoid"
+            "value": "O que deves evitar"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Danger Zone: What to Avoid"
+            "value": "O que você deve evitar"
           }
         }
       }
@@ -329690,49 +329690,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dein Benchmark-Score"
+            "value": "Dein Score im Vergleich"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Benchmark Score"
+            "value": "Your Score vs. Others"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Benchmark Score"
+            "value": "Tu puntuación vs. otros"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Benchmark Score"
+            "value": "Ton score vs. les autres"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Benchmark Score"
+            "value": "Il tuo punteggio vs. altri"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Benchmark Score"
+            "value": "Skorun vs. diğerleri"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Benchmark Score"
+            "value": "A tua pontuação vs. outros"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Benchmark Score"
+            "value": "Sua pontuação vs. outros"
           }
         }
       }
@@ -329743,7 +329743,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du gehörst zu den Top 10% in dieser Kategorie. Du bist extrem diszipliniert und hebst dich deutlich vom Durchschnitt ab."
+            "value": "Du gehörst zu den Top 10%. Du bist extrem diszipliniert und hebst dich deutlich vom Durchschnitt ab."
           }
         },
         "en": {
@@ -329755,37 +329755,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are in the top 10%. You are extremely disciplined and stand out from the crowd."
+            "value": "Estás en el top 10%. Eres extremadamente disciplinado y te destacas de la multitud."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are in the top 10%. You are extremely disciplined and stand out from the crowd."
+            "value": "Tu es dans le top 10%. Tu es extrêmement discipliné et tu te distingues clairement."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are in the top 10%. You are extremely disciplined and stand out from the crowd."
+            "value": "Sei nel top 10%. Sei estremamente disciplinato e ti distingui nettamente dalla media."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are in the top 10%. You are extremely disciplined and stand out from the crowd."
+            "value": "İlk %10 içindesin. Son derece disiplinlisin ve kalabalıktan öne çıkıyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are in the top 10%. You are extremely disciplined and stand out from the crowd."
+            "value": "Estás no top 10%. És extremamente disciplinado e destacas-te claramente da média."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are in the top 10%. You are extremely disciplined and stand out from the crowd."
+            "value": "Você está no top 10%. É extremamente disciplinado e se destaca da multidão."
           }
         }
       }
@@ -329802,43 +329802,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solid performance (Top 30%). You are above average, but there is room for improvement."
+            "value": "Solid performance (Top 30%). You are above average, but there is clear room for improvement."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solid performance (Top 30%). You are above average, but there is room for improvement."
+            "value": "Rendimiento sólido (Top 30%). Estás por encima de la media, pero hay margen de mejora."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solid performance (Top 30%). You are above average, but there is room for improvement."
+            "value": "Performance solide (Top 30%). Tu es au-dessus de la moyenne, mais il y a encore du potentiel."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solid performance (Top 30%). You are above average, but there is room for improvement."
+            "value": "Prestazione solida (Top 30%). Sei sopra la media, ma c'è ancora spazio per migliorare."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solid performance (Top 30%). You are above average, but there is room for improvement."
+            "value": "Sağlam performans (%30 en iyi). Ortalamanın üzerindesin, ancak daha fazla potansiyel var."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solid performance (Top 30%). You are above average, but there is room for improvement."
+            "value": "Desempenho sólido (Top 30%). Estás acima da média, mas ainda há potencial de melhoria."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solid performance (Top 30%). You are above average, but there is room for improvement."
+            "value": "Desempenho sólido (Top 30%). Está acima da média, mas há potencial de melhoria."
           }
         }
       }
@@ -329861,37 +329861,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are average. Not bad, but average efforts don't yield extraordinary results."
+            "value": "Estás en la media. No está mal, pero los esfuerzos mediocres no dan resultados extraordinarios."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are average. Not bad, but average efforts don't yield extraordinary results."
+            "value": "Tu es dans la moyenne. Pas mal, mais la médiocrité ne produit pas de résultats extraordinaires."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are average. Not bad, but average efforts don't yield extraordinary results."
+            "value": "Sei nella media. Non è male, ma gli sforzi mediocri non portano risultati straordinari."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are average. Not bad, but average efforts don't yield extraordinary results."
+            "value": "Ortalamadasın. Fena değil, ama sıradan çabalar olağanüstü sonuçlar vermez."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are average. Not bad, but average efforts don't yield extraordinary results."
+            "value": "Estás na média. Não é mau, mas esforços medianos não produzem resultados extraordinários."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You are average. Not bad, but average efforts don't yield extraordinary results."
+            "value": "Você está na média. Não é ruim, mas esforços medianos não geram resultados extraordinários."
           }
         }
       }
@@ -329902,49 +329902,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alarmbereitschaft. Du liegst unter dem Durchschnitt. Hier musst du dringend ansetzen, um nicht weiter zurückzufallen."
+            "value": "Alarmbereitschaft. Du liegst unter dem Durchschnitt. Hier musst du dringend ansetzen."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Red alert. You are below average. You need to take immediate action to avoid falling further behind."
+            "value": "Red alert. You are below average. You need to take immediate action."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Red alert. You are below average. You need to take immediate action to avoid falling further behind."
+            "value": "Alerta roja. Estás por debajo de la media. Necesitas actuar de inmediato."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Red alert. You are below average. You need to take immediate action to avoid falling further behind."
+            "value": "Alerte rouge. Tu es en dessous de la moyenne. Tu dois agir immédiatement."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Red alert. You are below average. You need to take immediate action to avoid falling further behind."
+            "value": "Allerta rossa. Sei sotto la media. Devi agire immediatamente."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Red alert. You are below average. You need to take immediate action to avoid falling further behind."
+            "value": "Kırmızı alarm. Ortalamanın altındasın. Hemen harekete geçmen gerekiyor."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Red alert. You are below average. You need to take immediate action to avoid falling further behind."
+            "value": "Alerta vermelho. Estás abaixo da média. Tens de agir de imediato."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Red alert. You are below average. You need to take immediate action to avoid falling further behind."
+            "value": "Alerta vermelho. Você está abaixo da média. Precisa agir imediatamente."
           }
         }
       }
@@ -330067,43 +330067,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "You track every cent and know exactly where your money flows."
+            "value": "You have full control of your finances. Every euro is tracked and you know exactly where your money goes."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You track every cent and know exactly where your money flows."
+            "value": "Tienes el control total de tus finanzas. Cada euro está controlado y sabes exactamente adónde va."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You track every cent and know exactly where your money flows."
+            "value": "Tu as un contrôle total sur tes finances. Chaque euro est suivi et tu sais exactement où va ton argent."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You track every cent and know exactly where your money flows."
+            "value": "Hai il controllo totale delle tue finanze. Ogni euro è monitorato e sai esattamente dove va il tuo denaro."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You track every cent and know exactly where your money flows."
+            "value": "Finanslarını tam olarak kontrol ediyorsun. Her avro takip ediliyor ve paranın nereye gittiğini biliyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You track every cent and know exactly where your money flows."
+            "value": "Tens total controlo das tuas finanças. Cada euro é monitorizado e sabes exatamente onde vai o teu dinheiro."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You track every cent and know exactly where your money flows."
+            "value": "Você tem controle total das suas finanças. Cada euro é rastreado e você sabe exatamente para onde vai o seu dinheiro."
           }
         }
       }
@@ -330120,43 +330120,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clear decisions. You spend money purposefully and avoid impulse purchases."
+            "value": "Clear decisions. You spend your money with extreme purpose and avoid impulse purchases."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clear decisions. You spend money purposefully and avoid impulse purchases."
+            "value": "Decisiones claras. Gastas tu dinero con un propósito claro y evitas las compras impulsivas."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clear decisions. You spend money purposefully and avoid impulse purchases."
+            "value": "Décisions claires. Tu dépenses ton argent avec un but précis et évites les achats impulsifs."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clear decisions. You spend money purposefully and avoid impulse purchases."
+            "value": "Decisioni chiare. Spendi i tuoi soldi con uno scopo preciso ed eviti gli acquisti impulsivi."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clear decisions. You spend money purposefully and avoid impulse purchases."
+            "value": "Net kararlar. Paranı bilinçli harcıyorsun ve anlık satın almalardan kaçınıyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clear decisions. You spend money purposefully and avoid impulse purchases."
+            "value": "Decisões claras. Gastas o teu dinheiro de forma muito focada e evitas compras por impulso."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clear decisions. You spend money purposefully and avoid impulse purchases."
+            "value": "Decisões claras. Você gasta seu dinheiro com propósito definido e evita compras por impulso."
           }
         }
       }
@@ -330173,43 +330173,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "You reliably build reserves and have a safety net for crises."
+            "value": "You reliably build reserves and have a safety net for unforeseen crises."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You reliably build reserves and have a safety net for crises."
+            "value": "Construyes reservas de forma confiable y tienes un colchón para crisis imprevistas."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You reliably build reserves and have a safety net for crises."
+            "value": "Tu constitues des réserves de manière fiable et tu as un matelas de sécurité pour les crises imprévues."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You reliably build reserves and have a safety net for crises."
+            "value": "Costruisci riserve in modo affidabile e hai un cuscinetto di sicurezza per le crisi impreviste."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You reliably build reserves and have a safety net for crises."
+            "value": "Güvenilir şekilde birikim yapıyor ve öngörülemeyen krizler için güvence oluşturuyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You reliably build reserves and have a safety net for crises."
+            "value": "Crias reservas de forma fiável e tens uma almofada financeira para crises imprevistas."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You reliably build reserves and have a safety net for crises."
+            "value": "Você cria reservas de forma confiável e tem uma reserva de emergência para crises imprevistas."
           }
         }
       }
@@ -330226,43 +330226,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Money slips through your fingers. Without tracking, you are working blind."
+            "value": "Money slips through your fingers. Without tracking, you have no idea what you're really working for."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Money slips through your fingers. Without tracking, you are working blind."
+            "value": "El dinero se te escapa entre los dedos. Sin seguimiento, no sabes para qué estás trabajando realmente."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Money slips through your fingers. Without tracking, you are working blind."
+            "value": "L'argent te file entre les doigts. Sans suivi, tu ne sais pas pour quoi tu travailles vraiment."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Money slips through your fingers. Without tracking, you are working blind."
+            "value": "Il denaro ti scivola tra le dita. Senza monitoraggio, non sai per cosa stai davvero lavorando."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Money slips through your fingers. Without tracking, you are working blind."
+            "value": "Para parmaklarının arasından akıp gidiyor. Takip olmadan ne için çalıştığını bilmiyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Money slips through your fingers. Without tracking, you are working blind."
+            "value": "O dinheiro escoa-se entre os dedos. Sem controlo, não sabes para o que estás realmente a trabalhar."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Money slips through your fingers. Without tracking, you are working blind."
+            "value": "O dinheiro escorre entre os dedos. Sem rastreamento, você não sabe para o que realmente trabalha."
           }
         }
       }
@@ -330273,49 +330273,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Emotionale Käufe sabotieren deinen Fortschritt. Du triffst finanzielle Entscheidungen aus dem Bauch heraus statt rational."
+            "value": "Emotionale Käufe sabotieren deinen Fortschritt. Du triffst finanzielle Entscheidungen aus dem Bauch heraus."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Emotional purchases sabotage you. You make financial decisions based on feelings, not logic."
+            "value": "Emotional purchases sabotage your progress. You make financial decisions based on gut feeling, not logic."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Emotional purchases sabotage you. You make financial decisions based on feelings, not logic."
+            "value": "Las compras emocionales sabotean tu progreso. Tomas decisiones financieras por instinto, no por lógica."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Emotional purchases sabotage you. You make financial decisions based on feelings, not logic."
+            "value": "Les achats émotionnels sabotent tes progrès. Tu prends des décisions financières à l'instinct."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Emotional purchases sabotage you. You make financial decisions based on feelings, not logic."
+            "value": "Gli acquisti emotivi sabotano i tuoi progressi. Prendi decisioni finanziarie d'istinto, non con logica."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Emotional purchases sabotage you. You make financial decisions based on feelings, not logic."
+            "value": "Duygusal satın almalar ilerlemeyi sabote ediyor. Finansal kararlarını mantık değil, his ile veriyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Emotional purchases sabotage you. You make financial decisions based on feelings, not logic."
+            "value": "As compras emocionais sabotam o teu progresso. Tomas decisões financeiras por instinto, não por lógica."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Emotional purchases sabotage you. You make financial decisions based on feelings, not logic."
+            "value": "Compras emocionais sabotam seu progresso. Você toma decisões financeiras por instinto, não por lógica."
           }
         }
       }
@@ -330332,43 +330332,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Living paycheck to paycheck. One crisis could ruin you financially."
+            "value": "You live paycheck to paycheck. One small crisis is enough to ruin you financially."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Living paycheck to paycheck. One crisis could ruin you financially."
+            "value": "Vives de sueldo en sueldo. Una pequeña crisis basta para arruinarte económicamente."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Living paycheck to paycheck. One crisis could ruin you financially."
+            "value": "Tu vis de salaire en salaire. Une petite crise suffit pour te ruiner financièrement."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Living paycheck to paycheck. One crisis could ruin you financially."
+            "value": "Vivi di stipendio in stipendio. Una piccola crisi è sufficiente per rovinarti finanziariamente."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Living paycheck to paycheck. One crisis could ruin you financially."
+            "value": "Maaştan maaşa yaşıyorsun. Küçük bir kriz seni finansal olarak mahvetmeye yeter."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Living paycheck to paycheck. One crisis could ruin you financially."
+            "value": "Vives de salário em salário. Uma pequena crise é suficiente para te arruinar financeiramente."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Living paycheck to paycheck. One crisis could ruin you financially."
+            "value": "Você vive de salário em salário. Uma pequena crise é suficiente para arruinar você financeiramente."
           }
         }
       }
@@ -330385,43 +330385,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid ignoring expenses at month's end. Face the reality immediately."
+            "value": "Avoid ignoring expenses at month's end. Face the facts immediately."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid ignoring expenses at month's end. Face the reality immediately."
+            "value": "Evita ignorar los gastos a fin de mes. Enfrenta los hechos de inmediato."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid ignoring expenses at month's end. Face the reality immediately."
+            "value": "Évite d'ignorer les dépenses en fin de mois. Affronte les faits immédiatement."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid ignoring expenses at month's end. Face the reality immediately."
+            "value": "Evita di ignorare le spese a fine mese. Affronta i fatti immediatamente."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid ignoring expenses at month's end. Face the reality immediately."
+            "value": "Ay sonunda harcamaları görmezden gelme. Gerçeklerle hemen yüzleş."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid ignoring expenses at month's end. Face the reality immediately."
+            "value": "Evita ignorar as despesas no fim do mês. Enfrenta os factos imediatamente."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid ignoring expenses at month's end. Face the reality immediately."
+            "value": "Evite ignorar as despesas no fim do mês. Enfrente os fatos imediatamente."
           }
         }
       }
@@ -330432,49 +330432,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geh nicht ohne Einkaufszettel in den Supermarkt. Jede ungeplante Ausgabe summiert sich auf."
+            "value": "Geh nie ohne Einkaufszettel in den Supermarkt. Jede ungeplante Ausgabe summiert sich."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't shop without a list. Every unplanned purchase adds up."
+            "value": "Never go to the supermarket without a shopping list. Every unplanned expense adds up."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't shop without a list. Every unplanned purchase adds up."
+            "value": "Nunca vayas al supermercado sin lista. Cada gasto no planificado suma."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't shop without a list. Every unplanned purchase adds up."
+            "value": "Ne va jamais au supermarché sans liste. Chaque dépense non planifiée s'accumule."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't shop without a list. Every unplanned purchase adds up."
+            "value": "Non andare mai al supermercato senza una lista. Ogni spesa non pianificata si accumula."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't shop without a list. Every unplanned purchase adds up."
+            "value": "Markete asla listemize gitmeden gitme. Her plansız harcama birikir."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't shop without a list. Every unplanned purchase adds up."
+            "value": "Nunca vás ao supermercado sem lista. Cada despesa não planeada acumula."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't shop without a list. Every unplanned purchase adds up."
+            "value": "Nunca vá ao supermercado sem lista. Cada gasto não planejado se acumula."
           }
         }
       }
@@ -330497,37 +330497,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop spending on consumption before saving at least 10% of your income."
+            "value": "Deja de gastar en consumo antes de ahorrar al menos el 10% de tus ingresos."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop spending on consumption before saving at least 10% of your income."
+            "value": "Arrête de dépenser avant d'avoir épargné au moins 10% de tes revenus."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop spending on consumption before saving at least 10% of your income."
+            "value": "Smetti di spendere in consumi prima di aver risparmiato almeno il 10% delle entrate."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop spending on consumption before saving at least 10% of your income."
+            "value": "Gelirinizin en az %10'unu biriktirmeden tüketim harcaması yapmayı bırak."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop spending on consumption before saving at least 10% of your income."
+            "value": "Para de gastar em consumo antes de poupar pelo menos 10% do teu rendimento."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop spending on consumption before saving at least 10% of your income."
+            "value": "Pare de gastar com consumo antes de poupar pelo menos 10% da sua renda."
           }
         }
       }
@@ -330544,43 +330544,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sleep is your superpower. You recover deeply and start the day energized."
+            "value": "Sleep is your superpower. You recover deeply and start each day with maximum energy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sleep is your superpower. You recover deeply and start the day energized."
+            "value": "El sueño es tu superpoder. Te recuperas profundamente y empiezas cada día con máxima energía."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sleep is your superpower. You recover deeply and start the day energized."
+            "value": "Le sommeil est ton super-pouvoir. Tu récupères profondément et commences chaque journée avec un maximum d'énergie."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sleep is your superpower. You recover deeply and start the day energized."
+            "value": "Il sonno è il tuo superpotere. Ti recuperi profondamente e inizi ogni giornata con la massima energia."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sleep is your superpower. You recover deeply and start the day energized."
+            "value": "Uyku senin süper gücün. Derin iyileşiyorsun ve her güne maksimum enerjiyle başlıyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sleep is your superpower. You recover deeply and start the day energized."
+            "value": "O sono é o teu superpoder. Recuperas profundamente e começas cada dia com energia máxima."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sleep is your superpower. You recover deeply and start the day energized."
+            "value": "O sono é seu superpoder. Você se recupera profundamente e começa cada dia com energia máxima."
           }
         }
       }
@@ -330597,43 +330597,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your body gets the perfect fuel. You eat clean, mindful, and nutritious."
+            "value": "Your body gets perfect fuel. You eat clean, mindfully, and nutrient-rich."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your body gets the perfect fuel. You eat clean, mindful, and nutritious."
+            "value": "Tu cuerpo recibe el combustible perfecto. Comes limpio, conscientemente y de forma nutritiva."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your body gets the perfect fuel. You eat clean, mindful, and nutritious."
+            "value": "Ton corps reçoit le carburant parfait. Tu manges sainement, consciemment et de façon nutritive."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your body gets the perfect fuel. You eat clean, mindful, and nutritious."
+            "value": "Il tuo corpo riceve il carburante perfetto. Mangi in modo pulito, consapevole e nutriente."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your body gets the perfect fuel. You eat clean, mindful, and nutritious."
+            "value": "Vücudun mükemmel yakıt alıyor. Temiz, bilinçli ve besin açısından zengin besleniyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your body gets the perfect fuel. You eat clean, mindful, and nutritious."
+            "value": "O teu corpo recebe o combustível perfeito. Comes de forma limpa, consciente e nutritiva."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your body gets the perfect fuel. You eat clean, mindful, and nutritious."
+            "value": "Seu corpo recebe o combustível perfeito. Você come de forma limpa, consciente e nutritiva."
           }
         }
       }
@@ -330644,49 +330644,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du achtest auf aktive Prävention. Yoga, Dehnen oder Spaziergänge halten deinen Körper geschmeidig."
+            "value": "Du achtest auf aktive Prävention. Yoga, Dehnen oder Spaziergänge halten deinen Körper leistungsfähig."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "You focus on active prevention. Yoga, stretching, or walks keep you resilient."
+            "value": "You focus on active prevention. Yoga, stretching, or walks keep your body performing."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You focus on active prevention. Yoga, stretching, or walks keep you resilient."
+            "value": "Te centras en la prevención activa. El yoga, los estiramientos o los paseos mantienen tu cuerpo en forma."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You focus on active prevention. Yoga, stretching, or walks keep you resilient."
+            "value": "Tu te concentres sur la prévention active. Yoga, étirements ou marches gardent ton corps performant."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You focus on active prevention. Yoga, stretching, or walks keep you resilient."
+            "value": "Ti concentri sulla prevenzione attiva. Yoga, stretching o passeggiate mantengono il tuo corpo performante."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You focus on active prevention. Yoga, stretching, or walks keep you resilient."
+            "value": "Aktif önlemeye odaklanıyorsun. Yoga, esneme veya yürüyüşler vücudunu performanslı tutuyor."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You focus on active prevention. Yoga, stretching, or walks keep you resilient."
+            "value": "Focas-te na prevenção ativa. Yoga, alongamentos ou caminhadas mantêm o teu corpo em forma."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You focus on active prevention. Yoga, stretching, or walks keep you resilient."
+            "value": "Você foca na prevenção ativa. Yoga, alongamentos ou caminhadas mantêm seu corpo em alto desempenho."
           }
         }
       }
@@ -330703,43 +330703,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lack of sleep destroys your potential. You are exhausted and your recovery suffers."
+            "value": "Lack of sleep destroys your potential. You are often exhausted and your recovery suffers greatly."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lack of sleep destroys your potential. You are exhausted and your recovery suffers."
+            "value": "La falta de sueño destruye tu potencial. A menudo estás agotado y tu recuperación sufre mucho."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lack of sleep destroys your potential. You are exhausted and your recovery suffers."
+            "value": "Le manque de sommeil détruit ton potentiel. Tu es souvent épuisé et ta récupération en souffre beaucoup."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lack of sleep destroys your potential. You are exhausted and your recovery suffers."
+            "value": "La mancanza di sonno distrugge il tuo potenziale. Sei spesso esausto e la tua ripresa ne risente molto."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lack of sleep destroys your potential. You are exhausted and your recovery suffers."
+            "value": "Uyku eksikliği potansiyelini yok ediyor. Çoğu zaman yorgunsun ve iyileşmen büyük ölçüde zarar görüyor."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lack of sleep destroys your potential. You are exhausted and your recovery suffers."
+            "value": "A falta de sono destrói o teu potencial. Muitas vezes estás exausto e a tua recuperação sofre muito."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lack of sleep destroys your potential. You are exhausted and your recovery suffers."
+            "value": "A falta de sono destrói seu potencial. Você frequentemente está exausto e sua recuperação sofre muito."
           }
         }
       }
@@ -330756,43 +330756,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Junk food and sugar steal your energy. You fuel your body with cheap trash."
+            "value": "Junk food and sugar steal your energy. You fuel your body with cheap fuel."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Junk food and sugar steal your energy. You fuel your body with cheap trash."
+            "value": "La comida basura y el azúcar te roban energía. Alimentas tu cuerpo con combustible barato."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Junk food and sugar steal your energy. You fuel your body with cheap trash."
+            "value": "La malbouffe et le sucre volent ton énergie. Tu alimentes ton corps avec du carburant bon marché."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Junk food and sugar steal your energy. You fuel your body with cheap trash."
+            "value": "Il cibo spazzatura e lo zucchero ti rubano l'energia. Dai al tuo corpo carburante di bassa qualità."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Junk food and sugar steal your energy. You fuel your body with cheap trash."
+            "value": "Abur cubur ve şeker enerjini çalıyor. Vücudunu ucuz yakıtla besliyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Junk food and sugar steal your energy. You fuel your body with cheap trash."
+            "value": "O junk food e o açúcar roubam a tua energia. Alimentas o teu corpo com combustível barato."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Junk food and sugar steal your energy. You fuel your body with cheap trash."
+            "value": "Junk food e açúcar roubam sua energia. Você abastece seu corpo com combustível barato."
           }
         }
       }
@@ -330803,49 +330803,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du verbrennst auf beiden Seiten. Keine Pausen, keine Pflege – dein Körper wird das auf Dauer nicht mitmachen."
+            "value": "Du verbrennst auf beiden Seiten. Keine Pausen, keine Pflege – dein Körper wird das nicht ewig mitmachen."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Burning the candle at both ends. No breaks, no care – your body will fail eventually."
+            "value": "You're burning the candle at both ends. No breaks, no care – your body won't take this forever."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Burning the candle at both ends. No breaks, no care – your body will fail eventually."
+            "value": "Estás quemando la vela por los dos extremos. Sin descanso, sin cuidado – tu cuerpo no lo aguantará para siempre."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Burning the candle at both ends. No breaks, no care – your body will fail eventually."
+            "value": "Tu brûles la chandelle par les deux bouts. Pas de pauses, pas de soin – ton corps ne tiendra pas éternellement."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Burning the candle at both ends. No breaks, no care – your body will fail eventually."
+            "value": "Stai bruciando la candela da entrambe le estremità. Niente pause, nessuna cura – il tuo corpo non lo reggerà per sempre."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Burning the candle at both ends. No breaks, no care – your body will fail eventually."
+            "value": "Her iki ucundan da ateş yakıyorsun. Mola yok, özen yok – vücudun bunu sonsuza kadar kaldıramaz."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Burning the candle at both ends. No breaks, no care – your body will fail eventually."
+            "value": "Estás a queimar a vela nas duas pontas. Sem pausas, sem cuidados – o teu corpo não aguentará para sempre."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Burning the candle at both ends. No breaks, no care – your body will fail eventually."
+            "value": "Você está queimando a vela nas duas pontas. Sem pausas, sem cuidados – seu corpo não aguentará para sempre."
           }
         }
       }
@@ -330856,49 +330856,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vermeide Bildschirme 60 Minuten vor dem Schlafengehen. Das blaue Licht zerstört deine Melatonin-Produktion."
+            "value": "Vermeide Bildschirme 60 Minuten vor dem Schlafengehen. Das blaue Licht zerstört die Melatonin-Produktion."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid screens 60 minutes before bed. Blue light destroys your melatonin."
+            "value": "Avoid screens 60 minutes before bed. Blue light destroys melatonin production."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid screens 60 minutes before bed. Blue light destroys your melatonin."
+            "value": "Evita las pantallas 60 minutos antes de dormir. La luz azul destruye la producción de melatonina."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid screens 60 minutes before bed. Blue light destroys your melatonin."
+            "value": "Évite les écrans 60 minutes avant de dormir. La lumière bleue détruit la production de mélatonine."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid screens 60 minutes before bed. Blue light destroys your melatonin."
+            "value": "Evita gli schermi 60 minuti prima di dormire. La luce blu distrugge la produzione di melatonina."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid screens 60 minutes before bed. Blue light destroys your melatonin."
+            "value": "Yatmadan 60 dakika önce ekranlardan kaçın. Mavi ışık melatonin üretimini yok eder."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid screens 60 minutes before bed. Blue light destroys your melatonin."
+            "value": "Evita ecrãs 60 minutos antes de dormir. A luz azul destrói a produção de melatonina."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid screens 60 minutes before bed. Blue light destroys your melatonin."
+            "value": "Evite telas 60 minutos antes de dormir. A luz azul destrói a produção de melatonina."
           }
         }
       }
@@ -330909,49 +330909,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lass die Finger von flüssigen Kalorien und Zucker-Snacks am Nachmittag. Das führt zu einem massiven Crash."
+            "value": "Lass die Finger von flüssigen Kalorien und Zucker-Snacks. Das führt zu einem massiven Energie-Crash."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stay away from liquid calories and afternoon sugar snacks. They lead to massive crashes."
+            "value": "Stay away from liquid calories and sugar snacks. They lead to a massive energy crash."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stay away from liquid calories and afternoon sugar snacks. They lead to massive crashes."
+            "value": "Evita las calorías líquidas y los snacks azucarados. Provocan un gran bajón de energía."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stay away from liquid calories and afternoon sugar snacks. They lead to massive crashes."
+            "value": "Évite les calories liquides et les snacks sucrés. Ils provoquent un effondrement massif d'énergie."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stay away from liquid calories and afternoon sugar snacks. They lead to massive crashes."
+            "value": "Tieniti lontano dalle calorie liquide e dagli snack zuccherati. Portano a un massiccio crollo energetico."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stay away from liquid calories and afternoon sugar snacks. They lead to massive crashes."
+            "value": "Sıvı kalori ve şekerli atıştırmacılardan uzak dur. Bunlar büyük bir enerji çöküşüne yol açar."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stay away from liquid calories and afternoon sugar snacks. They lead to massive crashes."
+            "value": "Evita calorias líquidas e snacks açucarados. Levam a um colapso massivo de energia."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stay away from liquid calories and afternoon sugar snacks. They lead to massive crashes."
+            "value": "Evite calorias líquidas e lanches açucarados. Eles levam a um colapso massivo de energia."
           }
         }
       }
@@ -330962,49 +330962,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ignoriere kleine Schmerzen nicht. Wenn dein Körper Signale sendet, drück nicht einfach Schmerzmittel rein."
+            "value": "Ignoriere kleine Schmerzen nicht. Wenn dein Körper Signale sendet, hör hin – bevor es schlimmer wird."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't ignore minor pains. When your body signals distress, don't just pop a pill."
+            "value": "Don't ignore minor pains. When your body sends signals, listen – before it gets worse."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't ignore minor pains. When your body signals distress, don't just pop a pill."
+            "value": "No ignores los dolores menores. Cuando tu cuerpo envíe señales, escúchalas – antes de que empeore."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't ignore minor pains. When your body signals distress, don't just pop a pill."
+            "value": "N'ignore pas les petites douleurs. Quand ton corps envoie des signaux, écoute-le – avant que ça empire."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't ignore minor pains. When your body signals distress, don't just pop a pill."
+            "value": "Non ignorare i piccoli dolori. Quando il tuo corpo invia segnali, ascolta – prima che peggiori."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't ignore minor pains. When your body signals distress, don't just pop a pill."
+            "value": "Küçük ağrıları görmezden gelme. Vücudun sinyal verdiğinde dinle – daha da kötüleşmeden önce."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't ignore minor pains. When your body signals distress, don't just pop a pill."
+            "value": "Não ignores as pequenas dores. Quando o teu corpo enviar sinais, ouve-os – antes de piorar."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't ignore minor pains. When your body signals distress, don't just pop a pill."
+            "value": "Não ignore pequenas dores. Quando seu corpo enviar sinais, escute – antes que piore."
           }
         }
       }
@@ -331015,49 +331015,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dich bringt nichts aus der Ruhe. Unter Druck lieferst du deine besten Ergebnisse ab."
+            "value": "Dich bringt nichts aus der Ruhe. Unter Druck lieferst du deine besten Ergebnisse."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nothing rattles you. Under pressure, you deliver your best work."
+            "value": "Nothing rattles you. Under pressure, you deliver your best results."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nothing rattles you. Under pressure, you deliver your best work."
+            "value": "Nada te altera. Bajo presión, das tus mejores resultados."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nothing rattles you. Under pressure, you deliver your best work."
+            "value": "Rien ne te déstabilise. Sous pression, tu donnes le meilleur de toi-même."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nothing rattles you. Under pressure, you deliver your best work."
+            "value": "Niente ti scompone. Sotto pressione, dai i tuoi risultati migliori."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nothing rattles you. Under pressure, you deliver your best work."
+            "value": "Hiçbir şey seni sarsmıyor. Baskı altında en iyi sonuçlarını veriyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nothing rattles you. Under pressure, you deliver your best work."
+            "value": "Nada te abala. Sob pressão, dás os teus melhores resultados."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nothing rattles you. Under pressure, you deliver your best work."
+            "value": "Nada te abala. Sob pressão, você dá seus melhores resultados."
           }
         }
       }
@@ -331080,37 +331080,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Laser focus. When you work, the rest of the world ceases to exist."
+            "value": "Enfoque láser. Cuando trabajas, el resto del mundo deja de existir."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Laser focus. When you work, the rest of the world ceases to exist."
+            "value": "Concentration laser. Quand tu travailles, le reste du monde cesse d'exister."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Laser focus. When you work, the rest of the world ceases to exist."
+            "value": "Concentrazione laser. Quando lavori, il resto del mondo smette di esistere."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Laser focus. When you work, the rest of the world ceases to exist."
+            "value": "Lazer odağı. Çalışırken dünyanın geri kalanı var olmaktan çıkıyor."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Laser focus. When you work, the rest of the world ceases to exist."
+            "value": "Foco laser. Quando trabalhas, o resto do mundo deixa de existir."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Laser focus. When you work, the rest of the world ceases to exist."
+            "value": "Foco laser. Quando você trabalha, o resto do mundo deixa de existir."
           }
         }
       }
@@ -331121,49 +331121,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast ein hohes Bewusstsein für dich selbst und reflektierst dein Handeln kritisch, aber fair."
+            "value": "Du hast ein hohes Selbstbewusstsein und reflektierst dein Handeln kritisch, aber fair."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "High self-awareness. You reflect critically but fairly on your actions."
+            "value": "You have high self-awareness and reflect on your actions critically but fairly."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "High self-awareness. You reflect critically but fairly on your actions."
+            "value": "Tienes una gran autoconciencia y reflexionas sobre tus acciones de forma crítica pero justa."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "High self-awareness. You reflect critically but fairly on your actions."
+            "value": "Tu as une grande conscience de toi-même et tu réfléchis à tes actions de manière critique mais juste."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "High self-awareness. You reflect critically but fairly on your actions."
+            "value": "Hai un'alta autoconsapevolezza e rifletti sulle tue azioni in modo critico ma equo."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "High self-awareness. You reflect critically but fairly on your actions."
+            "value": "Yüksek öz farkındalığa sahipsin ve eylemlerini eleştirel ama adil bir şekilde değerlendiriyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "High self-awareness. You reflect critically but fairly on your actions."
+            "value": "Tens uma elevada autoconsciência e refletes sobre as tuas ações de forma crítica mas justa."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "High self-awareness. You reflect critically but fairly on your actions."
+            "value": "Você tem alta autoconsciência e reflete sobre suas ações de forma crítica, mas justa."
           }
         }
       }
@@ -331180,43 +331180,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stress eats you alive. Small problems derail you instantly and steal your sleep."
+            "value": "Stress eats you alive. Small problems derail you immediately and steal your sleep."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stress eats you alive. Small problems derail you instantly and steal your sleep."
+            "value": "El estrés te devora. Los pequeños problemas te descarrilan inmediatamente y te roban el sueño."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stress eats you alive. Small problems derail you instantly and steal your sleep."
+            "value": "Le stress te consume. Les petits problèmes te font dérailler immédiatement et te volent ton sommeil."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stress eats you alive. Small problems derail you instantly and steal your sleep."
+            "value": "Lo stress ti divora. I piccoli problemi ti fanno deragliare immediatamente e ti rubano il sonno."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stress eats you alive. Small problems derail you instantly and steal your sleep."
+            "value": "Stres seni yiyor. Küçük sorunlar seni hemen raydan çıkarıyor ve uykunu çalıyor."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stress eats you alive. Small problems derail you instantly and steal your sleep."
+            "value": "O stress devora-te. Pequenos problemas descarrilam-te imediatamente e roubam o teu sono."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stress eats you alive. Small problems derail you instantly and steal your sleep."
+            "value": "O estresse te devora. Pequenos problemas te descarrilam imediatamente e roubam o seu sono."
           }
         }
       }
@@ -331227,49 +331227,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dein Fokus ist zersplittert. Ständige Handykontrolle und Multitasking machen dich ineffizient."
+            "value": "Dein Fokus ist zersplittert. Ständige Handychecks und Multitasking machen dich ineffizient."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fragmented focus. Constant phone checking and multitasking make you inefficient."
+            "value": "Your focus is fragmented. Constant phone checks and multitasking make you inefficient."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fragmented focus. Constant phone checking and multitasking make you inefficient."
+            "value": "Tu enfoque está fragmentado. Las revisiones constantes del teléfono y la multitarea te hacen ineficiente."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fragmented focus. Constant phone checking and multitasking make you inefficient."
+            "value": "Ta concentration est fragmentée. Les vérifications constantes du téléphone et le multitâche te rendent inefficace."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fragmented focus. Constant phone checking and multitasking make you inefficient."
+            "value": "La tua concentrazione è frammentata. I continui controlli del telefono e il multitasking ti rendono inefficiente."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fragmented focus. Constant phone checking and multitasking make you inefficient."
+            "value": "Odağın parçalanmış. Sürekli telefon kontrolleri ve çoklu görev seni verimsiz yapıyor."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fragmented focus. Constant phone checking and multitasking make you inefficient."
+            "value": "O teu foco está fragmentado. Verificações constantes do telemóvel e multitarefas tornam-te ineficiente."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fragmented focus. Constant phone checking and multitasking make you inefficient."
+            "value": "Seu foco está fragmentado. Verificações constantes do celular e multitarefa te tornam ineficiente."
           }
         }
       }
@@ -331286,43 +331286,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your ego is in the way. You blame others instead of reflecting on yourself."
+            "value": "Your ego is in the way. You often blame others instead of reflecting on yourself."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your ego is in the way. You blame others instead of reflecting on yourself."
+            "value": "Tu ego se interpone. A menudo culpas a los demás en lugar de reflexionar sobre ti mismo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your ego is in the way. You blame others instead of reflecting on yourself."
+            "value": "Ton ego est un obstacle. Tu blâmes souvent les autres au lieu de te remettre en question."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your ego is in the way. You blame others instead of reflecting on yourself."
+            "value": "Il tuo ego è d'ostacolo. Spesso dai la colpa agli altri invece di riflettere su te stesso."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your ego is in the way. You blame others instead of reflecting on yourself."
+            "value": "Ego yoluna çıkıyor. Kendini sorgulamak yerine çoğu zaman başkalarını suçluyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your ego is in the way. You blame others instead of reflecting on yourself."
+            "value": "O teu ego está no caminho. Muitas vezes culpas os outros em vez de refletires sobre ti mesmo."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your ego is in the way. You blame others instead of reflecting on yourself."
+            "value": "Seu ego está no caminho. Você frequentemente culpa os outros em vez de refletir sobre si mesmo."
           }
         }
       }
@@ -331333,7 +331333,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vermeide es, direkt nach dem Aufstehen Mails oder Social Media zu checken. Du startest reaktiv in den Tag."
+            "value": "Vermeide es, direkt nach dem Aufstehen Mails oder Social Media zu checken. Du startest reaktiv."
           }
         },
         "en": {
@@ -331345,37 +331345,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid checking emails or social media right after waking up. You start the day reactive."
+            "value": "Evita revisar el correo o las redes sociales nada más levantarte. Empiezas el día de forma reactiva."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid checking emails or social media right after waking up. You start the day reactive."
+            "value": "Évite de vérifier tes mails ou les réseaux sociaux dès le réveil. Tu commences la journée en mode réactif."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid checking emails or social media right after waking up. You start the day reactive."
+            "value": "Evita di controllare e-mail o social media appena ti svegli. Inizi la giornata in modo reattivo."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid checking emails or social media right after waking up. You start the day reactive."
+            "value": "Uyandıktan hemen sonra e-posta veya sosyal medya kontrol etmekten kaçın. Güne reaktif başlıyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid checking emails or social media right after waking up. You start the day reactive."
+            "value": "Evita verificar e-mails ou redes sociais logo ao acordar. Começas o dia de forma reativa."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid checking emails or social media right after waking up. You start the day reactive."
+            "value": "Evite verificar e-mails ou redes sociais logo ao acordar. Você começa o dia de forma reativa."
           }
         }
       }
@@ -331386,49 +331386,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lass dein Handy bei tiefer Arbeit NIEMALS auf dem Schreibtisch liegen. Lege es in einen anderen Raum."
+            "value": "Lass dein Handy bei tiefer Arbeit NIEMALS auf dem Schreibtisch. Lege es in einen anderen Raum."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "NEVER keep your phone on the desk during deep work. Put it in another room."
+            "value": "NEVER leave your phone on the desk during deep work. Put it in another room."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "NEVER keep your phone on the desk during deep work. Put it in another room."
+            "value": "NUNCA dejes el teléfono en el escritorio durante el trabajo profundo. Ponlo en otra habitación."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "NEVER keep your phone on the desk during deep work. Put it in another room."
+            "value": "Ne laisse JAMAIS ton téléphone sur le bureau pendant le travail profond. Mets-le dans une autre pièce."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "NEVER keep your phone on the desk during deep work. Put it in another room."
+            "value": "Non lasciare MAI il telefono sulla scrivania durante il lavoro profondo. Mettilo in un'altra stanza."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "NEVER keep your phone on the desk during deep work. Put it in another room."
+            "value": "Derin çalışma sırasında telefonu masada ASLA bırakma. Onu başka bir odaya koy."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "NEVER keep your phone on the desk during deep work. Put it in another room."
+            "value": "NUNCA deixes o telemóvel na secretária durante o trabalho profundo. Coloca-o noutro quarto."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "NEVER keep your phone on the desk during deep work. Put it in another room."
+            "value": "NUNCA deixe o celular na mesa durante o trabalho profundo. Coloque-o em outro cômodo."
           }
         }
       }
@@ -331451,37 +331451,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't react to criticism immediately. Take three deep breaths before defending yourself."
+            "value": "No reacciones a las críticas de inmediato. Respira profundo tres veces antes de defenderte."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't react to criticism immediately. Take three deep breaths before defending yourself."
+            "value": "Ne réagis pas immédiatement aux critiques. Prends trois grandes respirations avant de te défendre."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't react to criticism immediately. Take three deep breaths before defending yourself."
+            "value": "Non reagire immediatamente alle critiche. Fai tre respiri profondi prima di difenderti."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't react to criticism immediately. Take three deep breaths before defending yourself."
+            "value": "Eleştirilere hemen tepki verme. Kendini savunmadan önce üç derin nefes al."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't react to criticism immediately. Take three deep breaths before defending yourself."
+            "value": "Não reagir imediatamente às críticas. Respira fundo três vezes antes de te defenderes."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't react to criticism immediately. Take three deep breaths before defending yourself."
+            "value": "Não reaja imediatamente às críticas. Respire fundo três vezes antes de se defender."
           }
         }
       }
@@ -331492,49 +331492,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eiserne Disziplin. Du machst die Dinge, auch wenn du keine Lust hast. Das ist der Weg zum Erfolg."
+            "value": "Eiserne Disziplin. Du machst die Dinge, auch wenn du keine Lust hast. Das ist der Weg."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iron discipline. You do the work even when you don't feel like it. That's the way to success."
+            "value": "Iron discipline. You do the work even when you don't feel like it. That is the way."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iron discipline. You do the work even when you don't feel like it. That's the way to success."
+            "value": "Disciplina de hierro. Haces las cosas aunque no tengas ganas. Ese es el camino."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iron discipline. You do the work even when you don't feel like it. That's the way to success."
+            "value": "Discipline de fer. Tu fais les choses même quand tu n'en as pas envie. C'est la voie."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iron discipline. You do the work even when you don't feel like it. That's the way to success."
+            "value": "Disciplina di ferro. Fai le cose anche quando non ne hai voglia. Questa è la strada."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iron discipline. You do the work even when you don't feel like it. That's the way to success."
+            "value": "Demir disiplin. İstemesen bile işini yapıyorsun. Bu yol budur."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iron discipline. You do the work even when you don't feel like it. That's the way to success."
+            "value": "Disciplina de ferro. Fazes as coisas mesmo quando não tens vontade. Este é o caminho."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iron discipline. You do the work even when you don't feel like it. That's the way to success."
+            "value": "Disciplina de ferro. Você faz as coisas mesmo quando não tem vontade. Esse é o caminho."
           }
         }
       }
@@ -331545,49 +331545,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du arbeitest extrem klug. Statt nur hart zu arbeiten, nutzt du Hebel, um mehr in kürzerer Zeit zu schaffen."
+            "value": "Du arbeitest extrem klug. Statt nur hart zu arbeiten, nutzt du Hebel für mehr Output."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Extremely smart worker. Instead of just working hard, you use leverage to achieve more."
+            "value": "You work extremely smart. Instead of just working hard, you use leverage for more output."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Extremely smart worker. Instead of just working hard, you use leverage to achieve more."
+            "value": "Trabajas de forma extremadamente inteligente. En lugar de solo trabajar duro, usas el apalancamiento para más rendimiento."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Extremely smart worker. Instead of just working hard, you use leverage to achieve more."
+            "value": "Tu travailles extrêmement intelligemment. Au lieu de juste travailler dur, tu utilises l'effet de levier pour plus de résultats."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Extremely smart worker. Instead of just working hard, you use leverage to achieve more."
+            "value": "Lavori in modo estremamente intelligente. Invece di lavorare solo duramente, usi la leva per più output."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Extremely smart worker. Instead of just working hard, you use leverage to achieve more."
+            "value": "Son derece akıllıca çalışıyorsun. Sadece sıkı çalışmak yerine, daha fazla çıktı için kaldıraç kullanıyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Extremely smart worker. Instead of just working hard, you use leverage to achieve more."
+            "value": "Trabalhas de forma extremamente inteligente. Em vez de só trabalhar muito, usas a alavancagem para mais resultados."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Extremely smart worker. Instead of just working hard, you use leverage to achieve more."
+            "value": "Você trabalha de forma extremamente inteligente. Em vez de apenas trabalhar duro, usa alavancagem para mais resultados."
           }
         }
       }
@@ -331610,37 +331610,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You don't talk, you act. Your execution speed is outstanding."
+            "value": "No hablas, actúas. Tu velocidad de ejecución es sobresaliente."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You don't talk, you act. Your execution speed is outstanding."
+            "value": "Tu ne parles pas, tu agis. Ta vitesse d'exécution est remarquable."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You don't talk, you act. Your execution speed is outstanding."
+            "value": "Non parli, agisci. La tua velocità di esecuzione è straordinaria."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You don't talk, you act. Your execution speed is outstanding."
+            "value": "Konuşmuyorsun, harekete geçiyorsun. Uygulama hızın olağanüstü."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You don't talk, you act. Your execution speed is outstanding."
+            "value": "Não falas, ages. A tua velocidade de execução é notável."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You don't talk, you act. Your execution speed is outstanding."
+            "value": "Você não fala, age. Sua velocidade de execução é extraordinária."
           }
         }
       }
@@ -331651,49 +331651,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du bist ein Meister der Ausreden. Sobald es schwer wird, gibst du auf oder verschiebst es auf morgen."
+            "value": "Du bist ein Meister der Ausreden. Sobald es schwer wird, gibst du auf oder verschiebst es."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Master of excuses. The moment it gets hard, you quit or push it to tomorrow."
+            "value": "You are a master of excuses. The moment it gets hard, you quit or postpone."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Master of excuses. The moment it gets hard, you quit or push it to tomorrow."
+            "value": "Eres un maestro de las excusas. En cuanto se complica, abandonas o lo pospones."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Master of excuses. The moment it gets hard, you quit or push it to tomorrow."
+            "value": "Tu es un maître des excuses. Dès que ça devient difficile, tu abandonnes ou tu reportes."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Master of excuses. The moment it gets hard, you quit or push it to tomorrow."
+            "value": "Sei un maestro delle scuse. Appena diventa difficile, molli o rimandi."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Master of excuses. The moment it gets hard, you quit or push it to tomorrow."
+            "value": "Bahane konusunda ustasın. Zorlaşır zorlaşmaz vazgeçiyor ya da erteliyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Master of excuses. The moment it gets hard, you quit or push it to tomorrow."
+            "value": "És um mestre das desculpas. Assim que fica difícil, desistes ou adiasas."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Master of excuses. The moment it gets hard, you quit or push it to tomorrow."
+            "value": "Você é um mestre das desculpas. Assim que fica difícil, você desiste ou adia."
           }
         }
       }
@@ -331710,43 +331710,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chronically 'busy', achieving nothing. You confuse activity with productivity."
+            "value": "You are chronically 'busy' but achieve nothing. You confuse busyness with productivity."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chronically 'busy', achieving nothing. You confuse activity with productivity."
+            "value": "Estás crónicamente 'ocupado' pero no logras nada. Confundes el ajetreo con la productividad."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chronically 'busy', achieving nothing. You confuse activity with productivity."
+            "value": "Tu es chroniquement 'occupé' mais n'accomplis rien. Tu confonds l'agitation avec la productivité."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chronically 'busy', achieving nothing. You confuse activity with productivity."
+            "value": "Sei cronicamente 'occupato' ma non ottieni nulla. Confodi l'agitazione con la produttività."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chronically 'busy', achieving nothing. You confuse activity with productivity."
+            "value": "Kronik olarak 'meşgulsün' ama hiçbir şey başaramıyorsun. Hareketliliği verimlilikle karıştırıyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chronically 'busy', achieving nothing. You confuse activity with productivity."
+            "value": "Estás cronicamente 'ocupado' mas não accomplishes nada. Confundes agitação com produtividade."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chronically 'busy', achieving nothing. You confuse activity with productivity."
+            "value": "Você está cronicamente 'ocupado' mas não conquista nada. Confunde agitação com produtividade."
           }
         }
       }
@@ -331769,37 +331769,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Too much planning, too little action. The best idea is worthless without execution."
+            "value": "Demasiada planificación, poca acción. La mejor idea no vale nada sin ejecución."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Too much planning, too little action. The best idea is worthless without execution."
+            "value": "Trop de planification, trop peu d'action. La meilleure idée ne vaut rien sans exécution."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Too much planning, too little action. The best idea is worthless without execution."
+            "value": "Troppa pianificazione, poca azione. La migliore idea non vale nulla senza esecuzione."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Too much planning, too little action. The best idea is worthless without execution."
+            "value": "Çok fazla planlama, çok az eylem. En iyi fikir bile uygulanmadan değersizdir."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Too much planning, too little action. The best idea is worthless without execution."
+            "value": "Demasiado planeamento, pouca ação. A melhor ideia não vale nada sem execução."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Too much planning, too little action. The best idea is worthless without execution."
+            "value": "Planejamento demais, ação de menos. A melhor ideia não vale nada sem execução."
           }
         }
       }
@@ -331822,37 +331822,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop relying on motivation. Motivation fades, routines remain."
+            "value": "Deja de depender de la motivación. La motivación se desvanece, las rutinas permanecen."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop relying on motivation. Motivation fades, routines remain."
+            "value": "Arrête de compter sur la motivation. La motivation s'estompe, les routines restent."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop relying on motivation. Motivation fades, routines remain."
+            "value": "Smetti di fare affidamento sulla motivazione. La motivazione svanisce, le routine rimangono."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop relying on motivation. Motivation fades, routines remain."
+            "value": "Motivasyona güvenmeyi bırak. Motivasyon geçici, rutinler kalıcıdır."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop relying on motivation. Motivation fades, routines remain."
+            "value": "Para de depender da motivação. A motivação desvanece-se, as rotinas ficam."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop relying on motivation. Motivation fades, routines remain."
+            "value": "Pare de depender da motivação. A motivação desaparece, as rotinas permanecem."
           }
         }
       }
@@ -331875,37 +331875,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid perfectionism. 80% done is better than 0% perfect."
+            "value": "Evita el perfeccionismo. Un 80% hecho es mejor que un 0% perfecto."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid perfectionism. 80% done is better than 0% perfect."
+            "value": "Évite le perfectionnisme. 80% fait vaut mieux que 0% parfait."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid perfectionism. 80% done is better than 0% perfect."
+            "value": "Evita il perfezionismo. L'80% fatto vale più dello 0% perfetto."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid perfectionism. 80% done is better than 0% perfect."
+            "value": "Mükemmeliyetçilikten kaçın. %80 tamamlanmış, %0 mükemmel olmaktan iyidir."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid perfectionism. 80% done is better than 0% perfect."
+            "value": "Evita o perfeccionismo. 80% feito é melhor do que 0% perfeito."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid perfectionism. 80% done is better than 0% perfect."
+            "value": "Evite o perfeccionismo. 80% feito é melhor do que 0% perfeito."
           }
         }
       }
@@ -331916,49 +331916,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsumiere keine weiteren Podcasts oder Bücher, bevor du das Gelernte nicht angewendet hast (Action Faking)."
+            "value": "Konsumiere keine weiteren Bücher oder Podcasts, bevor du das Gelernte nicht angewendet hast."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't consume more books or podcasts until you've applied what you learned (Action Faking)."
+            "value": "Don't consume more books or podcasts until you have applied what you already learned."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't consume more books or podcasts until you've applied what you learned (Action Faking)."
+            "value": "No consumas más libros ni pódcasts hasta que no hayas aplicado lo que ya has aprendido."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't consume more books or podcasts until you've applied what you learned (Action Faking)."
+            "value": "Ne consomme pas d'autres livres ou podcasts avant d'avoir appliqué ce que tu as déjà appris."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't consume more books or podcasts until you've applied what you learned (Action Faking)."
+            "value": "Non consumare altri libri o podcast finché non hai applicato ciò che hai già imparato."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't consume more books or podcasts until you've applied what you learned (Action Faking)."
+            "value": "Öğrendiklerini uygulamadan daha fazla kitap veya podcast tüketme."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't consume more books or podcasts until you've applied what you learned (Action Faking)."
+            "value": "Não consumas mais livros ou podcasts antes de teres aplicado o que já aprendeste."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't consume more books or podcasts until you've applied what you learned (Action Faking)."
+            "value": "Não consuma mais livros ou podcasts antes de aplicar o que já aprendeu."
           }
         }
       }
@@ -331975,43 +331975,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your consistency pays off. You are continuously building strength and substance."
+            "value": "Your consistency in training pays off. You continuously build strength and substance."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your consistency pays off. You are continuously building strength and substance."
+            "value": "Tu constancia en el entrenamiento da sus frutos. Construyes continuamente fuerza y sustancia."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your consistency pays off. You are continuously building strength and substance."
+            "value": "Ta constance à l'entraînement porte ses fruits. Tu construis continuellement force et substance."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your consistency pays off. You are continuously building strength and substance."
+            "value": "La tua costanza nell'allenamento paga. Costruisci continuamente forza e sostanza."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your consistency pays off. You are continuously building strength and substance."
+            "value": "Antrenmandaki istikrarın karşılığını veriyor. Sürekli olarak güç ve öz inşa ediyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your consistency pays off. You are continuously building strength and substance."
+            "value": "A tua consistência no treino compensa. Constróis continuamente força e substância."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your consistency pays off. You are continuously building strength and substance."
+            "value": "Sua consistência no treino compensa. Você constrói força e substância continuamente."
           }
         }
       }
@@ -332034,37 +332034,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You push your limits. Your workout intensity shows you want real results."
+            "value": "Superas tus límites. Tu intensidad en el entrenamiento demuestra que quieres resultados reales."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You push your limits. Your workout intensity shows you want real results."
+            "value": "Tu repousses tes limites. Ton intensité à l'entraînement montre que tu veux de vrais résultats."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You push your limits. Your workout intensity shows you want real results."
+            "value": "Spingi i tuoi limiti. La tua intensità nell'allenamento mostra che vuoi risultati reali."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You push your limits. Your workout intensity shows you want real results."
+            "value": "Sınırlarını zorluyorsun. Antrenman yoğunluğun gerçek sonuçlar istediğini gösteriyor."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You push your limits. Your workout intensity shows you want real results."
+            "value": "Empurras os teus limites. A tua intensidade no treino mostra que queres resultados reais."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You push your limits. Your workout intensity shows you want real results."
+            "value": "Você ultrapassa seus limites. A intensidade do treino mostra que você quer resultados reais."
           }
         }
       }
@@ -332075,7 +332075,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du übernimmst Verantwortung für deinen Körper. Du trainierst nicht nur hart, sondern auch clever."
+            "value": "Du übernimmst Verantwortung für deinen Körper. Du trainierst nicht nur hart, sondern auch smart."
           }
         },
         "en": {
@@ -332087,37 +332087,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You take responsibility for your body. You train not only hard, but smart."
+            "value": "Asumes la responsabilidad de tu cuerpo. Entrenas no solo duro, sino también de forma inteligente."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You take responsibility for your body. You train not only hard, but smart."
+            "value": "Tu prends la responsabilité de ton corps. Tu t'entraînes non seulement dur, mais aussi intelligemment."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You take responsibility for your body. You train not only hard, but smart."
+            "value": "Ti prendi la responsabilità del tuo corpo. Ti alleni non solo duramente, ma anche in modo intelligente."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You take responsibility for your body. You train not only hard, but smart."
+            "value": "Bedenin için sorumluluk alıyorsun. Sadece sıkı değil, akıllıca da antrenman yapıyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You take responsibility for your body. You train not only hard, but smart."
+            "value": "Assumis a responsabilidade pelo teu corpo. Treinas não só com afinco, mas também de forma inteligente."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You take responsibility for your body. You train not only hard, but smart."
+            "value": "Você assume responsabilidade pelo seu corpo. Você treina não apenas com afinco, mas de forma inteligente."
           }
         }
       }
@@ -332128,49 +332128,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du bist komplett inkonsequent. Mal trainierst du, mal wochenlang nicht. So entsteht kein Fortschritt."
+            "value": "Du bist komplett inkonsequent. Mal trainierst du, mal wochenlang nicht. Kein Fortschritt so."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Completely inconsistent. Sometimes you train, sometimes you don't. That yields no progress."
+            "value": "You are completely inconsistent. Sometimes you train, sometimes not for weeks. No progress that way."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Completely inconsistent. Sometimes you train, sometimes you don't. That yields no progress."
+            "value": "Eres completamente inconsistente. A veces entrenas, a veces no por semanas. Así no hay progreso."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Completely inconsistent. Sometimes you train, sometimes you don't. That yields no progress."
+            "value": "Tu es complètement inconsistant. Parfois tu t'entraînes, parfois pas pendant des semaines. Pas de progrès ainsi."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Completely inconsistent. Sometimes you train, sometimes you don't. That yields no progress."
+            "value": "Sei completamente inconsistente. A volte ti alleni, a volte non per settimane. Nessun progresso così."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Completely inconsistent. Sometimes you train, sometimes you don't. That yields no progress."
+            "value": "Tamamen tutarsızsın. Bazen antrenman yapıyorsun, bazen haftalarca yapmıyorsun. Bu şekilde ilerleme olmaz."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Completely inconsistent. Sometimes you train, sometimes you don't. That yields no progress."
+            "value": "És completamente inconsistente. Às vezes treinas, às vezes não por semanas. Assim não há progresso."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Completely inconsistent. Sometimes you train, sometimes you don't. That yields no progress."
+            "value": "Você é completamente inconsistente. Às vezes treina, às vezes não por semanas. Assim não há progresso."
           }
         }
       }
@@ -332181,7 +332181,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine Workouts sind Spaziergänge. Du verlässt deine Komfortzone nicht und verschwendest deine Zeit."
+            "value": "Deine Workouts sind Spaziergänge. Du verlässt deine Komfortzone nie und verschwendest deine Zeit."
           }
         },
         "en": {
@@ -332193,37 +332193,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your workouts are walks in the park. You never leave your comfort zone and waste your time."
+            "value": "Tus entrenamientos son paseos. Nunca sales de tu zona de confort y pierdes el tiempo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your workouts are walks in the park. You never leave your comfort zone and waste your time."
+            "value": "Tes entraînements sont des promenades de santé. Tu ne sors jamais de ta zone de confort et tu perds ton temps."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your workouts are walks in the park. You never leave your comfort zone and waste your time."
+            "value": "I tuoi allenamenti sono passeggiate. Non esci mai dalla tua zona di comfort e sprechi il tuo tempo."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your workouts are walks in the park. You never leave your comfort zone and waste your time."
+            "value": "Antrenmanların park gezintisi gibi. Hiç konfor alanından çıkmıyorsun ve zamanını boşa harcıyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your workouts are walks in the park. You never leave your comfort zone and waste your time."
+            "value": "Os teus treinos são passeios. Nunca sais da tua zona de conforto e desperdiças o teu tempo."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your workouts are walks in the park. You never leave your comfort zone and waste your time."
+            "value": "Seus treinos são passeios. Você nunca sai da zona de conforto e desperdiça seu tempo."
           }
         }
       }
@@ -332246,37 +332246,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You blame 'genetics' or lack of time. No personal responsibility for your condition."
+            "value": "Culpas a la 'genética' o a la falta de tiempo. Sin responsabilidad personal por tu estado."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You blame 'genetics' or lack of time. No personal responsibility for your condition."
+            "value": "Tu blâmes la 'génétique' ou le manque de temps. Aucune responsabilité personnelle pour ton état."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You blame 'genetics' or lack of time. No personal responsibility for your condition."
+            "value": "Dai la colpa alla 'genetica' o alla mancanza di tempo. Nessuna responsabilità personale per la tua condizione."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You blame 'genetics' or lack of time. No personal responsibility for your condition."
+            "value": "'Genetik'i veya zaman eksikliğini suçluyorsun. Kendi durumun için kişisel sorumluluk yok."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You blame 'genetics' or lack of time. No personal responsibility for your condition."
+            "value": "Culpas a 'genética' ou a falta de tempo. Nenhuma responsabilidade pessoal pelo teu estado."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You blame 'genetics' or lack of time. No personal responsibility for your condition."
+            "value": "Você culpa a 'genética' ou falta de tempo. Sem responsabilidade pessoal pela sua condição."
           }
         }
       }
@@ -332287,7 +332287,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verlasse dich nicht auf das Gefühl, 'heute nicht fit' zu sein. Auch ein schlechtes Workout ist besser als keins."
+            "value": "Verlasse dich nicht auf das Gefühl 'heute nicht fit'. Auch ein schlechtes Workout ist besser als keins."
           }
         },
         "en": {
@@ -332299,37 +332299,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't rely on the feeling of 'not being fit today'. Even a bad workout is better than none."
+            "value": "No dependas de la sensación de 'no estar en forma hoy'. Incluso un mal entrenamiento es mejor que ninguno."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't rely on the feeling of 'not being fit today'. Even a bad workout is better than none."
+            "value": "Ne te fie pas au sentiment de 'ne pas être en forme aujourd'hui'. Même un mauvais entraînement vaut mieux que rien."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't rely on the feeling of 'not being fit today'. Even a bad workout is better than none."
+            "value": "Non farti influenzare dalla sensazione di 'non essere in forma oggi'. Anche un cattivo allenamento è meglio di nessuno."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't rely on the feeling of 'not being fit today'. Even a bad workout is better than none."
+            "value": "'Bugün fit değilim' hissine güvenme. Kötü bir antrenman bile yapmamaktan iyidir."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't rely on the feeling of 'not being fit today'. Even a bad workout is better than none."
+            "value": "Não te deixes levar pela sensação de 'não estar em forma hoje'. Mesmo um mau treino é melhor que nenhum."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't rely on the feeling of 'not being fit today'. Even a bad workout is better than none."
+            "value": "Não confie na sensação de 'não estar em forma hoje'. Mesmo um treino ruim é melhor do que nenhum."
           }
         }
       }
@@ -332352,37 +332352,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop scrolling on your phone during workouts. It kills all intensity."
+            "value": "Deja de desplazarte por el teléfono durante los entrenamientos. Mata toda la intensidad."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop scrolling on your phone during workouts. It kills all intensity."
+            "value": "Arrête de faire défiler ton téléphone pendant l'entraînement. Ça tue toute intensité."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop scrolling on your phone during workouts. It kills all intensity."
+            "value": "Smetti di scorrere il telefono durante gli allenamenti. Uccide tutta l'intensità."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop scrolling on your phone during workouts. It kills all intensity."
+            "value": "Antrenman sırasında telefonda kaydırmayı bırak. Tüm yoğunluğu öldürüyor."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop scrolling on your phone during workouts. It kills all intensity."
+            "value": "Para de usar o telemóvel durante os treinos. Mata toda a intensidade."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop scrolling on your phone during workouts. It kills all intensity."
+            "value": "Pare de rolar o celular durante os treinos. Isso mata toda a intensidade."
           }
         }
       }
@@ -332399,43 +332399,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "No more excuses. You have 30 minutes every day – you just have to prioritize it."
+            "value": "No more excuses. You have 30 minutes every day – you just have to take them."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "No more excuses. You have 30 minutes every day – you just have to prioritize it."
+            "value": "No más excusas. Tienes 30 minutos cada día – solo tienes que tomarlos."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "No more excuses. You have 30 minutes every day – you just have to prioritize it."
+            "value": "Plus d'excuses. Tu as 30 minutes chaque jour – il suffit de les prendre."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "No more excuses. You have 30 minutes every day – you just have to prioritize it."
+            "value": "Basta scuse. Hai 30 minuti ogni giorno – devi solo prenderti il tempo."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "No more excuses. You have 30 minutes every day – you just have to prioritize it."
+            "value": "Artık bahane yok. Her gün 30 dakikan var – sadece bu zamanı ayırman gerekiyor."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "No more excuses. You have 30 minutes every day – you just have to prioritize it."
+            "value": "Sem mais desculpas. Tens 30 minutos todos os dias – basta aproveitá-los."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "No more excuses. You have 30 minutes every day – you just have to prioritize it."
+            "value": "Chega de desculpas. Você tem 30 minutos todos os dias – basta aproveitá-los."
           }
         }
       }
@@ -332452,43 +332452,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your environment is a catalyst. You surround yourself with people who pull you up."
+            "value": "Your environment is a catalyst. You surround yourself with people who lift you up."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your environment is a catalyst. You surround yourself with people who pull you up."
+            "value": "Tu entorno es un catalizador. Te rodeas de personas que te elevan."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your environment is a catalyst. You surround yourself with people who pull you up."
+            "value": "Ton environnement est un catalyseur. Tu t'entoures de personnes qui t'élèvent."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your environment is a catalyst. You surround yourself with people who pull you up."
+            "value": "Il tuo ambiente è un catalizzatore. Ti circondi di persone che ti elevano."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your environment is a catalyst. You surround yourself with people who pull you up."
+            "value": "Çevren bir katalizör. Kendini seni yükselten insanlarla çevreliyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your environment is a catalyst. You surround yourself with people who pull you up."
+            "value": "O teu ambiente é um catalisador. Rodeias-te de pessoas que te elevam."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your environment is a catalyst. You surround yourself with people who pull you up."
+            "value": "Seu ambiente é um catalisador. Você se cerca de pessoas que te elevam."
           }
         }
       }
@@ -332511,37 +332511,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You set extremely high standards for yourself and your life. You do not accept mediocrity."
+            "value": "Te fijas estándares extremadamente altos para ti y tu vida. No aceptas la mediocridad."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You set extremely high standards for yourself and your life. You do not accept mediocrity."
+            "value": "Tu te fixes des standards extrêmement élevés pour toi et ta vie. Tu n'acceptes pas la médiocrité."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You set extremely high standards for yourself and your life. You do not accept mediocrity."
+            "value": "Ti poni standard estremamente elevati per te stesso e per la tua vita. Non accetti la mediocrità."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You set extremely high standards for yourself and your life. You do not accept mediocrity."
+            "value": "Kendin ve hayatın için son derece yüksek standartlar koyuyorsun. Sıradanlığı kabul etmiyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You set extremely high standards for yourself and your life. You do not accept mediocrity."
+            "value": "Defines padrões extremamente elevados para ti e a tua vida. Não aceitas a mediocridade."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You set extremely high standards for yourself and your life. You do not accept mediocrity."
+            "value": "Você define padrões extremamente altos para si e sua vida. Não aceita a mediocridade."
           }
         }
       }
@@ -332552,49 +332552,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du verstehst deinen Einflussbereich und machst dir keine Sorgen über Dinge, die du nicht ändern kannst."
+            "value": "Du verstehst deinen Einflussbereich und machst dir keine Sorgen über unkontrollierbare Dinge."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "You understand your circle of influence and don't worry about things you cannot change."
+            "value": "You understand your circle of influence and don't worry about things you cannot control."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You understand your circle of influence and don't worry about things you cannot change."
+            "value": "Entiendes tu círculo de influencia y no te preocupas por cosas que no puedes controlar."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You understand your circle of influence and don't worry about things you cannot change."
+            "value": "Tu comprends ton cercle d'influence et tu ne t'inquiètes pas des choses que tu ne peux pas contrôler."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You understand your circle of influence and don't worry about things you cannot change."
+            "value": "Capisci la tua sfera di influenza e non ti preoccupi di cose che non puoi controllare."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You understand your circle of influence and don't worry about things you cannot change."
+            "value": "Etki alanını anlıyorsun ve kontrol edemediğin şeyler için endişelenmiyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You understand your circle of influence and don't worry about things you cannot change."
+            "value": "Compreendes o teu círculo de influência e não te preocupas com coisas que não podes controlar."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You understand your circle of influence and don't worry about things you cannot change."
+            "value": "Você entende seu círculo de influência e não se preocupa com coisas que não pode controlar."
           }
         }
       }
@@ -332605,49 +332605,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hängst mit Leuten ab, die nur konsumieren und lästern. Dein Umfeld zieht dich auf ihr Level hinab."
+            "value": "Du hängst mit Leuten ab, die nur konsumieren und lästern. Dein Umfeld zieht dich nach unten."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "You hang out with consumers and gossipers. Your environment drags you down to their level."
+            "value": "You hang out with people who only consume and gossip. Your environment pulls you down."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You hang out with consumers and gossipers. Your environment drags you down to their level."
+            "value": "Te juntas con personas que solo consumen y cotillean. Tu entorno te arrastra hacia abajo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You hang out with consumers and gossipers. Your environment drags you down to their level."
+            "value": "Tu traînes avec des gens qui ne font que consommer et médire. Ton environnement te tire vers le bas."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You hang out with consumers and gossipers. Your environment drags you down to their level."
+            "value": "Frequenti persone che fanno solo consumismo e gossip. Il tuo ambiente ti trascina verso il basso."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You hang out with consumers and gossipers. Your environment drags you down to their level."
+            "value": "Sadece tüketen ve dedikodu yapan insanlarla takılıyorsun. Çevren seni aşağı çekiyor."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You hang out with consumers and gossipers. Your environment drags you down to their level."
+            "value": "Andas com pessoas que só consomem e fofocam. O teu ambiente puxa-te para baixo."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You hang out with consumers and gossipers. Your environment drags you down to their level."
+            "value": "Você anda com pessoas que só consomem e fofocam. Seu ambiente te puxa para baixo."
           }
         }
       }
@@ -332664,43 +332664,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your standards are rock bottom. You tolerate clutter, toxic relationships, and bad habits."
+            "value": "Your standards are rock bottom. You tolerate disorder, toxic relationships, and bad habits."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your standards are rock bottom. You tolerate clutter, toxic relationships, and bad habits."
+            "value": "Tus estándares están por los suelos. Toleras el desorden, las relaciones tóxicas y los malos hábitos."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your standards are rock bottom. You tolerate clutter, toxic relationships, and bad habits."
+            "value": "Tes standards sont au plus bas. Tu tolères le désordre, les relations toxiques et les mauvaises habitudes."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your standards are rock bottom. You tolerate clutter, toxic relationships, and bad habits."
+            "value": "I tuoi standard sono ai minimi storici. Tolleri il disordine, le relazioni tossiche e le cattive abitudini."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your standards are rock bottom. You tolerate clutter, toxic relationships, and bad habits."
+            "value": "Standartların dibinde. Düzensizliği, toksik ilişkileri ve kötü alışkanlıkları tolere ediyorsun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your standards are rock bottom. You tolerate clutter, toxic relationships, and bad habits."
+            "value": "Os teus padrões estão no fundo. Toleras desordem, relações tóxicas e maus hábitos."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your standards are rock bottom. You tolerate clutter, toxic relationships, and bad habits."
+            "value": "Seus padrões estão no fundo do poço. Você tolera desordem, relacionamentos tóxicos e maus hábitos."
           }
         }
       }
@@ -332717,43 +332717,43 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "You let external circumstances dictate your life. Instead of driving, you are just a passenger."
+            "value": "You let external circumstances direct you. Instead of driving your life, you are just a passenger."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "You let external circumstances dictate your life. Instead of driving, you are just a passenger."
+            "value": "Te dejas dirigir por las circunstancias externas. En lugar de dirigir tu vida, eres solo un pasajero."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You let external circumstances dictate your life. Instead of driving, you are just a passenger."
+            "value": "Tu te laisses diriger par les circonstances extérieures. Au lieu de conduire ta vie, tu n'es qu'un passager."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "You let external circumstances dictate your life. Instead of driving, you are just a passenger."
+            "value": "Ti lasci guidare dalle circostanze esterne. Invece di guidare la tua vita, sei solo un passeggero."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "You let external circumstances dictate your life. Instead of driving, you are just a passenger."
+            "value": "Dış koşulların seni yönlendirmesine izin veriyorsun. Hayatını yönetmek yerine sadece bir yolcusun."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "You let external circumstances dictate your life. Instead of driving, you are just a passenger."
+            "value": "Deixas-te guiar pelas circunstâncias externas. Em vez de conduzires a tua vida, és apenas um passageiro."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "You let external circumstances dictate your life. Instead of driving, you are just a passenger."
+            "value": "Você se deixa guiar pelas circunstâncias externas. Em vez de conduzir sua vida, é apenas um passageiro."
           }
         }
       }
@@ -332764,7 +332764,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vermeide es, Ja zu sozialen Events zu sagen, auf die du keine Lust hast. Schütze deine Energie."
+            "value": "Vermeide Ja zu sozialen Events zu sagen, auf die du keine Lust hast. Schütze deine Energie."
           }
         },
         "en": {
@@ -332776,37 +332776,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid saying yes to social events you don't want to attend. Protect your energy."
+            "value": "Evita decir sí a eventos sociales a los que no quieres ir. Protege tu energía."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid saying yes to social events you don't want to attend. Protect your energy."
+            "value": "Évite de dire oui à des événements sociaux auxquels tu ne veux pas participer. Protège ton énergie."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid saying yes to social events you don't want to attend. Protect your energy."
+            "value": "Evita di dire sì a eventi sociali a cui non vuoi partecipare. Proteggi la tua energia."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid saying yes to social events you don't want to attend. Protect your energy."
+            "value": "Katılmak istemediğin sosyal etkinliklere evet demekten kaçın. Enerjini koru."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid saying yes to social events you don't want to attend. Protect your energy."
+            "value": "Evita dizer sim a eventos sociais onde não queres ir. Protege a tua energia."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid saying yes to social events you don't want to attend. Protect your energy."
+            "value": "Evite dizer sim a eventos sociais que você não quer comparecer. Proteja sua energia."
           }
         }
       }
@@ -332817,49 +332817,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hör auf, deinen Arbeitsplatz im Chaos versinken zu lassen. Ein unaufgeräumter Raum führt zu einem unaufgeräumten Geist."
+            "value": "Hör auf, deinen Arbeitsplatz im Chaos versinken zu lassen. Unordnung = unordentlicher Geist."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop letting your workspace become a mess. A cluttered room leads to a cluttered mind."
+            "value": "Stop letting your workspace become chaotic. Clutter = cluttered mind."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop letting your workspace become a mess. A cluttered room leads to a cluttered mind."
+            "value": "Deja de dejar que tu espacio de trabajo caiga en el caos. Desorden = mente desordenada."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop letting your workspace become a mess. A cluttered room leads to a cluttered mind."
+            "value": "Arrête de laisser ton espace de travail sombrer dans le chaos. Désordre = esprit désordonné."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop letting your workspace become a mess. A cluttered room leads to a cluttered mind."
+            "value": "Smetti di lasciare che il tuo spazio di lavoro sprofondi nel caos. Disordine = mente disordinata."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop letting your workspace become a mess. A cluttered room leads to a cluttered mind."
+            "value": "Çalışma alanını kaosa bırakmayı bırak. Dağınıklık = dağınık zihin."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop letting your workspace become a mess. A cluttered room leads to a cluttered mind."
+            "value": "Para de deixar o teu espaço de trabalho afundar no caos. Desordem = mente desordenada."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop letting your workspace become a mess. A cluttered room leads to a cluttered mind."
+            "value": "Pare de deixar seu espaço de trabalho afundar no caos. Desordem = mente desordenada."
           }
         }
       }
@@ -332870,49 +332870,49 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verschwende keine Zeit damit, dich über die Politik oder die Wirtschaft zu beschweren. Fokussiere dich auf deinen Einfluss."
+            "value": "Verschwende keine Zeit damit, dich über unkontrollierbare Dinge zu beschweren. Fokus auf deinen Einfluss."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't waste time complaining about politics or the economy. Focus on your circle of influence."
+            "value": "Don't waste time complaining about things you cannot control. Focus on your circle of influence."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't waste time complaining about politics or the economy. Focus on your circle of influence."
+            "value": "No pierdas tiempo quejándote de cosas que no puedes controlar. Céntrate en tu círculo de influencia."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't waste time complaining about politics or the economy. Focus on your circle of influence."
+            "value": "Ne perds pas de temps à te plaindre de choses que tu ne peux pas contrôler. Concentre-toi sur ton cercle d'influence."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't waste time complaining about politics or the economy. Focus on your circle of influence."
+            "value": "Non perdere tempo a lamentarti di cose che non puoi controllare. Concentrati sulla tua sfera di influenza."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't waste time complaining about politics or the economy. Focus on your circle of influence."
+            "value": "Kontrol edemediğin şeyler için şikayet ederek zaman harcama. Etki alanına odaklan."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't waste time complaining about politics or the economy. Focus on your circle of influence."
+            "value": "Não percas tempo a queixar-te de coisas que não podes controlar. Foca-te no teu círculo de influência."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Don't waste time complaining about politics or the economy. Focus on your circle of influence."
+            "value": "Não perca tempo reclamando de coisas que não pode controlar. Foque no seu círculo de influência."
           }
         }
       }
@@ -332935,37 +332935,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "This is how we calculated this assessment:"
+            "value": "Así calculamos esta evaluación:"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "This is how we calculated this assessment:"
+            "value": "Voici comment nous avons calculé cette évaluation :"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "This is how we calculated this assessment:"
+            "value": "Ecco come abbiamo calcolato questa valutazione:"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "This is how we calculated this assessment:"
+            "value": "Bu değerlendirmeyi şöyle hesapladık:"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "This is how we calculated this assessment:"
+            "value": "Foi assim que calculámos esta avaliação:"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "This is how we calculated this assessment:"
+            "value": "É assim que calculamos essa avaliação:"
           }
         }
       }
@@ -332988,37 +332988,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Where does this score come from?"
+            "value": "¿De dónde viene esta puntuación?"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Where does this score come from?"
+            "value": "D'où vient ce score ?"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Where does this score come from?"
+            "value": "Da dove viene questo punteggio?"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Where does this score come from?"
+            "value": "Bu skor nereden geliyor?"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Where does this score come from?"
+            "value": "De onde vem esta pontuação?"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Where does this score come from?"
+            "value": "De onde vem essa pontuação?"
           }
         }
       }
@@ -333041,37 +333041,37 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beginner"
+            "value": "Principiante"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beginner"
+            "value": "Débutant"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beginner"
+            "value": "Principiante"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beginner"
+            "value": "Başlangıç"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beginner"
+            "value": "Iniciante"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beginner"
+            "value": "Iniciante"
           }
         }
       }
@@ -333094,25 +333094,25 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elite"
+            "value": "Élite"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elite"
+            "value": "Élite"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elite"
+            "value": "Élite"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elite"
+            "value": "Elit"
           }
         },
         "pt": {

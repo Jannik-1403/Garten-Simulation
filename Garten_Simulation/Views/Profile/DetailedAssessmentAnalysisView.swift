@@ -7,18 +7,29 @@ struct AssessmentDataSource: Identifiable {
     let items: [String]
 }
 
-// MARK: - Neumorphic Helpers
-extension View {
-    func neumorphicCard(cornerRadius: CGFloat = 16) -> some View {
-        self
-            .background(Color(UIColor.systemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
-            .shadow(color: Color.black.opacity(0.09), radius: 8, x: 5, y: 5)
-            .shadow(color: Color.white.opacity(0.95), radius: 8, x: -5, y: -5)
+// MARK: - Shared card background (matches ScoreBreakdownCard exactly)
+struct ScoreCardBackground: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .background(
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(Color(UIColor.systemBackground))
+                    .shadow(color: Color.black.opacity(0.18), radius: 0, y: 6)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .stroke(Color.gray.opacity(0.15), lineWidth: 1)
+            )
     }
 }
 
-// MARK: - Analysis Row Item (Tippable)
+extension View {
+    func scoreCardStyle() -> some View {
+        modifier(ScoreCardBackground())
+    }
+}
+
+// MARK: - Analysis Row (Tippable)
 struct AnalysisRowItem: View {
     let icon: String
     let iconColor: Color
@@ -31,15 +42,14 @@ struct AnalysisRowItem: View {
     var body: some View {
         Button(action: { showingSource = true }) {
             HStack(alignment: .top, spacing: 14) {
-                // Neumorphic Icon
+
+                // Icon
                 ZStack {
                     Circle()
-                        .fill(Color(UIColor.systemBackground))
-                        .frame(width: 42, height: 42)
-                        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 3, y: 3)
-                        .shadow(color: Color.white.opacity(0.9), radius: 4, x: -3, y: -3)
+                        .fill(iconColor.opacity(0.12))
+                        .frame(width: 40, height: 40)
                     Image(systemName: icon)
-                        .font(.system(size: 17, weight: .medium))
+                        .font(.system(size: 16, weight: .semibold))
                         .foregroundStyle(iconColor)
                 }
 
@@ -47,11 +57,12 @@ struct AnalysisRowItem: View {
                     Text(title)
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(.primary)
+                        .multilineTextAlignment(.leading)
                     Text(subtitle)
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
-                        .lineLimit(4)
                 }
 
                 Spacer(minLength: 0)
@@ -59,12 +70,12 @@ struct AnalysisRowItem: View {
                 Image(systemName: "chevron.right")
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.tertiary)
-                    .padding(.top, 4)
+                    .padding(.top, 2)
             }
-            .padding(16)
+            .padding(20)
         }
         .buttonStyle(.plain)
-        .neumorphicCard()
+        .scoreCardStyle()
         .sheet(isPresented: $showingSource) {
             DataSourceSheet(title: title, dataSources: dataSource)
         }
@@ -109,7 +120,6 @@ struct DataSourceSheet: View {
                                     }
                                     .padding(.vertical, 10)
                                     .padding(.horizontal, 16)
-
                                     if index < source.items.count - 1 {
                                         Divider().padding(.leading, 16)
                                     }
@@ -136,23 +146,28 @@ struct DataSourceSheet: View {
     }
 }
 
-// MARK: - Benchmark Section
+// MARK: - Benchmark Card (Tippable)
 struct BenchmarkCard: View {
-    let percentile: Double // 0.0 = worst, 1.0 = best
+    let percentile: Double
     let label: String
     let labelColor: Color
     let description: String
     let dataSources: [AssessmentDataSource]
 
     @State private var showingSource = false
+    @State private var animated = false
 
     var body: some View {
         Button(action: { showingSource = true }) {
-            VStack(alignment: .leading, spacing: 14) {
+            VStack(alignment: .leading, spacing: 16) {
+
+                // Header
                 HStack {
-                    Text(String(localized: "assessment.analysis.benchmark_title", defaultValue: "Benchmark"))
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(.primary)
+                    Text(String(localized: "assessment.analysis.benchmark_title", defaultValue: "Dein Score im Vergleich"))
+                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .textCase(.uppercase)
+                        .tracking(1)
                     Spacer()
                     Text(label)
                         .font(.caption.weight(.semibold))
@@ -161,29 +176,23 @@ struct BenchmarkCard: View {
                         .padding(.vertical, 3)
                         .background(labelColor.opacity(0.12))
                         .clipShape(Capsule())
-
                     Image(systemName: "chevron.right")
                         .font(.caption.weight(.semibold))
                         .foregroundStyle(.tertiary)
                 }
 
-                // Neumorphic inset track
+                // Progress bar – exactly like ScoreBar
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
-                        // Track (inset look)
-                        RoundedRectangle(cornerRadius: 6)
-                            .fill(Color(UIColor.systemBackground))
+                        Capsule()
+                            .fill(Color(UIColor.systemFill))
                             .frame(height: 10)
-                            .shadow(color: Color.black.opacity(0.08), radius: 3, x: 2, y: 2)
-                            .shadow(color: Color.white.opacity(0.9), radius: 3, x: -2, y: -2)
-
-                        // Fill
-                        let fillW = max(10.0, geo.size.width * percentile)
-                        RoundedRectangle(cornerRadius: 6)
+                        Capsule()
                             .fill(LinearGradient(
-                                colors: [labelColor.opacity(0.45), labelColor],
+                                colors: [labelColor.opacity(0.6), labelColor],
                                 startPoint: .leading, endPoint: .trailing))
-                            .frame(width: fillW, height: 10)
+                            .frame(width: max(10, geo.size.width * (animated ? percentile : 0)), height: 10)
+                            .animation(.spring(response: 0.8, dampingFraction: 0.7).delay(0.1), value: animated)
                     }
                 }
                 .frame(height: 10)
@@ -203,16 +212,17 @@ struct BenchmarkCard: View {
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            .padding(16)
+            .padding(20)
         }
         .buttonStyle(.plain)
-        .neumorphicCard()
+        .scoreCardStyle()
         .sheet(isPresented: $showingSource) {
             DataSourceSheet(
-                title: String(localized: "assessment.analysis.benchmark_title", defaultValue: "Benchmark"),
+                title: String(localized: "assessment.analysis.benchmark_title", defaultValue: "Dein Score im Vergleich"),
                 dataSources: dataSources
             )
         }
+        .onAppear { animated = true }
     }
 }
 
@@ -222,7 +232,7 @@ struct DetailedAssessmentAnalysisView: View {
     let color: Color
 
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 12) {
 
             AnalysisRowItem(
                 icon: result.strengthIcon,
