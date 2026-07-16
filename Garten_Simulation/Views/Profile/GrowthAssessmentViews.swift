@@ -272,36 +272,11 @@ struct GrowthResultView: View {
                         }
                     }
 
-                                        // Reality Check Description
-                    VStack(alignment: .leading, spacing: 12) {
-                        HStack {
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .font(.title3)
-                                .foregroundColor(.red)
-                            Text(String(localized: "assessment.roadmap.reality_check", defaultValue: "Reality Check"))
-                                .font(.headline)
-                                .foregroundColor(.red)
-                            Spacer()
-                        }
-                        
-                        Text(String(localized: "assessment.roadmap.tough_love", defaultValue: "Die harte Wahrheit:"))
-                            .font(.subheadline)
-                            .fontWeight(.bold)
-                            .foregroundColor(AppColors.color(for: profile.color))
-                        
-                        Text(String(localized: String.LocalizationValue(result.worstParameterTextKey)))
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    .padding()
-                    .background(Color.red.opacity(0.1))
-                    .cornerRadius(16)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.red.opacity(0.3), lineWidth: 1)
+                    // Detailed Analysis
+                    DetailedAssessmentAnalysisView(
+                        result: result,
+                        color: AppColors.color(for: profile.color)
                     )
-                    .padding(.horizontal, 20)
                     .padding(.bottom, 6)
 
                     // Dynamic Insights

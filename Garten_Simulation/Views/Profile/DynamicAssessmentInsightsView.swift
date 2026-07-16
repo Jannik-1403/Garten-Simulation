@@ -69,13 +69,13 @@ struct DynamicAssessmentInsightsView: View {
         .padding(24)
         .background(
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(Color(UIColor.systemBackground))
-                .shadow(color: Color.black.opacity(0.08), radius: 10, y: 4)
+                .fill(.ultraThinMaterial)
         )
         .overlay(
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .stroke(Color.gray.opacity(0.15), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(LinearGradient(colors: [color.opacity(0.6), .clear], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1.5)
         )
+        .shadow(color: color.opacity(0.1), radius: 10, x: 0, y: 5)
     }
     
     private func buttonText(for action: InsightAction) -> String {
