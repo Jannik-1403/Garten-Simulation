@@ -44,3 +44,7 @@
 - **Individuelle Assessment-Icons**:
   - Alle generischen iOS Icons im Bereich "Was man verbessern kann" (Insights) wurden durch maßgeschneiderte Grafiken aus dem Asset-Katalog ersetzt (z. B. `Warndreieck`, `Heart death`, `Timer empty`, etc.).
   - Die neuen Grafiken werden nun doppelt so groß dargestellt (80x80), um den transparenten Hintergrund auszugleichen. Der Text verschiebt sich dabei nicht, da der Rahmen (ZStack) fest auf 40x40 verankert bleibt und das Bild an den Ecken sauber darüber lappt.
+
+- **Icon Layout Fixes**:
+  - Den runden, farbigen Hintergrund (`Circle().fill(...)`) bei allen Icons in der Detailansicht ("Was man verbessern kann") komplett entfernt.
+  - Die Icon-Größe wieder auf das normale `40x40` Format zurückgesetzt, da die SVG-Vektorgrafiken bei der verdoppelten Größe das Layout gesprengt haben.
