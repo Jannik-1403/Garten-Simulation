@@ -298,9 +298,9 @@ struct HealthResultView: View {
                         .padding(.horizontal, 20)
 
                     // Habits
-                    ResultHabitsCard(
-                        buildHabitsKey: profile.buildHabitsKey,
-                        breakHabitsKey: profile.breakHabitsKey
+                    AssessmentDetailedResultView(
+                        result: result,
+                        color: AppColors.color(for: profile.color)
                     )
                     .padding(.bottom, 6)
 

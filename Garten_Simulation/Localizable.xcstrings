@@ -325833,6 +325833,2531 @@
           }
         }
       }
+    },
+    "assessment.roadmap.phase1.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 1: Bewusstsein"
+          }
+        }
+      }
+    },
+    "assessment.roadmap.phase2.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 2: Aktion"
+          }
+        }
+      }
+    },
+    "assessment.roadmap.phase3.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phase 3: System"
+          }
+        }
+      }
+    },
+    "assessment.roadmap.add_habit": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        }
+      }
+    },
+    "assessment.roadmap.habit_added": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinzugefügt!"
+          }
+        }
+      }
+    },
+    "assessment.roadmap.reality_check": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reality Check"
+          }
+        }
+      }
+    },
+    "assessment.roadmap.tough_love": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die harte Wahrheit"
+          }
+        }
+      }
+    },
+    "assessment.finance.worst.kontrolle": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast oft keinen Überblick über deine Finanzen. Das führt zu blindem Konsum und Selbstsabotage. Es ist Zeit, die Realität zu akzeptieren."
+          }
+        }
+      }
+    },
+    "assessment.finance.worst.entscheidung": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du schiebst finanzielle Entscheidungen vor dir her. Prokrastination kostet dich nicht nur Zeit, sondern bares Geld."
+          }
+        }
+      }
+    },
+    "assessment.finance.worst.risiko": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du handelst impulsiv und gehst unkalkulierte Risiken ein. Kurzfristiges Dopamin zerstört deinen langfristigen Vermögensaufbau."
+          }
+        }
+      }
+    },
+    "assessment.health.worst.regeneration": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du opferst deinen Schlaf und deine Erholung. Ohne Regeneration brennt dein Körper aus. Du läufst auf Reserve."
+          }
+        }
+      }
+    },
+    "assessment.health.worst.kraftstoff": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ernährst dich schlecht oder trinkst zu wenig Wasser. Du gibst deinem Körper nicht das, was er braucht, um zu funktionieren."
+          }
+        }
+      }
+    },
+    "assessment.health.worst.praevention": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du ignorierst Alarmsignale deines Körpers und wartest, bis es zu spät ist. Prävention ist günstiger als Heilung."
+          }
+        }
+      }
+    },
+    "assessment.mental.worst.resilienz": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei Rückschlägen brichst du schnell ein. Du musst lernen, emotional stabil zu bleiben, wenn der Sturm kommt."
+          }
+        }
+      }
+    },
+    "assessment.mental.worst.fokus": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich leicht ablenken und verlierst dein Ziel aus den Augen. Dein Fokus ist aktuell zu reaktiv."
+          }
+        }
+      }
+    },
+    "assessment.mental.worst.ego": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du machst deinen Selbstwert zu stark von der Meinung anderer abhängig. Das macht dich kontrollierbar."
+          }
+        }
+      }
+    },
+    "assessment.growth.worst.disziplin": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verlässt dich auf Motivation statt auf Disziplin. Ohne Konsistenz wird kein Wachstum passieren."
+          }
+        }
+      }
+    },
+    "assessment.growth.worst.effizienz": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du arbeitest viel, aber nicht klug. Du verschwendest Energie an die falschen Dinge."
+          }
+        }
+      }
+    },
+    "assessment.growth.worst.umsetzung": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du planst viel, aber kommst nicht in die Umsetzung. Ideen sind wertlos ohne Exekution."
+          }
+        }
+      }
+    },
+    "assessment.fitness.worst.konsistenz": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du trainierst unregelmäßig. Fitness ist kein Sprint, sondern ein Marathon. Dir fehlt die Beständigkeit."
+          }
+        }
+      }
+    },
+    "assessment.fitness.worst.intensitaet": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du forderst dich nicht wirklich heraus. Wenn du immer in der Komfortzone bleibst, stagniert dein Körper."
+          }
+        }
+      }
+    },
+    "assessment.fitness.worst.verantwortung": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du suchst nach Ausreden. Du musst die volle Verantwortung für deine körperliche Verfassung übernehmen."
+          }
+        }
+      }
+    },
+    "assessment.lifestyle.worst.umfeld": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Umfeld zieht dich runter. Du bist der Durchschnitt der 5 Menschen, mit denen du die meiste Zeit verbringst."
+          }
+        }
+      }
+    },
+    "assessment.lifestyle.worst.standards": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du gibst dich mit zu wenig zufrieden. Erhöhe deine Standards, um ein besseres Leben zu führen."
+          }
+        }
+      }
+    },
+    "assessment.lifestyle.worst.einfluss": {
+      "extractionState": "manual",
+      "localizations": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du lässt dich zu sehr von externen Faktoren steuern. Übernimm die Kontrolle über deine Zeit und Energie."
+          }
+        }
+      }
     }
   },
   "version": "1.1"

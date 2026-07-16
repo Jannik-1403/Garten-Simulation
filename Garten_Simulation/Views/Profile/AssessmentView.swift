@@ -741,9 +741,9 @@ struct FinanceResultView: View {
                         .padding(.bottom, 6)
                         .padding(.horizontal, 20)
 
-                    ResultHabitsCard(
-                        buildHabitsKey: profile.buildHabitsKey,
-                        breakHabitsKey: profile.breakHabitsKey
+                    AssessmentDetailedResultView(
+                        result: result,
+                        color: AppColors.color(for: profile.color)
                     )
                     .padding(.bottom, 6)
 
