@@ -247,7 +247,7 @@ struct PflanzenCard: View {
     
     @ViewBuilder
     private func build90DayProgressView() -> some View {
-        let current = Double(pflanze.pfadCheckedDates.count)
+        let current = Double(pflanze.streak)
         let target = 90.0
         
         VStack(alignment: .center, spacing: 4) {
