@@ -93,12 +93,19 @@ struct OnboardingNotificationView: View {
                 
                 if !showContinueButton {
                     // Arrow pointing up to "Erlauben"
-                    Image(systemName: "arrowshape.up.fill")
-                        .font(.system(size: 40, weight: .heavy))
-                        .foregroundStyle(Color.blauPrimary)
-                        .padding(.leading, 150) // Move to the right side (under "Erlauben")
+                    Item3DButton(
+                        icon: "arrow.up",
+                        farbe: Color.blauPrimary,
+                        sekundaerFarbe: Color.blauPrimary.darker(),
+                        groesse: 56,
+                        iconSkalierung: 0.5,
+                        aktion: {
+                            handleAllow()
+                        }
+                    )
+                    .padding(.leading, 150) // Move to the right side (under "Erlauben")
                 } else {
-                    Spacer().frame(height: 40) // To keep layout stable
+                    Spacer().frame(height: 56) // To keep layout stable
                 }
             }
         }
