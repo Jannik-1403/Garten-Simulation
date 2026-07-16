@@ -2307,12 +2307,14 @@ struct ExportNotesSelectionSheet: View {
     }
     
     private func getBadHabitName(id: String) -> String {
+        let finalName: String
         if let badHabit = gardenStore.placedDecorations.first(where: { $0.id == id }) ?? GameDatabase.allDecorations.first(where: { $0.id == id }) {
             let key = settings.showHabitInsteadOfName ? badHabit.habitNameKey : badHabit.objectNameKey
-            let name = NSLocalizedString(key, comment: "")
-            return name.hasPrefix("trash.custom_") ? String(localized: "plant.create.preview.bad_habit") : name
+            finalName = NSLocalizedString(key, comment: "")
+        } else {
+            finalName = NSLocalizedString(id, comment: "")
         }
-        return NSLocalizedString(id, comment: "")
+        return finalName.hasPrefix("trash.custom_") ? String(localized: "plant.create.preview.bad_habit") : finalName
     }
     
     private func generateAndShare() {

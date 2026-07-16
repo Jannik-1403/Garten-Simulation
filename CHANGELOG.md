@@ -750,3 +750,5 @@
 - Lokalisierung (100% in 15 Sprachen): Alle restlichen Strings aufgefüllt und übersetzt, pt-BR komplett integriert.
 - Garten-Seite: Pflanzen-Karte zeigt nun immer den Fortschritt der 90-Tage Challenge (z.B. Tag 1 von 90 oder Noch nicht aktiviert) anstelle des Tracker-Tagesziels.
 - UI: Hintergrund-Effekt der Pflanze im 90 Tage Challenge Overlay (PfadTagDetailView) entfernt, Icons (Meilenstein, Schloss) von der Pflanze gelöst und Farbe aller Action-Buttons an die Theme-Farbe angepasst.
+- Fixed hardcoded English texts in the Coin Shop
+- Pflanzen-Zeitleiste wurde vollständig aus der App entfernt.

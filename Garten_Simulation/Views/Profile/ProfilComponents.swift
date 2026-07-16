@@ -1301,13 +1301,16 @@ struct StatDetailFullscreenView: View {
                             Picker("Filter", selection: $selectedHabitFilter) {
                                 Text(String(localized: "trigger.all_habits")).tag("all")
                                 ForEach(badHabitIds, id: \.self) { habitId in
-                                    let habitName = GameDatabase.allDecorations.first(where: { $0.id == habitId })?.habitNameKey ?? habitId
-                                    Text(NSLocalizedString(habitName, comment: "")).tag(habitId)
+                                    let habitName = gardenStore.placedDecorations.first(where: { $0.id == habitId })?.habitNameKey ?? GameDatabase.allDecorations.first(where: { $0.id == habitId })?.habitNameKey ?? habitId
+                                    let displayName = habitName.hasPrefix("trash.custom_") ? String(localized: "plant.create.preview.bad_habit") : NSLocalizedString(habitName, comment: "")
+                                    Text(displayName).tag(habitId)
                                 }
                             }
                         } label: {
                             HStack(spacing: 6) {
-                                let currentName = selectedHabitFilter == "all" ? String(localized: "trigger.all_habits") : NSLocalizedString(GameDatabase.allDecorations.first(where: { $0.id == selectedHabitFilter })?.habitNameKey ?? selectedHabitFilter, comment: "")
+                                let selectedName = gardenStore.placedDecorations.first(where: { $0.id == selectedHabitFilter })?.habitNameKey ?? GameDatabase.allDecorations.first(where: { $0.id == selectedHabitFilter })?.habitNameKey ?? selectedHabitFilter
+                                let localizedName = selectedName.hasPrefix("trash.custom_") ? String(localized: "plant.create.preview.bad_habit") : NSLocalizedString(selectedName, comment: "")
+                                let currentName = selectedHabitFilter == "all" ? String(localized: "trigger.all_habits") : localizedName
                                 Text(currentName)
                                     .font(.system(size: 16, weight: .semibold, design: .rounded))
                                 Image(systemName: "chevron.up.chevron.down")
