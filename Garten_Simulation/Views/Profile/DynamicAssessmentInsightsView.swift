@@ -25,10 +25,12 @@ struct DynamicAssessmentInsightsView: View {
                                 Circle()
                                     .fill(insight.isPositive ? Color.green.opacity(0.15) : AppColors.color(for: insight.iconColorName).opacity(0.15))
                                     .frame(width: 40, height: 40)
-                                Image(systemName: insight.iconName)
-                                    .foregroundColor(insight.isPositive ? .green : AppColors.color(for: insight.iconColorName))
-                                    .font(.system(size: 18, weight: .semibold))
+                                Image(insight.iconName)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80, height: 80)
                             }
+                            .frame(width: 40, height: 40)
                             
                             VStack(alignment: .leading, spacing: 6) {
                                 Text(String(localized: String.LocalizationValue(insight.titleKey)))

@@ -38,7 +38,7 @@ struct AssessmentInsightGenerator {
                 insights.append(AssessmentInsight(
                     titleKey: "assessment.insight.finance.no_habit.title",
                     descriptionKey: "assessment.insight.finance.no_habit.desc",
-                    iconName: "exclamationmark.circle.fill",
+                    iconName: "Warndreieck",
                     iconColorName: "Red",
                     isPositive: false,
                     suggestedAction: .addHabit(category: .finance)
@@ -49,7 +49,7 @@ struct AssessmentInsightGenerator {
                         insights.append(AssessmentInsight(
                             titleKey: "assessment.insight.missing_reminder.title",
                             descriptionKey: "assessment.insight.missing_reminder.desc",
-                            iconName: "bell.badge.fill",
+                            iconName: "Timer half",
                             iconColorName: "Yellow",
                             isPositive: false,
                             suggestedAction: .setReminder(plantID: plant.plantID)
@@ -65,7 +65,7 @@ struct AssessmentInsightGenerator {
                 insights.append(AssessmentInsight(
                     titleKey: "assessment.insight.health.no_habit.title",
                     descriptionKey: "assessment.insight.health.no_habit.desc",
-                    iconName: "heart.slash.fill",
+                    iconName: "Heart death",
                     iconColorName: "Red",
                     isPositive: false,
                     suggestedAction: .addHabit(category: category == .health ? .health : .fitness)
@@ -76,7 +76,7 @@ struct AssessmentInsightGenerator {
                         insights.append(AssessmentInsight(
                             titleKey: "assessment.insight.low_streak.title",
                             descriptionKey: "assessment.insight.low_streak.desc",
-                            iconName: "flame.fill",
+                            iconName: "streak",
                             iconColorName: "Orange",
                             isPositive: false,
                             suggestedAction: .openPlant(plantID: plant.plantID)
@@ -91,7 +91,7 @@ struct AssessmentInsightGenerator {
                 insights.append(AssessmentInsight(
                     titleKey: "assessment.insight.no_focus.title",
                     descriptionKey: "assessment.insight.no_focus.desc",
-                    iconName: "brain.head.profile",
+                    iconName: "Timer empty",
                     iconColorName: "Purple",
                     isPositive: false,
                     suggestedAction: .startFocusSession
@@ -100,7 +100,7 @@ struct AssessmentInsightGenerator {
                 insights.append(AssessmentInsight(
                     titleKey: "assessment.insight.focus_active.title",
                     descriptionKey: "assessment.insight.focus_active.desc",
-                    iconName: "checkmark.seal.fill",
+                    iconName: "Timer full",
                     iconColorName: "Green",
                     isPositive: true,
                     suggestedAction: nil
@@ -111,7 +111,7 @@ struct AssessmentInsightGenerator {
             insights.append(AssessmentInsight(
                 titleKey: "assessment.insight.lifestyle.review.title",
                 descriptionKey: "assessment.insight.lifestyle.review.desc",
-                iconName: "leaf.fill",
+                iconName: "Lifestyle",
                 iconColorName: "Green",
                 isPositive: true,
                 suggestedAction: nil
@@ -123,7 +123,7 @@ struct AssessmentInsightGenerator {
             insights.append(AssessmentInsight(
                 titleKey: "assessment.insight.challenge_waiting.title",
                 descriptionKey: "assessment.insight.challenge_waiting.desc",
-                iconName: "trophy.fill",
+                iconName: "Goal",
                 iconColorName: "Yellow",
                 isPositive: false,
                 suggestedAction: nil
