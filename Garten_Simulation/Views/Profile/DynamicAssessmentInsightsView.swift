@@ -68,6 +68,7 @@ struct DynamicAssessmentInsightsView: View {
         }
         .padding(24)
         .scoreCardStyle()
+        .padding(.horizontal, 20)
     }
     
     private func buttonText(for action: InsightAction) -> String {
