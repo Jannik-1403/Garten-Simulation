@@ -20,3 +20,5 @@
 - Bugfix: Im Notification-Onboarding wird das Pfeil-Icon jetzt über einen ViewBuilder sicher als 'arrow.up' gerendert.
 - Refactoring: Alte, verstreute Berechtigungsabfragen für Screen Time (in Focus, Routinen, etc.) gelöscht, da sie nun zentral im Onboarding stattfinden.
 - Feature: In den Einstellungen wird jetzt bei 'Bildschirmzeit' ein 'Ein'/'Aus' Indikator angezeigt.
+
+- Bugfix: Im Screen Time Mock-Dialog die Buttons und Texte exakt an das echte iOS-Design angepasst ('Weiter' links in grau, 'Nicht erlauben' rechts in blau).
