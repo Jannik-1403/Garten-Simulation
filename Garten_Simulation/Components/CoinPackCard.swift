@@ -32,31 +32,6 @@ struct CoinPackCard: View {
         return nil
     }
 
-    private var productTitle: String {
-        switch product.id {
-        case "com.jannik.grovy.coins.pack_small":
-            return String(localized: "shop.item.coins_small.title", defaultValue: "Kleine Münztruhe")
-        case "com.jannik.grovy.coins.pack_medium":
-            return String(localized: "shop.item.coins_medium.title", defaultValue: "Mittlerer Münzbeutel")
-        case "com.jannik.grovy.coins.pack_large":
-            return String(localized: "shop.item.coins_large.title", defaultValue: "Großer Münzschatz")
-        default:
-            return product.displayName
-        }
-    }
-    
-    private var productDescription: String {
-        switch product.id {
-        case "com.jannik.grovy.coins.pack_small":
-            return String(localized: "shop.item.coins_small.desc", defaultValue: "Ein kleiner Vorrat an Münzen.")
-        case "com.jannik.grovy.coins.pack_medium":
-            return String(localized: "shop.item.coins_medium.desc", defaultValue: "Ein ordentlicher Haufen Münzen.")
-        case "com.jannik.grovy.coins.pack_large":
-            return String(localized: "shop.item.coins_large.desc", defaultValue: "Ein riesiger Schatz voller Münzen!")
-        default:
-            return product.description
-        }
-    }
 
     var body: some View {
         DuolingoCard(action: {
@@ -72,29 +47,17 @@ struct CoinPackCard: View {
                     .frame(width: 60, height: 60)
 
                 // MARK: Info
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(productTitle)
-                        .font(.system(size: 18, weight: .black, design: .rounded))
+                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                    Text("+\(coinAmount)")
+                        .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundStyle(Color.primary)
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.8)
-                        .fixedSize(horizontal: false, vertical: true)
+                        .layoutPriority(1)
                     
-                    HStack(alignment: .top, spacing: 4) {
-                        Text(productDescription)
-                            .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .foregroundStyle(Color.secondary)
-                            .lineLimit(2)
-                            .minimumScaleFactor(0.9)
-                            .fixedSize(horizontal: false, vertical: true)
-                        
-                        Text("+\(coinAmount)")
-                            .font(.system(size: 14, weight: .black, design: .rounded))
-                            .foregroundStyle(Color.goldPrimary)
-                            .lineLimit(1)
-                            .fixedSize(horizontal: true, vertical: false)
-                            .layoutPriority(1)
-                    }
+                    Text(String(localized: "shop.item.coins_label", defaultValue: "Münzen"))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.secondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
                 }
 
                 Spacer(minLength: 0)
