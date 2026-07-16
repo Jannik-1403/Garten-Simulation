@@ -9,3 +9,5 @@
 - Bugfix: Mock-Notification-Dialog im Onboarding exakt in der Bildschirmmitte positioniert, sodass der echte Apple-Dialog nahtlos darüber erscheint.
 
 - Bugfix: Weiter-Button im Notification-Onboarding erst sichtbar, nachdem eine Auswahl getroffen wurde. Animation vom Pfeil entfernt. Benachrichtigungs-Abfrage beim Erstellen eines Timers in der Pflanzen-Detail-Ansicht entfernt (wird nun exklusiv im Onboarding abgefragt).
+
+- Design: Mock-Notification-Dialog exakt an das hochgeladene Screenshot-Design angepasst (weißer Kasten mit stark abgerundeten Ecken, linksbündiger Text, Pille-förmige graue Buttons für Erlauben/Ablehnen).
