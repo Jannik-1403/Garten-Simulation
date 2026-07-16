@@ -11,3 +11,5 @@
 - Bugfix: Weiter-Button im Notification-Onboarding erst sichtbar, nachdem eine Auswahl getroffen wurde. Animation vom Pfeil entfernt. Benachrichtigungs-Abfrage beim Erstellen eines Timers in der Pflanzen-Detail-Ansicht entfernt (wird nun exklusiv im Onboarding abgefragt).
 
 - Design: Mock-Notification-Dialog exakt an das hochgeladene Screenshot-Design angepasst (weißer Kasten mit stark abgerundeten Ecken, linksbündiger Text, Pille-förmige graue Buttons für Erlauben/Ablehnen).
+
+- Bugfix: Mock-Notification-Dialog schmaler gemacht, Pfeil unten als fetten (3D-ähnlichen) großen Pfeil (arrowshape.up.fill) angepasst. Alle Texte des Mock-Dialogs in 15 Sprachen übersetzt.
