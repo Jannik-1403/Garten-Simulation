@@ -40,3 +40,7 @@
 - **Assessment UI Bereinigung**:
   - `DataSourceSheet` (die Detailansicht) komplett gelöscht, da sie vom Nutzer als unnötig empfunden wurde.
   - Abstand (Padding) zur "Was man verbessern kann" Ansicht hinzugefügt, damit diese nicht mehr direkt am Bildschirmrand klebt.
+
+- **Individuelle Assessment-Icons**:
+  - Alle generischen iOS Icons im Bereich "Was man verbessern kann" (Insights) wurden durch maßgeschneiderte Grafiken aus dem Asset-Katalog ersetzt (z. B. `Warndreieck`, `Heart death`, `Timer empty`, etc.).
+  - Die neuen Grafiken werden nun doppelt so groß dargestellt (80x80), um den transparenten Hintergrund auszugleichen. Der Text verschiebt sich dabei nicht, da der Rahmen (ZStack) fest auf 40x40 verankert bleibt und das Bild an den Ecken sauber darüber lappt.
