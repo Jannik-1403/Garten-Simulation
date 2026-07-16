@@ -484,5 +484,5 @@ struct RevivePlantSheet: View {
     .environmentObject(SettingsStore())
     .environmentObject(GardenStore())
     .environmentObject(PowerUpStore())
-    .environmentObject(GartenPfadStore())
+    .environmentObject(GartenPfadStore(settings: SettingsStore()))
 }
