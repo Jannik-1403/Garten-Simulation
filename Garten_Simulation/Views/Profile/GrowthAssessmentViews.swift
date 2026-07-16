@@ -272,29 +272,41 @@ struct GrowthResultView: View {
                         }
                     }
 
-                    // Description Card
-                    Text(NSLocalizedString(profile.descKey, comment: ""))
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                        .foregroundStyle(.primary.opacity(0.85))
-                        .multilineTextAlignment(.center)
-                        .lineSpacing(4)
-                        .padding(.horizontal, 28)
-                        .padding(.vertical, 24)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .fill(Color(UIColor.systemBackground))
-                                .shadow(color: Color.black.opacity(0.18), radius: 0, y: 6)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .stroke(Color.gray.opacity(0.15), lineWidth: 1)
-                        )
-                        .padding(.bottom, 6)
-                        .padding(.horizontal, 20)
+                                        // Reality Check Description
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .font(.title3)
+                                .foregroundColor(.red)
+                            Text(String(localized: "assessment.roadmap.reality_check", defaultValue: "Reality Check"))
+                                .font(.headline)
+                                .foregroundColor(.red)
+                            Spacer()
+                        }
+                        
+                        Text(String(localized: "assessment.roadmap.tough_love", defaultValue: "Die harte Wahrheit:"))
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                            .foregroundColor(AppColors.color(for: profile.color))
+                        
+                        Text(String(localized: String.LocalizationValue(result.worstParameterTextKey)))
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .padding()
+                    .background(Color.red.opacity(0.1))
+                    .cornerRadius(16)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.red.opacity(0.3), lineWidth: 1)
+                    )
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 6)
 
-                    // Habits
-                    AssessmentDetailedResultView(
-                        result: result,
+                    // Dynamic Insights
+                    DynamicAssessmentInsightsView(
+                        category: .growth,
                         color: AppColors.color(for: profile.color)
                     )
                     .padding(.bottom, 6)

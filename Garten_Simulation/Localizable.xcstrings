@@ -328358,6 +328358,1172 @@
           }
         }
       }
+    },
+    "assessment.insight.header": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was man verbessern kann"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Was man verbessern kann"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Was man verbessern kann"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Was man verbessern kann"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Was man verbessern kann"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Was man verbessern kann"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Was man verbessern kann"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Was man verbessern kann"
+          }
+        }
+      }
+    },
+    "assessment.insight.empty": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Im Moment sieht alles gut aus! Bleib am Ball."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Im Moment sieht alles gut aus! Bleib am Ball."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Im Moment sieht alles gut aus! Bleib am Ball."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Im Moment sieht alles gut aus! Bleib am Ball."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Im Moment sieht alles gut aus! Bleib am Ball."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Im Moment sieht alles gut aus! Bleib am Ball."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Im Moment sieht alles gut aus! Bleib am Ball."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Im Moment sieht alles gut aus! Bleib am Ball."
+          }
+        }
+      }
+    },
+    "assessment.insight.action.open_plant": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Details ansehen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Details ansehen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Details ansehen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Details ansehen"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Details ansehen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Details ansehen"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Details ansehen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Details ansehen"
+          }
+        }
+      }
+    },
+    "assessment.insight.action.set_reminder": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erinnerung setzen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Erinnerung setzen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Erinnerung setzen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Erinnerung setzen"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Erinnerung setzen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Erinnerung setzen"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Erinnerung setzen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Erinnerung setzen"
+          }
+        }
+      }
+    },
+    "assessment.insight.action.start_focus": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fokus-Modus testen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Fokus-Modus testen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Fokus-Modus testen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Fokus-Modus testen"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Fokus-Modus testen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Fokus-Modus testen"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Fokus-Modus testen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Fokus-Modus testen"
+          }
+        }
+      }
+    },
+    "assessment.insight.action.add_habit": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Challenge annehmen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Challenge annehmen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Challenge annehmen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Challenge annehmen"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Challenge annehmen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Challenge annehmen"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Challenge annehmen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Challenge annehmen"
+          }
+        }
+      }
+    },
+    "assessment.insight.finance.no_habit.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Finanz-Gewohnheit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Keine Finanz-Gewohnheit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Keine Finanz-Gewohnheit"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Keine Finanz-Gewohnheit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Keine Finanz-Gewohnheit"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Keine Finanz-Gewohnheit"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Keine Finanz-Gewohnheit"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Keine Finanz-Gewohnheit"
+          }
+        }
+      }
+    },
+    "assessment.insight.finance.no_habit.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast bisher keine Finanzen-Gewohnheit hinzugefügt. Das ist der erste Schritt zur Kontrolle."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Du hast bisher keine Finanzen-Gewohnheit hinzugefügt. Das ist der erste Schritt zur Kontrolle."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Du hast bisher keine Finanzen-Gewohnheit hinzugefügt. Das ist der erste Schritt zur Kontrolle."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Du hast bisher keine Finanzen-Gewohnheit hinzugefügt. Das ist der erste Schritt zur Kontrolle."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Du hast bisher keine Finanzen-Gewohnheit hinzugefügt. Das ist der erste Schritt zur Kontrolle."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Du hast bisher keine Finanzen-Gewohnheit hinzugefügt. Das ist der erste Schritt zur Kontrolle."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Du hast bisher keine Finanzen-Gewohnheit hinzugefügt. Das ist der erste Schritt zur Kontrolle."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Du hast bisher keine Finanzen-Gewohnheit hinzugefügt. Das ist der erste Schritt zur Kontrolle."
+          }
+        }
+      }
+    },
+    "assessment.insight.missing_reminder.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erinnerung fehlt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Erinnerung fehlt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Erinnerung fehlt"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Erinnerung fehlt"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Erinnerung fehlt"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Erinnerung fehlt"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Erinnerung fehlt"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Erinnerung fehlt"
+          }
+        }
+      }
+    },
+    "assessment.insight.missing_reminder.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast für einige Gewohnheiten keine Erinnerungen gesetzt. Kontinuität braucht Systeme."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Du hast für einige Gewohnheiten keine Erinnerungen gesetzt. Kontinuität braucht Systeme."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Du hast für einige Gewohnheiten keine Erinnerungen gesetzt. Kontinuität braucht Systeme."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Du hast für einige Gewohnheiten keine Erinnerungen gesetzt. Kontinuität braucht Systeme."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Du hast für einige Gewohnheiten keine Erinnerungen gesetzt. Kontinuität braucht Systeme."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Du hast für einige Gewohnheiten keine Erinnerungen gesetzt. Kontinuität braucht Systeme."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Du hast für einige Gewohnheiten keine Erinnerungen gesetzt. Kontinuität braucht Systeme."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Du hast für einige Gewohnheiten keine Erinnerungen gesetzt. Kontinuität braucht Systeme."
+          }
+        }
+      }
+    },
+    "assessment.insight.health.no_habit.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fehlende Basis"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Fehlende Basis"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Fehlende Basis"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Fehlende Basis"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Fehlende Basis"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Fehlende Basis"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Fehlende Basis"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Fehlende Basis"
+          }
+        }
+      }
+    },
+    "assessment.insight.health.no_habit.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast weder Gesundheits- noch Fitness-Gewohnheiten aktiviert. Dein Körper ist dein Kapital."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Du hast weder Gesundheits- noch Fitness-Gewohnheiten aktiviert. Dein Körper ist dein Kapital."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Du hast weder Gesundheits- noch Fitness-Gewohnheiten aktiviert. Dein Körper ist dein Kapital."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Du hast weder Gesundheits- noch Fitness-Gewohnheiten aktiviert. Dein Körper ist dein Kapital."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Du hast weder Gesundheits- noch Fitness-Gewohnheiten aktiviert. Dein Körper ist dein Kapital."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Du hast weder Gesundheits- noch Fitness-Gewohnheiten aktiviert. Dein Körper ist dein Kapital."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Du hast weder Gesundheits- noch Fitness-Gewohnheiten aktiviert. Dein Körper ist dein Kapital."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Du hast weder Gesundheits- noch Fitness-Gewohnheiten aktiviert. Dein Körper ist dein Kapital."
+          }
+        }
+      }
+    },
+    "assessment.insight.low_streak.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Streak in Gefahr"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Streak in Gefahr"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Streak in Gefahr"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Streak in Gefahr"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Streak in Gefahr"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Streak in Gefahr"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Streak in Gefahr"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Streak in Gefahr"
+          }
+        }
+      }
+    },
+    "assessment.insight.low_streak.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist bei einer Gewohnheit unter 3 Tagen Streak. Lass sie nicht abreißen!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Du bist bei einer Gewohnheit unter 3 Tagen Streak. Lass sie nicht abreißen!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Du bist bei einer Gewohnheit unter 3 Tagen Streak. Lass sie nicht abreißen!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Du bist bei einer Gewohnheit unter 3 Tagen Streak. Lass sie nicht abreißen!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Du bist bei einer Gewohnheit unter 3 Tagen Streak. Lass sie nicht abreißen!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Du bist bei einer Gewohnheit unter 3 Tagen Streak. Lass sie nicht abreißen!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Du bist bei einer Gewohnheit unter 3 Tagen Streak. Lass sie nicht abreißen!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Du bist bei einer Gewohnheit unter 3 Tagen Streak. Lass sie nicht abreißen!"
+          }
+        }
+      }
+    },
+    "assessment.insight.no_focus.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fokus-Modus ungenutzt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Fokus-Modus ungenutzt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Fokus-Modus ungenutzt"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Fokus-Modus ungenutzt"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Fokus-Modus ungenutzt"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Fokus-Modus ungenutzt"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Fokus-Modus ungenutzt"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Fokus-Modus ungenutzt"
+          }
+        }
+      }
+    },
+    "assessment.insight.no_focus.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast noch keine Fokus-Sessions gestartet. Tiefenarbeit ist der Schlüssel zu mehr Effizienz."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Du hast noch keine Fokus-Sessions gestartet. Tiefenarbeit ist der Schlüssel zu mehr Effizienz."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Du hast noch keine Fokus-Sessions gestartet. Tiefenarbeit ist der Schlüssel zu mehr Effizienz."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Du hast noch keine Fokus-Sessions gestartet. Tiefenarbeit ist der Schlüssel zu mehr Effizienz."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Du hast noch keine Fokus-Sessions gestartet. Tiefenarbeit ist der Schlüssel zu mehr Effizienz."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Du hast noch keine Fokus-Sessions gestartet. Tiefenarbeit ist der Schlüssel zu mehr Effizienz."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Du hast noch keine Fokus-Sessions gestartet. Tiefenarbeit ist der Schlüssel zu mehr Effizienz."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Du hast noch keine Fokus-Sessions gestartet. Tiefenarbeit ist der Schlüssel zu mehr Effizienz."
+          }
+        }
+      }
+    },
+    "assessment.insight.focus_active.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guter Fokus"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Guter Fokus"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Guter Fokus"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Guter Fokus"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Guter Fokus"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Guter Fokus"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Guter Fokus"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Guter Fokus"
+          }
+        }
+      }
+    },
+    "assessment.insight.focus_active.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du nutzt den Fokus-Modus bereits. Weiter so!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Du nutzt den Fokus-Modus bereits. Weiter so!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Du nutzt den Fokus-Modus bereits. Weiter so!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Du nutzt den Fokus-Modus bereits. Weiter so!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Du nutzt den Fokus-Modus bereits. Weiter so!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Du nutzt den Fokus-Modus bereits. Weiter so!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Du nutzt den Fokus-Modus bereits. Weiter so!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Du nutzt den Fokus-Modus bereits. Weiter so!"
+          }
+        }
+      }
+    },
+    "assessment.insight.lifestyle.review.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Umgebung prüfen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Umgebung prüfen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Umgebung prüfen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Umgebung prüfen"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Umgebung prüfen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Umgebung prüfen"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Umgebung prüfen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Umgebung prüfen"
+          }
+        }
+      }
+    },
+    "assessment.insight.lifestyle.review.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Umgebung formt dich. Optimiere deinen Alltag weiter."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Deine Umgebung formt dich. Optimiere deinen Alltag weiter."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Deine Umgebung formt dich. Optimiere deinen Alltag weiter."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Deine Umgebung formt dich. Optimiere deinen Alltag weiter."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Deine Umgebung formt dich. Optimiere deinen Alltag weiter."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Deine Umgebung formt dich. Optimiere deinen Alltag weiter."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Deine Umgebung formt dich. Optimiere deinen Alltag weiter."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Deine Umgebung formt dich. Optimiere deinen Alltag weiter."
+          }
+        }
+      }
+    },
+    "assessment.insight.challenge_waiting.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90-Tage Challenge"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] 90-Tage Challenge"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] 90-Tage Challenge"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] 90-Tage Challenge"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] 90-Tage Challenge"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] 90-Tage Challenge"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] 90-Tage Challenge"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] 90-Tage Challenge"
+          }
+        }
+      }
+    },
+    "assessment.insight.challenge_waiting.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist bereit für eine 90-Tage Challenge, hast aber noch keine abgeschlossen. Gib alles!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[en] Du bist bereit für eine 90-Tage Challenge, hast aber noch keine abgeschlossen. Gib alles!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[es] Du bist bereit für eine 90-Tage Challenge, hast aber noch keine abgeschlossen. Gib alles!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[fr] Du bist bereit für eine 90-Tage Challenge, hast aber noch keine abgeschlossen. Gib alles!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[it] Du bist bereit für eine 90-Tage Challenge, hast aber noch keine abgeschlossen. Gib alles!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[tr] Du bist bereit für eine 90-Tage Challenge, hast aber noch keine abgeschlossen. Gib alles!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt] Du bist bereit für eine 90-Tage Challenge, hast aber noch keine abgeschlossen. Gib alles!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[pt-BR] Du bist bereit für eine 90-Tage Challenge, hast aber noch keine abgeschlossen. Gib alles!"
+          }
+        }
+      }
     }
   },
   "version": "1.1"
