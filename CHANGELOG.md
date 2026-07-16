@@ -31,3 +31,8 @@
 - Assessments (Dynamic Insights): Ersetzt statische Empfehlungen mit datenbasierten Insights, generiert aus User-Verhalten (Habits, Screen Time, 90 Day Challenge) sowie Einführung eines 'Reality Checks' (die harte Wahrheit) pro Kategorie.
 - Added highly detailed, premium assessment analysis UI that breaks down the user's specific strengths, weaknesses, pitfalls, and benchmark comparison based on their raw scores.
 - Localized and expanded all assessment insight texts in Localizable.xcstrings.
+
+- **Assessment UI Fixes & Lokalisierung**:
+  - Design-Update für die Detailansicht ("Was man verbessern kann" & DataSourceSheet) auf das einheitliche 3D-Card-Design angepasst (scoreCardStyle).
+  - Alle hartkodierten deutschen Texte aus `AssessmentResult+Detailed.swift` in `Localizable.xcstrings` ausgelagert (100% Abdeckung für alle 16 Sprachen), um Sprachfehler in der Detailansicht zu beheben.
+  - Fehler im Übersetzungs-Script bei un-escapeten Anführungszeichen repariert.
