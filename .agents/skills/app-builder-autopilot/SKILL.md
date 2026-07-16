@@ -10,7 +10,7 @@ Sobald du Code generierst oder änderst, durchlaufe diese Schritte komplett auto
 ## Schritt 1: Lokalisierung in den String Catalog
 1. Scanne den neu geschriebenen SwiftUI-Code auf hartkodierte Strings.
 2. Trage neue Texte direkt in die `Garten_Simulation/Garten_Simulation/Localizable.xcstrings` ein.
-3. Übersetze die Texte automatisch für ALLE aktiven Sprachen im Projekt: DE, NL, EN, FR, IT, JA, KO, PL, PT, ES, TR.
+3. Übersetze die Texte automatisch für ALLE aktiven Sprachen im Projekt. Schau in die `Localizable.xcstrings`, um herauszufinden, welche Sprachen aktiv sind.
 4. Ersetze den harten Text im Code durch die lokalisierte Variable (`String(localized: "dein_key")`).
 
 ## Schritt 2: Build- & Reparaturschleife im Simulator (mit Branch-Isolierung!)
