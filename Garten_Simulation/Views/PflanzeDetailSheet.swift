@@ -1156,7 +1156,6 @@ struct TimerEditSheetView: View {
     @State private var isLinkingNotes: Bool = false
     @State private var selectedDaysForLinking: Set<Int> = []
     @State private var selectedNoteForLinking: String? = nil
-    @State private var showTimeline = false
 
 
     let daysKeys = ["days.monday", "days.tuesday", "days.wednesday", "days.thursday", "days.friday", "days.saturday", "days.sunday"]
@@ -1327,13 +1326,6 @@ struct TimerEditSheetView: View {
                                 }
                             }
                             
-                            // 3. Zeitleiste (Alle Benachrichtigungen)
-                            Button {
-                                showTimeline = true
-                            } label: {
-                                Label(String(localized: "common.timeline"), systemImage: "list.bullet.rectangle.portrait")
-                            }
-                            
                             if parentRoutineWithReminder == nil {
                                 // 4. Löschen
                                 Button(role: .destructive) {
@@ -1350,17 +1342,6 @@ struct TimerEditSheetView: View {
                         }
                     }
                 }
-            }
-            .fullScreenCover(isPresented: $showTimeline) {
-                PlantTimelineView()
-                    .environmentObject(gardenStore)
-                    .environmentObject(settings)
-                    .environmentObject(shopStore)
-                    .environmentObject(powerUpStore)
-                    .environmentObject(pfadStore)
-                    .environmentObject(streakStore)
-                    .environmentObject(interactiveTourManager)
-                    .environmentObject(iapStore)
             }
         }
         .fullScreenCover(isPresented: Binding(
@@ -2326,9 +2307,10 @@ struct ExportNotesSelectionSheet: View {
     }
     
     private func getBadHabitName(id: String) -> String {
-        if let badHabit = GameDatabase.allDecorations.first(where: { $0.id == id }) {
+        if let badHabit = gardenStore.placedDecorations.first(where: { $0.id == id }) ?? GameDatabase.allDecorations.first(where: { $0.id == id }) {
             let key = settings.showHabitInsteadOfName ? badHabit.habitNameKey : badHabit.objectNameKey
-            return NSLocalizedString(key, comment: "")
+            let name = NSLocalizedString(key, comment: "")
+            return name.hasPrefix("trash.custom_") ? String(localized: "plant.create.preview.bad_habit") : name
         }
         return NSLocalizedString(id, comment: "")
     }
