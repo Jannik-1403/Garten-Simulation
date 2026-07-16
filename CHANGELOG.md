@@ -51,3 +51,7 @@
 
 - **Icon Scale Fix**:
   - Das `Goal` Icon (für die 90-Tage Challenge) wird nun mittels `.scaleEffect(2.2)` um den Faktor 2,2 vergrößert, ohne das restliche Layout oder den danebenstehenden Text zu verschieben.
+
+- **Interaktiver Fokus-Button in Assessments**:
+  - Der "Fokus-Modus testen" Button (in den Verbesserungstipps) ist nun ein echter animierter 3D-Button (`DuolingoButtonStyle`), der beim Drücken grafisch reagiert.
+  - Wenn man den Button drückt, öffnet sich direkt das individuelle Setup für eine Fokus-Session (Generic Focus Timer), aus der heraus man direkt eine Session starten kann.

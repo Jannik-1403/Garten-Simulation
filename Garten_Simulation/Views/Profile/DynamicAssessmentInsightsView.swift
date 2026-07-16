@@ -25,6 +25,7 @@ struct DynamicAssessmentInsightsView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 40, height: 40)
+                                .scaleEffect(insight.iconName == "Goal" ? 2.2 : 1.0)
                             
                             VStack(alignment: .leading, spacing: 6) {
                                 Text(String(localized: String.LocalizationValue(insight.titleKey)))
@@ -41,14 +42,13 @@ struct DynamicAssessmentInsightsView: View {
                                         handleAction(action)
                                     }) {
                                         Text(buttonText(for: action))
-                                            .font(.caption)
-                                            .fontWeight(.bold)
-                                            .padding(.horizontal, 14)
-                                            .padding(.vertical, 8)
-                                            .background(color.opacity(0.15))
-                                            .foregroundColor(color)
-                                            .cornerRadius(12)
                                     }
+                                    .buttonStyle(DuolingoButtonStyle(
+                                        size: .small,
+                                        fillWidth: false,
+                                        backgroundColor: color,
+                                        shadowColor: color.darker()
+                                    ))
                                     .padding(.top, 4)
                                 }
                             }
@@ -65,7 +65,18 @@ struct DynamicAssessmentInsightsView: View {
         .padding(24)
         .scoreCardStyle()
         .padding(.horizontal, 20)
+        .sheet(isPresented: $showGenericFocusSetup) {
+            GenericFocusTimerSetupSheet { habit in
+                genericFocusHabit = habit
+            }
+        }
+        .fullScreenCover(item: $genericFocusHabit) { habit in
+            GenericFocusSessionContainer(habit: habit)
+        }
     }
+    
+    @State private var showGenericFocusSetup = false
+    @State private var genericFocusHabit: HabitModel? = nil
     
     private func buttonText(for action: InsightAction) -> String {
         switch action {
@@ -83,6 +94,13 @@ struct DynamicAssessmentInsightsView: View {
     private func handleAction(_ action: InsightAction) {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
+        
+        switch action {
+        case .startFocusSession:
+            showGenericFocusSetup = true
+        default:
+            break
+        }
         
         // Navigation or handling logic will depend on how Assessment is presented.
         // For now, we can try to dismiss and post a notification, or handle it via AppState if present.
