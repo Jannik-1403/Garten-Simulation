@@ -7,16 +7,33 @@ struct OnboardingNotificationView: View {
     @State private var isAnimatingArrow = false
     
     var body: some View {
-        VStack(spacing: 0) {
-            OnboardingIgelView(
-                pose: .erklaert,
-                sprechblasenText: String(localized: "onboarding_notification_bubble_title", defaultValue: "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!")
-            )
-            .padding(.top, 20)
+        ZStack {
+            // Top and Bottom Elements
+            VStack(spacing: 0) {
+                OnboardingIgelView(
+                    pose: .erklaert,
+                    sprechblasenText: String(localized: "onboarding_notification_bubble_title", defaultValue: "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!")
+                )
+                .padding(.top, 20)
+                
+                Spacer()
+                
+                Button {
+                    finish()
+                } label: {
+                    Text(String(localized: "onboarding_notification_continue", defaultValue: "Weiter"))
+                }
+                .buttonStyle(DuolingoButtonStyle(
+                    size: .large,
+                    backgroundColor: Color.blauPrimary,
+                    shadowColor: Color.blauPrimary.darker(),
+                    foregroundColor: .white
+                ))
+                .padding(.horizontal, 24)
+                .padding(.bottom, 40)
+            }
             
-            Spacer()
-            
-            // Mock iOS Notification Permission Alert
+            // Mock iOS Notification Permission Alert - Perfectly centered
             VStack(spacing: 16) {
                 VStack(spacing: 0) {
                     VStack(spacing: 4) {
@@ -75,22 +92,6 @@ struct OnboardingNotificationView: View {
                         isAnimatingArrow = true
                     }
             }
-            
-            Spacer()
-            
-            Button {
-                finish()
-            } label: {
-                Text(String(localized: "onboarding_notification_continue", defaultValue: "Weiter"))
-            }
-            .buttonStyle(DuolingoButtonStyle(
-                size: .large,
-                backgroundColor: Color.blauPrimary,
-                shadowColor: Color.blauPrimary.darker(),
-                foregroundColor: .white
-            ))
-            .padding(.horizontal, 24)
-            .padding(.bottom, 40)
         }
     }
     
