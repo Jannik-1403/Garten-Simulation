@@ -24,3 +24,6 @@
 - Bugfix: Im Screen Time Mock-Dialog die Buttons und Texte exakt an das echte iOS-Design angepasst ('Weiter' links in grau, 'Nicht erlauben' rechts in blau).
 
 - Design: Den Pfeil-Button im Onboarding durch ein echtes Pfeil-Icon ('arrowshape.up.fill') mit hartem Schatten ersetzt und den Abstand zum Button korrigiert, damit er exakt auf der richtigen Höhe ist.
+
+- Animation: Der Pfeil im Onboarding hüpft nun flüssig auf und ab, um den Benutzer auf den Button aufmerksam zu machen.
+- Design: Die Höhe (Spacing/Padding) der Mock-Dialoge wurde noch etwas reduziert (enger zusammengezogen), damit sie wirklich exakt wie die echten nativen Apple-Dialoge aussehen.
