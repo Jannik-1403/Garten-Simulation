@@ -192,14 +192,17 @@ class PDFExportManager {
                     exportedAny = true
                     
                     let itemNameKey: String
-                    if let badHabit = GameDatabase.allDecorations.first(where: { $0.id == id }) {
+                    if let badHabit = gardenStore.placedDecorations.first(where: { $0.id == id }) ?? GameDatabase.allDecorations.first(where: { $0.id == id }) {
                         itemNameKey = settings.showHabitInsteadOfName ? badHabit.habitNameKey : badHabit.objectNameKey
                     } else {
                         itemNameKey = id
                     }
                     
                     let title = String(localized: String.LocalizationValue(itemNameKey), locale: locale)
-                    drawText(title, attributes: subheaderAttributes, yPos: &currentY, offset: 15)
+                    // Ensure the title isn't still starting with "trash.custom_"
+                    let displayTitle = title.hasPrefix("trash.custom_") ? String(localized: "plant.create.preview.bad_habit", locale: locale) : title
+                    
+                    drawText(displayTitle, attributes: subheaderAttributes, yPos: &currentY, offset: 15)
                     
                     let sortedExecutions = executions.sorted { $0.date < $1.date }
                     
@@ -291,10 +294,11 @@ class PDFExportManager {
                                     if let p = gardenStore.pflanzen.first(where: { $0.id == hid }) {
                                         let name = settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(p.displayedHabitName), locale: locale) : String(localized: String.LocalizationValue(p.name), locale: locale)
                                         drawText("• \(name)", attributes: textAttributes, yPos: &currentY, offset: 15)
-                                    } else if let badHabit = GameDatabase.allDecorations.first(where: { $0.id == hid }) {
+                                    } else if let badHabit = gardenStore.placedDecorations.first(where: { $0.id == hid }) ?? GameDatabase.allDecorations.first(where: { $0.id == hid }) {
                                         let itemNameKey = settings.showHabitInsteadOfName ? badHabit.habitNameKey : badHabit.objectNameKey
                                         let name = String(localized: String.LocalizationValue(itemNameKey), locale: locale)
-                                        drawText("• \(name)", attributes: textAttributes, yPos: &currentY, offset: 15)
+                                        let displayName = name.hasPrefix("trash.custom_") ? String(localized: "plant.create.preview.bad_habit", locale: locale) : name
+                                        drawText("• \(displayName)", attributes: textAttributes, yPos: &currentY, offset: 15)
                                     }
                                 }
                             }

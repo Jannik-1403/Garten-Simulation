@@ -1645,7 +1645,7 @@ class GardenStore: ObservableObject {
         
         // Unkraut spawnen (Bestrafung für Rückfall)
         withAnimation {
-            if let decoration = GameDatabase.allDecorations.first(where: { $0.id == id }) {
+            if let decoration = placedDecorations.first(where: { $0.id == id }) ?? GameDatabase.allDecorations.first(where: { $0.id == id }) {
                 spawnWeed(removalCost: decoration.price * GameConstants.weedRemovalCostMultiplier, source: .decoration)
             } else {
                 spawnWeed(removalCost: 50, source: .decoration)

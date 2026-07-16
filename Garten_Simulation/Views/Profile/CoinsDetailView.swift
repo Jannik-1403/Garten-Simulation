@@ -46,7 +46,7 @@ struct CoinsDetailView: View {
                         )
                         .padding(.bottom, 6)
 
-                        Text(String(localized: "profile.coins.available"))
+                        Text(String(localized: "profile.coins.available", defaultValue: "Verfügbare Münzen"))
                             .font(.system(size: 15, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                             .textCase(.uppercase)
@@ -58,9 +58,9 @@ struct CoinsDetailView: View {
                     VStack(spacing: 24) {
                         // Section Header
                         VStack(spacing: 8) {
-                            Text(String(localized: "coin_shop_title"))
+                            Text(String(localized: "coin_shop_title", defaultValue: "Münz-Shop"))
                                 .font(.system(size: 24, weight: .black, design: .rounded))
-                            Text(String(localized: "coin_shop_subtitle"))
+                            Text(String(localized: "coin_shop_subtitle", defaultValue: "Hol dir mehr Münzen für deinen Garten"))
                                 .font(.system(size: 15, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.secondary)
                                 .multilineTextAlignment(.center)
@@ -80,7 +80,7 @@ struct CoinsDetailView: View {
                                 } else {
                                     ProgressView()
                                         .scaleEffect(1.2)
-                                    Text(String(localized: "iap_loading"))
+                                    Text(String(localized: "iap_loading", defaultValue: "Produkte werden geladen..."))
                                         .font(.subheadline)
                                         .foregroundStyle(.secondary)
                                 }
@@ -124,7 +124,7 @@ struct CoinsDetailView: View {
                 }
             }
         }
-        .navigationTitle(String(localized: "coin_shop_nav_title"))
+        .navigationTitle(String(localized: "coin_shop_nav_title", defaultValue: "Shop"))
         .navigationBarTitleDisplayMode(.inline)
         .standardNavigationX()
         .onAppear {

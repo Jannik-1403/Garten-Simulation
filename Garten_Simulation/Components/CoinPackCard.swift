@@ -32,6 +32,32 @@ struct CoinPackCard: View {
         return nil
     }
 
+    private var productTitle: String {
+        switch product.id {
+        case "com.jannik.grovy.coins.pack_small":
+            return String(localized: "shop.item.coins_small.title", defaultValue: "Kleine Münztruhe")
+        case "com.jannik.grovy.coins.pack_medium":
+            return String(localized: "shop.item.coins_medium.title", defaultValue: "Mittlerer Münzbeutel")
+        case "com.jannik.grovy.coins.pack_large":
+            return String(localized: "shop.item.coins_large.title", defaultValue: "Großer Münzschatz")
+        default:
+            return product.displayName
+        }
+    }
+    
+    private var productDescription: String {
+        switch product.id {
+        case "com.jannik.grovy.coins.pack_small":
+            return String(localized: "shop.item.coins_small.desc", defaultValue: "Ein kleiner Vorrat an Münzen.")
+        case "com.jannik.grovy.coins.pack_medium":
+            return String(localized: "shop.item.coins_medium.desc", defaultValue: "Ein ordentlicher Haufen Münzen.")
+        case "com.jannik.grovy.coins.pack_large":
+            return String(localized: "shop.item.coins_large.desc", defaultValue: "Ein riesiger Schatz voller Münzen!")
+        default:
+            return product.description
+        }
+    }
+
     var body: some View {
         DuolingoCard(action: {
             if !isPurchasing {
@@ -47,22 +73,14 @@ struct CoinPackCard: View {
 
                 // MARK: Info
                 VStack(alignment: .leading, spacing: 4) {
-                    let titleKey = "shop.item.\(product.id).title"
-                    let localizedTitle = NSLocalizedString(titleKey, comment: "")
-                    let finalTitle = localizedTitle != titleKey ? localizedTitle : product.displayName
-
-                    let descKey = "shop.item.\(product.id).desc"
-                    let localizedDesc = NSLocalizedString(descKey, comment: "")
-                    let finalDesc = localizedDesc != descKey ? localizedDesc : product.description
-
-                    Text(finalTitle)
+                    Text(productTitle)
                         .font(.system(size: 18, weight: .black, design: .rounded))
                         .foregroundStyle(Color.primary)
                         .lineLimit(1)
                         .minimumScaleFactor(0.8)
                     
                     HStack(spacing: 4) {
-                        Text(finalDesc)
+                        Text(productDescription)
                             .font(.system(size: 13, weight: .bold, design: .rounded))
                             .foregroundStyle(Color.secondary)
                             .lineLimit(1)

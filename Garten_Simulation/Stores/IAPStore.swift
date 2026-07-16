@@ -92,13 +92,13 @@ final class IAPStore: ObservableObject {
             
             if products.isEmpty {
                 print(" [IAPStore]  FEHLER: 0 Produkte gefunden! StoreKit hat keine der angeforderten IDs in der Konfiguration gefunden.")
-                purchaseError = "StoreKit configuration file not found or invalid."
+                purchaseError = String(localized: "iap_error_config", defaultValue: "StoreKit Konfiguration nicht gefunden oder ungültig.")
             } else {
                 print(" [IAPStore]  Produkte erfolgreich sortiert und gespeichert.")
             }
         } catch {
             print(" [IAPStore]  CATCH-BLOCK ERREICHT! Exakter Fehler: \(error)")
-            purchaseError = NSLocalizedString("iap_error_load", comment: "")
+            purchaseError = String(localized: "iap_error_load", defaultValue: "Produkte konnten nicht geladen werden.")
         }
     }
 
@@ -142,7 +142,7 @@ final class IAPStore: ObservableObject {
                 break
             }
         } catch {
-            purchaseError = NSLocalizedString("iap_error_purchase", comment: "")
+            purchaseError = String(localized: "iap_error_purchase", defaultValue: "Kauf fehlgeschlagen.")
         }
     }
 
@@ -226,7 +226,7 @@ final class IAPStore: ObservableObject {
             try await AppStore.sync()
             await syncEntitlements(characterStore: characterStore)
         } catch {
-            purchaseError = NSLocalizedString("iap_error_restore", comment: "")
+            purchaseError = String(localized: "iap_error_restore", defaultValue: "Käufe konnten nicht wiederhergestellt werden.")
         }
     }
 
