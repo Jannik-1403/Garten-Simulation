@@ -21,16 +21,10 @@ struct DynamicAssessmentInsightsView: View {
                 ForEach(Array(insights.enumerated()), id: \.offset) { index, insight in
                     VStack(alignment: .leading, spacing: 12) {
                         HStack(alignment: .top, spacing: 16) {
-                            ZStack {
-                                Circle()
-                                    .fill(insight.isPositive ? Color.green.opacity(0.15) : AppColors.color(for: insight.iconColorName).opacity(0.15))
-                                    .frame(width: 40, height: 40)
-                                Image(insight.iconName)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 80, height: 80)
-                            }
-                            .frame(width: 40, height: 40)
+                            Image(insight.iconName)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
                             
                             VStack(alignment: .leading, spacing: 6) {
                                 Text(String(localized: String.LocalizationValue(insight.titleKey)))
