@@ -40,62 +40,65 @@ struct OnboardingNotificationView: View {
             
             // Mock iOS Notification Permission Alert - Perfectly centered
             VStack(spacing: 16) {
-                VStack(spacing: 0) {
-                    VStack(spacing: 4) {
-                        Text(String(localized: "onboarding_notification_mock_title", defaultValue: "Grovy möchte dir Mitteilungen senden"))
-                            .font(.system(size: 17, weight: .semibold))
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal, 16)
-                            .padding(.top, 20)
+                VStack(spacing: 24) {
+                    VStack(spacing: 8) {
+                        Text(String(localized: "onboarding_notification_mock_title", defaultValue: "\"Grovy\" möchte dir Mitteilungen senden"))
+                            .font(.system(size: 20, weight: .bold))
+                            .multilineTextAlignment(.leading)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         
                         Text(String(localized: "onboarding_notification_mock_desc", defaultValue: "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."))
-                            .font(.system(size: 13, weight: .regular))
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal, 16)
-                            .padding(.bottom, 20)
+                            .font(.system(size: 16, weight: .regular))
+                            .foregroundStyle(Color.secondary)
+                            .multilineTextAlignment(.leading)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
+                    .padding(.top, 24)
+                    .padding(.horizontal, 24)
                     
-                    Divider()
-                    
-                    HStack(spacing: 0) {
+                    HStack(spacing: 12) {
                         Button {
                             handleDeny()
                         } label: {
                             Text(String(localized: "onboarding_notification_mock_dont_allow", defaultValue: "Nicht erlauben"))
-                                .font(.system(size: 17, weight: .regular))
+                                .font(.system(size: 17, weight: .medium))
                                 .foregroundStyle(.primary)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .contentShape(Rectangle())
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 16)
+                                .background(colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.88))
+                                .clipShape(Capsule())
                         }
-                        
-                        Divider()
                         
                         Button {
                             handleAllow()
                         } label: {
                             Text(String(localized: "onboarding_notification_mock_allow", defaultValue: "Erlauben"))
-                                .font(.system(size: 17, weight: .semibold))
-                                .foregroundStyle(.blue)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .contentShape(Rectangle())
+                                .font(.system(size: 17, weight: .medium))
+                                .foregroundStyle(.primary)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 16)
+                                .background(colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.88))
+                                .clipShape(Capsule())
                         }
                     }
-                    .frame(height: 44)
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 24)
                 }
                 .background(
-                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .fill(colorScheme == .dark ? Color(white: 0.15) : Color(white: 0.95))
+                    RoundedRectangle(cornerRadius: 32, style: .continuous)
+                        .fill(colorScheme == .dark ? Color(white: 0.15) : Color.white)
+                        .shadow(color: Color.black.opacity(0.1), radius: 20, x: 0, y: 10)
                 )
-                .frame(width: 270)
+                .padding(.horizontal, 24)
                 
                 if !showContinueButton {
                     // Arrow pointing up to "Erlauben"
                     Image(systemName: "arrow.up")
-                        .font(.system(size: 30, weight: .bold))
+                        .font(.system(size: 28, weight: .bold))
                         .foregroundStyle(Color.blauPrimary)
-                        .padding(.leading, 135) // Move to the right side (under "Erlauben")
+                        .padding(.leading, 150) // Move to the right side (under "Erlauben")
                 } else {
-                    Spacer().frame(height: 30) // To keep layout stable
+                    Spacer().frame(height: 28) // To keep layout stable
                 }
             }
         }
