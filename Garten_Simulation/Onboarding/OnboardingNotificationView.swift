@@ -4,7 +4,7 @@ struct OnboardingNotificationView: View {
     @EnvironmentObject var data: OnboardingData
     @Environment(\.colorScheme) var colorScheme
     
-    @State private var isAnimatingArrow = false
+    @State private var showContinueButton = false
     
     var body: some View {
         ZStack {
@@ -18,19 +18,24 @@ struct OnboardingNotificationView: View {
                 
                 Spacer()
                 
-                Button {
-                    finish()
-                } label: {
-                    Text(String(localized: "onboarding_notification_continue", defaultValue: "Weiter"))
+                if showContinueButton {
+                    Button {
+                        finish()
+                    } label: {
+                        Text(String(localized: "onboarding_notification_continue", defaultValue: "Weiter"))
+                    }
+                    .buttonStyle(DuolingoButtonStyle(
+                        size: .large,
+                        backgroundColor: Color.blauPrimary,
+                        shadowColor: Color.blauPrimary.darker(),
+                        foregroundColor: .white
+                    ))
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 40)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                } else {
+                    Spacer().frame(height: 104) // To keep the layout stable before the button appears (approximate height of button + padding)
                 }
-                .buttonStyle(DuolingoButtonStyle(
-                    size: .large,
-                    backgroundColor: Color.blauPrimary,
-                    shadowColor: Color.blauPrimary.darker(),
-                    foregroundColor: .white
-                ))
-                .padding(.horizontal, 24)
-                .padding(.bottom, 40)
             }
             
             // Mock iOS Notification Permission Alert - Perfectly centered
@@ -54,23 +59,25 @@ struct OnboardingNotificationView: View {
                     
                     HStack(spacing: 0) {
                         Button {
-                            // Dummy
+                            handleDeny()
                         } label: {
                             Text(String(localized: "onboarding_notification_mock_dont_allow", defaultValue: "Nicht erlauben"))
                                 .font(.system(size: 17, weight: .regular))
                                 .foregroundStyle(.primary)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .contentShape(Rectangle())
                         }
                         
                         Divider()
                         
                         Button {
-                            // Dummy
+                            handleAllow()
                         } label: {
                             Text(String(localized: "onboarding_notification_mock_allow", defaultValue: "Erlauben"))
                                 .font(.system(size: 17, weight: .semibold))
                                 .foregroundStyle(.blue)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .contentShape(Rectangle())
                         }
                     }
                     .frame(height: 44)
@@ -81,16 +88,37 @@ struct OnboardingNotificationView: View {
                 )
                 .frame(width: 270)
                 
-                // Arrow pointing up to "Erlauben"
-                Image(systemName: "arrow.up")
-                    .font(.system(size: 30, weight: .bold))
-                    .foregroundStyle(Color.blauPrimary)
-                    .padding(.leading, 135) // Move to the right side (under "Erlauben")
-                    .offset(y: isAnimatingArrow ? -5 : 5)
-                    .animation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: isAnimatingArrow)
-                    .onAppear {
-                        isAnimatingArrow = true
-                    }
+                if !showContinueButton {
+                    // Arrow pointing up to "Erlauben"
+                    Image(systemName: "arrow.up")
+                        .font(.system(size: 30, weight: .bold))
+                        .foregroundStyle(Color.blauPrimary)
+                        .padding(.leading, 135) // Move to the right side (under "Erlauben")
+                } else {
+                    Spacer().frame(height: 30) // To keep layout stable
+                }
+            }
+        }
+    }
+    
+    private func handleDeny() {
+        FeedbackManager.shared.playTap()
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+            showContinueButton = true
+        }
+    }
+    
+    private func handleAllow() {
+        FeedbackManager.shared.playTap()
+        
+        Task {
+            // Request native permission
+            _ = await NotificationManager.shared.requestPermission()
+            
+            await MainActor.run {
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                    showContinueButton = true
+                }
             }
         }
     }
@@ -98,15 +126,8 @@ struct OnboardingNotificationView: View {
     private func finish() {
         FeedbackManager.shared.playTap()
         
-        Task {
-            // Request Notification Permission
-            _ = await NotificationManager.shared.requestPermission()
-            
-            await MainActor.run {
-                withAnimation(.easeInOut(duration: 0.35)) {
-                    data.currentStep += 1
-                }
-            }
+        withAnimation(.easeInOut(duration: 0.35)) {
+            data.currentStep += 1
         }
     }
 }

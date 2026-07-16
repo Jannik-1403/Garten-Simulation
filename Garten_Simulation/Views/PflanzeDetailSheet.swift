@@ -1526,7 +1526,6 @@ struct TimerEditSheetView: View {
                     await UIApplication.shared.open(url)
                 }
             } else {
-                _ = await NotificationManager.shared.requestPermission()
                 gardenStore.timerScheduleSetzen(pflanze: pflanze, schedule: schedule)
             }
         }
@@ -1598,7 +1597,6 @@ struct TimerCreateSheetView: View {
                             await UIApplication.shared.open(url)
                         }
                     } else {
-                        _ = await NotificationManager.shared.requestPermission()
                         gardenStore.timerSetzen(pflanze: pflanze, datum: ausgewaehlteZeit)
                         dismiss()
                     }
