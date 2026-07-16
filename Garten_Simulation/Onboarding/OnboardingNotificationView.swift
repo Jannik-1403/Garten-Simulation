@@ -89,16 +89,16 @@ struct OnboardingNotificationView: View {
                         .fill(colorScheme == .dark ? Color(white: 0.15) : Color.white)
                         .shadow(color: Color.black.opacity(0.1), radius: 20, x: 0, y: 10)
                 )
-                .padding(.horizontal, 24)
+                .frame(width: 320) // Make it slightly smaller/more compact on the sides
                 
                 if !showContinueButton {
                     // Arrow pointing up to "Erlauben"
-                    Image(systemName: "arrow.up")
-                        .font(.system(size: 28, weight: .bold))
+                    Image(systemName: "arrowshape.up.fill")
+                        .font(.system(size: 40, weight: .heavy))
                         .foregroundStyle(Color.blauPrimary)
                         .padding(.leading, 150) // Move to the right side (under "Erlauben")
                 } else {
-                    Spacer().frame(height: 28) // To keep layout stable
+                    Spacer().frame(height: 40) // To keep layout stable
                 }
             }
         }
