@@ -5,6 +5,7 @@ struct OnboardingNotificationView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @State private var showContinueButton = false
+    @State private var isBouncing = false
     
     var body: some View {
         ZStack {
@@ -40,21 +41,21 @@ struct OnboardingNotificationView: View {
             
             // Mock iOS Notification Permission Alert - Perfectly centered
             VStack(spacing: 16) {
-                VStack(spacing: 24) {
-                    VStack(spacing: 8) {
+                VStack(spacing: 16) {
+                    VStack(spacing: 4) {
                         Text(String(localized: "onboarding_notification_mock_title", defaultValue: "\"Grovy\" möchte dir Mitteilungen senden"))
                             .font(.system(size: 20, weight: .bold))
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity, alignment: .center)
                         
                         Text(String(localized: "onboarding_notification_mock_desc", defaultValue: "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."))
-                            .font(.system(size: 16, weight: .regular))
+                            .font(.system(size: 14, weight: .regular))
                             .foregroundStyle(Color.secondary)
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity, alignment: .center)
                     }
-                    .padding(.top, 24)
-                    .padding(.horizontal, 24)
+                    .padding(.top, 20)
+                    .padding(.horizontal, 16)
                     
                     HStack(spacing: 12) {
                         Button {
@@ -70,19 +71,19 @@ struct OnboardingNotificationView: View {
                         }
                         
                         Button {
-                            handleAllow()
+                            handleAllow() // Right button is "Allow"
                         } label: {
                             Text(String(localized: "onboarding_notification_mock_allow", defaultValue: "Erlauben"))
-                                .font(.system(size: 17, weight: .medium))
-                                .foregroundStyle(.primary)
+                                .font(.system(size: 17, weight: .bold))
+                                .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 16)
-                                .background(colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.88))
+                                .background(Color.blue)
                                 .clipShape(Capsule())
                         }
                     }
-                    .padding(.horizontal, 24)
-                    .padding(.bottom, 24)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 20)
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 32, style: .continuous)
@@ -100,6 +101,12 @@ struct OnboardingNotificationView: View {
                             .font(.system(size: 40, weight: .bold))
                             .foregroundStyle(Color.blauPrimary)
                             .shadow(color: Color.blauPrimary.darker(), radius: 0, x: 0, y: 4)
+                            .offset(y: isBouncing ? -10 : 10)
+                            .onAppear {
+                                withAnimation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true)) {
+                                    isBouncing = true
+                                }
+                            }
                     }
                     .buttonStyle(.plain)
                     .padding(.top, -10)

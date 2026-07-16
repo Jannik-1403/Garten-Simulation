@@ -5,6 +5,7 @@ struct OnboardingScreenTimeView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @State private var showContinueButton = false
+    @State private var isBouncing = false
     
     var body: some View {
         ZStack {
@@ -40,21 +41,21 @@ struct OnboardingScreenTimeView: View {
             
             // Mock iOS Screen Time Permission Alert - Perfectly centered
             VStack(spacing: 16) {
-                VStack(spacing: 24) {
-                    VStack(spacing: 8) {
+                VStack(spacing: 16) {
+                    VStack(spacing: 4) {
                         Text(String(localized: "onboarding_screentime_mock_title", defaultValue: "\"Grovy\" möchte auf die Bildschirmzeit zugreifen"))
                             .font(.system(size: 20, weight: .bold))
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                         Text(String(localized: "onboarding_screentime_mock_desc", defaultValue: "Dies ermöglicht es der App, deine Bildschirmzeit-Daten zu verwenden, um dir bei der Konzentration zu helfen."))
-                            .font(.system(size: 16, weight: .regular))
+                            .font(.system(size: 14, weight: .regular))
                             .foregroundStyle(Color.secondary)
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    .padding(.top, 24)
-                    .padding(.horizontal, 24)
+                    .padding(.top, 20)
+                    .padding(.horizontal, 16)
                     
                     HStack(spacing: 12) {
                         Button {
@@ -73,7 +74,7 @@ struct OnboardingScreenTimeView: View {
                             handleDeny() // Right button is now "Don't Allow"
                         } label: {
                             Text(String(localized: "onboarding_screentime_mock_dont_allow", defaultValue: "Don't Allow"))
-                                .font(.system(size: 17, weight: .medium))
+                                .font(.system(size: 17, weight: .bold))
                                 .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 16)
@@ -81,8 +82,8 @@ struct OnboardingScreenTimeView: View {
                                 .clipShape(Capsule())
                         }
                     }
-                    .padding(.horizontal, 24)
-                    .padding(.bottom, 24)
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 20)
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 32, style: .continuous)
@@ -100,6 +101,12 @@ struct OnboardingScreenTimeView: View {
                             .font(.system(size: 40, weight: .bold))
                             .foregroundStyle(Color.blauPrimary)
                             .shadow(color: Color.blauPrimary.darker(), radius: 0, x: 0, y: 4)
+                            .offset(y: isBouncing ? -10 : 10)
+                            .onAppear {
+                                withAnimation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true)) {
+                                    isBouncing = true
+                                }
+                            }
                     }
                     .buttonStyle(.plain)
                     .padding(.top, -10)
