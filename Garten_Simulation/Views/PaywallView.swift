@@ -104,8 +104,8 @@ struct PaywallView: View {
                                 icon: "ProIconGardener",
                                 title: String(localized: "paywall.feature.pro_gardener.title", defaultValue: "Pro-Gärtner Vorteile"),
                                 bullets: [
-                                    String(localized: "paywall.feature.pro_gardener.bullet1", defaultValue: "Alle Pflanzen kosten dauerhaft 50% weniger Münzen."),
-                                    String(localized: "paywall.feature.pro_gardener.bullet2", defaultValue: "Erhalte 25% mehr Münzen für jeden Timer & Aufgabe."),
+                                    String(localized: "paywall.feature.pro_gardener.bullet1", defaultValue: "Alle Pflanzen kosten dauerhaft \(String("50%")) weniger Münzen."),
+                                    String(localized: "paywall.feature.pro_gardener.bullet2", defaultValue: "Erhalte \(String("25%")) mehr Münzen für jeden Timer & Aufgabe."),
                                     String(localized: "paywall.feature.pro_gardener.bullet3", defaultValue: "Schalte seltene Dekorationen viel schneller frei.")
                                 ],
                                 color: .orange
