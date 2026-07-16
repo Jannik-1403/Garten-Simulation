@@ -47,17 +47,16 @@ struct CoinPackCard: View {
                     .frame(width: 60, height: 60)
 
                 // MARK: Info
-                HStack(alignment: .firstTextBaseline, spacing: 6) {
+                VStack(alignment: .leading, spacing: 2) {
                     Text("+\(coinAmount)")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundStyle(Color.primary)
-                        .layoutPriority(1)
                     
                     Text(String(localized: "shop.item.coins_label", defaultValue: "Münzen"))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundStyle(Color.secondary)
                         .lineLimit(1)
-                        .minimumScaleFactor(0.7)
+                        .minimumScaleFactor(0.8)
                 }
 
                 Spacer(minLength: 0)

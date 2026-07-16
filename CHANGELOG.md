@@ -758,3 +758,4 @@
 - Behobener Bug: Eigene schlechte Gewohnheiten wurden im PDF-Export und in Profil-Ansichten mit technischen IDs (trash.custom_...) angezeigt. Sie werden nun korrekt aus dem GardenStore geladen.
 - Fixed layout truncation in Coin Shop
 - UI: Pflanzen-Icon komplett aus dem 90 Tage Challenge Detail-Overlay (PfadTagDetailView) entfernt, wie gewünscht.
+- Simplified CoinPackCard to only display amount and localized 'Coins' label
