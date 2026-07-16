@@ -15,3 +15,8 @@
 - Bugfix: Mock-Notification-Dialog schmaler gemacht, Pfeil unten als fetten (3D-ähnlichen) großen Pfeil (arrowshape.up.fill) angepasst. Alle Texte des Mock-Dialogs in 15 Sprachen übersetzt.
 
 - Bugfix: Pfeil im Mock-Notification-Dialog im Onboarding durch den 3D-Button ('Item3DButton') ersetzt (wie im Glücksrad), inklusive des harten 3D-Schattens.
+
+- Feature: Neues 'Screen Time' (Bildschirmzeit) Onboarding-Popup eingebaut, das exakt so aussieht wie das für Benachrichtigungen.
+- Bugfix: Im Notification-Onboarding wird das Pfeil-Icon jetzt über einen ViewBuilder sicher als 'arrow.up' gerendert.
+- Refactoring: Alte, verstreute Berechtigungsabfragen für Screen Time (in Focus, Routinen, etc.) gelöscht, da sie nun zentral im Onboarding stattfinden.
+- Feature: In den Einstellungen wird jetzt bei 'Bildschirmzeit' ein 'Ein'/'Aus' Indikator angezeigt.
