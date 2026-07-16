@@ -48,3 +48,6 @@
 - **Icon Layout Fixes**:
   - Den runden, farbigen Hintergrund (`Circle().fill(...)`) bei allen Icons in der Detailansicht ("Was man verbessern kann") komplett entfernt.
   - Die Icon-Größe wieder auf das normale `40x40` Format zurückgesetzt, da die SVG-Vektorgrafiken bei der verdoppelten Größe das Layout gesprengt haben.
+
+- **Icon Scale Fix**:
+  - Das `Goal` Icon (für die 90-Tage Challenge) wird nun mittels `.scaleEffect(2.2)` um den Faktor 2,2 vergrößert, ohne das restliche Layout oder den danebenstehenden Text zu verschieben.
