@@ -125,8 +125,7 @@ struct DataSourceSheet: View {
                                     }
                                 }
                             }
-                            .background(Color(UIColor.secondarySystemGroupedBackground))
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .scoreCardStyle()
                             .padding(.horizontal, 20)
                         }
                     }

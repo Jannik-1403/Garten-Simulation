@@ -67,15 +67,7 @@ struct DynamicAssessmentInsightsView: View {
             }
         }
         .padding(24)
-        .background(
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(.ultraThinMaterial)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(LinearGradient(colors: [color.opacity(0.6), .clear], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1.5)
-        )
-        .shadow(color: color.opacity(0.1), radius: 10, x: 0, y: 5)
+        .scoreCardStyle()
     }
     
     private func buttonText(for action: InsightAction) -> String {
