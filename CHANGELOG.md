@@ -752,3 +752,4 @@
 - UI: Hintergrund-Effekt der Pflanze im 90 Tage Challenge Overlay (PfadTagDetailView) entfernt, Icons (Meilenstein, Schloss) von der Pflanze gelöst und Farbe aller Action-Buttons an die Theme-Farbe angepasst.
 - Fixed hardcoded English texts in the Coin Shop
 - Pflanzen-Zeitleiste wurde vollständig aus der App entfernt.
+- Behobener Bug: Eigene schlechte Gewohnheiten wurden im PDF-Export und in Profil-Ansichten mit technischen IDs (trash.custom_...) angezeigt. Sie werden nun korrekt aus dem GardenStore geladen.

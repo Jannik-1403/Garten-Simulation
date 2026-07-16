@@ -76,18 +76,24 @@ struct CoinPackCard: View {
                     Text(productTitle)
                         .font(.system(size: 18, weight: .black, design: .rounded))
                         .foregroundStyle(Color.primary)
-                        .lineLimit(1)
+                        .lineLimit(2)
                         .minimumScaleFactor(0.8)
+                        .fixedSize(horizontal: false, vertical: true)
                     
-                    HStack(spacing: 4) {
+                    HStack(alignment: .top, spacing: 4) {
                         Text(productDescription)
                             .font(.system(size: 13, weight: .bold, design: .rounded))
                             .foregroundStyle(Color.secondary)
-                            .lineLimit(1)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.9)
+                            .fixedSize(horizontal: false, vertical: true)
                         
                         Text("+\(coinAmount)")
                             .font(.system(size: 14, weight: .black, design: .rounded))
                             .foregroundStyle(Color.goldPrimary)
+                            .lineLimit(1)
+                            .fixedSize(horizontal: true, vertical: false)
+                            .layoutPriority(1)
                     }
                 }
 
