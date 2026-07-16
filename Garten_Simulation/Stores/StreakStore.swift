@@ -34,33 +34,38 @@ class StreakStore: ObservableObject {
     }
     
     func checkForMissedDays() {
-        let today = calendar.startOfDay(for: Date())
-        
         let allValidDates = completedDates.union(frozenDates)
         guard let lastValidDate = allValidDates.max() else { return }
         
-        // Loop from the day after lastValidDate up to yesterday
-        guard var checkDate = calendar.date(byAdding: .day, value: 1, to: lastValidDate) else { return }
+        let now = Date()
+        let hoursSince = now.timeIntervalSince(lastValidDate) / 3600
         
-        var usedFreeze = false
-        while checkDate < today {
-            if streakFreezes > 0 {
-                // Use a freeze!
-                withAnimation(.spring()) {
-                    streakFreezes -= 1
-                    frozenDates.insert(checkDate)
-                    usedFreeze = true
-                }
-            } else {
-                // No more freezes, the streak is broken here.
-                break
-            }
-            checkDate = calendar.date(byAdding: .day, value: 1, to: checkDate)!
+        // Timezone grace period: if less than 48 hours passed, no days were missed
+        if hoursSince <= 48 {
+            return
         }
         
-        if usedFreeze {
-            showingFreezeUsed = true
-            calculateStreak(shouldAnimate: false)
+        let daysMissed = Int((hoursSince - 24) / 24)
+        
+        if daysMissed > 0 {
+            var usedFreeze = false
+            var freezeDate = lastValidDate
+            
+            for _ in 0..<daysMissed {
+                if streakFreezes > 0 {
+                    streakFreezes -= 1
+                    freezeDate = freezeDate.addingTimeInterval(24 * 3600)
+                    frozenDates.insert(freezeDate)
+                    usedFreeze = true
+                } else {
+                    break
+                }
+            }
+            
+            if usedFreeze {
+                showingFreezeUsed = true
+                calculateStreak(shouldAnimate: false)
+            }
         }
     }
     
@@ -76,25 +81,45 @@ class StreakStore: ObservableObject {
     }
     
     func calculateStreak(shouldAnimate: Bool = false) {
-        var streak = 0
-        var checkDate = calendar.startOfDay(for: Date())
-        
-        // Count backwards from today
-        while completedDates.contains(checkDate) || frozenDates.contains(checkDate) {
-            streak += 1
-            guard let yesterday = calendar.date(byAdding: .day, value: -1, to: checkDate) else { break }
-            checkDate = yesterday
+        let allDates = Array(completedDates.union(frozenDates)).sorted(by: >)
+        guard let mostRecent = allDates.first else {
+            currentStreak = 0
+            return
         }
         
-        // If today is not completed/frozen, check if yesterday was part of a streak
-        if streak == 0 {
-            if let yesterday = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date())) {
-                checkDate = yesterday
-                while completedDates.contains(checkDate) || frozenDates.contains(checkDate) {
-                    streak += 1
-                    guard let prev = calendar.date(byAdding: .day, value: -1, to: checkDate) else { break }
-                    checkDate = prev
-                }
+        let now = Date()
+        var isAlive = false
+        
+        if calendar.isDateInToday(mostRecent) || calendar.isDateInYesterday(mostRecent) {
+            isAlive = true
+        } else {
+            // Timezone fallback: if the most recent completion is within 48 hours
+            let hoursSince = now.timeIntervalSince(mostRecent) / 3600
+            if hoursSince <= 48 {
+                isAlive = true
+            }
+        }
+        
+        if !isAlive {
+            currentStreak = 0
+            lastShownStreak = 0
+            return
+        }
+        
+        var streak = 1
+        var previous = mostRecent
+        
+        for date in allDates.dropFirst() {
+            let diff = previous.timeIntervalSince(date) / 3600
+            if diff < 12 {
+                // Too close, likely a timezone shift artifact of the same day
+                continue
+            } else if diff <= 48 {
+                streak += 1
+                previous = date
+            } else {
+                // Gap too large
+                break
             }
         }
         
@@ -120,11 +145,26 @@ class StreakStore: ObservableObject {
     
     func isDateCompleted(_ date: Date) -> Bool {
         let startOfDay = calendar.startOfDay(for: date)
-        return completedDates.contains(startOfDay) || frozenDates.contains(startOfDay)
+        if completedDates.contains(startOfDay) { return true }
+        
+        for completed in completedDates {
+            if abs(completed.timeIntervalSince(startOfDay)) <= 14 * 3600 {
+                return true
+            }
+        }
+        return false
     }
     
     func isDateFrozen(_ date: Date) -> Bool {
-        frozenDates.contains(calendar.startOfDay(for: date))
+        let startOfDay = calendar.startOfDay(for: date)
+        if frozenDates.contains(startOfDay) { return true }
+        
+        for frozen in frozenDates {
+            if abs(frozen.timeIntervalSince(startOfDay)) <= 14 * 3600 {
+                return true
+            }
+        }
+        return false
     }
     
     func hasConnection(from date: Date, to otherDate: Date) -> Bool {
