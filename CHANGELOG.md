@@ -36,3 +36,7 @@
   - Design-Update für die Detailansicht ("Was man verbessern kann" & DataSourceSheet) auf das einheitliche 3D-Card-Design angepasst (scoreCardStyle).
   - Alle hartkodierten deutschen Texte aus `AssessmentResult+Detailed.swift` in `Localizable.xcstrings` ausgelagert (100% Abdeckung für alle 16 Sprachen), um Sprachfehler in der Detailansicht zu beheben.
   - Fehler im Übersetzungs-Script bei un-escapeten Anführungszeichen repariert.
+
+- **Assessment UI Bereinigung**:
+  - `DataSourceSheet` (die Detailansicht) komplett gelöscht, da sie vom Nutzer als unnötig empfunden wurde.
+  - Abstand (Padding) zur "Was man verbessern kann" Ansicht hinzugefügt, damit diese nicht mehr direkt am Bildschirmrand klebt.
