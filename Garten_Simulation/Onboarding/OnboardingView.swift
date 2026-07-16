@@ -7,7 +7,7 @@ struct OnboardingView: View {
     
     @StateObject var data = OnboardingData()
     @State private var showConfetti = false
-    private let totalSteps = 4
+    private let totalSteps = 5
     
     var body: some View {
         ZStack {
@@ -58,6 +58,10 @@ struct OnboardingView: View {
                             ))
                             
                     case 4:
+                        OnboardingNotificationView()
+                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                        
+                    case 5:
                         OnboardingLegalView()
                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         

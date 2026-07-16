@@ -127778,6 +127778,7 @@
       }
     },
     "iap_error_config": {
+      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -127785,94 +127786,94 @@
             "value": "StoreKit Konfiguration nicht gefunden oder ungültig."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "StoreKit configuration not found or invalid."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Configuración de StoreKit no encontrada o inválida."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Configuration StoreKit introuvable ou invalide."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "StoreKit कॉन्फ़िगरेशन नहीं मिला या अमान्य है।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Configurazione StoreKit non trovata o non valida."
-          }
-        },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "StoreKit構成が見つからないか無効です。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "StoreKit 구성을 찾을 수 없거나 잘못되었습니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "StoreKit configuratie niet gevonden of ongeldig."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nie znaleziono konfiguracji StoreKit lub jest ona nieprawidłowa."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Configuração do StoreKit não encontrada ou inválida."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Configuração do StoreKit não encontrada ou inválida."
+            "value": "TRANSLATE_ME_LATER"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Конфигурация StoreKit не найдена или недействительна."
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "StoreKit yapılandırması bulunamadı veya geçersiz."
+            "value": "TRANSLATE_ME_LATER"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "StoreKit 配置未找到或无效。"
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "StoreKit 配置未找到或無效。"
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
           }
         }
       }
@@ -163849,91 +163850,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "All plants cost %@ fewer coins permanently."
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Todas las plantas cuestan %@ menos monedas permanentemente."
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Toutes les plantes coûtent %@ de pièces en moins en permanence."
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सभी पौधों में हमेशा के लिए %@ कम सिक्के लगते हैं।"
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tutte le piante costano %@ in meno di monete permanentemente."
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "すべての植物が永久に%@少ないコインになります。"
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "모든 식물은 영구적으로 %@ 적은 코인입니다."
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alle planten kosten permanent %@ minder munten."
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wszystkie rośliny kosztują %@ mniej monet na zawsze."
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Todas as plantas custam %@ menos moedas permanentemente."
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Todas as plantas custam %@ menos moedas permanentemente."
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Все растения постоянно стоят на %@ монет меньше."
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tüm bitkiler kalıcı olarak %@ daha az jeton maliyetlidir."
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "所有植物永久减免 %@ 的金币。"
+            "value": "All plants cost 50% fewer coins permanently."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "所有植物永久減免 %@ 的金幣。"
+            "value": "All plants cost 50% fewer coins permanently."
           }
         }
       }
@@ -163950,91 +163951,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get %@ more coins for every timer & task."
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Consigue %@ más monedas por cada temporizador y tarea."
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Obtenez %@ de pièces en plus pour chaque minuteur et tâche."
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "हर टाइमर और काम के लिए %@ अधिक सिक्के प्राप्त करें।"
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ottieni %@ in più di monete per ogni timer e attività."
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "タイマーとタスクごとに%@多くのコインを獲得できます。"
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "모든 타이머와 작업에 대해 %@ 더 많은 코인을 얻으세요."
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Krijg %@ meer munten voor elke timer en taak."
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zdobądź %@ więcej monet za każdy licznik czasu i zadanie."
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Obtenha %@ mais moedas para cada temporizador e tarefa."
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Obtenha %@ mais moedas para cada temporizador e tarefa."
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Получите на %@ больше монет за каждый таймер и задачу."
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Her zamanlayıcı ve görev için %@ daha fazla jeton alın."
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "每次计时器和任务获得 %@ 的金币。"
+            "value": "Get 25% more coins for every timer & task."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "每次計時器和任務獲得 %@ 的金幣。"
+            "value": "Get 25% more coins for every timer & task."
           }
         }
       }
@@ -184732,12 +184733,6 @@
             "value": "Pas encore activé"
           }
         },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अभी तक सक्रिय नहीं हुआ"
-          }
-        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -184774,34 +184769,40 @@
             "value": "Ainda não ativado"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ainda não ativado"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Еще не активировано"
-          }
-        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "Henüz etkinleştirilmedi"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "尚未激活"
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "尚未啟動"
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
           }
         }
       }
@@ -184830,12 +184831,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Jour %lld sur %lld"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "दिन %lld में से %lld"
           }
         },
         "it": {
@@ -184874,34 +184869,40 @@
             "value": "Dia %lld de %lld"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dia %lld de %lld"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "День %lld из %lld"
-          }
-        },
         "tr": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld. Gün / %lld"
           }
         },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "第 %lld 天，共 %lld 天"
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "第 %lld 天，共 %lld 天"
+            "value": "TRANSLATE_ME_LATER"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TRANSLATE_ME_LATER"
           }
         }
       }
@@ -324630,606 +324631,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "例行時間：%@"
-          }
-        }
-      }
-    },
-    "onboarding_notification_bubble_title": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ich erinnere dich ans Gießen, damit es zur Gewohnheit wird!"
-          }
-        }
-      }
-    },
-    "onboarding_notification_mock_title": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\"Garten\" möchte dir Mitteilungen senden"
-          }
-        }
-      }
-    },
-    "onboarding_notification_mock_desc": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen können Hinweise, Töne und Symbolzähler sein. Diese können in den Einstellungen konfiguriert werden."
-          }
-        }
-      }
-    },
-    "onboarding_notification_mock_dont_allow": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht erlauben"
-          }
-        }
-      }
-    },
-    "onboarding_notification_mock_allow": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erlauben"
-          }
-        }
-      }
-    },
-    "onboarding_notification_continue": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weiter"
           }
         }
       }
