@@ -58,9 +58,9 @@ struct OnboardingScreenTimeView: View {
                     
                     HStack(spacing: 12) {
                         Button {
-                            handleDeny()
+                            handleAllow() // Left button is now "Continue" (Allow)
                         } label: {
-                            Text(String(localized: "onboarding_screentime_mock_dont_allow", defaultValue: "Nicht erlauben"))
+                            Text(String(localized: "onboarding_screentime_mock_allow", defaultValue: "Continue"))
                                 .font(.system(size: 17, weight: .medium))
                                 .foregroundStyle(.primary)
                                 .frame(maxWidth: .infinity)
@@ -70,14 +70,14 @@ struct OnboardingScreenTimeView: View {
                         }
                         
                         Button {
-                            handleAllow()
+                            handleDeny() // Right button is now "Don't Allow"
                         } label: {
-                            Text(String(localized: "onboarding_screentime_mock_allow", defaultValue: "Erlauben"))
+                            Text(String(localized: "onboarding_screentime_mock_dont_allow", defaultValue: "Don't Allow"))
                                 .font(.system(size: 17, weight: .medium))
-                                .foregroundStyle(.primary)
+                                .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 16)
-                                .background(colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.88))
+                                .background(Color.blue)
                                 .clipShape(Capsule())
                         }
                     }
@@ -92,7 +92,7 @@ struct OnboardingScreenTimeView: View {
                 .frame(width: 320) // Make it slightly smaller/more compact on the sides
                 
                 if !showContinueButton {
-                    // Arrow pointing up to "Erlauben"
+                    // Arrow pointing up to "Continue" (Left Button)
                     Item3DButton(
                         farbe: Color.blauPrimary,
                         sekundaerFarbe: Color.blauPrimary.darker(),
@@ -106,7 +106,7 @@ struct OnboardingScreenTimeView: View {
                             .font(.system(size: 28, weight: .bold))
                             .foregroundStyle(.white)
                     }
-                    .padding(.leading, 150) // Move to the right side (under "Erlauben")
+                    .padding(.trailing, 150) // Move to the left side (under "Continue")
                 } else {
                     Spacer().frame(height: 56) // To keep layout stable
                 }

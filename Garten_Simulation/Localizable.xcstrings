@@ -325445,37 +325445,37 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "\"Grovy\" Would Like to Access Screen Time"
+            "value": "“Grovy” Would Like to Access Screen Time"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "\"Grovy\" quiere acceder a Tiempo de Pantalla"
+            "value": "“Grovy” quiere acceder a Tiempo de uso"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "\"Grovy\" souhaite accéder à Temps d'écran"
+            "value": "« Grovy » souhaite accéder à Temps d’écran"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "\"Grovy\" desidera accedere a Tempo di Utilizzo"
+            "value": "“Grovy” vorrebbe accedere a Tempo di utilizzo"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "\"Grovy\" deseja acessar o Tempo de Uso"
+            "value": "“Grovy” Gostaria de Acessar o Tempo de Uso"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "\"Grovy\" wil toegang tot Schermtijd"
+            "value": "“Grovy” wil toegang tot Schermtijd"
           }
         },
         "ru": {
@@ -325529,7 +325529,7 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "\"Grovy\" deseja acessar o Tempo de Uso"
+            "value": "“Grovy” Gostaria de Acessar o Tempo de Uso"
           }
         }
       }
@@ -325539,43 +325539,43 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dies ermöglicht es der App, deine Bildschirmzeit-Daten zu verwenden, um dir bei der Konzentration zu helfen."
+            "value": "Wenn du „Grovy“ Zugriff auf die Bildschirmzeit gewährst, kann die App u. a. deine Aktivitätsdaten sehen, Inhalte beschränken und die Nutzung von Apps und Websites limitieren."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "This allows the app to use your Screen Time data to help you concentrate."
+            "value": "Providing “Grovy” access to Screen Time may allow it to see your activity data, restrict content, and limit the usage of apps and websites."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esto permite que la aplicación use tus datos de Tiempo de Pantalla para ayudarte a concentrarte."
+            "value": "Al proporcionar acceso a “Grovy” a Tiempo de uso, la aplicación puede ver tus datos de actividad, restringir contenido y limitar el uso de aplicaciones y sitios web."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cela permet à l'application d'utiliser vos données de Temps d'écran pour vous aider à vous concentrer."
+            "value": "Autoriser « Grovy » à accéder à Temps d’écran peut permettre à l'application de consulter vos données d'activité, restreindre le contenu et limiter l'utilisation d'applications et de sites web."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Questo consente all'app di utilizzare i tuoi dati del Tempo di Utilizzo per aiutarti a concentrarti."
+            "value": "Consentendo a “Grovy” l'accesso a Tempo di utilizzo, l'app potrebbe visualizzare i tuoi dati di attività, applicare restrizioni ai contenuti e limitare l'uso di app e siti web."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Isso permite que o aplicativo use seus dados do Tempo de Uso para ajudar você a se concentrar."
+            "value": "Fornecer acesso de “Grovy” ao Tempo de Uso pode permitir que o app veja os seus dados de atividade, restrinja conteúdo e limite o uso de apps e sites."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hiermee kan de app uw Schermtijd-gegevens gebruiken om u te helpen concentreren."
+            "value": "Als je “Grovy” toegang tot Schermtijd geeft, kan de app uw activiteitsgegevens bekijken, inhoud beperken en het gebruik van apps en websites beperken."
           }
         },
         "ru": {
@@ -325629,7 +325629,7 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Isso permite que o aplicativo use seus dados do Tempo de Uso para ajudar você a se concentrar."
+            "value": "Fornecer acesso de “Grovy” ao Tempo de Uso pode permitir que o app veja os seus dados de atividade, restrinja conteúdo e limite o uso de apps e sites."
           }
         }
       }
@@ -325675,7 +325675,7 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Niet sta toe"
+            "value": "Sta niet toe"
           }
         },
         "ru": {
@@ -325739,43 +325739,43 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erlauben"
+            "value": "Weiter"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Allow"
+            "value": "Continue"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permitir"
+            "value": "Continuar"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Autoriser"
+            "value": "Continuer"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Consenti"
+            "value": "Continua"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permitir"
+            "value": "Continuar"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sta toe"
+            "value": "Ga door"
           }
         },
         "ru": {
@@ -325829,7 +325829,7 @@
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Permitir"
+            "value": "Continuar"
           }
         }
       }
