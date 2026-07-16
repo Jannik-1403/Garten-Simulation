@@ -5,3 +5,5 @@
 - Neues Feature: Onboarding-Screen zur Benachrichtigungsabfrage hinzugefügt. (Bevor die rechtlichen Erklärungen akzeptiert werden, erscheint jetzt eine Abfrage im Apple-Stil, ob man Push-Benachrichtigungen erlauben möchte).
 
 - Bugfix: Design des Notification-Mock-Dialogs im Onboarding korrigiert (Höhe der Buttons angepasst, Name zu 'Grovy' (ohne Anführungszeichen) geändert, 'Nicht erlauben' in schwarz-weiß).
+
+- Bugfix: Mock-Notification-Dialog im Onboarding exakt in der Bildschirmmitte positioniert, sodass der echte Apple-Dialog nahtlos darüber erscheint.
