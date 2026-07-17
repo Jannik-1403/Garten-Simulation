@@ -625,30 +625,30 @@ struct PflanzeDetailSheet: View {
                                                         Divider().padding(.vertical, 4)
                                                         
                                                         HStack(spacing: 12) {
-                                                            Text(verbatim: "\(healthCurrent)")
+                                                            Text("0")
                                                                 .font(.system(size: 12, weight: .bold, design: .rounded))
                                                                 .foregroundStyle(.secondary)
                                                             
                                                             Slider(value: Binding(
-                                                                get: { Double(healthCurrent) + pflanze.customTrackerProgress },
+                                                                get: { pflanze.customTrackerProgress },
                                                                 set: { newValue in
-                                                                    let newTotal = Int(newValue)
+                                                                    let newTotal = healthCurrent + Int(newValue)
                                                                     if newTotal >= target && !pflanze.istBewässert {
                                                                         if current < target {
-                                                                            pflanze.customTrackerProgress = Double(target - healthCurrent)
+                                                                            pflanze.customTrackerProgress = Double(max(0, target - healthCurrent))
                                                                             zeigeTrackerConfirm = true
                                                                         }
                                                                     } else {
-                                                                        pflanze.customTrackerProgress = max(0, newValue - Double(healthCurrent))
+                                                                        pflanze.customTrackerProgress = newValue
                                                                     }
                                                                 }
-                                                            ), in: Double(healthCurrent)...Double(max(healthCurrent + 1, max(1, target)))) { editing in
+                                                            ), in: 0...Double(max(1, target))) { editing in
                                                                 if !editing { gardenStore.savePlants() }
                                                             }
                                                             .tint(.orange)
                                                             .disabled(pflanze.istBewässert)
                                                             
-                                                            Text(verbatim: "\(max(healthCurrent, target))")
+                                                            Text(verbatim: "\(target)")
                                                                 .font(.system(size: 12, weight: .bold, design: .rounded))
                                                                 .foregroundStyle(.secondary)
                                                         }
