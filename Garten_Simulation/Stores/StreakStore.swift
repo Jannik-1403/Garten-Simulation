@@ -26,11 +26,14 @@ class StreakStore: ObservableObject {
     @Published var showingFreezeUsed: Bool = false
     
     private let calendar = Calendar.current
+    private var isLoaded = false
     
     init() {
         load()
         checkForMissedDays()
         calculateStreak(shouldAnimate: false)
+        isLoaded = true
+        save()
     }
     
     func checkForMissedDays() {
@@ -162,6 +165,7 @@ class StreakStore: ObservableObject {
     }
 
     private func save() {
+        guard isLoaded else { return }
         let completedTimestamps = completedDates.map { $0.timeIntervalSince1970 }
         let frozenTimestamps = frozenDates.map { $0.timeIntervalSince1970 }
         

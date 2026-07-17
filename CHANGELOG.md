@@ -69,3 +69,4 @@
 - Fixed ImageRenderer alpha channel warning in share functions by setting renderer.isOpaque = true
 - Fixed missing AppIcon by using Splash_Screenicon image asset directly
 - Fixed Streak Freeze bug where purchased freezes were immediately wasted upon app restart if the current streak was already broken.
+- Updated Watering Stats list design with 3D rank buttons and neo-brutalism individual cards
