@@ -67,3 +67,4 @@
 - Behoben: Unübersetzte Lokalisierungsschlüssel für 'Ungenügende Daten' in der Wochenbericht-Analyse in allen Sprachen behoben
 - Fixed "Appicon" typo in Profile components to correctly load the AppIcon
 - Fixed ImageRenderer alpha channel warning in share functions by setting renderer.isOpaque = true
+- Fixed missing AppIcon by using Splash_Screenicon image asset directly
