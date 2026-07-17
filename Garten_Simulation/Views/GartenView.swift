@@ -6,6 +6,22 @@ struct CardPositionData: Equatable {
     let id: String
     let center: CGPoint
     let frame: CGRect
+    
+    static func == (lhs: CardPositionData, rhs: CardPositionData) -> Bool {
+        guard lhs.id == rhs.id else { return false }
+        
+        let centerDiffX = abs(lhs.center.x - rhs.center.x)
+        let centerDiffY = abs(lhs.center.y - rhs.center.y)
+        let frameDiffX = abs(lhs.frame.origin.x - rhs.frame.origin.x)
+        let frameDiffY = abs(lhs.frame.origin.y - rhs.frame.origin.y)
+        let frameDiffW = abs(lhs.frame.size.width - rhs.frame.size.width)
+        let frameDiffH = abs(lhs.frame.size.height - rhs.frame.size.height)
+        
+        let threshold: CGFloat = 1.0
+        return centerDiffX < threshold && centerDiffY < threshold &&
+               frameDiffX < threshold && frameDiffY < threshold &&
+               frameDiffW < threshold && frameDiffH < threshold
+    }
 }
 
 struct CardPositionPreferenceKey: PreferenceKey {
@@ -74,7 +90,6 @@ struct GartenView: View {
     ]
 
     var body: some View {
-        let _ = Self._printChanges()
         ZStack {
             Color.appHintergrund
                 .ignoresSafeArea()

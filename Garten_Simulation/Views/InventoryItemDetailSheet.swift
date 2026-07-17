@@ -32,7 +32,6 @@ struct InventoryItemDetailSheet: View {
     private var isTrash: Bool { item.id.hasPrefix("trash.") }
 
     var body: some View {
-        let _ = Self._printChanges()
         if isTrash {
             trashDetailBody
         } else {
