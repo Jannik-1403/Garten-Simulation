@@ -84,3 +84,7 @@
 - Feature: +/- Buttons (Stepper UI) zum Tracker hinzugefügt, damit man den Wert auch ganz leicht und exakt anpassen kann, ohne den Slider zu nutzen.
 - Fix: Plus/Minus Buttons wieder entfernt und durch einen 100% stufenlosen, ungesperrten Slider ersetzt (auf Wunsch des Nutzers).
 - Bugfix: Der manuelle Schieberegler (Tracker) bei einer Apple Health Verknüpfung funktioniert nun exakt wie der normale manuelle Tracker und ist nicht mehr gesperrt.
+- Fix: Slider ist jetzt nicht mehr gesperrt, nachdem die Pflanze bewässert wurde.
+
+- **Kalender/Streak Bugfix**:
+  - Ein schwerer Fehler wurde behoben, bei dem Pflanzen Lebenspunkte verloren oder der Streak zurückgesetzt wurde, wenn Tage nicht im Kalender (Schedule) aktiv waren (z. B. wenn Donnerstag deaktiviert war). Die App pausiert nun den Gesundheitsverlust und das Streak-Tracking an diesen freien Tagen komplett, sodass am nächsten aktiven Tag alles nahtlos weiterläuft.
