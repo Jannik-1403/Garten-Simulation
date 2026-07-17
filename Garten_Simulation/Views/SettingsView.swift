@@ -552,12 +552,14 @@ struct SettingsView: View {
                 Task {
                     await settings.refreshNotificationStatus()
                 }
+                screenTimeManager.checkAuthorizationStatus()
             }
             .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active {
                     Task {
                         await settings.refreshNotificationStatus()
                     }
+                    screenTimeManager.checkAuthorizationStatus()
                 }
             }
             .navigationBarBackButtonHidden(true)
