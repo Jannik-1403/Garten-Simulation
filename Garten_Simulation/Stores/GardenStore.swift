@@ -1564,6 +1564,17 @@ class GardenStore: ObservableObject {
                 pflanzen.removeAll { $0.id == "screen_time_tracker" }
                 savePlants()
             }
+            
+            // Fix for Screen Time buggy streak (reset to 0 once)
+            if !UserDefaults.standard.bool(forKey: "screenTimeStreakResetBugfix") {
+                if let tracker = pflanzen.first(where: { $0.habitName == "habit.bildschirmzeit" }) {
+                    tracker.streak = 0
+                    tracker.istBewässert = false
+                    tracker.wateringDates.removeAll()
+                    UserDefaults.standard.set(true, forKey: "screenTimeStreakResetBugfix")
+                    savePlants()
+                }
+            }
         } else {
             pflanzen = []
         }
