@@ -2256,7 +2256,7 @@ struct StatShareImage<Content: View>: View {
                 // Footer
                 HStack(spacing: 16) {
                     HStack(spacing: 12) {
-                        Image("AppIcon")
+                        Image("Splash_Screenicon")
                             .resizable()
                             .frame(width: 44, height: 44)
                             .cornerRadius(12)

@@ -321,7 +321,7 @@ struct ShareAchievementCard: View {
             
             // FOOTER
             HStack(spacing: 12) {
-                Image("AppIcon")
+                Image("Splash_Screenicon")
                     .resizable()
                     .frame(width: 32, height: 32)
                     .cornerRadius(8)

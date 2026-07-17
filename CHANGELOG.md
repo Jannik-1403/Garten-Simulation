@@ -65,3 +65,5 @@
 - Bugfix: Aloe Vera (Bildschirmzeit-Pflanze) ist wieder regulär im Shop verfügbar.
 - Bugfix: Einmaliger Reset des Bildschirmzeit-Streaks auf 0 für Nutzer, bei denen der Streak durch den alten Bug fälschlicherweise auf 1 gesetzt wurde.
 - Behoben: Unübersetzte Lokalisierungsschlüssel für 'Ungenügende Daten' in der Wochenbericht-Analyse in allen Sprachen behoben
+- Fixed "Appicon" typo in Profile components to correctly load the AppIcon
+- Fixed ImageRenderer alpha channel warning in share functions by setting renderer.isOpaque = true
