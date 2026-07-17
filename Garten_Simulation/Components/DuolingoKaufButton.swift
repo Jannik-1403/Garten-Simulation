@@ -4,11 +4,17 @@ struct DuolingoKaufButton: View {
     @EnvironmentObject var settings: SettingsStore
     let color: Color
     let action: () -> Void
+    @State private var isLocked = false
 
     var body: some View {
         Button(action: {
+            guard !isLocked else { return }
+            isLocked = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
                 action()
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                isLocked = false
             }
         }) {
             HStack(spacing: 8) {

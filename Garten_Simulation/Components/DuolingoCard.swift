@@ -8,6 +8,7 @@ struct DuolingoCard<Content: View>: View {
     @ViewBuilder let content: Content
     
     @State private var manualPress = false
+    @State private var isLocked = false
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
     
     init(action: @escaping () -> Void, badgeText: String? = nil, badgeColor: Color = Color.blauPrimary, tier: ErfolgTier? = nil, @ViewBuilder content: () -> Content) {
@@ -20,6 +21,8 @@ struct DuolingoCard<Content: View>: View {
     
     var body: some View {
         Button(action: {
+            guard !isLocked else { return }
+            isLocked = true
             if isHapticEnabled {
                 let impactLight = UIImpactFeedbackGenerator(style: .soft)
                 impactLight.impactOccurred(intensity: 0.75)
@@ -32,6 +35,9 @@ struct DuolingoCard<Content: View>: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                     action()
                 }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                isLocked = false
             }
         }) {
             ZStack(alignment: .topLeading) {

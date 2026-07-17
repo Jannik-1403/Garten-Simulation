@@ -8,6 +8,7 @@ struct BadHabitCard: View {
     @EnvironmentObject var gardenStore: GardenStore
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
     @State private var isVisualPressed = false
+    @State private var isLocked = false
     @State private var position: CGPoint = .zero
     @State private var wobble: CGFloat = 1.0
 
@@ -19,11 +20,16 @@ struct BadHabitCard: View {
 
     var body: some View {
         Button {
+            guard !isLocked else { return }
+            isLocked = true
             isVisualPressed = true
             FeedbackManager.shared.playTap()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
                 isVisualPressed = false
                 onTap()
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                isLocked = false
             }
         } label: {
             // MARK: - Interactive Card Content

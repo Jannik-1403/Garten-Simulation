@@ -12,6 +12,7 @@ struct PflanzenCard: View {
     @EnvironmentObject var pfadStore: GartenPfadStore
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
     @State private var isVisualPressed = false
+    @State private var isLocked = false
     @State private var pflanzenPosition: CGPoint = .zero
     @State private var plantWobble: CGFloat = 1.0
     @State private var greenGlowOpacity: Double = 0
@@ -24,6 +25,8 @@ struct PflanzenCard: View {
         ZStack {
             // MARK: - Layer 0: Visual Card Background
             Button {
+                guard !isLocked else { return }
+                isLocked = true
                 isVisualPressed = true
                 FeedbackManager.shared.playTap()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
@@ -33,6 +36,9 @@ struct PflanzenCard: View {
                     } else {
                         onTap()
                     }
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    isLocked = false
                 }
             } label: {
                 Rectangle().fill(Color.clear)
