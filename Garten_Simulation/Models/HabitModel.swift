@@ -499,13 +499,6 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         let letzteDay = calendar.startOfDay(for: letzte)
         
         let daysPassed = calendar.dateComponents([.day], from: letzteDay, to: today).day ?? 0
-        
-        // Fix for time zone changes: Check if less than 48 hours have passed in absolute time
-        let absoluteHoursPassed = Date().timeIntervalSince(letzte) / 3600
-        if daysPassed > 1 && absoluteHoursPassed <= 48 {
-            return false
-        }
-        
         return daysPassed > 1
     }
 
