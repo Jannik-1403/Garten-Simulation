@@ -315640,91 +315640,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "weekly_report.feedback.desc.insufficient"
+            "value": "Collect a little more focus time this week (min. 30 min) or check off habits (min. 3) to get an in-depth analysis and tips. Every small step counts!"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "informe_semanal.feedback.desc.insuficiente"
+            "value": "Acumula un poco más de tiempo de enfoque esta semana (mín. 30 min.) o completa hábitos (mín. 3) para obtener un análisis profundo y consejos. ¡Cada pequeño paso cuenta!"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "hebdomadaire_report.feedback.desc.insuffisant"
+            "value": "Cumule un peu plus de temps de concentration cette semaine (min. 30 min) ou coche des habitudes (min. 3) pour obtenir une analyse détaillée et des conseils. Chaque petit pas compte !"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "साप्ताहिक_रिपोर्ट.फ़ीडबैक.desc.अपर्याप्त"
+            "value": "गहन विश्लेषण और सुझाव प्राप्त करने के लिए इस सप्ताह थोड़ा और फ़ोकस समय (न्यूनतम 30 मिनट) इकट्ठा करें या आदतें पूरी करें (न्यूनतम 3)। हर छोटा कदम मायने रखता है!"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "settimanale_report.feedback.desc.insufficiente"
+            "value": "Raccogli un po' più di tempo di concentrazione questa settimana (min. 30 min) o completa delle abitudini (min. 3) per ottenere un'analisi approfondita e consigli. Ogni piccolo passo conta!"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly_report.フィードバック.記述が不十分です"
+            "value": "今週はもう少しフォーカス時間を集めるか（最低30分）、習慣をチェックして（最低3つ）、詳細な分析とヒントを受け取りましょう。どんな小さな一歩も大切です！"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly_report.feedback.desc.불충분"
+            "value": "심층 분석과 팁을 얻으려면 이번 주에 집중 시간을 조금 더 모으거나(최소 30분) 습관을 완료하세요(최소 3개). 작은 발걸음 하나하나가 중요합니다!"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "wekelijkse_report.feedback.desc.onvoldoende"
+            "value": "Verzamel deze week wat meer focustijd (min. 30 min.) of vink gewoonten af (min. 3) om een diepgaande analyse en tips te krijgen. Elke kleine stap telt!"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "raport_tygodniowy.feedback.desc.inufficient"
+            "value": "Zbierz w tym tygodniu trochę więcej czasu skupienia (min. 30 min) lub odznacz nawyki (min. 3), aby otrzymać dogłębną analizę i wskazówki. Każdy mały krok się liczy!"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "relatório_semanal.feedback.desc.insuficiente"
+            "value": "Acumule um pouco mais de tempo de foco esta semana (mín. 30 min) ou conclua hábitos (mín. 3) para obter uma análise detalhada e dicas. Cada pequeno passo conta!"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "relatório_semanal.feedback.desc.insuficiente"
+            "value": "Acumule um pouco mais de tempo de foco esta semana (mín. 30 min) ou conclua hábitos (mín. 3) para obter uma análise detalhada e dicas. Cada pequeno passo conta!"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "еженедельный_report.feedback.desc.insufficient"
+            "value": "Соберите на этой неделе еще немного времени фокуса (мин. 30 мин) или отметьте привычки (мин. 3), чтобы получить глубокий анализ и советы. Каждый маленький шаг имеет значение!"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "haftalık_report.feedback.desc.yetersiz"
+            "value": "Derinlemesine bir analiz ve ipuçları almak için bu hafta biraz daha odaklanma süresi topla (en az 30 dk.) veya alışkanlıkları tamamla (en az 3). Her küçük adım önemlidir!"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "week_report.feedback.desc.insufficient"
+            "value": "本周再多收集一些专注时间（至少 30 分钟）或完成习惯（至少 3 个），以获得深入的分析和提示。每一小步都很重要！"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "week_report.feedback.desc.insufficient"
+            "value": "本週再多收集一些專注時間（至少 30 分鐘）或完成習慣（至少 3 個），以獲得深入的分析和提示。每一小步都很重要！"
           }
         }
       }
@@ -316649,91 +316649,91 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "weekly_report.feedback.title.insufficient"
+            "value": "More Data Needed"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "informe_semanal.feedback.title.insuficiente"
+            "value": "Se necesitan más datos"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "rapport_hebdomadaire.feedback.title.insuffisant"
+            "value": "Plus de données requises"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "साप्ताहिक_रिपोर्ट.प्रतिक्रिया.शीर्षक.अपर्याप्त"
+            "value": "अधिक डेटा आवश्यक है"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "resoconto_settimanale.feedback.title.insufficiente"
+            "value": "Sono necessari più dati"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ウィークリー_レポート.フィードバック.タイトル.不十分"
+            "value": "さらにデータが必要です"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly_report.feedback.title.불충분"
+            "value": "더 많은 데이터가 필요합니다"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "wekelijks_rapport.feedback.title.onvoldoende"
+            "value": "Meer gegevens nodig"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "raport_tygodniowy.feedback.tytuł.niewystarczający"
+            "value": "Potrzeba więcej danych"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "relatório_semanal.feedback.título.insuficiente"
+            "value": "Mais dados necessários"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "relatório_semanal.feedback.título.insuficiente"
+            "value": "Mais dados necessários"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "еженедельный_report.feedback.title.insufficient"
+            "value": "Нужно больше данных"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "haftalık_report.feedback.title.yetersiz"
+            "value": "Daha fazla veri gerekiyor"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "week_report.feedback.title.insufficient"
+            "value": "需要更多数据"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "week_report.feedback.title.insufficient"
+            "value": "需要更多資料"
           }
         }
       }
