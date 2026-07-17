@@ -230,8 +230,8 @@ struct StreakView: View {
             // Day Labels
             HStack(spacing: 0) {
                 let days = localizedWeekdays
-                ForEach(days, id: \.self) { day in
-                    Text(day)
+                ForEach(days.indices, id: \.self) { index in
+                    Text(days[index])
                         .font(.system(size: 12, weight: .bold))
                         .foregroundStyle(.secondary)
                         .frame(maxWidth: .infinity)
@@ -244,8 +244,9 @@ struct StreakView: View {
             VStack(spacing: 10) {
                 ForEach(rows.indices, id: \.self) { rowIndex in
                     HStack(spacing: 10) {
-                        ForEach(rows[rowIndex], id: \.self) { date in
-                            if let date = date {
+                        let rowDays = rows[rowIndex]
+                        ForEach(rowDays.indices, id: \.self) { colIndex in
+                            if let date = rowDays[colIndex] {
                                 let isCompleted = isDateCompleted(date)
                                 let completedAmount = dateCompletedAmount(date)
                                 let isFrozen = isDateFrozen(date)

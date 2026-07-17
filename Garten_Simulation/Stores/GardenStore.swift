@@ -756,25 +756,34 @@ class GardenStore: ObservableObject {
                     badHabitExecutions[bad.id, default: []].append(execution)
                 }
             } else {
-                // Auto-water the tracker (using Aloe Vera / Bildschirmzeit)
-                if let tracker = pflanzen.first(where: { $0.habitName == "habit.bildschirmzeit" }) {
-                    tracker.istBewässert = true
-                    tracker.letzteBewaesserung = Date()
-                    tracker.wateringDates.append(Date())
-                    tracker.streak += 1
-                    if tracker.streak > 0 && tracker.streak % 7 == 0 && tracker.challengeJokers < tracker.maxChallengeJokers {
-                        tracker.challengeJokers += 1
+                // Check if Screen Time is actually configured (user has selected limits)
+                var hasScreenTimeConfigured = false
+                if let data = UserDefaults.standard.data(forKey: "screenTimeDailyLimitSelection"),
+                   let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
+                    hasScreenTimeConfigured = !selection.applicationTokens.isEmpty || !selection.categoryTokens.isEmpty || !selection.webDomainTokens.isEmpty
+                }
+                
+                // Auto-water the tracker only if user has actually set up limits
+                if hasScreenTimeConfigured {
+                    if let tracker = pflanzen.first(where: { $0.habitName == "habit.bildschirmzeit" }) {
+                        tracker.istBewässert = true
+                        tracker.letzteBewaesserung = Date()
+                        tracker.wateringDates.append(Date())
+                        tracker.streak += 1
+                        if tracker.streak > 0 && tracker.streak % 7 == 0 && tracker.challengeJokers < tracker.maxChallengeJokers {
+                            tracker.challengeJokers += 1
+                        }
+                        
+                        verteileChallengeBelohnung(fuer: tracker)
+                        
+                        tracker.currentXP += tracker.xpPerCompletion
+                        tracker.missedCycles = 0
+                        xpHinzufuegen(amount: tracker.xpPerCompletion)
+                        
+                        let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
+                        let noteText = "\(timeString) - \(String(localized: "note.auto.screentime_success", defaultValue: "Bildschirmzeit eingehalten"))"
+                        tracker.notizen.insert(noteText, at: 0)
                     }
-                    
-                    verteileChallengeBelohnung(fuer: tracker)
-                    
-                    tracker.currentXP += tracker.xpPerCompletion
-                    tracker.missedCycles = 0
-                    xpHinzufuegen(amount: tracker.xpPerCompletion)
-                    
-                    let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
-                    let noteText = "\(timeString) - \(String(localized: "note.auto.screentime_success", defaultValue: "Bildschirmzeit eingehalten"))"
-                    tracker.notizen.insert(noteText, at: 0)
                 }
             }
             // Reset the limit for the new day
