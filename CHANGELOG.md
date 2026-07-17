@@ -74,3 +74,13 @@
 - Fixed a gesture conflict where Bad Habit cards were sometimes unresponsive to taps
 - Fixed a performance issue where buying or tapping an item could trigger infinite layout loops
 - Added debounce locks to interactive cards and purchase buttons to prevent double-tap issues and UI loops
+- SettingsView: Bildschirmzeit-Integration aufgeteilt. Der Status-Indikator ist nun unter 'Allgemein' > 'Bildschirmzeit' zu finden und öffnet die iOS-Einstellungen.
+- SettingsView: Bildschirmzeit-Status aktualisiert sich nun automatisch beim Zurückkehren in die App.
+- SettingsView: Haptisches Feedback ist nun permanent aktiviert und der Schalter wurde entfernt.
+- SettingsView: App-Sprache wurde in die 'Allgemein'-Sektion verschoben und die 'Personalisierung'-Sektion wurde entfernt.
+- SettingsView: Bildschirmzeit-Status wird nun auch beim App-Start und beim Reaktivieren der App explizit abgerufen, um Anzeigefehler zu beheben.
+- Fix: Manueller Slider für Apple Health gekoppelte Tracker korrigiert, sodass er nun den korrekten Startwert und das richtige Limit anzeigt.
+- Fix: Slider wird nicht mehr gesperrt, wenn das Ziel erreicht wurde, sodass man den Wert korrigieren kann.
+- Feature: +/- Buttons (Stepper UI) zum Tracker hinzugefügt, damit man den Wert auch ganz leicht und exakt anpassen kann, ohne den Slider zu nutzen.
+- Fix: Plus/Minus Buttons wieder entfernt und durch einen 100% stufenlosen, ungesperrten Slider ersetzt (auf Wunsch des Nutzers).
+- Bugfix: Der manuelle Schieberegler (Tracker) bei einer Apple Health Verknüpfung funktioniert nun exakt wie der normale manuelle Tracker und ist nicht mehr gesperrt.
