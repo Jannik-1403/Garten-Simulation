@@ -64,3 +64,4 @@
 - Feature: Die automatische Erledigung der Bildschirmzeit-Gewohnheit wurde komplett entfernt. Zudem wurde die Bildschirmzeit-Pflanze (Aloe Vera) aus dem Shop entfernt, da sie automatisch verwaltet wird.
 - Bugfix: Aloe Vera (Bildschirmzeit-Pflanze) ist wieder regulär im Shop verfügbar.
 - Bugfix: Einmaliger Reset des Bildschirmzeit-Streaks auf 0 für Nutzer, bei denen der Streak durch den alten Bug fälschlicherweise auf 1 gesetzt wurde.
+- Behoben: Unübersetzte Lokalisierungsschlüssel für 'Ungenügende Daten' in der Wochenbericht-Analyse in allen Sprachen behoben

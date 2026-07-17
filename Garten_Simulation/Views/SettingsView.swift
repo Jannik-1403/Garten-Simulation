@@ -350,6 +350,7 @@ struct SettingsView: View {
                                     Button {
                                         let viewToRender = GrovyShareCardView(settings: settings).environmentObject(settings)
                                         let renderer = ImageRenderer(content: viewToRender)
+                                        renderer.isOpaque = true
                                         renderer.scale = UIScreen.main.scale
                                         if let image = renderer.uiImage {
                                             settings.shareApp(image: image)

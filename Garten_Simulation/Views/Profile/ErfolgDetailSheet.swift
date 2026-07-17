@@ -321,7 +321,7 @@ struct ShareAchievementCard: View {
             
             // FOOTER
             HStack(spacing: 12) {
-                Image("Appicon")
+                Image("AppIcon")
                     .resizable()
                     .frame(width: 32, height: 32)
                     .cornerRadius(8)
@@ -469,6 +469,7 @@ struct ErfolgSharePreviewSheet: View {
     private func makeImage() -> UIImage? {
         let view = ShareAchievementCard(erfolg: erfolg, theme: selectedTheme, settings: settings)
         let renderer = ImageRenderer(content: view)
+        renderer.isOpaque = true
         renderer.scale = 3.0
         return renderer.uiImage
     }

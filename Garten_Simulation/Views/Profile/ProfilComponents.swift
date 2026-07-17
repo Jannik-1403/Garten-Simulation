@@ -2256,7 +2256,7 @@ struct StatShareImage<Content: View>: View {
                 // Footer
                 HStack(spacing: 16) {
                     HStack(spacing: 12) {
-                        Image("Appicon")
+                        Image("AppIcon")
                             .resizable()
                             .frame(width: 44, height: 44)
                             .cornerRadius(12)
@@ -2860,6 +2860,7 @@ struct SharePreviewSheet: View {
                 .environmentObject(streakStore)
         )
         let renderer = ImageRenderer(content: view)
+        renderer.isOpaque = true
         renderer.scale = 3.0
         return renderer.uiImage
     }
