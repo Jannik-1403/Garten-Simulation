@@ -26,52 +26,41 @@ class StreakStore: ObservableObject {
     @Published var showingFreezeUsed: Bool = false
     
     private let calendar = Calendar.current
-    private var isLoaded = false
     
     init() {
         load()
         checkForMissedDays()
         calculateStreak(shouldAnimate: false)
-        isLoaded = true
-        save()
     }
     
     func checkForMissedDays() {
         let today = calendar.startOfDay(for: Date())
         
-        var checkDate = calendar.date(byAdding: .day, value: -1, to: today)!
-        var missingDays: [Date] = []
-        var foundAnchor = false
+        let allValidDates = completedDates.union(frozenDates)
+        guard let lastValidDate = allValidDates.max() else { return }
         
-        // We go back up to 14 days to prevent infinite loops, finding any missing days.
-        for _ in 0..<14 {
-            if isDateCompleted(checkDate) || isDateFrozen(checkDate) {
-                foundAnchor = true
-                break
-            }
-            missingDays.append(checkDate)
-            checkDate = calendar.date(byAdding: .day, value: -1, to: checkDate)!
-        }
+        // Loop from the day after lastValidDate up to yesterday
+        guard var checkDate = calendar.date(byAdding: .day, value: 1, to: lastValidDate) else { return }
         
-        // Nur Freezes anwenden, wenn wir dadurch den Streak auch wirklich retten können!
-        // (Also wenn wir einen Anker gefunden haben UND genug Freezes für die Lücke haben)
-        if foundAnchor && !missingDays.isEmpty && streakFreezes >= missingDays.count {
-            var usedFreeze = false
-            for missing in missingDays.reversed() {
+        var usedFreeze = false
+        while checkDate < today {
+            if streakFreezes > 0 {
+                // Use a freeze!
                 withAnimation(.spring()) {
                     streakFreezes -= 1
-                    frozenDates.insert(missing)
+                    frozenDates.insert(checkDate)
                     usedFreeze = true
                 }
+            } else {
+                // No more freezes, the streak is broken here.
+                break
             }
-            
-            if usedFreeze {
-                showingFreezeUsed = true
-                calculateStreak(shouldAnimate: false)
-            }
-        } else if !missingDays.isEmpty && (!foundAnchor || streakFreezes < missingDays.count) {
-            // Streak is broken. We do NOT consume freezes here.
-            // calculateStreak() will automatically set currentStreak to 0 when it runs.
+            checkDate = calendar.date(byAdding: .day, value: 1, to: checkDate)!
+        }
+        
+        if usedFreeze {
+            showingFreezeUsed = true
+            calculateStreak(shouldAnimate: false)
         }
     }
     
@@ -91,7 +80,7 @@ class StreakStore: ObservableObject {
         var checkDate = calendar.startOfDay(for: Date())
         
         // Count backwards from today
-        while isDateCompleted(checkDate) || isDateFrozen(checkDate) {
+        while completedDates.contains(checkDate) || frozenDates.contains(checkDate) {
             streak += 1
             guard let yesterday = calendar.date(byAdding: .day, value: -1, to: checkDate) else { break }
             checkDate = yesterday
@@ -101,7 +90,7 @@ class StreakStore: ObservableObject {
         if streak == 0 {
             if let yesterday = calendar.date(byAdding: .day, value: -1, to: calendar.startOfDay(for: Date())) {
                 checkDate = yesterday
-                while isDateCompleted(checkDate) || isDateFrozen(checkDate) {
+                while completedDates.contains(checkDate) || frozenDates.contains(checkDate) {
                     streak += 1
                     guard let prev = calendar.date(byAdding: .day, value: -1, to: checkDate) else { break }
                     checkDate = prev
@@ -131,26 +120,11 @@ class StreakStore: ObservableObject {
     
     func isDateCompleted(_ date: Date) -> Bool {
         let startOfDay = calendar.startOfDay(for: date)
-        if completedDates.contains(startOfDay) { return true }
-        
-        for completed in completedDates {
-            if abs(completed.timeIntervalSince(startOfDay)) <= 14 * 3600 {
-                return true
-            }
-        }
-        return false
+        return completedDates.contains(startOfDay) || frozenDates.contains(startOfDay)
     }
     
     func isDateFrozen(_ date: Date) -> Bool {
-        let startOfDay = calendar.startOfDay(for: date)
-        if frozenDates.contains(startOfDay) { return true }
-        
-        for frozen in frozenDates {
-            if abs(frozen.timeIntervalSince(startOfDay)) <= 14 * 3600 {
-                return true
-            }
-        }
-        return false
+        frozenDates.contains(calendar.startOfDay(for: date))
     }
     
     func hasConnection(from date: Date, to otherDate: Date) -> Bool {
@@ -165,7 +139,6 @@ class StreakStore: ObservableObject {
     }
 
     private func save() {
-        guard isLoaded else { return }
         let completedTimestamps = completedDates.map { $0.timeIntervalSince1970 }
         let frozenTimestamps = frozenDates.map { $0.timeIntervalSince1970 }
         
