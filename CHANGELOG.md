@@ -71,3 +71,4 @@
 - Fixed Streak Freeze bug where purchased freezes were immediately wasted upon app restart if the current streak was already broken.
 - Updated Watering Stats list design with 3D rank buttons and neo-brutalism individual cards
 - Fixed a critical bug where Streak Freezes and Best Streak were wiped out on app startup
+- Fixed a gesture conflict where Bad Habit cards were sometimes unresponsive to taps

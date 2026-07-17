@@ -51,10 +51,8 @@ struct DuolingoKaufButtonStyle: ButtonStyle {
         }
         .frame(maxWidth: .infinity)
         .animation(isPressed ? nil : .spring(response: 0.15, dampingFraction: 0.6), value: isPressed)
-        .onChange(of: isPressed) {
-            if isPressed {
-                FeedbackManager.shared.playTap()
-            }
+        .sensoryFeedback(trigger: isPressed) { oldValue, newValue in
+            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
         }
     }
 }

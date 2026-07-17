@@ -342,8 +342,15 @@ struct TourAnchorModifier: ViewModifier {
             GeometryReader { geo in
                 Color.clear
                     .onChange(of: geo.frame(in: .global)) { old, new in
-                        DispatchQueue.main.async {
-                            tourManager.anchors[step] = new
+                        guard tourManager.isActive else { return }
+                        let dx = abs(old.origin.x - new.origin.x)
+                        let dy = abs(old.origin.y - new.origin.y)
+                        let dw = abs(old.size.width - new.size.width)
+                        let dh = abs(old.size.height - new.size.height)
+                        if dx > 1 || dy > 1 || dw > 1 || dh > 1 {
+                            DispatchQueue.main.async {
+                                tourManager.anchors[step] = new
+                            }
                         }
                     }
                     .onAppear {
