@@ -76,19 +76,12 @@ struct WasserDetailView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
                                 .padding(.horizontal, 20)
                             } else {
-                                VStack(spacing: 0) {
+                                VStack(spacing: 16) {
                                     let sorted = gardenStore.pflanzenNachMlSortiert
                                     ForEach(Array(sorted.enumerated()), id: \.element.id) { index, habit in
                                         WasserRankingRow(rank: index + 1, habit: habit)
-                                        
-                                        if index < sorted.count - 1 {
-                                            Divider()
-                                                .padding(.leading, 70)
-                                        }
                                     }
                                 }
-                                .background(.regularMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                                 .padding(.horizontal, 20)
                             }
                         }
@@ -120,15 +113,22 @@ struct WasserRankingRow: View {
     
     var body: some View {
         HStack(spacing: 16) {
-            // Rang-Nummer in einem kleinen Kreis
+            // Rang-Nummer in einem kleinen Kreis (3D Button Style)
             ZStack {
+                // 3D Schatten / untere Kante
                 Circle()
-                    .fill(rank <= 3 ? rankColor : Color.secondary.opacity(0.3))
+                    .fill(rank <= 3 ? rankColor.darker() : Color.secondary.opacity(0.5))
+                    .frame(width: 32, height: 32)
+                    .offset(y: 3)
+                    
+                // Hauptfläche
+                Circle()
+                    .fill(rank <= 3 ? rankColor : Color(UIColor.systemGray5))
                     .frame(width: 32, height: 32)
                 
                 Text(verbatim: "\(rank)")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
-                    .foregroundStyle(rank <= 3 ? .white : .secondary)
+                    .foregroundStyle(rank <= 3 ? .white : .primary)
             }
             
             // Pflanzen-Symbol (SVG or SF Symbol)
@@ -170,7 +170,15 @@ struct WasserRankingRow: View {
                 .foregroundStyle(Color.blauPrimary.opacity(0.8))
         }
         .padding(.horizontal, 16)
-        .padding(.vertical, 12)
+        .padding(.vertical, 16)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .stroke(Color.primary.opacity(0.05), lineWidth: 1)
+        )
+        // Neo-Brutalismus / 3D harter Schatten
+        .shadow(color: Color.black.opacity(0.12), radius: 0, x: 0, y: 6)
     }
     
     private func formatVolume(_ ml: Double) -> String {

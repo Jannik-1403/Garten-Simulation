@@ -68,3 +68,4 @@
 - Fixed "Appicon" typo in Profile components to correctly load the AppIcon
 - Fixed ImageRenderer alpha channel warning in share functions by setting renderer.isOpaque = true
 - Fixed missing AppIcon by using Splash_Screenicon image asset directly
+- Fixed Streak Freeze bug where purchased freezes were immediately wasted upon app restart if the current streak was already broken.
