@@ -391,31 +391,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         let letzteDay = calendar.startOfDay(for: letzte)
         
         let daysPassed = calendar.dateComponents([.day], from: letzteDay, to: today).day ?? 0
-        if daysPassed <= 1 { return false }
-        
-        var uniqueDays = Set<Int>()
-        if let schedule = reminderSchedule {
-            for entry in schedule.entries where entry.isEnabled && !entry.isExpired(startDate: schedule.startDate) {
-                uniqueDays.formUnion(entry.activeWeekdays)
-            }
-        }
-        
-        if uniqueDays.isEmpty {
-            return daysPassed > 1
-        }
-        
-        // Prüfe alle Tage zwischen letzteBewaesserung und heute (exklusiv)
-        for i in 1..<daysPassed {
-            if let intermediateDate = calendar.date(byAdding: .day, value: i, to: letzteDay) {
-                let appleWeekday = calendar.component(.weekday, from: intermediateDate)
-                let ourWeekday = appleWeekday == 1 ? 7 : appleWeekday - 1
-                if uniqueDays.contains(ourWeekday) {
-                    return true // Ein geplanter Tag wurde verpasst!
-                }
-            }
-        }
-        
-        return false // Es wurden nur freie Tage (nicht im Schedule) verpasst
+        return daysPassed > 1
     }
 
 
@@ -456,47 +432,12 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     var hoursSinceThirstStarted: Double {
         let reference = letzteBewaesserung ?? gekauftAm
         let calendar = Calendar.current
-        
+        // Der Countdown beginnt erst ab der nächsten Mitternacht nach der letzten Aktion
         guard let naechsteMitternacht = calendar.nextDate(after: reference, matching: DateComponents(hour: 0, minute: 0, second: 0), matchingPolicy: .nextTime) else {
             return 0
         }
-        
-        let now = Date()
-        if now <= naechsteMitternacht {
-            return 0
-        }
-        
-        var uniqueDays = Set<Int>()
-        if let schedule = reminderSchedule {
-            for entry in schedule.entries where entry.isEnabled && !entry.isExpired(startDate: schedule.startDate) {
-                uniqueDays.formUnion(entry.activeWeekdays)
-            }
-        }
-        
-        // Wenn keine Tage geplant sind, läuft die Zeit normal weiter
-        if uniqueDays.isEmpty {
-            return now.timeIntervalSince(naechsteMitternacht) / 3600.0
-        }
-        
-        var totalHours: Double = 0
-        var currentDate = naechsteMitternacht
-        
-        while currentDate < now {
-            guard let nextMidnight = calendar.date(byAdding: .day, value: 1, to: currentDate) else { break }
-            let endOfPeriod = min(nextMidnight, now)
-            
-            let appleWeekday = calendar.component(.weekday, from: currentDate)
-            let ourWeekday = appleWeekday == 1 ? 7 : appleWeekday - 1
-            
-            // Die Zeit läuft nur an geplanten Tagen ab
-            if uniqueDays.contains(ourWeekday) {
-                totalHours += endOfPeriod.timeIntervalSince(currentDate) / 3600.0
-            }
-            
-            currentDate = nextMidnight
-        }
-        
-        return totalHours
+        let diff = Date().timeIntervalSince(naechsteMitternacht) / 3600.0
+        return max(0, diff)
     }
 
     var remainingHoursInCycle: Int {
@@ -508,7 +449,9 @@ class HabitModel: Identifiable, ObservableObject, Codable {
 
     var drynessSaturation: Double {
         if isDead { return 0.0 }
-        let totalElapsed = hoursSinceThirstStarted
+        // Optische Sättigung basiert weiterhin auf der Gesamtzeit seit dem Gießen
+        let reference = letzteBewaesserung ?? gekauftAm
+        let totalElapsed = Date().timeIntervalSince(reference) / 3600.0
         let s = 1.0 - (totalElapsed / 72.0)
         return max(0.0, min(1.0, s))
     }
