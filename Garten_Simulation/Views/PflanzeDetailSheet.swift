@@ -646,7 +646,6 @@ struct PflanzeDetailSheet: View {
                                                                 if !editing { gardenStore.savePlants() }
                                                             }
                                                             .tint(.orange)
-                                                            .disabled(pflanze.istBewässert)
                                                             
                                                             Text(verbatim: "\(target)")
                                                                 .font(.system(size: 12, weight: .bold, design: .rounded))
@@ -820,7 +819,6 @@ struct PflanzeDetailSheet: View {
                                                                     }
                                                                 }
                                                                 .tint(.orange)
-                                                                .disabled(pflanze.istBewässert)
                                                                 
                                                                 Text(verbatim: "\(target)")
                                                                     .font(.system(size: 12, weight: .bold, design: .rounded))
