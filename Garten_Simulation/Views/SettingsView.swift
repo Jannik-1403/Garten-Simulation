@@ -92,11 +92,6 @@ struct SettingsView: View {
                                             
                                             Spacer()
                                             
-                                            
-                                            Text(ScreenTimeManager.shared.isAuthorized ? String(localized: "settings.on", defaultValue: "Ein") : String(localized: "settings.off", defaultValue: "Aus"))
-                                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                .foregroundStyle(ScreenTimeManager.shared.isAuthorized ? Color.gruenPrimary : Color.red)
-                                            
                                             Image(systemName: "chevron.right")
                                                 .font(.system(size: 14, weight: .bold))
                                                 .foregroundStyle(.tertiary)
@@ -259,6 +254,37 @@ struct SettingsView: View {
                                             Text(settings.isNotificationsEnabled ? String(localized: "settings.on") : String(localized: "settings.off"))
                                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                                 .foregroundStyle(settings.isNotificationsEnabled ? Color.gruenPrimary : Color.red)
+                                                
+                                            Image(systemName: "chevron.right")
+                                                .font(.system(size: 14, weight: .bold))
+                                                .foregroundStyle(.tertiary)
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 12)
+                                        .contentShape(Rectangle())
+                                    }
+                                    .buttonStyle(.plain)
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
+                                    Button {
+                                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                                            UIApplication.shared.open(url)
+                                        }
+                                    } label: {
+                                        HStack(spacing: 12) {
+                                            Image(systemName: "hourglass")
+                                                .font(.system(size: 20, weight: .medium))
+                                                .foregroundStyle(.primary)
+                                                .frame(width: 28, height: 28)
+                                            
+                                            Text(String(localized: "screenTime.title", defaultValue: "Bildschirmzeit"))
+                                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                                            Spacer()
+                                            
+                                            Text(ScreenTimeManager.shared.isAuthorized ? String(localized: "settings.on", defaultValue: "Ein") : String(localized: "settings.off", defaultValue: "Aus"))
+                                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                .foregroundStyle(ScreenTimeManager.shared.isAuthorized ? Color.gruenPrimary : Color.red)
                                                 
                                             Image(systemName: "chevron.right")
                                                 .font(.system(size: 14, weight: .bold))
