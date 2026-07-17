@@ -58,3 +58,4 @@
 
 - 100% Übersetzungsabdeckung in allen Sprachen hergestellt.
 - Bugfix: Zeitzonenwechsel führen nicht mehr zu unfairem Streak-Verlust (Grace Period basierend auf absoluter Zeit eingeführt).
+- Bugfix: Streak-Logik erfordert nun wieder strikt das Abhaken pro Kalendertag (48h-Toleranz entfernt), berücksichtigt aber weiterhin fehlerfrei Zeitzonenwechsel.
