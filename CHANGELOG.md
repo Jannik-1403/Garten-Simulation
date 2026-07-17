@@ -88,3 +88,6 @@
 
 - **Kalender/Streak Bugfix**:
   - Ein schwerer Fehler wurde behoben, bei dem Pflanzen Lebenspunkte verloren oder der Streak zurückgesetzt wurde, wenn Tage nicht im Kalender (Schedule) aktiv waren (z. B. wenn Donnerstag deaktiviert war). Die App pausiert nun den Gesundheitsverlust und das Streak-Tracking an diesen freien Tagen komplett, sodass am nächsten aktiven Tag alles nahtlos weiterläuft.
+
+- **Revert Zeitzonen-Streak**:
+  - Die fehlerhafte "Zeitzonen"-Toleranzlogik (die den Streak in Stunden statt vollen Tagen gemessen hat) wurde komplett rückgängig gemacht, da sie das reguläre Zählen der Streak-Tage völlig durcheinandergebracht hat. Die Streak-Berechnung funktioniert jetzt wieder wie früher strikt Tag für Tag (plus der neuen Kalender-Pausen-Logik von vorhin).
