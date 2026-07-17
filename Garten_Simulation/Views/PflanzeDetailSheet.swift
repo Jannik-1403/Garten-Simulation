@@ -625,17 +625,9 @@ struct PflanzeDetailSheet: View {
                                                         Divider().padding(.vertical, 4)
                                                         
                                                         HStack(spacing: 12) {
-                                                            Button {
-                                                                if pflanze.customTrackerProgress >= 1 {
-                                                                    pflanze.customTrackerProgress -= 1
-                                                                    gardenStore.savePlants()
-                                                                }
-                                                            } label: {
-                                                                Image(systemName: "minus.circle.fill")
-                                                                    .font(.system(size: 28))
-                                                                    .foregroundStyle(pflanze.customTrackerProgress >= 1 ? .orange : Color.secondary.opacity(0.3))
-                                                            }
-                                                            .disabled(pflanze.customTrackerProgress < 1 || pflanze.istBewässert)
+                                                            Text(verbatim: "\(healthCurrent)")
+                                                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                                                .foregroundStyle(.secondary)
                                                             
                                                             Slider(value: Binding(
                                                                 get: { Double(healthCurrent) + pflanze.customTrackerProgress },
@@ -650,31 +642,15 @@ struct PflanzeDetailSheet: View {
                                                                         pflanze.customTrackerProgress = max(0, newValue - Double(healthCurrent))
                                                                     }
                                                                 }
-                                                            ), in: Double(healthCurrent)...Double(max(healthCurrent + 1, max(1, target))), step: 1) { editing in
+                                                            ), in: Double(healthCurrent)...Double(max(healthCurrent + 1, max(1, target)))) { editing in
                                                                 if !editing { gardenStore.savePlants() }
                                                             }
                                                             .tint(.orange)
                                                             .disabled(pflanze.istBewässert)
                                                             
-                                                            Button {
-                                                                let newProg = pflanze.customTrackerProgress + 1
-                                                                let newTotal = healthCurrent + Int(newProg)
-                                                                if newTotal >= target && !pflanze.istBewässert {
-                                                                    if current < target {
-                                                                        pflanze.customTrackerProgress = Double(target - healthCurrent)
-                                                                        zeigeTrackerConfirm = true
-                                                                        gardenStore.savePlants()
-                                                                    }
-                                                                } else {
-                                                                    pflanze.customTrackerProgress = newProg
-                                                                    gardenStore.savePlants()
-                                                                }
-                                                            } label: {
-                                                                Image(systemName: "plus.circle.fill")
-                                                                    .font(.system(size: 28))
-                                                                    .foregroundStyle(current < target ? .orange : Color.secondary.opacity(0.3))
-                                                            }
-                                                            .disabled(current >= target || pflanze.istBewässert)
+                                                            Text(verbatim: "\(max(healthCurrent, target))")
+                                                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                                                .foregroundStyle(.secondary)
                                                         }
                                                     }
                                                 }
@@ -822,17 +798,9 @@ struct PflanzeDetailSheet: View {
                                                             }
                                                             
                                                             HStack(spacing: 12) {
-                                                                Button {
-                                                                    if pflanze.customTrackerProgress >= 1 {
-                                                                        pflanze.customTrackerProgress -= 1
-                                                                        gardenStore.savePlants()
-                                                                    }
-                                                                } label: {
-                                                                    Image(systemName: "minus.circle.fill")
-                                                                        .font(.system(size: 28))
-                                                                        .foregroundStyle(pflanze.customTrackerProgress >= 1 ? .orange : Color.secondary.opacity(0.3))
-                                                                }
-                                                                .disabled(pflanze.customTrackerProgress < 1 || pflanze.istBewässert)
+                                                                Text("0")
+                                                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                                                    .foregroundStyle(.secondary)
                                                                 
                                                                 Slider(value: Binding(
                                                                     get: { pflanze.customTrackerProgress },
@@ -846,7 +814,7 @@ struct PflanzeDetailSheet: View {
                                                                             pflanze.customTrackerProgress = newValue
                                                                         }
                                                                     }
-                                                                ), in: 0...Double(max(1, target)), step: 1) { editing in
+                                                                ), in: 0...Double(max(1, target))) { editing in
                                                                     if !editing {
                                                                         gardenStore.savePlants()
                                                                     }
@@ -854,24 +822,9 @@ struct PflanzeDetailSheet: View {
                                                                 .tint(.orange)
                                                                 .disabled(pflanze.istBewässert)
                                                                 
-                                                                Button {
-                                                                    let newProg = pflanze.customTrackerProgress + 1
-                                                                    if Int(newProg) >= target && !pflanze.istBewässert {
-                                                                        if Int(pflanze.customTrackerProgress) < target {
-                                                                            pflanze.customTrackerProgress = Double(target)
-                                                                            zeigeTrackerConfirm = true
-                                                                            gardenStore.savePlants()
-                                                                        }
-                                                                    } else {
-                                                                        pflanze.customTrackerProgress = newProg
-                                                                        gardenStore.savePlants()
-                                                                    }
-                                                                } label: {
-                                                                    Image(systemName: "plus.circle.fill")
-                                                                        .font(.system(size: 28))
-                                                                        .foregroundStyle(Int(pflanze.customTrackerProgress) < target ? .orange : Color.secondary.opacity(0.3))
-                                                                }
-                                                                .disabled(Int(pflanze.customTrackerProgress) >= target || pflanze.istBewässert)
+                                                                Text(verbatim: "\(target)")
+                                                                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                                                                    .foregroundStyle(.secondary)
                                                             }
                                                         }
                                                     }
