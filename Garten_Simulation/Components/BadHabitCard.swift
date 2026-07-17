@@ -18,31 +18,15 @@ struct BadHabitCard: View {
     }
 
     var body: some View {
-        ZStack {
-            // MARK: - Layer 0: Visual Card Background
-            Button {
-                isVisualPressed = true
-                FeedbackManager.shared.playTap()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                    isVisualPressed = false
-                    onTap()
-                }
-            } label: {
-                Rectangle().fill(Color.clear)
-                    .frame(maxWidth: .infinity)
-                    .frame(minHeight: 120)
+        Button {
+            isVisualPressed = true
+            FeedbackManager.shared.playTap()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                isVisualPressed = false
+                onTap()
             }
-            .buttonStyle(PflanzenCardHorizontalButtonStyle(isVisualPressed: isVisualPressed, isDead: false))
-            .background(
-                GeometryReader { proxy in
-                    Color.clear
-                        .preference(key: BadHabitPositionPreferenceKey.self, value: [
-                            CardPositionData(id: deko.id, center: proxy.frame(in: .global).center, frame: proxy.frame(in: .global))
-                        ])
-                }
-            )
-
-            // MARK: - Layer 1: Interactive Card Content
+        } label: {
+            // MARK: - Interactive Card Content
             HStack(spacing: 24) {
                 
                 // MARK: Left Column - 3D Button
@@ -57,7 +41,7 @@ struct BadHabitCard: View {
                                 farbe: .red,
                                 sekundaerFarbe: .red.darker(by: 0.2),
                                 groesse: 85 * scale,
-                                aktion: onTap
+                                aktion: nil // NO nested button action
                             ) {
                                 Group {
                                     if UIImage(named: deko.sfSymbol) != nil {
@@ -74,6 +58,7 @@ struct BadHabitCard: View {
                                     }
                                 }
                             }
+                            .allowsHitTesting(false)
 
                             // Badge Zähler
                             if executionsToday > 0 {
@@ -130,8 +115,19 @@ struct BadHabitCard: View {
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 16)
-            .allowsHitTesting(true)
+            .frame(maxWidth: .infinity)
+            .frame(minHeight: 120)
+            .contentShape(Rectangle())
         }
+        .buttonStyle(PflanzenCardHorizontalButtonStyle(isVisualPressed: isVisualPressed, isDead: false))
+        .background(
+            GeometryReader { proxy in
+                Color.clear
+                    .preference(key: BadHabitPositionPreferenceKey.self, value: [
+                        CardPositionData(id: deko.id, center: proxy.frame(in: .global).center, frame: proxy.frame(in: .global))
+                    ])
+            }
+        )
     }
 
     private func calculateBadHabitStreak() -> Int {

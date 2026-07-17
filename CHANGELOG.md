@@ -70,3 +70,4 @@
 - Fixed missing AppIcon by using Splash_Screenicon image asset directly
 - Fixed Streak Freeze bug where purchased freezes were immediately wasted upon app restart if the current streak was already broken.
 - Updated Watering Stats list design with 3D rank buttons and neo-brutalism individual cards
+- Fixed a critical bug where Streak Freezes and Best Streak were wiped out on app startup
