@@ -133,8 +133,6 @@ struct UnifiedShopView: View {
     
     var gefiltertePflanzen: [Plant] {
         var base = pflanzen
-        // Hide Screen Time plant from shop as it's added automatically
-        base = base.filter { $0.id != "plant.aloe_vera" }
         if let kat = selectedHabitCategory {
             base = base.filter { $0.habitCategory == kat }
         }
