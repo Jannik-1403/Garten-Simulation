@@ -646,7 +646,7 @@ struct PflanzeDetailSheet: View {
                                                                 if !editing { gardenStore.savePlants() }
                                                             }
                                                             .tint(.orange)
-                                                            .disabled(current >= target || pflanze.istBewässert)
+                                                            .disabled(pflanze.istBewässert)
                                                             
                                                             Text(verbatim: "\(max(healthCurrent, target))")
                                                                 .font(.system(size: 12, weight: .bold, design: .rounded))
@@ -820,7 +820,7 @@ struct PflanzeDetailSheet: View {
                                                                     }
                                                                 }
                                                                 .tint(.orange)
-                                                                .disabled(Int(pflanze.customTrackerProgress) >= target || pflanze.istBewässert)
+                                                                .disabled(pflanze.istBewässert)
                                                                 
                                                                 Text(verbatim: "\(target)")
                                                                     .font(.system(size: 12, weight: .bold, design: .rounded))
