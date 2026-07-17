@@ -84,7 +84,8 @@ class SettingsStore: ObservableObject {
 
 
     init() {
-        self.isHapticEnabled = UserDefaults.standard.object(forKey: "isHapticEnabled") as? Bool ?? true
+        self.isHapticEnabled = true
+        UserDefaults.standard.set(true, forKey: "isHapticEnabled")
         self.isNotificationsEnabled = UserDefaults.standard.object(forKey: "isNotificationsEnabled") as? Bool ?? true
         self.isAnalyticsEnabled = UserDefaults.standard.object(forKey: "isAnalyticsEnabled") as? Bool ?? true
         self.showHabitInsteadOfName = UserDefaults.standard.object(forKey: "showHabitInsteadOfName") as? Bool ?? true

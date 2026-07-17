@@ -17,6 +17,7 @@ struct SettingsView: View {
     @EnvironmentObject var assessmentStore: AssessmentStore
     @EnvironmentObject var iapStore: IAPStore
     @StateObject private var healthManager = HealthManager.shared
+    @StateObject private var screenTimeManager = ScreenTimeManager.shared
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) var scenePhase
@@ -196,46 +197,42 @@ struct SettingsView: View {
                                 }
                             }
 
-                            settingsSection(title: String(localized: "settings.section.personalization")) {
-                                Button {
-                                    if let url = URL(string: UIApplication.openSettingsURLString) {
-                                        UIApplication.shared.open(url)
-                                    }
-                                } label: {
-                                    HStack(spacing: 12) {
-                                        Image(systemName: "globe")
-                                            .font(.system(size: 20, weight: .medium))
-                                            .foregroundStyle(.primary)
-                                            .frame(width: 28, height: 28)
-                                        
-                                        Text(String(localized: "settings.language", defaultValue: "App-Sprache"))
-                                            .font(.system(size: 16, weight: .medium, design: .rounded))
-                                            .foregroundStyle(.primary)
-                                        
-                                        Spacer()
-                                        
-                                        let langCode = Bundle.main.preferredLocalizations.first ?? "de"
-                                        Text(Locale(identifier: langCode).localizedString(forIdentifier: langCode) ?? "Deutsch")
-                                            .font(.system(size: 16, weight: .bold, design: .rounded))
-                                            .foregroundStyle(.secondary)
-                                        
-                                        Image(systemName: "chevron.right")
-                                            .font(.system(size: 14, weight: .bold))
-                                            .foregroundStyle(.tertiary)
-                                    }
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 12)
-                                    .contentShape(Rectangle())
-                                }
-                                .buttonStyle(.plain)
-                            }
-
-
-
                             settingsSection(title: String(localized: "settings.section.general")) {
                                 VStack(spacing: 0) {
-                                    settingToggle(title: String(localized: "settings.haptic"), icon: "hand.tap.fill", color: .blauPrimary, isOn: $settings.isHapticEnabled)
+                                    Button {
+                                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                                            UIApplication.shared.open(url)
+                                        }
+                                    } label: {
+                                        HStack(spacing: 12) {
+                                            Image(systemName: "globe")
+                                                .font(.system(size: 20, weight: .medium))
+                                                .foregroundStyle(.primary)
+                                                .frame(width: 28, height: 28)
+                                            
+                                            Text(String(localized: "settings.language", defaultValue: "App-Sprache"))
+                                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                                                .foregroundStyle(.primary)
+                                            
+                                            Spacer()
+                                            
+                                            let langCode = Bundle.main.preferredLocalizations.first ?? "de"
+                                            Text(Locale(identifier: langCode).localizedString(forIdentifier: langCode) ?? "Deutsch")
+                                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                .foregroundStyle(.secondary)
+                                            
+                                            Image(systemName: "chevron.right")
+                                                .font(.system(size: 14, weight: .bold))
+                                                .foregroundStyle(.tertiary)
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 12)
+                                        .contentShape(Rectangle())
+                                    }
+                                    .buttonStyle(.plain)
+                                    
                                     Divider().padding(.leading, 44)
+                                    
                                     Button {
                                         if let url = URL(string: UIApplication.openSettingsURLString) {
                                             UIApplication.shared.open(url)
@@ -282,9 +279,9 @@ struct SettingsView: View {
                                                 .font(.system(size: 16, weight: .medium, design: .rounded))
                                             Spacer()
                                             
-                                            Text(ScreenTimeManager.shared.isAuthorized ? String(localized: "settings.on", defaultValue: "Ein") : String(localized: "settings.off", defaultValue: "Aus"))
+                                            Text(screenTimeManager.isAuthorized ? String(localized: "settings.on", defaultValue: "Ein") : String(localized: "settings.off", defaultValue: "Aus"))
                                                 .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                .foregroundStyle(ScreenTimeManager.shared.isAuthorized ? Color.gruenPrimary : Color.red)
+                                                .foregroundStyle(screenTimeManager.isAuthorized ? Color.gruenPrimary : Color.red)
                                                 
                                             Image(systemName: "chevron.right")
                                                 .font(.system(size: 14, weight: .bold))
