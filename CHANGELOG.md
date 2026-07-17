@@ -61,3 +61,4 @@
 - Bugfix: Streak-Logik erfordert nun wieder strikt das Abhaken pro Kalendertag (48h-Toleranz entfernt), berücksichtigt aber weiterhin fehlerfrei Zeitzonenwechsel.
 - Bugfix: Bildschirmzeit-Gewohnheit wird nun nicht mehr automatisch gegossen, wenn noch keine Limits in den Einstellungen definiert wurden.
 - Bugfix: Mehrere SwiftUI ForEach-Warnungen in der StreakView behoben, die durch nicht-eindeutige IDs entstanden sind.
+- Feature: Die automatische Erledigung der Bildschirmzeit-Gewohnheit wurde komplett entfernt. Zudem wurde die Bildschirmzeit-Pflanze (Aloe Vera) aus dem Shop entfernt, da sie automatisch verwaltet wird.
