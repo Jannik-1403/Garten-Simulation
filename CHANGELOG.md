@@ -59,3 +59,5 @@
 - 100% Übersetzungsabdeckung in allen Sprachen hergestellt.
 - Bugfix: Zeitzonenwechsel führen nicht mehr zu unfairem Streak-Verlust (Grace Period basierend auf absoluter Zeit eingeführt).
 - Bugfix: Streak-Logik erfordert nun wieder strikt das Abhaken pro Kalendertag (48h-Toleranz entfernt), berücksichtigt aber weiterhin fehlerfrei Zeitzonenwechsel.
+- Bugfix: Bildschirmzeit-Gewohnheit wird nun nicht mehr automatisch gegossen, wenn noch keine Limits in den Einstellungen definiert wurden.
+- Bugfix: Mehrere SwiftUI ForEach-Warnungen in der StreakView behoben, die durch nicht-eindeutige IDs entstanden sind.
