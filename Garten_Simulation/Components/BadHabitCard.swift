@@ -19,6 +19,7 @@ struct BadHabitCard: View {
     }
 
     var body: some View {
+        let _ = Self._printChanges()
         Button {
             guard !isLocked else { return }
             isLocked = true

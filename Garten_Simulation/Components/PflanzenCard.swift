@@ -322,7 +322,8 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
         .scaleEffect(isPressed ? 0.98 : 1.0)
         .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
         .sensoryFeedback(trigger: isPressed) { _, newValue in
-            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
+            print("DEBUG ONCHANGE: PflanzenCardHorizontalButtonStyle isPressed changed to \(newValue)")
+            return (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
         }
     }
 }
@@ -360,7 +361,8 @@ struct PflanzenCardButtonStyle: ButtonStyle {
         .scaleEffect(isPressed ? 0.98 : 1.0)
         .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
         .sensoryFeedback(trigger: isPressed) { _, newValue in
-            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
+            print("DEBUG ONCHANGE: PflanzenCardButtonStyle isPressed changed to \(newValue)")
+            return (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
         }
     }
 }

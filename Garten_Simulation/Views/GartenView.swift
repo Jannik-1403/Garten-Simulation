@@ -74,6 +74,7 @@ struct GartenView: View {
     ]
 
     var body: some View {
+        let _ = Self._printChanges()
         ZStack {
             Color.appHintergrund
                 .ignoresSafeArea()

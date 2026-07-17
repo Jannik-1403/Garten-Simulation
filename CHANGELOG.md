@@ -73,3 +73,4 @@
 - Fixed a critical bug where Streak Freezes and Best Streak were wiped out on app startup
 - Fixed a gesture conflict where Bad Habit cards were sometimes unresponsive to taps
 - Fixed a performance issue where buying or tapping an item could trigger infinite layout loops
+- Added debounce locks to interactive cards and purchase buttons to prevent double-tap issues and UI loops
