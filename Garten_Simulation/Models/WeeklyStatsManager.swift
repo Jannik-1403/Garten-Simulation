@@ -195,6 +195,9 @@ final class WeeklyStatsManager {
         let title: String
         let desc: String
         
+        // 5. Generate Feedback Title and Description
+        let hasEnoughData = currentFocusMinutes >= 30 || currentHabitsCount >= 3
+        
         if !hasEnoughData {
             title = String(localized: "smart.weekly.title.insufficient", defaultValue: "Mehr Daten benötigt")
             desc = String(localized: "smart.weekly.desc.insufficient", defaultValue: "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!")

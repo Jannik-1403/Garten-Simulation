@@ -91,3 +91,9 @@
 
 - **Revert Zeitzonen-Streak**:
   - Die fehlerhafte "Zeitzonen"-Toleranzlogik (die den Streak in Stunden statt vollen Tagen gemessen hat) wurde komplett rückgängig gemacht, da sie das reguläre Zählen der Streak-Tage völlig durcheinandergebracht hat. Die Streak-Berechnung funktioniert jetzt wieder wie früher strikt Tag für Tag (plus der neuen Kalender-Pausen-Logik von vorhin).
+
+- **Feature**: Intelligente Gewohnheitsanalyse mit Standardabweichung (Consistency Score) & Prioritäts-Gewichtung (Streak & Seltenheit). Neue kontextbasierte Texte für Szenarien (Variable Leistung, Stabiler Aufbau, Der Profi) wurden hinzugefügt.
+
+- **Fix**: UI-Layout im Wochenbericht korrigiert, damit der Text vollständig lesbar ist (TabView entfernt). Intelligente Standardabweichung auch für einzelne Gewohnheiten im Habit Verlauf hinzugefügt.
+
+- **Fix**: Analyse-Logik (Standardabweichung) wurde korrigiert: Sie kombiniert nun sowohl Fokuszeit als auch Gewohnheiten und verwendet völlig neue, stringente Textblöcke ohne veraltete Text-Bausteine aus vorherigen Versionen.
