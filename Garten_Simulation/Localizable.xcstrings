@@ -345326,6 +345326,814 @@
           }
         }
       }
+    },
+    "smart.weekly.title.insufficient": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More Data Needed"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr Daten benötigt"
+          }
+        }
+      }
+    },
+    "smart.weekly.desc.insufficient": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collect a bit more focus time or complete habits this week to get a real analysis of your rhythm. Every day counts!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+          }
+        }
+      }
+    },
+    "smart.weekly.title.fluctuating": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strong Fluctuations"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        }
+      }
+    },
+    "smart.weekly.desc.fluctuating": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your rhythm was very unstable this week. Some days you were extremely productive, on others everything collapsed. Try not to want everything at once next week, but rather do a little bit every day."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+          }
+        }
+      }
+    },
+    "smart.weekly.title.stable_low": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stable Foundation"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stabiles Fundament"
+          }
+        }
+      }
+    },
+    "smart.weekly.desc.stable_low": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The absolute amount of completed tasks is still low, but your consistency is excellent. You avoid extreme fluctuations, which is the perfect breeding ground for long-term routines. Build gently on it next week."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+          }
+        }
+      }
+    },
+    "smart.weekly.title.consistent": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iron Consistency"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Konstanz"
+          }
+        }
+      }
+    },
+    "smart.weekly.desc.consistent": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impressive! You not only show strong volume, but also keep your performance extremely stable over the days. There are hardly any fluctuations in your routine - you have mastered your system."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+          }
+        }
+      }
     }
   },
   "version": "1.1"
