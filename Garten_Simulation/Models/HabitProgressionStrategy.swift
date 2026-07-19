@@ -20,7 +20,7 @@ class StrengthProgressionStrategy: HabitProgressionStrategy {
         let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
         let cycleDay = ((dayNum - 1) % 7) + 1
         
-        let isBeginner = difficulty.lowercased() == "anfänger"
+        let isBeginner = difficulty.lowercased() == "anfaenger"
         let isIntermediate = difficulty.lowercased() == "fortgeschritten"
         let isExpert = difficulty.lowercased() == "experte" || (!isBeginner && !isIntermediate)
         
@@ -181,7 +181,7 @@ class RunningProgressionStrategy: HabitProgressionStrategy {
         let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
         let cycleDay = ((dayNum - 1) % 7) + 1
         
-        let isBeginner = difficulty.lowercased() == "anfänger"
+        let isBeginner = difficulty.lowercased() == "anfaenger"
         let isIntermediate = difficulty.lowercased() == "fortgeschritten"
         
         // Base distance calculation (phase multiplier)
@@ -248,7 +248,7 @@ class StretchingProgressionStrategy: HabitProgressionStrategy {
         let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
         let cycleDay = ((dayNum - 1) % 7) + 1
         
-        let isBeginner = difficulty.lowercased() == "anfänger"
+        let isBeginner = difficulty.lowercased() == "anfaenger"
         let isIntermediate = difficulty.lowercased() == "fortgeschritten"
         
         let baseMin = isBeginner ? 5 : (isIntermediate ? 10 : 15)
@@ -308,7 +308,7 @@ class MeditationProgressionStrategy: HabitProgressionStrategy {
         let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
         let cycleDay = ((dayNum - 1) % 7) + 1
         
-        let isBeginner = difficulty.lowercased() == "anfänger"
+        let isBeginner = difficulty.lowercased() == "anfaenger"
         let isIntermediate = difficulty.lowercased() == "fortgeschritten"
         
         let baseMin = isBeginner ? 5 : (isIntermediate ? 10 : 20)
@@ -368,7 +368,7 @@ class GratitudeProgressionStrategy: HabitProgressionStrategy {
         let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
         let cycleDay = ((dayNum - 1) % 7) + 1
         
-        let isBeginner = difficulty.lowercased() == "anfänger"
+        let isBeginner = difficulty.lowercased() == "anfaenger"
         let isIntermediate = difficulty.lowercased() == "fortgeschritten"
         
         let targetCount = isBeginner ? 3 : (isIntermediate ? 5 : 7)
@@ -427,7 +427,7 @@ class BreathworkProgressionStrategy: HabitProgressionStrategy {
         let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
         let cycleDay = ((dayNum - 1) % 7) + 1
         
-        let isBeginner = difficulty.lowercased() == "anfänger"
+        let isBeginner = difficulty.lowercased() == "anfaenger"
         let isIntermediate = difficulty.lowercased() == "fortgeschritten"
         
         let baseMin = isBeginner ? 3 : (isIntermediate ? 6 : 10)
@@ -488,7 +488,7 @@ class WaterProgressionStrategy: HabitProgressionStrategy {
         let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
         let cycleDay = ((dayNum - 1) % 7) + 1
         
-        let isBeginner = difficulty.lowercased() == "anfänger"
+        let isBeginner = difficulty.lowercased() == "anfaenger"
         let isIntermediate = difficulty.lowercased() == "fortgeschritten"
         
         let baseValue = isBeginner ? 1.5 : (isIntermediate ? 2.0 : 3.0)
@@ -549,7 +549,7 @@ class NutritionProgressionStrategy: HabitProgressionStrategy {
         let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
         let cycleDay = ((dayNum - 1) % 7) + 1
         
-        let isBeginner = difficulty.lowercased() == "anfänger"
+        let isBeginner = difficulty.lowercased() == "anfaenger"
         let isIntermediate = difficulty.lowercased() == "fortgeschritten"
         
         let targetCount = isBeginner ? 1 : (isIntermediate ? 3 : 5)
@@ -608,7 +608,7 @@ class ColdShowerProgressionStrategy: HabitProgressionStrategy {
         let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
         let cycleDay = ((dayNum - 1) % 7) + 1
         
-        let isBeginner = difficulty.lowercased() == "anfänger"
+        let isBeginner = difficulty.lowercased() == "anfaenger"
         let isIntermediate = difficulty.lowercased() == "fortgeschritten"
         
         let baseSec = isBeginner ? 10 : (isIntermediate ? 30 : 60)
@@ -830,7 +830,7 @@ class DeepWorkProgressionStrategy: HabitProgressionStrategy {
         let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
         let cycleDay = ((dayNum - 1) % 7) + 1
         
-        let isBeginner = difficulty.lowercased() == "anfänger"
+        let isBeginner = difficulty.lowercased() == "anfaenger"
         let isIntermediate = difficulty.lowercased() == "fortgeschritten"
         
         let baseMin = isBeginner ? 30 : (isIntermediate ? 60 : 90)
@@ -890,7 +890,7 @@ class CleaningProgressionStrategy: HabitProgressionStrategy {
         let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
         let cycleDay = ((dayNum - 1) % 7) + 1
         
-        let isBeginner = difficulty.lowercased() == "anfänger"
+        let isBeginner = difficulty.lowercased() == "anfaenger"
         let isIntermediate = difficulty.lowercased() == "fortgeschritten"
         
         let baseMin = isBeginner ? 5 : (isIntermediate ? 15 : 30)
@@ -950,7 +950,7 @@ class SavingProgressionStrategy: HabitProgressionStrategy {
         let phaseNumber = min(13, max(1, ((dayNum - 1) / 7) + 1))
         let cycleDay = ((dayNum - 1) % 7) + 1
         
-        let isBeginner = difficulty.lowercased() == "anfänger"
+        let isBeginner = difficulty.lowercased() == "anfaenger"
         let isIntermediate = difficulty.lowercased() == "fortgeschritten"
         
         let baseEur = isBeginner ? 1.0 : (isIntermediate ? 5.0 : 10.0)

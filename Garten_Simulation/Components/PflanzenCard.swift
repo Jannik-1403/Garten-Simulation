@@ -385,6 +385,7 @@ struct PowerUpBadge: View {
 
 struct RevivePlantSheet: View {
     @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var shopStore: ShopStore
     @EnvironmentObject var settings: SettingsStore
     @Environment(\.dismiss) var dismiss
     let pflanze: HabitModel
@@ -449,6 +450,7 @@ struct RevivePlantSheet: View {
 
                 Button(role: .destructive) {
                     gardenStore.loeschePflanze(pflanze: pflanze)
+                    shopStore.removeFromPurchased(id: pflanze.plantID)
                     dismiss()
                 } label: {
                     Text(String(localized: "button.delete"))

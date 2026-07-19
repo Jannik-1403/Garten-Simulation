@@ -226,28 +226,38 @@ struct ShopItemDetailView: View {
                                     // Verkaufs-Button (Minimalismus-Mechanik)
                                     let sellPrice = Int(Double(payload.price) * 0.5)
                                     
-                                    Button {
-                                        // Feedback
-                                        FeedbackManager.shared.playTap()
-                                        
-                                        // Aktion
-                                        shopStore.sell(id: payload.id, price: payload.price, title: NSLocalizedString(payload.titleKey, comment: ""))
-                                        
-                                        if payload.itemType == .decoration {
-                                            gardenStore.itemEntfernen(id: payload.id)
-                                        }
-                                    } label: {
-                                        VStack(spacing: 2) {
-                                            Text(String(localized: "shop.item.sell"))
-                                                .font(.system(size: 14, weight: .bold))
-                                            HStack(spacing: 4) {
-                                                Image("coin")
-                                                    .resizable().scaledToFit().frame(width: 14, height: 14)
-                                                Text(verbatim: "+\(sellPrice)")
-                                                    .font(.system(size: 14, weight: .black))
+                                    let associatedPlant = gardenStore.pflanzen.first(where: { $0.plantID == payload.id })
+                                    let isDeadPlant = associatedPlant?.isDead == true
+                                    
+                                    if !isDeadPlant {
+                                        Button {
+                                            // Feedback
+                                            FeedbackManager.shared.playTap()
+                                            
+                                            // Aktion
+                                            shopStore.sell(id: payload.id, price: payload.price, title: NSLocalizedString(payload.titleKey, comment: ""))
+                                            
+                                            if payload.itemType == .decoration {
+                                                gardenStore.itemEntfernen(id: payload.id)
+                                            } else if payload.itemType == .plant {
+                                                if let plantToRemove = associatedPlant {
+                                                    gardenStore.loeschePflanze(pflanze: plantToRemove)
+                                                }
                                             }
+                                        } label: {
+                                            VStack(spacing: 2) {
+                                                Text(String(localized: "shop.item.sell"))
+                                                    .font(.system(size: 14, weight: .bold))
+                                                HStack(spacing: 4) {
+                                                    Image("coin")
+                                                        .resizable().scaledToFit().frame(width: 14, height: 14)
+                                                    Text(verbatim: "+\(sellPrice)")
+                                                        .font(.system(size: 14, weight: .black))
+                                                }
+                                            }
+                                            .foregroundStyle(.red)
                                         }
-                                        .foregroundStyle(.red)
+                                    }
                                         .frame(maxWidth: .infinity)
                                         .padding(.vertical, 12)
                                         .background(Capsule().stroke(Color.red.opacity(0.3), lineWidth: 2))
