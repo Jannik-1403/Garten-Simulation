@@ -229,7 +229,7 @@ final class WeeklyStatsManager {
             for plant in gardenStore.pflanzen {
                 for date in plant.wateringDates where date >= monday && date <= sundayEnd {
                     let hour = calendar.component(.hour, from: date)
-                    if hour >= 19 {
+                    if hour >= 21 {
                         lateHabitsCount += 1
                     }
                 }

@@ -97,3 +97,5 @@
 - **Fix**: UI-Layout im Wochenbericht korrigiert, damit der Text vollständig lesbar ist (TabView entfernt). Intelligente Standardabweichung auch für einzelne Gewohnheiten im Habit Verlauf hinzugefügt.
 
 - **Fix**: Analyse-Logik (Standardabweichung) wurde korrigiert: Sie kombiniert nun sowohl Fokuszeit als auch Gewohnheiten und verwendet völlig neue, stringente Textblöcke ohne veraltete Text-Bausteine aus vorherigen Versionen.
+
+- **Feature**: Wochenbericht-Analyse komplett durch dynamischen Tipp-Generator ersetzt (Scannt nach Lücken, Uhrzeiten und spezifischen Habits wie 'Früh aufstehen').
