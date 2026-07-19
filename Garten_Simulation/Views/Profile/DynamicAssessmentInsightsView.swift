@@ -73,10 +73,18 @@ struct DynamicAssessmentInsightsView: View {
         .fullScreenCover(item: $genericFocusHabit) { habit in
             GenericFocusSessionContainer(habit: habit)
         }
+        .sheet(item: $selectedPlant) { plant in
+            PflanzeDetailSheet(pflanze: plant, wetterEvent: .normal)
+        }
+        .sheet(isPresented: $showShop) {
+            UnifiedShopView()
+        }
     }
     
     @State private var showGenericFocusSetup = false
     @State private var genericFocusHabit: HabitModel? = nil
+    @State private var selectedPlant: HabitModel? = nil
+    @State private var showShop = false
     
     private func buttonText(for action: InsightAction) -> String {
         switch action {
@@ -98,8 +106,12 @@ struct DynamicAssessmentInsightsView: View {
         switch action {
         case .startFocusSession:
             showGenericFocusSetup = true
-        default:
-            break
+        case .openPlant(let plantID), .setReminder(let plantID):
+            if let plant = gardenStore.pflanzen.first(where: { $0.plantID == plantID }) {
+                selectedPlant = plant
+            }
+        case .addHabit:
+            showShop = true
         }
         
         // Navigation or handling logic will depend on how Assessment is presented.
