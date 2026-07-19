@@ -61,6 +61,35 @@ struct HabitVerlaufView: View {
         ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
     }
 
+    private var consistencyAnalysis: (title: String, desc: String) {
+        let recentDays = Array(days.suffix(84))
+        var weeklyCounts: [Double] = []
+        for i in 0..<12 {
+            let weekSlice = recentDays[(i*7)..<((i+1)*7)]
+            let count = weekSlice.filter { wasWatered(on: $0) }.count
+            weeklyCounts.append(Double(count))
+        }
+        
+        let count = Double(weeklyCounts.count)
+        let mean = weeklyCounts.reduce(0, +) / count
+        let variance = weeklyCounts.reduce(0) { $0 + pow($1 - mean, 2) } / count
+        let stdDev = sqrt(variance)
+        
+        if wateredCount < 5 {
+            return (String(localized: "verlauf.analysis.title.new", defaultValue: "Anfangsphase"), String(localized: "verlauf.analysis.desc.new", defaultValue: "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."))
+        }
+        
+        if stdDev > 2.0 {
+            return (String(localized: "verlauf.analysis.title.fluctuating", defaultValue: "Starke Schwankungen"), String(localized: "verlauf.analysis.desc.fluctuating", defaultValue: "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."))
+        } else if mean >= 5.0 {
+             return (String(localized: "verlauf.analysis.title.pro", defaultValue: "Eiserne Disziplin"), String(localized: "verlauf.analysis.desc.pro", defaultValue: "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."))
+        } else if mean >= 2.0 {
+             return (String(localized: "verlauf.analysis.title.stable", defaultValue: "Gute Basis"), String(localized: "verlauf.analysis.desc.stable", defaultValue: "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"))
+        } else {
+             return (String(localized: "verlauf.analysis.title.low", defaultValue: "Wieder reinkommen"), String(localized: "verlauf.analysis.desc.low", defaultValue: "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."))
+        }
+    }
+
     var body: some View {
         if pflanze.plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: pflanze.plantID) == nil {
             VStack(spacing: 20) {
@@ -85,6 +114,9 @@ struct HabitVerlaufView: View {
                     VStack(spacing: 24) {
                         // MARK: Stats Row
                         statsRow
+
+                        // MARK: Analysis Card
+                        analysisCard
 
                         // MARK: Heatmap
                         heatmapSection
@@ -187,6 +219,46 @@ struct HabitVerlaufView: View {
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity)
+    }
+
+    // MARK: - Analysis Card
+    private var analysisCard: some View {
+        let analysis = consistencyAnalysis
+        return VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 12) {
+                Image(systemName: "lightbulb.fill")
+                    .font(.system(size: 20))
+                    .foregroundColor(.yellow)
+                    .padding(8)
+                    .background(Color.yellow.opacity(0.15))
+                    .clipShape(Circle())
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(analysis.title)
+                        .font(.system(size: 16, weight: .black, design: .rounded))
+                        .foregroundColor(.primary)
+                    Text(String(localized: "verlauf.analysis.subtitle", defaultValue: "Habit Analyse"))
+                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .foregroundColor(.secondary)
+                }
+                Spacer()
+            }
+            
+            Divider().padding(.vertical, 4)
+            
+            Text(analysis.desc)
+                .font(.system(size: 15, weight: .medium, design: .rounded))
+                .foregroundColor(.primary.opacity(0.85))
+                .lineSpacing(4)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(16)
+        .background(Color(UIColor.secondarySystemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .stroke(Color.primary.opacity(0.1), lineWidth: 1)
+        )
     }
 
     // MARK: - Heatmap Section

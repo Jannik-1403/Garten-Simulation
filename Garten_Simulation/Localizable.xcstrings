@@ -344215,6 +344215,1117 @@
           }
         }
       }
+    },
+    "verlauf.analysis.title.new": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Initial Phase"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anfangsphase"
+          }
+        }
+      }
+    },
+    "verlauf.analysis.desc.new": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You just started! Keep it up to see your first trends soon."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+          }
+        }
+      }
+    },
+    "verlauf.analysis.title.fluctuating": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strong Fluctuations"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starke Schwankungen"
+          }
+        }
+      }
+    },
+    "verlauf.analysis.desc.fluctuating": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your routine for this habit is still irregular. Try to anchor it to an existing habit."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+          }
+        }
+      }
+    },
+    "verlauf.analysis.title.pro": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iron Discipline"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eiserne Disziplin"
+          }
+        }
+      }
+    },
+    "verlauf.analysis.desc.pro": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amazing! You are performing this habit extremely consistently. It's a deeply rooted routine."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+          }
+        }
+      }
+    },
+    "verlauf.analysis.title.stable": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solid Base"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Basis"
+          }
+        }
+      }
+    },
+    "verlauf.analysis.desc.stable": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You are making steady progress, even if you are not perfect every day. This is exactly the right path!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+          }
+        }
+      }
+    },
+    "verlauf.analysis.title.low": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Getting Back"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wieder reinkommen"
+          }
+        }
+      }
+    },
+    "verlauf.analysis.desc.low": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This habit has been neglected recently. Set a small, achievable goal for tomorrow."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+          }
+        }
+      }
+    },
+    "verlauf.analysis.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analysis"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habit Analyse"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

@@ -259,34 +259,18 @@ struct WeeklyReportDashboardView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Divider().padding(.vertical, 8)
                     
-                    let parts = report.feedbackDescription.components(separatedBy: "\n\n")
-                    
-                    if !parts.isEmpty {
-                        TabView {
-                            ForEach(0..<parts.count, id: \.self) { index in
-                                ScrollView(showsIndicators: true) {
-                                    VStack(alignment: .leading, spacing: 6) {
-                                        Text(parts[index])
-                                            .font(.system(size: 15, weight: .medium, design: .rounded))
-                                            .foregroundColor(.primary.opacity(0.85))
-                                            .lineSpacing(4)
-                                            .fixedSize(horizontal: false, vertical: true)
-                                        Spacer(minLength: 0)
-                                    }
-                                    .padding(16)
-                                    .padding(.bottom, 24)
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                }
-                                .background(.ultraThinMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                                .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).stroke(Color.primary.opacity(0.05), lineWidth: 1))
-                                .padding(.horizontal, 4)
-                            }
-                        }
-                        .frame(height: 170)
-                        .tabViewStyle(.page(indexDisplayMode: .always))
-                        .animation(.easeInOut, value: report.feedbackDescription)
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text(report.feedbackDescription)
+                            .font(.system(size: 15, weight: .medium, design: .rounded))
+                            .foregroundColor(.primary.opacity(0.85))
+                            .lineSpacing(4)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
+                    .padding(16)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                    .background(.ultraThinMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous).stroke(Color.primary.opacity(0.05), lineWidth: 1))
                 }
             } label: {
                 HStack(spacing: 12) {
