@@ -286,9 +286,6 @@ struct WeeklyReportDashboardView: View {
                             .font(.system(size: 16, weight: .black, design: .rounded))
                             .foregroundColor(.primary)
                             .contentTransition(.numericText())
-                        Text(String(localized: "weekly_report.analysis.subtitle", defaultValue: "Deine Fortschritts-Analyse"))
-                            .font(.system(size: 12, weight: .bold, design: .rounded))
-                            .foregroundColor(.secondary)
                     }
                     Spacer()
                 }

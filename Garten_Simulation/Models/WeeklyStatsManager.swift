@@ -173,47 +173,82 @@ final class WeeklyStatsManager {
             return sqrt(variance)
         }
         
-        // Normalize daily minutes and habits to a 0-1 scale to combine them
-        let maxFocus = dailyFocus.map { Double($0.minutes) }.max() ?? 1.0
-        let safeMaxFocus = maxFocus > 0 ? maxFocus : 1.0
+        // 5. Generate Dynamic Tips
+        let title = String(localized: "smart.weekly.title.tip", defaultValue: "Tipp")
+        var tips: [String] = []
         
-        let maxHabits = dailyHabits.map { Double($0.count) }.max() ?? 1.0
-        let safeMaxHabits = maxHabits > 0 ? maxHabits : 1.0
-        
-        var combinedScores: [Double] = []
-        for i in 0..<7 {
-            let nFocus = Double(dailyFocus[i].minutes) / safeMaxFocus
-            let nHabits = Double(dailyHabits[i].count) / safeMaxHabits
-            
-            // Weight habits slightly more if there's no focus, or combine
-            let combined = (nFocus + nHabits) / 2.0
-            combinedScores.append(combined)
-        }
-        
-        let currentCombinedStdDev = calculateStdDev(combinedScores)
-        
-        let title: String
-        let desc: String
-        
-        // 5. Generate Feedback Title and Description
+        // Current Focus / Habits logic
         let hasEnoughData = currentFocusMinutes >= 30 || currentHabitsCount >= 3
         
-        if !hasEnoughData {
-            title = String(localized: "smart.weekly.title.insufficient", defaultValue: "Mehr Daten benötigt")
-            desc = String(localized: "smart.weekly.desc.insufficient", defaultValue: "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!")
-        } else if currentCombinedStdDev > 0.35 {
-            title = String(localized: "smart.weekly.title.fluctuating", defaultValue: "Starke Schwankungen")
-            desc = String(localized: "smart.weekly.desc.fluctuating", defaultValue: "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen.")
+        // Rule A: Zero Focus Time
+        if currentFocusMinutes == 0 {
+            tips.append(String(localized: "smart.weekly.tip.no_focus", defaultValue: "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."))
         } else {
-            // Stable performance
-            if currentHabitsCount < 10 && currentFocusMinutes < 60 {
-                title = String(localized: "smart.weekly.title.stable_low", defaultValue: "Stabiles Fundament")
-                desc = String(localized: "smart.weekly.desc.stable_low", defaultValue: "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf.")
-            } else {
-                title = String(localized: "smart.weekly.title.consistent", defaultValue: "Eiserne Konstanz")
-                desc = String(localized: "smart.weekly.desc.consistent", defaultValue: "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert.")
+            // Check for weekend drop-off or specific day drops
+            let weekendMinutes = dailyFocus.filter { $0.dayName == "Sa" || $0.dayName == "So" }.reduce(0) { $0 + $1.minutes }
+            let weekdayMinutes = dailyFocus.filter { $0.dayName != "Sa" && $0.dayName != "So" }.reduce(0) { $0 + $1.minutes }
+            
+            if weekendMinutes == 0 && weekdayMinutes > 0 {
+                tips.append(String(localized: "smart.weekly.tip.weekend_drop", defaultValue: "Am Wochenende bricht deine Fokuszeit komplett ein. Versuche, auch an diesen Tagen zumindest eine kleine 15-Minuten-Session einzulegen, um den Rhythmus nicht zu verlieren."))
             }
         }
+        
+        // Rule C: Consistency Check (Gaps)
+        let activeDaysCount = dailyHabits.filter { $0.count > 0 }.count
+        if activeDaysCount >= 5 && activeDaysCount < 7 {
+            let zeroDays = dailyHabits.filter { $0.count == 0 }.map { $0.dayName }
+            if !zeroDays.isEmpty {
+                let joinedDays = zeroDays.joined(separator: " und ")
+                tips.append(String(format: String(localized: "smart.weekly.tip.gaps", defaultValue: "Du hast am %@ pausiert, bist aber sonst konstant. Um solche Aussetzer zu vermeiden, koppele deine Gewohnheiten an feste Anker in deinem Alltag (z.B. immer direkt nach dem Zähneputzen)."), joinedDays))
+            }
+        }
+        
+        // Rule D: Habit Specifics (Früh aufstehen)
+        for plant in gardenStore.pflanzen {
+            let name = plant.name.lowercased()
+            if name.contains("früh") || name.contains("aufstehen") || name.contains("aufwachen") {
+                var totalHour = 0
+                var count = 0
+                for date in plant.wateringDates where date >= monday && date <= sundayEnd {
+                    let hour = calendar.component(.hour, from: date)
+                    totalHour += hour
+                    count += 1
+                }
+                if count > 0 {
+                    let avgHour = totalHour / count
+                    if avgHour >= 8 {
+                        tips.append(String(format: String(localized: "smart.weekly.tip.early_bird", defaultValue: "Du hakst '%@' oft erst spät ab (gegen %d Uhr). Wenn du wirklich früh aufstehen willst, lege dein Handy abends in einen anderen Raum und stelle den Wecker 30 Minuten früher."), plant.name, avgHour))
+                    }
+                }
+            }
+        }
+        
+        // Rule E: General late habits
+        if tips.count < 3 && currentHabitsCount > 0 {
+            var lateHabitsCount = 0
+            for plant in gardenStore.pflanzen {
+                for date in plant.wateringDates where date >= monday && date <= sundayEnd {
+                    let hour = calendar.component(.hour, from: date)
+                    if hour >= 19 {
+                        lateHabitsCount += 1
+                    }
+                }
+            }
+            if Double(lateHabitsCount) / Double(currentHabitsCount) > 0.6 {
+                tips.append(String(localized: "smart.weekly.tip.late_habits", defaultValue: "Du erledigst viele Gewohnheiten erst spät am Abend. Versuche, deine wichtigste Gewohnheit direkt morgens als Erstes abzuhaken (Eat the Frog) – dann hast du den Rest des Tages den Kopf frei."))
+            }
+        }
+        
+        // Fallback tip if we have too few
+        if tips.isEmpty {
+            if !hasEnoughData {
+                tips.append(String(localized: "smart.weekly.tip.fallback_low", defaultValue: "Sammle nächste Woche mehr Fokus-Sessions und hake Gewohnheiten ab, um präzise Tipps zu deinem Rhythmus zu erhalten."))
+            } else {
+                tips.append(String(localized: "smart.weekly.tip.fallback_good", defaultValue: "Deine Routine ist sehr stabil! Halte diese Konsistenz aufrecht, indem du deine Gewohnheiten weiterhin an feste Zeiten koppelst."))
+            }
+        }
+        
+        let desc = tips.prefix(3).map { "• \($0)" }.joined(separator: "\n\n")
 
         return WeeklyReportData(
             weekStartDate: monday,
