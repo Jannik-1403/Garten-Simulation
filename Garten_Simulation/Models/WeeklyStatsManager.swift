@@ -108,9 +108,12 @@ final class WeeklyStatsManager {
             habitsChange = Double(currentHabitsCount - prevHabitsCount) / Double(prevHabitsCount) * 100.0
         }
         
-        // 4. Daily Data for Charts
+        // 4. Daily Data for Charts & Consistency Calculation
         var dailyFocus: [DailyFocusTime] = []
         var dailyHabits: [DailyHabitsCount] = []
+        
+        var currentDailyScores: [Double] = []
+        var prevDailyScores: [Double] = []
         
         let weekdayNames = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
         
@@ -124,9 +127,35 @@ final class WeeklyStatsManager {
                 .reduce(0) { $0 + $1.durationMinutes }
             
             var habitsDone = 0
+            var dailyScore = 0.0
+            
             for plant in gardenStore.pflanzen {
-                habitsDone += plant.wateringDates.filter { $0 >= dayStart && $0 <= dayEnd }.count
+                let doneToday = plant.wateringDates.contains(where: { $0 >= dayStart && $0 <= dayEnd })
+                if doneToday {
+                    habitsDone += 1
+                    var weight = 1.0
+                    if plant.streak >= 3 { weight += 0.5 }
+                    if plant.seltenheit == .diamant || plant.seltenheit == .gold { weight += 0.5 }
+                    dailyScore += weight
+                }
             }
+            currentDailyScores.append(dailyScore)
+            
+            let pDay = calendar.date(byAdding: .day, value: i, to: prevMonday)!
+            let pDayStart = calendar.startOfDay(for: pDay)
+            let pDayEnd = calendar.date(byAdding: .second, value: 24 * 3600 - 1, to: pDayStart)!
+            
+            var pDailyScore = 0.0
+            for plant in gardenStore.pflanzen {
+                let donePrev = plant.wateringDates.contains(where: { $0 >= pDayStart && $0 <= pDayEnd })
+                if donePrev {
+                    var weight = 1.0
+                    if plant.streak >= 3 { weight += 0.5 }
+                    if plant.seltenheit == .diamant || plant.seltenheit == .gold { weight += 0.5 }
+                    pDailyScore += weight
+                }
+            }
+            prevDailyScores.append(pDailyScore)
             
             let localizedDayKey = "common.day.\(i)" // Mo=0
             let localizedDay = NSLocalizedString(localizedDayKey, comment: "")
@@ -135,6 +164,18 @@ final class WeeklyStatsManager {
             dailyFocus.append(DailyFocusTime(date: dayStart, minutes: minutes, dayName: dayName))
             dailyHabits.append(DailyHabitsCount(date: dayStart, count: habitsDone, dayName: dayName))
         }
+        
+        func calculateStdDev(_ data: [Double]) -> Double {
+            let count = Double(data.count)
+            guard count > 0 else { return 0.0 }
+            let mean = data.reduce(0, +) / count
+            let variance = data.reduce(0) { $0 + pow($1 - mean, 2) } / count
+            return sqrt(variance)
+        }
+        
+        let currentStdDev = calculateStdDev(currentDailyScores)
+        let prevStdDev = calculateStdDev(prevDailyScores)
+        let currentMean = currentDailyScores.reduce(0, +) / 7.0
         
         // 5. Generate Feedback Title and Description
         let hasEnoughData = currentFocusMinutes >= 30 || currentHabitsCount >= 3
@@ -152,23 +193,23 @@ final class WeeklyStatsManager {
             let bestHabitsDayIndex = dailyHabits.indices.max(by: { dailyHabits[$0].count < dailyHabits[$1].count }) ?? 0
             let bestHabitsDayName = dailyHabits[bestHabitsDayIndex].count > 0 ? dailyHabits[bestHabitsDayIndex].dayName : "—"
             
-            let percentFocusString = "\(Int(abs(focusChange)))%"
-            
-            if focusChange >= 10.0 {
-                title = String(localized: "weekly_report.feedback.title.positive", defaultValue: "Großartige Woche!")
-                desc += String(
-                    format: String(localized: "weekly_report.feedback.desc.positive_base", defaultValue: "Diese Woche lief fantastisch! Du hast deine Fokuszeit im Vergleich zur Vorwoche um %@ gesteigert. "),
-                    percentFocusString
-                )
-            } else if focusChange <= -10.0 {
-                title = String(localized: "weekly_report.feedback.title.negative", defaultValue: "Ruhigere Woche")
-                desc += String(
-                    format: String(localized: "weekly_report.feedback.desc.negative_base", defaultValue: "Diese Woche war etwas ruhiger und deine Fokuszeit ist um %@ gesunken. Aber mach dir keinen Kopf, Erholung ist genauso wichtig. Nächste Woche greifen wir wieder voll an! "),
-                    percentFocusString
-                )
+            if currentStdDev > 1.5 {
+                title = String(localized: "weekly_report.feedback.title.fluctuating", defaultValue: "Variable Leistung")
+                desc += String(localized: "weekly_report.feedback.desc.fluctuating", defaultValue: "Du hattest diese Woche starke Schwankungen. An manchen Tagen warst du voll dabei, an anderen gar nicht. Dein Ziel für nächste Woche: Fokus auf deine wichtigsten 2 Gewohnheiten.")
             } else {
-                title = String(localized: "weekly_report.feedback.title.neutral", defaultValue: "Konstante Woche")
-                desc += String(localized: "weekly_report.feedback.desc.neutral_base", defaultValue: "Du warst diese Woche sehr konstant und hast deine Zeiten solide gehalten. Konstanz ist der Schlüssel zum langfristigen Erfolg! ")
+                if currentMean < 2.0 {
+                    title = String(localized: "weekly_report.feedback.title.stable_low", defaultValue: "Stabiler Aufbau")
+                    desc += String(localized: "weekly_report.feedback.desc.stable_low", defaultValue: "Du hast diese Woche zwar weniger Gewohnheiten erledigt, aber du warst jeden Tag gleichbleibend aktiv. Das ist das Fundament für echte Routine.")
+                } else {
+                    if prevStdDev > currentStdDev + 0.5 {
+                        let improvement = Int(((prevStdDev - currentStdDev) / max(prevStdDev, 0.1)) * 100)
+                        title = String(localized: "weekly_report.feedback.title.pro", defaultValue: "Der Profi")
+                        desc += String(format: String(localized: "weekly_report.feedback.desc.pro_base", defaultValue: "Beeindruckend: Du hast deine Konsistenz um %@ gegenüber der Vorwoche gesteigert."), "\(improvement)%")
+                    } else {
+                        title = String(localized: "weekly_report.feedback.title.consistent", defaultValue: "Konstante Woche")
+                        desc += String(localized: "weekly_report.feedback.desc.consistent", defaultValue: "Du warst diese Woche sehr konstant und hast deine Zeiten solide gehalten. Konstanz ist der Schlüssel zum langfristigen Erfolg!")
+                    }
+                }
             }
             
             if bestDayName != "—" {
