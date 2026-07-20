@@ -58,8 +58,8 @@ class StrengthProgressionStrategy: HabitProgressionStrategy {
             // Push-Fokus
             let pushups = Int(Double(isBeginner ? 5 : (isIntermediate ? 10 : 15)) * phaseMultiplier)
             let dips = Int(Double(isBeginner ? 0 : (isIntermediate ? 5 : 10)) * phaseMultiplier)
-            let pushupType = isBeginner ? "Knie-Liegestütze" : (isExpert && phaseNumber > 9 ? "Archer Push-ups" : "Strict Push-ups")
-            let dipType = dips > 0 ? "\(dips) Dips" : "\(pushups) Negative Liegestütze"
+            let pushupType = isBeginner ? String(localized: "prog_strength_pushup_knie", defaultValue: "Knie-Liegestütze") : (isExpert && phaseNumber > 9 ? String(localized: "prog_strength_pushup_archer", defaultValue: "Archer Push-ups") : String(localized: "prog_strength_pushup_strict", defaultValue: "Strict Push-ups"))
+            let dipType = dips > 0 ? String(localized: "prog_strength_dips", defaultValue: "\(dips) Dips") : String(localized: "prog_strength_neg_liegestuetze", defaultValue: "\(pushups) Negative Liegestütze")
             
             return (
                 title: String(localized: "prog_strength_d1_title", defaultValue: "Push-Fokus"),
@@ -76,7 +76,7 @@ class StrengthProgressionStrategy: HabitProgressionStrategy {
             // Pull & Core
             let pullups = Int(Double(isBeginner ? 0 : (isIntermediate ? 5 : 10)) * phaseMultiplier)
             let rows = Int(Double(isBeginner ? 10 : (isIntermediate ? 12 : 15)) * phaseMultiplier)
-            let pullText = pullups > 0 ? "\(pullups) Strict Pull-ups" : "5 Negative Klimmzüge"
+            let pullText = pullups > 0 ? String(localized: "prog_strength_pull_strict", defaultValue: "\(pullups) Strict Pull-ups") : String(localized: "prog_strength_pull_neg", defaultValue: "5 Negative Klimmzüge")
             
             return (
                 title: String(localized: "prog_strength_d2_title", defaultValue: "Pull & Core"),
@@ -92,7 +92,7 @@ class StrengthProgressionStrategy: HabitProgressionStrategy {
         case 3:
             // Sprints
             let sprints = Int(Double(isBeginner ? 5 : (isIntermediate ? 8 : 10)) * phaseMultiplier)
-            let distance = phaseNumber >= 5 && isExpert ? "75-Meter" : "50-Meter"
+            let distance = phaseNumber >= 5 && isExpert ? String(localized: "prog_strength_dist_75", defaultValue: "75-Meter") : String(localized: "prog_strength_dist_50", defaultValue: "50-Meter")
             
             return (
                 title: String(localized: "prog_strength_d3_title", defaultValue: "Explosive Kraft"),
@@ -124,7 +124,7 @@ class StrengthProgressionStrategy: HabitProgressionStrategy {
             // Beine
             let lunges = Int(Double(isBeginner ? 10 : (isIntermediate ? 16 : 20)) * phaseMultiplier)
             let squats = Int(Double(isBeginner ? 15 : (isIntermediate ? 20 : 25)) * phaseMultiplier)
-            let lungeType = (isExpert && phaseNumber > 8) ? "Pistol Squats / schwere Lunges" : "Lunges"
+            let lungeType = (isExpert && phaseNumber > 8) ? String(localized: "prog_strength_lunge_heavy", defaultValue: "Pistol Squats / schwere Lunges") : String(localized: "prog_strength_lunge_norm", defaultValue: "Lunges")
             
             return (
                 title: String(localized: "prog_strength_d5_title", defaultValue: "Beine & Core"),
@@ -140,16 +140,16 @@ class StrengthProgressionStrategy: HabitProgressionStrategy {
         case 6:
             // MetCon
             let burpees = Int(Double(isBeginner ? 10 : (isIntermediate ? 15 : 20)) * phaseMultiplier)
-            let run = isBeginner ? "200m" : (isIntermediate ? "300m" : "400m")
+            let run = isBeginner ? String(localized: "prog_strength_run_200", defaultValue: "200m") : (isIntermediate ? String(localized: "prog_strength_run_300", defaultValue: "300m") : String(localized: "prog_strength_run_400", defaultValue: "400m"))
             let pullups = Int(Double(isBeginner ? 0 : (isIntermediate ? 5 : 10)) * phaseMultiplier)
             let rds = isBeginner ? 3 : (isIntermediate ? 4 : 5)
-            let pullPart = pullups > 0 ? "\(pullups) Pull-ups" : "10 Bodyweight Rows"
+            let pullPart = pullups > 0 ? String(localized: "prog_strength_pull_norm", defaultValue: "\(pullups) Pull-ups") : String(localized: "prog_strength_rows_10", defaultValue: "10 Bodyweight Rows")
             
             return (
                 title: String(localized: "prog_strength_d6_title", defaultValue: "MetCon"),
                 description: String(localized: "prog_strength_d6_desc", defaultValue: "Auf Zeit! Absolviere \(rds) Runden so schnell wie möglich mit sauberer Form. Ziel: Bei hohem Puls Technik beibehalten."),
                 todos: [
-                    "\(rds) Runden absolviert",
+                    String(localized: "prog_strength_rounds", defaultValue: "\(rds) Runden absolviert"),
                     String(localized: "prog_strength_d6_t1", defaultValue: "Übung: \(burpees) Burpees"),
                     String(localized: "prog_strength_d6_t2", defaultValue: "Übung: \(run) Lauf"),
                     String(localized: "prog_strength_d6_t3", defaultValue: "Übung: \(pullPart)")
