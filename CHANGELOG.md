@@ -99,3 +99,8 @@
 - **Fix**: Analyse-Logik (Standardabweichung) wurde korrigiert: Sie kombiniert nun sowohl Fokuszeit als auch Gewohnheiten und verwendet völlig neue, stringente Textblöcke ohne veraltete Text-Bausteine aus vorherigen Versionen.
 
 - **Feature**: Wochenbericht-Analyse komplett durch dynamischen Tipp-Generator ersetzt (Scannt nach Lücken, Uhrzeiten und spezifischen Habits wie 'Früh aufstehen').
+
+- **Fixes**: UI-Bug behoben, durch den gestorbene Pflanzen keinen durchgestrichenen Namen hatten. Shop-Bug behoben, bei dem entfernte Pflanzen weiterhin im Shop als 'Im Besitz' angezeigt wurden und gestorbene Pflanzen unerlaubt verkauft werden konnten. Logik-Fehler bei der 90-Tage-Challenge behoben (Anfänger war aufgrund eines Umlaut-Fehlers automatisch so schwer wie Experte).
+- 90-Tage Challenge: Wochentage aus den Titeln entfernt und über 500 hart kodierte Strings in 16 Sprachen lokalisiert.
+- Bugfix: Syntaxfehler in der HabitProgressionStrategy.swift für lokalisierte Strings (Tage 1, 4, 6 in Lauf-Progression) behoben.
+- Lokalisierung der Strength-Progression hinzugefügt und festcodierte Wochentage aus den Titeln entfernt. Volle String Catalog Unterstützung in allen Sprachen (100% Übersetzungsabdeckung).
