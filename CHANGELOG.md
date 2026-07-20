@@ -105,3 +105,4 @@
 - Bugfix: Syntaxfehler in der HabitProgressionStrategy.swift für lokalisierte Strings (Tage 1, 4, 6 in Lauf-Progression) behoben.
 - Lokalisierung der Strength-Progression hinzugefügt und festcodierte Wochentage aus den Titeln entfernt. Volle String Catalog Unterstützung in allen Sprachen (100% Übersetzungsabdeckung).
 - Fehlerhafte String-Interpolationen (\(...)) in allen Sprachen der Localizable.xcstrings repariert.
+- Abgeschnittene Texte in den Localizable.xcstrings der Running-Challenge wiederhergestellt.
