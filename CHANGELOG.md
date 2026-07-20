@@ -108,3 +108,4 @@
 - Abgeschnittene Texte in den Localizable.xcstrings der Running-Challenge wiederhergestellt.
 - Bug in der Swift String-Interpolation für Lauf-Distanzen behoben (zeigte 'String(format:...)' an).
 - Fehlerhaft gespeicherte Todos in der lokalen Datenbank werden nun bei Aufruf automatisch repariert.
+- Fehlerhaft lokalisierte Workout-Variablen (wie 'Strict Push-ups') in der Datenbank gelöst und alle Workout-Pläne für korrekte Fallbacks repariert.
