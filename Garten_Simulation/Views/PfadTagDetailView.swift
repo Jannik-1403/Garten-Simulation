@@ -820,12 +820,22 @@ struct PfadTagDetailView: View {
             mutatedData.dailyDescription = mutatedData.dailyDescription.replacingOccurrences(of: "[HABIT]", with: habitName(for: tag))
             self.progressionData = mutatedData
             
-            // Auto-populate todos if first run and empty
+            // Auto-populate todos if first run and empty, or migrate broken string interpolations
+            let hasBrokenTodo = todos.contains(where: { $0.text.contains("\\(String(format:") })
             let hasLoadedKey = "hasLoadedTodos_\(todoPersistenceKey)"
-            if !UserDefaults.standard.bool(forKey: hasLoadedKey) {
+            if !UserDefaults.standard.bool(forKey: hasLoadedKey) || hasBrokenTodo {
                 UserDefaults.standard.set(true, forKey: hasLoadedKey)
-                if todos.isEmpty && !mutatedData.dailyTodos.isEmpty {
-                    todos = mutatedData.dailyTodos.map { PfadToDo(text: $0) }
+                if (todos.isEmpty || hasBrokenTodo) && !mutatedData.dailyTodos.isEmpty {
+                    if hasBrokenTodo {
+                        var updatedTodos: [PfadToDo] = []
+                        for (index, text) in mutatedData.dailyTodos.enumerated() {
+                            let isDone = index < todos.count ? todos[index].isDone : false
+                            updatedTodos.append(PfadToDo(id: UUID(), text: text, isDone: isDone))
+                        }
+                        todos = updatedTodos
+                    } else {
+                        todos = mutatedData.dailyTodos.map { PfadToDo(text: $0) }
+                    }
                     saveTodos()
                 }
             }
