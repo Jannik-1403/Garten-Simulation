@@ -347258,97 +347258,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(format: "
+            "value": "%@ km locker laufen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(format:"
+            "value": "%@ km easy run"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Cadena(formato:"
+            "value": "%@ km easy run"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Chaîne(format :"
+            "value": "%@ km easy run"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(स्ट्रिंग(प्रारूप:"
+            "value": "%@ km easy run"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Stringa(formato:"
+            "value": "%@ km easy run"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(文字列(形式:"
+            "value": "%@ km easy run"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(문자열(형식:"
+            "value": "%@ km easy run"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(formaat:"
+            "value": "%@ km easy run"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Ciąg (format:"
+            "value": "%@ km easy run"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(formato:"
+            "value": "%@ km easy run"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(formato:"
+            "value": "%@ km easy run"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Строка(формат:"
+            "value": "%@ km easy run"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Dize(biçim:"
+            "value": "%@ km easy run"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(字符串(格式："
+            "value": "%@ km easy run"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(字串(格式："
+            "value": "%@ km easy run"
           }
         }
       }
@@ -348773,97 +348773,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(format: "
+            "value": "%@ km im zügigen Tempo"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(format:"
+            "value": "%@ km at a brisk pace"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Cadena(formato:"
+            "value": "%@ km at a brisk pace"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Chaîne(format :"
+            "value": "%@ km at a brisk pace"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(स्ट्रिंग(प्रारूप:"
+            "value": "%@ km at a brisk pace"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Stringa(formato:"
+            "value": "%@ km at a brisk pace"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(文字列(形式:"
+            "value": "%@ km at a brisk pace"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(문자열(형식:"
+            "value": "%@ km at a brisk pace"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(formaat:"
+            "value": "%@ km at a brisk pace"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Ciąg (format:"
+            "value": "%@ km at a brisk pace"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(formato:"
+            "value": "%@ km at a brisk pace"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(formato:"
+            "value": "%@ km at a brisk pace"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Строка(формат:"
+            "value": "%@ km at a brisk pace"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Dize(biçim:"
+            "value": "%@ km at a brisk pace"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(字符串(格式："
+            "value": "%@ km at a brisk pace"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(字串(格式："
+            "value": "%@ km at a brisk pace"
           }
         }
       }
@@ -349581,97 +349581,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(format: "
+            "value": "%@ km absolviert"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(format:"
+            "value": "%@ km completed"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Cadena(formato:"
+            "value": "%@ km completed"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Chaîne(format :"
+            "value": "%@ km completed"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(स्ट्रिंग(प्रारूप:"
+            "value": "%@ km completed"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Stringa(formato:"
+            "value": "%@ km completed"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(文字列(形式:"
+            "value": "%@ km completed"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(문자열(형식:"
+            "value": "%@ km completed"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(formaat:"
+            "value": "%@ km completed"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Ciąg (format:"
+            "value": "%@ km completed"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(formato:"
+            "value": "%@ km completed"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(String(formato:"
+            "value": "%@ km completed"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Строка(формат:"
+            "value": "%@ km completed"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(Dize(biçim:"
+            "value": "%@ km completed"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(字符串(格式："
+            "value": "%@ km completed"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "\\(字串(格式："
+            "value": "%@ km completed"
           }
         }
       }
