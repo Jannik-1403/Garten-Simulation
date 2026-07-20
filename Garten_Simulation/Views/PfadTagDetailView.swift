@@ -822,20 +822,17 @@ struct PfadTagDetailView: View {
             
             // Auto-populate todos if first run and empty, or migrate broken string interpolations
             let hasBrokenTodo = todos.contains(where: { $0.text.contains("\\(String(format:") })
-            let hasLoadedKey = "hasLoadedTodos_\(todoPersistenceKey)"
+            let hasLoadedKey = "hasLoadedTodos_v2_\(todoPersistenceKey)"
             if !UserDefaults.standard.bool(forKey: hasLoadedKey) || hasBrokenTodo {
                 UserDefaults.standard.set(true, forKey: hasLoadedKey)
-                if (todos.isEmpty || hasBrokenTodo) && !mutatedData.dailyTodos.isEmpty {
-                    if hasBrokenTodo {
-                        var updatedTodos: [PfadToDo] = []
-                        for (index, text) in mutatedData.dailyTodos.enumerated() {
-                            let isDone = index < todos.count ? todos[index].isDone : false
-                            updatedTodos.append(PfadToDo(id: UUID(), text: text, isDone: isDone))
-                        }
-                        todos = updatedTodos
-                    } else {
-                        todos = mutatedData.dailyTodos.map { PfadToDo(text: $0) }
+                if !mutatedData.dailyTodos.isEmpty {
+                    // Update todos, keep existing isDone states if possible
+                    var updatedTodos: [PfadToDo] = []
+                    for (index, text) in mutatedData.dailyTodos.enumerated() {
+                        let isDone = index < todos.count ? todos[index].isDone : false
+                        updatedTodos.append(PfadToDo(id: UUID(), text: text, isDone: isDone))
                     }
+                    todos = updatedTodos
                     saveTodos()
                 }
             }
