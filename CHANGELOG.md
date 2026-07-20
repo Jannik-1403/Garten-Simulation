@@ -107,3 +107,4 @@
 - Fehlerhafte String-Interpolationen (\(...)) in allen Sprachen der Localizable.xcstrings repariert.
 - Abgeschnittene Texte in den Localizable.xcstrings der Running-Challenge wiederhergestellt.
 - Bug in der Swift String-Interpolation für Lauf-Distanzen behoben (zeigte 'String(format:...)' an).
+- Fehlerhaft gespeicherte Todos in der lokalen Datenbank werden nun bei Aufruf automatisch repariert.
