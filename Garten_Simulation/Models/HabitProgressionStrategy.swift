@@ -198,7 +198,7 @@ class RunningProgressionStrategy: HabitProgressionStrategy {
             title = String(localized: "prog_running_d1_title", defaultValue: "Recovery Run")
             desc = String(localized: "prog_running_d1_desc", defaultValue: "Ein sehr lockerer Lauf, um die Beine nach dem Wochenende durchzubewegen. Du solltest dabei entspannt durch die Nase atmen können.")
             let dist = max(1.0, currentDist * 0.5)
-            todos = [String(localized: "prog_running_d1_t1", defaultValue: "\(String(format: ")%.1fString(localized: "prog_running_d1_t2", defaultValue: ", dist)) km locker laufen"), String(localized: "prog_running_d1_t3", defaultValue: "Bewusst durch die Nase atmen")]
+            todos = [String(localized: "prog_running_d1_t1", defaultValue: "\(String(format: "%.1f", dist)) km locker laufen"), String(localized: "prog_running_d1_t3", defaultValue: "Bewusst durch die Nase atmen")]
         case 2:
             title = String(localized: "prog_running_d2_title", defaultValue: "Intervall-Training")
             desc = String(localized: "prog_running_d2_desc", defaultValue: "Fokus auf Geschwindigkeit und Herz-Kreislauf-Belastung. Kurze, harte Intervalle gefolgt von Geh-Pausen.")
@@ -213,7 +213,7 @@ class RunningProgressionStrategy: HabitProgressionStrategy {
             title = String(localized: "prog_running_d4_title", defaultValue: "Tempodauerlauf")
             desc = String(localized: "prog_running_d4_desc", defaultValue: "Ein Lauf in ambitioniertem, aber haltbarem Tempo (Zone 3). Es sollte anstrengend, aber kontrolliert sein.")
             let dist = currentDist * 0.75
-            todos = [String(localized: "prog_running_d4_t1", defaultValue: "\(String(format: ")%.1fString(localized: "prog_running_d4_t2", defaultValue: ", dist)) km im zügigen Tempo")]
+            todos = [String(localized: "prog_running_d4_t1", defaultValue: "\(String(format: "%.1f", dist)) km im zügigen Tempo")]
         case 5:
             title = String(localized: "prog_running_d5_title", defaultValue: "Aktive Erholung")
             desc = String(localized: "prog_running_d5_desc", defaultValue: "Die Muskeln brauchen Pause. Ein zügiger Spaziergang oder eine Dehn-Session reichen heute aus.")
@@ -222,7 +222,7 @@ class RunningProgressionStrategy: HabitProgressionStrategy {
             title = String(localized: "prog_running_d6_title", defaultValue: "Long Run")
             desc = String(localized: "prog_running_d6_desc", defaultValue: "Der wichtigste Lauf der Woche für die Grundlagenausdauer. Das Tempo ist absolut zweitrangig.")
             let dist = currentDist * 1.5
-            todos = [String(localized: "prog_running_d6_t1", defaultValue: "\(String(format: ")%.1fString(localized: "prog_running_d6_t2", defaultValue: ", dist)) km absolviert"), String(localized: "prog_running_d6_t3", defaultValue: "Tempo bewusst niedrig gehalten")]
+            todos = [String(localized: "prog_running_d6_t1", defaultValue: "\(String(format: "%.1f", dist)) km absolviert"), String(localized: "prog_running_d6_t3", defaultValue: "Tempo bewusst niedrig gehalten")]
         case 7:
             title = String(localized: "prog_running_d7_title", defaultValue: "Complete Rest")
             desc = String(localized: "prog_running_d7_desc", defaultValue: "Komplette Pause. Der Körper repariert das Gewebe und baut Muskeln auf.")
