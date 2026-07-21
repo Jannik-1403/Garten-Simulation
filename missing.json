@@ -1,0 +1,362 @@
+{
+  "assessment.insight.header": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.header",
+    "en_text": "Was man verbessern kann",
+    "source_value": "Was man verbessern kann"
+  },
+  "assessment.insight.empty": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.empty",
+    "en_text": "Im Moment sieht alles gut aus! Bleib am Ball.",
+    "source_value": "Im Moment sieht alles gut aus! Bleib am Ball."
+  },
+  "assessment.insight.action.open_plant": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.action.open_plant",
+    "en_text": "Details ansehen",
+    "source_value": "Details ansehen"
+  },
+  "assessment.insight.action.set_reminder": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.action.set_reminder",
+    "en_text": "Erinnerung setzen",
+    "source_value": "Erinnerung setzen"
+  },
+  "assessment.insight.action.start_focus": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.action.start_focus",
+    "en_text": "Fokus-Modus testen",
+    "source_value": "Fokus-Modus testen"
+  },
+  "assessment.insight.action.add_habit": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.action.add_habit",
+    "en_text": "Challenge annehmen",
+    "source_value": "Challenge annehmen"
+  },
+  "assessment.insight.finance.no_habit.title": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.finance.no_habit.title",
+    "en_text": "Keine Finanz-Gewohnheit",
+    "source_value": "Keine Finanz-Gewohnheit"
+  },
+  "assessment.insight.finance.no_habit.desc": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.finance.no_habit.desc",
+    "en_text": "Du hast bisher keine Finanzen-Gewohnheit hinzugef\u00fcgt. Das ist der erste Schritt zur Kontrolle.",
+    "source_value": "Du hast bisher keine Finanzen-Gewohnheit hinzugef\u00fcgt. Das ist der erste Schritt zur Kontrolle."
+  },
+  "assessment.insight.missing_reminder.title": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.missing_reminder.title",
+    "en_text": "Erinnerung fehlt",
+    "source_value": "Erinnerung fehlt"
+  },
+  "assessment.insight.missing_reminder.desc": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.missing_reminder.desc",
+    "en_text": "Du hast f\u00fcr einige Gewohnheiten keine Erinnerungen gesetzt. Kontinuit\u00e4t braucht Systeme.",
+    "source_value": "Du hast f\u00fcr einige Gewohnheiten keine Erinnerungen gesetzt. Kontinuit\u00e4t braucht Systeme."
+  },
+  "assessment.insight.health.no_habit.title": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.health.no_habit.title",
+    "en_text": "Fehlende Basis",
+    "source_value": "Fehlende Basis"
+  },
+  "assessment.insight.health.no_habit.desc": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.health.no_habit.desc",
+    "en_text": "Du hast weder Gesundheits- noch Fitness-Gewohnheiten aktiviert. Dein K\u00f6rper ist dein Kapital.",
+    "source_value": "Du hast weder Gesundheits- noch Fitness-Gewohnheiten aktiviert. Dein K\u00f6rper ist dein Kapital."
+  },
+  "assessment.insight.low_streak.title": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.low_streak.title",
+    "en_text": "Streak in Gefahr",
+    "source_value": "Streak in Gefahr"
+  },
+  "assessment.insight.low_streak.desc": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.low_streak.desc",
+    "en_text": "Du bist bei einer Gewohnheit unter 3 Tagen Streak. Lass sie nicht abrei\u00dfen!",
+    "source_value": "Du bist bei einer Gewohnheit unter 3 Tagen Streak. Lass sie nicht abrei\u00dfen!"
+  },
+  "assessment.insight.no_focus.title": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.no_focus.title",
+    "en_text": "Fokus-Modus ungenutzt",
+    "source_value": "Fokus-Modus ungenutzt"
+  },
+  "assessment.insight.no_focus.desc": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.no_focus.desc",
+    "en_text": "Du hast noch keine Fokus-Sessions gestartet. Tiefenarbeit ist der Schl\u00fcssel zu mehr Effizienz.",
+    "source_value": "Du hast noch keine Fokus-Sessions gestartet. Tiefenarbeit ist der Schl\u00fcssel zu mehr Effizienz."
+  },
+  "assessment.insight.focus_active.title": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.focus_active.title",
+    "en_text": "Guter Fokus",
+    "source_value": "Guter Fokus"
+  },
+  "assessment.insight.focus_active.desc": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.focus_active.desc",
+    "en_text": "Du nutzt den Fokus-Modus bereits. Weiter so!",
+    "source_value": "Du nutzt den Fokus-Modus bereits. Weiter so!"
+  },
+  "assessment.insight.lifestyle.review.title": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.lifestyle.review.title",
+    "en_text": "Umgebung pr\u00fcfen",
+    "source_value": "Umgebung pr\u00fcfen"
+  },
+  "assessment.insight.lifestyle.review.desc": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.lifestyle.review.desc",
+    "en_text": "Deine Umgebung formt dich. Optimiere deinen Alltag weiter.",
+    "source_value": "Deine Umgebung formt dich. Optimiere deinen Alltag weiter."
+  },
+  "assessment.insight.challenge_waiting.title": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.challenge_waiting.title",
+    "en_text": "90-Tage Challenge",
+    "source_value": "90-Tage Challenge"
+  },
+  "assessment.insight.challenge_waiting.desc": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "assessment.insight.challenge_waiting.desc",
+    "en_text": "Du bist bereit f\u00fcr eine 90-Tage Challenge, hast aber noch keine abgeschlossen. Gib alles!",
+    "source_value": "Du bist bereit f\u00fcr eine 90-Tage Challenge, hast aber noch keine abgeschlossen. Gib alles!"
+  },
+  "benchmark.bottom": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "benchmark.bottom",
+    "en_text": "Beginner",
+    "source_value": "Anf\u00e4nger"
+  },
+  "benchmark.top": {
+    "missing_languages": [
+      "zh-Hans",
+      "ru",
+      "ja",
+      "ko",
+      "zh-Hant",
+      "pl",
+      "nl",
+      "hi"
+    ],
+    "source_text": "benchmark.top",
+    "en_text": "Top 1%",
+    "source_value": "Top 1%"
+  }
+}

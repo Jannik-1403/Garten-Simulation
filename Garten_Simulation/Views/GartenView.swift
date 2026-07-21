@@ -50,6 +50,7 @@ struct GartenView: View {
 
     @State private var aktivesEvent: WetterEvent = .normal
     @State private var ausgewaehltePflanze: HabitModel? = nil
+    @State private var liveActivityFocusHabit: HabitModel? = nil
     @State private var ausgewaehltesItem: ShopDetailPayload? = nil
     @State private var ausgewaehltesAktivesPowerUp: ActivePowerUp? = nil
     @State private var zeigeUnkrautDetail = false
@@ -439,6 +440,12 @@ struct GartenView: View {
                     .environmentObject(settings)
             }
         }
+        .fullScreenCover(item: $liveActivityFocusHabit) { pflanze in
+            FocusSessionView(pflanze: pflanze)
+                .environmentObject(gardenStore)
+                .environmentObject(settings)
+                .environmentObject(streakStore)
+        }
         .fullScreenCover(isPresented: $zeigeCoinsDetail) {
             NavigationStack {
                 CoinsDetailView()
@@ -487,7 +494,7 @@ struct GartenView: View {
             guard let habitId else { return }
             // Pflanze anhand der ID finden und FocusSession direkt öffnen
             if let pflanze = gardenStore.pflanzen.first(where: { $0.id == habitId }) {
-                ausgewaehltePflanze = pflanze
+                liveActivityFocusHabit = pflanze
             }
             gardenStore.activeFocusHabitId = nil
         }

@@ -137,6 +137,12 @@ struct FocusSessionView: View {
                 }
             }
         }
+        .onChange(of: sessionGoals) { _, newGoals in
+            if isTimerRunning && FocusTimerRecovery.shared.isActive {
+                let savedEndTime = Date(timeIntervalSince1970: FocusTimerRecovery.shared.endTime)
+                FocusTimerRecovery.shared.saveState(endTime: savedEndTime, totalSeconds: FocusTimerRecovery.shared.totalSeconds, plantId: pflanze.id, goals: newGoals)
+            }
+        }
         .onAppear {
             if FocusTimerRecovery.shared.isActive && FocusTimerRecovery.shared.plantId == pflanze.id {
                 let endTime = Date(timeIntervalSince1970: FocusTimerRecovery.shared.endTime)
