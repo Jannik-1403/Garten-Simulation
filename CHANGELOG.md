@@ -109,3 +109,6 @@
 - Bug in der Swift String-Interpolation für Lauf-Distanzen behoben (zeigte 'String(format:...)' an).
 - Fehlerhaft gespeicherte Todos in der lokalen Datenbank werden nun bei Aufruf automatisch repariert.
 - Fehlerhaft lokalisierte Workout-Variablen (wie 'Strict Push-ups') in der Datenbank gelöst und alle Workout-Pläne für korrekte Fallbacks repariert.
+- Bugfix: Live Activity öffnet jetzt direkt den laufenden Fokus-Timer und nicht mehr die Gewohnheits-Detailansicht.
+- Bugfix: Abgehakte Unterziele/Aufwärm-Phasen im Fokus-Timer werden jetzt sofort gespeichert, sodass der Fortschritt auch nach Schließen und Wiederöffnen der App erhalten bleibt.
+- Level-Up Pop-Up zeigt nun dynamisch den Namen der Gewohnheit an (z. B. 'Du hast Krafttraining schon lange gemeistert...').
