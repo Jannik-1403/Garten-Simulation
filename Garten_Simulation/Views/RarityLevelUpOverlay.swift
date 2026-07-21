@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RarityLevelUpOverlay: View {
     let rarity: PflanzenSeltenheit
+    var habit: HabitModel? = nil
     let onDismiss: () -> Void
     @EnvironmentObject var settings: SettingsStore
     
@@ -37,9 +38,15 @@ struct RarityLevelUpOverlay: View {
                 
                 // Details
                 VStack(spacing: 8) {
-                    Text(String(localized: "level_up.subtitle"))
-                        .font(.system(size: 16))
-                        .foregroundStyle(.secondary)
+                    if habit != nil {
+                        Text(String(localized: "level_up.subtitle.habit", defaultValue: "Deine Gewohnheit ist jetzt"))
+                            .font(.system(size: 16))
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Text(String(localized: "level_up.subtitle"))
+                            .font(.system(size: 16))
+                            .foregroundStyle(.secondary)
+                    }
                     
                     Stat3DTitleView(title: rarity.lokalisiertTitel.uppercased(), color: rarity.farbe, size: 40)
                         .padding(.vertical, 10)
@@ -53,12 +60,22 @@ struct RarityLevelUpOverlay: View {
                             .padding(.bottom, 8)
                     }
                         
-                    Text(String(localized: "psychology.fact.levelup", defaultValue: "Dein Gehirn bildet gerade neue neuronale Bahnen! Jeder Fortschritt festigt deine neue Identität."))
-                        .font(.system(size: 14, weight: .medium, design: .rounded))
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.top, 8)
-                        .padding(.horizontal, 20)
+                    if let habitName = habit?.displayedHabitName {
+                        let customText = String(format: String(localized: "level_up.custom_text", defaultValue: "Du hast %@ schon lange gemeistert. Es wird immer einfacher für dich, die Gewohnheit beizubehalten!"), habitName)
+                        Text(customText)
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.top, 8)
+                            .padding(.horizontal, 20)
+                    } else {
+                        Text(String(localized: "psychology.fact.levelup", defaultValue: "Dein Gehirn bildet gerade neue neuronale Bahnen! Jeder Fortschritt festigt deine neue Identität."))
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.top, 8)
+                            .padding(.horizontal, 20)
+                    }
                 }
                 
                 // Action Button

@@ -156,6 +156,7 @@ class GardenStore: ObservableObject {
     @Published var giessTriggerID = UUID()
     @Published var coinPopTrigger: Int = 0
     @Published var newlyAchievedRarity: PflanzenSeltenheit? = nil
+    @Published var newlyAchievedHabit: HabitModel? = nil
     
     var titelStore: TitelStore? = nil
 
@@ -364,6 +365,7 @@ class GardenStore: ObservableObject {
             // Wenn wir Diamant erreicht haben, schalten wir vielleicht einen Titel frei? (wird extern gemacht oder hier?)
             // Trigger das Overlay
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.newlyAchievedHabit = pflanze
                 self.newlyAchievedRarity = neueRarity
             }
         }

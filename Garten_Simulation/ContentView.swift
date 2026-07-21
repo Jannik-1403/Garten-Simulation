@@ -86,9 +86,10 @@ struct ContentView: View {
             
             // Rarity Level Up Overlay
             if let rarity = gardenStore.newlyAchievedRarity {
-                RarityLevelUpOverlay(rarity: rarity) {
+                RarityLevelUpOverlay(rarity: rarity, habit: gardenStore.newlyAchievedHabit) {
                     withAnimation {
                         gardenStore.newlyAchievedRarity = nil
+                        gardenStore.newlyAchievedHabit = nil
                     }
                 }
                 .environmentObject(settings)
