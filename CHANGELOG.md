@@ -129,3 +129,6 @@
 - Fix: Samen können nun im Shop gekauft werden, da die Schwierigkeits-Auswahl-Abfrage übersprungen wird.
 - Fix: Preis der Samen auf den Standardpreis für Pflanzen (800) korrigiert.
 - Update: Beschreibung der Samen verdeutlicht nun, dass damit eigene Gewohnheiten auf der Profilseite erstellt werden können.
+
+- Bugfix: Streak-Kalender zeigt nun die echten, lokalisierten Monatsnamen statt Platzhalter an. Die Punkte-Raster (Tage) sind nun konsistent auf 42 Zellen (6 Wochen) fixiert, sodass alle Monate optisch einheitlich dargestellt werden und die Anzahl der Monatstage (28, 29, 30, 31) automatisch korrekt berechnet wird.
+- Fixed 99% string translation coverage in Xcode String Catalog by automatically translating 8 missing keys to all 16 supported languages.
