@@ -284,7 +284,7 @@ struct ShopItemDetailView: View {
 
                             } else {
                                 // Zustand 3: Kaufen möglich — Animation DANN Aktion
-                                let isLocked = payload.itemType == .plant && selectedDifficulty == nil
+                                let isLocked = payload.itemType == .plant && payload.id != "plant.seeds" && selectedDifficulty == nil
 
                                 DuolingoKaufButton(
                                     color: isLocked ? Color.gray : payload.color

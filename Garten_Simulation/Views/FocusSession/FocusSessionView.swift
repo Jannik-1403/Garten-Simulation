@@ -212,8 +212,8 @@ struct FocusSessionView: View {
                 }
             }
         }
-        .alert(String(localized: "focus.phone_prompt.title", defaultValue: "Wirst du das Handy weglegen?"), isPresented: $showStrictModeAlert) {
-            Button(String(localized: "focus.phone_prompt.yes", defaultValue: "Ja, weglegen")) {
+        .alert(String(localized: "focus.strict_mode.prompt.title", defaultValue: "Willst du Apps während deiner Fokus-Zeit sperren?"), isPresented: $showStrictModeAlert) {
+            Button(String(localized: "common.yes", defaultValue: "Ja")) {
                 isStrictMode = true
                 currentFocusMode = .full
                 if screenTimeManager.isAuthorized {
@@ -222,20 +222,13 @@ struct FocusSessionView: View {
                     withAnimation { state = .step2 }
                 }
             }
-            Button(String(localized: "focus.phone_prompt.no", defaultValue: "Nein, ich brauche es")) {
+            Button(String(localized: "common.no", defaultValue: "Nein")) {
                 isStrictMode = false
-                currentFocusMode = .partial
-                if screenTimeManager.isAuthorized {
-                    showScreenTimePicker = true
-                } else {
-                    withAnimation { state = .step2 }
-                }
+                withAnimation { state = .step2 }
             }
-            Button(String(localized: "button.cancel"), role: .cancel) {
+            Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) {
                 // Do nothing, stay on step 1
             }
-        } message: {
-            Text(String(localized: "focus.phone_prompt.message", defaultValue: "Wähle danach die Apps aus, die für diesen Fokus blockiert werden sollen."))
         }
         .familyActivityPicker(isPresented: $showScreenTimePicker, selection: Binding(
             get: {

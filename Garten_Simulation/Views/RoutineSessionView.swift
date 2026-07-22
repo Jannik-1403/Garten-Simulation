@@ -104,33 +104,20 @@ struct RoutineSessionView: View {
                 updateLiveActivity()
             }
         }
-        .alert(String(localized: "alert.strict_mode.title"), isPresented: $showStrictModeAlert) {
-            Button(String(localized: "alert.strict_mode.no"), role: .destructive) {
+        .alert(String(localized: "routine.strict_mode.prompt.title", defaultValue: "Willst du Apps während deiner Routine sperren?"), isPresented: $showStrictModeAlert) {
+            Button(String(localized: "common.yes", defaultValue: "Ja")) {
                 if screenTimeManager.isAuthorized {
-                    screenTimeManager.blockAllApps()
-                    showBlockNotice = true
+                    showScreenTimePicker = true
                 } else {
                     startSession()
                 }
             }
-            Button(String(localized: "alert.strict_mode.yes")) {
-                if screenTimeManager.isAuthorized {
-                    if screenTimeManager.allowedSelection.applicationTokens.isEmpty && screenTimeManager.allowedSelection.webDomainTokens.isEmpty && screenTimeManager.allowedSelection.categoryTokens.isEmpty {
-                        showScreenTimePicker = true
-                    } else {
-                        screenTimeManager.blockAllExcept(selection: screenTimeManager.allowedSelection)
-                        startSession()
-                    }
-                } else {
-                    // Do nothing, or start session without strict mode
-                    startSession()
-                }
+            Button(String(localized: "common.no", defaultValue: "Nein")) {
+                startSession()
             }
-            Button(String(localized: "button.cancel"), role: .cancel) {
+            Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) {
                 // Do nothing
             }
-        } message: {
-            Text(String(localized: "alert.strict_mode.message"))
         }
         .familyActivityPicker(isPresented: $showScreenTimePicker, selection: $screenTimeManager.allowedSelection)
         .onChange(of: showScreenTimePicker) { _, isOpen in
@@ -192,19 +179,11 @@ struct RoutineSessionView: View {
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                 
-                if habits.count == 1 {
-                    Text(String(localized: "routine.session.ready.subtitle.singular", defaultValue: "1 Gewohnheit. Bereit?"))
-                        .font(.system(size: 18, weight: .medium, design: .rounded))
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 32)
-                } else {
-                    Text(String(localized: "routine.session.ready.subtitle", defaultValue: "\(habits.count) Gewohnheiten. Bereit?"))
-                        .font(.system(size: 18, weight: .medium, design: .rounded))
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 32)
-                }
+                Text(String(localized: "routine.session.ready", defaultValue: "Bereit?"))
+                    .font(.system(size: 18, weight: .medium, design: .rounded))
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
             }
             
             Spacer()

@@ -125,3 +125,7 @@
 - Bugfix: Live Activity öffnet jetzt direkt den laufenden Fokus-Timer und nicht mehr die Gewohnheits-Detailansicht.
 - Bugfix: Abgehakte Unterziele/Aufwärm-Phasen im Fokus-Timer werden jetzt sofort gespeichert, sodass der Fortschritt auch nach Schließen und Wiederöffnen der App erhalten bleibt.
 - Level-Up Pop-Up zeigt nun dynamisch den Namen der Gewohnheit an (z. B. 'Du hast Krafttraining schon lange gemeistert...').
+
+- Fix: Samen können nun im Shop gekauft werden, da die Schwierigkeits-Auswahl-Abfrage übersprungen wird.
+- Fix: Preis der Samen auf den Standardpreis für Pflanzen (800) korrigiert.
+- Update: Beschreibung der Samen verdeutlicht nun, dass damit eigene Gewohnheiten auf der Profilseite erstellt werden können.

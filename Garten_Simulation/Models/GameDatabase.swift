@@ -149,7 +149,6 @@ struct Plant: Identifiable, Codable {
     }
 
     var basePrice: Int {
-        if id == "plant.seeds" { return 50 }
         return 800
     }
 

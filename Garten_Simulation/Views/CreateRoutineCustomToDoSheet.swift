@@ -124,8 +124,8 @@ struct CreateRoutineCustomToDoSheet: View {
             plantID: plant.id,
             isRoutineOnly: true
         )
-        
         gardenStore.pflanzen.append(newHabit)
+        gardenStore.savePlants()
         selectedHabits.insert(newHabit.id)
         dismiss()
     }
