@@ -132,3 +132,5 @@
 
 - Bugfix: Streak-Kalender zeigt nun die echten, lokalisierten Monatsnamen statt Platzhalter an. Die Punkte-Raster (Tage) sind nun konsistent auf 42 Zellen (6 Wochen) fixiert, sodass alle Monate optisch einheitlich dargestellt werden und die Anzahl der Monatstage (28, 29, 30, 31) automatisch korrekt berechnet wird.
 - Fixed 99% string translation coverage in Xcode String Catalog by automatically translating 8 missing keys to all 16 supported languages.
+- Fixed Localizable.xcstrings warnings by converting hardcoded percentages to dynamic format specifiers (%@) across Swift code and string catalog.
+- Deleted 11 stale translation keys that were no longer referenced in the source code.
