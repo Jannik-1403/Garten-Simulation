@@ -1,3 +1,10 @@
+# Changelog
+
+## 2026-07-22
+- **Localization:** Systematische Überprüfung der gesamten App-Dateien durchgeführt.
+- **Fix:** Verbliebene hardcodierte Strings in verschiedenen Views (SplashScreen, PfadTagDetailView, ScreenTimeSuggestionsView, SeltenheitsBadge, ProfilComponents, DuolingoButton) durch native `String(localized:)` ersetzt.
+- **Translation:** `Localizable.xcstrings` um neue Keys erweitert und vollautomatisch (100% Abdeckung) in alle 16 Projektsprachen übersetzt.
+
 - Fixed formatting warnings for percentages in Localizable.xcstrings
 - Cleaned up stale translation keys
 - Ensured 100% translation coverage across all supported languages
