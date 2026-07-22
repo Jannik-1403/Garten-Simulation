@@ -152,7 +152,7 @@ struct StreakView: View {
                             }
                         }
                         
-                        ForEach(gardenStore.pflanzen) { pflanze in
+                        ForEach(gardenStore.sichtbarePflanzen) { pflanze in
                             Button(action: {
                                 withAnimation {
                                     selectedPlant = pflanze
@@ -586,22 +586,8 @@ struct YearlyCalendarView: View {
     }
     
     private func monthName(for month: Int) -> String {
-        let localeId: String
-        switch settings.appLanguage {
-        case "de": localeId = "de_DE"
-        case "es": localeId = "es_ES"
-        case "fr": localeId = "fr_FR"
-        case "it": localeId = "it_IT"
-        case "pt": localeId = "pt_PT"
-        case "ja": localeId = "ja_JP"
-        case "ko": localeId = "ko_KR"
-        case "pl": localeId = "pl_PL"
-        case "nl": localeId = "nl_NL"
-        case "tr": localeId = "tr_TR"
-        default:   localeId = "en_US"
-        }
         var cal = calendar
-        cal.locale = Locale(identifier: localeId)
+        cal.locale = Locale(identifier: settings.appLanguage)
         return cal.standaloneMonthSymbols[month - 1]
     }
 }
