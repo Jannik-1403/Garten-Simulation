@@ -53,7 +53,7 @@ struct WasserDetailView: View {
                                 .padding(.top, 8)
                                 .padding(.bottom, 4)
                             
-                            if gardenStore.pflanzen.isEmpty || gardenStore.gesamtMlGegossen == 0 {
+                            if gardenStore.sichtbarePflanzen.isEmpty || gardenStore.gesamtMlGegossen == 0 {
                                 // Leerer Zustand
                                 VStack(spacing: 16) {
                                     Image("Drop water")

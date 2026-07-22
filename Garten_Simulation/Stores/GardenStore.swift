@@ -18,6 +18,11 @@ struct BadHabitExecution: Codable, Identifiable {
 @MainActor
 class GardenStore: ObservableObject {
     @Published var pflanzen: [HabitModel] = []
+    
+    var sichtbarePflanzen: [HabitModel] {
+        pflanzen.filter { !$0.isRoutineOnly }
+    }
+    
     @Published var coins: Int = GameConstants.startCoins
     @Published var gesamtXP: Int = 0
     @Published var gesamtGekaufteItemsCount: Int = 0
@@ -196,7 +201,7 @@ class GardenStore: ObservableObject {
     }
 
     var pflanzenNachMlSortiert: [HabitModel] {
-        pflanzen.sorted { $0.totalMlGegossen > $1.totalMlGegossen }
+        sichtbarePflanzen.sorted { $0.totalMlGegossen > $1.totalMlGegossen }
     }
     
     // Streak-Integration

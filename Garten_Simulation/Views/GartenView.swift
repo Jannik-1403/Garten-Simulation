@@ -75,15 +75,15 @@ struct GartenView: View {
     @State private var streakHeaderPosition: CGPoint = .zero
     
 
-    var wateredCount: Int { gardenStore.pflanzen.filter { $0.istBewässert }.count }
-    var totalPlants: Int { gardenStore.pflanzen.count }
+    var wateredCount: Int { gardenStore.sichtbarePflanzen.filter { $0.istBewässert }.count }
+    var totalPlants: Int { gardenStore.sichtbarePflanzen.count }
     var wateringProgress: Double {
         guard totalPlants > 0 else { return 0 }
         return Double(wateredCount) / Double(totalPlants)
     }
     
     var headerSpacerHeight: CGFloat {
-        gardenStore.pflanzen.isEmpty ? 190 : 310 // Erhöht auf 310 für mehr Atempause
+        gardenStore.sichtbarePflanzen.isEmpty ? 190 : 310 // Erhöht auf 310 für mehr Atempause
     }
 
     let columns = [
@@ -105,7 +105,7 @@ struct GartenView: View {
                             Spacer().frame(height: headerSpacerHeight)
 
                             // MARK: - Pflanzen Grid
-                            if gardenStore.pflanzen.isEmpty {
+                            if gardenStore.sichtbarePflanzen.isEmpty {
                                     GartenIgelView(text: String(localized: "garden.empty.subtitle"))
                                         .padding(.top, 20)
                                 .frame(maxWidth: .infinity)
@@ -125,7 +125,7 @@ struct GartenView: View {
                                         )
                                     
                                     LazyVStack(spacing: 16) {
-                                        ForEach(gardenStore.pflanzen) { pflanze in
+                                        ForEach(gardenStore.sichtbarePflanzen) { pflanze in
                                             PflanzenCard(
                                                 pflanze: pflanze,
                                                 wetterEvent: aktivesEvent,
@@ -136,8 +136,8 @@ struct GartenView: View {
                                                     ausgewaehltePflanze = pflanze
                                                 }
                                             )
-                                            .tourAnchor(.intro, condition: pflanze.id == gardenStore.pflanzen.first?.id)
-                                            .id(pflanze.id == gardenStore.pflanzen.first?.id ? TourStep.intro : nil)
+                                            .tourAnchor(.intro, condition: pflanze.id == gardenStore.sichtbarePflanzen.first?.id)
+                                            .id(pflanze.id == gardenStore.sichtbarePflanzen.first?.id ? TourStep.intro : nil)
                                         }
                                     }
                                     .frame(maxWidth: .infinity)
@@ -257,7 +257,7 @@ struct GartenView: View {
                         .padding(.bottom, 10)
                         .frame(maxWidth: 850)
 
-                        if !gardenStore.pflanzen.isEmpty {
+                        if !gardenStore.sichtbarePflanzen.isEmpty {
                             DailyWateringRingView(
                                 progress: wateringProgress,
                                 count: wateredCount,
@@ -567,7 +567,7 @@ struct GartenView: View {
         }
         .overlay {
             // Global Watering FAB
-            if gardenStore.pflanzen.contains(where: { !$0.istBewässert && !$0.isDead }) {
+            if gardenStore.sichtbarePflanzen.contains(where: { !$0.istBewässert && !$0.isDead }) {
                 GlobalDragToWater(cardPositions: cardPositions)
                     .environmentObject(gardenStore)
                     .environmentObject(powerUpStore)
@@ -581,7 +581,7 @@ struct GartenView: View {
                     onCrossApplied: { hitID in
                         triggerSheetItem = TriggerSheetItem(id: hitID)
                     },
-                    isWaterVisible: gardenStore.pflanzen.contains(where: { !$0.istBewässert && !$0.isDead })
+                    isWaterVisible: gardenStore.sichtbarePflanzen.contains(where: { !$0.istBewässert && !$0.isDead })
                 )
                 .environmentObject(gardenStore)
                 .zIndex(99)
@@ -592,7 +592,7 @@ struct GartenView: View {
             if let s = prefs.first(where: { $0.id == "streak" }) { streakHeaderPosition = s.center }
         }
         .onChange(of: gardenStore.giessTriggerID) { _, _ in
-            if !gardenStore.pflanzen.isEmpty {
+            if !gardenStore.sichtbarePflanzen.isEmpty {
                 // Anzahl der Münzen basierend auf dem Gewinn (z.B. 1 Münze pro 5 Coins, min 2, max 8)
                 let coinsEarned = gardenStore.letzteGiessCoins
                 let coinCount = min(8, max(2, coinsEarned / 5))

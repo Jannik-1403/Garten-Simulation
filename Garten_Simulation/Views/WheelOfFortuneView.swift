@@ -276,7 +276,7 @@ struct WheelOfFortuneView: View {
         case .gross:
             gardenStore.coins += 50
         case .xpBoost:
-            if let lowest = gardenStore.pflanzen.sorted(by: { $0.currentXP < $1.currentXP }).first {
+            if let lowest = gardenStore.sichtbarePflanzen.sorted(by: { $0.currentXP < $1.currentXP }).first {
                 lowest.currentXP += 100
             }
             gardenStore.xpHinzufuegen(amount: 50)

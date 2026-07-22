@@ -139,7 +139,9 @@ struct RoutinenView: View {
                                             routine: routine,
                                             isCompleted: false,
                                             onHabitTap: { pflanze in
-                                                selectedHabitToView = pflanze
+                                                if !pflanze.isRoutineOnly {
+                                                    selectedHabitToView = pflanze
+                                                }
                                             },
                                             onStart: {
                                                 routineToPlay = routine
@@ -172,7 +174,9 @@ struct RoutinenView: View {
                                             routine: routine,
                                             isCompleted: true,
                                             onHabitTap: { pflanze in
-                                                selectedHabitToView = pflanze
+                                                if !pflanze.isRoutineOnly {
+                                                    selectedHabitToView = pflanze
+                                                }
                                             },
                                             onStart: {
                                                 routineToPlay = routine
@@ -193,7 +197,9 @@ struct RoutinenView: View {
                                 habits: otherPlants,
                                 routine: nil,
                                 onHabitTap: { pflanze in
-                                    selectedHabitToView = pflanze
+                                    if !pflanze.isRoutineOnly {
+                                        selectedHabitToView = pflanze
+                                    }
                                 }
                             )
                             .padding(.top, completedRoutines.isEmpty ? 32 : 16)
@@ -499,7 +505,9 @@ struct RoutineHabitCard: View {
             groesse: 76,
             isRectangular: true,
             aktion: {
-                onTap?()
+                if !pflanze.isRoutineOnly {
+                    onTap?()
+                }
             }
         ) {
             HStack(spacing: 16) {
@@ -528,13 +536,16 @@ struct RoutineHabitCard: View {
                 
                 Spacer()
                 
-                Image(systemName: "chevron.right")
-                    .foregroundStyle(.tertiary)
-                    .font(.system(size: 14, weight: .bold))
+                if !pflanze.isRoutineOnly {
+                    Image(systemName: "chevron.right")
+                        .foregroundStyle(.tertiary)
+                        .font(.system(size: 14, weight: .bold))
+                }
             }
             .padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
+        .allowsHitTesting(!pflanze.isRoutineOnly)
     }
 }
 

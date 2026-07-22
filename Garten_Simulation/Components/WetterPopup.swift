@@ -127,16 +127,16 @@ struct WetterPopup: View {
     // MARK: - Helper Texte
     var gemsText: String {
         switch event {
-        case .perfekt: return String(localized: "weather.effect.gems_plus")
-        case .schnee: return String(localized: "weather.effect.gems_minus")
+        case .perfekt: return String(localized: "weather.effect.gems_plus", defaultValue: "+\(String("50%")) Gems")
+        case .schnee: return String(localized: "weather.effect.gems_minus", defaultValue: "-\(String("30%")) Gems")
         default: return String(localized: "weather.effect.normal")
         }
     }
 
     var xpText: String {
         switch event {
-        case .regen: return String(localized: "weather.effect.xp_plus")
-        case .perfekt: return String(localized: "weather.effect.xp_plus")
+        case .regen: return String(localized: "weather.effect.xp_plus", defaultValue: "+\(String("50%")) XP")
+        case .perfekt: return String(localized: "weather.effect.xp_plus", defaultValue: "+\(String("50%")) XP")
         default: return String(localized: "weather.effect.normal")
         }
     }

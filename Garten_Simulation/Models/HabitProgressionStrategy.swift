@@ -96,7 +96,7 @@ class StrengthProgressionStrategy: HabitProgressionStrategy {
             
             return (
                 title: String(localized: "prog_strength_d3_title", defaultValue: "Explosive Kraft"),
-                description: String(localized: "prog_strength_d3_desc", defaultValue: "Fokus auf 100% Effort pro Sprint. Langsame Erholung beim Zurückgehen."),
+                description: String(localized: "prog_strength_d3_desc", defaultValue: "Fokus auf \(String("100%")) Effort pro Sprint. Langsame Erholung beim Zurückgehen."),
                 todos: [
                     String(localized: "prog_strength_d3_t1", defaultValue: "10 Min dynamisches Dehnen"),
                     String(localized: "prog_strength_d3_t2", defaultValue: "\(sprints) x \(distance) Sprints (Maximale Intensität)"),
@@ -509,8 +509,8 @@ class WaterProgressionStrategy: HabitProgressionStrategy {
             todos = [String(localized: "prog_water_d1_t1", defaultValue: "500ml direkt nach dem Aufstehen getrunken"), String(localized: "prog_water_d1_t2", defaultValue: "Tagesziel: \(formattedValue) L erreicht")]
         case 2:
             title = String(localized: "prog_water_d2_title", defaultValue: "Fokus auf die erste Tageshälfte")
-            desc = String(localized: "prog_water_d2_desc", defaultValue: "Versuche, mindestens 60% deines Wasserbedarfs vor 14 Uhr zu decken. Das verhindert abendliches Trinken und nächtliche Klobesuche.")
-            todos = [String(localized: "prog_water_d2_t1", defaultValue: "60% vor 14:00 Uhr getrunken"), String(localized: "prog_water_d2_t2", defaultValue: "Tagesziel: \(formattedValue) L erreicht")]
+            desc = String(localized: "prog_water_d2_desc", defaultValue: "Versuche, mindestens \(String("60%")) deines Wasserbedarfs vor 14 Uhr zu decken. Das verhindert abendliches Trinken und nächtliche Klobesuche.")
+            todos = [String(localized: "prog_water_d2_t1", defaultValue: "\(String("60%")) vor 14:00 Uhr getrunken"), String(localized: "prog_water_d2_t2", defaultValue: "Tagesziel: \(formattedValue) L erreicht")]
         case 3:
             title = String(localized: "prog_water_d3_title", defaultValue: "Elektrolyte")
             desc = String(localized: "prog_water_d3_desc", defaultValue: "Reines Wasser spült oft Mineralien aus. Gib heute eine Prise gutes Salz (Meer- oder Ursalz) in eine deiner Flaschen.")
@@ -577,7 +577,7 @@ class NutritionProgressionStrategy: HabitProgressionStrategy {
         case 4:
             title = String(localized: "prog_nutrition_d4_title", defaultValue: "Rohkost")
             desc = String(localized: "prog_nutrition_d4_desc", defaultValue: "Verzehre mindestens eine Portion komplett roh, um alle hitzeempfindlichen Vitamine zu bewahren.")
-            todos = [String(localized: "prog_nutrition_d4_t1", defaultValue: "\(targetCount) Portionen erreicht"), String(localized: "prog_nutrition_d4_t2", defaultValue: "Eine Portion zu 100% roh gegessen")]
+            todos = [String(localized: "prog_nutrition_d4_t1", defaultValue: "\(targetCount) Portionen erreicht"), String(localized: "prog_nutrition_d4_t2", defaultValue: "Eine Portion zu \(String("100%")) roh gegessen")]
         case 5:
             title = String(localized: "prog_nutrition_d5_title", defaultValue: "Neues entdecken")
             desc = String(localized: "prog_nutrition_d5_desc", defaultValue: "Iss heute ein Gemüse oder Obst, das du schon sehr lange nicht mehr oder noch nie gegessen hast.")

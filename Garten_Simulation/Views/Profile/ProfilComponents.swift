@@ -402,7 +402,7 @@ struct StatisticsDashboard: View {
     // MARK: - Computed Data
     
     private var gardenScoreData: (score: Int, konsistenz: Double, streakScore: Double, message: String, bestStreakInPeriod: Int) {
-        let habits = gardenStore.pflanzen
+        let habits = gardenStore.sichtbarePflanzen
         guard !habits.isEmpty else { return (0, 0, 0, String(localized: "stats.score.msg.low"), 0) }
         
         let days = selectedPeriod.days
@@ -459,7 +459,7 @@ struct StatisticsDashboard: View {
 
 
     private var closestToLevelUp: [HabitModel] {
-        gardenStore.pflanzen
+        gardenStore.sichtbarePflanzen
             .filter { $0.seltenheit != .diamant }
             .sorted { a, b in
                 let aRemaining = (a.seltenheit.naechste?.xpSchwelle ?? 0) - a.currentXP
@@ -486,7 +486,7 @@ struct StatisticsDashboard: View {
                 }
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 16)
-                if gardenStore.pflanzen.isEmpty {
+                if gardenStore.sichtbarePflanzen.isEmpty {
                     ContentUnavailableView(
                         String(localized: "stats.empty.title"),
                         systemImage: "leaf.fill",
@@ -527,7 +527,7 @@ struct StatisticsDashboard: View {
                 SharePreviewSheet(
                     type: type,
                     period: selectedPeriod,
-                    habits: gardenStore.pflanzen
+                    habits: gardenStore.sichtbarePflanzen
                 )
                 .environmentObject(settings)
                 .environmentObject(gardenStore)
@@ -639,7 +639,7 @@ struct StatisticsDashboard: View {
     }
     
     private var lifeBalanceCard: some View {
-        let habits = gardenStore.pflanzen
+        let habits = gardenStore.sichtbarePflanzen
 
         return VStack(spacing: 0) {
             // Header
@@ -695,7 +695,7 @@ struct StatisticsDashboard: View {
     }
 
     private var gardenScoreConsistencyCard: some View {
-        let history = StatsHelper.getWateringHistory(from: gardenStore.pflanzen, badHabitExecutions: gardenStore.badHabitExecutions, days: selectedPeriod.days, endDate: selectedEndDate)
+        let history = StatsHelper.getWateringHistory(from: gardenStore.sichtbarePflanzen, badHabitExecutions: gardenStore.badHabitExecutions, days: selectedPeriod.days, endDate: selectedEndDate)
         return VStack(alignment: .leading, spacing: 16) {
             HStack {
                 Label(String(localized: "stats.score.konsistenz"), systemImage: "checkmark.circle.fill")
@@ -1205,7 +1205,7 @@ struct StatDetailFullscreenView: View {
         } else {
             // allTime
             var earliest = today
-            for plant in gardenStore.pflanzen {
+            for plant in gardenStore.sichtbarePflanzen {
                 if plant.gekauftAm < earliest { earliest = plant.gekauftAm }
                 if let minDate = plant.wateringDates.min(), minDate < earliest { earliest = minDate }
             }
@@ -1261,7 +1261,7 @@ struct StatDetailFullscreenView: View {
     }
     
     private var closestToLevelUp: [HabitModel] {
-        gardenStore.pflanzen
+        gardenStore.sichtbarePflanzen
             .filter { $0.seltenheit != .diamant }
             .sorted { a, b in
                 let aRemaining = (a.seltenheit.naechste?.xpSchwelle ?? 0) - a.currentXP
@@ -1342,7 +1342,7 @@ struct StatDetailFullscreenView: View {
                     SharePreviewSheet(
                         type: type,
                         period: selectedPeriod,
-                        habits: gardenStore.pflanzen
+                        habits: gardenStore.sichtbarePflanzen
                     )
                     .environmentObject(settings)
                     .environmentObject(gardenStore)
@@ -1544,7 +1544,7 @@ struct StatDetailFullscreenView: View {
 
     private var balanceContent: some View {
         return VStack(spacing: 32) {
-            RadarChartView(habits: gardenStore.pflanzen, selectedPeriod: selectedPeriod)
+            RadarChartView(habits: gardenStore.sichtbarePflanzen, selectedPeriod: selectedPeriod)
                 .frame(height: 350)
                 .padding(.vertical, 20)
             

@@ -6701,107 +6701,6 @@
         }
       }
     },
-    "Alle ablenkenden Apps wurden über Screen Time für die Dauer der Routine blockiert.": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": ""
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "All distracting apps were blocked via Screen Time for the duration of the routine."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todas las aplicaciones que distraen se bloquearon a través de Screen Time durante la rutina."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toutes les applications distrayantes ont été bloquées via Screen Time pendant toute la durée de la routine."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "दिनचर्या की अवधि के लिए सभी ध्यान भटकाने वाले ऐप्स को स्क्रीन टाइम के माध्यम से ब्लॉक कर दिया गया था।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tutte le app che distraggono sono state bloccate tramite Screen Time per la durata della routine."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ルーチンの間、気が散るアプリはすべてスクリーンタイム経由でブロックされました。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "루틴이 진행되는 동안 방해가 되는 모든 앱은 스크린 타임을 통해 차단되었습니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Alle afleidende apps werden gedurende de hele routine via Screen Time geblokkeerd."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wszystkie rozpraszające aplikacje zostały zablokowane przez funkcję Czas przed ekranem na czas trwania rutyny."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todos os aplicativos que distraem foram bloqueados pelo Screen Time durante a rotina."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todos os aplicativos que distraem foram bloqueados pelo Screen Time durante a rotina."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Все отвлекающие приложения были заблокированы через Screen Time на время выступления."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rutin süresince tüm dikkat dağıtıcı uygulamalar Ekran Süresi aracılığıyla engellendi."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "在例行程序期间，所有分散注意力的应用程序都会通过“屏幕时间”被阻止。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "在例行程序期間，所有分散注意力的應用程式都會透過「螢幕時間」被阻止。"
-          }
-        }
-      }
-    },
     "app_name_grovy": {
       "extractionState": "manual",
       "localizations": {
@@ -90541,107 +90440,6 @@
         }
       }
     },
-    "Bild fehlerhaft": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bild fehlerhaft"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Image invalid"
-          }
-        }
-      }
-    },
     "bonus_text": {
       "comment": "",
       "extractionState": "manual",
@@ -144746,107 +144544,6 @@
         }
       }
     },
-    "Handy blockiert": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": ""
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cell phone blocked"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "celular bloqueado"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Téléphone portable bloqué"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सेल फ़ोन ब्लॉक कर दिया गया"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cellulare bloccato"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "携帯電話がブロックされている"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "휴대폰이 차단됨"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mobiele telefoon geblokkeerd"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Telefon komórkowy zablokowany"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Celular bloqueado"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Celular bloqueado"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Сотовый телефон заблокирован"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cep telefonu engellendi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "手机被屏蔽了"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "手機被屏蔽了"
-          }
-        }
-      }
-    },
     "health.metric.mindfulness": {
       "extractionState": "manual",
       "localizations": {
@@ -183327,7 +183024,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erhalte 25% mehr Münzen für jeden Timer & Aufgabe."
+            "value": "Erhalte%@ mehr Münzen für jeden Timer & Aufgabe."
           }
         },
         "en": {
@@ -254522,37 +254219,37 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eine Portion zu 100% roh gegessen"
+            "value": "Eine Portion zu%@ roh gegessen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "One portion eaten 100% raw"
+            "value": "One portion eaten%@ raw"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Una porción consumida 100% cruda"
+            "value": "Una porción consumida%@ cruda"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Une portion consommée 100% crue"
+            "value": "Une portion consommée%@ crue"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "एक भाग 100% कच्चा खाया जाता है"
+            "value": "एक भाग%@ कच्चा खाया जाता है"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Una porzione consumata cruda al 100%."
+            "value": "Una porzione consumata cruda al%@."
           }
         },
         "ja": {
@@ -254564,31 +254261,31 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "한 부분은 100% 생으로 먹음"
+            "value": "한 부분은%@ 생으로 먹음"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eén portie wordt 100% rauw gegeten"
+            "value": "Eén portie wordt%@ rauw gegeten"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jedna porcja spożywana w 100% na surowo"
+            "value": "Jedna porcja spożywana w%@ na surowo"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uma porção consumida 100% crua"
+            "value": "Uma porção consumida%@ crua"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uma porção consumida 100% crua"
+            "value": "Uma porção consumida%@ crua"
           }
         },
         "ru": {
@@ -254600,19 +254297,19 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bir porsiyon %100 çiğ olarak yenir"
+            "value": "Bir porsiyon%@ çiğ olarak yenir"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "一份 100% 生吃"
+            "value": "一份%@ 生吃"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "一份 100% 生吃"
+            "value": "一份%@ 生吃"
           }
         }
       }
@@ -272399,97 +272096,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fokus auf 100% Effort pro Sprint. Langsame Erholung beim Zurückgehen."
+            "value": "Fokus auf%@ Effort pro Sprint. Langsame Erholung beim Zurückgehen."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Focus on 100% effort per sprint. Slow recovery while walking back."
+            "value": "Focus on%@ effort per sprint. Slow recovery while walking back."
           }
         }
       }
@@ -286943,37 +286640,37 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versuche, mindestens 60% deines Wasserbedarfs vor 14 Uhr zu decken. Das verhindert abendliches Trinken und nächtliche Klobesuche."
+            "value": "Versuche, mindestens%@ deines Wasserbedarfs vor 14 Uhr zu decken. Das verhindert abendliches Trinken und nächtliche Klobesuche."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Try to get at least 60% of your water needs before 2 p.m. This prevents drinking in the evening and going to the toilet at night."
+            "value": "Try to get at least%@ of your water needs before 2 p.m. This prevents drinking in the evening and going to the toilet at night."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Intente cubrir al menos el 60 % de sus necesidades de agua antes de las 2 p. m. Esto evita beber por la noche e ir al baño por la noche."
+            "value": "Intente cubrir al menos el%@ de sus necesidades de agua antes de las 2 p. m. Esto evita beber por la noche e ir al baño por la noche."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Essayez d'obtenir au moins 60 % de vos besoins en eau avant 14 heures. Cela évite de boire le soir et d'aller aux toilettes la nuit."
+            "value": "Essayez d'obtenir au moins%@ de vos besoins en eau avant 14 heures. Cela évite de boire le soir et d'aller aux toilettes la nuit."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अपनी पानी की ज़रूरत का कम से कम 60% दोपहर 2 बजे से पहले पूरा करने का प्रयास करें। यह शाम को शराब पीने और रात में शौचालय जाने से रोकता है।"
+            "value": "अपनी पानी की ज़रूरत का कम से कम%@ दोपहर 2 बजे से पहले पूरा करने का प्रयास करें। यह शाम को शराब पीने और रात में शौचालय जाने से रोकता है।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cerca di soddisfare almeno il 60% del tuo fabbisogno idrico prima delle 14:00. Ciò impedisce di bere la sera e di andare in bagno di notte."
+            "value": "Cerca di soddisfare almeno il%@ del tuo fabbisogno idrico prima delle 14:00. Ciò impedisce di bere la sera e di andare in bagno di notte."
           }
         },
         "ja": {
@@ -286985,55 +286682,55 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "오후 2시 이전에 필요한 물의 최소 60%를 확보하도록 노력하십시오. 이렇게 하면 저녁에 술을 마시고 밤에 화장실에 가는 것을 방지할 수 있습니다."
+            "value": "오후 2시 이전에 필요한 물의 최소%@를 확보하도록 노력하십시오. 이렇게 하면 저녁에 술을 마시고 밤에 화장실에 가는 것을 방지할 수 있습니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Probeer vóór 14.00 uur minimaal 60% van uw waterbehoefte binnen te krijgen. Dit voorkomt dat je 's avonds drinkt en 's nachts naar het toilet gaat."
+            "value": "Probeer vóór 14.00 uur minimaal%@ van uw waterbehoefte binnen te krijgen. Dit voorkomt dat je 's avonds drinkt en 's nachts naar het toilet gaat."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Staraj się zaspokoić co najmniej 60% swojego zapotrzebowania na wodę przed godziną 14:00. Zapobiega to piciu wieczorem i chodzeniu do toalety w nocy."
+            "value": "Staraj się zaspokoić co najmniej%@ swojego zapotrzebowania na wodę przed godziną 14:00. Zapobiega to piciu wieczorem i chodzeniu do toalety w nocy."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tente obter pelo menos 60% de suas necessidades de água antes das 14h. Isso evita beber à noite e ir ao banheiro à noite."
+            "value": "Tente obter pelo menos%@ de suas necessidades de água antes das 14h. Isso evita beber à noite e ir ao banheiro à noite."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tente obter pelo menos 60% de suas necessidades de água antes das 14h. Isso evita beber à noite e ir ao banheiro à noite."
+            "value": "Tente obter pelo menos%@ de suas necessidades de água antes das 14h. Isso evita beber à noite e ir ao banheiro à noite."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Постарайтесь восполнить хотя бы 60% необходимой воды до 14:00. Это предотвращает употребление алкоголя вечером и посещение туалета ночью."
+            "value": "Постарайтесь восполнить хотя бы%@ необходимой воды до 14:00. Это предотвращает употребление алкоголя вечером и посещение туалета ночью."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Su ihtiyacınızın en az %60'ını saat 14.00'ten önce almaya çalışın. Bu da akşam içki içmeyi ve gece tuvalete gitmeyi engeller."
+            "value": "Su ihtiyacınızın en az%@'ını saat 14.00'ten önce almaya çalışın. Bu da akşam içki içmeyi ve gece tuvalete gitmeyi engeller."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "尽量在下午 2 点之前满足至少 60% 的用水需求。这样可以防止晚上喝酒和晚上上厕所。"
+            "value": "尽量在下午 2 点之前满足至少%@ 的用水需求。这样可以防止晚上喝酒和晚上上厕所。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "盡量在下午 2 點前滿足至少 60% 的用水需求。這樣可以防止晚上喝酒和晚上上廁所。"
+            "value": "盡量在下午 2 點前滿足至少%@ 的用水需求。這樣可以防止晚上喝酒和晚上上廁所。"
           }
         }
       }
@@ -287044,37 +286741,37 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "60% vor 14:00 Uhr getrunken"
+            "value": "%@ vor 14:00 Uhr getrunken"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "60% drunk before 2 p.m"
+            "value": "%@ drunk before 2 p.m"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "60% borracho antes de las 2 p.m."
+            "value": "%@ borracho antes de las 2 p.m."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "60% ivre avant 14h"
+            "value": "%@ ivre avant 14h"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "60% लोग दोपहर 2 बजे से पहले नशे में थे"
+            "value": "%@ लोग दोपहर 2 बजे से पहले नशे में थे"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "60% ubriaco prima delle 14:00"
+            "value": "%@ ubriaco prima delle 14:00"
           }
         },
         "ja": {
@@ -287086,37 +286783,37 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "오후 2시 이전에 60% 취함"
+            "value": "오후 2시 이전에%@ 취함"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "60% dronken vóór 14.00 uur"
+            "value": "%@ dronken vóór 14.00 uur"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "60% pijanych przed 14:00"
+            "value": "%@ pijanych przed 14:00"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "60% bêbado antes das 14h"
+            "value": "%@ bêbado antes das 14h"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "60% bêbado antes das 14h"
+            "value": "%@ bêbado antes das 14h"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "60% пьяны до 14:00."
+            "value": "%@ пьяны до 14:00."
           }
         },
         "tr": {
@@ -287128,13 +286825,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "下午 2 点之前 60% 的人喝醉了"
+            "value": "下午 2 点之前%@ 的人喝醉了"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "下午 2 點前 60% 的人喝醉了"
+            "value": "下午 2 點前%@ 的人喝醉了"
           }
         }
       }
@@ -327481,7 +327178,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy Pro (%50 indirim kazan)"
+            "value": "Grovy Pro (%@ indirim kazan)"
           }
         },
         "zh-Hans": {
@@ -348969,107 +348666,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "尋找..."
-          }
-        }
-      }
-    },
-    "Suggestions": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vorschläge"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suggestions"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sugerencias"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suggestions"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सुझाव"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suggerimenti"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "提案"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "제안"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suggesties"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sugestie"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sugestões"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sugestões"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Предложения"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Öneriler"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "建议"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "建議"
           }
         }
       }
@@ -389683,107 +389279,6 @@
         }
       }
     },
-    "Verstanden": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": ""
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Understood"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comprendido"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compris"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "समझा"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inteso"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "理解した"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이해했다"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Begrepen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zrozumiany"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entendido"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entendido"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Понял"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Anlaşıldı"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "明白了"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "明白了"
-          }
-        }
-      }
-    },
     "Vorbereitung starten": {
       "comment": "A button label that starts the preparation phase of a focus session.",
       "extractionState": "manual",
@@ -391808,7 +391303,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "-%30 Mücevher"
+            "value": "%@ Mücevher"
           }
         },
         "zh-Hans": {
@@ -391910,7 +391405,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%50 Mücevher"
+            "value": "%@ Mücevher"
           }
         },
         "zh-Hans": {
@@ -392114,7 +391609,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "+%50 DP"
+            "value": "%@ DP"
           }
         },
         "zh-Hans": {
@@ -399048,107 +398543,6 @@
         }
       }
     },
-    "weekly_report.feedback.desc.insufficient": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit (mind. 30 Min.) oder hake Gewohnheiten ab (mind. 3), um eine tiefgehende Analyse und Tipps zu erhalten. Jeder kleine Schritt zählt!"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Collect a little more focus time this week (min. 30 min) or check off habits (min. 3) to get an in-depth analysis and tips. Every small step counts!"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Acumula un poco más de tiempo de enfoque esta semana (mín. 30 min.) o completa hábitos (mín. 3) para obtener un análisis profundo y consejos. ¡Cada pequeño paso cuenta!"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cumule un peu plus de temps de concentration cette semaine (min. 30 min) ou coche des habitudes (min. 3) pour obtenir une analyse détaillée et des conseils. Chaque petit pas compte !"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "गहन विश्लेषण और सुझाव प्राप्त करने के लिए इस सप्ताह थोड़ा और फ़ोकस समय (न्यूनतम 30 मिनट) इकट्ठा करें या आदतें पूरी करें (न्यूनतम 3)। हर छोटा कदम मायने रखता है!"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Raccogli un po' più di tempo di concentrazione questa settimana (min. 30 min) o completa delle abitudini (min. 3) per ottenere un'analisi approfondita e consigli. Ogni piccolo passo conta!"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "今週はもう少しフォーカス時間を集めるか（最低30分）、習慣をチェックして（最低3つ）、詳細な分析とヒントを受け取りましょう。どんな小さな一歩も大切です！"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "심층 분석과 팁을 얻으려면 이번 주에 집중 시간을 조금 더 모으거나(최소 30분) 습관을 완료하세요(최소 3개). 작은 발걸음 하나하나가 중요합니다!"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verzamel deze week wat meer focustijd (min. 30 min.) of vink gewoonten af (min. 3) om een diepgaande analyse en tips te krijgen. Elke kleine stap telt!"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zbierz w tym tygodniu trochę więcej czasu skupienia (min. 30 min) lub odznacz nawyki (min. 3), aby otrzymać dogłębną analizę i wskazówki. Każdy mały krok się liczy!"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Acumule um pouco mais de tempo de foco esta semana (mín. 30 min) ou conclua hábitos (mín. 3) para obter uma análise detalhada e dicas. Cada pequeno passo conta!"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Acumule um pouco mais de tempo de foco esta semana (mín. 30 min) ou conclua hábitos (mín. 3) para obter uma análise detalhada e dicas. Cada pequeno passo conta!"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Соберите на этой неделе еще немного времени фокуса (мин. 30 мин) или отметьте привычки (мин. 3), чтобы получить глубокий анализ и советы. Каждый маленький шаг имеет значение!"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Derinlemesine bir analiz ve ipuçları almak için bu hafta biraz daha odaklanma süresi topla (en az 30 dk.) veya alışkanlıkları tamamla (en az 3). Her küçük adım önemlidir!"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "本周再多收集一些专注时间（至少 30 分钟）或完成习惯（至少 3 个），以获得深入的分析和提示。每一小步都很重要！"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "本週再多收集一些專注時間（至少 30 分鐘）或完成習慣（至少 3 個），以獲得深入的分析和提示。每一小步都很重要！"
-          }
-        }
-      }
-    },
     "weekly_report.feedback.desc.negative": {
       "extractionState": "manual",
       "localizations": {
@@ -400462,107 +399856,6 @@
         }
       }
     },
-    "weekly_report.feedback.title.insufficient": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mehr Daten benötigt"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "More Data Needed"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Se necesitan más datos"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Plus de données requises"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अधिक डेटा आवश्यक है"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sono necessari più dati"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "さらにデータが必要です"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "더 많은 데이터가 필요합니다"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meer gegevens nodig"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Potrzeba więcej danych"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mais dados necessários"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mais dados necessários"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Нужно больше данных"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daha fazla veri gerekiyor"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "需要更多数据"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "需要更多資料"
-          }
-        }
-      }
-    },
     "weekly_report.feedback.title.negative": {
       "extractionState": "manual",
       "localizations": {
@@ -401669,410 +400962,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "提示：有時少即是多。下週，重點關注 2-3 個核心習慣，真正鞏固它們。"
-          }
-        }
-      }
-    },
-    "weekly_report.tip.actionable_afternoon": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tipp: Du hast %@ deiner Fokuszeit am Nachmittag verbracht. Nutze dieses Zeitfenster auch nächste Woche für fokussiertes Arbeiten."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "weekly_report.tip.actionable_afternoon"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "informe_semanal.tip.actionable_afternoon"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.actionable_afternoon"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "साप्ताहिक_रिपोर्ट.टिप.क्रियायोग्य_दोपहर"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.actionable_afternoon"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekly_report.tip.actionable_afternoon"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekly_report.tip.actionable_afternoon"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "wekelijkse_rapport.tip.actiebare_middag"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "raport_tygodniowy.tip.actionable_popołudnie"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "relatório_semanal.tip.actionable_afternoon"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "relatório_semanal.tip.actionable_afternoon"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "еженедельный_report.tip.actionable_afternoon"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "haftalık_report.tip.actionable_afternoon"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.actionable_afternoon"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.actionable_afternoon"
-          }
-        }
-      }
-    },
-    "weekly_report.tip.actionable_evening": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tipp: Du hast %@ deiner Fokuszeit am Abend verbracht. Wenn das für dich funktioniert, plane deine Deep-Work-Sessions ab 18 Uhr."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "weekly_report.tip.actionable_evening"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "informe_semanal.tip.actionable_evening"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.actionable_evening"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "साप्ताहिक_रिपोर्ट.टिप.क्रियायोग्य_शाम"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.actionable_evening"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekly_report.tip.actionable_evening"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekly_report.tip.actionable_evening"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "wekelijks_rapport.tip.actiegerichte_avond"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "raport_tygodniowy.tip.actionable_evening"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "relatório_semanal.tip.actionable_evening"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "relatório_semanal.tip.actionable_evening"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "еженедельный_report.tip.actionable_evening"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "haftalık_report.tip.actionable_evening"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.actionable_evening"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.actionable_evening"
-          }
-        }
-      }
-    },
-    "weekly_report.tip.actionable_morning": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tipp: Du hast %@ deiner Fokuszeit am Vormittag verbracht. Versuche, deine wichtigsten Blöcke weiterhin vor 12 Uhr zu planen, um diesen Flow zu nutzen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "weekly_report.tip.actionable_morning"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "informe_semanal.tip.actionable_morning"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.actionable_morning"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "साप्ताहिक_रिपोर्ट.टिप.क्रियायोग्य_सुबह"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.actionable_morning"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekly_report.tip.actionable_Morning"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekly_report.tip.actionable_morning"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "wekelijks_rapport.tip.actiebare_ochtend"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "raport_tygodniowy.tip.actionable_morning"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "relatório_semanal.tip.actionable_morning"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "relatório_semanal.tip.actionable_morning"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekly_report.tip.actionable_morning"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "haftalık_report.tip.actionable_morning"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.actionable_morning"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.actionable_morning"
-          }
-        }
-      }
-    },
-    "weekly_report.tip.low_confidence": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tipp: Zu wenig Daten für eine detaillierte Tageszeit-Analyse. Sammle mehr Fokus-Sessions (mind. 100 Min), um präzise Tipps zu erhalten."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "weekly_report.tip.low_confidence"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "informe_semanal.tip.low_confidence"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "week_report.tip.low_confidence"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "साप्ताहिक_रिपोर्ट.टिप.कम_आत्मविश्वास"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "settimanale_report.tip.low_confidence"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekly_report.tip.low_confidence"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weekly_report.tip.low_confidence"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "wekelijks_rapport.tip.laag_vertrouwen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "raport_tygodniowy.tip.niska_pewność"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "relatório_semanal.tip.low_confidence"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "relatório_semanal.tip.low_confidence"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "еженедельный_отчет.tip.low_confidence"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "haftalık_report.tip.low_confidence"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每周报告.tip.low_confidence"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每週報告.tip.low_confidence"
           }
         }
       }

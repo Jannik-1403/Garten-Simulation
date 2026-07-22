@@ -219,7 +219,14 @@ struct FocusSessionView: View {
                 if screenTimeManager.isAuthorized {
                     showScreenTimePicker = true
                 } else {
-                    withAnimation { state = .step2 }
+                    Task {
+                        await screenTimeManager.requestAuthorization()
+                        if screenTimeManager.isAuthorized {
+                            showScreenTimePicker = true
+                        } else {
+                            withAnimation { state = .step2 }
+                        }
+                    }
                 }
             }
             Button(String(localized: "common.no", defaultValue: "Nein")) {
