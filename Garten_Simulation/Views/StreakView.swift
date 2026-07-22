@@ -586,9 +586,9 @@ struct YearlyCalendarView: View {
     }
     
     private func monthName(for month: Int) -> String {
-        var cal = calendar
-        cal.locale = Locale(identifier: settings.appLanguage)
-        return cal.standaloneMonthSymbols[month - 1]
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: Bundle.main.preferredLocalizations.first ?? "en")
+        return formatter.standaloneMonthSymbols[month - 1]
     }
 }
 
