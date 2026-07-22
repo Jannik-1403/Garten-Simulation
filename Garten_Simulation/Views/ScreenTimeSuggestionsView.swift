@@ -2,6 +2,6 @@ import SwiftUI
 
 struct ScreenTimeSuggestionsView: View {
     var body: some View {
-        Text("Suggestions")
+        Text(String(localized: "screentime_suggestions_title", defaultValue: "Vorschläge"))
     }
 }

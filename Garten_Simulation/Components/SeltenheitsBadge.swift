@@ -27,7 +27,7 @@ struct SeltenheitsBadge: View {
         .background(stufe.gradient)
         .clipShape(Capsule())
         .shadow(color: stufe.secondaryColor.opacity(0.35), radius: 3, x: 0, y: 2)
-        .accessibilityLabel("Seltenheit: \(stufe.lokalisiertTitel)")
+        .accessibilityLabel(String(localized: "rarity_accessibility_label", defaultValue: "Seltenheit: \(stufe.lokalisiertTitel)"))
     }
 }
 

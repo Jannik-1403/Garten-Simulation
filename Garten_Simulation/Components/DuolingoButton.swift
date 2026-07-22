@@ -132,16 +132,16 @@ private struct DuolingoButtonVisualView: View {
 
 #Preview {
     VStack(spacing: 20) {
-        Button("Continue") {}
+        Button(String(localized: "preview_btn_continue", defaultValue: "Continue")) {}
             .buttonStyle(DuolingoButtonStyle(size: .large))
 
-        Button("Save") {}
+        Button(String(localized: "preview_btn_save", defaultValue: "Save")) {}
             .buttonStyle(DuolingoButtonStyle())
 
-        Button("OK") {}
+        Button(String(localized: "common_ok", defaultValue: "OK")) {}
             .buttonStyle(DuolingoButtonStyle(size: .small))
 
-        Button("Inline") {}
+        Button(String(localized: "preview_btn_inline", defaultValue: "Inline")) {}
             .buttonStyle(DuolingoButtonStyle(size: .small, fillWidth: false))
     }
     .padding(32)

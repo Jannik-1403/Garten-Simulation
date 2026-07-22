@@ -139,12 +139,12 @@ struct RoutineSessionView: View {
                 startSession()
             }
         }
-        .alert("Handy blockiert", isPresented: $showBlockNotice) {
-            Button("Verstanden", role: .cancel) {
+        .alert(String(localized: "routine.strict_mode.blocked.title", defaultValue: "Handy blockiert"), isPresented: $showBlockNotice) {
+            Button(String(localized: "routine.strict_mode.blocked.ok", defaultValue: "Verstanden"), role: .cancel) {
                 startSession()
             }
         } message: {
-            Text("Alle ablenkenden Apps wurden über Screen Time für die Dauer der Routine blockiert.")
+            Text(String(localized: "routine.strict_mode.blocked.message", defaultValue: "Alle ablenkenden Apps wurden über Screen Time für die Dauer der Routine blockiert."))
         }
     }
     
@@ -476,7 +476,7 @@ struct RoutineSessionView: View {
         var tasks: [String]? = nil
         if currentHabitIndex < habits.count {
             let remaining = habits[currentHabitIndex..<habits.count]
-            tasks = remaining.map { $0.localizedName }
+            tasks = remaining.map { $0.localizedHabitName }
         }
         
         let state = FocusTimerActivityAttributes.ContentState(
@@ -503,7 +503,7 @@ struct RoutineSessionView: View {
         var tasks: [String]? = nil
         if currentHabitIndex < habits.count {
             let remaining = habits[currentHabitIndex..<habits.count]
-            tasks = remaining.map { $0.localizedName }
+            tasks = remaining.map { $0.localizedHabitName }
         }
         
         let state = FocusTimerActivityAttributes.ContentState(

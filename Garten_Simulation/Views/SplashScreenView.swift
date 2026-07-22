@@ -17,7 +17,7 @@ struct SplashScreenView: View {
                     .frame(width: step1_shrinkAndMoveLeft ? 120 : 340, height: step1_shrinkAndMoveLeft ? 120 : 340)
                 
                 // Text
-                Text("Grovy")
+                Text(String(localized: "app_name_grovy", defaultValue: "Grovy"))
                     .font(.system(size: 44, weight: .bold)) // Deutlich kleiner gemacht
                     .foregroundColor(.primary)
                     .lineLimit(1)

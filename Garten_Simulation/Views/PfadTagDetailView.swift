@@ -258,7 +258,7 @@ struct PfadTagDetailView: View {
                         .scaledToFit()
                         .ignoresSafeArea(edges: .bottom)
                 } else {
-                    Text("Bild fehlerhaft")
+                    Text(String(localized: "path_day_image_error", defaultValue: "Bild fehlerhaft"))
                         .foregroundColor(.gray)
                 }
                 

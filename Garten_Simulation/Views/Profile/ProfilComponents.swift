@@ -1298,7 +1298,7 @@ struct StatDetailFullscreenView: View {
                     if detail == .triggers {
                         let badHabitIds = Array(gardenStore.badHabitExecutions.keys)
                         Menu {
-                            Picker("Filter", selection: $selectedHabitFilter) {
+                            Picker(String(localized: "common_filter", defaultValue: "Filter"), selection: $selectedHabitFilter) {
                                 Text(String(localized: "trigger.all_habits")).tag("all")
                                 ForEach(badHabitIds, id: \.self) { habitId in
                                     let habitName = gardenStore.placedDecorations.first(where: { $0.id == habitId })?.habitNameKey ?? GameDatabase.allDecorations.first(where: { $0.id == habitId })?.habitNameKey ?? habitId

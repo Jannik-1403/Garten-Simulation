@@ -23,7 +23,7 @@ struct FocusTimerLiveActivity: Widget {
                     Spacer()
                     
                     if context.state.isRoutine == true {
-                        Text(timerInterval: context.state.endTime...context.state.endTime.addingTimeInterval(86400), countsDown: false)
+                        Text(context.state.endTime, style: .timer)
                             .font(.system(.title, design: .monospaced).weight(.black))
                             .foregroundStyle(.orange)
                             .multilineTextAlignment(.trailing)
@@ -86,7 +86,7 @@ struct FocusTimerLiveActivity: Widget {
                 }
                 DynamicIslandExpandedRegion(.trailing) {
                     if context.state.isRoutine == true {
-                        Text(timerInterval: context.state.endTime...context.state.endTime.addingTimeInterval(86400), countsDown: false)
+                        Text(context.state.endTime, style: .timer)
                             .font(.system(.title3, design: .monospaced).weight(.black))
                             .foregroundStyle(.orange)
                     } else {
@@ -120,7 +120,7 @@ struct FocusTimerLiveActivity: Widget {
                     .foregroundStyle(.orange)
             } compactTrailing: {
                 if context.state.isRoutine == true {
-                    Text(timerInterval: context.state.endTime...context.state.endTime.addingTimeInterval(86400), countsDown: false)
+                    Text(context.state.endTime, style: .timer)
                         .font(.system(size: 12, weight: .black, design: .monospaced))
                         .foregroundStyle(.orange)
                 } else {
@@ -130,7 +130,7 @@ struct FocusTimerLiveActivity: Widget {
                 }
             } minimal: {
                 if context.state.isRoutine == true {
-                    Text(timerInterval: context.state.endTime...context.state.endTime.addingTimeInterval(86400), countsDown: false)
+                    Text(context.state.endTime, style: .timer)
                         .font(.system(size: 12, weight: .black, design: .monospaced))
                         .foregroundStyle(.orange)
                 } else {
