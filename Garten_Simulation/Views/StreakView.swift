@@ -372,7 +372,7 @@ struct StreakView: View {
                 days.append(date)
             }
         }
-        while days.count % 7 != 0 { days.append(nil) }
+        while days.count < 42 { days.append(nil) }
         return days
     }
     
@@ -545,12 +545,12 @@ struct YearlyCalendarView: View {
             let firstWeekday = calendar.component(.weekday, from: firstDayOfMonth) - 2 // Monday start
             let adjustedFirstWeekday = firstWeekday < 0 ? 6 : firstWeekday
             
-            let totalCells = adjustedFirstWeekday + daysInMonth
+            let totalCells = 42
             let columns = Array(repeating: GridItem(.fixed(6), spacing: 2), count: 7)
             
             LazyVGrid(columns: columns, spacing: 2) {
                 ForEach(0..<totalCells, id: \.self) { index in
-                    if index >= adjustedFirstWeekday {
+                    if index >= adjustedFirstWeekday && index < adjustedFirstWeekday + daysInMonth {
                         let day = index - adjustedFirstWeekday + 1
                         let dateComponents = DateComponents(year: year, month: month, day: day)
                         if let date = calendar.date(from: dateComponents) {
@@ -559,6 +559,8 @@ struct YearlyCalendarView: View {
                             Circle()
                                 .fill(isFrozen ? Color.blue : (isCompleted ? Color.orange : Color.gray.opacity(0.1)))
                                 .frame(width: 6, height: 6)
+                        } else {
+                            Color.clear.frame(width: 6, height: 6)
                         }
                     } else {
                         Color.clear.frame(width: 6, height: 6)
@@ -584,7 +586,23 @@ struct YearlyCalendarView: View {
     }
     
     private func monthName(for month: Int) -> String {
-        return String(localized: "month.\(month)")
+        let localeId: String
+        switch settings.appLanguage {
+        case "de": localeId = "de_DE"
+        case "es": localeId = "es_ES"
+        case "fr": localeId = "fr_FR"
+        case "it": localeId = "it_IT"
+        case "pt": localeId = "pt_PT"
+        case "ja": localeId = "ja_JP"
+        case "ko": localeId = "ko_KR"
+        case "pl": localeId = "pl_PL"
+        case "nl": localeId = "nl_NL"
+        case "tr": localeId = "tr_TR"
+        default:   localeId = "en_US"
+        }
+        var cal = calendar
+        cal.locale = Locale(identifier: localeId)
+        return cal.standaloneMonthSymbols[month - 1]
     }
 }
 
