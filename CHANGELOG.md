@@ -170,3 +170,8 @@
 - Changed 3D title text color to neutral `Color.primary` for better contrast with green/orange buttons.
 - Hid long descriptions behind an interactive info (i) button for each layer.
 - Removed outdated info text at the bottom of the screen.
+
+## [Unreleased]
+- **Bugfix:** Datenmigration zu App-Groups repariert (`SharedUserDefaults`). Alte lokale Speicherstände werden nun vollständig in die neue App-Group übertragen, sodass kein Fortschritt mehr verloren geht.
+- **Feature:** Automatisches Backup-System eingebaut. Einstellbar in den Einstellungen (Täglich, Wöchentlich, Monatlich, bei Speicherung).
+- **Feature:** "Daten vor Update wiederherstellen"-Button zur Gefahrenzone hinzugefügt, um im Zweifelsfall alte lokale Spieldaten zu erzwingen.
