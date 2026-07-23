@@ -156,3 +156,17 @@
 - Scaled WalkOfShame text difficulty based on level (1 to 4)
 - Added 100% translation coverage for all new UI strings
 
+
+### UI Hierarchy Refactoring
+- **ScreenTimeSettingsView** redesigned with clear 4-level hierarchy.
+- Replaced flat text titles with 3D typography (similar to lucky wheel).
+- Moved 'Block-Zeitplan' (Schedule) to Layer 2 and 'Immer blockiert' (Permanent Block) to Layer 4.
+- Separated Unlock/Activate buttons from the main titles into their own visual hierarchy.
+- Added expandable `DisclosureGroup` with count for Schedule Blocked Apps.
+- Automatically translated all new UI strings in `Localizable.xcstrings`.
+
+### UI Improvements
+- Fixed `ScreenTimeSettingsView` duplicate level names.
+- Changed 3D title text color to neutral `Color.primary` for better contrast with green/orange buttons.
+- Hid long descriptions behind an interactive info (i) button for each layer.
+- Removed outdated info text at the bottom of the screen.

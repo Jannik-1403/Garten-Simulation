@@ -1,13 +1,10 @@
-import Foundation
+import re
 
-struct SharedUserDefaults {
-    static let suiteName = "group.com.jannik.grovy"
-    
-    static let suite: UserDefaults = UserDefaults(suiteName: suiteName) ?? .standard
-    
-    /// Migrates data from local SharedUserDefaults.suite to the shared App Group container.
-    /// This ensures users don't lose their data when we switch to App Groups.
-    static func migrateIfNeeded() {
+file_path = 'Garten_Simulation/Managers/SharedUserDefaults.swift'
+with open(file_path, 'r') as f:
+    content = f.read()
+
+new_migration = """    static func migrateIfNeeded() {
         let standard = UserDefaults.standard
         let shared = SharedUserDefaults.suite
         
@@ -45,5 +42,10 @@ struct SharedUserDefaults {
         }
         shared.synchronize()
         print("🚨 Force Recovery from Local UserDefaults completed.")
-    }
-}
+    }"""
+
+# Replace the old migrateIfNeeded function completely
+content = re.sub(r'    static func migrateIfNeeded\(\) \{.*?\n    \}', new_migration, content, flags=re.DOTALL)
+
+with open(file_path, 'w') as f:
+    f.write(content)

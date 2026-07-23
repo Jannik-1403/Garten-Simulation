@@ -71,11 +71,21 @@ struct Garten_SimulationApp: App {
                 container: container,
                 showSplash: $showSplash
             )
-            .onChange(of: scenePhase) { oldPhase, newPhase in
-                if newPhase == .active {
+            .onChange(of: scenePhase) {
+                if scenePhase == .active {
                     container.gardenStore.reloadData()
                     container.streakStore.checkForMissedDays()
                     container.gardenStore.checkScreenTimeExceeded()
+                } else if scenePhase == .background {
+                    AutoBackupManager.shared.checkAndPerformBackup(
+                        interval: container.settingsStore.autoBackupInterval,
+                        gardenStore: container.gardenStore,
+                        shopStore: container.shopStore,
+                        achievementStore: container.achievementStore,
+                        settingsStore: container.settingsStore,
+                        streakStore: container.streakStore,
+                        assessmentStore: container.assessmentStore
+                    )
                 }
             }
             .onAppear {

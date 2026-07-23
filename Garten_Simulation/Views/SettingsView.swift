@@ -26,6 +26,7 @@ struct SettingsView: View {
     @State private var zeigeAccountLoeschenDialog = false
     @State private var zeigePaywall = false
     @State private var showFinalResetAlert = false
+    @State private var showRecoveryAlert = false
     @State private var showBackupSheet = false
     @State private var showPDFExport = false
     
@@ -406,6 +407,26 @@ struct SettingsView: View {
                             // MARK: - Danger Zone
                             settingsSection(title: String(localized: "settings.section.danger")) {
                                 Button {
+                                    SharedUserDefaults.forceRecoveryFromLocal()
+                                    showRecoveryAlert = true
+                                } label: {
+                                    Text(String(localized: "settings.danger.recover_local", defaultValue: "Daten vor Update wiederherstellen"))
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.white)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 14)
+                                }
+                                .buttonStyle(Item3DButtonStyle(
+                                    farbe: .blauPrimary,
+                                    sekundaerFarbe: .blauSecondary,
+                                    groesse: 50,
+                                    shadowDepthFactor: 0.1,
+                                    isRectangular: true
+                                ))
+                                .padding(.bottom, 8)
+                                
+
+                                Button {
                                     showResetAlert = true
                                 } label: {
                                     Text(String(localized: "settings.reset.title"))
@@ -519,6 +540,15 @@ struct SettingsView: View {
             } message: {
                 Text(String(localized: "settings.reset.alert.message"))
             }
+
+            .alert("Wiederherstellung erfolgreich", isPresented: $showRecoveryAlert) {
+                Button(String(localized: "button.ok", defaultValue: "OK"), role: .cancel) {
+                    // Quit app or tell user to restart
+                    exit(0)
+                }
+            } message: {
+                Text("Deine alten Daten wurden wiederhergestellt. Die App wird nun beendet. Bitte starte sie neu, um die Änderungen zu sehen.")
+            }
             .alert(String(localized: "settings.reset.final.title"), isPresented: $showFinalResetAlert) {
                 Button(String(localized: "settings.reset.confirm"), role: .destructive) {
                     SharedUserDefaults.suite.removeObject(forKey: "customRoutinesData")
@@ -554,8 +584,8 @@ struct SettingsView: View {
                 }
                 screenTimeManager.checkAuthorizationStatus()
             }
-            .onChange(of: scenePhase) { _, newPhase in
-                if newPhase == .active {
+            .onChange(of: scenePhase) {
+                if scenePhase == .active {
                     Task {
                         await settings.refreshNotificationStatus()
                     }
