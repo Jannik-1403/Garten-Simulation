@@ -176,3 +176,4 @@
 - **Feature:** Automatisches Backup-System eingebaut. Einstellbar in den Einstellungen (Täglich, Wöchentlich, Monatlich, bei Speicherung).
 - **Cleanup:** Den nicht funktionierenden Button "Daten vor Update wiederherstellen" wieder entfernt.
 - **UI Polish:** Das automatische Backup-Menü wurde komplett überarbeitet. Es nutzt nun ein modernes Liquid Glass Design, das Intervall-Auswahlmenü wurde integriert und die Backup-Einträge nutzen das einheitliche 3D-Button-Design der App. Die Backup-Namen wurden vereinfacht.
+- **Feature:** Home Screen Quick Actions (App Shortcuts) mit Deep Linking (Fokus Timer, Bildschirmzeit, App bewerten, Warnung beim Löschen) hinzugefügt.

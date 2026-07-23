@@ -19,6 +19,9 @@ struct ContentView: View {
     @State private var showRecoveredTimer = false
     @State private var recoveredPlantId: String? = nil
     
+    @State private var showFocusSheetFromShortcut = false
+    @State private var showScreenTimeFromShortcut = false
+    
     @StateObject private var mockGardenStore = TourSimulationStore.createMockGardenStore()
     @StateObject private var mockStreakStore = TourSimulationStore.createMockStreakStore()
     @StateObject private var mockShopStore = TourSimulationStore.createMockShopStore()
@@ -198,6 +201,31 @@ struct ContentView: View {
                 .onDisappear {
                     gardenStore.pendingImportURL = nil
                 }
+        }
+        .sheet(isPresented: $showFocusSheetFromShortcut) {
+            GenericFocusTimerSetupSheet { _ in }
+        }
+        .sheet(isPresented: $showScreenTimeFromShortcut) {
+            ScreenTimeSettingsView()
+                .environmentObject(activeGardenStore)
+        }
+        .onReceive(QuickActionManager.shared.$action) { action in
+            guard let action = action else { return }
+            
+            switch action {
+            case .startFocus:
+                showFocusSheetFromShortcut = true
+            case .screenTime:
+                showScreenTimeFromShortcut = true
+            case .rateApp:
+                if let url = URL(string: "itms-apps://itunes.apple.com/app/id6470355483?action=write-review") {
+                    UIApplication.shared.open(url)
+                }
+            case .deleteWarning:
+                break // Just a visual joke in the menu
+            }
+            
+            QuickActionManager.shared.action = nil
         }
     }
 
