@@ -99077,6 +99077,17 @@
         }
       }
     },
+    "common.activate": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Aktivieren"
+          }
+        }
+      }
+    },
     "common.active": {
       "comment": "",
       "extractionState": "manual",
@@ -312672,6 +312683,107 @@
         }
       }
     },
+    "screenTime.blockedApps": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geblockte Apps"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocked Apps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplicaciones bloqueadas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applications bloquées"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अवरुद्ध ऐप्स"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App bloccate"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブロックされたアプリ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "차단된 앱"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geblokkeerde apps"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zablokowane aplikacje"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps Bloqueados"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps Bloqueados"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Заблокированные приложения"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engellenen Uygulamalar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已拦截应用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已攔截應用"
+          }
+        }
+      }
+    },
     "screenTime.emergency.unlock": {
       "extractionState": "manual",
       "localizations": {
@@ -314379,6 +314491,410 @@
         }
       }
     },
+    "screenTime.safariFilter.button.active": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter Aktiv (Deaktivieren)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter Active (Deactivate)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtro activo (Desactivar)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtre actif (Désactiver)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़िल्टर सक्रिय (निष्क्रिय करें)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtro attivo (Disattiva)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フィルター有効（無効にする）"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "필터 활성 (비활성화)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter Actief (Deactiveren)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtr aktywny (Dezaktywuj)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtro Ativo (Desativar)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtro Ativo (Desativar)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фильтр активен (Деактивировать)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtre Aktif (Devre Dışı Bırak)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "过滤器有效（停用）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過濾器有效（停用）"
+          }
+        }
+      }
+    },
+    "screenTime.safariFilter.button.inactive": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System-Filter aktivieren"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activate System Filter"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activar filtro del sistema"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activer le filtre système"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सिस्टम फ़िल्टर सक्रिय करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attiva filtro di sistema"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "システムフィルターを有効にする"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시스템 필터 활성화"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systeemfilter activeren"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktywuj filtr systemowy"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ativar Filtro do Sistema"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ativar Filtro do Sistema"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Активировать системный фильтр"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistem Filtresini Etkinleştir"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "激活系统过滤器"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "啟用系統過濾器"
+          }
+        }
+      }
+    },
+    "screenTime.safariFilter.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blockiert nicht jugendfreie Inhalte und Malware systemweit in allen Browsern (Chrome, Edge, Safari etc.) über Cloudflare Family DNS."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocks adult content and malware system-wide across all browsers (Chrome, Edge, Safari, etc.) via Cloudflare Family DNS."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloquea contenido para adultos y malware en todo el sistema y en todos los navegadores a través de Cloudflare Family DNS."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloque le contenu pour adultes et les malwares à l'échelle du système sur tous les navigateurs via Cloudflare Family DNS."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्लाउडफ्लेयर फैमिली डीएनएस के माध्यम से सभी ब्राउज़रों में वयस्क सामग्री को ब्लॉक करता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocca contenuti per adulti e malware a livello di sistema su tutti i browser tramite Cloudflare Family DNS."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflare Family DNSを使用して、すべてのブラウザでアダルトコンテンツとマルウェアをシステム全体でブロックします。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflare Family DNS를 통해 모든 브라우저에서 성인 콘텐츠 및 맬웨어를 시스템 전체에서 차단합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blokkeert inhoud voor volwassenen en malware systeembreed in alle browsers via Cloudflare Family DNS."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blokuje treści dla dorosłych i złośliwe oprogramowanie ogólnosystemowo we wszystkich przeglądarkach przez Cloudflare Family DNS."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloqueia conteúdo adulto e malware em todo o sistema, em todos os navegadores, através do Cloudflare Family DNS."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloqueia conteúdo adulto e malware em todo o sistema, em todos os navegadores, através do Cloudflare Family DNS."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Блокирует контент для взрослых и вредоносное ПО во всех браузерах с помощью Cloudflare Family DNS."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflare Family DNS ile tüm tarayıcılarda sistem genelinde yetişkinlere yönelik içeriği ve kötü amaçlı yazılımları engeller."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通过 Cloudflare Family DNS 在所有浏览器中全系统拦截成人内容和恶意软件。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "透過 Cloudflare Family DNS 在所有瀏覽器中全系統攔截成人內容和惡意軟體。"
+          }
+        }
+      }
+    },
+    "screenTime.safariFilter.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systemweiter Erwachsenen-Filter"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System-wide Adult Filter"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtro de adultos en todo el sistema"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtre adulte à l'échelle du système"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सिस्टम-व्यापी वयस्क फ़िल्टर"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtro per adulti a livello di sistema"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "システム全体のアダルトフィルター"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시스템 전체 성인 필터"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Systeembrede filter voor volwassenen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogólnosystemowy filtr dla dorosłych"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtro Adulto em Todo o Sistema"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtro Adulto em Todo o Sistema"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Общесистемный фильтр для взрослых"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistem Çapında Yetişkin Filtresi"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全系统成人过滤器"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全系統成人過濾器"
+          }
+        }
+      }
+    },
     "screenTime.schedule.active": {
       "extractionState": "manual",
       "localizations": {
@@ -314779,6 +315295,107 @@
           "stringUnit": {
             "state": "translated",
             "value": "未啟用"
+          }
+        }
+      }
+    },
+    "screenTime.schedule.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erzwinge Fokus zu bestimmten Zeiten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Force focus at specific times."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuerza el enfoque en horarios específicos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forcez la concentration à des heures précises."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "विशिष्ट समय पर फोकस को बाध्य करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forza la concentrazione in orari specifici."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "特定の時間帯に集中を強制します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "특정 시간에 집중을 강제합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forceer focus op specifieke tijden."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wymuszaj skupienie w określonych godzinach."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forçar foco em horários específicos."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forçar foco em horários específicos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Принудительная фокусировка в определенное время."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belirli zamanlarda odaklanmaya zorla."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在特定时间强制保持专注。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在特定時間強制保持專注。"
           }
         }
       }
@@ -410076,608 +410693,406 @@
         }
       }
     },
-    "screenTime.safariFilter.title": {
+    "screenTime.layer1.level": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "System-wide Adult Filter"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Systemweiter Erwachsenen-Filter"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filtro de adultos en todo el sistema"
-          }
-        },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filtre adulte à l'échelle du système"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filtro per adulti a livello di sistema"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filtro Adulto em Todo o Sistema"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filtro Adulto em Todo o Sistema"
+            "value": "Niveau 1"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Systeembrede filter voor volwassenen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ogólnosystemowy filtr dla dorosłych"
+            "value": "Niveau 1"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Общесистемный фильтр для взрослых"
+            "value": "Уровень 1"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sistem Çapında Yetişkin Filtresi"
+            "value": "Seviye 1"
           }
         },
-        "hi": {
+        "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "सिस्टम-व्यापी वयस्क फ़िल्टर"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "システム全体のアダルトフィルター"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "시스템 전체 성인 필터"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "全系统成人过滤器"
+            "value": "Level 1"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "全系統成人過濾器"
+            "value": "級別 1"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "レベル1"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Level 1"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Livello 1"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्तर 1"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nível 1"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nível 1"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ebene 1"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nivel 1"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "级别 1"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "레벨 1"
           }
         }
       }
     },
-    "screenTime.safariFilter.desc": {
+    "screenTime.layer2.level": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blocks adult content and malware system-wide across all browsers (Chrome, Edge, Safari, etc.) via Cloudflare Family DNS."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blockiert nicht jugendfreie Inhalte und Malware systemweit in allen Browsern (Chrome, Edge, Safari etc.) über Cloudflare Family DNS."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bloquea contenido para adultos y malware en todo el sistema y en todos los navegadores a través de Cloudflare Family DNS."
-          }
-        },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bloque le contenu pour adultes et les malwares à l'échelle du système sur tous les navigateurs via Cloudflare Family DNS."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blocca contenuti per adulti e malware a livello di sistema su tutti i browser tramite Cloudflare Family DNS."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bloqueia conteúdo adulto e malware em todo o sistema, em todos os navegadores, através do Cloudflare Family DNS."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bloqueia conteúdo adulto e malware em todo o sistema, em todos os navegadores, através do Cloudflare Family DNS."
+            "value": "Niveau 2"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Blokkeert inhoud voor volwassenen en malware systeembreed in alle browsers via Cloudflare Family DNS."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blokuje treści dla dorosłych i złośliwe oprogramowanie ogólnosystemowo we wszystkich przeglądarkach przez Cloudflare Family DNS."
+            "value": "Niveau 2"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Блокирует контент для взрослых и вредоносное ПО во всех браузерах с помощью Cloudflare Family DNS."
+            "value": "Уровень 2"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cloudflare Family DNS ile tüm tarayıcılarda sistem genelinde yetişkinlere yönelik içeriği ve kötü amaçlı yazılımları engeller."
+            "value": "Seviye 2"
           }
         },
-        "hi": {
+        "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "क्लाउडफ्लेयर फैमिली डीएनएस के माध्यम से सभी ब्राउज़रों में वयस्क सामग्री को ब्लॉक करता है।"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cloudflare Family DNSを使用して、すべてのブラウザでアダルトコンテンツとマルウェアをシステム全体でブロックします。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cloudflare Family DNS를 통해 모든 브라우저에서 성인 콘텐츠 및 맬웨어를 시스템 전체에서 차단합니다."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "通过 Cloudflare Family DNS 在所有浏览器中全系统拦截成人内容和恶意软件。"
+            "value": "Level 2"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "透過 Cloudflare Family DNS 在所有瀏覽器中全系統攔截成人內容和惡意軟體。"
+            "value": "級別 2"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "レベル2"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Level 2"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Livello 2"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्तर 2"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nível 2"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nível 2"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ebene 2"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nivel 2"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "级别 2"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "레벨 2"
           }
         }
       }
     },
-    "screenTime.safariFilter.button.inactive": {
+    "screenTime.layer3.level": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Activate System Filter"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "System-Filter aktivieren"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Activar filtro del sistema"
-          }
-        },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Activer le filtre système"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Attiva filtro di sistema"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ativar Filtro do Sistema"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ativar Filtro do Sistema"
+            "value": "Niveau 3"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Systeemfilter activeren"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aktywuj filtr systemowy"
+            "value": "Niveau 3"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Активировать системный фильтр"
+            "value": "Уровень 3"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sistem Filtresini Etkinleştir"
+            "value": "Seviye 3"
           }
         },
-        "hi": {
+        "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "सिस्टम फ़िल्टर सक्रिय करें"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "システムフィルターを有効にする"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "시스템 필터 활성화"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "激活系统过滤器"
+            "value": "Level 3"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "啟用系統過濾器"
+            "value": "級別 3"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "レベル3"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Level 3"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Livello 3"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्तर 3"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nível 3"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nível 3"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ebene 3"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nivel 3"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "级别 3"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "레벨 3"
           }
         }
       }
     },
-    "screenTime.safariFilter.button.active": {
+    "screenTime.layer4.level": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filter Active (Deactivate)"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filter Aktiv (Deaktivieren)"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filtro activo (Desactivar)"
-          }
-        },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filtre actif (Désactiver)"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filtro attivo (Disattiva)"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filtro Ativo (Desativar)"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filtro Ativo (Desativar)"
+            "value": "Niveau 4"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filter Actief (Deactiveren)"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filtr aktywny (Dezaktywuj)"
+            "value": "Niveau 4"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Фильтр активен (Деактивировать)"
+            "value": "Уровень 4"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filtre Aktif (Devre Dışı Bırak)"
+            "value": "Seviye 4"
           }
         },
-        "hi": {
+        "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "फ़िल्टर सक्रिय (निष्क्रिय करें)"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "フィルター有効（無効にする）"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "필터 활성 (비활성화)"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "过滤器有效（停用）"
+            "value": "Level 4"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "過濾器有效（停用）"
-          }
-        }
-      }
-    },
-    "screenTime.blockedApps": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blocked Apps"
+            "value": "級別 4"
           }
         },
-        "de": {
+        "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Geblockte Apps"
+            "value": "レベル4"
           }
         },
-        "es": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aplicaciones bloqueadas"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Applications bloquées"
+            "value": "Level 4"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "App bloccate"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apps Bloqueados"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apps Bloqueados"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Geblokkeerde apps"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zablokowane aplikacje"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Заблокированные приложения"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Engellenen Uygulamalar"
+            "value": "Livello 4"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अवरुद्ध ऐप्स"
+            "value": "स्तर 4"
           }
         },
-        "ja": {
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "ブロックされたアプリ"
+            "value": "Nível 4"
           }
         },
-        "ko": {
+        "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "차단된 앱"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已拦截应用"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已攔截應用"
-          }
-        }
-      }
-    },
-    "screenTime.schedule.desc": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Force focus at specific times."
+            "value": "Nível 4"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erzwinge Fokus zu bestimmten Zeiten."
+            "value": "Ebene 4"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fuerza el enfoque en horarios específicos."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Forcez la concentration à des heures précises."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Forza la concentrazione in orari specifici."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Forçar foco em horários específicos."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Forçar foco em horários específicos."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Forceer focus op specifieke tijden."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wymuszaj skupienie w określonych godzinach."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Принудительная фокусировка в определенное время."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Belirli zamanlarda odaklanmaya zorla."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "विशिष्ट समय पर फोकस को बाध्य करें।"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "特定の時間帯に集中を強制します。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "특정 시간에 집중을 강제합니다."
+            "value": "Nivel 4"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "在特定时间强制保持专注。"
+            "value": "级别 4"
           }
         },
-        "zh-Hant": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "在特定時間強制保持專注。"
+            "value": "레벨 4"
           }
         }
       }

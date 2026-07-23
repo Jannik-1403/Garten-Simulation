@@ -253,13 +253,11 @@ struct ScreenTimeSettingsView: View {
     
     private var settingsScrollView: some View {
         ScrollView {
-            VStack(spacing: 24) {
-
-                
-                dailyLimitSection
-                permanentBlockSection
-                adultFilterSection
-                scheduleSection
+            VStack(spacing: 32) {
+                ebene1Section
+                ebene2Section
+                ebene3Section
+                ebene4Section
                 infoSection
                 
                 // Bottom Authorization Link
@@ -278,23 +276,44 @@ struct ScreenTimeSettingsView: View {
                     .padding(.bottom, 40)
                 }
             }
-            .padding()
+            .padding(.vertical)
         }
     }
     
-
-    
-    // MARK: - Ebene 1: Zeitlimit
-    private var dailyLimitSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(String(localized: "screenTime.layer1.title", defaultValue: "Ebene 1: Tägliches Zeitlimit"))
-                .font(.system(size: 18, weight: .bold, design: .rounded))
-                .padding(.horizontal)
+    private func sectionHeader3D(level: String, title: String, description: String) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(level.uppercased())
+                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                    .foregroundStyle(.secondary)
+                
+                ZStack(alignment: .topLeading) {
+                    Text(title)
+                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .foregroundStyle(Color.blauPrimary.opacity(0.35))
+                        .offset(y: 3)
+                    
+                    Text(title)
+                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .foregroundStyle(Color.blauPrimary)
+                }
+            }
             
-            Text(String(localized: "screenTime.layer1.desc", defaultValue: "Nach Ablauf dieser Zeit werden die ausgewählten Apps für den Rest des Tages blockiert."))
+            Text(description)
                 .font(.system(size: 14, weight: .regular, design: .rounded))
                 .foregroundStyle(.secondary)
-                .padding(.horizontal)
+        }
+        .padding(.horizontal)
+    }
+
+    // MARK: - Ebene 1: Zeitlimit
+    private var ebene1Section: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            sectionHeader3D(
+                level: String(localized: "screenTime.layer1.level", defaultValue: "Ebene 1"),
+                title: String(localized: "screenTime.layer1.title", defaultValue: "Tägliches Limit"),
+                description: String(localized: "screenTime.layer1.desc", defaultValue: "Nach Ablauf dieser Zeit werden die ausgewählten Apps für den Rest des Tages blockiert.")
+            )
             
             HStack {
                 Item3DButton(
@@ -334,6 +353,7 @@ struct ScreenTimeSettingsView: View {
                 }
             }
             .padding(.horizontal)
+            .padding(.top, 4)
             
             if !dailyLimitSelection.applicationTokens.isEmpty || !dailyLimitSelection.categoryTokens.isEmpty || !dailyLimitSelection.webDomainTokens.isEmpty {
                 let count = dailyLimitSelection.applicationTokens.count + dailyLimitSelection.categoryTokens.count + dailyLimitSelection.webDomainTokens.count
@@ -415,20 +435,14 @@ struct ScreenTimeSettingsView: View {
         }
     }
     
-    // MARK: - Ebene 2: Permanent Block Section
-    
-    private var permanentBlockSection: some View {
+    // MARK: - Ebene 4: Permanent Block Section
+    private var ebene4Section: some View {
         VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                Text(String(localized: "screenTime.layer2.title", defaultValue: "Ebene 2: Immer blockiert"))
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-            }
-            .padding(.horizontal)
-            
-            Text(String(localized: "screenTime.layer2.desc", defaultValue: "Diese Apps und Webseiten sind immer blockiert und können nur durch den Notfall-Unlock entsperrt werden."))
-                .font(.system(size: 14, weight: .regular, design: .rounded))
-                .foregroundStyle(.secondary)
-                .padding(.horizontal)
+            sectionHeader3D(
+                level: String(localized: "screenTime.layer4.level", defaultValue: "Ebene 4"),
+                title: String(localized: "screenTime.layer4.title", defaultValue: "Immer blockiert"),
+                description: String(localized: "screenTime.layer4.desc", defaultValue: "Diese Apps und Webseiten sind immer blockiert und können nur durch den Notfall-Unlock entsperrt werden.")
+            )
             
             HStack {
                 Item3DButton(
@@ -468,6 +482,7 @@ struct ScreenTimeSettingsView: View {
                 }
             }
             .padding(.horizontal)
+            .padding(.top, 4)
             
             if !permanentBlockSelection.applicationTokens.isEmpty ||
                !permanentBlockSelection.categoryTokens.isEmpty ||
@@ -494,48 +509,43 @@ struct ScreenTimeSettingsView: View {
         }
     }
     
-    // MARK: - Adult Filter Section
-    
+    // MARK: - Ebene 3: Adult Filter Section
     @ViewBuilder
-    private var adultFilterSection: some View {
+    private var ebene3Section: some View {
         if FeatureFlags.isProVersionEnabled {
             VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    Text(String(localized: "screenTime.safariFilter.title", defaultValue: "Safari Adult Filter"))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                }
-                .padding(.horizontal)
-                
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(String(localized: "screenTime.safariFilter.desc", defaultValue: "Blocks adult content in Safari. (Note: Does not affect other browsers like Chrome or Edge)."))
-                        .font(.system(size: 14, weight: .regular, design: .rounded))
-                        .foregroundStyle(.secondary)
-                }
-                .padding(.horizontal)
+                sectionHeader3D(
+                    level: String(localized: "screenTime.layer3.level", defaultValue: "Ebene 3"),
+                    title: String(localized: "screenTime.safariFilter.title", defaultValue: "Systemweiter Erwachsenen-Filter"),
+                    description: String(localized: "screenTime.safariFilter.desc", defaultValue: "Blockiert pornografische Webseiten systemweit in allen Browsern.")
+                )
                 
                 let isActive = isAdultFilterEnabled
                 
-                Item3DButton(
-                    farbe: isActive ? Color.gray : Color.gruenPrimary,
-                    sekundaerFarbe: isActive ? Color.gray.opacity(0.8) : Color.gruenPrimary.darker(),
-                    groesse: 48,
-                    shadowDepthFactor: 0.1,
-                    isRectangular: true,
-                    aktion: {
-                        if isActive {
-                            walkOfShameContext = 3
-                        } else {
-                            isAdultFilterEnabled = true
+                HStack {
+                    Item3DButton(
+                        farbe: isActive ? Color.orange : Color.gruenPrimary,
+                        sekundaerFarbe: isActive ? Color.orange.darker() : Color.gruenPrimary.darker(),
+                        groesse: 36,
+                        shadowDepthFactor: 0.15,
+                        isRectangular: true,
+                        aktion: {
+                            if isActive {
+                                walkOfShameContext = 3
+                            } else {
+                                isAdultFilterEnabled = true
+                            }
                         }
+                    ) {
+                        HStack(spacing: 4) {
+                            Image(systemName: isActive ? "lock.open.fill" : "lock.fill")
+                            Text(isActive ? String(localized: "screenTime.layer1.unblock.short", defaultValue: "Entsperren") : String(localized: "common.activate", defaultValue: "Aktivieren"))
+                        }
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 16)
                     }
-                ) {
-                    HStack(spacing: 8) {
-                        Image(systemName: isActive ? "checkmark.shield.fill" : "shield")
-                        Text(isActive ? String(localized: "screenTime.safariFilter.button.active", defaultValue: "Filter Active (Deactivate)") : String(localized: "screenTime.safariFilter.button.inactive", defaultValue: "Activate Safari Filter"))
-                    }
-                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 16)
+                    Spacer()
                 }
                 .padding(.horizontal)
                 .padding(.top, 4)
@@ -543,26 +553,24 @@ struct ScreenTimeSettingsView: View {
         }
     }
     
-    // MARK: - Schedule Section
+    // MARK: - Ebene 2: Schedule Section
+    
+    @State private var isEbeneScheduleExpanded: Bool = false
     
     /// Wahr, wenn der Zeitplan gerade läuft – dann ist alles read-only
     private var isScheduleLocked: Bool {
         manager.isCurrentlyInBlockWindow
     }
 
-    private var scheduleSection: some View {
+    private var ebene2Section: some View {
         VStack(alignment: .leading, spacing: 16) {
+            sectionHeader3D(
+                level: String(localized: "screenTime.layer2.level", defaultValue: "Ebene 2"),
+                title: String(localized: "screenTime.schedule.title", defaultValue: "Block-Zeitplan"),
+                description: String(localized: "screenTime.schedule.desc", defaultValue: "Erzwinge Fokus zu bestimmten Zeiten.")
+            )
+            
             HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(String(localized: "screenTime.schedule.title", defaultValue: "Block-Zeitplan"))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                    Text(String(localized: "screenTime.schedule.desc", defaultValue: "Erzwinge Fokus zu bestimmten Zeiten."))
-                        .font(.system(size: 14, weight: .regular, design: .rounded))
-                        .foregroundStyle(.secondary)
-                }
-                
-                Spacer()
-                
                 let isActive = isScheduleActive
                 Item3DButton(
                     farbe: isActive ? Color.orange : Color.gruenPrimary,
@@ -587,8 +595,10 @@ struct ScreenTimeSettingsView: View {
                     .foregroundStyle(.white)
                     .padding(.horizontal, 16)
                 }
+                Spacer()
             }
             .padding(.horizontal)
+            .padding(.top, -4)
 
             if isScheduleActive {
                 VStack(spacing: 8) {
@@ -652,47 +662,48 @@ struct ScreenTimeSettingsView: View {
 
                     // App-Picker – nur wenn nicht gesperrt
                     if !isScheduleLocked {
-                        Item3DButton(
-                            farbe: Color(UIColor.secondarySystemGroupedBackground),
-                            sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground),
-                            groesse: 56,
-                            shadowDepthFactor: 0.07,
-                            isRectangular: true,
-                            aktion: { isPickerPresented = true }
-                        ) {
-                            HStack {
-                                Image(systemName: "app.badge.fill")
-                                    .foregroundStyle(.blue)
-                                    .font(.system(size: 16))
-                                Text(String(localized: "screenTime.schedule.select_apps", defaultValue: "Apps & Kategorien für Zeitplan"))
-                                    .font(.system(size: 15, weight: .medium, design: .rounded))
-                                    .foregroundStyle(.primary)
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .foregroundStyle(.secondary)
-                                    .font(.system(size: 13))
+                        HStack {
+                            Item3DButton(
+                                farbe: Color.gruenPrimary,
+                                sekundaerFarbe: Color.gruenPrimary.darker(),
+                                groesse: 36,
+                                shadowDepthFactor: 0.15,
+                                isRectangular: true,
+                                aktion: { isPickerPresented = true }
+                            ) {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.white)
+                                    .padding(.horizontal, 16)
                             }
-                            .padding(.horizontal, 8)
+                            .familyActivityPicker(isPresented: $isPickerPresented, selection: $blockSelection)
+                            Spacer()
                         }
-                        .familyActivityPicker(isPresented: $isPickerPresented, selection: $blockSelection)
                         .padding(.horizontal)
+                        .padding(.vertical, 4)
                     }
 
-                    // Liste der ausgewählten Apps (wie Ebene 2)
+                    // Liste der ausgewählten Apps
                     if !blockSelection.applicationTokens.isEmpty ||
                        !blockSelection.categoryTokens.isEmpty ||
                        !blockSelection.webDomainTokens.isEmpty {
-                        VStack(spacing: 8) {
-                            ForEach(Array(blockSelection.applicationTokens), id: \.self) { token in
-                                ScheduleBlockRow { Label(token) }
+                        let count = blockSelection.applicationTokens.count + blockSelection.categoryTokens.count + blockSelection.webDomainTokens.count
+                        DisclosureGroup(String(localized: "screenTime.blockedApps", defaultValue: "Geblockte Apps") + " (\(count))", isExpanded: $isEbeneScheduleExpanded) {
+                            VStack(spacing: 8) {
+                                ForEach(Array(blockSelection.applicationTokens), id: \.self) { token in
+                                    ScheduleBlockRow { Label(token) }
+                                }
+                                ForEach(Array(blockSelection.categoryTokens), id: \.self) { token in
+                                    ScheduleBlockRow { Label(token) }
+                                }
+                                ForEach(Array(blockSelection.webDomainTokens), id: \.self) { token in
+                                    ScheduleBlockRow { Label(token) }
+                                }
                             }
-                            ForEach(Array(blockSelection.categoryTokens), id: \.self) { token in
-                                ScheduleBlockRow { Label(token) }
-                            }
-                            ForEach(Array(blockSelection.webDomainTokens), id: \.self) { token in
-                                ScheduleBlockRow { Label(token) }
-                            }
+                            .padding(.top, 8)
                         }
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                        .accentColor(.gruenPrimary)
                         .padding(.horizontal)
                     }
                 }
