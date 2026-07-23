@@ -28,6 +28,7 @@ struct ScreenTimeSettingsView: View {
     @State private var permanentBlockSelection = FamilyActivitySelection()
     @State private var oldPermanentBlockSelection = FamilyActivitySelection()
     @State private var isAdultFilterEnabled = false
+    @State private var isStrictProtectionEnabled = false
     
     @State private var showWalkOfShame = false
     
@@ -86,6 +87,7 @@ struct ScreenTimeSettingsView: View {
             oldPermanentBlockSelection = manager.permanentBlockSelection
             
             isAdultFilterEnabled = manager.isAdultFilterEnabled
+            isStrictProtectionEnabled = manager.isStrictProtectionEnabled
             daySchedules = manager.daySchedules
         }
         .onChange(of: dailyLimitSelection) { _, newValue in
@@ -184,6 +186,9 @@ struct ScreenTimeSettingsView: View {
                     oldPermanentBlockSelection = FamilyActivitySelection()
                     manager.permanentBlockSelection = FamilyActivitySelection()
                     
+                    isStrictProtectionEnabled = false
+                    manager.isStrictProtectionEnabled = false
+                    
                     dailyLimitSelection = FamilyActivitySelection()
                     oldDailyLimitSelection = FamilyActivitySelection()
                     manager.dailyLimitSelection = FamilyActivitySelection()
@@ -242,6 +247,7 @@ struct ScreenTimeSettingsView: View {
                 
                 dailyLimitSection
                 permanentBlockSection
+                strictProtectionSection
                 scheduleSection
                 infoSection
                 
@@ -466,7 +472,31 @@ struct ScreenTimeSettingsView: View {
         }
     }
     
-
+    // MARK: - Strict Protection Section
+    
+    @ViewBuilder
+    private var strictProtectionSection: some View {
+        if FeatureFlags.isProVersionEnabled {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(String(localized: "screenTime.strictMode.title", defaultValue: "Schutzmodus"))
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .padding(.horizontal)
+                
+                Text(String(localized: "screenTime.strictMode.desc", defaultValue: "Sperrt den App Store (um VPN-Downloads zu verhindern), das Löschen von Apps und Account-Änderungen. Gilt dauerhaft, bis der Notfall-Unlock genutzt wird."))
+                    .font(.system(size: 14, weight: .regular, design: .rounded))
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal)
+                    .padding(.bottom, 8)
+                
+                Toggle(isOn: $isStrictProtectionEnabled) {
+                    Text(String(localized: "screenTime.strictMode.active", defaultValue: "Schutzmodus aktivieren"))
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                }
+                .tint(Color.orange)
+                .padding(.horizontal)
+            }
+        }
+    }
     
     // MARK: - Schedule Section
     
@@ -651,6 +681,7 @@ struct ScreenTimeSettingsView: View {
         manager.daySchedules = daySchedules
         manager.permanentBlockSelection = permanentBlockSelection
         manager.isAdultFilterEnabled = isAdultFilterEnabled
+        manager.isStrictProtectionEnabled = isStrictProtectionEnabled
         manager.applyPermanentBlocks()
         
         let blockData = try? JSONEncoder().encode(blockSelection)
