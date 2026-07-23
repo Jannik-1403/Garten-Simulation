@@ -19,6 +19,10 @@ struct PlantIconView: View {
                         .resizable()
                         .scaledToFit()
                         .foregroundStyle(.green)
+                } else if UIImage(named: plant.symbolName) != nil {
+                    Image(plant.symbolName)
+                        .resizable()
+                        .scaledToFit()
                 } else {
                     Text(plant.symbolName)
                         .font(.system(size: size * 0.75))
