@@ -146,3 +146,13 @@
 - **UI Polish:** Emojis im Schutzmodus durch SF Symbols ersetzt und den Kontrast des "Deaktivieren"-Buttons durch Verwendung von Rot erhöht.
 
 - **Architekturwechsel (Safari Filter):** Die harte "Strict Protection" (App Store & App Lösch-Sperre) wurde komplett entfernt, um App Store Review Risiken zu minimieren. Das UI wurde zu einem reinen, ehrlichen "Safari Erwachsenen-Filter" umgebaut.
+
+## 2026-07-23 UI Fixes & System Filter
+- Added NetworkExtension target for system-wide Adult Filter
+- Integrated DNS Filter directly into ScreenTimeManager
+- Fixed UI bug: 'Deactivate Protection' button now uses clear orange styling
+- Replaced all Emojis with native SF Symbols
+- Added dynamic DisclosureGroup list for blocked apps with counter
+- Scaled WalkOfShame text difficulty based on level (1 to 4)
+- Added 100% translation coverage for all new UI strings
+
