@@ -144,3 +144,5 @@
 - **Schutzmodus UI Cleanup:** Die Textwüste im ScreenTime Einstellungen View wurde in prägnante Bullet-Points aufgebrochen und die aggressiven Farben wurden durch sauberere Standard-Farben ersetzt.
 
 - **UI Polish:** Emojis im Schutzmodus durch SF Symbols ersetzt und den Kontrast des "Deaktivieren"-Buttons durch Verwendung von Rot erhöht.
+
+- **Architekturwechsel (Safari Filter):** Die harte "Strict Protection" (App Store & App Lösch-Sperre) wurde komplett entfernt, um App Store Review Risiken zu minimieren. Das UI wurde zu einem reinen, ehrlichen "Safari Erwachsenen-Filter" umgebaut.
