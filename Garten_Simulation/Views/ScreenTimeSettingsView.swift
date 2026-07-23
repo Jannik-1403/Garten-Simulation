@@ -37,6 +37,10 @@ struct ScreenTimeSettingsView: View {
     @State private var showConfirmAlert = false
     @State private var pendingLimitAction: (() -> Void)? = nil
     
+    @State private var showInfoAlert = false
+    @State private var infoAlertTitle = ""
+    @State private var infoAlertMessage = ""
+    
     // Weekday data: (weekdayInt, shortName, fullName)
     let allWeekdays: [(Int, String, String)] = [
         (2, "Mo", String(localized: "weekday.monday", defaultValue: "Montag")),
@@ -247,6 +251,11 @@ struct ScreenTimeSettingsView: View {
         } message: {
             Text(String(localized: "screenTime.limit.confirm.message", defaultValue: "Sobald das Limit festgelegt ist, kannst du es heute nicht mehr erhöhen!"))
         }
+        .alert(infoAlertTitle, isPresented: $showInfoAlert) {
+            Button(String(localized: "common.ok", defaultValue: "OK"), role: .cancel) { }
+        } message: {
+            Text(infoAlertMessage)
+        }
     }
     
     // MARK: - Settings ScrollView
@@ -258,7 +267,6 @@ struct ScreenTimeSettingsView: View {
                 ebene2Section
                 ebene3Section
                 ebene4Section
-                infoSection
                 
                 // Bottom Authorization Link
                 if !manager.isAuthorized {
@@ -282,26 +290,32 @@ struct ScreenTimeSettingsView: View {
     
     private func sectionHeader3D(level: String, title: String, description: String) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            VStack(alignment: .leading, spacing: 2) {
+            HStack(spacing: 6) {
                 Text(level.uppercased())
                     .font(.system(size: 13, weight: .bold, design: .rounded))
                     .foregroundStyle(.secondary)
                 
-                ZStack(alignment: .topLeading) {
-                    Text(title)
-                        .font(.system(size: 28, weight: .black, design: .rounded))
-                        .foregroundStyle(Color.blauPrimary.opacity(0.35))
-                        .offset(y: 3)
-                    
-                    Text(title)
-                        .font(.system(size: 28, weight: .black, design: .rounded))
-                        .foregroundStyle(Color.blauPrimary)
+                Button {
+                    infoAlertTitle = title
+                    infoAlertMessage = description
+                    showInfoAlert = true
+                } label: {
+                    Image(systemName: "info.circle")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(.secondary)
                 }
             }
             
-            Text(description)
-                .font(.system(size: 14, weight: .regular, design: .rounded))
-                .foregroundStyle(.secondary)
+            ZStack(alignment: .topLeading) {
+                Text(title)
+                    .font(.system(size: 28, weight: .black, design: .rounded))
+                    .foregroundStyle(Color.primary.opacity(0.15))
+                    .offset(y: 3)
+                
+                Text(title)
+                    .font(.system(size: 28, weight: .black, design: .rounded))
+                    .foregroundStyle(Color.primary)
+            }
         }
         .padding(.horizontal)
     }
@@ -711,23 +725,7 @@ struct ScreenTimeSettingsView: View {
         }
     }
     
-    // MARK: - Info Section
-    
-    private var infoSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Label(
-                String(localized: "screenTime.info.title", defaultValue: "Wie funktioniert das?"),
-                systemImage: "info.circle"
-            )
-            .font(.system(size: 14, weight: .bold, design: .rounded))
-            .foregroundStyle(.secondary)
-            
-            Text(String(localized: "screenTime.info.desc", defaultValue: "Der Shield-Block zeigt einen Warn-Overlay über Apps. Die betroffenen Apps werden nicht gelöscht und können vom Nutzer weiterhin geöffnet werden (mit Bestätigung). Der Erwachsenen-Filter gilt nur in Safari."))
-                .font(.system(size: 13, weight: .medium, design: .rounded))
-                .foregroundStyle(.secondary)
-        }
-        .padding(.horizontal, 8)
-    }
+
     
     // MARK: - Helpers
     
