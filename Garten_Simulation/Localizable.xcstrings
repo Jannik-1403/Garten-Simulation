@@ -410082,97 +410082,97 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari Adult Filter"
+            "value": "System-wide Adult Filter"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari Erwachsenen-Filter"
+            "value": "Systemweiter Erwachsenen-Filter"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filtro de adultos (Safari)"
+            "value": "Filtro de adultos en todo el sistema"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filtre adulte Safari"
+            "value": "Filtre adulte à l'échelle du système"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filtro adulti Safari"
+            "value": "Filtro per adulti a livello di sistema"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filtro Adulto Safari"
+            "value": "Filtro Adulto em Todo o Sistema"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filtro Adulto Safari"
+            "value": "Filtro Adulto em Todo o Sistema"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari filter voor volwassenen"
+            "value": "Systeembrede filter voor volwassenen"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filtr dla dorosłych Safari"
+            "value": "Ogólnosystemowy filtr dla dorosłych"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Фильтр для взрослых Safari"
+            "value": "Общесистемный фильтр для взрослых"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari Yetişkin Filtresi"
+            "value": "Sistem Çapında Yetişkin Filtresi"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सफ़ारी वयस्क फ़िल्टर"
+            "value": "सिस्टम-व्यापी वयस्क फ़िल्टर"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari アダルトフィルター"
+            "value": "システム全体のアダルトフィルター"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari 성인 필터"
+            "value": "시스템 전체 성인 필터"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari 成人过滤器"
+            "value": "全系统成人过滤器"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari 成人過濾器"
+            "value": "全系統成人過濾器"
           }
         }
       }
@@ -410183,97 +410183,97 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Blocks adult content in Safari. (Note: Does not affect other browsers like Chrome or Edge)."
+            "value": "Blocks adult content and malware system-wide across all browsers (Chrome, Edge, Safari, etc.) via Cloudflare Family DNS."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Blockiert nicht jugendfreie Inhalte in Safari. (Hinweis: Gilt nicht für andere Browser wie Chrome oder Edge)."
+            "value": "Blockiert nicht jugendfreie Inhalte und Malware systemweit in allen Browsern (Chrome, Edge, Safari etc.) über Cloudflare Family DNS."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bloquea contenido para adultos en Safari. (Nota: No afecta a otros navegadores como Chrome o Edge)."
+            "value": "Bloquea contenido para adultos y malware en todo el sistema y en todos los navegadores a través de Cloudflare Family DNS."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bloque le contenu pour adultes dans Safari. (Remarque : N'affecte pas les autres navigateurs comme Chrome ou Edge)."
+            "value": "Bloque le contenu pour adultes et les malwares à l'échelle du système sur tous les navigateurs via Cloudflare Family DNS."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Blocca i contenuti per adulti in Safari. (Nota: Non ha effetto su altri browser come Chrome o Edge)."
+            "value": "Blocca contenuti per adulti e malware a livello di sistema su tutti i browser tramite Cloudflare Family DNS."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bloqueia conteúdo para adultos no Safari. (Nota: Não afeta outros navegadores como Chrome ou Edge)."
+            "value": "Bloqueia conteúdo adulto e malware em todo o sistema, em todos os navegadores, através do Cloudflare Family DNS."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bloqueia conteúdo adulto no Safari. (Nota: Não afeta outros navegadores como Chrome ou Edge)."
+            "value": "Bloqueia conteúdo adulto e malware em todo o sistema, em todos os navegadores, através do Cloudflare Family DNS."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Blokkeert inhoud voor volwassenen in Safari. (Opmerking: Heeft geen invloed op andere browsers zoals Chrome of Edge)."
+            "value": "Blokkeert inhoud voor volwassenen en malware systeembreed in alle browsers via Cloudflare Family DNS."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Blokuje treści dla dorosłych w Safari. (Uwaga: Nie dotyczy innych przeglądarek, takich jak Chrome lub Edge)."
+            "value": "Blokuje treści dla dorosłych i złośliwe oprogramowanie ogólnosystemowo we wszystkich przeglądarkach przez Cloudflare Family DNS."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Блокирует контент для взрослых в Safari. (Примечание: не влияет на другие браузеры, такие как Chrome или Edge)."
+            "value": "Блокирует контент для взрослых и вредоносное ПО во всех браузерах с помощью Cloudflare Family DNS."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari'de yetişkinlere yönelik içeriği engeller. (Not: Chrome veya Edge gibi diğer tarayıcıları etkilemez)."
+            "value": "Cloudflare Family DNS ile tüm tarayıcılarda sistem genelinde yetişkinlere yönelik içeriği ve kötü amaçlı yazılımları engeller."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari में वयस्क सामग्री को ब्लॉक करता है। (नोट: Chrome या Edge जैसे अन्य ब्राउज़रों को प्रभावित नहीं करता है)।"
+            "value": "क्लाउडफ्लेयर फैमिली डीएनएस के माध्यम से सभी ब्राउज़रों में वयस्क सामग्री को ब्लॉक करता है।"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safariでアダルトコンテンツをブロックします。（注：ChromeやEdgeなどの他のブラウザには影響しません）。"
+            "value": "Cloudflare Family DNSを使用して、すべてのブラウザでアダルトコンテンツとマルウェアをシステム全体でブロックします。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari에서 성인 콘텐츠를 차단합니다. (참고: Chrome이나 Edge와 같은 다른 브라우저에는 영향을 미치지 않습니다)."
+            "value": "Cloudflare Family DNS를 통해 모든 브라우저에서 성인 콘텐츠 및 맬웨어를 시스템 전체에서 차단합니다."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "在 Safari 中阻止成人内容。（注意：不影响 Chrome 或 Edge 等其他浏览器）。"
+            "value": "通过 Cloudflare Family DNS 在所有浏览器中全系统拦截成人内容和恶意软件。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "在 Safari 中封鎖成人內容。（注意：不影響 Chrome 或 Edge 等其他瀏覽器）。"
+            "value": "透過 Cloudflare Family DNS 在所有瀏覽器中全系統攔截成人內容和惡意軟體。"
           }
         }
       }
@@ -410284,97 +410284,97 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Activate Safari Filter"
+            "value": "Activate System Filter"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari Filter aktivieren"
+            "value": "System-Filter aktivieren"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Activar filtro Safari"
+            "value": "Activar filtro del sistema"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Activer le filtre Safari"
+            "value": "Activer le filtre système"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Attiva filtro Safari"
+            "value": "Attiva filtro di sistema"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ativar Filtro Safari"
+            "value": "Ativar Filtro do Sistema"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ativar Filtro Safari"
+            "value": "Ativar Filtro do Sistema"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari filter activeren"
+            "value": "Systeemfilter activeren"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aktywuj filtr Safari"
+            "value": "Aktywuj filtr systemowy"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Активировать фильтр Safari"
+            "value": "Активировать системный фильтр"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari Filtresini Etkinleştir"
+            "value": "Sistem Filtresini Etkinleştir"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari फ़िल्टर सक्रिय करें"
+            "value": "सिस्टम फ़िल्टर सक्रिय करें"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safariフィルターを有効にする"
+            "value": "システムフィルターを有効にする"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Safari 필터 활성화"
+            "value": "시스템 필터 활성화"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "激活 Safari 过滤器"
+            "value": "激活系统过滤器"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "啟用 Safari 過濾器"
+            "value": "啟用系統過濾器"
           }
         }
       }
@@ -410476,6 +410476,208 @@
           "stringUnit": {
             "state": "translated",
             "value": "過濾器有效（停用）"
+          }
+        }
+      }
+    },
+    "screenTime.blockedApps": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocked Apps"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geblockte Apps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplicaciones bloqueadas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applications bloquées"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App bloccate"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps Bloqueados"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apps Bloqueados"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geblokkeerde apps"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zablokowane aplikacje"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Заблокированные приложения"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engellenen Uygulamalar"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अवरुद्ध ऐप्स"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブロックされたアプリ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "차단된 앱"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已拦截应用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已攔截應用"
+          }
+        }
+      }
+    },
+    "screenTime.schedule.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Force focus at specific times."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erzwinge Fokus zu bestimmten Zeiten."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuerza el enfoque en horarios específicos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forcez la concentration à des heures précises."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forza la concentrazione in orari specifici."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forçar foco em horários específicos."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forçar foco em horários específicos."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forceer focus op specifieke tijden."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wymuszaj skupienie w określonych godzinach."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Принудительная фокусировка в определенное время."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Belirli zamanlarda odaklanmaya zorla."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "विशिष्ट समय पर फोकस को बाध्य करें।"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "特定の時間帯に集中を強制します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "특정 시간에 집중을 강제합니다."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在特定时间强制保持专注。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在特定時間強制保持專注。"
           }
         }
       }

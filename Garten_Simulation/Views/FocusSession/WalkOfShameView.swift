@@ -12,6 +12,8 @@ struct WalkOfShameView: View {
     @State private var hasError: Bool = false
     @State private var requiredText: String = ""
     
+    var level: Int = 2
+    
     @FocusState private var isFocused: Bool
     
     let sentencePool = [
@@ -116,8 +118,16 @@ struct WalkOfShameView: View {
                 }
             }
             .onAppear {
-                let randomSentence = sentencePool.randomElement()!
-                requiredText = randomizeCase(of: randomSentence)
+                let sentenceCount = max(1, min(level - 1, 3)) // Level 2: 1 sentence, Level 3: 2 sentences, Level 4: 3 sentences
+                var selectedSentences = [String]()
+                var available = sentencePool
+                for _ in 0..<sentenceCount {
+                    if let random = available.randomElement() {
+                        selectedSentences.append(random)
+                        available.removeAll { $0 == random }
+                    }
+                }
+                requiredText = randomizeCase(of: selectedSentences.joined(separator: " "))
             }
             } // Close ZStack
         } // Close NavigationStack

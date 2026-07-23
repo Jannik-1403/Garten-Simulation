@@ -28,9 +28,11 @@ struct ScreenTimeSettingsView: View {
     @State private var permanentBlockSelection = FamilyActivitySelection()
     @State private var oldPermanentBlockSelection = FamilyActivitySelection()
     @State private var isAdultFilterEnabled = false
-    @State private var isStrictProtectionEnabled = false
     
-    @State private var showWalkOfShame = false
+    @State private var walkOfShameContext: Int? = nil
+    
+    @State private var isEbene1Expanded: Bool = false
+    @State private var isEbene2Expanded: Bool = false
     
     @State private var showConfirmAlert = false
     @State private var pendingLimitAction: (() -> Void)? = nil
@@ -87,7 +89,6 @@ struct ScreenTimeSettingsView: View {
             oldPermanentBlockSelection = manager.permanentBlockSelection
             
             isAdultFilterEnabled = manager.isAdultFilterEnabled
-            isStrictProtectionEnabled = manager.isStrictProtectionEnabled
             daySchedules = manager.daySchedules
         }
         .onChange(of: dailyLimitSelection) { _, newValue in
@@ -178,27 +179,37 @@ struct ScreenTimeSettingsView: View {
             }
             oldPermanentBlockSelection = enforcedSelection
         }
-        .fullScreenCover(isPresented: $showWalkOfShame) {
-            WalkOfShameView(
-                onConfirmGiveUp: {
-                    // Unblock everything
-                    permanentBlockSelection = FamilyActivitySelection()
-                    oldPermanentBlockSelection = FamilyActivitySelection()
-                    manager.permanentBlockSelection = FamilyActivitySelection()
-                    
-                    isStrictProtectionEnabled = false
-                    manager.isStrictProtectionEnabled = false
-                    
-                    dailyLimitSelection = FamilyActivitySelection()
-                    oldDailyLimitSelection = FamilyActivitySelection()
-                    manager.dailyLimitSelection = FamilyActivitySelection()
-                    
-                    showWalkOfShame = false
-                },
-                onCancel: {
-                    showWalkOfShame = false
-                }
-            )
+        .fullScreenCover(isPresented: Binding<Bool>(
+            get: { walkOfShameContext != nil },
+            set: { if !$0 { walkOfShameContext = nil } }
+        )) {
+            if let context = walkOfShameContext {
+                WalkOfShameView(
+                    onConfirmGiveUp: {
+                        if context == 1 || context == 2 {
+                            // Unblock layer 1 & 2
+                            permanentBlockSelection = FamilyActivitySelection()
+                            oldPermanentBlockSelection = FamilyActivitySelection()
+                            manager.permanentBlockSelection = FamilyActivitySelection()
+                            
+                            dailyLimitSelection = FamilyActivitySelection()
+                            oldDailyLimitSelection = FamilyActivitySelection()
+                            manager.dailyLimitSelection = FamilyActivitySelection()
+                        } else if context == 3 {
+                            isAdultFilterEnabled = false
+                        } else if context == 4 {
+                            isScheduleActive = false
+                        }
+                        walkOfShameContext = nil
+                    },
+                    onCancel: {
+                        walkOfShameContext = nil
+                    },
+                    level: context
+                )
+            } else {
+                Color.clear
+            }
         }
         .alert(String(localized: "screenTime.layer2.confirm.title", defaultValue: "Bist du sicher?"), isPresented: $showEbene2ConfirmAlert) {
             Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) {
@@ -310,7 +321,7 @@ struct ScreenTimeSettingsView: View {
                         groesse: 36,
                         shadowDepthFactor: 0.15,
                         isRectangular: true,
-                        aktion: { showWalkOfShame = true }
+                        aktion: { walkOfShameContext = 1 }
                     ) {
                         HStack(spacing: 4) {
                             Image(systemName: "lock.open.fill")
@@ -325,44 +336,50 @@ struct ScreenTimeSettingsView: View {
             .padding(.horizontal)
             
             if !dailyLimitSelection.applicationTokens.isEmpty || !dailyLimitSelection.categoryTokens.isEmpty || !dailyLimitSelection.webDomainTokens.isEmpty {
-                VStack(spacing: 8) {
-                    ForEach(Array(dailyLimitSelection.applicationTokens), id: \.self) { token in
-                        BlockRow {
-                            HStack {
-                                Label(token)
-                                Spacer()
-                                limitMenu(for: Binding(
-                                    get: { manager.getLimit(for: token) },
-                                    set: { manager.setLimit(for: token, limit: $0) }
-                                ))
+                let count = dailyLimitSelection.applicationTokens.count + dailyLimitSelection.categoryTokens.count + dailyLimitSelection.webDomainTokens.count
+                DisclosureGroup(String(localized: "screenTime.blockedApps", defaultValue: "Geblockte Apps") + " (\(count))", isExpanded: $isEbene1Expanded) {
+                    VStack(spacing: 8) {
+                        ForEach(Array(dailyLimitSelection.applicationTokens), id: \.self) { token in
+                            BlockRow {
+                                HStack {
+                                    Label(token)
+                                    Spacer()
+                                    limitMenu(for: Binding(
+                                        get: { manager.getLimit(for: token) },
+                                        set: { manager.setLimit(for: token, limit: $0) }
+                                    ))
+                                }
+                            }
+                        }
+                        ForEach(Array(dailyLimitSelection.categoryTokens), id: \.self) { token in
+                            BlockRow {
+                                HStack {
+                                    Label(token)
+                                    Spacer()
+                                    limitMenu(for: Binding(
+                                        get: { manager.getLimit(for: token) },
+                                        set: { manager.setLimit(for: token, limit: $0) }
+                                    ))
+                                }
+                            }
+                        }
+                        ForEach(Array(dailyLimitSelection.webDomainTokens), id: \.self) { token in
+                            BlockRow {
+                                HStack {
+                                    Label(token)
+                                    Spacer()
+                                    limitMenu(for: Binding(
+                                        get: { manager.getLimit(for: token) },
+                                        set: { manager.setLimit(for: token, limit: $0) }
+                                    ))
+                                }
                             }
                         }
                     }
-                    ForEach(Array(dailyLimitSelection.categoryTokens), id: \.self) { token in
-                        BlockRow {
-                            HStack {
-                                Label(token)
-                                Spacer()
-                                limitMenu(for: Binding(
-                                    get: { manager.getLimit(for: token) },
-                                    set: { manager.setLimit(for: token, limit: $0) }
-                                ))
-                            }
-                        }
-                    }
-                    ForEach(Array(dailyLimitSelection.webDomainTokens), id: \.self) { token in
-                        BlockRow {
-                            HStack {
-                                Label(token)
-                                Spacer()
-                                limitMenu(for: Binding(
-                                    get: { manager.getLimit(for: token) },
-                                    set: { manager.setLimit(for: token, limit: $0) }
-                                ))
-                            }
-                        }
-                    }
+                    .padding(.top, 8)
                 }
+                .font(.system(size: 15, weight: .bold, design: .rounded))
+                .accentColor(.gruenPrimary)
                 .padding(.horizontal)
             }
         }
@@ -438,7 +455,7 @@ struct ScreenTimeSettingsView: View {
                         groesse: 36,
                         shadowDepthFactor: 0.15,
                         isRectangular: true,
-                        aktion: { showWalkOfShame = true }
+                        aktion: { walkOfShameContext = 2 }
                     ) {
                         HStack(spacing: 4) {
                             Image(systemName: "lock.open.fill")
@@ -452,21 +469,26 @@ struct ScreenTimeSettingsView: View {
             }
             .padding(.horizontal)
             
-            // Blocked items – vertical list
             if !permanentBlockSelection.applicationTokens.isEmpty ||
                !permanentBlockSelection.categoryTokens.isEmpty ||
                !permanentBlockSelection.webDomainTokens.isEmpty {
-                VStack(spacing: 8) {
-                    ForEach(Array(permanentBlockSelection.applicationTokens), id: \.self) { token in
-                        BlockRow { Label(token) }
+                let count = permanentBlockSelection.applicationTokens.count + permanentBlockSelection.categoryTokens.count + permanentBlockSelection.webDomainTokens.count
+                DisclosureGroup(String(localized: "screenTime.blockedApps", defaultValue: "Geblockte Apps") + " (\(count))", isExpanded: $isEbene2Expanded) {
+                    VStack(spacing: 8) {
+                        ForEach(Array(permanentBlockSelection.applicationTokens), id: \.self) { token in
+                            BlockRow { Label(token) }
+                        }
+                        ForEach(Array(permanentBlockSelection.categoryTokens), id: \.self) { token in
+                            BlockRow { Label(token) }
+                        }
+                        ForEach(Array(permanentBlockSelection.webDomainTokens), id: \.self) { token in
+                            BlockRow { Label(token) }
+                        }
                     }
-                    ForEach(Array(permanentBlockSelection.categoryTokens), id: \.self) { token in
-                        BlockRow { Label(token) }
-                    }
-                    ForEach(Array(permanentBlockSelection.webDomainTokens), id: \.self) { token in
-                        BlockRow { Label(token) }
-                    }
+                    .padding(.top, 8)
                 }
+                .font(.system(size: 15, weight: .bold, design: .rounded))
+                .accentColor(.gruenPrimary)
                 .padding(.horizontal)
             }
         }
@@ -500,7 +522,11 @@ struct ScreenTimeSettingsView: View {
                     shadowDepthFactor: 0.1,
                     isRectangular: true,
                     aktion: {
-                        isAdultFilterEnabled.toggle()
+                        if isActive {
+                            walkOfShameContext = 3
+                        } else {
+                            isAdultFilterEnabled = true
+                        }
                     }
                 ) {
                     HStack(spacing: 8) {
@@ -526,19 +552,43 @@ struct ScreenTimeSettingsView: View {
 
     private var scheduleSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(String(localized: "screenTime.schedule.title", defaultValue: "Block-Zeitplan"))
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .padding(.horizontal)
-
-                Toggle(isOn: $isScheduleActive) {
-                    Text(String(localized: "screenTime.schedule.active", defaultValue: "Zeitplan aktivieren"))
-                        .font(.system(size: 15, weight: .medium, design: .rounded))
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(String(localized: "screenTime.schedule.title", defaultValue: "Block-Zeitplan"))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                    Text(String(localized: "screenTime.schedule.desc", defaultValue: "Erzwinge Fokus zu bestimmten Zeiten."))
+                        .font(.system(size: 14, weight: .regular, design: .rounded))
+                        .foregroundStyle(.secondary)
                 }
-                .tint(Color.gruenPrimary)
-                .disabled(isScheduleLocked)
-                .padding(.horizontal)
+                
+                Spacer()
+                
+                let isActive = isScheduleActive
+                Item3DButton(
+                    farbe: isActive ? Color.orange : Color.gruenPrimary,
+                    sekundaerFarbe: isActive ? Color.orange.darker() : Color.gruenPrimary.darker(),
+                    groesse: 36,
+                    shadowDepthFactor: 0.15,
+                    isRectangular: true,
+                    isDisabled: isScheduleLocked,
+                    aktion: {
+                        if isActive {
+                            walkOfShameContext = 4
+                        } else {
+                            isScheduleActive = true
+                        }
+                    }
+                ) {
+                    HStack(spacing: 4) {
+                        Image(systemName: isActive ? "lock.open.fill" : "lock.fill")
+                        Text(isActive ? String(localized: "screenTime.layer1.unblock.short", defaultValue: "Entsperren") : String(localized: "common.activate", defaultValue: "Aktivieren"))
+                    }
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 16)
+                }
             }
+            .padding(.horizontal)
 
             if isScheduleActive {
                 VStack(spacing: 8) {
@@ -700,7 +750,6 @@ struct ScreenTimeSettingsView: View {
         manager.daySchedules = daySchedules
         manager.permanentBlockSelection = permanentBlockSelection
         manager.isAdultFilterEnabled = isAdultFilterEnabled
-        manager.isStrictProtectionEnabled = isStrictProtectionEnabled
         manager.applyPermanentBlocks()
         
         let blockData = try? JSONEncoder().encode(blockSelection)
