@@ -479,55 +479,33 @@ struct ScreenTimeSettingsView: View {
         if FeatureFlags.isProVersionEnabled {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Text(String(localized: "screenTime.adultFilter.title", defaultValue: "Strict Protection"))
+                    Text(String(localized: "screenTime.safariFilter.title", defaultValue: "Safari Adult Filter"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                 }
                 .padding(.horizontal)
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(String(localized: "screenTime.adultFilter.desc1", defaultValue: "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"))
+                    Text(String(localized: "screenTime.safariFilter.desc", defaultValue: "Blocks adult content in Safari. (Note: Does not affect other browsers like Chrome or Edge)."))
                         .font(.system(size: 14, weight: .regular, design: .rounded))
                         .foregroundStyle(.secondary)
-                    
-                    VStack(alignment: .leading, spacing: 6) {
-                        HStack(alignment: .center, spacing: 6) {
-                            Image(systemName: "nosign")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundStyle(.red)
-                            Text(String(localized: "screenTime.adultFilter.bullet1", defaultValue: "App Store (No new browsers/VPNs)"))
-                                .font(.system(size: 14, weight: .medium, design: .rounded))
-                                .foregroundStyle(.primary)
-                        }
-                        HStack(alignment: .center, spacing: 6) {
-                            Image(systemName: "trash")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundStyle(.red)
-                            Text(String(localized: "screenTime.adultFilter.bullet2", defaultValue: "App Deletion"))
-                                .font(.system(size: 14, weight: .medium, design: .rounded))
-                                .foregroundStyle(.primary)
-                        }
-                    }
-                    .padding(.leading, 4)
                 }
                 .padding(.horizontal)
                 
-                let isActive = isAdultFilterEnabled && isStrictProtectionEnabled
+                let isActive = isAdultFilterEnabled
                 
                 Item3DButton(
-                    farbe: isActive ? Color.red : Color.gruenPrimary,
-                    sekundaerFarbe: isActive ? Color.red.darker() : Color.gruenPrimary.darker(),
+                    farbe: isActive ? Color.gray : Color.gruenPrimary,
+                    sekundaerFarbe: isActive ? Color.gray.opacity(0.8) : Color.gruenPrimary.darker(),
                     groesse: 48,
                     shadowDepthFactor: 0.1,
                     isRectangular: true,
                     aktion: {
-                        let willBeActive = !isActive
-                        isAdultFilterEnabled = willBeActive
-                        isStrictProtectionEnabled = willBeActive
+                        isAdultFilterEnabled.toggle()
                     }
                 ) {
                     HStack(spacing: 8) {
-                        Image(systemName: isActive ? "shield.fill" : "shield")
-                        Text(isActive ? String(localized: "screenTime.adultFilter.button.active", defaultValue: "Deactivate Protection") : String(localized: "screenTime.adultFilter.button.inactive", defaultValue: "Activate Protection"))
+                        Image(systemName: isActive ? "checkmark.shield.fill" : "shield")
+                        Text(isActive ? String(localized: "screenTime.safariFilter.button.active", defaultValue: "Filter Active (Deactivate)") : String(localized: "screenTime.safariFilter.button.inactive", defaultValue: "Activate Safari Filter"))
                     }
                     .font(.system(size: 15, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)

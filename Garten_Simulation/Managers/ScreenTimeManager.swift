@@ -49,13 +49,6 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
-    @Published var isStrictProtectionEnabled: Bool = false {
-        didSet {
-            UserDefaults.standard.set(isStrictProtectionEnabled, forKey: "screenTimeStrictProtectionEnabled")
-            applyPermanentBlocks()
-        }
-    }
-    
     // MARK: - Block Schedule (Per-Day)
     @Published var isScheduleActive: Bool = false {
         didSet {
@@ -156,7 +149,6 @@ class ScreenTimeManager: ObservableObject {
     
     private init() {
         self.isAdultFilterEnabled = UserDefaults.standard.bool(forKey: "screenTimeAdultFilterEnabled")
-        self.isStrictProtectionEnabled = UserDefaults.standard.bool(forKey: "screenTimeStrictProtectionEnabled")
         self.isScheduleActive = UserDefaults.standard.bool(forKey: "isScreenTimeScheduleActive")
         
         if let data = UserDefaults.standard.data(forKey: "screenTimeDaySchedulesData"),
@@ -265,15 +257,10 @@ class ScreenTimeManager: ObservableObject {
             permanentStore.webContent.blockedByFilter = nil
         }
         
-        if isStrictProtectionEnabled {
-            permanentStore.application.denyAppInstallation = true
-            permanentStore.application.denyAppRemoval = true
-            permanentStore.account.lockAccounts = true
-        } else {
-            permanentStore.application.denyAppInstallation = nil
-            permanentStore.application.denyAppRemoval = nil
-            permanentStore.account.lockAccounts = nil
-        }
+        // Always reset strict protection to nil to free any devices that had it active previously
+        permanentStore.application.denyAppInstallation = nil
+        permanentStore.application.denyAppRemoval = nil
+        permanentStore.account.lockAccounts = nil
     }
     
     // MARK: - DeviceActivity Scheduling
