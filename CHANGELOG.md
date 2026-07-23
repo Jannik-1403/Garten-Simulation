@@ -137,3 +137,6 @@
 - Fix: Emojis von selbst erstellten Pflanzen werden in der Detailansicht und im Power-Up Picker nun korrekt angezeigt
 
 - **ScreenTime Schutzmodus hinzugefügt:** Ein neuer "Schutzmodus" wurde für Pro-Nutzer eingeführt. Dieser verhindert das Herunterladen von VPN-Apps aus dem App Store, blockiert das Löschen von Apps und sperrt Änderungen am Account, um die Umgehung der Bildschirmzeit-Beschränkungen zu stoppen.
+- Fix: Benutzerdefinierte Pflanzen-Icons (Assets wie 'Weizenfeld') werden nun in der Detailansicht korrekt als Bild und nicht mehr fehlerhaft als abgeschnittener Text gerendert.
+
+- **Wasserdichter Erwachsenen-Filter:** Das UI für den Schutzmodus wurde durch einen einheitlichen "Erwachsenen Filter aktivieren" 3D-Button ersetzt. Dieser aktiviert mit einem Klick den Safari-Pornofilter sowie die App-Store-Sperre gleichzeitig.
