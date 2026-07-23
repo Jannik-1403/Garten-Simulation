@@ -490,14 +490,18 @@ struct ScreenTimeSettingsView: View {
                         .foregroundStyle(.secondary)
                     
                     VStack(alignment: .leading, spacing: 6) {
-                        HStack(alignment: .top) {
-                            Text("🚫")
+                        HStack(alignment: .center, spacing: 6) {
+                            Image(systemName: "nosign")
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundStyle(.red)
                             Text(String(localized: "screenTime.adultFilter.bullet1", defaultValue: "App Store (No new browsers/VPNs)"))
                                 .font(.system(size: 14, weight: .medium, design: .rounded))
                                 .foregroundStyle(.primary)
                         }
-                        HStack(alignment: .top) {
-                            Text("🗑️")
+                        HStack(alignment: .center, spacing: 6) {
+                            Image(systemName: "trash")
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundStyle(.red)
                             Text(String(localized: "screenTime.adultFilter.bullet2", defaultValue: "App Deletion"))
                                 .font(.system(size: 14, weight: .medium, design: .rounded))
                                 .foregroundStyle(.primary)
@@ -510,8 +514,8 @@ struct ScreenTimeSettingsView: View {
                 let isActive = isAdultFilterEnabled && isStrictProtectionEnabled
                 
                 Item3DButton(
-                    farbe: isActive ? Color.gray : Color.gruenPrimary,
-                    sekundaerFarbe: isActive ? Color.gray.opacity(0.8) : Color.gruenPrimary.darker(),
+                    farbe: isActive ? Color.red : Color.gruenPrimary,
+                    sekundaerFarbe: isActive ? Color.red.darker() : Color.gruenPrimary.darker(),
                     groesse: 48,
                     shadowDepthFactor: 0.1,
                     isRectangular: true,
