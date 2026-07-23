@@ -89429,6 +89429,17 @@
         }
       }
     },
+    "backup.auto.name_prefix" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Backup"
+          }
+        }
+      }
+    },
     "backup.auto.no_backups" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -89440,13 +89451,24 @@
         }
       }
     },
+    "backup.auto.picker.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Intervall auswählen"
+          }
+        }
+      }
+    },
     "backup.auto.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Automatisches Backup"
+            "value" : "Intervall:"
           }
         }
       }
@@ -320283,17 +320305,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "您有任何疑問或問題嗎？我們的支援團隊將很樂意為您提供協助。"
-          }
-        }
-      }
-    },
-    "settings.danger.recover_local" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Daten vor Update wiederherstellen"
           }
         }
       }

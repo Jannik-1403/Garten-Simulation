@@ -17,15 +17,7 @@ struct AutoBackupListView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
-                // MARK: Intervall Auswahl
-                IntervalPickerView(selection: $settingsStore.autoBackupInterval)
-                .padding()
-                .background(.ultraThinMaterial)
-                .cornerRadius(16)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
-                )
+
                 
                 // MARK: Backups Liste
                 if backups.isEmpty {
@@ -49,6 +41,16 @@ struct AutoBackupListView: View {
         }
         .background(Color(.systemGroupedBackground).ignoresSafeArea())
         .navigationTitle(String(localized: "backup.auto.view_backups", defaultValue: "Auto-Backups"))
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Picker(String(localized: "backup.auto.picker.title", defaultValue: "Intervall auswählen"), selection: $settingsStore.autoBackupInterval) {
+                    ForEach(AutoBackupInterval.allCases, id: \.self) { interval in
+                        Text(interval.localizedName).tag(interval)
+                    }
+                }
+                .pickerStyle(.menu)
+            }
+        }
         .onAppear {
             loadBackups()
         }
@@ -172,22 +174,3 @@ struct BackupRowView: View {
     }
 }
 
-struct IntervalPickerView: View {
-    @Binding var selection: AutoBackupInterval
-    
-    var body: some View {
-        HStack {
-            Text(String(localized: "backup.auto.title", defaultValue: "Intervall:"))
-                .font(.headline)
-                .foregroundStyle(.white)
-            Spacer()
-            Picker(String(localized: "backup.auto.picker.title", defaultValue: "Intervall auswählen"), selection: $selection) {
-                ForEach(AutoBackupInterval.allCases, id: \.self) { interval in
-                    Text(interval.localizedName).tag(interval)
-                }
-            }
-            .pickerStyle(.menu)
-            .tint(.white)
-        }
-    }
-}
