@@ -479,27 +479,39 @@ struct ScreenTimeSettingsView: View {
         if FeatureFlags.isProVersionEnabled {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    Text(String(localized: "screenTime.adultFilter.title", defaultValue: "Wasserdichter Erwachsenen-Filter"))
+                    Text(String(localized: "screenTime.adultFilter.title", defaultValue: "Strict Protection"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                 }
                 .padding(.horizontal)
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(String(localized: "screenTime.adultFilter.desc1", defaultValue: "Dieser Filter blockiert nicht jugendfreie Inhalte (Pornos, illegales Streaming) auf Systemebene in Safari."))
+                    Text(String(localized: "screenTime.adultFilter.desc1", defaultValue: "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"))
                         .font(.system(size: 14, weight: .regular, design: .rounded))
                         .foregroundStyle(.secondary)
                     
-                    Text(String(localized: "screenTime.adultFilter.desc2", defaultValue: "Damit der Filter nicht ausgetrickst werden kann, wird gleichzeitig der Schutzmodus aktiviert. Dieser sperrt den App Store (verhindert VPN- & Browser-Downloads) und blockiert das Löschen dieser App."))
-                        .font(.system(size: 13, weight: .bold, design: .rounded))
-                        .foregroundStyle(Color.orange)
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack(alignment: .top) {
+                            Text("🚫")
+                            Text(String(localized: "screenTime.adultFilter.bullet1", defaultValue: "App Store (No new browsers/VPNs)"))
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundStyle(.primary)
+                        }
+                        HStack(alignment: .top) {
+                            Text("🗑️")
+                            Text(String(localized: "screenTime.adultFilter.bullet2", defaultValue: "App Deletion"))
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundStyle(.primary)
+                        }
+                    }
+                    .padding(.leading, 4)
                 }
                 .padding(.horizontal)
                 
                 let isActive = isAdultFilterEnabled && isStrictProtectionEnabled
                 
                 Item3DButton(
-                    farbe: isActive ? Color.red : Color.gruenPrimary,
-                    sekundaerFarbe: isActive ? Color.red.darker() : Color.gruenPrimary.darker(),
+                    farbe: isActive ? Color.gray : Color.gruenPrimary,
+                    sekundaerFarbe: isActive ? Color.gray.opacity(0.8) : Color.gruenPrimary.darker(),
                     groesse: 48,
                     shadowDepthFactor: 0.1,
                     isRectangular: true,
@@ -511,7 +523,7 @@ struct ScreenTimeSettingsView: View {
                 ) {
                     HStack(spacing: 8) {
                         Image(systemName: isActive ? "shield.fill" : "shield")
-                        Text(isActive ? String(localized: "screenTime.adultFilter.button.active", defaultValue: "Filter & Schutzmodus deaktivieren") : String(localized: "screenTime.adultFilter.button.inactive", defaultValue: "Erwachsenen Filter aktivieren"))
+                        Text(isActive ? String(localized: "screenTime.adultFilter.button.active", defaultValue: "Deactivate Protection") : String(localized: "screenTime.adultFilter.button.inactive", defaultValue: "Activate Protection"))
                     }
                     .font(.system(size: 15, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)

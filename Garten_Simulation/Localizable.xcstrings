@@ -409375,97 +409375,97 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterproof Adult Filter"
+            "value": "Strict Protection"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filtre adulte étanche"
+            "value": "Protection stricte active"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterproof Adult Filter"
+            "value": "Strict Protection"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filtro per adulti impermeabile"
+            "value": "Protezione severa attiva"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterproof Adult Filter"
+            "value": "Strict Protection"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filtro para adultos a prueba de agua"
+            "value": "Protección estricta activa"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterproof Adult Filter"
+            "value": "Strict Protection"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterproof Adult Filter"
+            "value": "Strict Protection"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterproof Adult Filter"
+            "value": "Strict Protection"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterproof Adult Filter"
+            "value": "Strict Protection"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterproof Adult Filter"
+            "value": "Strict Protection"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterproof Adult Filter"
+            "value": "Strict Protection"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterproof Adult Filter"
+            "value": "Strict Protection"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wasserdichter Erwachsenen-Filter"
+            "value": "Schutzmodus Aktiv"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterproof Adult Filter"
+            "value": "Strict Protection"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Waterproof Adult Filter"
+            "value": "Strict Protection"
           }
         }
       }
@@ -409476,97 +409476,97 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+            "value": "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ce filtre bloque le contenu pour adultes au niveau du système dans Safari."
+            "value": "Bloque le contenu pour adultes dans Safari. Pour éviter les contournements, ce mode verrouille également complètement :"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+            "value": "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Questo filtro blocca i contenuti per adulti a livello di sistema in Safari."
+            "value": "Blocca i contenuti per adulti in Safari. Per evitare scappatoie, questa modalità blocca completamente anche:"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+            "value": "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Este filtro bloquea el contenido para adultos a nivel del sistema en Safari."
+            "value": "Bloquea el contenido para adultos en Safari. Para evitar soluciones alternativas, este modo también bloquea por completo:"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+            "value": "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+            "value": "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+            "value": "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+            "value": "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+            "value": "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+            "value": "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+            "value": "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dieser Filter blockiert nicht jugendfreie Inhalte (Pornos, illegales Streaming) auf Systemebene in Safari."
+            "value": "Blockiert nicht jugendfreie Inhalte in Safari. Um Umgehungen zu verhindern, sperrt dieser Modus außerdem komplett:"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+            "value": "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+            "value": "Blocks adult content in Safari. To prevent workarounds, this mode also completely locks:"
           }
         }
       }
@@ -409678,97 +409678,97 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Adult Filter"
+            "value": "Activate Protection"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Activer le filtre adulte"
+            "value": "Activer la protection"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Adult Filter"
+            "value": "Activate Protection"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Attiva filtro per adulti"
+            "value": "Attiva protezione"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Adult Filter"
+            "value": "Activate Protection"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Activar filtro para adultos"
+            "value": "Activar protección"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Adult Filter"
+            "value": "Activate Protection"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Adult Filter"
+            "value": "Activate Protection"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Adult Filter"
+            "value": "Activate Protection"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Adult Filter"
+            "value": "Activate Protection"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Adult Filter"
+            "value": "Activate Protection"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Adult Filter"
+            "value": "Activate Protection"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Adult Filter"
+            "value": "Activate Protection"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erwachsenen Filter aktivieren"
+            "value": "Schutzmodus aktivieren"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Adult Filter"
+            "value": "Activate Protection"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Adult Filter"
+            "value": "Activate Protection"
           }
         }
       }
@@ -409779,97 +409779,299 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disable Filter & Protection"
+            "value": "Deactivate Protection"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désactiver le filtre et la protection"
+            "value": "Désactiver la protection"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disable Filter & Protection"
+            "value": "Deactivate Protection"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disattiva filtro e protezione"
+            "value": "Disattiva protezione"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disable Filter & Protection"
+            "value": "Deactivate Protection"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Desactivar filtro y protección"
+            "value": "Desactivar protección"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disable Filter & Protection"
+            "value": "Deactivate Protection"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disable Filter & Protection"
+            "value": "Deactivate Protection"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disable Filter & Protection"
+            "value": "Deactivate Protection"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disable Filter & Protection"
+            "value": "Deactivate Protection"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disable Filter & Protection"
+            "value": "Deactivate Protection"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disable Filter & Protection"
+            "value": "Deactivate Protection"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disable Filter & Protection"
+            "value": "Deactivate Protection"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Filter & Schutzmodus deaktivieren"
+            "value": "Schutzmodus deaktivieren"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disable Filter & Protection"
+            "value": "Deactivate Protection"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disable Filter & Protection"
+            "value": "Deactivate Protection"
+          }
+        }
+      }
+    },
+    "screenTime.adultFilter.bullet1": {
+      "extractionState": "manual",
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (No new browsers/VPNs)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (No new browsers/VPNs)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (Nessun nuovo browser/VPN)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (No new browsers/VPNs)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (No new browsers/VPNs)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (No new browsers/VPNs)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (No new browsers/VPNs)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (Keine neuen Browser/VPNs)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (No new browsers/VPNs)"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (No new browsers/VPNs)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (Sin nuevos navegadores/VPN)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (No new browsers/VPNs)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (Pas de nouveaux navigateurs/VPN)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (No new browsers/VPNs)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (No new browsers/VPNs)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Store (No new browsers/VPNs)"
+          }
+        }
+      }
+    },
+    "screenTime.adultFilter.bullet2": {
+      "extractionState": "manual",
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Deletion"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Deletion"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminazione app"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Deletion"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Deletion"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Deletion"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Deletion"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löschen von Apps"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Deletion"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Deletion"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminación de aplicaciones"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Deletion"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suppression d'applications"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Deletion"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Deletion"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App Deletion"
           }
         }
       }
