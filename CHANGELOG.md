@@ -134,3 +134,6 @@
 - Fixed 99% string translation coverage in Xcode String Catalog by automatically translating 8 missing keys to all 16 supported languages.
 - Fixed Localizable.xcstrings warnings by converting hardcoded percentages to dynamic format specifiers (%@) across Swift code and string catalog.
 - Deleted 11 stale translation keys that were no longer referenced in the source code.
+- Fix: Emojis von selbst erstellten Pflanzen werden in der Detailansicht und im Power-Up Picker nun korrekt angezeigt
+
+- **ScreenTime Schutzmodus hinzugefügt:** Ein neuer "Schutzmodus" wurde für Pro-Nutzer eingeführt. Dieser verhindert das Herunterladen von VPN-Apps aus dem App Store, blockiert das Löschen von Apps und sperrt Änderungen am Account, um die Umgehung der Bildschirmzeit-Beschränkungen zu stoppen.
