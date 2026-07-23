@@ -174,4 +174,5 @@
 ## [Unreleased]
 - **Bugfix:** Datenmigration zu App-Groups repariert (`SharedUserDefaults`). Alte lokale Speicherstände werden nun vollständig in die neue App-Group übertragen, sodass kein Fortschritt mehr verloren geht.
 - **Feature:** Automatisches Backup-System eingebaut. Einstellbar in den Einstellungen (Täglich, Wöchentlich, Monatlich, bei Speicherung).
-- **Feature:** "Daten vor Update wiederherstellen"-Button zur Gefahrenzone hinzugefügt, um im Zweifelsfall alte lokale Spieldaten zu erzwingen.
+- **Cleanup:** Den nicht funktionierenden Button "Daten vor Update wiederherstellen" wieder entfernt.
+- **UI Polish:** Das automatische Backup-Menü wurde komplett überarbeitet. Es nutzt nun ein modernes Liquid Glass Design, das Intervall-Auswahlmenü wurde integriert und die Backup-Einträge nutzen das einheitliche 3D-Button-Design der App. Die Backup-Namen wurden vereinfacht.
