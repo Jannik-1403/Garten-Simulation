@@ -103039,6 +103039,107 @@
         }
       }
     },
+    "common.no": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nein"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "नहीं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NO"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "いいえ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "아니요"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nee"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NIE"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hayır"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不"
+          }
+        }
+      }
+    },
     "common.of": {
       "comment": "",
       "extractionState": "manual",
@@ -105072,6 +105173,107 @@
           "stringUnit": {
             "state": "translated",
             "value": "XP"
+          }
+        }
+      }
+    },
+    "common.yes": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sí"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oui"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हाँ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SÌ"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "はい"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "예"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tak"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sim"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sim"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Да"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Evet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "是的"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "是的"
           }
         }
       }
@@ -131693,6 +131895,107 @@
         }
       }
     },
+    "focus.live_activity.tasks": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufgaben:"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasks:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tareas:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tâches :"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कार्य"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compiti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "タスク"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "작업"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taken"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zadania"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarefas"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarefas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Задачи:"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Görevler:"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "任务"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "任務"
+          }
+        }
+      }
+    },
     "focus.paywall.button": {
       "comment": "The button text for unlocking premium features.",
       "isCommentAutoGenerated": true,
@@ -136013,6 +136316,107 @@
           "stringUnit": {
             "state": "translated",
             "value": "禪笛"
+          }
+        }
+      }
+    },
+    "focus.strict_mode.prompt.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Willst du Apps während deiner Fokus-Zeit sperren?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you want to block apps during your focus time?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres bloquear aplicaciones durante tu tiempo de enfoque?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voulez-vous bloquer des applications pendant votre temps de concentration ?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सख्त मोड सक्षम करें?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abilitare la modalità rigorosa?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "厳密モードを有効にしますか?"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "엄격 모드를 활성화하시겠습니까?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strikte modus inschakelen?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Włączyć tryb ścisły?"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ativar modo estrito?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ativar modo estrito?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы хотите заблокировать приложения во время фокусировки?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Odaklanma süreniz boyunca uygulamaları engellemek istiyor musunuz?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启用严格模式？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "啟用嚴格模式？"
           }
         }
       }
@@ -308528,7 +308932,6 @@
       }
     },
     "routine.strict_mode.blocked.message": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -308542,22 +308945,34 @@
             "value": "You cannot exit strict mode until the routine is complete."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "在例程完成之前，您無法退出嚴格模式。"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "No puede salir del modo estricto hasta que se complete la rutina."
           }
         },
-        "pt-BR": {
+        "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Você não pode sair do modo estrito até que a rotina seja concluída."
+            "value": "Vous ne pouvez pas quitter le mode strict tant que la routine n'est pas terminée."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जब तक दिनचर्या पूरी नहीं हो जाती, आप सख्त मोड से बाहर नहीं निकल सकते।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non è possibile uscire dalla modalità rigorosa fino al completamento della routine."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ルーチンが完了するまで、厳密モードを終了することはできません。"
           }
         },
         "ko": {
@@ -308566,10 +308981,10 @@
             "value": "루틴이 완료될 때까지 엄격 모드를 종료할 수 없습니다."
           }
         },
-        "ja": {
+        "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "ルーチンが完了するまで、厳密モードを終了することはできません。"
+            "value": "U kunt de strikte modus pas verlaten als de routine is voltooid."
           }
         },
         "pl": {
@@ -308584,22 +308999,16 @@
             "value": "Você não pode sair do modo estrito até que a rotina seja concluída."
           }
         },
-        "zh-Hans": {
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "在例程完成之前，您无法退出严格模式。"
+            "value": "Você não pode sair do modo estrito até que a rotina seja concluída."
           }
         },
-        "fr": {
+        "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vous ne pouvez pas quitter le mode strict tant que la routine n'est pas terminée."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "U kunt de strikte modus pas verlaten als de routine is voltooid."
+            "value": "Вы не можете выйти из строгого режима, пока процедура не будет завершена."
           }
         },
         "tr": {
@@ -308608,28 +309017,21 @@
             "value": "Rutin tamamlanana kadar katı moddan çıkamazsınız."
           }
         },
-        "it": {
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Non è possibile uscire dalla modalità rigorosa fino al completamento della routine."
+            "value": "在例程完成之前，您无法退出严格模式。"
           }
         },
-        "hi": {
+        "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "जब तक दिनचर्या पूरी नहीं हो जाती, आप सख्त मोड से बाहर नहीं निकल सकते।"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вы не можете выйти из строгого режима, пока процедура не будет завершена."
+            "value": "在例程完成之前，您無法退出嚴格模式。"
           }
         }
       }
     },
     "routine.strict_mode.blocked.ok": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -308643,22 +309045,34 @@
             "value": "OK"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "好的"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "DE ACUERDO"
           }
         },
-        "pt-BR": {
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D'ACCORD"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ठीक है"
+          }
+        },
+        "it": {
           "stringUnit": {
             "state": "translated",
             "value": "OK"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "わかりました"
           }
         },
         "ko": {
@@ -308667,10 +309081,10 @@
             "value": "좋아요"
           }
         },
-        "ja": {
+        "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "わかりました"
+            "value": "OK"
           }
         },
         "pl": {
@@ -308685,22 +309099,16 @@
             "value": "OK"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "好的"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "D'ACCORD"
-          }
-        },
-        "nl": {
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "OK"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ХОРОШО"
           }
         },
         "tr": {
@@ -308709,28 +309117,21 @@
             "value": "TAMAM"
           }
         },
-        "it": {
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "OK"
+            "value": "好的"
           }
         },
-        "hi": {
+        "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "ठीक है"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ХОРОШО"
+            "value": "好的"
           }
         }
       }
     },
     "routine.strict_mode.blocked.title": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -308744,22 +309145,34 @@
             "value": "Strict Mode Active"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "嚴格模式激活"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Modo estricto activo"
           }
         },
-        "pt-BR": {
+        "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Modo Estrito Ativo"
+            "value": "Mode strict actif"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सख्त मोड सक्रिय"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modalità rigorosa attiva"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ストリクトモードアクティブ"
           }
         },
         "ko": {
@@ -308768,10 +309181,10 @@
             "value": "엄격 모드 활성"
           }
         },
-        "ja": {
+        "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "ストリクトモードアクティブ"
+            "value": "Strikte modus actief"
           }
         },
         "pl": {
@@ -308786,22 +309199,16 @@
             "value": "Modo Estrito Ativo"
           }
         },
-        "zh-Hans": {
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "严格模式激活"
+            "value": "Modo Estrito Ativo"
           }
         },
-        "fr": {
+        "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mode strict actif"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strikte modus actief"
+            "value": "Строгий режим активен"
           }
         },
         "tr": {
@@ -308810,22 +309217,117 @@
             "value": "Katı Mod Etkin"
           }
         },
-        "it": {
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Modalità rigorosa attiva"
+            "value": "严格模式激活"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "嚴格模式激活"
+          }
+        }
+      }
+    },
+    "routine.strict_mode.prompt.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Willst du Apps während deiner Routine sperren?"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Do you want to block apps during your routine?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quieres bloquear aplicaciones durante tu rutina?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voulez-vous bloquer des applications pendant votre routine ?"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सख्त मोड सक्रिय"
+            "value": "सख्त मोड सक्षम करें?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abilitare la modalità rigorosa?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "厳密モードを有効にしますか?"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "엄격 모드를 활성화하시겠습니까?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strikte modus inschakelen?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Włączyć tryb ścisły?"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ativar modo estrito?"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ativar modo estrito?"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Строгий режим активен"
+            "value": "Вы хотите заблокировать приложения во время вашей рутины?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rutininiz sırasında uygulamaları engellemek istiyor musunuz?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启用严格模式？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "啟用嚴格模式？"
           }
         }
       }
@@ -314275,6 +314777,309 @@
           "stringUnit": {
             "state": "translated",
             "value": "封鎖排程"
+          }
+        }
+      }
+    },
+    "screenTime.strictMode.active": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schutzmodus aktivieren"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Strict Protection"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activar protección estricta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activer la protection stricte"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Strict Protection"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attiva protezione severa"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Strict Protection"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Strict Protection"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Strict Protection"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Strict Protection"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Strict Protection"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Strict Protection"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Strict Protection"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Strict Protection"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Strict Protection"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Strict Protection"
+          }
+        }
+      }
+    },
+    "screenTime.strictMode.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sperrt den App Store (um VPN-Downloads zu verhindern), das Löschen von Apps und Account-Änderungen. Gilt dauerhaft, bis der Notfall-Unlock genutzt wird."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloquea la App Store (para evitar descargas de VPN), la eliminación de aplicaciones y los cambios de cuenta. Permanece activo hasta que se use el desbloqueo de emergencia."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verrouille l'App Store (pour empêcher le téléchargement de VPN), la suppression d'applications et les modifications de compte. Reste actif jusqu'au déverrouillage d'urgence."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocca l'App Store (per impedire i download di VPN), l'eliminazione di app e le modifiche all'account. Rimane attivo fino allo sblocco di emergenza."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
+          }
+        }
+      }
+    },
+    "screenTime.strictMode.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schutzmodus"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict Protection"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protección estricta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protection stricte"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict Protection"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protezione severa"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict Protection"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict Protection"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict Protection"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict Protection"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict Protection"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict Protection"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict Protection"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict Protection"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict Protection"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strict Protection"
           }
         }
       }
@@ -408564,810 +409369,507 @@
         }
       }
     },
-    "routine.strict_mode.prompt.title": {
+    "screenTime.adultFilter.title": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Do you want to block apps during your routine?"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Willst du Apps während deiner Routine sperren?"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¿Quieres bloquear aplicaciones durante tu rutina?"
+            "value": "Waterproof Adult Filter"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Voulez-vous bloquer des applications pendant votre routine ?"
+            "value": "Filtre adulte étanche"
           }
         },
-        "ru": {
+        "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Вы хотите заблокировать приложения во время вашей рутины?"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rutininiz sırasında uygulamaları engellemek istiyor musunuz?"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "啟用嚴格模式？"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ativar modo estrito?"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "엄격 모드를 활성화하시겠습니까?"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "厳密モードを有効にしますか?"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Włączyć tryb ścisły?"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ativar modo estrito?"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "启用严格模式？"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strikte modus inschakelen?"
+            "value": "Waterproof Adult Filter"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abilitare la modalità rigorosa?"
+            "value": "Filtro per adulti impermeabile"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सख्त मोड सक्षम करें?"
+            "value": "Waterproof Adult Filter"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtro para adultos a prueba de agua"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterproof Adult Filter"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterproof Adult Filter"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterproof Adult Filter"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterproof Adult Filter"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterproof Adult Filter"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterproof Adult Filter"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterproof Adult Filter"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wasserdichter Erwachsenen-Filter"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterproof Adult Filter"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waterproof Adult Filter"
           }
         }
       }
     },
-    "focus.strict_mode.prompt.title": {
+    "screenTime.adultFilter.desc1": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Do you want to block apps during your focus time?"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Willst du Apps während deiner Fokus-Zeit sperren?"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¿Quieres bloquear aplicaciones durante tu tiempo de enfoque?"
+            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Voulez-vous bloquer des applications pendant votre temps de concentration ?"
+            "value": "Ce filtre bloque le contenu pour adultes au niveau du système dans Safari."
           }
         },
-        "ru": {
+        "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Вы хотите заблокировать приложения во время фокусировки?"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Odaklanma süreniz boyunca uygulamaları engellemek istiyor musunuz?"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "啟用嚴格模式？"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ativar modo estrito?"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "엄격 모드를 활성화하시겠습니까?"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "厳密モードを有効にしますか?"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Włączyć tryb ścisły?"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ativar modo estrito?"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "启用严格模式？"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strikte modus inschakelen?"
+            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abilitare la modalità rigorosa?"
+            "value": "Questo filtro blocca i contenuti per adulti a livello di sistema in Safari."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सख्त मोड सक्षम करें?"
+            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este filtro bloquea el contenido para adultos a nivel del sistema en Safari."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser Filter blockiert nicht jugendfreie Inhalte (Pornos, illegales Streaming) auf Systemebene in Safari."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This filter blocks adult content (porn, illegal streaming) at the system level in Safari."
           }
         }
       }
     },
-    "common.yes": {
+    "screenTime.adultFilter.desc2": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yes"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ja"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sí"
+            "value": "To prevent circumvention, Strict Protection is activated simultaneously. This locks the App Store (preventing VPN & browser downloads) and blocks app deletion."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oui"
+            "value": "Pour éviter tout contournement, la protection stricte est activée simultanément. Cela verrouille l'App Store (empêchant les téléchargements de VPN) et bloque la suppression."
           }
         },
-        "ru": {
+        "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Да"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Evet"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "是的"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sim"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "예"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "はい"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tak"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sim"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "是的"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ja"
+            "value": "To prevent circumvention, Strict Protection is activated simultaneously. This locks the App Store (preventing VPN & browser downloads) and blocks app deletion."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "SÌ"
+            "value": "Per evitare l'aggiramento, la Protezione severa viene attivata simultaneamente. Questo blocca l'App Store e l'eliminazione dell'app."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "हाँ"
+            "value": "To prevent circumvention, Strict Protection is activated simultaneously. This locks the App Store (preventing VPN & browser downloads) and blocks app deletion."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para evitar la elusión, se activa la Protección estricta simultáneamente. Esto bloquea la App Store y bloquea la eliminación."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To prevent circumvention, Strict Protection is activated simultaneously. This locks the App Store (preventing VPN & browser downloads) and blocks app deletion."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To prevent circumvention, Strict Protection is activated simultaneously. This locks the App Store (preventing VPN & browser downloads) and blocks app deletion."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To prevent circumvention, Strict Protection is activated simultaneously. This locks the App Store (preventing VPN & browser downloads) and blocks app deletion."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To prevent circumvention, Strict Protection is activated simultaneously. This locks the App Store (preventing VPN & browser downloads) and blocks app deletion."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To prevent circumvention, Strict Protection is activated simultaneously. This locks the App Store (preventing VPN & browser downloads) and blocks app deletion."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To prevent circumvention, Strict Protection is activated simultaneously. This locks the App Store (preventing VPN & browser downloads) and blocks app deletion."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To prevent circumvention, Strict Protection is activated simultaneously. This locks the App Store (preventing VPN & browser downloads) and blocks app deletion."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Damit der Filter nicht ausgetrickst werden kann, wird gleichzeitig der Schutzmodus aktiviert. Dieser sperrt den App Store (verhindert VPN- & Browser-Downloads) und blockiert das Löschen dieser App."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To prevent circumvention, Strict Protection is activated simultaneously. This locks the App Store (preventing VPN & browser downloads) and blocks app deletion."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To prevent circumvention, Strict Protection is activated simultaneously. This locks the App Store (preventing VPN & browser downloads) and blocks app deletion."
           }
         }
       }
     },
-    "common.no": {
+    "screenTime.adultFilter.button.inactive": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "No"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nein"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No"
+            "value": "Enable Adult Filter"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Non"
+            "value": "Activer le filtre adulte"
           }
         },
-        "ru": {
+        "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нет"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hayır"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Não"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "아니요"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "いいえ"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "NIE"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Não"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nee"
+            "value": "Enable Adult Filter"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "NO"
+            "value": "Attiva filtro per adulti"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "नहीं"
+            "value": "Enable Adult Filter"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activar filtro para adultos"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Adult Filter"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Adult Filter"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Adult Filter"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Adult Filter"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Adult Filter"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Adult Filter"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Adult Filter"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erwachsenen Filter aktivieren"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Adult Filter"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Adult Filter"
           }
         }
       }
     },
-    "focus.live_activity.tasks": {
+    "screenTime.adultFilter.button.active": {
       "extractionState": "manual",
       "localizations": {
-        "en": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tasks:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aufgaben:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tareas:"
+            "value": "Disable Filter & Protection"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tâches :"
+            "value": "Désactiver le filtre et la protection"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Задачи:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Görevler:"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "任務"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tarefas"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "작업"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "タスク"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zadania"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tarefas"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "任务"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Taken"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compiti"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "कार्य"
-          }
-        }
-      }
-    },
-    "screenTime.strictMode.title": {
-      "extractionState": "manual",
-      "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Strict Protection"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strict Protection"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strict Protection"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strict Protection"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strict Protection"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strict Protection"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strict Protection"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strict Protection"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Protection stricte"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strict Protection"
+            "value": "Disable Filter & Protection"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Protezione severa"
+            "value": "Disattiva filtro e protezione"
           }
         },
-        "de": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schutzmodus"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strict Protection"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strict Protection"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strict Protection"
+            "value": "Disable Filter & Protection"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Protección estricta"
-          }
-        }
-      }
-    },
-    "screenTime.strictMode.desc": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verrouille l'App Store (pour empêcher le téléchargement de VPN), la suppression d'applications et les modifications de compte. Reste actif jusqu'au déverrouillage d'urgence."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blocca l'App Store (per impedire i download di VPN), l'eliminazione di app e le modifiche all'account. Rimane attivo fino allo sblocco di emergenza."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sperrt den App Store (um VPN-Downloads zu verhindern), das Löschen von Apps und Account-Änderungen. Gilt dauerhaft, bis der Notfall-Unlock genutzt wird."
+            "value": "Desactivar filtro y protección"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Locks the App Store (to prevent VPN downloads), app deletion, and account changes. Remains active until emergency unlock is used."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bloquea la App Store (para evitar descargas de VPN), la eliminación de aplicaciones y los cambios de cuenta. Permanece activo hasta que se use el desbloqueo de emergencia."
-          }
-        }
-      }
-    },
-    "screenTime.strictMode.active": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enable Strict Protection"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enable Strict Protection"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enable Strict Protection"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enable Strict Protection"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enable Strict Protection"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enable Strict Protection"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enable Strict Protection"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enable Strict Protection"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Activer la protection stricte"
+            "value": "Disable Filter & Protection"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Strict Protection"
+            "value": "Disable Filter & Protection"
           }
         },
-        "it": {
+        "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Attiva protezione severa"
+            "value": "Disable Filter & Protection"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disable Filter & Protection"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disable Filter & Protection"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disable Filter & Protection"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disable Filter & Protection"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schutzmodus aktivieren"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enable Strict Protection"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enable Strict Protection"
+            "value": "Filter & Schutzmodus deaktivieren"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enable Strict Protection"
+            "value": "Disable Filter & Protection"
           }
         },
-        "es": {
+        "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Activar protección estricta"
+            "value": "Disable Filter & Protection"
           }
         }
       }

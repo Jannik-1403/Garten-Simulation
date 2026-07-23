@@ -247,7 +247,7 @@ struct ScreenTimeSettingsView: View {
                 
                 dailyLimitSection
                 permanentBlockSection
-                strictProtectionSection
+                adultFilterSection
                 scheduleSection
                 infoSection
                 
@@ -472,28 +472,53 @@ struct ScreenTimeSettingsView: View {
         }
     }
     
-    // MARK: - Strict Protection Section
+    // MARK: - Adult Filter Section
     
     @ViewBuilder
-    private var strictProtectionSection: some View {
+    private var adultFilterSection: some View {
         if FeatureFlags.isProVersionEnabled {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(String(localized: "screenTime.strictMode.title", defaultValue: "Schutzmodus"))
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .padding(.horizontal)
-                
-                Text(String(localized: "screenTime.strictMode.desc", defaultValue: "Sperrt den App Store (um VPN-Downloads zu verhindern), das Löschen von Apps und Account-Änderungen. Gilt dauerhaft, bis der Notfall-Unlock genutzt wird."))
-                    .font(.system(size: 14, weight: .regular, design: .rounded))
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal)
-                    .padding(.bottom, 8)
-                
-                Toggle(isOn: $isStrictProtectionEnabled) {
-                    Text(String(localized: "screenTime.strictMode.active", defaultValue: "Schutzmodus aktivieren"))
-                        .font(.system(size: 15, weight: .medium, design: .rounded))
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Text(String(localized: "screenTime.adultFilter.title", defaultValue: "Wasserdichter Erwachsenen-Filter"))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
                 }
-                .tint(Color.orange)
                 .padding(.horizontal)
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(String(localized: "screenTime.adultFilter.desc1", defaultValue: "Dieser Filter blockiert nicht jugendfreie Inhalte (Pornos, illegales Streaming) auf Systemebene in Safari."))
+                        .font(.system(size: 14, weight: .regular, design: .rounded))
+                        .foregroundStyle(.secondary)
+                    
+                    Text(String(localized: "screenTime.adultFilter.desc2", defaultValue: "Damit der Filter nicht ausgetrickst werden kann, wird gleichzeitig der Schutzmodus aktiviert. Dieser sperrt den App Store (verhindert VPN- & Browser-Downloads) und blockiert das Löschen dieser App."))
+                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.orange)
+                }
+                .padding(.horizontal)
+                
+                let isActive = isAdultFilterEnabled && isStrictProtectionEnabled
+                
+                Item3DButton(
+                    farbe: isActive ? Color.red : Color.gruenPrimary,
+                    sekundaerFarbe: isActive ? Color.red.darker() : Color.gruenPrimary.darker(),
+                    groesse: 48,
+                    shadowDepthFactor: 0.1,
+                    isRectangular: true,
+                    aktion: {
+                        let willBeActive = !isActive
+                        isAdultFilterEnabled = willBeActive
+                        isStrictProtectionEnabled = willBeActive
+                    }
+                ) {
+                    HStack(spacing: 8) {
+                        Image(systemName: isActive ? "shield.fill" : "shield")
+                        Text(isActive ? String(localized: "screenTime.adultFilter.button.active", defaultValue: "Filter & Schutzmodus deaktivieren") : String(localized: "screenTime.adultFilter.button.inactive", defaultValue: "Erwachsenen Filter aktivieren"))
+                    }
+                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 16)
+                }
+                .padding(.horizontal)
+                .padding(.top, 4)
             }
         }
     }
