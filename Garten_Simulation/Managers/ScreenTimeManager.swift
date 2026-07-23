@@ -3,6 +3,7 @@ import Foundation
 import FamilyControls
 import ManagedSettings
 import DeviceActivity
+import NetworkExtension
 import SwiftUI
 
 // MARK: - Per-Day Schedule
@@ -46,6 +47,12 @@ class ScreenTimeManager: ObservableObject {
         didSet {
             UserDefaults.standard.set(isAdultFilterEnabled, forKey: "screenTimeAdultFilterEnabled")
             applyPermanentBlocks()
+            
+            if isAdultFilterEnabled {
+                DNSFilterManager.shared.enable()
+            } else {
+                DNSFilterManager.shared.disable()
+            }
         }
     }
     
@@ -528,4 +535,77 @@ class ScreenTimeManager: ObservableObject {
         }
     }
     
+}
+
+// MARK: - DNS Filter Manager
+@MainActor
+class DNSFilterManager: ObservableObject {
+    static let shared = DNSFilterManager()
+    
+    @Published var isEnabled: Bool = false
+    
+    private init() {
+        checkStatus()
+    }
+    
+    func checkStatus() {
+        NEDNSSettingsManager.shared().loadFromPreferences { [weak self] error in
+            guard error == nil else { return }
+            let manager = NEDNSSettingsManager.shared()
+            DispatchQueue.main.async {
+                self?.isEnabled = manager.isEnabled
+            }
+        }
+    }
+    
+    func enable() {
+        NEDNSSettingsManager.shared().loadFromPreferences { error in
+            if let error = error {
+                print("Failed to load DNS settings preferences: \(error)")
+                return
+            }
+            
+            let manager = NEDNSSettingsManager.shared()
+            
+            // Cloudflare Family (Blocks Malware and Adult Content)
+            let dohSettings = NEDNSOverHTTPSSettings(servers: ["1.1.1.3", "1.0.0.3"])
+            dohSettings.serverURL = URL(string: "https://family.cloudflare-dns.com/dns-query")
+            
+            manager.dnsSettings = dohSettings
+            manager.onDemandRules = [NEOnDemandRuleConnect()] // Always connect
+            manager.localizedDescription = "Grovy Adult Filter"
+            
+            manager.saveToPreferences { error in
+                if let error = error {
+                    print("Failed to save DNS settings: \(error)")
+                } else {
+                    print("DNS settings saved successfully.")
+                    DispatchQueue.main.async {
+                        self.isEnabled = true
+                    }
+                }
+            }
+        }
+    }
+    
+    func disable() {
+        NEDNSSettingsManager.shared().loadFromPreferences { error in
+            if let error = error {
+                print("Failed to load DNS settings preferences: \(error)")
+                return
+            }
+            
+            let manager = NEDNSSettingsManager.shared()
+            manager.removeFromPreferences { error in
+                if let error = error {
+                    print("Failed to remove DNS settings: \(error)")
+                } else {
+                    print("DNS settings removed successfully.")
+                    DispatchQueue.main.async {
+                        self.isEnabled = false
+                    }
+                }
+            }
+        }
+    }
 }
