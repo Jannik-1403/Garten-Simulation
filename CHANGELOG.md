@@ -140,3 +140,5 @@
 - Fix: Benutzerdefinierte Pflanzen-Icons (Assets wie 'Weizenfeld') werden nun in der Detailansicht korrekt als Bild und nicht mehr fehlerhaft als abgeschnittener Text gerendert.
 
 - **Wasserdichter Erwachsenen-Filter:** Das UI für den Schutzmodus wurde durch einen einheitlichen "Erwachsenen Filter aktivieren" 3D-Button ersetzt. Dieser aktiviert mit einem Klick den Safari-Pornofilter sowie die App-Store-Sperre gleichzeitig.
+
+- **Schutzmodus UI Cleanup:** Die Textwüste im ScreenTime Einstellungen View wurde in prägnante Bullet-Points aufgebrochen und die aggressiven Farben wurden durch sauberere Standard-Farben ersetzt.
