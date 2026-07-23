@@ -51,12 +51,14 @@ struct CoinPackCard: View {
                     Text("+\(coinAmount)")
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundStyle(Color.primary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                     
                     Text(String(localized: "shop.item.coins_label", defaultValue: "Münzen"))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundStyle(Color.secondary)
                         .lineLimit(1)
-                        .minimumScaleFactor(0.8)
+                        .minimumScaleFactor(0.5)
                 }
 
                 Spacer(minLength: 0)
@@ -65,6 +67,9 @@ struct CoinPackCard: View {
                 Text(product.displayPrice)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                    .fixedSize(horizontal: true, vertical: false)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
                     .background(

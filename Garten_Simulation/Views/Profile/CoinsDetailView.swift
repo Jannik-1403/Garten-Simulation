@@ -26,6 +26,8 @@ struct CoinsDetailView: View {
                             Text(verbatim: "\(gardenStore.coins)")
                                 .font(.system(size: 38, weight: .black, design: .rounded))
                                 .foregroundStyle(Color.primary)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
                                 .contentTransition(.numericText())
                                 .animation(.spring(response: 0.4), value: gardenStore.coins)
                         }

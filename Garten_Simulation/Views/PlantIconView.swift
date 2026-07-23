@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct PlantIconView: View {
     let plant: Plant
@@ -13,10 +14,16 @@ struct PlantIconView: View {
                     .resizable()
                     .scaledToFit()
             } else {
-                Image(systemName: plant.symbolName)
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundStyle(.green)
+                if UIImage(systemName: plant.symbolName) != nil {
+                    Image(systemName: plant.symbolName)
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(.green)
+                } else {
+                    Text(plant.symbolName)
+                        .font(.system(size: size * 0.75))
+                        .minimumScaleFactor(0.5)
+                }
             }
         }
         .frame(width: size, height: size)

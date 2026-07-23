@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct PowerUpPlantPickerSheet: View {
     let powerUp: PowerUpItem
@@ -49,9 +50,14 @@ struct PowerUpPlantPickerSheet: View {
                                             Circle()
                                                 .fill(plant.color.opacity(0.15))
                                                 .frame(width: 48, height: 48)
-                                            Image(systemName: plant.symbolName)
-                                                .foregroundColor(plant.color)
-                                                .font(.system(size: 22))
+                                            if UIImage(systemName: plant.symbolName) != nil {
+                                                Image(systemName: plant.symbolName)
+                                                    .foregroundColor(plant.color)
+                                                    .font(.system(size: 22))
+                                            } else {
+                                                Text(plant.symbolName)
+                                                    .font(.system(size: 22))
+                                            }
                                         }
                                     }
                                     
