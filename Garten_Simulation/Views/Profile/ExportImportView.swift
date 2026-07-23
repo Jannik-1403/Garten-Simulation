@@ -127,36 +127,24 @@ struct ExportImportView: View {
                             Divider().padding(.vertical, 16)
                             
                             // MARK: Auto Backup Settings
-                            VStack(alignment: .leading, spacing: 10) {
-                                Text(String(localized: "backup.auto.title", defaultValue: "Automatisches Backup"))
-                                    .font(.headline)
-                                    .padding(.horizontal, 8)
-                                
-                                Picker("", selection: $settingsStore.autoBackupInterval) {
-                                    ForEach(AutoBackupInterval.allCases) { interval in
-                                        Text(interval.localizedName).tag(interval)
-                                    }
-                                }
-                                .pickerStyle(.menu)
-                                .padding()
-                                .background(Color(UIColor.secondarySystemGroupedBackground))
-                                .cornerRadius(12)
-                                
+                            VStack(alignment: .center, spacing: 16) {
                                 NavigationLink(destination: AutoBackupListView()) {
                                     HStack {
                                         Image(systemName: "clock.arrow.circlepath")
-                                        Text(String(localized: "backup.auto.view_backups", defaultValue: "Auto-Backups verwalten"))
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
-                                            .font(.caption)
+                                        Text(String(localized: "backup.auto.view_backups", defaultValue: "Automatische Backups"))
+                                            .font(.system(size: 16, weight: .bold, design: .rounded))
                                     }
-                                    .foregroundColor(.primary)
-                                    .padding()
-                                    .background(Color(UIColor.secondarySystemGroupedBackground))
-                                    .cornerRadius(12)
+                                    .foregroundStyle(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 14)
+                                    .padding(.horizontal, 20)
                                 }
+                                .buttonStyle(DuolingoButtonStyle(
+                                    backgroundColor: Color.indigo,
+                                    shadowColor: Color.indigo.opacity(0.8)
+                                ))
                             }
-
+                            .padding(.horizontal, 20)
                         
                         Text(String(localized: "backup_import_hint"))
                             .font(.caption)

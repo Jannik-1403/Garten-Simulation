@@ -89429,6 +89429,94 @@
         }
       }
     },
+    "backup.auto.no_backups" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Keine automatischen Backups gefunden."
+          }
+        }
+      }
+    },
+    "backup.auto.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Automatisches Backup"
+          }
+        }
+      }
+    },
+    "backup.auto.view_backups" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Auto-Backups"
+          }
+        }
+      }
+    },
+    "backup.interval.daily" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Täglich"
+          }
+        }
+      }
+    },
+    "backup.interval.monthly" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Monatlich"
+          }
+        }
+      }
+    },
+    "backup.interval.never" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Nie"
+          }
+        }
+      }
+    },
+    "backup.interval.onSave" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Bei jeder Speicherung"
+          }
+        }
+      }
+    },
+    "backup.interval.weekly" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Wöchentlich"
+          }
+        }
+      }
+    },
     "bad_habit.holding" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -112326,6 +112414,9 @@
           }
         }
       }
+    },
+    "Deine alten Daten wurden wiederhergestellt. Die App wird nun beendet. Bitte starte sie neu, um die Änderungen zu sehen." : {
+
     },
     "Deine Ziele" : {
       "extractionState" : "manual",
@@ -320196,6 +320287,17 @@
         }
       }
     },
+    "settings.danger.recover_local" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Daten vor Update wiederherstellen"
+          }
+        }
+      }
+    },
     "settings.delete_account" : {
       "comment" : "",
       "extractionState" : "manual",
@@ -410010,6 +410112,9 @@
           }
         }
       }
+    },
+    "Wiederherstellung erfolgreich" : {
+
     },
     "wonder_water.rescue.action_format" : {
       "comment" : "",

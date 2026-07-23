@@ -15,31 +15,39 @@ struct AutoBackupListView: View {
     @EnvironmentObject var assessmentStore: AssessmentStore
     
     var body: some View {
-        List {
-            if backups.isEmpty {
-                Text(String(localized: "backup.auto.no_backups", defaultValue: "Keine automatischen Backups gefunden."))
-                    .foregroundStyle(.secondary)
-            } else {
-                ForEach(backups, id: \.self) { url in
-                    Button(action: {
-                        selectedBackup = url
-                        showImportConfirm = true
-                    }) {
-                        VStack(alignment: .leading) {
-                            Text(url.lastPathComponent)
-                                .font(.headline)
-                            if let date = try? url.resourceValues(forKeys: [.creationDateKey]).creationDate {
-                                Text(date.formatted(date: .abbreviated, time: .shortened))
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
+        ScrollView {
+            VStack(spacing: 24) {
+                // MARK: Intervall Auswahl
+                IntervalPickerView(selection: $settingsStore.autoBackupInterval)
+                .padding()
+                .background(.ultraThinMaterial)
+                .cornerRadius(16)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                )
+                
+                // MARK: Backups Liste
+                if backups.isEmpty {
+                    Text(String(localized: "backup.auto.no_backups", defaultValue: "Keine automatischen Backups gefunden."))
+                        .foregroundStyle(.secondary)
+                        .padding(.top, 40)
+                } else {
+                    VStack(spacing: 16) {
+                        ForEach(backups, id: \.self) { url in
+                            BackupRowView(
+                                url: url,
+                                selectedBackup: $selectedBackup,
+                                showImportConfirm: $showImportConfirm,
+                                onDelete: { deleteBackup(url: url) }
+                            )
                         }
                     }
-                    .foregroundColor(.primary)
                 }
-                .onDelete(perform: deleteBackup)
             }
+            .padding()
         }
+        .background(Color(.systemGroupedBackground).ignoresSafeArea())
         .navigationTitle(String(localized: "backup.auto.view_backups", defaultValue: "Auto-Backups"))
         .onAppear {
             loadBackups()
@@ -67,16 +75,33 @@ struct AutoBackupListView: View {
     private func loadBackups() {
         backups = AutoBackupManager.shared.getAvailableBackups()
     }
-    
-    private func deleteBackup(at offsets: IndexSet) {
+    private func deleteBackup(url: URL) {
         let fileManager = FileManager.default
-        for index in offsets {
-            let url = backups[index]
-            try? fileManager.removeItem(at: url)
-        }
+        try? fileManager.removeItem(at: url)
         loadBackups()
     }
     
+    private func importBackup() {
+        guard let url = selectedBackup else { return }
+        do {
+            try DataExportImportManager.shared.importieren(
+                von: url,
+                gardenStore: gardenStore,
+                shopStore: shopStore,
+                achievementStore: achievementStore,
+                settingsStore: settingsStore,
+                streakStore: streakStore,
+                assessmentStore: assessmentStore
+            )
+        } catch {
+            print("Import failed: \(error)")
+        }
+    }
+
+    private func getCreationDate(for url: URL) -> Date? {
+        return try? url.resourceValues(forKeys: [.creationDateKey]).creationDate
+    }
+
     private func performImport(_ url: URL) {
         isLoading = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -96,6 +121,73 @@ struct AutoBackupListView: View {
                 isLoading = false
                 print("Import failed: \(error)")
             }
+        }
+    }
+}
+
+struct BackupRowView: View {
+    let url: URL
+    @Binding var selectedBackup: URL?
+    @Binding var showImportConfirm: Bool
+    var onDelete: () -> Void
+    
+    var body: some View {
+        Button(action: {
+            selectedBackup = url
+            showImportConfirm = true
+        }) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(String(localized: "backup.auto.name_prefix", defaultValue: "Backup"))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
+                    if let date = try? url.resourceValues(forKeys: [.creationDateKey]).creationDate {
+                        Text(date.formatted(date: .abbreviated, time: .shortened))
+                            .font(.caption)
+                            .foregroundStyle(.white.opacity(0.8))
+                    }
+                }
+                Spacer()
+                Image(systemName: "arrow.down.doc.fill")
+                    .foregroundStyle(.white)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.vertical, 14)
+            .padding(.horizontal, 20)
+        }
+        .buttonStyle(Item3DButtonStyle(
+            farbe: .gruenPrimary,
+            sekundaerFarbe: .gruenSecondary,
+            groesse: 60,
+            shadowDepthFactor: 0.1,
+            isRectangular: true
+        ))
+        .contextMenu {
+            Button(role: .destructive) {
+                onDelete()
+            } label: {
+                Label(String(localized: "common.delete", defaultValue: "Löschen"), systemImage: "trash")
+            }
+        }
+    }
+}
+
+struct IntervalPickerView: View {
+    @Binding var selection: AutoBackupInterval
+    
+    var body: some View {
+        HStack {
+            Text(String(localized: "backup.auto.title", defaultValue: "Intervall:"))
+                .font(.headline)
+                .foregroundStyle(.white)
+            Spacer()
+            Picker(String(localized: "backup.auto.picker.title", defaultValue: "Intervall auswählen"), selection: $selection) {
+                ForEach(AutoBackupInterval.allCases, id: \.self) { interval in
+                    Text(interval.localizedName).tag(interval)
+                }
+            }
+            .pickerStyle(.menu)
+            .tint(.white)
         }
     }
 }

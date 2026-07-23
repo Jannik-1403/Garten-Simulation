@@ -403,29 +403,8 @@ struct SettingsView: View {
 
                             
 
-                            
-                            // MARK: - Danger Zone
+                                                        // MARK: - Danger Zone
                             settingsSection(title: String(localized: "settings.section.danger")) {
-                                Button {
-                                    SharedUserDefaults.forceRecoveryFromLocal()
-                                    showRecoveryAlert = true
-                                } label: {
-                                    Text(String(localized: "settings.danger.recover_local", defaultValue: "Daten vor Update wiederherstellen"))
-                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                        .foregroundStyle(.white)
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 14)
-                                }
-                                .buttonStyle(Item3DButtonStyle(
-                                    farbe: .blauPrimary,
-                                    sekundaerFarbe: .blauSecondary,
-                                    groesse: 50,
-                                    shadowDepthFactor: 0.1,
-                                    isRectangular: true
-                                ))
-                                .padding(.bottom, 8)
-                                
-
                                 Button {
                                     showResetAlert = true
                                 } label: {
