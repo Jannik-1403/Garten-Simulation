@@ -142,3 +142,5 @@
 - **Wasserdichter Erwachsenen-Filter:** Das UI für den Schutzmodus wurde durch einen einheitlichen "Erwachsenen Filter aktivieren" 3D-Button ersetzt. Dieser aktiviert mit einem Klick den Safari-Pornofilter sowie die App-Store-Sperre gleichzeitig.
 
 - **Schutzmodus UI Cleanup:** Die Textwüste im ScreenTime Einstellungen View wurde in prägnante Bullet-Points aufgebrochen und die aggressiven Farben wurden durch sauberere Standard-Farben ersetzt.
+
+- **UI Polish:** Emojis im Schutzmodus durch SF Symbols ersetzt und den Kontrast des "Deaktivieren"-Buttons durch Verwendung von Rot erhöht.
