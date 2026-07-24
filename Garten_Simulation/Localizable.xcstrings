@@ -9156,7 +9156,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आप शीर्ष 10% में हैं। आप अत्यंत अनुशासित हैं और भीड़ से अलग हैं।"
+            "value": "आप शीर्ष 10％ में हैं। आप अत्यंत अनुशासित हैं और भीड़ से अलग हैं।"
           }
         },
         "it": {
@@ -9168,13 +9168,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "トップ10%に入っています。非常に規律があり、他と一線を画しています。"
+            "value": "トップ10％に入っています。非常に規律があり、他と一線を画しています。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "상위 10%에 속합니다. 매우 규율적이며 다른 사람들과 차별됩니다."
+            "value": "상위 10％에 속합니다. 매우 규율적이며 다른 사람들과 차별됩니다."
           }
         },
         "nl": {
@@ -9216,13 +9216,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "你位于前10%。你极为自律，明显与众不同。"
+            "value": "你位于前10％。你极为自律，明显与众不同。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你位於前10%。你極為自律，明顯與眾不同。"
+            "value": "你位於前10％。你極為自律，明顯與眾不同。"
           }
         }
       }
@@ -9233,79 +9233,79 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solide Leistung (Top 30%). Du bist überdurchschnittlich, aber es gibt noch klares Potenzial nach oben."
+            "value": "Solide Leistung (Top 30％). Du bist überdurchschnittlich, aber es gibt noch klares Potenzial nach oben."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solid performance (Top 30%). You are above average, but there is clear room for improvement."
+            "value": "Solid performance (Top 30％). You are above average, but there is clear room for improvement."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rendimiento sólido (Top 30%). Estás por encima de la media, pero hay margen de mejora."
+            "value": "Rendimiento sólido (Top 30％). Estás por encima de la media, pero hay margen de mejora."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Performance solide (Top 30%). Tu es au-dessus de la moyenne, mais il y a encore du potentiel."
+            "value": "Performance solide (Top 30％). Tu es au-dessus de la moyenne, mais il y a encore du potentiel."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "ठोस प्रदर्शन (शीर्ष 30%)। आप औसत से ऊपर हैं, लेकिन सुधार की गुंजाइश है।"
+            "value": "ठोस प्रदर्शन (शीर्ष 30％)। आप औसत से ऊपर हैं, लेकिन सुधार की गुंजाइश है।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prestazione solida (Top 30%). Sei sopra la media, ma c'è ancora spazio per migliorare."
+            "value": "Prestazione solida (Top 30％). Sei sopra la media, ma c'è ancora spazio per migliorare."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "しっかりしたパフォーマンス（トップ30%）。平均以上ですが、改善の余地があります。"
+            "value": "しっかりしたパフォーマンス（トップ30％）。平均以上ですが、改善の余地があります。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "탄탄한 성과(상위 30%). 평균 이상이지만 개선의 여지가 있습니다."
+            "value": "탄탄한 성과(상위 30％). 평균 이상이지만 개선의 여지가 있습니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solide prestatie (Top 30%). Je bent bovengemiddeld, maar er is nog duidelijk potentieel."
+            "value": "Solide prestatie (Top 30％). Je bent bovengemiddeld, maar er is nog duidelijk potentieel."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Solidny wynik (Top 30%). Jesteś powyżej przeciętnej, ale jest jeszcze wyraźny potencjał do rozwoju."
+            "value": "Solidny wynik (Top 30％). Jesteś powyżej przeciętnej, ale jest jeszcze wyraźny potencjał do rozwoju."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Desempenho sólido (Top 30%). Estás acima da média, mas ainda há potencial de melhoria."
+            "value": "Desempenho sólido (Top 30％). Estás acima da média, mas ainda há potencial de melhoria."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Desempenho sólido (Top 30%). Está acima da média, mas há potencial de melhoria."
+            "value": "Desempenho sólido (Top 30％). Está acima da média, mas há potencial de melhoria."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Хорошая работа (топ 30%). Ты выше среднего, но есть явный потенциал для роста."
+            "value": "Хорошая работа (топ 30％). Ты выше среднего, но есть явный потенциал для роста."
           }
         },
         "tr": {
@@ -9317,13 +9317,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "表现出色（前30%）。你高于平均水平，但仍有明显提升空间。"
+            "value": "表现出色（前30％）。你高于平均水平，但仍有明显提升空间。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "表現出色（前30%）。你高於平均水準，但仍有明顯提升空間。"
+            "value": "表現出色（前30％）。你高於平均水準，但仍有明顯提升空間。"
           }
         }
       }
@@ -11061,79 +11061,79 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hör auf, Geld für Konsum auszugeben, bevor du nicht mindestens 10% deines Einkommens gespart hast."
+            "value": "Hör auf, Geld für Konsum auszugeben, bevor du nicht mindestens 10％ deines Einkommens gespart hast."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop spending on consumption before saving at least 10% of your income."
+            "value": "Stop spending on consumption before saving at least 10％ of your income."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deja de gastar en consumo antes de ahorrar al menos el 10% de tus ingresos."
+            "value": "Deja de gastar en consumo antes de ahorrar al menos el 10％ de tus ingresos."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arrête de dépenser avant d'avoir épargné au moins 10% de tes revenus."
+            "value": "Arrête de dépenser avant d'avoir épargné au moins 10％ de tes revenus."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अपनी आय का कम से कम 10% बचाने से पहले उपभोग पर खर्च करना बंद करो।"
+            "value": "अपनी आय का कम से कम 10％ बचाने से पहले उपभोग पर खर्च करना बंद करो।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Smetti di spendere in consumi prima di aver risparmiato almeno il 10% delle entrate."
+            "value": "Smetti di spendere in consumi prima di aver risparmiato almeno il 10％ delle entrate."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "収入の少なくとも10%を貯蓄する前に消費に使うのをやめてください。"
+            "value": "収入の少なくとも10％を貯蓄する前に消費に使うのをやめてください。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "수입의 최소 10%를 저축하기 전에 소비에 쓰는 것을 중단하세요."
+            "value": "수입의 최소 10％를 저축하기 전에 소비에 쓰는 것을 중단하세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop met consumptie-uitgaven voordat je minimaal 10% van je inkomen hebt gespaard."
+            "value": "Stop met consumptie-uitgaven voordat je minimaal 10％ van je inkomen hebt gespaard."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Przestań wydawać na konsumpcję, zanim nie zaoszczędzisz przynajmniej 10% swojego dochodu."
+            "value": "Przestań wydawać na konsumpcję, zanim nie zaoszczędzisz przynajmniej 10％ swojego dochodu."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Para de gastar em consumo antes de poupar pelo menos 10% do teu rendimento."
+            "value": "Para de gastar em consumo antes de poupar pelo menos 10％ do teu rendimento."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pare de gastar com consumo antes de poupar pelo menos 10% da sua renda."
+            "value": "Pare de gastar com consumo antes de poupar pelo menos 10％ da sua renda."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Прекрати тратить на потребление, пока не сохранишь хотя бы 10% своего дохода."
+            "value": "Прекрати тратить на потребление, пока не сохранишь хотя бы 10％ своего дохода."
           }
         },
         "tr": {
@@ -11145,13 +11145,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "在储蓄至少10%的收入之前，停止在消费上花钱。"
+            "value": "在储蓄至少10％的收入之前，停止在消费上花钱。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "在儲蓄至少10%的收入之前，停止在消費上花錢。"
+            "value": "在儲蓄至少10％的收入之前，停止在消費上花錢。"
           }
         }
       }
@@ -32760,79 +32760,79 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vermeide Perfektionismus. 80% erledigt ist besser als 0% perfekt."
+            "value": "Vermeide Perfektionismus. 80％ erledigt ist besser als 0％ perfekt."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avoid perfectionism. 80% done is better than 0% perfect."
+            "value": "Avoid perfectionism. 80％ done is better than 0％ perfect."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Evita el perfeccionismo. Un 80% hecho es mejor que un 0% perfecto."
+            "value": "Evita el perfeccionismo. Un 80％ hecho es mejor que un 0％ perfecto."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Évite le perfectionnisme. 80% fait vaut mieux que 0% parfait."
+            "value": "Évite le perfectionnisme. 80％ fait vaut mieux que 0％ parfait."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पूर्णतावाद से बचो। 80% हो गया 0% परफेक्ट से बेहतर है।"
+            "value": "पूर्णतावाद से बचो। 80％ हो गया 0％ परफेक्ट से बेहतर है।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Evita il perfezionismo. L'80% fatto vale più dello 0% perfetto."
+            "value": "Evita il perfezionismo. L'80％ fatto vale più dello 0％ perfetto."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "完璧主義を避けてください。80%完成は0%完璧より優れています。"
+            "value": "完璧主義を避けてください。80％完成は0％完璧より優れています。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "완벽주의를 피하세요. 80% 완성이 0% 완벽보다 낫습니다."
+            "value": "완벽주의를 피하세요. 80％ 완성이 0％ 완벽보다 낫습니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vermijd perfectionisme. 80% gedaan is beter dan 0% perfect."
+            "value": "Vermijd perfectionisme. 80％ gedaan is beter dan 0％ perfect."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unikaj perfekcjonizmu. 80% zrobione jest lepsze niż 0% perfekcyjne."
+            "value": "Unikaj perfekcjonizmu. 80％ zrobione jest lepsze niż 0％ perfekcyjne."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Evita o perfeccionismo. 80% feito é melhor do que 0% perfeito."
+            "value": "Evita o perfeccionismo. 80％ feito é melhor do que 0％ perfeito."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Evite o perfeccionismo. 80% feito é melhor do que 0% perfeito."
+            "value": "Evite o perfeccionismo. 80％ feito é melhor do que 0％ perfeito."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Избегай перфекционизма. 80% сделано лучше, чем 0% идеально."
+            "value": "Избегай перфекционизма. 80％ сделано лучше, чем 0％ идеально."
           }
         },
         "tr": {
@@ -32844,13 +32844,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "避免完美主义。80%完成比0%完美更好。"
+            "value": "避免完美主义。80％完成比0％完美更好。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "避免完美主義。80%完成比0%完美更好。"
+            "value": "避免完美主義。80％完成比0％完美更好。"
           }
         }
       }
@@ -82151,97 +82151,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 10%: Score über +15"
+            "value": "Top 10％: Score über +15"
           }
         }
       }
@@ -82252,97 +82252,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 30%: Score über 0"
+            "value": "Top 30％: Score über 0"
           }
         }
       }
@@ -91254,97 +91254,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 1%"
+            "value": "Top 1％"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 1%"
+            "value": "Top 1％"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 1%"
+            "value": "Top 1％"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 1%"
+            "value": "Top 1％"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "शीर्ष 1%"
+            "value": "शीर्ष 1％"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 1%"
+            "value": "Top 1％"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "トップ 1%"
+            "value": "トップ 1％"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "상위 1%"
+            "value": "상위 1％"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 1%"
+            "value": "Top 1％"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 1%"
+            "value": "Top 1％"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 1%"
+            "value": "Top 1％"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 1%"
+            "value": "Top 1％"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Топ 1%"
+            "value": "Топ 1％"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Top 1%"
+            "value": "Top 1％"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "前 1%"
+            "value": "前 1％"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "前 1%"
+            "value": "前 1％"
           }
         }
       }
@@ -132447,13 +132447,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "[警告] 私は自分の仕事の 99% に対して弱すぎます。 A-B-C の代わりに X-Y-Z をキャンセルします。私の集中力はゼロポイントゼロに落ちます。私は成長よりも失敗を選びます。なぜ？私のドーパミンレベルが10パーセント未満だからです。"
+            "value": "[警告] 私は自分の仕事の 99％ に対して弱すぎます。 A-B-C の代わりに X-Y-Z をキャンセルします。私の集中力はゼロポイントゼロに落ちます。私は成長よりも失敗を選びます。なぜ？私のドーパミンレベルが10パーセント未満だからです。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "[경고] 나는 내 작업의 99%를 수행하기에는 너무 약합니다. 취소합니다: A-B-C 대신 X-Y-Z. 내 초점은 0점 0점으로 떨어집니다. 나는 #성장보다 #실패를 선택한다. 왜? 내 도파민 수치가 10퍼센트 미만이거든요."
+            "value": "[경고] 나는 내 작업의 99％를 수행하기에는 너무 약합니다. 취소합니다: A-B-C 대신 X-Y-Z. 내 초점은 0점 0점으로 떨어집니다. 나는 #성장보다 #실패를 선택한다. 왜? 내 도파민 수치가 10퍼센트 미만이거든요."
           }
         },
         "nl": {
@@ -132647,13 +132647,13 @@
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "私はここにキャンセルを確認します (ステータス: 100% 規律がありません)。プラス1歩進むのではなく、マイナス3歩下がる。私は今、自分の #goals については気にしていません。 [ロック解除] をクリックして 30 分を無駄にしました。"
+            "value": "私はここにキャンセルを確認します (ステータス: 100％ 規律がありません)。プラス1歩進むのではなく、マイナス3歩下がる。私は今、自分の #goals については気にしていません。 [ロック解除] をクリックして 30 分を無駄にしました。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "이에 따라 취소를 확인합니다(상태: 100% 규율 미달). 나는 플러스 한 걸음 앞으로 나아가는 대신 마이너스 세 걸음 뒤로 물러납니다. 나는 지금 내 #목표에 관심이 없습니다. [잠금 해제]를 클릭하고 30분을 낭비했습니다."
+            "value": "이에 따라 취소를 확인합니다(상태: 100％ 규율 미달). 나는 플러스 한 걸음 앞으로 나아가는 대신 마이너스 세 걸음 뒤로 물러납니다. 나는 지금 내 #목표에 관심이 없습니다. [잠금 해제]를 클릭하고 30분을 낭비했습니다."
           }
         },
         "nl": {
@@ -132753,7 +132753,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "왜 포기합니까? 나는 좌절감이 0%이기 때문입니다. 나는 지름길(유형 B)을 선택하고 첫 번째 규칙을 무시합니다. 집중하세요! 내 HP가 마이너스 15포인트 떨어졌습니다. 그것은 약 2분의 대가입니다."
+            "value": "왜 포기합니까? 나는 좌절감이 0％이기 때문입니다. 나는 지름길(유형 B)을 선택하고 첫 번째 규칙을 무시합니다. 집중하세요! 내 HP가 마이너스 15포인트 떨어졌습니다. 그것은 약 2분의 대가입니다."
           }
         },
         "nl": {
@@ -184538,7 +184538,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alle Pflanzen kosten dauerhaft 50% weniger Münzen."
+            "value": "Alle Pflanzen kosten dauerhaft %@ weniger Münzen."
           }
         },
         "en": {
@@ -314888,107 +314888,6 @@
         }
       }
     },
-    "screenTime.layer2.desc": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Diese Apps und Webseiten sind immer blockiert und können nur durch den Notfall-Unlock entsperrt werden."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unblocked using Emergency Unlock."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Estas aplicaciones y sitios web siempre están bloqueados y solo se pueden desbloquear mediante el Desbloqueo de emergencia."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ces applications et sites Web sont toujours bloqués et ne peuvent être débloqués qu'à l'aide du déverrouillage d'urgence."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ये ऐप्स और वेबसाइटें हमेशा ब्लॉक रहती हैं और इन्हें केवल आपातकालीन अनलॉक का उपयोग करके अनब्लॉक किया जा सकता है।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Queste app e questi siti Web sono sempre bloccati e possono essere sbloccati solo utilizzando lo sblocco di emergenza."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "これらのアプリや Web サイトは常にブロックされており、緊急ロック解除を使用しないとブロックを解除できません。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이러한 앱과 웹사이트는 항상 차단되어 있으며 긴급 잠금 해제를 통해서만 차단을 해제할 수 있습니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Deze apps en websites zijn altijd geblokkeerd en kunnen alleen worden gedeblokkeerd via Noodontgrendeling."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Te aplikacje i strony internetowe są zawsze blokowane i można je odblokować wyłącznie za pomocą odblokowania awaryjnego."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Esses aplicativos e sites estão sempre bloqueados e só podem ser desbloqueados usando o Desbloqueio de Emergência."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Esses aplicativos e sites estão sempre bloqueados e só podem ser desbloqueados usando o Desbloqueio de Emergência."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Эти приложения и веб-сайты всегда блокируются, и их можно разблокировать только с помощью аварийной разблокировки."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bu uygulamalar ve web siteleri her zaman engellenir ve yalnızca Acil Durum Kilit Açma kullanılarak engeli kaldırılabilir."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "这些应用程序和网站始终被阻止，只能使用紧急解锁来解除阻止。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "這些應用程式和網站始終被阻止，只能使用緊急解鎖來解除封鎖。"
-          }
-        }
-      }
-    },
     "screenTime.layer2.level": {
       "extractionState": "manual",
       "localizations": {
@@ -315086,107 +314985,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "級別 2"
-          }
-        }
-      }
-    },
-    "screenTime.layer2.title": {
-      "extractionState": "stale",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ebene 2: Immer blockiert"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Level 2: Always blocked"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nivel 2: Siempre bloqueado"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Niveau 2 : toujours bloqué"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "स्तर 2: हमेशा अवरुद्ध"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Livello 2: Sempre bloccato"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "レベル 2: 常にブロックされる"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "수준 2: 항상 차단됨"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Niveau 2: Altijd geblokkeerd"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Poziom 2: Zawsze zablokowany"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nível 2: sempre bloqueado"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nível 2: sempre bloqueado"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Уровень 2: Всегда заблокирован"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seviye 2: Her zaman engellendi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "2级：始终被阻止"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "2級：始終被阻止"
           }
         }
       }
