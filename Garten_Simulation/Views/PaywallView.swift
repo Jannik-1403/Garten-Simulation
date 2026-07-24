@@ -59,9 +59,9 @@ struct PaywallView: View {
                                 icon: "ProIconHealth",
                                 title: String(localized: "paywall.feature.health.title", defaultValue: "Apple Health Integration"),
                                 bullets: [
-                                    String(localized: "paywall.feature.health.bullet1", defaultValue: "Verbinde deine Bewegung direkt mit deinem Fokus."),
-                                    String(localized: "paywall.feature.health.bullet2", defaultValue: "Schließe Ringe und schalte extra Belohnungen frei."),
-                                    String(localized: "paywall.feature.health.bullet3", defaultValue: "Körper und Geist wachsen synchron.")
+                                    String(localized: "paywall.feature.health.bullet1.new", defaultValue: "Automatisches Tracking im Hintergrund."),
+                                    String(localized: "paywall.feature.health.bullet2.new", defaultValue: "Schnelleres Tracking deiner Aktivitäten."),
+                                    String(localized: "paywall.feature.health.bullet3.new", defaultValue: "Schließe Apple Health Ringe mühelos.")
                                 ],
                                 color: .red
                             )
@@ -70,9 +70,9 @@ struct PaywallView: View {
                                 icon: "ProIconCalendar",
                                 title: String(localized: "paywall.feature.calendar.title", defaultValue: "Apple Kalender Sync"),
                                 bullets: [
-                                    String(localized: "paywall.feature.calendar.bullet1", defaultValue: "Blockt Fokus-Zeiten automatisch in deinem Kalender."),
-                                    String(localized: "paywall.feature.calendar.bullet2", defaultValue: "Vermeidet Doppelbuchungen & schützt deine Zeit."),
-                                    String(localized: "paywall.feature.calendar.bullet3", defaultValue: "Voller Überblick über deine Tagesplanung.")
+                                    String(localized: "paywall.feature.calendar.bullet1.new", defaultValue: "Schnelle Termin-Erstellung aus der App."),
+                                    String(localized: "paywall.feature.calendar.bullet2.new", defaultValue: "Echtzeit-Synchronisation mit dem Kalender."),
+                                    String(localized: "paywall.feature.calendar.bullet3.new", defaultValue: "Automatische Benachrichtigungen für Events.")
                                 ],
                                 color: .goldPrimary
                             )
@@ -264,9 +264,10 @@ struct PaywallView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     ForEach(bullets, id: \.self) { bullet in
                         HStack(alignment: .top, spacing: 6) {
-                            Text("•")
+                            Image(systemName: "checkmark")
                                 .font(.system(size: 14, weight: .bold, design: .rounded))
                                 .foregroundStyle(color)
+                                .padding(.top, 2)
                             Text(bullet)
                                 .font(.system(size: 14, weight: .medium, design: .rounded))
                                 .foregroundStyle(Color.secondary)
