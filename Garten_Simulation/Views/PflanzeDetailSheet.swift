@@ -335,21 +335,6 @@ struct PflanzeDetailSheet: View {
                     .tourAnchor(.focusTimer)
                     .id(TourStep.focusTimer)
 
-                    // NEU: Habit Boost (Partner-Apps)
-                    if let boost = PartnerBoostStore.shared.getBoost(for: pflanze) {
-                        VStack(spacing: 24) {
-                            Divider()
-                                .background(Color.secondary.opacity(0.3))
-                                .padding(.horizontal, 40)
-                            
-                            HabitBoostCard(boost: boost)
-                                .padding(.horizontal, 24)
-                        }
-                        .padding(.top, 24)
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
-                    }
-
-
 
                     // Verkaufen-Button (Roter Text)
                     Button {
@@ -2357,89 +2342,6 @@ struct ExportNotesSelectionSheet: View {
     }
 }
 
-
-
-struct HabitBoostCard: View {
-    let boost: PartnerAppBoost
-    @Environment(\.openURL) var openURL
-    
-    var body: some View {
-        ZStack {
-            // Shadow Edge (Bottom) - Neo-Brutalism Style
-            RoundedRectangle(cornerRadius: 24, style: .continuous)
-                .fill(Color(UIColor.systemGray))
-                .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).stroke(Color.black.opacity(0.2), lineWidth: 1))
-                .offset(y: 6)
-                
-            VStack(spacing: 0) {
-                // Header: "Empfohlenes Tool"
-            HStack {
-                Text(String(localized: "boost.header", defaultValue: "Empfohlenes Tool"))
-                    .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(.secondary)
-                    .textCase(.uppercase)
-                Spacer()
-            }
-            .padding(.horizontal, 16)
-            .padding(.top, 12)
-            .padding(.bottom, 8)
-            
-            HStack(spacing: 16) {
-                // Icon
-                Image(boost.iconAssetName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 60, height: 60)
-                    .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-                    .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).stroke(Color.black.opacity(0.2), lineWidth: 1))
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(boost.appName)
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                    
-                    Text(boost.tagline)
-                        .font(.system(size: 14, weight: .medium, design: .rounded))
-                        .foregroundStyle(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .lineLimit(3)
-                }
-                Spacer()
-            }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 16)
-            
-            // Action Button
-            Button {
-                // Lokales Tracking (für private Testzwecke, sendet nichts ins Internet)
-                let clickKey = "clicks_boost_\(boost.appName)"
-                let clicks = UserDefaults.standard.integer(forKey: clickKey)
-                UserDefaults.standard.set(clicks + 1, forKey: clickKey)
-                print("Habit Boost geklickt! App: \(boost.appName), Bisherige Klicks: \(clicks + 1)")
-                
-                openURL(boost.fallbackStoreURL)
-            } label: {
-                ZStack {
-                    Text(String(localized: "boost.button", defaultValue: "App ansehen")).textCase(.uppercase)
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 24)
-                .clipped()
-            }
-            .buttonStyle(DuolingoButtonStyle(
-                size: .medium, fillWidth: true,
-                backgroundColor: Color.blauSecondary, shadowColor: Color.blauSecondary.darker(), foregroundColor: .white
-            ))
-            .padding(.horizontal, 16)
-            .padding(.bottom, 16)
-        }
-        .background(Color(UIColor.systemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
-        }
-        .padding(.bottom, 6)
-    }
-}
 
 struct ScreenTimePickerSheet: View {
     @Binding var screenTimeHours: Int
