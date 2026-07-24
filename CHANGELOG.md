@@ -178,3 +178,5 @@
 - **UI Polish:** Das automatische Backup-Menü wurde komplett überarbeitet. Es nutzt nun ein modernes Liquid Glass Design, das Intervall-Auswahlmenü wurde integriert und die Backup-Einträge nutzen das einheitliche 3D-Button-Design der App. Die Backup-Namen wurden vereinfacht.
 - **Feature:** Home Screen Quick Actions (App Shortcuts) mit Deep Linking (Fokus Timer, Bildschirmzeit, App bewerten, Warnung beim Löschen) hinzugefügt.
 - Lokalisierung: Fehlende Strings (ca. 1%) wurden übersetzt, alle Projektsprachen sind nun zu 100% abgedeckt.
+- Lokalisierung: Ungenutzte Keys aus Localizable.xcstrings entfernt.
+- Lokalisierung: Xcode-Warnungen bezüglich Prozentzeichen (%%) durch Nutzung von typografischen Prozentzeichen (％) bzw. korrekten Platzhaltern (%@) behoben.
