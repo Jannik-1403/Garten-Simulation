@@ -123,18 +123,26 @@ struct ScreenTimeSettingsView: View {
             manager.syncLimitsAfterPickerChange()
         }
         .onChange(of: blockSelection) { _, newValue in
-            // Der Picker ist während der aktiven Zeitleiste komplett disabled,
-            // daher brauchen wir hier keine Enforce-Logik für das Sperren.
-            // Gegenseitiger Ausschluss: Wenn in Zeitleiste ausgewählt, aus Ebene 2 entfernen
-            var newPermanent = permanentBlockSelection
-            newPermanent.applicationTokens.subtract(newValue.applicationTokens)
-            newPermanent.categoryTokens.subtract(newValue.categoryTokens)
-            newPermanent.webDomainTokens.subtract(newValue.webDomainTokens)
-            if newPermanent != permanentBlockSelection {
-                permanentBlockSelection = newPermanent
-                oldPermanentBlockSelection = newPermanent
+            var filteredValue = newValue
+            
+            // Apps that are in layer 1 (permanentBlockSelection) or layer 0 (dailyLimitSelection)
+            // should not be selectable in layer 2 (blockSelection).
+            filteredValue.applicationTokens.subtract(dailyLimitSelection.applicationTokens)
+            filteredValue.categoryTokens.subtract(dailyLimitSelection.categoryTokens)
+            filteredValue.webDomainTokens.subtract(dailyLimitSelection.webDomainTokens)
+            
+            filteredValue.applicationTokens.subtract(permanentBlockSelection.applicationTokens)
+            filteredValue.categoryTokens.subtract(permanentBlockSelection.categoryTokens)
+            filteredValue.webDomainTokens.subtract(permanentBlockSelection.webDomainTokens)
+            
+            if filteredValue != blockSelection {
+                DispatchQueue.main.async {
+                    blockSelection = filteredValue
+                    oldBlockSelection = filteredValue
+                }
+            } else {
+                oldBlockSelection = filteredValue
             }
-            oldBlockSelection = newValue
         }
         .onChange(of: permanentBlockSelection) { _, newValue in
             var enforcedSelection = newValue
@@ -205,6 +213,7 @@ struct ScreenTimeSettingsView: View {
                             isScheduleActive = false
                         }
                         walkOfShameContext = nil
+                        saveSettings()
                     },
                     onCancel: {
                         walkOfShameContext = nil
@@ -592,7 +601,6 @@ struct ScreenTimeSettingsView: View {
                     groesse: 36,
                     shadowDepthFactor: 0.15,
                     isRectangular: true,
-                    isDisabled: isScheduleLocked,
                     aktion: {
                         if isActive {
                             walkOfShameContext = 4
