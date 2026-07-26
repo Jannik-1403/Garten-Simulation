@@ -22,14 +22,36 @@ class FocusTimerRecovery {
     var goalsData: Data {
         get { UserDefaults.standard.data(forKey: "focusTimerGoalsData") ?? Data() }
         set { UserDefaults.standard.set(newValue, forKey: "focusTimerGoalsData") }
-    }    
-    func saveState(endTime: Date, totalSeconds: Int, plantId: String, goals: [FocusGoal]) {
+    }
+    
+    // Support for generic focus timers
+    var isGeneric: Bool {
+        get { UserDefaults.standard.bool(forKey: "focusTimerIsGeneric") }
+        set { UserDefaults.standard.set(newValue, forKey: "focusTimerIsGeneric") }
+    }
+    var genericHabitData: Data {
+        get { UserDefaults.standard.data(forKey: "focusTimerGenericHabitData") ?? Data() }
+        set { UserDefaults.standard.set(newValue, forKey: "focusTimerGenericHabitData") }
+    }
+    
+    func saveState(endTime: Date, totalSeconds: Int, plantId: String, goals: [FocusGoal], genericHabit: HabitModel? = nil) {
         self.endTime = endTime.timeIntervalSince1970
         self.totalSeconds = totalSeconds
         self.plantId = plantId
         if let data = try? JSONEncoder().encode(goals) {
             self.goalsData = data
         }
+        
+        if let genericHabit = genericHabit {
+            self.isGeneric = true
+            if let data = try? JSONEncoder().encode(genericHabit) {
+                self.genericHabitData = data
+            }
+        } else {
+            self.isGeneric = false
+            self.genericHabitData = Data()
+        }
+        
         self.isActive = true
     }
     
@@ -39,6 +61,8 @@ class FocusTimerRecovery {
         self.totalSeconds = 0
         self.plantId = ""
         self.goalsData = Data()
+        self.isGeneric = false
+        self.genericHabitData = Data()
     }
     
     func getGoals() -> [FocusGoal] {
@@ -46,5 +70,10 @@ class FocusTimerRecovery {
             return goals
         }
         return []
+    }
+    
+    func getGenericHabit() -> HabitModel? {
+        guard isGeneric else { return nil }
+        return try? JSONDecoder().decode(HabitModel.self, from: genericHabitData)
     }
 }

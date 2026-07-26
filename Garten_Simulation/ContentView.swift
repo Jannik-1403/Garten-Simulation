@@ -18,6 +18,7 @@ struct ContentView: View {
     @State private var showWeeklyReviewTeaser = false
     @State private var showRecoveredTimer = false
     @State private var recoveredPlantId: String? = nil
+    @State private var recoveredGenericHabit: HabitModel? = nil
     
     @State private var showFocusSheetFromShortcut = false
     @State private var showScreenTimeFromShortcut = false
@@ -138,21 +139,37 @@ struct ContentView: View {
         .onAppear {
             checkAndShowSundayWeeklyReport()
             if FocusTimerRecovery.shared.isActive {
-                recoveredPlantId = FocusTimerRecovery.shared.plantId
-                
-                // Nur fortsetzen, wenn die Pflanze auch noch existiert
-                if gardenStore.pflanzen.contains(where: { $0.id == recoveredPlantId }) {
-                    // Kurze Verzögerung, damit die UI bereit ist
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        showRecoveredTimer = true
+                if FocusTimerRecovery.shared.isGeneric {
+                    if let genericHabit = FocusTimerRecovery.shared.getGenericHabit() {
+                        self.recoveredGenericHabit = genericHabit
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            showRecoveredTimer = true
+                        }
+                    } else {
+                        FocusTimerRecovery.shared.clearState()
                     }
                 } else {
-                    FocusTimerRecovery.shared.clearState()
+                    recoveredPlantId = FocusTimerRecovery.shared.plantId
+                    
+                    // Nur fortsetzen, wenn die Pflanze auch noch existiert
+                    if gardenStore.pflanzen.contains(where: { $0.id == recoveredPlantId }) {
+                        // Kurze Verzögerung, damit die UI bereit ist
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            showRecoveredTimer = true
+                        }
+                    } else {
+                        FocusTimerRecovery.shared.clearState()
+                    }
                 }
             }
         }
         .fullScreenCover(isPresented: $showRecoveredTimer) {
-            if let plantId = recoveredPlantId, let pflanze = gardenStore.pflanzen.first(where: { $0.id == plantId }) {
+            if let generic = recoveredGenericHabit {
+                FocusSessionView(pflanze: generic)
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+                    .environmentObject(streakStore)
+            } else if let plantId = recoveredPlantId, let pflanze = gardenStore.pflanzen.first(where: { $0.id == plantId }) {
                 FocusSessionView(pflanze: pflanze)
                     .environmentObject(gardenStore)
                     .environmentObject(settings)

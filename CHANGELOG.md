@@ -1,3 +1,7 @@
+## [2026-07-24] - Zeit-Block Fixes
+- **App-Auswahl Filter**: Apps, die bereits in "Immer blockierte Apps" oder "Apps mit Zeitlimit" ausgewählt sind, werden nun automatisch aus der Auswahl für den Zeit-Block entfernt.
+- **Entsperren im Zeit-Block**: Der "Entsperren"-Button ist nun während eines aktiven Zeit-Blocks klickbar. Über den "Walk of Shame" kann der Text abgetippt werden, um den Zeit-Block vorzeitig zu beenden.
+
 # Changelog
 
 ## 2026-07-22 (Widget Localization Update)
@@ -180,3 +184,5 @@
 - Lokalisierung: Fehlende Strings (ca. 1%) wurden übersetzt, alle Projektsprachen sind nun zu 100% abgedeckt.
 - Lokalisierung: Ungenutzte Keys aus Localizable.xcstrings entfernt.
 - Lokalisierung: Xcode-Warnungen bezüglich Prozentzeichen (%%) durch Nutzung von typografischen Prozentzeichen (％) bzw. korrekten Platzhaltern (%@) behoben.
+- Aktualisierte Paywall-Texte mit klaren Benefits für Apple Health und Kalender-Sync inkl. Häkchen.
+- Alle empfohlenen Tools / Werbeanzeigen aus der App entfernt (PartnerAppBoost und HabitBoostCard gelöscht)

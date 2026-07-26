@@ -106,7 +106,7 @@ struct FocusSessionView: View {
                             remainingSeconds = selectedMinutes * 60
                             
                             let endTime = Date().addingTimeInterval(TimeInterval(remainingSeconds))
-                            FocusTimerRecovery.shared.saveState(endTime: endTime, totalSeconds: remainingSeconds, plantId: pflanze.id, goals: sessionGoals)
+                            FocusTimerRecovery.shared.saveState(endTime: endTime, totalSeconds: remainingSeconds, plantId: pflanze.id, goals: sessionGoals, genericHabit: pflanze.isGenericFocus ? pflanze : nil)
                             
                             state = .timer
                             isTimerRunning = true
@@ -140,11 +140,11 @@ struct FocusSessionView: View {
         .onChange(of: sessionGoals) { _, newGoals in
             if isTimerRunning && FocusTimerRecovery.shared.isActive {
                 let savedEndTime = Date(timeIntervalSince1970: FocusTimerRecovery.shared.endTime)
-                FocusTimerRecovery.shared.saveState(endTime: savedEndTime, totalSeconds: FocusTimerRecovery.shared.totalSeconds, plantId: pflanze.id, goals: newGoals)
+                FocusTimerRecovery.shared.saveState(endTime: savedEndTime, totalSeconds: FocusTimerRecovery.shared.totalSeconds, plantId: pflanze.id, goals: newGoals, genericHabit: pflanze.isGenericFocus ? pflanze : nil)
             }
         }
         .onAppear {
-            if FocusTimerRecovery.shared.isActive && FocusTimerRecovery.shared.plantId == pflanze.id {
+            if FocusTimerRecovery.shared.isActive && (FocusTimerRecovery.shared.plantId == pflanze.id || (FocusTimerRecovery.shared.isGeneric && pflanze.isGenericFocus)) {
                 let endTime = Date(timeIntervalSince1970: FocusTimerRecovery.shared.endTime)
                 let now = Date()
                 
@@ -357,85 +357,32 @@ struct FocusSessionView: View {
                 }
                         
                         ForEach($sessionGoals) { $goal in
-                            VStack(alignment: .leading, spacing: 8) {
-                                HStack {
-                                    Button {
-                                        withAnimation {
-                                            if goal.subtasks.isEmpty {
-                                                goal._isCompleted.toggle()
-                                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                            }
-                                        }
-                                    } label: {
-                                        Image(systemName: goal.isCompleted ? "checkmark.circle.fill" : "circle")
-                                            .font(.system(size: 24))
-                                            .foregroundStyle(goal.isCompleted ? Color.orangePrimary : Color.gray)
-                                    }
-                                    .disabled(!goal.subtasks.isEmpty)
-                                    .buttonStyle(.plain)
-                                    
-                                    Button {
-                                        withAnimation {
-                                            goal.cyclePriority()
-                                        }
-                                    } label: {
-                                        HStack(spacing: 4) {
-                                            Image(systemName: "exclamationmark.circle.fill")
-                                            Text(goal.priority.displayName)
-                                        }
-                                        .font(.system(size: 12, weight: .bold, design: .rounded))
-                                        .padding(.horizontal, 8)
-                                        .padding(.vertical, 4)
-                                        .foregroundStyle(goal.priority.color)
-                                        .background(goal.priority.color.opacity(0.15))
-                                        .cornerRadius(8)
-                                    }
-                                    .buttonStyle(.plain)
-                                    
-                                    Text(goal.text)
-                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                        .strikethrough(goal.isCompleted)
-                                        .foregroundStyle(goal.isCompleted ? .secondary : .primary)
-                                    Spacer()
-                                }
-                                
-                                if !goal.subtasks.isEmpty {
-                                    VStack(alignment: .leading, spacing: 8) {
-                                        ForEach($goal.subtasks) { $subtask in
-                                            Button {
-                                                withAnimation {
-                                                    subtask.isCompleted.toggle()
-                                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                                }
-                                            } label: {
-                                                HStack {
-                                                    Image(systemName: "arrow.turn.down.right")
-                                                        .foregroundStyle(.secondary)
-                                                    
-                                                    Image(systemName: subtask.isCompleted ? "checkmark.square.fill" : "square")
-                                                        .foregroundStyle(subtask.isCompleted ? Color.orangePrimary : Color.gray)
-                                                    
-                                                    Text(subtask.text)
-                                                        .font(.system(size: 14, weight: .medium, design: .rounded))
-                                                        .strikethrough(subtask.isCompleted)
-                                                        .foregroundStyle(subtask.isCompleted ? .secondary : .primary)
-                                                    Spacer()
-                                                }
-                                            }
-                                            .buttonStyle(.plain)
-                                        }
-                                    }
-                                    .padding(.leading, 32)
-                                }
+                            if !goal.isCompleted {
+                                FocusGoalRow(
+                                    goal: $goal,
+                                    draggedGoal: $draggedGoal,
+                                    sessionGoals: $sessionGoals,
+                                    onToggle: { sortSessionGoals() }
+                                )
                             }
-                            .padding()
-                            .background(.ultraThinMaterial)
-                            .cornerRadius(12)
-                            .onDrag {
-                                self.draggedGoal = goal
-                                return NSItemProvider(object: goal.id.uuidString as NSString)
+                        }
+                    }
+                    
+                    if !sessionGoals.filter({ $0.isCompleted }).isEmpty {
+                        Text(String(localized: "focus.session.completed_goals", defaultValue: "Erledigte Aufgaben"))
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                            .padding(.bottom, 4)
+                            .padding(.top, 12)
+                            
+                        ForEach($sessionGoals) { $goal in
+                            if goal.isCompleted {
+                                FocusGoalRow(
+                                    goal: $goal,
+                                    draggedGoal: $draggedGoal,
+                                    sessionGoals: $sessionGoals,
+                                    onToggle: { sortSessionGoals() }
+                                )
                             }
-                            .onDrop(of: [.text], delegate: GoalDropDelegate(item: goal, items: $sessionGoals, draggedItem: $draggedGoal))
                         }
                         
                         // Add new goal on the fly
@@ -746,13 +693,29 @@ struct FocusSessionView: View {
         }
     }
     
+    private func sortSessionGoals() {
+        withAnimation {
+            sessionGoals.sort {
+                if $0.isCompleted != $1.isCompleted {
+                    return !$0.isCompleted && $1.isCompleted
+                }
+                let pOrder: [GoalPriority: Int] = [.high: 3, .medium: 2, .low: 1]
+                return pOrder[$0.priority]! > pOrder[$1.priority]!
+            }
+        }
+    }
+    
     private func updateLiveActivity() {
         guard let activity = focusActivity else { return }
         
         let endTime = Date().addingTimeInterval(TimeInterval(remainingSeconds))
-        let goalTitle = sessionGoals.first(where: { $0.priority == .high })?.text ?? 
-                        sessionGoals.first?.text ?? 
-                        "Focus Session"
+        let openGoals = sessionGoals.filter { !$0.isCompleted }
+        let sortedOpenGoals = openGoals.sorted {
+            let pOrder: [GoalPriority: Int] = [.high: 3, .medium: 2, .low: 1]
+            return pOrder[$0.priority]! > pOrder[$1.priority]!
+        }
+        
+        let goalTitle = sortedOpenGoals.first?.text ?? "Focus Session"
                         
         let currentMusic = FocusAudioManager.shared.isPlaying ? FocusAudioManager.shared.currentSound.displayName : nil
         let tasks = sessionGoals.isEmpty ? nil : sessionGoals.map { $0.text }
@@ -770,5 +733,97 @@ struct FocusSessionView: View {
         Task {
             await activity.update(ActivityContent(state: state, staleDate: nil))
         }
+    }
+}
+
+struct FocusGoalRow: View {
+    @Binding var goal: FocusGoal
+    @Binding var draggedGoal: FocusGoal?
+    @Binding var sessionGoals: [FocusGoal]
+    var onToggle: () -> Void
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Button {
+                    withAnimation {
+                        if goal.subtasks.isEmpty {
+                            goal._isCompleted.toggle()
+                            onToggle()
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        }
+                    }
+                } label: {
+                    Image(systemName: goal.isCompleted ? "checkmark.circle.fill" : "circle")
+                        .font(.system(size: 24))
+                        .foregroundStyle(goal.isCompleted ? Color.orangePrimary : Color.gray)
+                }
+                .disabled(!goal.subtasks.isEmpty)
+                .buttonStyle(.plain)
+                
+                Button {
+                    withAnimation {
+                        goal.cyclePriority()
+                        onToggle()
+                    }
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "exclamationmark.circle.fill")
+                        Text(goal.priority.displayName)
+                    }
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .foregroundStyle(goal.priority.color)
+                    .background(goal.priority.color.opacity(0.15))
+                    .cornerRadius(8)
+                }
+                .buttonStyle(.plain)
+                
+                Text(goal.text)
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .strikethrough(goal.isCompleted)
+                    .foregroundStyle(goal.isCompleted ? .secondary : .primary)
+                Spacer()
+            }
+            
+            if !goal.subtasks.isEmpty {
+                VStack(alignment: .leading, spacing: 8) {
+                    ForEach($goal.subtasks) { $subtask in
+                        Button {
+                            withAnimation {
+                                subtask.isCompleted.toggle()
+                                onToggle()
+                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            }
+                        } label: {
+                            HStack {
+                                Image(systemName: "arrow.turn.down.right")
+                                    .foregroundStyle(.secondary)
+                                
+                                Image(systemName: subtask.isCompleted ? "checkmark.square.fill" : "square")
+                                    .foregroundStyle(subtask.isCompleted ? Color.orangePrimary : Color.gray)
+                                
+                                Text(subtask.text)
+                                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                                    .strikethrough(subtask.isCompleted)
+                                    .foregroundStyle(subtask.isCompleted ? .secondary : .primary)
+                                Spacer()
+                            }
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.leading, 32)
+            }
+        }
+        .padding()
+        .background(.ultraThinMaterial)
+        .cornerRadius(12)
+        .onDrag {
+            self.draggedGoal = goal
+            return NSItemProvider(object: goal.id.uuidString as NSString)
+        }
+        .onDrop(of: [.text], delegate: GoalDropDelegate(item: goal, items: $sessionGoals, draggedItem: $draggedGoal))
     }
 }
