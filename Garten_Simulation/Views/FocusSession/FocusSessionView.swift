@@ -355,71 +355,71 @@ struct FocusSessionView: View {
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .padding(.bottom, 4)
                 }
+                
+                ForEach($sessionGoals) { $goal in
+                    if !goal.isCompleted {
+                        FocusGoalRow(
+                            goal: $goal,
+                            draggedGoal: $draggedGoal,
+                            sessionGoals: $sessionGoals,
+                            onToggle: { sortSessionGoals() }
+                        )
+                    }
+                }
+                
+                if !sessionGoals.filter({ $0.isCompleted }).isEmpty {
+                    Text(String(localized: "focus.session.completed_goals", defaultValue: "Erledigte Aufgaben"))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .padding(.bottom, 4)
+                        .padding(.top, 12)
                         
-                        ForEach($sessionGoals) { $goal in
-                            if !goal.isCompleted {
-                                FocusGoalRow(
-                                    goal: $goal,
-                                    draggedGoal: $draggedGoal,
-                                    sessionGoals: $sessionGoals,
-                                    onToggle: { sortSessionGoals() }
-                                )
-                            }
+                    ForEach($sessionGoals) { $goal in
+                        if goal.isCompleted {
+                            FocusGoalRow(
+                                goal: $goal,
+                                draggedGoal: $draggedGoal,
+                                sessionGoals: $sessionGoals,
+                                onToggle: { sortSessionGoals() }
+                            )
                         }
                     }
+                }
+                
+                // Add new goal on the fly
+                HStack {
+                    TextField(String(localized: "focus.session.goal.add", defaultValue: "Ziel hinzufügen..."), text: $newGoalText)
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .submitLabel(.done)
+                        .onSubmit {
+                            if !newGoalText.trimmingCharacters(in: .whitespaces).isEmpty {
+                                withAnimation {
+                                    sessionGoals.append(FocusGoal(text: newGoalText.trimmingCharacters(in: .whitespaces)))
+                                    newGoalText = ""
+                                }
+                            }
+                        }
                     
-                    if !sessionGoals.filter({ $0.isCompleted }).isEmpty {
-                        Text(String(localized: "focus.session.completed_goals", defaultValue: "Erledigte Aufgaben"))
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
-                            .padding(.bottom, 4)
-                            .padding(.top, 12)
-                            
-                        ForEach($sessionGoals) { $goal in
-                            if goal.isCompleted {
-                                FocusGoalRow(
-                                    goal: $goal,
-                                    draggedGoal: $draggedGoal,
-                                    sessionGoals: $sessionGoals,
-                                    onToggle: { sortSessionGoals() }
-                                )
+                    Button {
+                        if !newGoalText.trimmingCharacters(in: .whitespaces).isEmpty {
+                            withAnimation {
+                                sessionGoals.append(FocusGoal(text: newGoalText.trimmingCharacters(in: .whitespaces)))
+                                newGoalText = ""
                             }
                         }
-                        
-                        // Add new goal on the fly
-                        HStack {
-                            TextField(String(localized: "focus.session.goal.add", defaultValue: "Ziel hinzufügen..."), text: $newGoalText)
-                                .font(.system(size: 16, weight: .medium, design: .rounded))
-                                .submitLabel(.done)
-                                .onSubmit {
-                                    if !newGoalText.trimmingCharacters(in: .whitespaces).isEmpty {
-                                        withAnimation {
-                                            sessionGoals.append(FocusGoal(text: newGoalText.trimmingCharacters(in: .whitespaces)))
-                                            newGoalText = ""
-                                        }
-                                    }
-                                }
-                            
-                            Button {
-                                if !newGoalText.trimmingCharacters(in: .whitespaces).isEmpty {
-                                    withAnimation {
-                                        sessionGoals.append(FocusGoal(text: newGoalText.trimmingCharacters(in: .whitespaces)))
-                                        newGoalText = ""
-                                    }
-                                }
-                            } label: {
-                                Image(systemName: "plus.circle.fill")
-                                    .font(.system(size: 24))
-                                    .foregroundStyle(newGoalText.isEmpty ? Color.gray : Color.goldPrimary)
-                            }
-                            .disabled(newGoalText.isEmpty)
-                        }
-                        .padding()
-                        .background(.ultraThinMaterial)
-                        .cornerRadius(12)
-                        .padding(.top, 4)
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.system(size: 24))
+                            .foregroundStyle(newGoalText.isEmpty ? Color.gray : Color.goldPrimary)
                     }
-                .padding(.horizontal, 32)
-                .padding(.top, 20)
+                    .disabled(newGoalText.isEmpty)
+                }
+                .padding()
+                .background(.ultraThinMaterial)
+                .cornerRadius(12)
+                .padding(.top, 4)
+            }
+            .padding(.horizontal, 32)
+            .padding(.top, 20)
             
             Spacer()
             
