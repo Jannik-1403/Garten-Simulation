@@ -1138,6 +1138,7 @@
       }
     },
     "%lld Min": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -84360,79 +84361,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "Diariamente"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "Quotidiennement"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "रोजाना"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "Giornalmente"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "毎日"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "매일"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "Dagelijks"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "Codziennie"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "Diariamente"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "Ежедневно"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "Günlük"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "每天"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily"
+            "value": "每天"
           }
         }
       }
@@ -84454,79 +84455,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "Mensualmente"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "Mensuellement"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "मासिक"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "Mensilmente"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "毎月"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "매월"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "Maandelijks"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "Co miesiąc"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "Mensalmente"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "Ежемесячно"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "Aylık"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "每月"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Monthly"
+            "value": "每月"
           }
         }
       }
@@ -84548,79 +84549,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "Nunca"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "Jamais"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "कभी नहीं"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "Mai"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "なし"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "안 함"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "Nooit"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "Nigdy"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "Nunca"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "Никогда"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "Asla"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "从不"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Never"
+            "value": "從不"
           }
         }
       }
@@ -84630,7 +84631,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beim Speichern"
+            "value": "Bei jeder Speicherung"
           }
         },
         "en": {
@@ -84642,79 +84643,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "Al guardar"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "À chaque sauvegarde"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "सहेजने पर"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "Al salvataggio"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "保存時"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "저장할 때"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "Bij opslaan"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "Przy zapisie"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "Ao guardar"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "При сохранении"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "Kaydederken"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "保存时"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "On Save"
+            "value": "儲存時"
           }
         }
       }
@@ -84736,79 +84737,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "Semanalmente"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "Hebdomadairement"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "साप्ताहिक"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "Settimanalmente"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "毎週"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "매주"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "Wekelijks"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "Co tydzień"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "Semanalmente"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "Еженедельно"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "Haftalık"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "每周"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly"
+            "value": "每週"
           }
         }
       }
@@ -378703,6 +378704,101 @@
         }
       }
     },
+    "weekly_report.card.focus_time.value": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minuten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutes"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld मिनट"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minuti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 분"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minuten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minut"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Минут"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Dakika"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分钟"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分鐘"
+          }
+        }
+      }
+    },
     "weekly_report.card.habits": {
       "extractionState": "manual",
       "localizations": {
@@ -378984,6 +379080,101 @@
           "stringUnit": {
             "state": "translated",
             "value": "獲得 XP"
+          }
+        }
+      }
+    },
+    "weekly_report.chart.focus_time.value": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minuten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutes"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld मिनट"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minuti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 분"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minuten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minut"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Минут"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Dakika"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分钟"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分鐘"
           }
         }
       }
@@ -389075,196 +389266,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "例行時間：%@"
-          }
-        }
-      }
-    },
-    "weekly_report.card.focus_time.value": {
-      "extractionState": "manual",
-      "localizations": {
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minutos"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minuten"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld 分钟"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld 분"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld 分"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Dakika"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minutos"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minutes"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minutes"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Минут"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minut"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minuti"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld मिनट"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minuten"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld 分鐘"
-          }
-        }
-      }
-    },
-    "weekly_report.chart.focus_time.value": {
-      "extractionState": "manual",
-      "localizations": {
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minutos"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minuten"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld 分钟"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld 분"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld 分"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Dakika"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minutos"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minutes"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minutes"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Минут"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minut"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minuti"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld मिनट"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld Minuten"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld 分鐘"
           }
         }
       }
