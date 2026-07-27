@@ -194,3 +194,6 @@
 
 ## 2026-07-27
 - Fix: Compilerfehler in `FocusSessionView` behoben (Falsch gesetzte Klammern und `.padding`-Modifier).
+
+## 2026-07-27
+- Fix: Hardcodierte Texte bei Backup, Export (Dateinamen) und in der Wochenbericht-Statistik ("0 Minuten", "Tipp") durch lokalisierte Strings ersetzt und in alle 15 Sprachen übersetzt.
