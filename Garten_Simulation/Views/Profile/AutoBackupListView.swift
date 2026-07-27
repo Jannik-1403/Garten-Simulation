@@ -21,7 +21,7 @@ struct AutoBackupListView: View {
                 
                 // MARK: Backups Liste
                 if backups.isEmpty {
-                    Text(String(localized: "backup.auto.no_backups", defaultValue: "Keine automatischen Backups gefunden.", locale: Locale(identifier: settingsStore.appLanguage)))
+                    Text(String(localized: "backup.auto.no_backups", defaultValue: "Keine automatischen Backups gefunden."))
                         .foregroundStyle(.secondary)
                         .padding(.top, 40)
                 } else {
@@ -29,7 +29,6 @@ struct AutoBackupListView: View {
                         ForEach(backups, id: \.self) { url in
                             BackupRowView(
                                 url: url,
-                                localeIdentifier: settingsStore.appLanguage,
                                 selectedBackup: $selectedBackup,
                                 showImportConfirm: $showImportConfirm,
                                 onDelete: { deleteBackup(url: url) }
@@ -41,12 +40,12 @@ struct AutoBackupListView: View {
             .padding()
         }
         .background(Color(.systemGroupedBackground).ignoresSafeArea())
-        .navigationTitle(String(localized: "backup.auto.view_backups", defaultValue: "Auto-Backups", locale: Locale(identifier: settingsStore.appLanguage)))
+        .navigationTitle(String(localized: "backup.auto.view_backups", defaultValue: "Auto-Backups"))
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Picker(String(localized: "backup.auto.picker.title", defaultValue: "Intervall auswählen", locale: Locale(identifier: settingsStore.appLanguage)), selection: $settingsStore.autoBackupInterval) {
+                Picker(String(localized: "backup.auto.picker.title", defaultValue: "Intervall auswählen"), selection: $settingsStore.autoBackupInterval) {
                     ForEach(AutoBackupInterval.allCases, id: \.self) { interval in
-                        Text(interval.localizedName(for: settingsStore.appLanguage)).tag(interval)
+                        Text(interval.localizedName).tag(interval)
                     }
                 }
                 .pickerStyle(.menu)
@@ -55,17 +54,17 @@ struct AutoBackupListView: View {
         .onAppear {
             loadBackups()
         }
-        .alert(String(localized: "backup_import_bestaetigung_titel", defaultValue: "Backup wiederherstellen?", locale: Locale(identifier: settingsStore.appLanguage)), isPresented: $showImportConfirm) {
-            Button(String(localized: "backup_import_bestaetigung_ja", defaultValue: "Wiederherstellen", locale: Locale(identifier: settingsStore.appLanguage)), role: .destructive) {
+        .alert(String(localized: "backup_import_bestaetigung_titel", defaultValue: "Backup wiederherstellen?"), isPresented: $showImportConfirm) {
+            Button(String(localized: "backup_import_bestaetigung_ja", defaultValue: "Wiederherstellen"), role: .destructive) {
                 if let url = selectedBackup {
                     performImport(url)
                 }
             }
-            Button(String(localized: "button.cancel", defaultValue: "Abbrechen", locale: Locale(identifier: settingsStore.appLanguage)), role: .cancel) {
+            Button(String(localized: "button.cancel", defaultValue: "Abbrechen"), role: .cancel) {
                 selectedBackup = nil
             }
         } message: {
-            Text(String(localized: "backup_import_bestaetigung_text", defaultValue: "Dein aktueller Fortschritt wird komplett überschrieben.", locale: Locale(identifier: settingsStore.appLanguage)))
+            Text(String(localized: "backup_import_bestaetigung_text", defaultValue: "Dein aktueller Fortschritt wird komplett überschrieben."))
         }
         .overlay {
             if isLoading {
@@ -130,7 +129,6 @@ struct AutoBackupListView: View {
 
 struct BackupRowView: View {
     let url: URL
-    let localeIdentifier: String
     @Binding var selectedBackup: URL?
     @Binding var showImportConfirm: Bool
     var onDelete: () -> Void
@@ -142,11 +140,11 @@ struct BackupRowView: View {
         }) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(String(localized: "backup.auto.name_prefix", defaultValue: "Backup", locale: Locale(identifier: localeIdentifier)))
+                    Text(String(localized: "backup.auto.name_prefix", defaultValue: "Backup"))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
                     if let date = try? url.resourceValues(forKeys: [.creationDateKey]).creationDate {
-                        Text(date.formatted(Date.FormatStyle(date: .abbreviated, time: .shortened, locale: Locale(identifier: localeIdentifier))))
+                        Text(date.formatted(Date.FormatStyle(date: .abbreviated, time: .shortened, locale: Locale(identifier: Bundle.main.preferredLocalizations.first ?? "en"))))
                             .font(.caption)
                             .foregroundStyle(.white.opacity(0.8))
                     }
@@ -170,7 +168,7 @@ struct BackupRowView: View {
             Button(role: .destructive) {
                 onDelete()
             } label: {
-                Label(String(localized: "common.delete", defaultValue: "Löschen", locale: Locale(identifier: localeIdentifier)), systemImage: "trash")
+                Label(String(localized: "common.delete", defaultValue: "Löschen"), systemImage: "trash")
             }
         }
     }
