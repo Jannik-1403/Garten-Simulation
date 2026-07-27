@@ -97436,31 +97436,31 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "m"
+            "value": "Min"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "m"
+            "value": "Min"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "m"
+            "value": "Min"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Min."
+            "value": "मिनट"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "m"
+            "value": "Min"
           }
         },
         "ja": {
@@ -97478,31 +97478,31 @@
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "min"
+            "value": "Min"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "min"
+            "value": "Min"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "m"
+            "value": "Min"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Min."
+            "value": "Мин."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "dk"
+            "value": "Dk"
           }
         },
         "zh-Hans": {
@@ -172782,7 +172782,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zugriff auf alle wissenschaftlich fundierten Sounds."
+            "value": "Zugang zu allen wissenschaftlich belegten Sounds."
           }
         },
         "en": {
@@ -172794,79 +172794,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "Acceso a todos los sonidos respaldados científicamente."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "Accès à tous les sons scientifiquement prouvés."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "वैज्ञानिक रूप से समर्थित सभी ध्वनियों तक पहुँच।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "Accesso a tutti i suoni scientificamente provati."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "科学的に裏付けられたすべてのサウンドにアクセス。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "과학적으로 뒷받침되는 모든 사운드에 액세스할 수 있습니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "Toegang tot alle wetenschappelijk onderbouwde geluiden."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "Dostęp do wszystkich dźwięków potwierdzonych naukowo."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "Acesso a todos os sons cientificamente comprovados."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "Доступ ко всем научно обоснованным звукам."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "Bilimsel olarak desteklenen tüm seslere erişim."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "访问所有科学支持的白噪音。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Access to all scientifically backed sounds."
+            "value": "訪問所有科學支持的白噪音。"
           }
         }
       }
@@ -172889,79 +172889,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "Lleva tu cerebro al estado de flujo más rápido."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "Amenez votre cerveau dans l'état de flux plus rapidement."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "अपने दिमाग को तेज़ी से फ्लो स्टेट में लाएं।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "Porta il tuo cervello nello stato di flusso più velocemente."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "脳をより早くフロー状態にします。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "뇌를 더 빨리 몰입 상태로 만드세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "Breng je hersenen sneller in de flow-staat."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "Szybciej wprowadź swój mózg w stan flow."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "Leve o seu cérebro ao estado de fluxo mais rapidamente."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "Быстрее введите свой мозг в состояние потока."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "Beyninizi daha hızlı akış durumuna getirin."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "让您的大脑更快进入心流状态。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Get your brain into the flow state faster."
+            "value": "讓您的大腦更快進入心流狀態。"
           }
         }
       }
@@ -172984,79 +172984,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "Bloquea eficazmente el ruido de fondo que distrae."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "Bloquez efficacement les bruits de fond distrayants."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "विचलित करने वाले पृष्ठभूमि शोर को प्रभावी ढंग से रोकें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "Blocca efficacemente il rumore di fondo che distrae."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "気を散らす背景ノイズを効果的に遮断します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "주의를 산만하게 하는 배경 소음을 효과적으로 차단합니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "Blokkeer storende achtergrondgeluiden effectief."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "Skutecznie zablokuj rozpraszający hałas w tle."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "Bloqueie eficazmente o ruído de fundo distrativo."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "Эффективно блокируйте отвлекающий фоновый шум."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "Dikkat dağıtıcı arka plan gürültüsünü etkili bir şekilde engelleyin."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "有效屏蔽分散注意力的背景噪音。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Effectively block out distracting background noise."
+            "value": "有效屏蔽分散注意力的背景噪音。"
           }
         }
       }
@@ -174219,79 +174219,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "Desbloquea decoraciones raras mucho más rápido."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "Débloquez des décorations rares beaucoup plus rapidement."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "दुर्लभ सजावट को बहुत तेज़ी से अनलॉक करें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "Sblocca decorazioni rare molto più velocemente."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "レアな装飾をはるかに早くロック解除します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "희귀한 장식을 훨씬 더 빨리 잠금 해제하세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "Ontgrendel zeldzame decoraties veel sneller."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "Odblokuj rzadkie dekoracje znacznie szybciej."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "Desbloqueie decorações raras muito mais rápido."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "Разблокируйте редкие украшения гораздо быстрее."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "Nadir dekorasyonların kilidini çok daha hızlı açın."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "更快地解锁稀有装饰。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Unlock rare decorations much faster."
+            "value": "更快地解鎖稀有裝飾。"
           }
         }
       }
@@ -174314,79 +174314,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "Beneficios de Jardinero Pro"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "Avantages Jardinier Pro"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "प्रो माली के लाभ"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "Vantaggi del Giardiniere Pro"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "プロガーデナーの特典"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "프로 정원사 혜택"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "Voordelen voor Pro Tuinier"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "Korzyści dla Pro Ogrodnika"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "Benefícios do Jardineiro Pro"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "Преимущества Pro-садовода"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "Pro Bahçıvan Avantajları"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "专业园丁福利"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pro Gardener Benefits"
+            "value": "專業園丁福利"
           }
         }
       }
@@ -174587,7 +174587,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erkenne, an welchen Tagen du am produktivsten bist."
+            "value": "Entdecke, an welchen Tagen du am produktivsten bist."
           }
         },
         "en": {
@@ -174599,79 +174599,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "Descubre en qué días eres más productivo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "Découvrez quels jours vous êtes le plus productif."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "खोजें कि आप किन दिनों में सबसे अधिक उत्पादक हैं।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "Scopri in quali giorni sei più produttivo."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "最も生産的な曜日を発見しましょう。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "가장 생산적인 요일을 알아보세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "Ontdek op welke dagen je het meest productief bent."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "Odkryj, w które dni jesteś najbardziej produktywny."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "Descubra em quais dias você é mais produtivo."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "Узнайте, в какие дни вы наиболее продуктивны."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "Hangi günlerde en verimli olduğunuzu keşfedin."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "发现您最高效的日子。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Discover which days you are most productive."
+            "value": "發現您最高效的日子。"
           }
         }
       }
@@ -174694,79 +174694,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "Sigue tu progreso con gráficos interactivos."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "Suivez vos progrès avec des graphiques interactifs."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "इंटरैक्टिव ग्राफ़ के साथ अपनी प्रगति को ट्रैक करें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "Tieni traccia dei tuoi progressi con grafici interattivi."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "インタラクティブなグラフで進捗を追跡します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "대화형 그래프로 진행 상황을 추적하세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "Houd je voortgang bij met interactieve grafieken."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "Śledź swoje postępy za pomocą interaktywnych wykresów."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "Acompanhe seu progresso com gráficos interativos."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "Отслеживайте свой прогресс с помощью интерактивных графиков."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "İnteraktif grafiklerle ilerlemenizi takip edin."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "通过交互式图表跟踪您的进度。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Track your progress with interactive graphs."
+            "value": "透過互動式圖表追蹤您的進度。"
           }
         }
       }
@@ -174777,7 +174777,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimiere deine Arbeitsweise anhand deiner Daten."
+            "value": "Optimiere deinen Workflow basierend auf deinen Daten."
           }
         },
         "en": {
@@ -174789,79 +174789,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "Optimiza tu flujo de trabajo en base a tus datos."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "Optimisez votre flux de travail en fonction de vos données."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "अपने डेटा के आधार पर अपने कार्यप्रवाह को अनुकूलित करें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "Ottimizza il tuo flusso di lavoro in base ai tuoi dati."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "データに基づいてワークフローを最適化します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "데이터를 기반으로 워크플로우를 최적화하세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "Optimaliseer je workflow op basis van je gegevens."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "Zoptymalizuj swój przepływ pracy w oparciu o swoje dane."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "Otimize seu fluxo de trabalho com base em seus dados."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "Оптимизируйте рабочий процесс на основе своих данных."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "İş akışınızı verilerinize göre optimize edin."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "根据数据优化您的工作流程。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Optimize your workflow based on your data."
+            "value": "根據數據優化您的工作流程。"
           }
         }
       }
@@ -296852,7 +296852,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Diese Apps und Webseiten sind immer blockiert und können nur durch den Notfall-Unlock entsperrt werden."
+            "value": "Diese Apps und Websites sind immer blockiert und können nur über die Notfall-Entsperrung geöffnet werden."
           }
         },
         "en": {
@@ -296864,79 +296864,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "Estas aplicaciones y sitios web siempre están bloqueados y solo se pueden desbloquear mediante el Desbloqueo de emergencia."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "Ces applications et sites web sont toujours bloqués et ne peuvent être débloqués que via le Déblocage d'urgence."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "ये ऐप और वेबसाइट हमेशा ब्लॉक रहते हैं और केवल आपातकालीन अनलॉक के माध्यम से अनलॉक किए जा सकते हैं।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "Queste app e siti web sono sempre bloccati e possono essere sbloccati solo tramite Sblocco di emergenza."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "これらのアプリとウェブサイトは常にブロックされており、緊急ロック解除からのみ解除できます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "이러한 앱과 웹사이트는 항상 차단되며 긴급 잠금 해제를 통해서만 잠금을 해제할 수 있습니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "Deze apps en websites zijn altijd geblokkeerd en kunnen alleen worden ontgrendeld via Noodontgrendeling."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "Te aplikacje i strony internetowe są zawsze zablokowane i można je odblokować tylko przez Odblokowanie awaryjne."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "Esses aplicativos e sites estão sempre bloqueados e só podem ser desbloqueados através do Desbloqueio de Emergência."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "Эти приложения и веб-сайты всегда заблокированы и могут быть разблокированы только с помощью экстренной разблокировки."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "Bu uygulamalar ve web siteleri her zaman engellenir ve yalnızca Acil Kilit Açma ile açılabilir."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "这些应用和网站始终被阻止，只能通过紧急解锁来解锁。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "These apps and websites are always blocked and can only be unlocked via Emergency Unlock."
+            "value": "這些應用和網站在始終被阻止，只能透過緊急解鎖來解鎖。"
           }
         }
       }
@@ -297053,79 +297053,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "Siempre bloqueado"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "Toujours bloqué"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "हमेशा ब्लॉक"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "Sempre bloccato"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "常にブロック"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "항상 차단됨"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "Altijd geblokkeerd"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "Zawsze zablokowane"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "Sempre bloqueado"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "Всегда заблокировано"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "Her zaman engellenmiş"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "始终阻止"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always Blocked"
+            "value": "始終阻止"
           }
         }
       }
@@ -315961,85 +315961,85 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "You didn't use any focus sessions this week. Build fixed focus times into your everyday life. Reserve 25 minutes every day at the same time (e.g., right after breakfast) to develop a routine."
+            "value": "You haven't used any focus sessions this week. Build fixed focus times into your daily life. Reserve 25 minutes at the same time every day (e.g. right after breakfast) to develop a routine."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "No has utilizado ninguna sesión de concentración esta semana. Integra tiempos fijos de concentración en tu rutina. Reserva 25 minutos a la misma hora todos los días (p.ej. justo después del desayuno) para desarrollar una rutina."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "Vous n'avez utilisé aucune session de concentration cette semaine. Intégrez des temps de concentration fixes dans votre vie quotidienne. Réservez 25 minutes à la même heure chaque jour (ex. juste après le petit-déjeuner) pour créer une routine."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "आपने इस सप्ताह किसी भी फ़ोकस सत्र का उपयोग नहीं किया है। अपने दैनिक जीवन में निश्चित फ़ोकस समय बनाएँ। एक दिनचर्या विकसित करने के लिए हर दिन एक ही समय पर (उदा. नाश्ते के ठीक बाद) 25 मिनट आरक्षित करें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "Non hai utilizzato alcuna sessione di focus questa settimana. Inserisci momenti di focus fissi nella tua giornata. Riserva 25 minuti alla stessa ora ogni giorno (es. subito dopo colazione) per sviluppare una routine."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "今週はフォーカスセッションを使用していません。日常生活に固定のフォーカス時間を組み込みましょう。ルーティンを作るために、毎日同じ時間（例：朝食直後）に25分間確保してください。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "이번 주에 포커스 세션을 사용하지 않았습니다. 일상생활에 고정된 집중 시간을 만드세요. 루틴을 개발하기 위해 매일 같은 시간(예: 아침 식사 직후)에 25분을 예약하세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "Je hebt deze week geen focussessies gebruikt. Bouw vaste focustijden in je dagelijks leven in. Reserveer elke dag 25 minuten op hetzelfde tijdstip (bijv. direct na het ontbijt) om een routine te ontwikkelen."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "W tym tygodniu nie korzystałeś z żadnych sesji skupienia. Wbuduj stałe czasy skupienia w swoje codzienne życie. Zarezerwuj 25 minut o tej samej porze każdego dnia (np. tuż po śniadaniu), aby wypracować rutynę."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "Você não usou nenhuma sessão de foco esta semana. Integre tempos de foco fixos na sua vida diária. Reserve 25 minutos no mesmo horário todos os dias (ex. logo após o café da manhã) para desenvolver uma rotina."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "На этой неделе вы не использовали ни одного сеанса фокуса. Внедрите фиксированное время для фокуса в свою повседневную жизнь. Резервируйте 25 минут в одно и то же время каждый день (например, сразу после завтрака), чтобы выработать рутину."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "Bu hafta hiç odaklanma oturumu kullanmadınız. Günlük hayatınıza sabit odaklanma süreleri ekleyin. Bir rutin oluşturmak için her gün aynı saatte (örneğin kahvaltıdan hemen sonra) 25 dakika ayırın."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "本周您还没有使用过专注周期。将固定的专注时间融入您的日常生活中。每天在同一时间（例如早餐后）预留25分钟来养成习惯。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche keine Fokus-Sessions genutzt. Baue feste Fokus-Zeiten in deinen Alltag ein. Reserviere dir jeden Tag zur selben Uhrzeit (z.B. direkt nach dem Frühstück) 25 Minuten, um eine Routine zu entwickeln."
+            "value": "本周您還沒有使用過專注週期。將固定的專注時間融入您的日常生活中。每天在同一時間（例如早餐後）預留25分鐘來養成習慣。"
           }
         }
       }
@@ -387085,61 +387085,61 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "IN TOTAL"
+            "value": "TOTAL"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "EN TOTAL"
+            "value": "TOTAL"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "EN TOUT"
+            "value": "TOTAL"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कुल मिलाकर"
+            "value": "कुल"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "IN TOTALE"
+            "value": "TOTALE"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "合計で"
+            "value": "合計"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "합계"
+            "value": "총합"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "IN TOTAAL"
+            "value": "TOTAAL"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "W SUMIE"
+            "value": "RAZEM"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "NO TOTAL"
+            "value": "TOTAL"
           }
         },
         "ru": {
@@ -387151,7 +387151,7 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "TOPLAMDA"
+            "value": "TOPLAM"
           }
         },
         "zh-Hans": {
@@ -387370,85 +387370,85 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%dtimes"
+            "value": "%d times"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%dveces"
+            "value": "%d veces"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%dfois"
+            "value": "%d fois"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "%dख़राब"
+            "value": "%d बार"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%dvolte"
+            "value": "%d volte"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d回"
+            "value": "%d 回"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d회"
+            "value": "%d 번"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d-tijden"
+            "value": "%d keer"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%drazy"
+            "value": "%d razy"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "%dmal"
+            "value": "%d vezes"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%dплохой"
+            "value": "%d раз(а)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%dkez"
+            "value": "%d kez"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d坏"
+            "value": "%d 次"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%d壞"
+            "value": "%d 次"
           }
         }
       }
@@ -388893,55 +388893,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Offene Aufgaben"
+            "value": "Offene Ziele"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open Tasks"
+            "value": "Open Goals"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tareas Abiertas"
+            "value": "Objetivos Abiertos"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tâches Ouvertes"
+            "value": "Objectifs Ouverts"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Attività Aperte"
+            "value": "Obiettivi Aperti"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "未完了のタスク"
+            "value": "オープンな目標"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "열린 작업"
+            "value": "열린 목표"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "未完成任务"
+            "value": "待完成目标"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "未完成任務"
+            "value": "待完成目標"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivos Abertos"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Doelen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açık Hedefler"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открытые цели"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwarte cele"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "खुले लक्ष्य"
           }
         }
       }
@@ -388952,55 +388988,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erledigte Aufgaben"
+            "value": "Abgeschlossene Ziele"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Completed Tasks"
+            "value": "Completed Goals"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tareas Completadas"
+            "value": "Objetivos Completados"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tâches Terminées"
+            "value": "Objectifs Atteints"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Attività Completate"
+            "value": "Obiettivi Completati"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "完了したタスク"
+            "value": "達成した目標"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "완료된 작업"
+            "value": "완료된 목표"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "已完成任务"
+            "value": "已完成目标"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "已完成任務"
+            "value": "已完成目標"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivos Concluídos"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voltooide Doelen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamamlanan Hedefler"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завершенные цели"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukończone cele"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पूरे किए गए लक्ष्य"
           }
         }
       }
