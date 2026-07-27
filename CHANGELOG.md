@@ -191,3 +191,6 @@
 
 ## 2026-07-27
 - Fehlende Übersetzungen (Chinesisch und 15 weitere Sprachen) für Paywall, Widgets und ScreenTime in den String Catalog hinzugefügt, sodass 100% Übersetzungsabdeckung erreicht wurde.
+
+## 2026-07-27
+- Fix: Compilerfehler in `FocusSessionView` behoben (Falsch gesetzte Klammern und `.padding`-Modifier).
