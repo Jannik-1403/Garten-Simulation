@@ -197,3 +197,7 @@
 
 ## 2026-07-27
 - Fix: Hardcodierte Texte bei Backup, Export (Dateinamen) und in der Wochenbericht-Statistik ("0 Minuten", "Tipp") durch lokalisierte Strings ersetzt und in alle 15 Sprachen übersetzt.
+
+## 2026-07-27
+- Fix: Automatische Backup-Uhrzeiten und -Datum (z.B. Juli 26, 9:05 Uhr) formatieren sich nun dynamisch in der vom Nutzer ausgewählten App-Sprache.
+- Fix: Backup-Intervalle (Nie, Monatlich, Wöchentlich, Täglich) im Menü und Picker wurden für alle 16 Sprachen übersetzt und in die Oberfläche eingebunden.
