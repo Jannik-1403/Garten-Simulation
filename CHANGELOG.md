@@ -186,3 +186,8 @@
 - Lokalisierung: Xcode-Warnungen bezüglich Prozentzeichen (%%) durch Nutzung von typografischen Prozentzeichen (％) bzw. korrekten Platzhaltern (%@) behoben.
 - Aktualisierte Paywall-Texte mit klaren Benefits für Apple Health und Kalender-Sync inkl. Häkchen.
 - Alle empfohlenen Tools / Werbeanzeigen aus der App entfernt (PartnerAppBoost und HabitBoostCard gelöscht)
+
+- Fixed custom focus timer recovery and Live Activity logic. Tasks are now grouped into open and completed sections.
+
+## 2026-07-27
+- Fehlende Übersetzungen (Chinesisch und 15 weitere Sprachen) für Paywall, Widgets und ScreenTime in den String Catalog hinzugefügt, sodass 100% Übersetzungsabdeckung erreicht wurde.
