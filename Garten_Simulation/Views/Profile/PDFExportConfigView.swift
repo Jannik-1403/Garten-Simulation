@@ -64,7 +64,7 @@ struct PDFExportConfigView: View {
                     groesse: 56,
                     isRectangular: true,
                     aktion: {
-                        let fileNameToUse = pdfFileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "Garten_Bericht" : pdfFileName
+                        let fileNameToUse = pdfFileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? String(localized: "export.pdf.default_filename", defaultValue: "Garten_Bericht") : pdfFileName
                         let pdfUrl = PDFExportManager.shared.generatePDF(
                             fileName: fileNameToUse,
                             gardenStore: gardenStore,
@@ -130,7 +130,7 @@ struct PDFExportConfigView: View {
     }
     
     private func generateAndShare() {
-        let fileNameToUse = pdfFileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "Garten_Bericht" : pdfFileName
+        let fileNameToUse = pdfFileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? String(localized: "export.pdf.default_filename", defaultValue: "Garten_Bericht") : pdfFileName
         if let url = PDFExportManager.shared.generatePDF(
             fileName: fileNameToUse,
             gardenStore: gardenStore,

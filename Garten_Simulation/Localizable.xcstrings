@@ -1,6 +1,8 @@
 {
   "sourceLanguage": "de",
   "strings": {
+    "": {},
+    " ": {},
     "-": {
       "localizations": {
         "de": {
@@ -82832,79 +82834,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Guarda tu progreso como archivo .gartensave. Puedes importarlo en otros dispositivos."
+            "value": "Guarda tu progreso como archivo .gartensave."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sauvegarde ta progression dans un fichier .gartensave. Tu peux l'importer sur d'autres appareils."
+            "value": "Enregistrez sous forme de fichier .gartensave."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अपनी प्रगति को .gartensave फ़ाइल के रूप में सहेजें। आप उन्हें अन्य डिवाइस पर आयात कर सकते हैं."
+            "value": "अपनी प्रगति को .gartensave के रूप में सहेजें。"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save your progress as a .gartensave file. You can import it on other devices."
+            "value": "Salva i progressi come file .gartensave."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "進行状況を .gartensave ファイルとして保存します。他のデバイスにインポートできます。"
+            "value": "進捗を .gartensave として保存します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "진행 상황을 .gartensave 파일로 저장하세요. 다른 장치로 가져올 수 있습니다."
+            "value": "진행 상황을 .gartensave로 저장하세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sla uw voortgang op als een .gartensave-bestand. U kunt het op andere apparaten importeren."
+            "value": "Sla voortgang op als .gartensave bestand."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zapisz swoje postępy jako plik .gartensave. Możesz zaimportować go na inne urządzenia."
+            "value": "Zapisz jako plik .gartensave."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Salva o teu progresso como ficheiro .gartensave. Podes importá-lo noutros dispositivos."
+            "value": "Guarde o progresso como ficheiro .gartensave."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сохрани свой прогресс в файл .gartensave. Ты можешь импортировать его на других устройствах."
+            "value": "Сохраните прогресс как .gartensave."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "İlerlemenizi .gartensave dosyası olarak kaydedin. Diğer cihazlara aktarabilirsiniz."
+            "value": "İlerlemeni .gartensave olarak kaydet."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "将你的进度保存为 .gartensave 文件。你可以在其他设备上导入它们。"
+            "value": "将进度保存为 .gartensave 备份文件，以便在其他设备上导入。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "將您的進度儲存為 .gartensave 檔案。您可以將它們匯入到其他裝置。"
+            "value": "將進度儲存為 .gartensave 備份檔案，以便在其他裝置上匯入。"
           }
         }
       }
@@ -82940,25 +82942,25 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "निर्यात"
+            "value": "निर्यात करें"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Export"
+            "value": "Esporta"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "輸出"
+            "value": "エクスポート"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "내보내다"
+            "value": "내보내기"
           }
         },
         "nl": {
@@ -82970,7 +82972,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eksport"
+            "value": "Eksportuj"
           }
         },
         "pt": {
@@ -82982,25 +82984,25 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Экспортировать"
+            "value": "Экспорт"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "İhracat"
+            "value": "Dışa Aktar"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "导出"
+            "value": "导出备份"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "出口"
+            "value": "匯出備份"
           }
         }
       }
@@ -83708,25 +83710,25 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आयात"
+            "value": "आयात करें"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Import"
+            "value": "Importa"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "輸入"
+            "value": "インポート"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "수입"
+            "value": "가져오기"
           }
         },
         "nl": {
@@ -83738,7 +83740,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Import"
+            "value": "Importuj"
           }
         },
         "pt": {
@@ -83750,25 +83752,25 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Импортировать"
+            "value": "Импорт"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "İçe aktarmak"
+            "value": "İçe Aktar"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "导入"
+            "value": "导入备份"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "進口"
+            "value": "匯入備份"
           }
         }
       }
@@ -83876,91 +83878,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Spielstand & Backup"
+            "value": "Backup & Export"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save & Backup"
+            "value": "Backup & Export"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Guardar y Copia de Seguridad"
+            "value": "Copias & Exportar"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sauvegarde & Import"
+            "value": "Sauvegarde & Export"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "स्कोर और बैकअप"
+            "value": "बैकअप और निर्यात"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Save & Backup"
+            "value": "Backup & Esporta"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "保存とバックアップ"
+            "value": "バックアップとエクスポート"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "저장 및 백업"
+            "value": "백업 및 내보내기"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Opslaan en back-up maken"
+            "value": "Back-up & Export"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zapisz i wykonaj kopię zapasową"
+            "value": "Kopie & Eksport"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Progresso & Backup"
+            "value": "Backup & Exportar"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Счёт игры и резервная копия"
+            "value": "Бэкап и экспорт"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kaydet ve Yedekle"
+            "value": "Yedek & Dışa Aktar"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "游戏进度与备份"
+            "value": "备份与导出"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "評分與備份"
+            "value": "備份與匯出"
           }
         }
       }
@@ -83970,91 +83972,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatisches Backup"
+            "value": "Backup"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "Backup"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "Copia"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "Sauvegarde"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "बैकअप"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "Backup"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "バックアップ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "백업"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "Back-up"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "Kopia"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "Backup"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "Бэкап"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "Yedek"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "备份文件"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Automatic Backup"
+            "value": "備份檔案"
           }
         }
       }
@@ -84064,91 +84066,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Keine Backups vorhanden"
+            "value": "Keine automatischen Backups gefunden."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "No automatic backups found."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "No se encontraron copias automáticas."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "Aucune sauvegarde automatique."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "कोई बैकअप नहीं मिला。"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "Nessun backup automatico trovato."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "自動バックアップがありません。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "자동 백업이 없습니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "Geen automatische back-ups gevonden."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "Brak kopii zapasowych."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "Nenhum backup automático."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "Бэкапы не найдены."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "Otomatik yedek bulunamadı."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "未找到自动备份。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "No Backups Available"
+            "value": "未找到自動備份。"
           }
         }
       }
@@ -84158,91 +84160,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wähle das Backup-Intervall"
+            "value": "Intervall auswählen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "Select Interval"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "Seleccionar intervalo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "Choisir l'intervalle"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "अंतराल चुनें"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "Seleziona intervallo"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "間隔を選択"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "간격 선택"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "Selecteer interval"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "Wybierz interwał"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "Selecionar intervalo"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "Выберите интервал"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "Aralık Seç"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "选择备份频率"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select Backup Interval"
+            "value": "選擇備份頻率"
           }
         }
       }
@@ -84252,91 +84254,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Backups ansehen"
+            "value": "Automatische Backups"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "Auto Backups"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "Copias automáticas"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "Sauvegardes auto"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "ऑटो बैकअप"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "Backup automatici"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "自動バックアップ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "자동 백업"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "Auto-back-ups"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "Kopie automatyczne"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "Backups automáticos"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "Автобэкапы"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "Oto Yedeklemeler"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "自动备份"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "View Backups"
+            "value": "自動備份"
           }
         }
       }
@@ -119458,91 +119460,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garten_Bericht"
+            "value": "Garten Bericht"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garden_Report"
+            "value": "Garden Report"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garden_Report"
+            "value": "Informe de Jardín"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garden_Report"
+            "value": "Rapport de Jardin"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "निर्यात.pdf.डिफ़ॉल्ट_फ़ाइलनाम"
+            "value": "गार्डन रिपोर्ट"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garden_Report"
+            "value": "Rapporto Giardino"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garden_Report"
+            "value": "ガーデンレポート"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garden_Report"
+            "value": "가든 리포트"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garden_Report"
+            "value": "Tuinrapport"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garden_Report"
+            "value": "Raport ogrodowy"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garden_Report"
+            "value": "Relatório de Jardim"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "export.pdf.имя_файла_по_умолчанию"
+            "value": "Отчет по саду"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garden_Report"
+            "value": "Bahçe Raporu"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "导出.pdf.默认文件名"
+            "value": "花园报告"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Garden_Report"
+            "value": "花園報告"
           }
         }
       }
@@ -119571,7 +119573,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Entrez le nom"
+            "value": "Entrer un nom"
           }
         },
         "hi": {
@@ -119631,13 +119633,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "输入姓名"
+            "value": "输入文件名称"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enter name"
+            "value": "輸入檔案名稱"
           }
         }
       }
@@ -119654,13 +119656,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF Filename"
+            "value": "PDF File Name"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nombre de archivo PDF"
+            "value": "Nombre del PDF"
           }
         },
         "fr": {
@@ -119672,7 +119674,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पीडीएफ फ़ाइल नाम"
+            "value": "PDF फ़ाइल का नाम"
           }
         },
         "it": {
@@ -119690,13 +119692,13 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF 파일 이름"
+            "value": "PDF 파일명"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF Bestandsnaam"
+            "value": "PDF bestandsnaam"
           }
         },
         "pl": {
@@ -119714,7 +119716,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Имя файла PDF"
+            "value": "Имя PDF"
           }
         },
         "tr": {
@@ -119726,13 +119728,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF 文件名"
+            "value": "PDF 文件名称"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "PDF Filename"
+            "value": "PDF 檔案名稱"
           }
         }
       }
@@ -126939,6 +126941,101 @@
         }
       }
     },
+    "focus.session.completed_goals": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abgeschlossene Ziele"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Completed Goals"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivos Completados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objectifs Atteints"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पूरे किए गए लक्ष्य"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obiettivi Completati"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "達成した目標"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "완료된 목표"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voltooide Doelen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukończone cele"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivos Concluídos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Завершенные цели"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamamlanan Hedefler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已完成目标"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已完成目標"
+          }
+        }
+      }
+    },
     "focus.session.completed.proud": {
       "localizations": {
         "de": {
@@ -127691,6 +127788,101 @@
           "stringUnit": {
             "state": "translated",
             "value": "新的主要目標..."
+          }
+        }
+      }
+    },
+    "focus.session.open_goals": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Offene Ziele"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Goals"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivos Abiertos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objectifs Ouverts"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "खुले लक्ष्य"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obiettivi Aperti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "オープンな目標"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "열린 목표"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Doelen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwarte cele"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivos Abertos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открытые цели"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açık Hedefler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "待完成目标"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "待完成目標"
           }
         }
       }
@@ -316537,79 +316729,79 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "Consejo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "Astuce"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "सुझाव"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "Suggerimento"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "ヒント"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "팁"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "Tip"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "Wskazówka"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "Dica"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "Совет"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "İpucu"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "提示"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp"
+            "value": "提示"
           }
         }
       }
@@ -381176,91 +381368,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy_Wochenbericht"
+            "value": "Grovy Wochenbericht"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy_WeeklyReport"
+            "value": "Grovy Weekly Report"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy_WeeklyReport"
+            "value": "Informe Semanal Grovy"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy_WeeklyReport"
+            "value": "Rapport Hebdo Grovy"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "weekly_report.pdf.default_filename"
+            "value": "साप्ताहिक रिपोर्ट"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy_WeeklyReport"
+            "value": "Rapporto Settimanale Grovy"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy_WeeklyReport"
+            "value": "週次レポート"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy_WeeklyReport"
+            "value": "주간 리포트"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy_WeeklyReport"
+            "value": "Grovy Weekrapport"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy_WeeklyReport"
+            "value": "Raport tygodniowy"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy_WeeklyReport"
+            "value": "Relatório Semanal Grovy"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "weekly_report.pdf.default_filename"
+            "value": "Еженедельный отчет"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy_WeeklyReport"
+            "value": "Haftalık Rapor"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "weekly_report.pdf.默认文件名"
+            "value": "Grovy 每周报告"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Grovy_WeeklyReport"
+            "value": "Grovy 每週報告"
           }
         }
       }
@@ -388887,192 +389079,192 @@
         }
       }
     },
-    "focus.session.open_goals": {
+    "weekly_report.card.focus_time.value": {
       "extractionState": "manual",
       "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Offene Ziele"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open Goals"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Objetivos Abiertos"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Objectifs Ouverts"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obiettivi Aperti"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "オープンな目標"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "열린 목표"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "待完成目标"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "待完成目標"
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Objetivos Abertos"
+            "value": "%lld Minutos"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open Doelen"
+            "value": "%lld Minuten"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分钟"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 분"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Açık Hedefler"
+            "value": "%lld Dakika"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutes"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutes"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Открытые цели"
+            "value": "%lld Минут"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otwarte cele"
+            "value": "%lld Minut"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minuti"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "खुले लक्ष्य"
+            "value": "%lld मिनट"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minuten"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分鐘"
           }
         }
       }
     },
-    "focus.session.completed_goals": {
+    "weekly_report.chart.focus_time.value": {
       "extractionState": "manual",
       "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abgeschlossene Ziele"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Completed Goals"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Objetivos Completados"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Objectifs Atteints"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obiettivi Completati"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "達成した目標"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "완료된 목표"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已完成目标"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已完成目標"
-          }
-        },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Objetivos Concluídos"
+            "value": "%lld Minutos"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Voltooide Doelen"
+            "value": "%lld Minuten"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分钟"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 분"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tamamlanan Hedefler"
+            "value": "%lld Dakika"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutes"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minutes"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Завершенные цели"
+            "value": "%lld Минут"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ukończone cele"
+            "value": "%lld Minut"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minuti"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पूरे किए गए लक्ष्य"
+            "value": "%lld मिनट"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Minuten"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 分鐘"
           }
         }
       }

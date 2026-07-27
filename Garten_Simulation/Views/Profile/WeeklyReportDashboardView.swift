@@ -46,7 +46,7 @@ struct WeeklyReportDashboardView: View {
             TabView {
                 summaryCardAsset(
                     title: String(localized: "weekly_report.card.focus_time", defaultValue: "Fokuszeit"),
-                    value: "\(report.totalFocusMinutes) Min",
+                    value: String(format: String(localized: "weekly_report.card.focus_time.value", defaultValue: "%lld Minuten"), report.totalFocusMinutes),
                     change: report.focusMinutesChangePercentage,
                     assetIcon: "Timer full",
                     color: .blauPrimary
@@ -117,7 +117,7 @@ struct WeeklyReportDashboardView: View {
                 ))
                 .overlay(alignment: .top) {
                     if let selected = selectedFocusDay, selected.minutes > 0 {
-                        Text("\(selected.minutes) Min")
+                        Text(String(format: String(localized: "weekly_report.chart.focus_time.value", defaultValue: "%lld Minuten"), selected.minutes))
                             .font(.system(size: 12, weight: .bold, design: .rounded))
                             .padding(.horizontal, 10).padding(.vertical, 6)
                             .background(Color.blauPrimary)
@@ -313,7 +313,7 @@ struct WeeklyReportDashboardView: View {
         VStack(spacing: 8) {
             Button {
                 if iapStore.isProUser {
-                    let fileNameToUse = pdfFileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "Grovy_Wochenbericht" : pdfFileName
+                    let fileNameToUse = pdfFileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? String(localized: "weekly_report.pdf.default_filename", defaultValue: "Grovy_Wochenbericht") : pdfFileName
                     let pdfUrl = PDFExportManager.shared.generateWeeklyPDFReport(
                         fileName: fileNameToUse,
                         for: selectedWeekStart,
