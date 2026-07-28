@@ -1,3 +1,5 @@
+- Style: FlameStreakButton Design aktualisiert (weiße Oberfläche, orange-roter Schatten, Template Image statt Maskierung)
+
 - Feat: Long-Press Gießen auf der Pflanzenkarte implementiert
 - Fix: FlameStreakButton nutzt nun das echte Streak-Icon als Maske statt eines generischen Pfads
 
