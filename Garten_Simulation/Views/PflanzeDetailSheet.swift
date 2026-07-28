@@ -21,6 +21,8 @@ struct PflanzeDetailSheet: View {
     @State private var isNotesExpanded = false
     @State private var isTodosExpanded = true
     @State private var isEffectsExpanded = true
+    @State private var isRemindersExpanded = true
+    @State private var selectedTimerEntry: TimerEntry? = nil
     @State private var zeigeTimerSheet = false
     @State private var zeigeTimerEditSheet = false
     @State private var pulsieren = false
@@ -94,14 +96,16 @@ struct PflanzeDetailSheet: View {
                                 .environmentObject(gardenStore)
                                 .environmentObject(settings)
                             ) {
-                                VStack(spacing: -8) {
+                                VStack(spacing: 8) {
                                     LottieView(name: GameConstants.streakLottieURL)
-                                        .frame(width: 80, height: 80)
-                                        .shadow(color: .orangePrimary.opacity(0.3), radius: 20)
+                                        .frame(width: 140, height: 140)
+                                        .shadow(color: .orangePrimary.opacity(0.3), radius: 30)
+                                        .offset(y: -10) // Push it slightly up
                                     
                                     Text("\(pflanze.streak)")
-                                        .font(.system(size: 32, weight: .heavy, design: .rounded))
+                                        .font(.system(size: 40, weight: .heavy, design: .rounded))
                                         .foregroundStyle(Color.orangePrimary)
+                                        .offset(y: -20) // Pull number closer to compensate for the big frame, or leave spacing
                                 }
                             }
                             .padding(.top, 8)
@@ -241,40 +245,53 @@ struct PflanzeDetailSheet: View {
                         .tint(.orangePrimary)
                     }
 
-                    // Own Timer Row (always show if active, so user can edit non-overridden days)
-                    if pflanze.hasActiveReminder {
-                        TimerRowView(
-                            pflanze: pflanze,
-                            onTap: { zeigeTimerEditSheet = true },
-                            onDelete: { zeigeTimerAbbrechenDialog = true },
-                            deleteConfirmShowing: $zeigeTimerAbbrechenDialog,
-                            onConfirmDelete: { gardenStore.timerEntfernen(pflanze: pflanze) }
-                        )
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 8)
-                    }
-
-                    HStack(spacing: 40) {
-                        // Timer Button
+                    // MARK: - Daily Reminders
+                    DisclosureGroup(isExpanded: $isRemindersExpanded) {
                         VStack(spacing: 8) {
+                            if let schedule = pflanze.reminderSchedule, !schedule.entries.isEmpty {
+                                ForEach(schedule.entries) { entry in
+                                    TimerRowView(
+                                        entry: entry,
+                                        onTap: { 
+                                            selectedTimerEntry = entry
+                                            zeigeTimerSheet = true 
+                                        },
+                                        onConfirmDelete: { gardenStore.timerEintragEntfernen(pflanze: pflanze, entryID: entry.id) }
+                                    )
+                                }
+                            } else {
+                                Text(String(localized: "plant.detail.no_reminders", defaultValue: "Keine Erinnerungen"))
+                                    .font(.system(size: 14))
+                                    .foregroundStyle(.secondary)
+                                    .padding(.top, 8)
+                            }
+                        }
+                        .padding(.top, 16)
+                        .padding(.bottom, 8)
+                    } label: {
+                        HStack {
+                            Text(String(localized: "plant.detail.timer", defaultValue: "Daily Reminder"))
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .foregroundColor(.primary)
+                            Spacer()
                             Item3DButton(
                                 farbe: .blauPrimary,
                                 sekundaerFarbe: .blauPrimary.darker(),
-                                groesse: 54,
+                                groesse: 36,
                                 isRectangular: false,
                                 aktion: { zeigeTimerSheet = true }
                             ) {
-                                Image("Erinnerung")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 28, height: 28)
-                                    .scaleEffect(2.5)
+                                Image(systemName: "plus")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundStyle(.white)
                             }
-                            Text(String(localized: "plant.detail.timer"))
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
                         }
+                    }
+                    .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
+                    .padding(.horizontal, 24)
+                    .tint(.blauPrimary)
 
+                    HStack(spacing: 40) {
                         // Focus Session Button
                         VStack(spacing: 8) {
                             Item3DButton(
@@ -391,10 +408,11 @@ struct PflanzeDetailSheet: View {
                 .presentationBackground(Color(UIColor.systemBackground))
         }
         // MARK: - Timer Create Sheet
-        .sheet(isPresented: $zeigeTimerSheet) {
-            TimerCreateSheetView(pflanze: pflanze)
+        .sheet(isPresented: $zeigeTimerSheet, onDismiss: { selectedTimerEntry = nil }) {
+            TimerCreateSheetView(pflanze: pflanze, entryToEdit: selectedTimerEntry)
                 .environmentObject(gardenStore)
                 .environmentObject(settings)
+                .environmentObject(iapStore)
                 .presentationDetents([.fraction(0.4)])
                 .presentationDragIndicator(.visible)
                 .presentationCornerRadius(32)
@@ -1426,6 +1444,7 @@ struct TimerEditSheetView: View {
 // MARK: - Timer Create Sheet
 struct TimerCreateSheetView: View {
     @ObservedObject var pflanze: HabitModel
+    var entryToEdit: TimerEntry?
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var iapStore: IAPStore
@@ -1434,13 +1453,21 @@ struct TimerCreateSheetView: View {
     @State private var showCalendarSheet = false
     @State private var zeigePaywall = false
 
+    @State private var ausgewaehlteZeit: Date
 
-    @State private var ausgewaehlteZeit: Date = {
-        var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-        components.hour = 8
-        components.minute = 0
-        return Calendar.current.date(from: components) ?? Date()
-    }()
+    init(pflanze: HabitModel, entryToEdit: TimerEntry? = nil) {
+        self.pflanze = pflanze
+        self.entryToEdit = entryToEdit
+        
+        if let entry = entryToEdit {
+            _ausgewaehlteZeit = State(initialValue: entry.time)
+        } else {
+            var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+            components.hour = 8
+            components.minute = 0
+            _ausgewaehlteZeit = State(initialValue: Calendar.current.date(from: components) ?? Date())
+        }
+    }
 
     var body: some View {
         VStack(spacing: 20) {
@@ -1488,6 +1515,9 @@ struct TimerCreateSheetView: View {
                             await UIApplication.shared.open(url)
                         }
                     } else {
+                        if let entryToEdit = entryToEdit {
+                            gardenStore.timerEintragEntfernen(pflanze: pflanze, entryID: entryToEdit.id)
+                        }
                         gardenStore.timerSetzen(pflanze: pflanze, datum: ausgewaehlteZeit)
                         dismiss()
                     }
@@ -1717,13 +1747,12 @@ struct NoteRowView: View {
 // MARK: - Timer Row (own State for isVisualPressed animation)
 struct TimerRowView: View {
     @EnvironmentObject var settings: SettingsStore
-    let pflanze: HabitModel
+    let entry: TimerEntry
     let onTap: () -> Void
-    let onDelete: () -> Void
-    let deleteConfirmShowing: Binding<Bool>
     let onConfirmDelete: () -> Void
 
     @State private var isVisualPressed = false
+    @State private var deleteConfirmShowing = false
 
     var body: some View {
         // The entire row (including X) lives in one Button so everything animates together.
@@ -1743,16 +1772,12 @@ struct TimerRowView: View {
                     .scaleEffect(2.5)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(String(localized: "plant.detail.timer.active"))
+                    Text(String(localized: "plant.detail.timer.active", defaultValue: "Täglicher Reminder"))
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
-                    if let next = pflanze.nextActiveReminder {
-                        Text(next.time, style: .time)
-                            .font(.system(size: 14, weight: .semibold, design: .rounded))
-                    } else {
-                        Text(String(localized: "timer.weekday.title"))
-                            .font(.system(size: 14, weight: .semibold, design: .rounded))
-                    }
+                    
+                    Text(entry.time, style: .time)
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
                 }
                 Spacer()
 
@@ -1763,7 +1788,7 @@ struct TimerRowView: View {
                     .frame(width: 44, height: 44)
                     .contentShape(Rectangle())
                     .simultaneousGesture(
-                        TapGesture().onEnded { onDelete() }
+                        TapGesture().onEnded { deleteConfirmShowing = true }
                     )
             }
             .padding(.vertical, 6)
@@ -1772,7 +1797,7 @@ struct TimerRowView: View {
         .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: isVisualPressed))
         .confirmationDialog(
             String(localized: "plant.detail.timer.cancel.confirm"),
-            isPresented: deleteConfirmShowing,
+            isPresented: $deleteConfirmShowing,
             titleVisibility: .visible
         ) {
             Button(String(localized: "plant.detail.timer.cancel.action"), role: .destructive) {

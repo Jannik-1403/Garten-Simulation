@@ -264,3 +264,8 @@
 - **Listen in 3D-Containern**: Die To-Dos, Notizen und aktiven Effekte sind nun als Ganzes (die kompletten Accordions) in einem maßgeschneiderten, flexiblen 3D-Container verpackt, der sich perfekt mit der Liste ausdehnt und optisch exakt wie ein `Item3DButton` aussieht.
 - **Timer Icon**: Das Icon "Erinnerung" im Timer-Button wurde wie gewünscht um das 2.5-fache vergrößert, ohne die Größe des 3D-Buttons selbst zu verändern.
 - **Streak Lottie**: Der kreisrunde Streak-Button ganz oben wurde durch eine frei schwebende Lottie-Animation (`streak`) mit der Streak-Zahl direkt darunter ersetzt.
+
+### UI-Feinschliff Details (28.07.2026)
+- **Plus-Buttons als 3D-Buttons**: Die Plus-Icons für To-Dos und Notizen (oben rechts im jeweiligen Accordion-Header) sind nun saubere, kleine 3D-Buttons.
+- **Erledigte To-Dos**: Wenn eine To-Do abgehakt (durchgestrichen) wird, färbt sich ihr Hintergrund nun komplett grün (`.gruenPrimary`). Das Häkchen und der Text wechseln dabei für einen perfekten Kontrast zu Weiß.
+- **Streak Lottie Perfektion**: Die Streak-Anzeige ganz oben auf der Detailseite sieht nun 1:1 exakt so aus wie auf der Haupt-Streak-Seite (`StreakView`), inklusive der Lottie-Animation (`GameConstants.streakLottieURL`), der Schriftgröße und dem typischen orangenen Schatten!

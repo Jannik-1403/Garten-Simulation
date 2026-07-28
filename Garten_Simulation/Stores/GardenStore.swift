@@ -1010,23 +1010,46 @@ class GardenStore: ObservableObject {
 
     // MARK: Timer setzen
     func timerSetzen(pflanze: HabitModel, datum: Date, customMessage: String? = nil) {
-        let weekdays = (1...7).map { day in
-            WeekdayReminder(weekday: day, time: datum, customMessage: customMessage, isEnabled: true)
+        let entry = TimerEntry(
+            time: datum,
+            customMessage: customMessage,
+            repeatMode: .forever,
+            activeWeekdays: Set([1, 2, 3, 4, 5, 6, 7]),
+            isEnabled: true
+        )
+        
+        if pflanze.reminderSchedule != nil {
+            pflanze.reminderSchedule?.entries.append(entry)
+        } else {
+            pflanze.reminderSchedule = ReminderSchedule(entries: [entry])
         }
-        let schedule = ReminderSchedule(weekdays: weekdays)
-        pflanze.reminderSchedule = schedule
-        pflanze.reminderTime = datum
+        
+        pflanze.reminderTime = datum // Legacy fallback
         pflanze.customReminderMessage = customMessage
         self.objectWillChange.send()
         savePlants()
-        // Wir planen alles neu, damit der Timer berücksichtigt wird.
         NotificationManager.shared.scheduleAll(for: pflanzen)
     }
 
-    // MARK: Timer entfernen
+    // MARK: Timer entfernen (Alle)
     func timerEntfernen(pflanze: HabitModel) {
         pflanze.reminderTime = nil
         pflanze.reminderSchedule = nil
+        self.objectWillChange.send()
+        savePlants()
+        NotificationManager.shared.cancelAll(for: pflanze)
+        NotificationManager.shared.scheduleAll(for: pflanzen)
+    }
+    
+    // MARK: Einzelnen Timer Eintrag entfernen
+    func timerEintragEntfernen(pflanze: HabitModel, entryID: UUID) {
+        pflanze.reminderSchedule?.entries.removeAll(where: { $0.id == entryID })
+        if pflanze.reminderSchedule?.entries.isEmpty == true {
+            pflanze.reminderSchedule = nil
+            pflanze.reminderTime = nil
+        } else {
+            pflanze.reminderTime = pflanze.reminderSchedule?.entries.first?.time
+        }
         self.objectWillChange.send()
         savePlants()
         NotificationManager.shared.cancelAll(for: pflanze)
