@@ -138,13 +138,25 @@ struct PflanzeDetailSheet: View {
                                 .textCase(.uppercase)
                                 .tracking(1.5)
     
-                            // Flammen-Streak Button → navigiert zu StreakView
+                            // Streak Anzeige → navigiert zu StreakView
                             NavigationLink(destination: StreakView(selectedPlant: pflanze)
                                 .environmentObject(streakStore)
                                 .environmentObject(gardenStore)
                                 .environmentObject(settings)
                             ) {
-                                FlameStreakButton(streak: pflanze.streak)
+                                HStack(spacing: 6) {
+                                    Text("\(pflanze.streak)")
+                                        .font(.system(size: 22, weight: .black, design: .rounded))
+                                    Image("streak")
+                                        .renderingMode(.template)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20, height: 20)
+                                }
+                                .foregroundStyle(Color(hex: "#D95F00"))
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                                .background(Color(hex: "#D95F00").opacity(0.12), in: Capsule())
                             }
                             .buttonStyle(PlainButtonStyle())
                             .padding(.top, 8)
@@ -838,53 +850,7 @@ struct PflanzeDetailSheet: View {
 
 // MARK: - Flame Streak Button
 
-/// 3D-Flammen-Button der den aktuellen Streak der Pflanze zeigt
-struct FlameStreakButton: View {
-    let streak: Int
 
-    private let size: CGFloat = 80
-    private let depth: CGFloat = 6
-
-    var body: some View {
-        ZStack {
-            // Untere Schicht – Schatten / Tiefe (Orange/Rot)
-            Image("streak")
-                .renderingMode(.template)
-                .resizable()
-                .scaledToFit()
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [Color(hex: "#D95F00"), Color(hex: "#B03800")],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
-                .frame(width: size, height: size)
-
-            // Obere Schicht – Hauptfläche (Weiß)
-            Image("streak")
-                .renderingMode(.template)
-                .resizable()
-                .scaledToFit()
-                .foregroundStyle(Color.white)
-                .frame(width: size, height: size)
-                .offset(y: -depth)
-
-            // Inhalt: Streak-Zahl + Label
-            VStack(spacing: -2) {
-                Text(verbatim: "\(streak)")
-                    .font(.system(size: 24, weight: .black, design: .rounded))
-                    .foregroundStyle(Color(hex: "#D95F00"))
-                Text(String(localized: "plant.detail.streak.label", defaultValue: "STREAK"))
-                    .font(.system(size: 7, weight: .bold))
-                    .foregroundStyle(Color(hex: "#D95F00").opacity(0.88))
-                    .tracking(1.5)
-            }
-            .offset(y: -(depth - 4))
-        }
-        .frame(width: size, height: size + depth)
-    }
-}
 
 // MARK: - Notiz Sheet
 struct NotizSheetView: View {
