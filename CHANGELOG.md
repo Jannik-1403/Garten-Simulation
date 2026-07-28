@@ -222,3 +222,9 @@
 - Fehlendes Localizable.xcstrings zur Widget-Erweiterung hinzugefügt, damit das Widget die Übersetzungen überhaupt finden kann.
 
 - Hardcodierten 'Hintergrund' Text im Widget-Bearbeitungsmenü behoben. Dieser wird nun ebenfalls über das Lokalisierungssystem übersetzt.
+
+### Phase 2 & 3: Accordions for Todos/Notes, Focus Session Laser-Focus, Plant-Specific Todos (28.07.2026)
+- **Phase 3**: Die Notizen und die neuen pflanzenspezifischen To-Dos (Goals) sind in übersichtlichen Accordions (DisclosureGroups) im PlantDetailSheet integriert, um Platz zu sparen.
+- **Phase 3**: Im PlantDetailSheet kann man nun To-Dos spezifisch für eine Pflanze anlegen und bearbeiten.
+- **Phase 2**: Startet man nun aus einer Pflanze heraus den Fokus-Modus, so werden deren To-Dos automatisch in den "Jetzt Starten" Wizard geladen und können fokussiert abgearbeitet werden.
+- Gießen erfolgt auf dem Homescreen nun per Long-Press auf den 3D-Button.

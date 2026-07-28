@@ -87,61 +87,12 @@ struct PflanzeDetailSheet: View {
                         LazyVStack(spacing: 28) {
                     // MARK: - HERO (Zone 1)
                     VStack(spacing: 12) {
-                            ZStack {
-                                // Hintergrund-Ring (grau)
-                                Circle()
-                                    .stroke(Color.gray.opacity(0.15), lineWidth: 8)
-                                    .frame(width: 180, height: 180)
-    
-                                // Fortschritts-Ring (Seltenheits-Farbe)
-                                Circle()
-                                    .trim(from: 0, to: pflanze.ringFortschritt)
-                                    .stroke(
-                                        pflanze.seltenheit.farbe,
-                                        style: StrokeStyle(lineWidth: 8, lineCap: .round)
-                                    )
-                                    .frame(width: 180, height: 180)
-                                    .rotationEffect(.degrees(-90))
-                                    .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
-    
-                                // 3D Pflanze Button
-                                if let basePlant = GameDatabase.shared.plant(for: pflanze.plantID) {
-                                    PflanzenButton(
-                                        plant: basePlant,
-                                        seltenheit: pflanze.seltenheit,
-                                        farbe: pflanze.color,
-                                        sekundaerFarbe: pflanze.color.darker(),
-                                        groesse: 140
-                                    )
-                                    .scaleEffect(pulsieren ? 1.03 : 1.0)
-                                    .allowsHitTesting(false)
-                                } else {
-                                    // Fallback if not found
-                                    PflanzenButton(
-                                        plant: Plant(id: "fallback", name: String(localized: "common.plant_fallback"), symbolName: pflanze.symbolName, assetName: nil, symbol: "", symbolColor: pflanze.symbolColor, habitCategory: pflanze.habitCategory, symbolism: ""),
-                                        seltenheit: pflanze.seltenheit,
-                                        farbe: pflanze.color,
-                                        sekundaerFarbe: pflanze.color.darker(),
-                                        groesse: 140
-                                    )
-                                    .scaleEffect(pulsieren ? 1.03 : 1.0)
-                                    .allowsHitTesting(false)
-                                }
-                            }
-                            .scaleEffect(min(1.0, ScreenSize.width / 390)) // Scale down on smaller iPhones
-    
-                            Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
+                            Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
                                 .font(.system(size: 36, weight: .black, design: .rounded))
                                 .minimumScaleFactor(0.5)
                                 .lineLimit(2)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 20)
-    
-                            Text(NSLocalizedString(pflanze.habitCategory.localizationKey, comment: ""))
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
-                                .textCase(.uppercase)
-                                .tracking(1.5)
     
                             // Streak Anzeige → navigiert zu StreakView
                             NavigationLink(destination: StreakView(selectedPlant: pflanze)

@@ -294,6 +294,12 @@ struct MainAppTabView: View {
                     Label(String(localized: "tab.routines"), systemImage: "list.bullet.clipboard.fill")
                 }
 
+            TodosTabView()
+                .tag(5)
+                .tabItem {
+                    Label(String(localized: "tab.todos", defaultValue: "To-Dos"), systemImage: "checklist")
+                }
+
             UnifiedShopView()
                 .tag(1)
                 .tabItem {

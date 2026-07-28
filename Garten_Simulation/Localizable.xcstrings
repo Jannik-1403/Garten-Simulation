@@ -198289,6 +198289,39 @@
         }
       }
     },
+    "plant.detail.todo.add" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "To-Do hinzufügen"
+          }
+        }
+      }
+    },
+    "plant.detail.todo.placeholder" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "To-Do eingeben..."
+          }
+        }
+      }
+    },
+    "plant.detail.todos_header" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "To-Dos"
+          }
+        }
+      }
+    },
     "plant.detail.watered" : {
       "comment" : "",
       "extractionState" : "manual",
