@@ -201,3 +201,6 @@
 
 ## 2026-07-27
 - Fix: Datum und Uhrzeit bei automatischen Backups nutzen nun die exakte `preferredLocalizations` der App (anstatt der iOS-Region), damit Daten korrekt auf Chinesisch etc. formatiert werden.
+
+- Wasser-Widget bearbeitbar (Zeitraum) entfernt, Hintergrund weiterhin wählbar.
+- Fehlende Widget-Übersetzungen in 16 Sprachen (inklusive pt-BR) ergänzt.
