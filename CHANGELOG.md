@@ -1,3 +1,5 @@
+- Style: 3D-Flammen Button durch schlichte horizontale Streak-Anzeige (Zahl + Icon) ersetzt
+
 - Style: FlameStreakButton Design aktualisiert (weiße Oberfläche, orange-roter Schatten, Template Image statt Maskierung)
 
 - Feat: Long-Press Gießen auf der Pflanzenkarte implementiert
