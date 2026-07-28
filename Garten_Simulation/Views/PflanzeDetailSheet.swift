@@ -35,6 +35,7 @@ struct PflanzeDetailSheet: View {
     @State private var zeigePaywall = false
     @State private var hourlyHealthData: [(Date, Double)] = []
     @State private var weeklyHealthAverage: Double? = nil
+    @State private var hourlyAvgData: [(Date, Double)] = []
     @State private var zeigeDeleteTrackerConfirm = false
     @State private var zeigeCustomTrackerAlert = false
     @State private var zeigeTrackerConfirm = false
@@ -379,6 +380,9 @@ struct PflanzeDetailSheet: View {
                 healthManager.fetchWeeklyAverage(for: metric) { avg in
                     self.weeklyHealthAverage = avg
                 }
+                healthManager.fetchHourlyWeeklyAverage(for: metric) { avg in
+                    self.hourlyAvgData = avg
+                }
             }
             
             // Auto-Watering check
@@ -518,7 +522,7 @@ struct PflanzeDetailSheet: View {
                                                     }
                                                     
                                                     if !hourlyHealthData.isEmpty {
-                                                        HealthChartView(data: hourlyHealthData, metric: metric, target: pflanze.healthTarget, weeklyAverage: weeklyHealthAverage)
+                                                        HealthChartView(data: hourlyHealthData, metric: metric, target: pflanze.healthTarget, hourlyAverageData: hourlyAvgData)
                                                             .padding(.vertical, 8)
                                                     }
                                                     

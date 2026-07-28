@@ -271,6 +271,92 @@ class HealthManager: ObservableObject {
             DispatchQueue.main.async { completion(nil) }
         }
     }
+    
+    /// Berechnet pro Stunde den kumulativen Durchschnitt der letzten 7 Tage.
+    /// Ergibt eine Linie, die zeigt: "Um X Uhr hatte ich durchschnittlich Y Schritte gesamt."
+    func fetchHourlyWeeklyAverage(for metric: HealthMetricType, completion: @escaping ([(Date, Double)]) -> Void) {
+        guard isAuthorized else {
+            DispatchQueue.main.async { completion([]) }
+            return
+        }
+        guard metric == .steps || metric == .water else {
+            DispatchQueue.main.async { completion([]) }
+            return
+        }
+        
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        guard let sevenDaysAgo = calendar.date(byAdding: .day, value: -7, to: today) else {
+            DispatchQueue.main.async { completion([]) }
+            return
+        }
+        
+        let isSteps = (metric == .steps)
+        guard let quantityType = isSteps
+            ? HKQuantityType.quantityType(forIdentifier: .stepCount)
+            : HKQuantityType.quantityType(forIdentifier: .dietaryWater) else {
+            DispatchQueue.main.async { completion([]) }
+            return
+        }
+        let unit = isSteps ? HKUnit.count() : HKUnit.literUnit(with: .milli)
+        
+        var intervalComponents = DateComponents()
+        intervalComponents.hour = 1
+        
+        let predicate = HKQuery.predicateForSamples(withStart: sevenDaysAgo, end: today, options: .strictStartDate)
+        let query = HKStatisticsCollectionQuery(
+            quantityType: quantityType,
+            quantitySamplePredicate: predicate,
+            options: .cumulativeSum,
+            anchorDate: sevenDaysAgo,
+            intervalComponents: intervalComponents
+        )
+        
+        query.initialResultsHandler = { _, results, _ in
+            // hourlyTotals[dayIndex][hour] = wert
+            var hourlyByDay: [Int: [Int: Double]] = [:]
+            
+            results?.enumerateStatistics(from: sevenDaysAgo, to: today) { statistics, _ in
+                guard let sum = statistics.sumQuantity() else { return }
+                let val = sum.doubleValue(for: unit)
+                if val <= 0 { return }
+                
+                let dayIndex = calendar.dateComponents([.day], from: sevenDaysAgo, to: statistics.startDate).day ?? 0
+                let hour = calendar.component(.hour, from: statistics.startDate)
+                
+                if hourlyByDay[dayIndex] == nil { hourlyByDay[dayIndex] = [:] }
+                hourlyByDay[dayIndex]![hour, default: 0] += val
+            }
+            
+            guard !hourlyByDay.isEmpty else {
+                DispatchQueue.main.async { completion([]) }
+                return
+            }
+            
+            // Für jede Stunde des heutigen Tages: kumulativer Durchschnitt über alle Tage mit Daten
+            let currentHour = calendar.component(.hour, from: Date())
+            var result: [(Date, Double)] = []
+            
+            for h in 0...currentHour {
+                guard let date = calendar.date(bySettingHour: h, minute: 0, second: 0, of: today) else { continue }
+                
+                var cumulativePerDay: [Double] = []
+                for (_, dayData) in hourlyByDay {
+                    let cumSum = (0...h).reduce(0.0) { $0 + (dayData[$1] ?? 0) }
+                    if cumSum > 0 { cumulativePerDay.append(cumSum) }
+                }
+                
+                if !cumulativePerDay.isEmpty {
+                    let avg = cumulativePerDay.reduce(0, +) / Double(cumulativePerDay.count)
+                    result.append((date, avg))
+                }
+            }
+            
+            DispatchQueue.main.async { completion(result) }
+        }
+        
+        self.healthStore.execute(query)
+    }
 }
 extension HealthManager {
     /// Holt historische Daten (pro Stunde) für den heutigen Tag
