@@ -221,3 +221,142 @@ class HealthManager: ObservableObject {
         }
     }
 }
+extension HealthManager {
+    /// Holt historische Daten (pro Stunde) für den heutigen Tag
+    func fetchHourlyData(for metric: HealthMetricType, completion: @escaping ([(Date, Double)]) -> Void) {
+        guard isAuthorized else {
+            DispatchQueue.main.async { completion([]) }
+            return
+        }
+        
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        var hourlyData: [(Date, Double)] = []
+        
+        let calendar = Calendar.current
+        let currentHour = calendar.component(.hour, from: Date())
+        for h in 0...currentHour {
+            if let date = calendar.date(bySettingHour: h, minute: 0, second: 0, of: startOfDay) {
+                hourlyData.append((date, 0.0))
+            }
+        }
+        
+        switch metric {
+        case .steps, .water:
+            let isSteps = (metric == .steps)
+            guard let quantityType = isSteps ? HKQuantityType.quantityType(forIdentifier: .stepCount) : HKQuantityType.quantityType(forIdentifier: .dietaryWater) else {
+                DispatchQueue.main.async { completion([]) }
+                return
+            }
+            let unit = isSteps ? HKUnit.count() : HKUnit.literUnit(with: .milli)
+            var interval = DateComponents()
+            interval.hour = 1
+            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+            
+            let query = HKStatisticsCollectionQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: .cumulativeSum, anchorDate: startOfDay, intervalComponents: interval)
+            query.initialResultsHandler = { _, results, _ in
+                var resultsDict: [Date: Double] = [:]
+                results?.enumerateStatistics(from: startOfDay, to: Date()) { statistics, _ in
+                    if let sum = statistics.sumQuantity() {
+                        resultsDict[statistics.startDate] = sum.doubleValue(for: unit)
+                    }
+                }
+                
+                var finalData: [(Date, Double)] = []
+                for h in 0...currentHour {
+                    if let date = calendar.date(bySettingHour: h, minute: 0, second: 0, of: startOfDay) {
+                        finalData.append((date, resultsDict[date] ?? 0.0))
+                    }
+                }
+                DispatchQueue.main.async { completion(finalData) }
+            }
+            healthStore.execute(query)
+            
+        case .running, .strengthTraining:
+            let activityType: HKWorkoutActivityType = (metric == .running) ? .running : .traditionalStrengthTraining
+            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+            let workoutPredicate = HKQuery.predicateForWorkouts(with: activityType)
+            let combinedPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, workoutPredicate])
+            
+            let query = HKSampleQuery(sampleType: HKObjectType.workoutType(), predicate: combinedPredicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, samples, _ in
+                guard let workouts = samples as? [HKWorkout] else {
+                    DispatchQueue.main.async { completion(hourlyData) }
+                    return
+                }
+                
+                var resultsDict: [Int: Double] = [:]
+                for workout in workouts {
+                    let hour = calendar.component(.hour, from: workout.startDate)
+                    let minutes = workout.duration / 60.0
+                    resultsDict[hour, default: 0.0] += minutes
+                }
+                
+                var finalData: [(Date, Double)] = []
+                for h in 0...currentHour {
+                    if let date = calendar.date(bySettingHour: h, minute: 0, second: 0, of: startOfDay) {
+                        finalData.append((date, resultsDict[h] ?? 0.0))
+                    }
+                }
+                DispatchQueue.main.async { completion(finalData) }
+            }
+            healthStore.execute(query)
+            
+        case .mindfulness:
+            guard let mindfulnessType = HKCategoryType.categoryType(forIdentifier: .mindfulSession) else {
+                DispatchQueue.main.async { completion([]) }
+                return
+            }
+            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+            let query = HKSampleQuery(sampleType: mindfulnessType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, samples, _ in
+                guard let samples = samples as? [HKCategorySample] else {
+                    DispatchQueue.main.async { completion(hourlyData) }
+                    return
+                }
+                var resultsDict: [Int: Double] = [:]
+                for sample in samples {
+                    let hour = calendar.component(.hour, from: sample.startDate)
+                    let minutes = sample.endDate.timeIntervalSince(sample.startDate) / 60.0
+                    resultsDict[hour, default: 0.0] += minutes
+                }
+                var finalData: [(Date, Double)] = []
+                for h in 0...currentHour {
+                    if let date = calendar.date(bySettingHour: h, minute: 0, second: 0, of: startOfDay) {
+                        finalData.append((date, resultsDict[h] ?? 0.0))
+                    }
+                }
+                DispatchQueue.main.async { completion(finalData) }
+            }
+            healthStore.execute(query)
+            
+        case .sleep:
+            guard let sleepType = HKCategoryType.categoryType(forIdentifier: .sleepAnalysis) else {
+                DispatchQueue.main.async { completion([]) }
+                return
+            }
+            let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+            let query = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { _, samples, _ in
+                guard let samples = samples as? [HKCategorySample] else {
+                    DispatchQueue.main.async { completion(hourlyData) }
+                    return
+                }
+                let asleepSamples = samples.filter { $0.value == HKCategoryValueSleepAnalysis.asleepCore.rawValue ||
+                                                     $0.value == HKCategoryValueSleepAnalysis.asleepDeep.rawValue ||
+                                                     $0.value == HKCategoryValueSleepAnalysis.asleepREM.rawValue ||
+                                                     $0.value == HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue }
+                var resultsDict: [Int: Double] = [:]
+                for sample in asleepSamples {
+                    let hour = calendar.component(.hour, from: sample.startDate)
+                    let hours = sample.endDate.timeIntervalSince(sample.startDate) / 3600.0
+                    resultsDict[hour, default: 0.0] += hours
+                }
+                var finalData: [(Date, Double)] = []
+                for h in 0...currentHour {
+                    if let date = calendar.date(bySettingHour: h, minute: 0, second: 0, of: startOfDay) {
+                        finalData.append((date, resultsDict[h] ?? 0.0))
+                    }
+                }
+                DispatchQueue.main.async { completion(finalData) }
+            }
+            healthStore.execute(query)
+        }
+    }
+}

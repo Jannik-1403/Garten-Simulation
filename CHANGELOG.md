@@ -14,6 +14,17 @@
 
 # Changelog
 
+## 2026-07-28: Phase 4 Fixes
+- **Chart X-Axis Format:** Diagrammachse angepasst, sodass nur noch die Stunden-Zahlen (06, 12, 18) ohne 'Uhr' angezeigt werden (bzw. auf Englisch mit 'AM/PM').
+- **Chart Y-Axis:** Y-Achsenbeschriftung auf die rechte Seite (`trailing`) verschoben.
+- **Joggen -> Schritte:** Die Automatik-Zuordnung in `HabitModel.swift` für 'Joggen' (und ähnliche Begriffe wie Laufen, Spazieren) liest nun korrekt die Schritte (.steps) aus Apple Health aus, anstatt nach expliziten Lauf-Workouts zu suchen.
+
+## 2026-07-28: Phase 4 - Apple Health Integration & Line Chart
+- **Apple Health Hourly Data:** `HealthManager` erweitert, um historische Daten (stündlich) abzurufen, um Apple Health-Daten detailliert anzuzeigen.
+- **Auto-Watering:** Die App prüft beim Öffnen der Pflanze, ob das Health-Ziel (z. B. 10.000 Schritte) erreicht wurde. Falls ja, wird die Pflanze automatisch gegossen (`checkHealthTargets`).
+- **Health Progress Chart:** Ein neues Liniendiagramm (`HealthChartView`) in `PflanzeDetailSheet` hinzugefügt, das den Tagesverlauf aus Apple Health visualisiert, sofern die Pflanze mit Apple Health gekoppelt ist.
+- **Lokalisierung:** Übersetzungen für `health.chart.title` und `health.chart.target` in `Localizable.xcstrings` hinzugefügt (100% Abdeckung in allen Sprachen).
+
 ## 2026-07-22 (Widget Localization Update)
 - **Localization:** 26 alte Strings aus dem Widget in den zentralen iOS String Catalog (Localizable.xcstrings) migriert.
 - **Translation:** Diese Strings wurden automatisch in alle 16 Projektsprachen übersetzt (150 neue Einträge).
@@ -269,3 +280,9 @@
 - **Plus-Buttons als 3D-Buttons**: Die Plus-Icons für To-Dos und Notizen (oben rechts im jeweiligen Accordion-Header) sind nun saubere, kleine 3D-Buttons.
 - **Erledigte To-Dos**: Wenn eine To-Do abgehakt (durchgestrichen) wird, färbt sich ihr Hintergrund nun komplett grün (`.gruenPrimary`). Das Häkchen und der Text wechseln dabei für einen perfekten Kontrast zu Weiß.
 - **Streak Lottie Perfektion**: Die Streak-Anzeige ganz oben auf der Detailseite sieht nun 1:1 exakt so aus wie auf der Haupt-Streak-Seite (`StreakView`), inklusive der Lottie-Animation (`GameConstants.streakLottieURL`), der Schriftgröße und dem typischen orangenen Schatten!
+
+## Multiple Daily Reminders & UI Refinements
+- Streak Lottie vergrößert und den Abstand zur Zahl angepasst
+- Timer Button durch eine aufklappbare "Daily Reminder" Liste ersetzt, passend zu den anderen Elementen (To-Dos, Notizen)
+- Unterstützung für mehrere tägliche Erinnerungen pro Habit (Pflanze) hinzugefügt
+- Localizable.xcstrings auf 100% Abdeckung für neue Strings überprüft

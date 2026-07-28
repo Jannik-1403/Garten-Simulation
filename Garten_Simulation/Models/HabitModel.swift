@@ -299,8 +299,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     
     var automaticHealthMetric: HealthMetricType? {
         let nameLower = habitName.lowercased()
-        if nameLower.contains("joggen") || nameLower.contains("laufen") || nameLower.contains("running") {
-            return .running
+        if nameLower.contains("joggen") || nameLower.contains("laufen") || nameLower.contains("running") || nameLower.contains("schritt") || nameLower.contains("spazieren") || nameLower.contains("walk") {
+            return .steps
         } else if nameLower.contains("krafttraining") || nameLower.contains("fitness") || nameLower.contains("gym") || nameLower.contains("workout") {
             return .strengthTraining
         } else if nameLower.contains("trinken") || nameLower.contains("wasser") || nameLower.contains("water") {
@@ -738,6 +738,12 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         }
         individualSchwierigkeit = try container.decodeIfPresent(String.self, forKey: .individualSchwierigkeit)
         linkedHealthMetric = try container.decodeIfPresent(HealthMetricType.self, forKey: .linkedHealthMetric)
+        
+        // MIGRATION: Fix old plants that saved .running for Joggen instead of .steps
+        let nameLower = habitName.lowercased()
+        if linkedHealthMetric == .running && (nameLower.contains("joggen") || nameLower.contains("laufen") || nameLower.contains("schritt") || nameLower.contains("spazieren")) {
+            linkedHealthMetric = .steps
+        }
         healthTarget = try container.decodeIfPresent(Double.self, forKey: .healthTarget)
         allowManualTrackingForHealth = try container.decodeIfPresent(Bool.self, forKey: .allowManualTrackingForHealth) ?? false
         customTrackerName = try container.decodeIfPresent(String.self, forKey: .customTrackerName)

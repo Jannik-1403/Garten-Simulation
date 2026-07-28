@@ -1741,3 +1741,28 @@ class GardenStore: ObservableObject {
         }
     }
 }
+extension GardenStore {
+    func checkHealthTargets(healthManager: HealthManager) {
+        let calendar = Calendar.current
+        for pflanze in pflanzen {
+            // Nur Pflanzen checken, die ein Health-Metric und Target haben
+            guard let metric = pflanze.linkedHealthMetric,
+                  let target = pflanze.healthTarget else { continue }
+            
+            // Wenn heute schon gegossen, überspringen
+            if let letzteBewaesserung = pflanze.letzteBewaesserung, calendar.isDateInToday(letzteBewaesserung) {
+                continue
+            }
+            
+            // Wert für heute holen
+            healthManager.fetchValue(for: metric) { [weak self] currentValue in
+                DispatchQueue.main.async {
+                    if currentValue >= target {
+                        // Pflanze gießen
+                        self?.giessen(pflanze: pflanze)
+                    }
+                }
+            }
+        }
+    }
+}

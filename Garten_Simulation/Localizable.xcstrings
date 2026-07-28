@@ -1,196 +1,12 @@
 {
   "sourceLanguage": "de",
   "strings": {
-    "0": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ноль"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "0"
-          }
-        }
-      }
+    "": {
+
     },
-    "100": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "сто"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "100"
-          }
-        }
-      }
+    " ": {
+
     },
-    "": {},
-    " ": {},
     "-": {
       "localizations": {
         "de": {
@@ -661,7 +477,9 @@
         }
       }
     },
-    "%@": {},
+    "%@": {
+
+    },
     "%@ (+%lld %@)": {
       "localizations": {
         "de": {
@@ -1811,7 +1629,9 @@
         }
       }
     },
-    "• %@": {},
+    "• %@": {
+
+    },
     "+%lld": {
       "localizations": {
         "de": {
@@ -1998,6 +1818,194 @@
           "stringUnit": {
             "state": "translated",
             "value": "+%lld %@"
+          }
+        }
+      }
+    },
+    "0": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ноль"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
+          }
+        }
+      }
+    },
+    "100": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "сто"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100"
           }
         }
       }
@@ -10346,7 +10354,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Introduisez la règle des 24 heures : toute dépense imprévue supérieure à 50 € ne sera effectuée qu'un jour plus tard. Sans exception."
+            "value": "Introduisez la règle des 24 heures: toute dépense imprévue supérieure à 50 € ne sera effectuée qu'un jour plus tard. Sans exception."
           }
         },
         "hi": {
@@ -10442,7 +10450,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ne faites jamais vos courses le ventre vide ou extrêmement stressé : 1 ％ de stress supplémentaire entraîne 50 ％ de dépenses en plus."
+            "value": "Ne faites jamais vos courses le ventre vide ou extrêmement stressé: 1 ％ de stress supplémentaire entraîne 50 ％ de dépenses en plus."
           }
         },
         "hi": {
@@ -11402,7 +11410,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "En fait, vous savez ce qui doit être fait financièrement, mais vous continuez à le reporter. Votre indécision coûte de l’argent. La solution : réduire la tâche à un minimum ridicule."
+            "value": "En fait, vous savez ce qui doit être fait financièrement, mais vous continuez à le reporter. Votre indécision coûte de l’argent. La solution: réduire la tâche à un minimum ridicule."
           }
         },
         "hi": {
@@ -20605,7 +20613,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "N'utilisez jamais les mots « pas le temps ». Dites plutôt à voix haute : « L'exercice n'est pas une priorité pour moi aujourd'hui. »"
+            "value": "N'utilisez jamais les mots « pas le temps ». Dites plutôt à voix haute: « L'exercice n'est pas une priorité pour moi aujourd'hui. »"
           }
         },
         "hi": {
@@ -25786,7 +25794,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vous êtes en route pour l'entraînement. Vos amis vous appellent : « Viens ici maintenant, nous avons commandé une pizza et nous allons commencer à jouer !"
+            "value": "Vous êtes en route pour l'entraînement. Vos amis vous appellent: « Viens ici maintenant, nous avons commandé une pizza et nous allons commencer à jouer !"
           }
         },
         "hi": {
@@ -29050,7 +29058,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je punis immédiatement la faiblesse : enfilez des chaussures de course, sortez dans la rue, courez 5 kilomètres."
+            "value": "Je punis immédiatement la faiblesse: enfilez des chaussures de course, sortez dans la rue, courez 5 kilomètres."
           }
         },
         "hi": {
@@ -33070,7 +33078,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je négocie avec moi-même : « Commencez juste pendant 5 minutes », mais ensuite je vais souvent jusqu'au bout."
+            "value": "Je négocie avec moi-même: « Commencez juste pendant 5 minutes », mais ensuite je vais souvent jusqu'au bout."
           }
         },
         "hi": {
@@ -41410,7 +41418,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le sommeil n'est pas une faiblesse : c'est la seule amélioration dont votre cerveau bénéficie gratuitement. Commencez-le aujourd'hui."
+            "value": "Le sommeil n'est pas une faiblesse: c'est la seule amélioration dont votre cerveau bénéficie gratuitement. Commencez-le aujourd'hui."
           }
         },
         "hi": {
@@ -55008,7 +55016,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Votre environnement vous tire vers le bas. Vous n’êtes pas obligé de changer de réseau du jour au lendemain : commencez par 1 ％ de numérisation."
+            "value": "Votre environnement vous tire vers le bas. Vous n’êtes pas obligé de changer de réseau du jour au lendemain: commencez par 1 ％ de numérisation."
           }
         },
         "hi": {
@@ -59328,7 +59336,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je dis froidement : « On ne parle pas des gens qui ne sont pas là. et mettre fin à la conversation."
+            "value": "Je dis froidement: « On ne parle pas des gens qui ne sont pas là. et mettre fin à la conversation."
           }
         },
         "hi": {
@@ -62688,7 +62696,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ils demandent immédiatement : « Comment pouvons-nous vous aider ? » ou contester le plan de manière constructive."
+            "value": "Ils demandent immédiatement: « Comment pouvons-nous vous aider ? » ou contester le plan de manière constructive."
           }
         },
         "hi": {
@@ -66900,7 +66908,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vous avez le choix : un boulot à 4 000 € net qui vous ennuiera à mourir chaque jour, ou un boulot à 2 500 € net qui vous pousse chaque jour dans vos limites intellectuelles."
+            "value": "Vous avez le choix: un boulot à 4 000 € net qui vous ennuiera à mourir chaque jour, ou un boulot à 2 500 € net qui vous pousse chaque jour dans vos limites intellectuelles."
           }
         },
         "hi": {
@@ -71220,7 +71228,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Votre partenaire vous dit : « Si vous allez à cette formation au lieu de passer du temps avec moi, je serai extrêmement contrarié. »"
+            "value": "Votre partenaire vous dit: « Si vous allez à cette formation au lieu de passer du temps avec moi, je serai extrêmement contrarié. »"
           }
         },
         "hi": {
@@ -72180,7 +72188,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vous avez déjà investi 2 ans et 10 000 € dans un projet. Aujourd'hui, vous voyez très clairement : c'est une impasse et cela vous rend malheureux."
+            "value": "Vous avez déjà investi 2 ans et 10 000 € dans un projet. Aujourd'hui, vous voyez très clairement: c'est une impasse et cela vous rend malheureux."
           }
         },
         "hi": {
@@ -94121,7 +94129,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Actif jusqu'à : %@"
+            "value": "Actif jusqu'à: %@"
           }
         },
         "hi": {
@@ -102822,7 +102830,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Risque de mauvaises herbes : %@"
+            "value": "Risque de mauvaises herbes: %@"
           }
         },
         "hi": {
@@ -102919,7 +102927,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Durée : %lld minutes"
+            "value": "Durée: %lld minutes"
           }
         },
         "hi": {
@@ -117022,7 +117030,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plus longue série sans rechute : %lld jours"
+            "value": "Plus longue série sans rechute: %lld jours"
           }
         },
         "hi": {
@@ -117210,7 +117218,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "  Déclencheurs : %@"
+            "value": "  Déclencheurs: %@"
           }
         },
         "hi": {
@@ -119399,7 +119407,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Date : %@"
+            "value": "Date: %@"
           }
         },
         "hi": {
@@ -119777,7 +119785,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Habitude : %@"
+            "value": "Habitude: %@"
           }
         },
         "hi": {
@@ -119871,7 +119879,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Routine : %@"
+            "value": "Routine: %@"
           }
         },
         "hi": {
@@ -124433,7 +124441,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Avertissement] Je suis trop faible pour quatre-vingt-dix-neuf pour cent de mes tâches. J'annule : X-Y-Z au lieu de A-B-C. Ma concentration tombe à zéro point zéro ; Je choisis l’#échec plutôt que la #croissance. Pourquoi? Parce que mon niveau de dopamine est < dix pour cent."
+            "value": "[Avertissement] Je suis trop faible pour quatre-vingt-dix-neuf pour cent de mes tâches. J'annule: X-Y-Z au lieu de A-B-C. Ma concentration tombe à zéro point zéro ; Je choisis l’#échec plutôt que la #croissance. Pourquoi? Parce que mon niveau de dopamine est < dix pour cent."
           }
         },
         "hi": {
@@ -124621,7 +124629,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Je confirme par la présente l'annulation (statut : cent pour cent indiscipliné). Au lieu de faire un pas en avant, je recule de trois pas. Je ne me soucie pas de mes #objectifs pour le moment ; Je clique sur [Déverrouiller] et je perds une demi-heure."
+            "value": "Je confirme par la présente l'annulation (statut: cent pour cent indiscipliné). Au lieu de faire un pas en avant, je recule de trois pas. Je ne me soucie pas de mes #objectifs pour le moment ; Je clique sur [Déverrouiller] et je perds une demi-heure."
           }
         },
         "hi": {
@@ -124715,7 +124723,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pourquoi abandonner ? Parce que j'ai une tolérance à la frustration de zéro pour cent. Je choisis le raccourci (Type B) et ignore la règle numéro un : Restez concentré ! Mes PV chutent de moins quinze points ; C'est le prix de deux minutes de faiblesse."
+            "value": "Pourquoi abandonner ? Parce que j'ai une tolérance à la frustration de zéro pour cent. Je choisis le raccourci (Type B) et ignore la règle numéro un: Restez concentré ! Mes PV chutent de moins quinze points ; C'est le prix de deux minutes de faiblesse."
           }
         },
         "hi": {
@@ -127507,7 +127515,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Durée : %lld minutes"
+            "value": "Durée: %lld minutes"
           }
         },
         "hi": {
@@ -135818,7 +135826,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "1re Loi : Le rendre invisible"
+            "value": "1re Loi: Le rendre invisible"
           }
         },
         "hi": {
@@ -135914,7 +135922,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "2e Loi : Le rendre peu attrayant"
+            "value": "2e Loi: Le rendre peu attrayant"
           }
         },
         "hi": {
@@ -136010,7 +136018,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "3e Loi : Le rendre difficile"
+            "value": "3e Loi: Le rendre difficile"
           }
         },
         "hi": {
@@ -136106,7 +136114,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "4e Loi : Le rendre insatisfaisant"
+            "value": "4e Loi: Le rendre insatisfaisant"
           }
         },
         "hi": {
@@ -136813,7 +136821,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dbanie o zdrowie : samoopieka"
+            "value": "Dbanie o zdrowie: samoopieka"
           }
         },
         "pt": {
@@ -137616,6 +137624,629 @@
         }
       }
     },
+    "health.chart.label.target": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Target"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cible"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цель"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hedef"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目标"
+          }
+        }
+      }
+    },
+    "health.chart.label.today": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heute"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auj."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сегодня"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bugün"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今天"
+          }
+        }
+      }
+    },
+    "health.chart.subtitle.no_target": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Behalte deine Gesundheit im Blick."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep track of your health."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sigue tu salud."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suivez votre santé."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Следите за здоровьем."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sağlığınızı takip edin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "跟踪您的健康。"
+          }
+        }
+      }
+    },
+    "health.chart.subtitle.progress": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bist auf einem guten Weg, weiter so!"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're on track, keep it up!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vas por buen camino, ¡sigue así!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En bonne voie, continuez !"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вы на верном пути, продолжайте!"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İyi gidiyorsunuz, devam edin!"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您进展顺利，继续保持！"
+          }
+        }
+      }
+    },
+    "health.chart.subtitle.reached": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klasse! Du hast dein Ziel heute erreicht."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Great! You reached your goal today."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Genial! Lograste tu objetivo hoy."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Super! Vous avez atteint votre objectif."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Супер! Вы достигли цели."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Harika! Hedefinize ulaştınız."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太棒了！您已达成目标。"
+          }
+        }
+      }
+    },
+    "health.chart.target": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Target"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cible"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alvo"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цель"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目标"
+          }
+        }
+      }
+    },
+    "health.chart.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tagesverlauf"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily Progress"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progreso diario"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progrès quotidien"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "毎日の進捗"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Progresso diário"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ежедневный прогресс"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每日进度"
+          }
+        }
+      }
+    },
+    "health.chart.title.mindfulness": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🧘 Achtsamkeit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🧘 Mindfulness"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🧘 Atención"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🧘 Pleine conscience"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🧘 Осознанность"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🧘 Farkındalık"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🧘 正念"
+          }
+        }
+      }
+    },
+    "health.chart.title.running": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏃 Laufen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏃 Running"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏃 Correr"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏃 Course"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏃 Бег"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏃 Koşu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏃 跑步"
+          }
+        }
+      }
+    },
+    "health.chart.title.sleep": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌙 Schlaf"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌙 Sleep"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌙 Sueño"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌙 Sommeil"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌙 Сон"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌙 Uyku"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌙 睡眠"
+          }
+        }
+      }
+    },
+    "health.chart.title.steps": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "👟 Schritte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "👟 Steps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "👟 Pasos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "👟 Pas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "👟 Шаги"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "👟 Adımlar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "👟 步数"
+          }
+        }
+      }
+    },
+    "health.chart.title.strength": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏋️ Krafttraining"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏋️ Strength"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏋️ Fuerza"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏋️ Musculation"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏋️ Силовые"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏋️ Ağırlık"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏋️ 力量训练"
+          }
+        }
+      }
+    },
+    "health.chart.title.water": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "💧 Wasser"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "💧 Water"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "💧 Agua"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "💧 Eau"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "💧 Вода"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "💧 Su"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "💧 水"
+          }
+        }
+      }
+    },
     "health.metric.mindfulness": {
       "extractionState": "manual",
       "localizations": {
@@ -138182,6 +138813,147 @@
           "stringUnit": {
             "state": "translated",
             "value": "水"
+          }
+        }
+      }
+    },
+    "health.unit.hours": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Std"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hrs"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "h"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "h"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ч"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sa"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "小时"
+          }
+        }
+      }
+    },
+    "health.unit.steps": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schritte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "steps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pasos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pas"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "шаги"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "adım"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "步"
+          }
+        }
+      }
+    },
+    "health.unit.water": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "мл"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ml"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "毫升"
           }
         }
       }
@@ -138978,7 +139750,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": " IMPORTANT : 'Restaurer les achats' fonctionne UNIQUEMENT pour les achats non consommables (comme les lunettes). Les pièces ne peuvent pas être restaurées."
+            "value": " IMPORTANT: 'Restaurer les achats' fonctionne UNIQUEMENT pour les achats non consommables (comme les lunettes). Les pièces ne peuvent pas être restaurées."
           }
         },
         "hi": {
@@ -141762,7 +142534,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "ex. : Emma Martin"
+            "value": "ex.: Emma Martin"
           }
         },
         "hi": {
@@ -143225,7 +143997,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Coût : %d Graines"
+            "value": "Coût: %d Graines"
           }
         },
         "hi": {
@@ -146103,7 +146875,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Actif immédiatement : pas de nouvelles mauvaises herbes."
+            "value": "Actif immédiatement: pas de nouvelles mauvaises herbes."
           }
         },
         "hi": {
@@ -148119,7 +148891,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avec des mauvaises herbes : glisse le bouclier sur 1, 2 et 3. Puis 24 h sans nouvelles."
+            "value": "Avec des mauvaises herbes: glisse le bouclier sur 1, 2 et 3. Puis 24 h sans nouvelles."
           }
         },
         "hi": {
@@ -152726,7 +153498,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bonus : +2 tours de roue"
+            "value": "Bonus: +2 tours de roue"
           }
         },
         "hi": {
@@ -160202,7 +160974,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Note : tu as déjà désactivé les notifications. Pour les utiliser, tu dois les réactiver dans les réglages iOS."
+            "value": "Note: tu as déjà désactivé les notifications. Pour les utiliser, tu dois les réactiver dans les réglages iOS."
           }
         },
         "hi": {
@@ -170348,7 +171120,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prochain palier : %@"
+            "value": "Prochain palier: %@"
           }
         },
         "hi": {
@@ -180177,7 +180949,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "30 jours de fitness. Aujourd'hui : performance maximale — autant de pompes que possible."
+            "value": "30 jours de fitness. Aujourd'hui: performance maximale — autant de pompes que possible."
           }
         },
         "hi": {
@@ -181233,7 +182005,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Reste concentré sur ta tâche : [HABIT]. Chaque jour compte dans ton voyage."
+            "value": "Reste concentré sur ta tâche: [HABIT]. Chaque jour compte dans ton voyage."
           }
         },
         "hi": {
@@ -190315,7 +191087,9 @@
         }
       }
     },
-    "Pflanze": {},
+    "Pflanze": {
+
+    },
     "pflanze_auswahl_option_coins": {
       "comment": "",
       "extractionState": "manual",
@@ -196073,6 +196847,101 @@
         }
       }
     },
+    "plant.detail.active_effects": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktive Effekte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        }
+      }
+    },
     "plant.detail.custom_tracker.title": {
       "extractionState": "manual",
       "localizations": {
@@ -196164,6 +197033,59 @@
           "stringUnit": {
             "state": "translated",
             "value": "自己的追蹤器"
+          }
+        }
+      }
+    },
+    "plant.detail.no_reminders": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keine Erinnerungen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No reminders"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin recordatorios"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun rappel"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リマインダーなし"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sem lembretes"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет напоминаний"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有提醒"
           }
         }
       }
@@ -212967,7 +213889,9 @@
         }
       }
     },
-    "PRO": {},
+    "PRO": {
+
+    },
     "profil_garten_level": {
       "comment": "",
       "extractionState": "manual",
@@ -214817,7 +215741,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Durée : %d sec."
+            "value": "Durée: %d sec."
           }
         },
         "hi": {
@@ -214913,7 +215837,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Durée : %d min."
+            "value": "Durée: %d min."
           }
         },
         "hi": {
@@ -221970,7 +222894,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parcourez toutes les pièces : videz les poubelles, rassemblez les bouteilles consignées, jetez les déchets de papier."
+            "value": "Parcourez toutes les pièces: videz les poubelles, rassemblez les bouteilles consignées, jetez les déchets de papier."
           }
         },
         "hi": {
@@ -233845,7 +234769,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Peu importe si cela fait mal ou si cela fonctionne parfaitement : votre corps vous maintient en vie. Pourquoi le remerciez-vous aujourd'hui ?"
+            "value": "Peu importe si cela fait mal ou si cela fonctionne parfaitement: votre corps vous maintient en vie. Pourquoi le remerciez-vous aujourd'hui ?"
           }
         },
         "hi": {
@@ -247620,7 +248544,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Si vous voyez quelque chose en ligne que vous souhaitez acheter : ajoutez-le à votre panier, mais attendez 72 heures. La plupart du temps, l’envie disparaît."
+            "value": "Si vous voyez quelque chose en ligne que vous souhaitez acheter: ajoutez-le à votre panier, mais attendez 72 heures. La plupart du temps, l’envie disparaît."
           }
         },
         "hi": {
@@ -256265,7 +257189,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Si votre tête vous fait mal : posez un morceau de papier et un stylo sur votre lit. Notez toutes vos pensées et choses à faire pour demain afin que votre esprit soit clair."
+            "value": "Si votre tête vous fait mal: posez un morceau de papier et un stylo sur votre lit. Notez toutes vos pensées et choses à faire pour demain afin que votre esprit soit clair."
           }
         },
         "hi": {
@@ -280070,7 +280994,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Libération de dopamine détectée : Tu es absolument sur la bonne voie !"
+            "value": "Libération de dopamine détectée: Tu es absolument sur la bonne voie !"
           }
         },
         "hi": {
@@ -304221,6 +305145,53 @@
         }
       }
     },
+    "settings.health.connected": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbunden"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connected"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecté"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подключено"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bağlı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已连接"
+          }
+        }
+      }
+    },
     "settings.health.instruction": {
       "extractionState": "manual",
       "localizations": {
@@ -304312,6 +305283,53 @@
           "stringUnit": {
             "state": "translated",
             "value": "設定檔 > 隱私權 > 應用程式 > Grovy 以啟用一切。"
+          }
+        }
+      }
+    },
+    "settings.health.off": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aus"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apagado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désactivé"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Откл"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapalı"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭"
           }
         }
       }
@@ -311715,7 +312733,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Coût : %d graines"
+            "value": "Coût: %d graines"
           }
         },
         "hi": {
@@ -321375,7 +322393,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Équilibre : Essaie de cultiver tous les aspects de ta vie de manière égale."
+            "value": "Équilibre: Essaie de cultiver tous les aspects de ta vie de manière égale."
           }
         },
         "hi": {
@@ -321471,7 +322489,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Régularité : De petits pas quotidiens mènent à un grand succès."
+            "value": "Régularité: De petits pas quotidiens mènent à un grand succès."
           }
         },
         "hi": {
@@ -321567,7 +322585,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pleine conscience : Écoute tes besoins et ajuste tes objectifs."
+            "value": "Pleine conscience: Écoute tes besoins et ajuste tes objectifs."
           }
         },
         "hi": {
@@ -321663,7 +322681,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Progrès : Célèbre chaque étape, aussi petite soit-elle."
+            "value": "Progrès: Célèbre chaque étape, aussi petite soit-elle."
           }
         },
         "hi": {
@@ -322237,7 +323255,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Défis de 90 jours terminés : %lld"
+            "value": "Défis de 90 jours terminés: %lld"
           }
         },
         "hi": {
@@ -322811,7 +323829,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Série actuelle : %lld"
+            "value": "Série actuelle: %lld"
           }
         },
         "hi": {
@@ -323480,7 +324498,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Plus longue série (Jours) : %lld"
+            "value": "Plus longue série (Jours): %lld"
           }
         },
         "hi": {
@@ -349575,7 +350593,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vente : %@"
+            "value": "Vente: %@"
           }
         },
         "hi": {
@@ -350436,7 +351454,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Essaie les 'Dry Days' : planifie des jours sans alcool fixes par semaine."
+            "value": "Essaie les 'Dry Days': planifie des jours sans alcool fixes par semaine."
           }
         },
         "hi": {
@@ -350723,7 +351741,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Au lieu d'un marathon de séries : Deviens actif et utilise ton temps libre à bon escient."
+            "value": "Au lieu d'un marathon de séries: Deviens actif et utilise ton temps libre à bon escient."
           }
         },
         "hi": {
@@ -351679,7 +352697,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vaincs la paresse : Lève-toi et apporte du mouvement dans ton quotidien."
+            "value": "Vaincs la paresse: Lève-toi et apporte du mouvement dans ton quotidien."
           }
         },
         "hi": {
@@ -352443,7 +353461,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Note : combien d'heures as-tu été assis aujourd'hui ? Qu'est-ce que tu rates à cause de ça ?"
+            "value": "Note: combien d'heures as-tu été assis aujourd'hui ? Qu'est-ce que tu rates à cause de ça ?"
           }
         },
         "hi": {
@@ -353399,7 +354417,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Calcule : à quelle fréquence achètes-tu de la restauration rapide par mois et combien ça te coûte ?"
+            "value": "Calcule: à quelle fréquence achètes-tu de la restauration rapide par mois et combien ça te coûte ?"
           }
         },
         "hi": {
@@ -355121,7 +356139,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fais défiler consciemment : demande-toi avant d'allumer si ça vaut la peine."
+            "value": "Fais défiler consciemment: demande-toi avant d'allumer si ça vaut la peine."
           }
         },
         "hi": {
@@ -355216,7 +356234,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Utilise un minuteur : règle une heure – puis éteins automatiquement."
+            "value": "Utilise un minuteur: règle une heure – puis éteins automatiquement."
           }
         },
         "hi": {
@@ -355311,7 +356329,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tiens un journal télévisé : qu'as-tu regardé hier ? Ça valait le coup ?"
+            "value": "Tiens un journal télévisé: qu'as-tu regardé hier ? Ça valait le coup ?"
           }
         },
         "hi": {
@@ -357033,7 +358051,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rappelle-toi : la restauration rapide te rend paresseux et te coûte de l'énergie à long terme."
+            "value": "Rappelle-toi: la restauration rapide te rend paresseux et te coûte de l'énergie à long terme."
           }
         },
         "hi": {
@@ -358179,7 +359197,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Compare : combien coûte une commande par rapport à cuisiner soi-même – par mois ?"
+            "value": "Compare: combien coûte une commande par rapport à cuisiner soi-même – par mois ?"
           }
         },
         "hi": {
@@ -360091,7 +361109,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Calcule : combien as-tu dépensé en achats intégrés cette année ?"
+            "value": "Calcule: combien as-tu dépensé en achats intégrés cette année ?"
           }
         },
         "hi": {
@@ -360283,7 +361301,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "La modestie paie : Économise ton argent au lieu de le gaspiller pour le statut."
+            "value": "La modestie paie: Économise ton argent au lieu de le gaspiller pour le statut."
           }
         },
         "hi": {
@@ -360857,7 +361875,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Demande-toi : est-ce que j'achète ça pour moi – ou pour impressionner les autres ?"
+            "value": "Demande-toi: est-ce que j'achète ça pour moi – ou pour impressionner les autres ?"
           }
         },
         "hi": {
@@ -360952,7 +361970,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Règle : attendre 72 heures pour tout achat de plus de 50 euros."
+            "value": "Règle: attendre 72 heures pour tout achat de plus de 50 euros."
           }
         },
         "hi": {
@@ -363915,7 +364933,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Note : comment t'es-tu senti après les dernières nouvelles ? Et qu'est-ce que ça t'a apporté ?"
+            "value": "Note: comment t'es-tu senti après les dernières nouvelles ? Et qu'est-ce que ça t'a apporté ?"
           }
         },
         "hi": {
@@ -364679,7 +365697,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Remets en question : as-tu vraiment besoin de ça – ou tu veux juste le coup de dopamine ?"
+            "value": "Remets en question: as-tu vraiment besoin de ça – ou tu veux juste le coup de dopamine ?"
           }
         },
         "hi": {
@@ -364774,7 +365792,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Règle : remplis le panier, mais attends 24 heures avant d'acheter."
+            "value": "Règle: remplis le panier, mais attends 24 heures avant d'acheter."
           }
         },
         "hi": {
@@ -365635,7 +366653,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rappel : le manque de sommeil coûte des jours de productivité, pas seulement des heures."
+            "value": "Rappel: le manque de sommeil coûte des jours de productivité, pas seulement des heures."
           }
         },
         "hi": {
@@ -367929,7 +368947,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Calcule ton coût mensuel de tabac : qu'est-ce que tu pourrais acheter à la place ?"
+            "value": "Calcule ton coût mensuel de tabac: qu'est-ce que tu pourrais acheter à la place ?"
           }
         },
         "hi": {
@@ -368985,7 +370003,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rechute à cause de : %@"
+            "value": "Rechute à cause de: %@"
           }
         },
         "hi": {
@@ -369823,6 +370841,9 @@
           }
         }
       }
+    },
+    "Uhrzeit": {
+
     },
     "verlauf.analysis.desc.fluctuating": {
       "extractionState": "manual",
@@ -374544,7 +375565,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alerte sécheresse : arrose deux fois aujourd'hui."
+            "value": "Alerte sécheresse: arrose deux fois aujourd'hui."
           }
         },
         "hi": {
@@ -374736,7 +375757,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Météo parfaite : double les pièces aujourd'hui."
+            "value": "Météo parfaite: double les pièces aujourd'hui."
           }
         },
         "hi": {
@@ -374832,7 +375853,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pluie : Gagne le double d'XP aujourd'hui."
+            "value": "Pluie: Gagne le double d'XP aujourd'hui."
           }
         },
         "hi": {
@@ -374928,7 +375949,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gel : seulement la moitié des pièces aujourd'hui."
+            "value": "Gel: seulement la moitié des pièces aujourd'hui."
           }
         },
         "hi": {
@@ -375024,7 +376045,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tempête : Si une plante meurt, tu perds 2 vies au lieu d'une."
+            "value": "Tempête: Si une plante meurt, tu perds 2 vies au lieu d'une."
           }
         },
         "hi": {
@@ -376272,7 +377293,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Progression : %d sur %d"
+            "value": "Progression: %d sur %d"
           }
         },
         "hi": {
@@ -376560,7 +377581,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Boost : %@ XP"
+            "value": "Boost: %@ XP"
           }
         },
         "hi": {
@@ -376656,7 +377677,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu as surmonté la crise d'herbes. Pendant %2$d heures : %1$@ d'XP par arrosage."
+            "value": "Tu as surmonté la crise d'herbes. Pendant %2$d heures: %1$@ d'XP par arrosage."
           }
         },
         "hi": {
@@ -377136,7 +378157,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Progression : %d sur %d"
+            "value": "Progression: %d sur %d"
           }
         },
         "hi": {
@@ -378288,7 +379309,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bouclier : %d sur %d champs"
+            "value": "Bouclier: %d sur %d champs"
           }
         },
         "hi": {
@@ -382372,7 +383393,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Conseil : Planifie de petits blocs de concentration fixes (p.ex. 25 minutes) plutôt que d'essayer de travailler pendant des heures."
+            "value": "Conseil: Planifie de petits blocs de concentration fixes (p.ex. 25 minutes) plutôt que d'essayer de travailler pendant des heures."
           }
         },
         "hi": {
@@ -382467,7 +383488,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Conseil : Essaie de garder ton téléphone hors de ta vue pendant tes sessions – cela réduit énormément les distractions."
+            "value": "Conseil: Essaie de garder ton téléphone hors de ta vue pendant tes sessions – cela réduit énormément les distractions."
           }
         },
         "hi": {
@@ -382562,7 +383583,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Conseil : Effectue tes habitudes les plus importantes dès le matin. Tu commenceras ainsi la journée avec une petite victoire !"
+            "value": "Conseil: Effectue tes habitudes les plus importantes dès le matin. Tu commenceras ainsi la journée avec une petite victoire !"
           }
         },
         "hi": {
@@ -382657,7 +383678,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Conseil : Parfois, moins c'est plus. Concentre-toi sur 2-3 habitudes clés la semaine prochaine pour vraiment les ancrer."
+            "value": "Conseil: Parfois, moins c'est plus. Concentre-toi sur 2-3 habitudes clés la semaine prochaine pour vraiment les ancrer."
           }
         },
         "hi": {
@@ -383012,6 +384033,9 @@
           }
         }
       }
+    },
+    "Wert": {
+
     },
     "wheel_drehen": {
       "comment": "",
@@ -383518,7 +384542,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Utiliser le bot : Retourner !"
+            "value": "Utiliser le bot: Retourner !"
           }
         },
         "hi": {
@@ -389989,7 +391013,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Temps pour la routine : %@"
+            "value": "Temps pour la routine: %@"
           }
         },
         "hi": {
@@ -390060,153 +391084,8 @@
         }
       }
     },
-    "plant.detail.active_effects": {
-      "extractionState": "manual",
-      "localizations": {
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aktive Effekte"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Active Effects"
-          }
-        }
-      }
-    },
-    "plant.detail.no_reminders": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Keine Erinnerungen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No reminders"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sin recordatorios"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aucun rappel"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "リマインダーなし"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sem lembretes"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Нет напоминаний"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "没有提醒"
-          }
-        }
-      }
+    "Ziel": {
+
     }
   },
   "version": "1.1"

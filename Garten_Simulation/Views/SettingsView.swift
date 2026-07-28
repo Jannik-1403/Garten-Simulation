@@ -147,6 +147,25 @@ struct SettingsView: View {
                                                     .foregroundStyle(.white)
                                                     .clipShape(Capsule())
                                             } else {
+                                                if healthManager.isAuthorized {
+                                                    HStack(spacing: 4) {
+                                                        Circle()
+                                                            .fill(Color.green)
+                                                            .frame(width: 8, height: 8)
+                                                        Text(String(localized: "settings.health.connected", defaultValue: "Verbunden"))
+                                                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                                            .foregroundColor(.secondary)
+                                                    }
+                                                } else {
+                                                    HStack(spacing: 4) {
+                                                        Circle()
+                                                            .fill(Color.red)
+                                                            .frame(width: 8, height: 8)
+                                                        Text(String(localized: "settings.health.off", defaultValue: "Aus"))
+                                                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                                            .foregroundColor(.secondary)
+                                                    }
+                                                }
                                                 Image(systemName: "chevron.right")
                                                     .font(.system(size: 14, weight: .bold))
                                                     .foregroundStyle(.tertiary)

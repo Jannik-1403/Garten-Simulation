@@ -33,6 +33,7 @@ struct PflanzeDetailSheet: View {
     // History tab removed – only Overview shown
     @State private var pfadBereit: Bool = false
     @State private var zeigePaywall = false
+    @State private var hourlyHealthData: [(Date, Double)] = []
     @State private var zeigeDeleteTrackerConfirm = false
     @State private var zeigeCustomTrackerAlert = false
     @State private var zeigeTrackerConfirm = false
@@ -370,6 +371,15 @@ struct PflanzeDetailSheet: View {
         }
         .background(Color(UIColor.secondarySystemBackground))
         .onAppear {
+            if let metric = pflanze.linkedHealthMetric {
+                healthManager.fetchHourlyData(for: metric) { data in
+                    self.hourlyHealthData = data
+                }
+            }
+            
+            // Auto-Watering check
+            gardenStore.checkHealthTargets(healthManager: healthManager)
+            
             withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
                 pulsieren = true
             }
@@ -501,6 +511,11 @@ struct PflanzeDetailSheet: View {
                                                         .foregroundStyle(.orange)
                                                         .padding(8)
                                                         .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
+                                                    }
+                                                    
+                                                    if !hourlyHealthData.isEmpty {
+                                                        HealthChartView(data: hourlyHealthData, metric: metric, target: pflanze.healthTarget)
+                                                            .padding(.vertical, 8)
                                                     }
                                                     
                                                     // Progress
