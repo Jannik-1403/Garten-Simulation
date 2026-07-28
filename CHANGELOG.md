@@ -1,3 +1,6 @@
+- Feat: Long-Press Gießen auf der Pflanzenkarte implementiert
+- Fix: FlameStreakButton nutzt nun das echte Streak-Icon als Maske statt eines generischen Pfads
+
 ## [2026-07-24] - Zeit-Block Fixes
 - **App-Auswahl Filter**: Apps, die bereits in "Immer blockierte Apps" oder "Apps mit Zeitlimit" ausgewählt sind, werden nun automatisch aus der Auswahl für den Zeit-Block entfernt.
 - **Entsperren im Zeit-Block**: Der "Entsperren"-Button ist nun während eines aktiven Zeit-Blocks klickbar. Über den "Walk of Shame" kann der Text abgetippt werden, um den Zeit-Block vorzeitig zu beenden.
