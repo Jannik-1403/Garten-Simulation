@@ -22,6 +22,7 @@ struct FocusSessionView: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var iapStore: IAPStore
     @Environment(\.scenePhase) var scenePhase
+    @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
     
     @State private var state: FocusSessionState = .intro
     @State private var currentGoalInput: String = ""
@@ -348,74 +349,72 @@ struct FocusSessionView: View {
                 }
             }
             
-            VStack(alignment: .leading, spacing: 12) {
-                if !sessionGoals.isEmpty {
-                    Text(String(localized: "focus.session.your_goals", defaultValue: "Deine Ziele"))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .padding(.bottom, 4)
-                }
-                
-                ForEach($sessionGoals) { $goal in
-                    if !goal.isCompleted {
-                        FocusGoalRow(
-                            goal: $goal,
-                            draggedGoal: $draggedGoal,
-                            sessionGoals: $sessionGoals,
-                            onToggle: { sortSessionGoals() }
-                        )
-                    }
-                }
-                
-                if !sessionGoals.filter({ $0.isCompleted }).isEmpty {
-                    Text(String(localized: "focus.session.completed_goals", defaultValue: "Erledigte Aufgaben"))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .padding(.bottom, 4)
-                        .padding(.top, 12)
-                        
-                    ForEach($sessionGoals) { $goal in
-                        if goal.isCompleted {
-                            FocusGoalRow(
-                                goal: $goal,
-                                draggedGoal: $draggedGoal,
-                                sessionGoals: $sessionGoals,
-                                onToggle: { sortSessionGoals() }
-                            )
-                        }
-                    }
-                }
-                
-                // Add new goal on the fly
-                HStack {
-                    TextField(String(localized: "focus.session.goal.add", defaultValue: "Ziel hinzufügen..."), text: $newGoalText)
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                        .submitLabel(.done)
-                        .onSubmit {
-                            if !newGoalText.trimmingCharacters(in: .whitespaces).isEmpty {
-                                withAnimation {
-                                    sessionGoals.append(FocusGoal(text: newGoalText.trimmingCharacters(in: .whitespaces)))
-                                    newGoalText = ""
-                                }
-                            }
-                        }
-                    
+            VStack(alignment: .center, spacing: 20) {
+                if let activeIndex = sessionGoals.firstIndex(where: { !$0.isCompleted }) {
+                    Text(String(localized: "focus.session.current_goal", defaultValue: "AKTUELLES ZIEL"))
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .tracking(2)
+
+                    Text(sessionGoals[activeIndex].text)
+                        .font(.system(size: 36, weight: .black, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .lineLimit(3)
+                        .minimumScaleFactor(0.5)
+                        .padding(.horizontal, 24)
+                        .id(sessionGoals[activeIndex].id)
+                        .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity), removal: .move(edge: .leading).combined(with: .opacity)))
+
                     Button {
-                        if !newGoalText.trimmingCharacters(in: .whitespaces).isEmpty {
-                            withAnimation {
-                                sessionGoals.append(FocusGoal(text: newGoalText.trimmingCharacters(in: .whitespaces)))
-                                newGoalText = ""
-                            }
+                        if isHapticEnabled {
+                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                        }
+                        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                            sessionGoals[activeIndex].isCompleted = true
+                            sortSessionGoals()
                         }
                     } label: {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.system(size: 24))
-                            .foregroundStyle(newGoalText.isEmpty ? Color.gray : Color.goldPrimary)
+                        HStack(spacing: 8) {
+                            Text(String(localized: "focus.session.goal_done", defaultValue: "Erledigt"))
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                            Image(systemName: "arrow.right.circle.fill")
+                                .font(.system(size: 24))
+                        }
+                        .padding(.horizontal, 32)
+                        .padding(.vertical, 16)
+                        .background(Color.gruenPrimary, in: Capsule())
+                        .foregroundStyle(.white)
+                        .shadow(color: Color.gruenPrimary.opacity(0.3), radius: 8, y: 4)
                     }
-                    .disabled(newGoalText.isEmpty)
+                    .padding(.top, 16)
+
+                    let completedCount = sessionGoals.filter { $0.isCompleted }.count
+                    let totalCount = sessionGoals.count
+                    Text("\(completedCount) / \(totalCount)")
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary.opacity(0.5))
+                        .padding(.top, 8)
+
+                } else if !sessionGoals.isEmpty {
+                    Image(systemName: "checkmark.seal.fill")
+                        .font(.system(size: 64))
+                        .foregroundStyle(Color.gruenPrimary)
+                        .padding(.bottom, 8)
+                    Text(String(localized: "focus.session.all_done", defaultValue: "Alles erledigt!"))
+                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .foregroundStyle(Color.gruenPrimary)
+                    Text(String(localized: "focus.session.all_done.desc", defaultValue: "Bleib im Fokus oder beende die Session frühzeitig."))
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                } else {
+                    // Falls keine Ziele gesetzt wurden
+                    Text(String(localized: "focus.session.no_goals", defaultValue: "Laser-Fokus aktiv"))
+                        .font(.system(size: 28, weight: .black, design: .rounded))
+                        .foregroundStyle(.primary)
+                        .padding(.top, 40)
                 }
-                .padding()
-                .background(.ultraThinMaterial)
-                .cornerRadius(12)
-                .padding(.top, 4)
             }
             .padding(.horizontal, 32)
             .padding(.top, 20)
