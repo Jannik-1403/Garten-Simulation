@@ -14,6 +14,15 @@
 
 # Changelog
 
+## 2026-07-28: Phase 4.2 – HealthChartView v2 & Bugfixes
+- **Grüne gestrichelte Ziellinie:** Das Tagesziel wird als grüne, gestrichelte Linie oben im Diagramm angezeigt.
+- **Ø Woche-Durchschnitt:** Neue Stats-Spalte zeigt den Wochendurchschnitt. Zeigt "k.A. / < 3 Tage" wenn noch nicht genug Daten vorhanden (Mindestens 3 Tage).
+- **Grauer Durchschnitts-Punkt:** Im Diagramm erscheint ein grauer Punkt mit Label "Ø Woche" für den Wochendurchschnitt.
+- **Fortschritt in %:** "Heute"-Anzeige zeigt jetzt Prozentzahl des Tagesziels (z.B. 72%) statt absolute Zahl.
+- **Kein Off-Track-Subtitle mehr:** Dynamischer Vergleichs-Text entfernt.
+- **Speicher-Bug Fix:** Health-Target TextField speichert jetzt korrekt via `.onSubmit`, sodass der Wert beim Schließen der Tastatur gespeichert wird.
+- **fetchWeeklyAverage:** Neue Funktion in `HealthManager` berechnet den tagesgenauen Durchschnitt der letzten 7 Tage per `HKStatisticsCollectionQuery`.
+
 ## 2026-07-28: Phase 4.1 – Apple Health Redesign & Bugfixes
 - **HealthChartView Redesign:** Komplett neues Diagramm im Apple Fitness-Stil – zeigt Metriken (Schritte, Wasser, Schlaf etc.) mit Icon, Titel, dynamischem Untertitel (Ziel erreicht / weiter so), zwei großen Zahlenwerten (Heute + Ziel), kumulativer Linie in Orange und einer grauen Ziellinie. Eingebettet im Item3D-Container.
 - **Sync-Bug Fix:** Existierende Pflanzen mit dem Wort „Joggen/Laufen/Schritt/Spazieren" werden beim Laden automatisch von `.running` auf `.steps` migriert, sodass Apple Health Daten korrekt übertragen werden.
