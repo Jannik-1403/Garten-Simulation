@@ -1,3 +1,6 @@
+- Feat: Focus Session Timer nutzt jetzt den 'Laser Fokus' Modus (nur das aktuelle To-Do wird riesig angezeigt mit Next-Pfeil)
+- Style: Streak-Icon in der Detailansicht verwendet nun die Originalfarben und einen transparenten Hintergrund
+
 - Style: 3D-Flammen Button durch schlichte horizontale Streak-Anzeige (Zahl + Icon) ersetzt
 
 - Style: FlameStreakButton Design aktualisiert (weiße Oberfläche, orange-roter Schatten, Template Image statt Maskierung)
