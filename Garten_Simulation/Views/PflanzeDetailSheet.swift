@@ -847,69 +847,40 @@ struct FlameStreakButton: View {
 
     var body: some View {
         ZStack {
-            // Untere Schicht – Schatten / Tiefe
-            Rectangle()
-                .fill(
+            // Untere Schicht – Schatten / Tiefe (Orange/Rot)
+            Image("streak")
+                .renderingMode(.template)
+                .resizable()
+                .scaledToFit()
+                .foregroundStyle(
                     LinearGradient(
-                        colors: [Color(hex: "#C94A00"), Color(hex: "#B03800")],
+                        colors: [Color(hex: "#D95F00"), Color(hex: "#B03800")],
                         startPoint: .top,
                         endPoint: .bottom
                     )
-                )
-                .mask(
-                    Image("streak")
-                        .resizable()
-                        .scaledToFit()
                 )
                 .frame(width: size, height: size)
 
-            // Obere Schicht – Hauptfläche (nach oben versetzt = 3D-Effekt)
-            Rectangle()
-                .fill(
-                    LinearGradient(
-                        colors: [Color(hex: "#FFAC30"), Color(hex: "#FF5500")],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
-                .mask(
-                    Image("streak")
-                        .resizable()
-                        .scaledToFit()
-                )
+            // Obere Schicht – Hauptfläche (Weiß)
+            Image("streak")
+                .renderingMode(.template)
+                .resizable()
+                .scaledToFit()
+                .foregroundStyle(Color.white)
                 .frame(width: size, height: size)
                 .offset(y: -depth)
-
-            // Innere Glanz-Reflexion
-            Rectangle()
-                .fill(
-                    LinearGradient(
-                        colors: [Color.white.opacity(0.3), Color.clear],
-                        startPoint: .top,
-                        endPoint: .center
-                    )
-                )
-                .mask(
-                    Image("streak")
-                        .resizable()
-                        .scaledToFit()
-                )
-                .frame(width: size * 0.8, height: size * 0.8)
-                .offset(x: -2, y: -(depth + size * 0.1))
-                .blendMode(.plusLighter)
 
             // Inhalt: Streak-Zahl + Label
             VStack(spacing: -2) {
                 Text(verbatim: "\(streak)")
-                    .font(.system(size: 26, weight: .black, design: .rounded))
-                    .foregroundStyle(.white)
-                    .shadow(color: .black.opacity(0.25), radius: 2, y: 1)
+                    .font(.system(size: 24, weight: .black, design: .rounded))
+                    .foregroundStyle(Color(hex: "#D95F00"))
                 Text(String(localized: "plant.detail.streak.label", defaultValue: "STREAK"))
-                    .font(.system(size: 8, weight: .bold))
-                    .foregroundStyle(.white.opacity(0.88))
+                    .font(.system(size: 7, weight: .bold))
+                    .foregroundStyle(Color(hex: "#D95F00").opacity(0.88))
                     .tracking(1.5)
             }
-            .offset(y: -(depth - 8))
+            .offset(y: -(depth - 4))
         }
         .frame(width: size, height: size + depth)
     }
