@@ -334714,6 +334714,17 @@
         }
       }
     },
+    "tab.todos" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "To-Dos"
+          }
+        }
+      }
+    },
     "tab.uebersicht" : {
       "comment" : "",
       "extractionState" : "manual",
@@ -345270,6 +345281,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "檸檬沙皇"
+          }
+        }
+      }
+    },
+    "todos.tab.empty" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Keine offenen To-Dos."
+          }
+        }
+      }
+    },
+    "todos.tab.select_plant" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Für welche Gewohnheit?"
           }
         }
       }

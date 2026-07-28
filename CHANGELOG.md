@@ -228,3 +228,9 @@
 - **Phase 3**: Im PlantDetailSheet kann man nun To-Dos spezifisch für eine Pflanze anlegen und bearbeiten.
 - **Phase 2**: Startet man nun aus einer Pflanze heraus den Fokus-Modus, so werden deren To-Dos automatisch in den "Jetzt Starten" Wizard geladen und können fokussiert abgearbeitet werden.
 - Gießen erfolgt auf dem Homescreen nun per Long-Press auf den 3D-Button.
+
+### Phase 4: UI Cleanup & Todos Tab (28.07.2026)
+- **UI Cleanup**: Das `PflanzeDetailSheet` wurde radikal aufgeräumt. Der 3D-Button inklusive Fortschrittsring wurde komplett entfernt.
+- **Title Update**: Die Kategorie (z. B. "Healthy Cooking") ist jetzt der einzige große Haupttitel der Seite.
+- **Neuer Tab**: Ein komplett neuer "To-Dos" Tab wurde der Navigation hinzugefügt (zwischen Routine und Shop).
+- **Zentrale To-Do Verwaltung**: Im neuen Tab sieht man alle ausstehenden To-Dos gruppiert nach Pflanze/Gewohnheit, kann neue To-Dos hinzufügen und einer beliebigen Pflanze zuordnen.

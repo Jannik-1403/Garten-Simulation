@@ -87,13 +87,6 @@ struct PflanzeDetailSheet: View {
                         LazyVStack(spacing: 28) {
                     // MARK: - HERO (Zone 1)
                     VStack(spacing: 12) {
-                            Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
-                                .font(.system(size: 36, weight: .black, design: .rounded))
-                                .minimumScaleFactor(0.5)
-                                .lineLimit(2)
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal, 20)
-    
                             // Streak Anzeige → navigiert zu StreakView
                             NavigationLink(destination: StreakView(selectedPlant: pflanze)
                                 .environmentObject(streakStore)
@@ -103,14 +96,20 @@ struct PflanzeDetailSheet: View {
                                 HStack(spacing: 8) {
                                     Text("\(pflanze.streak)")
                                         .font(.system(size: 32, weight: .black, design: .rounded))
-                                        .foregroundStyle(Color(hex: "#D95F00"))
+                                        .foregroundStyle(.white)
                                     Image("streak")
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 32, height: 32)
                                 }
+                                .padding(.horizontal, 16)
                             }
-                            .buttonStyle(PlainButtonStyle())
+                            .buttonStyle(Item3DButtonStyle(
+                                farbe: Color(hex: "#FF8C00"),
+                                sekundaerFarbe: Color(hex: "#D95F00"),
+                                groesse: 64,
+                                isRectangular: true
+                            ))
                             .padding(.top, 8)
     
                             // NEU: Pflanzen-Effekte (Wetter, Power-Ups, Penalties)
@@ -143,22 +142,14 @@ struct PflanzeDetailSheet: View {
                     DisclosureGroup(isExpanded: $isTodosExpanded) {
                         VStack(spacing: 12) {
                             ForEach(pflanze.todos.indices, id: \.self) { index in
-                                HStack {
-                                    Text(pflanze.todos[index].text)
-                                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                                        .strikethrough(pflanze.todos[index].isCompleted)
-                                        .foregroundColor(pflanze.todos[index].isCompleted ? .secondary : .primary)
-                                    Spacer()
-                                    Button {
-                                        todoToDeleteIndex = index
-                                    } label: {
-                                        Image(systemName: "trash")
-                                            .foregroundColor(.red)
+                                TodoRowView(
+                                    pflanze: pflanze,
+                                    index: index,
+                                    onEdit: {
+                                        todoToEditIndex = index
+                                        zeigeTodoSheet = true
                                     }
-                                }
-                                .padding()
-                                .background(Color.primary.opacity(0.05))
-                                .cornerRadius(12)
+                                )
                             }
                             
                             Button {

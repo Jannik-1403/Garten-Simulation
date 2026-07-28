@@ -99,52 +99,49 @@ struct TodoRowView: View {
     @EnvironmentObject var gardenStore: GardenStore
     
     var body: some View {
-        HStack {
-            Button {
+        Item3DButton(
+            farbe: pflanze.todos[index].isCompleted ? Color(UIColor.systemGray5) : Color(UIColor.systemBackground),
+            sekundaerFarbe: pflanze.todos[index].isCompleted ? Color(UIColor.systemGray4) : Color(UIColor.systemGray5),
+            groesse: 64,
+            isRectangular: true,
+            aktion: {
                 withAnimation {
                     pflanze.todos[index].isCompleted.toggle()
                     gardenStore.savePlants()
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
                 }
-            } label: {
+            }
+        ) {
+            HStack {
                 Image(systemName: pflanze.todos[index].isCompleted ? "checkmark.circle.fill" : "circle")
                     .font(.system(size: 24))
                     .foregroundStyle(pflanze.todos[index].isCompleted ? Color.orangePrimary : Color.gray)
-            }
-            .buttonStyle(.plain)
-            
-            Text(pflanze.todos[index].text)
-                .font(.system(size: 16, weight: .medium, design: .rounded))
-                .strikethrough(pflanze.todos[index].isCompleted)
-                .foregroundColor(pflanze.todos[index].isCompleted ? .secondary : .primary)
-            
-            Spacer()
-            
-            Menu {
-                Button {
-                    onEdit()
-                } label: {
-                    Label(String(localized: "common.edit", defaultValue: "Bearbeiten"), systemImage: "pencil")
-                }
                 
-                Button(role: .destructive) {
-                    withAnimation {
-                        pflanze.todos.remove(at: index)
-                        gardenStore.savePlants()
-                    }
-                } label: {
-                    Label(String(localized: "button.delete", defaultValue: "Löschen"), systemImage: "trash")
+                Text(pflanze.todos[index].text)
+                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                    .strikethrough(pflanze.todos[index].isCompleted)
+                    .foregroundColor(pflanze.todos[index].isCompleted ? .secondary : .primary)
+                
+                Spacer()
+            }
+            .padding(.horizontal, 8)
+        }
+        .contextMenu {
+            Button {
+                onEdit()
+            } label: {
+                Label(String(localized: "common.edit", defaultValue: "Bearbeiten"), systemImage: "pencil")
+            }
+            
+            Button(role: .destructive) {
+                withAnimation {
+                    pflanze.todos.remove(at: index)
+                    gardenStore.savePlants()
                 }
             } label: {
-                Image(systemName: "ellipsis")
-                    .foregroundColor(.secondary)
-                    .padding(.horizontal, 4)
-                    .padding(.vertical, 8)
+                Label(String(localized: "button.delete", defaultValue: "Löschen"), systemImage: "trash")
             }
         }
-        .padding()
-        .background(Color.primary.opacity(0.05))
-        .cornerRadius(12)
     }
 }
 
