@@ -2,6 +2,12 @@ import AppIntents
 import WidgetKit
 import Foundation
 
+
+private var widgetLocale: Locale {
+    Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de")
+}
+
+
 // PlantEntity and PlantQuery are defined in PlantEntity.swift
 
 // MARK: - Neu: Hintergrund-Stil
@@ -75,7 +81,7 @@ struct RoutineEntity: AppEntity {
     static var defaultQuery = RoutineEntityQuery()
 
     var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(title: "\(String(localized: String.LocalizationValue(titleKey)))")
+        DisplayRepresentation(title: "\(String(localized: String.LocalizationValue(titleKey), locale: widgetLocale))")
     }
 }
 

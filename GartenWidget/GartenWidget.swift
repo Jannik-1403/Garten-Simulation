@@ -1,6 +1,12 @@
 import WidgetKit
 import SwiftUI
 
+
+private var widgetLocale: Locale {
+    Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de")
+}
+
+
 @main
 struct GroovyWidgetBundle: WidgetBundle {
     var body: some Widget {
@@ -32,8 +38,8 @@ struct GroovyWaterWidget: Widget {
                     WaterBackgroundView(style: entry.backgroundStyle)
                 }
         }
-        .configurationDisplayName(String(localized: "widget_water_title", defaultValue: "Wasser"))
-        .description(String(localized: "widget_water_description", defaultValue: "Dein getrunkenes Wasser."))
+        .configurationDisplayName(String(localized: "widget_water_title", defaultValue: "Wasser", locale: widgetLocale))
+        .description(String(localized: "widget_water_description", defaultValue: "Dein getrunkenes Wasser.", locale: widgetLocale))
         .supportedFamilies([.systemSmall])
     }
 }
@@ -49,8 +55,8 @@ struct GroovyStreakWidget: Widget {
                     StreakBackgroundView(style: entry.backgroundStyle)
                 }
         }
-        .configurationDisplayName(String(localized: "widget_streak_title", defaultValue: "Streak"))
-        .description(String(localized: "widget_streak_description", defaultValue: "Dein aktueller Streak."))
+        .configurationDisplayName(String(localized: "widget_streak_title", defaultValue: "Streak", locale: widgetLocale))
+        .description(String(localized: "widget_streak_description", defaultValue: "Dein aktueller Streak.", locale: widgetLocale))
         .supportedFamilies([.systemSmall])
     }
 }
@@ -66,8 +72,8 @@ struct GroovyVerlaufMediumWidget: Widget {
                     DuoStyle.backgroundView(for: entry.backgroundStyle, defaultGradient: DuoStyle.orangeGradient)
                 }
         }
-        .configurationDisplayName(String(localized: "widget_verlauf_week_title", defaultValue: "Wochenverlauf"))
-        .description(String(localized: "widget_verlauf_week_description", defaultValue: "Die letzten 7 Tage im Überblick."))
+        .configurationDisplayName(String(localized: "widget_verlauf_week_title", defaultValue: "Wochenverlauf", locale: widgetLocale))
+        .description(String(localized: "widget_verlauf_week_description", defaultValue: "Die letzten 7 Tage im Überblick.", locale: widgetLocale))
         .supportedFamilies([.systemMedium])
     }
 }
@@ -83,8 +89,8 @@ struct GroovyVerlaufLargeWidget: Widget {
                     DuoStyle.backgroundView(for: entry.backgroundStyle, defaultGradient: DuoStyle.orangeGradient)
                 }
         }
-        .configurationDisplayName(String(localized: "widget_verlauf_month_title", defaultValue: "Monatsverlauf"))
-        .description(String(localized: "widget_verlauf_month_description", defaultValue: "Dein gesamter Monat auf einen Blick."))
+        .configurationDisplayName(String(localized: "widget_verlauf_month_title", defaultValue: "Monatsverlauf", locale: widgetLocale))
+        .description(String(localized: "widget_verlauf_month_description", defaultValue: "Dein gesamter Monat auf einen Blick.", locale: widgetLocale))
         .supportedFamilies([.systemLarge])
     }
 }
@@ -97,8 +103,8 @@ struct GroovyLockScreenStreakWidget: Widget {
             LockScreenStreakWidgetView(entry: entry)
                 .environment(\.locale, Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"))
         }
-        .configurationDisplayName(String(localized: "widget_lock_streak_title", defaultValue: "Streak (Pro)"))
-        .description(String(localized: "widget_lock_streak_desc", defaultValue: "Dein aktueller Streak auf dem Sperrbildschirm."))
+        .configurationDisplayName(String(localized: "widget_lock_streak_title", defaultValue: "Streak (Pro)", locale: widgetLocale))
+        .description(String(localized: "widget_lock_streak_desc", defaultValue: "Dein aktueller Streak auf dem Sperrbildschirm.", locale: widgetLocale))
         .supportedFamilies([.accessoryCircular, .accessoryRectangular])
     }
 }
@@ -114,8 +120,8 @@ struct GroovyInteractiveHabitsWidget: Widget {
                     DuoStyle.backgroundView(for: entry.style, defaultGradient: DuoStyle.blueGradient)
                 }
         }
-        .configurationDisplayName(String(localized: "widget_interactive_routine_title", defaultValue: "Routine (Pro)"))
-        .description(String(localized: "widget_interactive_routine_desc", defaultValue: "Erledige deine Routinen direkt vom Homescreen."))
+        .configurationDisplayName(String(localized: "widget_interactive_routine_title", defaultValue: "Routine (Pro)", locale: widgetLocale))
+        .description(String(localized: "widget_interactive_routine_desc", defaultValue: "Erledige deine Routinen direkt vom Homescreen.", locale: widgetLocale))
         .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

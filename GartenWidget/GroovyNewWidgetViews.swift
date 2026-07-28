@@ -2,6 +2,12 @@ import SwiftUI
 import WidgetKit
 import AppIntents
 
+
+private var widgetLocale: Locale {
+    Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de")
+}
+
+
 private let mlPerWatering: Int = 300
 
 // MARK: - Igel-Assets
@@ -190,14 +196,14 @@ struct WaterWidgetView: View {
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
 
-                Text(String(localized: "widget_water_alltime", defaultValue: "GESAMT").uppercased())
+                Text(String(localized: "widget_water_alltime", defaultValue: "GESAMT", locale: widgetLocale).uppercased())
                     .font(.system(size: 10, weight: .black))
                     .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.7))
                     .tracking(1.2)
                 
                 Spacer().frame(height: 4)
                 
-                Text(String(format: String(localized: "widget_water_times", defaultValue: "%d mal"), count))
+                Text(String(format: String(localized: "widget_water_times", defaultValue: "%d mal", locale: widgetLocale), count))
                     .font(.system(size: 10, weight: .bold))
                     .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.6))
         }
@@ -217,7 +223,7 @@ struct StreakSmallWidgetView: View {
             HStack(alignment: .firstTextBaseline, spacing: 4) {
                 Text("\(streak)")
                     .font(.system(size: 38, weight: .black, design: .rounded))
-                Text(String(localized: "widget_streak_days", defaultValue: "TAGE").uppercased())
+                Text(String(localized: "widget_streak_days", defaultValue: "TAGE", locale: widgetLocale).uppercased())
                     .font(.system(size: 10, weight: .black))
                     .opacity(0.7)
             }
@@ -264,11 +270,11 @@ struct VerlaufMediumWidgetView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 VStack(alignment: .leading, spacing: 1) {
-                    Text(String(localized: "widget_verlauf_week_title", defaultValue: "WOCHENVERLAUF").uppercased())
+                    Text(String(localized: "widget_verlauf_week_title", defaultValue: "WOCHENVERLAUF", locale: widgetLocale).uppercased())
                         .font(.system(size: 11, weight: .black))
                         .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.8))
                         .tracking(1)
-                    Text(String(format: String(localized: "widget_streak_current", defaultValue: "Aktuell: %d"), streak))
+                    Text(String(format: String(localized: "widget_streak_current", defaultValue: "Aktuell: %d", locale: widgetLocale), streak))
                         .font(.system(size: 12, weight: .bold))
                         .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
                 }
@@ -362,7 +368,7 @@ struct VerlaufLargeWidgetView: View {
                         .font(.system(size: 12, weight: .black))
                         .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle).opacity(0.8))
                         .tracking(1)
-                    Text(String(localized: "widget_verlauf_month_title", defaultValue: "Monatsverlauf"))
+                    Text(String(localized: "widget_verlauf_month_title", defaultValue: "Monatsverlauf", locale: widgetLocale))
                         .font(.system(size: 13, weight: .bold))
                         .foregroundStyle(DuoStyle.contentColor(for: entry.backgroundStyle))
                 }
@@ -492,7 +498,7 @@ struct InteractiveHabitsWidgetView: View {
                     if plants.isEmpty {
                         VStack {
                             Spacer()
-                            Text(String(localized: "widget_routine_empty", defaultValue: "Keine Aufgaben."))
+                            Text(String(localized: "widget_routine_empty", defaultValue: "Keine Aufgaben.", locale: widgetLocale))
                                 .font(.system(size: 14, weight: .bold))
                                 .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.8))
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -559,7 +565,7 @@ struct InteractiveHabitsWidgetView: View {
                         Image(systemName: "list.bullet.circle.fill")
                             .font(.system(size: 24))
                             .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.8))
-                        Text(String(localized: "widget_routine_not_selected", defaultValue: "Routine auswählen (Widget bearbeiten)"))
+                        Text(String(localized: "widget_routine_not_selected", defaultValue: "Routine auswählen (Widget bearbeiten)", locale: widgetLocale))
                             .font(.system(size: 12, weight: .bold))
                             .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.8))
                             .multilineTextAlignment(.center)
@@ -577,7 +583,7 @@ struct InteractiveHabitsWidgetView: View {
                         .font(.system(size: 20, weight: .black, design: .rounded))
                         .foregroundStyle(Color(red: 1.0, green: 0.84, blue: 0.0))
                     
-                    Text(String(localized: "widget_pro_required", defaultValue: "Pro-Version erforderlich"))
+                    Text(String(localized: "widget_pro_required", defaultValue: "Pro-Version erforderlich", locale: widgetLocale))
                         .font(.system(size: 12, weight: .bold))
                         .foregroundStyle(DuoStyle.contentColor(for: entry.style).opacity(0.7))
                 }
