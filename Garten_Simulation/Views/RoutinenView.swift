@@ -106,10 +106,7 @@ struct RoutinenView: View {
     @State private var routineToEdit: RoutineUIData?
     @State private var routineToPlay: RoutineUIData?
     @State private var selectedHabitToView: HabitModel?
-    
-    @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var shopStore: ShopStore
-    @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var interactiveTourManager: InteractiveTourManager
     
     var body: some View {
@@ -222,7 +219,7 @@ struct RoutinenView: View {
                     NavigationStack {
                         PflanzeDetailSheet(
                             pflanze: pflanze,
-                            wetterEvent: .normal,
+
                             onLoeschen: {
                                 gardenStore.pflanzEntfernen(pflanze: pflanze)
                                 selectedHabitToView = nil
@@ -237,8 +234,6 @@ struct RoutinenView: View {
                 .environmentObject(gardenStore)
                 .environmentObject(shopStore)
                 .environmentObject(settings)
-                .environmentObject(powerUpStore)
-                .environmentObject(pfadStore)
                 .environmentObject(interactiveTourManager)
             }
             .sheet(isPresented: $showCreateSheet) {

@@ -20,7 +20,6 @@ private var widgetLocale: Locale {
 struct GroovyWidgetBundle: WidgetBundle {
     var body: some Widget {
         // Neue Widgets:
-        GroovyWaterWidget()
         GroovyStreakWidget()
         GroovyVerlaufMediumWidget()
         GroovyVerlaufLargeWidget()
@@ -35,23 +34,6 @@ struct GroovyWidgetBundle: WidgetBundle {
     }
 }
 
-
-// MARK: - Wasser-Widget (Small, konfigurierbar)
-struct GroovyWaterWidget: Widget {
-    let kind = "GroovyWaterWidgetV3"
-    var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: SelectWaterPeriodIntent.self, provider: WaterTimelineProvider()) { entry in
-            WaterWidgetView(entry: entry)
-                .environment(\.locale, Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de"))
-                .containerBackground(for: .widget) {
-                    WaterBackgroundView(style: entry.backgroundStyle)
-                }
-        }
-        .configurationDisplayName(String(localized: "widget_water_title", defaultValue: "Wasser", locale: widgetLocale))
-        .description(String(localized: "widget_water_description", defaultValue: "Dein getrunkenes Wasser.", locale: widgetLocale))
-        .supportedFamilies([.systemSmall])
-    }
-}
 
 // MARK: - Streak-Widget (Small, nicht konfigurierbar)
 struct GroovyStreakWidget: Widget {

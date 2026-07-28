@@ -519,9 +519,7 @@ struct StatisticsDashboard: View {
                 LiquidGlassDismissButton { dismiss() }
             }
         }
-        .fullScreenCover(item: $expandedStat) { detail in
-            StatDetailFullscreenView(detail: detail, selectedPeriod: selectedPeriod, selectedEndDate: selectedEndDate)
-        }
+
         .sheet(isPresented: $showPreview) {
             if let type = pendingShareType {
                 SharePreviewSheet(
@@ -666,15 +664,6 @@ struct StatisticsDashboard: View {
                             .foregroundStyle(.black)
                             .padding(8)
                     }
-                    
-                    Button {
-                        expandedStat = .balance
-                    } label: {
-                        Image(systemName: "arrow.up.left.and.arrow.down.right")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundStyle(.black)
-                            .padding(8)
-                    }
                 }
                 .padding(.top, 12)
                 .padding(.trailing, 12)
@@ -706,15 +695,6 @@ struct StatisticsDashboard: View {
                 HStack(spacing: 8) {
                     Button(action: { initiateShare(.consistency) }) {
                         Image(systemName: "square.and.arrow.up")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundStyle(.black)
-                            .padding(8)
-                    }
-                    
-                    Button {
-                        expandedStat = .activity
-                    } label: {
-                        Image(systemName: "arrow.up.left.and.arrow.down.right")
                             .font(.system(size: 14, weight: .bold))
                             .foregroundStyle(.black)
                             .padding(8)
@@ -786,15 +766,6 @@ struct StatisticsDashboard: View {
                 HStack(spacing: 8) {
                     Button(action: { initiateShare(.focus) }) {
                         Image(systemName: "square.and.arrow.up")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundStyle(.black)
-                            .padding(8)
-                    }
-                    
-                    Button {
-                        expandedStat = .focus
-                    } label: {
-                        Image(systemName: "arrow.up.left.and.arrow.down.right")
                             .font(.system(size: 14, weight: .bold))
                             .foregroundStyle(.black)
                             .padding(8)
@@ -913,15 +884,6 @@ struct StatisticsDashboard: View {
                             .foregroundStyle(.black)
                             .padding(8)
                     }
-                    
-                    Button {
-                        expandedStat = .triggers
-                    } label: {
-                        Image(systemName: "arrow.up.left.and.arrow.down.right")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundStyle(.black)
-                            .padding(8)
-                    }
                 }
             }
             
@@ -1013,15 +975,6 @@ struct StatisticsDashboard: View {
                 HStack(spacing: 4) {
                     Button(action: { initiateShare(.milestones) }) {
                         Image(systemName: "square.and.arrow.up")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundStyle(.black)
-                            .padding(8)
-                    }
-                    
-                    Button {
-                        expandedStat = .milestones
-                    } label: {
-                        Image(systemName: "arrow.up.left.and.arrow.down.right")
                             .font(.system(size: 14, weight: .bold))
                             .foregroundStyle(.black)
                             .padding(8)

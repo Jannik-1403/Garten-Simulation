@@ -4,7 +4,7 @@ struct OnboardingFertigView: View {
     @EnvironmentObject var data: OnboardingData
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
-    @EnvironmentObject var gartenPfadStore: GartenPfadStore
+
     
     @State private var innerPose: OnboardingIgelPose = .feiert
     
@@ -88,11 +88,7 @@ struct OnboardingFertigView: View {
         
         onboardingAbschliessen()
         
-        // Start Path
-        gartenPfadStore.pfadStarten(
-            ziel: data.gewaehltesZiele.first?.rawValue ?? "gesund",
-            pflanzen: gardenStore.pflanzen
-        )
+
         
         withAnimation {
             settings.ausgewaehltesZiel = data.gewaehltesZiele.first?.rawValue ?? "gesund"

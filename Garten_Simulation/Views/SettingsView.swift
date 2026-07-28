@@ -8,10 +8,8 @@ struct SettingsView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var shopStore: ShopStore
     @EnvironmentObject var streakStore: StreakStore
-    @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var titelStore: TitelStore
     @EnvironmentObject var achievementStore: AchievementStore
-    @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var characterStore: CharacterStore
     @EnvironmentObject var tourManager: InteractiveTourManager
     @EnvironmentObject var assessmentStore: AssessmentStore
@@ -347,19 +345,7 @@ struct SettingsView: View {
                                 }
                             }
                             
-                            settingsSection(title: String(localized: "settings.section.social", defaultValue: "Community")) {
-                                VStack(spacing: 0) {
-                                    Button {
-                                        if let url = URL(string: "https://www.tiktok.com/@grovy807?is_from_webapp=1&sender_device=pc") {
-                                            UIApplication.shared.open(url)
-                                        }
-                                    } label: {
-                                        settingRow(title: String(localized: "settings.tiktok", defaultValue: "Folge uns auf TikTok"), icon: "tiktok_logo", color: .primary, isAsset: true)
-                                    }
-                                    .buttonStyle(.plain)
-                                }
-                            }
-                            .padding(.top, 16)
+
                             
                             settingsSection(title: String(localized: "settings.section.support")) {
                                 VStack(spacing: 0) {
@@ -477,10 +463,8 @@ struct SettingsView: View {
                                         .environmentObject(gardenStore)
                                         .environmentObject(shopStore)
                                         .environmentObject(streakStore)
-                                        .environmentObject(powerUpStore)
                                         .environmentObject(titelStore)
                                         .environmentObject(achievementStore)
-                                        .environmentObject(pfadStore)
                                         .environmentObject(tourManager)
                                 } label: {
                                     settingRow(
@@ -537,12 +521,12 @@ struct SettingsView: View {
                     gardenStore.resetAllData()
                     shopStore.reset()
                     streakStore.reset()
-                    powerUpStore.reset()
+
                     characterStore.reset()
                     achievementStore.reset()
                     titelStore.reset()
                     assessmentStore.resetAll()
-                    pfadStore.pfadZuruecksetzen(settings: settings, gardenStore: gardenStore)
+
                     settings.appTourPromptShown = false
                     settings.appTourAbgeschlossen = false
                     settings.onboardingAbgeschlossen = false
@@ -792,10 +776,9 @@ struct ProUpgradeButtonStyle: ButtonStyle {
         .environmentObject(GardenStore())
         .environmentObject(ShopStore())
         .environmentObject(StreakStore())
-        .environmentObject(PowerUpStore())
         .environmentObject(TitelStore())
         .environmentObject(AchievementStore(gardenStore: GardenStore(), streakStore: StreakStore()))
-        .environmentObject(GartenPfadStore(settings: settings))
+
         .environmentObject(CharacterStore())
         .environmentObject(InteractiveTourManager())
         .environmentObject(AssessmentStore())

@@ -2,12 +2,9 @@ import SwiftUI
 
 struct PflanzeDetailSheet: View {
     @ObservedObject var pflanze: HabitModel
-    let wetterEvent: WetterEvent
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var shopStore: ShopStore
-    @EnvironmentObject var powerUpStore: PowerUpStore
-    @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var interactiveTourManager: InteractiveTourManager
     @EnvironmentObject var iapStore: IAPStore
@@ -25,7 +22,7 @@ struct PflanzeDetailSheet: View {
     @State private var noteToEditIndex: Int? = nil
     @State private var noteToDeleteIndex: Int? = nil
     @State private var ausgewaehlterEffekt: PflanzenEffekt? = nil
-    @State private var selectedTab: DetailTab = .uebersicht
+    // History tab removed – only Overview shown
     @State private var pfadBereit: Bool = false
     @State private var zeigePaywall = false
     @State private var zeigeDeleteTrackerConfirm = false
@@ -50,10 +47,6 @@ struct PflanzeDetailSheet: View {
     }
 
 
-    enum DetailTab: String, CaseIterable {
-        case uebersicht
-        case verlauf
-    }
 
     private var activeStateID: String {
         "\(pflanze.id)-\(pflanze.wiederbelebtAm?.description ?? "none")"
@@ -75,32 +68,8 @@ struct PflanzeDetailSheet: View {
             ))
         }
 
-        // 2. Wetter (Stable ID)
-        let endOfDay = Calendar.current.startOfDay(for: Date().addingTimeInterval(86400))
-        effekte.append(PflanzenEffekt(
-            id: UUID(uuidString: "88888888-8888-8888-8888-000000000002")!,
-            typ: .wetter,
-            ikonQuelle: .asset(wetterEvent.customIconName),
-            titel: wetterEvent.titel,
-            beschreibung: wetterEvent.untertitel,
-            expiresAt: endOfDay
-        ))
 
-        // 3. Power-Ups (Stable ID from Activity ID)
-        for aktiv in gardenStore.activePowerUps where aktiv.isActive {
-            if aktiv.targetPlantId == nil || aktiv.targetPlantId == pflanze.id {
-                if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }) {
-                    effekte.append(PflanzenEffekt(
-                        id: aktiv.id, // Nutze die stabile ID des Power-Ups!
-                        typ: .powerUp,
-                        ikonQuelle: .asset(base.symbolName),
-                        titel: NSLocalizedString(base.name, comment: ""),
-                        beschreibung: NSLocalizedString(base.description, comment: ""),
-                        expiresAt: aktiv.expiresAt
-                    ))
-                }
-            }
-        }
+
 
         return Array(effekte)
     }
@@ -112,8 +81,7 @@ struct PflanzeDetailSheet: View {
                     ScrollView(showsIndicators: false) {
                         LazyVStack(spacing: 28) {
                     // MARK: - HERO (Zone 1)
-                    if selectedTab == .uebersicht {
-                        VStack(spacing: 12) {
+                    VStack(spacing: 12) {
                             ZStack {
                                 // Hintergrund-Ring (grau)
                                 Circle()
@@ -170,22 +138,16 @@ struct PflanzeDetailSheet: View {
                                 .textCase(.uppercase)
                                 .tracking(1.5)
     
-                            // Vier-Spalten Stats Header (In einer schwebenden Karte)
-                            ViewThatFits(in: .horizontal) {
-                                statsRow
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    statsRow.frame(minWidth: 400)
-                                }
+                            // Flammen-Streak Button → navigiert zu StreakView
+                            NavigationLink(destination: StreakView(selectedPlant: pflanze)
+                                .environmentObject(streakStore)
+                                .environmentObject(gardenStore)
+                                .environmentObject(settings)
+                            ) {
+                                FlameStreakButton(streak: pflanze.streak)
                             }
-                            .padding(.vertical, 14)
-                            .padding(.horizontal, 12)
-                            .background(
-                                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                    .fill(Color.white)
-                                    .shadow(color: Color.black.opacity(0.05), radius: 10, y: 5)
-                            )
-                            .padding(.horizontal, 24)
-                            .padding(.top, 4)
+                            .buttonStyle(PlainButtonStyle())
+                            .padding(.top, 8)
     
                             // NEU: Pflanzen-Effekte (Wetter, Power-Ups, Penalties)
                             if !aktiveEffekte.isEmpty {
@@ -202,14 +164,10 @@ struct PflanzeDetailSheet: View {
                             }
                         }
                         .padding(.top, 40)
-                    }
 
-                // MARK: - TAB PICKER & CONTENT
+                // MARK: - OVERVIEW CONTENT
                 Section {
-                    if selectedTab == .uebersicht {
-                    streakCardView
-                        .tourAnchor(.plantStreak)
-                        .id("streakCard")
+
 
                 // MARK: - ACTIONS (Zone 3)
                 VStack(spacing: 12) {
@@ -348,33 +306,6 @@ struct PflanzeDetailSheet: View {
                     .padding(.bottom, 24)
                 }
 
-                } // end uebersicht tab
-
-                if selectedTab == .verlauf {
-                    if pflanze.plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: pflanze.plantID) == nil {
-                        HabitVerlaufView(pflanze: pflanze)
-                            .frame(maxWidth: .infinity)
-                            .padding(.top, 8)
-                    } else {
-                        FlatTimelineView(habit: pflanze)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
-                            .padding(.horizontal, 16)
-                            .padding(.top, 8)
-                            .tourAnchor(.plantPath)
-                    }
-                }
-                } header: {
-                    if !(pflanze.plantID.hasPrefix("custom_") || GameDatabase.shared.plant(for: pflanze.plantID) == nil) {
-                        Picker("", selection: $selectedTab) {
-                            Text(String(localized: "tab.uebersicht")).tag(DetailTab.uebersicht)
-                            Text(String(localized: "tab.verlauf")).tag(DetailTab.verlauf)
-                        }
-                        .pickerStyle(.segmented)
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 8)
-                        .background(Color(UIColor.secondarySystemBackground))
-                    }
                 } // End of Section
             }
             } // End of ScrollView
@@ -382,10 +313,6 @@ struct PflanzeDetailSheet: View {
                 withAnimation(.spring()) {
                     if newStep == .focusTimer {
                         proxy.scrollTo(TourStep.focusTimer, anchor: .bottom)
-                    } else if newStep == .plantStreak {
-                        proxy.scrollTo("streakCard", anchor: .top)
-                    } else if newStep == .plantPath {
-                        selectedTab = .verlauf
                     }
                 }
             }
@@ -491,7 +418,6 @@ struct PflanzeDetailSheet: View {
             FocusSessionView(pflanze: pflanze)
                 .environmentObject(gardenStore)
                 .environmentObject(settings)
-                .environmentObject(powerUpStore)
         }
                         }
                         .fullScreenCover(isPresented: $zeigePaywall) {
@@ -845,7 +771,7 @@ struct PflanzeDetailSheet: View {
                                                     gardenStore.savePlants()
                                                 }
                                                 Button(String(localized: "common.confirm", defaultValue: "Fertig")) {
-                                                    gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
+                                                    gardenStore.giessen(pflanze: pflanze)
                                                 }
                                             }
                                             .padding(20)
@@ -900,135 +826,134 @@ struct PflanzeDetailSheet: View {
                     }
 
     private func sicherstellenDassPfadExistiert() {
-        let strangExistiert = pfadStore.straenge.contains(where: {
-            $0.pflanzenID == pflanze.id
-        })
-        
-        if strangExistiert {
-            pfadBereit = true
-            return
-        }
-        
-        // Kein Strang → jetzt synchron erstellen
-        let ziel = settings.ausgewaehltesZiel.isEmpty ? "fitness" : settings.ausgewaehltesZiel
-        let sRaw = pflanze.individualSchwierigkeit ?? PfadSchwierigkeit.anfaenger.rawValue
-        let schwierigkeit = PfadSchwierigkeit(rawValue: sRaw) ?? .anfaenger
-        
-        pfadStore.pflanzeHinzufuegen(pflanze, ziel: ziel, schwierigkeit: schwierigkeit)
-        
-        // Kurze Pause damit SwiftData committen kann, dann bereit melden
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            pfadBereit = pfadStore.straenge.contains(where: {
-                $0.pflanzenID == pflanze.id
-            })
-        }
+        pfadBereit = true
     }
 
-    private var statsRow: some View {
-        HStack(spacing: 0) {
-            // 1. Streak
-            VStack(spacing: 4) {
-                HStack(spacing: 4) {
-                    Image("streak")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 18, height: 18)
-                    Text(verbatim: "\(pflanze.streak)")
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
-                }
-                Text(String(localized: "plant.detail.streak").uppercased())
-                    .font(.system(size: 8, weight: .bold))
-                    .foregroundStyle(.secondary)
-            }
-            .frame(maxWidth: .infinity)
 
-            Divider().frame(height: 24)
-
-            // 2. XP
-            VStack(spacing: 4) {
-                HStack(spacing: 4) {
-                    Image("XP")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 18, height: 18)
-                    Text(verbatim: "\(pflanze.currentXP)")
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
-                }
-                Text(String(localized: "plant.detail.xp").uppercased())
-                    .font(.system(size: 8, weight: .bold))
-                    .foregroundStyle(.secondary)
-            }
-            .frame(maxWidth: .infinity)
-
-            Divider().frame(height: 24)
-
-            Text(pflanze.seltenheit.lokalisiertTitel)
-                .font(.system(size: 15, weight: .bold, design: .rounded))
-                .lineLimit(2)
-                .minimumScaleFactor(0.7)
-                .foregroundStyle(pflanze.seltenheit.farbe)
-            .frame(maxWidth: .infinity)
-
-            Divider().frame(height: 24)
-
-            // 4. Wasser (Drop)
-            VStack(spacing: 4) {
-                HStack(spacing: 4) {
-                    Image("Drop water")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 18, height: 18)
-                    Text(pflanze.formattedVolume)
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
-                }
-                Text(String(localized: "plant.detail.watered").uppercased())
-                    .font(.system(size: 8, weight: .bold))
-                    .foregroundStyle(.secondary)
-            }
-            .frame(maxWidth: .infinity)
-        }
-    }
     
-    @ViewBuilder
-    private var streakCardView: some View {
-        NavigationLink(destination: StreakView(selectedPlant: pflanze)
-            .environmentObject(streakStore)
-            .environmentObject(gardenStore)
-            .environmentObject(settings)
-        ) {
-            VStack(spacing: 0) {
 
 
-                PlantWeeklyStreakView(pflanze: pflanze)
-                    .padding(.bottom, 16)
-                    .padding(.top, 12)
-            }
-            .background(
-                ZStack {
-                    RoundedRectangle(cornerRadius: 24, style: .continuous)
-                        .fill(Color.orangeSecondary)
-                        .offset(y: 4)
-                    RoundedRectangle(cornerRadius: 24, style: .continuous)
-                        .fill(
-                            LinearGradient(
-                                colors: [.orangePrimary, .orangePrimary.opacity(0.9)],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                }
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .stroke(Color.white.opacity(0.2), lineWidth: 1.5)
-            )
-        }
-        .buttonStyle(PlainButtonStyle())
-        .padding(.horizontal, 24)
-        .padding(.vertical, 8)
+
+}
+
+// MARK: - Flame Streak Button
+
+/// Flammenförmige SwiftUI Path-Hülle (Tip oben, Basis unten)
+struct FlameShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let w = rect.width
+        let h = rect.height
+
+        // Basis-Mitte unten
+        path.move(to: CGPoint(x: w * 0.5, y: h))
+
+        // Linke Seite hochschwingen
+        path.addCurve(
+            to: CGPoint(x: w * 0.1, y: h * 0.6),
+            control1: CGPoint(x: w * 0.25, y: h * 0.95),
+            control2: CGPoint(x: w * 0.05, y: h * 0.78)
+        )
+        // Linke mittlere Einschnürung
+        path.addCurve(
+            to: CGPoint(x: w * 0.2, y: h * 0.35),
+            control1: CGPoint(x: w * 0.12, y: h * 0.46),
+            control2: CGPoint(x: w * 0.24, y: h * 0.44)
+        )
+        // Linke obere Kurve zur Spitze
+        path.addCurve(
+            to: CGPoint(x: w * 0.5, y: 0),
+            control1: CGPoint(x: w * 0.15, y: h * 0.18),
+            control2: CGPoint(x: w * 0.42, y: h * 0.06)
+        )
+        // Rechte obere Kurve von der Spitze
+        path.addCurve(
+            to: CGPoint(x: w * 0.8, y: h * 0.35),
+            control1: CGPoint(x: w * 0.58, y: h * 0.06),
+            control2: CGPoint(x: w * 0.85, y: h * 0.18)
+        )
+        // Rechte mittlere Einschnürung
+        path.addCurve(
+            to: CGPoint(x: w * 0.9, y: h * 0.6),
+            control1: CGPoint(x: w * 0.76, y: h * 0.44),
+            control2: CGPoint(x: w * 0.88, y: h * 0.46)
+        )
+        // Rechte Seite zurück zur Basis
+        path.addCurve(
+            to: CGPoint(x: w * 0.5, y: h),
+            control1: CGPoint(x: w * 0.95, y: h * 0.78),
+            control2: CGPoint(x: w * 0.75, y: h * 0.95)
+        )
+
+        path.closeSubpath()
+        return path
     }
+}
 
+/// 3D-Flammen-Button der den aktuellen Streak der Pflanze zeigt
+struct FlameStreakButton: View {
+    let streak: Int
 
+    private let size: CGFloat = 88
+    private let depth: CGFloat = 6
+
+    var body: some View {
+        ZStack {
+            // Untere Schicht – Schatten / Tiefe
+            FlameShape()
+                .fill(
+                    LinearGradient(
+                        colors: [Color(hex: "#C94A00"), Color(hex: "#B03800")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
+                .frame(width: size, height: size * 1.3)
+
+            // Obere Schicht – Hauptfläche (nach oben versetzt = 3D-Effekt)
+            FlameShape()
+                .fill(
+                    LinearGradient(
+                        colors: [Color(hex: "#FFAC30"), Color(hex: "#FF5500")],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
+                .overlay(
+                    FlameShape()
+                        .stroke(Color.white.opacity(0.22), lineWidth: 1.5)
+                )
+                .frame(width: size, height: size * 1.3)
+                .offset(y: -depth)
+
+            // Innere Glanz-Reflexion
+            FlameShape()
+                .fill(
+                    LinearGradient(
+                        colors: [Color.white.opacity(0.3), Color.clear],
+                        startPoint: .top,
+                        endPoint: .center
+                    )
+                )
+                .frame(width: size * 0.55, height: size * 0.7)
+                .offset(x: -6, y: -(depth + size * 0.2))
+                .blendMode(.plusLighter)
+
+            // Inhalt: Streak-Zahl + Label
+            VStack(spacing: 0) {
+                Text(verbatim: "\(streak)")
+                    .font(.system(size: 30, weight: .black, design: .rounded))
+                    .foregroundStyle(.white)
+                    .shadow(color: .black.opacity(0.25), radius: 2, y: 1)
+                Text(String(localized: "plant.detail.streak.label", defaultValue: "STREAK"))
+                    .font(.system(size: 8.5, weight: .bold))
+                    .foregroundStyle(.white.opacity(0.88))
+                    .tracking(1.8)
+            }
+            .offset(y: -(depth - 2))
+        }
+        .frame(width: size, height: size * 1.3 + depth)
+    }
 }
 
 // MARK: - Notiz Sheet
@@ -1124,8 +1049,6 @@ struct TimerEditSheetView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var shopStore: ShopStore
-    @EnvironmentObject var powerUpStore: PowerUpStore
-    @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var interactiveTourManager: InteractiveTourManager
     @EnvironmentObject var iapStore: IAPStore

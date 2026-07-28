@@ -95,12 +95,11 @@ struct GenericFocusSessionContainer: View {
     let habit: HabitModel
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
-    @StateObject private var powerUpStore = PowerUpStore()
+
     
     var body: some View {
         FocusSessionView(pflanze: habit)
             .environmentObject(gardenStore)
             .environmentObject(settings)
-            .environmentObject(powerUpStore)
     }
 }

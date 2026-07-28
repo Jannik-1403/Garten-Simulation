@@ -5,7 +5,7 @@ struct ContentView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var streakStore: StreakStore
     @EnvironmentObject var settings: SettingsStore
-    @EnvironmentObject var gartenPfadStore: GartenPfadStore
+
     @EnvironmentObject var interactiveTourManager: InteractiveTourManager
     @EnvironmentObject var iapStore: IAPStore
     @EnvironmentObject var assessmentStore: AssessmentStore
@@ -277,7 +277,7 @@ struct ContentView: View {
 struct MainAppTabView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
-    @EnvironmentObject var gartenPfadStore: GartenPfadStore
+
     @Environment(\.modelContext) private var modelContext
 
     var body: some View {
@@ -309,7 +309,7 @@ struct MainAppTabView: View {
         .applyBottomTabBar()
         .tint(.primary)
         .onAppear {
-            gartenPfadStore.setContext(modelContext, settings: settings, gardenStore: gardenStore)
+
         }
     }
 }
@@ -348,9 +348,8 @@ extension Optional where Wrapped == URL {
         .environmentObject(ShopStore())
         .environmentObject(SettingsStore())
         .environmentObject(streak)
-        .environmentObject(PowerUpStore())
         .environmentObject(InteractiveTourManager())
-        .environmentObject(GartenPfadStore(settings: SettingsStore()))
+
         .environmentObject(AchievementStore(gardenStore: garden, streakStore: streak))
 }
 

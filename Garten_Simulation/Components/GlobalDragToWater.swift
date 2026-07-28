@@ -2,7 +2,6 @@ import SwiftUI
 
 struct GlobalDragToWater: View {
     @EnvironmentObject var gardenStore: GardenStore
-    @EnvironmentObject var powerUpStore: PowerUpStore
     let cardPositions: [CardPositionData]
 
     @State private var dragOffset = CGSize.zero
@@ -72,7 +71,7 @@ struct GlobalDragToWater: View {
                             gardenStore.letzteGiessPflanzeID = hitID
                             gardenStore.giessTriggerID = UUID()
                             
-                            gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
+                            gardenStore.giessen(pflanze: pflanze)
                             
                             // Reset
                             withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {

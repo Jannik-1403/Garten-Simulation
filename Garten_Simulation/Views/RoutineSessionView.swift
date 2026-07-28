@@ -17,7 +17,6 @@ struct RoutineSessionView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject var gardenStore: GardenStore
-    @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var iapStore: IAPStore
     
@@ -392,7 +391,7 @@ struct RoutineSessionView: View {
             let wasWatered = habit.istBewässert
             
             // Actually water the plant (this adds coins and XP to the gardenStore globally)
-            gardenStore.giessen(pflanze: habit, powerUpStore: powerUpStore, fromRoutine: true)
+            gardenStore.giessen(pflanze: habit, fromRoutine: true)
             
             if !wasWatered {
                 totalCoins += gardenStore.letzteGiessCoins

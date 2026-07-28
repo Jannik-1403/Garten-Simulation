@@ -11,23 +11,11 @@ struct InventoryItemDetailSheet: View {
     @State private var showPlantPicker = false
     @State private var showSuccessPill = false
     @State private var successMessage = ""
-    @State private var showNeedsWeedForPowerUpAlert = false
     @State private var showNotizSheet = false
     @State private var noteToEditIndex: Int? = nil
     @State private var noteToDeleteIndex: Int? = nil
     @State private var showTriggerSheet = false
     @State private var showMaxLivesAlert = false
-
-
-    private var powerUp: PowerUpItem? {
-        GameDatabase.allPowerUps.first(where: { $0.id == item.id })
-    }
-
-    private var activePowerUp: ActivePowerUp? {
-        gardenStore.activePowerUps.first {
-            $0.isActive && $0.powerUpId == item.id
-        }
-    }
 
     private var isTrash: Bool { item.id.hasPrefix("trash.") }
 
@@ -476,25 +464,12 @@ struct InventoryItemDetailSheet: View {
                     Spacer()
 
                     // MARK: Button-Bereich
-                    if let active = activePowerUp {
-                        HStack(spacing: 8) {
-                            Image(systemName: "timer")
-                            Text(active.timeRemainingFormatted)
-                                .font(.system(size: 17, weight: .bold, design: .rounded))
-                        }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 12)
-                        .background(.regularMaterial, in: Capsule())
-                        .overlay(Capsule().stroke(Color.primary.opacity(0.1), lineWidth: 0.5))
-                        .foregroundColor(.primary)
-                        .padding(.bottom, 32)
-                    } else {
                         Button {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {
-                                handleUseTap()
+                                dismiss()
                             }
                         } label: {
-                            Text(item.itemType == .powerUp ? String(localized: "button.use") : String(localized: "button.ok"))
+                            Text(String(localized: "button.ok"))
                         }
                         .buttonStyle(DuolingoButtonStyle(
                             size: .large,
@@ -552,105 +527,14 @@ struct InventoryItemDetailSheet: View {
                 }
             }
             .standardNavigationX()
-            .sheet(isPresented: $showPlantPicker) {
-                if let p = powerUp {
-                    PowerUpPlantPickerSheet(
-                        powerUp: p,
-                        onSelect: { plant in
-                            gardenStore.applyPowerUp(p, targetPlantId: plant.id)
-                            gardenStore.itemVerbrauchen(shopItem: item)
-                            shopStore.removeFromPurchased(id: item.id)
-                            showPlantPicker = false
-                            
-                            let duration = Int(p.durationHours ?? 24)
-                            let plantDisplayName = settings.showHabitInsteadOfName 
-                                ? NSLocalizedString(plant.habitName, comment: "")
-                                : NSLocalizedString(plant.name, comment: "")
-                            successMessage = String(format: String(localized: "powerup.active.plant"), plantDisplayName, duration)
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                                withAnimation(.spring()) {
-                                    showSuccessPill = true
-                                }
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
-                                    dismiss()
-                                }
-                            }
-                        }
-                    )
-                }
-            }
             .onAppear {
                 withAnimation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true)) {
                     animateIcon = true
                 }
             }
-            .alert(
-                String(localized: "powerup.weed_shield.needs_weed.title"),
-                isPresented: $showNeedsWeedForPowerUpAlert
-            ) {
-                Button(String(localized: "button.ok"), role: .cancel) {}
-            } message: {
-                Text(String(localized: "powerup.weed_shield.needs_weed.message"))
-            }
-            .alert(
-                String(localized: "powerup.lives.max_reached.title", defaultValue: "Maximale Leben erreicht"),
-                isPresented: $showMaxLivesAlert
-            ) {
-                Button(String(localized: "button.ok"), role: .cancel) {}
-            } message: {
-                Text(String(localized: "powerup.lives.full"))
-            }
         } // NavigationStack
     }
 
-    private func handleUseTap() {
-        guard let p = powerUp else {
-            dismiss()
-            return
-        }
-
-        if p.id == "powerup.herz_auffueller" && gardenStore.leben >= 5 {
-            showMaxLivesAlert = true
-            return
-        }
-
-        if p.target == .plant {
-            showPlantPicker = true
-            return
-        }
-
-        if PowerUpWeedSupport.isWeedPowerUp(item.id) {
-            guard gardenStore.isWeedActive else {
-                showNeedsWeedForPowerUpAlert = true
-                return
-            }
-            gardenStore.pendingWeedPowerUpForRitual = item
-            dismiss()
-            return
-        }
-
-        applyGardenPowerUp(p)
-    }
-
-    private func applyGardenPowerUp(_ p: PowerUpItem) {
-        gardenStore.applyPowerUp(p)
-        gardenStore.itemVerbrauchen(shopItem: item)
-        shopStore.removeFromPurchased(id: item.id)
-
-        let duration = Int(p.durationHours ?? 24)
-        successMessage = String(format: String(localized: "powerup.active.garden"), duration)
-
-        withAnimation(.spring()) {
-            showSuccessPill = true
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
-            dismiss()
-        }
-    }
-}
 
 // MARK: - Bad Habit Notiz Sheet
 struct BadHabitNotizSheet: View {
@@ -750,7 +634,7 @@ struct BadHabitNotizSheet: View {
             symbolColor: "yellow",
             shadowColorHex: "#D9B200", // darker yellow
             tag: "POWER-UP",
-            itemType: .powerUp,
+            itemType: .plant,
             habitCategory: .fitness,
             symbolism: "inventory.item.symbolism.growth_boost",
             howToUse: "item.duenger_blitz.usage"

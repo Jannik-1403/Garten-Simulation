@@ -5,10 +5,8 @@ struct DeveloperView: View {
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var shopStore: ShopStore
     @EnvironmentObject var streakStore: StreakStore
-    @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var titelStore: TitelStore
     @EnvironmentObject var achievementStore: AchievementStore
-    @EnvironmentObject var pfadStore: GartenPfadStore
     @EnvironmentObject var tourManager: InteractiveTourManager
     @EnvironmentObject var iapStore: IAPStore
     @EnvironmentObject var assessmentStore: AssessmentStore
@@ -133,74 +131,7 @@ struct DeveloperView: View {
                                 settingRow(title: "Unkraut entfernen", icon: "Samen", color: .green, isAsset: true)
                             }
                             
-                            Divider().padding(.leading, 44)
-                            
-                            Button {
-                                gardenStore.debugRequestOpenWeedSheet()
-                                FeedbackManager.shared.playSuccess()
-                            } label: {
-                                settingRow(title: "Unkraut-Sheet öffnen", icon: "rectangle.bottomthird.inset.filled", color: .brown)
-                            }
-                            
-                            Divider().padding(.leading, 44)
-                            
-                            Button {
-                                gardenStore.debugOpenWeedSheetWithShieldPreselected()
-                                FeedbackManager.shared.playSuccess()
-                            } label: {
-                                settingRow(title: "Schild-Ritual testen", icon: "shield.fill", color: .green)
-                            }
-                            
-                            Divider().padding(.leading, 44)
-                            
-                            Button {
-                                gardenStore.debugAddWeedPowerUpToInventory(
-                                    powerUpId: PowerUpWeedSupport.gartenschutzID
-                                )
-                                FeedbackManager.shared.playSuccess()
-                            } label: {
-                                settingRow(title: "Unkraut-Schild ins Inventar", icon: "shield.lefthalf.filled", color: .green)
-                            }
-                            
-                            Divider().padding(.leading, 44)
-                            
-                            Button {
-                                gardenStore.debugAddWeedPowerUpToInventory(
-                                    powerUpId: PowerUpWeedSupport.zauberstabID
-                                )
-                                FeedbackManager.shared.playSuccess()
-                            } label: {
-                                settingRow(title: "Zauberstab ins Inventar", icon: "wand.and.stars", color: .indigo)
-                            }
-                            
-                            Divider().padding(.leading, 44)
-                            
-                            Button {
-                                gardenStore.debugActivateGardenPowerUp(
-                                    powerUpId: PowerUpWeedSupport.gartenschutzID
-                                )
-                                FeedbackManager.shared.playSuccess()
-                            } label: {
-                                settingRow(title: "Unkraut-Schild aktivieren", icon: "checkmark.shield.fill", color: .mint)
-                            }
-                            
-                            Divider().padding(.leading, 44)
-                            
-                            Button {
-                                gardenStore.debugClearWeedProtection()
-                                FeedbackManager.shared.playTap()
-                            } label: {
-                                settingRow(title: "Schutz-Power-Ups beenden", icon: "shield.slash.fill", color: .gray)
-                            }
-                            
-                            Divider().padding(.leading, 44)
-                            
-                            Button {
-                                gardenStore.debugGrantComebackBoost()
-                                FeedbackManager.shared.playSuccess()
-                            } label: {
-                                settingRow(title: "Comeback-Boost testen", icon: "bolt.fill", color: .yellow)
-                            }
+
                         }
                     }
                     
@@ -250,17 +181,7 @@ struct DeveloperView: View {
                         }
                     }
                     
-                    // Section: Pfad-System Debug
-                    settingsSection(title: "Pfad-System") {
-                        VStack(spacing: 0) {
-                            Button {
-                                pfadStore.debugJumpToDay89()
-                                FeedbackManager.shared.playSuccess()
-                            } label: {
-                                settingRow(title: String(localized: "developer.jump_to_day_89", defaultValue: "Zu Tag 89 springen"), icon: "forward.end.fill", color: .purple)
-                            }
-                        }
-                    }
+
                     // Section 5: Lives System Debug
                     settingsSection(title: "Leben-System") {
                         VStack(spacing: 0) {
@@ -367,18 +288,6 @@ struct DeveloperView: View {
                 RarityLevelUpOverlay(rarity: .silber, onDismiss: {
                     showRarityOverlay = false
                 })
-                .transition(.opacity)
-                .zIndex(100)
-            }
-            
-            if showMilestoneOverlay {
-                PfadMeilensteinOverlay(
-                    meilensteinTitel: "Erster Fokus-Erfolg",
-                    belohnung: "+100 Münzen",
-                    onDismiss: {
-                        showMilestoneOverlay = false
-                    }
-                )
                 .transition(.opacity)
                 .zIndex(100)
             }
@@ -547,24 +456,6 @@ struct DeveloperView: View {
         
         // Add some global XP
         gardenStore.xpHinzufuegen(amount: 4500)
-        
-        // 4. Pfad-System: Simulate path progress to a cool milestone (e.g., day 45)
-        for strang in pfadStore.straenge {
-            let sortedTags = strang.tags.sorted(by: { $0.tagNummer < $1.tagNummer })
-            for tag in sortedTags {
-                if tag.tagNummer < 45 {
-                    tag.istErledigt = true
-                    let daysAgo = 45 - tag.tagNummer
-                    tag.datum = Date().addingTimeInterval(-TimeInterval(daysAgo) * 24 * 3600)
-                } else if tag.tagNummer == 45 {
-                    tag.istErledigt = true
-                    tag.datum = Date()
-                } else {
-                    tag.istErledigt = false
-                    tag.datum = nil
-                }
-            }
-        }
         
         gardenStore.coinsGutschreiben(amount: 4500, beschreibung: "Screenshot Data")
         

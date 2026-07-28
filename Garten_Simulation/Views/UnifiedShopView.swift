@@ -104,7 +104,6 @@ struct UnifiedShopView: View {
     @EnvironmentObject var shopStore: ShopStore
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
-    @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var iapStore: IAPStore
     @EnvironmentObject var characterStore: CharacterStore
     @State private var searchText = ""
@@ -124,7 +123,6 @@ struct UnifiedShopView: View {
     
     var pflanzen: [Plant] { GameDatabase.allPlants }
     var decorationItems: [DecorationItem] { GameDatabase.allDecorations }
-    var powerUps: [PowerUpItem] { GameDatabase.allPowerUps }
 
     var relevantHabitCategories: [HabitCategory] {
         let allUsedCats = Set(GameDatabase.allPlants.map { $0.habitCategory })
@@ -154,16 +152,7 @@ struct UnifiedShopView: View {
         return base
     }
 
-    var gefiltertePowerUps: [PowerUpItem] {
-        var base = powerUps
-        if !searchText.isEmpty {
-            base = base.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
-        }
-        // Filter nach Besitz (Level Filter entfernt)
-        return base.filter { 
-            !shopStore.isPurchased($0.id) 
-        }
-    }
+
 
 
     var body: some View {
@@ -226,53 +215,7 @@ struct UnifiedShopView: View {
                                         .padding(.bottom, 16)
                                     }
 
-                                    // Power-Ups
-                                    sectionHeader(String(localized: "shop.category.powerups"))
-                                    VStack(spacing: 12) {
-                                        ForEach(gefiltertePowerUps) { item in
-                                            let p = item.basePrice
-                                            let badge: String? = {
-                                                switch item.rarity {
-                                                case .mystic: return String(localized: "rarity.mystic", defaultValue: "Mystisch")
-                                                case .legendary: return String(localized: "rarity.legendary", defaultValue: "Legendär")
-                                                case .epic: return String(localized: "rarity.epic", defaultValue: "Episch")
-                                                case .rare: return String(localized: "rarity.rare", defaultValue: "Selten")
-                                                case .common: return String(localized: "rarity.common", defaultValue: "Gewöhnlich")
-                                                }
-                                            }()
-                                            ShopItemCard(
-                                                icon: item.symbolName,
-                                                accentColor: item.color,
-                                                shadowColor: item.color.darker(),
-                                                name: item.name,
-                                                subtitle: item.description,
-                                                price: p,
-                                                badgeText: badge,
-                                                rarity: item.rarity,
-                                                onBuy: {
-                                                    detailPayload = ShopDetailPayload(
-                                                        id: item.id,
-                                                        titleKey: item.name,
-                                                        subtitle: "",
-                                                        descriptionKey: item.description,
-                                                        price: p,
-                                                        icon: item.symbolName,
-                                                        colorHex: "#2BC1F5", // blue
-                                                        symbolColor: item.symbolColor,
-                                                        shadowColorHex: "#1A7493", // dark blue
-                                                        tag: item.rarity.rawValue,
-                                                        itemType: .powerUp,
-                                                        habitCategory: nil,
-                                                        symbolism: nil,
-                                                        howToUse: item.howToUse
-                                                    )
-                                                }
-                                            )
-                                        }
-                                    }
-                                    .padding(.horizontal, 16)
-                                    
-                                    Spacer().frame(height: 28)
+
 
                                     // Dekorationen
                                     sectionHeader(String(localized: "shop.category.decorations"))
@@ -425,7 +368,6 @@ struct UnifiedShopView: View {
                     .environmentObject(shopStore)
                     .environmentObject(gardenStore)
                     .environmentObject(settings)
-                    .environmentObject(powerUpStore)
                     .environmentObject(iapStore)
                     .environmentObject(characterStore)
             }

@@ -95,7 +95,7 @@
 		148AD6DF30123F580090539C /* GrovyDNSFilter.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GrovyDNSFilter.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		148AD6E030123F580090539C /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		451D92332C87A16BD490A21B /* GardenActivityAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GardenActivityAttributes.swift; path = Garten_Simulation/Models/GardenActivityAttributes.swift; sourceTree = "<group>"; };
-		50FDD34E6435628D45362380 /* Localizable.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; name = Localizable.xcstrings; path = Garten_Simulation/Localizable.xcstrings; sourceTree = "<group>"; };
+		50FDD34E6435628D45362380 /* Localizable.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json.xcstrings; name = Localizable.xcstrings; path = Garten_Simulation/Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -117,7 +117,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Components/RarityBackgroundView.swift,
-				Models/PowerUpWeedSupport.swift,
 			);
 			target = 142BB4402F9CA800002CDBD0 /* GartenWidgetExtension */;
 		};
@@ -140,15 +139,11 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1424D42C2F6EA14300908588 /* Garten_SimulationTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Garten_SimulationTests;
 			sourceTree = "<group>";
 		};
 		1424D4362F6EA14300908588 /* Garten_SimulationUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Garten_SimulationUITests;
 			sourceTree = "<group>";
 		};

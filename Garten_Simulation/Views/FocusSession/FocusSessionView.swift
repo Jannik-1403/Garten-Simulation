@@ -19,7 +19,6 @@ struct FocusSessionView: View {
     
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var gardenStore: GardenStore
-    @EnvironmentObject var powerUpStore: PowerUpStore
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var iapStore: IAPStore
     @Environment(\.scenePhase) var scenePhase
@@ -579,7 +578,7 @@ struct FocusSessionView: View {
             let xpGained = Int(Double(pflanze.xpPerCompletion) * gardenStore.xpMultiplikator(for: pflanze))
             
             // Triggert den Habit-Abschluss
-            gardenStore.giessen(pflanze: pflanze, powerUpStore: powerUpStore)
+            gardenStore.giessen(pflanze: pflanze)
             
             // XP von der spezifischen Pflanze abziehen und auf alle aufteilen
             if !gardenStore.pflanzen.isEmpty {

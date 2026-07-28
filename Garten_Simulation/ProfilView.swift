@@ -2,12 +2,11 @@ import SwiftUI
 import StoreKit
 
 struct ProfilView: View {
-    @State private var zeigeEinstellungen = false
+
     @State private var showXPDetail = false
     @State private var showPflanzenDetail = false
     @State private var showErfolgeDetail = false
     @State private var showStreakDetail = false
-    @State private var showWasserDetail = false
     @State private var showTitelAuswahl = false
     @State private var zeigeNameEdit = false
     @State private var showSettings = false
@@ -87,8 +86,6 @@ struct ProfilView: View {
                         
                         // --- 3D STAT BUTTONS DASHBOARD ---
                         VStack(spacing: 20) {
-                            WasserStatButton(liter: gardenStore.gesamtLiterFormatiert, showDetail: $showWasserDetail)
-                            
                             HStack(spacing: 20) {
                                 XPStatButton(xp: gardenStore.gesamtXP, showDetail: $showXPDetail)
                                 StreakStatButton(
@@ -144,11 +141,6 @@ struct ProfilView: View {
                 }
             }
 
-            .fullScreenCover(isPresented: $showWasserDetail) {
-                WasserDetailView()
-                    .environmentObject(gardenStore)
-                    .environmentObject(settings)
-            }
             .fullScreenCover(isPresented: $showPflanzenDetail) {
                 CustomPlantCreationView()
                     .environmentObject(gardenStore)
@@ -159,11 +151,7 @@ struct ProfilView: View {
                     .environmentObject(characterStore)
                     .environmentObject(settings)
             }
-            .sheet(isPresented: $zeigeEinstellungen) {
-                HabitStackConfigView()
-                    .environmentObject(achievementStore)
-                    .environmentObject(gardenStore)
-            }
+
             .navigationDestination(isPresented: $showErfolgeDetail) {
                 ErfolgeDetailView()
                     .environmentObject(achievementStore)
@@ -228,12 +216,6 @@ struct ProfilView: View {
                 if newValue {
                     showStreakDetail = true
                     gardenStore.triggerStreakDetail = false
-                }
-            }
-            .onChange(of: gardenStore.triggerWaterDetail) { _, newValue in
-                if newValue {
-                    showWasserDetail = true
-                    gardenStore.triggerWaterDetail = false
                 }
             }
         }

@@ -3,7 +3,7 @@ import SwiftUI
 struct OnboardingView: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var garden: GardenStore
-    @EnvironmentObject var gartenPfadStore: GartenPfadStore
+
     
     @StateObject var data = OnboardingData()
     @State private var showConfetti = false
@@ -111,10 +111,7 @@ struct OnboardingView: View {
         
         garden.onboardingSetup()
         
-        gartenPfadStore.pfadStarten(
-            ziel: ziel.rawValue,
-            pflanzen: garden.pflanzen
-        )
+
         
         withAnimation {
             settings.ausgewaehltesZiel = ziel.rawValue

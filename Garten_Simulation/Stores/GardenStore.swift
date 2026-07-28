@@ -69,12 +69,7 @@ class GardenStore: ObservableObject {
         pflanzen.filter { $0.stufe == .diamant3 || $0.stufe == .diamant2 || $0.stufe == .diamant1 }.count
     }
     
-    @Published var activePowerUps: [ActivePowerUp] = [] {
-        didSet {
-            saveActivePowerUps()
-        }
-    }
-    
+
     // Inventory for non-plant items
     @Published var gekaufteItems: [ShopDetailPayload] = []
     @Published var placedDecorations: [DecorationItem] = [] {
@@ -126,23 +121,7 @@ class GardenStore: ObservableObject {
         WeedMechanics.effectiveRewardPercent(weedCount: activeWeeds.count)
     }
 
-    var blocksNewWeedSpawns: Bool {
-        hasActivePowerUp(powerUpId: PowerUpWeedSupport.gartenschutzID)
-            || hasActivePowerUp(powerUpId: PowerUpWeedSupport.zauberstabID)
-    }
 
-    var availableWeedPowerUpItems: [ShopDetailPayload] {
-        gekaufteItems.filter { PowerUpWeedSupport.isWeedPowerUp($0.id) }
-    }
-
-    /// Inventar-Power-up oder laufender Gartenschutz/Zauberstab – Schild-Ritual möglich
-    var hasWeedShieldOption: Bool {
-        !availableWeedPowerUpItems.isEmpty || blocksNewWeedSpawns
-    }
-
-    /// Aus Inventar „Verwenden“ → Unkraut-Sheet mit vorausgewähltem Power-up
-    @Published var pendingWeedPowerUpForRitual: ShopDetailPayload?
-    @Published var aktivesWetter: WetterEvent = .normal
     @Published var pendingImportURL: URL? = nil
     /// Wird per Live Activity Deep Link gesetzt, um die passende FocusSessionView zu öffnen
     @Published var activeFocusHabitId: String? = nil
@@ -177,7 +156,7 @@ class GardenStore: ObservableObject {
     }
 
     var gekauftePowerUps: [ShopDetailPayload] {
-        gekaufteItems.filter { $0.itemType == .powerUp }
+        []
     }
 
     var gartenStufe: Int {
@@ -225,7 +204,7 @@ class GardenStore: ObservableObject {
             loadPlants()
             loadTransactions()
             loadInventory()
-            loadActivePowerUps()
+
             loadDecorations()
             loadBadHabits()
             loadBadHabitNotes()
@@ -243,7 +222,7 @@ class GardenStore: ObservableObject {
         loadPlants()
         loadTransactions()
         loadInventory()
-        loadActivePowerUps()
+
         loadDecorations()
         loadBadHabits()
         loadBadHabitNotes()
@@ -269,36 +248,6 @@ class GardenStore: ObservableObject {
         saveStats()
     }
 
-    func debugAddWeedPowerUpToInventory(powerUpId: String) {
-        guard let powerUp = GameDatabase.allPowerUps.first(where: { $0.id == powerUpId }) else { return }
-        let payload = ShopDetailPayload.from(powerUp: powerUp)
-        guard !gekaufteItems.contains(where: { $0.id == powerUpId }) else { return }
-        itemHinzufuegen(shopItem: payload, isFree: true)
-    }
-
-    func debugActivateGardenPowerUp(powerUpId: String) {
-        guard let powerUp = GameDatabase.allPowerUps.first(where: { $0.id == powerUpId }) else { return }
-        applyPowerUp(powerUp)
-    }
-
-    func debugClearWeedProtection() {
-        activePowerUps.removeAll { PowerUpWeedSupport.isWeedPowerUp($0.powerUpId) }
-        saveActivePowerUps()
-    }
-
-    func debugRequestOpenWeedSheet() {
-        if !isWeedActive { debugSpawnWeed() }
-        debugRequestWeedSheet = true
-    }
-
-    func debugOpenWeedSheetWithShieldPreselected() {
-        debugAddWeedPowerUpToInventory(powerUpId: PowerUpWeedSupport.gartenschutzID)
-        if !isWeedActive { debugSpawnWeed() }
-        if let item = gekaufteItems.first(where: { $0.id == PowerUpWeedSupport.gartenschutzID }) {
-            pendingWeedPowerUpForRitual = item
-        }
-        debugRequestWeedSheet = true
-    }
 
     func debugGrantComebackBoost() {
         comebackBoostExpiresAt = Date().addingTimeInterval(
@@ -327,7 +276,7 @@ class GardenStore: ObservableObject {
     }
     
     // MARK: Pflanze gießen
-    func giessen(pflanze: HabitModel, powerUpStore: PowerUpStore, fromRoutine: Bool = false) {
+    func giessen(pflanze: HabitModel, fromRoutine: Bool = false) {
         guard !pflanze.istBewässert else { return }
 
         // Tagesziel automatisch erfüllen (Andersrum-Sync)
@@ -350,7 +299,7 @@ class GardenStore: ObservableObject {
         let coinsGewonnen = Int(Double(GameConstants.coinsProGiessen) * coinMult)
         var finalXPGewonnen = xpGewonnen
         
-        let weedPenaltiesApply = isWeedActive && !hasActivePowerUp(powerUpId: PowerUpWeedSupport.zauberstabID)
+        let weedPenaltiesApply = isWeedActive
         let weedCoinDeduction = weedPenaltiesApply
             ? WeedMechanics.appliedCoinPenalty(currentCoins: coins, weedCount: activeWeeds.count)
             : 0
@@ -574,7 +523,7 @@ class GardenStore: ObservableObject {
     // MARK: - Leben System
     func pflanzeGestorben(_ habit: HabitModel) {
         withAnimation(.spring) {
-            let damage = aktivesWetter == .sturm ? 2 : 1
+            let damage = 1
             leben = max(0, leben - damage)
             gestorbenePflanzenLog.append(habit.name)
         }
@@ -781,7 +730,7 @@ class GardenStore: ObservableObject {
         }
         
         for pflanze in pflanzen {
-            let isProtected = activePowerUps.contains(where: { $0.powerUpId == "powerup.zeitkapsel" && $0.targetPlantId == pflanze.id && $0.isActive })
+            let isProtected = false
             if pflanze.streakAbgelaufen && !isProtected {
                 if pflanze.challengeJokers > 0 {
                     // Joker wird eingesetzt
@@ -877,101 +826,16 @@ class GardenStore: ObservableObject {
         }
     }
 
-    // MARK: Power-Up Management
-    func applyPowerUp(_ powerUp: PowerUpItem, targetPlantId: String? = nil) {
-        if powerUp.id == PowerUpWeedSupport.zauberstabID {
-            applyZauberstabPowerUp(powerUp)
-            return
-        }
 
-        // Sofortige Ausführung für Herz-Auffüller
-        if powerUp.id == "powerup.herz_auffueller" {
-            if leben < 5 {
-                leben += 1
-                FeedbackManager.shared.playSuccess()
-                saveStats()
-            }
-            return
-        }
-
-        // Sofortige Ausführung für Tier-Freund
-        if powerUp.id == "powerup.tier_freund" {
-            let targets = pflanzen.shuffled().prefix(3)
-            for p in targets {
-                p.currentXP += 50
-            }
-            FeedbackManager.shared.playSuccess()
-            savePlants()
-            return // nicht als anhaltendes Power-Up speichern
-        }
-        
-        // Letzte abgelaufene direkt bereinigen
-        activePowerUps.removeAll { !$0.isActive }
-        
-        let active = ActivePowerUp(
-            id: UUID(),
-            powerUpId: powerUp.id,
-            appliedAt: Date(),
-            durationHours: powerUp.durationHours,
-            targetPlantId: targetPlantId
-        )
-        
-        withAnimation {
-            activePowerUps.append(active)
-        }
-    }
-
-    func activePowerUpsFor(plantId: String) -> [ActivePowerUp] {
-        activePowerUps.filter { $0.isActive && ($0.targetPlantId == plantId || $0.targetPlantId == nil) }
-    }
-
-    /// NUR PowerUps die explizit auf DIESE Pflanze angewendet wurden
-    func plantSpecificActivePowerUps(plantId: String) -> [ActivePowerUp] {
-        activePowerUps.filter { $0.isActive && $0.targetPlantId == plantId }
-    }
-
-    func hasActivePowerUp(powerUpId: String, plantId: String? = nil) -> Bool {
-        activePowerUps.contains { active in
-            active.isActive &&
-            active.powerUpId == powerUpId &&
-            (plantId == nil || active.targetPlantId == plantId || active.targetPlantId == nil)
-        }
-    }
-
-    var globalXPMultiplier: Double {
-        activePowerUps
-            .filter { $0.isActive && $0.targetPlantId == nil }
-            .reduce(1.0) { result, active in
-                let base = GameDatabase.allPowerUps.first { $0.id == active.powerUpId }
-                return result * (base?.effectMultiplier ?? 1.0)
-            }
-    }
     /// Berechnet den XP-Multiplikator für eine bestimmte Pflanze
     func xpMultiplikator(for pflanze: HabitModel) -> Double {
         var mult = 1.0
-        
-        // 1. Wetter
-        mult *= aktivesWetter.xpMultiplikator
         
         // 2. Penalty (Revive)
         if let start = pflanze.wiederbelebtAm {
             let tage = Calendar.current.dateComponents([.day], from: start, to: Date()).day ?? 0
             if tage < pflanze.strafTage {
                 mult *= 0.5
-            }
-        }
-
-        // 3. Globale Power-Ups
-        for aktiv in activePowerUps where aktiv.isActive && aktiv.targetPlantId == nil {
-            if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }) {
-                mult *= base.effectMultiplier
-            }
-        }
-        
-        // 4. Pflanzenspezifische Power-Ups
-        for aktiv in activePowerUps where aktiv.isActive && aktiv.targetPlantId == pflanze.id {
-            if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }) {
-                mult *= base.effectMultiplier
             }
         }
 
@@ -986,21 +850,11 @@ class GardenStore: ObservableObject {
     func coinMultiplikator(for pflanze: HabitModel) -> Double {
         var mult = GartenLevel.coinMultiplikator(fuerLevel: gartenStufe)
         
-        // 1. Wetter
-        mult *= aktivesWetter.gemMultiplikator
-        
         // 2. Penalty (Revive)
         if let start = pflanze.wiederbelebtAm {
             let tage = Calendar.current.dateComponents([.day], from: start, to: Date()).day ?? 0
             if tage < pflanze.strafTage {
                 mult *= 0.5
-            }
-        }
-        
-        // Power-Ups (Coins werden meistens nicht durch Power-Ups beeinflusst, außer explizit)
-        for aktiv in activePowerUps where aktiv.isActive && (aktiv.targetPlantId == nil || aktiv.targetPlantId == pflanze.id) {
-            if let base = GameDatabase.allPowerUps.first(where: { $0.id == aktiv.powerUpId }), base.id.contains("coin") {
-                mult *= base.effectMultiplier
             }
         }
         
@@ -1018,8 +872,7 @@ class GardenStore: ObservableObject {
     func focusCoinMultiplikator() -> Double {
         var mult = GartenLevel.coinMultiplikator(fuerLevel: gartenStufe)
         
-        // 1. Wetter
-        mult *= aktivesWetter.gemMultiplikator
+
         
         // 2. Pro-User Coin-Bonus (+25%)
         if isProUser {
@@ -1033,26 +886,6 @@ class GardenStore: ObservableObject {
 
 
     // MARK: - Wetter-Logik
-
-    func ladeTagesWetter() {
-        let kalender = Calendar.current
-        let tagDesJahres = kalender.ordinality(of: .day, in: .year, for: Date()) ?? 0
-        
-        // Deterministische Wetter-Berechnung pro Tag (0-4)
-        let index = tagDesJahres % WetterEvent.allCases.count
-        self.aktivesWetter = WetterEvent.allCases[index]
-        // print("DEBUG: Wetter heute (\(tagDesJahres)): \(aktivesWetter.titel)")
-    }
-    
-    func cycleWetter() {
-        let all = WetterEvent.allCases
-        guard let currentIdx = all.firstIndex(of: aktivesWetter) else { return }
-        let nextIdx = (currentIdx + 1) % all.count
-        withAnimation(.easeInOut(duration: 0.8)) {
-            aktivesWetter = all[nextIdx]
-        }
-        UISelectionFeedbackGenerator().selectionChanged()
-    }
     
     func starteTageswechselTimer() {
         Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
@@ -1063,15 +896,13 @@ class GardenStore: ObservableObject {
             
             // Um Mitternacht Wetter aktualisieren
             if stunde == 0 && minute == 0 {
-                Task { @MainActor in
-                    self.ladeTagesWetter()
-                }
+                // (wetter deleted)
             }
         }
     }
 
     var hatZeitkapsel: Bool {
-        activePowerUps.contains { $0.isActive && $0.powerUpId == "powerup.zeitkapsel" }
+        false
     }
 
 
@@ -1202,20 +1033,7 @@ class GardenStore: ObservableObject {
         NotificationManager.shared.scheduleAll(for: pflanzen)
     }
 
-    func saveActivePowerUps() {
-        guard !isLoading else { return }
-        if let encoded = try? JSONEncoder().encode(activePowerUps) {
-            SharedUserDefaults.suite.set(encoded, forKey: "active_powerups_garden")
-            SharedUserDefaults.suite.synchronize()
-        }
-    }
 
-    private func loadActivePowerUps() {
-        if let data = SharedUserDefaults.suite.data(forKey: "active_powerups_garden"),
-           let decoded = try? JSONDecoder().decode([ActivePowerUp].self, from: data) {
-            activePowerUps = decoded
-        }
-    }
 
     func saveDecorations() {
         guard !isMock else { return }
@@ -1236,7 +1054,7 @@ class GardenStore: ObservableObject {
     // MARK: - Unkraut
 
     func spawnWeed(removalCost: Int, source: WeedSource) {
-        if source != .decoration && blocksNewWeedSpawns { return }
+        if source != .decoration && false { return }
 
         if isComebackBoostActive {
             comebackBoostExpiresAt = nil
@@ -1299,77 +1117,7 @@ class GardenStore: ObservableObject {
         weedCrisis = WeedCrisisState(lastComebackGrantedAt: preservedLastGranted)
     }
 
-    private func applyZauberstabPowerUp(_ powerUp: PowerUpItem) {
-        clearAllWeedsForShield(allowComeback: false)
-        activateGardenPowerUp(powerUp, durationHours: GameConstants.zauberstabDurationHours)
-        FeedbackManager.shared.playSuccess()
-    }
 
-    private func activateGardenPowerUp(_ powerUp: PowerUpItem, durationHours: Double) {
-        activePowerUps.removeAll { !$0.isActive }
-        let active = ActivePowerUp(
-            id: UUID(),
-            powerUpId: powerUp.id,
-            appliedAt: Date(),
-            durationHours: durationHours,
-            targetPlantId: nil
-        )
-        withAnimation {
-            activePowerUps.append(active)
-        }
-        saveStats()
-    }
-
-    private func clearFrontWeedForShield(allowComeback: Bool) {
-        guard !activeWeeds.isEmpty else { return }
-        _ = withAnimation {
-            activeWeeds.removeFirst()
-        }
-        handleWeedQueueEmptied(clearedByHabits: true, allowComeback: allowComeback)
-        saveStats()
-    }
-
-    private func clearAllWeedsForShield(allowComeback: Bool) {
-        guard !activeWeeds.isEmpty else { return }
-        withAnimation {
-            activeWeeds.removeAll()
-        }
-        handleWeedQueueEmptied(clearedByHabits: false, allowComeback: allowComeback)
-        saveStats()
-    }
-
-    /// Schutzschild-Ritual mit bereits aktivem Gartenschutz/Zauberstab (ohne Inventar-Verbrauch).
-    func completeShieldRitualUsingActiveProtection() {
-        if hasActivePowerUp(powerUpId: PowerUpWeedSupport.zauberstabID) {
-            clearAllWeedsForShield(allowComeback: false)
-        } else {
-            clearFrontWeedForShield(allowComeback: false)
-        }
-        FeedbackManager.shared.playSuccess()
-    }
-
-    /// Nach Schutzschild-Ritual: Unkraut entfernen + Power-Up aktivieren.
-    @discardableResult
-    func applyWeedPowerUpAfterRitual(item: ShopDetailPayload) -> Bool {
-        guard let powerUp = GameDatabase.allPowerUps.first(where: { $0.id == item.id }),
-              PowerUpWeedSupport.isWeedPowerUp(item.id) else { return false }
-        guard !hasActivePowerUp(powerUpId: item.id) else { return false }
-
-        switch powerUp.id {
-        case PowerUpWeedSupport.zauberstabID:
-            clearAllWeedsForShield(allowComeback: false)
-            activateGardenPowerUp(powerUp, durationHours: GameConstants.zauberstabDurationHours)
-        case PowerUpWeedSupport.gartenschutzID:
-            clearFrontWeedForShield(allowComeback: false)
-            activateGardenPowerUp(powerUp, durationHours: powerUp.durationHours ?? 24)
-        default:
-            return false
-        }
-
-        itemVerbrauchen(shopItem: item)
-        FeedbackManager.shared.playSuccess()
-        return true
-    }
 
     private func grantComebackBoost() {
         comebackBoostExpiresAt = Date().addingTimeInterval(
@@ -1755,7 +1503,7 @@ class GardenStore: ObservableObject {
             gesamtAusgegeben = 0
             gesamtGegossen = 0
             tageAktiv = 1
-            activePowerUps.removeAll()
+
             gekaufteItems.removeAll()
             placedDecorations.removeAll()
             leben = 5
@@ -1796,7 +1544,7 @@ class GardenStore: ObservableObject {
             saveTransactions()
             saveInventory()
             saveInventory()
-            saveActivePowerUps()
+
             saveDecorations()
         }
     }
@@ -1833,12 +1581,7 @@ class GardenStore: ObservableObject {
             
             // Wächter-Turm (Sturmfest) Rettung vor dem sicheren Tod
             if verpasst >= 2 {
-                if let tower = activePowerUps.first(where: { $0.powerUpId == "powerup.sturmfest" && $0.targetPlantId == pflanze.id && $0.isActive }) {
-                    pflanze.letzteBewaesserung = now
-                    verpasst = 0
-                    activePowerUps.removeAll { $0.id == tower.id }
-                    changed = true
-                } else if pflanze.lastNotifiedCycle < 2 && !pflanze.isDead {
+                if pflanze.lastNotifiedCycle < 2 && !pflanze.isDead {
                     // Pflanze stirbt jetzt. Hat der Benutzer Wunder-Wasser?
                     let hasWunderWasser = gekaufteItems.contains(where: { $0.id == "powerup.wunder_wasser" })
                     if hasWunderWasser {
@@ -1951,34 +1694,18 @@ class GardenStore: ObservableObject {
             belohnungText = "100 \(String(localized: "common.coins"))"
         case 14:
             belohnungText = String(localized: "item.unkraut_schild.name")
-            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == "powerup.gartenschutz" }) {
-                let payload = ShopDetailPayload.from(powerUp: pu)
-                itemHinzufuegen(shopItem: payload, isFree: true)
-            }
         case 21:
             self.coins += 250
             belohnungText = "250 \(String(localized: "common.coins"))"
         case 30:
             belohnungText = String(localized: "item.zeitkapsel.name")
-            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == "powerup.zeitkapsel" }) {
-                let payload = ShopDetailPayload.from(powerUp: pu)
-                itemHinzufuegen(shopItem: payload, isFree: true)
-            }
         case 45:
             self.coins += 500
             belohnungText = "500 \(String(localized: "common.coins"))"
         case 60:
             belohnungText = String(localized: "item.gluecks_segen.name")
-            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == "powerup.gluecks_segen" }) {
-                let payload = ShopDetailPayload.from(powerUp: pu)
-                itemHinzufuegen(shopItem: payload, isFree: true)
-            }
         case 90:
             belohnungText = String(localized: "item.diamant_erde.name")
-            if let pu = GameDatabase.allPowerUps.first(where: { $0.id == "powerup.diamant_erde" }) {
-                let payload = ShopDetailPayload.from(powerUp: pu)
-                itemHinzufuegen(shopItem: payload, isFree: true)
-            }
             completed90DayChallenges += 1
         default:
             belohnungText = ""

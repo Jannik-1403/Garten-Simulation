@@ -74,7 +74,7 @@ struct DynamicAssessmentInsightsView: View {
             GenericFocusSessionContainer(habit: habit)
         }
         .sheet(item: $selectedPlant) { plant in
-            PflanzeDetailSheet(pflanze: plant, wetterEvent: .normal)
+            PflanzeDetailSheet(pflanze: plant)
         }
         .sheet(isPresented: $showShop) {
             UnifiedShopView()

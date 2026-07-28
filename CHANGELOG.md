@@ -204,3 +204,11 @@
 
 - Wasser-Widget bearbeitbar (Zeitraum) entfernt, Hintergrund weiterhin wählbar.
 - Fehlende Widget-Übersetzungen in 16 Sprachen (inklusive pt-BR) ergänzt.
+
+- Widget-Lokalisierung repariert: Sprache wird nun korrekt in den Widgets angewandt (unabhängig von der Systemsprache).
+
+- Widgets passen sich nun immer an die Systemsprache an und fallen auf Englisch (statt Deutsch) zurück, falls die Systemsprache nicht unterstützt wird.
+
+- Fehlendes Localizable.xcstrings zur Widget-Erweiterung hinzugefügt, damit das Widget die Übersetzungen überhaupt finden kann.
+
+- Hardcodierten 'Hintergrund' Text im Widget-Bearbeitungsmenü behoben. Dieser wird nun ebenfalls über das Lokalisierungssystem übersetzt.

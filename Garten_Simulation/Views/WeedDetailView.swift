@@ -39,16 +39,13 @@ struct WeedDetailView: View {
 
     /// Inventar-Power-up gewählt oder Schutz läuft bereits (Deko-Schutz etc.)
     private var canUseShieldDrag: Bool {
-        selectedPowerUp != nil || gardenStore.blocksNewWeedSpawns
+        false
     }
 
     private var ritualComplete: Bool {
         shieldedDotIndices.count >= GameConstants.habitsRequiredPerWeed
     }
 
-    private var hasWeedPowerUpsInInventory: Bool {
-        !gardenStore.availableWeedPowerUpItems.isEmpty
-    }
 
     var body: some View {
         NavigationStack {
@@ -60,21 +57,7 @@ struct WeedDetailView: View {
                         Spacer().frame(height: 40)
                         headerSection
 
-                        if gardenStore.hasWeedShieldOption {
-                            shieldDragSection
-                        } else {
-                            wateringProgressSection
-                        }
-
-                        if hasWeedPowerUpsInInventory {
-                            WeedPowerUpSection(selectedPowerUp: $selectedPowerUp)
-                                .onChange(of: selectedPowerUp?.id) { _, _ in
-                                    if !ritualComplete {
-                                        shieldedDotIndices.removeAll()
-                                    }
-                                }
-                        }
-                        
+                        wateringProgressSection
                         if !canUseShieldDrag && gardenStore.weedRemovalCost > 0 {
                             Button(action: {
                                 if gardenStore.removeFrontWeedWithCoins() {
@@ -120,26 +103,8 @@ struct WeedDetailView: View {
         }
     }
 
-    private func applyPendingPowerUpSelection() {
-        guard let pending = gardenStore.pendingWeedPowerUpForRitual else { return }
-        selectedPowerUp = pending
-        gardenStore.pendingWeedPowerUpForRitual = nil
-    }
-
-    /// Beim Öffnen direkt Zauberstab/Gartenschutz wählen – kein Extra-Tap nötig.
-    private func preselectWeedPowerUpIfNeeded() {
-        guard selectedPowerUp == nil else { return }
-        let items = gardenStore.availableWeedPowerUpItems
-        guard !items.isEmpty else { return }
-
-        if let wand = items.first(where: { $0.id == PowerUpWeedSupport.zauberstabID }) {
-            selectedPowerUp = wand
-        } else if let shield = items.first(where: { $0.id == PowerUpWeedSupport.gartenschutzID }) {
-            selectedPowerUp = shield
-        } else {
-            selectedPowerUp = items.first
-        }
-    }
+    private func applyPendingPowerUpSelection() {}
+    private func preselectWeedPowerUpIfNeeded() {}
 
     // MARK: - Header
 
@@ -160,16 +125,7 @@ struct WeedDetailView: View {
                             .multilineTextAlignment(.center)
                             .lineSpacing(4)
                         
-                        if gardenStore.hasWeedShieldOption {
-                            Text(
-                                gardenStore.blocksNewWeedSpawns && selectedPowerUp == nil
-                                    ? String(localized: "weed.shield.ritual.drag_active")
-                                    : String(localized: "weed.shield.ritual.drag")
-                            )
-                            .font(.system(size: 14, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                            .multilineTextAlignment(.center)
-                        }
+
             
                         if gardenStore.isComebackBoostActive {
                             Label(
@@ -207,38 +163,6 @@ struct WeedDetailView: View {
         }
     }
 
-    // MARK: - Shield drag (wie Wassertropfen)
-
-    private var shieldDragSection: some View {
-        VStack(spacing: 8) {
-            if !canUseShieldDrag && hasWeedPowerUpsInInventory {
-                Text(String(localized: "weed.shield.ritual.pick_first"))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-            }
-
-            DragShieldToWeed(
-                shieldedIndices: shieldedDotIndices,
-                onShieldApplied: { index in
-                    withAnimation(.spring(response: 0.28, dampingFraction: 0.65)) {
-                        _ = shieldedDotIndices.insert(index)
-                    }
-                },
-                isDisabled: !canUseShieldDrag
-            )
-            .opacity(canUseShieldDrag ? 1 : 0.4)
-
-            if canUseShieldDrag {
-                Text(
-                    String(format: String(localized: "weed.shield.ritual.progress"), shieldedDotIndices.count,
-                        GameConstants.habitsRequiredPerWeed)
-                )
-                .font(.caption2)
-                .foregroundStyle(.tertiary)
-            }
-        }
-    }
 
     // MARK: - Normaler Gieß-Fortschritt (ohne Schutz)
 
@@ -295,15 +219,7 @@ struct WeedDetailView: View {
     // MARK: - Bottom
     // Bottom actions removed per user request
 
-    private func finishShieldRitual() {
-        if let item = selectedPowerUp {
-            guard gardenStore.applyWeedPowerUpAfterRitual(item: item) else { return }
-            shopStore.removeFromPurchased(id: item.id)
-            selectedPowerUp = nil
-        } else {
-            gardenStore.completeShieldRitualUsingActiveProtection()
-        }
-    }
+    private func finishShieldRitual() {}
 }
 
 #Preview {

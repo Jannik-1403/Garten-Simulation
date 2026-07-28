@@ -2,14 +2,12 @@ import SwiftUI
 
 struct PflanzenCard: View {
     @ObservedObject var pflanze: HabitModel
-    let wetterEvent: WetterEvent
+
     let onGiessen: () -> Void
     let onTap: () -> Void
 
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
-    @EnvironmentObject var powerUpStore: PowerUpStore
-    @EnvironmentObject var pfadStore: GartenPfadStore
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
     @State private var isVisualPressed = false
     @State private var isLocked = false
@@ -198,7 +196,7 @@ struct PflanzenCard: View {
                     } else {
                         if pflanze.pfadAktiviertAm != nil {
                             // Pfad ist aktiviert
-                            build90DayProgressView()
+
                         } else {
                             // Pfad ist nicht aktiviert
                             buildPfadNotActivatedView()
@@ -252,25 +250,6 @@ struct PflanzenCard: View {
         .coordinateSpace(name: "PflanzenCardSpace")
     }
     
-    @ViewBuilder
-    private func build90DayProgressView() -> some View {
-        let current = Double(pfadStore.tagHeute(for: pflanze.id))
-        let target = 90.0
-        
-        VStack(alignment: .center, spacing: 4) {
-            ZStack(alignment: .leading) {
-                ProgressView(value: min(current, target), total: target)
-                    .progressViewStyle(LinearProgressViewStyle(tint: pflanze.seltenheit.farbe))
-                    .frame(height: 6)
-            }
-            
-            Text(String(format: String(localized: "plant.card.challenge.progress", defaultValue: "Tag %d von %d"), Int(current), Int(target)))
-                .font(.system(size: 10, weight: .semibold, design: .rounded))
-                .foregroundStyle(.secondary)
-        }
-        .padding(.top, 4)
-    }
-
     @ViewBuilder
     private func buildPfadNotActivatedView() -> some View {
         HStack(spacing: 6) {
@@ -471,7 +450,7 @@ struct RevivePlantSheet: View {
     VStack(spacing: 16) {
         PflanzenCard(
             pflanze: HabitModel(id: "1", name: "Gym", symbolName: "figure.run", symbolColor: "orange", habitCategory: .fitness),
-            wetterEvent: .normal,
+
             onGiessen: {},
             onTap: {}
         )
@@ -482,7 +461,7 @@ struct RevivePlantSheet: View {
                 p.istBewässert = true
                 return p
             }(),
-            wetterEvent: .normal,
+
             onGiessen: {},
             onTap: {}
         )
@@ -491,6 +470,5 @@ struct RevivePlantSheet: View {
     .background(Color.appHintergrund)
     .environmentObject(SettingsStore())
     .environmentObject(GardenStore())
-    .environmentObject(PowerUpStore())
-    .environmentObject(GartenPfadStore(settings: SettingsStore()))
+
 }

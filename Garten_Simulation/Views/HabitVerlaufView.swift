@@ -315,7 +315,8 @@ struct HabitVerlaufView: View {
             ForEach(weeks.indices, id: \.self) { weekIdx in
                 HStack(spacing: cellSpacing) {
                     ForEach(0..<7, id: \.self) { dayIdx in
-                        if let date = weeks[weekIdx][safe: dayIdx] ?? nil {
+                        let dayArray = weeks[weekIdx]
+                        if dayArray.indices.contains(dayIdx), let date = dayArray[dayIdx] {
                             dayCell(date: date)
                         } else {
                             Rectangle()

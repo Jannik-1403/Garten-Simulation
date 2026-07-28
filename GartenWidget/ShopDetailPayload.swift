@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum ShopItemType: String, Codable {
-    case plant, powerUp, decoration
+    case plant, decoration
 }
 
 struct ShopDetailPayload: Identifiable, Codable {
@@ -25,7 +25,9 @@ struct ShopDetailPayload: Identifiable, Codable {
     let habitTitleKey: String?
     let habitDescriptionKey: String?
     
-    var color: Color { Color(hex: colorHex) }
+    var color: Color {
+        return Color(hex: colorHex)
+    }
     var shadowColor: Color { Color(hex: shadowColorHex) }
 
     init(
@@ -90,30 +92,13 @@ extension ShopDetailPayload {
             habitDescriptionKey: plant.symbolism
         )
     }
-    
-    static func from(powerUp: PowerUpItem) -> ShopDetailPayload {
-        ShopDetailPayload(
-            id: powerUp.id,
-            titleKey: powerUp.name,
-            subtitle: "Power-Up",
-            descriptionKey: powerUp.description,
-            price: powerUp.basePrice,
-            icon: powerUp.symbolName,
-            colorHex: "#3498DB", // Default blue
-            symbolColor: powerUp.symbolColor,
-            shadowColorHex: "#2980B9",
-            minGartenLevel: powerUp.minGartenLevel,
-            itemType: .powerUp,
-            howToUse: powerUp.howToUse
-        )
-    }
 
     static func from(decoration: DecorationItem) -> ShopDetailPayload {
         ShopDetailPayload(
             id: decoration.id,
             titleKey: decoration.objectNameKey,
             subtitle: String(localized: "decoration.info.title", defaultValue: "Schlechte Gewohnheiten"),
-            descriptionKey: decoration.objectDescriptionKey,
+            descriptionKey: decoration.habitDescriptionKey,
             price: decoration.price,
             icon: decoration.sfSymbol,
             colorHex: "#9B59B6", // Default purple

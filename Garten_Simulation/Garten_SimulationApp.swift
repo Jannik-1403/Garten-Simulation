@@ -32,8 +32,6 @@ class AppDependencyContainer: ObservableObject {
     let streakStore: StreakStore
     let titelStore: TitelStore
     let achievementStore: AchievementStore
-    let powerUpStore: PowerUpStore
-    let gartenPfadStore: GartenPfadStore
     let characterStore: CharacterStore
     let interactiveTourManager: InteractiveTourManager
     let assessmentStore: AssessmentStore
@@ -62,8 +60,6 @@ class AppDependencyContainer: ObservableObject {
         self.streakStore = streak
         self.titelStore = titel
         self.achievementStore = AchievementStore(gardenStore: garden, streakStore: streak)
-        self.powerUpStore = PowerUpStore()
-        self.gartenPfadStore = GartenPfadStore(settings: settings)
         self.characterStore = CharacterStore()
         self.interactiveTourManager = InteractiveTourManager()
         self.assessmentStore = AssessmentStore()
@@ -117,7 +113,7 @@ struct Garten_SimulationApp: App {
                     }
                 }
             }
-            .modelContainer(for: [PfadStrang.self, PfadStrangTag.self, PfadVerschmelzung.self])
+
         }
     }
 }
@@ -135,9 +131,8 @@ struct AppRootView: View {
                 .environmentObject(container.settingsStore)
                 .environmentObject(container.streakStore)
                 .environmentObject(container.achievementStore)
-                .environmentObject(container.powerUpStore)
                 .environmentObject(container.titelStore)
-                .environmentObject(container.gartenPfadStore)
+
                 .environmentObject(container.characterStore)
                 .environmentObject(container.interactiveTourManager)
                 .environmentObject(container.assessmentStore)
@@ -182,7 +177,7 @@ struct AppRootView: View {
                         .environmentObject(container.gardenStore)
                         .environmentObject(container.shopStore)
                         .environmentObject(container.settingsStore)
-                        .environmentObject(container.gartenPfadStore)
+
                         .environmentObject(container.characterStore)
                 }
                 .task {

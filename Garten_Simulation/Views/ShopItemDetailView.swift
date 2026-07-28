@@ -5,8 +5,6 @@ struct ShopItemDetailView: View {
     @EnvironmentObject var shopStore: ShopStore
     @EnvironmentObject var gardenStore: GardenStore
     @EnvironmentObject var settings: SettingsStore
-    @EnvironmentObject var powerUpStore: PowerUpStore
-    @EnvironmentObject var gartenPfadStore: GartenPfadStore
     @EnvironmentObject var iapStore: IAPStore
     @EnvironmentObject var characterStore: CharacterStore
 
@@ -17,7 +15,7 @@ struct ShopItemDetailView: View {
     @State private var showPaywallSheet = false
     @State private var showCoinsShopSheet = false
     
-    @State private var selectedDifficulty: PfadSchwierigkeit? = nil
+
 
     private var isOwned: Bool { shopStore.isPurchased(payload.id) }
     private var canAfford: Bool { shopStore.canAfford(payload.price) }
@@ -25,15 +23,9 @@ struct ShopItemDetailView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                if payload.itemType == .powerUp, let tag = payload.tag {
-                    RarityBackgroundView(tag: tag)
-                        .ignoresSafeArea()
-                } else {
                     Color.appHintergrund
-                        .ignoresSafeArea()
-                }
-
-            ScrollView(showsIndicators: false) {
+                        .ignoresSafeArea()            
+                ScrollView(showsIndicators: false) {
                 VStack(spacing: 0) {
 
                     Spacer().frame(height: 60)
@@ -145,64 +137,6 @@ struct ShopItemDetailView: View {
                             .padding(.top, 8)
                             
                             // MARK: Schwierigkeits-Auswahl (Nur für Pflanzen)
-                            if payload.itemType == .plant && payload.id != "plant.seeds" {
-                                VStack(alignment: .leading, spacing: 14) {
-                                    HStack {
-                                        Text(String(localized: "schwierigkeit.titel"))
-                                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                                        Spacer()
-                                        if let diff = selectedDifficulty {
-                                            Text(NSLocalizedString(diff.titelKey, comment: ""))
-                                                .font(.system(size: 14, weight: .bold))
-                                                .foregroundStyle(diff.farbe)
-                                        }
-                                    }
-                                    .padding(.top, 8)
-                                    
-                                    HStack(spacing: 12) {
-                                        ForEach(PfadSchwierigkeit.allCases, id: \.self) { diff in
-                                            Item3DButton(
-                                                farbe: selectedDifficulty == diff ? diff.farbe : Color(uiColor: .systemGray5),
-                                                sekundaerFarbe: selectedDifficulty == diff ? diff.farbe.darker() : Color(uiColor: .systemGray3),
-                                                groesse: 54, // Etwas flacher
-                                                iconSkalierung: 0.9,
-                                                isRectangular: true,
-                                                isPermanentlyPressed: selectedDifficulty == diff
-                                            ) {
-                                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                                    selectedDifficulty = diff
-                                                    FeedbackManager.shared.playTap()
-                                                }
-                                            } label: {
-                                                Text(NSLocalizedString(diff.titelKey, comment: ""))
-                                                    .font(.system(size: 11, weight: .black, design: .rounded))
-                                                    .minimumScaleFactor(0.6)
-                                                    .lineLimit(2)
-                                                    .padding(.horizontal, 4)
-                                            }
-                                        }
-                                    }
-                                    .frame(height: 70)
-                                    
-                                    if let diff = selectedDifficulty {
-                                        Text(NSLocalizedString(diff.beschreibungKey, comment: ""))
-                                            .font(.system(size: 12, weight: .medium))
-                                            .foregroundStyle(.secondary)
-                                            .fixedSize(horizontal: false, vertical: true)
-                                            .padding(.horizontal, 4)
-                                            .transition(.opacity.combined(with: .move(edge: .top)))
-                                    } else {
-                                        Text(String(localized: "schwierigkeit.waehlen_hinweis"))
-                                            .font(.system(size: 12, weight: .bold))
-                                            .foregroundStyle(.orange)
-                                            .padding(.horizontal, 4)
-                                    }
-                                }
-                                .padding(.bottom, 8)
-                                
-                                Divider()
-                            }
-                            
 
                             // MARK: Button — 3 Zustände
                             if isOwned {
@@ -284,7 +218,7 @@ struct ShopItemDetailView: View {
 
                             } else {
                                 // Zustand 3: Kaufen möglich — Animation DANN Aktion
-                                let isLocked = payload.itemType == .plant && payload.id != "plant.seeds" && selectedDifficulty == nil
+                                let isLocked = payload.itemType == .plant && payload.id != "plant.seeds"
 
                                 DuolingoKaufButton(
                                     color: isLocked ? Color.gray : payload.color
@@ -323,9 +257,7 @@ struct ShopItemDetailView: View {
                 PurchaseSuccessOverlay(
                     itemName: NSLocalizedString(payload.titleKey, comment: ""),
                     price: payload.price,
-                    subtitle: payload.itemType == .powerUp
-                        ? String(localized: "shop.purchase_success.powerup_hint")
-                        : nil
+                    subtitle: nil
                 ) {
                     FeedbackManager.shared.playTap()
                     showSuccess = false
@@ -378,12 +310,7 @@ struct ShopItemDetailView: View {
             shopStore.buy(id: payload.id, price: payload.price)
             gardenStore.pflanzHinzufuegen(shopItem: payload)
             
-            // Pfad direkt mit der gewählten Schwierigkeit starten
-            if let neuePflanze = gardenStore.pflanzen.last(where: { $0.plantID == payload.id }),
-               let diff = selectedDifficulty {
-                let ziel = settings.ausgewaehltesZiel.isEmpty ? "fit" : settings.ausgewaehltesZiel
-                gartenPfadStore.pflanzeHinzufuegen(neuePflanze, ziel: ziel, schwierigkeit: diff)
-            }
+
 
             withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
                 showSuccess = true

@@ -157,67 +157,6 @@ struct Plant: Identifiable, Codable {
     }
 }
 
-enum PowerUpTarget: String, Codable {
-    case garden
-    case plant
-}
-
-struct PowerUpItem: Identifiable, Codable {
-    let id: String
-    let name: String
-    let symbolName: String
-    let symbolColor: String
-    let description: String
-    let unlockMethod: UnlockMethod
-    let rarity: ItemRarity
-    let durationHours: Double?
-    let effectMultiplier: Double
-    let howToUse: String
-    let target: PowerUpTarget
-    let minGartenLevel: Int
-    var quantity: Int
-
-    init(
-        id: String,
-        name: String,
-        symbolName: String,
-        symbolColor: String,
-        description: String,
-        unlockMethod: UnlockMethod,
-        rarity: ItemRarity,
-        durationHours: Double? = 24.0,
-        effectMultiplier: Double = 1.0,
-        howToUse: String = "",
-        target: PowerUpTarget = .garden,
-        minGartenLevel: Int = 1
-    ) {
-        self.id = id
-        self.name = name
-        self.symbolName = symbolName
-        self.symbolColor = symbolColor
-        self.description = description
-        self.unlockMethod = unlockMethod
-        self.rarity = rarity
-        self.durationHours = durationHours
-        self.effectMultiplier = effectMultiplier
-        self.howToUse = howToUse
-        self.target = target
-        self.minGartenLevel = minGartenLevel
-        self.quantity = 0
-    }
-
-    var basePrice: Int {
-        if id == "powerup.weed_shield" { return 1200 }
-        switch rarity {
-        case .common:    return 100
-        case .rare:      return 150
-        case .epic:      return 350
-        case .legendary: return 1500
-        case .mystic:    return 5000
-        }
-    }
-}
-
 // MARK: - SWIFTUI COLOR HELPER
 
 private func colorFromString(_ string: String) -> Color {
@@ -241,9 +180,6 @@ private func colorFromString(_ string: String) -> Color {
 
 extension Plant {
     var color: Color { colorFromString(symbolColor) }
-}
-extension PowerUpItem {
-    var color: Color { rarity.color }
 }
 
 // MARK: - DATABASE
@@ -310,21 +246,7 @@ struct GameDatabase {
     static let allDecorations: [DecorationItem] = allTrashItems
 
     // MARK: Power-Up Items (16 Stück)
-    static let allPowerUps: [PowerUpItem] = [
-        PowerUpItem(id: "powerup.herz_auffueller",   name: "item.herz_auffueller.name",       symbolName: "Heart",              symbolColor: "red",    description: "item.herz_auffueller.description",unlockMethod: .streak7,        rarity: .common,    durationHours: nil,   effectMultiplier: 1.0, howToUse: "item.herz_auffueller.usage", target: .garden),
-        PowerUpItem(id: "powerup.duenger_blitz",      name: "item.duenger_blitz.name",          symbolName: "Powerup-Düngerblitz",   symbolColor: "yellow", description: "item.duenger_blitz.description",           unlockMethod: .streak7,        rarity: .common,    durationHours: 24.0,  effectMultiplier: 2.0, howToUse: "item.duenger_blitz.usage",   target: .plant),
-        
-        PowerUpItem(id: "powerup.zeitkapsel",         name: "item.zeitkapsel.name",            symbolName: "Powerup-Zeitkapsel",    symbolColor: "purple", description: "item.zeitkapsel.description",       unlockMethod: .streak30,       rarity: .epic,      durationHours: 24.0,  effectMultiplier: 1.0, howToUse: "item.zeitkapsel.usage",     target: .garden),
-        PowerUpItem(id: "powerup.wunder_wasser",      name: "item.wunder_wasser.name",         symbolName: "Powerup-Wunderwasser",  symbolColor: "blue",   description: "item.wunder_wasser.description",                 unlockMethod: .levelUp,        rarity: .epic,      durationHours: 24.0,  effectMultiplier: 1.0, howToUse: "item.wunder_wasser.usage", target: .plant),
-        PowerUpItem(id: "powerup.gluecks_segen",     name: "item.gluecks_segen.name",         symbolName: "Powerup-Glückssegen",   symbolColor: "pink",   description: "item.gluecks_segen.description",            unlockMethod: .streak50,       rarity: .epic, durationHours: 24.0,  effectMultiplier: 2.0, howToUse: "item.gluecks_segen.usage",   target: .garden),
-        
-        PowerUpItem(id: "powerup.gartenschutz",      name: "item.unkraut_schild.name",        symbolName: PowerUpWeedSupport.unkrautSchildAssetName, symbolColor: "green", description: "item.unkraut_schild.description", unlockMethod: .streak7, rarity: .legendary, durationHours: 24.0, effectMultiplier: 1.0, howToUse: "item.unkraut_schild.usage", target: .garden),
-        PowerUpItem(id: "powerup.diamant_erde",       name: "item.diamant_erde.name",          symbolName: "Powerup-Diamanterde",   symbolColor: "cyan",   description: "item.diamant_erde.description",         unlockMethod: .streak100,      rarity: .legendary, durationHours: 24.0,  effectMultiplier: 1.1, howToUse: "item.diamant_erde.usage",   target: .plant),
-        PowerUpItem(id: "powerup.sturmfest",         name: "item.waechter_turm.name",          symbolName: "Powerup-WächterTurm",   symbolColor: "orange", description: "item.waechter_turm.description",unlockMethod: .streak14,       rarity: .legendary,      durationHours: nil,  effectMultiplier: 1.0, howToUse: "item.waechter_turm.usage",   target: .plant),
-        PowerUpItem(id: "powerup.goldener_schluessel", name: "item.goldener_schluessel.name",   symbolName: "Powerup-GoldenerSchlüssel", symbolColor: "yellow", description: "item.goldener_schluessel.description",         unlockMethod: .streak21,       rarity: .legendary,      durationHours: 24.0,  effectMultiplier: 1.5, howToUse: "item.goldener_schluessel.usage", target: .garden),
-        
-        PowerUpItem(id: "powerup.zauberstab",        name: "item.zauberstab.name",            symbolName: "Powerup-Zauberstarb",    symbolColor: "indigo", description: "item.zauberstab.description",                   unlockMethod: .levelUp,        rarity: .mystic,      durationHours: GameConstants.zauberstabDurationHours, effectMultiplier: 1.0, howToUse: "item.zauberstab.usage",     target: .garden),
-    ]
+
     
     // MARK: - Alle 45 Titel (Spieler-Titel System)
     static let allTitles: [PlayerTitle] = [
