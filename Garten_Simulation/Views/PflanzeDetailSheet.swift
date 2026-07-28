@@ -20,6 +20,7 @@ struct PflanzeDetailSheet: View {
     @State private var todoToDeleteIndex: Int? = nil
     @State private var isNotesExpanded = false
     @State private var isTodosExpanded = true
+    @State private var isEffectsExpanded = true
     @State private var zeigeTimerSheet = false
     @State private var zeigeTimerEditSheet = false
     @State private var pulsieren = false
@@ -111,19 +112,7 @@ struct PflanzeDetailSheet: View {
                             ))
                             .padding(.top, 8)
     
-                            // NEU: Pflanzen-Effekte (Wetter, Power-Ups, Penalties)
-                            if !aktiveEffekte.isEmpty {
-                                HStack(spacing: 12) {
-                                    ForEach(aktiveEffekte) { effekt in
-                                        EffektIkonButton(effekt: effekt, size: 28, iconSkalierung: effekt.typ == .wetter ? 1.5 : (effekt.typ == .status ? 1.8 : 1.0)) {
-                                            ausgewaehlterEffekt = effekt
-                                        }
-                                    }
-                                }
-                                .padding(.top, 16)
-                                .padding(.bottom, 4)
-                                .id(activeStateID)
-                            }
+
                         }
                         .padding(.top, 40)
 
@@ -151,30 +140,24 @@ struct PflanzeDetailSheet: View {
                                 )
                             }
                             
-                            HStack {
-                                Spacer()
-                                Item3DButton(
-                                    farbe: .gruenPrimary,
-                                    sekundaerFarbe: .gruenPrimary.darker(),
-                                    groesse: 44,
-                                    isRectangular: false,
-                                    aktion: {
-                                        todoToEditIndex = nil
-                                        zeigeTodoSheet = true
-                                    }
-                                ) {
-                                    Image(systemName: "plus")
-                                        .font(.system(size: 20, weight: .bold))
-                                        .foregroundStyle(.white)
-                                }
-                                Spacer()
-                            }
                         }
                         .padding(.top, 8)
                     } label: {
-                        Text(String(localized: "plant.detail.todos_header", defaultValue: "To-Dos"))
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
-                            .foregroundColor(.primary)
+                        HStack {
+                            Text(String(localized: "plant.detail.todos_header", defaultValue: "To-Dos"))
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Button {
+                                todoToEditIndex = nil
+                                zeigeTodoSheet = true
+                            } label: {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.title2)
+                                    .foregroundStyle(Color.gruenPrimary)
+                            }
+                            .buttonStyle(BorderlessButtonStyle())
+                        }
                     }
                     .padding(.horizontal, 24)
                     .tint(.gruenPrimary)
@@ -207,33 +190,49 @@ struct PflanzeDetailSheet: View {
                                 )
                             }
                             
-                            HStack {
-                                Spacer()
-                                Item3DButton(
-                                    farbe: .blauPrimary,
-                                    sekundaerFarbe: .blauPrimary.darker(),
-                                    groesse: 44,
-                                    isRectangular: false,
-                                    aktion: {
-                                        noteToEditIndex = nil
-                                        zeigeNotizSheet = true
-                                    }
-                                ) {
-                                    Image(systemName: "plus")
-                                        .font(.system(size: 20, weight: .bold))
-                                        .foregroundStyle(.white)
-                                }
-                                Spacer()
-                            }
                         }
                         .padding(.top, 8)
                     } label: {
-                        Text(String(localized: "plant.detail.notes_header", defaultValue: "Notizen"))
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
-                            .foregroundColor(.primary)
+                        HStack {
+                            Text(String(localized: "plant.detail.notes_header", defaultValue: "Notizen"))
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Button {
+                                noteToEditIndex = nil
+                                zeigeNotizSheet = true
+                            } label: {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.title2)
+                                    .foregroundStyle(Color.blauPrimary)
+                            }
+                            .buttonStyle(BorderlessButtonStyle())
+                        }
                     }
                     .padding(.horizontal, 24)
                     .tint(.blauPrimary)
+
+                    if !aktiveEffekte.isEmpty {
+                        DisclosureGroup(isExpanded: $isEffectsExpanded) {
+                            HStack(spacing: 12) {
+                                ForEach(aktiveEffekte) { effekt in
+                                    EffektIkonButton(effekt: effekt, size: 28, iconSkalierung: effekt.typ == .wetter ? 1.5 : (effekt.typ == .status ? 1.8 : 1.0)) {
+                                        ausgewaehlterEffekt = effekt
+                                    }
+                                }
+                            }
+                            .padding(.top, 16)
+                            .padding(.bottom, 8)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .id(activeStateID)
+                        } label: {
+                            Text(String(localized: "plant.detail.active_effects", defaultValue: "Aktive Effekte"))
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .foregroundColor(.primary)
+                        }
+                        .padding(.horizontal, 24)
+                        .tint(.orangePrimary)
+                    }
 
                     // Own Timer Row (always show if active, so user can edit non-overridden days)
                     if pflanze.hasActiveReminder {
@@ -254,13 +253,14 @@ struct PflanzeDetailSheet: View {
                             Item3DButton(
                                 farbe: .blauPrimary,
                                 sekundaerFarbe: .blauPrimary.darker(),
-                                groesse: 64,
+                                groesse: 54,
                                 isRectangular: false,
                                 aktion: { zeigeTimerSheet = true }
                             ) {
-                                Image(systemName: "bell.fill")
-                                    .font(.system(size: 28, weight: .bold))
-                                    .foregroundStyle(.white)
+                                Image("Timer empty")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
                             }
                             Text(String(localized: "plant.detail.timer"))
                                 .font(.system(size: 12, weight: .bold, design: .rounded))
@@ -272,13 +272,14 @@ struct PflanzeDetailSheet: View {
                             Item3DButton(
                                 farbe: .orangePrimary,
                                 sekundaerFarbe: .orangePrimary.darker(),
-                                groesse: 64,
+                                groesse: 54,
                                 isRectangular: false,
                                 aktion: { zeigeFocusSession = true }
                             ) {
-                                Image(systemName: "timer")
-                                    .font(.system(size: 28, weight: .bold))
-                                    .foregroundStyle(.white)
+                                Image("Timer full")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 24, height: 24)
                             }
                             .tourAnchor(.focusTimer)
                             .id(TourStep.focusTimer)

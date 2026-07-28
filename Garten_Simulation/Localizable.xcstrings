@@ -198280,7 +198280,6 @@
       }
     },
     "plant.detail.todo.add": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -198288,37 +198287,7 @@
             "value": "To-Do hinzufügen"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add To-Do"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add To-Do"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add To-Do"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add To-Do"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add To-Do"
-          }
-        },
-        "tr": {
+        "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Add To-Do"
@@ -198336,19 +198305,7 @@
             "value": "Add To-Do"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add To-Do"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add To-Do"
-          }
-        },
-        "pl": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "Add To-Do"
@@ -198360,7 +198317,49 @@
             "value": "Add To-Do"
           }
         },
-        "hi": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add To-Do"
+          }
+        },
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "Add To-Do"
@@ -198375,7 +198374,6 @@
       }
     },
     "plant.detail.todo.placeholder": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -198383,37 +198381,7 @@
             "value": "To-Do eingeben..."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enter To-Do..."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enter To-Do..."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enter To-Do..."
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enter To-Do..."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enter To-Do..."
-          }
-        },
-        "tr": {
+        "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Enter To-Do..."
@@ -198431,19 +198399,7 @@
             "value": "Enter To-Do..."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enter To-Do..."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Enter To-Do..."
-          }
-        },
-        "pl": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "Enter To-Do..."
@@ -198455,7 +198411,49 @@
             "value": "Enter To-Do..."
           }
         },
-        "hi": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter To-Do..."
+          }
+        },
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "Enter To-Do..."
@@ -334871,7 +334869,6 @@
       }
     },
     "tab.todos": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -334879,37 +334876,7 @@
             "value": "To-Dos"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Dos"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Dos"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Dos"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Dos"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Dos"
-          }
-        },
-        "tr": {
+        "en": {
           "stringUnit": {
             "state": "translated",
             "value": "To-Dos"
@@ -334927,19 +334894,7 @@
             "value": "To-Dos"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Dos"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Dos"
-          }
-        },
-        "pl": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "To-Dos"
@@ -334951,7 +334906,49 @@
             "value": "To-Dos"
           }
         },
-        "hi": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Dos"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Dos"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Dos"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Dos"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Dos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Dos"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To-Dos"
+          }
+        },
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "To-Dos"
@@ -345526,7 +345523,6 @@
       }
     },
     "todos.tab.empty": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -345534,37 +345530,7 @@
             "value": "Keine offenen To-Dos."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No open To-Dos."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No open To-Dos."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No open To-Dos."
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No open To-Dos."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No open To-Dos."
-          }
-        },
-        "tr": {
+        "en": {
           "stringUnit": {
             "state": "translated",
             "value": "No open To-Dos."
@@ -345582,19 +345548,7 @@
             "value": "No open To-Dos."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No open To-Dos."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No open To-Dos."
-          }
-        },
-        "pl": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "No open To-Dos."
@@ -345606,7 +345560,49 @@
             "value": "No open To-Dos."
           }
         },
-        "hi": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No open To-Dos."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No open To-Dos."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No open To-Dos."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No open To-Dos."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No open To-Dos."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No open To-Dos."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No open To-Dos."
+          }
+        },
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "No open To-Dos."
@@ -345621,7 +345617,6 @@
       }
     },
     "todos.tab.select_plant": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -345629,37 +345624,7 @@
             "value": "Für welche Gewohnheit?"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "For which habit?"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "For which habit?"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "For which habit?"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "For which habit?"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "For which habit?"
-          }
-        },
-        "tr": {
+        "en": {
           "stringUnit": {
             "state": "translated",
             "value": "For which habit?"
@@ -345677,19 +345642,7 @@
             "value": "For which habit?"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "For which habit?"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "For which habit?"
-          }
-        },
-        "pl": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "For which habit?"
@@ -345701,7 +345654,49 @@
             "value": "For which habit?"
           }
         },
-        "hi": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit?"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit?"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit?"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For which habit?"
+          }
+        },
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
             "value": "For which habit?"
@@ -390061,6 +390056,101 @@
           "stringUnit": {
             "state": "translated",
             "value": "例行時間：%@"
+          }
+        }
+      }
+    },
+    "plant.detail.active_effects": {
+      "extractionState": "manual",
+      "localizations": {
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktive Effekte"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active Effects"
           }
         }
       }

@@ -240,3 +240,10 @@
 - **Streak als 3D Button**: Die Streak-Anzeige (Feuer-Icon + Zahl) ist jetzt in einem drückbaren `Item3DButton` (orange) untergebracht.
 - **To-Dos als 3D Buttons**: Die flachen Checklisten-Rechtecke in der Detailansicht und im To-Do Tab wurden durch drückbare `Item3DButton`s ersetzt. Ein Tipp auf die gesamte Reihe hakt das To-Do nun elegant mit haptischem Feedback ab.
 - **Kontextmenü für To-Dos**: Bearbeiten und Löschen von To-Dos erfolgt nun übersichtlicher über einen langen Druck (Context Menu) statt über einen kleinen Ellipsis-Button.
+
+### UI Fixes: Perlen-Buttons & Farben (28.07.2026)
+- **Todos Tab**: Der Plus-Button in der Navigation Bar und im leeren Zustand sind nun schwarz / neutral (.primary) statt grün.
+- **Lokalisierung**: Hartkodierte Strings im `TodosTabView` wurden korrekt ins `Localizable.xcstrings` übertragen und für alle 15 Sprachen übersetzt.
+- **Streak Pearl**: Der Streak-Button im `PflanzeDetailSheet` ist nun eine deutlich kleinere "Perle" (runder 3D-Button) mit der Zahl und dem Flammen-Icon.
+- **Notizen & To-Do Hinzufügen**: Die riesigen Buttons wurden durch kleine, elegante runde Plus-Icons (`Item3DButton`) ersetzt.
+- **Timer & Fokus-Session**: Beide Buttons am Ende des `PflanzeDetailSheet` sind keine großen Rechtecke mehr, sondern zwei gleichwertige, runde 3D-Icons nebeneinander.

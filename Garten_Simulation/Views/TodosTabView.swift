@@ -100,9 +100,9 @@ struct TodoRowView: View {
     
     var body: some View {
         Item3DButton(
-            farbe: pflanze.todos[index].isCompleted ? Color(UIColor.systemGray5) : Color(UIColor.systemBackground),
-            sekundaerFarbe: pflanze.todos[index].isCompleted ? Color(UIColor.systemGray4) : Color(UIColor.systemGray5),
-            groesse: 64,
+            farbe: pflanze.todos[index].isCompleted ? Color(UIColor.systemGray5) : Color.white,
+            sekundaerFarbe: pflanze.todos[index].isCompleted ? Color(UIColor.systemGray4) : Color(white: 0.9),
+            groesse: 50,
             isRectangular: true,
             aktion: {
                 withAnimation {
