@@ -21,6 +21,7 @@
 		148AD6E130123F580090539C /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148AD6E030123F580090539C /* NetworkExtension.framework */; };
 		148AD6E930123F580090539C /* GrovyDNSFilter.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 148AD6DF30123F580090539C /* GrovyDNSFilter.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3BBD8C98B5B1151FFFE518F3 /* GardenActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451D92332C87A16BD490A21B /* GardenActivityAttributes.swift */; };
+		E5D9A07FC6B975E98C6A6FC5 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 50FDD34E6435628D45362380 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		148AD6DF30123F580090539C /* GrovyDNSFilter.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GrovyDNSFilter.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		148AD6E030123F580090539C /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		451D92332C87A16BD490A21B /* GardenActivityAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GardenActivityAttributes.swift; path = Garten_Simulation/Models/GardenActivityAttributes.swift; sourceTree = "<group>"; };
+		50FDD34E6435628D45362380 /* Localizable.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; name = Localizable.xcstrings; path = Garten_Simulation/Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -138,11 +140,15 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1424D42C2F6EA14300908588 /* Garten_SimulationTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Garten_SimulationTests;
 			sourceTree = "<group>";
 		};
 		1424D4362F6EA14300908588 /* Garten_SimulationUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Garten_SimulationUITests;
 			sourceTree = "<group>";
 		};
@@ -250,6 +256,7 @@
 				1473815D2F73A77C0070F455 /* SeltenheitProgressRing.swift */,
 				451D92332C87A16BD490A21B /* GardenActivityAttributes.swift */,
 				146DE99F3001867100FEDA83 /* Products.storekit */,
+				50FDD34E6435628D45362380 /* Localizable.xcstrings */,
 			);
 			sourceTree = "<group>";
 		};
@@ -388,8 +395,6 @@
 				14660BED2FFF7780007F2E2E /* ScreenTimeMonitor */,
 			);
 			name = ScreenTimeMonitor;
-			packageProductDependencies = (
-			);
 			productName = ScreenTimeMonitor;
 			productReference = 14660BEA2FFF7780007F2E2E /* ScreenTimeMonitor.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -410,8 +415,6 @@
 				148AD6E230123F580090539C /* GrovyDNSFilter */,
 			);
 			name = GrovyDNSFilter;
-			packageProductDependencies = (
-			);
 			productName = GrovyDNSFilter;
 			productReference = 148AD6DF30123F580090539C /* GrovyDNSFilter.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -522,6 +525,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5D9A07FC6B975E98C6A6FC5 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,7 +783,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -820,7 +824,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
