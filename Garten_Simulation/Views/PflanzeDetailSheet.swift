@@ -93,22 +93,21 @@ struct PflanzeDetailSheet: View {
                                 .environmentObject(gardenStore)
                                 .environmentObject(settings)
                             ) {
-                                HStack(spacing: 8) {
-                                    Text("\(pflanze.streak)")
-                                        .font(.system(size: 32, weight: .black, design: .rounded))
-                                        .foregroundStyle(.white)
+                                VStack(spacing: -2) {
                                     Image("streak")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 32, height: 32)
+                                        .frame(width: 20, height: 20)
+                                    Text("\(pflanze.streak)")
+                                        .font(.system(size: 14, weight: .black, design: .rounded))
+                                        .foregroundStyle(.white)
                                 }
-                                .padding(.horizontal, 16)
                             }
                             .buttonStyle(Item3DButtonStyle(
                                 farbe: Color(hex: "#FF8C00"),
                                 sekundaerFarbe: Color(hex: "#D95F00"),
-                                groesse: 64,
-                                isRectangular: true
+                                groesse: 54,
+                                isRectangular: false
                             ))
                             .padding(.top, 8)
     
@@ -152,19 +151,24 @@ struct PflanzeDetailSheet: View {
                                 )
                             }
                             
-                            Button {
-                                todoToEditIndex = nil
-                                zeigeTodoSheet = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "plus.circle.fill")
-                                    Text(String(localized: "plant.detail.todo.add", defaultValue: "To-Do hinzufügen"))
+                            HStack {
+                                Spacer()
+                                Item3DButton(
+                                    farbe: .gruenPrimary,
+                                    sekundaerFarbe: .gruenPrimary.darker(),
+                                    groesse: 44,
+                                    isRectangular: false,
+                                    aktion: {
+                                        todoToEditIndex = nil
+                                        zeigeTodoSheet = true
+                                    }
+                                ) {
+                                    Image(systemName: "plus")
+                                        .font(.system(size: 20, weight: .bold))
+                                        .foregroundStyle(.white)
                                 }
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 24)
+                                Spacer()
                             }
-                            .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: true, backgroundColor: .gruenPrimary, shadowColor: .gruenPrimary.darker(), foregroundColor: .white))
                         }
                         .padding(.top, 8)
                     } label: {
@@ -203,19 +207,24 @@ struct PflanzeDetailSheet: View {
                                 )
                             }
                             
-                            Button {
-                                noteToEditIndex = nil // Markiere als Neuanlage
-                                zeigeNotizSheet = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "plus.circle.fill")
-                                    Text(String(localized: "plant.detail.note.add"))
+                            HStack {
+                                Spacer()
+                                Item3DButton(
+                                    farbe: .blauPrimary,
+                                    sekundaerFarbe: .blauPrimary.darker(),
+                                    groesse: 44,
+                                    isRectangular: false,
+                                    aktion: {
+                                        noteToEditIndex = nil
+                                        zeigeNotizSheet = true
+                                    }
+                                ) {
+                                    Image(systemName: "plus")
+                                        .font(.system(size: 20, weight: .bold))
+                                        .foregroundStyle(.white)
                                 }
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 24)
+                                Spacer()
                             }
-                            .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: true, backgroundColor: .blauPrimary, shadowColor: .blauPrimary.darker(), foregroundColor: .white))
                         }
                         .padding(.top, 8)
                     } label: {
@@ -239,49 +248,49 @@ struct PflanzeDetailSheet: View {
                         .padding(.bottom, 8)
                     }
 
-                    // Timer Button
-                    Button {
-                        zeigeTimerSheet = true
-                    } label: {
-                        Text(String(localized: "plant.detail.timer")).textCase(.uppercase)
-                            .font(.system(size: 15, weight: .bold, design: .rounded))
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 24)
-                    }
-                    .buttonStyle(DuolingoButtonStyle(
-                        size: .medium, fillWidth: true,
-                        backgroundColor: .blauPrimary, shadowColor: .blauPrimary.darker(), foregroundColor: .white
-                    ))
-                    .padding(.horizontal, 24)
-
-                    // Focus Session Button
-                    Item3DButton(
-                        farbe: .orangePrimary,
-                        sekundaerFarbe: .orangePrimary.darker(),
-                        groesse: 50,
-                        isRectangular: true,
-                        aktion: { zeigeFocusSession = true }
-                    ) {
-                        ZStack {
-                            HStack {
-                                Spacer()
-                                Image(systemName: "timer")
-                                    .font(.system(size: 32))
-                                    .foregroundStyle(.white.opacity(0.12))
-                                    .offset(x: 35, y: 15)
+                    HStack(spacing: 40) {
+                        // Timer Button
+                        VStack(spacing: 8) {
+                            Item3DButton(
+                                farbe: .blauPrimary,
+                                sekundaerFarbe: .blauPrimary.darker(),
+                                groesse: 64,
+                                isRectangular: false,
+                                aktion: { zeigeTimerSheet = true }
+                            ) {
+                                Image(systemName: "bell.fill")
+                                    .font(.system(size: 28, weight: .bold))
+                                    .foregroundStyle(.white)
                             }
-                            Text(String(localized: "focus.session.start", defaultValue: "Fokus-Session starten")).textCase(.uppercase)
-                                .font(.system(size: 16, weight: .black, design: .rounded))
-                                .foregroundStyle(.white)
+                            Text(String(localized: "plant.detail.timer"))
+                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
                         }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .clipped()
+
+                        // Focus Session Button
+                        VStack(spacing: 8) {
+                            Item3DButton(
+                                farbe: .orangePrimary,
+                                sekundaerFarbe: .orangePrimary.darker(),
+                                groesse: 64,
+                                isRectangular: false,
+                                aktion: { zeigeFocusSession = true }
+                            ) {
+                                Image(systemName: "timer")
+                                    .font(.system(size: 28, weight: .bold))
+                                    .foregroundStyle(.white)
+                            }
+                            .tourAnchor(.focusTimer)
+                            .id(TourStep.focusTimer)
+                            
+                            Text(String(localized: "focus.session.start", defaultValue: "Fokus-Session starten"))
+                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                        }
                     }
-                    .padding(.horizontal, 24)
-                    .padding(.top, 8)
-                    .tourAnchor(.focusTimer)
-                    .id(TourStep.focusTimer)
+                    .padding(.top, 16)
 
 
                     // Verkaufen-Button (Roter Text)

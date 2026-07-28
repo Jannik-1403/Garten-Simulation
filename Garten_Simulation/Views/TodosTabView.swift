@@ -29,7 +29,7 @@ struct TodosTabView: View {
                                 .frame(height: 24)
                                 .padding(.horizontal, 24)
                         }
-                        .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: false, backgroundColor: .gruenPrimary, shadowColor: .gruenPrimary.darker(), foregroundColor: .white))
+                        .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: false, backgroundColor: .black, shadowColor: Color.black.opacity(0.8), foregroundColor: .white))
                     }
                 } else {
                     ScrollView {
@@ -73,7 +73,7 @@ struct TodosTabView: View {
                     } label: {
                         Image(systemName: "plus.circle.fill")
                             .font(.title3)
-                            .foregroundColor(.gruenPrimary)
+                            .foregroundColor(.primary)
                     }
                 }
             }
@@ -237,7 +237,7 @@ struct GlobalTodoAddSheet: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: 24)
                 }
-                .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: true, backgroundColor: .gruenPrimary, shadowColor: .gruenPrimary.darker(), foregroundColor: .white))
+                .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: true, backgroundColor: .black, shadowColor: Color.black.opacity(0.8), foregroundColor: .white))
                 .disabled(todoText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || selectedPlant == nil)
                 .padding(.bottom, 20)
             }
