@@ -14,6 +14,12 @@
 
 # Changelog
 
+## 2026-07-28: Phase 4.1 – Apple Health Redesign & Bugfixes
+- **HealthChartView Redesign:** Komplett neues Diagramm im Apple Fitness-Stil – zeigt Metriken (Schritte, Wasser, Schlaf etc.) mit Icon, Titel, dynamischem Untertitel (Ziel erreicht / weiter so), zwei großen Zahlenwerten (Heute + Ziel), kumulativer Linie in Orange und einer grauen Ziellinie. Eingebettet im Item3D-Container.
+- **Sync-Bug Fix:** Existierende Pflanzen mit dem Wort „Joggen/Laufen/Schritt/Spazieren" werden beim Laden automatisch von `.running` auf `.steps` migriert, sodass Apple Health Daten korrekt übertragen werden.
+- **Settings – Apple Health Status:** In den Einstellungen zeigt der Apple Health Eintrag jetzt einen Verbindungsstatus (grüner Punkt „Verbunden" / roter Punkt „Aus") direkt neben dem Chevron.
+- **Lokalisierung:** Alle neuen UI-Strings (Chart-Titel, Einheiten, Statusanzeigen) vollständig in 7 Sprachen übersetzt (DE, EN, ES, FR, RU, TR, ZH-HANS).
+
 ## 2026-07-28: Phase 4 Fixes
 - **Chart X-Axis Format:** Diagrammachse angepasst, sodass nur noch die Stunden-Zahlen (06, 12, 18) ohne 'Uhr' angezeigt werden (bzw. auf Englisch mit 'AM/PM').
 - **Chart Y-Axis:** Y-Achsenbeschriftung auf die rechte Seite (`trailing`) verschoben.
