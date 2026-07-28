@@ -481,142 +481,24 @@ struct PflanzeDetailSheet: View {
                                 if iapStore.isProUser {
                                     if let autoMetric = pflanze.automaticHealthMetric {
                                         // --- APPLE HEALTH SECTION ---
-                                        VStack(spacing: 12) {
-                                            HStack {
-                                                Text(String(localized: "apple.health.title", defaultValue: "Apple Health Kopplung"))
-                                                    .font(.system(size: 20, weight: .bold, design: .rounded))
-                                                Spacer()
-                                            }
-                                            .padding(.horizontal, 24)
-                                            
-                                            VStack(spacing: 16) {
-                                                let isActiveBinding = Binding<Bool>(
-                                                    get: { pflanze.linkedHealthMetric != nil },
-                                                    set: { isOn in
-                                                        pflanze.linkedHealthMetric = isOn ? autoMetric : nil
-                                                        gardenStore.savePlants()
-                                                    }
-                                                )
-                                                
-                                                Toggle(String(localized: String.LocalizationValue(autoMetric.localizationKey)), isOn: isActiveBinding)
-                                                    .font(.system(size: 15, weight: .semibold, design: .rounded))
-                                                    .tint(.black)
-                                                
-                                                if let metric = pflanze.linkedHealthMetric {
+                                        VStack(spacing: 8) {
+                                            VStack(spacing: 12) {
+                                                // Nur die Statistik anzeigen
+                                                if let metric = pflanze.linkedHealthMetric, !hourlyHealthData.isEmpty {
+                                                    HealthChartView(
+                                                        data: hourlyHealthData,
+                                                        metric: metric,
+                                                        target: pflanze.healthTarget,
+                                                        hourlyAverageData: hourlyAvgData
+                                                    )
+                                                    .padding(.vertical, 4)
+                                                } else if pflanze.linkedHealthMetric != nil {
                                                     HStack {
-                                                        Text(String(localized: "apple.health.target", defaultValue: "Tagesziel"))
-                                                            .font(.system(size: 15, weight: .semibold, design: .rounded))
                                                         Spacer()
-                                                        TextField("0", value: Binding(
-                                                            get: { pflanze.healthTarget },
-                                                            set: { pflanze.healthTarget = $0; gardenStore.savePlants() }
-                                                        ), format: .number)
-                                                        .keyboardType(.numberPad)
-                                                        .focused($isTargetFocused)
-                                                        .multilineTextAlignment(.trailing)
-                                                        .frame(width: 100)
-                                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                        .foregroundStyle(.orange)
-                                                        .padding(8)
-                                                        .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
+                                                        ProgressView()
+                                                        Spacer()
                                                     }
-                                                    
-                                                    if !hourlyHealthData.isEmpty {
-                                                        HealthChartView(data: hourlyHealthData, metric: metric, target: pflanze.healthTarget, hourlyAverageData: hourlyAvgData)
-                                                            .padding(.vertical, 8)
-                                                    }
-                                                    
-                                                    // Progress
-                                                    let healthCurrent: Int = {
-                                                        switch metric {
-                                                        case .steps: return Int(healthManager.todaysSteps)
-                                                        case .water: return Int(healthManager.todaysWater)
-                                                        case .sleep: return Int(healthManager.todaysSleep)
-                                                        case .mindfulness: return Int(healthManager.todaysMindfulness)
-                                                        case .running: return Int(healthManager.todaysRunning)
-                                                        case .strengthTraining: return Int(healthManager.todaysStrengthTraining)
-                                                        }
-                                                    }()
-                                                    
-                                                    let current = healthCurrent + Int(pflanze.customTrackerProgress)
-                                                    
-                                                    let target = Int(pflanze.healthTarget ?? 0)
-                                                    let unit: String = {
-                                                        switch metric {
-                                                        case .steps: return String(localized: "apple.health.unit.steps", defaultValue: "Schritte")
-                                                        case .water: return String(localized: "apple.health.unit.water", defaultValue: "ml")
-                                                        case .sleep: return String(localized: "apple.health.unit.sleep", defaultValue: "h")
-                                                        case .mindfulness: return String(localized: "apple.health.unit.mindfulness", defaultValue: "min")
-                                                        case .running: return String(localized: "apple.health.unit.running", defaultValue: "min")
-                                                        case .strengthTraining: return String(localized: "apple.health.unit.strengthTraining", defaultValue: "min")
-                                                        }
-                                                    }()
-                                                    
-                                                    VStack(spacing: 8) {
-                                                        HStack {
-                                                            Text(String(localized: "apple.health.progress", defaultValue: "Fortschritt heute"))
-                                                                .font(.system(size: 13, weight: .medium, design: .rounded))
-                                                                .foregroundStyle(.secondary)
-                                                            Spacer()
-                                                            Text(verbatim: "\(current) / \(target) \(unit)")
-                                                                .font(.system(size: 13, weight: .bold, design: .rounded))
-                                                                .foregroundStyle(.orange)
-                                                        }
-                                                        
-                                                        GeometryReader { geo in
-                                                            ZStack(alignment: .leading) {
-                                                                Capsule()
-                                                                    .fill(Color.secondary.opacity(0.2))
-                                                                    .frame(height: 8)
-                                                                
-                                                                Capsule()
-                                                                    .fill(Color.orange)
-                                                                    .frame(width: min(geo.size.width, geo.size.width * CGFloat(current) / CGFloat(max(1, target))), height: 8)
-                                                                    .shadow(color: .orange.opacity(0.3), radius: 3, y: 1)
-                                                            }
-                                                        }
-                                                        .frame(height: 8)
-                                                    }
-                                                    
-                                                    Toggle(String(localized: "apple.health.allow_manual", defaultValue: "Zusätzlich manuell eintragen"), isOn: Binding(
-                                                        get: { pflanze.allowManualTrackingForHealth },
-                                                        set: { pflanze.allowManualTrackingForHealth = $0; gardenStore.savePlants() }
-                                                    ))
-                                                    .font(.system(size: 14, weight: .medium, design: .rounded))
-                                                    .tint(.orange)
-                                                    .padding(.top, 8)
-                                                    
-                                                    if pflanze.allowManualTrackingForHealth {
-                                                        Divider().padding(.vertical, 4)
-                                                        
-                                                        HStack(spacing: 12) {
-                                                            Text("0")
-                                                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                                                .foregroundStyle(.secondary)
-                                                            
-                                                            Slider(value: Binding(
-                                                                get: { pflanze.customTrackerProgress },
-                                                                set: { newValue in
-                                                                    let newTotal = healthCurrent + Int(newValue)
-                                                                    if newTotal >= target && !pflanze.istBewässert {
-                                                                        if current < target {
-                                                                            pflanze.customTrackerProgress = Double(max(0, target - healthCurrent))
-                                                                            zeigeTrackerConfirm = true
-                                                                        }
-                                                                    } else {
-                                                                        pflanze.customTrackerProgress = newValue
-                                                                    }
-                                                                }
-                                                            ), in: 0...Double(max(1, target))) { editing in
-                                                                if !editing { gardenStore.savePlants() }
-                                                            }
-                                                            .tint(.orange)
-                                                            
-                                                            Text(verbatim: "\(target)")
-                                                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                                                                .foregroundStyle(.secondary)
-                                                        }
-                                                    }
+                                                    .padding(32)
                                                 }
                                             }
                                             .padding(20)
