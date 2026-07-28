@@ -4,7 +4,16 @@ import AppIntents
 
 
 private var widgetLocale: Locale {
-    Locale(identifier: SharedUserDefaults.suite.string(forKey: "appLanguage") ?? "de")
+    let supported = ["pt", "nl", "zh-Hans", "ko", "ja", "tr", "es", "fr", "en", "ru", "pl", "it", "hi", "zh-Hant", "pt-BR", "de"]
+    
+    for lang in Locale.preferredLanguages {
+        let identifier = Locale(identifier: lang).language.languageCode?.identifier ?? lang
+        if supported.contains(identifier) || supported.contains(lang) {
+            return Locale(identifier: lang)
+        }
+    }
+    
+    return Locale(identifier: "en")
 }
 
 
