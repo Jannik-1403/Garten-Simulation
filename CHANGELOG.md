@@ -258,3 +258,9 @@
 - **Erinnerungs-Icon**: Der Timer-Button nutzt nun das korrekte "Erinnerung"-Asset.
 - **Notizen als 3D-Button**: Genau wie bei den To-Dos ist nun auch jeder Notizen-Eintrag in einen sauberen, weißen `Item3DButton` eingebettet.
 - **Dynamische Button-Höhe**: Der `Item3DButton` wurde komplett umgebaut, sodass rechteckige Buttons nun dynamisch so hoch werden, wie der Text es erfordert (statt alles abzuschneiden und einzuschnüren). Das bedeutet, To-Dos und Notizen haben nun den gewünschten **"mehr Platz"** und sehen viel besser proportioniert aus.
+
+### UI-Korrekturen (28.07.2026)
+- **Item3DButton**: Die dynamische Höhe wurde komplett rückgängig gemacht, um das alte Layout nicht zu stören. Die regulären 3D-Buttons sind nun wieder fest.
+- **Listen in 3D-Containern**: Die To-Dos, Notizen und aktiven Effekte sind nun als Ganzes (die kompletten Accordions) in einem maßgeschneiderten, flexiblen 3D-Container verpackt, der sich perfekt mit der Liste ausdehnt und optisch exakt wie ein `Item3DButton` aussieht.
+- **Timer Icon**: Das Icon "Erinnerung" im Timer-Button wurde wie gewünscht um das 2.5-fache vergrößert, ohne die Größe des 3D-Buttons selbst zu verändern.
+- **Streak Lottie**: Der kreisrunde Streak-Button ganz oben wurde durch eine frei schwebende Lottie-Animation (`streak`) mit der Streak-Zahl direkt darunter ersetzt.

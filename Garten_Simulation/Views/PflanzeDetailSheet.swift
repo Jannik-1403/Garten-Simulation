@@ -151,6 +151,7 @@ struct PflanzeDetailSheet: View {
                             }
                             .buttonStyle(BorderlessButtonStyle())
                         }
+                    }
                     .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                     .padding(.horizontal, 24)
                     .tint(.gruenPrimary)
