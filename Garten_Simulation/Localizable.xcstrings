@@ -383757,91 +383757,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Verlauf-Widget anpassen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize History Widget"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Personalizar widget de historial"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Personnaliser le widget d'historique"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट इतिहास शीर्षक"
+            "value": "Customize History Widget"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Personalizza widget cronologia"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize History Widget"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize History Widget"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize History Widget"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize History Widget"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize History Widget"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_intent_history_title"
+            "value": "Customize History Widget"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize History Widget"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "历史记录"
+            "value": "Customize History Widget"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具歷史紀錄意圖標題"
+            "value": "Customize History Widget"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Customize History Widget"
           }
         }
       }
@@ -383852,91 +383858,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Wähle eine Routine und den Hintergrund."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select a routine and the background."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Selecciona una rutina y el fondo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Sélectionnez une routine et l'arrière-plan."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट रूटीन लक्ष्य विवरण"
+            "value": "Select a routine and the background."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Seleziona una routine e lo sfondo."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select a routine and the background."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select a routine and the background."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select a routine and the background."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select a routine and the background."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select a routine and the background."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_intent_routine_desc"
+            "value": "Select a routine and the background."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select a routine and the background."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "您的日常例程。"
+            "value": "Select a routine and the background."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具例行公事意圖描述"
+            "value": "Select a routine and the background."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select a routine and the background."
           }
         }
       }
@@ -383947,91 +383959,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Routine-Widget anpassen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Routine Widget"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Personalizar widget de rutina"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Personnaliser le widget de routine"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट रूटीन लक्ष्य शीर्षक"
+            "value": "Customize Routine Widget"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Personalizza widget routine"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Routine Widget"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Routine Widget"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Routine Widget"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Routine Widget"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Routine Widget"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_intent_routine_title"
+            "value": "Customize Routine Widget"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Routine Widget"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "例程"
+            "value": "Customize Routine Widget"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具例行公事意圖標題"
+            "value": "Customize Routine Widget"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Customize Routine Widget"
           }
         }
       }
@@ -384042,91 +384060,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Streak-Widget anpassen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Streak Widget"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Personalizar widget de racha"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Personnaliser le widget de série"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट स्ट्रीक शीर्षक"
+            "value": "Customize Streak Widget"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Personalizza widget serie"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Streak Widget"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Streak Widget"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Streak Widget"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Streak Widget"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Streak Widget"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_intent_streak_title"
+            "value": "Customize Streak Widget"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Streak Widget"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "连击"
+            "value": "Customize Streak Widget"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具連續紀錄意圖標題"
+            "value": "Customize Streak Widget"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Customize Streak Widget"
           }
         }
       }
@@ -384137,91 +384161,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Hintergrund wählen."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select background."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Seleccionar fondo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Sélectionner l'arrière-plan."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट पानी का लक्ष्य विवरण"
+            "value": "Select background."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Seleziona sfondo."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select background."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select background."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select background."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select background."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select background."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_intent_water_desc"
+            "value": "Select background."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Select background."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "给您的植物浇水。"
+            "value": "Select background."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具喝水意圖描述"
+            "value": "Select background."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select background."
           }
         }
       }
@@ -384232,91 +384262,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Wasser-Widget anpassen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Water Widget"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Personalizar widget de agua"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Personnaliser le widget d'eau"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट पानी का लक्ष्य शीर्षक"
+            "value": "Customize Water Widget"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Personalizza widget acqua"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Water Widget"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Water Widget"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Water Widget"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Water Widget"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Water Widget"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_intent_water_title"
+            "value": "Customize Water Widget"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Customize Water Widget"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "浇水"
+            "value": "Customize Water Widget"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具喝水意圖標題"
+            "value": "Customize Water Widget"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Customize Water Widget"
           }
         }
       }
@@ -385277,91 +385313,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Gesamt"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "All Time"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Todo el tiempo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Toujours"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट अवधि: हमेशा"
+            "value": "All Time"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Sempre"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "All Time"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "All Time"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "All Time"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "All Time"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "All Time"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_period_alltime"
+            "value": "All Time"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "All Time"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "所有时间"
+            "value": "All Time"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具週期所有時間"
+            "value": "All Time"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All Time"
           }
         }
       }
@@ -385372,91 +385414,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Dieser Monat"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Month"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Este mes"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Ce mois-ci"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट अवधि: महीना"
+            "value": "This Month"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Questo mese"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Month"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Month"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Month"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Month"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Month"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_period_month"
+            "value": "This Month"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Month"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "本月"
+            "value": "This Month"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具週期一個月"
+            "value": "This Month"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This Month"
           }
         }
       }
@@ -385467,91 +385515,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Heute"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Today"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Hoy"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Aujourd'hui"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट अवधि: आज"
+            "value": "Today"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Oggi"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Today"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Today"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Today"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Today"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Today"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_period_today"
+            "value": "Today"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Today"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "今天"
+            "value": "Today"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具週期今天"
+            "value": "Today"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
           }
         }
       }
@@ -385562,91 +385616,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Zeitraum"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Period"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Período"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Période"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट अवधि प्रकार"
+            "value": "Period"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Periodo"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Period"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Period"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Period"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Period"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Period"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_period_type"
+            "value": "Period"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Period"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "周期类型"
+            "value": "Period"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具週期類型"
+            "value": "Period"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Period"
           }
         }
       }
@@ -385657,91 +385717,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Diese Woche"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Week"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Esta semana"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Cette semaine"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट अवधि: सप्ताह"
+            "value": "This Week"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Questa settimana"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Week"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Week"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Week"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Week"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Week"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_period_week"
+            "value": "This Week"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "This Week"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "本周"
+            "value": "This Week"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具週期一週"
+            "value": "This Week"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This Week"
           }
         }
       }
@@ -386037,91 +386103,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Routine"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Routine"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Rutina"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Routine"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट रूटीन प्रकार"
+            "value": "Routine"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Routine"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Routine"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Routine"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Routine"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Routine"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Routine"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_routine_type"
+            "value": "Routine"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Routine"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "例程类型"
+            "value": "Routine"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具例行公事類型"
+            "value": "Routine"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routine"
           }
         }
       }
@@ -386512,91 +386584,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Dunkel (Schwarz)"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Dark (Black)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Oscuro (Negro)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Sombre (Noir)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट शैली: गहरा"
+            "value": "Dark (Black)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Scuro (Nero)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Dark (Black)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Dark (Black)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Dark (Black)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Dark (Black)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Dark (Black)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_style_dark"
+            "value": "Dark (Black)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Dark (Black)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "深色"
+            "value": "Dark (Black)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具樣式深色"
+            "value": "Dark (Black)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark (Black)"
           }
         }
       }
@@ -386607,91 +386685,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Hell (Weiß)"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Light (White)"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Claro (Blanco)"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Clair (Blanc)"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट शैली: हल्का"
+            "value": "Light (White)"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Chiaro (Bianco)"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Light (White)"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Light (White)"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Light (White)"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Light (White)"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Light (White)"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_style_light"
+            "value": "Light (White)"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Light (White)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "浅色"
+            "value": "Light (White)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具樣式淺色"
+            "value": "Light (White)"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light (White)"
           }
         }
       }
@@ -386702,91 +386786,97 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Hintergrund-Stil"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Background Style"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Estilo de fondo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Style d'arrière-plan"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विजेट शैली प्रकार"
+            "value": "Background Style"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Stile sfondo"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Background Style"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Background Style"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Background Style"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Background Style"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Background Style"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "widget_style_type"
+            "value": "Background Style"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": ""
+            "value": "Background Style"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "样式类型"
+            "value": "Background Style"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "小工具樣式類型"
+            "value": "Background Style"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Background Style"
           }
         }
       }

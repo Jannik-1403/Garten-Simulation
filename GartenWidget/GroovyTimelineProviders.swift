@@ -20,7 +20,6 @@ private func nextRefresh() -> Date {
 struct GroovyStreakEntry: TimelineEntry {
     let date: Date
     let appData: WidgetAppData?
-    let waterPeriod: WaterPeriod   // nur für Wasser-Widget relevant
     let backgroundStyle: WidgetBackgroundStyle
 }
 
@@ -30,13 +29,13 @@ struct WaterTimelineProvider: AppIntentTimelineProvider {
     typealias Entry = GroovyStreakEntry
 
     func placeholder(in context: Context) -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .week, backgroundStyle: .dark)
+        GroovyStreakEntry(date: .now, appData: nil, backgroundStyle: .dark)
     }
     func snapshot(for intent: SelectWaterPeriodIntent, in context: Context) async -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: intent.period, backgroundStyle: intent.style)
+        GroovyStreakEntry(date: .now, appData: loadWidgetData(), backgroundStyle: intent.style)
     }
     func timeline(for intent: SelectWaterPeriodIntent, in context: Context) async -> Timeline<GroovyStreakEntry> {
-        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: intent.period, backgroundStyle: intent.style)
+        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), backgroundStyle: intent.style)
         return Timeline(entries: [entry], policy: .after(nextRefresh()))
     }
 }
@@ -47,13 +46,13 @@ struct StreakSmallTimelineProvider: AppIntentTimelineProvider {
     typealias Entry = GroovyStreakEntry
 
     func placeholder(in context: Context) -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .today, backgroundStyle: .dark)
+        GroovyStreakEntry(date: .now, appData: nil, backgroundStyle: .dark)
     }
     func snapshot(for intent: SelectStreakIntent, in context: Context) async -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .today, backgroundStyle: intent.style)
+        GroovyStreakEntry(date: .now, appData: loadWidgetData(), backgroundStyle: intent.style)
     }
     func timeline(for intent: SelectStreakIntent, in context: Context) async -> Timeline<GroovyStreakEntry> {
-        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .today, backgroundStyle: intent.style)
+        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), backgroundStyle: intent.style)
         return Timeline(entries: [entry], policy: .after(nextRefresh()))
     }
 }
@@ -64,13 +63,13 @@ struct VerlaufMediumTimelineProvider: AppIntentTimelineProvider {
     typealias Entry = GroovyStreakEntry
 
     func placeholder(in context: Context) -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .week, backgroundStyle: .dark)
+        GroovyStreakEntry(date: .now, appData: nil, backgroundStyle: .dark)
     }
     func snapshot(for intent: SelectHistoryIntent, in context: Context) async -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .week, backgroundStyle: intent.style)
+        GroovyStreakEntry(date: .now, appData: loadWidgetData(), backgroundStyle: intent.style)
     }
     func timeline(for intent: SelectHistoryIntent, in context: Context) async -> Timeline<GroovyStreakEntry> {
-        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .week, backgroundStyle: intent.style)
+        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), backgroundStyle: intent.style)
         return Timeline(entries: [entry], policy: .after(nextRefresh()))
     }
 }
@@ -81,13 +80,13 @@ struct VerlaufLargeTimelineProvider: AppIntentTimelineProvider {
     typealias Entry = GroovyStreakEntry
 
     func placeholder(in context: Context) -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .month, backgroundStyle: .dark)
+        GroovyStreakEntry(date: .now, appData: nil, backgroundStyle: .dark)
     }
     func snapshot(for intent: SelectHistoryIntent, in context: Context) async -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .month, backgroundStyle: intent.style)
+        GroovyStreakEntry(date: .now, appData: loadWidgetData(), backgroundStyle: intent.style)
     }
     func timeline(for intent: SelectHistoryIntent, in context: Context) async -> Timeline<GroovyStreakEntry> {
-        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .month, backgroundStyle: intent.style)
+        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), backgroundStyle: intent.style)
         return Timeline(entries: [entry], policy: .after(nextRefresh()))
     }
 }
@@ -98,13 +97,13 @@ struct StaticLockScreenProvider: TimelineProvider {
     typealias Entry = GroovyStreakEntry
 
     func placeholder(in context: Context) -> GroovyStreakEntry {
-        GroovyStreakEntry(date: .now, appData: nil, waterPeriod: .today, backgroundStyle: .dark)
+        GroovyStreakEntry(date: .now, appData: nil, backgroundStyle: .dark)
     }
     func getSnapshot(in context: Context, completion: @escaping (GroovyStreakEntry) -> Void) {
-        completion(GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .today, backgroundStyle: .dark))
+        completion(GroovyStreakEntry(date: .now, appData: loadWidgetData(), backgroundStyle: .dark))
     }
     func getTimeline(in context: Context, completion: @escaping (Timeline<GroovyStreakEntry>) -> Void) {
-        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), waterPeriod: .today, backgroundStyle: .dark)
+        let entry = GroovyStreakEntry(date: .now, appData: loadWidgetData(), backgroundStyle: .dark)
         completion(Timeline(entries: [entry], policy: .after(nextRefresh())))
     }
 }

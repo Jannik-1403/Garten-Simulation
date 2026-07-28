@@ -17,24 +17,10 @@ enum WidgetBackgroundStyle: String, AppEnum {
 
 // MARK: - Neu: Wasser-Widget Auswahl
 
-enum WaterPeriod: String, AppEnum {
-    case today, week, month, allTime
-
-    static var typeDisplayRepresentation: TypeDisplayRepresentation = TypeDisplayRepresentation(name: LocalizedStringResource("widget_period_type", defaultValue: "Zeitraum"))
-    static var caseDisplayRepresentations: [WaterPeriod: DisplayRepresentation] = [
-        .today:   DisplayRepresentation(title: LocalizedStringResource("widget_period_today", defaultValue: "Heute")),
-        .week:    DisplayRepresentation(title: LocalizedStringResource("widget_period_week", defaultValue: "Diese Woche")),
-        .month:   DisplayRepresentation(title: LocalizedStringResource("widget_period_month", defaultValue: "Dieser Monat")),
-        .allTime: DisplayRepresentation(title: LocalizedStringResource("widget_period_alltime", defaultValue: "Gesamt"))
-    ]
-}
-
 struct SelectWaterPeriodIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = LocalizedStringResource("widget_intent_water_title", defaultValue: "Wasser-Widget anpassen")
-    static var description = IntentDescription(LocalizedStringResource("widget_intent_water_desc", defaultValue: "Zeitraum und Hintergrund wählen."))
+    static var description = IntentDescription(LocalizedStringResource("widget_intent_water_desc", defaultValue: "Hintergrund wählen."))
 
-    @Parameter(title: "Zeitraum", default: .week)
-    var period: WaterPeriod
 
     @Parameter(title: "Hintergrund", default: .dark)
     var style: WidgetBackgroundStyle
