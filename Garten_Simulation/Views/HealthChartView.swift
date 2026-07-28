@@ -5,7 +5,9 @@ struct HealthChartView: View {
     let data: [(Date, Double)]
     let metric: HealthMetricType
     let target: Double?
-    
+    /// Wochendurchschnitt – nil wenn noch nicht genug Daten
+    var weeklyAverage: Double? = nil
+
     private var chartTitle: String {
         switch metric {
         case .steps: return String(localized: "health.chart.title.steps", defaultValue: "👟 Schritte")
@@ -16,19 +18,7 @@ struct HealthChartView: View {
         case .strengthTraining: return String(localized: "health.chart.title.strength", defaultValue: "🏋️ Krafttraining")
         }
     }
-    
-    private var chartSubtitle: String {
-        guard let target = target, target > 0 else {
-            return String(localized: "health.chart.subtitle.no_target", defaultValue: "Behalte deine Gesundheit im Blick.")
-        }
-        let total = data.map { $0.1 }.reduce(0, +)
-        if total >= target {
-            return String(localized: "health.chart.subtitle.reached", defaultValue: "Klasse! Du hast dein Ziel heute schon erreicht.")
-        } else {
-            return String(localized: "health.chart.subtitle.progress", defaultValue: "Du bist auf einem guten Weg, weiter so!")
-        }
-    }
-    
+
     private var unitString: String {
         switch metric {
         case .steps: return String(localized: "health.unit.steps", defaultValue: "Schritte")
@@ -37,88 +27,133 @@ struct HealthChartView: View {
             return String(localized: "health.unit.hours", defaultValue: "Std")
         }
     }
-    
+
+    private var totalToday: Double { data.map { $0.1 }.reduce(0, +) }
+
+    private var progressPercent: Int {
+        guard let t = target, t > 0 else { return 0 }
+        return min(100, Int((totalToday / t) * 100))
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
+
             // Header
-            VStack(alignment: .leading, spacing: 4) {
-                Text(chartTitle)
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(Color.orangePrimary)
-                
-                Text(chartSubtitle)
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundStyle(.primary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            
-            Divider()
-                .padding(.vertical, 4)
-            
-            // Stats Row
-            HStack(alignment: .top, spacing: 32) {
-                VStack(alignment: .leading, spacing: 4) {
+            Text(chartTitle)
+                .font(.system(size: 16, weight: .bold, design: .rounded))
+                .foregroundStyle(Color.gruenPrimary)
+
+            Divider().padding(.vertical, 2)
+
+            // Stats Row: Heute % | Ziel | Ø Woche
+            HStack(alignment: .top, spacing: 0) {
+
+                // Heute – Fortschritt in %
+                VStack(alignment: .leading, spacing: 2) {
                     HStack(spacing: 4) {
                         Circle().fill(Color.orangePrimary).frame(width: 8, height: 8)
                         Text(String(localized: "health.chart.label.today", defaultValue: "Heute"))
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .font(.system(size: 13, weight: .bold, design: .rounded))
                             .foregroundStyle(Color.orangePrimary)
                     }
-                    
-                    let totalToday = data.map { $0.1 }.reduce(0, +)
-                    HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        Text(formatNumber(totalToday))
-                            .font(.system(size: 28, weight: .black, design: .rounded))
+                    HStack(alignment: .firstTextBaseline, spacing: 2) {
+                        Text("\(progressPercent)")
+                            .font(.system(size: 30, weight: .black, design: .rounded))
                             .foregroundStyle(Color.orangePrimary)
+                        Text("%")
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                            .foregroundStyle(Color.orangePrimary)
+                    }
+                    Text(formatNumber(totalToday) + " " + unitString)
+                        .font(.system(size: 11, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                }
+
+                Spacer()
+
+                // Ziel
+                if let t = target {
+                    VStack(alignment: .leading, spacing: 2) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "flag.fill")
+                                .font(.system(size: 9))
+                                .foregroundStyle(Color.gruenPrimary)
+                            Text(String(localized: "health.chart.label.target", defaultValue: "Ziel"))
+                                .font(.system(size: 13, weight: .bold, design: .rounded))
+                                .foregroundStyle(Color.gruenPrimary)
+                        }
+                        Text(formatNumber(t))
+                            .font(.system(size: 30, weight: .black, design: .rounded))
+                            .foregroundStyle(Color.gruenPrimary)
                         Text(unitString)
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(Color.orangePrimary)
+                            .font(.system(size: 11, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
                     }
                 }
-                
-                if let target = target {
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack(spacing: 4) {
-                            Circle().fill(Color.secondary).frame(width: 8, height: 8)
-                            Text(String(localized: "health.chart.label.target", defaultValue: "Ziel"))
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
-                        }
-                        
-                        HStack(alignment: .firstTextBaseline, spacing: 4) {
-                            Text(formatNumber(target))
-                                .font(.system(size: 28, weight: .black, design: .rounded))
-                                .foregroundStyle(.secondary)
-                            Text(unitString)
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
-                                .foregroundStyle(.secondary)
-                        }
+
+                Spacer()
+
+                // Ø Woche
+                VStack(alignment: .leading, spacing: 2) {
+                    HStack(spacing: 4) {
+                        Circle().fill(Color.secondary.opacity(0.6)).frame(width: 8, height: 8)
+                        Text(String(localized: "health.chart.label.average", defaultValue: "Ø Woche"))
+                            .font(.system(size: 13, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
+                    if let avg = weeklyAverage {
+                        Text(formatNumber(avg))
+                            .font(.system(size: 30, weight: .black, design: .rounded))
+                            .foregroundStyle(.secondary)
+                        Text(unitString)
+                            .font(.system(size: 11, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Text(String(localized: "health.chart.average.unavailable", defaultValue: "k.A."))
+                            .font(.system(size: 20, weight: .black, design: .rounded))
+                            .foregroundStyle(.secondary.opacity(0.6))
+                        Text(String(localized: "health.chart.average.hint", defaultValue: "< 3 Tage"))
+                            .font(.system(size: 11, weight: .medium, design: .rounded))
+                            .foregroundStyle(.secondary.opacity(0.6))
                     }
                 }
             }
-            
+
             // Chart
             Chart {
-                if let target = target {
-                    // Target grey line
-                    if let first = data.first?.0, let last = data.last?.0 {
-                        LineMark(
-                            x: .value("Uhrzeit", first),
-                            y: .value("Ziel", target)
-                        )
-                        .foregroundStyle(Color.secondary.opacity(0.3))
-                        .lineStyle(StrokeStyle(lineWidth: 3))
-                        
-                        LineMark(
-                            x: .value("Uhrzeit", last),
-                            y: .value("Ziel", target)
-                        )
-                        .foregroundStyle(Color.secondary.opacity(0.3))
-                        .lineStyle(StrokeStyle(lineWidth: 3))
+                // Grüne gestrichelte Ziellinie oben
+                if let t = target, let first = data.first?.0, let last = data.last?.0 {
+                    LineMark(
+                        x: .value("Uhrzeit", first),
+                        y: .value("Ziel", t)
+                    )
+                    .foregroundStyle(Color.gruenPrimary.opacity(0.7))
+                    .lineStyle(StrokeStyle(lineWidth: 2, dash: [6, 4]))
+
+                    LineMark(
+                        x: .value("Uhrzeit", last),
+                        y: .value("Ziel", t)
+                    )
+                    .foregroundStyle(Color.gruenPrimary.opacity(0.7))
+                    .lineStyle(StrokeStyle(lineWidth: 2, dash: [6, 4]))
+                }
+
+                // Grauer Durchschnittspunkt am Ende
+                if let avg = weeklyAverage, let lastDate = data.last?.0 {
+                    PointMark(
+                        x: .value("Uhrzeit", lastDate),
+                        y: .value("Durchschnitt", avg)
+                    )
+                    .foregroundStyle(Color.secondary.opacity(0.7))
+                    .symbolSize(60)
+                    .annotation(position: .top) {
+                        Text(String(localized: "health.chart.label.average", defaultValue: "Ø Woche"))
+                            .font(.system(size: 9, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
                     }
                 }
-                
-                // Active Line
+
+                // Orange kumulative Linie
                 ForEach(cumulativeData(), id: \.0) { item in
                     LineMark(
                         x: .value("Uhrzeit", item.0),
@@ -126,21 +161,20 @@ struct HealthChartView: View {
                     )
                     .foregroundStyle(Color.orangePrimary)
                     .lineStyle(StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
-                    
+
                     AreaMark(
                         x: .value("Uhrzeit", item.0),
                         y: .value("Wert", item.1)
                     )
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [Color.orangePrimary.opacity(0.3), Color.clear],
-                            startPoint: .top,
-                            endPoint: .bottom
+                            colors: [Color.orangePrimary.opacity(0.25), Color.clear],
+                            startPoint: .top, endPoint: .bottom
                         )
                     )
                 }
-                
-                // End Point Marker
+
+                // Endpunkt Marker
                 if let lastItem = cumulativeData().last {
                     PointMark(
                         x: .value("Uhrzeit", lastItem.0),
@@ -155,7 +189,7 @@ struct HealthChartView: View {
                     if let date = value.as(Date.self) {
                         AxisValueLabel {
                             Text(date.formatted(Date.FormatStyle().hour(.defaultDigits(amPM: .abbreviated))))
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .font(.system(size: 11, weight: .bold, design: .rounded))
                                 .foregroundStyle(.secondary)
                         }
                         AxisGridLine()
@@ -163,21 +197,24 @@ struct HealthChartView: View {
                 }
             }
             .chartYAxis(.hidden)
-            .frame(height: 140)
-            .padding(.top, 16)
+            .frame(height: 130)
+            .padding(.top, 8)
         }
-        .padding(24)
-        .modifier(Item3DContainerModifier(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5), shadowDepth: 6))
+        .padding(20)
+        .modifier(Item3DContainerModifier(
+            farbe: Color(UIColor.systemBackground),
+            sekundaerFarbe: Color(UIColor.systemGray5),
+            shadowDepth: 6
+        ))
     }
-    
+
     private func formatNumber(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 0
-        return formatter.string(from: NSNumber(value: value)) ?? "\(Int(value))"
+        let f = NumberFormatter()
+        f.numberStyle = .decimal
+        f.maximumFractionDigits = 0
+        return f.string(from: NSNumber(value: value)) ?? "\(Int(value))"
     }
-    
-    // Apple Fitness lines are cumulative throughout the day
+
     private func cumulativeData() -> [(Date, Double)] {
         var result: [(Date, Double)] = []
         var sum: Double = 0

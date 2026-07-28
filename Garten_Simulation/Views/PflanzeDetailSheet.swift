@@ -34,6 +34,7 @@ struct PflanzeDetailSheet: View {
     @State private var pfadBereit: Bool = false
     @State private var zeigePaywall = false
     @State private var hourlyHealthData: [(Date, Double)] = []
+    @State private var weeklyHealthAverage: Double? = nil
     @State private var zeigeDeleteTrackerConfirm = false
     @State private var zeigeCustomTrackerAlert = false
     @State private var zeigeTrackerConfirm = false
@@ -375,6 +376,9 @@ struct PflanzeDetailSheet: View {
                 healthManager.fetchHourlyData(for: metric) { data in
                     self.hourlyHealthData = data
                 }
+                healthManager.fetchWeeklyAverage(for: metric) { avg in
+                    self.weeklyHealthAverage = avg
+                }
             }
             
             // Auto-Watering check
@@ -514,7 +518,7 @@ struct PflanzeDetailSheet: View {
                                                     }
                                                     
                                                     if !hourlyHealthData.isEmpty {
-                                                        HealthChartView(data: hourlyHealthData, metric: metric, target: pflanze.healthTarget)
+                                                        HealthChartView(data: hourlyHealthData, metric: metric, target: pflanze.healthTarget, weeklyAverage: weeklyHealthAverage)
                                                             .padding(.vertical, 8)
                                                     }
                                                     
@@ -737,6 +741,7 @@ struct PflanzeDetailSheet: View {
                                                             .foregroundStyle(.orange)
                                                             .padding(8)
                                                             .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
+                                                            .onSubmit { gardenStore.savePlants() }
                                                         }
                                                         
                                                         let current = Int(pflanze.customTrackerProgress)

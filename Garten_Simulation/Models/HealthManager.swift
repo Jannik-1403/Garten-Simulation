@@ -220,6 +220,57 @@ class HealthManager: ObservableObject {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { completion(self.todaysStrengthTraining) }
         }
     }
+    
+    /// Holt den Durchschnitt der letzten 7 Tage für eine Metrik.
+    /// Gibt nil zurück, wenn noch keine 3 Tage Daten vorhanden.
+    func fetchWeeklyAverage(for metric: HealthMetricType, completion: @escaping (Double?) -> Void) {
+        guard isAuthorized else {
+            DispatchQueue.main.async { completion(nil) }
+            return
+        }
+        guard let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount),
+              let waterType = HKQuantityType.quantityType(forIdentifier: .dietaryWater) else {
+            DispatchQueue.main.async { completion(nil) }
+            return
+        }
+        
+        let calendar = Calendar.current
+        guard let sevenDaysAgo = calendar.date(byAdding: .day, value: -7, to: calendar.startOfDay(for: Date())) else {
+            DispatchQueue.main.async { completion(nil) }
+            return
+        }
+        let today = calendar.startOfDay(for: Date())
+        
+        var intervalComponents = DateComponents()
+        intervalComponents.day = 1
+        
+        func handleStats(_ results: HKStatisticsCollection?, unit: HKUnit) {
+            var dailyValues: [Double] = []
+            results?.enumerateStatistics(from: sevenDaysAgo, to: today) { stats, _ in
+                if let sum = stats.sumQuantity() {
+                    let val = sum.doubleValue(for: unit)
+                    if val > 0 { dailyValues.append(val) }
+                }
+            }
+            let average: Double? = dailyValues.count >= 3 ? dailyValues.reduce(0, +) / Double(dailyValues.count) : nil
+            DispatchQueue.main.async { completion(average) }
+        }
+        
+        switch metric {
+        case .steps:
+            let pred = HKQuery.predicateForSamples(withStart: sevenDaysAgo, end: today, options: .strictStartDate)
+            let q = HKStatisticsCollectionQuery(quantityType: stepType, quantitySamplePredicate: pred, options: .cumulativeSum, anchorDate: sevenDaysAgo, intervalComponents: intervalComponents)
+            q.initialResultsHandler = { _, r, _ in handleStats(r, unit: .count()) }
+            self.healthStore.execute(q)
+        case .water:
+            let pred = HKQuery.predicateForSamples(withStart: sevenDaysAgo, end: today, options: .strictStartDate)
+            let q = HKStatisticsCollectionQuery(quantityType: waterType, quantitySamplePredicate: pred, options: .cumulativeSum, anchorDate: sevenDaysAgo, intervalComponents: intervalComponents)
+            q.initialResultsHandler = { _, r, _ in handleStats(r, unit: .literUnit(with: .milli)) }
+            self.healthStore.execute(q)
+        default:
+            DispatchQueue.main.async { completion(nil) }
+        }
+    }
 }
 extension HealthManager {
     /// Holt historische Daten (pro Stunde) für den heutigen Tag
