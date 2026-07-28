@@ -37,7 +37,7 @@ struct SelectWaterPeriodIntent: WidgetConfigurationIntent {
     static var description = IntentDescription(LocalizedStringResource("widget_intent_water_desc", defaultValue: "Hintergrund wählen."))
 
 
-    @Parameter(title: "Hintergrund", default: .dark)
+    @Parameter(title: LocalizedStringResource("widget_style_type", defaultValue: "Hintergrund"), default: .dark)
     var style: WidgetBackgroundStyle
 
     init() {}
@@ -48,7 +48,7 @@ struct SelectWaterPeriodIntent: WidgetConfigurationIntent {
 struct SelectStreakIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = LocalizedStringResource("widget_intent_streak_title", defaultValue: "Streak-Widget anpassen")
     
-    @Parameter(title: "Hintergrund", default: .dark)
+    @Parameter(title: LocalizedStringResource("widget_style_type", defaultValue: "Hintergrund"), default: .dark)
     var style: WidgetBackgroundStyle
 
     init() {}
@@ -57,7 +57,7 @@ struct SelectStreakIntent: WidgetConfigurationIntent {
 struct SelectHistoryIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = LocalizedStringResource("widget_intent_history_title", defaultValue: "Verlauf-Widget anpassen")
     
-    @Parameter(title: "Hintergrund", default: .dark)
+    @Parameter(title: LocalizedStringResource("widget_style_type", defaultValue: "Hintergrund"), default: .dark)
     var style: WidgetBackgroundStyle
 
     init() {}
@@ -124,10 +124,10 @@ struct SelectRoutineIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = LocalizedStringResource("widget_intent_routine_title", defaultValue: "Routine-Widget anpassen")
     static var description = IntentDescription(LocalizedStringResource("widget_intent_routine_desc", defaultValue: "Wähle eine Routine und den Hintergrund."))
 
-    @Parameter(title: "Routine")
+    @Parameter(title: LocalizedStringResource("widget_routine_type", defaultValue: "Routine"))
     var routine: RoutineEntity?
 
-    @Parameter(title: "Hintergrund", default: .dark)
+    @Parameter(title: LocalizedStringResource("widget_style_type", defaultValue: "Hintergrund"), default: .dark)
     var style: WidgetBackgroundStyle
 
     init() {}
