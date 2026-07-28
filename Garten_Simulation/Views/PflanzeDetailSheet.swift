@@ -144,19 +144,15 @@ struct PflanzeDetailSheet: View {
                                 .environmentObject(gardenStore)
                                 .environmentObject(settings)
                             ) {
-                                HStack(spacing: 6) {
+                                HStack(spacing: 8) {
                                     Text("\(pflanze.streak)")
-                                        .font(.system(size: 22, weight: .black, design: .rounded))
+                                        .font(.system(size: 32, weight: .black, design: .rounded))
+                                        .foregroundStyle(Color(hex: "#D95F00"))
                                     Image("streak")
-                                        .renderingMode(.template)
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 20, height: 20)
+                                        .frame(width: 32, height: 32)
                                 }
-                                .foregroundStyle(Color(hex: "#D95F00"))
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 8)
-                                .background(Color(hex: "#D95F00").opacity(0.12), in: Capsule())
                             }
                             .buttonStyle(PlainButtonStyle())
                             .padding(.top, 8)
