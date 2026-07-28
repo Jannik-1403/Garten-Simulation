@@ -15,6 +15,11 @@ struct PflanzeDetailSheet: View {
     @State private var zeigeVerkaufenDialog = false
     @State private var zeigeFocusSession = false
     @State private var zeigeNotizSheet = false
+    @State private var zeigeTodoSheet = false
+    @State private var todoToEditIndex: Int? = nil
+    @State private var todoToDeleteIndex: Int? = nil
+    @State private var isNotesExpanded = false
+    @State private var isTodosExpanded = true
     @State private var zeigeTimerSheet = false
     @State private var zeigeTimerEditSheet = false
     @State private var pulsieren = false
@@ -183,42 +188,101 @@ struct PflanzeDetailSheet: View {
                     // Apple Health Integration (Pro Feature)
                     healthKitConfigSection
 
-                    // Notizen Header & Liste
-                    HStack {
-                        Text(String(localized: "plant.detail.notes_header", defaultValue: "Notizen"))
+                    // To-Dos Accordion
+                    DisclosureGroup(isExpanded: $isTodosExpanded) {
+                        VStack(spacing: 12) {
+                            ForEach(pflanze.todos.indices, id: \.self) { index in
+                                HStack {
+                                    Text(pflanze.todos[index].text)
+                                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                                        .strikethrough(pflanze.todos[index].isCompleted)
+                                        .foregroundColor(pflanze.todos[index].isCompleted ? .secondary : .primary)
+                                    Spacer()
+                                    Button {
+                                        todoToDeleteIndex = index
+                                    } label: {
+                                        Image(systemName: "trash")
+                                            .foregroundColor(.red)
+                                    }
+                                }
+                                .padding()
+                                .background(Color.primary.opacity(0.05))
+                                .cornerRadius(12)
+                            }
+                            
+                            Button {
+                                todoToEditIndex = nil
+                                zeigeTodoSheet = true
+                            } label: {
+                                HStack {
+                                    Image(systemName: "plus.circle.fill")
+                                    Text(String(localized: "plant.detail.todo.add", defaultValue: "To-Do hinzufügen"))
+                                }
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 24)
+                            }
+                            .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: true, backgroundColor: .gruenPrimary, shadowColor: .gruenPrimary.darker(), foregroundColor: .white))
+                        }
+                        .padding(.top, 8)
+                    } label: {
+                        Text(String(localized: "plant.detail.todos_header", defaultValue: "To-Dos"))
                             .font(.system(size: 20, weight: .bold, design: .rounded))
-                        Spacer()
+                            .foregroundColor(.primary)
                     }
                     .padding(.horizontal, 24)
-                    .padding(.bottom, 8)
-
-                    ForEach(pflanze.notizen.indices, id: \.self) { index in
-                        NoteRowView(
-                            pflanze: pflanze,
-                            index: index,
-                            onTap: {
-                                noteToEditIndex = index
-                                zeigeNotizSheet = true
-                            },
-                            onDelete: {
-                                noteToDeleteIndex = index
-                            },
-                            deleteConfirmShowing: Binding(
-                                get: { noteToDeleteIndex == index },
-                                set: { if !$0 { noteToDeleteIndex = nil } }
-                            ),
-                            onConfirmDelete: {
-                                gardenStore.notizEntfernen(pflanze: pflanze, index: index)
-                                noteToDeleteIndex = nil
-                            },
-                            onCancelDelete: {
-                                noteToDeleteIndex = nil
-                            }
-                        )
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 4)
-                    }
+                    .tint(.gruenPrimary)
                     
+                    // Notizen Accordion
+                    DisclosureGroup(isExpanded: $isNotesExpanded) {
+                        VStack(spacing: 8) {
+                            ForEach(pflanze.notizen.indices, id: \.self) { index in
+                                NoteRowView(
+                                    pflanze: pflanze,
+                                    index: index,
+                                    onTap: {
+                                        noteToEditIndex = index
+                                        zeigeNotizSheet = true
+                                    },
+                                    onDelete: {
+                                        noteToDeleteIndex = index
+                                    },
+                                    deleteConfirmShowing: Binding(
+                                        get: { noteToDeleteIndex == index },
+                                        set: { if !$0 { noteToDeleteIndex = nil } }
+                                    ),
+                                    onConfirmDelete: {
+                                        gardenStore.notizEntfernen(pflanze: pflanze, index: index)
+                                        noteToDeleteIndex = nil
+                                    },
+                                    onCancelDelete: {
+                                        noteToDeleteIndex = nil
+                                    }
+                                )
+                            }
+                            
+                            Button {
+                                noteToEditIndex = nil // Markiere als Neuanlage
+                                zeigeNotizSheet = true
+                            } label: {
+                                HStack {
+                                    Image(systemName: "plus.circle.fill")
+                                    Text(String(localized: "plant.detail.note.add"))
+                                }
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 24)
+                            }
+                            .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: true, backgroundColor: .blauPrimary, shadowColor: .blauPrimary.darker(), foregroundColor: .white))
+                        }
+                        .padding(.top, 8)
+                    } label: {
+                        Text(String(localized: "plant.detail.notes_header", defaultValue: "Notizen"))
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .foregroundColor(.primary)
+                    }
+                    .padding(.horizontal, 24)
+                    .tint(.blauPrimary)
 
                     // Own Timer Row (always show if active, so user can edit non-overridden days)
                     if pflanze.hasActiveReminder {
@@ -233,43 +297,19 @@ struct PflanzeDetailSheet: View {
                         .padding(.bottom, 8)
                     }
 
-                    // 3D Buttons nebeneinander
-                    HStack(spacing: 12) {
-                        Button {
-                            noteToEditIndex = nil // Markiere als Neuanlage
-                            zeigeNotizSheet = true
-                        } label: {
-                            ZStack {
-
-                                Text(String(localized: "plant.detail.note.add")).textCase(.uppercase)
-                                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                            }
+                    // Timer Button
+                    Button {
+                        zeigeTimerSheet = true
+                    } label: {
+                        Text(String(localized: "plant.detail.timer")).textCase(.uppercase)
+                            .font(.system(size: 15, weight: .bold, design: .rounded))
                             .frame(maxWidth: .infinity)
                             .frame(height: 24)
-                            .clipped()
-                        }
-                        .buttonStyle(DuolingoButtonStyle(
-                            size: .medium, fillWidth: true,
-                            backgroundColor: .blauPrimary, shadowColor: .blauPrimary.darker(), foregroundColor: .white
-                        ))
-
-                        Button {
-                            zeigeTimerSheet = true
-                        } label: {
-                            ZStack {
-
-                                Text(String(localized: "plant.detail.timer")).textCase(.uppercase)
-                                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                            }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 24)
-                            .clipped()
-                        }
-                        .buttonStyle(DuolingoButtonStyle(
-                            size: .medium, fillWidth: true,
-                            backgroundColor: .blauPrimary, shadowColor: .blauPrimary.darker(), foregroundColor: .white
-                        ))
                     }
+                    .buttonStyle(DuolingoButtonStyle(
+                        size: .medium, fillWidth: true,
+                        backgroundColor: .blauPrimary, shadowColor: .blauPrimary.darker(), foregroundColor: .white
+                    ))
                     .padding(.horizontal, 24)
 
                     // Focus Session Button
@@ -409,6 +449,11 @@ struct PflanzeDetailSheet: View {
             }
         }
 
+        // MARK: - Todo Sheet
+        .sheet(isPresented: $zeigeTodoSheet) {
+            TodoSheetView(pflanze: pflanze, editIndex: todoToEditIndex)
+        }
+        
         // MARK: - Notiz Bearbeiten: Direkt Sheet öffnen (kein Dialog mehr)
         .onChange(of: noteToEditIndex) { _, newIndex in
             if newIndex != nil {
@@ -847,6 +892,94 @@ struct PflanzeDetailSheet: View {
 // MARK: - Flame Streak Button
 
 
+
+// MARK: - Todo Sheet
+struct TodoSheetView: View {
+    @ObservedObject var pflanze: HabitModel
+    var editIndex: Int? = nil
+
+    @EnvironmentObject var gardenStore: GardenStore
+    @Environment(\.dismiss) private var dismiss
+
+    @State private var todoText: String = ""
+
+    var isEditing: Bool { editIndex != nil }
+
+    var body: some View {
+        VStack(spacing: 24) {
+            // Header
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(NSLocalizedString(isEditing ? "plant.detail.todo.edit" : "plant.detail.todo.add", comment: ""))
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                    Text(NSLocalizedString(pflanze.name, comment: ""))
+                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: "checklist")
+                    .font(.system(size: 28, weight: .semibold))
+                    .foregroundStyle(Color.gruenPrimary)
+            }
+            .padding(.top, 20)
+
+            // Text Editor
+            TextEditor(text: $todoText)
+                .font(.system(size: 16, weight: .medium, design: .rounded))
+                .scrollContentBackground(.hidden)
+                .padding(16)
+                .frame(minHeight: 140)
+                .background(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .fill(Color.primary.opacity(0.04))
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .stroke(Color.primary.opacity(0.08), lineWidth: 1)
+                )
+                .overlay(alignment: .topLeading) {
+                    if todoText.isEmpty {
+                        Text(String(localized: "plant.detail.todo.placeholder", defaultValue: "To-Do eingeben..."))
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
+                            .foregroundStyle(.tertiary)
+                            .padding(20)
+                            .allowsHitTesting(false)
+                    }
+                }
+
+            Spacer()
+
+            // Save Button
+            Button {
+                let trimmed = todoText.trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !trimmed.isEmpty else { return }
+                
+                if let idx = editIndex {
+                    pflanze.todos[idx].text = trimmed
+                } else {
+                    let newTodo = FocusGoal(text: trimmed)
+                    pflanze.todos.append(newTodo)
+                }
+                gardenStore.savePlants()
+                dismiss()
+            } label: {
+                Text(String(localized: "common.save"))
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 24)
+            }
+            .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: true, backgroundColor: .gruenPrimary, shadowColor: .gruenPrimary.darker(), foregroundColor: .white))
+            .disabled(todoText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+            .padding(.bottom, 20)
+        }
+        .padding(.horizontal, 24)
+        .onAppear {
+            if let idx = editIndex, pflanze.todos.indices.contains(idx) {
+                todoText = pflanze.todos[idx].text
+            }
+        }
+    }
+}
 
 // MARK: - Notiz Sheet
 struct NotizSheetView: View {

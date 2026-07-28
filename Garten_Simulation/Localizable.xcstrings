@@ -765,6 +765,16 @@
         }
       }
     },
+    "%lld / %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld / %2$lld"
+          }
+        }
+      }
+    },
     "%lld / 5" : {
       "comment" : "A text label showing the current amount of life points a user has, followed by a slash and the maximum possible amount. The argument is the current life points, and the second is the maximum possible amount.",
       "extractionState" : "manual",
@@ -126693,6 +126703,28 @@
         }
       }
     },
+    "focus.session.all_done" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Alles erledigt!"
+          }
+        }
+      }
+    },
+    "focus.session.all_done.desc" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Bleib im Fokus oder beende die Session frühzeitig."
+          }
+        }
+      }
+    },
     "focus.session.cancelled.app_left" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -127260,6 +127292,17 @@
         }
       }
     },
+    "focus.session.current_goal" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "AKTUELLES ZIEL"
+          }
+        }
+      }
+    },
     "focus.session.dnd_hint" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -127539,6 +127582,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "持續時間：%lld 分鐘"
+          }
+        }
+      }
+    },
+    "focus.session.goal_done" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Erledigt"
           }
         }
       }
@@ -127823,6 +127877,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新的主要目標..."
+          }
+        }
+      }
+    },
+    "focus.session.no_goals" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Laser-Fokus aktiv"
           }
         }
       }
@@ -128301,6 +128366,7 @@
       }
     },
     "focus.session.your_goals" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

@@ -167,8 +167,12 @@ struct FocusSessionView: View {
                     FocusTimerRecovery.shared.clearState()
                 }
                 
-                if sessionGoals.isEmpty && !initialGoals.isEmpty {
-                    sessionGoals = initialGoals.map { FocusGoal(text: $0) }
+                if sessionGoals.isEmpty {
+                    if !pflanze.isGenericFocus && !pflanze.todos.isEmpty {
+                        sessionGoals = pflanze.todos
+                    } else if !initialGoals.isEmpty {
+                        sessionGoals = initialGoals.map { FocusGoal(text: $0) }
+                    }
                 }
             }
         }

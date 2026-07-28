@@ -331,8 +331,9 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var wiederbelebtAm: Date? = nil
     var strafTage: Int = 3
     
-    // Notizen & Timer
+    // Notizen & Timer & Todos
     @Published var notizen: [String] = []
+    @Published var todos: [FocusGoal] = []
     var timerDatum: Date? = nil
     @Published var reminderTime: Date? = nil
     @Published var customReminderMessage: String? = nil
@@ -653,6 +654,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case isRoutineOnly
         case isGenericFocus
         case challengeJokers
+        case todos
     }
 
     required init(from decoder: Decoder) throws {
@@ -710,6 +712,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         } else {
             notizen = []
         }
+        
+        todos = try container.decodeIfPresent([FocusGoal].self, forKey: .todos) ?? []
         timerDatum = try container.decodeIfPresent(Date.self, forKey: .timerDatum)
         xpHistory = try container.decodeIfPresent([String: Int].self, forKey: .xpHistory) ?? [:]
         totalCoinsEarned = try container.decodeIfPresent(Int.self, forKey: .totalCoinsEarned) ?? 0
@@ -796,6 +800,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(isRoutineOnly, forKey: .isRoutineOnly)
         try container.encode(isGenericFocus, forKey: .isGenericFocus)
         try container.encode(challengeJokers, forKey: .challengeJokers)
+        try container.encode(todos, forKey: .todos)
     }
 }
 
