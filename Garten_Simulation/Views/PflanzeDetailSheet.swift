@@ -257,10 +257,10 @@ struct PflanzeDetailSheet: View {
                                 isRectangular: false,
                                 aktion: { zeigeTimerSheet = true }
                             ) {
-                                Image("Timer empty")
+                                Image("Erinnerung")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 24, height: 24)
+                                    .frame(width: 28, height: 28)
                             }
                             Text(String(localized: "plant.detail.timer"))
                                 .font(.system(size: 12, weight: .bold, design: .rounded))
@@ -1653,16 +1653,15 @@ struct NoteRowView: View {
     @State private var deletePressed = false
 
     var body: some View {
-        // The entire row (including X) lives in one Button so everything animates together.
-        // The X intercepts its own tap via simultaneousGesture without triggering the parent.
-        Button {
-            isVisualPressed = true
-            FeedbackManager.shared.playTap()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
-                isVisualPressed = false
+        Item3DButton(
+            farbe: Color.white,
+            sekundaerFarbe: Color(white: 0.9),
+            groesse: 50,
+            isRectangular: true,
+            aktion: {
                 onTap()
             }
-        } label: {
+        ) {
             HStack(spacing: 12) {
                 Image("Notizen")
                     .resizable()
@@ -1677,12 +1676,11 @@ struct NoteRowView: View {
                     Text(pflanze.notizen[index])
                         .lineLimit(2)
                         .font(.system(size: 14, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.primary)
                 }
 
                 Spacer()
 
-                // X delete button — inside the label so it moves with the card.
-                // Uses simultaneousGesture so it intercepts the tap independently.
                 Image(systemName: "xmark.circle.fill")
                     .font(.system(size: 20))
                     .foregroundStyle(Color.red.opacity(0.7))
@@ -1692,10 +1690,7 @@ struct NoteRowView: View {
                         TapGesture().onEnded { onDelete() }
                     )
             }
-            .padding(.vertical, 6)
-            .padding(.horizontal, 14)
         }
-        .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: isVisualPressed))
         .confirmationDialog(
             String(localized: "plant.detail.note.delete.confirm"),
             isPresented: deleteConfirmShowing,

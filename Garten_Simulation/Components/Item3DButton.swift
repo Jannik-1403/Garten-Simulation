@@ -118,40 +118,42 @@ struct Item3DButtonStyle: ButtonStyle {
         let shadowDepth: CGFloat = groesse * shadowDepthFactor
         let isPressed = configuration.isPressed || isPermanentlyPressed || forcePressed
         
-        ZStack {
-            // Shadow / Base
+        Group {
             if isRectangular {
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(sekundaerFarbe)
-                    .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+                configuration.label
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 16)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .fill(farbe)
+                            .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+                    )
+                    .offset(y: isPressed ? shadowDepth : 0)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .fill(sekundaerFarbe)
+                            .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+                            .offset(y: shadowDepth)
+                    )
+                    .padding(.bottom, shadowDepth)
             } else {
-                Circle()
-                    .fill(sekundaerFarbe)
-                    .overlay(Circle().stroke(Color.black.opacity(0.1), lineWidth: 1))
-            }
-            
-            // Top Layer
-            if isRectangular {
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(farbe)
-                    .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
-                    .overlay {
-                        configuration.label
-                            .padding(.horizontal, 10)
-                    }
-                    .offset(y: isPressed ? 0 : -shadowDepth)
-            } else {
-                Circle()
-                    .fill(farbe)
-                    .overlay(Circle().stroke(Color.black.opacity(0.15), lineWidth: 1))
-                    .overlay {
-                        configuration.label
-                            .frame(width: groesse * iconSkalierung, height: groesse * iconSkalierung)
-                    }
-                    .offset(y: isPressed ? 0 : -shadowDepth)
+                ZStack {
+                    Circle()
+                        .fill(sekundaerFarbe)
+                        .overlay(Circle().stroke(Color.black.opacity(0.1), lineWidth: 1))
+                    
+                    Circle()
+                        .fill(farbe)
+                        .overlay(Circle().stroke(Color.black.opacity(0.15), lineWidth: 1))
+                        .overlay {
+                            configuration.label
+                                .frame(width: groesse * iconSkalierung, height: groesse * iconSkalierung)
+                        }
+                        .offset(y: isPressed ? 0 : -shadowDepth)
+                }
+                .frame(width: groesse, height: groesse)
             }
         }
-        .frame(width: isRectangular ? nil : groesse, height: groesse)
         .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: isPressed)
         .sensoryFeedback(trigger: configuration.isPressed) { _, newValue in
             (isHapticEnabled && newValue && !forcePressed) ? .impact(flexibility: .soft, intensity: 0.8) : nil

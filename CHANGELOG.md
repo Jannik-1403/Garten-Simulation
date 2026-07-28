@@ -247,3 +247,9 @@
 - **Streak Pearl**: Der Streak-Button im `PflanzeDetailSheet` ist nun eine deutlich kleinere "Perle" (runder 3D-Button) mit der Zahl und dem Flammen-Icon.
 - **Notizen & To-Do Hinzufügen**: Die riesigen Buttons wurden durch kleine, elegante runde Plus-Icons (`Item3DButton`) ersetzt.
 - **Timer & Fokus-Session**: Beide Buttons am Ende des `PflanzeDetailSheet` sind keine großen Rechtecke mehr, sondern zwei gleichwertige, runde 3D-Icons nebeneinander.
+
+### UI Overhaul & Proportionen (28.07.2026)
+- **Fähigkeiten (Active Effects)**: Die aktiven Effekte wurden von ganz oben entfernt, da sie das Layout gestört haben. Sie sind nun elegant weiter unten in einem eigenen "Aktive Effekte"-Accordion zusammengefasst.
+- **Plus-Buttons**: Das `+` Icon für To-Dos und Notizen befindet sich nun sauber aufgeräumt ganz rechts direkt im jeweiligen Header (Accordion-Titel).
+- **Weiße To-Do Listen**: Die `Item3DButton` der To-Dos haben nun einen reinweißen Hintergrund für deutlicheren Kontrast und wurden etwas schmaler gemacht, um nicht so klobig zu wirken.
+- **Timer Asset-Icons**: Anstelle der Standard-SF-Symbols verwenden der Timer und der Fokus-Timer nun die Custom Assets `"Timer full"` und `"Timer empty"`. Ihre Größe wurde leicht reduziert (54 statt 64), um die Proportionen harmonischer zu machen.
