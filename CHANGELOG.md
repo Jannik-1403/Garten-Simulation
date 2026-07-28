@@ -253,3 +253,8 @@
 - **Plus-Buttons**: Das `+` Icon für To-Dos und Notizen befindet sich nun sauber aufgeräumt ganz rechts direkt im jeweiligen Header (Accordion-Titel).
 - **Weiße To-Do Listen**: Die `Item3DButton` der To-Dos haben nun einen reinweißen Hintergrund für deutlicheren Kontrast und wurden etwas schmaler gemacht, um nicht so klobig zu wirken.
 - **Timer Asset-Icons**: Anstelle der Standard-SF-Symbols verwenden der Timer und der Fokus-Timer nun die Custom Assets `"Timer full"` und `"Timer empty"`. Ihre Größe wurde leicht reduziert (54 statt 64), um die Proportionen harmonischer zu machen.
+
+### UI Update Notizen & Item3DButton Höhe (28.07.2026)
+- **Erinnerungs-Icon**: Der Timer-Button nutzt nun das korrekte "Erinnerung"-Asset.
+- **Notizen als 3D-Button**: Genau wie bei den To-Dos ist nun auch jeder Notizen-Eintrag in einen sauberen, weißen `Item3DButton` eingebettet.
+- **Dynamische Button-Höhe**: Der `Item3DButton` wurde komplett umgebaut, sodass rechteckige Buttons nun dynamisch so hoch werden, wie der Text es erfordert (statt alles abzuschneiden und einzuschnüren). Das bedeutet, To-Dos und Notizen haben nun den gewünschten **"mehr Platz"** und sehen viel besser proportioniert aus.

@@ -95,21 +95,14 @@ struct PflanzeDetailSheet: View {
                                 .environmentObject(settings)
                             ) {
                                 VStack(spacing: -2) {
-                                    Image("streak")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 20, height: 20)
+                                    LottieView(name: "streak", loop: true)
+                                        .frame(width: 50, height: 50)
+                                    
                                     Text("\(pflanze.streak)")
-                                        .font(.system(size: 14, weight: .black, design: .rounded))
-                                        .foregroundStyle(.white)
+                                        .font(.system(size: 16, weight: .black, design: .rounded))
+                                        .foregroundStyle(Color.orangePrimary)
                                 }
                             }
-                            .buttonStyle(Item3DButtonStyle(
-                                farbe: Color(hex: "#FF8C00"),
-                                sekundaerFarbe: Color(hex: "#D95F00"),
-                                groesse: 54,
-                                isRectangular: false
-                            ))
                             .padding(.top, 8)
     
 
@@ -158,7 +151,7 @@ struct PflanzeDetailSheet: View {
                             }
                             .buttonStyle(BorderlessButtonStyle())
                         }
-                    }
+                    .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                     .padding(.horizontal, 24)
                     .tint(.gruenPrimary)
                     
@@ -209,6 +202,7 @@ struct PflanzeDetailSheet: View {
                             .buttonStyle(BorderlessButtonStyle())
                         }
                     }
+                    .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                     .padding(.horizontal, 24)
                     .tint(.blauPrimary)
 
@@ -230,6 +224,7 @@ struct PflanzeDetailSheet: View {
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundColor(.primary)
                         }
+                        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                         .padding(.horizontal, 24)
                         .tint(.orangePrimary)
                     }
@@ -261,6 +256,7 @@ struct PflanzeDetailSheet: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 28, height: 28)
+                                    .scaleEffect(2.5)
                             }
                             Text(String(localized: "plant.detail.timer"))
                                 .font(.system(size: 12, weight: .bold, design: .rounded))
@@ -1656,7 +1652,7 @@ struct NoteRowView: View {
         Item3DButton(
             farbe: Color.white,
             sekundaerFarbe: Color(white: 0.9),
-            groesse: 50,
+            groesse: 64,
             isRectangular: true,
             aktion: {
                 onTap()
@@ -2303,5 +2299,35 @@ struct ScreenTimePickerSheet: View {
                 }
             }
         }
+    }
+}
+
+struct Item3DContainerModifier: ViewModifier {
+    let farbe: Color
+    let sekundaerFarbe: Color
+    let shadowDepth: CGFloat
+    
+    func body(content: Content) -> some View {
+        content
+            .padding(.horizontal, 16)
+            .padding(.vertical, 16)
+            .background(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(farbe)
+                    .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+            )
+            .background(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(sekundaerFarbe)
+                    .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+                    .offset(y: shadowDepth)
+            )
+            .padding(.bottom, shadowDepth)
+    }
+}
+
+extension View {
+    func item3DContainer(farbe: Color = .white, sekundaerFarbe: Color = Color(white: 0.9), shadowDepth: CGFloat = 6) -> some View {
+        self.modifier(Item3DContainerModifier(farbe: farbe, sekundaerFarbe: sekundaerFarbe, shadowDepth: shadowDepth))
     }
 }
