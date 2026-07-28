@@ -19,6 +19,11 @@ struct PflanzenCard: View {
     @State private var zeigeBonusText: Bool = false
     @State private var bonusText: String = ""
     
+    // Long-Press Gießen
+    @State private var longPressProgress: CGFloat = 0.0
+    @State private var longPressTimer: Timer? = nil
+    @State private var isLongPressing: Bool = false
+    
     var body: some View {
         ZStack {
             // MARK: - Layer 0: Visual Card Background
@@ -82,6 +87,20 @@ struct PflanzenCard: View {
                                 .rotationEffect(.degrees(-90))
                                 .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
 
+                            // Long-Press Fortschritts-Ring (Wasser-Blau)
+                            if longPressProgress > 0 {
+                                Circle()
+                                    .trim(from: 0, to: longPressProgress)
+                                    .stroke(
+                                        Color.blauPrimary,
+                                        style: StrokeStyle(lineWidth: 6 * scale, lineCap: .round)
+                                    )
+                                    .frame(width: baseDim * 1.18, height: baseDim * 1.18)
+                                    .rotationEffect(.degrees(-90))
+                                    .shadow(color: Color.blauPrimary.opacity(0.5), radius: 4)
+                                    .allowsHitTesting(false)
+                            }
+
                             // Grüner Glow wenn frisch gegossen
                             Circle()
                                 .stroke(Color.gruenPrimary.opacity(greenGlowOpacity * 0.6), lineWidth: 6 * scale)
@@ -89,7 +108,7 @@ struct PflanzenCard: View {
                                 .blur(radius: 1.5 * scale)
                                 .allowsHitTesting(false)
             
-                            // Der 3D-Button (Jetzt Interaktiv!)
+                            // Der 3D-Button (Long-Press zum Gießen, Tap zum Öffnen)
                             PflanzenButton(
                                 plant: GameDatabase.shared.plant(for: pflanze.plantID),
                                 seltenheit: pflanze.seltenheit,
@@ -97,7 +116,7 @@ struct PflanzenCard: View {
                                 sekundaerFarbe: pflanze.color.darker(),
                                 groesse: 85 * scale,
                                 fallbackIcon: pflanze.symbolName,
-                                externerPress: false,
+                                externerPress: isLongPressing,
                                 aktion: {
                                     if pflanze.isDead {
                                         showReviveSheet = true
@@ -107,6 +126,9 @@ struct PflanzenCard: View {
                                         onTap()
                                     }
                                 }
+                            )
+                            .gesture(
+                                longPressGesture()
                             )
                             
                             if showWaterSplash {
@@ -250,6 +272,64 @@ struct PflanzenCard: View {
         .coordinateSpace(name: "PflanzenCardSpace")
     }
     
+    // MARK: - Long-Press Gießen Logik
+    private func longPressGesture() -> some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { _ in
+                guard !pflanze.istBewässert && !pflanze.isDead && !isLongPressing else { return }
+                startLongPress()
+            }
+            .onEnded { _ in
+                cancelLongPress()
+            }
+    }
+
+    private func startLongPress() {
+        guard longPressTimer == nil else { return }
+        isLongPressing = true
+        longPressProgress = 0
+        
+        let totalDuration: Double = 0.7 // Sekunden bis zum Gießen
+        let tickInterval: Double = 0.016 // ~60fps
+        let tickIncrement = tickInterval / totalDuration
+        
+        longPressTimer = Timer.scheduledTimer(withTimeInterval: tickInterval, repeats: true) { timer in
+            DispatchQueue.main.async {
+                withAnimation(.linear(duration: tickInterval)) {
+                    longPressProgress = min(longPressProgress + tickIncrement, 1.0)
+                }
+                if longPressProgress >= 1.0 {
+                    timer.invalidate()
+                    longPressTimer = nil
+                    triggerWatering()
+                }
+            }
+        }
+    }
+
+    private func cancelLongPress() {
+        longPressTimer?.invalidate()
+        longPressTimer = nil
+        isLongPressing = false
+        withAnimation(.easeOut(duration: 0.25)) {
+            longPressProgress = 0
+        }
+    }
+
+    private func triggerWatering() {
+        isLongPressing = false
+        withAnimation(.easeOut(duration: 0.3)) {
+            longPressProgress = 0
+        }
+        if isHapticEnabled {
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        }
+        gardenStore.letzteGiessPflanzeID = pflanze.id
+        gardenStore.giessTriggerID = UUID()
+        gardenStore.giessen(pflanze: pflanze)
+        onGiessen()
+    }
+
     @ViewBuilder
     private func buildPfadNotActivatedView() -> some View {
         HStack(spacing: 6) {

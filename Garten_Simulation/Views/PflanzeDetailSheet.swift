@@ -838,69 +838,17 @@ struct PflanzeDetailSheet: View {
 
 // MARK: - Flame Streak Button
 
-/// Flammenförmige SwiftUI Path-Hülle (Tip oben, Basis unten)
-struct FlameShape: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let w = rect.width
-        let h = rect.height
-
-        // Basis-Mitte unten
-        path.move(to: CGPoint(x: w * 0.5, y: h))
-
-        // Linke Seite hochschwingen
-        path.addCurve(
-            to: CGPoint(x: w * 0.1, y: h * 0.6),
-            control1: CGPoint(x: w * 0.25, y: h * 0.95),
-            control2: CGPoint(x: w * 0.05, y: h * 0.78)
-        )
-        // Linke mittlere Einschnürung
-        path.addCurve(
-            to: CGPoint(x: w * 0.2, y: h * 0.35),
-            control1: CGPoint(x: w * 0.12, y: h * 0.46),
-            control2: CGPoint(x: w * 0.24, y: h * 0.44)
-        )
-        // Linke obere Kurve zur Spitze
-        path.addCurve(
-            to: CGPoint(x: w * 0.5, y: 0),
-            control1: CGPoint(x: w * 0.15, y: h * 0.18),
-            control2: CGPoint(x: w * 0.42, y: h * 0.06)
-        )
-        // Rechte obere Kurve von der Spitze
-        path.addCurve(
-            to: CGPoint(x: w * 0.8, y: h * 0.35),
-            control1: CGPoint(x: w * 0.58, y: h * 0.06),
-            control2: CGPoint(x: w * 0.85, y: h * 0.18)
-        )
-        // Rechte mittlere Einschnürung
-        path.addCurve(
-            to: CGPoint(x: w * 0.9, y: h * 0.6),
-            control1: CGPoint(x: w * 0.76, y: h * 0.44),
-            control2: CGPoint(x: w * 0.88, y: h * 0.46)
-        )
-        // Rechte Seite zurück zur Basis
-        path.addCurve(
-            to: CGPoint(x: w * 0.5, y: h),
-            control1: CGPoint(x: w * 0.95, y: h * 0.78),
-            control2: CGPoint(x: w * 0.75, y: h * 0.95)
-        )
-
-        path.closeSubpath()
-        return path
-    }
-}
-
 /// 3D-Flammen-Button der den aktuellen Streak der Pflanze zeigt
 struct FlameStreakButton: View {
     let streak: Int
 
-    private let size: CGFloat = 88
+    private let size: CGFloat = 80
     private let depth: CGFloat = 6
 
     var body: some View {
         ZStack {
             // Untere Schicht – Schatten / Tiefe
-            FlameShape()
+            Rectangle()
                 .fill(
                     LinearGradient(
                         colors: [Color(hex: "#C94A00"), Color(hex: "#B03800")],
@@ -908,10 +856,15 @@ struct FlameStreakButton: View {
                         endPoint: .bottom
                     )
                 )
-                .frame(width: size, height: size * 1.3)
+                .mask(
+                    Image("streak")
+                        .resizable()
+                        .scaledToFit()
+                )
+                .frame(width: size, height: size)
 
             // Obere Schicht – Hauptfläche (nach oben versetzt = 3D-Effekt)
-            FlameShape()
+            Rectangle()
                 .fill(
                     LinearGradient(
                         colors: [Color(hex: "#FFAC30"), Color(hex: "#FF5500")],
@@ -919,15 +872,16 @@ struct FlameStreakButton: View {
                         endPoint: .bottom
                     )
                 )
-                .overlay(
-                    FlameShape()
-                        .stroke(Color.white.opacity(0.22), lineWidth: 1.5)
+                .mask(
+                    Image("streak")
+                        .resizable()
+                        .scaledToFit()
                 )
-                .frame(width: size, height: size * 1.3)
+                .frame(width: size, height: size)
                 .offset(y: -depth)
 
             // Innere Glanz-Reflexion
-            FlameShape()
+            Rectangle()
                 .fill(
                     LinearGradient(
                         colors: [Color.white.opacity(0.3), Color.clear],
@@ -935,24 +889,29 @@ struct FlameStreakButton: View {
                         endPoint: .center
                     )
                 )
-                .frame(width: size * 0.55, height: size * 0.7)
-                .offset(x: -6, y: -(depth + size * 0.2))
+                .mask(
+                    Image("streak")
+                        .resizable()
+                        .scaledToFit()
+                )
+                .frame(width: size * 0.8, height: size * 0.8)
+                .offset(x: -2, y: -(depth + size * 0.1))
                 .blendMode(.plusLighter)
 
             // Inhalt: Streak-Zahl + Label
-            VStack(spacing: 0) {
+            VStack(spacing: -2) {
                 Text(verbatim: "\(streak)")
-                    .font(.system(size: 30, weight: .black, design: .rounded))
+                    .font(.system(size: 26, weight: .black, design: .rounded))
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.25), radius: 2, y: 1)
                 Text(String(localized: "plant.detail.streak.label", defaultValue: "STREAK"))
-                    .font(.system(size: 8.5, weight: .bold))
+                    .font(.system(size: 8, weight: .bold))
                     .foregroundStyle(.white.opacity(0.88))
-                    .tracking(1.8)
+                    .tracking(1.5)
             }
-            .offset(y: -(depth - 2))
+            .offset(y: -(depth - 8))
         }
-        .frame(width: size, height: size * 1.3 + depth)
+        .frame(width: size, height: size + depth)
     }
 }
 
