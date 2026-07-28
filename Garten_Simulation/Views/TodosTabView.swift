@@ -100,8 +100,8 @@ struct TodoRowView: View {
     
     var body: some View {
         Item3DButton(
-            farbe: pflanze.todos[index].isCompleted ? Color(UIColor.systemGray5) : Color.white,
-            sekundaerFarbe: pflanze.todos[index].isCompleted ? Color(UIColor.systemGray4) : Color(white: 0.9),
+            farbe: pflanze.todos[index].isCompleted ? .gruenPrimary : Color.white,
+            sekundaerFarbe: pflanze.todos[index].isCompleted ? .gruenPrimary.darker() : Color(white: 0.9),
             groesse: 64,
             isRectangular: true,
             aktion: {
@@ -115,12 +115,12 @@ struct TodoRowView: View {
             HStack {
                 Image(systemName: pflanze.todos[index].isCompleted ? "checkmark.circle.fill" : "circle")
                     .font(.system(size: 24))
-                    .foregroundStyle(pflanze.todos[index].isCompleted ? Color.orangePrimary : Color.gray)
+                    .foregroundStyle(pflanze.todos[index].isCompleted ? Color.white : Color.gray)
                 
                 Text(pflanze.todos[index].text)
                     .font(.system(size: 16, weight: .medium, design: .rounded))
                     .strikethrough(pflanze.todos[index].isCompleted)
-                    .foregroundColor(pflanze.todos[index].isCompleted ? .secondary : .primary)
+                    .foregroundColor(pflanze.todos[index].isCompleted ? Color.white.opacity(0.8) : .primary)
                 
                 Spacer()
             }

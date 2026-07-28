@@ -94,12 +94,13 @@ struct PflanzeDetailSheet: View {
                                 .environmentObject(gardenStore)
                                 .environmentObject(settings)
                             ) {
-                                VStack(spacing: -2) {
-                                    LottieView(name: "streak", loop: true)
-                                        .frame(width: 50, height: 50)
+                                VStack(spacing: -8) {
+                                    LottieView(name: GameConstants.streakLottieURL)
+                                        .frame(width: 80, height: 80)
+                                        .shadow(color: .orangePrimary.opacity(0.3), radius: 20)
                                     
                                     Text("\(pflanze.streak)")
-                                        .font(.system(size: 16, weight: .black, design: .rounded))
+                                        .font(.system(size: 32, weight: .heavy, design: .rounded))
                                         .foregroundStyle(Color.orangePrimary)
                                 }
                             }
@@ -141,15 +142,20 @@ struct PflanzeDetailSheet: View {
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundColor(.primary)
                             Spacer()
-                            Button {
-                                todoToEditIndex = nil
-                                zeigeTodoSheet = true
-                            } label: {
-                                Image(systemName: "plus.circle.fill")
-                                    .font(.title2)
-                                    .foregroundStyle(Color.gruenPrimary)
+                            Item3DButton(
+                                farbe: .gruenPrimary,
+                                sekundaerFarbe: .gruenPrimary.darker(),
+                                groesse: 36,
+                                isRectangular: false,
+                                aktion: {
+                                    todoToEditIndex = nil
+                                    zeigeTodoSheet = true
+                                }
+                            ) {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundStyle(.white)
                             }
-                            .buttonStyle(BorderlessButtonStyle())
                         }
                     }
                     .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
@@ -192,15 +198,20 @@ struct PflanzeDetailSheet: View {
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundColor(.primary)
                             Spacer()
-                            Button {
-                                noteToEditIndex = nil
-                                zeigeNotizSheet = true
-                            } label: {
-                                Image(systemName: "plus.circle.fill")
-                                    .font(.title2)
-                                    .foregroundStyle(Color.blauPrimary)
+                            Item3DButton(
+                                farbe: .blauPrimary,
+                                sekundaerFarbe: .blauPrimary.darker(),
+                                groesse: 36,
+                                isRectangular: false,
+                                aktion: {
+                                    noteToEditIndex = nil
+                                    zeigeNotizSheet = true
+                                }
+                            ) {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 16, weight: .bold))
+                                    .foregroundStyle(.white)
                             }
-                            .buttonStyle(BorderlessButtonStyle())
                         }
                     }
                     .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
