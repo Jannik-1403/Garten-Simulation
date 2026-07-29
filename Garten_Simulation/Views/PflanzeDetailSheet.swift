@@ -36,6 +36,7 @@ struct PflanzeDetailSheet: View {
     @State private var hourlyHealthData: [(Date, Double)] = []
     @State private var weeklyHealthAverage: Double? = nil
     @State private var hourlyAvgData: [(Date, Double)] = []
+    @State private var showTargetEdit = false
     @State private var zeigeDeleteTrackerConfirm = false
     @State private var zeigeCustomTrackerAlert = false
     @State private var zeigeTrackerConfirm = false
@@ -172,29 +173,35 @@ struct PflanzeDetailSheet: View {
                     // Notizen Accordion
                     DisclosureGroup(isExpanded: $isNotesExpanded) {
                         VStack(spacing: 8) {
-                            ForEach(pflanze.notizen.indices, id: \.self) { index in
-                                NoteRowView(
-                                    pflanze: pflanze,
-                                    index: index,
-                                    onTap: {
-                                        noteToEditIndex = index
-                                        zeigeNotizSheet = true
-                                    },
-                                    onDelete: {
-                                        noteToDeleteIndex = index
-                                    },
-                                    deleteConfirmShowing: Binding(
-                                        get: { noteToDeleteIndex == index },
-                                        set: { if !$0 { noteToDeleteIndex = nil } }
-                                    ),
-                                    onConfirmDelete: {
-                                        gardenStore.notizEntfernen(pflanze: pflanze, index: index)
-                                        noteToDeleteIndex = nil
-                                    },
-                                    onCancelDelete: {
-                                        noteToDeleteIndex = nil
-                                    }
-                                )
+                            // Snapshot der Notizen – verhindert Index-out-of-range beim Löschen
+                            let noteSnapshot = Array(pflanze.notizen.enumerated())
+                            ForEach(noteSnapshot, id: \.offset) { (index, noteText) in
+                                // Nur rendern wenn Index noch gültig ist
+                                if index < pflanze.notizen.count {
+                                    NoteRowView(
+                                        pflanze: pflanze,
+                                        index: index,
+                                        onTap: {
+                                            noteToEditIndex = index
+                                            zeigeNotizSheet = true
+                                        },
+                                        onDelete: {
+                                            noteToDeleteIndex = index
+                                        },
+                                        deleteConfirmShowing: Binding(
+                                            get: { noteToDeleteIndex == index },
+                                            set: { if !$0 { noteToDeleteIndex = nil } }
+                                        ),
+                                        onConfirmDelete: {
+                                            guard index < pflanze.notizen.count else { return }
+                                            gardenStore.notizEntfernen(pflanze: pflanze, index: index)
+                                            noteToDeleteIndex = nil
+                                        },
+                                        onCancelDelete: {
+                                            noteToDeleteIndex = nil
+                                        }
+                                    )
+                                }
                             }
                             
                         }
@@ -373,7 +380,13 @@ struct PflanzeDetailSheet: View {
         }
         .background(Color(UIColor.secondarySystemBackground))
         .onAppear {
-            if let metric = pflanze.linkedHealthMetric {
+            // Wenn linkedHealthMetric noch nil ist (Toggle wurde entfernt), automatisch setzen
+            if pflanze.linkedHealthMetric == nil, let autoMetric = pflanze.automaticHealthMetric {
+                pflanze.linkedHealthMetric = autoMetric
+                gardenStore.savePlants()
+            }
+            let effectiveMetric = pflanze.linkedHealthMetric
+            if let metric = effectiveMetric {
                 healthManager.fetchHourlyData(for: metric) { data in
                     self.hourlyHealthData = data
                 }
@@ -468,6 +481,24 @@ struct PflanzeDetailSheet: View {
                 .environmentObject(gardenStore)
                 .environmentObject(settings)
         }
+        .sheet(isPresented: $showTargetEdit) {
+            HealthTargetEditSheet(
+                target: Binding(
+                    get: { pflanze.healthTarget },
+                    set: { newVal in
+                        pflanze.healthTarget = newVal
+                        gardenStore.savePlants()
+                    }
+                ),
+                unitString: {
+                    switch pflanze.linkedHealthMetric {
+                    case .steps: return String(localized: "health.unit.steps", defaultValue: "Schritte")
+                    case .water: return String(localized: "health.unit.water", defaultValue: "ml")
+                    default:     return String(localized: "health.unit.hours", defaultValue: "Std")
+                    }
+                }()
+            )
+        }
                         }
                         .fullScreenCover(isPresented: $zeigePaywall) {
                             PaywallView()
@@ -481,38 +512,33 @@ struct PflanzeDetailSheet: View {
                                 if iapStore.isProUser {
                                     if let autoMetric = pflanze.automaticHealthMetric {
                                         // --- APPLE HEALTH SECTION ---
-                                        VStack(spacing: 8) {
-                                            VStack(spacing: 12) {
-                                                // Nur die Statistik anzeigen
-                                                if let metric = pflanze.linkedHealthMetric, !hourlyHealthData.isEmpty {
-                                                    HealthChartView(
-                                                        data: hourlyHealthData,
-                                                        metric: metric,
-                                                        target: pflanze.healthTarget,
-                                                        hourlyAverageData: hourlyAvgData
-                                                    )
-                                                    .padding(.vertical, 4)
-                                                } else if pflanze.linkedHealthMetric != nil {
-                                                    HStack {
-                                                        Spacer()
+                                        VStack(spacing: 0) {
+                                            // effectiveMetric: linked oder automatic
+                                            let effectiveMetric = pflanze.linkedHealthMetric ?? pflanze.automaticHealthMetric
+                                            if let metric = effectiveMetric, !hourlyHealthData.isEmpty {
+                                                HealthChartView(
+                                                    data: hourlyHealthData,
+                                                    metric: metric,
+                                                    target: pflanze.healthTarget,
+                                                    hourlyAverageData: hourlyAvgData,
+                                                    onEditTarget: { showTargetEdit = true }
+                                                )
+                                                .padding(.horizontal, 16)
+                                                .padding(.vertical, 4)
+                                            } else {
+                                                // Laden-Indikator
+                                                HStack {
+                                                    Spacer()
+                                                    VStack(spacing: 8) {
                                                         ProgressView()
-                                                        Spacer()
+                                                        Text(String(localized: "health.chart.loading", defaultValue: "Lade Gesundheitsdaten…"))
+                                                            .font(.system(size: 13, weight: .medium, design: .rounded))
+                                                            .foregroundStyle(.secondary)
                                                     }
-                                                    .padding(32)
+                                                    Spacer()
                                                 }
+                                                .padding(40)
                                             }
-                                            .padding(20)
-                                            .background(
-                                                ZStack {
-                                                    RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                                        .fill(Color(UIColor.systemGray4))
-                                                        .offset(y: 4)
-                                                    RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                                        .fill(Color(UIColor.secondarySystemGroupedBackground))
-                                                }
-                                            )
-                                            .padding(.horizontal, 24)
-                                            .padding(.bottom, 4)
                                         }
                                     } else {
                                         // --- EIGENER TRACKER SECTION ---
@@ -1617,10 +1643,13 @@ struct NoteRowView: View {
                     Text(verbatim: "\(String(localized: "plant.detail.note")) \(index + 1)")
                         .font(.system(size: 11, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
-                    Text(pflanze.notizen[index])
-                        .lineLimit(2)
-                        .font(.system(size: 14, weight: .semibold, design: .rounded))
-                        .foregroundStyle(.primary)
+                    // Sicherer Zugriff – verhindert Crash bei gleichzeitigem Delete
+                    if index < pflanze.notizen.count {
+                        Text(pflanze.notizen[index])
+                            .lineLimit(2)
+                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                            .foregroundStyle(.primary)
+                    }
                 }
 
                 Spacer()

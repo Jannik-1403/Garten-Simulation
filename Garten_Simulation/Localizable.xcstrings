@@ -150875,6 +150875,9 @@
         }
       }
     },
+    "Jetzt" : {
+
+    },
     "jetzt.abschliessen" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -296098,6 +296101,9 @@
         }
       }
     },
+    "S" : {
+
+    },
     "Schließen" : {
       "comment" : "",
       "extractionState" : "manual",
@@ -303889,9 +303895,6 @@
           }
         }
       }
-    },
-    "Serie" : {
-
     },
     "settings.action.irreversible" : {
       "comment" : "",
@@ -391559,9 +391562,6 @@
           }
         }
       }
-    },
-    "Ziel" : {
-
     }
   },
   "version" : "1.1"
