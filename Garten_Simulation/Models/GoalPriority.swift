@@ -23,9 +23,9 @@ enum GoalPriority: String, CaseIterable, Equatable, Codable {
     
     var icon: String {
         switch self {
-        case .low: return "🟢"
-        case .medium: return "🟡"
-        case .high: return "🔴"
+        case .low: return "!"
+        case .medium: return "!!"
+        case .high: return "!!!"
         }
     }
     

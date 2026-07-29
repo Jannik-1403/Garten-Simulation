@@ -341,3 +341,7 @@
 - **Update**: Apple Health Gewohnheiten können nun direkt auf der Startseite durch vollständiges Wischen nach rechts abgehakt/gegossen werden, ohne dass dies die eigentliche Statistik verändert oder manuell in den Einstellungen aktiviert werden muss.
 - **Fix**: Einheitliches Wischen für alle Gewohnheiten. Wischen verhält sich jetzt immer wie ein manuelles Setzen und bleibt auch bei Apple Health-Pflanzen dort stehen, wo man es losgelassen hat. Leere Historien-Statistiken für normale Gewohnheiten werden jetzt auch angezeigt.
 - **Feature**: Abgeschlossene Gewohnheiten werden jetzt visuell deutlich als erledigt markiert (grüner Haken + Karte wird halbtransparent in den Hintergrund gedimmt).
+
+- Implementiertes Prioritätssystem (Muss heute, Sollte bald, Kann warten) für Todos und Routinen.
+- Hinzufügung der 'Heute im Fokus' Ansicht für priorisierte Aufgaben.
+- Automatischer Fokus-Modus für Aufgaben mit höchster Priorität hinzugefügt.

@@ -126,7 +126,8 @@ struct TodoRowView: View {
                     }
                 } label: {
                     Text(pflanze.todos[index].priority.icon)
-                        .font(.system(size: 24))
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                        .foregroundColor(pflanze.todos[index].priority.color)
                 }
                 
                 Image(systemName: pflanze.todos[index].isCompleted ? "checkmark.circle.fill" : "circle")
@@ -398,7 +399,8 @@ struct RoutineFocusRow: View {
         ) {
             HStack(spacing: 12) {
                 Text(routine.priority.icon)
-                    .font(.system(size: 24))
+                    .font(.system(size: 24, weight: .black, design: .rounded))
+                    .foregroundColor(routine.priority.color)
                 
                 Image(systemName: routine.icon)
                     .font(.title2)

@@ -392,7 +392,8 @@ struct RoutineExpandableSection: View {
                             onPriorityTap?()
                         } label: {
                             Text(routine?.priority.icon ?? "")
-                                .font(.system(size: 24))
+                                .font(.system(size: 24, weight: .black, design: .rounded))
+                                .foregroundColor(routine?.priority.color ?? .primary)
                         }
                     }
                     
