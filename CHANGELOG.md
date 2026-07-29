@@ -368,3 +368,6 @@
   - 1-Jahresziel als dominante Vision im Profil integriert.
   - 1-Monatsziel als schlanker schwebender Banner auf der Garten-Seite umgestaltet.
   - 1-Wochenziel als Card mit Eingabefeld über der To-do-Liste hinzugefügt.
+- **UI & Usability**: 
+  - Die "Hinzufügen"-Buttons für Wochen- und Monatsziele wurden in einheitliche `Item3DButton` umgewandelt.
+  - Bei der Pflanzen-Auswahl (Ziel-Beitrag: 20, 5, 0 Punkte) wurde ein Info-Icon hinzugefügt, das die Punkteverteilung erklärt. Die Texte wurden in alle 11 Sprachen übersetzt.
