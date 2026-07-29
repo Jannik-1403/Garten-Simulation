@@ -337,3 +337,4 @@
 - **Fix**: Manuelles Tracking für Apple Health Integration (Joggen) wiederhergestellt, grünes Ziel-Strichlinien-Verhalten korrigiert.
 - **Fix**: UI der normalen Statistik (Health Cooking) exakt an Apple Health Statistik angepasst (identische Abstände, Layouts, 3D-Container).
 - **Fix**: Eigener Tracker ('Great Tracker' / 'Tracker erstellen') wurde wie gewünscht vollständig entfernt.
+- **Feature**: Apple Health Gewohnheiten (z.B. Joggen) können nun auf der Startseite mit dem Wischen-Slider manuell erhöht werden, sofern das manuelle Eintragen in den Einstellungen aktiviert ist.

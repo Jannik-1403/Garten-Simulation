@@ -482,50 +482,6 @@ struct PflanzeDetailSheet: View {
                                                 )
                                                 .padding(.horizontal, 16)
                                                 .padding(.vertical, 4)
-                                                
-                                                Toggle(String(localized: "apple.health.allow_manual", defaultValue: "Zusätzlich manuell eintragen"), isOn: Binding(
-                                                    get: { pflanze.allowManualTrackingForHealth },
-                                                    set: { pflanze.allowManualTrackingForHealth = $0; gardenStore.savePlants() }
-                                                ))
-                                                .font(.system(size: 14, weight: .medium, design: .rounded))
-                                                .tint(.orange)
-                                                .padding(.horizontal, 24)
-                                                .padding(.top, 8)
-                                                
-                                                if pflanze.allowManualTrackingForHealth {
-                                                    Divider().padding(.vertical, 4).padding(.horizontal, 24)
-                                                    
-                                                    HStack(spacing: 12) {
-                                                        Text("0")
-                                                            .font(.system(size: 12, weight: .bold, design: .rounded))
-                                                            .foregroundStyle(.secondary)
-                                                        
-                                                        let target = Int(pflanze.healthTarget ?? 10)
-                                                        Slider(value: Binding(
-                                                            get: { pflanze.customTrackerProgress },
-                                                            set: { newValue in
-                                                                if Int(newValue) >= target && !pflanze.istBewässert {
-                                                                    if Int(pflanze.customTrackerProgress) < target {
-                                                                        pflanze.customTrackerProgress = Double(target)
-                                                                        zeigeTrackerConfirm = true
-                                                                    }
-                                                                } else {
-                                                                    pflanze.customTrackerProgress = newValue
-                                                                }
-                                                            }
-                                                        ), in: 0...Double(max(1, target))) { editing in
-                                                            if !editing {
-                                                                gardenStore.savePlants()
-                                                            }
-                                                        }
-                                                        .tint(.orange)
-                                                        
-                                                        Text(verbatim: "\(target)")
-                                                            .font(.system(size: 12, weight: .bold, design: .rounded))
-                                                            .foregroundStyle(.secondary)
-                                                    }
-                                                    .padding(.horizontal, 24)
-                                                }
                                             } else {
                                                 // Laden-Indikator
                                                 HStack {

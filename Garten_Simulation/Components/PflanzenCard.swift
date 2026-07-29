@@ -46,7 +46,7 @@ struct PflanzenCard: View {
             return nil
         }
         let baseCurrent = getBaseHealthCurrent(for: metric)
-        let current = baseCurrent + (pflanze.allowManualTrackingForHealth ? pflanze.customTrackerProgress : 0)
+        let current = baseCurrent
         return min(1.0, max(0.0, current / target))
     }
     
@@ -238,9 +238,6 @@ struct PflanzenCard: View {
             DragGesture(minimumDistance: 25)
                 .onChanged { value in
                     guard !pflanze.istBewässert && !pflanze.isDead else { return }
-                    if let _ = pflanze.linkedHealthMetric {
-                        guard pflanze.allowManualTrackingForHealth else { return }
-                    }
                     if !isDragging { isDragging = true }
                     
                     let startX: CGFloat
@@ -256,16 +253,11 @@ struct PflanzenCard: View {
                     isDragging = false
                     let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
                     
-                    if let metric = pflanze.linkedHealthMetric, let target = pflanze.healthTarget, target > 0 {
-                        let base = getBaseHealthCurrent(for: metric)
-                        let desiredTotal = finalProgress * target
-                        pflanze.customTrackerProgress = max(0, desiredTotal - base)
-                    } else {
+                    if pflanze.linkedHealthMetric == nil {
                         pflanze.sliderProgress = finalProgress
+                        pflanze.intradayProgressHistory.removeAll { !Calendar.current.isDateInToday($0.timestamp) }
+                        pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
                     }
-                    
-                    pflanze.intradayProgressHistory.removeAll { !Calendar.current.isDateInToday($0.timestamp) }
-                    pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
                     
                     if finalProgress >= 1.0 {
                         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
