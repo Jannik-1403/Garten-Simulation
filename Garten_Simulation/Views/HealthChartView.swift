@@ -142,6 +142,14 @@ struct HealthChartView: View {
                     RuleMark(x: .value("Jetzt", last.0))
                         .foregroundStyle(Color(UIColor.systemGray4))
                         .lineStyle(StrokeStyle(lineWidth: 1, dash: [3, 4]))
+                        .annotation(position: .top, alignment: .center) {
+                            Text(timeLabel(for: last.0))
+                                .font(.system(size: 10, weight: .bold, design: .rounded))
+                                .foregroundStyle(Color(UIColor.systemGray))
+                                .padding(.horizontal, 4)
+                                .padding(.vertical, 2)
+                                .background(Capsule().fill(Color(UIColor.systemBackground)))
+                        }
                 }
             }
             .chartXScale(domain: dayStart...max(dayStart.addingTimeInterval(3600), lastDataDate))
@@ -149,7 +157,7 @@ struct HealthChartView: View {
             .chartXAxis {
                 AxisMarks(values: [dayStart, lastDataDate]) { value in
                     if let date = value.as(Date.self) {
-                        AxisValueLabel {
+                        AxisValueLabel(anchor: date == dayStart ? .topLeading : .topTrailing) {
                             Text(timeLabel(for: date))
                                 .font(.system(size: 11, weight: .semibold, design: .rounded))
                                 .foregroundStyle(Color(UIColor.systemGray2))

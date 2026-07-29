@@ -1617,7 +1617,7 @@ struct NoteRowView: View {
     let onDelete: () -> Void
     let deleteConfirmShowing: Binding<Bool>
     let onConfirmDelete: () -> Void
-    let onCancelDelete: () -> Void
+    let onCancelDelete: () -> Void 
 
     @State private var isVisualPressed = false
     @State private var deletePressed = false
