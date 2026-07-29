@@ -81,6 +81,10 @@ class GardenStore: ObservableObject {
         didSet { saveBadHabits() }
     }
     
+    @Published var badHabitSliderProgress: [String: Double] = [:] {
+        didSet { saveBadHabitSliderProgress() }
+    }
+    
     @Published var savedCustomTriggers: [String] = [] {
         didSet { saveCustomTriggers() }
     }
@@ -204,9 +208,9 @@ class GardenStore: ObservableObject {
             loadPlants()
             loadTransactions()
             loadInventory()
-
             loadDecorations()
             loadBadHabits()
+            loadBadHabitSliderProgress()
             loadBadHabitNotes()
             loadCustomTriggers()
             updateTageAktiv()
@@ -222,9 +226,9 @@ class GardenStore: ObservableObject {
         loadPlants()
         loadTransactions()
         loadInventory()
-
         loadDecorations()
         loadBadHabits()
+        loadBadHabitSliderProgress()
         loadBadHabitNotes()
         loadCustomTriggers()
         updateTageAktiv()
@@ -1465,6 +1469,15 @@ class GardenStore: ObservableObject {
             SharedUserDefaults.suite.synchronize()
         }
     }
+    
+    private func saveBadHabitSliderProgress() {
+        guard !isMock else { return }
+        guard !isLoading else { return }
+        if let encoded = try? JSONEncoder().encode(badHabitSliderProgress) {
+            SharedUserDefaults.suite.set(encoded, forKey: "badHabitSliderProgress")
+            SharedUserDefaults.suite.synchronize()
+        }
+    }
 
     private func loadBadHabits() {
         isLoading = true
@@ -1473,6 +1486,13 @@ class GardenStore: ObservableObject {
         if let saved = SharedUserDefaults.suite.data(forKey: "badHabitExecutions"),
            let decoded = try? JSONDecoder().decode([String: [BadHabitExecution]].self, from: saved) {
             self.badHabitExecutions = decoded
+        }
+    }
+    
+    private func loadBadHabitSliderProgress() {
+        if let saved = SharedUserDefaults.suite.data(forKey: "badHabitSliderProgress"),
+           let decoded = try? JSONDecoder().decode([String: Double].self, from: saved) {
+            self.badHabitSliderProgress = decoded
         }
     }
     

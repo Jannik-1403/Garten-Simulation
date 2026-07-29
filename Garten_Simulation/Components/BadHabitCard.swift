@@ -13,11 +13,27 @@ struct BadHabitCard: View {
     @State private var position: CGPoint = .zero
     @State private var wobble: CGFloat = 1.0
 
-    // Long-Press Logik
-    @State private var longPressProgress: CGFloat = 0.0
-    @State private var longPressTimer: Timer? = nil
-    @State private var isLongPressing: Bool = false
-    @State private var idlePulse: CGFloat = 1.0
+    // Slider-to-Complete
+    @State private var dragWidth: CGFloat = 0.0
+    @State private var isDragging: Bool = false
+    @State private var cardWidth: CGFloat = 300
+    @State private var wasLongPressCompleted: Bool = false
+    
+    private var maxDragWidth: CGFloat {
+        max(50, cardWidth - 110)
+    }
+    
+    private var savedSliderProgress: Double {
+        gardenStore.badHabitSliderProgress[deko.id] ?? 0.0
+    }
+    
+    private var currentProgress: Double {
+        if isDragging {
+            return min(1.0, max(0.0, dragWidth / maxDragWidth))
+        } else {
+            return savedSliderProgress
+        }
+    }
 
     private var executionsToday: Int {
         guard let executions = gardenStore.badHabitExecutions[deko.id] else { return 0 }
@@ -27,6 +43,10 @@ struct BadHabitCard: View {
 
     var body: some View {
         Button {
+            if wasLongPressCompleted {
+                wasLongPressCompleted = false
+                return
+            }
             guard !isLocked else { return }
             isLocked = true
             isVisualPressed = true
@@ -49,39 +69,12 @@ struct BadHabitCard: View {
 
 
                         ZStack {
-                            // Long-Press Fortschritts-Ring (Rot)
-                            if longPressProgress > 0 {
-                                Circle()
-                                    .trim(from: 0, to: longPressProgress)
-                                    .stroke(
-                                        Color.red,
-                                        style: StrokeStyle(lineWidth: 6 * scale, lineCap: .round)
-                                    )
-                                    .frame(width: 85 * scale * 1.18, height: 85 * scale * 1.18)
-                                    .rotationEffect(.degrees(-90))
-                                    .shadow(color: Color.red.opacity(0.5), radius: 4)
-                                    .allowsHitTesting(false)
-                            }
-                            
-                            // Radar Ping for hint
-                            if !isLongPressing {
-                                Circle()
-                                    .stroke(Color.red.opacity(0.5), lineWidth: 3 * scale)
-                                    .frame(width: 85 * scale, height: 85 * scale)
-                                    .scaleEffect(idlePulse)
-                                    .opacity(1.5 - Double(idlePulse))
-                                    .allowsHitTesting(false)
-                            }
-
                             // 3D-Button
                             Item3DButton(
                                 farbe: .red,
                                 sekundaerFarbe: .red.darker(by: 0.2),
                                 groesse: 85 * scale,
-                                aktion: {
-                                    FeedbackManager.shared.playTap()
-                                    onTap()
-                                }
+                                aktion: nil
                             ) {
                                 Group {
                                     if UIImage(named: deko.sfSymbol) != nil {
@@ -98,7 +91,7 @@ struct BadHabitCard: View {
                                     }
                                 }
                             }
-                            .gesture(longPressGesture())
+                            .allowsHitTesting(false)
 
                             // Badge Zähler
                             if executionsToday > 0 {
@@ -126,6 +119,8 @@ struct BadHabitCard: View {
                         .background(Capsule().fill(Color.orangePrimary.opacity(0.12)))
                 }
                 .frame(width: 100)
+                .offset(x: currentProgress * maxDragWidth)
+                .zIndex(10)
 
                 // MARK: Middle Column - Info (Centered)
                 VStack(alignment: .center, spacing: 8) {
@@ -152,6 +147,7 @@ struct BadHabitCard: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.trailing, 16)
+                .opacity(1.0 - (currentProgress * 1.5))
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 16)
@@ -159,20 +155,46 @@ struct BadHabitCard: View {
             .frame(minHeight: 120)
             .contentShape(Rectangle())
         }
-        .buttonStyle(PflanzenCardHorizontalButtonStyle(isVisualPressed: isVisualPressed, isDead: false))
+        .buttonStyle(PflanzenCardHorizontalButtonStyle(
+            isVisualPressed: isVisualPressed,
+            isDead: false,
+            longPressProgress: currentProgress,
+            progressColor: Color.red.opacity(0.3),
+            onIsPressedChange: nil
+        ))
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 10)
+                .onChanged { value in
+                    if !isDragging { isDragging = true }
+                    let startX = savedSliderProgress * maxDragWidth
+                    dragWidth = startX + value.translation.width
+                }
+                .onEnded { value in
+                    guard isDragging else { return }
+                    isDragging = false
+                    let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
+                    
+                    if finalProgress >= 1.0 {
+                        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                        wasLongPressCompleted = true
+                        triggerAction()
+                        gardenStore.badHabitSliderProgress[deko.id] = 0.0
+                    } else {
+                        gardenStore.badHabitSliderProgress[deko.id] = finalProgress
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    }
+                }
+        )
         .background(
             GeometryReader { proxy in
                 Color.clear
                     .preference(key: BadHabitPositionPreferenceKey.self, value: [
                         CardPositionData(id: deko.id, center: proxy.frame(in: .global).center, frame: proxy.frame(in: .global))
                     ])
+                    .onAppear { cardWidth = proxy.size.width }
+                    .onChange(of: proxy.size.width) { _, new in cardWidth = new }
             }
         )
-        .onAppear {
-            withAnimation(.easeOut(duration: 1.5).repeatForever(autoreverses: false)) {
-                idlePulse = 1.5
-            }
-        }
     }
 
     private func calculateBadHabitStreak() -> Int {
@@ -186,64 +208,7 @@ struct BadHabitCard: View {
         return 0
     }
 
-    // MARK: - Long-Press Logik
-    private func longPressGesture() -> some Gesture {
-        DragGesture(minimumDistance: 0)
-            .onChanged { _ in
-                guard !isLongPressing else { return }
-                startLongPress()
-            }
-            .onEnded { _ in
-                cancelLongPress()
-            }
-    }
-
-    private func startLongPress() {
-        guard longPressTimer == nil else { return }
-        isLongPressing = true
-        longPressProgress = 0
-        
-        let totalDuration: Double = 2.5
-        let tickInterval: Double = 0.016
-        let tickIncrement = tickInterval / totalDuration
-        var lastHapticProgress: Double = 0.0
-        
-        longPressTimer = Timer.scheduledTimer(withTimeInterval: tickInterval, repeats: true) { timer in
-            DispatchQueue.main.async {
-                withAnimation(.linear(duration: tickInterval)) {
-                    longPressProgress = min(longPressProgress + tickIncrement, 1.0)
-                }
-                
-                if longPressProgress - lastHapticProgress >= 0.25 {
-                    lastHapticProgress = longPressProgress
-                    if isHapticEnabled {
-                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                    }
-                }
-                
-                if longPressProgress >= 1.0 {
-                    timer.invalidate()
-                    longPressTimer = nil
-                    triggerAction()
-                }
-            }
-        }
-    }
-
-    private func cancelLongPress() {
-        longPressTimer?.invalidate()
-        longPressTimer = nil
-        isLongPressing = false
-        withAnimation(.easeOut(duration: 0.25)) {
-            longPressProgress = 0
-        }
-    }
-
     private func triggerAction() {
-        isLongPressing = false
-        withAnimation(.easeOut(duration: 0.3)) {
-            longPressProgress = 0
-        }
         if isHapticEnabled {
             UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
         }

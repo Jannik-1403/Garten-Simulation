@@ -324,3 +324,6 @@
 - UI: Drag & Drop (Wassertropfen und X) aus der GartenView entfernt.
 - UI: Long-Press-Mechanik (analog zur PflanzenCard) zur BadHabitCard hinzugefügt.
 - UI: Alten 'Challenge nicht aktiviert'-Text aus der PflanzenCard entfernt.
+
+- UI: Radar Ping Animation als visuellen Hint für Pflanzen und Bad Habits hinzugefügt.
+- UI: Haptisches Feedback während des Long-Press-Vorgangs hinzugefügt.

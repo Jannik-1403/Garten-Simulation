@@ -19,16 +19,32 @@ struct PflanzenCard: View {
     @State private var zeigeBonusText: Bool = false
     @State private var bonusText: String = ""
     
-    // Long-Press Gießen
-    @State private var longPressProgress: CGFloat = 0.0
-    @State private var longPressTimer: Timer? = nil
-    @State private var isLongPressing: Bool = false
-    @State private var idlePulse: CGFloat = 1.0
+    // Slider-to-Complete
+    @State private var dragWidth: CGFloat = 0.0
+    @State private var isDragging: Bool = false
+    @State private var cardWidth: CGFloat = 300
+    @State private var wasLongPressCompleted: Bool = false
+    
+    private var maxDragWidth: CGFloat {
+        max(50, cardWidth - 110)
+    }
+    
+    private var currentProgress: Double {
+        if isDragging {
+            return min(1.0, max(0.0, dragWidth / maxDragWidth))
+        } else {
+            return pflanze.sliderProgress
+        }
+    }
     
     var body: some View {
         ZStack {
-            // MARK: - Layer 0: Visual Card Background
+            // MARK: - Card Content & Button
             Button {
+                if wasLongPressCompleted {
+                    wasLongPressCompleted = false
+                    return
+                }
                 guard !isLocked else { return }
                 isLocked = true
                 isVisualPressed = true
@@ -45,25 +61,7 @@ struct PflanzenCard: View {
                     isLocked = false
                 }
             } label: {
-                Rectangle().fill(Color.clear)
-                    .frame(maxWidth: .infinity)
-                    .frame(minHeight: 120)
-            }
-            .buttonStyle(PflanzenCardHorizontalButtonStyle(
-                isVisualPressed: isVisualPressed,
-                isDead: pflanze.isDead
-            ))
-            .background(
-                GeometryReader { proxy in
-                    Color.clear
-                        .preference(key: CardPositionPreferenceKey.self, value: [
-                            CardPositionData(id: pflanze.id, center: proxy.frame(in: .global).center, frame: proxy.frame(in: .global))
-                        ])
-                }
-            )
-            
-            // MARK: - Layer 1: Interactive Card Content
-            HStack(spacing: 24) {
+                HStack(spacing: 24) {
                 
                 // MARK: Left Column - 3D Plant Button & Rank
                 VStack(spacing: 8) {
@@ -88,38 +86,14 @@ struct PflanzenCard: View {
                                 .rotationEffect(.degrees(-90))
                                 .animation(.spring(response: 0.6), value: pflanze.ringFortschritt)
 
-                            // Long-Press Fortschritts-Ring (Wasser-Blau)
-                            if longPressProgress > 0 {
-                                Circle()
-                                    .trim(from: 0, to: longPressProgress)
-                                    .stroke(
-                                        Color.blauPrimary,
-                                        style: StrokeStyle(lineWidth: 6 * scale, lineCap: .round)
-                                    )
-                                    .frame(width: baseDim * 1.18, height: baseDim * 1.18)
-                                    .rotationEffect(.degrees(-90))
-                                    .shadow(color: Color.blauPrimary.opacity(0.5), radius: 4)
-                                    .allowsHitTesting(false)
-                            }
-
                             // Grüner Glow wenn frisch gegossen
                             Circle()
                                 .stroke(Color.gruenPrimary.opacity(greenGlowOpacity * 0.6), lineWidth: 6 * scale)
                                 .frame(width: baseDim * 1.1, height: baseDim * 1.1)
                                 .blur(radius: 1.5 * scale)
                                 .allowsHitTesting(false)
-                                
-                            // Radar Ping for hint
-                            if !pflanze.istBewässert && !pflanze.isDead && !isLongPressing {
-                                Circle()
-                                    .stroke(Color.blauPrimary.opacity(0.5), lineWidth: 3 * scale)
-                                    .frame(width: baseDim, height: baseDim)
-                                    .scaleEffect(idlePulse)
-                                    .opacity(1.5 - Double(idlePulse))
-                                    .allowsHitTesting(false)
-                            }
             
-                            // Der 3D-Button (Long-Press zum Gießen, Tap zum Öffnen)
+                            // Der 3D-Button
                             PflanzenButton(
                                 plant: GameDatabase.shared.plant(for: pflanze.plantID),
                                 seltenheit: pflanze.seltenheit,
@@ -127,20 +101,10 @@ struct PflanzenCard: View {
                                 sekundaerFarbe: pflanze.color.darker(),
                                 groesse: 85 * scale,
                                 fallbackIcon: pflanze.symbolName,
-                                externerPress: isLongPressing,
-                                aktion: {
-                                    if pflanze.isDead {
-                                        showReviveSheet = true
-                                        FeedbackManager.shared.playTap()
-                                    } else {
-                                        FeedbackManager.shared.playTap()
-                                        onTap()
-                                    }
-                                }
+                                externerPress: false,
+                                aktion: {}
                             )
-                            .gesture(
-                                longPressGesture()
-                            )
+                            .allowsHitTesting(false)
                             
                             if showWaterSplash {
                                 WaterSplashParticleView(isVisible: $showWaterSplash)
@@ -171,6 +135,8 @@ struct PflanzenCard: View {
                         )
                 }
                 .frame(width: 100)
+                .offset(x: currentProgress * maxDragWidth)
+                .zIndex(10)
                 
                 // MARK: Middle Column - Habit Info (Centered)
                 VStack(alignment: .center, spacing: 8) {
@@ -229,113 +195,98 @@ struct PflanzenCard: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.trailing, 16)
+                .opacity(1.0 - (currentProgress * 1.5)) // fade out text when sliding
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 16)
-            .allowsHitTesting(true)
-            .sheet(isPresented: $showReviveSheet) {
-                RevivePlantSheet(pflanze: pflanze)
-                    .presentationDetents([.medium])
-            }
-            
-            if zeigeBonusText {
-                BonusFloatingTextView(text: bonusText, isVisible: $zeigeBonusText, isProMode: gardenStore.isProUser)
-                    .zIndex(300)
-            }
+            .background(
+                GeometryReader { proxy in
+                    Color.clear
+                        .preference(key: CardPositionPreferenceKey.self, value: [
+                            CardPositionData(id: pflanze.id, center: proxy.frame(in: .global).center, frame: proxy.frame(in: .global))
+                        ])
+                        .onAppear { cardWidth = proxy.size.width }
+                        .onChange(of: proxy.size.width) { _, new in cardWidth = new }
+                }
+            )
         }
-        .onChange(of: gardenStore.giessTriggerID) { _, _ in
-            if gardenStore.letzteGiessPflanzeID == pflanze.id {
-                // Wenn gegossen wurde, Wasser-Splash auslösen
-                showWaterSplash = true
-                withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
-                    plantWobble = 1.15
-                    greenGlowOpacity = 1.0
+        .buttonStyle(PflanzenCardHorizontalButtonStyle(
+            isVisualPressed: isVisualPressed,
+            isDead: pflanze.isDead,
+            longPressProgress: currentProgress,
+            progressColor: Color.blauPrimary.opacity(0.3),
+            onIsPressedChange: nil
+        ))
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 10)
+                .onChanged { value in
+                    guard !pflanze.istBewässert && !pflanze.isDead else { return }
+                    if !isDragging { isDragging = true }
+                    let startX = pflanze.sliderProgress * maxDragWidth
+                    dragWidth = startX + value.translation.width
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
-                        plantWobble = 1.0
-                    }
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.48) {
-                    withAnimation(.easeOut(duration: 0.35)) {
-                        greenGlowOpacity = 0
-                    }
-                }
-                
-                if gardenStore.isProUser {
-                    bonusText = "PRO"
-                    zeigeBonusText = true
-                } else if gardenStore.letzterBonus != nil {
-                    bonusText = String(localized: "bonus_text", defaultValue: "Bonus!")
-                    zeigeBonusText = true
-                }
-            }
-        }
-        .coordinateSpace(name: "PflanzenCardSpace")
-        .onAppear {
-            withAnimation(.easeOut(duration: 1.5).repeatForever(autoreverses: false)) {
-                idlePulse = 1.5
-            }
-        }
-    }
-    
-    // MARK: - Long-Press Gießen Logik
-    private func longPressGesture() -> some Gesture {
-        DragGesture(minimumDistance: 0)
-            .onChanged { _ in
-                guard !pflanze.istBewässert && !pflanze.isDead && !isLongPressing else { return }
-                startLongPress()
-            }
-            .onEnded { _ in
-                cancelLongPress()
-            }
-    }
-
-    private func startLongPress() {
-        guard longPressTimer == nil else { return }
-        isLongPressing = true
-        longPressProgress = 0
-        
-        let totalDuration: Double = 2.5 // Sekunden bis zum Gießen
-        let tickInterval: Double = 0.016 // ~60fps
-        let tickIncrement = tickInterval / totalDuration
-        var lastHapticProgress: Double = 0.0
-        
-        longPressTimer = Timer.scheduledTimer(withTimeInterval: tickInterval, repeats: true) { timer in
-            DispatchQueue.main.async {
-                withAnimation(.linear(duration: tickInterval)) {
-                    longPressProgress = min(longPressProgress + tickIncrement, 1.0)
-                }
-                
-                if longPressProgress - lastHapticProgress >= 0.25 {
-                    lastHapticProgress = longPressProgress
-                    if isHapticEnabled {
+                .onEnded { value in
+                    guard isDragging else { return }
+                    isDragging = false
+                    let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
+                    pflanze.sliderProgress = finalProgress
+                    
+                    if finalProgress >= 1.0 {
+                        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                        wasLongPressCompleted = true
+                        triggerWatering()
+                        pflanze.sliderProgress = 0.0
+                    } else {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     }
                 }
-                
-                if longPressProgress >= 1.0 {
-                    timer.invalidate()
-                    longPressTimer = nil
-                    triggerWatering()
+        )
+        .allowsHitTesting(true)
+        .sheet(isPresented: $showReviveSheet) {
+            RevivePlantSheet(pflanze: pflanze)
+                .presentationDetents([.medium])
+        }
+        
+        if zeigeBonusText {
+            BonusFloatingTextView(text: bonusText, isVisible: $zeigeBonusText, isProMode: gardenStore.isProUser)
+                .zIndex(300)
+        }
+    }
+    .onChange(of: gardenStore.giessTriggerID) { _, _ in
+        if gardenStore.letzteGiessPflanzeID == pflanze.id {
+            // Wenn gegossen wurde, Wasser-Splash auslösen
+            showWaterSplash = true
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
+                plantWobble = 1.15
+                greenGlowOpacity = 1.0
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
+                    plantWobble = 1.0
                 }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.48) {
+                withAnimation(.easeOut(duration: 0.35)) {
+                    greenGlowOpacity = 0
+                }
+            }
+            
+            if gardenStore.isProUser {
+                bonusText = "PRO"
+                zeigeBonusText = true
+            } else if gardenStore.letzterBonus != nil {
+                bonusText = String(localized: "bonus_text", defaultValue: "Bonus!")
+                zeigeBonusText = true
             }
         }
     }
+    .coordinateSpace(name: "PflanzenCardSpace")
+}
 
-    private func cancelLongPress() {
-        longPressTimer?.invalidate()
-        longPressTimer = nil
-        isLongPressing = false
-        withAnimation(.easeOut(duration: 0.25)) {
-            longPressProgress = 0
-        }
-    }
-
+    // MARK: - Helper Logik
     private func triggerWatering() {
-        isLongPressing = false
         withAnimation(.easeOut(duration: 0.3)) {
-            longPressProgress = 0
+            pflanze.sliderProgress = 0
         }
         if isHapticEnabled {
             UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
@@ -343,6 +294,31 @@ struct PflanzenCard: View {
         gardenStore.letzteGiessPflanzeID = pflanze.id
         gardenStore.giessTriggerID = UUID()
         gardenStore.giessen(pflanze: pflanze)
+        
+        // Triggers the water splash effect
+        showWaterSplash = true
+        withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
+            plantWobble = 1.15
+            greenGlowOpacity = 1.0
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.18) {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.4)) {
+                plantWobble = 1.0
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.48) {
+            withAnimation(.easeOut(duration: 0.35)) {
+                greenGlowOpacity = 0
+            }
+        }
+        if gardenStore.isProUser {
+            bonusText = "PRO"
+            zeigeBonusText = true
+        } else if gardenStore.letzterBonus != nil {
+            bonusText = String(localized: "bonus_text", defaultValue: "Bonus!")
+            zeigeBonusText = true
+        }
+        
         onGiessen()
     }
 
@@ -357,6 +333,9 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
     @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
     let isVisualPressed: Bool
     let isDead: Bool
+    var longPressProgress: CGFloat = 0.0
+    var progressColor: Color = .blauPrimary
+    var onIsPressedChange: ((Bool) -> Void)? = nil
     
     private let depth: CGFloat = 5
     private let cornerRadius: CGFloat = 20
@@ -375,7 +354,17 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
             configuration.label
                 .frame(maxWidth: .infinity)
                 .frame(minHeight: 120)
-                .background(Color.white)
+                .background(
+                    GeometryReader { proxy in
+                        ZStack(alignment: .leading) {
+                            Color.white
+                            if longPressProgress > 0 {
+                                progressColor
+                                    .frame(width: proxy.size.width * longPressProgress)
+                            }
+                        }
+                    }
+                )
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
                 .overlay(
                     RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
@@ -387,6 +376,9 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
         .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
         .sensoryFeedback(trigger: isPressed) { _, newValue in
             return (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
+        }
+        .onChange(of: configuration.isPressed) { newValue in
+            onIsPressedChange?(newValue)
         }
     }
 }
