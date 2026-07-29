@@ -232,29 +232,6 @@ struct PflanzeDetailSheet: View {
                     .padding(.horizontal, 24)
                     .tint(.blauPrimary)
 
-                    if !aktiveEffekte.isEmpty {
-                        DisclosureGroup(isExpanded: $isEffectsExpanded) {
-                            HStack(spacing: 12) {
-                                ForEach(aktiveEffekte) { effekt in
-                                    EffektIkonButton(effekt: effekt, size: 28, iconSkalierung: effekt.typ == .wetter ? 1.5 : (effekt.typ == .status ? 1.8 : 1.0)) {
-                                        ausgewaehlterEffekt = effekt
-                                    }
-                                }
-                            }
-                            .padding(.top, 16)
-                            .padding(.bottom, 8)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .id(activeStateID)
-                        } label: {
-                            Text(String(localized: "plant.detail.active_effects", defaultValue: "Aktive Effekte"))
-                                .font(.system(size: 20, weight: .bold, design: .rounded))
-                                .foregroundColor(.primary)
-                        }
-                        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
-                        .padding(.horizontal, 24)
-                        .tint(.orangePrimary)
-                    }
-
                     // MARK: - Daily Reminders
                     DisclosureGroup(isExpanded: $isRemindersExpanded) {
                         VStack(spacing: 8) {
@@ -263,8 +240,7 @@ struct PflanzeDetailSheet: View {
                                     TimerRowView(
                                         entry: entry,
                                         onTap: { 
-                                            selectedTimerEntry = entry
-                                            zeigeTimerSheet = true 
+                                            zeigeTimerEditSheet = true 
                                         },
                                         onConfirmDelete: { gardenStore.timerEintragEntfernen(pflanze: pflanze, entryID: entry.id) }
                                     )
@@ -284,16 +260,19 @@ struct PflanzeDetailSheet: View {
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundColor(.primary)
                             Spacer()
-                            Item3DButton(
-                                farbe: .blauPrimary,
-                                sekundaerFarbe: .blauPrimary.darker(),
-                                groesse: 36,
-                                isRectangular: false,
-                                aktion: { zeigeTimerSheet = true }
-                            ) {
-                                Image(systemName: "plus")
-                                    .font(.system(size: 16, weight: .bold))
-                                    .foregroundStyle(.white)
+                            let hatBereitsTimer = !(pflanze.reminderSchedule?.entries.isEmpty ?? true)
+                            if !hatBereitsTimer {
+                                Item3DButton(
+                                    farbe: .blauPrimary,
+                                    sekundaerFarbe: .blauPrimary.darker(),
+                                    groesse: 36,
+                                    isRectangular: false,
+                                    aktion: { zeigeTimerEditSheet = true }
+                                ) {
+                                    Image(systemName: "plus")
+                                        .font(.system(size: 16, weight: .bold))
+                                        .foregroundStyle(.white)
+                                }
                             }
                         }
                     }

@@ -307,3 +307,7 @@
 - **Effekte-Sektion entfernt**: Der "Aktive Effekte"-Block wird nicht mehr in der Detailansicht angezeigt
 - **Multi-Todo Sheet**: Beim Klick auf "+" im To-Dos-Bereich öffnet sich ein neues Sheet mit nummerierter Zeilen-Liste; mehrere To-Dos lassen sich auf einmal eingeben (Enter = nächste Zeile, X-Button zum Entfernen). Edit-Modus bleibt wie bisher.
 - Neuer Lokalisierungskey `plant.detail.todo.add_another` in alle 15 Sprachen übersetzt
+
+## [2026-07-29] Health Chart Improvements
+- **Start bei 0**: Die kumulative Linie im Apple Health Diagramm (z.B. für Joggen oder Schritte) beginnt nun immer bei 0 an der y-Achse, anstatt direkt mit dem ersten Messwert hochzuspringen.
+- **Rundung der aktuellen Zeit**: Der Marker für die aktuelle Zeit über dem Diagramm-Endpunkt rundet nun immer auf volle 30-Minuten-Schritte ab (z.B. 08:30 bei 08:45), anstatt auf die volle Stunde zurückzufallen.
