@@ -244,8 +244,9 @@ struct PflanzenCard: View {
         .buttonStyle(PflanzenCardHorizontalButtonStyle(
             isVisualPressed: isVisualPressed,
             isDead: pflanze.isDead,
-            longPressProgress: pflanze.istBewässert ? 1.0 : currentProgress,
-            progressColor: pflanze.istBewässert ? Color.gruenPrimary : Color.gruenPrimary.opacity(0.3),
+            isCompleted: pflanze.istBewässert,
+            longPressProgress: currentProgress,
+            progressColor: Color.gruenPrimary.opacity(0.3),
             onIsPressedChange: nil
         ))
         .highPriorityGesture(
@@ -276,6 +277,7 @@ struct PflanzenCard: View {
                 }
         )
         .allowsHitTesting(true)
+        .opacity(pflanze.istBewässert ? 0.7 : 1.0)
         .sheet(isPresented: $showReviveSheet) {
             RevivePlantSheet(pflanze: pflanze)
                 .presentationDetents([.medium])
@@ -367,6 +369,7 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
     @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
     let isVisualPressed: Bool
     let isDead: Bool
+    var isCompleted: Bool = false
     var longPressProgress: CGFloat = 0.0
     var progressColor: Color = .blauPrimary
     var onIsPressedChange: ((Bool) -> Void)? = nil
@@ -402,7 +405,7 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
                 .overlay(
                     RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                        .stroke(Color.black.opacity(0.15), lineWidth: 1.2)
+                        .stroke(isCompleted ? Color.gruenPrimary.opacity(0.6) : Color.black.opacity(0.15), lineWidth: isCompleted ? 1.5 : 1.2)
                 )
                 .offset(y: isPressed ? 0 : -depth)
         }
