@@ -17,6 +17,7 @@ struct BadHabitCard: View {
     @State private var longPressProgress: CGFloat = 0.0
     @State private var longPressTimer: Timer? = nil
     @State private var isLongPressing: Bool = false
+    @State private var idlePulse: CGFloat = 1.0
 
     private var executionsToday: Int {
         guard let executions = gardenStore.badHabitExecutions[deko.id] else { return 0 }
@@ -59,6 +60,16 @@ struct BadHabitCard: View {
                                     .frame(width: 85 * scale * 1.18, height: 85 * scale * 1.18)
                                     .rotationEffect(.degrees(-90))
                                     .shadow(color: Color.red.opacity(0.5), radius: 4)
+                                    .allowsHitTesting(false)
+                            }
+                            
+                            // Radar Ping for hint
+                            if !isLongPressing {
+                                Circle()
+                                    .stroke(Color.red.opacity(0.5), lineWidth: 3 * scale)
+                                    .frame(width: 85 * scale, height: 85 * scale)
+                                    .scaleEffect(idlePulse)
+                                    .opacity(1.5 - Double(idlePulse))
                                     .allowsHitTesting(false)
                             }
 
@@ -157,6 +168,11 @@ struct BadHabitCard: View {
                     ])
             }
         )
+        .onAppear {
+            withAnimation(.easeOut(duration: 1.5).repeatForever(autoreverses: false)) {
+                idlePulse = 1.5
+            }
+        }
     }
 
     private func calculateBadHabitStreak() -> Int {
@@ -187,15 +203,24 @@ struct BadHabitCard: View {
         isLongPressing = true
         longPressProgress = 0
         
-        let totalDuration: Double = 0.7
+        let totalDuration: Double = 2.5
         let tickInterval: Double = 0.016
         let tickIncrement = tickInterval / totalDuration
+        var lastHapticProgress: Double = 0.0
         
         longPressTimer = Timer.scheduledTimer(withTimeInterval: tickInterval, repeats: true) { timer in
             DispatchQueue.main.async {
                 withAnimation(.linear(duration: tickInterval)) {
                     longPressProgress = min(longPressProgress + tickIncrement, 1.0)
                 }
+                
+                if longPressProgress - lastHapticProgress >= 0.25 {
+                    lastHapticProgress = longPressProgress
+                    if isHapticEnabled {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    }
+                }
+                
                 if longPressProgress >= 1.0 {
                     timer.invalidate()
                     longPressTimer = nil

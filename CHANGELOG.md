@@ -320,3 +320,7 @@
 - **Einheitliche Timer-Reihe**: Wenn man für verschiedene Wochentage unterschiedliche Uhrzeiten einstellt, wird in der Daily Reminder Liste nicht mehr für jede Uhrzeit ein "neuer" Timer angezeigt. Stattdessen bleibt es bei einer einzigen Reihe, die dann als Zeit "Verschiedene Zeiten" (anstatt der konkreten Uhrzeit) anzeigt.
 - **Lokalisierung**: Der neue Text "Verschiedene Zeiten" wurde mittels Script in alle 15 Sprachen übersetzt.
 - **Streak Lottie entfernt**: Die große Streak-Animation mit der Flamme ganz oben auf der Pflanzendetail-Seite wurde auf Wunsch komplett entfernt.
+
+- UI: Drag & Drop (Wassertropfen und X) aus der GartenView entfernt.
+- UI: Long-Press-Mechanik (analog zur PflanzenCard) zur BadHabitCard hinzugefügt.
+- UI: Alten 'Challenge nicht aktiviert'-Text aus der PflanzenCard entfernt.

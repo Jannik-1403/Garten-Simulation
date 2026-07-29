@@ -23,6 +23,7 @@ struct PflanzenCard: View {
     @State private var longPressProgress: CGFloat = 0.0
     @State private var longPressTimer: Timer? = nil
     @State private var isLongPressing: Bool = false
+    @State private var idlePulse: CGFloat = 1.0
     
     var body: some View {
         ZStack {
@@ -107,6 +108,16 @@ struct PflanzenCard: View {
                                 .frame(width: baseDim * 1.1, height: baseDim * 1.1)
                                 .blur(radius: 1.5 * scale)
                                 .allowsHitTesting(false)
+                                
+                            // Radar Ping for hint
+                            if !pflanze.istBewässert && !pflanze.isDead && !isLongPressing {
+                                Circle()
+                                    .stroke(Color.blauPrimary.opacity(0.5), lineWidth: 3 * scale)
+                                    .frame(width: baseDim, height: baseDim)
+                                    .scaleEffect(idlePulse)
+                                    .opacity(1.5 - Double(idlePulse))
+                                    .allowsHitTesting(false)
+                            }
             
                             // Der 3D-Button (Long-Press zum Gießen, Tap zum Öffnen)
                             PflanzenButton(
@@ -261,6 +272,11 @@ struct PflanzenCard: View {
             }
         }
         .coordinateSpace(name: "PflanzenCardSpace")
+        .onAppear {
+            withAnimation(.easeOut(duration: 1.5).repeatForever(autoreverses: false)) {
+                idlePulse = 1.5
+            }
+        }
     }
     
     // MARK: - Long-Press Gießen Logik
@@ -280,15 +296,24 @@ struct PflanzenCard: View {
         isLongPressing = true
         longPressProgress = 0
         
-        let totalDuration: Double = 0.7 // Sekunden bis zum Gießen
+        let totalDuration: Double = 2.5 // Sekunden bis zum Gießen
         let tickInterval: Double = 0.016 // ~60fps
         let tickIncrement = tickInterval / totalDuration
+        var lastHapticProgress: Double = 0.0
         
         longPressTimer = Timer.scheduledTimer(withTimeInterval: tickInterval, repeats: true) { timer in
             DispatchQueue.main.async {
                 withAnimation(.linear(duration: tickInterval)) {
                     longPressProgress = min(longPressProgress + tickIncrement, 1.0)
                 }
+                
+                if longPressProgress - lastHapticProgress >= 0.25 {
+                    lastHapticProgress = longPressProgress
+                    if isHapticEnabled {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    }
+                }
+                
                 if longPressProgress >= 1.0 {
                     timer.invalidate()
                     longPressTimer = nil
