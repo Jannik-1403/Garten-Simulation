@@ -210,19 +210,10 @@ struct PflanzenCard: View {
                         }
                     }
                     
-                    // 90-Tage Challenge Progress
                     if pflanze.isDead {
                         Text(String(format: String(localized: "pflanze.tot.seit"), pflanze.missedCycles))
                             .font(.system(size: 12, weight: .regular, design: .rounded))
                             .foregroundStyle(.secondary)
-                    } else {
-                        if pflanze.pfadAktiviertAm != nil {
-                            // Pfad ist aktiviert
-
-                        } else {
-                            // Pfad ist nicht aktiviert
-                            buildPfadNotActivatedView()
-                        }
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -328,17 +319,6 @@ struct PflanzenCard: View {
         gardenStore.giessTriggerID = UUID()
         gardenStore.giessen(pflanze: pflanze)
         onGiessen()
-    }
-
-    @ViewBuilder
-    private func buildPfadNotActivatedView() -> some View {
-        HStack(spacing: 6) {
-            Image(systemName: "lock.fill")
-            Text(String(localized: "plant.card.challenge.not_activated", defaultValue: "Noch nicht aktiviert"))
-        }
-        .font(.system(size: 10, weight: .semibold, design: .rounded))
-        .foregroundStyle(.secondary)
-        .padding(.top, 4)
     }
 
     private func updatePflanzenPosition(from geo: GeometryProxy) {

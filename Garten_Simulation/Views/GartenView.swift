@@ -301,7 +301,10 @@ struct GartenView: View {
                     ForEach(gardenStore.placedDecorations) { deko in
                         BadHabitCard(
                             deko: deko,
-                            onTap: { ausgewaehltesItem = ShopDetailPayload.from(decoration: deko) }
+                            onTap: { ausgewaehltesItem = ShopDetailPayload.from(decoration: deko) },
+                            onLongPress: {
+                                triggerSheetItem = TriggerSheetItem(id: deko.id)
+                            }
                         )
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                         .tourAnchor(.badHabits, condition: deko.id == gardenStore.placedDecorations.first?.id)
@@ -411,25 +414,7 @@ struct GartenView: View {
     
     @ViewBuilder
     private var globalFabsOverlay: some View {
-        Group {
-            if gardenStore.sichtbarePflanzen.contains(where: { !$0.istBewässert && !$0.isDead }) {
-                GlobalDragToWater(cardPositions: cardPositions)
-                    .environmentObject(gardenStore)
-                    .zIndex(100)
-            }
-            
-            if !gardenStore.placedDecorations.isEmpty {
-                GlobalDragToWeed(
-                    cardPositions: badHabitPositions,
-                    onCrossApplied: { hitID in
-                        triggerSheetItem = TriggerSheetItem(id: hitID)
-                    },
-                    isWaterVisible: gardenStore.sichtbarePflanzen.contains(where: { !$0.istBewässert && !$0.isDead })
-                )
-                .environmentObject(gardenStore)
-                .zIndex(99)
-            }
-        }
+        EmptyView()
     }
     
     @ViewBuilder

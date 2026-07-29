@@ -3,6 +3,7 @@ import SwiftUI
 struct BadHabitCard: View {
     let deko: DecorationItem
     let onTap: () -> Void
+    let onLongPress: () -> Void
 
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
@@ -11,6 +12,11 @@ struct BadHabitCard: View {
     @State private var isLocked = false
     @State private var position: CGPoint = .zero
     @State private var wobble: CGFloat = 1.0
+
+    // Long-Press Logik
+    @State private var longPressProgress: CGFloat = 0.0
+    @State private var longPressTimer: Timer? = nil
+    @State private var isLongPressing: Bool = false
 
     private var executionsToday: Int {
         guard let executions = gardenStore.badHabitExecutions[deko.id] else { return 0 }
@@ -42,12 +48,29 @@ struct BadHabitCard: View {
 
 
                         ZStack {
+                            // Long-Press Fortschritts-Ring (Rot)
+                            if longPressProgress > 0 {
+                                Circle()
+                                    .trim(from: 0, to: longPressProgress)
+                                    .stroke(
+                                        Color.red,
+                                        style: StrokeStyle(lineWidth: 6 * scale, lineCap: .round)
+                                    )
+                                    .frame(width: 85 * scale * 1.18, height: 85 * scale * 1.18)
+                                    .rotationEffect(.degrees(-90))
+                                    .shadow(color: Color.red.opacity(0.5), radius: 4)
+                                    .allowsHitTesting(false)
+                            }
+
                             // 3D-Button
                             Item3DButton(
                                 farbe: .red,
                                 sekundaerFarbe: .red.darker(by: 0.2),
                                 groesse: 85 * scale,
-                                aktion: nil // NO nested button action
+                                aktion: {
+                                    FeedbackManager.shared.playTap()
+                                    onTap()
+                                }
                             ) {
                                 Group {
                                     if UIImage(named: deko.sfSymbol) != nil {
@@ -64,7 +87,7 @@ struct BadHabitCard: View {
                                     }
                                 }
                             }
-                            .allowsHitTesting(false)
+                            .gesture(longPressGesture())
 
                             // Badge Zähler
                             if executionsToday > 0 {
@@ -146,6 +169,61 @@ struct BadHabitCard: View {
         }
         return 0
     }
+
+    // MARK: - Long-Press Logik
+    private func longPressGesture() -> some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { _ in
+                guard !isLongPressing else { return }
+                startLongPress()
+            }
+            .onEnded { _ in
+                cancelLongPress()
+            }
+    }
+
+    private func startLongPress() {
+        guard longPressTimer == nil else { return }
+        isLongPressing = true
+        longPressProgress = 0
+        
+        let totalDuration: Double = 0.7
+        let tickInterval: Double = 0.016
+        let tickIncrement = tickInterval / totalDuration
+        
+        longPressTimer = Timer.scheduledTimer(withTimeInterval: tickInterval, repeats: true) { timer in
+            DispatchQueue.main.async {
+                withAnimation(.linear(duration: tickInterval)) {
+                    longPressProgress = min(longPressProgress + tickIncrement, 1.0)
+                }
+                if longPressProgress >= 1.0 {
+                    timer.invalidate()
+                    longPressTimer = nil
+                    triggerAction()
+                }
+            }
+        }
+    }
+
+    private func cancelLongPress() {
+        longPressTimer?.invalidate()
+        longPressTimer = nil
+        isLongPressing = false
+        withAnimation(.easeOut(duration: 0.25)) {
+            longPressProgress = 0
+        }
+    }
+
+    private func triggerAction() {
+        isLongPressing = false
+        withAnimation(.easeOut(duration: 0.3)) {
+            longPressProgress = 0
+        }
+        if isHapticEnabled {
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        }
+        onLongPress()
+    }
 }
 
 #Preview {
@@ -160,7 +238,8 @@ struct BadHabitCard: View {
             price: 100,
             category: .deko
         ),
-        onTap: {}
+        onTap: {},
+        onLongPress: {}
     )
     .background(Color.appHintergrund)
     .environmentObject(GardenStore(isMock: true))
