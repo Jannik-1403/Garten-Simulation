@@ -68,15 +68,10 @@ struct IntradayProgressChartView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
                 VStack(alignment: .leading, spacing: 1) {
-                    statLabel(dotColor: Color.gruenPrimary,
-                              text: String(localized: "health.chart.label.target", defaultValue: "Ziel"))
-                    Text("100")
-                        .font(.system(size: 32, weight: .black, design: .rounded))
-                        .foregroundStyle(Color(UIColor.systemGray2))
-                        .minimumScaleFactor(0.7)
-                        .lineLimit(1)
-                    Text(unitString)
-                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                    statLabel(dotColor: Color(UIColor.systemGray3),
+                              text: String(localized: "health.chart.label.average", defaultValue: "Average"))
+                    Text(String(localized: "health.chart.average.unavailable", defaultValue: "k.A."))
+                        .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundStyle(Color(UIColor.systemGray3))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -134,10 +129,13 @@ struct IntradayProgressChartView: View {
             }
             .chartYAxis(.hidden)
             .frame(height: 160)
-            
-            Divider().padding(.vertical, 10)
         }
-        .padding(.vertical, 8)
+        .padding(20)
+        .modifier(Item3DContainerModifier(
+            farbe: Color(UIColor.systemBackground),
+            sekundaerFarbe: Color(UIColor.systemGray5),
+            shadowDepth: 6
+        ))
     }
     
     // MARK: Helpers

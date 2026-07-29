@@ -92090,6 +92090,17 @@
         }
       }
     },
+    "chart.title.progress": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Fortschritt"
+          }
+        }
+      }
+    },
     "cheat_punishment.button.settings": {
       "extractionState": "manual",
       "localizations": {
@@ -281402,6 +281413,7 @@
         }
       }
     },
+    "Prozent": {},
     "psychology.fact.levelup": {
       "extractionState": "manual",
       "localizations": {

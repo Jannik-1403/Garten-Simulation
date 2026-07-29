@@ -333,3 +333,4 @@
 - **Fix**: Resolved a crash in PflanzenCard caused by a missing HealthManager EnvironmentObject by switching to HealthManager.shared directly.
 - **Fix**: Prozentzahl beim Bewegen des Sliders (PflanzenCard) entfernt.
 - **Fix**: Manuelles Tracking für Apple Health-basierte Pflanzen aus den Models entfernt.
+- **Feat**: Neuer Tagesverlauf-Chart (IntradayProgressChartView) für normale Gewohnheiten hinzugefügt, der den Fortschritt in Prozent über den Tag verteilt anzeigt.
