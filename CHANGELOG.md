@@ -316,3 +316,7 @@
 - **Timer Edit Sheet Link**: Wenn man auf einen vorhandenen Timer in der Daily Reminder Liste klickt, öffnet sich nun korrekterweise die Timer Detailansicht (`TimerEditSheetView`), wie auch beim Erstellen (+ Button).
 - **Timer Limit Restored**: Der Plus-Button für den Timer verschwindet wieder korrekt, sobald bereits ein Timer existiert, um mehrere Timer zu verhindern.
 - **Aktive Effekte endgültig entfernt**: Die Sektion "Aktive Effekte" in der Pflanzendetail-Ansicht wurde nochmal aus dem Code entfernt, da sie durch einen vorherigen Merge-Konflikt fälschlicherweise wieder aufgetaucht war.
+- **Timer Auto-Save**: Änderungen in der Timer Detailansicht (`TimerEditSheetView`) werden nun sofort automatisch gespeichert (`.onChange`), sodass man den Screen einfach schließen kann, ohne auf "Fertig" klicken zu müssen.
+- **Einheitliche Timer-Reihe**: Wenn man für verschiedene Wochentage unterschiedliche Uhrzeiten einstellt, wird in der Daily Reminder Liste nicht mehr für jede Uhrzeit ein "neuer" Timer angezeigt. Stattdessen bleibt es bei einer einzigen Reihe, die dann als Zeit "Verschiedene Zeiten" (anstatt der konkreten Uhrzeit) anzeigt.
+- **Lokalisierung**: Der neue Text "Verschiedene Zeiten" wurde mittels Script in alle 15 Sprachen übersetzt.
+- **Streak Lottie entfernt**: Die große Streak-Animation mit der Flamme ganz oben auf der Pflanzendetail-Seite wurde auf Wunsch komplett entfernt.

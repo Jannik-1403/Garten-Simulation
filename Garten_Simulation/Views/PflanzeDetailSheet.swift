@@ -92,32 +92,6 @@ struct PflanzeDetailSheet: View {
                 ScrollViewReader { proxy in
                     ScrollView(showsIndicators: false) {
                         LazyVStack(spacing: 28) {
-                    // MARK: - HERO (Zone 1)
-                    VStack(spacing: 12) {
-                            // Streak Anzeige → navigiert zu StreakView
-                            NavigationLink(destination: StreakView(selectedPlant: pflanze)
-                                .environmentObject(streakStore)
-                                .environmentObject(gardenStore)
-                                .environmentObject(settings)
-                            ) {
-                                VStack(spacing: 8) {
-                                    LottieView(name: GameConstants.streakLottieURL)
-                                        .frame(width: 140, height: 140)
-                                        .shadow(color: .orangePrimary.opacity(0.3), radius: 30)
-                                        .offset(y: -10) // Push it slightly up
-                                    
-                                    Text("\(pflanze.streak)")
-                                        .font(.system(size: 40, weight: .heavy, design: .rounded))
-                                        .foregroundStyle(Color.orangePrimary)
-                                        .offset(y: -20) // Pull number closer to compensate for the big frame, or leave spacing
-                                }
-                            }
-                            .padding(.top, 8)
-    
-
-                        }
-                        .padding(.top, 40)
-
                 // MARK: - OVERVIEW CONTENT
                 Section {
 
