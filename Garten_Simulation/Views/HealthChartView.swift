@@ -39,6 +39,19 @@ struct HealthChartView: View {
         cumulativeData().last?.0 ?? Date()
     }
 
+    private var adjustedHourlyAverageData: [(Date, Double)] {
+        if hourlyAverageData.isEmpty { return [] }
+        var result: [(Date, Double)] = []
+        let now = Date()
+        result.append((dayStart, 0))
+        for item in hourlyAverageData {
+            var pointTime = item.0.addingTimeInterval(3600)
+            if pointTime > now { pointTime = now }
+            result.append((pointTime, item.1))
+        }
+        return result
+    }
+
     // MARK: Body
 
     var body: some View {
@@ -103,8 +116,8 @@ struct HealthChartView: View {
                 }
 
                 // Graue Oe-Linie
-                if !hourlyAverageData.isEmpty {
-                    ForEach(hourlyAverageData, id: \.0) { pt in
+                if !adjustedHourlyAverageData.isEmpty {
+                    ForEach(adjustedHourlyAverageData, id: \.0) { pt in
                         LineMark(
                             x: .value("Uhrzeit", pt.0),
                             y: .value("Avg", pt.1),
@@ -114,7 +127,7 @@ struct HealthChartView: View {
                         .lineStyle(StrokeStyle(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
                         .interpolationMethod(.monotone)
                     }
-                    if let last = hourlyAverageData.last {
+                    if let last = adjustedHourlyAverageData.last {
                         PointMark(x: .value("Uhrzeit", last.0), y: .value("Avg", last.1))
                             .foregroundStyle(Color(UIColor.systemGray2))
                             .symbolSize(55)
@@ -168,7 +181,7 @@ struct HealthChartView: View {
             }
             .chartYAxis(.hidden)
             .frame(height: 160)
-
+            
             // Ziel-Zeile (tappbar)
             Divider().padding(.vertical, 10)
 
@@ -223,7 +236,9 @@ struct HealthChartView: View {
         let cal = Calendar.current
         let h = cal.component(.hour, from: date)
         let m = cal.component(.minute, from: date)
-        return String(format: "%02d:%02d", h, m)
+        
+        let roundedMinute = (m >= 30) ? 30 : 0
+        return String(format: "%02d:%02d", h, roundedMinute)
     }
 
     private func formatNumber(_ value: Double) -> String {
@@ -237,9 +252,19 @@ struct HealthChartView: View {
     private func cumulativeData() -> [(Date, Double)] {
         var result: [(Date, Double)] = []
         var sum: Double = 0
+        let now = Date()
+        
+        // Immer bei 0 am Start des Tages beginnen
+        result.append((dayStart, 0))
+        
         for item in data {
             sum += item.1
-            result.append((item.0, sum))
+            // Endpunkt der Stunde nehmen, oder max "jetzt"
+            var pointTime = item.0.addingTimeInterval(3600)
+            if pointTime > now {
+                pointTime = now
+            }
+            result.append((pointTime, sum))
         }
         return result
     }
