@@ -961,6 +961,7 @@
       }
     },
     "%lld %@ %lld %@": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -303286,6 +303287,7 @@
       }
     },
     "screentime.tracker.target": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {

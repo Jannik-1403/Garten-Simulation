@@ -30,31 +30,34 @@ struct PflanzenCard: View {
         max(50, cardWidth - 110)
     }
     
+    private func getBaseHealthCurrent(for metric: HealthMetricType) -> Double {
+        switch metric {
+        case .steps: return healthManager.todaysSteps
+        case .water: return healthManager.todaysWater
+        case .sleep: return healthManager.todaysSleep
+        case .mindfulness: return healthManager.todaysMindfulness
+        case .running: return healthManager.todaysRunning
+        case .strengthTraining: return healthManager.todaysStrengthTraining
+        }
+    }
+    
     private var healthProgress: Double? {
         guard let metric = pflanze.linkedHealthMetric, let target = pflanze.healthTarget, target > 0 else {
             return nil
         }
-        let current: Double
-        switch metric {
-        case .steps: current = healthManager.todaysSteps
-        case .water: current = healthManager.todaysWater
-        case .sleep: current = healthManager.todaysSleep
-        case .mindfulness: current = healthManager.todaysMindfulness
-        case .running: current = healthManager.todaysRunning
-        case .strengthTraining: current = healthManager.todaysStrengthTraining
-        }
+        let baseCurrent = getBaseHealthCurrent(for: metric)
+        let current = baseCurrent + (pflanze.allowManualTrackingForHealth ? pflanze.customTrackerProgress : 0)
         return min(1.0, max(0.0, current / target))
     }
     
     private var currentProgress: Double {
+        if isDragging {
+            return min(1.0, max(0.0, dragWidth / maxDragWidth))
+        }
         if let hp = healthProgress {
             return hp
         }
-        if isDragging {
-            return min(1.0, max(0.0, dragWidth / maxDragWidth))
-        } else {
-            return pflanze.sliderProgress
-        }
+        return pflanze.sliderProgress
     }
     
     var body: some View {
@@ -234,24 +237,42 @@ struct PflanzenCard: View {
         .highPriorityGesture(
             DragGesture(minimumDistance: 25)
                 .onChanged { value in
-                    guard healthProgress == nil else { return }
                     guard !pflanze.istBewässert && !pflanze.isDead else { return }
+                    if let _ = pflanze.linkedHealthMetric {
+                        guard pflanze.allowManualTrackingForHealth else { return }
+                    }
                     if !isDragging { isDragging = true }
-                    let startX = pflanze.sliderProgress * maxDragWidth
+                    
+                    let startX: CGFloat
+                    if pflanze.linkedHealthMetric != nil {
+                        startX = (healthProgress ?? 0) * maxDragWidth
+                    } else {
+                        startX = pflanze.sliderProgress * maxDragWidth
+                    }
                     dragWidth = startX + value.translation.width
                 }
                 .onEnded { value in
                     guard isDragging else { return }
                     isDragging = false
                     let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
-                    pflanze.sliderProgress = finalProgress
+                    
+                    if let metric = pflanze.linkedHealthMetric, let target = pflanze.healthTarget, target > 0 {
+                        let base = getBaseHealthCurrent(for: metric)
+                        let desiredTotal = finalProgress * target
+                        pflanze.customTrackerProgress = max(0, desiredTotal - base)
+                    } else {
+                        pflanze.sliderProgress = finalProgress
+                    }
+                    
                     pflanze.intradayProgressHistory.removeAll { !Calendar.current.isDateInToday($0.timestamp) }
                     pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
                     
                     if finalProgress >= 1.0 {
                         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                         triggerWatering()
-                        pflanze.sliderProgress = 0.0
+                        if pflanze.linkedHealthMetric == nil {
+                            pflanze.sliderProgress = 0.0
+                        }
                     } else {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     }

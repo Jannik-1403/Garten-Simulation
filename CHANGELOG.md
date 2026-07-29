@@ -334,3 +334,6 @@
 - **Fix**: Prozentzahl beim Bewegen des Sliders (PflanzenCard) entfernt.
 - **Fix**: Manuelles Tracking für Apple Health-basierte Pflanzen aus den Models entfernt.
 - **Feat**: Neuer Tagesverlauf-Chart (IntradayProgressChartView) für normale Gewohnheiten hinzugefügt, der den Fortschritt in Prozent über den Tag verteilt anzeigt.
+- **Fix**: Manuelles Tracking für Apple Health Integration (Joggen) wiederhergestellt, grünes Ziel-Strichlinien-Verhalten korrigiert.
+- **Fix**: UI der normalen Statistik (Health Cooking) exakt an Apple Health Statistik angepasst (identische Abstände, Layouts, 3D-Container).
+- **Fix**: Eigener Tracker ('Great Tracker' / 'Tracker erstellen') wurde wie gewünscht vollständig entfernt.
