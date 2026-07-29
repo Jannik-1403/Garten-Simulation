@@ -135188,6 +135188,12 @@
             "value": "목표 기여"
           }
         },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contribuição para a Meta"
+          }
+        },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
@@ -135210,12 +135216,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "目标贡献"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contribuição para a Meta"
           }
         },
         "zh-Hant": {
@@ -135961,6 +135961,77 @@
         }
       }
     },
+    "goal.type.week": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wochenziel"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly Goal"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivo Semanal"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objectif Hebdomadaire"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obiettivo Settimanale"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "週ごとの目標"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "주간 목표"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meta Semanal"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Еженедельная цель"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周目标"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每週目標"
+          }
+        }
+      }
+    },
     "goal.type.year": {
       "extractionState": "manual",
       "localizations": {
@@ -136052,6 +136123,39 @@
           "stringUnit": {
             "state": "translated",
             "value": "年度目標"
+          }
+        }
+      }
+    },
+    "goal.weekly.add": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Wochenziel festlegen"
+          }
+        }
+      }
+    },
+    "goal.weekly.placeholder": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Z.B. 3x ins Gym gehen"
+          }
+        }
+      }
+    },
+    "goal.weekly.prompt": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Was ist dein wichtigstes Ziel für diese Woche?"
           }
         }
       }
@@ -394588,73 +394692,144 @@
       }
     },
     "Ziel": {},
-    "goal.type.week": {
+    "goal.link.info.title": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wochenziel"
+            "value": "Punkte & Ziele"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weekly Goal"
+            "value": "Points & Goals"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Objetivo Semanal"
+            "value": "Puntos y Objetivos"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Objectif Hebdomadaire"
+            "value": "Points & Objectifs"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Obiettivo Settimanale"
+            "value": "Punti e Obiettivi"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "週ごとの目標"
+            "value": "ポイントと目標"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "주간 목표"
+            "value": "포인트 및 목표"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Meta Semanal"
+            "value": "Pontos e Metas"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Еженедельная цель"
+            "value": "Баллы и Цели"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "每周目标"
+            "value": "分数与目标"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "每週目標"
+            "value": "分數與目標"
+          }
+        }
+      }
+    },
+    "goal.link.info.message": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten bringen Punkte für dein 1-Jahresziel.\n\n20 Pkt: Enormer Fokus\n5 Pkt: Leichter Beitrag\n0 Pkt: Hat nichts mit dem Ziel zu tun"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habits earn points for your 1-Year Goal.\n\n20 Pts: Massive Focus\n5 Pts: Light Contribution\n0 Pts: Unrelated to goal"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los hábitos suman puntos para tu objetivo a 1 año.\n\n20 Pts: Enfoque masivo\n5 Pts: Contribución ligera\n0 Pts: No relacionado con el objetivo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les habitudes rapportent des points pour votre objectif d'un an.\n\n20 Pts : Focus massif\n5 Pts : Légère contribution\n0 Pts : Sans rapport avec l'objectif"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le abitudini guadagnano punti per il tuo obiettivo di 1 anno.\n\n20 Pti: Focus enorme\n5 Pti: Contributo leggero\n0 Pti: Non correlato all'obiettivo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "習慣は1年間の目標に向けてポイントを獲得します。\n\n20 Pt: 絶大な集中\n5 Pt: わずかな貢献\n0 Pt: 目標とは無関係"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "습관은 1년 목표에 대한 포인트를 획득합니다.\n\n20 Pt: 엄청난 집중\n5 Pt: 가벼운 기여\n0 Pt: 목표와 무관함"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Os hábitos rendem pontos para sua meta de 1 ano.\n\n20 Pts: Foco Massivo\n5 Pts: Contribuição Leve\n0 Pts: Não relacionado à meta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Привычки приносят баллы для вашей цели на 1 год.\n\n20 б.: Огромный фокус\n5 б.: Легкий вклад\n0 б.: Не связано с целью"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "习惯会为您的 1 年目标赢得积分。\n\n20 分：巨大专注\n5 分：轻微贡献\n0 分：与目标无关"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "習慣會為您的 1 年目標贏得積分。\n\n20 分：巨大專注\n5 分：輕微貢獻\n0 分：與目標無關"
           }
         }
       }

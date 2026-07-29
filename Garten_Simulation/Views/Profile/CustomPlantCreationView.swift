@@ -15,6 +15,7 @@ struct CustomPlantCreationView: View {
     @State private var showAllIcons = false
     @State private var newCreatedPlant: HabitModel? = nil
     @State private var selectedGoalWeight: GoalWeight? = nil
+    @State private var showGoalLinkInfo = false
     
     private var availableIcons: [String] {
         if isNegative {
@@ -318,9 +319,19 @@ struct CustomPlantCreationView: View {
                         
                         if !isNegative && GoalStore.shared.activeGoals.contains(where: { $0.type == .year }) {
                             VStack(alignment: .leading, spacing: 12) {
-                                Text(String(localized: "goal.link.title", defaultValue: "Ziel-Beitrag"))
-                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.primary)
+                                HStack {
+                                    Text(String(localized: "goal.link.title", defaultValue: "Ziel-Beitrag"))
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.primary)
+                                        
+                                    Button {
+                                        FeedbackManager.shared.playTap()
+                                        showGoalLinkInfo = true
+                                    } label: {
+                                        Image(systemName: "info.circle")
+                                            .foregroundColor(.blauPrimary)
+                                    }
+                                }
                                 
                                 HStack(spacing: 8) {
                                     ForEach([GoalWeight.massive, .bit, .none], id: \.self) { weight in
@@ -399,6 +410,11 @@ struct CustomPlantCreationView: View {
                 Button(String(localized: "button.ok"), role: .cancel) { }
             } message: {
                 Text(String(format: String(localized: "inventory.seeds.info.body"), gardenStore.seeds))
+            }
+            .alert(String(localized: "goal.link.info.title", defaultValue: "Punkte & Ziele"), isPresented: $showGoalLinkInfo) {
+                Button(String(localized: "button.ok"), role: .cancel) { }
+            } message: {
+                Text(String(localized: "goal.link.info.message", defaultValue: "Gewohnheiten bringen Punkte für dein 1-Jahresziel.\n\n20 Pkt: Enormer Fokus\n5 Pkt: Leichter Beitrag\n0 Pkt: Hat nichts mit dem Ziel zu tun"))
             }
             .sheet(isPresented: $showAllIcons) {
                 AllIconsSheet(selectedIcon: $selectedIcon, selectedColor: uiColor(for: selectedColor), icons: allIcons, isNegative: isNegative)

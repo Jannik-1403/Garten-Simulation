@@ -15,8 +15,7 @@ struct ShopItemDetailView: View {
     @State private var showPaywallSheet = false
     @State private var showCoinsShopSheet = false
     @State private var selectedGoalWeight: GoalWeight? = nil
-    
-
+    @State private var showGoalLinkInfo = false
 
     private var isOwned: Bool { shopStore.isPurchased(payload.id) }
     private var canAfford: Bool { shopStore.canAfford(payload.price) }
@@ -112,11 +111,20 @@ struct ShopItemDetailView: View {
 
                         if payload.itemType == .plant && payload.id != "plant.seeds" {
                             VStack(alignment: .leading, spacing: 12) {
-                                Text(String(localized: "goal.link.title", defaultValue: "Ziel-Beitrag"))
-                                    .font(.system(size: 14, weight: .bold))
-                                    .foregroundStyle(.secondary)
-                                    .kerning(1.2)
-                                
+                                HStack {
+                                    Text(String(localized: "goal.link.title", defaultValue: "Ziel-Beitrag"))
+                                        .font(.system(size: 14, weight: .bold))
+                                        .foregroundStyle(.secondary)
+                                        .kerning(1.2)
+                                    
+                                    Button {
+                                        FeedbackManager.shared.playTap()
+                                        showGoalLinkInfo = true
+                                    } label: {
+                                        Image(systemName: "info.circle")
+                                            .foregroundColor(.blauPrimary)
+                                    }
+                                }
                                 HStack(spacing: 8) {
                                     ForEach([GoalWeight.massive, .bit, .none], id: \.self) { weight in
                                         Button {
@@ -298,6 +306,11 @@ struct ShopItemDetailView: View {
             Button(String(localized: "button.ok"), role: .cancel) { FeedbackManager.shared.playTap() }
         } message: {
             Text(String(format: String(localized: "shop.need_more_coins"), payload.price - gardenStore.coins))
+        }
+        .alert(String(localized: "goal.link.info.title", defaultValue: "Punkte & Ziele"), isPresented: $showGoalLinkInfo) {
+            Button(String(localized: "button.ok"), role: .cancel) { }
+        } message: {
+            Text(String(localized: "goal.link.info.message", defaultValue: "Gewohnheiten bringen Punkte für dein 1-Jahresziel.\n\n20 Pkt: Enormer Fokus\n5 Pkt: Leichter Beitrag\n0 Pkt: Hat nichts mit dem Ziel zu tun"))
         }
         .alert(String(localized: "shop.mystic.confirmation.title", defaultValue: "Ultimatives Luxus-Item!"), isPresented: $showMysticConfirmation) {
             Button(String(localized: "common.cancel"), role: .cancel) { FeedbackManager.shared.playTap() }

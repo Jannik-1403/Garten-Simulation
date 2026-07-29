@@ -52,21 +52,22 @@ struct MonthlyGoalBannerView: View {
                 .padding(.horizontal, 16)
             } else {
                 // Kein Monatsziel gesetzt - Schlanker Button
-                Button {
-                    showGoalInput = true
-                } label: {
+                Item3DButton(
+                    farbe: Color.blauPrimary,
+                    sekundaerFarbe: Color.blauPrimary.darker(),
+                    groesse: 44,
+                    isRectangular: true,
+                    aktion: { showGoalInput = true }
+                ) {
                     HStack {
                         Image(systemName: "plus.circle.fill")
-                            .foregroundColor(.blauPrimary)
+                            .foregroundColor(.white)
                         Text(String(localized: "goal.monthly.add", defaultValue: "Monatsziel setzen"))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundColor(.primary)
+                            .foregroundColor(.white)
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
-                    .background(.ultraThinMaterial)
-                    .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
                 }
                 .padding(.horizontal, 16)
             }

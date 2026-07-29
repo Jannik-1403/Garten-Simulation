@@ -45,9 +45,13 @@ struct WeeklyGoalBannerView: View {
                 .cornerRadius(20)
                 .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
             } else {
-                Button {
-                    showGoalInput = true
-                } label: {
+                Item3DButton(
+                    farbe: Color.blauPrimary,
+                    sekundaerFarbe: Color.blauPrimary.darker(),
+                    groesse: 56,
+                    isRectangular: true,
+                    aktion: { showGoalInput = true }
+                ) {
                     HStack(spacing: 12) {
                         Image(systemName: "plus.circle.fill")
                             .font(.title2)
@@ -57,9 +61,6 @@ struct WeeklyGoalBannerView: View {
                     }
                     .foregroundColor(.white)
                     .padding(20)
-                    .background(Color.blauPrimary)
-                    .cornerRadius(20)
-                    .shadow(color: Color.blauPrimary.opacity(0.3), radius: 10, x: 0, y: 5)
                 }
             }
         }
