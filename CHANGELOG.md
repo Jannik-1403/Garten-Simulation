@@ -338,3 +338,5 @@
 - **Fix**: UI der normalen Statistik (Health Cooking) exakt an Apple Health Statistik angepasst (identische Abstände, Layouts, 3D-Container).
 - **Fix**: Eigener Tracker ('Great Tracker' / 'Tracker erstellen') wurde wie gewünscht vollständig entfernt.
 - **Feature**: Apple Health Gewohnheiten (z.B. Joggen) können nun auf der Startseite mit dem Wischen-Slider manuell erhöht werden, sofern das manuelle Eintragen in den Einstellungen aktiviert ist.
+- **Update**: Apple Health Gewohnheiten können nun direkt auf der Startseite durch vollständiges Wischen nach rechts abgehakt/gegossen werden, ohne dass dies die eigentliche Statistik verändert oder manuell in den Einstellungen aktiviert werden muss.
+- **Fix**: Einheitliches Wischen für alle Gewohnheiten. Wischen verhält sich jetzt immer wie ein manuelles Setzen und bleibt auch bei Apple Health-Pflanzen dort stehen, wo man es losgelassen hat. Leere Historien-Statistiken für normale Gewohnheiten werden jetzt auch angezeigt.

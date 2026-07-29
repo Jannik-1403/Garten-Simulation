@@ -54,9 +54,12 @@ struct PflanzenCard: View {
         if isDragging {
             return min(1.0, max(0.0, dragWidth / maxDragWidth))
         }
-        if let hp = healthProgress {
+        
+        let hasManualOverride = pflanze.intradayProgressHistory.contains { Calendar.current.isDateInToday($0.timestamp) }
+        if let hp = healthProgress, !hasManualOverride {
             return hp
         }
+        
         return pflanze.sliderProgress
     }
     
@@ -253,18 +256,14 @@ struct PflanzenCard: View {
                     isDragging = false
                     let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
                     
-                    if pflanze.linkedHealthMetric == nil {
-                        pflanze.sliderProgress = finalProgress
-                        pflanze.intradayProgressHistory.removeAll { !Calendar.current.isDateInToday($0.timestamp) }
-                        pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
-                    }
+                    pflanze.sliderProgress = finalProgress
+                    pflanze.intradayProgressHistory.removeAll { !Calendar.current.isDateInToday($0.timestamp) }
+                    pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
                     
                     if finalProgress >= 1.0 {
                         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                         triggerWatering()
-                        if pflanze.linkedHealthMetric == nil {
-                            pflanze.sliderProgress = 0.0
-                        }
+                        pflanze.sliderProgress = 0.0
                     } else {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     }
