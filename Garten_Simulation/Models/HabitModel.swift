@@ -358,6 +358,9 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     // Generic Focus Session (not tied to a specific plant)
     @Published var isGenericFocus: Bool = false
     
+    // Priorität für "Heute im Fokus" Ansicht
+    @Published var priority: GoalPriority = .medium
+    
     // Slider Progress (0.0 to 1.0)
     @Published var sliderProgress: Double = 0.0
     @Published var intradayProgressHistory: [DailyProgressEntry] = []
@@ -590,7 +593,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         customReminderMessage: String? = nil,
         isNegative: Bool = false,
         isRoutineOnly: Bool = false,
-        isGenericFocus: Bool = false
+        isGenericFocus: Bool = false,
+        priority: GoalPriority = .medium
     ) {
         self.id = id
         self.name = name
@@ -608,6 +612,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.isNegative = isNegative
         self.isRoutineOnly = isRoutineOnly
         self.isGenericFocus = isGenericFocus
+        self.priority = priority
         self.challengeJokers = 0
         self.wiederbelebtAm = nil
         self.strafTage = 3
@@ -659,6 +664,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case isGenericFocus
         case challengeJokers
         case todos
+        case priority
         case sliderProgress, intradayProgressHistory
     }
 
@@ -756,6 +762,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         customTrackerProgress = try container.decodeIfPresent(Double.self, forKey: .customTrackerProgress) ?? 0
         isRoutineOnly = try container.decodeIfPresent(Bool.self, forKey: .isRoutineOnly) ?? false
         isGenericFocus = try container.decodeIfPresent(Bool.self, forKey: .isGenericFocus) ?? false
+        priority = try container.decodeIfPresent(GoalPriority.self, forKey: .priority) ?? .medium
         challengeJokers = try container.decodeIfPresent(Int.self, forKey: .challengeJokers) ?? 0
         sliderProgress = try container.decodeIfPresent(Double.self, forKey: .sliderProgress) ?? 0.0
         intradayProgressHistory = try container.decodeIfPresent([DailyProgressEntry].self, forKey: .intradayProgressHistory) ?? []
@@ -813,6 +820,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(isRoutineOnly, forKey: .isRoutineOnly)
         try container.encode(isGenericFocus, forKey: .isGenericFocus)
         try container.encode(challengeJokers, forKey: .challengeJokers)
+        try container.encode(priority, forKey: .priority)
         try container.encode(todos, forKey: .todos)
         try container.encode(sliderProgress, forKey: .sliderProgress)
         try container.encode(intradayProgressHistory, forKey: .intradayProgressHistory)

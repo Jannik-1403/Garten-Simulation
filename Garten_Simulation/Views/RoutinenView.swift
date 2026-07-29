@@ -11,6 +11,7 @@ struct RoutineUIData: Identifiable, Equatable, Codable {
     var reminderSchedule: ReminderSchedule? = nil
     var overrideIndividualReminders: Bool = true
     var lastCompletedDate: Date? = nil
+    var priority: GoalPriority = .medium
     
     var color: Color {
         Color(hex: colorHex)
@@ -96,7 +97,7 @@ struct RoutinenView: View {
     }
     
     private var uncompletedRoutines: [RoutineUIData] {
-        routines.filter { !isRoutineCompleted($0) }
+        routines.filter { !isRoutineCompleted($0) }.sorted { $0.priority.sortValue < $1.priority.sortValue }
     }
     
     private var completedRoutines: [RoutineUIData] {
@@ -145,6 +146,9 @@ struct RoutinenView: View {
                                             },
                                             onEdit: {
                                                 routineToEdit = routine
+                                            },
+                                            onPriorityTap: {
+                                                togglePriority(for: routine)
                                             }
                                         )
                                     }
@@ -340,6 +344,16 @@ struct RoutinenView: View {
             customRoutinesData = encoded
         }
     }
+    
+    private func togglePriority(for routine: RoutineUIData) {
+        if let index = routines.firstIndex(where: { $0.id == routine.id }) {
+            withAnimation {
+                routines[index].priority.next()
+                saveRoutines()
+            }
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        }
+    }
 }
 
 // MARK: - Subcomponents
@@ -355,6 +369,7 @@ struct RoutineExpandableSection: View {
     var onHabitTap: ((HabitModel) -> Void)? = nil
     var onStart: (() -> Void)? = nil
     var onEdit: (() -> Void)? = nil
+    var onPriorityTap: (() -> Void)? = nil
     
     @State private var isExpanded: Bool = false
     
@@ -372,7 +387,14 @@ struct RoutineExpandableSection: View {
                 }
             ) {
                 HStack(spacing: 16) {
-                    // No icon on the left anymore
+                    if let _ = routine {
+                        Button {
+                            onPriorityTap?()
+                        } label: {
+                            Text(routine?.priority.icon ?? "")
+                                .font(.system(size: 24))
+                        }
+                    }
                     
                     Text(String(localized: String.LocalizationValue(titleKey), locale: Locale(identifier: settings.appLanguage)))
                         .font(.system(size: 18, weight: .bold, design: .rounded))

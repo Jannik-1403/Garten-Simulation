@@ -24,27 +24,6 @@ struct GoalDropDelegate: DropDelegate {
     }
 }
 
-enum GoalPriority: String, CaseIterable, Equatable, Codable {
-    case low
-    case medium
-    case high
-    
-    var displayName: String {
-        switch self {
-        case .low: return String(localized: "focus.priority.low", defaultValue: "Niedrig")
-        case .medium: return String(localized: "focus.priority.medium", defaultValue: "Mittel")
-        case .high: return String(localized: "focus.priority.high", defaultValue: "Hoch")
-        }
-    }
-    
-    var color: Color {
-        switch self {
-        case .low: return .green
-        case .medium: return .orangePrimary
-        case .high: return .red
-        }
-    }
-}
 
 struct FocusSubtask: Identifiable, Equatable, Codable {
     var id = UUID()

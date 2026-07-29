@@ -33,8 +33,12 @@ struct TodosTabView: View {
                     }
                 } else {
                     ScrollView {
-                        LazyVStack(spacing: 24) {
-                            ForEach(gardenStore.pflanzen) { pflanze in
+                        VStack(spacing: 24) {
+                            HeuteImFokusSection()
+                                .padding(.top, 16)
+                            
+                            LazyVStack(spacing: 24) {
+                                ForEach(gardenStore.pflanzen) { pflanze in
                                 if !pflanze.todos.isEmpty {
                                     VStack(alignment: .leading, spacing: 12) {
                                         Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
@@ -42,7 +46,7 @@ struct TodosTabView: View {
                                             .padding(.horizontal, 24)
                                         
                                         VStack(spacing: 12) {
-                                            ForEach(pflanze.todos.indices, id: \.self) { index in
+                                            ForEach(pflanze.todos.indices.sorted { pflanze.todos[$0].priority.sortValue < pflanze.todos[$1].priority.sortValue }, id: \.self) { index in
                                                 TodoRowView(
                                                     pflanze: pflanze,
                                                     index: index,
@@ -60,6 +64,7 @@ struct TodosTabView: View {
                             }
                         }
                         .padding(.vertical, 24)
+                        }
                     }
                 }
             }
@@ -113,6 +118,17 @@ struct TodoRowView: View {
             }
         ) {
             HStack {
+                Button {
+                    withAnimation {
+                        pflanze.todos[index].priority.next()
+                        gardenStore.savePlants()
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    }
+                } label: {
+                    Text(pflanze.todos[index].priority.icon)
+                        .font(.system(size: 24))
+                }
+                
                 Image(systemName: pflanze.todos[index].isCompleted ? "checkmark.circle.fill" : "circle")
                     .font(.system(size: 24))
                     .foregroundStyle(pflanze.todos[index].isCompleted ? Color.white : Color.gray)
@@ -253,6 +269,151 @@ struct GlobalTodoAddSheet: View {
                     .foregroundColor(.primary)
                 }
             }
+        }
+    }
+}
+
+struct HeuteImFokusSection: View {
+    @EnvironmentObject var gardenStore: GardenStore
+    @AppStorage("customRoutinesData", store: SharedUserDefaults.suite) private var customRoutinesData: Data = Data()
+    
+    @State private var routines: [RoutineUIData] = []
+    @State private var showFocusModus: Bool = false
+    
+    var highPriorityTodos: [(HabitModel, Int, FocusGoal)] {
+        var results: [(HabitModel, Int, FocusGoal)] = []
+        for plant in gardenStore.pflanzen {
+            for (index, todo) in plant.todos.enumerated() {
+                if todo.priority == .high && !todo.isCompleted {
+                    results.append((plant, index, todo))
+                }
+            }
+        }
+        return results
+    }
+    
+    var highPriorityRoutines: [RoutineUIData] {
+        routines.filter { $0.priority == .high && !isRoutineCompleted($0) }
+    }
+    
+    var hasFocusItems: Bool {
+        !highPriorityTodos.isEmpty || !highPriorityRoutines.isEmpty
+    }
+    
+    var body: some View {
+        if hasFocusItems {
+            VStack(alignment: .leading, spacing: 16) {
+                HStack {
+                    Text("Heute im Fokus")
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                    Spacer()
+                    Image(systemName: "flame.fill")
+                        .foregroundColor(.red)
+                        .font(.title2)
+                }
+                .padding(.horizontal, 24)
+                
+                VStack(spacing: 12) {
+                    ForEach(highPriorityRoutines) { routine in
+                        RoutineFocusRow(routine: routine)
+                    }
+                    
+                    ForEach(highPriorityTodos, id: \.2.id) { item in
+                        TodoRowView(
+                            pflanze: item.0,
+                            index: item.1,
+                            onEdit: {}
+                        )
+                    }
+                }
+                .padding(.horizontal, 24)
+                
+                if hasFocusItems {
+                    Button {
+                        showFocusModus = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "play.fill")
+                            Text("Fokus-Modus starten")
+                        }
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 30)
+                    }
+                    .buttonStyle(DuolingoButtonStyle(size: .large, fillWidth: true, backgroundColor: .red, shadowColor: Color.red.opacity(0.8), foregroundColor: .white))
+                    .padding(.horizontal, 24)
+                    .padding(.top, 8)
+                }
+            }
+            .padding(.vertical, 16)
+            .background(Color.primary.opacity(0.03))
+            .cornerRadius(24)
+            .padding(.horizontal, 16)
+            .onAppear(perform: loadRoutines)
+            .onChange(of: customRoutinesData) { _ in loadRoutines() }
+            .fullScreenCover(isPresented: $showFocusModus) {
+                HeuteFokusModusView(
+                    queue: highPriorityRoutines.map { .routine($0) } + highPriorityTodos.map { .todo($0.0, $0.1, $0.2) },
+                    onRoutineCompleted: { completedRoutine in
+                        if let idx = routines.firstIndex(where: { $0.id == completedRoutine.id }) {
+                            routines[idx].lastCompletedDate = Date()
+                            if let encoded = try? JSONEncoder().encode(routines) {
+                                customRoutinesData = encoded
+                            }
+                        }
+                    }
+                )
+            }
+        } else {
+            EmptyView()
+        }
+    }
+    
+    private func loadRoutines() {
+        if let decoded = try? JSONDecoder().decode([RoutineUIData].self, from: customRoutinesData) {
+            self.routines = decoded
+        }
+    }
+    
+    private func isRoutineCompleted(_ routine: RoutineUIData) -> Bool {
+        if let lastCompleted = routine.lastCompletedDate, Calendar.current.isDateInToday(lastCompleted) {
+            return true
+        }
+        return false
+    }
+}
+
+struct RoutineFocusRow: View {
+    let routine: RoutineUIData
+    
+    var body: some View {
+        Item3DButton(
+            farbe: routine.color,
+            sekundaerFarbe: routine.color.darker(),
+            groesse: 64,
+            isRectangular: true,
+            aktion: {
+                // Navigate to Routine Focus
+            }
+        ) {
+            HStack(spacing: 12) {
+                Text(routine.priority.icon)
+                    .font(.system(size: 24))
+                
+                Image(systemName: routine.icon)
+                    .font(.title2)
+                    .foregroundColor(.white)
+                
+                Text(String(localized: String.LocalizationValue(routine.titleKey)))
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.white.opacity(0.7))
+            }
+            .padding(.horizontal, 16)
         }
     }
 }
