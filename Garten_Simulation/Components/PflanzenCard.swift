@@ -277,7 +277,6 @@ struct PflanzenCard: View {
                 }
         )
         .allowsHitTesting(true)
-        .opacity(pflanze.istBewässert ? 0.7 : 1.0)
         .sheet(isPresented: $showReviveSheet) {
             RevivePlantSheet(pflanze: pflanze)
                 .presentationDetents([.medium])
@@ -405,7 +404,7 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
                 .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
                 .overlay(
                     RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                        .stroke(isCompleted ? Color.gruenPrimary.opacity(0.6) : Color.black.opacity(0.15), lineWidth: isCompleted ? 1.5 : 1.2)
+                        .stroke(Color.black.opacity(0.15), lineWidth: 1.2)
                 )
                 .offset(y: isPressed ? 0 : -depth)
         }
