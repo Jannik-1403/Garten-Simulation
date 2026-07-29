@@ -1,3 +1,7 @@
+## 2026-07-29 21:03 - Goal UI 3D Fixes
+- **Onboarding Fix**: Eigenes Ziel kann nun über ein Textfeld korrekt erstellt werden, und der Weiter-Schritt wird nach Auswahl automatisch getriggert.
+- **3D Design System**: Alle Goal-Elemente (Onboarding, Tracker, Shop-Link, Insights) nutzen nun einheitlich die Item3DButton und die neue Item3DText Komponente (ähnlich zum Glücksrad) für einen plastischeren Look.
+
 ## 2026-07-29 20:34 - Ziel-System (Goals) UI Integration
 - **Onboarding**: `GoalOnboardingView` ersetzt die alte Ziele-Auswahl und erzwingt das Setzen eines Jahresziels (Progressive Disclosure).
 - **Garten (Quest Tracker)**: `MonthlyGoalBannerView` wurde dezent über dem Garten integriert, um den Fokus des Monats zu zeigen.
