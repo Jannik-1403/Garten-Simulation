@@ -21,40 +21,52 @@ struct MonthlyGoalBannerView: View {
     var body: some View {
         VStack(spacing: 0) {
             if let goal = currentMonthGoal {
-                // Quest-Tracker Stil
-                HStack {
-                    Image(systemName: "flag.checkered")
-                        .foregroundColor(.yellow)
-                    Item3DText(text: goal.title, size: 16, color: .primary)
+                // Schlanker schwebender Banner
+                HStack(spacing: 12) {
+                    Image(systemName: "flag.fill")
+                        .foregroundColor(.blue)
+                        .font(.system(size: 14, weight: .bold))
+                    
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(String(localized: "goal.type.month", defaultValue: "Monatsziel").uppercased())
+                            .font(.system(size: 10, weight: .black, design: .rounded))
+                            .foregroundColor(.secondary)
+                            .kerning(1.2)
+                        Text(goal.title)
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(.primary)
+                            .lineLimit(1)
+                    }
                     Spacer()
-                    // Kleiner Fortschrittsbalken (z.B. basierend auf Punkten im Monat, hier vereinfacht)
-                    ProgressView(value: 0.3)
-                        .progressViewStyle(.linear)
-                        .frame(width: 60)
+                    
+                    ProgressView(value: 0.0)
+                        .progressViewStyle(.circular)
                         .tint(.blauPrimary)
+                        .scaleEffect(0.8)
                 }
                 .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(Color(.systemGray6))
-                .cornerRadius(12)
+                .padding(.vertical, 12)
+                .background(.ultraThinMaterial)
+                .cornerRadius(20)
+                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
                 .padding(.horizontal, 16)
             } else {
-                // Kein Monatsziel gesetzt
-                Item3DButton(
-                    farbe: Color.blauPrimary,
-                    sekundaerFarbe: Color.blauPrimary.darker(),
-                    groesse: 44,
-                    isRectangular: true,
-                    aktion: { showGoalInput = true }
-                ) {
+                // Kein Monatsziel gesetzt - Schlanker Button
+                Button {
+                    showGoalInput = true
+                } label: {
                     HStack {
                         Image(systemName: "plus.circle.fill")
-                        Text(String(localized: "goal.monthly.add", defaultValue: "Neues Monatsziel setzen"))
-                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.blauPrimary)
+                        Text(String(localized: "goal.monthly.add", defaultValue: "Monatsziel setzen"))
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundColor(.primary)
                     }
-                    .foregroundColor(.white)
                     .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
+                    .padding(.vertical, 10)
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(20)
+                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
                 }
                 .padding(.horizontal, 16)
             }

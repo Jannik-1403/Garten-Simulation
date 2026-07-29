@@ -5,11 +5,13 @@ import Foundation
 enum GoalType: String, Codable, CaseIterable {
     case year = "year"
     case month = "month"
+    case week = "week"
     
     var localizationKey: String {
         switch self {
         case .year: return "goal.type.year"
         case .month: return "goal.type.month"
+        case .week: return "goal.type.week"
         }
     }
 }

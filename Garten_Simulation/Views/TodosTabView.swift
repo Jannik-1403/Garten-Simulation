@@ -12,7 +12,12 @@ struct TodosTabView: View {
             ZStack {
                 Color.appHintergrund.ignoresSafeArea()
                 
-                if alleTodosEmpty() {
+                VStack(spacing: 0) {
+                    WeeklyGoalBannerView()
+                        .padding(.top, 16)
+                        .padding(.bottom, 8)
+                        
+                    if alleTodosEmpty() {
                     VStack(spacing: 16) {
                         Image(systemName: "checklist")
                             .font(.system(size: 60))
@@ -61,6 +66,8 @@ struct TodosTabView: View {
                         }
                         .padding(.vertical, 24)
                     }
+                }
+                Spacer()
                 }
             }
             .navigationTitle(String(localized: "tab.todos", defaultValue: "To-Dos"))

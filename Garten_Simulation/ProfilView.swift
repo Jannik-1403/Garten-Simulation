@@ -41,6 +41,11 @@ struct ProfilView: View {
                 ScrollViewReader { proxy in
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 24) {
+                        
+                        // --- 1-YEAR GOAL VISION ---
+                        YearGoalBannerView()
+                            .padding(.top, 16)
+                            
                         // --- AVATAR PREVIEW ---
                         Item3DButton(
                             farbe: Color.characterBackground(for: characterStore.profile.backgroundIndex),
