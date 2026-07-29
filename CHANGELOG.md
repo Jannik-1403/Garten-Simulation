@@ -311,3 +311,8 @@
 ## [2026-07-29] Health Chart Improvements
 - **Start bei 0**: Die kumulative Linie im Apple Health Diagramm (z.B. für Joggen oder Schritte) beginnt nun immer bei 0 an der y-Achse, anstatt direkt mit dem ersten Messwert hochzuspringen.
 - **Rundung der aktuellen Zeit**: Der Marker für die aktuelle Zeit über dem Diagramm-Endpunkt rundet nun immer auf volle 30-Minuten-Schritte ab (z.B. 08:30 bei 08:45), anstatt auf die volle Stunde zurückzufallen.
+
+## [2026-07-29] Bugfixes & UX Updates
+- **Timer Edit Sheet Link**: Wenn man auf einen vorhandenen Timer in der Daily Reminder Liste klickt, öffnet sich nun korrekterweise die Timer Detailansicht (`TimerEditSheetView`), wie auch beim Erstellen (+ Button).
+- **Timer Limit Restored**: Der Plus-Button für den Timer verschwindet wieder korrekt, sobald bereits ein Timer existiert, um mehrere Timer zu verhindern.
+- **Aktive Effekte endgültig entfernt**: Die Sektion "Aktive Effekte" in der Pflanzendetail-Ansicht wurde nochmal aus dem Code entfernt, da sie durch einen vorherigen Merge-Konflikt fälschlicherweise wieder aufgetaucht war.

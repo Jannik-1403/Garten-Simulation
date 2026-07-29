@@ -236,15 +236,13 @@ struct PflanzeDetailSheet: View {
                     DisclosureGroup(isExpanded: $isRemindersExpanded) {
                         VStack(spacing: 8) {
                             if let schedule = pflanze.reminderSchedule, !schedule.entries.isEmpty {
-                                ForEach(schedule.entries) { entry in
-                                    TimerRowView(
-                                        entry: entry,
-                                        onTap: { 
-                                            zeigeTimerEditSheet = true 
-                                        },
-                                        onConfirmDelete: { gardenStore.timerEintragEntfernen(pflanze: pflanze, entryID: entry.id) }
-                                    )
-                                }
+                                TimerRowView(
+                                    schedule: schedule,
+                                    onTap: { 
+                                        zeigeTimerEditSheet = true 
+                                    },
+                                    onConfirmDelete: { gardenStore.timerEntfernen(pflanze: pflanze) }
+                                )
                             } else {
                                 Text(String(localized: "plant.detail.no_reminders", defaultValue: "Keine Erinnerungen"))
                                     .font(.system(size: 14))
@@ -1211,6 +1209,9 @@ struct TimerEditSheetView: View {
                 $0.isEnabled == ref.isEnabled
             }
         }
+        .onChange(of: schedule) { _, _ in
+            autoSave()
+        }
     }
     
     private func dayIndex(for day: Int) -> Int {
@@ -1661,7 +1662,7 @@ struct NoteRowView: View {
 // MARK: - Timer Row (own State for isVisualPressed animation)
 struct TimerRowView: View {
     @EnvironmentObject var settings: SettingsStore
-    let entry: TimerEntry
+    let schedule: ReminderSchedule
     let onTap: () -> Void
     let onConfirmDelete: () -> Void
 
@@ -1690,8 +1691,13 @@ struct TimerRowView: View {
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                     
-                    Text(entry.time, style: .time)
-                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    if schedule.entries.count > 1 {
+                        Text(String(localized: "plant.detail.timer.multiple_times", defaultValue: "Verschiedene Zeiten"))
+                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    } else if let firstEntry = schedule.entries.first {
+                        Text(firstEntry.time, style: .time)
+                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    }
                 }
                 Spacer()
 
