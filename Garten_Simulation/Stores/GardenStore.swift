@@ -20,7 +20,8 @@ class GardenStore: ObservableObject {
     @Published var pflanzen: [HabitModel] = []
     
     var sichtbarePflanzen: [HabitModel] {
-        pflanzen.filter { !$0.isRoutineOnly }
+        let visible = pflanzen.filter { !$0.isRoutineOnly }
+        return visible.filter { !$0.istBewässert } + visible.filter { $0.istBewässert }
     }
     
     @Published var coins: Int = GameConstants.startCoins

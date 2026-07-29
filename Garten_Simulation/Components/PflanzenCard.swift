@@ -244,8 +244,8 @@ struct PflanzenCard: View {
         .buttonStyle(PflanzenCardHorizontalButtonStyle(
             isVisualPressed: isVisualPressed,
             isDead: pflanze.isDead,
-            longPressProgress: currentProgress,
-            progressColor: Color.gruenPrimary.opacity(0.3),
+            longPressProgress: pflanze.istBewässert ? 1.0 : currentProgress,
+            progressColor: pflanze.istBewässert ? Color.gruenPrimary : Color.gruenPrimary.opacity(0.3),
             onIsPressedChange: nil
         ))
         .highPriorityGesture(
@@ -276,7 +276,6 @@ struct PflanzenCard: View {
                 }
         )
         .allowsHitTesting(true)
-        .opacity(pflanze.istBewässert ? 0.65 : 1.0)
         .sheet(isPresented: $showReviveSheet) {
             RevivePlantSheet(pflanze: pflanze)
                 .presentationDetents([.medium])
