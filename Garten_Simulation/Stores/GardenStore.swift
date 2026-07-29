@@ -420,6 +420,9 @@ class GardenStore: ObservableObject {
 
         // Seltenheitsstufe prüfen
         pruefeSeltenheitUpgrade(pflanze: pflanze)
+        
+        // Ziel-System (Goals) updaten
+        GoalStore.shared.logHabitCompletion(habitId: pflanze.id)
 
         // Neue Benachrichtigungs-Logik
         NotificationManager.shared.rescheduleAfterWatering(habit: pflanze, allHabits: pflanzen)
