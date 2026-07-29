@@ -208,15 +208,6 @@ struct PflanzenCard: View {
                                 .font(.system(size: 12, weight: .bold, design: .rounded))
                                 .foregroundStyle(pflanze.showWarning ? .orange : .secondary)
                         }
-                    } else if pflanze.istBewässert {
-                        HStack(spacing: 4) {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: 12, weight: .bold))
-                            
-                            Text(String(localized: "habit.completed", defaultValue: "Erledigt"))
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
-                        }
-                        .foregroundStyle(Color.gruenPrimary)
                     }
                     
                     if pflanze.isDead {
@@ -226,7 +217,19 @@ struct PflanzenCard: View {
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.trailing, 16)
+                .padding(.trailing, pflanze.istBewässert ? 0 : 16)
+                
+                // MARK: Right Column - Completed Badge
+                if pflanze.istBewässert {
+                    VStack(spacing: 4) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 24, weight: .bold))
+                        Text(String(localized: "habit.completed", defaultValue: "Erledigt"))
+                            .font(.system(size: 11, weight: .bold, design: .rounded))
+                    }
+                    .foregroundStyle(Color.gruenPrimary)
+                    .padding(.trailing, 16)
+                }
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 16)
