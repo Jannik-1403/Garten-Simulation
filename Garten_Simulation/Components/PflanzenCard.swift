@@ -8,7 +8,7 @@ struct PflanzenCard: View {
 
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
-    @EnvironmentObject var healthManager: HealthManager
+    @ObservedObject var healthManager = HealthManager.shared
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
     @State private var isVisualPressed = false
     @State private var isLocked = false

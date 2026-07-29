@@ -1440,6 +1440,9 @@
         }
       }
     },
+    "%lld%%" : {
+
+    },
     "%lldx" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -329,3 +329,4 @@
 - UI: Haptisches Feedback während des Long-Press-Vorgangs hinzugefügt.
 - **Slide-to-Complete Mechanism**: The Long-Press interactions for plants and bad habits were replaced by a slide-to-complete interaction. Dragging the 3D button across the card fills the progress, and partial progress is persisted in the database.
 - **Slide-to-Complete Fixes**: Resolved scrolling conflicts by using highPriorityGesture and a minimum drag distance of 25. The 3D button no longer shifts visually during a swipe, ensuring the progress bar behaves strictly as a background fill.
+- **Health Auto-Progress & Percentage Text**: HealthKit linked metrics now auto-fill the card slider based on current progress. Added a dynamic percentage indicator at the edge of the slider that only appears while actively dragging.
