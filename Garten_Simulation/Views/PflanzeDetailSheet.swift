@@ -459,6 +459,12 @@ struct PflanzeDetailSheet: View {
                     @ViewBuilder
                     private var healthKitConfigSection: some View {
                         VStack(spacing: 12) {
+                            if pflanze.automaticHealthMetric == nil && !pflanze.intradayProgressHistory.isEmpty {
+                                IntradayProgressChartView(history: pflanze.intradayProgressHistory)
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 4)
+                            }
+                            
                             Group {
                                 if iapStore.isProUser {
                                     if let autoMetric = pflanze.automaticHealthMetric {

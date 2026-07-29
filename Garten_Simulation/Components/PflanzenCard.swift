@@ -245,6 +245,8 @@ struct PflanzenCard: View {
                     isDragging = false
                     let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
                     pflanze.sliderProgress = finalProgress
+                    pflanze.intradayProgressHistory.removeAll { !Calendar.current.isDateInToday($0.timestamp) }
+                    pflanze.intradayProgressHistory.append(DailyProgressEntry(timestamp: Date(), progress: finalProgress))
                     
                     if finalProgress >= 1.0 {
                         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()

@@ -331,3 +331,5 @@
 - **Slide-to-Complete Fixes**: Resolved scrolling conflicts by using highPriorityGesture and a minimum drag distance of 25. The 3D button no longer shifts visually during a swipe, ensuring the progress bar behaves strictly as a background fill.
 - **Health Auto-Progress & Percentage Text**: HealthKit linked metrics now auto-fill the card slider based on current progress. Added a dynamic percentage indicator at the edge of the slider that only appears while actively dragging.
 - **Fix**: Resolved a crash in PflanzenCard caused by a missing HealthManager EnvironmentObject by switching to HealthManager.shared directly.
+- **Fix**: Prozentzahl beim Bewegen des Sliders (PflanzenCard) entfernt.
+- **Fix**: Manuelles Tracking für Apple Health-basierte Pflanzen aus den Models entfernt.

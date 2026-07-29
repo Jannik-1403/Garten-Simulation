@@ -359,6 +359,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     
     // Slider Progress (0.0 to 1.0)
     @Published var sliderProgress: Double = 0.0
+    @Published var intradayProgressHistory: [DailyProgressEntry] = []
     
     // 90-Tage Challenge Joker System
     @Published var challengeJokers: Int = 0
@@ -636,6 +637,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.isDead = false
         self.lebenBereitsAbgezogen = false
         self.sliderProgress = 0.0
+        self.intradayProgressHistory = []
     }
 
     // MARK: - Codable
@@ -656,7 +658,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case isGenericFocus
         case challengeJokers
         case todos
-        case sliderProgress
+        case sliderProgress, intradayProgressHistory
     }
 
     required init(from decoder: Decoder) throws {
@@ -754,6 +756,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         isGenericFocus = try container.decodeIfPresent(Bool.self, forKey: .isGenericFocus) ?? false
         challengeJokers = try container.decodeIfPresent(Int.self, forKey: .challengeJokers) ?? 0
         sliderProgress = try container.decodeIfPresent(Double.self, forKey: .sliderProgress) ?? 0.0
+        intradayProgressHistory = try container.decodeIfPresent([DailyProgressEntry].self, forKey: .intradayProgressHistory) ?? []
     }
 
     func encode(to encoder: Encoder) throws {
@@ -809,6 +812,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(challengeJokers, forKey: .challengeJokers)
         try container.encode(todos, forKey: .todos)
         try container.encode(sliderProgress, forKey: .sliderProgress)
+        try container.encode(intradayProgressHistory, forKey: .intradayProgressHistory)
     }
 }
 

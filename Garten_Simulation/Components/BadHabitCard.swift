@@ -167,7 +167,6 @@ struct BadHabitCard: View {
                     guard isDragging else { return }
                     isDragging = false
                     let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
-                    
                     if finalProgress >= 1.0 {
                         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                         triggerAction()
