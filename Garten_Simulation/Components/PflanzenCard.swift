@@ -8,6 +8,7 @@ struct PflanzenCard: View {
 
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
+    @EnvironmentObject var healthManager: HealthManager
     @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
     @State private var isVisualPressed = false
     @State private var isLocked = false
@@ -29,7 +30,26 @@ struct PflanzenCard: View {
         max(50, cardWidth - 110)
     }
     
+    private var healthProgress: Double? {
+        guard let metric = pflanze.linkedHealthMetric, let target = pflanze.healthTarget, target > 0 else {
+            return nil
+        }
+        let current: Double
+        switch metric {
+        case .steps: current = healthManager.todaysSteps
+        case .water: current = healthManager.todaysWater
+        case .sleep: current = healthManager.todaysSleep
+        case .mindfulness: current = healthManager.todaysMindfulness
+        case .running: current = healthManager.todaysRunning
+        case .strengthTraining: current = healthManager.todaysStrengthTraining
+        }
+        return min(1.0, max(0.0, current / target))
+    }
+    
     private var currentProgress: Double {
+        if let hp = healthProgress {
+            return hp
+        }
         if isDragging {
             return min(1.0, max(0.0, dragWidth / maxDragWidth))
         } else {
@@ -190,7 +210,6 @@ struct PflanzenCard: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.trailing, 16)
-                .opacity(1.0 - (currentProgress * 1.5)) // fade out text when sliding
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 16)
@@ -209,12 +228,14 @@ struct PflanzenCard: View {
             isVisualPressed: isVisualPressed,
             isDead: pflanze.isDead,
             longPressProgress: currentProgress,
-            progressColor: Color.blauPrimary.opacity(0.3),
+            progressColor: Color.gruenPrimary.opacity(0.3),
+            isDragging: isDragging,
             onIsPressedChange: nil
         ))
         .highPriorityGesture(
             DragGesture(minimumDistance: 25)
                 .onChanged { value in
+                    guard healthProgress == nil else { return }
                     guard !pflanze.istBewässert && !pflanze.isDead else { return }
                     if !isDragging { isDragging = true }
                     let startX = pflanze.sliderProgress * maxDragWidth
@@ -329,6 +350,7 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
     let isDead: Bool
     var longPressProgress: CGFloat = 0.0
     var progressColor: Color = .blauPrimary
+    var isDragging: Bool = false
     var onIsPressedChange: ((Bool) -> Void)? = nil
     
     private let depth: CGFloat = 5
@@ -355,6 +377,13 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
                             if longPressProgress > 0 {
                                 progressColor
                                     .frame(width: proxy.size.width * longPressProgress)
+                            }
+                            if isDragging {
+                                Text("\(Int(longPressProgress * 100))%")
+                                    .font(.system(size: 24, weight: .black, design: .rounded))
+                                    .foregroundStyle(.black)
+                                    .padding(.trailing, 16)
+                                    .frame(width: proxy.size.width * longPressProgress, alignment: .trailing)
                             }
                         }
                     }

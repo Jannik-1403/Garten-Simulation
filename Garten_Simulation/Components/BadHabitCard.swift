@@ -142,7 +142,6 @@ struct BadHabitCard: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.trailing, 16)
-                .opacity(1.0 - (currentProgress * 1.5))
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 16)
@@ -155,6 +154,7 @@ struct BadHabitCard: View {
             isDead: false,
             longPressProgress: currentProgress,
             progressColor: Color.red.opacity(0.3),
+            isDragging: isDragging,
             onIsPressedChange: nil
         ))
         .highPriorityGesture(
