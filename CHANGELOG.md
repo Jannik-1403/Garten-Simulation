@@ -301,3 +301,9 @@
 - Timer Button durch eine aufklappbare "Daily Reminder" Liste ersetzt, passend zu den anderen Elementen (To-Dos, Notizen)
 - Unterstützung für mehrere tägliche Erinnerungen pro Habit (Pflanze) hinzugefügt
 - Localizable.xcstrings auf 100% Abdeckung für neue Strings überprüft
+
+## [2026-07-29] Plant Detail – UX Improvements
+- **Timer-Limit**: Plus-Button im "Daily Reminder"-Bereich wird ausgeblendet, sobald bereits ein Timer gesetzt ist (max. 1 Timer pro Pflanze)
+- **Effekte-Sektion entfernt**: Der "Aktive Effekte"-Block wird nicht mehr in der Detailansicht angezeigt
+- **Multi-Todo Sheet**: Beim Klick auf "+" im To-Dos-Bereich öffnet sich ein neues Sheet mit nummerierter Zeilen-Liste; mehrere To-Dos lassen sich auf einmal eingeben (Enter = nächste Zeile, X-Button zum Entfernen). Edit-Modus bleibt wie bisher.
+- Neuer Lokalisierungskey `plant.detail.todo.add_another` in alle 15 Sprachen übersetzt
