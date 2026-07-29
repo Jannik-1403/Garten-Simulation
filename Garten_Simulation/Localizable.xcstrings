@@ -82740,6 +82740,9 @@
         }
       }
     },
+    "Avg" : {
+
+    },
     "backup_erfolg" : {
       "comment" : "",
       "extractionState" : "manual",
@@ -107310,9 +107313,6 @@
           }
         }
       }
-    },
-    "Durchschnitt" : {
-
     },
     "effekt.erholung.beschreibung" : {
       "comment" : "",
@@ -137909,6 +137909,17 @@
         }
       }
     },
+    "health.chart.loading" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Lade Gesundheitsdaten…"
+          }
+        }
+      }
+    },
     "health.chart.subtitle.no_target" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -138099,6 +138110,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "目标"
+          }
+        }
+      }
+    },
+    "health.chart.target.set" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Ziel festlegen"
           }
         }
       }
@@ -139286,6 +139308,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "水"
+          }
+        }
+      }
+    },
+    "health.target.edit.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Ziel-Wert"
+          }
+        }
+      }
+    },
+    "health.target.edit.subtitle" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Das Ziel wird als Linie im Diagramm angezeigt."
+          }
+        }
+      }
+    },
+    "health.target.edit.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Tagesziel festlegen"
           }
         }
       }
@@ -296101,7 +296156,7 @@
         }
       }
     },
-    "S" : {
+    "s" : {
 
     },
     "Schließen" : {
@@ -296199,6 +296254,9 @@
           }
         }
       }
+    },
+    "Schritte" : {
+
     },
     "schwierigkeit.bestaetigen" : {
       "comment" : "A button label that says \"Confirm\" in English.",
@@ -384513,9 +384571,6 @@
         }
       }
     },
-    "Wert" : {
-
-    },
     "wheel_drehen" : {
       "comment" : "",
       "extractionState" : "manual",
@@ -391562,6 +391617,9 @@
           }
         }
       }
+    },
+    "Ziel" : {
+
     }
   },
   "version" : "1.1"

@@ -115,7 +115,7 @@ struct HealthChartView: View {
                         )
                         .foregroundStyle(Color(UIColor.systemGray3))
                         .lineStyle(StrokeStyle(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
-                        .interpolationMethod(.catmullRom)
+                        .interpolationMethod(.monotone)
                     }
                     if let last = hourlyAverageData.last {
                         PointMark(x: .value("Uhrzeit", last.0), y: .value("Avg", last.1))
@@ -133,7 +133,7 @@ struct HealthChartView: View {
                     )
                     .foregroundStyle(Color.orangePrimary)
                     .lineStyle(StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
-                    .interpolationMethod(.catmullRom)
+                    .interpolationMethod(.monotone)
                 }
 
                 // Oranger Endpunkt + vertikale Zeit-Linie
@@ -147,6 +147,7 @@ struct HealthChartView: View {
                         .lineStyle(StrokeStyle(lineWidth: 1, dash: [3, 4]))
                 }
             }
+            .chartYScale(domain: 0...max(10, max(target ?? 10, max(todayTotal, hourlyAverageData.map { $0.1 }.max() ?? 0) * 1.2)))
             .chartXAxis {
                 AxisMarks(values: [dayStart, rightAxisDate]) { value in
                     if let date = value.as(Date.self) {
@@ -248,10 +249,6 @@ struct HealthTargetEditSheet: View {
         NavigationStack {
             VStack(spacing: 24) {
                 VStack(spacing: 8) {
-                    Image(systemName: "flag.fill")
-                        .font(.system(size: 36))
-                        .foregroundStyle(Color.gruenPrimary)
-
                     Text(String(localized: "health.target.edit.title", defaultValue: "Tagesziel festlegen"))
                         .font(.system(size: 22, weight: .bold, design: .rounded))
 
@@ -288,23 +285,28 @@ struct HealthTargetEditSheet: View {
 
                 // Buttons
                 VStack(spacing: 12) {
-                    Button {
-                        if let val = Double(inputText.replacingOccurrences(of: ",", with: ".")
-                                                      .replacingOccurrences(of: ".", with: "")
-                                                      .trimmingCharacters(in: .whitespaces)) {
-                            target = val
-                        } else if let val = Double(inputText) {
-                            target = val
+                    Item3DButton(
+                        farbe: .gruenPrimary,
+                        sekundaerFarbe: .gruenPrimary.darker(),
+                        groesse: 55,
+                        isRectangular: true,
+                        aktion: {
+                            if let val = Double(inputText.replacingOccurrences(of: ",", with: ".")
+                                                          .replacingOccurrences(of: ".", with: "")
+                                                          .trimmingCharacters(in: .whitespaces)) {
+                                target = val
+                            } else if let val = Double(inputText) {
+                                target = val
+                            }
+                            dismiss()
                         }
-                        dismiss()
-                    } label: {
+                    ) {
                         Text(String(localized: "common.save", defaultValue: "Speichern"))
                             .font(.system(size: 17, weight: .bold, design: .rounded))
-                            .frame(maxWidth: .infinity)
-                            .padding(16)
-                            .background(Color.gruenPrimary, in: RoundedRectangle(cornerRadius: 14))
                             .foregroundStyle(.white)
                     }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 24)
 
                     Button {
                         dismiss()
