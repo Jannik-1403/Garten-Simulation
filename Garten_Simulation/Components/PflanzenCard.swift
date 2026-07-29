@@ -208,6 +208,15 @@ struct PflanzenCard: View {
                                 .font(.system(size: 12, weight: .bold, design: .rounded))
                                 .foregroundStyle(pflanze.showWarning ? .orange : .secondary)
                         }
+                    } else if pflanze.istBewässert {
+                        HStack(spacing: 4) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.system(size: 12, weight: .bold))
+                            
+                            Text(String(localized: "habit.completed", defaultValue: "Erledigt"))
+                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                        }
+                        .foregroundStyle(Color.gruenPrimary)
                     }
                     
                     if pflanze.isDead {
@@ -267,6 +276,7 @@ struct PflanzenCard: View {
                 }
         )
         .allowsHitTesting(true)
+        .opacity(pflanze.istBewässert ? 0.65 : 1.0)
         .sheet(isPresented: $showReviveSheet) {
             RevivePlantSheet(pflanze: pflanze)
                 .presentationDetents([.medium])
