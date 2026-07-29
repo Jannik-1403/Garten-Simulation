@@ -13,6 +13,8 @@ struct CustomPlantCreationView: View {
     @State private var isNegative: Bool = false
     @State private var showSeedInfo = false
     @State private var showAllIcons = false
+    @State private var showGoalLink = false
+    @State private var newCreatedPlant: HabitModel? = nil
     
     private var availableIcons: [String] {
         if isNegative {
@@ -313,16 +315,7 @@ struct CustomPlantCreationView: View {
                         // MARK: - Save Button
                         VStack(spacing: 8) {
                             Button(action: {
-                                FeedbackManager.shared.playSuccess()
-                                gardenStore.addCustomPlant(
-                                    name: plantName, 
-                                    habit: habitName, 
-                                    icon: selectedIcon, 
-                                    color: selectedColor,
-                                    category: selectedCategory,
-                                    isNegative: isNegative
-                                )
-                                dismiss()
+                                performSaveAction()
                             }) {
                                 Text(String(localized: "button.save_create"))
                             }
@@ -376,6 +369,12 @@ struct CustomPlantCreationView: View {
                 Button(String(localized: "button.ok"), role: .cancel) { }
             } message: {
                 Text(String(format: String(localized: "inventory.seeds.info.body"), gardenStore.seeds))
+            }
+
+            .sheet(isPresented: $showGoalLink, onDismiss: { dismiss() }) {
+                if let plant = newCreatedPlant {
+                    GoalLinkView(habitId: plant.id, habitName: plant.name)
+                }
             }
             .sheet(isPresented: $showAllIcons) {
                 AllIconsSheet(selectedIcon: $selectedIcon, selectedColor: uiColor(for: selectedColor), icons: allIcons, isNegative: isNegative)
@@ -435,6 +434,25 @@ struct CustomPlantCreationView: View {
         case "brown":   return .brown
         case "gray":    return .gray
         default:        return .green
+        }
+    }
+    
+    private func performSaveAction() {
+        FeedbackManager.shared.playSuccess()
+        let newPlant = gardenStore.addCustomPlant(
+            name: plantName, 
+            habit: habitName, 
+            icon: selectedIcon, 
+            color: selectedColor,
+            category: selectedCategory,
+            isNegative: isNegative
+        )
+        
+        if let newPlant = newPlant, GoalStore.shared.activeGoals.contains(where: { $0.type == .year }) {
+            newCreatedPlant = newPlant
+            showGoalLink = true
+        } else {
+            dismiss()
         }
     }
 }

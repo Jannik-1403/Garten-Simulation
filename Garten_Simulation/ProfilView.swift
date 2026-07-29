@@ -109,6 +109,11 @@ struct ProfilView: View {
                                 result: assessmentStore.financeResult,
                                 aktion: { showAssessment = true }
                             )
+                            
+                            // Ziel-Analysen Sektion
+                            GoalInsightsView()
+                                .environmentObject(gardenStore)
+                                .padding(.horizontal, 4)
                         }
                         .padding(.horizontal, 24)
                         

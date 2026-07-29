@@ -233,7 +233,13 @@ struct GartenView: View {
                     ScrollView {
                         ZStack(alignment: .top) {
                             VStack(spacing: 0) {
-                                Spacer().frame(height: headerSpacerHeight)
+                                // Monatsziel Banner
+                                MonthlyGoalBannerView()
+                                    .padding(.top, 16)
+                                    .padding(.bottom, 8)
+                                    .zIndex(10) // Über dem Grid
+                                
+                                Spacer().frame(height: headerSpacerHeight - 50) // Spacer leicht reduziert wegen Banner
 
                                 // MARK: - Pflanzen Grid
                                 if gardenStore.sichtbarePflanzen.isEmpty {
