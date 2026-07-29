@@ -43,10 +43,6 @@ struct BadHabitCard: View {
 
     var body: some View {
         Button {
-            if wasLongPressCompleted {
-                wasLongPressCompleted = false
-                return
-            }
             guard !isLocked else { return }
             isLocked = true
             isVisualPressed = true
@@ -119,7 +115,6 @@ struct BadHabitCard: View {
                         .background(Capsule().fill(Color.orangePrimary.opacity(0.12)))
                 }
                 .frame(width: 100)
-                .offset(x: currentProgress * maxDragWidth)
                 .zIndex(10)
 
                 // MARK: Middle Column - Info (Centered)
@@ -162,8 +157,8 @@ struct BadHabitCard: View {
             progressColor: Color.red.opacity(0.3),
             onIsPressedChange: nil
         ))
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 10)
+        .highPriorityGesture(
+            DragGesture(minimumDistance: 25)
                 .onChanged { value in
                     if !isDragging { isDragging = true }
                     let startX = savedSliderProgress * maxDragWidth
@@ -176,7 +171,6 @@ struct BadHabitCard: View {
                     
                     if finalProgress >= 1.0 {
                         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-                        wasLongPressCompleted = true
                         triggerAction()
                         gardenStore.badHabitSliderProgress[deko.id] = 0.0
                     } else {

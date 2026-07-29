@@ -41,10 +41,6 @@ struct PflanzenCard: View {
         ZStack {
             // MARK: - Card Content & Button
             Button {
-                if wasLongPressCompleted {
-                    wasLongPressCompleted = false
-                    return
-                }
                 guard !isLocked else { return }
                 isLocked = true
                 isVisualPressed = true
@@ -135,7 +131,6 @@ struct PflanzenCard: View {
                         )
                 }
                 .frame(width: 100)
-                .offset(x: currentProgress * maxDragWidth)
                 .zIndex(10)
                 
                 // MARK: Middle Column - Habit Info (Centered)
@@ -217,8 +212,8 @@ struct PflanzenCard: View {
             progressColor: Color.blauPrimary.opacity(0.3),
             onIsPressedChange: nil
         ))
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 10)
+        .highPriorityGesture(
+            DragGesture(minimumDistance: 25)
                 .onChanged { value in
                     guard !pflanze.istBewässert && !pflanze.isDead else { return }
                     if !isDragging { isDragging = true }
@@ -233,7 +228,6 @@ struct PflanzenCard: View {
                     
                     if finalProgress >= 1.0 {
                         UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-                        wasLongPressCompleted = true
                         triggerWatering()
                         pflanze.sliderProgress = 0.0
                     } else {
@@ -341,7 +335,7 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
     private let cornerRadius: CGFloat = 20
 
     func makeBody(configuration: Configuration) -> some View {
-        let isPressed = configuration.isPressed || isVisualPressed
+        let isPressed = (configuration.isPressed || isVisualPressed) && longPressProgress == 0
         let baseColor = Color(white: 0.7)
 
         ZStack(alignment: .bottom) {

@@ -327,3 +327,4 @@
 
 - UI: Radar Ping Animation als visuellen Hint für Pflanzen und Bad Habits hinzugefügt.
 - UI: Haptisches Feedback während des Long-Press-Vorgangs hinzugefügt.
+- **Slide-to-Complete Mechanism**: The Long-Press interactions for plants and bad habits were replaced by a slide-to-complete interaction. Dragging the 3D button across the card fills the progress, and partial progress is persisted in the database.
