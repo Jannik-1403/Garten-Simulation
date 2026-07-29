@@ -1,3 +1,9 @@
+## 2026-07-29 19:10 - Ziel-System (Goals) Modelle
+- **GoalModels.swift**: Neue Datenstrukturen (`GoalModel`, `GoalHabitLink`, `GoalLog`, `GoalTemplate`) für Jahres- und Monatsziele hinzugefügt.
+- **GoalStore.swift**: Separater Store zur sauberen Verwaltung der Ziele und Berechnung der Punkte basierend auf Habit-Gewichtungen (20 Pkt vs 5 Pkt).
+- **GardenStore Integration**: `giessen`-Funktion ruft nun den `GoalStore` auf, um Habit-Abschlüsse ins Ziel-System zu übertragen.
+- **Localizations**: Neue Übersetzungen für Goal-Typen und -Gewichtungen in allen Sprachen ergänzt.
+
 - Feat: Focus Session Timer nutzt jetzt den 'Laser Fokus' Modus (nur das aktuelle To-Do wird riesig angezeigt mit Next-Pfeil)
 - Style: Streak-Icon in der Detailansicht verwendet nun die Originalfarben und einen transparenten Hintergrund
 
