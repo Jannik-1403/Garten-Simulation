@@ -294,10 +294,10 @@ struct MainAppTabView: View {
                     Label(String(localized: "tab.routines"), systemImage: "list.bullet.clipboard.fill")
                 }
 
-            HeuteTabView()
+            TodosTabView()
                 .tag(5)
                 .tabItem {
-                    Label(String(localized: "tab.heute", defaultValue: "Heute"), systemImage: "checklist")
+                    Label(String(localized: "tab.todos", defaultValue: "To-Dos"), systemImage: "checklist")
                 }
 
             UnifiedShopView()

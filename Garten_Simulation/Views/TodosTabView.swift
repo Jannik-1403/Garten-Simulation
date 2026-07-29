@@ -33,9 +33,8 @@ struct TodosTabView: View {
                     }
                 } else {
                     ScrollView {
-                            
-                            LazyVStack(spacing: 24) {
-                                ForEach(gardenStore.pflanzen) { pflanze in
+                        LazyVStack(spacing: 24) {
+                            ForEach(gardenStore.pflanzen) { pflanze in
                                 if !pflanze.todos.isEmpty {
                                     VStack(alignment: .leading, spacing: 12) {
                                         Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
@@ -269,4 +268,5 @@ struct GlobalTodoAddSheet: View {
         }
     }
 }
+
 

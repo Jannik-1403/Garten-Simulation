@@ -346,3 +346,4 @@
 - Hinzufügung der 'Heute im Fokus' Ansicht für priorisierte Aufgaben.
 - Automatischer Fokus-Modus für Aufgaben mit höchster Priorität hinzugefügt.
 - Prioritäts-Icons von Emojis auf farbige Ausrufezeichen (!, !!, !!!) geändert.
+- 'Heute'-Ansicht hinzugefügt: Kombiniert To-Dos und Routinen, sortiert nach Priorität, mit neuem einheitlichem Karten-Design.
