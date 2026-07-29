@@ -345,3 +345,4 @@
 - Implementiertes Prioritätssystem (Muss heute, Sollte bald, Kann warten) für Todos und Routinen.
 - Hinzufügung der 'Heute im Fokus' Ansicht für priorisierte Aufgaben.
 - Automatischer Fokus-Modus für Aufgaben mit höchster Priorität hinzugefügt.
+- Prioritäts-Icons von Emojis auf farbige Ausrufezeichen (!, !!, !!!) geändert.
