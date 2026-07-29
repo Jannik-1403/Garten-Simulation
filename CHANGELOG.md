@@ -1,3 +1,9 @@
+## 2026-07-29 20:34 - Ziel-System (Goals) UI Integration
+- **Onboarding**: `GoalOnboardingView` ersetzt die alte Ziele-Auswahl und erzwingt das Setzen eines Jahresziels (Progressive Disclosure).
+- **Garten (Quest Tracker)**: `MonthlyGoalBannerView` wurde dezent über dem Garten integriert, um den Fokus des Monats zu zeigen.
+- **Profil**: `GoalInsightsView` zeigt jetzt eine Rangliste der Gewohnheiten, die im Monat am meisten Punkte gebracht haben.
+- **Shop**: Nach der Erstellung einer Pflanze fragt `GoalLinkView` nun nach der Gewichtung der Gewohnheit für das Jahresziel (20 Pkt vs 5 Pkt vs 0 Pkt).
+
 ## 2026-07-29 19:10 - Ziel-System (Goals) Modelle
 - **GoalModels.swift**: Neue Datenstrukturen (`GoalModel`, `GoalHabitLink`, `GoalLog`, `GoalTemplate`) für Jahres- und Monatsziele hinzugefügt.
 - **GoalStore.swift**: Separater Store zur sauberen Verwaltung der Ziele und Berechnung der Punkte basierend auf Habit-Gewichtungen (20 Pkt vs 5 Pkt).
