@@ -35,11 +35,8 @@ struct HealthChartView: View {
     private var avgNow: Double     { hourlyAverageData.last?.1 ?? 0 }
     private var dayStart: Date     { Calendar.current.startOfDay(for: Date()) }
 
-    private var rightAxisDate: Date {
-        let cal = Calendar.current
-        let now = Date()
-        return cal.date(bySettingHour: cal.component(.hour, from: now),
-                        minute: 0, second: 0, of: now) ?? now
+    private var lastDataDate: Date {
+        cumulativeData().last?.0 ?? Date()
     }
 
     // MARK: Body
@@ -147,9 +144,10 @@ struct HealthChartView: View {
                         .lineStyle(StrokeStyle(lineWidth: 1, dash: [3, 4]))
                 }
             }
+            .chartXScale(domain: dayStart...max(dayStart.addingTimeInterval(3600), lastDataDate))
             .chartYScale(domain: 0...max(10, max(target ?? 10, max(todayTotal, hourlyAverageData.map { $0.1 }.max() ?? 0) * 1.2)))
             .chartXAxis {
-                AxisMarks(values: [dayStart, rightAxisDate]) { value in
+                AxisMarks(values: [dayStart, lastDataDate]) { value in
                     if let date = value.as(Date.self) {
                         AxisValueLabel {
                             Text(timeLabel(for: date))
