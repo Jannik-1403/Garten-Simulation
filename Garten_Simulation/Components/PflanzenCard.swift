@@ -50,17 +50,19 @@ struct PflanzenCard: View {
         return min(1.0, max(0.0, current / target))
     }
     
-    private var currentProgress: Double {
-        if isDragging {
-            return min(1.0, max(0.0, dragWidth / maxDragWidth))
-        }
-        
+    private var baseProgress: Double {
         let hasManualOverride = pflanze.intradayProgressHistory.contains { Calendar.current.isDateInToday($0.timestamp) }
         if let hp = healthProgress, !hasManualOverride {
             return hp
         }
-        
         return pflanze.sliderProgress
+    }
+    
+    private var currentProgress: Double {
+        if isDragging {
+            return min(1.0, max(0.0, dragWidth / maxDragWidth))
+        }
+        return baseProgress
     }
     
     var body: some View {
@@ -243,12 +245,7 @@ struct PflanzenCard: View {
                     guard !pflanze.istBewässert && !pflanze.isDead else { return }
                     if !isDragging { isDragging = true }
                     
-                    let startX: CGFloat
-                    if pflanze.linkedHealthMetric != nil {
-                        startX = (healthProgress ?? 0) * maxDragWidth
-                    } else {
-                        startX = pflanze.sliderProgress * maxDragWidth
-                    }
+                    let startX = baseProgress * maxDragWidth
                     dragWidth = startX + value.translation.width
                 }
                 .onEnded { value in
