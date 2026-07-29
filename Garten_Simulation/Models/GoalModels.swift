@@ -17,11 +17,13 @@ enum GoalType: String, Codable, CaseIterable {
 enum GoalWeight: Int, Codable, CaseIterable {
     case massive = 20
     case bit = 5
+    case none = 0
     
     var localizationKey: String {
         switch self {
         case .massive: return "goal.weight.massive"
         case .bit: return "goal.weight.bit"
+        case .none: return "goal.link.none"
         }
     }
 }

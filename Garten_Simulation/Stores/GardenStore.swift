@@ -493,7 +493,8 @@ class GardenStore: ObservableObject {
     }
 
     // MARK: Pflanze hinzufügen
-    func pflanzHinzufuegen(shopItem: ShopDetailPayload, isFree: Bool = false) {
+    @discardableResult
+    func pflanzHinzufuegen(shopItem: ShopDetailPayload, isFree: Bool = false) -> HabitModel {
         // Sicherstellen, dass wir den echten Pflanzennamen aus der DB nehmen (nicht den Payload-Titel, der evtl. die Gewohnheit ist)
         let dbPlant = GameDatabase.allPlants.first(where: { $0.id == shopItem.id })
         let dbName = dbPlant?.name ?? shopItem.titleKey
@@ -519,6 +520,7 @@ class GardenStore: ObservableObject {
             NotificationManager.shared.scheduleAll(for: pflanzen)
             updateWidgetData() // Update Home-Screen Widget
         }
+        return neue
     }
 
     func pflanzeHinzufuegen(id: String) {

@@ -14,6 +14,7 @@ struct ShopItemDetailView: View {
     @State private var showMysticConfirmation = false
     @State private var showPaywallSheet = false
     @State private var showCoinsShopSheet = false
+    @State private var selectedGoalWeight: GoalWeight? = nil
     
 
 
@@ -105,6 +106,32 @@ struct ShopItemDetailView: View {
                                 Text(NSLocalizedString(usage, comment: ""))
                                     .font(.system(size: 15))
                                     .lineSpacing(4)
+                            }
+                            Divider()
+                        }
+
+                        if payload.itemType == .plant && payload.id != "plant.seeds" {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(String(localized: "goal.link.title", defaultValue: "Ziel-Beitrag"))
+                                    .font(.system(size: 14, weight: .bold))
+                                    .foregroundStyle(.secondary)
+                                    .kerning(1.2)
+                                
+                                HStack(spacing: 8) {
+                                    ForEach([GoalWeight.massive, .bit, .none], id: \.self) { weight in
+                                        Button {
+                                            selectedGoalWeight = weight
+                                        } label: {
+                                            Text("\(weight.rawValue) Pkt")
+                                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                .foregroundColor(selectedGoalWeight == weight ? .white : .primary)
+                                                .frame(maxWidth: .infinity)
+                                                .padding(.vertical, 12)
+                                                .background(selectedGoalWeight == weight ? Color.blauPrimary : Color(UIColor.systemGray5))
+                                                .cornerRadius(12)
+                                        }
+                                    }
+                                }
                             }
                             Divider()
                         }
@@ -218,7 +245,7 @@ struct ShopItemDetailView: View {
 
                             } else {
                                 // Zustand 3: Kaufen möglich — Animation DANN Aktion
-                                let isLocked = payload.itemType == .plant && payload.id != "plant.seeds"
+                                let isLocked = payload.itemType == .plant && payload.id != "plant.seeds" && selectedGoalWeight == nil
 
                                 DuolingoKaufButton(
                                     color: isLocked ? Color.gray : payload.color
@@ -308,10 +335,11 @@ struct ShopItemDetailView: View {
         } else if payload.itemType == .plant {
             FeedbackManager.shared.playSuccess()
             shopStore.buy(id: payload.id, price: payload.price)
-            gardenStore.pflanzHinzufuegen(shopItem: payload)
+            let newPlant = gardenStore.pflanzHinzufuegen(shopItem: payload)
             
-
-
+            if let weight = selectedGoalWeight, let goal = GoalStore.shared.activeGoals.first(where: { $0.type == .year }) {
+                GoalStore.shared.linkHabitToGoal(habitId: newPlant.id, goalId: goal.id, weight: weight)
+            }
             withAnimation(.spring(response: 0.4, dampingFraction: 0.72)) {
                 showSuccess = true
             }

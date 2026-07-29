@@ -363,3 +363,4 @@
 - Automatischer Fokus-Modus für Aufgaben mit höchster Priorität hinzugefügt.
 - Prioritäts-Icons von Emojis auf farbige Ausrufezeichen (!, !!, !!!) geändert.
 - 'Heute'-Ansicht hinzugefügt: Kombiniert To-Dos und Routinen, sortiert nach Priorität, mit neuem einheitlichem Karten-Design.
+- **Shop & Pflanzenerstellung**: Das "Popper"-Popup zur Auswahl des Ziels wurde entfernt. Die Auswahl (20, 5, 0 Punkte) findet nun nahtlos direkt im Shop (unter der Pflanzen-Beschreibung) oder direkt im Erstellungs-Screen (über dem Erstellen-Button) statt.

@@ -13,8 +13,8 @@ struct CustomPlantCreationView: View {
     @State private var isNegative: Bool = false
     @State private var showSeedInfo = false
     @State private var showAllIcons = false
-    @State private var showGoalLink = false
     @State private var newCreatedPlant: HabitModel? = nil
+    @State private var selectedGoalWeight: GoalWeight? = nil
     
     private var availableIcons: [String] {
         if isNegative {
@@ -38,9 +38,13 @@ struct CustomPlantCreationView: View {
     ]
     
     var isFormValid: Bool {
-        !plantName.trimmingCharacters(in: .whitespaces).isEmpty &&
-        !habitName.trimmingCharacters(in: .whitespaces).isEmpty &&
-        (isNegative || gardenStore.seeds >= 10)
+        let hasYearGoal = GoalStore.shared.activeGoals.contains(where: { $0.type == .year })
+        let isGoalWeightValid = isNegative ? true : (!hasYearGoal || selectedGoalWeight != nil)
+        
+        return !plantName.trimmingCharacters(in: .whitespaces).isEmpty &&
+               !habitName.trimmingCharacters(in: .whitespaces).isEmpty &&
+               (isNegative || gardenStore.seeds >= 10) &&
+               isGoalWeightValid
     }
     
     var body: some View {
@@ -312,6 +316,32 @@ struct CustomPlantCreationView: View {
                         }
                         .padding(.horizontal, 24)
                         
+                        if !isNegative && GoalStore.shared.activeGoals.contains(where: { $0.type == .year }) {
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(String(localized: "goal.link.title", defaultValue: "Ziel-Beitrag"))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.primary)
+                                
+                                HStack(spacing: 8) {
+                                    ForEach([GoalWeight.massive, .bit, .none], id: \.self) { weight in
+                                        Button {
+                                            selectedGoalWeight = weight
+                                        } label: {
+                                            Text("\(weight.rawValue) Pkt")
+                                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                .foregroundColor(selectedGoalWeight == weight ? .white : .primary)
+                                                .frame(maxWidth: .infinity)
+                                                .padding(.vertical, 12)
+                                                .background(selectedGoalWeight == weight ? uiColor(for: selectedColor) : Color(UIColor.systemGray5))
+                                                .cornerRadius(12)
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 24)
+                            .padding(.top, 8)
+                        }
+                        
                         // MARK: - Save Button
                         VStack(spacing: 8) {
                             Button(action: {
@@ -369,12 +399,6 @@ struct CustomPlantCreationView: View {
                 Button(String(localized: "button.ok"), role: .cancel) { }
             } message: {
                 Text(String(format: String(localized: "inventory.seeds.info.body"), gardenStore.seeds))
-            }
-
-            .sheet(isPresented: $showGoalLink, onDismiss: { dismiss() }) {
-                if let plant = newCreatedPlant {
-                    GoalLinkView(habitId: plant.id, habitName: plant.name)
-                }
             }
             .sheet(isPresented: $showAllIcons) {
                 AllIconsSheet(selectedIcon: $selectedIcon, selectedColor: uiColor(for: selectedColor), icons: allIcons, isNegative: isNegative)
@@ -448,12 +472,11 @@ struct CustomPlantCreationView: View {
             isNegative: isNegative
         )
         
-        if let newPlant = newPlant, GoalStore.shared.activeGoals.contains(where: { $0.type == .year }) {
-            newCreatedPlant = newPlant
-            showGoalLink = true
-        } else {
-            dismiss()
+        if let newPlant = newPlant, !isNegative, let weight = selectedGoalWeight, let goal = GoalStore.shared.activeGoals.first(where: { $0.type == .year }) {
+            GoalStore.shared.linkHabitToGoal(habitId: newPlant.id, goalId: goal.id, weight: weight)
         }
+        
+        dismiss()
     }
 }
 
