@@ -364,3 +364,7 @@
 - Prioritäts-Icons von Emojis auf farbige Ausrufezeichen (!, !!, !!!) geändert.
 - 'Heute'-Ansicht hinzugefügt: Kombiniert To-Dos und Routinen, sortiert nach Priorität, mit neuem einheitlichem Karten-Design.
 - **Shop & Pflanzenerstellung**: Das "Popper"-Popup zur Auswahl des Ziels wurde entfernt. Die Auswahl (20, 5, 0 Punkte) findet nun nahtlos direkt im Shop (unter der Pflanzen-Beschreibung) oder direkt im Erstellungs-Screen (über dem Erstellen-Button) statt.
+- **UI-Architektur**: Neue, saubere Trennung der Zeithorizonte (Vision, Taktik, Operatives). 
+  - 1-Jahresziel als dominante Vision im Profil integriert.
+  - 1-Monatsziel als schlanker schwebender Banner auf der Garten-Seite umgestaltet.
+  - 1-Wochenziel als Card mit Eingabefeld über der To-do-Liste hinzugefügt.
