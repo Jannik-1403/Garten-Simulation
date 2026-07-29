@@ -25,9 +25,7 @@ struct MonthlyGoalBannerView: View {
                 HStack {
                     Image(systemName: "flag.checkered")
                         .foregroundColor(.yellow)
-                    Text(goal.title)
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.primary)
+                    Item3DText(text: goal.title, size: 16, color: .primary)
                     Spacer()
                     // Zeige z.B. Fortschritt an (Optional)
                     Text("In Progress")
@@ -41,7 +39,13 @@ struct MonthlyGoalBannerView: View {
                 .padding(.horizontal, 16)
             } else {
                 // Kein Monatsziel gesetzt
-                Button(action: { showGoalInput = true }) {
+                Item3DButton(
+                    farbe: Color.blauPrimary,
+                    sekundaerFarbe: Color.blauPrimary.darker(),
+                    groesse: 44,
+                    isRectangular: true,
+                    aktion: { showGoalInput = true }
+                ) {
                     HStack {
                         Image(systemName: "plus.circle.fill")
                         Text(String(localized: "goal.monthly.add", defaultValue: "Neues Monatsziel setzen"))
@@ -50,8 +54,6 @@ struct MonthlyGoalBannerView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
-                    .background(Color.blue)
-                    .cornerRadius(12)
                 }
                 .padding(.horizontal, 16)
             }

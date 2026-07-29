@@ -18,8 +18,7 @@ struct GoalInsightsView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(String(localized: "goal.insights.title", defaultValue: "Ziel-Analysen"))
-                .font(.system(size: 20, weight: .bold, design: .rounded))
+            Item3DText(text: String(localized: "goal.insights.title", defaultValue: "Ziel-Analysen"), size: 28, color: .blauPrimary)
             
             if let goal = currentMonthGoal {
                 let pointsDict = goalStore.calculatePointsForCurrentMonth(goalId: goal.id)

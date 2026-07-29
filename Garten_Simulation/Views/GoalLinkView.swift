@@ -13,8 +13,7 @@ struct GoalLinkView: View {
     
     var body: some View {
         VStack(spacing: 24) {
-            Text(String(localized: "goal.link.title", defaultValue: "Ziel-Beitrag"))
-                .font(.title2.bold())
+            Item3DText(text: String(localized: "goal.link.title", defaultValue: "Ziel-Beitrag"), size: 28, color: .blauPrimary)
                 .padding(.top, 20)
             
             if let goal = yearGoal {
@@ -34,25 +33,41 @@ struct GoalLinkView: View {
                         dismiss()
                     }
                     
-                    Button(action: { dismiss() }) {
+                    Item3DButton(
+                        farbe: Color(UIColor.systemGray5),
+                        sekundaerFarbe: Color(UIColor.systemGray4),
+                        groesse: 44,
+                        isRectangular: true,
+                        aktion: { dismiss() }
+                    ) {
                         HStack {
                             Image(systemName: "xmark.circle.fill")
                             Text(String(localized: "goal.link.none", defaultValue: "Gar nicht (0 Pkt)"))
                         }
-                        .font(.headline)
-                        .foregroundColor(.secondary)
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundColor(.primary)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(12)
                     }
                 }
                 .padding(.horizontal, 24)
             } else {
                 Text(String(localized: "goal.link.no_goal", defaultValue: "Kein Jahresziel gesetzt."))
                     .foregroundColor(.secondary)
-                Button("OK") { dismiss() }
-                    .buttonStyle(.borderedProminent)
+                Item3DButton(
+                    farbe: Color.blauPrimary,
+                    sekundaerFarbe: Color.blauPrimary.darker(),
+                    groesse: 44,
+                    isRectangular: true,
+                    aktion: { dismiss() }
+                ) {
+                    Text("OK")
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                }
+                .padding(.horizontal, 24)
             }
             Spacer()
         }
@@ -66,17 +81,21 @@ struct GoalWeightButton: View {
     let action: () -> Void
     
     var body: some View {
-        Button(action: action) {
+        Item3DButton(
+            farbe: color,
+            sekundaerFarbe: color.darker(),
+            groesse: 44,
+            isRectangular: true,
+            aktion: action
+        ) {
             HStack {
                 Image(systemName: icon)
                 Text(NSLocalizedString(weight.localizationKey, comment: ""))
             }
-            .font(.headline)
+            .font(.system(size: 16, weight: .bold, design: .rounded))
             .foregroundColor(.white)
             .padding()
             .frame(maxWidth: .infinity)
-            .background(color)
-            .cornerRadius(12)
         }
     }
 }
