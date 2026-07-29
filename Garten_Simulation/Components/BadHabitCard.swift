@@ -154,7 +154,6 @@ struct BadHabitCard: View {
             isDead: false,
             longPressProgress: currentProgress,
             progressColor: Color.red.opacity(0.3),
-            isDragging: isDragging,
             onIsPressedChange: nil
         ))
         .highPriorityGesture(

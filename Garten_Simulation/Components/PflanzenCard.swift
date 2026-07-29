@@ -229,7 +229,6 @@ struct PflanzenCard: View {
             isDead: pflanze.isDead,
             longPressProgress: currentProgress,
             progressColor: Color.gruenPrimary.opacity(0.3),
-            isDragging: isDragging,
             onIsPressedChange: nil
         ))
         .highPriorityGesture(
@@ -350,7 +349,6 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
     let isDead: Bool
     var longPressProgress: CGFloat = 0.0
     var progressColor: Color = .blauPrimary
-    var isDragging: Bool = false
     var onIsPressedChange: ((Bool) -> Void)? = nil
     
     private let depth: CGFloat = 5
@@ -377,13 +375,6 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
                             if longPressProgress > 0 {
                                 progressColor
                                     .frame(width: proxy.size.width * longPressProgress)
-                            }
-                            if isDragging {
-                                Text("\(Int(longPressProgress * 100))%")
-                                    .font(.system(size: 24, weight: .black, design: .rounded))
-                                    .foregroundStyle(.black)
-                                    .padding(.trailing, 16)
-                                    .frame(width: proxy.size.width * longPressProgress, alignment: .trailing)
                             }
                         }
                     }

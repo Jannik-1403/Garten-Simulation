@@ -91,7 +91,7 @@ struct PflanzenSaveData: Codable {
     let pfadCheckedDates: [Date]?
     let linkedHealthMetric: HealthMetricType?
     let healthTarget: Double?
-    let allowManualTrackingForHealth: Bool?
+
     let customTrackerName: String?
     let customTrackerTarget: Double?
     let customTrackerProgress: Double?
@@ -207,7 +207,6 @@ final class DataExportImportManager: ObservableObject {
                     pfadCheckedDates: habit.pfadCheckedDates,
                     linkedHealthMetric: habit.linkedHealthMetric,
                     healthTarget: habit.healthTarget,
-                    allowManualTrackingForHealth: habit.allowManualTrackingForHealth,
                     customTrackerName: habit.customTrackerName,
                     customTrackerTarget: habit.customTrackerTarget,
                     customTrackerProgress: habit.customTrackerProgress,
@@ -449,7 +448,7 @@ final class DataExportImportManager: ObservableObject {
             if let pfadCheckedDates = data.pfadCheckedDates { habit.pfadCheckedDates = pfadCheckedDates }
             if let linkedHealthMetric = data.linkedHealthMetric { habit.linkedHealthMetric = linkedHealthMetric }
             if let healthTarget = data.healthTarget { habit.healthTarget = healthTarget }
-            if let allowManualTrackingForHealth = data.allowManualTrackingForHealth { habit.allowManualTrackingForHealth = allowManualTrackingForHealth }
+
             if let customTrackerName = data.customTrackerName { habit.customTrackerName = customTrackerName }
             if let customTrackerTarget = data.customTrackerTarget { habit.customTrackerTarget = customTrackerTarget }
             if let customTrackerProgress = data.customTrackerProgress { habit.customTrackerProgress = customTrackerProgress }
