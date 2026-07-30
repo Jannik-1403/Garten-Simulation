@@ -108,13 +108,15 @@ struct PflanzeDetailSheet: View {
                     // To-Dos Accordion
                     DisclosureGroup(isExpanded: $isTodosExpanded) {
                         VStack(spacing: 12) {
-                            ForEach(pflanze.todos.indices, id: \.self) { index in
+                            ForEach(pflanze.todos.sorted { $0.priority.sortValue < $1.priority.sortValue }, id: \.id) { todo in
                                 TodoRowView(
                                     pflanze: pflanze,
-                                    index: index,
+                                    todoId: todo.id,
                                     onEdit: {
-                                        todoToEditIndex = index
-                                        zeigeTodoSheet = true
+                                        if let index = pflanze.todos.firstIndex(where: { $0.id == todo.id }) {
+                                            todoToEditIndex = index
+                                            zeigeTodoSheet = true
+                                        }
                                     }
                                 )
                             }
@@ -585,22 +587,12 @@ struct TodoSheetView: View {
             }
             .padding(.top, 20)
 
-            // Text Editor
-            TextEditor(text: $todoText)
+            // Text Input
+            TextField(String(localized: "plant.detail.todo.placeholder", defaultValue: "To-Do eingeben..."), text: $todoText, axis: .vertical)
                 .font(.system(size: 16, weight: .medium, design: .rounded))
-                .scrollContentBackground(.hidden)
-                .padding(16)
-                .frame(minHeight: 140)
+                .frame(minHeight: 140, alignment: .topLeading)
+                .contentShape(Rectangle())
                 .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
-                .overlay(alignment: .topLeading) {
-                    if todoText.isEmpty {
-                        Text(String(localized: "plant.detail.todo.placeholder", defaultValue: "To-Do eingeben..."))
-                            .font(.system(size: 16, weight: .medium, design: .rounded))
-                            .foregroundStyle(.tertiary)
-                            .padding(20)
-                            .allowsHitTesting(false)
-                    }
-                }
 
             Spacer()
 

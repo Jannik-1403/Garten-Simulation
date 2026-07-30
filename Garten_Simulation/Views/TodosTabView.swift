@@ -50,17 +50,17 @@ struct TodosTabView: View {
                                         
                                         VStack(spacing: 12) {
                                             ForEach(pflanze.todos.sorted { $0.priority.sortValue < $1.priority.sortValue }, id: \.id) { todo in
-                                                if let index = pflanze.todos.firstIndex(where: { $0.id == todo.id }) {
-                                                    TodoRowView(
-                                                        pflanze: pflanze,
-                                                        index: index,
-                                                        onEdit: {
+                                                TodoRowView(
+                                                    pflanze: pflanze,
+                                                    todoId: todo.id,
+                                                    onEdit: {
+                                                        if let index = pflanze.todos.firstIndex(where: { $0.id == todo.id }) {
                                                             selectedPlantForTodo = pflanze
                                                             todoToEditIndex = index
                                                             showingAddTodoSheet = true
                                                         }
-                                                    )
-                                                }
+                                                    }
+                                                )
                                             }
                                         }
                                         .padding(.horizontal, 24)
@@ -105,65 +105,70 @@ struct TodosTabView: View {
 
 struct TodoRowView: View {
     @ObservedObject var pflanze: HabitModel
-    let index: Int
+    let todoId: UUID
     let onEdit: () -> Void
     @EnvironmentObject var gardenStore: GardenStore
     
     var body: some View {
-        Item3DButton(
-            farbe: pflanze.todos[index].isCompleted ? .gruenPrimary : Color.white,
-            sekundaerFarbe: pflanze.todos[index].isCompleted ? .gruenPrimary.darker() : Color(white: 0.9),
-            groesse: 64,
-            isRectangular: true,
-            aktion: {
-                withAnimation {
-                    pflanze.todos[index].isCompleted.toggle()
-                    GoalStore.shared.logTodoCompletion(habitId: pflanze.id, priority: pflanze.todos[index].priority, isCompleted: pflanze.todos[index].isCompleted)
-                    gardenStore.savePlants()
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                }
-            }
-        ) {
-            HStack {
-                Button {
+        if let index = pflanze.todos.firstIndex(where: { $0.id == todoId }) {
+            Item3DButton(
+                farbe: pflanze.todos[index].isCompleted ? .gruenPrimary : Color.white,
+                sekundaerFarbe: pflanze.todos[index].isCompleted ? .gruenPrimary.darker() : Color(white: 0.9),
+                groesse: 64,
+                isRectangular: true,
+                aktion: {
                     withAnimation {
-                        pflanze.todos[index].priority.next()
+                        pflanze.todos[index].isCompleted.toggle()
+                        GoalStore.shared.logTodoCompletion(habitId: pflanze.id, priority: pflanze.todos[index].priority, isCompleted: pflanze.todos[index].isCompleted)
                         gardenStore.savePlants()
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     }
+                }
+            ) {
+                HStack {
+                    Button {
+                        withAnimation {
+                            pflanze.todos[index].priority.next()
+                            gardenStore.savePlants()
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        }
+                    } label: {
+                        Text(pflanze.todos[index].priority.icon)
+                            .font(.system(size: 24, weight: .black, design: .rounded))
+                            .foregroundColor(pflanze.todos[index].priority.color)
+                    }
+                    
+                    Image(systemName: pflanze.todos[index].isCompleted ? "checkmark.circle.fill" : "circle")
+                        .font(.system(size: 24))
+                        .foregroundStyle(pflanze.todos[index].isCompleted ? Color.white : Color.gray)
+                    
+                    Text(pflanze.todos[index].text)
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .strikethrough(pflanze.todos[index].isCompleted)
+                        .foregroundColor(pflanze.todos[index].isCompleted ? Color.white.opacity(0.8) : .primary)
+                    
+                    Spacer()
+                }
+                .padding(.horizontal, 8)
+            }
+            .contextMenu {
+                Button {
+                    onEdit()
                 } label: {
-                    Text(pflanze.todos[index].priority.icon)
-                        .font(.system(size: 24, weight: .black, design: .rounded))
-                        .foregroundColor(pflanze.todos[index].priority.color)
+                    Label(String(localized: "common.edit", defaultValue: "Bearbeiten"), systemImage: "pencil")
                 }
                 
-                Image(systemName: pflanze.todos[index].isCompleted ? "checkmark.circle.fill" : "circle")
-                    .font(.system(size: 24))
-                    .foregroundStyle(pflanze.todos[index].isCompleted ? Color.white : Color.gray)
-                
-                Text(pflanze.todos[index].text)
-                    .font(.system(size: 16, weight: .medium, design: .rounded))
-                    .strikethrough(pflanze.todos[index].isCompleted)
-                    .foregroundColor(pflanze.todos[index].isCompleted ? Color.white.opacity(0.8) : .primary)
-                
-                Spacer()
-            }
-            .padding(.horizontal, 8)
-        }
-        .contextMenu {
-            Button {
-                onEdit()
-            } label: {
-                Label(String(localized: "common.edit", defaultValue: "Bearbeiten"), systemImage: "pencil")
-            }
-            
-            Button(role: .destructive) {
-                withAnimation {
-                    pflanze.todos.remove(at: index)
-                    gardenStore.savePlants()
+                Button(role: .destructive) {
+                    withAnimation {
+                        if let idx = pflanze.todos.firstIndex(where: { $0.id == todoId }) {
+                            pflanze.todos.remove(at: idx)
+                            gardenStore.savePlants()
+                            gardenStore.objectWillChange.send()
+                        }
+                    }
+                } label: {
+                    Label(String(localized: "button.delete", defaultValue: "Löschen"), systemImage: "trash")
                 }
-            } label: {
-                Label(String(localized: "button.delete", defaultValue: "Löschen"), systemImage: "trash")
             }
         }
     }
@@ -189,23 +194,31 @@ struct GlobalTodoAddSheet: View {
                             ForEach(gardenStore.pflanzen) { pflanze in
                                 VStack(spacing: 8) {
                                     Item3DButton(
-                                        farbe: selectedPlant?.id == pflanze.id ? Color.gruenPrimary : Color.white,
-                                        sekundaerFarbe: selectedPlant?.id == pflanze.id ? Color.gruenPrimary.darker() : Color(UIColor.systemGray5),
+                                        farbe: selectedPlant?.id == pflanze.id ? Color.gruenPrimary : Color(hex: pflanze.symbolColor),
+                                        sekundaerFarbe: selectedPlant?.id == pflanze.id ? Color.gruenPrimary.darker() : Color(hex: pflanze.symbolColor).darker(),
                                         groesse: 64,
                                         isRectangular: false,
                                         aktion: {
                                             selectedPlant = pflanze
                                         }
                                     ) {
-                                        Image(systemName: pflanze.symbolName)
-                                            .font(.system(size: 26))
-                                            .foregroundColor(selectedPlant?.id == pflanze.id ? .white : Color(hex: pflanze.symbolColor))
+                                        if pflanze.plantImageName != pflanze.symbolName {
+                                            Image(pflanze.plantImageName)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 40, height: 40)
+                                        } else {
+                                            Image(systemName: pflanze.symbolName)
+                                                .font(.system(size: 26))
+                                                .foregroundColor(.white)
+                                        }
                                     }
                                     
                                     Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
                                         .font(.system(size: 10, weight: .bold, design: .rounded))
                                         .foregroundColor(.primary)
-                                        .lineLimit(1)
+                                        .lineLimit(2)
+                                        .multilineTextAlignment(.center)
                                         .frame(width: 70)
                                 }
                             }
@@ -215,22 +228,12 @@ struct GlobalTodoAddSheet: View {
                     }
                 }
                 
-                // Text Editor
-                TextEditor(text: $todoText)
+                // Text Input
+                TextField(String(localized: "plant.detail.todo.placeholder", defaultValue: "To-Do eingeben..."), text: $todoText, axis: .vertical)
                     .font(.system(size: 16, weight: .medium, design: .rounded))
-                    .scrollContentBackground(.hidden)
-                    .padding(16)
-                    .frame(minHeight: 140)
+                    .frame(minHeight: 140, alignment: .topLeading)
+                    .contentShape(Rectangle())
                     .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
-                    .overlay(alignment: .topLeading) {
-                        if todoText.isEmpty {
-                            Text(String(localized: "plant.detail.todo.placeholder", defaultValue: "To-Do eingeben..."))
-                                .font(.system(size: 16, weight: .medium, design: .rounded))
-                                .foregroundStyle(.tertiary)
-                                .padding(20)
-                                .allowsHitTesting(false)
-                        }
-                    }
                 
                 Spacer()
                 
