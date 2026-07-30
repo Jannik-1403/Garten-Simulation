@@ -41,7 +41,7 @@ struct GoalTreeView: View {
             .filter { $0.goalId == goal.id && $0.weight != .none }
             .map { $0.habitId })
         return Array(gardenStore.pflanzen
-            .filter { linkedIds.contains($0.id.uuidString) }
+            .filter { linkedIds.contains($0.id) }
             .prefix(4))
     }
     
