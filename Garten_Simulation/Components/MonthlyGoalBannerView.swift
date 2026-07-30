@@ -2,8 +2,9 @@ import SwiftUI
 
 struct MonthlyGoalBannerView: View {
     @ObservedObject var goalStore = GoalStore.shared
-    @State private var showGoalInput = false
-    @State private var newGoalTitle = ""
+    @EnvironmentObject var gardenStore: GardenStore
+    @State private var showEditSheet = false
+    @State private var editTitle = ""
     
     private var currentMonthGoal: GoalModel? {
         let calendar = Calendar.current
@@ -23,7 +24,10 @@ struct MonthlyGoalBannerView: View {
                     sekundaerFarbe: Color(UIColor.systemGray5),
                     groesse: 44,
                     isRectangular: true,
-                    aktion: {}
+                    aktion: {
+                        editTitle = goal.title
+                        showEditSheet = true
+                    }
                 ) {
                     HStack(spacing: 12) {
                         Image(systemName: "calendar")
@@ -52,7 +56,10 @@ struct MonthlyGoalBannerView: View {
                     sekundaerFarbe: Color.blauPrimary.darker(),
                     groesse: 44,
                     isRectangular: true,
-                    aktion: { showGoalInput = true }
+                    aktion: {
+                        editTitle = ""
+                        showEditSheet = true
+                    }
                 ) {
                     HStack {
                         Image(systemName: "plus.circle.fill")
@@ -67,25 +74,14 @@ struct MonthlyGoalBannerView: View {
                 .padding(.horizontal, 16)
             }
         }
-        .sheet(isPresented: $showGoalInput) {
-            NavigationView {
-                Form {
-                    Section(header: Text(String(localized: "goal.tree.prompt.month", defaultValue: "Dein Fokus diesen Monat"))) {
-                        TextField(String(localized: "goal.tree.placeholder.month", defaultValue: "Z.B. 300 Punkte erreichen"), text: $newGoalTitle)
-                    }
-                }
-                .navigationTitle(String(localized: "goal.monthly.title", defaultValue: "Monatsziel"))
-                .navigationBarItems(
-                    leading: Button(String(localized: "common.cancel")) { showGoalInput = false },
-                    trailing: Button(String(localized: "common.save")) {
-                        if !newGoalTitle.isEmpty {
-                            goalStore.addGoal(GoalModel(title: newGoalTitle, type: .month))
-                            showGoalInput = false
-                        }
-                    }.disabled(newGoalTitle.isEmpty)
-                )
-            }
-            .presentationDetents([.medium])
+        .fullScreenCover(isPresented: $showEditSheet) {
+            GoalEditSheet(
+                existingGoal: currentMonthGoal,
+                type: .month,
+                editTitle: $editTitle,
+                goalStore: goalStore
+            )
+            .environmentObject(gardenStore)
         }
     }
 }

@@ -223,13 +223,6 @@ struct GlobalTodoAddSheet: View {
                 
                 // Text Input
                 VStack(alignment: .leading, spacing: 8) {
-                    if let selected = selectedPlant {
-                        Text("\(String(localized: "todos.tab.selected_habit", defaultValue: "Ausgewählte Gewohnheit:")) \(NSLocalizedString(selected.displayedHabitName, comment: ""))")
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundColor(.secondary)
-                            .padding(.horizontal, 4)
-                    }
-                    
                     TextField(String(localized: "plant.detail.todo.placeholder", defaultValue: "To-Do eingeben..."), text: $todoText, axis: .vertical)
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .frame(minHeight: 140, alignment: .topLeading)
