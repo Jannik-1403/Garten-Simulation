@@ -353,83 +353,93 @@ struct FocusSessionView: View {
                 }
             }
             
-            VStack(alignment: .center, spacing: 20) {
-                if let activeIndex = sessionGoals.firstIndex(where: { !$0.isCompleted }) {
-                    Text(String(localized: "focus.session.current_goal", defaultValue: "AKTUELLES ZIEL"))
+            VStack(alignment: .leading, spacing: 16) {
+                if !sessionGoals.isEmpty {
+                    Text(String(localized: "focus.session.your_tasks", defaultValue: "DEINE AUFGABEN"))
                         .font(.system(size: 14, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                         .tracking(2)
+                        .padding(.horizontal, 8)
+                        .padding(.bottom, -8)
 
-                    Text(sessionGoals[activeIndex].text)
-                        .font(.system(size: 36, weight: .black, design: .rounded))
-                        .multilineTextAlignment(.center)
-                        .lineLimit(3)
-                        .minimumScaleFactor(0.5)
-                        .padding(.horizontal, 24)
-                        .id(sessionGoals[activeIndex].id)
-                        .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity), removal: .move(edge: .leading).combined(with: .opacity)))
-
-                    Button {
-                        if isHapticEnabled {
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                        }
-                        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
-                            sessionGoals[activeIndex].isCompleted = true
-                            sortSessionGoals()
-                        }
-                    } label: {
-                        HStack(spacing: 8) {
-                            Text(String(localized: "focus.session.goal_done", defaultValue: "Erledigt"))
-                                .font(.system(size: 20, weight: .bold, design: .rounded))
-                            Image(systemName: "arrow.right.circle.fill")
-                                .font(.system(size: 24))
-                        }
-                        .padding(.horizontal, 32)
-                        .padding(.vertical, 16)
-                        .background(Color.gruenPrimary, in: Capsule())
-                        .foregroundStyle(.white)
-                        .shadow(color: Color.gruenPrimary.opacity(0.3), radius: 8, y: 4)
+                    ForEach($sessionGoals) { $goal in
+                        FocusGoalRow(
+                            goal: $goal,
+                            draggedGoal: $draggedGoal,
+                            sessionGoals: $sessionGoals,
+                            onToggle: {
+                                sortSessionGoals()
+                            }
+                        )
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+                        .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
+                        .cornerRadius(12)
                     }
-                    .padding(.top, 16)
 
                     let completedCount = sessionGoals.filter { $0.isCompleted }.count
                     let totalCount = sessionGoals.count
-                    Text("\(completedCount) / \(totalCount)")
-                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(.secondary.opacity(0.5))
-                        .padding(.top, 8)
-
-                } else if !sessionGoals.isEmpty {
-                    Image(systemName: "checkmark.seal.fill")
-                        .font(.system(size: 64))
-                        .foregroundStyle(Color.gruenPrimary)
-                        .padding(.bottom, 8)
-                    Text(String(localized: "focus.session.all_done", defaultValue: "Alles erledigt!"))
-                        .font(.system(size: 28, weight: .black, design: .rounded))
-                        .foregroundStyle(Color.gruenPrimary)
-                    Text(String(localized: "focus.session.all_done.desc", defaultValue: "Bleib im Fokus oder beende die Session frühzeitig."))
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 32)
+                    if completedCount == totalCount {
+                        VStack(spacing: 12) {
+                            Image(systemName: "checkmark.seal.fill")
+                                .font(.system(size: 48))
+                                .foregroundStyle(Color.gruenPrimary)
+                            Text(String(localized: "focus.session.all_done", defaultValue: "Alles erledigt!"))
+                                .font(.system(size: 24, weight: .black, design: .rounded))
+                                .foregroundStyle(Color.gruenPrimary)
+                            Text(String(localized: "focus.session.all_done.desc", defaultValue: "Bleib im Fokus oder beende die Session frühzeitig."))
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 32)
+                        }
+                        .padding(.top, 24)
+                    } else {
+                        Text("\(completedCount) / \(totalCount)")
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary.opacity(0.5))
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.top, 8)
+                    }
                 } else {
                     // Falls keine Ziele gesetzt wurden
-                    Text(String(localized: "focus.session.no_goals", defaultValue: "Laser-Fokus aktiv"))
-                        .font(.system(size: 28, weight: .black, design: .rounded))
-                        .foregroundStyle(.primary)
-                        .padding(.top, 40)
+                    VStack {
+                        Text(String(localized: "focus.session.no_goals", defaultValue: "Laser-Fokus aktiv"))
+                            .font(.system(size: 28, weight: .black, design: .rounded))
+                            .foregroundStyle(.primary)
+                            .padding(.top, 40)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
-            .padding(.horizontal, 32)
+            .padding(.horizontal, 24)
             .padding(.top, 20)
             
             Spacer()
             
-            if FeatureFlags.isProVersionEnabled {
-                FocusSoundControlView()
-                    .padding(.horizontal, 32)
-                    .padding(.bottom, 24)
+            Button {
+                showMathChallenge = true
+            } label: {
+                Text(String(localized: "button.cancel"))
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                    .foregroundStyle(.red)
             }
+            .padding(.bottom, 40)
+        }
+        .frame(maxWidth: .infinity, minHeight: geometry.size.height)
+        
+        // Sound Control at Top Right
+        if FeatureFlags.isProVersionEnabled {
+            VStack {
+                HStack {
+                    Spacer()
+                    FocusSoundControlView()
+                        .padding(.top, 16)
+                        .padding(.trailing, 16)
+                }
+                Spacer()
+            }
+        }
             
             Button {
                 showMathChallenge = true

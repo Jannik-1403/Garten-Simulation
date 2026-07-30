@@ -1,8 +1,6 @@
 {
   "sourceLanguage": "de",
   "strings": {
-    "": {},
-    " ": {},
     "-": {
       "localizations": {
         "de": {
@@ -119437,7 +119435,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Date: %@"
+            "value": "Date : %@"
           }
         },
         "hi": {
@@ -119909,7 +119907,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Routine: %@"
+            "value": "Routine : %@"
           }
         },
         "hi": {
@@ -131676,12 +131674,6 @@
             "value": "All done!"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "All done!"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -131772,12 +131764,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You've completed all your focus tasks for today."
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "You've completed all your focus tasks for today."
@@ -131878,12 +131864,6 @@
             "value": "Done & Next"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Done & Next"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -131979,12 +131959,6 @@
             "value": "Complete Routine"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Complete Routine"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -132075,12 +132049,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Today in Focus"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Today in Focus"
@@ -134985,12 +134953,6 @@
             "value": "Editar objetivo"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Editar Meta"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -135391,12 +135353,6 @@
             "value": "5년"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "5 Anos"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -135462,12 +135418,6 @@
             "value": "습관은 5년 목표에 대한 포인트를 획득합니다.\n\n20 Pt: 엄청난 집중\n5 Pt: 가벼운 기여\n0 Pt: 목표와 무관함"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Os hábitos rendem pontos para sua meta de 5 anos.\n\n20 Pts: Foco Massivo\n5 Pts: Contribuição Leve\n0 Pts: Não relacionado à meta"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -135531,12 +135481,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "포인트 및 목표"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pontos e Metas"
           }
         },
         "ru": {
@@ -135746,12 +135690,6 @@
             "value": "연결 안 됨"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Não vinculado"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -135815,12 +135753,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "이 습관이 얼마나 기여하나요?"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O quanto esse hábito contribui?"
           }
         },
         "pt-PT": {
@@ -135922,12 +135854,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Contribuição para o objetivo"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contribuição para a Meta"
           }
         },
         "pt-PT": {
@@ -136653,12 +136579,6 @@
             "value": "월간 목표 설정"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Definir meta mensal"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -136722,12 +136642,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "주간 목표 설정"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Definir meta semanal"
           }
         },
         "ru": {
@@ -136795,12 +136709,6 @@
             "value": "5년 목표 설정"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Definir meta de 5 anos"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -136864,12 +136772,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "연결된 습관"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hábitos vinculados"
           }
         },
         "ru": {
@@ -136937,12 +136839,6 @@
             "value": "습관, 루틴 & 할 일"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hábitos, Rotinas e Tarefas"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -137006,12 +136902,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "기반"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "FUNDAÇÃO"
           }
         },
         "ru": {
@@ -137079,12 +136969,6 @@
             "value": "예: 300점 달성"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ex. Atingir 300 pontos"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -137148,12 +137032,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "예: 헬스장 3회 방문"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ex. Ir à academia 3 vezes"
           }
         },
         "ru": {
@@ -137221,12 +137099,6 @@
             "value": "예: 1억 원 매출 구축"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ex. Construir R$ 10 milhões em receita"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -137290,12 +137162,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "이번 달의 목표"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seu foco este mês"
           }
         },
         "ru": {
@@ -137363,12 +137229,6 @@
             "value": "이번 주 가장 중요한 목표"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sua meta mais importante esta semana"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -137434,12 +137294,6 @@
             "value": "향후 5년간의 큰 비전"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sua grande visão para os próximos 5 anos"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -137503,12 +137357,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "목표 트리"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sua Árvore de Metas"
           }
         },
         "ru": {
@@ -137671,12 +137519,6 @@
             "value": "주간 목표"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meta Semanal"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -137764,12 +137606,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Objetivo Anual"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meta de 5 anos"
           }
         },
         "ru": {
@@ -138053,12 +137889,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "5년 목표 설정"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Definir meta de 5 anos"
           }
         },
         "ru": {
@@ -142015,12 +141845,6 @@
             "value": "目標"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Alvo"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -142077,12 +141901,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "毎日の進捗"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Progresso diário"
           }
         },
         "ru": {
@@ -143572,12 +143390,6 @@
             "value": "of"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "of"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -143668,12 +143480,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "done"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "done"
@@ -177701,12 +177507,6 @@
             "value": "Bloqueia sites pornográficos."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bloqueia sites pornográficos."
-          }
-        },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
@@ -177809,12 +177609,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Funciona em todos os navegadores."
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Funciona em todos os navegadores."
@@ -177927,12 +177721,6 @@
             "value": "Máxima proteção para o seu foco."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Máxima proteção para o seu foco."
-          }
-        },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
@@ -178035,12 +177823,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Filtro Adulto"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Filtro Adulto"
@@ -202246,12 +202028,6 @@
             "value": "リマインダーなし"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sem lembretes"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -219156,12 +218932,6 @@
             "value": "Must do today"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Must do today"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -219257,12 +219027,6 @@
             "value": "Can wait"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Can wait"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -219353,12 +219117,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Should be soon"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Should be soon"
@@ -340978,12 +340736,6 @@
             "value": "Today"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Today"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -376419,12 +376171,6 @@
             "value": "Routine"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Routine"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -376515,12 +376261,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Do"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "To-Do"
@@ -391249,12 +390989,6 @@
             "value": "Personalizar widget de histórico"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Personalizar widget de histórico"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -391345,12 +391079,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escolha uma rotina e um histórico."
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Escolha uma rotina e um histórico."
@@ -391451,12 +391179,6 @@
             "value": "Personalizar widget de rotina"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Personalizar widget de rotina"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -391547,12 +391269,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Personalizar widget de sequência"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Personalizar widget de sequência"
@@ -391653,12 +391369,6 @@
             "value": "Escolha o plano de fundo."
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escolha o plano de fundo."
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -391749,12 +391459,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Personalize o widget de água"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Personalize o widget de água"
@@ -392805,12 +392509,6 @@
             "value": "No total"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No total"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -392901,12 +392599,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Este mês"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Este mês"
@@ -393007,12 +392699,6 @@
             "value": "Hoje"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hoje"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -393108,12 +392794,6 @@
             "value": "Período"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Período"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -393204,12 +392884,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Essa semana"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Essa semana"
@@ -393590,12 +393264,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "rotina"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "rotina"
@@ -394076,12 +393744,6 @@
             "value": "Escuro (Preto)"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escuro (Preto)"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -394177,12 +393839,6 @@
             "value": "Brilhante (branco)"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Brilhante (branco)"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
@@ -394273,12 +393929,6 @@
           }
         },
         "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Estilo de fundo"
-          }
-        },
-        "pt-BR": {
           "stringUnit": {
             "state": "translated",
             "value": "Estilo de fundo"

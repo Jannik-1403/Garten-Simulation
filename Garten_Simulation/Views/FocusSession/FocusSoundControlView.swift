@@ -1,112 +1,36 @@
 import SwiftUI
 
-/// Eine Kontrollansicht für die Fokus-Sound-Maschine.
+/// Eine Kontrollansicht für die Fokus-Sound-Maschine, kompakt und erweiterbar.
 struct FocusSoundControlView: View {
     @ObservedObject var audioManager = FocusAudioManager.shared
     @EnvironmentObject var iapStore: IAPStore
     @State private var selectedSound: FocusSound = .none
     @State private var showPaywall: Bool = false
+    
+    @State private var isExpanded: Bool = false
+    @State private var collapseTimer: Timer? = nil
 
     private var isCurrentSoundPlaying: Bool {
         audioManager.isPlaying && audioManager.currentSound == selectedSound
     }
+    
+    private var isLocked: Bool {
+        !iapStore.isProUser && selectedSound.isPremium
+    }
 
     var body: some View {
-        let isLocked = !iapStore.isProUser && selectedSound.isPremium
-
-        VStack(spacing: 16) {
-
-            // Sound-Auswahl Header
-            HStack {
-                Button {
-                    withAnimation(.spring(response: 0.3)) { selectPrevious() }
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(isLocked ? .white.opacity(0.85) : .secondary)
-                        .frame(width: 44, height: 44)
-                        .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-
-                Spacer()
-
-                Text(selectedSound.displayName)
-                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                    .foregroundColor(isLocked ? .white : .primary)
-                    .multilineTextAlignment(.center)
-                    .frame(minWidth: 120)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-
-                Spacer()
-
-                Button {
-                    withAnimation(.spring(response: 0.3)) { selectNext() }
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(isLocked ? .white.opacity(0.85) : .secondary)
-                        .frame(width: 44, height: 44)
-                        .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-            }
-
-            // Play / Lock Button
-            if isLocked {
-                Item3DButton(
-                    farbe: .goldPrimary,
-                    sekundaerFarbe: .goldPrimary.darker(),
-                    groesse: 60,
-                    shadowDepthFactor: 0.10,
-                    isRectangular: false,
-                    aktion: { showPaywall = true }
-                ) {
-                    Image(systemName: "lock.fill")
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundColor(.white)
-                }
+        ZStack {
+            if isExpanded {
+                expandedView
+                    .transition(.scale(scale: 0.8, anchor: .trailing).combined(with: .opacity))
             } else {
-                Item3DButton(
-                    farbe: Color(white: 0.96),
-                    sekundaerFarbe: Color(white: 0.80),
-                    groesse: 60,
-                    shadowDepthFactor: 0.10,
-                    isRectangular: false,
-                    aktion: { togglePlay() }
-                ) {
-                    Image(systemName: isCurrentSoundPlaying ? "stop.fill" : "play.fill")
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundColor(.primary)
-                }
+                collapsedView
+                    .transition(.scale(scale: 0.8, anchor: .trailing).combined(with: .opacity))
             }
         }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 20)
-        .background(
-            ZStack {
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(isLocked
-                          ? Color.goldPrimary.darker()
-                          : Color(UIColor.secondarySystemBackground).darker(by: 0.12))
-                    .offset(y: 8)
-
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(isLocked
-                          ? Color.goldPrimary
-                          : Color(UIColor.secondarySystemBackground))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20, style: .continuous)
-                            .stroke(Color.black.opacity(0.10), lineWidth: 1)
-                    )
-            }
-        )
-        .frame(width: 280)
-        .padding(.bottom, 8)
         .onChange(of: selectedSound) { _, newSound in
             if audioManager.isPlaying {
-                if !iapStore.isProUser {
+                if !iapStore.isProUser && newSound.isPremium {
                     audioManager.stop()
                 } else {
                     audioManager.play(sound: newSound)
@@ -117,9 +41,115 @@ struct FocusSoundControlView: View {
             PaywallView()
                 .environmentObject(iapStore)
         }
+        .onDisappear {
+            collapseTimer?.invalidate()
+        }
+    }
+    
+    // MARK: - Collapsed View
+    private var collapsedView: some View {
+        Button {
+            togglePlay()
+        } label: {
+            Image(systemName: isCurrentSoundPlaying ? "speaker.wave.2.fill" : "speaker.slash.fill")
+                .font(.system(size: 20, weight: .bold))
+                .foregroundColor(.white)
+                .frame(width: 50, height: 50)
+                .background(Color.blue, in: Circle())
+                .shadow(color: Color.blue.opacity(0.4), radius: 8, x: 0, y: 4)
+        }
+        .simultaneousGesture(
+            LongPressGesture(minimumDuration: 0.5)
+                .onEnded { _ in
+                    if isHapticEnabled() {
+                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    }
+                    expand()
+                }
+        )
+    }
+    
+    // MARK: - Expanded View
+    private var expandedView: some View {
+        HStack(spacing: 12) {
+            Button {
+                resetCollapseTimer()
+                withAnimation(.spring(response: 0.3)) { selectPrevious() }
+            } label: {
+                Image(systemName: "chevron.left")
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(isLocked ? .white.opacity(0.7) : .white)
+                    .frame(width: 32, height: 32)
+            }
+            .buttonStyle(.plain)
+            
+            VStack(spacing: 2) {
+                Text(selectedSound.displayName)
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+                
+                if isLocked {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 10, weight: .bold))
+                        .foregroundColor(.white.opacity(0.8))
+                }
+            }
+            .frame(minWidth: 80)
+            
+            Button {
+                resetCollapseTimer()
+                withAnimation(.spring(response: 0.3)) { selectNext() }
+            } label: {
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(isLocked ? .white.opacity(0.7) : .white)
+                    .frame(width: 32, height: 32)
+            }
+            .buttonStyle(.plain)
+            
+            Divider()
+                .background(Color.white.opacity(0.5))
+                .frame(height: 24)
+            
+            Button {
+                resetCollapseTimer()
+                togglePlay()
+            } label: {
+                Image(systemName: isCurrentSoundPlaying ? "stop.fill" : "play.fill")
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(isLocked ? .white.opacity(0.5) : .white)
+                    .frame(width: 32, height: 32)
+            }
+            .buttonStyle(.plain)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(
+            Capsule()
+                .fill(isLocked ? Color.goldPrimary : Color.blue)
+                .shadow(color: (isLocked ? Color.goldPrimary : Color.blue).opacity(0.4), radius: 8, x: 0, y: 4)
+        )
     }
 
-    // MARK: - Navigation
+    // MARK: - Logic
+    
+    private func expand() {
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+            isExpanded = true
+        }
+        resetCollapseTimer()
+    }
+    
+    private func resetCollapseTimer() {
+        collapseTimer?.invalidate()
+        collapseTimer = Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false) { _ in
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                isExpanded = false
+            }
+        }
+    }
 
     private func selectPrevious() {
         let all = FocusSound.allCases
@@ -133,18 +163,29 @@ struct FocusSoundControlView: View {
         selectedSound = all[(idx + 1) % all.count]
     }
 
-    // MARK: - Playback
-
     private func togglePlay() {
-        if !iapStore.isProUser {
+        if !iapStore.isProUser && selectedSound.isPremium {
             showPaywall = true
             return
         }
         if isCurrentSoundPlaying {
             audioManager.stop()
         } else {
-            audioManager.play(sound: selectedSound)
+            if selectedSound == .none {
+                // If it's none, we might want to default to the first real sound
+                let all = FocusSound.allCases
+                if all.count > 1 {
+                    selectedSound = all[1] // assuming 0 is .none
+                    audioManager.play(sound: selectedSound)
+                }
+            } else {
+                audioManager.play(sound: selectedSound)
+            }
         }
+    }
+    
+    private func isHapticEnabled() -> Bool {
+        UserDefaults.standard.bool(forKey: "isHapticEnabled") // default behavior, though the environment might have a wrapper
     }
 }
 

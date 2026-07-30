@@ -388,3 +388,9 @@
 - Tab Bar Text für Garten in 'Habits' umbenannt und in alle Projektsprachen übersetzt
 - GartenStatsBar (Streak, Münzen, Leben) auf der Routine- und To-do-Seite hinzugefügt
 - Navigation Bar auf Routinen- und To-do-Seite entfernt und durch Floating Action Buttons (FAB) am unteren Bildschirmrand ersetzt, damit die Statistiken ganz oben sind
+- Tab-Bar: "Garden" wurde in allen Sprachen durch "Habits" (bzw. entsprechende Übersetzungen) ersetzt und das Icon zu "target" geändert.
+
+## 30. Juli 2026 - Focus Timer Redesign
+- Feature: Audioplayer im Fokus Timer durch einen kompakten, platzsparenden Button (oben rechts) ersetzt. Langes Drücken (Long Press) öffnet die Steuerung zum Wechseln der Sounds.
+- Feature: Fokus Timer zeigt nun eine übersichtliche, scrollbare Liste der anstehenden Aufgaben an, statt nur einer einzigen riesigen Aufgabe.
+- UI/UX: Im Vorbereitungsschritt wurde die Formulierung "Hauptziel" durch "Aufgabe" ersetzt, um die Hierarchie klarer zu machen, da das Session-Thema bereits vorgegeben ist.

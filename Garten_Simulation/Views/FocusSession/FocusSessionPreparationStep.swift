@@ -193,7 +193,7 @@ struct FocusSessionPreparationStep: View {
                         
                         // Eingabefeld
                         HStack {
-                            TextField(String(localized: "focus.session.main_goal.placeholder", defaultValue: "Neues Hauptziel..."), text: $textInput)
+                            TextField(String(localized: "focus.session.task.placeholder", defaultValue: "Neue Aufgabe..."), text: $textInput)
                                 .padding()
                                 .background(.ultraThinMaterial)
                                 .cornerRadius(12)
