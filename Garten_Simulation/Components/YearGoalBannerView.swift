@@ -27,6 +27,16 @@ struct YearGoalBannerView: View {
         return goalStore.getPointsForFiveYears(goalId: goal.id)
     }
     
+    private var currentLevel: Int {
+        let (earned, target) = pointsInfo
+        guard target > 0 else { return 1 }
+        // 5 Jahre = 60 Monate = 60 Level. Ein Level ist ein Monat voller Punkte.
+        let pointsPerLevel = target / 60
+        if pointsPerLevel == 0 { return 1 }
+        let level = (earned / pointsPerLevel) + 1
+        return min(level, 60) // Max Level 60
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             if let goal = fiveYearGoal {
@@ -35,6 +45,18 @@ struct YearGoalBannerView: View {
                     showEditSheet = true
                 } label: {
                     VStack(spacing: 24) {
+                        // Level Anzeige oben links
+                        HStack {
+                            Text("Level \(currentLevel)")
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 4)
+                                .background(Color(hex: "#4FC3F7").opacity(0.15))
+                                .foregroundColor(Color(hex: "#0288D1"))
+                                .clipShape(Capsule())
+                            Spacer()
+                        }
+                        
                         // 1. Titel im 3D-Stil
                         ZStack {
                             // Lower layer (Dunkleres Blau für den Schatten/3D-Tiefe)

@@ -11,6 +11,7 @@ struct GoalEditSheet: View {
     
     @Environment(\.dismiss) private var dismiss
     @State private var localOverrides: [String: GoalWeight] = [:]
+    @State private var localFrequencyOverrides: [String: Int] = [:]
     
     private var isEditing: Bool { existingGoal != nil }
     
@@ -18,6 +19,12 @@ struct GoalEditSheet: View {
         if let w = localOverrides[habitId] { return w }
         guard let goal = existingGoal else { return .none }
         return goalStore.weightForHabit(habitId: habitId, goalId: goal.id) ?? .none
+    }
+    
+    private func currentFrequency(for habitId: String) -> Int {
+        if let f = localFrequencyOverrides[habitId] { return f }
+        guard let goal = existingGoal else { return 7 }
+        return goalStore.frequencyForHabit(habitId: habitId, goalId: goal.id) ?? 7
     }
     
     var body: some View {
@@ -35,8 +42,12 @@ struct GoalEditSheet: View {
                             HabitWeightRow(
                                 habit: habit,
                                 selectedWeight: currentWeight(for: habit.id),
+                                selectedFrequency: currentFrequency(for: habit.id),
                                 onSelect: { weight in
                                     localOverrides[habit.id] = weight
+                                },
+                                onFrequencyChange: { frequency in
+                                    localFrequencyOverrides[habit.id] = frequency
                                 }
                             )
                         }
@@ -87,9 +98,20 @@ struct GoalEditSheet: View {
                 finalWeight = .none
             }
             
+            let finalFrequency: Int?
+            if finalWeight == .none {
+                finalFrequency = nil
+            } else if let fOverride = localFrequencyOverrides[habit.id] {
+                finalFrequency = fOverride
+            } else if let existing = existingGoal {
+                finalFrequency = goalStore.frequencyForHabit(habitId: habit.id, goalId: existing.id)
+            } else {
+                finalFrequency = nil
+            }
+            
             // Only update if not none or if we are actively setting it
             if finalWeight != .none || localOverrides[habit.id] != nil {
-                goalStore.linkHabitToGoal(habitId: habit.id, goalId: goalId, weight: finalWeight)
+                goalStore.linkHabitToGoal(habitId: habit.id, goalId: goalId, weight: finalWeight, frequency: finalFrequency)
             }
         }
         
@@ -125,7 +147,9 @@ struct GoalEditSheet: View {
 struct HabitWeightRow: View {
     let habit: HabitModel
     let selectedWeight: GoalWeight
+    let selectedFrequency: Int
     let onSelect: (GoalWeight) -> Void
+    let onFrequencyChange: (Int) -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -151,6 +175,24 @@ struct HabitWeightRow: View {
                             .padding(.vertical, 8)
                     }
                 }
+            }
+            
+            if selectedWeight != .none {
+                HStack {
+                    Text(String(localized: "goal.frequency.label", defaultValue: "Häufigkeit pro Woche:"))
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Stepper(value: Binding(
+                        get: { selectedFrequency },
+                        set: { onFrequencyChange($0) }
+                    ), in: 1...7) {
+                        Text("\(selectedFrequency)x")
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                    }
+                    .frame(width: 120)
+                }
+                .padding(.top, 4)
             }
         }
         .padding(.vertical, 4)

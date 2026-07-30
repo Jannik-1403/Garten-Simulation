@@ -47,6 +47,7 @@ struct GoalHabitLink: Identifiable, Codable, Equatable {
     var goalId: UUID
     var habitId: String // Referenziert HabitModel.id
     var weight: GoalWeight
+    var frequencyPerWeek: Int? // Optional für Abwärtskompatibilität, Standard ist 7
     var createdAt: Date = Date()
 }
 

@@ -29,9 +29,9 @@ class GoalStore: ObservableObject {
         }
     }
     
-    func linkHabitToGoal(habitId: String, goalId: UUID, weight: GoalWeight) {
+    func linkHabitToGoal(habitId: String, goalId: UUID, weight: GoalWeight, frequency: Int? = nil) {
         habitLinks.removeAll { $0.habitId == habitId && $0.goalId == goalId }
-        let newLink = GoalHabitLink(goalId: goalId, habitId: habitId, weight: weight)
+        let newLink = GoalHabitLink(goalId: goalId, habitId: habitId, weight: weight, frequencyPerWeek: frequency)
         habitLinks.append(newLink)
         saveData()
     }
@@ -40,12 +40,15 @@ class GoalStore: ObservableObject {
         habitLinks.first { $0.habitId == habitId && $0.goalId == goalId }?.weight
     }
     
+    func frequencyForHabit(habitId: String, goalId: UUID) -> Int? {
+        habitLinks.first { $0.habitId == habitId && $0.goalId == goalId }?.frequencyPerWeek
+    }
+    
     // MARK: - Tracking & Analytics
     
     func progressForWeek(goalId: UUID) -> Double {
         let links = habitLinks.filter { $0.goalId == goalId }
-        let maxPointsPerDay = links.reduce(0) { $0 + $1.weight.rawValue }
-        let maxPointsThisWeek = maxPointsPerDay * 7
+        let maxPointsThisWeek = links.reduce(0) { $0 + ($1.weight.rawValue * ($1.frequencyPerWeek ?? 7)) }
         
         guard maxPointsThisWeek > 0 else { return 0.0 }
         
@@ -62,8 +65,7 @@ class GoalStore: ObservableObject {
     
     func getPointsForWeek(goalId: UUID) -> (earned: Int, target: Int) {
         let links = habitLinks.filter { $0.goalId == goalId }
-        let maxPointsPerDay = links.reduce(0) { $0 + $1.weight.rawValue }
-        let maxPointsThisWeek = maxPointsPerDay * 7
+        let maxPointsThisWeek = links.reduce(0) { $0 + ($1.weight.rawValue * ($1.frequencyPerWeek ?? 7)) }
         
         let cal = Calendar.current
         let now = Date()
@@ -78,8 +80,7 @@ class GoalStore: ObservableObject {
     
     func progressForFiveYears(goalId: UUID) -> Double {
         let links = habitLinks.filter { $0.goalId == goalId }
-        let maxPointsPerDay = links.reduce(0) { $0 + $1.weight.rawValue }
-        let maxPointsFiveYears = maxPointsPerDay * 365 * 5
+        let maxPointsFiveYears = links.reduce(0) { $0 + ($1.weight.rawValue * ($1.frequencyPerWeek ?? 7) * 52 * 5) }
         
         guard maxPointsFiveYears > 0 else { return 0.0 }
         
@@ -90,8 +91,7 @@ class GoalStore: ObservableObject {
     
     func getPointsForFiveYears(goalId: UUID) -> (earned: Int, target: Int) {
         let links = habitLinks.filter { $0.goalId == goalId }
-        let maxPointsPerDay = links.reduce(0) { $0 + $1.weight.rawValue }
-        let maxPointsFiveYears = maxPointsPerDay * 365 * 5
+        let maxPointsFiveYears = links.reduce(0) { $0 + ($1.weight.rawValue * ($1.frequencyPerWeek ?? 7) * 52 * 5) }
         
         let earnedSoFar = goalLogs.filter { $0.goalId == goalId }.reduce(0) { $0 + $1.pointsEarned }
         
