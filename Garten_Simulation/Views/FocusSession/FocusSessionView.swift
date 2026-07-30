@@ -372,10 +372,6 @@ struct FocusSessionView: View {
                                             sortSessionGoals()
                                         }
                                     )
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 12)
-                                    .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
-                                    .cornerRadius(12)
                                 }
 
                                 let completedCount = sessionGoals.filter { $0.isCompleted }.count
@@ -814,9 +810,11 @@ struct FocusGoalRow: View {
                 .padding(.leading, 32)
             }
         }
-        .padding()
-        .background(.ultraThinMaterial)
-        .cornerRadius(12)
+        .item3DContainer(
+            farbe: Color(UIColor.secondarySystemBackground),
+            sekundaerFarbe: Color(UIColor.systemGray4),
+            shadowDepth: 4
+        )
         .onDrag {
             self.draggedGoal = goal
             return NSItemProvider(object: goal.id.uuidString as NSString)

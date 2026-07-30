@@ -48,15 +48,17 @@ struct FocusSoundControlView: View {
     
     // MARK: - Collapsed View
     private var collapsedView: some View {
-        Button {
-            togglePlay()
-        } label: {
+        Item3DButton(
+            farbe: .blue,
+            sekundaerFarbe: Color(red: 0, green: 0, blue: 0.8),
+            groesse: 50,
+            shadowDepthFactor: 0.1,
+            isRectangular: false,
+            aktion: { togglePlay() }
+        ) {
             Image(systemName: isCurrentSoundPlaying ? "speaker.wave.2.fill" : "speaker.slash.fill")
                 .font(.system(size: 20, weight: .bold))
                 .foregroundColor(.white)
-                .frame(width: 50, height: 50)
-                .background(Color.blue, in: Circle())
-                .shadow(color: Color.blue.opacity(0.4), radius: 8, x: 0, y: 4)
         }
         .simultaneousGesture(
             LongPressGesture(minimumDuration: 0.5)

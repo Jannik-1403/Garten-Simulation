@@ -394,3 +394,4 @@
 - Feature: Audioplayer im Fokus Timer durch einen kompakten, platzsparenden Button (oben rechts) ersetzt. Langes Drücken (Long Press) öffnet die Steuerung zum Wechseln der Sounds.
 - Feature: Fokus Timer zeigt nun eine übersichtliche, scrollbare Liste der anstehenden Aufgaben an, statt nur einer einzigen riesigen Aufgabe.
 - UI/UX: Im Vorbereitungsschritt wurde die Formulierung "Hauptziel" durch "Aufgabe" ersetzt, um die Hierarchie klarer zu machen, da das Session-Thema bereits vorgegeben ist.
+- UI/UX (Update): Der kompakte Sound-Button oben rechts und die Listen-Elemente (Aufgaben) im Fokus Timer nutzen nun das einheitliche `Item3DButton`-Design der App. Der `Item3DContainerModifier` wurde dafür global verfügbar gemacht.

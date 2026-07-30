@@ -158,3 +158,34 @@ struct Item3DButtonStyle: ButtonStyle {
         }
     }
 }
+
+// MARK: - 3D Container Modifier
+struct Item3DContainerModifier: ViewModifier {
+    let farbe: Color
+    let sekundaerFarbe: Color
+    let shadowDepth: CGFloat
+    
+    func body(content: Content) -> some View {
+        content
+            .padding(.horizontal, 16)
+            .padding(.vertical, 16)
+            .background(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(farbe)
+                    .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+            )
+            .background(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(sekundaerFarbe)
+                    .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+                    .offset(y: shadowDepth)
+            )
+            .padding(.bottom, shadowDepth)
+    }
+}
+
+extension View {
+    func item3DContainer(farbe: Color = .white, sekundaerFarbe: Color = Color(white: 0.9), shadowDepth: CGFloat = 6) -> some View {
+        self.modifier(Item3DContainerModifier(farbe: farbe, sekundaerFarbe: sekundaerFarbe, shadowDepth: shadowDepth))
+    }
+}
