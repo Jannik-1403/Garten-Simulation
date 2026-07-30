@@ -37,11 +37,11 @@ struct GoalTreeView: View {
     
     private var linkedHabits: [HabitModel] {
         guard let goal = fiveYearGoal else { return [] }
-        return Array(goalStore.habitLinks
+        let linkedIds = Set(goalStore.habitLinks
             .filter { $0.goalId == goal.id && $0.weight != .none }
-            .compactMap { link in
-                gardenStore.pflanzen.first { $0.id.uuidString == link.habitId }
-            }
+            .map { $0.habitId })
+        return Array(gardenStore.pflanzen
+            .filter { linkedIds.contains($0.id.uuidString) }
             .prefix(4))
     }
     
@@ -268,7 +268,7 @@ struct GoalTreeView: View {
                     }
                 }
             }
-            .navigationTitle(addingType.map { String(localized: $0.localizationKey) } ?? "")
+            .navigationTitle(addingType.map { NSLocalizedString($0.localizationKey, comment: "") } ?? "")
             .navigationBarItems(
                 leading: Button(String(localized: "common.cancel")) {
                     addingType = nil
