@@ -71,7 +71,7 @@ struct TodosTabView: View {
                 Spacer()
                 }
             }
-            .navigationTitle(String(localized: "tab.todos", defaultValue: "To-Dos"))
+            // Title removed based on user request
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {

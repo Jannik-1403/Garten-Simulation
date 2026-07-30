@@ -134821,6 +134821,17 @@
         }
       }
     },
+    "goal.fiveyears.label.arrow" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "5 Years →"
+          }
+        }
+      }
+    },
     "goal.insights.empty" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -137463,6 +137474,17 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Wochenziel festlegen"
+          }
+        }
+      }
+    },
+    "goal.weekly.label.arrow" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Woche →"
           }
         }
       }

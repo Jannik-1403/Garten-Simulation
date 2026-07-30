@@ -41,10 +41,10 @@ struct WeeklyGoalBannerView: View {
                                 .foregroundStyle(Color(hex: "#4FC3F7"))
                                 .offset(y: 3)
                             
-                            // Upper layer (Anthrazit)
+                            // Upper layer (Dunkleres Blau statt Anthrazit)
                             Text(goal.title)
                                 .font(.system(size: 26, weight: .black, design: .rounded))
-                                .foregroundStyle(Color(hex: "#2B2B2B"))
+                                .foregroundStyle(Color(hex: "#0277BD"))
                         }
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
@@ -53,10 +53,15 @@ struct WeeklyGoalBannerView: View {
                             // 2. Langer, dicker Fortschrittsbalken
                             GeometryReader { geo in
                                 ZStack(alignment: .leading) {
-                                    // Track (Hellgrau)
+                                    // Track (Hellgrau mit gestrichelter Linie für mehr Details bei 0%)
                                     Capsule()
-                                        .fill(Color(hex: "#ECECEC"))
+                                        .fill(Color(hex: "#F5F5F5"))
                                         .frame(height: 14)
+                                        .overlay(
+                                            Capsule()
+                                                .strokeBorder(style: StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+                                                .foregroundColor(Color.gray.opacity(0.3))
+                                        )
                                     
                                     // Fill (Akzentfarbe)
                                     if progress > 0 {
@@ -81,15 +86,11 @@ struct WeeklyGoalBannerView: View {
                         }
                         .padding(.horizontal, 16)
                     }
-                    .padding(.vertical, 32)
-                    .padding(.horizontal, 16)
-                    .background(
-                        RoundedRectangle(cornerRadius: 30)
-                            .fill(Color.white)
-                            .shadow(color: Color.black.opacity(0.06), radius: 15, x: 0, y: 8)
-                    )
+                    .padding(.vertical, 24)
+                    .padding(.horizontal, 24)
                 }
                 .buttonStyle(.plain)
+                .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
                 .padding(.horizontal, 24)
             } else {
                 Button {
@@ -111,13 +112,9 @@ struct WeeklyGoalBannerView: View {
                     }
                     .padding(.horizontal, 24)
                     .padding(.vertical, 24)
-                    .background(
-                        RoundedRectangle(cornerRadius: 30)
-                            .fill(Color.white)
-                            .shadow(color: Color.black.opacity(0.06), radius: 15, x: 0, y: 8)
-                    )
                 }
                 .buttonStyle(.plain)
+                .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
                 .padding(.horizontal, 24)
             }
         }
