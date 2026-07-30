@@ -99,6 +99,18 @@ struct PaywallView: View {
                                 ],
                                 color: .green
                             )
+                            
+                            featureRow(
+                                icon: "lock.shield.fill",
+                                title: String(localized: "paywall.feature.adult_filter.title", defaultValue: "Erwachsenen-Filter"),
+                                bullets: [
+                                    String(localized: "paywall.feature.adult_filter.bullet1", defaultValue: "Blockiert pornografische Webseiten."),
+                                    String(localized: "paywall.feature.adult_filter.bullet2", defaultValue: "Funktioniert systemweit in allen Browsern."),
+                                    String(localized: "paywall.feature.adult_filter.bullet3", defaultValue: "Maximaler Schutz für deinen Fokus.")
+                                ],
+                                color: .purple,
+                                isSystemImage: true
+                            )
 
                             featureRow(
                                 icon: "ProIconGardener",
@@ -247,14 +259,25 @@ struct PaywallView: View {
         .buttonStyle(PaywallOptionButtonStyle(isSelected: isSelected))
     }
 
-    private func featureRow(icon: String, title: String, bullets: [String], color: Color, scale: CGFloat = 2.0) -> some View {
+    private func featureRow(icon: String, title: String, bullets: [String], color: Color, scale: CGFloat = 2.0, isSystemImage: Bool = false) -> some View {
         HStack(alignment: .top, spacing: 16) {
-            Image(icon)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 48, height: 48)
-                .scaleEffect(scale)
-                .foregroundStyle(color)
+            Group {
+                if isSystemImage {
+                    Image(systemName: icon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 48, height: 48)
+                        .scaleEffect(scale * 0.5)
+                        .foregroundStyle(color)
+                } else {
+                    Image(icon)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 48, height: 48)
+                        .scaleEffect(scale)
+                        .foregroundStyle(color)
+                }
+            }
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(title)

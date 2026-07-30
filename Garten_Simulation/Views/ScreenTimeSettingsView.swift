@@ -6,8 +6,11 @@ import FamilyControls
 struct ScreenTimeSettingsView: View {
     @StateObject private var manager = ScreenTimeManager.shared
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var iapStore: IAPStore
     
     @AppStorage("hasRequestedScreenTimeAuth") private var hasRequestedAuth: Bool = false
+    
+    @State private var showPaywall = false
     
     @State private var isScheduleActive: Bool = false
     @State private var daySchedules: [Int: DaySchedule] = [:]
@@ -264,6 +267,9 @@ struct ScreenTimeSettingsView: View {
             Button(String(localized: "common.ok", defaultValue: "OK"), role: .cancel) { }
         } message: {
             Text(infoAlertMessage)
+        }
+        .fullScreenCover(isPresented: $showPaywall) {
+            PaywallView()
         }
     }
     
@@ -556,7 +562,11 @@ struct ScreenTimeSettingsView: View {
                             if isActive {
                                 walkOfShameContext = 3
                             } else {
-                                isAdultFilterEnabled = true
+                                if iapStore.isProUser {
+                                    isAdultFilterEnabled = true
+                                } else {
+                                    showPaywall = true
+                                }
                             }
                         }
                     ) {

@@ -129,7 +129,7 @@ struct HabitWeightRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(NSLocalizedString(habit.name, comment: ""))
+            Text(habit.localizedHabitName)
                 .font(.system(size: 15, weight: .semibold))
             
             HStack(spacing: 8) {
