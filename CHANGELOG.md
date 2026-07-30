@@ -385,3 +385,6 @@
 - Feature-Flag für die Pro-Version aktiviert
 - Erwachsenen-Filter als neues Pro-Feature zur Paywall hinzugefügt
 - Aktivierung von Ebene 3 in den Bildschirmzeit-Einstellungen erfordert nun Pro-Status
+- Tab Bar Text für Garten in 'Habits' umbenannt und in alle Projektsprachen übersetzt
+- GartenStatsBar (Streak, Münzen, Leben) auf der Routine- und To-do-Seite hinzugefügt
+- Navigation Bar auf Routinen- und To-do-Seite entfernt und durch Floating Action Buttons (FAB) am unteren Bildschirmrand ersetzt, damit die Statistiken ganz oben sind

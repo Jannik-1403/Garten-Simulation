@@ -110,33 +110,12 @@ struct RoutinenView: View {
     @EnvironmentObject var shopStore: ShopStore
     @EnvironmentObject var interactiveTourManager: InteractiveTourManager
     
-    @EnvironmentObject var streakStore: StreakStore
-    @State private var zeigeStreakDetail = false
-    @State private var zeigeCoinsDetail = false
-    @State private var zeigeLebenDetail = false
-
-    
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                GartenStatsBar(
-                    streak: streakStore.currentStreak,
-                    coins: gardenStore.coins,
-                    leben: gardenStore.leben,
-                    onStreakTap: { zeigeStreakDetail = true },
-                    onCoinsTap: { zeigeCoinsDetail = true },
-                    onLebenTap: { zeigeLebenDetail = true }
-                )
-                .background(Color.appHintergrund)
-                .overlay(alignment: .bottom) {
-                    Divider().opacity(0.12).padding(.horizontal, 16)
-                }
-
-                ZStack {
-                    Color.appHintergrund.ignoresSafeArea()
-                    
-                    ScrollView(showsIndicators: false) {
-
+            ZStack {
+                Color.appHintergrund.ignoresSafeArea()
+                
+                ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 24) {
                         
                         // MARK: - Routines (Expandable)
@@ -231,18 +210,14 @@ struct RoutinenView: View {
                         Spacer(minLength: 80)
                     }
                 }
-                
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        topBarMenu
-                            .padding(.trailing, 24)
-                            .padding(.bottom, 24)
-                    }
+            }
+            .navigationTitle(String(localized: String.LocalizationValue("tab.routines"), locale: Locale(identifier: settings.appLanguage)))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    topBarMenu
                 }
             }
-            .toolbar(.hidden, for: .navigationBar)
             .fullScreenCover(item: $selectedHabitToView) { pflanze in
                 ZStack {
                     NavigationStack {
@@ -265,8 +240,6 @@ struct RoutinenView: View {
                 .environmentObject(settings)
                 .environmentObject(interactiveTourManager)
             }
-            }
-
             .sheet(isPresented: $showCreateSheet) {
                 CreateRoutineSheet(routines: $routines, availableHabits: otherPlants)
             }
@@ -323,26 +296,6 @@ struct RoutinenView: View {
                     }
                 )
             }
-            .fullScreenCover(isPresented: $zeigeLebenDetail) {
-                LebenDetailView()
-                    .environmentObject(gardenStore)
-                    .environmentObject(settings)
-            }
-            .fullScreenCover(isPresented: $zeigeStreakDetail) {
-                NavigationStack {
-                    StreakView()
-                        .environmentObject(streakStore)
-                        .environmentObject(settings)
-                }
-            }
-            .fullScreenCover(isPresented: $zeigeCoinsDetail) {
-                NavigationStack {
-                    CoinsDetailView()
-                        .environmentObject(gardenStore)
-                        .environmentObject(settings)
-                        .environmentObject(shopStore)
-                }
-            }
         }
     }
     
@@ -373,13 +326,10 @@ struct RoutinenView: View {
                 Label(String(localized: String.LocalizationValue("routine.delete"), locale: Locale(identifier: settings.appLanguage)), systemImage: "trash")
             }
         } label: {
-            Image(systemName: "plus")
-                .font(.system(size: 24, weight: .bold))
-                .foregroundStyle(.white)
-                .frame(width: 56, height: 56)
-                .background(Color.gruenPrimary)
-                .clipShape(Circle())
-                .shadow(color: .black.opacity(0.2), radius: 6, x: 0, y: 4)
+            Image(systemName: "ellipsis")
+                .font(.system(size: 18, weight: .bold))
+                .foregroundStyle(.primary)
+                .padding(8)
         }
     }
     

@@ -285,7 +285,7 @@ struct MainAppTabView: View {
             GartenView()
                 .tag(0)
                 .tabItem {
-                    Label(String(localized: "tab.habits", defaultValue: "Habits"), systemImage: "leaf.fill")
+                    Label(String(localized: "tab.habits", defaultValue: "Gewohnheiten"), systemImage: "target")
                 }
 
             RoutinenView()

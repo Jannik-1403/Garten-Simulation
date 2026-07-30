@@ -340909,102 +340909,6 @@
         }
       }
     },
-    "tab.garten": {
-      "comment": "",
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Garten"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Garden"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jardín"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jardin"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "बगीचा"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Garden"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "庭"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "정원"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tuin"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ogród"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jardim"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "сад"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bahçe"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "花园"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "花園"
-          }
-        }
-      }
-    },
     "tab.heute": {
       "extractionState": "manual",
       "localizations": {
@@ -396889,46 +396793,10 @@
     "tab.habits": {
       "extractionState": "manual",
       "localizations": {
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Habits"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "習慣"
-          }
-        },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Habits"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "习惯"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewoonten"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आदतें"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Привычки"
+            "value": "Gewohnheiten"
           }
         },
         "en": {
@@ -396937,40 +396805,22 @@
             "value": "Habits"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Habits"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Alışkanlıklar"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Habits"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hábitos"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Hábitos"
           }
         },
-        "ko": {
+        "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "습관"
+            "value": "Habitudes"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आदतें"
           }
         },
         "it": {
@@ -396985,16 +396835,52 @@
             "value": "習慣"
           }
         },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "습관"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewoonten"
+          }
+        },
         "pl": {
           "stringUnit": {
             "state": "translated",
             "value": "Nawyki"
           }
         },
-        "fr": {
+        "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Habitudes"
+            "value": "Hábitos"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Привычки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alışkanlıklar"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "习惯"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "習慣"
           }
         }
       }
