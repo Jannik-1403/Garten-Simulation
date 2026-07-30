@@ -134810,6 +134810,17 @@
         }
       }
     },
+    "goal.fiveyears.add" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "5-Jahres Ziel festlegen"
+          }
+        }
+      }
+    },
     "goal.insights.empty" : {
       "extractionState" : "manual",
       "localizations" : {

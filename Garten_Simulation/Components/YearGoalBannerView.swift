@@ -27,15 +27,24 @@ struct YearGoalBannerView: View {
                     showEditSheet = true
                 } label: {
                     VStack(spacing: 16) {
-                        // Titel mittig drinnen
+                        // Titel mittig drinnen im 3D-Stil (wie Glücksrad)
                         HStack {
                             Spacer()
-                            Text(goal.title)
-                                .font(.system(size: 24, weight: .black, design: .rounded))
-                                .foregroundColor(.primary)
-                                .multilineTextAlignment(.center)
-                                .fixedSize(horizontal: false, vertical: true)
-                                .lineLimit(nil)
+                            ZStack {
+                                // Lower layer (shadow)
+                                Text(goal.title)
+                                    .font(.system(size: 24, weight: .black, design: .rounded))
+                                    .foregroundStyle(Color.blauPrimary.opacity(0.35))
+                                    .offset(y: 4)
+
+                                // Upper layer (visible text)
+                                Text(goal.title)
+                                    .font(.system(size: 24, weight: .black, design: .rounded))
+                                    .foregroundStyle(Color.blauPrimary)
+                            }
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(nil)
                             Spacer()
                         }
                         

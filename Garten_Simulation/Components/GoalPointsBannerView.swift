@@ -72,8 +72,8 @@ struct GoalPointsBannerView: View {
                 
                 Spacer()
                 
-                if let w = weight {
-                    let col: Color = w == .massive ? .green : (w == .bit ? .orange : .red)
+                if let w = weight, w != .none {
+                    let col: Color = w == .massive ? .green : .orange
                     Text(verbatim: "\(w.rawValue) Pkt")
                         .font(.system(size: 18, weight: .black, design: .rounded))
                         .foregroundColor(col)
@@ -140,7 +140,7 @@ struct GoalWeightEditSheet: View {
                 
                 Spacer()
             }
-            .navigationTitle(pflanze.name)
+            .navigationTitle(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -155,7 +155,8 @@ struct GoalWeightEditSheet: View {
                 }
             }
         }
-        .presentationDetents([.medium, .large])
+        .presentationDetents([.large]) // Immer oben (hellere Farben)
+        .presentationBackground(Color.appHintergrund)
         .onAppear {
             selectedWeight = goalStore.weightForHabit(habitId: pflanze.id, goalId: goal.id) ?? .none
         }
