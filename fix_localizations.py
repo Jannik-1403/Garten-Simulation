@@ -6,51 +6,13 @@ with open(file_path, 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 translations = {
-    "weekly_report.card.focus_time.value": {
-        "en": "%lld Minutes", "de": "%lld Minuten", "es": "%lld Minutos", "fr": "%lld Minutes", "it": "%lld Minuti", "pt": "%lld Minutos", "nl": "%lld Minuten", "pl": "%lld Minut", "ru": "%lld Минут", "tr": "%lld Dakika", "ja": "%lld 分", "ko": "%lld 분", "zh-Hans": "%lld 分钟", "zh-Hant": "%lld 分鐘", "hi": "%lld मिनट"
-    },
-    "weekly_report.chart.focus_time.value": {
-        "en": "%lld Minutes", "de": "%lld Minuten", "es": "%lld Minutos", "fr": "%lld Minutes", "it": "%lld Minuti", "pt": "%lld Minutos", "nl": "%lld Minuten", "pl": "%lld Minut", "ru": "%lld Минут", "tr": "%lld Dakika", "ja": "%lld 分", "ko": "%lld 분", "zh-Hans": "%lld 分钟", "zh-Hant": "%lld 分鐘", "hi": "%lld मिनट"
-    },
-    "smart.weekly.title.tip": {
-        "en": "Tip", "de": "Tipp", "es": "Consejo", "fr": "Astuce", "it": "Suggerimento", "pt": "Dica", "nl": "Tip", "pl": "Wskazówka", "ru": "Совет", "tr": "İpucu", "ja": "ヒント", "ko": "팁", "zh-Hans": "提示", "zh-Hant": "提示", "hi": "सुझाव"
-    },
-    "export.pdf.default_filename": {
-        "en": "Garden Report", "de": "Garten Bericht", "es": "Informe de Jardín", "fr": "Rapport de Jardin", "it": "Rapporto Giardino", "pt": "Relatório de Jardim", "nl": "Tuinrapport", "pl": "Raport ogrodowy", "ru": "Отчет по саду", "tr": "Bahçe Raporu", "ja": "ガーデンレポート", "ko": "가든 리포트", "zh-Hans": "花园报告", "zh-Hant": "花園報告", "hi": "गार्डन रिपोर्ट"
-    },
-    "weekly_report.pdf.default_filename": {
-        "en": "Grovy Weekly Report", "de": "Grovy Wochenbericht", "es": "Informe Semanal Grovy", "fr": "Rapport Hebdo Grovy", "it": "Rapporto Settimanale Grovy", "pt": "Relatório Semanal Grovy", "nl": "Grovy Weekrapport", "pl": "Raport tygodniowy", "ru": "Еженедельный отчет", "tr": "Haftalık Rapor", "ja": "週次レポート", "ko": "주간 리포트", "zh-Hans": "Grovy 每周报告", "zh-Hant": "Grovy 每週報告", "hi": "साप्ताहिक रिपोर्ट"
-    },
-    "backup.auto.view_backups": {
-        "en": "Auto Backups", "de": "Automatische Backups", "es": "Copias automáticas", "fr": "Sauvegardes auto", "it": "Backup automatici", "pt": "Backups automáticos", "nl": "Auto-back-ups", "pl": "Kopie automatyczne", "ru": "Автобэкапы", "tr": "Oto Yedeklemeler", "ja": "自動バックアップ", "ko": "자동 백업", "zh-Hans": "自动备份", "zh-Hant": "自動備份", "hi": "ऑटो बैकअप"
-    },
-    "backup.auto.no_backups": {
-        "en": "No automatic backups found.", "de": "Keine automatischen Backups gefunden.", "es": "No se encontraron copias automáticas.", "fr": "Aucune sauvegarde automatique.", "it": "Nessun backup automatico trovato.", "pt": "Nenhum backup automático.", "nl": "Geen automatische back-ups gevonden.", "pl": "Brak kopii zapasowych.", "ru": "Бэкапы не найдены.", "tr": "Otomatik yedek bulunamadı.", "ja": "自動バックアップがありません。", "ko": "자동 백업이 없습니다.", "zh-Hans": "未找到自动备份。", "zh-Hant": "未找到自動備份。", "hi": "कोई बैकअप नहीं मिला。"
-    },
-    "backup.auto.picker.title": {
-        "en": "Select Interval", "de": "Intervall auswählen", "es": "Seleccionar intervalo", "fr": "Choisir l'intervalle", "it": "Seleziona intervallo", "pt": "Selecionar intervalo", "nl": "Selecteer interval", "pl": "Wybierz interwał", "ru": "Выберите интервал", "tr": "Aralık Seç", "ja": "間隔を選択", "ko": "간격 선택", "zh-Hans": "选择备份频率", "zh-Hant": "選擇備份頻率", "hi": "अंतराल चुनें"
-    },
-    "backup.auto.name_prefix": {
-        "en": "Backup", "de": "Backup", "es": "Copia", "fr": "Sauvegarde", "it": "Backup", "pt": "Backup", "nl": "Back-up", "pl": "Kopia", "ru": "Бэкап", "tr": "Yedek", "ja": "バックアップ", "ko": "백업", "zh-Hans": "备份文件", "zh-Hant": "備份檔案", "hi": "बैकअप"
-    },
-    "export.pdf.filename_title": {
-        "en": "PDF File Name", "de": "PDF Dateiname", "es": "Nombre del PDF", "fr": "Nom du fichier PDF", "it": "Nome file PDF", "pt": "Nome do ficheiro PDF", "nl": "PDF bestandsnaam", "pl": "Nazwa pliku PDF", "ru": "Имя PDF", "tr": "PDF Dosya Adı", "ja": "PDFファイル名", "ko": "PDF 파일명", "zh-Hans": "PDF 文件名称", "zh-Hant": "PDF 檔案名稱", "hi": "PDF फ़ाइल का नाम"
-    },
-    "export.pdf.filename_placeholder": {
-        "en": "Enter name", "de": "Name eingeben", "es": "Introducir nombre", "fr": "Entrer un nom", "it": "Inserisci nome", "pt": "Introduzir nome", "nl": "Voer naam in", "pl": "Wpisz nazwę", "ru": "Введите имя", "tr": "Adı girin", "ja": "名前を入力", "ko": "이름 입력", "zh-Hans": "输入文件名称", "zh-Hant": "輸入檔案名稱", "hi": "नाम दर्ज करें"
-    },
-    "backup_export_hint": {
-        "en": "Save your progress as a .gartensave file. You can import it on other devices.", "de": "Speichere deinen Fortschritt als .gartensave Datei. Du kannst sie auf anderen Geräten importieren.", "es": "Guarda tu progreso como archivo .gartensave.", "fr": "Enregistrez sous forme de fichier .gartensave.", "it": "Salva i progressi come file .gartensave.", "pt": "Guarde o progresso como ficheiro .gartensave.", "nl": "Sla voortgang op als .gartensave bestand.", "pl": "Zapisz jako plik .gartensave.", "ru": "Сохраните прогресс как .gartensave.", "tr": "İlerlemeni .gartensave olarak kaydet.", "ja": "進捗を .gartensave として保存します。", "ko": "진행 상황을 .gartensave로 저장하세요.", "zh-Hans": "将进度保存为 .gartensave 备份文件，以便在其他设备上导入。", "zh-Hant": "將進度儲存為 .gartensave 備份檔案，以便在其他裝置上匯入。", "hi": "अपनी प्रगति को .gartensave के रूप में सहेजें。"
-    },
-    "backup_import_titel": {
-        "en": "Import", "de": "Importieren", "es": "Importar", "fr": "Importer", "it": "Importa", "pt": "Importar", "nl": "Importeren", "pl": "Importuj", "ru": "Импорт", "tr": "İçe Aktar", "ja": "インポート", "ko": "가져오기", "zh-Hans": "导入备份", "zh-Hant": "匯入備份", "hi": "आयात करें"
-    },
-    "backup_export_titel": {
-        "en": "Export", "de": "Exportieren", "es": "Exportar", "fr": "Exporter", "it": "Esporta", "pt": "Exportar", "nl": "Exporteren", "pl": "Eksportuj", "ru": "Экспорт", "tr": "Dışa Aktar", "ja": "エクスポート", "ko": "내보내기", "zh-Hans": "导出备份", "zh-Hant": "匯出備份", "hi": "निर्यात करें"
-    },
-    "backup_title": {
-        "en": "Backup & Export", "de": "Backup & Export", "es": "Copias & Exportar", "fr": "Sauvegarde & Export", "it": "Backup & Esporta", "pt": "Backup & Exportar", "nl": "Back-up & Export", "pl": "Kopie & Eksport", "ru": "Бэкап и экспорт", "tr": "Yedek & Dışa Aktar", "ja": "バックアップとエクスポート", "ko": "백업 및 내보내기", "zh-Hans": "备份与导出", "zh-Hant": "備份與匯出", "hi": "बैकअप और निर्यात"
-    }
+    "goal.edit.pointsLabel": {"de": "Pkt.", "en": "pts.", "es": "pts.", "fr": "pts", "it": "pti.", "pt": "pts.", "nl": "ptn.", "pl": "pkt.", "ru": "очк.", "tr": "puan", "ja": "pt", "ko": "pt", "zh-Hans": "分", "zh-Hant": "分", "hi": "अंक"},
+    "goal.edit.targetLabel": {"de": "Ziel:", "en": "Target:", "es": "Objetivo:", "fr": "Objectif :", "it": "Obiettivo:", "pt": "Alvo:", "nl": "Doel:", "pl": "Cel:", "ru": "Цель:", "tr": "Hedef:", "ja": "目標:", "ko": "목표:", "zh-Hans": "目标:", "zh-Hant": "目標:", "hi": "लक्ष्य:"},
+    "goal.link.title": {"de": "Ziel-Beitrag", "en": "Goal Contribution", "es": "Contribución al objetivo", "fr": "Contribution à l'objectif", "it": "Contributo all'obiettivo", "pt": "Contribuição para o objetivo", "nl": "Doelbijdrage", "pl": "Wkład w cel", "ru": "Вклад в цель", "tr": "Hedef Katkısı", "ja": "目標への貢献", "ko": "목표 기여", "zh-Hans": "目标贡献", "zh-Hant": "目標貢獻", "hi": "लक्ष्य योगदान"},
+    "todos.tab.select_plant": {"de": "Für welche Gewohnheit?", "en": "For which habit?", "es": "¿Para qué hábito?", "fr": "Pour quelle habitude ?", "it": "Per quale abitudine?", "pt": "Para qual hábito?", "nl": "Voor welke gewoonte?", "pl": "Dla którego nawyku?", "ru": "Для какой привычки?", "tr": "Hangi alışkanlık için?", "ja": "どの習慣のため？", "ko": "어떤 습관을 위해?", "zh-Hans": "为了哪个习惯？", "zh-Hant": "為了哪個習慣？", "hi": "किस आदत के लिए?"},
+    "todos.tab.empty": {"de": "Keine offenen To-Dos.", "en": "No open To-Dos.", "es": "No hay tareas pendientes.", "fr": "Aucune tâche ouverte.", "it": "Nessuna attività aperta.", "pt": "Sem tarefas pendentes.", "nl": "Geen openstaande To-Do's.", "pl": "Brak otwartych zadań.", "ru": "Нет открытых задач.", "tr": "Açık Görev Yok.", "ja": "オープンなタスクはありません。", "ko": "열린 할 일이 없습니다.", "zh-Hans": "没有未完成的任务。", "zh-Hant": "沒有未完成的任務。", "hi": "कोई खुला कार्य नहीं।"},
+    "goal.edit.title": {"de": "Ziel bearbeiten", "en": "Edit Goal", "es": "Editar objetivo", "fr": "Modifier l'objectif", "it": "Modifica obiettivo", "pt": "Editar objetivo", "nl": "Doel bewerken", "pl": "Edytuj cel", "ru": "Редактировать цель", "tr": "Hedefi Düzenle", "ja": "目標を編集", "ko": "목표 편집", "zh-Hans": "编辑目标", "zh-Hant": "編輯目標", "hi": "लक्ष्य संपादित करें"},
+    "goal.frequency.label": {"de": "Häufigkeit pro Woche:", "en": "Frequency per week:", "es": "Frecuencia por semana:", "fr": "Fréquence par semaine :", "it": "Frequenza a settimana:", "pt": "Frequência por semana:", "nl": "Frequentie per week:", "pl": "Częstotliwość w tygodniu:", "ru": "Частота в неделю:", "tr": "Haftalık Sıklık:", "ja": "週の頻度:", "ko": "주당 빈도:", "zh-Hans": "每周频率:", "zh-Hant": "每週頻率:", "hi": "प्रति सप्ताह आवृत्ति:"}
 }
 
 existing_langs = ['pt', 'nl', 'zh-Hans', 'ko', 'ja', 'tr', 'es', 'fr', 'en', 'ru', 'pl', 'it', 'hi', 'de', 'zh-Hant']
