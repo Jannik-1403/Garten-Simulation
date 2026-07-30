@@ -134729,7 +134729,6 @@
       }
     },
     "goal.edit.pointsLabel": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -134737,40 +134736,10 @@
             "value": "Pkt."
           }
         },
-        "pt": {
+        "en": {
           "stringUnit": {
             "state": "translated",
             "value": "pts."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ptn."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "分"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "pt"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "pt"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "puan"
           }
         },
         "es": {
@@ -134785,7 +134754,43 @@
             "value": "pts"
           }
         },
-        "en": {
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अंक"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pti."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pt"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pt"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ptn."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pkt."
+          }
+        },
+        "pt": {
           "stringUnit": {
             "state": "translated",
             "value": "pts."
@@ -134797,22 +134802,16 @@
             "value": "очк."
           }
         },
-        "pl": {
+        "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "pkt."
+            "value": "puan"
           }
         },
-        "it": {
+        "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "pti."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अंक"
+            "value": "分"
           }
         },
         "zh-Hant": {
@@ -134824,7 +134823,6 @@
       }
     },
     "goal.edit.targetLabel": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -134832,40 +134830,10 @@
             "value": "Ziel:"
           }
         },
-        "pt": {
+        "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alvo:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Doel:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "目标:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "목표:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "目標:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hedef:"
+            "value": "Target:"
           }
         },
         "es": {
@@ -134880,22 +134848,10 @@
             "value": "Objectif :"
           }
         },
-        "en": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Target:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Цель:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cel:"
+            "value": "लक्ष्य:"
           }
         },
         "it": {
@@ -134904,10 +134860,52 @@
             "value": "Obiettivo:"
           }
         },
-        "hi": {
+        "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "लक्ष्य:"
+            "value": "目標:"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "목표:"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doel:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cel:"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alvo:"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цель:"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hedef:"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目标:"
           }
         },
         "zh-Hant": {
@@ -134945,6 +134943,12 @@
             "value": "Modifier l'objectif"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य संपादित करें"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -134963,6 +134967,24 @@
             "value": "목표 편집"
           }
         },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doel bewerken"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edytuj cel"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar objetivo"
+          }
+        },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
@@ -134975,6 +134997,12 @@
             "value": "Редактировать цель"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hedefi Düzenle"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -134985,36 +135013,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "編輯目標"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Editar objetivo"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Doel bewerken"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hedefi Düzenle"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Edytuj cel"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "लक्ष्य संपादित करें"
           }
         }
       }
@@ -135042,7 +135040,6 @@
       }
     },
     "goal.frequency.label": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -135050,40 +135047,10 @@
             "value": "Häufigkeit pro Woche:"
           }
         },
-        "pt": {
+        "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Frequência por semana:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Frequentie per week:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "每周频率:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "주당 빈도:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "週の頻度:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Haftalık Sıklık:"
+            "value": "Frequency per week:"
           }
         },
         "es": {
@@ -135098,22 +135065,10 @@
             "value": "Fréquence par semaine :"
           }
         },
-        "en": {
+        "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Frequency per week:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Частота в неделю:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Częstotliwość w tygodniu:"
+            "value": "प्रति सप्ताह आवृत्ति:"
           }
         },
         "it": {
@@ -135122,10 +135077,52 @@
             "value": "Frequenza a settimana:"
           }
         },
-        "hi": {
+        "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "प्रति सप्ताह आवृत्ति:"
+            "value": "週の頻度:"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "주당 빈도:"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequentie per week:"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Częstotliwość w tygodniu:"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frequência por semana:"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Частота в неделю:"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haftalık Sıklık:"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每周频率:"
           }
         },
         "zh-Hant": {
@@ -135885,6 +135882,12 @@
             "value": "Contribution à l'objectif"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "लक्ष्य योगदान"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -135901,6 +135904,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "목표 기여"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doelbijdrage"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wkład w cel"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contribuição para o objetivo"
           }
         },
         "pt-BR": {
@@ -135927,6 +135948,12 @@
             "value": "Målbeteende"
           }
         },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hedef Katkısı"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -135937,36 +135964,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "目標貢獻"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contribuição para o objetivo"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Doelbijdrage"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hedef Katkısı"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wkład w cel"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "लक्ष्य योगदान"
           }
         }
       }
@@ -396888,7 +396885,120 @@
         }
       }
     },
-    "Ziel": {}
+    "Ziel": {},
+    "tab.habits": {
+      "extractionState": "manual",
+      "localizations": {
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habits"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "習慣"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habits"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "习惯"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewoonten"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आदतें"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Привычки"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habits"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habits"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alışkanlıklar"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habits"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hábitos"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hábitos"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "습관"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abitudini"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "習慣"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nawyki"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habitudes"
+          }
+        }
+      }
+    }
   },
   "version": "1.1"
 }
