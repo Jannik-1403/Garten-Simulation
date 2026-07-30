@@ -186,31 +186,17 @@ struct GlobalTodoAddSheet: View {
                             ForEach(gardenStore.pflanzen) { pflanze in
                                 VStack(spacing: 8) {
                                     let isSelected = selectedPlant?.id == pflanze.id
-                                    Item3DButton(
+                                    PflanzenButton(
+                                        plant: GameDatabase.shared.plant(for: pflanze.plantID),
+                                        seltenheit: pflanze.seltenheit,
                                         farbe: isSelected ? pflanze.color : Color(UIColor.systemGray4),
                                         sekundaerFarbe: isSelected ? pflanze.color.darker() : Color(UIColor.systemGray3),
                                         groesse: 64,
-                                        isRectangular: false,
+                                        fallbackIcon: pflanze.symbolName,
                                         aktion: {
                                             selectedPlant = pflanze
                                         }
-                                    ) {
-                                        if pflanze.plantImageName != pflanze.symbolName {
-                                            Image(pflanze.plantImageName)
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 50, height: 50)
-                                        } else {
-                                            if UIImage(systemName: pflanze.symbolName) != nil {
-                                                Image(systemName: pflanze.symbolName)
-                                                    .font(.system(size: 34))
-                                                    .foregroundColor(.white)
-                                            } else {
-                                                Text(pflanze.symbolName)
-                                                    .font(.system(size: 34))
-                                            }
-                                        }
-                                    }
+                                    )
                                     
                                     Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
                                         .font(.system(size: 10, weight: .bold, design: .rounded))
