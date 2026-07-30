@@ -87,21 +87,30 @@ struct TodosTabView: View {
                 }
                 Spacer()
                 }
-            }
-            // Title removed based on user request
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        selectedPlantForTodo = nil
-                        todoToEditIndex = nil
-                        showingAddTodoSheet = true
-                    } label: {
-                        Image(systemName: "plus")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.primary)
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button {
+                            selectedPlantForTodo = nil
+                            todoToEditIndex = nil
+                            showingAddTodoSheet = true
+                        } label: {
+                            Image(systemName: "plus")
+                                .font(.system(size: 24, weight: .bold))
+                                .foregroundStyle(.white)
+                                .frame(width: 56, height: 56)
+                                .background(Color.gruenPrimary)
+                                .clipShape(Circle())
+                                .shadow(color: .black.opacity(0.2), radius: 6, x: 0, y: 4)
+                        }
+                        .padding(.trailing, 24)
+                        .padding(.bottom, 24)
                     }
                 }
             }
+            .toolbar(.hidden, for: .navigationBar)
             .sheet(isPresented: $showingAddTodoSheet) {
                 if let selected = selectedPlantForTodo {
                     TodoSheetView(pflanze: selected, editIndex: todoToEditIndex)

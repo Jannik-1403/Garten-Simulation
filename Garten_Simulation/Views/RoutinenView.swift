@@ -231,14 +231,18 @@ struct RoutinenView: View {
                         Spacer(minLength: 80)
                     }
                 }
-            }
-            .navigationTitle(String(localized: String.LocalizationValue("tab.routines"), locale: Locale(identifier: settings.appLanguage)))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    topBarMenu
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        topBarMenu
+                            .padding(.trailing, 24)
+                            .padding(.bottom, 24)
+                    }
                 }
             }
+            .toolbar(.hidden, for: .navigationBar)
             .fullScreenCover(item: $selectedHabitToView) { pflanze in
                 ZStack {
                     NavigationStack {
@@ -369,10 +373,13 @@ struct RoutinenView: View {
                 Label(String(localized: String.LocalizationValue("routine.delete"), locale: Locale(identifier: settings.appLanguage)), systemImage: "trash")
             }
         } label: {
-            Image(systemName: "ellipsis")
-                .font(.system(size: 18, weight: .bold))
-                .foregroundStyle(.primary)
-                .padding(8)
+            Image(systemName: "plus")
+                .font(.system(size: 24, weight: .bold))
+                .foregroundStyle(.white)
+                .frame(width: 56, height: 56)
+                .background(Color.gruenPrimary)
+                .clipShape(Circle())
+                .shadow(color: .black.opacity(0.2), radius: 6, x: 0, y: 4)
         }
     }
     
