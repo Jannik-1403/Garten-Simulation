@@ -574,16 +574,13 @@ struct TodoSheetView: View {
             // Header
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(NSLocalizedString(isEditing ? "plant.detail.todo.edit" : "plant.detail.todo.add", comment: ""))
+                    Text(isEditing ? String(localized: "plant.detail.todo.edit", defaultValue: "To-Do bearbeiten") : String(localized: "plant.detail.todo.add", defaultValue: "To-Do hinzufügen"))
                         .font(.system(size: 24, weight: .black, design: .rounded))
-                    Text(NSLocalizedString(pflanze.name, comment: ""))
+                    Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
                         .font(.system(size: 14, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
                 Spacer()
-                Image(systemName: "checklist")
-                    .font(.system(size: 28, weight: .semibold))
-                    .foregroundStyle(Color.gruenPrimary)
             }
             .padding(.top, 20)
 
@@ -593,14 +590,7 @@ struct TodoSheetView: View {
                 .scrollContentBackground(.hidden)
                 .padding(16)
                 .frame(minHeight: 140)
-                .background(
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .fill(Color.primary.opacity(0.04))
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .stroke(Color.primary.opacity(0.08), lineWidth: 1)
-                )
+                .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
                 .overlay(alignment: .topLeading) {
                     if todoText.isEmpty {
                         Text(String(localized: "plant.detail.todo.placeholder", defaultValue: "To-Do eingeben..."))
@@ -625,6 +615,7 @@ struct TodoSheetView: View {
                     pflanze.todos.append(newTodo)
                 }
                 gardenStore.savePlants()
+                gardenStore.objectWillChange.send()
                 dismiss()
             } label: {
                 Text(String(localized: "common.save"))

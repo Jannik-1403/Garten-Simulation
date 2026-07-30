@@ -48,16 +48,18 @@ struct TodosTabView: View {
                                             .padding(.horizontal, 24)
                                         
                                         VStack(spacing: 12) {
-                                            ForEach(pflanze.todos.indices.sorted { pflanze.todos[$0].priority.sortValue < pflanze.todos[$1].priority.sortValue }, id: \.self) { index in
-                                                TodoRowView(
-                                                    pflanze: pflanze,
-                                                    index: index,
-                                                    onEdit: {
-                                                        selectedPlantForTodo = pflanze
-                                                        todoToEditIndex = index
-                                                        showingAddTodoSheet = true
-                                                    }
-                                                )
+                                            ForEach(pflanze.todos.sorted { $0.priority.sortValue < $1.priority.sortValue }, id: \.id) { todo in
+                                                if let index = pflanze.todos.firstIndex(where: { $0.id == todo.id }) {
+                                                    TodoRowView(
+                                                        pflanze: pflanze,
+                                                        index: index,
+                                                        onEdit: {
+                                                            selectedPlantForTodo = pflanze
+                                                            todoToEditIndex = index
+                                                            showingAddTodoSheet = true
+                                                        }
+                                                    )
+                                                }
                                             }
                                         }
                                         .padding(.horizontal, 24)
@@ -184,32 +186,27 @@ struct GlobalTodoAddSheet: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
                             ForEach(gardenStore.pflanzen) { pflanze in
-                                Button {
-                                    selectedPlant = pflanze
-                                } label: {
-                                    VStack(spacing: 8) {
-                                        ZStack {
-                                            Circle()
-                                                .fill(selectedPlant?.id == pflanze.id ? Color.gruenPrimary.opacity(0.2) : Color.primary.opacity(0.05))
-                                                .frame(width: 60, height: 60)
-                                            
-                                            Image(systemName: pflanze.symbolName)
-                                                .font(.system(size: 24))
-                                                .foregroundColor(Color(hex: pflanze.symbolColor))
+                                VStack(spacing: 8) {
+                                    Item3DButton(
+                                        farbe: selectedPlant?.id == pflanze.id ? Color.gruenPrimary : Color.white,
+                                        sekundaerFarbe: selectedPlant?.id == pflanze.id ? Color.gruenPrimary.darker() : Color(UIColor.systemGray5),
+                                        groesse: 64,
+                                        isRectangular: false,
+                                        aktion: {
+                                            selectedPlant = pflanze
                                         }
-                                        .overlay(
-                                            Circle()
-                                                .stroke(selectedPlant?.id == pflanze.id ? Color.gruenPrimary : Color.clear, lineWidth: 2)
-                                        )
-                                        
-                                        Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
-                                            .font(.system(size: 10, weight: .bold, design: .rounded))
-                                            .foregroundColor(.primary)
-                                            .lineLimit(1)
-                                            .frame(width: 70)
+                                    ) {
+                                        Image(systemName: pflanze.symbolName)
+                                            .font(.system(size: 26))
+                                            .foregroundColor(selectedPlant?.id == pflanze.id ? .white : Color(hex: pflanze.symbolColor))
                                     }
+                                    
+                                    Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
+                                        .font(.system(size: 10, weight: .bold, design: .rounded))
+                                        .foregroundColor(.primary)
+                                        .lineLimit(1)
+                                        .frame(width: 70)
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
                         .padding(.horizontal, 4)
@@ -223,14 +220,7 @@ struct GlobalTodoAddSheet: View {
                     .scrollContentBackground(.hidden)
                     .padding(16)
                     .frame(minHeight: 140)
-                    .background(
-                        RoundedRectangle(cornerRadius: 20, style: .continuous)
-                            .fill(Color.primary.opacity(0.04))
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20, style: .continuous)
-                            .stroke(Color.primary.opacity(0.08), lineWidth: 1)
-                    )
+                    .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
                     .overlay(alignment: .topLeading) {
                         if todoText.isEmpty {
                             Text(String(localized: "plant.detail.todo.placeholder", defaultValue: "To-Do eingeben..."))
@@ -251,6 +241,7 @@ struct GlobalTodoAddSheet: View {
                     let newTodo = FocusGoal(text: trimmed)
                     selected.todos.append(newTodo)
                     gardenStore.savePlants()
+                    gardenStore.objectWillChange.send()
                     dismiss()
                 } label: {
                     Text(String(localized: "common.save", defaultValue: "Speichern"))

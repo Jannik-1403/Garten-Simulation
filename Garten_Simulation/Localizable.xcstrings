@@ -665,6 +665,16 @@
         }
       }
     },
+    "%@ %lld %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ %2$lld %3$@"
+          }
+        }
+      }
+    },
     "%lld": {
       "localizations": {
         "de": {
@@ -134715,6 +134725,28 @@
           "stringUnit": {
             "state": "new",
             "value": "Mein Jahresziel"
+          }
+        }
+      }
+    },
+    "goal.edit.pointsLabel": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Pkt."
+          }
+        }
+      }
+    },
+    "goal.edit.targetLabel": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Ziel:"
           }
         }
       }
@@ -396534,8 +396566,7 @@
         }
       }
     },
-    "Ziel": {},
-    "Ziel: %lld Pkt.": {}
+    "Ziel": {}
   },
   "version": "1.1"
 }
