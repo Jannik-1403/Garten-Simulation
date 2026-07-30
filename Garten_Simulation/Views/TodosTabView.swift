@@ -20,6 +20,7 @@ struct TodosTabView: View {
                         .padding(.bottom, 24)
                         
                     if alleTodosEmpty() {
+                    Spacer()
                     VStack(spacing: 16) {
                         Image(systemName: "checklist")
                             .font(.system(size: 60))
@@ -27,17 +28,8 @@ struct TodosTabView: View {
                         Text(String(localized: "todos.tab.empty", defaultValue: "Keine offenen To-Dos."))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .foregroundColor(.secondary)
-                        
-                        Button {
-                            showingAddTodoSheet = true
-                        } label: {
-                            Text(String(localized: "plant.detail.todo.add", defaultValue: "To-Do hinzufügen"))
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .frame(height: 24)
-                                .padding(.horizontal, 24)
-                        }
-                        .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: false, backgroundColor: .black, shadowColor: Color.black.opacity(0.8), foregroundColor: .white))
                     }
+                    Spacer()
                 } else {
                     ScrollView {
                         LazyVStack(spacing: 24) {
@@ -82,8 +74,8 @@ struct TodosTabView: View {
                         todoToEditIndex = nil
                         showingAddTodoSheet = true
                     } label: {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.title3)
+                        Image(systemName: "plus")
+                            .font(.system(size: 20, weight: .bold))
                             .foregroundColor(.primary)
                     }
                 }
@@ -194,8 +186,8 @@ struct GlobalTodoAddSheet: View {
                             ForEach(gardenStore.pflanzen) { pflanze in
                                 VStack(spacing: 8) {
                                     Item3DButton(
-                                        farbe: selectedPlant?.id == pflanze.id ? Color.gruenPrimary : Color(hex: pflanze.symbolColor),
-                                        sekundaerFarbe: selectedPlant?.id == pflanze.id ? Color.gruenPrimary.darker() : Color(hex: pflanze.symbolColor).darker(),
+                                        farbe: selectedPlant?.id == pflanze.id ? Color.gruenPrimary : pflanze.color,
+                                        sekundaerFarbe: selectedPlant?.id == pflanze.id ? Color.gruenPrimary.darker() : pflanze.color.darker(),
                                         groesse: 64,
                                         isRectangular: false,
                                         aktion: {
