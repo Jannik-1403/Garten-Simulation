@@ -63,10 +63,11 @@ struct GoalPointsBannerView: View {
         ) {
             HStack(spacing: 14) {
                 // Icon 2.25x größer, nichts anderes verschoben
-                Image(systemName: iconName)
-                    .foregroundColor(iconColor)
-                    .font(.system(size: 36, weight: .bold)) // 2.25x von 16pt
+                Image("Goal")
+                    .resizable()
+                    .scaledToFit()
                     .frame(width: 40, height: 40)
+                    .foregroundColor(iconColor)
                 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(NSLocalizedString(goal.type.localizationKey, comment: ""))

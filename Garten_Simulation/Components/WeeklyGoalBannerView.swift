@@ -16,13 +16,9 @@ struct WeeklyGoalBannerView: View {
         }
     }
     
-    // Fortschritt: Wochentag / 7 (Mo=0...So=6)
     private var progress: Double {
-        let cal = Calendar.current
-        let weekday = cal.component(.weekday, from: Date()) // 1=So, 2=Mo,...
-        // Normalisieren: Mo=1...So=7
-        let adjusted = (weekday + 5) % 7  // Mo=0...So=6
-        return Double(adjusted) / 7.0
+        guard let goal = currentWeekGoal else { return 0 }
+        return goalStore.progressForWeek(goalId: goal.id)
     }
     
     private var progressPercent: Int {
@@ -37,7 +33,8 @@ struct WeeklyGoalBannerView: View {
                     Text(goal.title)
                         .font(.system(size: 24, weight: .black, design: .rounded))
                         .foregroundColor(.primary)
-                        .lineLimit(1)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .lineLimit(nil)
                     Spacer()
                 }
                 .padding(.horizontal, 24)
@@ -69,10 +66,10 @@ struct WeeklyGoalBannerView: View {
                                 // Fill (3D Look für den Progress Bar)
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 12)
-                                        .fill(Color.green.darker())
+                                        .fill(Color.blauPrimary.darker())
                                         .frame(height: 16)
                                     RoundedRectangle(cornerRadius: 12)
-                                        .fill(Color.green)
+                                        .fill(Color.blauPrimary)
                                         .frame(height: 16)
                                         .offset(y: -2)
                                 }
@@ -86,15 +83,15 @@ struct WeeklyGoalBannerView: View {
                         HStack {
                             Text(verbatim: "\(progressPercent)%")
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundColor(Color.green.darker())
+                                .foregroundColor(Color.blauPrimary.darker())
                             Spacer()
                             Text(String(localized: "goal.type.week", defaultValue: "Wochenziel"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundColor(Color.green.darker())
+                                .foregroundColor(Color.blauPrimary.darker())
                             
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 14, weight: .bold))
-                                .foregroundColor(Color.green.darker())
+                                .foregroundColor(Color.blauPrimary.darker())
                         }
                     }
                     .padding(.horizontal, 20)
@@ -130,7 +127,7 @@ struct WeeklyGoalBannerView: View {
                 .padding(.horizontal, 24)
             }
         }
-        .sheet(isPresented: $showEditSheet) {
+        .fullScreenCover(isPresented: $showEditSheet) {
             GoalEditSheet(
                 existingGoal: currentWeekGoal,
                 type: .week,
