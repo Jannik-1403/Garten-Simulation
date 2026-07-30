@@ -182,12 +182,12 @@ struct GlobalTodoAddSheet: View {
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                     
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 12) {
+                        HStack(alignment: .top, spacing: 12) {
                             ForEach(gardenStore.pflanzen) { pflanze in
                                 VStack(spacing: 8) {
                                     Item3DButton(
-                                        farbe: selectedPlant?.id == pflanze.id ? Color.gruenPrimary : pflanze.color,
-                                        sekundaerFarbe: selectedPlant?.id == pflanze.id ? Color.gruenPrimary.darker() : pflanze.color.darker(),
+                                        farbe: pflanze.color,
+                                        sekundaerFarbe: pflanze.color.darker(),
                                         groesse: 64,
                                         isRectangular: false,
                                         aktion: {
@@ -198,13 +198,14 @@ struct GlobalTodoAddSheet: View {
                                             Image(pflanze.plantImageName)
                                                 .resizable()
                                                 .scaledToFit()
-                                                .frame(width: 40, height: 40)
+                                                .frame(width: 50, height: 50)
                                         } else {
                                             Image(systemName: pflanze.symbolName)
-                                                .font(.system(size: 26))
+                                                .font(.system(size: 34))
                                                 .foregroundColor(.white)
                                         }
                                     }
+                                    .opacity(selectedPlant?.id == pflanze.id ? 1.0 : 0.4)
                                     
                                     Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
                                         .font(.system(size: 10, weight: .bold, design: .rounded))
@@ -221,11 +222,20 @@ struct GlobalTodoAddSheet: View {
                 }
                 
                 // Text Input
-                TextField(String(localized: "plant.detail.todo.placeholder", defaultValue: "To-Do eingeben..."), text: $todoText, axis: .vertical)
-                    .font(.system(size: 16, weight: .medium, design: .rounded))
-                    .frame(minHeight: 140, alignment: .topLeading)
-                    .contentShape(Rectangle())
-                    .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
+                VStack(alignment: .leading, spacing: 8) {
+                    if let selected = selectedPlant {
+                        Text("\(String(localized: "todos.tab.selected_habit", defaultValue: "Ausgewählte Gewohnheit:")) \(NSLocalizedString(selected.displayedHabitName, comment: ""))")
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundColor(.secondary)
+                            .padding(.horizontal, 4)
+                    }
+                    
+                    TextField(String(localized: "plant.detail.todo.placeholder", defaultValue: "To-Do eingeben..."), text: $todoText, axis: .vertical)
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .frame(minHeight: 140, alignment: .topLeading)
+                        .contentShape(Rectangle())
+                        .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
+                }
                 
                 Spacer()
                 
