@@ -50,7 +50,7 @@ struct FocusSoundControlView: View {
     private var collapsedView: some View {
         Item3DButton(
             farbe: .blue,
-            sekundaerFarbe: Color(red: 0, green: 0, blue: 0.8),
+            sekundaerFarbe: .blue.darker(),
             groesse: 50,
             shadowDepthFactor: 0.1,
             isRectangular: false,
@@ -61,7 +61,7 @@ struct FocusSoundControlView: View {
                 .foregroundColor(.white)
         }
         .simultaneousGesture(
-            LongPressGesture(minimumDuration: 0.5)
+            LongPressGesture(minimumDuration: 0.25)
                 .onEnded { _ in
                     if isHapticEnabled() {
                         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
@@ -126,12 +126,10 @@ struct FocusSoundControlView: View {
             }
             .buttonStyle(.plain)
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
-        .background(
-            Capsule()
-                .fill(isLocked ? Color.goldPrimary : Color.blue)
-                .shadow(color: (isLocked ? Color.goldPrimary : Color.blue).opacity(0.4), radius: 8, x: 0, y: 4)
+        .item3DContainer(
+            farbe: isLocked ? Color.goldPrimary : Color.blue,
+            sekundaerFarbe: isLocked ? Color.goldPrimary.darker() : Color.blue.darker(),
+            shadowDepth: 4
         )
     }
 
