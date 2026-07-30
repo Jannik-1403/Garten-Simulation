@@ -380,3 +380,8 @@
   - Jede Ebene ist ein interaktiver 3D-Button; leere Ebenen können direkt dort befüllt werden
   - Aufrufbar durch Tippen auf das 5-Jahresziel im Profil
   - 13 neue Strings in allen 11 Sprachen übersetzt
+
+## 30. Juli 2026 - Pro-Version & Erwachsenen-Filter
+- Feature-Flag für die Pro-Version aktiviert
+- Erwachsenen-Filter als neues Pro-Feature zur Paywall hinzugefügt
+- Aktivierung von Ebene 3 in den Bildschirmzeit-Einstellungen erfordert nun Pro-Status

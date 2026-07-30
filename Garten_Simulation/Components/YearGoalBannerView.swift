@@ -15,8 +15,16 @@ struct YearGoalBannerView: View {
         return goalStore.progressForFiveYears(goalId: goal.id)
     }
     
-    private var progressPercent: Int {
-        Int(progress * 100)
+    private var progressPercentString: String {
+        let percent = progress * 100
+        if percent == 0 { return "0%" }
+        if percent >= 100 { return "100%" }
+        return String(format: "%.2f%%", percent) // 2 decimal places to see progress faster
+    }
+    
+    private var pointsInfo: (earned: Int, target: Int) {
+        guard let goal = fiveYearGoal else { return (0, 0) }
+        return goalStore.getPointsForFiveYears(goalId: goal.id)
     }
     
     var body: some View {
@@ -47,19 +55,19 @@ struct YearGoalBannerView: View {
                             // 2. Langer, dicker Fortschrittsbalken
                             GeometryReader { geo in
                                 ZStack(alignment: .leading) {
-                                    // Track (Hellgrau mit gestrichelter Linie für mehr Details bei 0%)
-                                    Capsule()
+                                    // Track (Hellgrau, gestrichelt NUR bei 0%)
+                                    RoundedRectangle(cornerRadius: 12)
                                         .fill(Color(hex: "#F5F5F5"))
                                         .frame(height: 18)
                                         .overlay(
-                                            Capsule()
-                                                .strokeBorder(style: StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
-                                                .foregroundColor(Color.gray.opacity(0.3))
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .strokeBorder(style: progress == 0 ? StrokeStyle(lineWidth: 1.5, dash: [4, 4]) : StrokeStyle(lineWidth: 0))
+                                                .foregroundColor(Color.gray.opacity(progress == 0 ? 0.3 : 0))
                                         )
                                     
                                     // Fill (Akzentfarbe)
                                     if progress > 0 {
-                                        Capsule()
+                                        RoundedRectangle(cornerRadius: 12)
                                             .fill(Color(hex: "#4FC3F7"))
                                             .frame(width: max(geo.size.width * progress, 18), height: 18)
                                     }
@@ -68,10 +76,15 @@ struct YearGoalBannerView: View {
                             .frame(height: 18)
                             
                             // 3. Prozentzahl und Text darunter
-                            HStack {
-                                Text(verbatim: "\(progressPercent)%")
-                                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                                    .foregroundColor(Color(hex: "#4FC3F7"))
+                            HStack(alignment: .bottom) {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(verbatim: progressPercentString)
+                                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                                        .foregroundColor(Color(hex: "#4FC3F7"))
+                                    Text(verbatim: "\(pointsInfo.earned) / \(pointsInfo.target) Pkt.")
+                                        .font(.system(size: 13, weight: .semibold, design: .rounded))
+                                        .foregroundColor(Color.gray)
+                                }
                                 Spacer()
                                 Text(String(localized: "goal.fiveyears.label.arrow", defaultValue: "5 Years →"))
                                     .font(.system(size: 18, weight: .bold, design: .rounded))
@@ -80,9 +93,11 @@ struct YearGoalBannerView: View {
                         }
                         .padding(.horizontal, 4) // Weniger Padding, Balken länger
                     }
-                    .padding(.top, 32) // Etwas weiter nach unten gesetzt
+                    .padding(.top, 32)
                     .padding(.bottom, 24)
                     .padding(.horizontal, 20)
+                    .contentShape(Rectangle()) // Macht den gesamten Banner-Bereich klickbar
+
                 }
                 .buttonStyle(.plain)
                 .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
@@ -107,6 +122,7 @@ struct YearGoalBannerView: View {
                     }
                     .padding(.horizontal, 24)
                     .padding(.vertical, 24)
+                    .contentShape(Rectangle()) // Macht den gesamten Banner-Bereich klickbar
                 }
                 .buttonStyle(.plain)
                 .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))

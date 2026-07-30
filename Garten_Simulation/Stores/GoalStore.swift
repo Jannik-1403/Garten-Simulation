@@ -60,6 +60,22 @@ class GoalStore: ObservableObject {
         return min(Double(earnedThisWeek) / Double(maxPointsThisWeek), 1.0)
     }
     
+    func getPointsForWeek(goalId: UUID) -> (earned: Int, target: Int) {
+        let links = habitLinks.filter { $0.goalId == goalId }
+        let maxPointsPerDay = links.reduce(0) { $0 + $1.weight.rawValue }
+        let maxPointsThisWeek = maxPointsPerDay * 7
+        
+        let cal = Calendar.current
+        let now = Date()
+        let earnedThisWeek = goalLogs.filter {
+            $0.goalId == goalId &&
+            cal.component(.weekOfYear, from: $0.date) == cal.component(.weekOfYear, from: now) &&
+            cal.component(.yearForWeekOfYear, from: $0.date) == cal.component(.yearForWeekOfYear, from: now)
+        }.reduce(0) { $0 + $1.pointsEarned }
+        
+        return (earnedThisWeek, maxPointsThisWeek)
+    }
+    
     func progressForFiveYears(goalId: UUID) -> Double {
         let links = habitLinks.filter { $0.goalId == goalId }
         let maxPointsPerDay = links.reduce(0) { $0 + $1.weight.rawValue }
@@ -70,6 +86,16 @@ class GoalStore: ObservableObject {
         let earnedSoFar = goalLogs.filter { $0.goalId == goalId }.reduce(0) { $0 + $1.pointsEarned }
         
         return min(Double(earnedSoFar) / Double(maxPointsFiveYears), 1.0)
+    }
+    
+    func getPointsForFiveYears(goalId: UUID) -> (earned: Int, target: Int) {
+        let links = habitLinks.filter { $0.goalId == goalId }
+        let maxPointsPerDay = links.reduce(0) { $0 + $1.weight.rawValue }
+        let maxPointsFiveYears = maxPointsPerDay * 365 * 5
+        
+        let earnedSoFar = goalLogs.filter { $0.goalId == goalId }.reduce(0) { $0 + $1.pointsEarned }
+        
+        return (earnedSoFar, maxPointsFiveYears)
     }
     
     /// Wird aufgerufen, wenn eine Pflanze gegossen / ein Habit erledigt wird
