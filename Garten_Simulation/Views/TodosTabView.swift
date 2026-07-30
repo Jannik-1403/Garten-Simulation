@@ -201,9 +201,14 @@ struct GlobalTodoAddSheet: View {
                                                 .scaledToFit()
                                                 .frame(width: 50, height: 50)
                                         } else {
-                                            Image(systemName: pflanze.symbolName)
-                                                .font(.system(size: 34))
-                                                .foregroundColor(.white)
+                                            if UIImage(systemName: pflanze.symbolName) != nil {
+                                                Image(systemName: pflanze.symbolName)
+                                                    .font(.system(size: 34))
+                                                    .foregroundColor(.white)
+                                            } else {
+                                                Text(pflanze.symbolName)
+                                                    .font(.system(size: 34))
+                                            }
                                         }
                                     }
                                     
