@@ -135078,43 +135078,43 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wie stark hilft '%@' deinem Jahresziel '%@'?"
+            "value": "Wie sehr trägt diese Gewohnheit bei?"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "How much does '%@' help your yearly goal '%@'?"
+            "value": "How much does this habit contribute?"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "¿Cuánto ayuda '%@' a tu objetivo anual '%@'?"
+            "value": "¿Cuánto contribuye este hábito?"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dans quelle mesure '%@' aide-t-il votre objectif annuel '%@' ?"
+            "value": "Quelle est la contribution de cette habitude ?"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Quanto aiuta '%@' il tuo obiettivo annuale '%@'?"
+            "value": "Quanto contribuisce questa abitudine?"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "'%@' はあなたの年間目標 '%@' にどれくらい役立ちますか？"
+            "value": "この習慣はどれだけ貢献しますか？"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "'%@'가 귀하의 연간 목표 '%@'에 얼마나 도움이 됩니까?"
+            "value": "이 습관이 얼마나 기여하나요?"
           }
         },
         "pt-PT": {
@@ -135126,7 +135126,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Насколько '%@' помогает вашей годовой цели '%@'?"
+            "value": "Насколько эта привычка способствует цели?"
           }
         },
         "sv": {
@@ -135138,7 +135138,19 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "'%@' 对你的年度目标 '%@' 有多大帮助？"
+            "value": "这个习惯贡献多少？"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O quanto esse hábito contribui?"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "這個習慣貢獻多少？"
           }
         }
       }
@@ -395830,6 +395842,148 @@
           "stringUnit": {
             "state": "translated",
             "value": "設定5年目標"
+          }
+        }
+      }
+    },
+    "goal.edit.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziel bearbeiten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit Goal"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar Objetivo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier l'Objectif"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica Obiettivo"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目標を編集"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "목표 수정"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar Meta"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Редактировать Цель"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑目标"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "編輯目標"
+          }
+        }
+      }
+    },
+    "goal.link.none.short": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht verknüpft"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not linked"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No vinculado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non lié"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non collegato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未連携"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연결 안 됨"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não vinculado"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не связано"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未关联"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未關聯"
           }
         }
       }

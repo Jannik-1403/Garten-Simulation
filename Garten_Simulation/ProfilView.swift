@@ -15,7 +15,6 @@ struct ProfilView: View {
     @State private var showAssessment = false
     @State private var showFocusSheet = false
     @State private var genericFocusHabit: HabitModel?
-    @State private var showGoalTree = false
     
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var gardenStore: GardenStore
@@ -44,7 +43,8 @@ struct ProfilView: View {
                         VStack(spacing: 24) {
                         
                         // --- 5-YEAR GOAL VISION ---
-                        YearGoalBannerView(onTap: { showGoalTree = true })
+                        YearGoalBannerView()
+                            .environmentObject(gardenStore)
                             .padding(.top, 16)
                             
                         // --- AVATAR PREVIEW ---
@@ -192,10 +192,6 @@ struct ProfilView: View {
                     .environmentObject(settings)
                     .environmentObject(gardenStore)
                     .presentationDetents([.medium])
-            }
-            .fullScreenCover(isPresented: $showGoalTree) {
-                GoalTreeView()
-                    .environmentObject(gardenStore)
             }
             .fullScreenCover(item: $ausgewaehlterErfolg) { erfolg in
                 ErfolgDetailSheet(erfolg: erfolg, istFreigeschaltet: erfolg.istFreigeschaltet)

@@ -22,13 +22,22 @@ class GoalStore: ObservableObject {
         saveData()
     }
     
+    func updateGoal(_ goal: GoalModel) {
+        if let idx = activeGoals.firstIndex(where: { $0.id == goal.id }) {
+            activeGoals[idx] = goal
+            saveData()
+        }
+    }
+    
     func linkHabitToGoal(habitId: String, goalId: UUID, weight: GoalWeight) {
-        // Remove existing link for this habit-goal combo if it exists
         habitLinks.removeAll { $0.habitId == habitId && $0.goalId == goalId }
-        
         let newLink = GoalHabitLink(goalId: goalId, habitId: habitId, weight: weight)
         habitLinks.append(newLink)
         saveData()
+    }
+    
+    func weightForHabit(habitId: String, goalId: UUID) -> GoalWeight? {
+        habitLinks.first { $0.habitId == habitId && $0.goalId == goalId }?.weight
     }
     
     // MARK: - Tracking & Analytics

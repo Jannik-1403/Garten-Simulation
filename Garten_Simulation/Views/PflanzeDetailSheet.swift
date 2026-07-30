@@ -28,6 +28,8 @@ struct PflanzeDetailSheet: View {
     @State private var pulsieren = false
     @State private var zeigeTimerAbbrechenDialog = false
     @State private var noteToEditIndex: Int? = nil
+    @State private var showGoalWeightSheet = false
+    @ObservedObject private var goalStore = GoalStore.shared
     @State private var noteToDeleteIndex: Int? = nil
     @State private var ausgewaehlterEffekt: PflanzenEffekt? = nil
     // History tab removed – only Overview shown
@@ -289,7 +291,11 @@ struct PflanzeDetailSheet: View {
                             .foregroundStyle(Color.red)
                     }
                     .padding(.top, 24)
-                    .padding(.bottom, 24)
+                    .padding(.bottom, 8)
+                    
+                    // MARK: - Ziel-Punkte Banner
+                    GoalPointsBannerView(pflanze: pflanze, goalStore: goalStore)
+                        .padding(.bottom, 24)
                 }
 
                 } // End of Section
