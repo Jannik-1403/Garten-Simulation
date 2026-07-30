@@ -125,18 +125,19 @@ struct HabitWeightRow: View {
                     let baseColor: Color = weight == .massive ? .green : (weight == .bit ? .orange : .red)
                     let isSelected = selectedWeight == weight
                     
-                    Button {
-                        selectedWeight = weight
-                    } label: {
+                    Item3DButton(
+                        farbe: isSelected ? baseColor : Color(UIColor.systemGray5),
+                        sekundaerFarbe: isSelected ? baseColor.darker() : Color(UIColor.systemGray4),
+                        groesse: 40,
+                        isRectangular: true,
+                        aktion: { selectedWeight = weight }
+                    ) {
                         Text(weight == .massive ? "20 Pkt" : (weight == .bit ? "5 Pkt" : "0 Pkt"))
                             .font(.system(size: 13, weight: .bold, design: .rounded))
                             .foregroundColor(isSelected ? .white : baseColor)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 8)
-                            .background(isSelected ? baseColor : baseColor.opacity(0.12))
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
-                    .buttonStyle(.plain)
                 }
             }
         }

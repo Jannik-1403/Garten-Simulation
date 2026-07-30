@@ -30,12 +30,23 @@ struct WeeklyGoalBannerView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: 8) {
             if let goal = currentWeekGoal {
+                // Titel oben drüber
+                HStack {
+                    Text(goal.title)
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                        .foregroundColor(.primary)
+                        .lineLimit(1)
+                    Spacer()
+                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 2)
+                
                 Item3DButton(
                     farbe: .white,
                     sekundaerFarbe: Color(UIColor.systemGray5),
-                    groesse: 90,
+                    groesse: 65,
                     isRectangular: true,
                     aktion: {
                         editTitle = goal.title
@@ -43,38 +54,30 @@ struct WeeklyGoalBannerView: View {
                     }
                 ) {
                     VStack(spacing: 14) {
-                        // Titel Zeile
-                        HStack {
-                            Spacer()
-                            Text(goal.title)
-                                .font(.system(size: 26, weight: .black, design: .rounded))
-                                .foregroundColor(.primary)
-                                .lineLimit(1)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .font(.system(size: 20, weight: .bold))
-                                .foregroundColor(Color(UIColor.systemGray3))
-                        }
-                        
                         // Dicker 3D Progress Bar
                         GeometryReader { geo in
                             ZStack(alignment: .leading) {
                                 // Track
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color(UIColor.systemGray5))
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(Color(UIColor.systemGray6))
                                     .frame(height: 16)
                                     .overlay(
-                                        RoundedRectangle(cornerRadius: 10)
+                                        RoundedRectangle(cornerRadius: 12)
                                             .stroke(Color.black.opacity(0.05), lineWidth: 1)
                                     )
                                 
-                                // Fill
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(
-                                        LinearGradient(gradient: Gradient(colors: [Color.green.opacity(0.8), Color.green.darker()]), startPoint: .top, endPoint: .bottom)
-                                    )
-                                    .frame(width: max(geo.size.width * progress, progress > 0 ? 16 : 0), height: 16)
-                                    .shadow(color: Color.black.opacity(0.2), radius: 1, x: 0, y: 1)
+                                // Fill (3D Look für den Progress Bar)
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(Color.green.darker())
+                                        .frame(height: 16)
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(Color.green)
+                                        .frame(height: 16)
+                                        .offset(y: -2)
+                                }
+                                .frame(width: max(geo.size.width * progress, progress > 0 ? 16 : 0))
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
                             }
                         }
                         .frame(height: 16)
@@ -88,11 +91,16 @@ struct WeeklyGoalBannerView: View {
                             Text(String(localized: "goal.type.week", defaultValue: "Wochenziel"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                 .foregroundColor(Color.green.darker())
+                            
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(Color.green.darker())
                         }
                     }
                     .padding(.horizontal, 20)
-                    .padding(.vertical, 20)
+                    .padding(.vertical, 16)
                 }
+                .padding(.horizontal, 24)
             } else {
                 Item3DButton(
                     farbe: .white,
@@ -119,9 +127,9 @@ struct WeeklyGoalBannerView: View {
                     }
                     .padding(20)
                 }
+                .padding(.horizontal, 24)
             }
         }
-        .padding(.horizontal, 24)
         .sheet(isPresented: $showEditSheet) {
             GoalEditSheet(
                 existingGoal: currentWeekGoal,

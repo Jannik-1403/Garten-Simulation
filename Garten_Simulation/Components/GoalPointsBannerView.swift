@@ -173,9 +173,13 @@ struct GoalWeightEditSheet: View {
     private func weightButton(weight: GoalWeight, label: String, color: Color) -> some View {
         let isSelected = selectedWeight == weight
         
-        Button {
-            selectedWeight = weight
-        } label: {
+        Item3DButton(
+            farbe: isSelected ? color : Color(UIColor.systemGray5),
+            sekundaerFarbe: isSelected ? color.darker() : Color(UIColor.systemGray4),
+            groesse: 65,
+            isRectangular: true,
+            aktion: { selectedWeight = weight }
+        ) {
             VStack(spacing: 6) {
                 Text(label)
                     .font(.system(size: 20, weight: .black, design: .rounded))
@@ -183,18 +187,6 @@ struct GoalWeightEditSheet: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 20)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(isSelected ? color : color.opacity(0.1))
-                    .shadow(color: isSelected ? color.opacity(0.4) : .clear, radius: 8, x: 0, y: 4)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(isSelected ? color : color.opacity(0.3), lineWidth: isSelected ? 0 : 1.5)
-            )
         }
-        .buttonStyle(.plain)
-        .scaleEffect(isSelected ? 1.03 : 1.0)
-        .animation(.spring(response: 0.25), value: isSelected)
     }
 }
