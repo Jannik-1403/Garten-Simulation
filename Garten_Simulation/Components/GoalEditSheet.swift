@@ -61,8 +61,8 @@ struct GoalEditSheet: View {
                         .font(.system(size: 16, weight: .semibold))
                 }
                 
-                // Gewohnheits-Verknüpfung nur für Jahres- und Wochenziele
-                if (type == .year || type == .week) && !gardenStore.pflanzen.filter({ !$0.isDead && !$0.isNegative }).isEmpty {
+                // Gewohnheits-Verknüpfung für alle Ziele
+                if !gardenStore.pflanzen.filter({ !$0.isDead && !$0.isNegative }).isEmpty {
                     Section(header: Text(String(localized: "goal.link.title", defaultValue: "Ziel-Beitrag"))) {
                         ForEach(gardenStore.pflanzen.filter { !$0.isDead && !$0.isNegative }) { habit in
                             HabitWeightRow(
