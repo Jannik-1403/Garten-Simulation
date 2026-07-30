@@ -323,135 +323,120 @@ struct FocusSessionView: View {
     // MARK: - Timer View
     private var timerView: some View {
         GeometryReader { geometry in
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 0) {
-                    Spacer(minLength: 40)
-                    
-                    ZStack {
-                let totalSeconds = Double(selectedMinutes * 60)
-                let progress = 1.0 - (Double(remainingSeconds) / totalSeconds)
-                
-                Circle()
-                    .stroke(Color.gray.opacity(0.15), lineWidth: 20)
-                    .frame(width: 280, height: 280)
-                
-                Circle()
-                    .trim(from: 0, to: CGFloat(progress))
-                    .stroke(Color.goldPrimary, style: StrokeStyle(lineWidth: 20, lineCap: .round))
-                    .frame(width: 280, height: 280)
-                    .rotationEffect(.degrees(-90))
-                    .animation(.linear(duration: 1.0), value: progress)
-                
-                VStack(spacing: 8) {
-                    Text(timeString(from: remainingSeconds))
-                        .font(.system(size: 64, weight: .black, design: .monospaced))
-                        .foregroundStyle(Color.primary)
-                    
-                    Text(settings.showHabitInsteadOfName ? pflanze.localizedHabitName : pflanze.localizedName)
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundStyle(.secondary)
-                }
-            }
-            
-            VStack(alignment: .leading, spacing: 16) {
-                if !sessionGoals.isEmpty {
-                    Text(String(localized: "focus.session.your_tasks", defaultValue: "DEINE AUFGABEN"))
-                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(.secondary)
-                        .tracking(2)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, -8)
-
-                    ForEach($sessionGoals) { $goal in
-                        FocusGoalRow(
-                            goal: $goal,
-                            draggedGoal: $draggedGoal,
-                            sessionGoals: $sessionGoals,
-                            onToggle: {
-                                sortSessionGoals()
+            ZStack(alignment: .topTrailing) {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 0) {
+                        Spacer(minLength: 40)
+                        
+                        ZStack {
+                            let totalSeconds = Double(selectedMinutes * 60)
+                            let progress = 1.0 - (Double(remainingSeconds) / totalSeconds)
+                            
+                            Circle()
+                                .stroke(Color.gray.opacity(0.15), lineWidth: 20)
+                                .frame(width: 280, height: 280)
+                            
+                            Circle()
+                                .trim(from: 0, to: CGFloat(progress))
+                                .stroke(Color.goldPrimary, style: StrokeStyle(lineWidth: 20, lineCap: .round))
+                                .frame(width: 280, height: 280)
+                                .rotationEffect(.degrees(-90))
+                                .animation(.linear(duration: 1.0), value: progress)
+                            
+                            VStack(spacing: 8) {
+                                Text(timeString(from: remainingSeconds))
+                                    .font(.system(size: 64, weight: .black, design: .monospaced))
+                                    .foregroundStyle(Color.primary)
+                                
+                                Text(settings.showHabitInsteadOfName ? pflanze.localizedHabitName : pflanze.localizedName)
+                                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
                             }
-                        )
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 12)
-                        .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
-                        .cornerRadius(12)
-                    }
-
-                    let completedCount = sessionGoals.filter { $0.isCompleted }.count
-                    let totalCount = sessionGoals.count
-                    if completedCount == totalCount {
-                        VStack(spacing: 12) {
-                            Image(systemName: "checkmark.seal.fill")
-                                .font(.system(size: 48))
-                                .foregroundStyle(Color.gruenPrimary)
-                            Text(String(localized: "focus.session.all_done", defaultValue: "Alles erledigt!"))
-                                .font(.system(size: 24, weight: .black, design: .rounded))
-                                .foregroundStyle(Color.gruenPrimary)
-                            Text(String(localized: "focus.session.all_done.desc", defaultValue: "Bleib im Fokus oder beende die Session frühzeitig."))
-                                .font(.system(size: 14, weight: .medium, design: .rounded))
-                                .foregroundStyle(.secondary)
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal, 32)
                         }
-                        .padding(.top, 24)
-                    } else {
-                        Text("\(completedCount) / \(totalCount)")
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(.secondary.opacity(0.5))
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .padding(.top, 8)
+                        
+                        VStack(alignment: .leading, spacing: 16) {
+                            if !sessionGoals.isEmpty {
+                                Text(String(localized: "focus.session.your_tasks", defaultValue: "DEINE AUFGABEN"))
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                                    .tracking(2)
+                                    .padding(.horizontal, 8)
+                                    .padding(.bottom, -8)
+
+                                ForEach($sessionGoals) { $goal in
+                                    FocusGoalRow(
+                                        goal: $goal,
+                                        draggedGoal: $draggedGoal,
+                                        sessionGoals: $sessionGoals,
+                                        onToggle: {
+                                            sortSessionGoals()
+                                        }
+                                    )
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 12)
+                                    .background(Color(UIColor.secondarySystemBackground).opacity(0.5))
+                                    .cornerRadius(12)
+                                }
+
+                                let completedCount = sessionGoals.filter { $0.isCompleted }.count
+                                let totalCount = sessionGoals.count
+                                if completedCount == totalCount {
+                                    VStack(spacing: 12) {
+                                        Image(systemName: "checkmark.seal.fill")
+                                            .font(.system(size: 48))
+                                            .foregroundStyle(Color.gruenPrimary)
+                                        Text(String(localized: "focus.session.all_done", defaultValue: "Alles erledigt!"))
+                                            .font(.system(size: 24, weight: .black, design: .rounded))
+                                            .foregroundStyle(Color.gruenPrimary)
+                                        Text(String(localized: "focus.session.all_done.desc", defaultValue: "Bleib im Fokus oder beende die Session frühzeitig."))
+                                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                                            .foregroundStyle(.secondary)
+                                            .multilineTextAlignment(.center)
+                                            .padding(.horizontal, 32)
+                                    }
+                                    .padding(.top, 24)
+                                } else {
+                                    Text("\(completedCount) / \(totalCount)")
+                                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                                        .foregroundStyle(.secondary.opacity(0.5))
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                        .padding(.top, 8)
+                                }
+                            } else {
+                                // Falls keine Ziele gesetzt wurden
+                                VStack {
+                                    Text(String(localized: "focus.session.no_goals", defaultValue: "Laser-Fokus aktiv"))
+                                        .font(.system(size: 28, weight: .black, design: .rounded))
+                                        .foregroundStyle(.primary)
+                                        .padding(.top, 40)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            }
+                        }
+                        .padding(.horizontal, 24)
+                        .padding(.top, 20)
+                        
+                        Spacer()
+                        
+                        Button {
+                            showMathChallenge = true
+                        } label: {
+                            Text(String(localized: "button.cancel"))
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundStyle(.red)
+                        }
+                        .padding(.bottom, 40)
                     }
-                } else {
-                    // Falls keine Ziele gesetzt wurden
-                    VStack {
-                        Text(String(localized: "focus.session.no_goals", defaultValue: "Laser-Fokus aktiv"))
-                            .font(.system(size: 28, weight: .black, design: .rounded))
-                            .foregroundStyle(.primary)
-                            .padding(.top, 40)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(maxWidth: .infinity, minHeight: geometry.size.height)
                 }
-            }
-            .padding(.horizontal, 24)
-            .padding(.top, 20)
-            
-            Spacer()
-            
-            Button {
-                showMathChallenge = true
-            } label: {
-                Text(String(localized: "button.cancel"))
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(.red)
-            }
-            .padding(.bottom, 40)
-        }
-        .frame(maxWidth: .infinity, minHeight: geometry.size.height)
-        
-        // Sound Control at Top Right
-        if FeatureFlags.isProVersionEnabled {
-            VStack {
-                HStack {
-                    Spacer()
+                
+                // Sound Control at Top Right
+                if FeatureFlags.isProVersionEnabled {
                     FocusSoundControlView()
                         .padding(.top, 16)
                         .padding(.trailing, 16)
                 }
-                Spacer()
             }
-        }
-            
-            Button {
-                showMathChallenge = true
-            } label: {
-                Text(String(localized: "button.cancel"))
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(.red)
-            }
-            .padding(.bottom, 40)
-        }
-        .frame(maxWidth: .infinity, minHeight: geometry.size.height)
-        }
         }
         .fullScreenCover(isPresented: $showMathChallenge) {
             MathChallengeView(problemString: cancelMathProblem, correctAnswer: cancelMathAnswer) {
