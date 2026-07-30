@@ -29,16 +29,16 @@ struct YearGoalBannerView: View {
                     VStack(spacing: 24) {
                         // 1. Titel im 3D-Stil
                         ZStack {
-                            // Lower layer (shadow / accent color)
+                            // Lower layer (Dunkleres Blau für den Schatten/3D-Tiefe)
                             Text(goal.title)
-                                .font(.system(size: 26, weight: .black, design: .rounded))
-                                .foregroundStyle(Color(hex: "#4FC3F7"))
-                                .offset(y: 3)
+                                .font(.system(size: 30, weight: .black, design: .rounded))
+                                .foregroundStyle(Color(hex: "#0288D1"))
+                                .offset(y: 4)
                             
-                            // Upper layer (Dunkleres Blau statt Anthrazit)
+                            // Upper layer (Leuchtendes Blau für die Front)
                             Text(goal.title)
-                                .font(.system(size: 26, weight: .black, design: .rounded))
-                                .foregroundStyle(Color(hex: "#0277BD"))
+                                .font(.system(size: 30, weight: .black, design: .rounded))
+                                .foregroundStyle(Color(hex: "#4FC3F7"))
                         }
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
@@ -50,7 +50,7 @@ struct YearGoalBannerView: View {
                                     // Track (Hellgrau mit gestrichelter Linie für mehr Details bei 0%)
                                     Capsule()
                                         .fill(Color(hex: "#F5F5F5"))
-                                        .frame(height: 14)
+                                        .frame(height: 18)
                                         .overlay(
                                             Capsule()
                                                 .strokeBorder(style: StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
@@ -61,27 +61,28 @@ struct YearGoalBannerView: View {
                                     if progress > 0 {
                                         Capsule()
                                             .fill(Color(hex: "#4FC3F7"))
-                                            .frame(width: max(geo.size.width * progress, 14), height: 14)
+                                            .frame(width: max(geo.size.width * progress, 18), height: 18)
                                     }
                                 }
                             }
-                            .frame(height: 14)
+                            .frame(height: 18)
                             
                             // 3. Prozentzahl und Text darunter
                             HStack {
                                 Text(verbatim: "\(progressPercent)%")
-                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .font(.system(size: 18, weight: .bold, design: .rounded))
                                     .foregroundColor(Color(hex: "#4FC3F7"))
                                 Spacer()
                                 Text(String(localized: "goal.fiveyears.label.arrow", defaultValue: "5 Years →"))
-                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .font(.system(size: 18, weight: .bold, design: .rounded))
                                     .foregroundColor(Color(hex: "#4FC3F7"))
                             }
                         }
-                        .padding(.horizontal, 16)
+                        .padding(.horizontal, 4) // Weniger Padding, Balken länger
                     }
-                    .padding(.vertical, 24)
-                    .padding(.horizontal, 24)
+                    .padding(.top, 32) // Etwas weiter nach unten gesetzt
+                    .padding(.bottom, 24)
+                    .padding(.horizontal, 20)
                 }
                 .buttonStyle(.plain)
                 .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
