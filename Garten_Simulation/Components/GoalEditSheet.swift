@@ -38,9 +38,8 @@ struct GoalEditSheet: View {
         }
         
         switch type {
-        case .week: return maxPointsPerWeek
-        case .month: return Int(Double(maxPointsPerWeek) * (52.0 / 12.0))
         case .year: return maxPointsPerWeek * 52 * 5
+        case .week: return maxPointsPerWeek
         }
     }
     
@@ -147,7 +146,6 @@ struct GoalEditSheet: View {
     private var goalPrompt: String {
         switch type {
         case .year: return String(localized: "goal.tree.prompt.year", defaultValue: "Deine große Vision für die nächsten 5 Jahre")
-        case .month: return String(localized: "goal.tree.prompt.month", defaultValue: "Dein Fokus diesen Monat")
         case .week: return String(localized: "goal.tree.prompt.week", defaultValue: "Dein wichtigstes Ziel diese Woche")
         }
     }
@@ -155,7 +153,6 @@ struct GoalEditSheet: View {
     private var goalPlaceholder: String {
         switch type {
         case .year: return String(localized: "goal.tree.placeholder.year", defaultValue: "Z.B. 10 Mio. Umsatz aufbauen")
-        case .month: return String(localized: "goal.tree.placeholder.month", defaultValue: "Z.B. 300 Punkte erreichen")
         case .week: return String(localized: "goal.tree.placeholder.week", defaultValue: "Z.B. 3x ins Gym gehen")
         }
     }
@@ -163,7 +160,6 @@ struct GoalEditSheet: View {
     private var goalAddTitle: String {
         switch type {
         case .year: return String(localized: "goal.year.add", defaultValue: "5-Jahresziel festlegen")
-        case .month: return String(localized: "goal.monthly.add", defaultValue: "Monatsziel setzen")
         case .week: return String(localized: "goal.weekly.add", defaultValue: "Wochenziel festlegen")
         }
     }
