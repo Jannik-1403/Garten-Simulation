@@ -136038,25 +136038,25 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jahresziel"
+            "value": "5-Jahresziel"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Yearly Goal"
+            "value": "5-Year Goal"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Objetivo Anual"
+            "value": "Objetivo a 5 años"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Objectif Annuel"
+            "value": "Objectif à 5 ans"
           }
         },
         "hi": {
@@ -136068,19 +136068,19 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Obiettivo Annuale"
+            "value": "Obiettivo a 5 anni"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "年間目標"
+            "value": "5年間の目標"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "연간 목표"
+            "value": "5년 목표"
           }
         },
         "nl": {
@@ -136104,7 +136104,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Годовая цель"
+            "value": "Цель на 5 лет"
           }
         },
         "tr": {
@@ -136116,13 +136116,19 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "年度目标"
+            "value": "5年目标"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "年度目標"
+            "value": "5年目標"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meta de 5 anos"
           }
         }
       }
@@ -394769,67 +394775,67 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheiten bringen Punkte für dein 1-Jahresziel.\n\n20 Pkt: Enormer Fokus\n5 Pkt: Leichter Beitrag\n0 Pkt: Hat nichts mit dem Ziel zu tun"
+            "value": "Gewohnheiten bringen Punkte für dein 5-Jahresziel.\n\n20 Pkt: Enormer Fokus\n5 Pkt: Leichter Beitrag\n0 Pkt: Hat nichts mit dem Ziel zu tun"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Habits earn points for your 1-Year Goal.\n\n20 Pts: Massive Focus\n5 Pts: Light Contribution\n0 Pts: Unrelated to goal"
+            "value": "Habits earn points for your 5-Year Goal.\n\n20 Pts: Massive Focus\n5 Pts: Light Contribution\n0 Pts: Unrelated to goal"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Los hábitos suman puntos para tu objetivo a 1 año.\n\n20 Pts: Enfoque masivo\n5 Pts: Contribución ligera\n0 Pts: No relacionado con el objetivo"
+            "value": "Los hábitos suman puntos para tu objetivo a 5 años.\n\n20 Pts: Enfoque masivo\n5 Pts: Contribución ligera\n0 Pts: No relacionado con el objetivo"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Les habitudes rapportent des points pour votre objectif d'un an.\n\n20 Pts : Focus massif\n5 Pts : Légère contribution\n0 Pts : Sans rapport avec l'objectif"
+            "value": "Les habitudes rapportent des points pour votre objectif à 5 ans.\n\n20 Pts : Focus massif\n5 Pts : Légère contribution\n0 Pts : Sans rapport avec l'objectif"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le abitudini guadagnano punti per il tuo obiettivo di 1 anno.\n\n20 Pti: Focus enorme\n5 Pti: Contributo leggero\n0 Pti: Non correlato all'obiettivo"
+            "value": "Le abitudini guadagnano punti per il tuo obiettivo a 5 anni.\n\n20 Pti: Focus enorme\n5 Pti: Contributo leggero\n0 Pti: Non correlato all'obiettivo"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "習慣は1年間の目標に向けてポイントを獲得します。\n\n20 Pt: 絶大な集中\n5 Pt: わずかな貢献\n0 Pt: 目標とは無関係"
+            "value": "習慣は5年間の目標に向けてポイントを獲得します。\n\n20 Pt: 絶大な集中\n5 Pt: わずかな貢献\n0 Pt: 目標とは無関係"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "습관은 1년 목표에 대한 포인트를 획득합니다.\n\n20 Pt: 엄청난 집중\n5 Pt: 가벼운 기여\n0 Pt: 목표와 무관함"
+            "value": "습관은 5년 목표에 대한 포인트를 획득합니다.\n\n20 Pt: 엄청난 집중\n5 Pt: 가벼운 기여\n0 Pt: 목표와 무관함"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Os hábitos rendem pontos para sua meta de 1 ano.\n\n20 Pts: Foco Massivo\n5 Pts: Contribuição Leve\n0 Pts: Não relacionado à meta"
+            "value": "Os hábitos rendem pontos para sua meta de 5 anos.\n\n20 Pts: Foco Massivo\n5 Pts: Contribuição Leve\n0 Pts: Não relacionado à meta"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Привычки приносят баллы для вашей цели на 1 год.\n\n20 б.: Огромный фокус\n5 б.: Легкий вклад\n0 б.: Не связано с целью"
+            "value": "Привычки приносят баллы для вашей цели на 5 лет.\n\n20 б.: Огромный фокус\n5 б.: Легкий вклад\n0 б.: Не связано с целью"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "习惯会为您的 1 年目标赢得积分。\n\n20 分：巨大专注\n5 分：轻微贡献\n0 分：与目标无关"
+            "value": "习惯会为您赢得 5 年目标的积分。\n\n20 分：巨大专注\n5 分：轻微贡献\n0 分：与目标无关"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "習慣會為您的 1 年目標贏得積分。\n\n20 分：巨大專注\n5 分：輕微貢獻\n0 分：與目標無關"
+            "value": "習慣會為您贏得 5 年目標的積分。\n\n20 分：巨大專注\n5 分：輕微貢獻\n0 分：與目標無關"
           }
         }
       }

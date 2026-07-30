@@ -122,21 +122,26 @@ struct ShopItemDetailView: View {
                                         showGoalLinkInfo = true
                                     } label: {
                                         Image(systemName: "info.circle")
-                                            .foregroundColor(.blauPrimary)
+                                            .foregroundColor(.primary)
                                     }
                                 }
                                 HStack(spacing: 8) {
                                     ForEach([GoalWeight.massive, .bit, .none], id: \.self) { weight in
-                                        Button {
-                                            selectedGoalWeight = weight
-                                        } label: {
+                                        let baseColor: Color = weight == .massive ? .green : (weight == .bit ? .orange : .red)
+                                        let isSelected = selectedGoalWeight == weight
+                                        
+                                        Item3DButton(
+                                            farbe: isSelected ? baseColor : Color(UIColor.systemGray5),
+                                            sekundaerFarbe: isSelected ? baseColor.darker() : Color(UIColor.systemGray4),
+                                            groesse: 44,
+                                            isRectangular: true,
+                                            aktion: { selectedGoalWeight = weight }
+                                        ) {
                                             Text("\(weight.rawValue) Pkt")
                                                 .font(.system(size: 16, weight: .bold, design: .rounded))
-                                                .foregroundColor(selectedGoalWeight == weight ? .white : .primary)
+                                                .foregroundColor(isSelected ? .white : .primary)
                                                 .frame(maxWidth: .infinity)
                                                 .padding(.vertical, 12)
-                                                .background(selectedGoalWeight == weight ? Color.blauPrimary : Color(UIColor.systemGray5))
-                                                .cornerRadius(12)
                                         }
                                     }
                                 }

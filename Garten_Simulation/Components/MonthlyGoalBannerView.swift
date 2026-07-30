@@ -22,33 +22,38 @@ struct MonthlyGoalBannerView: View {
         VStack(spacing: 0) {
             if let goal = currentMonthGoal {
                 // Schlanker schwebender Banner
-                HStack(spacing: 12) {
-                    Image(systemName: "flag.fill")
-                        .foregroundColor(.blue)
-                        .font(.system(size: 14, weight: .bold))
-                    
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(String(localized: "goal.type.month", defaultValue: "Monatsziel").uppercased())
-                            .font(.system(size: 10, weight: .black, design: .rounded))
-                            .foregroundColor(.secondary)
-                            .kerning(1.2)
-                        Text(goal.title)
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
-                            .foregroundColor(.primary)
-                            .lineLimit(1)
+                Item3DButton(
+                    farbe: Color(.systemBackground),
+                    sekundaerFarbe: Color(UIColor.systemGray5),
+                    groesse: 44,
+                    isRectangular: true,
+                    aktion: { showGoalInput = true }
+                ) {
+                    HStack(spacing: 12) {
+                        Image(systemName: "flag.fill")
+                            .foregroundColor(.blue)
+                            .font(.system(size: 14, weight: .bold))
+                        
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(String(localized: "goal.type.month", defaultValue: "Monatsziel").uppercased())
+                                .font(.system(size: 10, weight: .black, design: .rounded))
+                                .foregroundColor(.secondary)
+                                .kerning(1.2)
+                            Text(goal.title)
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundColor(.primary)
+                                .lineLimit(1)
+                        }
+                        Spacer()
+                        
+                        ProgressView(value: 0.0)
+                            .progressViewStyle(.circular)
+                            .tint(.blauPrimary)
+                            .scaleEffect(0.8)
                     }
-                    Spacer()
-                    
-                    ProgressView(value: 0.0)
-                        .progressViewStyle(.circular)
-                        .tint(.blauPrimary)
-                        .scaleEffect(0.8)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
-                .background(.ultraThinMaterial)
-                .cornerRadius(20)
-                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
                 .padding(.horizontal, 16)
             } else {
                 // Kein Monatsziel gesetzt - Schlanker Button

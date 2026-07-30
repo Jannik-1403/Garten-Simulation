@@ -20,30 +20,32 @@ struct WeeklyGoalBannerView: View {
     var body: some View {
         VStack(spacing: 0) {
             if let goal = currentWeekGoal {
-                VStack(alignment: .leading, spacing: 12) {
-                    HStack {
-                        Image(systemName: "target")
-                            .foregroundColor(.orange)
-                            .font(.system(size: 20, weight: .bold))
-                        Text(String(localized: "goal.type.week"))
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(.secondary)
-                        Spacer()
+                Item3DButton(
+                    farbe: Color(.systemBackground),
+                    sekundaerFarbe: Color(.systemGray5),
+                    groesse: 60,
+                    isRectangular: true,
+                    aktion: { showGoalInput = true } // Or maybe show details/edit
+                ) {
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack {
+                            Text(String(localized: "goal.type.week"))
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(.secondary)
+                            Spacer()
+                        }
+                        
+                        Text(goal.title)
+                            .font(.system(size: 20, weight: .black, design: .rounded))
+                            .foregroundColor(.primary)
+                        
+                        ProgressView(value: 0.0) // Platzhalter für echten Progress
+                            .progressViewStyle(.linear)
+                            .tint(.orange)
+                            .scaleEffect(x: 1, y: 1.5, anchor: .center)
                     }
-                    
-                    Text(goal.title)
-                        .font(.system(size: 20, weight: .black, design: .rounded))
-                        .foregroundColor(.primary)
-                    
-                    ProgressView(value: 0.0) // Platzhalter für echten Progress
-                        .progressViewStyle(.linear)
-                        .tint(.orange)
-                        .scaleEffect(x: 1, y: 1.5, anchor: .center)
+                    .padding(20)
                 }
-                .padding(20)
-                .background(Color(.systemBackground))
-                .cornerRadius(20)
-                .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
             } else {
                 Item3DButton(
                     farbe: Color.blauPrimary,
