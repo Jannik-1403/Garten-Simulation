@@ -115,6 +115,7 @@ struct TodoRowView: View {
             aktion: {
                 withAnimation {
                     pflanze.todos[index].isCompleted.toggle()
+                    GoalStore.shared.logTodoCompletion(habitId: pflanze.id, priority: pflanze.todos[index].priority, isCompleted: pflanze.todos[index].isCompleted)
                     gardenStore.savePlants()
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
                 }

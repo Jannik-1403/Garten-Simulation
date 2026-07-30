@@ -51,9 +51,9 @@ struct GoalEditSheet: View {
                     Text(goalPrompt)
                     Spacer()
                     if totalPoints > 0 {
-                        Text("Ziel: \(totalPoints) Pkt.")
+                        Text("\(String(localized: "goal.edit.targetLabel", defaultValue: "Ziel:")) \(totalPoints) \(String(localized: "goal.edit.pointsLabel", defaultValue: "Pkt."))")
                             .font(.system(size: 13, weight: .bold))
-                            .foregroundColor(.blue)
+                            .foregroundColor(.primary)
                             .textCase(.none)
                     }
                 }) {

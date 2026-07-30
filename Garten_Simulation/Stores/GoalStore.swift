@@ -113,6 +113,29 @@ class GoalStore: ObservableObject {
         }
     }
     
+    /// Wird aufgerufen, wenn ein To-Do einer Pflanze erledigt wird
+    func logTodoCompletion(habitId: String, priority: GoalPriority, isCompleted: Bool) {
+        let links = habitLinks.filter { $0.habitId == habitId }
+        
+        let points: Int
+        switch priority {
+        case .high: points = 15
+        case .medium: points = 10
+        case .low: points = 5
+        }
+        
+        let actualPoints = isCompleted ? points : -points
+        
+        let now = Date()
+        for link in links {
+            let log = GoalLog(date: now, goalId: link.goalId, habitId: habitId, pointsEarned: actualPoints)
+            goalLogs.append(log)
+        }
+        if !links.isEmpty {
+            saveData()
+        }
+    }
+    
     /// Für die Analytics-Ansicht: Liefert ein Dictionary [HabitID : Punkte], summiert für den aktuellen Monat
     func calculatePointsForCurrentMonth(goalId: UUID) -> [String: Int] {
         let calendar = Calendar.current
