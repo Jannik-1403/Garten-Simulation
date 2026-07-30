@@ -185,9 +185,10 @@ struct GlobalTodoAddSheet: View {
                         HStack(alignment: .top, spacing: 12) {
                             ForEach(gardenStore.pflanzen) { pflanze in
                                 VStack(spacing: 8) {
+                                    let isSelected = selectedPlant?.id == pflanze.id
                                     Item3DButton(
-                                        farbe: pflanze.color,
-                                        sekundaerFarbe: pflanze.color.darker(),
+                                        farbe: isSelected ? pflanze.color : Color(UIColor.systemGray4),
+                                        sekundaerFarbe: isSelected ? pflanze.color.darker() : Color(UIColor.systemGray3),
                                         groesse: 64,
                                         isRectangular: false,
                                         aktion: {
@@ -205,7 +206,6 @@ struct GlobalTodoAddSheet: View {
                                                 .foregroundColor(.white)
                                         }
                                     }
-                                    .opacity(selectedPlant?.id == pflanze.id ? 1.0 : 0.4)
                                     
                                     Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
                                         .font(.system(size: 10, weight: .bold, design: .rounded))
