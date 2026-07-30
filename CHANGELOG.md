@@ -375,3 +375,8 @@
   - Alle Goal-Banner (Jahr, Monat, Woche) sind jetzt vollständig als einheitliche, interaktive `Item3DButton` umgesetzt.
   - Das Zielkonzept wurde global von "1-Jahresziel" auf das realistischere "5-Jahresziel" aktualisiert (inkl. aller 11 Übersetzungen).
   - Die Zielgewichte (20, 5, 0 Punkte) bei der Pflanzenerstellung/Shop nutzen jetzt farbcodierte 3D-Buttons (Grün, Orange, Rot) für intuitives visuelles Feedback.
+- **Goal Tree (Stammbaum)**: Neue Vollbild-Ansicht `GoalTreeView` hinzugefügt, die die komplette Zielhierarchie visualisiert:
+  - 5-Jahresziel (Wurzel) → Monatsziel → Wochenziel → Gewohnheiten (Fundament)
+  - Jede Ebene ist ein interaktiver 3D-Button; leere Ebenen können direkt dort befüllt werden
+  - Aufrufbar durch Tippen auf das 5-Jahresziel im Profil
+  - 13 neue Strings in allen 11 Sprachen übersetzt
