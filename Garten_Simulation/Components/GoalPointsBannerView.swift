@@ -1,7 +1,6 @@
 import SwiftUI
 
 /// Zeigt bei einer Pflanze, wie viele Punkte sie zum 5-Jahresziel und Wochenziel beiträgt.
-/// Ganz unten in der PflanzeDetailSheet, nach dem Verkaufen-Button.
 struct GoalPointsBannerView: View {
     let pflanze: HabitModel
     @ObservedObject var goalStore: GoalStore
@@ -22,111 +21,27 @@ struct GoalPointsBannerView: View {
         }
     }
     
-    private func weightFor(goal: GoalModel) -> GoalWeight? {
-        goalStore.weightForHabit(habitId: pflanze.id, goalId: goal.id)
-    }
-    
     var body: some View {
         VStack(spacing: 10) {
-            // 5-Jahresziel Punkte
             if let goal = fiveYearGoal {
-                let weight = weightFor(goal: goal)
-                Item3DButton(
-                    farbe: Color(.systemBackground),
-                    sekundaerFarbe: Color(.systemGray5),
-                    groesse: 56,
-                    isRectangular: true,
-                    aktion: { showYearWeightSheet = true }
-                ) {
-                    HStack(spacing: 12) {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.yellow)
-                            .font(.system(size: 16))
-                        
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(String(localized: "goal.type.year", defaultValue: "5-Jahresziel"))
-                                .font(.system(size: 11, weight: .black))
-                                .foregroundColor(.secondary)
-                                .textCase(.uppercase)
-                                .kerning(0.8)
-                            Text(goal.title)
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(.primary)
-                                .lineLimit(1)
-                        }
-                        
-                        Spacer()
-                        
-                        if let w = weight {
-                            let col: Color = w == .massive ? .green : (w == .bit ? .orange : .red)
-                            Text(verbatim: "\(w.rawValue) Pkt")
-                                .font(.system(size: 17, weight: .black, design: .rounded))
-                                .foregroundColor(col)
-                        } else {
-                            Text(String(localized: "goal.link.none.short", defaultValue: "Nicht verknüpft"))
-                                .font(.system(size: 13, weight: .semibold))
-                                .foregroundColor(.secondary)
-                        }
-                        
-                        Image(systemName: "pencil")
-                            .foregroundColor(.secondary)
-                            .font(.system(size: 13))
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 14)
-                }
+                goalRow(
+                    goal: goal,
+                    iconName: "star.fill",
+                    iconColor: .yellow,
+                    showSheet: $showYearWeightSheet
+                )
                 .sheet(isPresented: $showYearWeightSheet) {
                     GoalWeightEditSheet(pflanze: pflanze, goal: goal, goalStore: goalStore)
                 }
             }
             
-            // Wochenziel Punkte
             if let goal = currentWeekGoal {
-                let weight = weightFor(goal: goal)
-                Item3DButton(
-                    farbe: Color(.systemBackground),
-                    sekundaerFarbe: Color(.systemGray5),
-                    groesse: 56,
-                    isRectangular: true,
-                    aktion: { showWeekWeightSheet = true }
-                ) {
-                    HStack(spacing: 12) {
-                        Image(systemName: "flag.fill")
-                            .foregroundColor(.orange)
-                            .font(.system(size: 16))
-                        
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(String(localized: "goal.type.week", defaultValue: "Wochenziel"))
-                                .font(.system(size: 11, weight: .black))
-                                .foregroundColor(.secondary)
-                                .textCase(.uppercase)
-                                .kerning(0.8)
-                            Text(goal.title)
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(.primary)
-                                .lineLimit(1)
-                        }
-                        
-                        Spacer()
-                        
-                        if let w = weight {
-                            let col: Color = w == .massive ? .green : (w == .bit ? .orange : .red)
-                            Text(verbatim: "\(w.rawValue) Pkt")
-                                .font(.system(size: 17, weight: .black, design: .rounded))
-                                .foregroundColor(col)
-                        } else {
-                            Text(String(localized: "goal.link.none.short", defaultValue: "Nicht verknüpft"))
-                                .font(.system(size: 13, weight: .semibold))
-                                .foregroundColor(.secondary)
-                        }
-                        
-                        Image(systemName: "pencil")
-                            .foregroundColor(.secondary)
-                            .font(.system(size: 13))
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 14)
-                }
+                goalRow(
+                    goal: goal,
+                    iconName: "flag.fill",
+                    iconColor: .orange,
+                    showSheet: $showWeekWeightSheet
+                )
                 .sheet(isPresented: $showWeekWeightSheet) {
                     GoalWeightEditSheet(pflanze: pflanze, goal: goal, goalStore: goalStore)
                 }
@@ -134,74 +49,102 @@ struct GoalPointsBannerView: View {
         }
         .padding(.horizontal, 16)
     }
+    
+    @ViewBuilder
+    private func goalRow(goal: GoalModel, iconName: String, iconColor: Color, showSheet: Binding<Bool>) -> some View {
+        let weight = goalStore.weightForHabit(habitId: pflanze.id, goalId: goal.id)
+        
+        Item3DButton(
+            farbe: Color(.systemBackground),
+            sekundaerFarbe: Color(.systemGray5),
+            groesse: 60,
+            isRectangular: true,
+            aktion: { showSheet.wrappedValue = true }
+        ) {
+            HStack(spacing: 14) {
+                // Icon 2.25x größer, nichts anderes verschoben
+                Image(systemName: iconName)
+                    .foregroundColor(iconColor)
+                    .font(.system(size: 36, weight: .bold)) // 2.25x von 16pt
+                    .frame(width: 40, height: 40)
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(NSLocalizedString(goal.type.localizationKey, comment: ""))
+                        .font(.system(size: 11, weight: .black))
+                        .foregroundColor(.secondary)
+                        .textCase(.uppercase)
+                        .kerning(0.8)
+                    Text(goal.title)
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(.primary)
+                        .lineLimit(1)
+                }
+                
+                Spacer()
+                
+                if let w = weight {
+                    let col: Color = w == .massive ? .green : (w == .bit ? .orange : .red)
+                    Text(verbatim: "\(w.rawValue) Pkt")
+                        .font(.system(size: 18, weight: .black, design: .rounded))
+                        .foregroundColor(col)
+                } else {
+                    Text(String(localized: "goal.link.none.short", defaultValue: "Nicht verknüpft"))
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundColor(.secondary)
+                }
+                
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.secondary)
+                    .font(.system(size: 13, weight: .semibold))
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 14)
+        }
+    }
 }
 
-// MARK: - Quick Weight Edit Sheet (inline für einzelnes Ziel)
+// MARK: - Weight Edit Sheet
 struct GoalWeightEditSheet: View {
     let pflanze: HabitModel
     let goal: GoalModel
     @ObservedObject var goalStore: GoalStore
     @Environment(\.dismiss) private var dismiss
-    
     @State private var selectedWeight: GoalWeight = .none
-    
-    private var goalColor: Color {
-        switch goal.type {
-        case .year: return .yellow
-        case .month: return .blauPrimary
-        case .week: return .orange
-        }
-    }
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 24) {
+            VStack(spacing: 0) {
+                // Header
                 VStack(spacing: 6) {
                     Text(NSLocalizedString(goal.type.localizationKey, comment: ""))
-                        .font(.system(size: 13, weight: .black))
+                        .font(.system(size: 12, weight: .black))
                         .foregroundColor(.secondary)
                         .textCase(.uppercase)
                         .kerning(1.2)
                     Text(goal.title)
-                        .font(.system(size: 20, weight: .black, design: .rounded))
+                        .font(.system(size: 22, weight: .black, design: .rounded))
                         .multilineTextAlignment(.center)
+                        .padding(.horizontal, 24)
                 }
                 .padding(.top, 24)
+                .padding(.bottom, 20)
                 
                 Divider()
                 
-                Text(String(localized: "goal.link.question", defaultValue: "Wie sehr trägt diese Gewohnheit bei?"))
-                    .font(.system(size: 16, weight: .semibold))
+                Text(String(localized: "goal.link.question", defaultValue: "Wie stark trägt diese Gewohnheit bei?"))
+                    .font(.system(size: 15, weight: .semibold))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
+                    .padding(.vertical, 20)
                 
-                HStack(spacing: 12) {
-                    ForEach([GoalWeight.massive, .bit, .none], id: \.self) { weight in
-                        let baseColor: Color = weight == .massive ? .green : (weight == .bit ? .orange : .red)
-                        let isSelected = selectedWeight == weight
-                        
-                        Item3DButton(
-                            farbe: isSelected ? baseColor : Color(UIColor.systemGray5),
-                            sekundaerFarbe: isSelected ? baseColor.darker() : Color(UIColor.systemGray4),
-                            groesse: 56,
-                            isRectangular: true,
-                            aktion: { selectedWeight = weight }
-                        ) {
-                            VStack(spacing: 4) {
-                                Text(verbatim: "\(weight.rawValue)")
-                                    .font(.system(size: 24, weight: .black, design: .rounded))
-                                    .foregroundColor(isSelected ? .white : baseColor)
-                                Text("Pkt")
-                                    .font(.system(size: 11, weight: .bold))
-                                    .foregroundColor(isSelected ? .white.opacity(0.8) : baseColor.opacity(0.7))
-                            }
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 14)
-                        }
-                    }
+                // Saubere 3 Buttons nebeneinander
+                HStack(spacing: 10) {
+                    weightButton(weight: .massive, label: "20 Pkt", color: .green)
+                    weightButton(weight: .bit, label: "5 Pkt", color: .orange)
+                    weightButton(weight: .none, label: "0 Pkt", color: .red)
                 }
-                .padding(.horizontal, 24)
+                .padding(.horizontal, 16)
                 
                 Spacer()
             }
@@ -224,5 +167,34 @@ struct GoalWeightEditSheet: View {
         .onAppear {
             selectedWeight = goalStore.weightForHabit(habitId: pflanze.id, goalId: goal.id) ?? .none
         }
+    }
+    
+    @ViewBuilder
+    private func weightButton(weight: GoalWeight, label: String, color: Color) -> some View {
+        let isSelected = selectedWeight == weight
+        
+        Button {
+            selectedWeight = weight
+        } label: {
+            VStack(spacing: 6) {
+                Text(label)
+                    .font(.system(size: 20, weight: .black, design: .rounded))
+                    .foregroundColor(isSelected ? .white : color)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 20)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(isSelected ? color : color.opacity(0.1))
+                    .shadow(color: isSelected ? color.opacity(0.4) : .clear, radius: 8, x: 0, y: 4)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(isSelected ? color : color.opacity(0.3), lineWidth: isSelected ? 0 : 1.5)
+            )
+        }
+        .buttonStyle(.plain)
+        .scaleEffect(isSelected ? 1.03 : 1.0)
+        .animation(.spring(response: 0.25), value: isSelected)
     }
 }

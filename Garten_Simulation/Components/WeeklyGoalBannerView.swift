@@ -16,35 +16,17 @@ struct WeeklyGoalBannerView: View {
         }
     }
     
-    // Punkte die diese Woche für dieses Wochenziel gesammelt wurden
-    private var weeklyPoints: Int {
-        guard let goal = currentWeekGoal else { return 0 }
+    // Fortschritt: Wochentag / 7 (Mo=0...So=6)
+    private var progress: Double {
         let cal = Calendar.current
-        let now = Date()
-        return goalStore.goalLogs
-            .filter {
-                $0.goalId == goal.id &&
-                cal.component(.weekOfYear, from: $0.date) == cal.component(.weekOfYear, from: now) &&
-                cal.component(.yearForWeekOfYear, from: $0.date) == cal.component(.yearForWeekOfYear, from: now)
-            }
-            .reduce(0) { $0 + $1.pointsEarned }
+        let weekday = cal.component(.weekday, from: Date()) // 1=So, 2=Mo,...
+        // Normalisieren: Mo=1...So=7
+        let adjusted = (weekday + 5) % 7  // Mo=0...So=6
+        return Double(adjusted) / 7.0
     }
     
-    // Top Habit für diese Woche
-    private var topHabitName: String? {
-        guard let goal = currentWeekGoal else { return nil }
-        let cal = Calendar.current
-        let now = Date()
-        let thisWeekLogs = goalStore.goalLogs.filter {
-            $0.goalId == goal.id &&
-            cal.component(.weekOfYear, from: $0.date) == cal.component(.weekOfYear, from: now)
-        }
-        guard !thisWeekLogs.isEmpty else { return nil }
-        let counts = Dictionary(grouping: thisWeekLogs, by: \.habitId).mapValues { $0.reduce(0) { $0 + $1.pointsEarned } }
-        if let topId = counts.max(by: { $0.value < $1.value })?.key {
-            return gardenStore.pflanzen.first { $0.id == topId }?.name
-        }
-        return nil
+    private var progressPercent: Int {
+        Int(progress * 100)
     }
     
     var body: some View {
@@ -60,34 +42,41 @@ struct WeeklyGoalBannerView: View {
                         showEditSheet = true
                     }
                 ) {
-                    VStack(spacing: 10) {
-                        Text(String(localized: "goal.type.week", defaultValue: "Wochenziel"))
-                            .font(.system(size: 13, weight: .black, design: .rounded))
-                            .foregroundColor(.secondary)
-                            .textCase(.uppercase)
-                            .kerning(1.4)
-                        
-                        Text(goal.title)
-                            .font(.system(size: 22, weight: .black, design: .rounded))
-                            .foregroundColor(.primary)
-                            .multilineTextAlignment(.center)
-                            .lineLimit(2)
-                        
-                        HStack(spacing: 16) {
-                            Label(
-                                title: { Text(verbatim: "\(weeklyPoints) Pkt").font(.system(size: 14, weight: .bold, design: .rounded)).foregroundColor(.orange) },
-                                icon: { Image(systemName: "flame.fill").foregroundColor(.orange).font(.system(size: 12)) }
-                            )
-                            if let top = topHabitName {
-                                Label(
-                                    title: { Text(top).font(.system(size: 13, weight: .semibold)).foregroundColor(.secondary).lineLimit(1) },
-                                    icon: { Image(systemName: "star.fill").foregroundColor(.yellow).font(.system(size: 12)) }
-                                )
-                            }
+                    VStack(alignment: .leading, spacing: 10) {
+                        // Titel Zeile
+                        HStack {
+                            Text(goal.title)
+                                .font(.system(size: 22, weight: .black, design: .rounded))
+                                .foregroundColor(.primary)
+                                .lineLimit(1)
                             Spacer()
-                            Image(systemName: "pencil")
-                                .foregroundColor(.secondary)
-                                .font(.system(size: 14))
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(Color(.systemGray3))
+                        }
+                        
+                        // Dicker grüner Progress Bar
+                        GeometryReader { geo in
+                            ZStack(alignment: .leading) {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color(.systemGray5))
+                                    .frame(height: 12)
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.green)
+                                    .frame(width: max(geo.size.width * progress, progress > 0 ? 24 : 0), height: 12)
+                            }
+                        }
+                        .frame(height: 12)
+                        
+                        // Labels
+                        HStack {
+                            Text(verbatim: "\(progressPercent)%")
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .foregroundColor(.green)
+                            Spacer()
+                            Text(String(localized: "goal.type.week", defaultValue: "Wochenziel"))
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .foregroundColor(.green)
                         }
                     }
                     .padding(.horizontal, 20)
@@ -127,6 +116,7 @@ struct WeeklyGoalBannerView: View {
                 editTitle: $editTitle,
                 goalStore: goalStore
             )
+            .environmentObject(gardenStore)
         }
     }
 }

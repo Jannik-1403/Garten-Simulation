@@ -10,25 +10,16 @@ struct YearGoalBannerView: View {
         goalStore.activeGoals.first { $0.type == .year }
     }
     
-    private var linkedHabitsCount: Int {
+    // Fortschritt: Anteil der vergangenen Zeit in 5 Jahren
+    private var progress: Double {
         guard let goal = fiveYearGoal else { return 0 }
-        return goalStore.habitLinks.filter { $0.goalId == goal.id && $0.weight != .none }.count
+        let total: Double = 5 * 365 * 24 * 3600
+        let elapsed = Date().timeIntervalSince(goal.createdAt)
+        return min(max(elapsed / total, 0), 1)
     }
     
-    private var totalPoints: Int {
-        guard let goal = fiveYearGoal else { return 0 }
-        return goalStore.goalLogs.filter { $0.goalId == goal.id }.reduce(0) { $0 + $1.pointsEarned }
-    }
-    
-    private var topHabitName: String? {
-        guard let goal = fiveYearGoal else { return nil }
-        let logs = goalStore.goalLogs.filter { $0.goalId == goal.id }
-        guard !logs.isEmpty else { return nil }
-        let counts = Dictionary(grouping: logs, by: \.habitId).mapValues { $0.reduce(0) { $0 + $1.pointsEarned } }
-        if let topId = counts.max(by: { $0.value < $1.value })?.key {
-            return gardenStore.pflanzen.first { $0.id == topId }?.name
-        }
-        return nil
+    private var progressPercent: Int {
+        Int(progress * 100)
     }
     
     var body: some View {
@@ -44,38 +35,41 @@ struct YearGoalBannerView: View {
                         showEditSheet = true
                     }
                 ) {
-                    VStack(spacing: 10) {
-                        Text(String(localized: "goal.type.year", defaultValue: "5-Jahresziel"))
-                            .font(.system(size: 13, weight: .black, design: .rounded))
-                            .foregroundColor(.secondary)
-                            .textCase(.uppercase)
-                            .kerning(1.4)
-                        
-                        Text(goal.title)
-                            .font(.system(size: 24, weight: .black, design: .rounded))
-                            .foregroundColor(.primary)
-                            .multilineTextAlignment(.center)
-                            .lineLimit(2)
-                        
-                        HStack(spacing: 16) {
-                            Label(
-                                title: { Text(verbatim: "\(totalPoints) Pkt").font(.system(size: 14, weight: .bold, design: .rounded)).foregroundColor(.blauPrimary) },
-                                icon: { Image(systemName: "star.fill").foregroundColor(.yellow).font(.system(size: 12)) }
-                            )
-                            Label(
-                                title: { Text(verbatim: "\(linkedHabitsCount) Habits").font(.system(size: 14, weight: .bold, design: .rounded)).foregroundColor(.green) },
-                                icon: { Image(systemName: "leaf.fill").foregroundColor(.green).font(.system(size: 12)) }
-                            )
-                            if let top = topHabitName {
-                                Label(
-                                    title: { Text(top).font(.system(size: 13, weight: .semibold)).foregroundColor(.secondary).lineLimit(1) },
-                                    icon: { Image(systemName: "crown.fill").foregroundColor(.orange).font(.system(size: 12)) }
-                                )
-                            }
+                    VStack(alignment: .leading, spacing: 10) {
+                        // Titel Zeile
+                        HStack {
+                            Text(goal.title)
+                                .font(.system(size: 22, weight: .black, design: .rounded))
+                                .foregroundColor(.primary)
+                                .lineLimit(1)
                             Spacer()
-                            Image(systemName: "pencil")
-                                .foregroundColor(.secondary)
-                                .font(.system(size: 14))
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(Color(.systemGray3))
+                        }
+                        
+                        // Dicker grüner Progress Bar
+                        GeometryReader { geo in
+                            ZStack(alignment: .leading) {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color(.systemGray5))
+                                    .frame(height: 12)
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.green)
+                                    .frame(width: max(geo.size.width * progress, progress > 0 ? 24 : 0), height: 12)
+                            }
+                        }
+                        .frame(height: 12)
+                        
+                        // Labels
+                        HStack {
+                            Text(verbatim: "\(progressPercent)%")
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .foregroundColor(.green)
+                            Spacer()
+                            Text(String(localized: "goal.label.fiveyears", defaultValue: "5 Jahre"))
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .foregroundColor(.green)
                         }
                     }
                     .padding(.horizontal, 20)
@@ -115,6 +109,7 @@ struct YearGoalBannerView: View {
                 editTitle: $editTitle,
                 goalStore: goalStore
             )
+            .environmentObject(gardenStore)
         }
     }
 }
