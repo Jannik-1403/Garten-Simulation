@@ -26,77 +26,64 @@ struct YearGoalBannerView: View {
                     editTitle = goal.title
                     showEditSheet = true
                 } label: {
-                    VStack(spacing: 16) {
-                        // Titel mittig drinnen im 3D-Stil (wie Glücksrad)
-                        HStack {
-                            Spacer()
-                            ZStack {
-                                // Lower layer (shadow)
-                                Text(goal.title)
-                                    .font(.system(size: 24, weight: .black, design: .rounded))
-                                    .foregroundStyle(Color.blauPrimary.opacity(0.35))
-                                    .offset(y: 4)
-
-                                // Upper layer (visible text)
-                                Text(goal.title)
-                                    .font(.system(size: 24, weight: .black, design: .rounded))
-                                    .foregroundStyle(Color.blauPrimary)
-                            }
-                            .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .lineLimit(nil)
-                            Spacer()
-                        }
-                        
-                        // Dicker 3D Progress Bar in Grün
-                        GeometryReader { geo in
-                            ZStack(alignment: .leading) {
-                                // Track
-                                RoundedRectangle(cornerRadius: 12)
-                                    .fill(Color(UIColor.systemGray6))
-                                    .frame(height: 16)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .stroke(Color.black.opacity(0.05), lineWidth: 1)
-                                    )
-                                
-                                // Fill
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .fill(Color.green.darker())
-                                        .frame(height: 16)
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .fill(Color.green)
-                                        .frame(height: 16)
-                                        .offset(y: -2)
-                                }
-                                .frame(width: max(geo.size.width * progress, progress > 0 ? 16 : 0))
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                            }
-                        }
-                        .frame(height: 16)
-                        
-                        // Labels
-                        HStack {
-                            Text(verbatim: "\(progressPercent)%")
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundColor(Color.green.darker())
-                            Spacer()
-                            Text(String(localized: "goal.label.fiveyears", defaultValue: "5 Jahre"))
-                                .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundColor(Color.green.darker())
+                    VStack(spacing: 24) {
+                        // 1. Titel im 3D-Stil
+                        ZStack {
+                            // Lower layer (shadow / accent color)
+                            Text(goal.title)
+                                .font(.system(size: 26, weight: .black, design: .rounded))
+                                .foregroundStyle(Color(hex: "#4FC3F7"))
+                                .offset(y: 3)
                             
-                            Image(systemName: "chevron.right")
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundColor(Color.green.darker())
+                            // Upper layer (Anthrazit)
+                            Text(goal.title)
+                                .font(.system(size: 26, weight: .black, design: .rounded))
+                                .foregroundStyle(Color(hex: "#2B2B2B"))
                         }
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+                        
+                        VStack(spacing: 12) {
+                            // 2. Langer, dicker Fortschrittsbalken
+                            GeometryReader { geo in
+                                ZStack(alignment: .leading) {
+                                    // Track (Hellgrau)
+                                    Capsule()
+                                        .fill(Color(hex: "#ECECEC"))
+                                        .frame(height: 14)
+                                    
+                                    // Fill (Akzentfarbe)
+                                    if progress > 0 {
+                                        Capsule()
+                                            .fill(Color(hex: "#4FC3F7"))
+                                            .frame(width: max(geo.size.width * progress, 14), height: 14)
+                                    }
+                                }
+                            }
+                            .frame(height: 14)
+                            
+                            // 3. Prozentzahl und Text darunter
+                            HStack {
+                                Text(verbatim: "\(progressPercent)%")
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .foregroundColor(Color(hex: "#4FC3F7"))
+                                Spacer()
+                                Text(String(localized: "goal.fiveyears.label.arrow", defaultValue: "5 Years →"))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .foregroundColor(Color(hex: "#4FC3F7"))
+                            }
+                        }
+                        .padding(.horizontal, 16)
                     }
-                    .padding(.horizontal, 24)
-                    .padding(.top, 24)
-                    .padding(.bottom, 28) // Mehr Platz unten
+                    .padding(.vertical, 32)
+                    .padding(.horizontal, 16)
+                    .background(
+                        RoundedRectangle(cornerRadius: 30)
+                            .fill(Color.white)
+                            .shadow(color: Color.black.opacity(0.06), radius: 15, x: 0, y: 8)
+                    )
                 }
                 .buttonStyle(.plain)
-                .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
                 .padding(.horizontal, 24)
             } else {
                 Button {
@@ -113,14 +100,18 @@ struct YearGoalBannerView: View {
                             .foregroundColor(.primary)
                         Spacer()
                         Image(systemName: "plus.circle.fill")
-                            .foregroundColor(.orange)
+                            .foregroundColor(Color(hex: "#4FC3F7"))
                             .font(.title2)
                     }
                     .padding(.horizontal, 24)
                     .padding(.vertical, 24)
+                    .background(
+                        RoundedRectangle(cornerRadius: 30)
+                            .fill(Color.white)
+                            .shadow(color: Color.black.opacity(0.06), radius: 15, x: 0, y: 8)
+                    )
                 }
                 .buttonStyle(.plain)
-                .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
                 .padding(.horizontal, 24)
             }
         }
