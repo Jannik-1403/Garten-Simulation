@@ -58,13 +58,6 @@ struct GoalPointsBannerView: View {
             showSheet.wrappedValue = true
         } label: {
             HStack(spacing: 14) {
-                // Icon 2.2x größer als vorher
-                Image("Goal")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 64, height: 64)
-                    .foregroundColor(iconColor)
-                
                 VStack(alignment: .leading, spacing: 2) {
                     Text(NSLocalizedString(goal.type.localizationKey, comment: ""))
                         .font(.system(size: 11, weight: .black))
@@ -162,7 +155,7 @@ struct GoalWeightEditSheet: View {
                 }
             }
         }
-        .presentationDetents([.medium])
+        .presentationDetents([.medium, .large])
         .onAppear {
             selectedWeight = goalStore.weightForHabit(habitId: pflanze.id, goalId: goal.id) ?? .none
         }
@@ -173,8 +166,8 @@ struct GoalWeightEditSheet: View {
         let isSelected = selectedWeight == weight
         
         Item3DButton(
-            farbe: isSelected ? color : Color(UIColor.systemGray5),
-            sekundaerFarbe: isSelected ? color.darker() : Color(UIColor.systemGray4),
+            farbe: isSelected ? color : Color(UIColor.systemBackground),
+            sekundaerFarbe: isSelected ? color.darker() : Color(UIColor.systemGray5),
             groesse: 65,
             isRectangular: true,
             aktion: { selectedWeight = weight }

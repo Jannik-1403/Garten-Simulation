@@ -16,7 +16,7 @@ struct TodosTabView: View {
                     WeeklyGoalBannerView()
                         .environmentObject(gardenStore)
                         .padding(.top, 16)
-                        .padding(.bottom, 8)
+                        .padding(.bottom, 24)
                         
                     if alleTodosEmpty() {
                     VStack(spacing: 16) {

@@ -22,16 +22,10 @@ struct YearGoalBannerView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             if let goal = fiveYearGoal {
-                Item3DButton(
-                    farbe: .white,
-                    sekundaerFarbe: Color(UIColor.systemGray5),
-                    groesse: 100,
-                    isRectangular: true,
-                    aktion: {
-                        editTitle = goal.title
-                        showEditSheet = true
-                    }
-                ) {
+                Button {
+                    editTitle = goal.title
+                    showEditSheet = true
+                } label: {
                     VStack(spacing: 16) {
                         // Titel mittig drinnen
                         HStack {
@@ -88,36 +82,36 @@ struct YearGoalBannerView: View {
                                 .foregroundColor(Color.green.darker())
                         }
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 24)
+                    .padding(.horizontal, 24)
+                    .padding(.top, 24)
+                    .padding(.bottom, 28) // Mehr Platz unten
                 }
+                .buttonStyle(.plain)
+                .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
                 .padding(.horizontal, 24)
             } else {
-                Item3DButton(
-                    farbe: .white,
-                    sekundaerFarbe: Color(UIColor.systemGray5),
-                    groesse: 70,
-                    isRectangular: true,
-                    aktion: {
-                        editTitle = ""
-                        showEditSheet = true
-                    }
-                ) {
+                Button {
+                    editTitle = ""
+                    showEditSheet = true
+                } label: {
                     HStack(spacing: 12) {
                         Image("Goal")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 28, height: 28)
-                        Text(String(localized: "goal.year.add", defaultValue: "5-Jahresziel festlegen"))
+                        Text(String(localized: "goal.fiveyears.add", defaultValue: "5-Jahres Ziel festlegen"))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .foregroundColor(.primary)
                         Spacer()
                         Image(systemName: "plus.circle.fill")
-                            .foregroundColor(.yellow)
+                            .foregroundColor(.orange)
                             .font(.title2)
                     }
-                    .padding(20)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 24)
                 }
+                .buttonStyle(.plain)
+                .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
                 .padding(.horizontal, 24)
             }
         }

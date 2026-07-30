@@ -10,9 +10,15 @@ struct GoalEditSheet: View {
     @EnvironmentObject var gardenStore: GardenStore
     
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedWeights: [String: GoalWeight] = [:]
+    @State private var localOverrides: [String: GoalWeight] = [:]
     
     private var isEditing: Bool { existingGoal != nil }
+    
+    private func currentWeight(for habitId: String) -> GoalWeight {
+        if let w = localOverrides[habitId] { return w }
+        guard let goal = existingGoal else { return .none }
+        return goalStore.weightForHabit(habitId: habitId, goalId: goal.id) ?? .none
+    }
     
     var body: some View {
         NavigationView {
@@ -28,9 +34,9 @@ struct GoalEditSheet: View {
                         ForEach(gardenStore.pflanzen.filter { !$0.isDead && !$0.isNegative }) { habit in
                             HabitWeightRow(
                                 habit: habit,
-                                selectedWeight: selectedWeights[habit.id] ?? .none,
+                                selectedWeight: currentWeight(for: habit.id),
                                 onSelect: { weight in
-                                    selectedWeights[habit.id] = weight
+                                    localOverrides[habit.id] = weight
                                 }
                             )
                         }
@@ -53,16 +59,6 @@ struct GoalEditSheet: View {
             }
         }
         .presentationDetents([.medium, .large])
-        .onAppear {
-            loadExistingWeights()
-        }
-    }
-    
-    private func loadExistingWeights() {
-        guard let goal = existingGoal else { return }
-        for link in goalStore.habitLinks where link.goalId == goal.id {
-            selectedWeights[link.habitId] = link.weight
-        }
     }
     
     private func saveGoal() {
@@ -81,8 +77,20 @@ struct GoalEditSheet: View {
         }
         
         // Save habit weights
-        for (habitId, weight) in selectedWeights {
-            goalStore.linkHabitToGoal(habitId: habitId, goalId: goalId, weight: weight)
+        for habit in gardenStore.pflanzen {
+            let finalWeight: GoalWeight
+            if let override = localOverrides[habit.id] {
+                finalWeight = override
+            } else if let existing = existingGoal {
+                finalWeight = goalStore.weightForHabit(habitId: habit.id, goalId: existing.id) ?? .none
+            } else {
+                finalWeight = .none
+            }
+            
+            // Only update if not none or if we are actively setting it
+            if finalWeight != .none || localOverrides[habit.id] != nil {
+                goalStore.linkHabitToGoal(habitId: habit.id, goalId: goalId, weight: finalWeight)
+            }
         }
         
         dismiss()

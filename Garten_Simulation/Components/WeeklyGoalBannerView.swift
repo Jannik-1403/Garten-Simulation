@@ -28,16 +28,10 @@ struct WeeklyGoalBannerView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             if let goal = currentWeekGoal {
-                Item3DButton(
-                    farbe: .white,
-                    sekundaerFarbe: Color(UIColor.systemGray5),
-                    groesse: 100,
-                    isRectangular: true,
-                    aktion: {
-                        editTitle = goal.title
-                        showEditSheet = true
-                    }
-                ) {
+                Button {
+                    editTitle = goal.title
+                    showEditSheet = true
+                } label: {
                     VStack(spacing: 16) {
                         // Titel mittig drinnen
                         HStack {
@@ -94,21 +88,18 @@ struct WeeklyGoalBannerView: View {
                                 .foregroundColor(Color.green.darker())
                         }
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 24)
+                    .padding(.horizontal, 24)
+                    .padding(.top, 24)
+                    .padding(.bottom, 28) // Mehr Platz unten
                 }
+                .buttonStyle(.plain)
+                .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
                 .padding(.horizontal, 24)
             } else {
-                Item3DButton(
-                    farbe: .white,
-                    sekundaerFarbe: Color(UIColor.systemGray5),
-                    groesse: 70,
-                    isRectangular: true,
-                    aktion: {
-                        editTitle = ""
-                        showEditSheet = true
-                    }
-                ) {
+                Button {
+                    editTitle = ""
+                    showEditSheet = true
+                } label: {
                     HStack(spacing: 12) {
                         Image("Goal")
                             .resizable()
@@ -122,8 +113,11 @@ struct WeeklyGoalBannerView: View {
                             .foregroundColor(.orange)
                             .font(.title2)
                     }
-                    .padding(20)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 24)
                 }
+                .buttonStyle(.plain)
+                .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
                 .padding(.horizontal, 24)
             }
         }
