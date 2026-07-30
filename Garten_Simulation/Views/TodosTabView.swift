@@ -8,16 +8,38 @@ struct TodosTabView: View {
     @State private var selectedPlantForTodo: HabitModel?
     @State private var todoToEditIndex: Int? = nil
     
+    @EnvironmentObject var streakStore: StreakStore
+    @EnvironmentObject var settings: SettingsStore
+    @EnvironmentObject var shopStore: ShopStore
+    
+    @State private var zeigeStreakDetail = false
+    @State private var zeigeCoinsDetail = false
+    @State private var zeigeLebenDetail = false
+
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.appHintergrund.ignoresSafeArea()
                 
                 VStack(spacing: 0) {
+                    GartenStatsBar(
+                        streak: streakStore.currentStreak,
+                        coins: gardenStore.coins,
+                        leben: gardenStore.leben,
+                        onStreakTap: { zeigeStreakDetail = true },
+                        onCoinsTap: { zeigeCoinsDetail = true },
+                        onLebenTap: { zeigeLebenDetail = true }
+                    )
+                    .background(Color.appHintergrund)
+                    .overlay(alignment: .bottom) {
+                        Divider().opacity(0.12).padding(.horizontal, 16)
+                    }
+
                     WeeklyGoalBannerView()
                         .environmentObject(gardenStore)
                         .padding(.top, 16)
                         .padding(.bottom, 24)
+
                         
                     if alleTodosEmpty() {
                     Spacer()
@@ -85,6 +107,26 @@ struct TodosTabView: View {
                     TodoSheetView(pflanze: selected, editIndex: todoToEditIndex)
                 } else {
                     GlobalTodoAddSheet()
+                }
+            }
+            .fullScreenCover(isPresented: $zeigeLebenDetail) {
+                LebenDetailView()
+                    .environmentObject(gardenStore)
+                    .environmentObject(settings)
+            }
+            .fullScreenCover(isPresented: $zeigeStreakDetail) {
+                NavigationStack {
+                    StreakView()
+                        .environmentObject(streakStore)
+                        .environmentObject(settings)
+                }
+            }
+            .fullScreenCover(isPresented: $zeigeCoinsDetail) {
+                NavigationStack {
+                    CoinsDetailView()
+                        .environmentObject(gardenStore)
+                        .environmentObject(settings)
+                        .environmentObject(shopStore)
                 }
             }
         }
