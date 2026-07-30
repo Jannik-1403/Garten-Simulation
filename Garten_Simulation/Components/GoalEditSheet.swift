@@ -27,10 +27,36 @@ struct GoalEditSheet: View {
         return goalStore.frequencyForHabit(habitId: habitId, goalId: goal.id) ?? 7
     }
     
+    private var totalPoints: Int {
+        var maxPointsPerWeek = 0
+        for habit in gardenStore.pflanzen {
+            let weight = currentWeight(for: habit.id)
+            if weight != .none {
+                let frequency = currentFrequency(for: habit.id)
+                maxPointsPerWeek += (weight.rawValue * frequency)
+            }
+        }
+        
+        switch type {
+        case .week: return maxPointsPerWeek
+        case .month: return Int(Double(maxPointsPerWeek) * (52.0 / 12.0))
+        case .year: return maxPointsPerWeek * 52 * 5
+        }
+    }
+    
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text(goalPrompt)) {
+                Section(header: HStack {
+                    Text(goalPrompt)
+                    Spacer()
+                    if totalPoints > 0 {
+                        Text("Ziel: \(totalPoints) Pkt.")
+                            .font(.system(size: 13, weight: .bold))
+                            .foregroundColor(.blue)
+                            .textCase(.none)
+                    }
+                }) {
                     TextField(goalPlaceholder, text: $editTitle)
                         .font(.system(size: 16, weight: .semibold))
                 }
@@ -189,8 +215,9 @@ struct HabitWeightRow: View {
                     ), in: 1...7) {
                         Text("\(selectedFrequency)x")
                             .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .fixedSize() // Verhindert Umbruch
                     }
-                    .frame(width: 120)
+                    .fixedSize() // Stepper nimmt nur den benötigten Platz ein
                 }
                 .padding(.top, 4)
             }

@@ -15,11 +15,18 @@ struct YearGoalBannerView: View {
         return goalStore.progressForFiveYears(goalId: goal.id)
     }
     
+    private var progressInCurrentLevel: Double {
+        if currentLevel == 60 && pointsInCurrentLevel == 0 && pointsInfo.earned > 0 { return 1.0 }
+        let ppl = pointsPerLevel
+        if ppl == 0 { return 0 }
+        return min(Double(pointsInCurrentLevel) / Double(ppl), 1.0)
+    }
+    
     private var progressPercentString: String {
-        let percent = progress * 100
+        let percent = progressInCurrentLevel * 100
         if percent == 0 { return "0%" }
         if percent >= 100 { return "100%" }
-        return String(format: "%.2f%%", percent) // 2 decimal places to see progress faster
+        return String(format: "%.1f%%", percent) 
     }
     
     private var pointsInfo: (earned: Int, target: Int) {
@@ -30,11 +37,24 @@ struct YearGoalBannerView: View {
     private var currentLevel: Int {
         let (earned, target) = pointsInfo
         guard target > 0 else { return 1 }
-        // 5 Jahre = 60 Monate = 60 Level. Ein Level ist ein Monat voller Punkte.
-        let pointsPerLevel = target / 60
-        if pointsPerLevel == 0 { return 1 }
-        let level = (earned / pointsPerLevel) + 1
+        let ppl = pointsPerLevel
+        if ppl == 0 { return 1 }
+        let level = (earned / ppl) + 1
         return min(level, 60) // Max Level 60
+    }
+    
+    private var pointsInCurrentLevel: Int {
+        let (earned, target) = pointsInfo
+        guard target > 0 else { return 0 }
+        let ppl = pointsPerLevel
+        if ppl == 0 { return 0 }
+        return earned % ppl
+    }
+    
+    private var pointsPerLevel: Int {
+        let (_, target) = pointsInfo
+        guard target > 0 else { return 1 }
+        return target / 60
     }
     
     var body: some View {
@@ -45,18 +65,6 @@ struct YearGoalBannerView: View {
                     showEditSheet = true
                 } label: {
                     VStack(spacing: 24) {
-                        // Level Anzeige oben links
-                        HStack {
-                            Text("Level \(currentLevel)")
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 4)
-                                .background(Color(hex: "#4FC3F7").opacity(0.15))
-                                .foregroundColor(Color(hex: "#0288D1"))
-                                .clipShape(Capsule())
-                            Spacer()
-                        }
-                        
                         // 1. Titel im 3D-Stil
                         ZStack {
                             // Lower layer (Dunkleres Blau für den Schatten/3D-Tiefe)
@@ -83,15 +91,15 @@ struct YearGoalBannerView: View {
                                         .frame(height: 18)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 12)
-                                                .strokeBorder(style: progress == 0 ? StrokeStyle(lineWidth: 1.5, dash: [4, 4]) : StrokeStyle(lineWidth: 0))
-                                                .foregroundColor(Color.gray.opacity(progress == 0 ? 0.3 : 0))
+                                                .strokeBorder(style: progressInCurrentLevel == 0 ? StrokeStyle(lineWidth: 1.5, dash: [4, 4]) : StrokeStyle(lineWidth: 0))
+                                                .foregroundColor(Color.gray.opacity(progressInCurrentLevel == 0 ? 0.3 : 0))
                                         )
                                     
                                     // Fill (Akzentfarbe)
-                                    if progress > 0 {
+                                    if progressInCurrentLevel > 0 {
                                         RoundedRectangle(cornerRadius: 12)
                                             .fill(Color(hex: "#4FC3F7"))
-                                            .frame(width: max(geo.size.width * progress, 18), height: 18)
+                                            .frame(width: max(geo.size.width * progressInCurrentLevel, 18), height: 18)
                                     }
                                 }
                             }
@@ -103,7 +111,7 @@ struct YearGoalBannerView: View {
                                     Text(verbatim: progressPercentString)
                                         .font(.system(size: 18, weight: .bold, design: .rounded))
                                         .foregroundColor(Color(hex: "#4FC3F7"))
-                                    Text(verbatim: "\(pointsInfo.earned) / \(pointsInfo.target) Pkt.")
+                                    Text(verbatim: "\(pointsInCurrentLevel) / \(pointsPerLevel) Pkt.")
                                         .font(.system(size: 13, weight: .semibold, design: .rounded))
                                         .foregroundColor(Color.gray)
                                 }
@@ -115,10 +123,18 @@ struct YearGoalBannerView: View {
                         }
                         .padding(.horizontal, 4) // Weniger Padding, Balken länger
                     }
-                    .padding(.top, 32)
+                    .padding(.top, 40) // Etwas weiter nach unten gesetzt, damit Platz für Level ist
                     .padding(.bottom, 24)
                     .padding(.horizontal, 20)
-                    .contentShape(Rectangle()) // Macht den gesamten Banner-Bereich klickbar
+                    .contentShape(Rectangle())
+                    .overlay(
+                        Text("Level \(currentLevel)")
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundColor(Color(hex: "#0288D1"))
+                            .padding(.top, 16)
+                            .padding(.leading, 16),
+                        alignment: .topLeading
+                    )
 
                 }
                 .buttonStyle(.plain)
