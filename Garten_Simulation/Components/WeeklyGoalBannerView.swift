@@ -28,30 +28,30 @@ struct WeeklyGoalBannerView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             if let goal = currentWeekGoal {
-                // Titel oben drüber
-                HStack {
-                    Text(goal.title)
-                        .font(.system(size: 24, weight: .black, design: .rounded))
-                        .foregroundColor(.primary)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .lineLimit(nil)
-                    Spacer()
-                }
-                .padding(.horizontal, 24)
-                .padding(.bottom, 2)
-                
                 Item3DButton(
                     farbe: .white,
                     sekundaerFarbe: Color(UIColor.systemGray5),
-                    groesse: 65,
+                    groesse: 100,
                     isRectangular: true,
                     aktion: {
                         editTitle = goal.title
                         showEditSheet = true
                     }
                 ) {
-                    VStack(spacing: 14) {
-                        // Dicker 3D Progress Bar
+                    VStack(spacing: 16) {
+                        // Titel mittig drinnen
+                        HStack {
+                            Spacer()
+                            Text(goal.title)
+                                .font(.system(size: 24, weight: .black, design: .rounded))
+                                .foregroundColor(.primary)
+                                .multilineTextAlignment(.center)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .lineLimit(nil)
+                            Spacer()
+                        }
+                        
+                        // Dicker 3D Progress Bar in Grün
                         GeometryReader { geo in
                             ZStack(alignment: .leading) {
                                 // Track
@@ -63,13 +63,13 @@ struct WeeklyGoalBannerView: View {
                                             .stroke(Color.black.opacity(0.05), lineWidth: 1)
                                     )
                                 
-                                // Fill (3D Look für den Progress Bar)
+                                // Fill (3D Look für den Progress Bar in Grün)
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 12)
-                                        .fill(Color.blauPrimary.darker())
+                                        .fill(Color.green.darker())
                                         .frame(height: 16)
                                     RoundedRectangle(cornerRadius: 12)
-                                        .fill(Color.blauPrimary)
+                                        .fill(Color.green)
                                         .frame(height: 16)
                                         .offset(y: -2)
                                 }
@@ -83,19 +83,19 @@ struct WeeklyGoalBannerView: View {
                         HStack {
                             Text(verbatim: "\(progressPercent)%")
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundColor(Color.blauPrimary.darker())
+                                .foregroundColor(Color.green.darker())
                             Spacer()
                             Text(String(localized: "goal.type.week", defaultValue: "Wochenziel"))
                                 .font(.system(size: 16, weight: .bold, design: .rounded))
-                                .foregroundColor(Color.blauPrimary.darker())
+                                .foregroundColor(Color.green.darker())
                             
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 14, weight: .bold))
-                                .foregroundColor(Color.blauPrimary.darker())
+                                .foregroundColor(Color.green.darker())
                         }
                     }
                     .padding(.horizontal, 20)
-                    .padding(.vertical, 16)
+                    .padding(.vertical, 24)
                 }
                 .padding(.horizontal, 24)
             } else {

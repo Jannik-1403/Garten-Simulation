@@ -26,10 +26,13 @@ struct GoalEditSheet: View {
                 if (type == .year || type == .week) && !gardenStore.pflanzen.filter({ !$0.isDead && !$0.isNegative }).isEmpty {
                     Section(header: Text(String(localized: "goal.link.title", defaultValue: "Ziel-Beitrag"))) {
                         ForEach(gardenStore.pflanzen.filter { !$0.isDead && !$0.isNegative }) { habit in
-                            HabitWeightRow(habit: habit, selectedWeight: Binding(
-                                get: { selectedWeights[habit.id] ?? .none },
-                                set: { selectedWeights[habit.id] = $0 }
-                            ))
+                            HabitWeightRow(
+                                habit: habit,
+                                selectedWeight: selectedWeights[habit.id] ?? .none,
+                                onSelect: { weight in
+                                    selectedWeights[habit.id] = weight
+                                }
+                            )
                         }
                     }
                 }
@@ -113,7 +116,8 @@ struct GoalEditSheet: View {
 // MARK: - Habit Weight Row
 struct HabitWeightRow: View {
     let habit: HabitModel
-    @Binding var selectedWeight: GoalWeight
+    let selectedWeight: GoalWeight
+    let onSelect: (GoalWeight) -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -130,7 +134,7 @@ struct HabitWeightRow: View {
                         sekundaerFarbe: isSelected ? baseColor.darker() : Color(UIColor.systemGray4),
                         groesse: 40,
                         isRectangular: true,
-                        aktion: { selectedWeight = weight }
+                        aktion: { onSelect(weight) }
                     ) {
                         Text(weight == .massive ? "20 Pkt" : (weight == .bit ? "5 Pkt" : "0 Pkt"))
                             .font(.system(size: 13, weight: .bold, design: .rounded))

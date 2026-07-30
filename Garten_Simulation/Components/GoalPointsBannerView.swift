@@ -54,19 +54,15 @@ struct GoalPointsBannerView: View {
     private func goalRow(goal: GoalModel, iconName: String, iconColor: Color, showSheet: Binding<Bool>) -> some View {
         let weight = goalStore.weightForHabit(habitId: pflanze.id, goalId: goal.id)
         
-        Item3DButton(
-            farbe: Color(.systemBackground),
-            sekundaerFarbe: Color(.systemGray5),
-            groesse: 60,
-            isRectangular: true,
-            aktion: { showSheet.wrappedValue = true }
-        ) {
+        Button {
+            showSheet.wrappedValue = true
+        } label: {
             HStack(spacing: 14) {
-                // Icon 2.25x größer, nichts anderes verschoben
+                // Icon 2.2x größer als vorher
                 Image("Goal")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 40, height: 40)
+                    .frame(width: 64, height: 64)
                     .foregroundColor(iconColor)
                 
                 VStack(alignment: .leading, spacing: 2) {
@@ -76,7 +72,7 @@ struct GoalPointsBannerView: View {
                         .textCase(.uppercase)
                         .kerning(0.8)
                     Text(goal.title)
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundColor(.primary)
                         .lineLimit(1)
                 }
@@ -95,12 +91,14 @@ struct GoalPointsBannerView: View {
                 }
                 
                 Image(systemName: "chevron.right")
-                    .foregroundColor(.secondary)
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(.primary) // Pfeil so schwarz wie bei To-Dos
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 14)
+            .padding(.horizontal, 6)
+            .padding(.vertical, 8)
         }
+        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
+        .buttonStyle(.plain)
     }
 }
 

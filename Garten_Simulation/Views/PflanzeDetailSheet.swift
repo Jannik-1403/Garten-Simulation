@@ -254,6 +254,10 @@ struct PflanzeDetailSheet: View {
                     .padding(.horizontal, 24)
                     .tint(.blauPrimary)
 
+                    // MARK: - Ziel-Punkte Banner
+                    GoalPointsBannerView(pflanze: pflanze, goalStore: goalStore)
+                        .padding(.top, 16)
+
                     HStack(spacing: 40) {
                         // Focus Session Button
                         VStack(spacing: 8) {
@@ -282,11 +286,7 @@ struct PflanzeDetailSheet: View {
                     .padding(.top, 16)
 
 
-                    // MARK: - Ziel-Punkte Banner
-                    GoalPointsBannerView(pflanze: pflanze, goalStore: goalStore)
-                        .padding(.top, 16)
-                        .padding(.bottom, 8)
-                    
+
                     // Verkaufen-Button (Roter Text)
                     Button {
                         zeigeVerkaufenDialog = true
