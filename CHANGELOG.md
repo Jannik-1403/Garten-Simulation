@@ -371,3 +371,7 @@
 - **UI & Usability**: 
   - Die "Hinzufügen"-Buttons für Wochen- und Monatsziele wurden in einheitliche `Item3DButton` umgewandelt.
   - Bei der Pflanzen-Auswahl (Ziel-Beitrag: 20, 5, 0 Punkte) wurde ein Info-Icon hinzugefügt, das die Punkteverteilung erklärt. Die Texte wurden in alle 11 Sprachen übersetzt.
+- **UX & Design Upgrade**: 
+  - Alle Goal-Banner (Jahr, Monat, Woche) sind jetzt vollständig als einheitliche, interaktive `Item3DButton` umgesetzt.
+  - Das Zielkonzept wurde global von "1-Jahresziel" auf das realistischere "5-Jahresziel" aktualisiert (inkl. aller 11 Übersetzungen).
+  - Die Zielgewichte (20, 5, 0 Punkte) bei der Pflanzenerstellung/Shop nutzen jetzt farbcodierte 3D-Buttons (Grün, Orange, Rot) für intuitives visuelles Feedback.
