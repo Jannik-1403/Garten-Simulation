@@ -227,6 +227,13 @@ class ScreenTimeManager: ObservableObject {
     // MARK: - Authorization
     
     func requestAuthorization() async throws {
+        if AuthorizationCenter.shared.authorizationStatus == .approved {
+            DispatchQueue.main.async {
+                self.checkAuthorizationStatus()
+            }
+            return
+        }
+        
         do {
             try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
             DispatchQueue.main.async {
