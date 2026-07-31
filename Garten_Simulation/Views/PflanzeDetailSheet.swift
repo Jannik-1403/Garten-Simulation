@@ -469,49 +469,15 @@ struct PflanzeDetailSheet: View {
                     @ViewBuilder
                     private var healthKitConfigSection: some View {
                         VStack(spacing: 12) {
-                            if pflanze.automaticHealthMetric == nil && pflanze.linkedHealthMetric == nil {
-                                IntradayProgressChartView(history: pflanze.intradayProgressHistory)
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 4)
-                            }
-                            
-                            Group {
                                 if iapStore.isProUser {
-                                    if let autoMetric = pflanze.automaticHealthMetric {
-                                        // --- APPLE HEALTH SECTION ---
-                                        VStack(spacing: 0) {
-                                            // effectiveMetric: linked oder automatic
-                                            let effectiveMetric = pflanze.linkedHealthMetric ?? pflanze.automaticHealthMetric
-                                            if let metric = effectiveMetric, !hourlyHealthData.isEmpty {
-                                                HealthChartView(
-                                                    data: hourlyHealthData,
-                                                    metric: metric,
-                                                    target: pflanze.healthTarget,
-                                                    hourlyAverageData: hourlyAvgData,
-                                                    onEditTarget: { showTargetEdit = true }
-                                                )
-                                                .padding(.horizontal, 16)
-                                                .padding(.vertical, 4)
-                                            } else {
-                                                // Laden-Indikator
-                                                HStack {
-                                                    Spacer()
-                                                    VStack(spacing: 8) {
-                                                        ProgressView()
-                                                        Text(String(localized: "health.chart.loading", defaultValue: "Lade Gesundheitsdaten…"))
-                                                            .font(.system(size: 13, weight: .medium, design: .rounded))
-                                                            .foregroundStyle(.secondary)
-                                                    }
-                                                    Spacer()
-                                                }
-                                                .padding(40)
-                                            }
-                                        }
-                                    }
+                                    // --- STATISTIKEN (Pro Feature) ---
+                                    IntradayProgressChartView(history: pflanze.intradayProgressHistory)
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 4)
                                 } else {
                                     VStack(spacing: 12) {
                                         HStack {
-                                            Text(String(localized: "apple.health.title", defaultValue: "Apple Health Kopplung"))
+                                            Text(String(localized: "statistics.pro.title", defaultValue: "Erweiterte Statistiken"))
                                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                             Spacer()
                                         }
@@ -540,7 +506,6 @@ struct PflanzeDetailSheet: View {
                                         .padding(.horizontal, 24)
                                     }
                                 }
-                            }
                         }
                         .padding(.bottom, 8)
                     }
