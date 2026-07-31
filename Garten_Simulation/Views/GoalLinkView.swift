@@ -61,7 +61,7 @@ struct GoalLinkView: View {
                     isRectangular: true,
                     aktion: { dismiss() }
                 ) {
-                    Text("OK")
+                    Text(String(localized: "common.ok", defaultValue: "OK"))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                         .padding()
