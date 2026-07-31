@@ -409,3 +409,4 @@
 - **Button "Weiter":** Onboarding-Seiten springen nicht mehr sofort um. Es muss nun explizit ein "Weiter"-Button geklickt werden.
 - **Lokalisierung:** Alle neuen Strings wurden in 14 Sprachen vollautomatisch in die `Localizable.xcstrings` übersetzt.
 - **Custom-Ziel Dialog:** Das Erstellen von eigenen Zielen im Onboarding verwendet nun wieder die native iOS-Eingabemaske (Alert) für ein vertrauteres Nutzererlebnis.
+- **Screen Time Onboarding Fix:** Das Layout des Berechtigungs-Mocks wurde korrigiert, um exakt dem iOS 16/17 Original zu entsprechen ("Nicht erlauben" links, "Weiter" rechts, beide mit grauem Hintergrund). Außerdem öffnen sich nun automatisch die iOS-Einstellungen, falls die Bildschirmzeit dort noch nicht für die App aktiviert wurde.
