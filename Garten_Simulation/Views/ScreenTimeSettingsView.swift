@@ -6,6 +6,7 @@ import FamilyControls
 struct ScreenTimeSettingsView: View {
     @StateObject private var manager = ScreenTimeManager.shared
     @Environment(\.dismiss) var dismiss
+    @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject var iapStore: IAPStore
     
     @AppStorage("hasRequestedScreenTimeAuth") private var hasRequestedAuth: Bool = false
@@ -255,6 +256,20 @@ struct ScreenTimeSettingsView: View {
         }
         .onDisappear {
             saveSettings()
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .background || newPhase == .inactive {
+                saveSettings()
+            }
+        }
+        .onChange(of: isPermanentPickerPresented) { _, isOpen in
+            if !isOpen { saveSettings() }
+        }
+        .onChange(of: isDailyLimitPickerPresented) { _, isOpen in
+            if !isOpen { saveSettings() }
+        }
+        .onChange(of: isPickerPresented) { _, isOpen in
+            if !isOpen { saveSettings() }
         }
         .alert(String(localized: "screenTime.limit.confirm.title", defaultValue: "Bist du dir sicher?"), isPresented: $showConfirmAlert) {
             Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) {

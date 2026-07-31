@@ -2929,6 +2929,9 @@
         }
       }
     },
+    "Abbrechen" : {
+
+    },
     "Abendroutine" : {
       "comment" : "",
       "extractionState" : "manual",
@@ -86798,6 +86801,9 @@
         }
       }
     },
+    "Berechtigung fehlgeschlagen" : {
+
+    },
     "bonus_text" : {
       "comment" : "",
       "extractionState" : "manual",
@@ -155144,6 +155150,9 @@
           }
         }
       }
+    },
+    "iOS hat die Berechtigung verweigert. Fehlermeldung: %@.\n\nBitte überprüfe deine Berechtigungen in den Einstellungen." : {
+
     },
     "item.coin_magnet.description" : {
       "comment" : "",
@@ -404070,6 +404079,9 @@
           }
         }
       }
+    },
+    "Zu den Einstellungen" : {
+
     }
   },
   "version" : "1.1"
