@@ -411,6 +411,7 @@
 - **Custom-Ziel Dialog:** Das Erstellen von eigenen Zielen im Onboarding verwendet nun wieder die native iOS-Eingabemaske (Alert) für ein vertrauteres Nutzererlebnis.
 - **Screen Time Onboarding Fix:** Das Layout des Berechtigungs-Mocks wurde korrigiert, um exakt dem iOS 16/17 Original zu entsprechen ("Nicht erlauben" links, "Weiter" rechts, beide mit grauem Hintergrund). Außerdem öffnen sich nun automatisch die iOS-Einstellungen, falls die Bildschirmzeit dort noch nicht für die App aktiviert wurde.
 - **Screen Time Mock UI:** Layout an ältere iOS-Versionen (bzw. spezifische Screenshots) angepasst: "Weiter" nun links (grau) und "Nicht erlauben" rechts (blau/hervorgehoben). Texte wurden ebenfalls exakt an den gewünschten Prompt angeglichen.
+- **Critical Bugfix (Screen Time Auth):** Ein Timing-Bug wurde behoben, der dazu führte, dass die In-App-Berechtigungsabfrage bei erfolgreicher Genehmigung sofort fälschlicherweise als "fehlgeschlagen" gewertet wurde (weil iOS den Status oft mit leichter Verzögerung anpasst). Dadurch wurden TestFlight-User fälschlicherweise immer direkt in die Einstellungen geworfen. Zudem gibt die App nun bei echten Fehlern einen iOS-Alert mit der exakten Apple-Fehlermeldung aus, bevor man in die Einstellungen geschickt wird.
 
 ## 2026-07-31 09:27 - Pro Feature Update
 - Alte Apple Health Integration aus der Detailansicht entfernt.
