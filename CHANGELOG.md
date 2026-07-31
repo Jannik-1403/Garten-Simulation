@@ -420,3 +420,4 @@
 - Upsell-Text für Nicht-Pro-Nutzer von "Apple Health Kopplung" auf "Erweiterte Statistiken" geändert.
 - Onboarding fragt nun nach der korrekten Bildschirmzeit-Berechtigung ('.child' statt '.individual'), um den 'Would like to access Screen Time'-Dialog statt 'App- und Web-Aktivitäten' anzuzeigen.
 - Hotfix: Bildschirmzeit-Berechtigung auf '.individual' zurückgesetzt, da '.child' bei normalen Apple-IDs (Erwachsenen-Accounts) zu Abstürzen/Fehlern führt.
+- Bugfix: Verhindert einen iOS-Bug, der die Bildschirmzeit-Berechtigung (App- & Website-Aktivitäten) in den Einstellungen ungewollt deaktiviert hat, wenn die Berechtigung mehrmals angefragt wurde.
