@@ -43,57 +43,58 @@ struct OnboardingScreenTimeView: View {
             VStack(spacing: 16) {
                 VStack(spacing: 16) {
                     VStack(spacing: 4) {
-                        Text(String(localized: "onboarding_screentime_mock_title", defaultValue: "\"Grovy\" möchte auf \"App- & Website-Aktivität\" zugreifen"))
-                            .font(.system(size: 20, weight: .bold))
+                        Text(String(localized: "onboarding_screentime_mock_title", defaultValue: "\"Grovy\" möchte auf die Bildschirmzeit zugreifen"))
+                            .font(.system(size: 17, weight: .bold)) // Typically iOS permission titles are bold and size 17
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity, alignment: .center)
                         
-                        Text(String(localized: "onboarding_screentime_mock_desc", defaultValue: "Dadurch kann Grovy App- und Website-Aktivitäten erfassen und Zeitlimits festlegen."))
-                            .font(.system(size: 14, weight: .regular))
-                            .foregroundStyle(Color.secondary)
+                        Text(String(localized: "onboarding_screentime_mock_desc", defaultValue: "Wenn du \"Grovy\" Zugriff auf die Bildschirmzeit gewährst, kann die App deine Aktivitätsdaten sehen, Inhalte beschränken und die Nutzung von Apps und Websites limitieren."))
+                            .font(.system(size: 13, weight: .regular))
+                            .foregroundStyle(.primary)
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.top, 2)
                     }
                     .padding(.top, 20)
                     .padding(.horizontal, 16)
                     
                     HStack(spacing: 12) {
                         Button {
-                            handleDeny() // Left button is now "Don't Allow"
+                            handleAllow() // Left button is "Continue" (Allow)
                         } label: {
-                            Text(String(localized: "onboarding_screentime_mock_dont_allow", defaultValue: "Nicht erlauben"))
-                                .font(.system(size: 17, weight: .regular))
+                            Text(String(localized: "onboarding_screentime_mock_allow", defaultValue: "Weiter"))
+                                .font(.system(size: 17, weight: .medium))
                                 .foregroundStyle(.primary)
                                 .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
+                                .padding(.vertical, 14)
                                 .background(colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.92))
                                 .clipShape(Capsule())
                         }
                         
                         Button {
-                            handleAllow() // Right button is now "Continue" (Allow)
+                            handleDeny() // Right button is "Don't Allow"
                         } label: {
-                            Text(String(localized: "onboarding_screentime_mock_allow", defaultValue: "Weiter"))
+                            Text(String(localized: "onboarding_screentime_mock_dont_allow", defaultValue: "Nicht erlauben"))
                                 .font(.system(size: 17, weight: .bold))
-                                .foregroundStyle(.primary)
+                                .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.92))
+                                .padding(.vertical, 14)
+                                .background(Color.blue)
                                 .clipShape(Capsule())
                         }
                     }
                     .padding(.horizontal, 16)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 16)
                 }
                 .background(
-                    RoundedRectangle(cornerRadius: 32, style: .continuous)
+                    RoundedRectangle(cornerRadius: 14, style: .continuous) // iOS standard alert corner radius is 14
                         .fill(colorScheme == .dark ? Color(white: 0.15) : Color.white)
                         .shadow(color: Color.black.opacity(0.1), radius: 20, x: 0, y: 10)
                 )
-                .frame(width: 320) // Make it slightly smaller/more compact on the sides
+                .frame(width: 270) // iOS standard alert width is 270
                 
                 if !showContinueButton {
-                    // Arrow pointing up to "Continue" (Right Button)
+                    // Arrow pointing up to "Continue" (Left Button)
                     Button {
                         handleAllow()
                     } label: {
@@ -110,7 +111,7 @@ struct OnboardingScreenTimeView: View {
                     }
                     .buttonStyle(.plain)
                     .padding(.top, -10)
-                    .padding(.leading, 140) // Move to the right side (under "Continue")
+                    .padding(.trailing, 110) // Move to the left side (under "Continue")
                 } else {
                     Spacer().frame(height: 56) // To keep layout stable
                 }
