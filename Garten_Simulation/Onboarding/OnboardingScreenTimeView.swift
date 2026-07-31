@@ -6,6 +6,8 @@ struct OnboardingScreenTimeView: View {
     
     @State private var showContinueButton = false
     @State private var isBouncing = false
+    @State private var errorMessage: String?
+    @State private var showErrorAlert = false
     
     var body: some View {
         ZStack {
@@ -112,6 +114,9 @@ struct OnboardingScreenTimeView: View {
                     .buttonStyle(.plain)
                     .padding(.top, -10)
                     .padding(.trailing, 110) // Move to the left side (under "Continue")
+                } else {
+                    Spacer().frame(height: 56) // To keep layout stable
+                }
             }
         }
         .alert("Berechtigung fehlgeschlagen", isPresented: $showErrorAlert) {
@@ -125,9 +130,6 @@ struct OnboardingScreenTimeView: View {
             Text("iOS hat die Berechtigung verweigert. Fehlermeldung: \(errorMessage ?? "Unbekannt").\n\nBitte überprüfe deine Berechtigungen in den Einstellungen.")
         }
     }
-    
-    @State private var errorMessage: String?
-    @State private var showErrorAlert = false
     
     private func handleDeny() {
         FeedbackManager.shared.playTap()
@@ -172,7 +174,6 @@ struct OnboardingScreenTimeView: View {
         }
     }
 }
-
 
 #Preview {
     OnboardingScreenTimeView()
