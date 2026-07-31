@@ -228,7 +228,7 @@ class ScreenTimeManager: ObservableObject {
     
     func requestAuthorization() async throws {
         do {
-            try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
+            try await AuthorizationCenter.shared.requestAuthorization(for: .child)
             DispatchQueue.main.async {
                 self.checkAuthorizationStatus()
             }
