@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct GoalOnboardingView: View {
+struct WeeklyGoalOnboardingView: View {
     @EnvironmentObject var data: OnboardingData
     @State private var selectedTemplate: GoalTemplate? = nil
     @State private var showCustomGoalAlert = false
@@ -11,13 +11,13 @@ struct GoalOnboardingView: View {
             VStack(spacing: 0) {
                 OnboardingIgelView(
                     pose: .fragt,
-                    sprechblasenText: String(localized: "onboarding.goal.5year.title", defaultValue: "Was ist dein wichtigstes 5-Jahresziel?")
+                    sprechblasenText: String(localized: "onboarding.goal.week.title", defaultValue: "Was ist ein Ziel für diese Woche?")
                 )
                 .padding(.top, 20)
                 
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 16) {
-                        ForEach(GoalTemplate.fiveYearTemplates, id: \.id) { template in
+                        ForEach(GoalTemplate.weekTemplates, id: \.id) { template in
                             GoalTemplateCard(
                                 template: template,
                                 isSelected: selectedTemplate?.id == template.id
@@ -90,12 +90,12 @@ struct GoalOnboardingView: View {
                     Text(String(localized: "goal.template.custom.button", defaultValue: "Eigenes Ziel erstellen"))
                         .font(.headline)
                     
-                    Text(String(localized: "goal.custom.5year.message", defaultValue: "Gib einen kurzen Namen für dein 5-Jahresziel ein."))
+                    Text(String(localized: "goal.custom.week.message", defaultValue: "Gib einen kurzen Namen für dein Wochenziel ein."))
                         .font(.subheadline)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.secondary)
                     
-                    TextField(String(localized: "goal.custom.5year.placeholder", defaultValue: "Mein 5-Jahresziel"), text: $customGoalText)
+                    TextField(String(localized: "goal.custom.week.placeholder", defaultValue: "Mein Wochenziel"), text: $customGoalText)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.horizontal)
                     
@@ -115,7 +115,7 @@ struct GoalOnboardingView: View {
                         Button(action: {
                             let trimmed = customGoalText.trimmingCharacters(in: .whitespacesAndNewlines)
                             if !trimmed.isEmpty {
-                                let customTemplate = GoalTemplate(id: "custom_\(UUID().uuidString)", titleKey: trimmed, type: .year, suggestedHabitIds: [:])
+                                let customTemplate = GoalTemplate(id: "custom_\(UUID().uuidString)", titleKey: trimmed, type: .week, suggestedHabitIds: [:])
                                 withAnimation {
                                     selectedTemplate = customTemplate
                                     showCustomGoalAlert = false
@@ -145,7 +145,7 @@ struct GoalOnboardingView: View {
         let title = isCustom ? template.titleKey : NSLocalizedString(template.titleKey, comment: "")
         let newGoal = GoalModel(
             title: title,
-            type: .year
+            type: .week
         )
         GoalStore.shared.addGoal(newGoal)
     }
@@ -156,39 +156,6 @@ struct GoalOnboardingView: View {
             withAnimation(.easeInOut(duration: 0.35)) {
                 data.currentStep += 1
             }
-        }
-    }
-}
-
-struct GoalTemplateCard: View {
-    let template: GoalTemplate
-    let isSelected: Bool
-    let action: () -> Void
-    
-    var body: some View {
-        Item3DButton(
-            farbe: isSelected ? Color.blauPrimary : Color(UIColor.systemGray5),
-            sekundaerFarbe: isSelected ? Color.blauPrimary.darker() : Color(UIColor.systemGray4),
-            groesse: 44,
-            isRectangular: true,
-            aktion: action
-        ) {
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(NSLocalizedString(template.titleKey, comment: ""))
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundColor(isSelected ? .white : .primary)
-                }
-                Spacer()
-                
-                if isSelected {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.white)
-                        .font(.title2)
-                }
-            }
-            .padding()
-            .frame(maxWidth: .infinity)
         }
     }
 }

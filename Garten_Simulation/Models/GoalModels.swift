@@ -67,23 +67,44 @@ struct GoalTemplate {
 }
 
 extension GoalTemplate {
-    static let yearTemplates: [GoalTemplate] = [
+    static let fiveYearTemplates: [GoalTemplate] = [
         GoalTemplate(
-            id: "tech_business",
-            titleKey: "goal.template.tech_business",
-            type: .year,
-            suggestedHabitIds: [:] // Kann später mit echten GameDatabase-Samen-IDs gefüllt werden
-        ),
-        GoalTemplate(
-            id: "top_athlete",
-            titleKey: "goal.template.top_athlete",
+            id: "career_fulfillment",
+            titleKey: "goal.template.career",
             type: .year,
             suggestedHabitIds: [:]
         ),
         GoalTemplate(
-            id: "mental_mastery",
-            titleKey: "goal.template.mental_mastery",
+            id: "financial_freedom",
+            titleKey: "goal.template.finance",
             type: .year,
+            suggestedHabitIds: [:]
+        ),
+        GoalTemplate(
+            id: "health_fitness",
+            titleKey: "goal.template.health",
+            type: .year,
+            suggestedHabitIds: [:]
+        )
+    ]
+    
+    static let weekTemplates: [GoalTemplate] = [
+        GoalTemplate(
+            id: "workout_3x",
+            titleKey: "goal.template.week.workout",
+            type: .week,
+            suggestedHabitIds: [:]
+        ),
+        GoalTemplate(
+            id: "read_daily",
+            titleKey: "goal.template.week.reading",
+            type: .week,
+            suggestedHabitIds: [:]
+        ),
+        GoalTemplate(
+            id: "reduce_screentime",
+            titleKey: "goal.template.week.screentime",
+            type: .week,
             suggestedHabitIds: [:]
         )
     ]

@@ -395,3 +395,9 @@
 - Feature: Fokus Timer zeigt nun eine übersichtliche, scrollbare Liste der anstehenden Aufgaben an, statt nur einer einzigen riesigen Aufgabe.
 - UI/UX: Im Vorbereitungsschritt wurde die Formulierung "Hauptziel" durch "Aufgabe" ersetzt, um die Hierarchie klarer zu machen, da das Session-Thema bereits vorgegeben ist.
 - UI/UX (Update): Der kompakte Sound-Button oben rechts und die Listen-Elemente (Aufgaben) im Fokus Timer nutzen nun das einheitliche `Item3DButton`-Design der App. Der `Item3DContainerModifier` wurde dafür global verfügbar gemacht.
+- 1%-Sprachen (Schwedisch und Portugiesisch-Portugal) aus Localizable.xcstrings entfernt
+- Über 900 fehlende Texte über Übersetzungs-API (Google Translate) in 15 Sprachen übersetzt und als 100% markiert
+- Fehlende hartkodierte Texte im Code lokalisiert und mit  ersetzt
+- 1%-Sprachen (Schwedisch und Portugiesisch-Portugal) aus Localizable.xcstrings entfernt
+- Über 900 fehlende Texte über Übersetzungs-API (Google Translate) in 15 Sprachen übersetzt und als 100% markiert
+- Fehlende hartkodierte Texte im Code lokalisiert und mit String(localized:) ersetzt
