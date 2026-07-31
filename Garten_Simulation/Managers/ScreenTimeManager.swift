@@ -226,20 +226,18 @@ class ScreenTimeManager: ObservableObject {
     
     // MARK: - Authorization
     
-    func requestAuthorization() async -> Bool {
+    func requestAuthorization() async throws {
         do {
             try await AuthorizationCenter.shared.requestAuthorization(for: .individual)
-            let status = AuthorizationCenter.shared.authorizationStatus
             DispatchQueue.main.async {
                 self.checkAuthorizationStatus()
             }
-            return status == .approved
         } catch {
             print("Failed to authorize Family Controls: \(error.localizedDescription)")
             DispatchQueue.main.async {
                 self.isAuthorized = false
             }
-            return false
+            throw error
         }
     }
     

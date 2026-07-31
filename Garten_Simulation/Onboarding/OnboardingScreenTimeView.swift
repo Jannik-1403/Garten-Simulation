@@ -112,12 +112,22 @@ struct OnboardingScreenTimeView: View {
                     .buttonStyle(.plain)
                     .padding(.top, -10)
                     .padding(.trailing, 110) // Move to the left side (under "Continue")
-                } else {
-                    Spacer().frame(height: 56) // To keep layout stable
-                }
             }
         }
+        .alert("Berechtigung fehlgeschlagen", isPresented: $showErrorAlert) {
+            Button("Zu den Einstellungen") {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            }
+            Button("Abbrechen", role: .cancel) { }
+        } message: {
+            Text("iOS hat die Berechtigung verweigert. Fehlermeldung: \(errorMessage ?? "Unbekannt").\n\nBitte überprüfe deine Berechtigungen in den Einstellungen.")
+        }
     }
+    
+    @State private var errorMessage: String?
+    @State private var showErrorAlert = false
     
     private func handleDeny() {
         FeedbackManager.shared.playTap()
@@ -130,19 +140,25 @@ struct OnboardingScreenTimeView: View {
         FeedbackManager.shared.playTap()
         
         Task {
-            // Request native screen time permission
-            let success = await ScreenTimeManager.shared.requestAuthorization()
-            
-            await MainActor.run {
-                if !success {
-                    // Open Settings if authorization failed/denied so user can enable Screen Time
-                    if let url = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.open(url)
+            do {
+                // Request native screen time permission
+                try await ScreenTimeManager.shared.requestAuthorization()
+                
+                // If it succeeded without throwing, we show the continue button
+                await MainActor.run {
+                    withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                        showContinueButton = true
                     }
                 }
-                
-                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
-                    showContinueButton = true
+            } catch {
+                // If it failed, show the exact error message
+                await MainActor.run {
+                    self.errorMessage = error.localizedDescription
+                    self.showErrorAlert = true
+                    
+                    withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                        showContinueButton = true
+                    }
                 }
             }
         }
@@ -156,6 +172,7 @@ struct OnboardingScreenTimeView: View {
         }
     }
 }
+
 
 #Preview {
     OnboardingScreenTimeView()
