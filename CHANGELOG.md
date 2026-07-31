@@ -401,3 +401,10 @@
 - 1%-Sprachen (Schwedisch und Portugiesisch-Portugal) aus Localizable.xcstrings entfernt
 - Über 900 fehlende Texte über Übersetzungs-API (Google Translate) in 15 Sprachen übersetzt und als 100% markiert
 - Fehlende hartkodierte Texte im Code lokalisiert und mit String(localized:) ersetzt
+
+### Onboarding Update: 5-Jahresziele & Wochenziele
+- **5-Jahresziel:** Die Frage nach dem Jahresziel wurde in ein 5-Jahresziel geändert, inklusive neuer passender Templates (Beruf, Finanzen, Gesundheit).
+- **Custom-Ziel Overlay:** Eigene Ziele werden nun in einem schönen Custom-Overlay statt in einem Standard-Alert erstellt.
+- **Wochenziel:** Ein neuer Onboarding-Schritt ("Was ist dein Ziel für diese Woche?") wurde direkt nach dem 5-Jahresziel hinzugefügt.
+- **Button "Weiter":** Onboarding-Seiten springen nicht mehr sofort um. Es muss nun explizit ein "Weiter"-Button geklickt werden.
+- **Lokalisierung:** Alle neuen Strings wurden in 14 Sprachen vollautomatisch in die `Localizable.xcstrings` übersetzt.
