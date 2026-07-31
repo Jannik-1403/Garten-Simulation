@@ -109,10 +109,14 @@ struct RoutineSessionView: View {
                     showScreenTimePicker = true
                 } else {
                     Task {
-                        await screenTimeManager.requestAuthorization()
-                        if screenTimeManager.isAuthorized {
-                            showScreenTimePicker = true
-                        } else {
+                        do {
+                            try await screenTimeManager.requestAuthorization()
+                            if screenTimeManager.isAuthorized {
+                                showScreenTimePicker = true
+                            } else {
+                                startSession()
+                            }
+                        } catch {
                             startSession()
                         }
                     }
