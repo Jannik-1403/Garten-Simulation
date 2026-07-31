@@ -82,8 +82,12 @@ struct ScreenTimeSettingsView: View {
         .onAppear {
             if !hasRequestedAuth {
                 Task {
-                    await manager.requestAuthorization()
-                    hasRequestedAuth = true
+                    do {
+                        try await manager.requestAuthorization()
+                        hasRequestedAuth = true
+                    } catch {
+                        print("Authorization failed in settings view: \(error.localizedDescription)")
+                    }
                 }
             }
             isScheduleActive = manager.isScheduleActive
