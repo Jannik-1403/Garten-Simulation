@@ -43,42 +43,42 @@ struct OnboardingScreenTimeView: View {
             VStack(spacing: 16) {
                 VStack(spacing: 16) {
                     VStack(spacing: 4) {
-                        Text(String(localized: "onboarding_screentime_mock_title", defaultValue: "\"Grovy\" möchte auf die Bildschirmzeit zugreifen"))
+                        Text(String(localized: "onboarding_screentime_mock_title", defaultValue: "\"Grovy\" möchte auf \"App- & Website-Aktivität\" zugreifen"))
                             .font(.system(size: 20, weight: .bold))
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity, alignment: .center)
                         
-                        Text(String(localized: "onboarding_screentime_mock_desc", defaultValue: "Dies ermöglicht es der App, deine Bildschirmzeit-Daten zu verwenden, um dir bei der Konzentration zu helfen."))
+                        Text(String(localized: "onboarding_screentime_mock_desc", defaultValue: "Dadurch kann Grovy App- und Website-Aktivitäten erfassen und Zeitlimits festlegen."))
                             .font(.system(size: 14, weight: .regular))
                             .foregroundStyle(Color.secondary)
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity, alignment: .center)
                     }
                     .padding(.top, 20)
                     .padding(.horizontal, 16)
                     
                     HStack(spacing: 12) {
                         Button {
-                            handleAllow() // Left button is now "Continue" (Allow)
+                            handleDeny() // Left button is now "Don't Allow"
                         } label: {
-                            Text(String(localized: "onboarding_screentime_mock_allow", defaultValue: "Continue"))
-                                .font(.system(size: 17, weight: .medium))
+                            Text(String(localized: "onboarding_screentime_mock_dont_allow", defaultValue: "Nicht erlauben"))
+                                .font(.system(size: 17, weight: .regular))
                                 .foregroundStyle(.primary)
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 16)
-                                .background(colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.88))
+                                .background(colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.92))
                                 .clipShape(Capsule())
                         }
                         
                         Button {
-                            handleDeny() // Right button is now "Don't Allow"
+                            handleAllow() // Right button is now "Continue" (Allow)
                         } label: {
-                            Text(String(localized: "onboarding_screentime_mock_dont_allow", defaultValue: "Don't Allow"))
+                            Text(String(localized: "onboarding_screentime_mock_allow", defaultValue: "Weiter"))
                                 .font(.system(size: 17, weight: .bold))
-                                .foregroundStyle(.white)
+                                .foregroundStyle(.primary)
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 16)
-                                .background(Color.blue)
+                                .background(colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.92))
                                 .clipShape(Capsule())
                         }
                     }
@@ -93,7 +93,7 @@ struct OnboardingScreenTimeView: View {
                 .frame(width: 320) // Make it slightly smaller/more compact on the sides
                 
                 if !showContinueButton {
-                    // Arrow pointing up to "Continue" (Left Button)
+                    // Arrow pointing up to "Continue" (Right Button)
                     Button {
                         handleAllow()
                     } label: {
@@ -110,7 +110,7 @@ struct OnboardingScreenTimeView: View {
                     }
                     .buttonStyle(.plain)
                     .padding(.top, -10)
-                    .padding(.trailing, 140) // Move to the left side (under "Continue")
+                    .padding(.leading, 140) // Move to the right side (under "Continue")
                 } else {
                     Spacer().frame(height: 56) // To keep layout stable
                 }
@@ -130,9 +130,16 @@ struct OnboardingScreenTimeView: View {
         
         Task {
             // Request native screen time permission
-            await ScreenTimeManager.shared.requestAuthorization()
+            let success = await ScreenTimeManager.shared.requestAuthorization()
             
             await MainActor.run {
+                if !success {
+                    // Open Settings if authorization failed/denied so user can enable Screen Time
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+                
                 withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                     showContinueButton = true
                 }

@@ -408,3 +408,4 @@
 - **Wochenziel:** Ein neuer Onboarding-Schritt ("Was ist dein Ziel für diese Woche?") wurde direkt nach dem 5-Jahresziel hinzugefügt.
 - **Button "Weiter":** Onboarding-Seiten springen nicht mehr sofort um. Es muss nun explizit ein "Weiter"-Button geklickt werden.
 - **Lokalisierung:** Alle neuen Strings wurden in 14 Sprachen vollautomatisch in die `Localizable.xcstrings` übersetzt.
+- **Custom-Ziel Dialog:** Das Erstellen von eigenen Zielen im Onboarding verwendet nun wieder die native iOS-Eingabemaske (Alert) für ein vertrauteres Nutzererlebnis.
