@@ -418,3 +418,4 @@
 - Alte Apple Health Integration aus der Detailansicht entfernt.
 - Pflanzen-Statistiken (IntradayProgressChartView) sind nun exklusiv für Pro-Nutzer sichtbar.
 - Upsell-Text für Nicht-Pro-Nutzer von "Apple Health Kopplung" auf "Erweiterte Statistiken" geändert.
+- Onboarding fragt nun nach der korrekten Bildschirmzeit-Berechtigung ('.child' statt '.individual'), um den 'Would like to access Screen Time'-Dialog statt 'App- und Web-Aktivitäten' anzuzeigen.
