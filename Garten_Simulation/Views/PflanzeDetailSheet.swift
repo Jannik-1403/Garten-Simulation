@@ -46,6 +46,7 @@ struct PflanzeDetailSheet: View {
     @State private var customTrackerInputName = ""
     @ObservedObject private var healthManager = HealthManager.shared
     @FocusState private var isTargetFocused: Bool
+    @State private var zeigeAppleHealthEntkoppelnAlert = false
     
     @State private var screenTimeHours: Int = 2
     @State private var screenTimeMinutes: Int = 0
@@ -424,6 +425,22 @@ struct PflanzeDetailSheet: View {
             TodoSheetView(pflanze: pflanze, editIndex: todoToEditIndex)
         }
         
+        // MARK: - Apple Health Entkoppeln Dialog
+        .confirmationDialog(
+            String(localized: "apple.health.unlink.confirm.title", defaultValue: "Apple Health entkoppeln?"),
+            isPresented: $zeigeAppleHealthEntkoppelnAlert,
+            titleVisibility: .visible
+        ) {
+            Button(String(localized: "apple.health.unlink", defaultValue: "Von Apple Health entkoppeln"), role: .destructive) {
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                pflanze.isAppleHealthUnlinked = true
+                gardenStore.savePlants()
+            }
+            Button(String(localized: "button.cancel"), role: .cancel) { }
+        } message: {
+            Text(String(localized: "apple.health.unlink.confirm.message", defaultValue: "Der automatische Fortschrittsabgleich wird deaktiviert."))
+        }
+        
         // MARK: - Notiz Bearbeiten: Direkt Sheet öffnen (kein Dialog mehr)
         .onChange(of: noteToEditIndex) { _, newIndex in
             if newIndex != nil {
@@ -487,40 +504,44 @@ struct PflanzeDetailSheet: View {
                                         VStack(spacing: 12) {
                                             let effectiveMetric = pflanze.effectiveHealthMetric
                                             if let metric = effectiveMetric {
-                                                if !hourlyHealthData.isEmpty {
-                                                    HealthChartView(
-                                                        data: hourlyHealthData,
-                                                        metric: metric,
-                                                        target: pflanze.healthTarget,
-                                                        hourlyAverageData: hourlyAvgData,
-                                                        onEditTarget: { showTargetEdit = true }
-                                                    )
-                                                    .padding(.horizontal, 16)
-                                                    .padding(.vertical, 4)
-                                                } else {
-                                                    // Laden-Indikator
-                                                    HStack {
-                                                        Spacer()
-                                                        VStack(spacing: 8) {
-                                                            ProgressView()
-                                                            Text(String(localized: "health.chart.loading", defaultValue: "Lade Gesundheitsdaten…"))
-                                                                .font(.system(size: 13, weight: .medium, design: .rounded))
-                                                                .foregroundStyle(.secondary)
+                                                ZStack(alignment: .topTrailing) {
+                                                    VStack {
+                                                        if !hourlyHealthData.isEmpty {
+                                                            HealthChartView(
+                                                                data: hourlyHealthData,
+                                                                metric: metric,
+                                                                target: pflanze.healthTarget,
+                                                                hourlyAverageData: hourlyAvgData,
+                                                                onEditTarget: { showTargetEdit = true }
+                                                            )
+                                                            .padding(.horizontal, 16)
+                                                            .padding(.vertical, 4)
+                                                        } else {
+                                                            // Laden-Indikator
+                                                            HStack {
+                                                                Spacer()
+                                                                VStack(spacing: 8) {
+                                                                    ProgressView()
+                                                                    Text(String(localized: "health.chart.loading", defaultValue: "Lade Gesundheitsdaten…"))
+                                                                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                                                                        .foregroundStyle(.secondary)
+                                                                }
+                                                                Spacer()
+                                                            }
+                                                            .padding(40)
                                                         }
-                                                        Spacer()
                                                     }
-                                                    .padding(40)
+                                                    
+                                                    Button {
+                                                        zeigeAppleHealthEntkoppelnAlert = true
+                                                    } label: {
+                                                        Image(systemName: "xmark.circle.fill")
+                                                            .font(.system(size: 24))
+                                                            .foregroundStyle(.tertiary)
+                                                            .background(Circle().fill(Color(UIColor.systemBackground)).padding(2))
+                                                    }
+                                                    .padding(8)
                                                 }
-                                                
-                                                Button {
-                                                    pflanze.isAppleHealthUnlinked = true
-                                                    gardenStore.savePlants()
-                                                } label: {
-                                                    Text(String(localized: "apple.health.unlink", defaultValue: "Von Apple Health entkoppeln"))
-                                                        .font(.system(size: 14, weight: .bold, design: .rounded))
-                                                        .foregroundStyle(Color.red)
-                                                }
-                                                .padding(.bottom, 8)
                                                 
                                             } else {
                                                 // Unlinked State
@@ -538,6 +559,10 @@ struct PflanzeDetailSheet: View {
                                                         if pflanze.linkedHealthMetric == nil && pflanze.automaticHealthMetric == nil {
                                                             pflanze.linkedHealthMetric = .steps
                                                         }
+                                                        
+                                                        // Entferne manuelle Überschreibungen von heute, damit sofort wieder HealthKit genutzt wird
+                                                        pflanze.intradayProgressHistory.removeAll { Calendar.current.isDateInToday($0.timestamp) }
+                                                        
                                                         gardenStore.savePlants()
                                                         
                                                         // Refresh data

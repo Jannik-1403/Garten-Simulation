@@ -182,12 +182,6 @@ struct PflanzenCard: View {
                             .lineLimit(2)
                             .multilineTextAlignment(.center)
                             .minimumScaleFactor(0.8)
-                            
-                        if pflanze.effectiveHealthMetric != nil {
-                            Image(systemName: "heart.circle.fill")
-                                .font(.system(size: 16))
-                                .foregroundStyle((healthProgress ?? 0) > 0 ? Color.green : Color.gray)
-                        }
                     }
                     
                     // Streak Display
