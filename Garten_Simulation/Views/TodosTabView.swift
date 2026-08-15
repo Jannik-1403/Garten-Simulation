@@ -41,7 +41,10 @@ struct TodosTabView: View {
                                         .padding(.horizontal, 24)
                                     
                                     VStack(spacing: 12) {
-                                        ForEach(gardenStore.standaloneTodos.sorted { $0.priority.sortValue < $1.priority.sortValue }, id: \.id) { todo in
+                                        ForEach(gardenStore.standaloneTodos.sorted {
+                                            if $0.isCompleted != $1.isCompleted { return !$0.isCompleted }
+                                            return $0.priority.sortValue < $1.priority.sortValue
+                                        }, id: \.id) { todo in
                                             StandaloneTodoRowView(
                                                 todoId: todo.id,
                                                 onEdit: {
@@ -67,7 +70,10 @@ struct TodosTabView: View {
                                             .padding(.horizontal, 24)
                                         
                                         VStack(spacing: 12) {
-                                            ForEach(pflanze.todos.sorted { $0.priority.sortValue < $1.priority.sortValue }, id: \.id) { todo in
+                                            ForEach(pflanze.todos.sorted {
+                                                if $0.isCompleted != $1.isCompleted { return !$0.isCompleted }
+                                                return $0.priority.sortValue < $1.priority.sortValue
+                                            }, id: \.id) { todo in
                                                 TodoRowView(
                                                     pflanze: pflanze,
                                                     todoId: todo.id,

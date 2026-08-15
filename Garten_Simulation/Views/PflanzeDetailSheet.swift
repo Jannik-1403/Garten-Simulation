@@ -109,7 +109,10 @@ struct PflanzeDetailSheet: View {
                     // To-Dos Accordion
                     DisclosureGroup(isExpanded: $isTodosExpanded) {
                         VStack(spacing: 12) {
-                            ForEach(pflanze.todos.sorted { $0.priority.sortValue < $1.priority.sortValue }, id: \.id) { todo in
+                            ForEach(pflanze.todos.sorted {
+                                if $0.isCompleted != $1.isCompleted { return !$0.isCompleted }
+                                return $0.priority.sortValue < $1.priority.sortValue
+                            }, id: \.id) { todo in
                                 TodoRowView(
                                     pflanze: pflanze,
                                     todoId: todo.id,
