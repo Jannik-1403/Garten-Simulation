@@ -1,3 +1,6 @@
+## 2026-08-15 17:31 - To-Do Sortierung
+- **To-Do Liste**: Abgeschlossene To-Dos werden nun automatisch nach unten sortiert, um offene Aufgaben besser in den Fokus zu rücken.
+
 ## 2026-07-29 21:03 - Goal UI 3D Fixes
 - **Onboarding Fix**: Eigenes Ziel kann nun über ein Textfeld korrekt erstellt werden, und der Weiter-Schritt wird nach Auswahl automatisch getriggert.
 - **3D Design System**: Alle Goal-Elemente (Onboarding, Tracker, Shop-Link, Insights) nutzen nun einheitlich die Item3DButton und die neue Item3DText Komponente (ähnlich zum Glücksrad) für einen plastischeren Look.
