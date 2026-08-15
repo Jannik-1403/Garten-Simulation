@@ -432,3 +432,4 @@
 - Neue Funktion: In der Fortschritt-Statistik (ohne Apple Health) kann nun direkt ein individuelles Ziel (z. B. 100%) über den neuen "Ziel festlegen" Button eingestellt werden, welches auch als Ziellinie im Diagramm dargestellt wird.
 - To-dos können jetzt auch ohne Verknüpfung zu einer Gewohnheit hinzugefügt werden.
 - Das Icon im 'Set Weekly Goal'-Banner wurde vergrößert, um besser lesbar zu sein.
+- Das Icon im 'Set Weekly Goal'-Banner nutzt nun .scaleEffect(), um optisch größer zu wirken, ohne den Button-Hintergrund unnötig aufzublähen.

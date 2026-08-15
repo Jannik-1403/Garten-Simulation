@@ -359443,6 +359443,7 @@
       }
     },
     "todos.tab.select_plant" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
