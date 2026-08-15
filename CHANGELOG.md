@@ -439,3 +439,6 @@
 - UI: Platzhalter-Text bei der Zieleingabe bricht nun korrekt in die nächste Zeile um, wenn er zu lang ist.
 - UI: Die Berechtigungs-Abfragen im Onboarding (Benachrichtigungen & Bildschirmzeit) nutzen jetzt das 3D-Container-Design und Item3DButtons. Bei der Bildschirmzeit-Abfrage wurden 'Weiter' und 'Nicht erlauben' vertauscht.
 - UI: Die Berechtigungs-Abfragen im Onboarding wurden vergrößert und etwas nach unten verschoben, um den Avatar nicht zu verdecken. Der Pfeil zeigt nun korrekt (ohne Animation) auf den 'Weiter'-Button.
+- UI: Der Text in der Sprechblase über dem Avatar bricht nun immer korrekt in die nächste Zeile um, anstatt mit Punkten (...) abgeschnitten zu werden.
+
+- Apple Health: Fortschrittsbalken für verbundene Gesundheits-Ziele ist nicht mehr manuell bedienbar und schließt sich automatisch ab, sobald das Ziel erreicht wurde.
