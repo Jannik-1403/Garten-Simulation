@@ -482,34 +482,78 @@ struct PflanzeDetailSheet: View {
                                         .padding(.vertical, 4)
                                     }
                                         
-                                    if let autoMetric = pflanze.automaticHealthMetric {
+                                    if pflanze.automaticHealthMetric != nil || pflanze.linkedHealthMetric != nil {
                                         // --- APPLE HEALTH SECTION ---
-                                        VStack(spacing: 0) {
-                                            // effectiveMetric: linked oder automatic
-                                            let effectiveMetric = pflanze.linkedHealthMetric ?? pflanze.automaticHealthMetric
-                                            if let metric = effectiveMetric, !hourlyHealthData.isEmpty {
-                                                HealthChartView(
-                                                    data: hourlyHealthData,
-                                                    metric: metric,
-                                                    target: pflanze.healthTarget,
-                                                    hourlyAverageData: hourlyAvgData,
-                                                    onEditTarget: { showTargetEdit = true }
-                                                )
-                                                .padding(.horizontal, 16)
-                                                .padding(.vertical, 4)
-                                            } else {
-                                                // Laden-Indikator
-                                                HStack {
-                                                    Spacer()
-                                                    VStack(spacing: 8) {
-                                                        ProgressView()
-                                                        Text(String(localized: "health.chart.loading", defaultValue: "Lade Gesundheitsdaten…"))
-                                                            .font(.system(size: 13, weight: .medium, design: .rounded))
-                                                            .foregroundStyle(.secondary)
+                                        VStack(spacing: 12) {
+                                            let effectiveMetric = pflanze.effectiveHealthMetric
+                                            if let metric = effectiveMetric {
+                                                if !hourlyHealthData.isEmpty {
+                                                    HealthChartView(
+                                                        data: hourlyHealthData,
+                                                        metric: metric,
+                                                        target: pflanze.healthTarget,
+                                                        hourlyAverageData: hourlyAvgData,
+                                                        onEditTarget: { showTargetEdit = true }
+                                                    )
+                                                    .padding(.horizontal, 16)
+                                                    .padding(.vertical, 4)
+                                                } else {
+                                                    // Laden-Indikator
+                                                    HStack {
+                                                        Spacer()
+                                                        VStack(spacing: 8) {
+                                                            ProgressView()
+                                                            Text(String(localized: "health.chart.loading", defaultValue: "Lade Gesundheitsdaten…"))
+                                                                .font(.system(size: 13, weight: .medium, design: .rounded))
+                                                                .foregroundStyle(.secondary)
+                                                        }
+                                                        Spacer()
                                                     }
-                                                    Spacer()
+                                                    .padding(40)
                                                 }
-                                                .padding(40)
+                                                
+                                                Button {
+                                                    pflanze.isAppleHealthUnlinked = true
+                                                    gardenStore.savePlants()
+                                                } label: {
+                                                    Text(String(localized: "apple.health.unlink", defaultValue: "Von Apple Health entkoppeln"))
+                                                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                                                        .foregroundStyle(Color.red)
+                                                }
+                                                .padding(.bottom, 8)
+                                                
+                                            } else {
+                                                // Unlinked State
+                                                VStack(spacing: 8) {
+                                                    Image(systemName: "heart.slash")
+                                                        .font(.system(size: 32))
+                                                        .foregroundStyle(.secondary)
+                                                    Text(String(localized: "apple.health.unlinked_message", defaultValue: "Apple Health Synchronisation ist deaktiviert."))
+                                                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                                                        .foregroundStyle(.secondary)
+                                                        .multilineTextAlignment(.center)
+                                                    
+                                                    Button {
+                                                        pflanze.isAppleHealthUnlinked = false
+                                                        if pflanze.linkedHealthMetric == nil && pflanze.automaticHealthMetric == nil {
+                                                            pflanze.linkedHealthMetric = .steps
+                                                        }
+                                                        gardenStore.savePlants()
+                                                        
+                                                        // Refresh data
+                                                        if let m = pflanze.effectiveHealthMetric {
+                                                            healthManager.fetchHourlyData(for: m) { data in self.hourlyHealthData = data }
+                                                            healthManager.fetchWeeklyAverage(for: m) { avg in self.weeklyHealthAverage = avg }
+                                                            healthManager.fetchHourlyWeeklyAverage(for: m) { avg in self.hourlyAvgData = avg }
+                                                        }
+                                                    } label: {
+                                                        Text(String(localized: "apple.health.link", defaultValue: "Mit Apple Health verbinden"))
+                                                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                                                            .foregroundStyle(Color.blauPrimary)
+                                                    }
+                                                    .padding(.top, 4)
+                                                }
+                                                .padding(.vertical, 24)
                                             }
                                         }
                                     }

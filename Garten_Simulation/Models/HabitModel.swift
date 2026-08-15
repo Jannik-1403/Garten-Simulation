@@ -346,6 +346,12 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var linkedHealthMetric: HealthMetricType? = nil
     @Published var healthTarget: Double? = nil
     @Published var allowManualTrackingForHealth: Bool = false
+    @Published var isAppleHealthUnlinked: Bool = false
+    
+    var effectiveHealthMetric: HealthMetricType? {
+        if isAppleHealthUnlinked { return nil }
+        return linkedHealthMetric ?? automaticHealthMetric
+    }
     
     // Eigener Tracker (Manuell)
     @Published var customTrackerName: String? = nil
@@ -658,7 +664,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case reminderSchedule
         case pfadAktiviertAm, pfadCheckedDates
         case individualSchwierigkeit
-        case linkedHealthMetric, healthTarget, allowManualTrackingForHealth
+        case linkedHealthMetric, healthTarget, allowManualTrackingForHealth, isAppleHealthUnlinked
         case customTrackerName, customTrackerTarget, customTrackerProgress
         case isRoutineOnly
         case isGenericFocus
@@ -757,6 +763,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         }
         healthTarget = try container.decodeIfPresent(Double.self, forKey: .healthTarget)
         allowManualTrackingForHealth = try container.decodeIfPresent(Bool.self, forKey: .allowManualTrackingForHealth) ?? false
+        isAppleHealthUnlinked = try container.decodeIfPresent(Bool.self, forKey: .isAppleHealthUnlinked) ?? false
         customTrackerName = try container.decodeIfPresent(String.self, forKey: .customTrackerName)
         customTrackerTarget = try container.decodeIfPresent(Double.self, forKey: .customTrackerTarget)
         customTrackerProgress = try container.decodeIfPresent(Double.self, forKey: .customTrackerProgress) ?? 0
@@ -813,6 +820,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encodeIfPresent(linkedHealthMetric, forKey: .linkedHealthMetric)
         try container.encodeIfPresent(healthTarget, forKey: .healthTarget)
         try container.encode(allowManualTrackingForHealth, forKey: .allowManualTrackingForHealth)
+        try container.encode(isAppleHealthUnlinked, forKey: .isAppleHealthUnlinked)
         
         try container.encodeIfPresent(customTrackerName, forKey: .customTrackerName)
         try container.encodeIfPresent(customTrackerTarget, forKey: .customTrackerTarget)

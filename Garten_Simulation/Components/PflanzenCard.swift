@@ -42,7 +42,7 @@ struct PflanzenCard: View {
     }
     
     private var healthProgress: Double? {
-        guard let metric = pflanze.linkedHealthMetric, let target = pflanze.healthTarget, target > 0 else {
+        guard let metric = pflanze.effectiveHealthMetric, let target = pflanze.healthTarget, target > 0 else {
             return nil
         }
         let baseCurrent = getBaseHealthCurrent(for: metric)
@@ -175,12 +175,19 @@ struct PflanzenCard: View {
                             }
                             .frame(width: 18, height: 18)
                         }
+                        
                         Text(settings.showHabitInsteadOfName ? NSLocalizedString(pflanze.displayedHabitName, comment: "") : NSLocalizedString(pflanze.name, comment: ""))
                             .font(.system(size: 20, weight: .black, design: .rounded))
                             .foregroundStyle(Color.primary)
                             .lineLimit(2)
                             .multilineTextAlignment(.center)
                             .minimumScaleFactor(0.8)
+                            
+                        if pflanze.effectiveHealthMetric != nil {
+                            Image(systemName: "heart.circle.fill")
+                                .font(.system(size: 16))
+                                .foregroundStyle((healthProgress ?? 0) > 0 ? Color.green : Color.gray)
+                        }
                     }
                     
                     // Streak Display
@@ -256,7 +263,7 @@ struct PflanzenCard: View {
             DragGesture(minimumDistance: 25)
                 .onChanged { value in
                     guard !pflanze.istBewässert && !pflanze.isDead else { return }
-                    if pflanze.linkedHealthMetric != nil && !pflanze.allowManualTrackingForHealth { return }
+                    if pflanze.effectiveHealthMetric != nil && !pflanze.allowManualTrackingForHealth { return }
                     
                     if !isDragging { isDragging = true }
                     
@@ -265,7 +272,7 @@ struct PflanzenCard: View {
                 }
                 .onEnded { value in
                     guard isDragging else { return }
-                    if pflanze.linkedHealthMetric != nil && !pflanze.allowManualTrackingForHealth { return }
+                    if pflanze.effectiveHealthMetric != nil && !pflanze.allowManualTrackingForHealth { return }
                     
                     isDragging = false
                     let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
