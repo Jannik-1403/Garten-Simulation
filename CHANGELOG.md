@@ -438,3 +438,4 @@
 - UI: Das Textfeld für die Zieleingabe im Onboarding nutzt jetzt das große 3D-Container-Design.
 - UI: Platzhalter-Text bei der Zieleingabe bricht nun korrekt in die nächste Zeile um, wenn er zu lang ist.
 - UI: Die Berechtigungs-Abfragen im Onboarding (Benachrichtigungen & Bildschirmzeit) nutzen jetzt das 3D-Container-Design und Item3DButtons. Bei der Bildschirmzeit-Abfrage wurden 'Weiter' und 'Nicht erlauben' vertauscht.
+- UI: Die Berechtigungs-Abfragen im Onboarding wurden vergrößert und etwas nach unten verschoben, um den Avatar nicht zu verdecken. Der Pfeil zeigt nun korrekt (ohne Animation) auf den 'Weiter'-Button.

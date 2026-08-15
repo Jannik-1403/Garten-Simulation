@@ -33,6 +33,7 @@ struct OnboardingIgelView: View {
                 Text(sprechblasenText)
                     .font(.system(size: 15, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
                     .frame(maxWidth: 260)
