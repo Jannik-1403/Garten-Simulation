@@ -7,19 +7,17 @@ with open(path, 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 new_strings = {
-    "onboarding.goal.5year.title": "Was ist dein wichtigstes 5-Jahresziel?",
-    "goal.custom.5year.message": "Gib einen kurzen Namen für dein 5-Jahresziel ein.",
-    "goal.custom.5year.placeholder": "Mein 5-Jahresziel",
-    "onboarding.goal.week.title": "Was ist ein Ziel für diese Woche?",
-    "goal.custom.week.message": "Gib einen kurzen Namen für dein Wochenziel ein.",
-    "goal.custom.week.placeholder": "Mein Wochenziel",
-    "goal.template.career": "Berufliche Erfüllung",
-    "goal.template.finance": "Finanzielle Freiheit",
-    "goal.template.health": "Gesundheit & Fitness",
-    "goal.template.week.workout": "3x Sport machen",
-    "goal.template.week.reading": "Täglich lesen",
-    "goal.template.week.screentime": "Bildschirmzeit reduzieren",
-    "button.continue": "Weiter"
+    "tour_plant_todos_title": "To-Dos",
+    "tour_plant_todos_desc": "Füge kleine Aufgaben für deine Gewohnheit hinzu.",
+    "tour_plant_notes_title": "Notizen",
+    "tour_plant_notes_desc": "Halte wichtige Gedanken oder Fortschritte fest.",
+    "tour_plant_timer_title": "Daily Reminder",
+    "tour_plant_timer_desc": "Stelle Erinnerungen ein, damit du diese Gewohnheit nicht vergisst.",
+    "tour_plant_health_title": "Apple Health",
+    "tour_plant_health_desc": "Verbinde Apple Health, um den Fortschritt automatisch zu tracken.",
+    "tour_todo_prompt_desc": "Hier findest du alle deine Aufgaben.",
+    "tour_todo_intro_title": "To-Dos",
+    "tour_todo_intro_desc": "Erstelle tägliche To-Dos und hake sie ab, um XP zu sammeln!"
 }
 
 xcode_target_langs = ['ru', 'en', 'ko', 'es', 'pl', 'zh-Hans', 'zh-Hant', 'hi', 'de', 'nl', 'pt', 'tr', 'fr', 'ja', 'it']

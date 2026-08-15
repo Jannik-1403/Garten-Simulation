@@ -107,13 +107,16 @@ struct InteractiveTourOverlay: View {
         
         let targetPoint: CGPoint = {
             if step == .routinePrompt {
-                return CGPoint(x: w * 0.375, y: h - geo.safeAreaInsets.bottom - 25)
+                return CGPoint(x: w * 0.3, y: h - geo.safeAreaInsets.bottom - 25)
+            }
+            if step == .todoPrompt {
+                return CGPoint(x: w * 0.5, y: h - geo.safeAreaInsets.bottom - 25)
             }
             if step == .shopPrompt {
-                return CGPoint(x: w * 0.625, y: h - geo.safeAreaInsets.bottom - 25)
+                return CGPoint(x: w * 0.7, y: h - geo.safeAreaInsets.bottom - 25)
             }
             if step == .profilePrompt {
-                return CGPoint(x: w * 0.875, y: h - geo.safeAreaInsets.bottom - 25)
+                return CGPoint(x: w * 0.9, y: h - geo.safeAreaInsets.bottom - 25)
             }
             if frame.width > 0 {
                 let localMinY = frame.minY - geo.safeAreaInsets.top
@@ -131,7 +134,7 @@ struct InteractiveTourOverlay: View {
         }()
         
         let arrowEdge: Edge? = {
-            if frame.width > 0 && step != .routinePrompt && step != .shopPrompt && step != .profilePrompt {
+            if frame.width > 0 && step != .routinePrompt && step != .todoPrompt && step != .shopPrompt && step != .profilePrompt {
                 let localMidY = frame.midY - geo.safeAreaInsets.top
                 return localMidY <= h / 2 ? .top : .bottom
             }
@@ -200,6 +203,14 @@ struct InteractiveTourOverlay: View {
             })
         case .focusTimer:
             return (String(localized: "tour_5_title"), String(localized: "tour_5_desc"), { tourManager.nextStep() })
+        case .plantTodos:
+            return (String(localized: "tour_plant_todos_title"), String(localized: "tour_plant_todos_desc"), { tourManager.nextStep() })
+        case .plantNotes:
+            return (String(localized: "tour_plant_notes_title"), String(localized: "tour_plant_notes_desc"), { tourManager.nextStep() })
+        case .plantTimer:
+            return (String(localized: "tour_plant_timer_title"), String(localized: "tour_plant_timer_desc"), { tourManager.nextStep() })
+        case .plantHealth:
+            return (String(localized: "tour_plant_health_title"), String(localized: "tour_plant_health_desc"), { tourManager.nextStep() })
         case .plantStreak:
             return (String(localized: "tour_plant_streak_title"), String(localized: "tour_plant_streak_desc"), { tourManager.nextStep() })
         case .plantPath:
@@ -209,6 +220,13 @@ struct InteractiveTourOverlay: View {
             })
         case .badHabits:
             return (String(localized: "tour_2_title"), String(localized: "tour_2_desc"), { tourManager.nextStep() })
+        case .todoPrompt:
+            return (String(localized: "tab.todos"), String(localized: "tour_todo_prompt_desc"), {
+                gardenStore.selectedTab = 5
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { tourManager.nextStep() }
+            })
+        case .todoIntro:
+            return (String(localized: "tour_todo_intro_title"), String(localized: "tour_todo_intro_desc"), { tourManager.nextStep() })
         case .routinePrompt:
             return (String(localized: "tab.routines"), String(localized: "tour_routine_prompt_desc"), {
                 gardenStore.selectedTab = 4

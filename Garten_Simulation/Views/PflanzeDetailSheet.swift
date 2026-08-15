@@ -152,6 +152,8 @@ struct PflanzeDetailSheet: View {
                     .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                     .padding(.horizontal, 24)
                     .tint(.gruenPrimary)
+                    .tourAnchor(.plantTodos)
+                    .id(TourStep.plantTodos)
                     
                     // Notizen Accordion
                     DisclosureGroup(isExpanded: $isNotesExpanded) {
@@ -214,6 +216,8 @@ struct PflanzeDetailSheet: View {
                     .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                     .padding(.horizontal, 24)
                     .tint(.blauPrimary)
+                    .tourAnchor(.plantNotes)
+                    .id(TourStep.plantNotes)
 
                     // MARK: - Daily Reminders
                     DisclosureGroup(isExpanded: $isRemindersExpanded) {
@@ -260,6 +264,8 @@ struct PflanzeDetailSheet: View {
                     .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                     .padding(.horizontal, 24)
                     .tint(.blauPrimary)
+                    .tourAnchor(.plantTimer)
+                    .id(TourStep.plantTimer)
 
                     // MARK: - Ziel-Punkte Banner
                     GoalPointsBannerView(pflanze: pflanze, goalStore: goalStore)
@@ -608,6 +614,8 @@ struct PflanzeDetailSheet: View {
                                 }
                         }
                         .padding(.bottom, 8)
+                        .tourAnchor(.plantHealth)
+                        .id(TourStep.plantHealth)
                     }
                 }
 
