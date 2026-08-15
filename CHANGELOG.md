@@ -1,3 +1,8 @@
+## 2026-08-15 17:36 - App Tour Update
+- **App Tour**: Die interaktive Tour führt nun auch durch die neue To-do-Seite.
+- **Pflanze Detail**: Neue Ankerpunkte für To-Dos, Notizen, Timer und Apple Health in der Pflanzendetail-Ansicht hinzugefügt.
+- **Übersetzungen**: Neue Tour-Beschreibungen wurden in alle Projektsprachen übersetzt.
+
 ## 2026-08-15 17:31 - To-Do Sortierung
 - **To-Do Liste**: Abgeschlossene To-Dos werden nun automatisch nach unten sortiert, um offene Aufgaben besser in den Fokus zu rücken.
 
