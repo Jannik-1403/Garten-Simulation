@@ -421,3 +421,8 @@
 - Onboarding fragt nun nach der korrekten Bildschirmzeit-Berechtigung ('.child' statt '.individual'), um den 'Would like to access Screen Time'-Dialog statt 'App- und Web-Aktivitäten' anzuzeigen.
 - Hotfix: Bildschirmzeit-Berechtigung auf '.individual' zurückgesetzt, da '.child' bei normalen Apple-IDs (Erwachsenen-Accounts) zu Abstürzen/Fehlern führt.
 - Bugfix: Verhindert einen iOS-Bug, der die Bildschirmzeit-Berechtigung (App- & Website-Aktivitäten) in den Einstellungen ungewollt deaktiviert hat, wenn die Berechtigung mehrmals angefragt wurde.
+
+## 2026-08-15 10:16 - Revert Apple Health Changes
+- Apple Health Integration in der Pflanzen-Detailansicht wiederhergestellt.
+- Upsell-Text für Nicht-Pro-Nutzer wieder auf "Apple Health Kopplung" zurückgesetzt.
+- Pflanzen-Statistiken werden nun für Pro-Nutzer immer angezeigt (auch wenn Health-Daten verknüpft sind).

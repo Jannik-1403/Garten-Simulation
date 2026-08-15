@@ -539,9 +539,10 @@ struct PflanzeDetailSheet: View {
                                         .padding(.horizontal, 24)
                                     }
                                 }
-                            }
+                        }
                         .padding(.bottom, 8)
                     }
+                }
 
     private func sicherstellenDassPfadExistiert() {
         pfadBereit = true
