@@ -3,6 +3,8 @@ import Charts
 
 struct IntradayProgressChartView: View {
     let history: [DailyProgressEntry]
+    var target: Double? = nil
+    var onEditTarget: (() -> Void)? = nil
     
     // MARK: Computed
     
@@ -80,7 +82,7 @@ struct IntradayProgressChartView: View {
             
             // Chart
             Chart {
-                RuleMark(y: .value("Ziel", 100.0))
+                RuleMark(y: .value("Ziel", target ?? 100.0))
                     .foregroundStyle(Color.gruenPrimary.opacity(0.6))
                     .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [6, 4]))
                 
@@ -114,7 +116,7 @@ struct IntradayProgressChartView: View {
                 }
             }
             .chartXScale(domain: dayStart...max(dayStart.addingTimeInterval(3600), lastDataDate))
-            .chartYScale(domain: 0...120.0)
+            .chartYScale(domain: 0...max(120.0, (target ?? 100.0) * 1.2))
             .chartXAxis {
                 AxisMarks(values: [dayStart, lastDataDate]) { value in
                     if let date = value.as(Date.self) {
@@ -129,6 +131,36 @@ struct IntradayProgressChartView: View {
             }
             .chartYAxis(.hidden)
             .frame(height: 160)
+            
+            // Ziel-Zeile (tappbar)
+            Divider().padding(.vertical, 10)
+
+            Button {
+                onEditTarget?()
+            } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "flag.fill")
+                        .font(.system(size: 12))
+                        .foregroundStyle(Color.gruenPrimary)
+                    Text(String(localized: "health.chart.label.target", defaultValue: "Tagesziel"))
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.primary)
+                    Spacer()
+                    if let t = target {
+                        Text(formatNumber(t) + " " + unitString)
+                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Text(String(localized: "health.chart.target.set", defaultValue: "Ziel festlegen"))
+                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                            .foregroundStyle(Color.gruenPrimary)
+                    }
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 11, weight: .semibold))
+                        .foregroundStyle(Color(UIColor.systemGray3))
+                }
+            }
+            .buttonStyle(.plain)
         }
         .padding(20)
         .modifier(Item3DContainerModifier(

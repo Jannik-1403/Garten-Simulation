@@ -472,9 +472,15 @@ struct PflanzeDetailSheet: View {
                             Group {
                                 if iapStore.isProUser {
                                     // --- STATISTIKEN (Pro Feature) ---
-                                    IntradayProgressChartView(history: pflanze.intradayProgressHistory)
+                                    if pflanze.automaticHealthMetric == nil && pflanze.linkedHealthMetric == nil {
+                                        IntradayProgressChartView(
+                                            history: pflanze.intradayProgressHistory,
+                                            target: pflanze.healthTarget,
+                                            onEditTarget: { showTargetEdit = true }
+                                        )
                                         .padding(.horizontal, 16)
                                         .padding(.vertical, 4)
+                                    }
                                         
                                     if let autoMetric = pflanze.automaticHealthMetric {
                                         // --- APPLE HEALTH SECTION ---
