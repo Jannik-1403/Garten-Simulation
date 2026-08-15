@@ -442,3 +442,5 @@
 - UI: Der Text in der Sprechblase über dem Avatar bricht nun immer korrekt in die nächste Zeile um, anstatt mit Punkten (...) abgeschnitten zu werden.
 
 - Apple Health: Fortschrittsbalken für verbundene Gesundheits-Ziele ist nicht mehr manuell bedienbar und schließt sich automatisch ab, sobald das Ziel erreicht wurde.
+
+- Apple Health: Verbundenen Zielen wurde ein Indikator auf der Garten-Karte hinzugefügt. In den Pflanzen-Details gibt es nun einen Button, um Apple Health für einzelne Ziele zu entkoppeln oder wieder zu verbinden.
