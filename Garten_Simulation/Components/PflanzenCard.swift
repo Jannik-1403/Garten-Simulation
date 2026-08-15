@@ -256,6 +256,8 @@ struct PflanzenCard: View {
             DragGesture(minimumDistance: 25)
                 .onChanged { value in
                     guard !pflanze.istBewässert && !pflanze.isDead else { return }
+                    if pflanze.linkedHealthMetric != nil && !pflanze.allowManualTrackingForHealth { return }
+                    
                     if !isDragging { isDragging = true }
                     
                     let startX = baseProgress * maxDragWidth
@@ -263,6 +265,8 @@ struct PflanzenCard: View {
                 }
                 .onEnded { value in
                     guard isDragging else { return }
+                    if pflanze.linkedHealthMetric != nil && !pflanze.allowManualTrackingForHealth { return }
+                    
                     isDragging = false
                     let finalProgress = min(1.0, max(0.0, dragWidth / maxDragWidth))
                     
@@ -280,6 +284,20 @@ struct PflanzenCard: View {
                 }
         )
         .allowsHitTesting(true)
+        .onChange(of: healthProgress) { _, newProgress in
+            if let p = newProgress, p >= 1.0, !pflanze.istBewässert, !pflanze.isDead {
+                DispatchQueue.main.async {
+                    triggerWatering()
+                }
+            }
+        }
+        .onAppear {
+            if let p = healthProgress, p >= 1.0, !pflanze.istBewässert, !pflanze.isDead {
+                DispatchQueue.main.async {
+                    triggerWatering()
+                }
+            }
+        }
         .sheet(isPresented: $showReviveSheet) {
             RevivePlantSheet(pflanze: pflanze)
                 .presentationDetents([.medium])
