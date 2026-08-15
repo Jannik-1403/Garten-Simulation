@@ -128,6 +128,12 @@ struct SettingsView: View {
                                                     .font(.system(size: 16, weight: .medium, design: .rounded))
                                                     .foregroundStyle(.primary)
                                                 
+                                                Text(String(localized: "settings.health.description", defaultValue: "Verbinde Apple Health, um deine Schritte und deinen Schlaf zu synchronisieren und so den Fortschritt in deinem Garten voranzutreiben."))
+                                                    .font(.system(size: 12, weight: .regular, design: .rounded))
+                                                    .foregroundStyle(.secondary)
+                                                    .lineLimit(4)
+                                                    .fixedSize(horizontal: false, vertical: true)
+                                                
                                                 if healthManager.isAuthorized {
                                                     Text(String(localized: "settings.health.instruction", defaultValue: "Profil > Apps > Grovy, um Berechtigungen zu ändern."))
                                                         .font(.system(size: 10, weight: .regular, design: .rounded))
