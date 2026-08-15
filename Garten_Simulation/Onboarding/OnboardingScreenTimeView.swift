@@ -5,7 +5,6 @@ struct OnboardingScreenTimeView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @State private var showContinueButton = false
-    @State private var isBouncing = false
     @State private var errorMessage: String?
     @State private var showErrorAlert = false
     
@@ -95,10 +94,10 @@ struct OnboardingScreenTimeView: View {
                     farbe: colorScheme == .dark ? Color(white: 0.15) : .white,
                     sekundaerFarbe: colorScheme == .dark ? Color(white: 0.1) : Color(UIColor.systemGray5)
                 )
-                .frame(width: 270) // iOS standard alert width is 270
+                .padding(.horizontal, 24) // Make it wider instead of fixed 270 width
                 
                 if !showContinueButton {
-                    // Arrow pointing up to "Continue" (Left Button)
+                    // Arrow pointing up to "Continue" (Right Button)
                     Button {
                         handleAllow()
                     } label: {
@@ -106,20 +105,16 @@ struct OnboardingScreenTimeView: View {
                             .font(.system(size: 40, weight: .bold))
                             .foregroundStyle(Color.blauPrimary)
                             .shadow(color: Color.blauPrimary.darker(), radius: 0, x: 0, y: 4)
-                            .offset(y: isBouncing ? -10 : 10)
-                            .onAppear {
-                                withAnimation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true)) {
-                                    isBouncing = true
-                                }
-                            }
+                            .offset(y: -30) // Overlap the 3D button
                     }
                     .buttonStyle(.plain)
                     .padding(.top, -10)
-                    .padding(.trailing, 110) // Move to the left side (under "Continue")
+                    .padding(.leading, 120) // Point to the right button
                 } else {
                     Spacer().frame(height: 56) // To keep layout stable
                 }
             }
+            .offset(y: 60) // Push the entire alert down slightly so it doesn't cover the avatar as much
         }
         .alert("Berechtigung fehlgeschlagen", isPresented: $showErrorAlert) {
             Button("Zu den Einstellungen") {
