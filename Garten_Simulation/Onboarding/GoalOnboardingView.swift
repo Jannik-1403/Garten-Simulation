@@ -12,25 +12,17 @@ struct GoalOnboardingView: View {
             )
             .padding(.top, 20)
             
-            Spacer()
-            
             VStack(spacing: 24) {
-                TextField(String(localized: "goal.custom.5year.placeholder", defaultValue: "Mein 5-Jahresziel (z. B. Abnehmen)"), text: $goalText)
+                TextField(String(localized: "goal.custom.5year.placeholder", defaultValue: "Mein 5-Jahresziel (z. B. Abnehmen)"), text: $goalText, axis: .vertical)
                     .font(.system(size: 24, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
-                    .padding(.vertical, 20)
-                    .padding(.horizontal, 24)
-                    .background(Color(UIColor.systemGray6))
-                    .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 24, style: .continuous)
-                            .stroke(goalText.isEmpty ? Color.clear : Color.blauPrimary, lineWidth: 3)
-                    )
-                    .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    .contentShape(Rectangle())
+                    .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
             }
             .padding(.horizontal, 32)
-            
-            Spacer()
+            .padding(.top, 24)
+            .padding(.bottom, 24)
             
             VStack {
                 Item3DButton(
