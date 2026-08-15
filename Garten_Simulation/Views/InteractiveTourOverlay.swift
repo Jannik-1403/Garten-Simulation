@@ -155,9 +155,9 @@ struct InteractiveTourOverlay: View {
                     screenWidth: w,
                     onNext: config.onNext
                 )
-                Color.clear.frame(height: h - targetPoint.y)
+                Color.clear.frame(height: max(0, h - targetPoint.y))
             } else if arrowEdge == .top {
-                Color.clear.frame(height: targetPoint.y)
+                Color.clear.frame(height: max(0, targetPoint.y))
                 SmartBubble(
                     title: config.title,
                     desc: config.desc,
