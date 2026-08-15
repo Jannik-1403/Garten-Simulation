@@ -210,11 +210,7 @@ struct InteractiveTourOverlay: View {
         case .plantTimer:
             return (String(localized: "tour_plant_timer_title"), String(localized: "tour_plant_timer_desc"), { tourManager.nextStep() })
         case .plantHealth:
-            return (String(localized: "tour_plant_health_title"), String(localized: "tour_plant_health_desc"), { tourManager.nextStep() })
-        case .plantStreak:
-            return (String(localized: "tour_plant_streak_title"), String(localized: "tour_plant_streak_desc"), { tourManager.nextStep() })
-        case .plantPath:
-            return (String(localized: "tour_plant_path_title"), String(localized: "tour_plant_path_desc"), {
+            return (String(localized: "tour_plant_health_title"), String(localized: "tour_plant_health_desc"), {
                 tourManager.showPlantDetail = nil
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { tourManager.nextStep() }
             })

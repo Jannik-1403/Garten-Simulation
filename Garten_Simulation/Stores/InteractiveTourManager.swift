@@ -12,21 +12,19 @@ enum TourStep: Int, CaseIterable {
     case plantNotes = 7
     case plantTimer = 8
     case plantHealth = 9
-    case plantStreak = 10
-    case plantPath = 11
-    case badHabits = 12
-    case todoPrompt = 13
-    case todoIntro = 14
-    case routinePrompt = 15
-    case routineIntro = 16
-    case shopPrompt = 17
-    case shopIntro = 18
-    case profilePrompt = 19
-    case titles = 20
-    case achievements = 21
-    case streak = 22
-    case inventory = 23
-    case done = 24
+    case badHabits = 10
+    case todoPrompt = 11
+    case todoIntro = 12
+    case routinePrompt = 13
+    case routineIntro = 14
+    case shopPrompt = 15
+    case shopIntro = 16
+    case profilePrompt = 17
+    case titles = 18
+    case achievements = 19
+    case streak = 20
+    case inventory = 21
+    case done = 22
 }
 
 class InteractiveTourManager: ObservableObject {
