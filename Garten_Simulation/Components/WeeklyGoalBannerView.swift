@@ -115,7 +115,7 @@ struct WeeklyGoalBannerView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 28, height: 28)
-                            .scaleEffect(1.8)
+                            .scaleEffect(2.8)
                         Text(String(localized: "goal.weekly.add", defaultValue: "Wochenziel festlegen"))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .foregroundColor(.primary)

@@ -433,3 +433,4 @@
 - To-dos können jetzt auch ohne Verknüpfung zu einer Gewohnheit hinzugefügt werden.
 - Das Icon im 'Set Weekly Goal'-Banner wurde vergrößert, um besser lesbar zu sein.
 - Das Icon im 'Set Weekly Goal'-Banner nutzt nun .scaleEffect(), um optisch größer zu wirken, ohne den Button-Hintergrund unnötig aufzublähen.
+- Das Ziel-Icon im Banner wurde noch weiter vergrößert.
