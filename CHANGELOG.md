@@ -444,3 +444,5 @@
 - Apple Health: Fortschrittsbalken für verbundene Gesundheits-Ziele ist nicht mehr manuell bedienbar und schließt sich automatisch ab, sobald das Ziel erreicht wurde.
 
 - Apple Health: Verbundenen Zielen wurde ein Indikator auf der Garten-Karte hinzugefügt. In den Pflanzen-Details gibt es nun einen Button, um Apple Health für einzelne Ziele zu entkoppeln oder wieder zu verbinden.
+
+- UI: Das Apple Health Herz-Symbol wurde von der Garten-Karte entfernt. Der Entkoppeln-Button in der Detailansicht wurde durch ein kleines X-Icon oben rechts ersetzt, inklusive einer Sicherheitsabfrage. Beim Wiederverbinden wird der manuelle Fortschritt automatisch auf den Health-Wert korrigiert.
