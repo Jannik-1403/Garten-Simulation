@@ -19,6 +19,10 @@ struct BadHabitExecution: Codable, Identifiable {
 class GardenStore: ObservableObject {
     @Published var pflanzen: [HabitModel] = []
     
+    @Published var standaloneTodos: [FocusGoal] = [] {
+        didSet { saveStandaloneTodos() }
+    }
+    
     var sichtbarePflanzen: [HabitModel] {
         let visible = pflanzen.filter { !$0.isRoutineOnly }
         return visible.filter { !$0.istBewässert } + visible.filter { $0.istBewässert }
@@ -206,6 +210,7 @@ class GardenStore: ObservableObject {
         self.isMock = isMock
         if !isMock {
             loadStats()
+            loadStandaloneTodos()
             loadPlants()
             loadTransactions()
             loadInventory()
@@ -224,6 +229,7 @@ class GardenStore: ObservableObject {
 
     func reloadData() {
         loadStats()
+        loadStandaloneTodos()
         loadPlants()
         loadTransactions()
         loadInventory()
@@ -1320,6 +1326,19 @@ class GardenStore: ObservableObject {
             gems: coins,
             streakCompletedDates: dates
         )
+    }
+
+    private func loadStandaloneTodos() {
+        if let data = SharedUserDefaults.suite.data(forKey: "garden_standalone_todos"),
+           let decoded = try? JSONDecoder().decode([FocusGoal].self, from: data) {
+            self.standaloneTodos = decoded
+        }
+    }
+    
+    func saveStandaloneTodos() {
+        if let encoded = try? JSONEncoder().encode(standaloneTodos) {
+            SharedUserDefaults.suite.set(encoded, forKey: "garden_standalone_todos")
+        }
     }
 
     private func loadPlants() {

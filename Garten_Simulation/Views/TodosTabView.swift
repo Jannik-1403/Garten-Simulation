@@ -33,6 +33,32 @@ struct TodosTabView: View {
                 } else {
                     ScrollView {
                         LazyVStack(spacing: 24) {
+                            // 1. Standalone Todos Section
+                            if !gardenStore.standaloneTodos.isEmpty {
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text(String(localized: "todos.tab.general", defaultValue: "Allgemeine To-Dos"))
+                                        .font(.system(size: 20, weight: .black, design: .rounded))
+                                        .padding(.horizontal, 24)
+                                    
+                                    VStack(spacing: 12) {
+                                        ForEach(gardenStore.standaloneTodos.sorted { $0.priority.sortValue < $1.priority.sortValue }, id: \.id) { todo in
+                                            StandaloneTodoRowView(
+                                                todoId: todo.id,
+                                                onEdit: {
+                                                    if let index = gardenStore.standaloneTodos.firstIndex(where: { $0.id == todo.id }) {
+                                                        selectedPlantForTodo = nil
+                                                        todoToEditIndex = index
+                                                        showingAddTodoSheet = true
+                                                    }
+                                                }
+                                            )
+                                        }
+                                    }
+                                    .padding(.horizontal, 24)
+                                }
+                            }
+                            
+                            // 2. Habit-specific Todos Section
                             ForEach(gardenStore.pflanzen) { pflanze in
                                 if !pflanze.todos.isEmpty {
                                     VStack(alignment: .leading, spacing: 12) {
@@ -91,7 +117,7 @@ struct TodosTabView: View {
     }
     
     private func alleTodosEmpty() -> Bool {
-        return gardenStore.pflanzen.allSatisfy { $0.todos.isEmpty }
+        return gardenStore.pflanzen.allSatisfy { $0.todos.isEmpty } && gardenStore.standaloneTodos.isEmpty
     }
 }
 
@@ -166,6 +192,76 @@ struct TodoRowView: View {
     }
 }
 
+struct StandaloneTodoRowView: View {
+    let todoId: UUID
+    let onEdit: () -> Void
+    @EnvironmentObject var gardenStore: GardenStore
+    
+    var body: some View {
+        if let index = gardenStore.standaloneTodos.firstIndex(where: { $0.id == todoId }) {
+            Item3DButton(
+                farbe: gardenStore.standaloneTodos[index].isCompleted ? .gruenPrimary : Color.white,
+                sekundaerFarbe: gardenStore.standaloneTodos[index].isCompleted ? .gruenPrimary.darker() : Color(white: 0.9),
+                groesse: 64,
+                isRectangular: true,
+                aktion: {
+                    withAnimation {
+                        gardenStore.standaloneTodos[index].isCompleted.toggle()
+                        GoalStore.shared.logTodoCompletion(habitId: "standalone", priority: gardenStore.standaloneTodos[index].priority, isCompleted: gardenStore.standaloneTodos[index].isCompleted)
+                        gardenStore.saveStandaloneTodos()
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    }
+                }
+            ) {
+                HStack {
+                    Button {
+                        withAnimation {
+                            gardenStore.standaloneTodos[index].priority.next()
+                            gardenStore.saveStandaloneTodos()
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        }
+                    } label: {
+                        Text(gardenStore.standaloneTodos[index].priority.icon)
+                            .font(.system(size: 24, weight: .black, design: .rounded))
+                            .foregroundColor(gardenStore.standaloneTodos[index].priority.color)
+                    }
+                    
+                    Image(systemName: gardenStore.standaloneTodos[index].isCompleted ? "checkmark.circle.fill" : "circle")
+                        .font(.system(size: 24))
+                        .foregroundStyle(gardenStore.standaloneTodos[index].isCompleted ? Color.white : Color.gray)
+                    
+                    Text(gardenStore.standaloneTodos[index].text)
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .strikethrough(gardenStore.standaloneTodos[index].isCompleted)
+                        .foregroundColor(gardenStore.standaloneTodos[index].isCompleted ? Color.white.opacity(0.8) : .primary)
+                    
+                    Spacer()
+                }
+                .padding(.horizontal, 8)
+            }
+            .contextMenu {
+                Button {
+                    onEdit()
+                } label: {
+                    Label(String(localized: "common.edit", defaultValue: "Bearbeiten"), systemImage: "pencil")
+                }
+                
+                Button(role: .destructive) {
+                    withAnimation {
+                        if let idx = gardenStore.standaloneTodos.firstIndex(where: { $0.id == todoId }) {
+                            gardenStore.standaloneTodos.remove(at: idx)
+                            gardenStore.saveStandaloneTodos()
+                            gardenStore.objectWillChange.send()
+                        }
+                    }
+                } label: {
+                    Label(String(localized: "button.delete", defaultValue: "Löschen"), systemImage: "trash")
+                }
+            }
+        }
+    }
+}
+
 struct GlobalTodoAddSheet: View {
     @EnvironmentObject var gardenStore: GardenStore
     @Environment(\.dismiss) private var dismiss
@@ -178,7 +274,7 @@ struct GlobalTodoAddSheet: View {
             VStack(spacing: 24) {
                 // Plant Selector
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(String(localized: "todos.tab.select_plant", defaultValue: "Für welche Gewohnheit?"))
+                    Text(String(localized: "todos.tab.select_plant_optional", defaultValue: "Für welche Gewohnheit? (Optional)"))
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                     
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -224,13 +320,19 @@ struct GlobalTodoAddSheet: View {
                 Spacer()
                 
                 Button {
-                    guard let selected = selectedPlant else { return }
                     let trimmed = todoText.trimmingCharacters(in: .whitespacesAndNewlines)
                     guard !trimmed.isEmpty else { return }
                     
                     let newTodo = FocusGoal(text: trimmed)
-                    selected.todos.append(newTodo)
-                    gardenStore.savePlants()
+                    
+                    if let selected = selectedPlant {
+                        selected.todos.append(newTodo)
+                        gardenStore.savePlants()
+                    } else {
+                        gardenStore.standaloneTodos.append(newTodo)
+                        // saveStandaloneTodos() is called via property observer
+                    }
+                    
                     gardenStore.objectWillChange.send()
                     dismiss()
                 } label: {
@@ -240,7 +342,7 @@ struct GlobalTodoAddSheet: View {
                         .frame(height: 24)
                 }
                 .buttonStyle(DuolingoButtonStyle(size: .medium, fillWidth: true, backgroundColor: .black, shadowColor: Color.black.opacity(0.8), foregroundColor: .white))
-                .disabled(todoText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || selectedPlant == nil)
+                .disabled(todoText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 .padding(.bottom, 20)
             }
             .padding(.horizontal, 24)

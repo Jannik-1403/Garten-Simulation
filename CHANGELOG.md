@@ -426,3 +426,9 @@
 - Apple Health Integration in der Pflanzen-Detailansicht wiederhergestellt.
 - Upsell-Text für Nicht-Pro-Nutzer wieder auf "Apple Health Kopplung" zurückgesetzt.
 - Pflanzen-Statistiken werden nun für Pro-Nutzer immer angezeigt (auch wenn Health-Daten verknüpft sind).
+
+## 2026-08-15 10:49 - UI und Statistik Updates
+- Fehlerbehebung: Pflanzen mit Apple Health Verknüpfung zeigen nun keine redundante Fortschritt-Statistik mehr an.
+- Neue Funktion: In der Fortschritt-Statistik (ohne Apple Health) kann nun direkt ein individuelles Ziel (z. B. 100%) über den neuen "Ziel festlegen" Button eingestellt werden, welches auch als Ziellinie im Diagramm dargestellt wird.
+- To-dos können jetzt auch ohne Verknüpfung zu einer Gewohnheit hinzugefügt werden.
+- Das Icon im 'Set Weekly Goal'-Banner wurde vergrößert, um besser lesbar zu sein.
