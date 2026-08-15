@@ -58,37 +58,39 @@ struct OnboardingNotificationView: View {
                     .padding(.horizontal, 16)
                     
                     HStack(spacing: 12) {
-                        Button {
-                            handleDeny()
-                        } label: {
+                        Item3DButton(
+                            farbe: colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.88),
+                            sekundaerFarbe: colorScheme == .dark ? Color(white: 0.15) : Color(white: 0.75),
+                            groesse: 50,
+                            isRectangular: true,
+                            aktion: handleDeny
+                        ) {
                             Text(String(localized: "onboarding_notification_mock_dont_allow", defaultValue: "Nicht erlauben"))
-                                .font(.system(size: 17, weight: .medium))
+                                .font(.system(size: 15, weight: .bold, design: .rounded))
                                 .foregroundStyle(.primary)
                                 .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.88))
-                                .clipShape(Capsule())
                         }
                         
-                        Button {
-                            handleAllow() // Right button is "Allow"
-                        } label: {
+                        Item3DButton(
+                            farbe: .blauPrimary,
+                            sekundaerFarbe: .blauPrimary.darker(),
+                            groesse: 50,
+                            isRectangular: true,
+                            aktion: handleAllow
+                        ) {
                             Text(String(localized: "onboarding_notification_mock_allow", defaultValue: "Erlauben"))
-                                .font(.system(size: 17, weight: .bold))
+                                .font(.system(size: 15, weight: .bold, design: .rounded))
                                 .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(Color.blue)
-                                .clipShape(Capsule())
                         }
                     }
                     .padding(.horizontal, 16)
                     .padding(.bottom, 20)
                 }
-                .background(
-                    RoundedRectangle(cornerRadius: 32, style: .continuous)
-                        .fill(colorScheme == .dark ? Color(white: 0.15) : Color.white)
-                        .shadow(color: Color.black.opacity(0.1), radius: 20, x: 0, y: 10)
+                .padding(.top, -16) // offset the built-in padding from item3DContainer a bit for visual balance
+                .item3DContainer(
+                    farbe: colorScheme == .dark ? Color(white: 0.15) : .white,
+                    sekundaerFarbe: colorScheme == .dark ? Color(white: 0.1) : Color(UIColor.systemGray5)
                 )
                 .frame(width: 320) // Make it slightly smaller/more compact on the sides
                 

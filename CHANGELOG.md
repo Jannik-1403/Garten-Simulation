@@ -436,3 +436,4 @@
 - Das Ziel-Icon im Banner wurde noch weiter vergrößert.
 - Onboarding: 5-Jahresziele und Wochenziele werden nun direkt als Textfeld eingegeben, statt vordefinierte Vorschläge anzuzeigen.
 - UI: Das Textfeld für die Zieleingabe im Onboarding nutzt jetzt das große 3D-Container-Design.
+- UI: Platzhalter-Text bei der Zieleingabe bricht nun korrekt in die nächste Zeile um, wenn er zu lang ist.

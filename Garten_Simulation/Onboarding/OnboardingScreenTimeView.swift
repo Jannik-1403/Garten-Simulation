@@ -61,37 +61,39 @@ struct OnboardingScreenTimeView: View {
                     .padding(.horizontal, 16)
                     
                     HStack(spacing: 12) {
-                        Button {
-                            handleAllow() // Left button is "Continue" (Allow)
-                        } label: {
-                            Text(String(localized: "onboarding_screentime_mock_allow", defaultValue: "Weiter"))
-                                .font(.system(size: 17, weight: .medium))
+                        Item3DButton(
+                            farbe: colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.88),
+                            sekundaerFarbe: colorScheme == .dark ? Color(white: 0.15) : Color(white: 0.75),
+                            groesse: 50,
+                            isRectangular: true,
+                            aktion: handleDeny
+                        ) {
+                            Text(String(localized: "onboarding_screentime_mock_dont_allow", defaultValue: "Nicht erlauben"))
+                                .font(.system(size: 15, weight: .bold, design: .rounded))
                                 .foregroundStyle(.primary)
                                 .frame(maxWidth: .infinity)
-                                .padding(.vertical, 14)
-                                .background(colorScheme == .dark ? Color(white: 0.25) : Color(white: 0.92))
-                                .clipShape(Capsule())
                         }
                         
-                        Button {
-                            handleDeny() // Right button is "Don't Allow"
-                        } label: {
-                            Text(String(localized: "onboarding_screentime_mock_dont_allow", defaultValue: "Nicht erlauben"))
-                                .font(.system(size: 17, weight: .bold))
+                        Item3DButton(
+                            farbe: .blauPrimary,
+                            sekundaerFarbe: .blauPrimary.darker(),
+                            groesse: 50,
+                            isRectangular: true,
+                            aktion: handleAllow
+                        ) {
+                            Text(String(localized: "onboarding_screentime_mock_allow", defaultValue: "Weiter"))
+                                .font(.system(size: 15, weight: .bold, design: .rounded))
                                 .foregroundStyle(.white)
                                 .frame(maxWidth: .infinity)
-                                .padding(.vertical, 14)
-                                .background(Color.blue)
-                                .clipShape(Capsule())
                         }
                     }
                     .padding(.horizontal, 16)
-                    .padding(.bottom, 16)
+                    .padding(.bottom, 20)
                 }
-                .background(
-                    RoundedRectangle(cornerRadius: 14, style: .continuous) // iOS standard alert corner radius is 14
-                        .fill(colorScheme == .dark ? Color(white: 0.15) : Color.white)
-                        .shadow(color: Color.black.opacity(0.1), radius: 20, x: 0, y: 10)
+                .padding(.top, -16) // offset the built-in padding from item3DContainer a bit for visual balance
+                .item3DContainer(
+                    farbe: colorScheme == .dark ? Color(white: 0.15) : .white,
+                    sekundaerFarbe: colorScheme == .dark ? Color(white: 0.1) : Color(UIColor.systemGray5)
                 )
                 .frame(width: 270) // iOS standard alert width is 270
                 
