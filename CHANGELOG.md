@@ -435,3 +435,4 @@
 - Das Icon im 'Set Weekly Goal'-Banner nutzt nun .scaleEffect(), um optisch größer zu wirken, ohne den Button-Hintergrund unnötig aufzublähen.
 - Das Ziel-Icon im Banner wurde noch weiter vergrößert.
 - Onboarding: 5-Jahresziele und Wochenziele werden nun direkt als Textfeld eingegeben, statt vordefinierte Vorschläge anzuzeigen.
+- UI: Das Textfeld für die Zieleingabe im Onboarding nutzt jetzt das große 3D-Container-Design.

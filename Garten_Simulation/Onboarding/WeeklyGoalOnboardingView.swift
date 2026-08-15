@@ -13,12 +13,23 @@ struct WeeklyGoalOnboardingView: View {
             .padding(.top, 20)
             
             VStack(spacing: 24) {
-                TextField(String(localized: "goal.custom.week.placeholder", defaultValue: "Mein Wochenziel (z. B. 3x Sport)"), text: $goalText, axis: .vertical)
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                    .contentShape(Rectangle())
-                    .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
+                ZStack(alignment: .top) {
+                    if goalText.isEmpty {
+                        Text(String(localized: "goal.custom.week.placeholder", defaultValue: "Mein Wochenziel (z. B. 3x Sport)"))
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
+                            .foregroundStyle(Color(UIColor.placeholderText))
+                            .multilineTextAlignment(.center)
+                            .allowsHitTesting(false)
+                    }
+                    
+                    TextField("", text: $goalText, axis: .vertical)
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .tint(.blauPrimary)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .contentShape(Rectangle())
+                .item3DContainer(farbe: .white, sekundaerFarbe: Color(UIColor.systemGray5))
             }
             .padding(.horizontal, 32)
             .padding(.top, 24)
