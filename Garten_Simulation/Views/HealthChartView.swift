@@ -9,6 +9,7 @@ struct HealthChartView: View {
     var target: Double?
     var hourlyAverageData: [(Date, Double)] = []
     var onEditTarget: (() -> Void)? = nil
+    var onUnlink: (() -> Void)? = nil
 
     // MARK: Computed
 
@@ -65,6 +66,18 @@ struct HealthChartView: View {
                 Text(chartTitle)
                     .font(.system(size: 15, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.orangePrimary)
+                
+                Spacer()
+                
+                if let onUnlink = onUnlink {
+                    Button {
+                        onUnlink()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundStyle(Color.primary)
+                    }
+                }
             }
             .padding(.bottom, 14)
 

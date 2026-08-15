@@ -504,43 +504,32 @@ struct PflanzeDetailSheet: View {
                                         VStack(spacing: 12) {
                                             let effectiveMetric = pflanze.effectiveHealthMetric
                                             if let metric = effectiveMetric {
-                                                ZStack(alignment: .topTrailing) {
-                                                    VStack {
-                                                        if !hourlyHealthData.isEmpty {
-                                                            HealthChartView(
-                                                                data: hourlyHealthData,
-                                                                metric: metric,
-                                                                target: pflanze.healthTarget,
-                                                                hourlyAverageData: hourlyAvgData,
-                                                                onEditTarget: { showTargetEdit = true }
-                                                            )
-                                                            .padding(.horizontal, 16)
-                                                            .padding(.vertical, 4)
-                                                        } else {
-                                                            // Laden-Indikator
-                                                            HStack {
-                                                                Spacer()
-                                                                VStack(spacing: 8) {
-                                                                    ProgressView()
-                                                                    Text(String(localized: "health.chart.loading", defaultValue: "Lade Gesundheitsdaten…"))
-                                                                        .font(.system(size: 13, weight: .medium, design: .rounded))
-                                                                        .foregroundStyle(.secondary)
-                                                                }
-                                                                Spacer()
+                                                VStack {
+                                                    if !hourlyHealthData.isEmpty {
+                                                        HealthChartView(
+                                                            data: hourlyHealthData,
+                                                            metric: metric,
+                                                            target: pflanze.healthTarget,
+                                                            hourlyAverageData: hourlyAvgData,
+                                                            onEditTarget: { showTargetEdit = true },
+                                                            onUnlink: { zeigeAppleHealthEntkoppelnAlert = true }
+                                                        )
+                                                        .padding(.horizontal, 16)
+                                                        .padding(.vertical, 4)
+                                                    } else {
+                                                        // Laden-Indikator
+                                                        HStack {
+                                                            Spacer()
+                                                            VStack(spacing: 8) {
+                                                                ProgressView()
+                                                                Text(String(localized: "health.chart.loading", defaultValue: "Lade Gesundheitsdaten…"))
+                                                                    .font(.system(size: 13, weight: .medium, design: .rounded))
+                                                                    .foregroundStyle(.secondary)
                                                             }
-                                                            .padding(40)
+                                                            Spacer()
                                                         }
+                                                        .padding(40)
                                                     }
-                                                    
-                                                    Button {
-                                                        zeigeAppleHealthEntkoppelnAlert = true
-                                                    } label: {
-                                                        Image(systemName: "xmark.circle.fill")
-                                                            .font(.system(size: 24))
-                                                            .foregroundStyle(.tertiary)
-                                                            .background(Circle().fill(Color(UIColor.systemBackground)).padding(2))
-                                                    }
-                                                    .padding(8)
                                                 }
                                                 
                                             } else {
