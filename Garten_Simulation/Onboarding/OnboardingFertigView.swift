@@ -91,7 +91,7 @@ struct OnboardingFertigView: View {
 
         
         withAnimation {
-            settings.ausgewaehltesZiel = data.gewaehltesZiele.first?.rawValue ?? "gesund"
+            settings.ausgewaehltesZiel = data.customZiel.isEmpty ? "gesund" : data.customZiel
             settings.onboardingAbgeschlossen = true
         }
     }

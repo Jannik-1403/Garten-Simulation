@@ -9,67 +9,35 @@ struct OnboardingZielView: View {
     var body: some View {
         VStack(spacing: 0) {
             OnboardingIgelView(
-                pose: data.gewaehltesZiele.isEmpty ? .fragt : .daumenHoch,
+                pose: data.customZiel.isEmpty ? .fragt : .daumenHoch,
                 sprechblasenText: String(localized: "onboarding_ziel_blase")
             )
             .padding(.top, 20)
 
-            ScrollView(showsIndicators: false) {
-                LazyVGrid(
-                    columns: [GridItem(.flexible()), GridItem(.flexible())],
-                    spacing: 24
-                ) {
-                    ForEach(OnboardingZiel.allCases) { ziel in
-                        let isSelected = data.gewaehltesZiele.contains(ziel)
-                        VStack(spacing: 12) {
-                            Item3DButton(
-                                icon: ziel.iconName,
-                                farbe: isSelected ? ziel.color : Color(.systemGray4),
-                                sekundaerFarbe: isSelected ? ziel.color.darker() : Color(.systemGray5),
-                                groesse: 100,
-                                aktion: { toggleZiel(ziel) }
-                            )
-                            .overlay(alignment: .topTrailing) {
-                                if isSelected {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .foregroundStyle(Color.green)
-                                        .background(Circle().fill(.white))
-                                        .font(.title)
-                                        .offset(x: 10, y: -10)
-                                }
-                            }
+            Spacer()
 
-                            Text(NSLocalizedString(ziel.labelKey, comment: ""))
-                                .font(.system(size: 15, weight: .bold, design: .rounded))
-                                .multilineTextAlignment(.center)
-                                .foregroundStyle(isSelected ? .primary : .secondary)
-                        }
-                        .scaleEffect(isSelected ? 1.05 : 1.0)
-                        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isSelected)
-                    }
-                }
-                .padding(.horizontal, 24)
-                .padding(.top, 24)
+            VStack(spacing: 24) {
+                Text(String(localized: "onboarding_ziel_titel"))
+                    .font(.system(size: 24, weight: .black, design: .rounded))
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(.primary)
 
-                // "Nicht dabei" → zeigt alle Pflanzen
-                Button {
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                    withAnimation {
-                        data.gewaehltesZiele = []
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        withAnimation(.easeInOut(duration: 0.35)) {
-                            data.currentStep += 1
-                        }
-                    }
-                } label: {
-                    Text(String(localized: "onboarding_ziel_fehlt"))
-                        .font(.system(.subheadline, design: .rounded, weight: .bold))
-                        .foregroundStyle(.secondary)
-                }
-                .padding(.top, 24)
-                .padding(.bottom, 20)
+                TextField(String(localized: "onboarding_ziel_placeholder"), text: $data.customZiel)
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical, 20)
+                    .padding(.horizontal, 24)
+                    .background(Color(.systemGray6))
+                    .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+                            .stroke(data.customZiel.isEmpty ? Color.clear : Color.blauPrimary, lineWidth: 3)
+                    )
+                    .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
             }
+            .padding(.horizontal, 32)
+
+            Spacer()
 
             Button {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
@@ -86,21 +54,18 @@ struct OnboardingZielView: View {
                 shadowColor: Color.blauPrimary.darker(),
                 foregroundColor: .white
             ))
-            .disabled(data.gewaehltesZiele.isEmpty)
+            .disabled(data.customZiel.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             .padding(.horizontal, 24)
             .padding(.bottom, 40)
         }
-    }
-
-    private func toggleZiel(_ ziel: OnboardingZiel) {
-        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-        FeedbackManager.shared.playTap()
-        withAnimation(.spring()) {
-            if data.gewaehltesZiele.contains(ziel) {
-                data.gewaehltesZiele.removeAll { $0 == ziel }
-            } else if data.gewaehltesZiele.count < maxAuswahl {
-                data.gewaehltesZiele.append(ziel)
-            }
+        .onTapGesture {
+            hideKeyboard()
         }
+    }
+}
+
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

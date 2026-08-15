@@ -12,6 +12,7 @@ struct CustomOnboardingPflanze: Identifiable, Codable {
 class OnboardingData: ObservableObject {
     @Published var currentStep: Int = 1
     @Published var gewaehltesZiele: [OnboardingZiel] = []
+    @Published var customZiel: String = ""
     @Published var gewaehltePflanzenIDs: [String] = []
     @Published var tutorialMuenzen: Int = 0
     @Published var erinnerungsZeiten: [String: Date] = [:]
