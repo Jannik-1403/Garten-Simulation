@@ -319884,19 +319884,19 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "settings.manage_subscription"
+            "value": "Manage Subscription"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "configuración.manage_subscription"
+            "value": "Administrar suscripción"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "paramètres.manage_subscription"
+            "value": "Gérer l'abonnement"
           }
         },
         "hi": {
@@ -319908,19 +319908,19 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "settings.manage_subscription"
+            "value": "Gestisci abbonamento"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "設定.管理_サブスクリプション"
+            "value": "サブスクリプションの管理"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "설정.관리_구독"
+            "value": "구독 관리"
           }
         },
         "nl": {
@@ -319932,13 +319932,13 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "ustawienia.zarządzanie_subskrypcją"
+            "value": "Zarządzaj subskrypcją"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "configurações.manage_subscription"
+            "value": "Gerenciar assinatura"
           }
         },
         "ru": {
@@ -319950,19 +319950,19 @@
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "settings.manage_subscription"
+            "value": "Aboneliği yönet"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "设置.管理订阅"
+            "value": "管理订阅"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "設定.管理訂閱"
+            "value": "管理訂閱"
           }
         }
       }

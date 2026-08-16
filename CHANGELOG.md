@@ -460,3 +460,9 @@
 - UI: Das Apple Health Herz-Symbol wurde von der Garten-Karte entfernt. Der Entkoppeln-Button in der Detailansicht wurde durch ein kleines X-Icon oben rechts ersetzt, inklusive einer Sicherheitsabfrage. Beim Wiederverbinden wird der manuelle Fortschritt automatisch auf den Health-Wert korrigiert.
 
 - UI Fix: Das X-Icon zum Entkoppeln von Apple Health ist nun nahtlos im Titel der Statistik-Karte integriert und hat keinen eigenen Hintergrund mehr.
+- Hinzugefügt: Erklärungstext für Apple Health in der Einstellungs-Ansicht unter 'Integrationen', übersetzt in alle 15 unterstützten Sprachen (App Review Anforderung).
+- Behoben: Layout-Warnung 'Invalid frame dimension' im InteractiveTourOverlay behoben.
+- UI & Logic Update: Abgeschlossene To-dos werden nun nicht mehr sofort entfernt, sondern erst am nächsten Tag bereinigt, damit der Erfolg sichtbar bleibt.
+- UI Update: Das Apple Health Integration Feld in den Einstellungen enthält nun ein kleines Info-Icon, welches die Erklärungstexte in einem kompakten Alert anzeigt, um das UI aufzuräumen.
+- Paywall Update: Das Adult Filter Icon in der Pro-Feature Liste wurde durch das dedizierte Asset `ProIconAdultFilter` in einheitlicher Größe (scale 2.2) ersetzt.
+- Fix: Übersetzungsschlüssel für "Abo verwalten" (`settings.manage_subscription`) in allen Sprachen korrigiert.

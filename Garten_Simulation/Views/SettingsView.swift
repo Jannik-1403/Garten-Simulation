@@ -27,6 +27,7 @@ struct SettingsView: View {
     @State private var showRecoveryAlert = false
     @State private var showBackupSheet = false
     @State private var showPDFExport = false
+    @State private var showHealthInfoAlert = false
     
     private var aktuelleTierStufe: GartenTierStufe {
         GartenTierStufe.fuer(level: gardenStore.gartenStufe)
@@ -124,15 +125,18 @@ struct SettingsView: View {
                                                 .background(Color.red, in: RoundedRectangle(cornerRadius: 6))
                                             
                                             VStack(alignment: .leading, spacing: 4) {
-                                                Text(String(localized: "settings.health.title", defaultValue: "Apple Health"))
-                                                    .font(.system(size: 16, weight: .medium, design: .rounded))
-                                                    .foregroundStyle(.primary)
-                                                
-                                                Text(String(localized: "settings.health.description", defaultValue: "Verbinde Apple Health, um deine Schritte und deinen Schlaf zu synchronisieren und so den Fortschritt in deinem Garten voranzutreiben."))
-                                                    .font(.system(size: 12, weight: .regular, design: .rounded))
-                                                    .foregroundStyle(.secondary)
-                                                    .lineLimit(4)
-                                                    .fixedSize(horizontal: false, vertical: true)
+                                                HStack(spacing: 6) {
+                                                    Text(String(localized: "settings.health.title", defaultValue: "Apple Health"))
+                                                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                                                        .foregroundStyle(.primary)
+                                                    
+                                                    Image(systemName: "info.circle")
+                                                        .font(.system(size: 14, weight: .semibold))
+                                                        .foregroundStyle(.secondary)
+                                                        .onTapGesture {
+                                                            showHealthInfoAlert = true
+                                                        }
+                                                }
                                                 
                                                 if healthManager.isAuthorized {
                                                     Text(String(localized: "settings.health.instruction", defaultValue: "Profil > Apps > Grovy, um Berechtigungen zu ändern."))
@@ -527,6 +531,11 @@ struct SettingsView: View {
                 Button(String(localized: "button.cancel"), role: .cancel) { }
             } message: {
                 Text(String(localized: "settings.reset.alert.message"))
+            }
+            .alert(String(localized: "settings.health.title", defaultValue: "Apple Health"), isPresented: $showHealthInfoAlert) {
+                Button(String(localized: "button.ok", defaultValue: "OK"), role: .cancel) { }
+            } message: {
+                Text(String(localized: "settings.health.description", defaultValue: "Verbinde Apple Health, um deine Schritte und deinen Schlaf zu synchronisieren und so den Fortschritt in deinem Garten voranzutreiben."))
             }
 
             .alert("Wiederherstellung erfolgreich", isPresented: $showRecoveryAlert) {

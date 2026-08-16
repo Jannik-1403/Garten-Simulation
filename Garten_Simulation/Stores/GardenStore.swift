@@ -776,6 +776,16 @@ class GardenStore: ObservableObject {
         
         // Unkraut Ausbreitung (Logik wurde in pruefePflanzenStatus verlagert)
         
+        let oneDayAgo = Calendar.current.date(byAdding: .day, value: -1, to: Date()) ?? Date()
+        standaloneTodos.removeAll {
+            $0.isCompleted && ($0.completedAt ?? Date.distantPast) < oneDayAgo
+        }
+        for i in pflanzen.indices {
+            pflanzen[i].todos.removeAll {
+                $0.isCompleted && ($0.completedAt ?? Date.distantPast) < oneDayAgo
+            }
+        }
+        
         objectWillChange.send() // UI-Update erzwingen
         savePlants()
     }

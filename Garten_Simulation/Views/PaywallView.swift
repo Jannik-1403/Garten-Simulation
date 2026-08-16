@@ -101,7 +101,7 @@ struct PaywallView: View {
                             )
                             
                             featureRow(
-                                icon: "lock.shield.fill",
+                                icon: "ProIconAdultFilter",
                                 title: String(localized: "paywall.feature.adult_filter.title", defaultValue: "Erwachsenen-Filter"),
                                 bullets: [
                                     String(localized: "paywall.feature.adult_filter.bullet1", defaultValue: "Blockiert pornografische Webseiten."),
@@ -109,7 +109,8 @@ struct PaywallView: View {
                                     String(localized: "paywall.feature.adult_filter.bullet3", defaultValue: "Maximaler Schutz für deinen Fokus.")
                                 ],
                                 color: .purple,
-                                isSystemImage: true
+                                scale: 2.2,
+                                isSystemImage: false
                             )
 
                             featureRow(

@@ -37,6 +37,7 @@ struct FocusGoal: Identifiable, Equatable, Codable {
     var priority: GoalPriority = .medium
     var subtasks: [FocusSubtask] = []
     
+    var completedAt: Date? = nil
     var _isCompleted: Bool = false
     
     var isCompleted: Bool {
@@ -45,7 +46,10 @@ struct FocusGoal: Identifiable, Equatable, Codable {
             return subtasks.allSatisfy { $0.isCompleted }
         }
         set {
-            if subtasks.isEmpty { _isCompleted = newValue }
+            if subtasks.isEmpty { 
+                _isCompleted = newValue 
+                completedAt = newValue ? Date() : nil
+            }
         }
     }
     
