@@ -136,7 +136,13 @@ struct GoalEditSheet: View {
             
             // Only update if not none or if we are actively setting it
             if finalWeight != .none || localOverrides[habit.id] != nil {
-                goalStore.linkHabitToGoal(habitId: habit.id, goalId: goalId, weight: finalWeight, frequency: finalFrequency)
+                goalStore.linkHabitToGoal(
+                    habitId: habit.id,
+                    goalId: goalId,
+                    weight: finalWeight,
+                    frequency: finalFrequency,
+                    retroactiveDates: habit.wateringDates
+                )
             }
         }
         

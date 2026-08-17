@@ -29,10 +29,34 @@ class GoalStore: ObservableObject {
         }
     }
     
-    func linkHabitToGoal(habitId: String, goalId: UUID, weight: GoalWeight, frequency: Int? = nil) {
+    func linkHabitToGoal(habitId: String, goalId: UUID, weight: GoalWeight, frequency: Int? = nil, retroactiveDates: [Date] = []) {
         habitLinks.removeAll { $0.habitId == habitId && $0.goalId == goalId }
         let newLink = GoalHabitLink(goalId: goalId, habitId: habitId, weight: weight, frequencyPerWeek: frequency)
         habitLinks.append(newLink)
+        
+        let cal = Calendar.current
+        let now = Date()
+        
+        for date in retroactiveDates {
+            // Nur Completions aus der aktuellen Woche berücksichtigen
+            if cal.component(.weekOfYear, from: date) == cal.component(.weekOfYear, from: now) &&
+               cal.component(.yearForWeekOfYear, from: date) == cal.component(.yearForWeekOfYear, from: now) {
+                
+                // Prüfen ob für diesen Tag und dieses Ziel schon ein entsprechender Log existiert
+                let existsForDay = goalLogs.contains { log in
+                    log.goalId == goalId &&
+                    log.habitId == habitId &&
+                    cal.isDate(log.date, inSameDayAs: date) &&
+                    log.pointsEarned == weight.rawValue
+                }
+                
+                if !existsForDay {
+                    let log = GoalLog(date: date, goalId: goalId, habitId: habitId, pointsEarned: weight.rawValue)
+                    goalLogs.append(log)
+                }
+            }
+        }
+        
         saveData()
     }
     
