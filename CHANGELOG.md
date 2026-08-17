@@ -466,3 +466,7 @@
 - UI Update: Das Apple Health Integration Feld in den Einstellungen enthält nun ein kleines Info-Icon, welches die Erklärungstexte in einem kompakten Alert anzeigt, um das UI aufzuräumen.
 - Paywall Update: Das Adult Filter Icon in der Pro-Feature Liste wurde durch das dedizierte Asset `ProIconAdultFilter` in einheitlicher Größe (scale 2.2) ersetzt.
 - Fix: Übersetzungsschlüssel für "Abo verwalten" (`settings.manage_subscription`) in allen Sprachen korrigiert.
+
+- Custom To-Dos in Routinen haben jetzt ein optionales Beschreibungs-Feld anstelle der Icon-Beschreibung, und der Name wird immer korrekt angezeigt.
+
+- Bugfix: Routine Live Activity Timer gefixt. Der Timer (sowohl in der App als auch auf dem Lockscreen) zeigt nun immer stabil die Gesamtzeit der Routine an und springt nicht mehr zurück oder friert im Hintergrund ein. Zudem beendet sich die Live Activity beim Abschluss der Routine nun sauber.

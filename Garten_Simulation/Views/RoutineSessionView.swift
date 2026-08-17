@@ -26,7 +26,7 @@ struct RoutineSessionView: View {
     @State private var totalXP: Int = 0
     
     @State private var routineActivity: Activity<FocusTimerActivityAttributes>? = nil
-    
+    @State private var routineStartTime: Date? = nil
 
     @State private var elapsedSeconds: Int = 0
     @State private var isTimerRunning = false
@@ -93,6 +93,9 @@ struct RoutineSessionView: View {
                 }
             } else if newPhase == .active {
                 if state == .running {
+                    if let start = routineStartTime {
+                        elapsedSeconds = Int(Date().timeIntervalSince(start))
+                    }
                     UIApplication.shared.isIdleTimerDisabled = true
                     isTimerRunning = true
                 }
@@ -148,6 +151,7 @@ struct RoutineSessionView: View {
     private func startSession() {
         withAnimation {
             elapsedSeconds = 0
+            routineStartTime = Date()
             state = .running
             isTimerRunning = true
         }
@@ -469,7 +473,7 @@ struct RoutineSessionView: View {
         }
         
         let state = FocusTimerActivityAttributes.ContentState(
-            endTime: Date(), 
+            endTime: routineStartTime ?? Date(), 
             title: String(localized: "routine.session.progress", defaultValue: "Schritt \(currentHabitIndex + 1) von \(habits.count)"),
             musicName: currentMusic,
             tasks: tasks,
@@ -496,7 +500,7 @@ struct RoutineSessionView: View {
         }
         
         let state = FocusTimerActivityAttributes.ContentState(
-            endTime: Date().addingTimeInterval(TimeInterval(-elapsedSeconds)), // Keep the start time consistent
+            endTime: routineStartTime ?? Date(), // Keep the exact same start time
             title: String(localized: "routine.session.progress", defaultValue: "Schritt \(currentHabitIndex + 1) von \(habits.count)"),
             musicName: currentMusic,
             tasks: tasks,
@@ -512,8 +516,18 @@ struct RoutineSessionView: View {
     private func stopLiveActivity() {
         guard let activity = routineActivity else { return }
         
+        let currentMusic = FocusAudioManager.shared.isPlaying ? FocusAudioManager.shared.currentSound.displayName : nil
+        let state = FocusTimerActivityAttributes.ContentState(
+            endTime: routineStartTime ?? Date(),
+            title: String(localized: "routine.success.title", defaultValue: "Geschafft!"),
+            musicName: currentMusic,
+            tasks: [],
+            isProUser: iapStore.isProUser,
+            isRoutine: true
+        )
+        
         Task {
-            await activity.end(nil, dismissalPolicy: .immediate)
+            await activity.end(ActivityContent(state: state, staleDate: nil), dismissalPolicy: .immediate)
             routineActivity = nil
         }
     }
