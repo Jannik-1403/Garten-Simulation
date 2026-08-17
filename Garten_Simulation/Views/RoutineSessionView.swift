@@ -247,7 +247,7 @@ struct RoutineSessionView: View {
                     .frame(width: 250, height: 250)
                     .padding(.top, -10)
                 
-                Text(LocalizedStringKey(settings.showHabitInsteadOfName ? currentHabit.displayedHabitName : currentHabit.name))
+                Text(LocalizedStringKey(currentHabit.isRoutineOnly ? currentHabit.displayedHabitName : (settings.showHabitInsteadOfName ? currentHabit.displayedHabitName : currentHabit.name)))
                     .environment(\.locale, Locale(identifier: settings.appLanguage))
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)

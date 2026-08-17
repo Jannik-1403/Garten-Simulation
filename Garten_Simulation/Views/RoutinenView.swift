@@ -541,7 +541,7 @@ struct RoutineHabitCard: View {
                 
                 // Details
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(pflanze.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(pflanze.name), locale: Locale(identifier: settings.appLanguage)))
+                    Text(pflanze.isRoutineOnly ? String(localized: String.LocalizationValue(pflanze.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : (settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(pflanze.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(pflanze.name), locale: Locale(identifier: settings.appLanguage))))
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundStyle(.primary)
                         .lineLimit(1)
@@ -1156,7 +1156,7 @@ struct SelectableHabitCard: View {
                 
                 // Name
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(pflanze.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(pflanze.name), locale: Locale(identifier: settings.appLanguage)))
+                    Text(pflanze.isRoutineOnly ? String(localized: String.LocalizationValue(pflanze.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : (settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(pflanze.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(pflanze.name), locale: Locale(identifier: settings.appLanguage))))
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundStyle(.primary)
                         .lineLimit(1)

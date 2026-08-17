@@ -8,6 +8,7 @@ struct CreateRoutineCustomToDoSheet: View {
     @Binding var selectedHabits: Set<String>
     
     @State private var todoName: String = ""
+    @State private var todoDescription: String = ""
     @State private var selectedPlantID: String? = nil
     
     var availablePlants: [Plant] {
@@ -36,6 +37,21 @@ struct CreateRoutineCustomToDoSheet: View {
                         }
                         .padding(.horizontal, 24)
                         .padding(.top, 24)
+                        
+                        // Description Input (Optional)
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text(String(localized: "routine.todo.description", defaultValue: "Beschreibung (Optional)"))
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundStyle(.primary)
+                            
+                            TextField(String(localized: "routine.todo.description.placeholder", defaultValue: "z.B. Nur den Restmüll"), text: $todoDescription)
+                                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                                .padding(16)
+                                .background(Color(white: 0.95))
+                                .cornerRadius(16)
+                        }
+                        .padding(.horizontal, 24)
+                        .padding(.top, 8)
                         
                         // Plant Icon Selection
                         VStack(alignment: .leading, spacing: 12) {
@@ -115,7 +131,7 @@ struct CreateRoutineCustomToDoSheet: View {
             symbolName: plant.symbolName,
             symbolColor: plant.symbolColor,
             habitCategory: .lifestyle,
-            symbolism: plant.symbolism,
+            symbolism: todoDescription,
             habitName: todoName,
             maxLevel: plant.maxLevel,
             xpPerCompletion: plant.xpPerCompletion,

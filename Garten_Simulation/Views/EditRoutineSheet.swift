@@ -187,7 +187,7 @@ struct EditRoutineSheet: View {
                                                         .scaledToFit()
                                                         .frame(width: 32, height: 32)
                                                     
-                                                    Text(settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(habit.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(habit.name), locale: Locale(identifier: settings.appLanguage)))
+                                                    Text(habit.isRoutineOnly ? String(localized: String.LocalizationValue(habit.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : (settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(habit.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(habit.name), locale: Locale(identifier: settings.appLanguage))))
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                                 }
                                                 .padding(.vertical, 4)
@@ -203,7 +203,7 @@ struct EditRoutineSheet: View {
                                                         .scaledToFit()
                                                         .frame(width: 32, height: 32)
                                                     
-                                                    Text(settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(habit.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(habit.name), locale: Locale(identifier: settings.appLanguage)))
+                                                    Text(habit.isRoutineOnly ? String(localized: String.LocalizationValue(habit.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : (settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(habit.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(habit.name), locale: Locale(identifier: settings.appLanguage))))
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                                 }
                                                 .padding(.vertical, 4)
