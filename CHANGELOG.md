@@ -1,3 +1,6 @@
+## 2026-08-17 10:44 - Weekly Goal Retroactive Points Fix
+- **Ziele (Wochenziel)**: Wenn ein Wochenziel neu erstellt oder aktualisiert wird, werden bereits abgeschlossene Gewohnheiten (aus der aktuellen Woche) nun rückwirkend angerechnet und generieren entsprechende Punkte.
+
 ## 2026-08-15 17:45 - App Tour Fix
 - **App Tour**: Veraltete Tour-Schritte (Streak und XP 90-Tage Challenge) für die Pflanzendetail-Ansicht gelöscht.
 - **Pflanze Gießen**: Text für die Bewässerung-Erklärung ("Drag & Drop") wurde auf den neuen Fortschrittsbalken ("Slider nach rechts schieben") aktualisiert.
