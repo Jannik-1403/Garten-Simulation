@@ -116,7 +116,7 @@ struct TodosTabView: View {
                 if let selected = selectedPlantForTodo {
                     TodoSheetView(pflanze: selected, editIndex: todoToEditIndex)
                 } else {
-                    GlobalTodoAddSheet()
+                    GlobalTodoAddSheet(editIndex: todoToEditIndex)
                 }
             }
         }
@@ -302,6 +302,8 @@ struct GlobalTodoAddSheet: View {
     @EnvironmentObject var gardenStore: GardenStore
     @Environment(\.dismiss) private var dismiss
     
+    var editIndex: Int? = nil
+    
     @State private var selectedPlant: HabitModel?
     @State private var todoText: String = ""
     
@@ -359,13 +361,23 @@ struct GlobalTodoAddSheet: View {
                     let trimmed = todoText.trimmingCharacters(in: .whitespacesAndNewlines)
                     guard !trimmed.isEmpty else { return }
                     
-                    let newTodo = FocusGoal(text: trimmed)
-                    
                     if let selected = selectedPlant {
-                        selected.todos.append(newTodo)
+                        if let idx = editIndex {
+                            gardenStore.standaloneTodos.remove(at: idx)
+                            let newTodo = FocusGoal(text: trimmed)
+                            selected.todos.append(newTodo)
+                        } else {
+                            let newTodo = FocusGoal(text: trimmed)
+                            selected.todos.append(newTodo)
+                        }
                         gardenStore.savePlants()
                     } else {
-                        gardenStore.standaloneTodos.append(newTodo)
+                        if let idx = editIndex {
+                            gardenStore.standaloneTodos[idx].text = trimmed
+                        } else {
+                            let newTodo = FocusGoal(text: trimmed)
+                            gardenStore.standaloneTodos.append(newTodo)
+                        }
                         // saveStandaloneTodos() is called via property observer
                     }
                     
@@ -383,7 +395,7 @@ struct GlobalTodoAddSheet: View {
             }
             .padding(.horizontal, 24)
             .padding(.top, 24)
-            .navigationTitle(String(localized: "plant.detail.todo.add", defaultValue: "To-Do hinzufügen"))
+            .navigationTitle(editIndex != nil ? String(localized: "plant.detail.todo.edit", defaultValue: "To-Do bearbeiten") : String(localized: "plant.detail.todo.add", defaultValue: "To-Do hinzufügen"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -391,6 +403,11 @@ struct GlobalTodoAddSheet: View {
                         dismiss()
                     }
                     .foregroundColor(.primary)
+                }
+            }
+            .onAppear {
+                if let idx = editIndex, gardenStore.standaloneTodos.indices.contains(idx) {
+                    todoText = gardenStore.standaloneTodos[idx].text
                 }
             }
         }
