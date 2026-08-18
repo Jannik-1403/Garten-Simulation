@@ -113,11 +113,14 @@ struct TodosTabView: View {
                 }
             }
             .sheet(isPresented: $showingAddTodoSheet) {
-                if let selected = selectedPlantForTodo {
-                    TodoSheetView(pflanze: selected, editIndex: todoToEditIndex)
-                } else {
-                    GlobalTodoAddSheet(editIndex: todoToEditIndex)
+                Group {
+                    if let selected = selectedPlantForTodo {
+                        TodoSheetView(pflanze: selected, editIndex: todoToEditIndex)
+                    } else {
+                        GlobalTodoAddSheet(editIndex: todoToEditIndex)
+                    }
                 }
+                .id(todoToEditIndex == nil ? "add" : "edit-\(todoToEditIndex!)")
             }
         }
     }
@@ -408,6 +411,8 @@ struct GlobalTodoAddSheet: View {
             .onAppear {
                 if let idx = editIndex, gardenStore.standaloneTodos.indices.contains(idx) {
                     todoText = gardenStore.standaloneTodos[idx].text
+                } else {
+                    todoText = ""
                 }
             }
         }

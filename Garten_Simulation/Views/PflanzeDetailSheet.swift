@@ -432,6 +432,7 @@ struct PflanzeDetailSheet: View {
         // MARK: - Todo Sheet
         .sheet(isPresented: $zeigeTodoSheet) {
             TodoSheetView(pflanze: pflanze, editIndex: todoToEditIndex)
+                .id(todoToEditIndex == nil ? "add" : "edit-\(todoToEditIndex!)")
         }
         
         // MARK: - Apple Health Entkoppeln Dialog
@@ -698,6 +699,8 @@ struct TodoSheetView: View {
         .onAppear {
             if let idx = editIndex, pflanze.todos.indices.contains(idx) {
                 todoText = pflanze.todos[idx].text
+            } else {
+                todoText = ""
             }
         }
     }
