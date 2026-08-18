@@ -1,0 +1,4 @@
+"NSCalendarsFullAccessUsageDescription" = "Grovy potrzebuje dostępu do Twojego kalendarza, abyś mógł przeciągać i upuszczać wydarzenia do swoich minutników.";
+"NSHealthShareUsageDescription" = "Grovy korzysta z Apple Health, aby zsynchronizować Twoje cele zdrowotne (np. kroki, sen) z postępami w ogrodzie.";
+"NSHealthUpdateUsageDescription" = "Grovy korzysta z Apple Health, aby zsynchronizować Twoje cele zdrowotne z postępami w ogrodzie.";
+"NSPhotoLibraryAddUsageDescription" = "Grovy chce zapisać wyeksportowane statystyki lub obraz osiągnięcia bezpośrednio w Twojej galerii zdjęć.";

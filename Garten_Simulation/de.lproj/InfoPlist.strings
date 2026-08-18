@@ -1,0 +1,4 @@
+"NSCalendarsFullAccessUsageDescription" = "Grovy benötigt deinen Kalender, damit du Termine per Drag & Drop in deine Timer ziehen kannst.";
+"NSHealthShareUsageDescription" = "Grovy nutzt Apple Health, um deine Gesundheitsziele (z. B. Schritte, Schlaf) mit deinem Garten-Fortschritt zu synchronisieren.";
+"NSHealthUpdateUsageDescription" = "Grovy nutzt Apple Health, um deine Gesundheitsziele mit deinem Garten-Fortschritt zu synchronisieren.";
+"NSPhotoLibraryAddUsageDescription" = "Grovy möchte dein exportiertes Statistik- oder Erfolgsbild direkt in deiner Fotogalerie speichern.";

@@ -1,0 +1,4 @@
+"NSCalendarsFullAccessUsageDescription" = "タイマーに予定をドラッグ＆ドロップできるように、Grovyにカレンダーへのアクセスを許可してください。";
+"NSHealthShareUsageDescription" = "GrovyはApple Healthを利用して、健康目標（歩数、睡眠など）を庭の成長と同期します。";
+"NSHealthUpdateUsageDescription" = "GrovyはApple Healthを利用して、健康目標を庭の成長と同期します。";
+"NSPhotoLibraryAddUsageDescription" = "Grovyはエクスポートした統計や達成画像の画像を直接フォトギャラリーに保存します。";

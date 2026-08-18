@@ -1,3 +1,4 @@
-"CFBundleDisplayName" = "Grovy";
-"CFBundleName" = "Grovy";
-"Grovy Save Game" = "Sauvegarde Grovy";
+"NSCalendarsFullAccessUsageDescription" = "Grovy needs access to your calendar so you can drag & drop events into your timers.";
+"NSHealthShareUsageDescription" = "Grovy uses Apple Health to synchronize your health goals (e.g. steps, sleep) with your garden progress.";
+"NSHealthUpdateUsageDescription" = "Grovy uses Apple Health to synchronize your health goals with your garden progress.";
+"NSPhotoLibraryAddUsageDescription" = "Grovy would like to save your exported statistics or achievement image directly to your photo gallery.";

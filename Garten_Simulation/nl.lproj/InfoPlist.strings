@@ -1,0 +1,4 @@
+"NSCalendarsFullAccessUsageDescription" = "Grovy heeft toegang tot je agenda nodig zodat je afspraken naar je timers kunt slepen.";
+"NSHealthShareUsageDescription" = "Grovy gebruikt Apple Health om je gezondheidsdoelen (bijv. stappen, slaap) te synchroniseren met de voortgang in je tuin.";
+"NSHealthUpdateUsageDescription" = "Grovy gebruikt Apple Health om je gezondheidsdoelen te synchroniseren met de voortgang in je tuin.";
+"NSPhotoLibraryAddUsageDescription" = "Grovy wil je geëxporteerde statistieken of prestatie-afbeelding direct in je fotogalerij opslaan.";

@@ -1,0 +1,4 @@
+"NSCalendarsFullAccessUsageDescription" = "타이머에 이벤트를 드래그 앤 드롭할 수 있도록 Grovy의 캘린더 접근을 허용해주세요.";
+"NSHealthShareUsageDescription" = "Grovy는 Apple Health를 사용하여 건강 목표(예: 걸음 수, 수면)를 정원의 성장과 동기화합니다.";
+"NSHealthUpdateUsageDescription" = "Grovy는 Apple Health를 사용하여 건강 목표를 정원의 성장과 동기화합니다.";
+"NSPhotoLibraryAddUsageDescription" = "Grovy가 내보낸 통계 또는 달성 이미지를 사진 갤러리에 직접 저장하려고 합니다.";
