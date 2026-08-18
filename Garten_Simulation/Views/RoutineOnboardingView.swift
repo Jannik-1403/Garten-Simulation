@@ -151,7 +151,7 @@ struct RoutineOnboardingView: View {
             .sheet(item: $routineToEdit) { editableRoutine in
                 if let index = routines.firstIndex(where: { $0.id == editableRoutine.id }) {
                     let assignedToOthers = routines.filter { $0.id != editableRoutine.id }.flatMap { $0.assignedHabitIDs }
-                    let available = gardenStore.pflanzen.filter { !assignedToOthers.contains($0.id) }
+                    let available = gardenStore.activeHabits.filter { !assignedToOthers.contains($0.id) }
                     
                     EditRoutineSheet(
                         routine: $routines[index],

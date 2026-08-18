@@ -23,8 +23,12 @@ class GardenStore: ObservableObject {
         didSet { saveStandaloneTodos() }
     }
     
+    var activeHabits: [HabitModel] {
+        pflanzen.filter { !$0.isRoutineOnly }
+    }
+    
     var sichtbarePflanzen: [HabitModel] {
-        let visible = pflanzen.filter { !$0.isRoutineOnly }
+        let visible = activeHabits
         return visible.filter { !$0.istBewässert } + visible.filter { $0.istBewässert }
     }
     

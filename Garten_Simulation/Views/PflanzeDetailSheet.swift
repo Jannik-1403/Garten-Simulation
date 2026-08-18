@@ -1811,7 +1811,7 @@ struct ExportNotesSelectionSheet: View {
                     if selectionMode == .custom {
                         ScrollView {
                             VStack(alignment: .leading, spacing: 16) {
-                                let goodHabits = gardenStore.pflanzen.filter { !$0.notizen.isEmpty }
+                                let goodHabits = gardenStore.activeHabits.filter { !$0.notizen.isEmpty }
                                 if !goodHabits.isEmpty {
                                     Text(String(localized: "pdf.notes.good_habits", defaultValue: "Gute Gewohnheiten"))
                                         .font(.system(size: 18, weight: .bold, design: .rounded))

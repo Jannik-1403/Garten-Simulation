@@ -579,7 +579,7 @@ struct FocusSessionView: View {
             gardenStore.giessen(pflanze: pflanze)
             
             // XP von der spezifischen Pflanze abziehen und auf alle aufteilen
-            if !gardenStore.pflanzen.isEmpty {
+            if !gardenStore.activeHabits.isEmpty {
                 pflanze.currentXP -= xpGained
                 
                 let formatter = DateFormatter()
@@ -589,10 +589,10 @@ struct FocusSessionView: View {
                     pflanze.xpHistory[key] = max(0, currentHistory - xpGained)
                 }
                 
-                let share = max(1, xpGained / gardenStore.pflanzen.count)
-                let remainder = xpGained % gardenStore.pflanzen.count
+                let share = max(1, xpGained / gardenStore.activeHabits.count)
+                let remainder = xpGained % gardenStore.activeHabits.count
                 
-                for (index, p) in gardenStore.pflanzen.enumerated() {
+                for (index, p) in gardenStore.activeHabits.enumerated() {
                     let amount = share + (index == 0 ? remainder : 0)
                     p.currentXP += amount
                     p.xpHistory[key] = (p.xpHistory[key] ?? 0) + amount

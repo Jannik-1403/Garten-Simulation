@@ -62,7 +62,7 @@ struct TodosTabView: View {
                             }
                             
                             // 2. Habit-specific Todos Section
-                            ForEach(gardenStore.pflanzen) { pflanze in
+                            ForEach(gardenStore.activeHabits) { pflanze in
                                 if !pflanze.todos.isEmpty {
                                     VStack(alignment: .leading, spacing: 12) {
                                         Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
@@ -123,7 +123,7 @@ struct TodosTabView: View {
     }
     
     private func alleTodosEmpty() -> Bool {
-        return gardenStore.pflanzen.allSatisfy { $0.todos.isEmpty } && gardenStore.standaloneTodos.isEmpty
+        return gardenStore.activeHabits.allSatisfy { $0.todos.isEmpty } && gardenStore.standaloneTodos.isEmpty
     }
 }
 
@@ -315,7 +315,7 @@ struct GlobalTodoAddSheet: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(alignment: .top, spacing: 12) {
-                            ForEach(gardenStore.pflanzen) { pflanze in
+                            ForEach(gardenStore.activeHabits) { pflanze in
                                 VStack(spacing: 8) {
                                     let isSelected = selectedPlant?.id == pflanze.id
                                     PflanzenButton(
