@@ -473,3 +473,9 @@
 - Custom To-Dos in Routinen haben jetzt ein optionales Beschreibungs-Feld anstelle der Icon-Beschreibung, und der Name wird immer korrekt angezeigt.
 
 - Bugfix: Routine Live Activity Timer gefixt. Der Timer (sowohl in der App als auch auf dem Lockscreen) zeigt nun immer stabil die Gesamtzeit der Routine an und springt nicht mehr zurück oder friert im Hintergrund ein. Zudem beendet sich die Live Activity beim Abschluss der Routine nun sauber.
+
+- Screen Time Einstellungen für normale Nutzer entfernt und in die Developer Options verschoben
+
+### Routine-Todos Fix
+- **Keine Fehlberechnung mehr:** Routine-Only Todos vergeben beim Abhaken in `GardenStore` keine Coins, XP, Statistiken oder Streaks mehr. Level-Up Popups für Routine-Todos sind dadurch ebenfalls gefixt.
+- **Eigener Name:** Beim Hinzufügen von Todos zu einer Routine ist das Namens-Feld jetzt optional. Ein eingegebener Name wird im UI nun über dem Standard-Icon-Text bevorzugt. Bleibt das Feld leer, wird stattdessen "To-Do" verwendet, ohne den Text des ausgewählten Icons zu übernehmen.

@@ -305,10 +305,6 @@ struct ShareAchievementCard: View {
                 Text(erfolg.tier.label.uppercased())
                     .font(.system(size: 14, weight: .black, design: .rounded))
                     .foregroundStyle(erfolg.tier.color)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 6)
-                    .background(erfolg.tier.color.opacity(0.12))
-                    .clipShape(Capsule())
                 
                 Text(NSLocalizedString(erfolg.beschreibungKey, comment: ""))
                     .font(.system(size: 15, weight: .bold, design: .rounded))
@@ -332,9 +328,6 @@ struct ShareAchievementCard: View {
                 Text(verbatim: "@\(username)")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
                     .foregroundColor(textColor.opacity(0.8))
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(textColor.opacity(0.1), in: Capsule())
             }
             .padding(.horizontal, 24)
             .padding(.bottom, 24)
@@ -343,13 +336,6 @@ struct ShareAchievementCard: View {
         .background(
             Group {
                 switch theme {
-                case .vibrant:
-                    RadialGradient(
-                        colors: [erfolg.tier.color.opacity(0.25), Color.white],
-                        center: .center,
-                        startRadius: 10,
-                        endRadius: 300
-                    )
                 case .dark:
                     Color(hex: "#1C1C1E")
                 case .light:
@@ -371,7 +357,7 @@ struct ErfolgSharePreviewSheet: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var settings: SettingsStore
     
-    private let themes: [ShareImageTheme] = [.light, .dark, .vibrant]
+    private let themes: [ShareImageTheme] = [.light, .dark]
     
     var body: some View {
         NavigationStack {
@@ -460,7 +446,6 @@ struct ErfolgSharePreviewSheet: View {
     
     private func themeNameKey(for theme: ShareImageTheme) -> String {
         switch theme {
-        case .vibrant: return "stats.share.style.vibrant"
         case .light: return "stats.share.style.light"
         case .dark: return "stats.share.style.dark"
         }

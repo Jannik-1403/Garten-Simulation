@@ -70,6 +70,41 @@ struct SettingsView: View {
                             // MARK: - Integrationen (Pro Feature)
                             settingsSection(title: String(localized: "settings.section.integrations", defaultValue: "Integrationen")) {
                                 VStack(alignment: .leading, spacing: 0) {
+                                    NavigationLink {
+                                        ScreenTimeSettingsView()
+                                    } label: {
+                                        HStack(spacing: 12) {
+                                            Image(systemName: "hourglass")
+                                                .font(.system(size: 20, weight: .medium))
+                                                .foregroundStyle(.white)
+                                                .frame(width: 28, height: 28)
+                                                .background(Color.blue, in: RoundedRectangle(cornerRadius: 6))
+                                            
+                                            VStack(alignment: .leading, spacing: 4) {
+                                                Text(String(localized: "screenTime.title", defaultValue: "Bildschirmzeit"))
+                                                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                                                    .foregroundStyle(.primary)
+                                                
+                                                Text(String(localized: "settings.screenTime.instruction", defaultValue: "Verwalte Block-Zeiten und App-Kategorien."))
+                                                    .font(.system(size: 10, weight: .regular, design: .rounded))
+                                                    .foregroundStyle(.secondary)
+                                                    .lineLimit(2)
+                                            }
+                                            
+                                            Spacer()
+                                            
+                                            Image(systemName: "chevron.right")
+                                                .font(.system(size: 14, weight: .bold))
+                                                .foregroundStyle(.tertiary)
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 12)
+                                        .contentShape(Rectangle())
+                                    }
+                                    .buttonStyle(.plain)
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
                                     Button {
                                         if !iapStore.isProUser {
                                             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
@@ -107,7 +142,7 @@ struct SettingsView: View {
                                                     Text(String(localized: "settings.health.instruction", defaultValue: "Profil > Apps > Grovy, um Berechtigungen zu ändern."))
                                                         .font(.system(size: 10, weight: .regular, design: .rounded))
                                                         .foregroundStyle(.secondary)
-                                                        .lineLimit(2)
+                                                        .fixedSize(horizontal: false, vertical: true)
                                                 }
                                             }
                                             
@@ -244,6 +279,37 @@ struct SettingsView: View {
                                             Text(settings.isNotificationsEnabled ? String(localized: "settings.on") : String(localized: "settings.off"))
                                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                                 .foregroundStyle(settings.isNotificationsEnabled ? Color.gruenPrimary : Color.red)
+                                                
+                                            Image(systemName: "chevron.right")
+                                                .font(.system(size: 14, weight: .bold))
+                                                .foregroundStyle(.tertiary)
+                                        }
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 12)
+                                        .contentShape(Rectangle())
+                                    }
+                                    .buttonStyle(.plain)
+                                    
+                                    Divider().padding(.leading, 44)
+                                    
+                                    Button {
+                                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                                            UIApplication.shared.open(url)
+                                        }
+                                    } label: {
+                                        HStack(spacing: 12) {
+                                            Image(systemName: "hourglass")
+                                                .font(.system(size: 20, weight: .medium))
+                                                .foregroundStyle(.primary)
+                                                .frame(width: 28, height: 28)
+                                            
+                                            Text(String(localized: "screenTime.title", defaultValue: "Bildschirmzeit"))
+                                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                                            Spacer()
+                                            
+                                            Text(screenTimeManager.isAuthorized ? String(localized: "settings.on", defaultValue: "Ein") : String(localized: "settings.off", defaultValue: "Aus"))
+                                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                                .foregroundStyle(screenTimeManager.isAuthorized ? Color.gruenPrimary : Color.red)
                                                 
                                             Image(systemName: "chevron.right")
                                                 .font(.system(size: 14, weight: .bold))

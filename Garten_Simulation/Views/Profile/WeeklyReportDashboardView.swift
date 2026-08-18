@@ -159,7 +159,7 @@ struct WeeklyReportDashboardView: View {
                 ))
                 .overlay(alignment: .top) {
                     if let selected = selectedHabitsDay, selected.count > 0 {
-                        Text("\(selected.count) erledigt")
+                        Text(String(format: String(localized: "weekly_report.chart.habits.value", defaultValue: "%lld erledigt"), selected.count))
                             .font(.system(size: 12, weight: .bold, design: .rounded))
                             .padding(.horizontal, 10).padding(.vertical, 6)
                             .background(Color.green)

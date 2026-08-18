@@ -360,6 +360,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     
     // Custom ToDos in Routines
     @Published var isRoutineOnly: Bool = false
+    @Published var customRoutineTaskName: String? = nil
     
     // Generic Focus Session (not tied to a specific plant)
     @Published var isGenericFocus: Bool = false
@@ -435,6 +436,16 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     }
 
     var displayedHabitName: String {
+        if isRoutineOnly {
+            if let customName = customRoutineTaskName, !customName.isEmpty {
+                return customName
+            }
+            if !habitName.isEmpty {
+                return habitName
+            }
+            return "routine.todo.default"
+        }
+        
         if !habitName.isEmpty { return habitName }
         
         // 1. Suche den Standard-Gewohnheitsnamen in der Datenbank (z.B. habit.meditieren)
@@ -599,6 +610,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         customReminderMessage: String? = nil,
         isNegative: Bool = false,
         isRoutineOnly: Bool = false,
+        customRoutineTaskName: String? = nil,
         isGenericFocus: Bool = false,
         priority: GoalPriority = .medium
     ) {
@@ -617,6 +629,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.lastNotifiedCycle = lastNotifiedCycle
         self.isNegative = isNegative
         self.isRoutineOnly = isRoutineOnly
+        self.customRoutineTaskName = customRoutineTaskName
         self.isGenericFocus = isGenericFocus
         self.priority = priority
         self.challengeJokers = 0
@@ -666,7 +679,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case individualSchwierigkeit
         case linkedHealthMetric, healthTarget, allowManualTrackingForHealth, isAppleHealthUnlinked
         case customTrackerName, customTrackerTarget, customTrackerProgress
-        case isRoutineOnly
+        case isRoutineOnly, customRoutineTaskName
         case isGenericFocus
         case challengeJokers
         case todos
@@ -768,6 +781,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         customTrackerTarget = try container.decodeIfPresent(Double.self, forKey: .customTrackerTarget)
         customTrackerProgress = try container.decodeIfPresent(Double.self, forKey: .customTrackerProgress) ?? 0
         isRoutineOnly = try container.decodeIfPresent(Bool.self, forKey: .isRoutineOnly) ?? false
+        customRoutineTaskName = try container.decodeIfPresent(String.self, forKey: .customRoutineTaskName)
         isGenericFocus = try container.decodeIfPresent(Bool.self, forKey: .isGenericFocus) ?? false
         priority = try container.decodeIfPresent(GoalPriority.self, forKey: .priority) ?? .medium
         challengeJokers = try container.decodeIfPresent(Int.self, forKey: .challengeJokers) ?? 0
@@ -825,7 +839,9 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encodeIfPresent(customTrackerName, forKey: .customTrackerName)
         try container.encodeIfPresent(customTrackerTarget, forKey: .customTrackerTarget)
         try container.encode(customTrackerProgress, forKey: .customTrackerProgress)
+        
         try container.encode(isRoutineOnly, forKey: .isRoutineOnly)
+        try container.encode(customRoutineTaskName, forKey: .customRoutineTaskName)
         try container.encode(isGenericFocus, forKey: .isGenericFocus)
         try container.encode(challengeJokers, forKey: .challengeJokers)
         try container.encode(priority, forKey: .priority)

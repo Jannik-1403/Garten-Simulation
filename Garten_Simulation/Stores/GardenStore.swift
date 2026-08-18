@@ -296,6 +296,26 @@ class GardenStore: ObservableObject {
                 pflanze.customTrackerProgress = target
             }
         }
+        
+        if pflanze.isRoutineOnly {
+            self.letzteGiessXP = 0
+            self.letzteGiessCoins = 0
+            self.letzterBonus = nil
+            self.letzteBonusPflanzeID = nil
+            self.letzteGiessPflanzeID = pflanze.id
+            
+            pflanze.istBewässert = true
+            pflanze.letzteBewaesserung = Date()
+            
+            let timeString = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .short)
+            let routineString = fromRoutine ? String(localized: "note.auto.routine", defaultValue: "(mit Routine)") : String(localized: "note.auto.no_routine", defaultValue: "(ohne Routine)")
+            let noteText = "\(timeString) -  \(String(localized: "note.auto.completed", defaultValue: "Gewohnheit abgeschlossen")) \(routineString)"
+            
+            pflanze.notizen.insert(noteText, at: 0)
+            
+            savePlants()
+            return
+        }
 
         // 2. XP & Coins berechnen (Multiplikative Logik)
         let xpMult = xpMultiplikator(for: pflanze)

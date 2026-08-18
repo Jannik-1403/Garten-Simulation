@@ -2150,7 +2150,6 @@ struct MilestonesShareImage: View {
 // MARK: - Helper Components
 
 enum ShareImageTheme {
-    case vibrant
     case light
     case dark
 }
@@ -2166,7 +2165,7 @@ struct StatShareImage<Content: View>: View {
     
     @EnvironmentObject var settings: SettingsStore
     
-    init(title: String, subtitle: String, username: String, height: CGFloat, theme: ShareImageTheme = .vibrant, vibrantColor: Color = .gruenPrimary, @ViewBuilder content: () -> Content) {
+    init(title: String, subtitle: String, username: String, height: CGFloat, theme: ShareImageTheme = .light, vibrantColor: Color = .gruenPrimary, @ViewBuilder content: () -> Content) {
         self.title = title
         self.subtitle = subtitle
         self.username = username
@@ -2223,7 +2222,6 @@ struct StatShareImage<Content: View>: View {
                         .foregroundColor(textColor.opacity(0.8))
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(textColor.opacity(0.1), in: Capsule())
                 }
                 .padding(.horizontal, 36)
                 .padding(.bottom, 44)
@@ -2237,17 +2235,6 @@ struct StatShareImage<Content: View>: View {
     @ViewBuilder
     private var backgroundView: some View {
         switch theme {
-        case .vibrant:
-            RadialGradient(
-                stops: [
-                    .init(color: Color(red: 1.0, green: 0.95, blue: 0.4), location: 0.0), // Strahlendes Gold
-                    .init(color: Color(red: 1.0, green: 0.6, blue: 0.0), location: 0.4),  // Sattes Orange
-                    .init(color: Color(red: 0.9, green: 0.35, blue: 0.0), location: 1.0)  // Kräftiges Bernstein/Orange (weniger rot)
-                ],
-                center: UnitPoint(x: 0.85, y: 0.85),
-                startRadius: 10,
-                endRadius: 650
-            ).ignoresSafeArea()
         case .light:
             Color.white.ignoresSafeArea()
         case .dark:
@@ -2267,7 +2254,6 @@ struct StatShareImage<Content: View>: View {
         switch theme {
         case .dark: return Color.white.opacity(0.08)
         case .light: return Color.white.opacity(0.8)
-        case .vibrant: return Color.white.opacity(0.15)
         }
     }
     
@@ -2322,7 +2308,7 @@ struct SharePreviewSheet: View {
         return name.isEmpty ? String(localized: "profile.user.name.default") : name
     }
     
-    private let themes: [ShareImageTheme] = [.light, .dark, .vibrant]
+    private let themes: [ShareImageTheme] = [.light, .dark]
     
     var body: some View {
         NavigationStack {
@@ -2799,7 +2785,6 @@ struct SharePreviewSheet: View {
     
     private func themeNameKey(for theme: ShareImageTheme) -> String {
         switch theme {
-        case .vibrant: return "stats.share.style.vibrant"
         case .light: return "stats.share.style.light"
         case .dark: return "stats.share.style.dark"
         }

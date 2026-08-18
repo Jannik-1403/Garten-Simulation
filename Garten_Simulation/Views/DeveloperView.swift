@@ -278,17 +278,6 @@ struct DeveloperView: View {
                             }
                         }
                     }
-                    
-                    // Section 8: Screen Time
-                    settingsSection(title: "Screen Time (Developer)") {
-                        VStack(spacing: 0) {
-                            NavigationLink {
-                                ScreenTimeSettingsView()
-                            } label: {
-                                settingRow(title: "Bildschirmzeit Einstellungen", icon: "hourglass", color: .blue)
-                            }
-                        }
-                    }
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 20)

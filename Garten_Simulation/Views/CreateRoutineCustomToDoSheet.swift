@@ -106,43 +106,44 @@ struct CreateRoutineCustomToDoSheet: View {
                     }
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                 }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(String(localized: "common.save", defaultValue: "Speichern")) {
-                        saveToDo()
-                    }
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(todoName.isEmpty || selectedPlantID == nil ? .secondary : .primary)
-                    .disabled(todoName.isEmpty || selectedPlantID == nil)
+            ToolbarItem(placement: .confirmationAction) {
+                Button(String(localized: "common.save", defaultValue: "Speichern")) {
+                    saveToDo()
                 }
+                .font(.system(size: 16, weight: .bold, design: .rounded))
+                .foregroundStyle(selectedPlantID == nil ? .secondary : .primary)
+                .disabled(selectedPlantID == nil)
             }
-            .onAppear {
-                if selectedPlantID == nil {
-                    selectedPlantID = availablePlants.first?.id
-                }
+        }
+        .onAppear {
+            if selectedPlantID == nil {
+                selectedPlantID = availablePlants.first?.id
             }
         }
     }
+}
+
+private func saveToDo() {
+    guard let plantID = selectedPlantID, let plant = GameDatabase.shared.plant(for: plantID) else { return }
     
-    private func saveToDo() {
-        guard let plantID = selectedPlantID, let plant = GameDatabase.shared.plant(for: plantID) else { return }
-        
-        let newHabit = HabitModel(
-            name: "habit.custom.todo",
-            symbolName: plant.symbolName,
-            symbolColor: plant.symbolColor,
-            habitCategory: .lifestyle,
-            symbolism: todoDescription,
-            habitName: todoName,
-            maxLevel: plant.maxLevel,
-            xpPerCompletion: plant.xpPerCompletion,
-            waterNeedPerDay: plant.waterNeedPerDay,
-            decayDays: plant.decayDays,
-            plantID: plant.id,
-            isRoutineOnly: true
-        )
-        gardenStore.pflanzen.append(newHabit)
-        gardenStore.savePlants()
-        selectedHabits.insert(newHabit.id)
-        dismiss()
-    }
+    let newHabit = HabitModel(
+        name: "habit.custom.todo",
+        symbolName: plant.symbolName,
+        symbolColor: plant.symbolColor,
+        habitCategory: .lifestyle,
+        symbolism: todoDescription,
+        habitName: todoName,
+        maxLevel: plant.maxLevel,
+        xpPerCompletion: plant.xpPerCompletion,
+        waterNeedPerDay: plant.waterNeedPerDay,
+        decayDays: plant.decayDays,
+        plantID: plant.id,
+        isRoutineOnly: true,
+        customRoutineTaskName: todoName.isEmpty ? nil : todoName
+    )
+    gardenStore.pflanzen.append(newHabit)
+    gardenStore.savePlants()
+    selectedHabits.insert(newHabit.id)
+    dismiss()
+}
 }
