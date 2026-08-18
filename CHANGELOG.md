@@ -503,3 +503,4 @@
 - **To-dos Automation:** Abgeschlossene To-dos auf der Hauptseite verschwinden nun automatisch nach 10 Sekunden (es sei denn, sie werden innerhalb der Zeit wieder deaktiviert).
 - **Settings:** Die 'App weiterempfehlen' und 'App bewerten' Buttons wurden aus den Einstellungen entfernt.
 - UI: Wochenziel-Banner in der To-Do-Ansicht verkleinert, damit es kompakter wirkt.
+- Routine-spezifische To-Dos (isRoutineOnly) werden nun konsequent aus den Gewohnheits-Listen ausgeblendet (z.B. beim Erstellen neuer To-Dos, in der Fokus-Session XP-Verteilung und in den Guten Gewohnheiten).
