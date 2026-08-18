@@ -1,3 +1,8 @@
+## 2026-08-18 10:00 - Localization 100% Fixes
+- **Übersetzungen**: Alle verbleibenden hartkodierten Texte im Code wurden identifiziert und durch lokalisierte Strings ersetzt.
+- **Auto-Translation**: Ein Skript wurde eingesetzt, um fehlende Keys in allen 15 Sprachen (über 270 fehlende Übersetzungen) automatisch mit deep-translator zu übersetzen, um eine 100%ige Abdeckung im String Catalog zu erzielen.
+- **Bugfix**: Einzelner Fallback-Übersetzungsfehler bei Apple Health für Traditionelles Chinesisch (zh-TW) wurde korrigiert.
+
 ## 2026-08-17 10:44 - Weekly Goal Retroactive Points Fix
 - **Ziele (Wochenziel)**: Wenn ein Wochenziel neu erstellt oder aktualisiert wird, werden bereits abgeschlossene Gewohnheiten (aus der aktuellen Woche) nun rückwirkend angerechnet und generieren entsprechende Punkte.
 
