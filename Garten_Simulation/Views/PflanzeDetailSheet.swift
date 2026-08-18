@@ -119,7 +119,7 @@ struct PflanzeDetailSheet: View {
                                     onEdit: {
                                         if let index = pflanze.todos.firstIndex(where: { $0.id == todo.id }) {
                                             todoToEditIndex = index
-                                            zeigeTodoSheet = true
+                                            Task { @MainActor in zeigeTodoSheet = true }
                                         }
                                     }
                                 )
@@ -139,8 +139,9 @@ struct PflanzeDetailSheet: View {
                                 groesse: 36,
                                 isRectangular: false,
                                 aktion: {
+                                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                                     todoToEditIndex = nil
-                                    zeigeTodoSheet = true
+                                    Task { @MainActor in zeigeTodoSheet = true }
                                 }
                             ) {
                                 Image(systemName: "plus")

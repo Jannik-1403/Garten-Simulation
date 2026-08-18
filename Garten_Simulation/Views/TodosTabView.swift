@@ -51,7 +51,7 @@ struct TodosTabView: View {
                                                     if let index = gardenStore.standaloneTodos.firstIndex(where: { $0.id == todo.id }) {
                                                         selectedPlantForTodo = nil
                                                         todoToEditIndex = index
-                                                        showingAddTodoSheet = true
+                                                        Task { @MainActor in showingAddTodoSheet = true }
                                                     }
                                                 }
                                             )
@@ -81,7 +81,7 @@ struct TodosTabView: View {
                                                         if let index = pflanze.todos.firstIndex(where: { $0.id == todo.id }) {
                                                             selectedPlantForTodo = pflanze
                                                             todoToEditIndex = index
-                                                            showingAddTodoSheet = true
+                                                            Task { @MainActor in showingAddTodoSheet = true }
                                                         }
                                                     }
                                                 )
@@ -104,7 +104,7 @@ struct TodosTabView: View {
                     Button {
                         selectedPlantForTodo = nil
                         todoToEditIndex = nil
-                        showingAddTodoSheet = true
+                        Task { @MainActor in showingAddTodoSheet = true }
                     } label: {
                         Image(systemName: "plus")
                             .font(.system(size: 20, weight: .bold))
