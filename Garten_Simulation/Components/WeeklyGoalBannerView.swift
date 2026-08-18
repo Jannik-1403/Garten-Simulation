@@ -37,18 +37,18 @@ struct WeeklyGoalBannerView: View {
                     editTitle = goal.title
                     showEditSheet = true
                 } label: {
-                    VStack(spacing: 24) {
+                    VStack(spacing: 16) {
                         // 1. Titel im 3D-Stil
                         ZStack {
                             // Lower layer (Dunkleres Blau für den Schatten/3D-Tiefe)
                             Text(goal.title)
-                                .font(.system(size: 30, weight: .black, design: .rounded))
+                                .font(.system(size: 24, weight: .black, design: .rounded))
                                 .foregroundStyle(Color(hex: "#0288D1"))
                                 .offset(y: 4)
                             
                             // Upper layer (Leuchtendes Blau für die Front)
                             Text(goal.title)
-                                .font(.system(size: 30, weight: .black, design: .rounded))
+                                .font(.system(size: 24, weight: .black, design: .rounded))
                                 .foregroundStyle(Color(hex: "#4FC3F7"))
                         }
                         .multilineTextAlignment(.center)
@@ -96,8 +96,8 @@ struct WeeklyGoalBannerView: View {
                         }
                         .padding(.horizontal, 4) // Weniger Padding, Balken länger
                     }
-                    .padding(.top, 32)
-                    .padding(.bottom, 24)
+                    .padding(.top, 24)
+                    .padding(.bottom, 20)
                     .padding(.horizontal, 20)
                     .contentShape(Rectangle()) // Macht den gesamten Banner-Bereich klickbar
 
@@ -115,9 +115,9 @@ struct WeeklyGoalBannerView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 28, height: 28)
-                            .scaleEffect(2.8)
+                            .scaleEffect(2.2)
                         Text(String(localized: "goal.weekly.add", defaultValue: "Wochenziel festlegen"))
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
                             .foregroundColor(.primary)
                         Spacer()
                         Image(systemName: "plus.circle.fill")
@@ -125,7 +125,7 @@ struct WeeklyGoalBannerView: View {
                             .font(.title2)
                     }
                     .padding(.horizontal, 24)
-                    .padding(.vertical, 24)
+                    .padding(.vertical, 16)
                     .contentShape(Rectangle()) // Macht den gesamten Banner-Bereich klickbar
                 }
                 .buttonStyle(.plain)

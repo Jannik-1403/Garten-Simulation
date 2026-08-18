@@ -1,12 +1,18 @@
 import SwiftUI
 import Combine
 
+struct TodoDetailItem: Identifiable {
+    let id = UUID()
+    let text: String
+}
+
 struct TodosTabView: View {
     @EnvironmentObject var gardenStore: GardenStore
     
     @State private var showingAddTodoSheet = false
     @State private var selectedPlantForTodo: HabitModel?
     @State private var todoToEditIndex: Int? = nil
+    @State private var detailItem: TodoDetailItem? = nil
     
     var body: some View {
         NavigationStack {
@@ -53,6 +59,11 @@ struct TodosTabView: View {
                                                         todoToEditIndex = index
                                                         showingAddTodoSheet = true
                                                     }
+                                                },
+                                                onShowDetail: {
+                                                    if let index = gardenStore.standaloneTodos.firstIndex(where: { $0.id == todo.id }) {
+                                                        detailItem = TodoDetailItem(text: gardenStore.standaloneTodos[index].text)
+                                                    }
                                                 }
                                             )
                                         }
@@ -82,6 +93,11 @@ struct TodosTabView: View {
                                                             selectedPlantForTodo = pflanze
                                                             todoToEditIndex = index
                                                             showingAddTodoSheet = true
+                                                        }
+                                                    },
+                                                    onShowDetail: {
+                                                        if let index = pflanze.todos.firstIndex(where: { $0.id == todo.id }) {
+                                                            detailItem = TodoDetailItem(text: pflanze.todos[index].text)
                                                         }
                                                     }
                                                 )
@@ -119,6 +135,9 @@ struct TodosTabView: View {
                     GlobalTodoAddSheet()
                 }
             }
+            .sheet(item: $detailItem) { item in
+                TodoDetailSheet(text: item.text)
+            }
         }
     }
     
@@ -131,6 +150,7 @@ struct TodoRowView: View {
     @ObservedObject var pflanze: HabitModel
     let todoId: UUID
     let onEdit: () -> Void
+    let onShowDetail: () -> Void
     @EnvironmentObject var gardenStore: GardenStore
     
     var body: some View {
@@ -183,12 +203,28 @@ struct TodoRowView: View {
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .strikethrough(pflanze.todos[index].isCompleted)
                         .foregroundColor(pflanze.todos[index].isCompleted ? Color.white.opacity(0.8) : .primary)
+                        .lineLimit(2)
                     
                     Spacer()
+                    
+                    Image(systemName: "info.circle")
+                        .font(.system(size: 22))
+                        .foregroundColor(pflanze.todos[index].isCompleted ? Color.white.opacity(0.8) : .gray)
+                        .padding(.leading, 8)
+                        .contentShape(Rectangle())
+                        .highPriorityGesture(TapGesture().onEnded {
+                            onShowDetail()
+                        })
                 }
                 .padding(.horizontal, 8)
             }
             .contextMenu {
+                Button {
+                    onShowDetail()
+                } label: {
+                    Label(String(localized: "todo.detail.show", defaultValue: "Details anzeigen"), systemImage: "doc.text")
+                }
+                
                 Button {
                     onEdit()
                 } label: {
@@ -214,6 +250,7 @@ struct TodoRowView: View {
 struct StandaloneTodoRowView: View {
     let todoId: UUID
     let onEdit: () -> Void
+    let onShowDetail: () -> Void
     @EnvironmentObject var gardenStore: GardenStore
     
     var body: some View {
@@ -266,12 +303,28 @@ struct StandaloneTodoRowView: View {
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .strikethrough(gardenStore.standaloneTodos[index].isCompleted)
                         .foregroundColor(gardenStore.standaloneTodos[index].isCompleted ? Color.white.opacity(0.8) : .primary)
+                        .lineLimit(2)
                     
                     Spacer()
+                    
+                    Image(systemName: "info.circle")
+                        .font(.system(size: 22))
+                        .foregroundColor(gardenStore.standaloneTodos[index].isCompleted ? Color.white.opacity(0.8) : .gray)
+                        .padding(.leading, 8)
+                        .contentShape(Rectangle())
+                        .highPriorityGesture(TapGesture().onEnded {
+                            onShowDetail()
+                        })
                 }
                 .padding(.horizontal, 8)
             }
             .contextMenu {
+                Button {
+                    onShowDetail()
+                } label: {
+                    Label(String(localized: "todo.detail.show", defaultValue: "Details anzeigen"), systemImage: "doc.text")
+                }
+                
                 Button {
                     onEdit()
                 } label: {
@@ -393,4 +446,35 @@ struct GlobalTodoAddSheet: View {
     }
 }
 
-
+struct TodoDetailSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    let text: String
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Text(text)
+                        .font(.system(size: 18, weight: .medium, design: .rounded))
+                        .foregroundColor(.primary)
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color(UIColor.secondarySystemGroupedBackground))
+                        .cornerRadius(12)
+                        .padding()
+                }
+            }
+            .background(Color(UIColor.systemGroupedBackground).ignoresSafeArea())
+            .navigationTitle(String(localized: "todo.detail.title", defaultValue: "To-Do Details"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(String(localized: "common.done", defaultValue: "Fertig")) {
+                        dismiss()
+                    }
+                    .font(.system(size: 16, weight: .bold))
+                }
+            }
+        }
+    }
+}
