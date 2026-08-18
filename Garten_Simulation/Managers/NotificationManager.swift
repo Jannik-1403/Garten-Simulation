@@ -169,20 +169,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
             }
         }
 
-        // Globale Abend-Erinnerung (20:00 Uhr)
-        // Nur wenn es Pflanzen OHNE individuelle Reminder-Zeit gibt
-        let ohneReminder = habits.filter { !$0.hasActiveReminder }
-        if !ohneReminder.isEmpty {
-            let count = ohneReminder.count
-            let texts = NotificationTexts.abendeErinnerung(anzahlPflanzen: count)
-            scheduleRepeating(
-                id: "reminder-evening",
-                hour: 20,
-                minute: 0,
-                title: texts.title,
-                body: texts.body
-            )
-        }
+
     }
 
     // MARK: - Cancel
