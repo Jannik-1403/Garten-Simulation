@@ -115,9 +115,11 @@ struct TodosTabView: View {
             .sheet(isPresented: $showingAddTodoSheet) {
                 Group {
                     if let selected = selectedPlantForTodo {
-                        TodoSheetView(pflanze: selected, editIndex: todoToEditIndex)
+                        let text = (todoToEditIndex != nil && selected.todos.indices.contains(todoToEditIndex!)) ? selected.todos[todoToEditIndex!].text : ""
+                        TodoSheetView(pflanze: selected, editIndex: todoToEditIndex, initialText: text)
                     } else {
-                        GlobalTodoAddSheet(editIndex: todoToEditIndex)
+                        let text = (todoToEditIndex != nil && gardenStore.standaloneTodos.indices.contains(todoToEditIndex!)) ? gardenStore.standaloneTodos[todoToEditIndex!].text : ""
+                        GlobalTodoAddSheet(editIndex: todoToEditIndex, initialText: text)
                     }
                 }
                 .id(todoToEditIndex == nil ? "add" : "edit-\(todoToEditIndex!)")
@@ -305,10 +307,16 @@ struct GlobalTodoAddSheet: View {
     @EnvironmentObject var gardenStore: GardenStore
     @Environment(\.dismiss) private var dismiss
     
-    var editIndex: Int? = nil
+    var editIndex: Int?
     
     @State private var selectedPlant: HabitModel?
-    @State private var todoText: String = ""
+    @State private var todoText: String
+    
+    init(editIndex: Int? = nil, initialText: String = "") {
+        self.editIndex = editIndex
+        _selectedPlant = State(initialValue: nil)
+        _todoText = State(initialValue: initialText)
+    }
     
     var body: some View {
         NavigationStack {
@@ -406,13 +414,6 @@ struct GlobalTodoAddSheet: View {
                         dismiss()
                     }
                     .foregroundColor(.primary)
-                }
-            }
-            .onAppear {
-                if let idx = editIndex, gardenStore.standaloneTodos.indices.contains(idx) {
-                    todoText = gardenStore.standaloneTodos[idx].text
-                } else {
-                    todoText = ""
                 }
             }
         }

@@ -431,7 +431,8 @@ struct PflanzeDetailSheet: View {
 
         // MARK: - Todo Sheet
         .sheet(isPresented: $zeigeTodoSheet) {
-            TodoSheetView(pflanze: pflanze, editIndex: todoToEditIndex)
+            let text = (todoToEditIndex != nil && pflanze.todos.indices.contains(todoToEditIndex!)) ? pflanze.todos[todoToEditIndex!].text : ""
+            TodoSheetView(pflanze: pflanze, editIndex: todoToEditIndex, initialText: text)
                 .id(todoToEditIndex == nil ? "add" : "edit-\(todoToEditIndex!)")
         }
         
@@ -638,12 +639,18 @@ struct PflanzeDetailSheet: View {
 // MARK: - Todo Sheet
 struct TodoSheetView: View {
     @ObservedObject var pflanze: HabitModel
-    var editIndex: Int? = nil
+    var editIndex: Int?
 
     @EnvironmentObject var gardenStore: GardenStore
     @Environment(\.dismiss) private var dismiss
 
-    @State private var todoText: String = ""
+    @State private var todoText: String
+
+    init(pflanze: HabitModel, editIndex: Int? = nil, initialText: String = "") {
+        self.pflanze = pflanze
+        self.editIndex = editIndex
+        _todoText = State(initialValue: initialText)
+    }
 
     var isEditing: Bool { editIndex != nil }
 
@@ -696,13 +703,6 @@ struct TodoSheetView: View {
             .padding(.bottom, 20)
         }
         .padding(.horizontal, 24)
-        .onAppear {
-            if let idx = editIndex, pflanze.todos.indices.contains(idx) {
-                todoText = pflanze.todos[idx].text
-            } else {
-                todoText = ""
-            }
-        }
     }
 }
 
