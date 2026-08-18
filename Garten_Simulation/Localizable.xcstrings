@@ -944,6 +944,16 @@
         }
       }
     },
+    "%@ %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ %2$@"
+          }
+        }
+      }
+    },
     "%@ %lld %@": {
       "localizations": {
         "de": {
@@ -1703,6 +1713,7 @@
       }
     },
     "%lld Pkt": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -2931,6 +2942,7 @@
       }
     },
     "Abbrechen": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -7439,7 +7451,6 @@
       }
     },
     "apple.health.link": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -8959,7 +8970,6 @@
       }
     },
     "apple.health.unlink": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -9054,7 +9064,6 @@
       }
     },
     "apple.health.unlink.confirm.message": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -9149,7 +9158,6 @@
       }
     },
     "apple.health.unlink.confirm.title": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -9244,7 +9252,6 @@
       }
     },
     "apple.health.unlinked_message": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -87369,6 +87376,7 @@
       }
     },
     "Berechtigung fehlgeschlagen": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -93870,7 +93878,6 @@
       }
     },
     "chart.title.progress": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -98071,6 +98078,100 @@
         }
       }
     },
+    "common.free.parentheses": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Gratis)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Free)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Gratis)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Gratuit)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(मुक्त)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Gratuito)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "（無料）"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(무료)"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Vrij)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Bezpłatny)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Livre)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Бесплатно)"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(Özgür)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "（自由的）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "（自由的）"
+          }
+        }
+      }
+    },
     "common.fri": {
       "comment": "",
       "extractionState": "manual",
@@ -100169,6 +100270,100 @@
           "stringUnit": {
             "state": "translated",
             "value": "植物"
+          }
+        }
+      }
+    },
+    "common.points.short": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pkt"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "punto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pt"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pt"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ポイント"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "백금"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pt"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pt"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ponto"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пт"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "puan"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "铂"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鉑"
           }
         }
       }
@@ -108418,6 +108613,7 @@
       }
     },
     "Deine alten Daten wurden wiederhergestellt. Die App wird nun beendet. Bitte starte sie neu, um die Änderungen zu sehen.": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -126944,7 +127140,6 @@
       }
     },
     "focus.live_activity.more_tasks": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -127039,7 +127234,6 @@
       }
     },
     "focus.live_activity.music": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -128742,7 +128936,6 @@
       }
     },
     "focus.session.all_done": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -128837,7 +129030,6 @@
       }
     },
     "focus.session.all_done.desc": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -130067,7 +130259,6 @@
       }
     },
     "focus.session.no_goals": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -130541,7 +130732,6 @@
       }
     },
     "focus.session.task.placeholder": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -130825,7 +131015,6 @@
       }
     },
     "focus.session.your_tasks": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -137954,7 +138143,6 @@
       }
     },
     "goal.fiveyears.add": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -138049,7 +138237,6 @@
       }
     },
     "goal.fiveyears.label.arrow": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -142133,7 +142320,6 @@
       }
     },
     "goal.weekly.add": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -142228,7 +142414,6 @@
       }
     },
     "goal.weekly.label.arrow": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -143185,7 +143370,6 @@
       }
     },
     "habit.completed": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -146729,7 +146913,6 @@
       }
     },
     "health.chart.loading": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -147204,7 +147387,6 @@
       }
     },
     "health.chart.target.set": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -149104,7 +149286,6 @@
       }
     },
     "health.target.edit.label": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -149199,7 +149380,6 @@
       }
     },
     "health.target.edit.subtitle": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -149294,7 +149474,6 @@
       }
     },
     "health.target.edit.title": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -154570,7 +154749,6 @@
       }
     },
     "intent_water_desc": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -154855,7 +155033,6 @@
       }
     },
     "intent_water_title": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -155812,6 +155989,7 @@
       }
     },
     "iOS hat die Berechtigung verweigert. Fehlermeldung: %@.\n\nBitte überprüfe deine Berechtigungen in den Einstellungen.": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -180754,28 +180932,16 @@
             "value": "Mon objectif (ex. perdre du poids)"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Il mio obiettivo (es. dimagrire)"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meu objetivo (ex. perder peso)"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Моя цель (например, похудеть)"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
             "value": "मेरा लक्ष्य (जैसे वजन कम करना)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il mio obiettivo (es. dimagrire)"
           }
         },
         "ja": {
@@ -180800,6 +180966,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mój cel (np. utrata wagi)"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meu objetivo (ex. perder peso)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Моя цель (например, похудеть)"
           }
         },
         "tr": {
@@ -181485,6 +181663,288 @@
           "stringUnit": {
             "state": "translated",
             "value": "這週的目標是什麼？"
+          }
+        }
+      }
+    },
+    "onboarding.screentime.error": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS hat die Berechtigung verweigert. Fehlermeldung: %@.\n\nBitte überprüfe deine Berechtigungen in den Einstellungen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS denied permission. Error message: %@.\n\nPlease check your permissions in Settings."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS denegó el permiso. Mensaje de error: %@.\n\nVerifique sus permisos en Configuración."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS a refusé l'autorisation. Message d'erreur : %@.\n\nVeuillez vérifier vos autorisations dans Paramètres."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS ने अनुमति नहीं दी. त्रुटि संदेश: %@।\n\nकृपया सेटिंग्स में अपनी अनुमतियां जांचें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS ha negato l'autorizzazione. Messaggio di errore: %@.\n\nControlla le tue autorizzazioni in Impostazioni."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS が許可を拒否しました。エラー メッセージ: %@。\n\n設定で権限を確認してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS가 권한을 거부했습니다. 오류 메시지: %@.\n\n설정에서 권한을 확인하세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS heeft toestemming geweigerd. Foutmelding: %@.\n\nControleer uw rechten in Instellingen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS odmówił pozwolenia. Komunikat o błędzie: %@.\n\nSprawdź swoje uprawnienia w Ustawieniach."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS negou permissão. Mensagem de erro: %@.\n\nVerifique suas permissões em Configurações."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS отказала в разрешении. Сообщение об ошибке: %@.\n\nПожалуйста, проверьте свои разрешения в настройках."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS izni reddetti. Hata mesajı: %@.\n\nLütfen Ayarlar'daki izinlerinizi kontrol edin."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 拒绝许可。错误信息： %@。\n\n请在“设置”中检查您的权限。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iOS 拒絕許可。錯誤訊息: %@.\n\n請在「設定」中檢查您的權限。"
+          }
+        }
+      }
+    },
+    "onboarding.screentime.error.title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Berechtigung fehlgeschlagen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authorization failed"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorización fallida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'autorisation a échoué"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रमाणीकरण विफल"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorizzazione fallita"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "認証に失敗しました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "승인 실패"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorisatie mislukt"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autoryzacja nie powiodła się"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falha na autorização"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Авторизация не удалась"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yetkilendirme başarısız oldu"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "授权失败"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "授權失敗"
+          }
+        }
+      }
+    },
+    "onboarding.screentime.settings": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu den Einstellungen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Go to settings"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ir a configuración"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allez dans les paramètres"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सेटिंग्स में जाएं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vai alle impostazioni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定に移動"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "설정으로 이동"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ga naar instellingen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przejdź do ustawień"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vá para configurações"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Перейти в настройки"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayarlara git"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前往设置"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前往設定"
           }
         }
       }
@@ -211448,7 +211908,6 @@
       }
     },
     "plant.detail.timer.multiple_times": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -211733,7 +212192,6 @@
       }
     },
     "plant.detail.todo.edit": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -211922,7 +212380,6 @@
       }
     },
     "plant.detail.todos_header": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -308335,7 +308792,6 @@
       }
     },
     "routine.todo.description": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -308430,7 +308886,6 @@
       }
     },
     "routine.todo.description.placeholder": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -323006,6 +323461,100 @@
           "stringUnit": {
             "state": "translated",
             "value": "您已經購買了嗎？您可以在此處將它們恢復到該設備。"
+          }
+        }
+      }
+    },
+    "settings.restore.success_message": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deine alten Daten wurden wiederhergestellt. Die App wird nun beendet. Bitte starte sie neu, um die Änderungen zu sehen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your old data has been restored. The app will now close. Please restart to see the changes."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sus datos antiguos han sido restaurados. La aplicación ahora se cerrará. Reinicie para ver los cambios."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos anciennes données ont été restaurées. L'application va maintenant se fermer. Veuillez redémarrer pour voir les modifications."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपका पुराना डेटा पुनर्स्थापित कर दिया गया है. अब ऐप बंद हो जाएगा. कृपया परिवर्तन देखने के लिए पुनः आरंभ करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I tuoi vecchi dati sono stati ripristinati. L'app verrà ora chiusa. Riavvia per vedere le modifiche."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "古いデータが復元されました。アプリは終了します。変更を確認するには再起動してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이전 데이터가 복원되었습니다. 이제 앱이 닫힙니다. 변경사항을 보려면 다시 시작하세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uw oude gegevens zijn hersteld. De app wordt nu afgesloten. Start opnieuw op om de wijzigingen te zien."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twoje stare dane zostały przywrócone. Aplikacja zostanie teraz zamknięta. Uruchom ponownie, aby zobaczyć zmiany."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seus dados antigos foram restaurados. O aplicativo será fechado agora. Reinicie para ver as alterações."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ваши старые данные восстановлены. Приложение закроется. Пожалуйста, перезапустите, чтобы увидеть изменения."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eski verileriniz geri yüklendi. Uygulama şimdi kapanacak. Değişiklikleri görmek için lütfen yeniden başlatın."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您的旧数据已恢复。该应用程序现在将关闭。请重新启动以查看更改。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您的舊資料已恢復。該應用程式現在將關閉。請重新啟動以查看變更。"
           }
         }
       }
@@ -396535,7 +397084,6 @@
       }
     },
     "weekly_report.chart.habits.value": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -406625,6 +407173,7 @@
       }
     },
     "Zu den Einstellungen": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -406718,756 +407267,97 @@
         }
       }
     },
-    "onboarding.screentime.settings": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zu den Einstellungen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Go to settings"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ir a configuración"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Allez dans les paramètres"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "सेटिंग्स में जाएं"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vai alle impostazioni"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "設定に移動"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "설정으로 이동"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ga naar instellingen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Przejdź do ustawień"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vá para configurações"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Перейти в настройки"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ayarlara git"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "前往设置"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "前往設定"
-          }
-        }
-      }
-    },
-    "onboarding.screentime.error": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS hat die Berechtigung verweigert. Fehlermeldung: %@.\n\nBitte überprüfe deine Berechtigungen in den Einstellungen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS denied permission. Error message: %@.\n\nPlease check your permissions in Settings."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS denegó el permiso. Mensaje de error: %@.\n\nVerifique sus permisos en Configuración."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS a refusé l'autorisation. Message d'erreur : %@.\n\nVeuillez vérifier vos autorisations dans Paramètres."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS ने अनुमति नहीं दी. त्रुटि संदेश: %@।\n\nकृपया सेटिंग्स में अपनी अनुमतियां जांचें।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS ha negato l'autorizzazione. Messaggio di errore: %@.\n\nControlla le tue autorizzazioni in Impostazioni."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS が許可を拒否しました。エラー メッセージ: %@。\n\n設定で権限を確認してください。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS가 권한을 거부했습니다. 오류 메시지: %@.\n\n설정에서 권한을 확인하세요."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS heeft toestemming geweigerd. Foutmelding: %@.\n\nControleer uw rechten in Instellingen."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS odmówił pozwolenia. Komunikat o błędzie: %@.\n\nSprawdź swoje uprawnienia w Ustawieniach."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS negou permissão. Mensagem de erro: %@.\n\nVerifique suas permissões em Configurações."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS отказала в разрешении. Сообщение об ошибке: %@.\n\nПожалуйста, проверьте свои разрешения в настройках."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS izni reddetti. Hata mesajı: %@.\n\nLütfen Ayarlar'daki izinlerinizi kontrol edin."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS 拒绝许可。错误信息： %@。\n\n请在“设置”中检查您的权限。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iOS 拒絕許可。錯誤訊息: %@.\n\n請在「設定」中檢查您的權限。"
-          }
-        }
-      }
-    },
-    "onboarding.screentime.error.title": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Berechtigung fehlgeschlagen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Authorization failed"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autorización fallida"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "L'autorisation a échoué"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "प्रमाणीकरण विफल"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autorizzazione fallita"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "認証に失敗しました"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "승인 실패"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autorisatie mislukt"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autoryzacja nie powiodła się"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Falha na autorização"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Авторизация не удалась"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yetkilendirme başarısız oldu"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "授权失败"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "授權失敗"
-          }
-        }
-      }
-    },
-    "settings.restore.success_message": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Deine alten Daten wurden wiederhergestellt. Die App wird nun beendet. Bitte starte sie neu, um die Änderungen zu sehen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your old data has been restored. The app will now close. Please restart to see the changes."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sus datos antiguos han sido restaurados. La aplicación ahora se cerrará. Reinicie para ver los cambios."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vos anciennes données ont été restaurées. L'application va maintenant se fermer. Veuillez redémarrer pour voir les modifications."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "आपका पुराना डेटा पुनर्स्थापित कर दिया गया है. अब ऐप बंद हो जाएगा. कृपया परिवर्तन देखने के लिए पुनः आरंभ करें।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "I tuoi vecchi dati sono stati ripristinati. L'app verrà ora chiusa. Riavvia per vedere le modifiche."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "古いデータが復元されました。アプリは終了します。変更を確認するには再起動してください。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이전 데이터가 복원되었습니다. 이제 앱이 닫힙니다. 변경사항을 보려면 다시 시작하세요."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Uw oude gegevens zijn hersteld. De app wordt nu afgesloten. Start opnieuw op om de wijzigingen te zien."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Twoje stare dane zostały przywrócone. Aplikacja zostanie teraz zamknięta. Uruchom ponownie, aby zobaczyć zmiany."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seus dados antigos foram restaurados. O aplicativo será fechado agora. Reinicie para ver as alterações."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ваши старые данные восстановлены. Приложение закроется. Пожалуйста, перезапустите, чтобы увидеть изменения."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eski verileriniz geri yüklendi. Uygulama şimdi kapanacak. Değişiklikleri görmek için lütfen yeniden başlatın."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "您的旧数据已恢复。该应用程序现在将关闭。请重新启动以查看更改。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "您的舊資料已恢復。該應用程式現在將關閉。請重新啟動以查看變更。"
-          }
-        }
-      }
-    },
-    "common.points.short": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pkt"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pt"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "punto"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pt"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "पं"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pt"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ポイント"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "백금"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pt"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pt"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ponto"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Пт"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "puan"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "铂"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "鉑"
-          }
-        }
-      }
-    },
-    "common.free.parentheses": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(Gratis)"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(Free)"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(Gratis)"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(Gratuit)"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(मुक्त)"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(Gratuito)"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "（無料）"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(무료)"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(Vrij)"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(Bezpłatny)"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(Livre)"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(Бесплатно)"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "(Özgür)"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "（自由的）"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "（自由的）"
-          }
-        }
-      }
-    },
-    "todo.detail.show": {
+    "todo.view_edit": {
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Details anzeigen"
+            "value": "Ansehen & Bearbeiten"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Show Details"
+            "value": "View & Edit"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mostrar Detalles"
+            "value": "Ver y Editar"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Afficher les détails"
+            "value": "Voir et modifier"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विवरण दिखाएं"
+            "value": "देखें और संपादित करें"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mostra Dettagli"
+            "value": "Visualizza e Modifica"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "詳細を表示"
+            "value": "表示と編集"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "세부 정보 표시"
+            "value": "보기 및 편집"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Details tonen"
+            "value": "Bekijken en bewerken"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pokaż szczegóły"
+            "value": "Zobacz i edytuj"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mostrar Detalhes"
+            "value": "Ver e Editar"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Показать детали"
+            "value": "Просмотр и редактирование"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Detayları Göster"
+            "value": "Görüntüle ve Düzenle"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "显示详情"
+            "value": "查看并编辑"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "顯示詳情"
-          }
-        }
-      }
-    },
-    "todo.detail.title": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Do Details"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Do Details"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Detalles de To-Do"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Détails de la tâche"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "कार्य का विवरण"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dettagli To-Do"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Doの詳細"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Do 세부 정보"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To-Do Details"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Szczegóły zadania"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Detalhes da Tarefa"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Детали задачи"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Görev Detayları"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "待办详情"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "待辦詳情"
+            "value": "查看並編輯"
           }
         }
       }

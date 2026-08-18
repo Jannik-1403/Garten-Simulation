@@ -1,4 +1,9 @@
-## 2026-08-18 11:27 - To-Do Detailansicht
+## 2026-08-18 16:47 - To-Do Unified View
+- **UI/UX**: Die Detailansicht und die Bearbeiten-Ansicht für To-Dos wurden zu einer einzigen Ansicht zusammengefasst.
+- **Aufräumarbeiten**: Das Info-Icon auf der rechten Seite der To-Do-Reihe wurde entfernt.
+- **Erreichbarkeit**: Über das Kontextmenü (langes Drücken) gibt es nun den Eintrag "Ansehen & Bearbeiten", der das große Textfeld öffnet.
+
+
 - **UI/UX**: Für To-Dos mit sehr langen Texten wurde eine Detailansicht (`TodoDetailSheet`) hinzugefügt.
 - **Erreichbarkeit**: Die Detailansicht lässt sich über einen neuen Info-Button in der To-Do-Zeile oder über das Kontextmenü (Long Press) aufrufen, ohne das To-Do versehentlich als erledigt zu markieren.
 - **Lokalisierung**: Die neuen Texte wurden in alle 15 Sprachen übersetzt (100%).
