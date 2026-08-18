@@ -538,7 +538,7 @@ struct RevivePlantSheet: View {
                         gardenStore.reviveWithWonderWater(pflanze: pflanze)
                         dismiss()
                     } label: {
-                        Text("\(String(localized: "item.wunder_wasser.name")) (Gratis)")
+                        Text("\(String(localized: "item.wunder_wasser.name")) \(String(localized: "common.free.parentheses", defaultValue: "(Gratis)"))")
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                     }
                     .buttonStyle(DuolingoButtonStyle(

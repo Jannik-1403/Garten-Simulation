@@ -519,7 +519,7 @@ struct SettingsView: View {
                     exit(0)
                 }
             } message: {
-                Text("Deine alten Daten wurden wiederhergestellt. Die App wird nun beendet. Bitte starte sie neu, um die Änderungen zu sehen.")
+                Text(String(localized: "settings.restore.success_message", defaultValue: "Deine alten Daten wurden wiederhergestellt. Die App wird nun beendet. Bitte starte sie neu, um die Änderungen zu sehen."))
             }
             .alert(String(localized: "settings.reset.final.title"), isPresented: $showFinalResetAlert) {
                 Button(String(localized: "settings.reset.confirm"), role: .destructive) {

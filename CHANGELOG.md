@@ -484,3 +484,6 @@
 - 'Dynamisch' Option beim Bildexport entfernt.
 - Hintergrund für Namen und Diamanten bei Bild-Exporten entfernt.
 - Behoben: Apple Health und Kamera-Berechtigungsdialoge in alle 11 Projektsprachen übersetzt (App Review Anforderung Guideline 4).
+- **Statistiken behoben:** In den Wochenberichten und der Dashboard-Statistik werden reine Routine-Todos nicht mehr als Gewohnheiten gezählt, was die Statistik verfälscht hat.
+- **To-dos Automation:** Abgeschlossene To-dos auf der Hauptseite verschwinden nun automatisch nach 10 Sekunden (es sei denn, sie werden innerhalb der Zeit wieder deaktiviert).
+- **Settings:** Die 'App weiterempfehlen' und 'App bewerten' Buttons wurden aus den Einstellungen entfernt.

@@ -345,7 +345,7 @@ struct CustomPlantCreationView: View {
                                             isRectangular: true,
                                             aktion: { selectedGoalWeight = weight }
                                         ) {
-                                            Text("\(weight.rawValue) Pkt")
+                                            Text("\(weight.rawValue) \(String(localized: "common.points.short", defaultValue: "Pkt"))")
                                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                                 .foregroundColor(isSelected ? .white : .primary)
                                                 .frame(maxWidth: .infinity)

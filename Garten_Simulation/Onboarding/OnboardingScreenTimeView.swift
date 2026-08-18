@@ -116,15 +116,15 @@ struct OnboardingScreenTimeView: View {
             }
             .offset(y: 60) // Push the entire alert down slightly so it doesn't cover the avatar as much
         }
-        .alert("Berechtigung fehlgeschlagen", isPresented: $showErrorAlert) {
-            Button("Zu den Einstellungen") {
+        .alert(String(localized: "onboarding.screentime.error.title", defaultValue: "Berechtigung fehlgeschlagen"), isPresented: $showErrorAlert) {
+            Button(String(localized: "onboarding.screentime.settings", defaultValue: "Zu den Einstellungen")) {
                 if let url = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(url)
                 }
             }
-            Button("Abbrechen", role: .cancel) { }
+            Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) { }
         } message: {
-            Text("iOS hat die Berechtigung verweigert. Fehlermeldung: \(errorMessage ?? "Unbekannt").\n\nBitte überprüfe deine Berechtigungen in den Einstellungen.")
+            Text(String(localized: "onboarding.screentime.error", defaultValue: "iOS hat die Berechtigung verweigert. Fehlermeldung: \(errorMessage ?? "Unbekannt").\n\nBitte überprüfe deine Berechtigungen in den Einstellungen."))
         }
     }
     
