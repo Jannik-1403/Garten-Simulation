@@ -384,31 +384,6 @@ struct SettingsView: View {
                                         settingRow(title: String(localized: "settings.contact"), icon: "message.fill", color: .blauPrimary)
                                     }
                                     
-                                    Divider().padding(.leading, 44)
-                                    
-                                    Button {
-                                        let viewToRender = GrovyShareCardView(settings: settings).environmentObject(settings)
-                                        let renderer = ImageRenderer(content: viewToRender)
-                                        renderer.isOpaque = true
-                                        renderer.scale = UIScreen.main.scale
-                                        if let image = renderer.uiImage {
-                                            settings.shareApp(image: image)
-                                        } else {
-                                            settings.shareApp()
-                                        }
-                                    } label: {
-                                        settingRow(title: String(localized: "settings.share"), icon: "heart.fill", color: .pink)
-                                    }
-                                    
-
-                                    
-                                    Button {
-                                        if let url = URL(string: "https://apps.apple.com/app/grovy?action=write-review") {
-                                            UIApplication.shared.open(url)
-                                        }
-                                    } label: {
-                                        settingRow(title: String(localized: "settings.rate_app"), icon: "star.fill", color: .yellow)
-                                    }
                                 }
                             }
                             

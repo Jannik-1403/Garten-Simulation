@@ -146,6 +146,19 @@ struct TodoRowView: View {
                         GoalStore.shared.logTodoCompletion(habitId: pflanze.id, priority: pflanze.todos[index].priority, isCompleted: pflanze.todos[index].isCompleted)
                         gardenStore.savePlants()
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        
+                        if pflanze.todos[index].isCompleted {
+                            let currentId = pflanze.todos[index].id
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                                if let idx = pflanze.todos.firstIndex(where: { $0.id == currentId }), pflanze.todos[idx].isCompleted {
+                                    withAnimation {
+                                        pflanze.todos.remove(at: idx)
+                                        gardenStore.savePlants()
+                                        gardenStore.objectWillChange.send()
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             ) {
@@ -216,6 +229,19 @@ struct StandaloneTodoRowView: View {
                         GoalStore.shared.logTodoCompletion(habitId: "standalone", priority: gardenStore.standaloneTodos[index].priority, isCompleted: gardenStore.standaloneTodos[index].isCompleted)
                         gardenStore.saveStandaloneTodos()
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        
+                        if gardenStore.standaloneTodos[index].isCompleted {
+                            let currentId = gardenStore.standaloneTodos[index].id
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                                if let idx = gardenStore.standaloneTodos.firstIndex(where: { $0.id == currentId }), gardenStore.standaloneTodos[idx].isCompleted {
+                                    withAnimation {
+                                        gardenStore.standaloneTodos.remove(at: idx)
+                                        gardenStore.saveStandaloneTodos()
+                                        gardenStore.objectWillChange.send()
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             ) {

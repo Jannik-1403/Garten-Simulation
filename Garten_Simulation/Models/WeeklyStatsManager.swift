@@ -77,7 +77,7 @@ final class WeeklyStatsManager {
         let currentSessionsCount = currentSessions.filter { $0.isCompleted }.count
         
         var currentHabitsCount = 0
-        for plant in gardenStore.pflanzen {
+        for plant in gardenStore.sichtbarePflanzen {
             currentHabitsCount += plant.wateringDates.filter { $0 >= monday && $0 <= sundayEnd }.count
         }
         
@@ -89,7 +89,7 @@ final class WeeklyStatsManager {
         let prevFocusMinutes = prevSessions.reduce(0) { $0 + $1.durationMinutes }
         
         var prevHabitsCount = 0
-        for plant in gardenStore.pflanzen {
+        for plant in gardenStore.sichtbarePflanzen {
             prevHabitsCount += plant.wateringDates.filter { $0 >= prevMonday && $0 <= prevSundayEnd }.count
         }
         
@@ -129,7 +129,7 @@ final class WeeklyStatsManager {
             var habitsDone = 0
             var dailyScore = 0.0
             
-            for plant in gardenStore.pflanzen {
+            for plant in gardenStore.sichtbarePflanzen {
                 let doneToday = plant.wateringDates.contains(where: { $0 >= dayStart && $0 <= dayEnd })
                 if doneToday {
                     habitsDone += 1
@@ -146,7 +146,7 @@ final class WeeklyStatsManager {
             let pDayEnd = calendar.date(byAdding: .second, value: 24 * 3600 - 1, to: pDayStart)!
             
             var pDailyScore = 0.0
-            for plant in gardenStore.pflanzen {
+            for plant in gardenStore.sichtbarePflanzen {
                 let donePrev = plant.wateringDates.contains(where: { $0 >= pDayStart && $0 <= pDayEnd })
                 if donePrev {
                     var weight = 1.0
@@ -204,7 +204,7 @@ final class WeeklyStatsManager {
         }
         
         // Rule D: Habit Specifics (Früh aufstehen)
-        for plant in gardenStore.pflanzen {
+        for plant in gardenStore.sichtbarePflanzen {
             let name = plant.name.lowercased()
             if name.contains("früh") || name.contains("aufstehen") || name.contains("aufwachen") {
                 var totalHour = 0
@@ -226,7 +226,7 @@ final class WeeklyStatsManager {
         // Rule E: General late habits
         if tips.count < 3 && currentHabitsCount > 0 {
             var lateHabitsCount = 0
-            for plant in gardenStore.pflanzen {
+            for plant in gardenStore.sichtbarePflanzen {
                 for date in plant.wateringDates where date >= monday && date <= sundayEnd {
                     let hour = calendar.component(.hour, from: date)
                     if hour >= 21 {

@@ -479,3 +479,8 @@
 ### Routine-Todos Fix
 - **Keine Fehlberechnung mehr:** Routine-Only Todos vergeben beim Abhaken in `GardenStore` keine Coins, XP, Statistiken oder Streaks mehr. Level-Up Popups für Routine-Todos sind dadurch ebenfalls gefixt.
 - **Eigener Name:** Beim Hinzufügen von Todos zu einer Routine ist das Namens-Feld jetzt optional. Ein eingegebener Name wird im UI nun über dem Standard-Icon-Text bevorzugt. Bleibt das Feld leer, wird stattdessen "To-Do" verwendet, ohne den Text des ausgewählten Icons zu übernehmen.
+- Lokalisierung für den 'erledigt' Text in den Wochenstatistiken hinzugefügt.
+- Text-Layout bei den Apple Health Einstellungen korrigiert, damit der Text vollständig umgebrochen wird.
+- 'Dynamisch' Option beim Bildexport entfernt.
+- Hintergrund für Namen und Diamanten bei Bild-Exporten entfernt.
+- Behoben: Apple Health und Kamera-Berechtigungsdialoge in alle 11 Projektsprachen übersetzt (App Review Anforderung Guideline 4).
