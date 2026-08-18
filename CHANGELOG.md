@@ -1,3 +1,8 @@
+## 2026-08-18 11:27 - To-Do Detailansicht
+- **UI/UX**: Für To-Dos mit sehr langen Texten wurde eine Detailansicht (`TodoDetailSheet`) hinzugefügt.
+- **Erreichbarkeit**: Die Detailansicht lässt sich über einen neuen Info-Button in der To-Do-Zeile oder über das Kontextmenü (Long Press) aufrufen, ohne das To-Do versehentlich als erledigt zu markieren.
+- **Lokalisierung**: Die neuen Texte wurden in alle 15 Sprachen übersetzt (100%).
+
 ## 2026-08-18 10:00 - Localization 100% Fixes
 - **Übersetzungen**: Alle verbleibenden hartkodierten Texte im Code wurden identifiziert und durch lokalisierte Strings ersetzt.
 - **Auto-Translation**: Ein Skript wurde eingesetzt, um fehlende Keys in allen 15 Sprachen (über 270 fehlende Übersetzungen) automatisch mit deep-translator zu übersetzen, um eine 100%ige Abdeckung im String Catalog zu erzielen.
