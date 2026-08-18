@@ -47,6 +47,7 @@ struct PflanzeDetailSheet: View {
     @ObservedObject private var healthManager = HealthManager.shared
     @FocusState private var isTargetFocused: Bool
     @State private var zeigeAppleHealthEntkoppelnAlert = false
+    @State private var detailItem: TodoDetailItem? = nil
     
     @State private var screenTimeHours: Int = 2
     @State private var screenTimeMinutes: Int = 0
@@ -120,6 +121,11 @@ struct PflanzeDetailSheet: View {
                                         if let index = pflanze.todos.firstIndex(where: { $0.id == todo.id }) {
                                             todoToEditIndex = index
                                             zeigeTodoSheet = true
+                                        }
+                                    },
+                                    onShowDetail: {
+                                        if let index = pflanze.todos.firstIndex(where: { $0.id == todo.id }) {
+                                            detailItem = TodoDetailItem(text: pflanze.todos[index].text)
                                         }
                                     }
                                 )
@@ -432,6 +438,9 @@ struct PflanzeDetailSheet: View {
         // MARK: - Todo Sheet
         .sheet(isPresented: $zeigeTodoSheet) {
             TodoSheetView(pflanze: pflanze, editIndex: todoToEditIndex)
+        }
+        .sheet(item: $detailItem) { item in
+            TodoDetailSheet(text: item.text)
         }
         
         // MARK: - Apple Health Entkoppeln Dialog
