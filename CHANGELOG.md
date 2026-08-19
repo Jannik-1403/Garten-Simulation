@@ -510,3 +510,4 @@
 - Automatische abendliche System-Benachrichtigungen ('Pflanzen brauchen Wasser') entfernt, sodass nur noch vom Nutzer selbst erstellte Benachrichtigungen gesendet werden.
 - Design der 3D-Schrift im Wochenziel-Banner optimiert und weiße Freiflächen reduziert
 - Fehler behoben: Wenn eine Routine durch Apple Health abgeschlossen wurde, bewegt sich der Fortschrittsbalken nicht mehr weiter, sondern bleibt bei 0, bis sie am nächsten Tag zurückgesetzt wird.
+- Fehlerhafte englische Übersetzungen ('Habit' zu 'Gewohnheit') in der deutschen Lokalisierung der Routinen behoben.
