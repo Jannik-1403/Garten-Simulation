@@ -1,3 +1,6 @@
+- Sprachfehler und hartcodierte englische Texte in den Routinen und Gewohnheiten ("Habits") korrigiert. 
+- Fehlende Localizable.xcstrings Übersetzungen für Custom To-Dos und Routinen-Menüs ergänzt.
+
 ## 2026-08-18 16:47 - To-Do Unified View
 - **UI/UX**: Die Detailansicht und die Bearbeiten-Ansicht für To-Dos wurden zu einer einzigen Ansicht zusammengefasst.
 - **Aufräumarbeiten**: Das Info-Icon auf der rechten Seite der To-Do-Reihe wurde entfernt.
@@ -505,3 +508,5 @@
 - UI: Wochenziel-Banner in der To-Do-Ansicht verkleinert, damit es kompakter wirkt.
 - Routine-spezifische To-Dos (isRoutineOnly) werden nun konsequent aus den Gewohnheits-Listen ausgeblendet (z.B. beim Erstellen neuer To-Dos, in der Fokus-Session XP-Verteilung und in den Guten Gewohnheiten).
 - Automatische abendliche System-Benachrichtigungen ('Pflanzen brauchen Wasser') entfernt, sodass nur noch vom Nutzer selbst erstellte Benachrichtigungen gesendet werden.
+- Design der 3D-Schrift im Wochenziel-Banner optimiert und weiße Freiflächen reduziert
+- Fehler behoben: Wenn eine Routine durch Apple Health abgeschlossen wurde, bewegt sich der Fortschrittsbalken nicht mehr weiter, sondern bleibt bei 0, bis sie am nächsten Tag zurückgesetzt wird.
