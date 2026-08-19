@@ -13080,7 +13080,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starte heute mit dem Habit 'Kontostand prüfen'. 30 Sekunden täglich. Das ist der erste Schritt raus aus der Verdrängung."
+            "value": "Starte heute mit dem Gewohnheit 'Kontostand prüfen'. 30 Sekunden täglich. Das ist der erste Schritt raus aus der Verdrängung."
           }
         },
         "en": {
@@ -387319,7 +387319,7 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Habit Analyse"
+            "value": "Gewohnheit Analyse"
           }
         },
         "en": {
@@ -407358,6 +407358,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "查看並編輯"
+          }
+        }
+      }
+    },
+    "habit.custom.todo": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eigenes To-Do"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eigenes To-Do"
+          }
+        }
+      }
+    },
+    "routine.default_name": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routine"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routine"
           }
         }
       }

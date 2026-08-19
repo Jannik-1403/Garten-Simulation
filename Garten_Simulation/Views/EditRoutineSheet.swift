@@ -274,7 +274,7 @@ struct EditRoutineSheet: View {
             }
             .sheet(isPresented: $showTimerSheet) {
                 RoutineTimerEditSheetView(
-                    routineName: tempName.isEmpty ? "Routine" : tempName,
+                    routineName: tempName.isEmpty ? String(localized: "routine.default_name", defaultValue: "Routine") : tempName,
                     schedule: $schedule,
                     overrideIndividualReminders: $overrideIndividualReminders,
                     hasReminder: $hasReminder,
