@@ -37,24 +37,24 @@ struct WeeklyGoalBannerView: View {
                     editTitle = goal.title
                     showEditSheet = true
                 } label: {
-                    VStack(spacing: 16) {
-                        // 1. Titel im 3D-Stil
+                    VStack(spacing: 10) {
+                        // 1. Titel im dezenteren 3D-Stil
                         ZStack {
-                            // Lower layer (Dunkleres Blau für den Schatten/3D-Tiefe)
+                            // Lower layer (Schatten/3D-Tiefe)
                             Text(goal.title)
-                                .font(.system(size: 24, weight: .black, design: .rounded))
-                                .foregroundStyle(Color(hex: "#0288D1"))
-                                .offset(y: 4)
+                                .font(.system(size: 20, weight: .heavy, design: .rounded))
+                                .foregroundStyle(Color(hex: "#0288D1").opacity(0.8))
+                                .offset(y: 2)
                             
-                            // Upper layer (Leuchtendes Blau für die Front)
+                            // Upper layer (Front)
                             Text(goal.title)
-                                .font(.system(size: 24, weight: .black, design: .rounded))
+                                .font(.system(size: 20, weight: .heavy, design: .rounded))
                                 .foregroundStyle(Color(hex: "#4FC3F7"))
                         }
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                         
-                        VStack(spacing: 12) {
+                        VStack(spacing: 8) {
                             // 2. Langer, dicker Fortschrittsbalken
                             GeometryReader { geo in
                                 ZStack(alignment: .leading) {
@@ -82,23 +82,23 @@ struct WeeklyGoalBannerView: View {
                             HStack(alignment: .bottom) {
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(verbatim: "\(progressPercent)%")
-                                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
                                         .foregroundColor(Color(hex: "#4FC3F7"))
                                     Text(verbatim: "\(pointsInfo.earned) / \(pointsInfo.target) Pkt.")
-                                        .font(.system(size: 13, weight: .semibold, design: .rounded))
+                                        .font(.system(size: 12, weight: .semibold, design: .rounded))
                                         .foregroundColor(Color.gray)
                                 }
                                 Spacer()
                                 Text(String(localized: "goal.weekly.label.arrow", defaultValue: "Woche →"))
-                                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundColor(Color(hex: "#4FC3F7"))
                             }
                         }
                         .padding(.horizontal, 4) // Weniger Padding, Balken länger
                     }
-                    .padding(.top, 24)
-                    .padding(.bottom, 20)
-                    .padding(.horizontal, 20)
+                    .padding(.top, 16)
+                    .padding(.bottom, 16)
+                    .padding(.horizontal, 16)
                     .contentShape(Rectangle()) // Macht den gesamten Banner-Bereich klickbar
 
                 }

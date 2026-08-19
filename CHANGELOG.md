@@ -504,3 +504,4 @@
 - **Settings:** Die 'App weiterempfehlen' und 'App bewerten' Buttons wurden aus den Einstellungen entfernt.
 - UI: Wochenziel-Banner in der To-Do-Ansicht verkleinert, damit es kompakter wirkt.
 - Routine-spezifische To-Dos (isRoutineOnly) werden nun konsequent aus den Gewohnheits-Listen ausgeblendet (z.B. beim Erstellen neuer To-Dos, in der Fokus-Session XP-Verteilung und in den Guten Gewohnheiten).
+- Automatische abendliche System-Benachrichtigungen ('Pflanzen brauchen Wasser') entfernt, sodass nur noch vom Nutzer selbst erstellte Benachrichtigungen gesendet werden.
