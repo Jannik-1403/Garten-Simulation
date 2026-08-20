@@ -84,17 +84,19 @@ struct ShopItemDetailView: View {
 
 
                         // Beschreibung
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(String(localized: "shop.item.description"))
-                                .font(.system(size: 12, weight: .bold))
-                                .foregroundStyle(.secondary)
-                                .kerning(1.2)
-                            Text(NSLocalizedString(payload.descriptionKey, comment: ""))
-                                .font(.system(size: 15))
-                                .lineSpacing(4)
+                        if !payload.descriptionKey.isEmpty {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(String(localized: "shop.item.description"))
+                                    .font(.system(size: 12, weight: .bold))
+                                    .foregroundStyle(.secondary)
+                                    .kerning(1.2)
+                                Text(NSLocalizedString(payload.descriptionKey, comment: ""))
+                                    .font(.system(size: 15))
+                                    .lineSpacing(4)
+                            }
+    
+                            Divider()
                         }
-
-                        Divider()
 
                         if let usage = payload.howToUse, !usage.isEmpty {
                             VStack(alignment: .leading, spacing: 10) {

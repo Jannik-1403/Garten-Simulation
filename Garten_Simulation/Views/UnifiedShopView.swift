@@ -59,11 +59,13 @@ struct ShopItemCard: View {
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
                         .minimumScaleFactor(0.8)
-                    Text(NSLocalizedString(subtitle, comment: ""))
-                        .font(.system(size: 14))
-                        .foregroundStyle(Color.secondary)
-                        .multilineTextAlignment(.center)
-                        .lineLimit(2)
+                    if !subtitle.isEmpty {
+                        Text(NSLocalizedString(subtitle, comment: ""))
+                            .font(.system(size: 14))
+                            .foregroundStyle(Color.secondary)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(2)
+                    }
                 }
 
                 if price == 0 {
