@@ -31,31 +31,30 @@ struct ShopItemCard: View {
                             Image("Samen")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 110, height: 110)
+                                .frame(width: 80, height: 80)
                         } else {
-                            PlantIconView(plant: plant, seltenheit: .bronze, size: 140, alwaysShowFullGrown: true)
-                                .scaleEffect(1.6)
+                            PlantIconView(plant: plant, seltenheit: .bronze, size: 110, alwaysShowFullGrown: true)
+                                .scaleEffect(1.5)
                         }
                     } else {
                         if UIImage(named: icon) != nil {
                             Image(icon)
                                 .resizable()
                                 .scaledToFit()
-                                .scaleEffect(iconScale * 1.3)
+                                .scaleEffect(iconScale)
                         } else {
                             Image(systemName: icon)
-                                .font(.system(size: 110))
+                                .font(.system(size: 80))
                                 .foregroundStyle(accentColor)
                                 .scaleEffect(iconScale)
                         }
                     }
                 }
-                .frame(width: 150, height: 150)
-                .padding(.bottom, 8)
+                .frame(width: 110, height: 110)
 
                 VStack(alignment: .center, spacing: 4) {
                     Text(NSLocalizedString(name, comment: ""))
-                        .font(.system(size: 22, weight: .bold, design: .rounded))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(Color.primary)
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
@@ -95,6 +94,7 @@ struct ShopItemCard: View {
                     .padding(.top, 4)
                 }
             }
+            .scaleEffect((plant != nil && plant?.id != "plant.seeds") ? 1.15 : 1.0)
             .frame(maxWidth: .infinity, alignment: .center)
             .padding(16)
         }
