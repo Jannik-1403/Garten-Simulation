@@ -513,3 +513,4 @@
 - Fehlerhafte englische Übersetzungen ('Habit' zu 'Gewohnheit') in der deutschen Lokalisierung der Routinen behoben.
 - Added custom descriptions to Habits, replacing default English plant descriptions. Old default keys are stripped, and a new edit field is available in PflanzeDetailSheet.
 - Fixed UI in Shop: Empty descriptions are now completely hidden to optimize layout spacing
+- UI improvements: Increased item sizes in the Shop and removed the red outline from the sell button in the detail view.
