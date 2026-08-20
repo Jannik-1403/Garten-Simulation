@@ -512,3 +512,4 @@
 - Fehler behoben: Wenn eine Routine durch Apple Health abgeschlossen wurde, bewegt sich der Fortschrittsbalken nicht mehr weiter, sondern bleibt bei 0, bis sie am nächsten Tag zurückgesetzt wird.
 - Fehlerhafte englische Übersetzungen ('Habit' zu 'Gewohnheit') in der deutschen Lokalisierung der Routinen behoben.
 - Added custom descriptions to Habits, replacing default English plant descriptions. Old default keys are stripped, and a new edit field is available in PflanzeDetailSheet.
+- Fixed UI in Shop: Empty descriptions are now completely hidden to optimize layout spacing
