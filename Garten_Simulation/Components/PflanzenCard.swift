@@ -51,6 +51,9 @@ struct PflanzenCard: View {
     }
     
     private var baseProgress: Double {
+        if pflanze.istBewässert {
+            return 0.0
+        }
         let hasManualOverride = pflanze.intradayProgressHistory.contains { Calendar.current.isDateInToday($0.timestamp) }
         if let hp = healthProgress, !hasManualOverride {
             return hp

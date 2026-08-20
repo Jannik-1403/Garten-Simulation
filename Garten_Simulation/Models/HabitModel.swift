@@ -718,7 +718,12 @@ class HabitModel: Identifiable, ObservableObject, Codable {
             }
         }
         
-        symbolism = try container.decode(String.self, forKey: .symbolism)
+        let decodedSymbolism = try container.decode(String.self, forKey: .symbolism)
+        if decodedSymbolism.hasSuffix(".symbolism") {
+            symbolism = ""
+        } else {
+            symbolism = decodedSymbolism
+        }
         let savedHabitName = try container.decodeIfPresent(String.self, forKey: .habitName) ?? ""
         habitName = savedHabitName.isEmpty ? (habitCategory.localizationKey) : savedHabitName
         

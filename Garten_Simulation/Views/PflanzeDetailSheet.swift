@@ -103,6 +103,30 @@ struct PflanzeDetailSheet: View {
                 // MARK: - ACTIONS (Zone 3)
                 VStack(spacing: 12) {
                     
+                    // Custom Description
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(String(localized: "plant.detail.description.title", defaultValue: "Eigene Beschreibung"))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(.primary)
+                            .padding(.horizontal, 24)
+                        
+                        TextField(String(localized: "plant.detail.description.placeholder", defaultValue: "Kurze Beschreibung hinzufügen..."), text: Binding(
+                            get: { pflanze.symbolism },
+                            set: { newValue in
+                                pflanze.symbolism = newValue
+                                gardenStore.savePlants()
+                            }
+                        ), axis: .vertical)
+                        .lineLimit(1...3)
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                        .padding(16)
+                        .background(Color(UIColor.systemBackground))
+                        .cornerRadius(16)
+                        .shadow(color: .black.opacity(0.04), radius: 5, y: 2)
+                        .padding(.horizontal, 24)
+                    }
+                    .padding(.bottom, 8)
+                    
                     // Apple Health Integration (Pro Feature)
                     healthKitConfigSection
 
