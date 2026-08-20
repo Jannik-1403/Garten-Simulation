@@ -31,30 +31,31 @@ struct ShopItemCard: View {
                             Image("Samen")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 80, height: 80)
+                                .frame(width: 110, height: 110)
                         } else {
-                            PlantIconView(plant: plant, seltenheit: .bronze, size: 110, alwaysShowFullGrown: true)
-                                .scaleEffect(1.5)
+                            PlantIconView(plant: plant, seltenheit: .bronze, size: 140, alwaysShowFullGrown: true)
+                                .scaleEffect(1.6)
                         }
                     } else {
                         if UIImage(named: icon) != nil {
                             Image(icon)
                                 .resizable()
                                 .scaledToFit()
-                                .scaleEffect(iconScale)
+                                .scaleEffect(iconScale * 1.3)
                         } else {
                             Image(systemName: icon)
-                                .font(.system(size: 80))
+                                .font(.system(size: 110))
                                 .foregroundStyle(accentColor)
                                 .scaleEffect(iconScale)
                         }
                     }
                 }
-                .frame(width: 110, height: 110)
+                .frame(width: 150, height: 150)
+                .padding(.bottom, 8)
 
                 VStack(alignment: .center, spacing: 4) {
                     Text(NSLocalizedString(name, comment: ""))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .font(.system(size: 22, weight: .bold, design: .rounded))
                         .foregroundStyle(Color.primary)
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
