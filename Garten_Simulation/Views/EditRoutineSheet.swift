@@ -193,8 +193,7 @@ struct EditRoutineSheet: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 32, height: 32)
-                                    
-                                    Text(habit.isRoutineOnly ? String(localized: String.LocalizationValue(habit.displayedHabitName)) : (settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(habit.displayedHabitName)) : String(localized: String.LocalizationValue(habit.name))))
+                                    Text(getDisplayName(for: habit))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         
                                     Spacer()
@@ -393,6 +392,16 @@ struct EditRoutineSheet: View {
             } message: {
                 Text(String(localized: "routine.edit.habit.message", defaultValue: "Gib der Gewohnheit für diese Routine einen neuen Namen."))
             }
+        }
+    }
+    
+    private func getDisplayName(for habit: HabitModel) -> String {
+        if habit.isRoutineOnly {
+            return String(localized: String.LocalizationValue(habit.displayedHabitName))
+        } else if settings.showHabitInsteadOfName {
+            return String(localized: String.LocalizationValue(habit.displayedHabitName))
+        } else {
+            return String(localized: String.LocalizationValue(habit.name))
         }
     }
     
