@@ -318,6 +318,8 @@ class GardenStore: ObservableObject {
             pflanze.notizen.insert(noteText, at: 0)
             
             savePlants()
+            
+            checkGlobalStreak()
             return
         }
 
@@ -438,11 +440,8 @@ class GardenStore: ObservableObject {
         }
 
 
-        // Notify StreakStore only if ALL plants are watered today
-        let streakPlants = pflanzen.filter { !$0.isRoutineOnly && !$0.isDead && !$0.isNegative }
-        if !streakPlants.isEmpty && streakPlants.allSatisfy({ $0.istBewässert }) {
-            onWatering?()
-        }
+        // Notify StreakStore only if ALL active plants are watered today
+        checkGlobalStreak()
         
         if isWeedActive {
             advanceWeedRemovalProgress()
@@ -457,6 +456,21 @@ class GardenStore: ObservableObject {
 
         // Neue Benachrichtigungs-Logik
         NotificationManager.shared.rescheduleAfterWatering(habit: pflanze, allHabits: pflanzen)
+    }
+    
+    private func checkGlobalStreak() {
+        let standalonePlants = pflanzen.filter { !$0.isRoutineOnly && !$0.isDead && !$0.isNegative }
+        let routinePlants = pflanzen.filter { $0.isRoutineOnly && !$0.isDead && !$0.isNegative }
+        
+        let hasAnyPlant = !standalonePlants.isEmpty || !routinePlants.isEmpty
+        guard hasAnyPlant else { return }
+        
+        let allStandaloneWatered = standalonePlants.isEmpty || standalonePlants.allSatisfy({ $0.istBewässert })
+        let allRoutinesWatered = routinePlants.isEmpty || routinePlants.allSatisfy({ $0.istBewässert })
+        
+        if allStandaloneWatered && allRoutinesWatered {
+            onWatering?()
+        }
     }
 
     // MARK: Pflanze entfernen
