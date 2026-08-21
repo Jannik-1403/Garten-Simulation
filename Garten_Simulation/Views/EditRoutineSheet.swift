@@ -207,12 +207,15 @@ struct EditRoutineSheet: View {
                                         habitToEdit = habit
                                     }
                                 }
-                                .onLongPressGesture {
-                                    withAnimation { isListEditing = true }
-                                }
+                                .simultaneousGesture(
+                                    LongPressGesture(minimumDuration: 0.5).onEnded { _ in
+                                        withAnimation { isListEditing = true }
+                                    }
+                                )
                             }
                             .onMove(perform: moveHabits)
                             .onDelete(perform: deleteHabits)
+                            .deleteDisabled(!isListEditing)
                         }
                     }
                 }
@@ -331,11 +334,14 @@ struct EditRoutineSheet: View {
             .sheet(isPresented: $showCustomTodoSheet) {
                 CreateRoutineCustomToDoSheetWrapper(assignedHabits: $assignedHabits)
             }
-            .alert(String(localized: "routine.edit.item", defaultValue: "Bearbeiten"), isPresented: Binding(
-                get: { habitToEdit != nil },
-                set: { if !$0 { habitToEdit = nil } }
-            )) {
-                TextField(String(localized: "routine.edit.name.placeholder", defaultValue: "Name"), text: Binding(
+            .alert(
+                String(localized: String.LocalizationValue(habitToEdit?.isRoutineOnly == true ? "routine.edit.task.title" : "routine.edit.habit.title")),
+                isPresented: Binding(
+                    get: { habitToEdit != nil },
+                    set: { if !$0 { habitToEdit = nil } }
+                )
+            ) {
+                TextField(habitToEdit?.isRoutineOnly == true ? String(localized: "routine.edit.task.placeholder", defaultValue: "Aufgabe") : String(localized: "routine.edit.habit.placeholder", defaultValue: "Gewohnheit"), text: Binding(
                     get: { habitToEdit?.customRoutineTaskName ?? "" },
                     set: { newValue in
                         if let h = habitToEdit {
@@ -366,7 +372,7 @@ struct EditRoutineSheet: View {
                     habitToEdit = nil
                 }
             } message: {
-                Text(String(localized: "routine.edit.item.message", defaultValue: "Gib einen neuen Namen ein."))
+                Text(habitToEdit?.isRoutineOnly == true ? String(localized: "routine.edit.task.message", defaultValue: "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein.") : String(localized: "routine.edit.habit.message", defaultValue: "Gib der Gewohnheit für diese Routine einen neuen Namen."))
             }
         }
     }
