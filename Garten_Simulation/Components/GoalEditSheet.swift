@@ -61,9 +61,9 @@ struct GoalEditSheet: View {
                 }
                 
                 // Gewohnheits-Verknüpfung für alle Ziele
-                if !gardenStore.pflanzen.filter({ !$0.isDead && !$0.isNegative }).isEmpty {
+                if !gardenStore.pflanzen.filter({ !$0.isDead && !$0.isNegative && !$0.isRoutineOnly }).isEmpty {
                     Section(header: Text(String(localized: "goal.link.title", defaultValue: "Ziel-Beitrag"))) {
-                        ForEach(gardenStore.pflanzen.filter { !$0.isDead && !$0.isNegative }) { habit in
+                        ForEach(gardenStore.pflanzen.filter { !$0.isDead && !$0.isNegative && !$0.isRoutineOnly }) { habit in
                             HabitWeightRow(
                                 habit: habit,
                                 selectedWeight: currentWeight(for: habit.id),

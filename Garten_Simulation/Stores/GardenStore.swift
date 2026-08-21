@@ -439,7 +439,8 @@ class GardenStore: ObservableObject {
 
 
         // Notify StreakStore only if ALL plants are watered today
-        if pflanzen.allSatisfy({ $0.istBewässert }) {
+        let streakPlants = pflanzen.filter { !$0.isRoutineOnly && !$0.isDead && !$0.isNegative }
+        if !streakPlants.isEmpty && streakPlants.allSatisfy({ $0.istBewässert }) {
             onWatering?()
         }
         
@@ -1743,6 +1744,12 @@ class GardenStore: ObservableObject {
         withAnimation {
             pflanzen.removeAll { $0.id == pflanze.id }
             savePlants()
+            
+            // Check if removing this plant completed the streak for today
+            let streakPlants = pflanzen.filter { !$0.isRoutineOnly && !$0.isDead && !$0.isNegative }
+            if !streakPlants.isEmpty && streakPlants.allSatisfy({ $0.istBewässert }) {
+                onWatering?()
+            }
         }
     }
 
