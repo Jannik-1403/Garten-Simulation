@@ -132,22 +132,6 @@ struct EditRoutineSheet: View {
                     // Habit Reordering Header
                     Section {
                         VStack(spacing: 16) {
-                            HStack {
-                                Text(String(localized: String.LocalizationValue(routine.filterType == .custom ? "routine.edit.habits.reorder" : "routine.edit.habits.included")))
-                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.primary)
-                                Spacer()
-                                if !assignedHabits.isEmpty {
-                                    Button {
-                                        withAnimation { isListEditing.toggle() }
-                                    } label: {
-                                        Text(isListEditing ? String(localized: "common.done", defaultValue: "Fertig") : String(localized: "common.sort", defaultValue: "Sortieren"))
-                                            .font(.system(size: 14, weight: .bold, design: .rounded))
-                                            .foregroundStyle(.blue)
-                                    }
-                                }
-                            }
-                            
                             HStack(spacing: 16) {
                                 Item3DButton(
                                     farbe: Color(hex: "#34C759"),
@@ -219,22 +203,9 @@ struct EditRoutineSheet: View {
                                 .contentShape(Rectangle())
                                 .listRowBackground(Color(white: 0.98))
                                 .onLongPressGesture {
-                                    if habit.isRoutineOnly {
-                                        habitToEdit = habit
-                                    } else {
-                                        withAnimation { isListEditing = true }
-                                    }
+                                    withAnimation { isListEditing = true }
                                 }
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    Button {
-                                        if let index = assignedHabits.firstIndex(where: { $0.id == habit.id }) {
-                                            deleteHabits(at: IndexSet(integer: index))
-                                        }
-                                    } label: {
-                                        Label(String(localized: "routine.delete"), systemImage: "trash")
-                                    }
-                                    .tint(.red.opacity(0.8))
-                                    
                                     if habit.isRoutineOnly {
                                         Button {
                                             habitToEdit = habit

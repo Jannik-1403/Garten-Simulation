@@ -956,36 +956,36 @@ class GardenStore: ObservableObject {
     }
 
 
-    func addCustomPlant(name: String, habit: String, description: String? = nil, icon: String, color: String, category: HabitCategory, isNegative: Bool = false) -> HabitModel? {
+    func addCustomPlant(name: String, habit: String, icon: String, color: String, category: HabitCategory, isNegative: Bool = false) -> HabitModel? {
         if !isNegative {
             guard seeds >= 10 else { return nil }
             seeds -= 10
             saveStats()
         }
         
-        return createAndAddCustomPlant(name: name, habit: habit, description: description, icon: icon, color: color, category: category, isNegative: isNegative)
+        return createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category, isNegative: isNegative)
     }
     
     // Non-billed version for Onboarding
-    func addCustomPlantFromOnboarding(name: String, habit: String, description: String? = nil, icon: String, color: String, category: HabitCategory, reminderTime: Date? = nil) {
-        createAndAddCustomPlant(name: name, habit: habit, description: description, icon: icon, color: color, category: category, reminderTime: reminderTime, isNegative: false)
+    func addCustomPlantFromOnboarding(name: String, habit: String, icon: String, color: String, category: HabitCategory, reminderTime: Date? = nil) {
+        createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category, reminderTime: reminderTime, isNegative: false)
     }
     
     // Backwards compatibility for older onboarding code calling a German-named API
-    func pflanzeHinzufuegenCustom(name: String, habit: String, description: String? = nil, icon: String, color: String, category: HabitCategory = .fitness, reminderTime: Date? = nil) {
-        addCustomPlantFromOnboarding(name: name, habit: habit, description: description, icon: icon, color: color, category: category, reminderTime: reminderTime)
+    func pflanzeHinzufuegenCustom(name: String, habit: String, icon: String, color: String, category: HabitCategory = .fitness, reminderTime: Date? = nil) {
+        addCustomPlantFromOnboarding(name: name, habit: habit, icon: icon, color: color, category: category, reminderTime: reminderTime)
     }
     
-    private func createAndAddCustomPlant(name: String, habit: String, description: String? = nil, icon: String, color: String, category: HabitCategory, reminderTime: Date? = nil, isNegative: Bool = false) -> HabitModel? {
+    private func createAndAddCustomPlant(name: String, habit: String, icon: String, color: String, category: HabitCategory, reminderTime: Date? = nil, isNegative: Bool = false) -> HabitModel? {
         let newCustomID = "custom_\(UUID().uuidString)"
         
         if isNegative {
             let customDecoration = DecorationItem(
                 id: "trash.\(newCustomID)",
                 objectNameKey: name,
-                objectDescriptionKey: description?.isEmpty == false ? description! : "Eigene schlechte Angewohnheit",
+                objectDescriptionKey: "Eigene schlechte Angewohnheit",
                 habitNameKey: name,
-                habitDescriptionKey: description?.isEmpty == false ? description! : habit,
+                habitDescriptionKey: habit,
                 sfSymbol: icon,
                 price: 0,
                 category: .deko,
@@ -1006,7 +1006,7 @@ class GardenStore: ObservableObject {
                 symbolName: icon,
                 symbolColor: color,
                 habitCategory: category,
-                symbolism: description?.isEmpty == false ? description! : "plant.create.custom_symbolism",
+                symbolism: "plant.create.custom_symbolism",
                 habitName: habit,
                 maxLevel: 10,
                 xpPerCompletion: 100,

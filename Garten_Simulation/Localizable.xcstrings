@@ -306403,7 +306403,6 @@
       }
     },
     "routine.todo.description" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -306498,7 +306497,6 @@
       }
     },
     "routine.todo.description.placeholder" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
