@@ -188,8 +188,7 @@ struct RoutineSessionView: View {
             }
             
             VStack(spacing: 12) {
-                Text(LocalizedStringKey(routine.titleKey))
-                    .environment(\.locale, Locale(identifier: settings.appLanguage))
+                Text(String(localized: String.LocalizationValue(routine.titleKey)))
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                 
@@ -251,8 +250,7 @@ struct RoutineSessionView: View {
                     .frame(width: 250, height: 250)
                     .padding(.top, -10)
                 
-                Text(LocalizedStringKey(currentHabit.isRoutineOnly ? currentHabit.displayedHabitName : (settings.showHabitInsteadOfName ? currentHabit.displayedHabitName : currentHabit.name)))
-                    .environment(\.locale, Locale(identifier: settings.appLanguage))
+                Text(String(localized: String.LocalizationValue(currentHabit.isRoutineOnly ? currentHabit.displayedHabitName : (settings.showHabitInsteadOfName ? currentHabit.displayedHabitName : currentHabit.name))))
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.5)
@@ -261,8 +259,7 @@ struct RoutineSessionView: View {
                     .padding(.horizontal, 32)
                 
                 if !currentHabit.symbolism.isEmpty {
-                    Text(LocalizedStringKey(currentHabit.symbolism))
-                        .environment(\.locale, Locale(identifier: settings.appLanguage))
+                    Text(String(localized: String.LocalizationValue(currentHabit.symbolism)))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)

@@ -24,12 +24,12 @@ struct RoutineOnboardingView: View {
                 Color.appHintergrund.ignoresSafeArea()
                 
                 VStack(spacing: 24) {
-                    Text(String(localized: "routine.onboarding.title", defaultValue: "Deine Routinen", locale: Locale(identifier: settings.appLanguage)))
+                    Text(String(localized: "routine.onboarding.title", defaultValue: "Deine Routinen"))
                         .font(.system(size: 28, weight: .bold, design: .rounded))
                         .multilineTextAlignment(.center)
                         .padding(.top, 40)
                     
-                    Text(String(localized: "routine.onboarding.subtitle", defaultValue: "Wähle deine bevorzugten Routinen aus und füge direkt Gewohnheiten hinzu.", locale: Locale(identifier: settings.appLanguage)))
+                    Text(String(localized: "routine.onboarding.subtitle", defaultValue: "Wähle deine bevorzugten Routinen aus und füge direkt Gewohnheiten hinzu."))
                         .font(.system(size: 16, weight: .regular, design: .rounded))
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
@@ -83,12 +83,12 @@ struct RoutineOnboardingView: View {
                                         
                                         // Title
                                         VStack(alignment: .leading, spacing: 4) {
-                                            Text(String(localized: String.LocalizationValue(routine.titleKey), locale: Locale(identifier: settings.appLanguage)))
+                                            Text(String(localized: String.LocalizationValue(routine.titleKey)))
                                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                                                 .foregroundStyle(.primary)
                                             
                                             if !routine.assignedHabitIDs.isEmpty {
-                                                Text("\(routine.assignedHabitIDs.count) \(String(localized: "routine.habits", defaultValue: "Gewohnheiten", locale: Locale(identifier: settings.appLanguage)))")
+                                                Text("\(routine.assignedHabitIDs.count) \(String(localized: "routine.habits", defaultValue: "Gewohnheiten"))")
                                                     .font(.system(size: 14, weight: .medium, design: .rounded))
                                                     .foregroundStyle(.secondary)
                                             }
@@ -139,7 +139,7 @@ struct RoutineOnboardingView: View {
                             }
                         }
                     ) {
-                        Text(String(localized: "common.done", defaultValue: "Fertig", locale: Locale(identifier: settings.appLanguage)))
+                        Text(String(localized: "common.done", defaultValue: "Fertig"))
                             .font(.system(size: 18, weight: .bold, design: .rounded))
                             .foregroundStyle(.white)
                             .frame(maxWidth: .infinity)

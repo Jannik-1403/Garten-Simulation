@@ -28,16 +28,16 @@ struct PDFExportConfigView: View {
 
                         
                         // Optionale Bereiche
-                        Text(String(localized: "export.config.section.optional", defaultValue: "Zusätzliche Daten", locale: Locale(identifier: settings.appLanguage)))
+                        Text(String(localized: "export.config.section.optional", defaultValue: "Zusätzliche Daten"))
                             .font(.system(size: 16, weight: .bold, design: .rounded))
                             .foregroundStyle(.secondary)
                         
-                        toggleRow(title: String(localized: "export.config.section.habits", defaultValue: "Gute Gewohnheiten", locale: Locale(identifier: settings.appLanguage)), isSelected: $includeGoodHabits)
-                        toggleRow(title: String(localized: "export.config.stats", defaultValue: "Statistiken (Gesamtfortschritt)", locale: Locale(identifier: settings.appLanguage)), isSelected: $includeStatistics)
-                        toggleRow(title: String(localized: "export.config.bad_habits", defaultValue: "Schlechte Gewohnheiten & Rückfälle", locale: Locale(identifier: settings.appLanguage)), isSelected: $includeBadHabits)
-                        toggleRow(title: String(localized: "export.config.routines", defaultValue: "Routinen", locale: Locale(identifier: settings.appLanguage)), isSelected: $includeRoutines)
-                        toggleRow(title: String(localized: "export.config.timer", defaultValue: "Timer Aufzeichnungen", locale: Locale(identifier: settings.appLanguage)), isSelected: $includeTimer)
-                        toggleRow(title: String(localized: "export.config.quiz", defaultValue: "Quiz Ergebnisse", locale: Locale(identifier: settings.appLanguage)), isSelected: $includeQuizResults)
+                        toggleRow(title: String(localized: "export.config.section.habits", defaultValue: "Gute Gewohnheiten"), isSelected: $includeGoodHabits)
+                        toggleRow(title: String(localized: "export.config.stats", defaultValue: "Statistiken (Gesamtfortschritt)"), isSelected: $includeStatistics)
+                        toggleRow(title: String(localized: "export.config.bad_habits", defaultValue: "Schlechte Gewohnheiten & Rückfälle"), isSelected: $includeBadHabits)
+                        toggleRow(title: String(localized: "export.config.routines", defaultValue: "Routinen"), isSelected: $includeRoutines)
+                        toggleRow(title: String(localized: "export.config.timer", defaultValue: "Timer Aufzeichnungen"), isSelected: $includeTimer)
+                        toggleRow(title: String(localized: "export.config.quiz", defaultValue: "Quiz Ergebnisse"), isSelected: $includeQuizResults)
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 16)
@@ -85,7 +85,7 @@ struct PDFExportConfigView: View {
                         }
                     }
                 ) {
-                    Text(String(localized: "export.config.button", defaultValue: "PDF generieren", locale: Locale(identifier: settings.appLanguage)))
+                    Text(String(localized: "export.config.button", defaultValue: "PDF generieren"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
@@ -94,7 +94,7 @@ struct PDFExportConfigView: View {
                 .padding(.bottom, 24)
             }
             .background(Color(hex: "#F2F2F7").ignoresSafeArea())
-            .navigationTitle(String(localized: "export.config.title", defaultValue: "PDF Export Konfigurator", locale: Locale(identifier: settings.appLanguage)))
+            .navigationTitle(String(localized: "export.config.title", defaultValue: "PDF Export Konfigurator"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

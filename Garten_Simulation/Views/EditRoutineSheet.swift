@@ -108,7 +108,7 @@ struct EditRoutineSheet: View {
                                     showTimerSheet = true
                                 } label: {
                                     HStack {
-                                        Text(String(localized: String.LocalizationValue(hasReminder ? "routine.edit.timer.edit" : "routine.edit.timer.add"), locale: Locale(identifier: settings.appLanguage)))
+                                        Text(String(localized: String.LocalizationValue(hasReminder ? "routine.edit.timer.edit" : "routine.edit.timer.add")))
                                             .font(.system(size: 16, weight: .semibold, design: .rounded))
                                         Spacer()
                                         Image(systemName: "chevron.right")
@@ -133,7 +133,7 @@ struct EditRoutineSheet: View {
                     Section {
                         VStack(spacing: 16) {
                             HStack {
-                                Text(String(localized: String.LocalizationValue(routine.filterType == .custom ? "routine.edit.habits.reorder" : "routine.edit.habits.included"), locale: Locale(identifier: settings.appLanguage)))
+                                Text(String(localized: String.LocalizationValue(routine.filterType == .custom ? "routine.edit.habits.reorder" : "routine.edit.habits.included")))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundStyle(.primary)
                                 Spacer()
@@ -210,7 +210,7 @@ struct EditRoutineSheet: View {
                                         .scaledToFit()
                                         .frame(width: 32, height: 32)
                                     
-                                    Text(habit.isRoutineOnly ? String(localized: String.LocalizationValue(habit.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : (settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(habit.displayedHabitName), locale: Locale(identifier: settings.appLanguage)) : String(localized: String.LocalizationValue(habit.name), locale: Locale(identifier: settings.appLanguage))))
+                                    Text(habit.isRoutineOnly ? String(localized: String.LocalizationValue(habit.displayedHabitName)) : (settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(habit.displayedHabitName)) : String(localized: String.LocalizationValue(habit.name))))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         
                                     Spacer()
@@ -288,7 +288,7 @@ struct EditRoutineSheet: View {
             }
             .onAppear {
                 if tempName.hasPrefix("routine.") {
-                    tempName = String(localized: String.LocalizationValue(tempName), locale: Locale(identifier: settings.appLanguage))
+                    tempName = String(localized: String.LocalizationValue(tempName))
                 }
                 
                 // Populate assigned habits correctly ordered
@@ -330,11 +330,11 @@ struct EditRoutineSheet: View {
                                                     .scaledToFit()
                                                     .frame(width: 48, height: 48)
                                                 if settings.showHabitInsteadOfName {
-                                                    Text(String(localized: String.LocalizationValue(plant.displayedHabitName), locale: Locale(identifier: settings.appLanguage)))
+                                                    Text(String(localized: String.LocalizationValue(plant.displayedHabitName)))
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                                         .foregroundStyle(.primary)
                                                 } else {
-                                                    Text(String(localized: String.LocalizationValue(plant.name), locale: Locale(identifier: settings.appLanguage)))
+                                                    Text(String(localized: String.LocalizationValue(plant.name)))
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                                         .foregroundStyle(.primary)
                                                 }
