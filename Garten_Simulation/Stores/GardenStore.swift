@@ -459,8 +459,10 @@ class GardenStore: ObservableObject {
     }
     
     private func checkGlobalStreak() {
-        let standalonePlants = pflanzen.filter { !$0.isRoutineOnly && !$0.isDead && !$0.isNegative }
-        let routinePlants = pflanzen.filter { $0.isRoutineOnly && !$0.isDead && !$0.isNegative }
+        let standalonePlants = pflanzen.filter { !$0.isRoutineOnly && !$0.isDead && !$0.isNegative && !$0.isGenericFocus }
+        
+        let activeRoutineHabitIDs = Set(routines.flatMap { $0.habitIDs })
+        let routinePlants = pflanzen.filter { $0.isRoutineOnly && !$0.isDead && !$0.isNegative && !$0.isGenericFocus && activeRoutineHabitIDs.contains($0.id) }
         
         let hasAnyPlant = !standalonePlants.isEmpty || !routinePlants.isEmpty
         guard hasAnyPlant else { return }
