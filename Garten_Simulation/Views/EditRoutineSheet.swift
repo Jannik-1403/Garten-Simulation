@@ -193,7 +193,7 @@ struct EditRoutineSheet: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 32, height: 32)
-                                    Text(getDisplayName(for: habit))
+                                    Text(verbatim: getDisplayName(for: habit))
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                         
                                     Spacer()
@@ -210,8 +210,8 @@ struct EditRoutineSheet: View {
                                     withAnimation { isListEditing = true }
                                 }
                             }
-                            .onMove(perform: isListEditing ? moveHabits : nil)
-                            .onDelete(perform: isListEditing ? deleteHabits : nil)
+                            .onMove(perform: moveAction)
+                            .onDelete(perform: deleteAction)
                         }
                     }
                 }
@@ -393,6 +393,14 @@ struct EditRoutineSheet: View {
                 Text(String(localized: "routine.edit.habit.message", defaultValue: "Gib der Gewohnheit für diese Routine einen neuen Namen."))
             }
         }
+    }
+    
+    private var moveAction: ((IndexSet, Int) -> Void)? {
+        isListEditing ? moveHabits : nil
+    }
+    
+    private var deleteAction: ((IndexSet) -> Void)? {
+        isListEditing ? deleteHabits : nil
     }
     
     private func getDisplayName(for habit: HabitModel) -> String {
