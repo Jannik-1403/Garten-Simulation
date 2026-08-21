@@ -332,13 +332,13 @@ struct EditRoutineSheet: View {
                 CreateRoutineCustomToDoSheetWrapper(assignedHabits: $assignedHabits)
             }
             .alert(
-                String(localized: String.LocalizationValue(habitToEdit?.isRoutineOnly == true ? "routine.edit.task.title" : "routine.edit.habit.title")),
+                alertTitle,
                 isPresented: Binding(
                     get: { habitToEdit != nil },
                     set: { if !$0 { habitToEdit = nil } }
                 )
             ) {
-                TextField(habitToEdit?.isRoutineOnly == true ? String(localized: "routine.edit.task.placeholder", defaultValue: "Aufgabe") : String(localized: "routine.edit.habit.placeholder", defaultValue: "Gewohnheit"), text: Binding(
+                TextField(alertPlaceholder, text: Binding(
                     get: { habitToEdit?.customRoutineTaskName ?? "" },
                     set: { newValue in
                         if let h = habitToEdit {
@@ -369,9 +369,24 @@ struct EditRoutineSheet: View {
                     habitToEdit = nil
                 }
             } message: {
-                Text(habitToEdit?.isRoutineOnly == true ? String(localized: "routine.edit.task.message", defaultValue: "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein.") : String(localized: "routine.edit.habit.message", defaultValue: "Gib der Gewohnheit für diese Routine einen neuen Namen."))
+                Text(alertMessage)
             }
         }
+    }
+    
+    private var alertTitle: String {
+        let isTask = habitToEdit?.isRoutineOnly == true
+        return String(localized: String.LocalizationValue(isTask ? "routine.edit.task.title" : "routine.edit.habit.title"))
+    }
+    
+    private var alertMessage: String {
+        let isTask = habitToEdit?.isRoutineOnly == true
+        return isTask ? String(localized: "routine.edit.task.message", defaultValue: "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein.") : String(localized: "routine.edit.habit.message", defaultValue: "Gib der Gewohnheit für diese Routine einen neuen Namen.")
+    }
+    
+    private var alertPlaceholder: String {
+        let isTask = habitToEdit?.isRoutineOnly == true
+        return isTask ? String(localized: "routine.edit.task.placeholder", defaultValue: "Aufgabe") : String(localized: "routine.edit.habit.placeholder", defaultValue: "Gewohnheit")
     }
     
     private func isHabitAssigned(_ plant: HabitModel) -> Bool {
