@@ -188,27 +188,7 @@ struct EditRoutineSheet: View {
                                 .listRowSeparator(.hidden)
                         } else {
                             ForEach(assignedHabits) { habit in
-                                HStack(spacing: 16) {
-                                    Image(habit.plantImageName)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 32, height: 32)
-                                    Text(verbatim: getDisplayName(for: habit))
-                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                        
-                                    Spacer()
-                                }
-                                .padding(.vertical, 4)
-                                .contentShape(Rectangle())
-                                .listRowBackground(Color(white: 0.98))
-                                .onTapGesture {
-                                    if !isListEditing {
-                                        habitToEdit = habit
-                                    }
-                                }
-                                .onLongPressGesture(minimumDuration: 0.5) {
-                                    withAnimation { isListEditing = true }
-                                }
+                                habitRow(for: habit)
                             }
                             .onMove(perform: moveAction)
                             .onDelete(perform: deleteAction)
@@ -392,6 +372,31 @@ struct EditRoutineSheet: View {
             } message: {
                 Text(String(localized: "routine.edit.habit.message", defaultValue: "Gib der Gewohnheit für diese Routine einen neuen Namen."))
             }
+        }
+    }
+    
+    @ViewBuilder
+    private func habitRow(for habit: HabitModel) -> some View {
+        HStack(spacing: 16) {
+            Image(habit.plantImageName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 32, height: 32)
+            Text(verbatim: getDisplayName(for: habit))
+                .font(.system(size: 16, weight: .bold, design: .rounded))
+                
+            Spacer()
+        }
+        .padding(.vertical, 4)
+        .contentShape(Rectangle())
+        .listRowBackground(Color(white: 0.98))
+        .onTapGesture {
+            if !isListEditing {
+                habitToEdit = habit
+            }
+        }
+        .onLongPressGesture(minimumDuration: 0.5) {
+            withAnimation { isListEditing = true }
         }
     }
     
