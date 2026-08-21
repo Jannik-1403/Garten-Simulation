@@ -226,13 +226,14 @@ struct EditRoutineSheet: View {
                                     }
                                 }
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    Button(role: .destructive) {
+                                    Button {
                                         if let index = assignedHabits.firstIndex(where: { $0.id == habit.id }) {
                                             deleteHabits(at: IndexSet(integer: index))
                                         }
                                     } label: {
                                         Label(String(localized: "routine.delete"), systemImage: "trash")
                                     }
+                                    .tint(.red.opacity(0.8))
                                     
                                     if habit.isRoutineOnly {
                                         Button {
@@ -374,6 +375,14 @@ struct EditRoutineSheet: View {
                         if let h = habitToEdit {
                             h.customRoutineTaskName = newValue
                             h.habitName = newValue
+                        }
+                    }
+                ))
+                TextField(String(localized: "routine.todo.description.placeholder", defaultValue: "Beschreibung (Optional)"), text: Binding(
+                    get: { habitToEdit?.symbolism ?? "" },
+                    set: { newValue in
+                        if let h = habitToEdit {
+                            h.symbolism = newValue
                         }
                     }
                 ))

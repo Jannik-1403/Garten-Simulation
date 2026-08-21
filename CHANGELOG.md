@@ -524,3 +524,4 @@
 - Added an alert to easily rename custom To-Dos
 - Fehler bei der Übersetzung von Gewohnheiten ('Drinking Water' in deutscher App) durch Entfernen fehlerhafter Locale-Overrides behoben.
 - Apple Health Statistiken in den Pflanzendetails für alle Nutzer freigeschaltet (App Store Guideline 4.10)
+- **UI/UX (Routinen & Gewohnheiten)**: Das Beschreibungsfeld bei Custom To-Dos in Routinen wurde entfernt, da die Beschreibung in der Routine-Darstellung nicht gebraucht wird. Dafür wurde ein neues Beschreibungsfeld zur Erstellung von benutzerdefinierten Gewohnheiten hinzugefügt, sodass diese nicht mehr den Standardtext ('Meine selbst kreierte Pflanze') anzeigen, sondern mit einer eigenen Beschreibung versehen werden können.
