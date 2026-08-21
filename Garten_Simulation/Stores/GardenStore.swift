@@ -461,7 +461,14 @@ class GardenStore: ObservableObject {
     private func checkGlobalStreak() {
         let standalonePlants = pflanzen.filter { !$0.isRoutineOnly && !$0.isDead && !$0.isNegative && !$0.isGenericFocus }
         
-        let activeRoutineHabitIDs = Set(routines.flatMap { $0.habitIDs })
+        var activeRoutineHabitIDs = Set<String>()
+        if let data = SharedUserDefaults.suite.data(forKey: "customRoutinesData"),
+           let routines = try? JSONDecoder().decode([RoutineUIData].self, from: data) {
+            for routine in routines {
+                activeRoutineHabitIDs.formUnion(routine.assignedHabitIDs)
+            }
+        }
+        
         let routinePlants = pflanzen.filter { $0.isRoutineOnly && !$0.isDead && !$0.isNegative && !$0.isGenericFocus && activeRoutineHabitIDs.contains($0.id) }
         
         let hasAnyPlant = !standalonePlants.isEmpty || !routinePlants.isEmpty
@@ -956,7 +963,7 @@ class GardenStore: ObservableObject {
     
     func starteTageswechselTimer() {
         Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
-            guard let self = self else { return }
+            guard self != nil else { return }
             let jetzt = Date()
             let stunde = Calendar.current.component(.hour, from: jetzt)
             let minute = Calendar.current.component(.minute, from: jetzt)
@@ -980,7 +987,7 @@ class GardenStore: ObservableObject {
             saveStats()
         }
         
-        return createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category, isNegative: isNegative)
+        _ = createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category, isNegative: isNegative)
     }
     
     // Non-billed version for Onboarding
@@ -1674,7 +1681,6 @@ class GardenStore: ObservableObject {
     func pruefePflanzenStatus() {
         if plantToRescue != nil { return } // Warten auf Benutzer-Antwort
         
-        let now = Date()
         var changed = false
         
         // Unkraut-Strafe berechnen
