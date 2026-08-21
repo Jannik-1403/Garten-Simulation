@@ -207,15 +207,12 @@ struct EditRoutineSheet: View {
                                         habitToEdit = habit
                                     }
                                 }
-                                .simultaneousGesture(
-                                    LongPressGesture(minimumDuration: 0.5).onEnded { _ in
-                                        withAnimation { isListEditing = true }
-                                    }
-                                )
+                                .onLongPressGesture(minimumDuration: 0.5) {
+                                    withAnimation { isListEditing = true }
+                                }
                             }
-                            .onMove(perform: moveHabits)
-                            .onDelete(perform: deleteHabits)
-                            .deleteDisabled(!isListEditing)
+                            .onMove(perform: isListEditing ? moveHabits : nil)
+                            .onDelete(perform: isListEditing ? deleteHabits : nil)
                         }
                     }
                 }
