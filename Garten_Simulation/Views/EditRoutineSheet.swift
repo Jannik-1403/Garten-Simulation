@@ -332,34 +332,30 @@ struct EditRoutineSheet: View {
                 CreateRoutineCustomToDoSheetWrapper(assignedHabits: $assignedHabits)
             }
             .alert(
-                alertTitle,
+                String(localized: "routine.edit.task.title", defaultValue: "Aufgabe bearbeiten"),
                 isPresented: Binding(
-                    get: { habitToEdit != nil },
+                    get: { habitToEdit != nil && habitToEdit?.isRoutineOnly == true },
                     set: { if !$0 { habitToEdit = nil } }
                 )
             ) {
-                TextField(alertPlaceholder, text: Binding(
+                TextField(String(localized: "routine.edit.task.placeholder", defaultValue: "Aufgabe"), text: Binding(
                     get: { habitToEdit?.customRoutineTaskName ?? "" },
                     set: { newValue in
                         if let h = habitToEdit {
                             h.customRoutineTaskName = newValue
-                            if h.isRoutineOnly {
-                                h.habitName = newValue
-                            }
+                            h.habitName = newValue
                         }
                     }
                 ))
                 
-                if habitToEdit?.isRoutineOnly == true {
-                    TextField(String(localized: "routine.todo.description.placeholder", defaultValue: "Beschreibung (Optional)"), text: Binding(
-                        get: { habitToEdit?.symbolism ?? "" },
-                        set: { newValue in
-                            if let h = habitToEdit {
-                                h.symbolism = newValue
-                            }
+                TextField(String(localized: "routine.todo.description.placeholder", defaultValue: "Beschreibung (Optional)"), text: Binding(
+                    get: { habitToEdit?.symbolism ?? "" },
+                    set: { newValue in
+                        if let h = habitToEdit {
+                            h.symbolism = newValue
                         }
-                    ))
-                }
+                    }
+                ))
                 
                 Button(String(localized: "common.save", defaultValue: "Speichern")) {
                     gardenStore.savePlants()
@@ -369,24 +365,35 @@ struct EditRoutineSheet: View {
                     habitToEdit = nil
                 }
             } message: {
-                Text(alertMessage)
+                Text(String(localized: "routine.edit.task.message", defaultValue: "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."))
+            }
+            .alert(
+                String(localized: "routine.edit.habit.title", defaultValue: "Gewohnheit bearbeiten"),
+                isPresented: Binding(
+                    get: { habitToEdit != nil && habitToEdit?.isRoutineOnly == false },
+                    set: { if !$0 { habitToEdit = nil } }
+                )
+            ) {
+                TextField(String(localized: "routine.edit.habit.placeholder", defaultValue: "Gewohnheit"), text: Binding(
+                    get: { habitToEdit?.customRoutineTaskName ?? "" },
+                    set: { newValue in
+                        if let h = habitToEdit {
+                            h.customRoutineTaskName = newValue
+                        }
+                    }
+                ))
+                
+                Button(String(localized: "common.save", defaultValue: "Speichern")) {
+                    gardenStore.savePlants()
+                    habitToEdit = nil
+                }
+                Button(String(localized: "common.cancel", defaultValue: "Abbrechen"), role: .cancel) {
+                    habitToEdit = nil
+                }
+            } message: {
+                Text(String(localized: "routine.edit.habit.message", defaultValue: "Gib der Gewohnheit für diese Routine einen neuen Namen."))
             }
         }
-    }
-    
-    private var alertTitle: String {
-        let isTask = habitToEdit?.isRoutineOnly == true
-        return String(localized: String.LocalizationValue(isTask ? "routine.edit.task.title" : "routine.edit.habit.title"))
-    }
-    
-    private var alertMessage: String {
-        let isTask = habitToEdit?.isRoutineOnly == true
-        return isTask ? String(localized: "routine.edit.task.message", defaultValue: "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein.") : String(localized: "routine.edit.habit.message", defaultValue: "Gib der Gewohnheit für diese Routine einen neuen Namen.")
-    }
-    
-    private var alertPlaceholder: String {
-        let isTask = habitToEdit?.isRoutineOnly == true
-        return isTask ? String(localized: "routine.edit.task.placeholder", defaultValue: "Aufgabe") : String(localized: "routine.edit.habit.placeholder", defaultValue: "Gewohnheit")
     }
     
     private func isHabitAssigned(_ plant: HabitModel) -> Bool {
