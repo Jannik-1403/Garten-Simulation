@@ -202,18 +202,13 @@ struct EditRoutineSheet: View {
                                 .padding(.vertical, 4)
                                 .contentShape(Rectangle())
                                 .listRowBackground(Color(white: 0.98))
+                                .onTapGesture {
+                                    if !isListEditing {
+                                        habitToEdit = habit
+                                    }
+                                }
                                 .onLongPressGesture {
                                     withAnimation { isListEditing = true }
-                                }
-                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    if habit.isRoutineOnly {
-                                        Button {
-                                            habitToEdit = habit
-                                        } label: {
-                                            Label(String(localized: "common.edit", defaultValue: "Bearbeiten"), systemImage: "pencil")
-                                        }
-                                        .tint(.blue)
-                                    }
                                 }
                             }
                             .onMove(perform: moveHabits)
@@ -336,7 +331,7 @@ struct EditRoutineSheet: View {
             .sheet(isPresented: $showCustomTodoSheet) {
                 CreateRoutineCustomToDoSheetWrapper(assignedHabits: $assignedHabits)
             }
-            .alert(String(localized: "routine.todo.edit", defaultValue: "To-Do umbenennen"), isPresented: Binding(
+            .alert(String(localized: "routine.edit.item", defaultValue: "Bearbeiten"), isPresented: Binding(
                 get: { habitToEdit != nil },
                 set: { if !$0 { habitToEdit = nil } }
             )) {
@@ -345,18 +340,24 @@ struct EditRoutineSheet: View {
                     set: { newValue in
                         if let h = habitToEdit {
                             h.customRoutineTaskName = newValue
-                            h.habitName = newValue
+                            if h.isRoutineOnly {
+                                h.habitName = newValue
+                            }
                         }
                     }
                 ))
-                TextField(String(localized: "routine.todo.description.placeholder", defaultValue: "Beschreibung (Optional)"), text: Binding(
-                    get: { habitToEdit?.symbolism ?? "" },
-                    set: { newValue in
-                        if let h = habitToEdit {
-                            h.symbolism = newValue
+                
+                if habitToEdit?.isRoutineOnly == true {
+                    TextField(String(localized: "routine.todo.description.placeholder", defaultValue: "Beschreibung (Optional)"), text: Binding(
+                        get: { habitToEdit?.symbolism ?? "" },
+                        set: { newValue in
+                            if let h = habitToEdit {
+                                h.symbolism = newValue
+                            }
                         }
-                    }
-                ))
+                    ))
+                }
+                
                 Button(String(localized: "common.save", defaultValue: "Speichern")) {
                     gardenStore.savePlants()
                     habitToEdit = nil
@@ -365,7 +366,7 @@ struct EditRoutineSheet: View {
                     habitToEdit = nil
                 }
             } message: {
-                Text(String(localized: "routine.todo.edit.message", defaultValue: "Gib einen neuen Namen für dieses To-Do ein."))
+                Text(String(localized: "routine.edit.item.message", defaultValue: "Gib einen neuen Namen ein."))
             }
         }
     }
