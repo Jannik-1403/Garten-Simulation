@@ -401,11 +401,19 @@ struct EditRoutineSheet: View {
     }
     
     private var moveAction: ((IndexSet, Int) -> Void)? {
-        isListEditing ? moveHabits : nil
+        if isListEditing {
+            return moveHabits
+        } else {
+            return nil
+        }
     }
     
     private var deleteAction: ((IndexSet) -> Void)? {
-        isListEditing ? deleteHabits : nil
+        if isListEditing {
+            return deleteHabits
+        } else {
+            return nil
+        }
     }
     
     private func getDisplayName(for habit: HabitModel) -> String {
