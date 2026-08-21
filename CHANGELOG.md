@@ -515,3 +515,12 @@
 - Fixed UI in Shop: Empty descriptions are now completely hidden to optimize layout spacing
 - UI improvements: Increased item sizes in the Shop and removed the red outline from the sell button in the detail view.
 - Refined Shop UI sizing: Only plants are scaled up visually without affecting the card background size, items and lucky wheel remain at original size.
+- Apple Health und Kalender-Sync von der Paywall und aus der Pro-Einschränkung entfernt (App Store Guideline 4.10)
+
+### Routine Improvements
+- Fixed scrolling issue in EditRoutineSheet by refactoring to a standard List structure
+- Added swipe actions (swipe right) to delete or edit custom To-Dos
+- Added long-press gesture support to either edit a custom To-Do or enter sorting mode
+- Added an alert to easily rename custom To-Dos
+- Fehler bei der Übersetzung von Gewohnheiten ('Drinking Water' in deutscher App) durch Entfernen fehlerhafter Locale-Overrides behoben.
+- Apple Health Statistiken in den Pflanzendetails für alle Nutzer freigeschaltet (App Store Guideline 4.10)
