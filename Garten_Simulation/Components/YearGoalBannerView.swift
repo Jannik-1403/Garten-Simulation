@@ -128,7 +128,7 @@ struct YearGoalBannerView: View {
                     .padding(.horizontal, 20)
                     .contentShape(Rectangle())
                     .overlay(
-                        Text("Level \(currentLevel)")
+                        Text(String(localized: "banner.level", defaultValue: "Level \(currentLevel)"))
                             .font(.system(size: 14, weight: .bold, design: .rounded))
                             .foregroundColor(Color(hex: "#0288D1"))
                             .padding(.top, 16)

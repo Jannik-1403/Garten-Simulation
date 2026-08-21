@@ -12,7 +12,7 @@ struct WeedStackIndicator: View {
                 .scaledToFit()
                 .frame(width: 90, height: 90)
         }
-        .accessibilityLabel(Text("\(count) Unkraut"))
+        .accessibilityLabel(Text(String(localized: "weed.count", defaultValue: "\(count) Unkraut")))
     }
 }
 

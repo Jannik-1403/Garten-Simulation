@@ -986,8 +986,7 @@ class GardenStore: ObservableObject {
             seeds -= 10
             saveStats()
         }
-        
-        _ = createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category, isNegative: isNegative)
+        return createAndAddCustomPlant(name: name, habit: habit, icon: icon, color: color, category: category, isNegative: isNegative)
     }
     
     // Non-billed version for Onboarding
@@ -1000,6 +999,7 @@ class GardenStore: ObservableObject {
         addCustomPlantFromOnboarding(name: name, habit: habit, icon: icon, color: color, category: category, reminderTime: reminderTime)
     }
     
+    @discardableResult
     private func createAndAddCustomPlant(name: String, habit: String, icon: String, color: String, category: HabitCategory, reminderTime: Date? = nil, isNegative: Bool = false) -> HabitModel? {
         let newCustomID = "custom_\(UUID().uuidString)"
         

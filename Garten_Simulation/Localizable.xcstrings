@@ -405077,31 +405077,31 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "Modifier la Tâche"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "Görevi Düzenle"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "編輯任務"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "Editar Tarefa"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "Modifica Attività"
           }
         },
         "de": {
@@ -405113,49 +405113,49 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "작업 편집"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "Изменить Задачу"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "编辑任务"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "कार्य संपादित करें"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "タスクを編集"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "Editar Tarea"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "Edytuj Zadanie"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe bearbeiten"
+            "value": "Taak Bewerken"
           }
         },
         "en": {
@@ -405172,31 +405172,31 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "Modifier l'Habitude"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "Alışkanlığı Düzenle"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "編輯習慣"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "Editar Hábito"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "Modifica Abitudine"
           }
         },
         "de": {
@@ -405208,49 +405208,49 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "습관 편집"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "Изменить Привычку"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "编辑习惯"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "आदत संपादित करें"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "習慣を編集"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "Editar Hábito"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "Edytuj Nawyk"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit bearbeiten"
+            "value": "Gewoonte Bewerken"
           }
         },
         "en": {
@@ -405267,31 +405267,31 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "Saisissez un nouveau nom de tâche et éventuellement une description."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "Yeni bir görev adı ve isteğe bağlı bir açıklama girin."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "輸入新的任務名稱以及（可選的）描述。"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "Insira um novo nome de tarefa e, opcionalmente, uma descrição."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "Inserisci un nuovo nome per l'attività e, opzionalmente, una descrizione."
           }
         },
         "de": {
@@ -405303,55 +405303,55 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "새 작업 이름과 선택적으로 설명을 입력하세요."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "Введите новое название задачи и, при желании, описание."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "输入新的任务名称以及（可选的）描述。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "एक नया कार्य नाम और वैकल्पिक रूप से एक विवरण दर्ज करें।"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "新しいタスク名と、オプションで説明を入力してください。"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "Introduce un nuevo nombre de tarea y opcionalmente una descripción."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "Wprowadź nową nazwę zadania i opcjonalnie opis."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib einen neuen Aufgabennamen und optional eine Beschreibung ein."
+            "value": "Voer een nieuwe taaknaam in en optioneel een beschrijving."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enter a new task name and an optional description."
+            "value": "Enter a new task name and optionally a description."
           }
         }
       }
@@ -405362,31 +405362,31 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "Saisissez un nouveau nom pour l'habitude dans cette routine."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "Bu rutindeki alışkanlık için yeni bir ad girin."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "為該慣例中的習慣輸入一個新名稱。"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "Insira um novo nome para o hábito nesta rotina."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "Inserisci un nuovo nome per l'abitudine in questa routine."
           }
         },
         "de": {
@@ -405398,49 +405398,49 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "이 루틴의 습관에 대한 새 이름을 입력하세요."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "Введите новое название для привычки в этой рутине."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "为该惯例中的习惯输入一个新名称。"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "इस दिनचर्या में आदत के लिए एक नया नाम दर्ज करें।"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "このルーチンの習慣の新しい名前を入力してください。"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "Introduce un nuevo nombre para el hábito en esta rutina."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "Wprowadź nową nazwę dla nawyku w tej rutynie."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gib der Gewohnheit für diese Routine einen neuen Namen."
+            "value": "Voer een nieuwe naam in voor de gewoonte in deze routine."
           }
         },
         "en": {
@@ -405457,31 +405457,31 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "Tâche"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "Görev"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "任務"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "Tarefa"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "Attività"
           }
         },
         "de": {
@@ -405493,49 +405493,49 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "작업"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "Задача"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "任务"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "कार्य"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "タスク"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "Tarea"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "Zadanie"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aufgabe"
+            "value": "Taak"
           }
         },
         "en": {
@@ -405552,31 +405552,31 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "Habitude"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "Alışkanlık"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "習慣"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "Hábito"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "Abitudine"
           }
         },
         "de": {
@@ -405588,49 +405588,49 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "습관"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "Привычка"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "习惯"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "आदत"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "習慣"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "Hábito"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "Nawyk"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gewohnheit"
+            "value": "Gewoonte"
           }
         },
         "en": {
