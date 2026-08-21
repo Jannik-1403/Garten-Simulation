@@ -7,6 +7,7 @@ struct CustomPlantCreationView: View {
     
     @State private var plantName: String = ""
     @State private var habitName: String = ""
+    @State private var habitDescription: String = ""
     @State private var selectedIcon: String = "leaf.fill"
     @State private var selectedColor: String = "green"
     @State private var selectedCategory: HabitCategory = .fitness
@@ -104,6 +105,12 @@ struct CustomPlantCreationView: View {
                                     title: isNegative ? String(localized: "plant.create.preview.bad_habit") : String(localized: "plant.create.field.habit_name"), 
                                     placeholder: isNegative ? String(localized: "plant.create.placeholder.bad_habit") : String(localized: "plant.create.placeholder.habit"), 
                                     text: $habitName
+                                )
+                                
+                                customTextField(
+                                    title: isNegative ? String(localized: "plant.create.field.trash_description", defaultValue: "Beschreibung (Optional)") : String(localized: "plant.create.field.plant_description", defaultValue: "Beschreibung (Optional)"), 
+                                    placeholder: isNegative ? String(localized: "plant.create.placeholder.trash_description", defaultValue: "z.B. Nur den Restmüll essen") : String(localized: "plant.create.placeholder.plant_description", defaultValue: "z.B. Für mehr Energie im Alltag"), 
+                                    text: $habitDescription
                                 )
                             }
                             
@@ -487,6 +494,7 @@ struct CustomPlantCreationView: View {
         let newPlant = gardenStore.addCustomPlant(
             name: plantName, 
             habit: habitName, 
+            description: habitDescription,
             icon: selectedIcon, 
             color: selectedColor,
             category: selectedCategory,
