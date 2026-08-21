@@ -1253,25 +1253,11 @@ struct TimerCreateSheetView: View {
                 Spacer()
                 
                 Button {
-                    if iapStore.isProUser {
-                        showCalendarSheet = true
-                    } else {
-                        zeigePaywall = true
-                    }
+                    showCalendarSheet = true
                 } label: {
-                    if iapStore.isProUser {
-                        Image(systemName: "calendar")
-                            .font(.system(size: 22, weight: .bold))
-                            .foregroundStyle(Color.primary)
-                    } else {
-                        HStack(spacing: 4) {
-                            Image(systemName: "lock.fill")
-                                .font(.system(size: 14))
-                            Image(systemName: "calendar")
-                                .font(.system(size: 22, weight: .bold))
-                        }
-                        .foregroundStyle(Color.goldPrimary)
-                    }
+                    Image(systemName: "calendar")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundStyle(Color.primary)
                 }
 
             }
@@ -1723,25 +1709,11 @@ struct TimerDayFullscreenEditView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 16) {
                         Button {
-                            if iapStore.isProUser {
-                                showCalendarSheet = true
-                            } else {
-                                zeigePaywall = true
-                            }
+                            showCalendarSheet = true
                         } label: {
-                            if iapStore.isProUser {
-                                Image(systemName: "calendar")
-                                    .font(.system(size: 20, weight: .bold))
-                                    .foregroundStyle(Color.primary)
-                            } else {
-                                HStack(spacing: 4) {
-                                    Image(systemName: "lock.fill")
-                                        .font(.system(size: 14))
-                                    Image(systemName: "calendar")
-                                        .font(.system(size: 20, weight: .bold))
-                                }
-                                .foregroundStyle(Color.goldPrimary)
-                            }
+                            Image(systemName: "calendar")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundStyle(Color.primary)
                         }
                         
                         Button(String(localized: "common.done_button")) {

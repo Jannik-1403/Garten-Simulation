@@ -56,28 +56,6 @@ struct PaywallView: View {
                         // Feature Cards
                         VStack(spacing: 16) {
                             featureRow(
-                                icon: "ProIconHealth",
-                                title: String(localized: "paywall.feature.health.title", defaultValue: "Apple Health Integration"),
-                                bullets: [
-                                    String(localized: "paywall.feature.health.bullet1.new", defaultValue: "Automatisches Tracking im Hintergrund."),
-                                    String(localized: "paywall.feature.health.bullet2.new", defaultValue: "Schnelleres Tracking deiner Aktivitäten."),
-                                    String(localized: "paywall.feature.health.bullet3.new", defaultValue: "Schließe Apple Health Ringe mühelos.")
-                                ],
-                                color: .red
-                            )
-                            
-                            featureRow(
-                                icon: "ProIconCalendar",
-                                title: String(localized: "paywall.feature.calendar.title", defaultValue: "Apple Kalender Sync"),
-                                bullets: [
-                                    String(localized: "paywall.feature.calendar.bullet1.new", defaultValue: "Schnelle Termin-Erstellung aus der App."),
-                                    String(localized: "paywall.feature.calendar.bullet2.new", defaultValue: "Echtzeit-Synchronisation mit dem Kalender."),
-                                    String(localized: "paywall.feature.calendar.bullet3.new", defaultValue: "Automatische Benachrichtigungen für Events.")
-                                ],
-                                color: .goldPrimary
-                            )
-                            
-                            featureRow(
                                 icon: "ProIconAnalytics",
                                 title: String(localized: "paywall.feature.weekly_report.title", defaultValue: "Detaillierte Analysen"),
                                 bullets: [

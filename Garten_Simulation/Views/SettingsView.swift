@@ -106,10 +106,7 @@ struct SettingsView: View {
                                     Divider().padding(.leading, 44)
                                     
                                     Button {
-                                        if !iapStore.isProUser {
-                                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                                            zeigePaywall = true
-                                        } else if !healthManager.isAuthorized {
+                                        if !healthManager.isAuthorized {
                                             healthManager.requestAuthorization()
                                         } else {
                                             if let url = URL(string: "x-apple-health://") {
@@ -148,16 +145,7 @@ struct SettingsView: View {
                                             
                                             Spacer()
                                             
-                                            if !iapStore.isProUser {
-                                                Text(String(localized: "settings.pro.badge", defaultValue: "PRO"))
-                                                    .font(.system(size: 10, weight: .black, design: .rounded))
-                                                    .padding(.horizontal, 6)
-                                                    .padding(.vertical, 4)
-                                                    .background(Color.orangePrimary)
-                                                    .foregroundStyle(.white)
-                                                    .clipShape(Capsule())
-                                            } else {
-                                                if healthManager.isAuthorized {
+                                            if healthManager.isAuthorized {
                                                     HStack(spacing: 4) {
                                                         Circle()
                                                             .fill(Color.green)
@@ -180,7 +168,6 @@ struct SettingsView: View {
                                                     .font(.system(size: 14, weight: .bold))
                                                     .foregroundStyle(.tertiary)
                                             }
-                                        }
                                         .padding(.horizontal, 16)
                                         .padding(.vertical, 12)
                                         .contentShape(Rectangle())
