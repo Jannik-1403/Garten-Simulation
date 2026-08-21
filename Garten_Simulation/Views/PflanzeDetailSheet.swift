@@ -523,7 +523,6 @@ struct PflanzeDetailSheet: View {
                     private var healthKitConfigSection: some View {
                         VStack(spacing: 12) {
                             Group {
-                                if iapStore.isProUser {
                                     // --- STATISTIKEN (Pro Feature) ---
                                     if pflanze.automaticHealthMetric == nil && pflanze.linkedHealthMetric == nil {
                                         IntradayProgressChartView(
@@ -607,38 +606,6 @@ struct PflanzeDetailSheet: View {
                                             }
                                         }
                                     }
-                                } else {
-                                    VStack(spacing: 12) {
-                                        HStack {
-                                            Text(String(localized: "apple.health.title", defaultValue: "Apple Health Kopplung"))
-                                                .font(.system(size: 20, weight: .bold, design: .rounded))
-                                            Spacer()
-                                        }
-                                        .padding(.horizontal, 24)
-                                        
-                                        Item3DButton(
-                                            farbe: Color.goldPrimary,
-                                            sekundaerFarbe: Color(red: 0.7, green: 0.5, blue: 0.0), // Dunkelgold
-                                            groesse: 56,
-                                            isRectangular: true,
-                                            aktion: {
-                                                zeigePaywall = true
-                                            }
-                                        ) {
-                                            HStack(spacing: 8) {
-                                                Image(systemName: "lock.fill")
-                                                    .font(.system(size: 18, weight: .bold))
-                                                
-                                                Text(String(localized: "apple.health.pro_locked", defaultValue: "Grovy Pro Feature"))
-                                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                            }
-                                            .frame(maxWidth: .infinity)
-                                            .foregroundStyle(.white)
-                                            .padding(.horizontal, 16)
-                                        }
-                                        .padding(.horizontal, 24)
-                                    }
-                                }
                         }
                         .padding(.bottom, 8)
                         .tourAnchor(.plantHealth)
