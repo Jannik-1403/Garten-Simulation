@@ -86524,18 +86524,6 @@
             "value": "Digital"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "数字"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "數位"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -86600,6 +86588,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Digital"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "数字"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "數位"
           }
         }
       }
@@ -86619,18 +86619,6 @@
             "value": "Diet"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "饮食"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "飲食"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -86695,6 +86683,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Diet"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "饮食"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "飲食"
           }
         }
       }
@@ -86714,18 +86714,6 @@
             "value": "Laziness"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "懒惰"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "懶惰"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -86790,6 +86778,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Laziness"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "懒惰"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "懶惰"
           }
         }
       }
@@ -86809,18 +86809,6 @@
             "value": "Consumption"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "消费"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "消費"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -86885,6 +86873,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Consumption"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "消费"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "消費"
           }
         }
       }
@@ -86904,18 +86904,6 @@
             "value": "Leisure"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "休闲"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "休閒"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -86980,6 +86968,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Leisure"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "休闲"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "休閒"
           }
         }
       }
@@ -86999,18 +86999,6 @@
             "value": "Other"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "其他"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "其他"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -87075,6 +87063,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Other"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "其他"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "其他"
           }
         }
       }
@@ -87094,18 +87094,6 @@
             "value": "Addiction & Vices"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "成瘾与恶习"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "成癮與惡習"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -87170,6 +87158,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Addiction & Vices"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成瘾与恶习"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "成癮與惡習"
           }
         }
       }
@@ -87270,7 +87270,6 @@
       }
     },
     "banner.level": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -102077,6 +102076,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "D"
+          }
+        }
+      }
+    },
+    "common.unit": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Einheit"
           }
         }
       }
@@ -119340,6 +119350,95 @@
           "stringUnit": {
             "state": "translated",
             "value": "美食日記"
+          }
+        }
+      }
+    },
+    "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen.": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建你自己的习惯。只需10颗种子，你就可以创建自己的专属习惯。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "創建你自己的習慣。只需10顆種子，你就可以創建自己的專屬習慣。"
           }
         }
       }
@@ -308226,18 +308325,6 @@
             "value": "Description (Optional)"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "描述 (可选)"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "描述 (可選)"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -308302,6 +308389,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Description (Optional)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "描述 (可选)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "描述 (可選)"
           }
         }
       }
@@ -308320,18 +308419,6 @@
             "value": "e.g. only residual waste"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "例如：仅限不可回收垃圾"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "例如：僅限不可回收垃圾"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -308396,6 +308483,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "e.g. only residual waste"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "例如：仅限不可回收垃圾"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "例如：僅限不可回收垃圾"
           }
         }
       }
@@ -308604,18 +308703,6 @@
             "value": "Plant Icon"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "植物图标"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "植物圖標"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -308680,6 +308767,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Plant Icon"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物图标"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "植物圖標"
           }
         }
       }
@@ -308698,18 +308797,6 @@
             "value": "To-Do Name"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "待办事项名称"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "待辦事項名稱"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -308774,6 +308861,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "To-Do Name"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "待办事项名称"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "待辦事項名稱"
           }
         }
       }
@@ -308792,18 +308891,6 @@
             "value": "e.g. Take out the trash"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "例如：倒垃圾"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "例如：倒垃圾"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -308868,6 +308955,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "e.g. Take out the trash"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "例如：倒垃圾"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "例如：倒垃圾"
           }
         }
       }
@@ -308886,18 +308985,6 @@
             "value": "Custom To-Do"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "自定义待办事项"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "自定義待辦事項"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -308962,6 +309049,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Custom To-Do"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自定义待办事项"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自定義待辦事項"
           }
         }
       }
@@ -325368,7 +325467,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Best Value"
+            "value": "超值"
           }
         }
       }
@@ -325463,7 +325562,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Popular"
+            "value": "熱門"
           }
         }
       }
@@ -329312,18 +329411,6 @@
             "value": "Create your own habits. For 10 seeds you can create your own custom habits."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "创建你自己的习惯。只需10颗种子，你就可以创建自己的专属习惯。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "創建你自己的習慣。只需10顆種子，你就可以創建自己的專屬習慣。"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -329388,6 +329475,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Create your own habits. For 10 seeds you can create your own custom habits."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建你自己的习惯。只需10颗种子，你就可以创建自己的专属习惯。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "創建你自己的習慣。只需10顆種子，你就可以創建自己的專屬習慣。"
           }
         }
       }
@@ -329503,18 +329602,6 @@
             "value": "Habits"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "习惯"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "習慣"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -329579,6 +329666,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Habits"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "习惯"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "習慣"
           }
         }
       }
@@ -329789,18 +329888,6 @@
             "value": "Bad Habits"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "坏习惯"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "壞習慣"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -329865,6 +329952,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bad Habits"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "坏习惯"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "壞習慣"
           }
         }
       }
@@ -330075,18 +330174,6 @@
             "value": "Good Habits"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "好习惯"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "好習慣"
-          }
-        },
         "es": {
           "stringUnit": {
             "state": "translated",
@@ -330151,6 +330238,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Good Habits"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "好习惯"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "好習慣"
           }
         }
       }
@@ -393925,7 +394024,6 @@
       }
     },
     "weed.count": {
-      "extractionState": "extracted_with_value",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -407254,94 +407352,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "目標"
-          }
-        }
-      }
-    },
-    "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "创建你自己的习惯。只需10颗种子，你就可以创建自己的专属习惯。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "創建你自己的習慣。只需10顆種子，你就可以創建自己的專屬習慣。"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create your own habits. For 10 seeds you can create your own custom habits."
           }
         }
       }
