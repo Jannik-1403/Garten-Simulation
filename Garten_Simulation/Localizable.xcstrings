@@ -2646,6 +2646,7 @@
         }
       }
     },
+    "500": {},
     "Abendroutine": {
       "comment": "",
       "extractionState": "manual",
@@ -90242,6 +90243,196 @@
         }
       }
     },
+    "buy.heart.button": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz kaufen"
+          }
+        }
+      }
+    },
+    "buy.heart.desc": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herz gekauft"
+          }
+        }
+      }
+    },
     "calendar.auth.button": {
       "extractionState": "manual",
       "localizations": {
@@ -129785,6 +129976,7 @@
       }
     },
     "focus.session.no_goals": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -328934,91 +329126,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ein Paket mit 10 magischen Samen. Damit kannst du dir auf der Profilseite eigene, einzigartige Gewohnheiten erschaffen!"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "A packet of 10 magical seeds. Use them on the profile page to create your own unique habits!"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un paquete de 10 semillas mágicas. ¡Úsalas en la página de perfil para crear tus propios hábitos únicos!"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un paquet de 10 graines magiques. Utilisez-les sur la page de profil pour créer vos propres habitudes uniques !"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 जादुई बीजों का एक पैकेज। प्रोफाइल पेज पर अपनी खुद की अनोखी आदतें बनाने के लिए इनका इस्तेमाल करें!"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un pacchetto di 10 semi magici. Usali nella pagina del profilo per creare le tue abitudini uniche!"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "10個の魔法の種のパケット。プロフィールページでこれを使って、自分だけのユニークな習慣を作りましょう！"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "10개의 마법 씨앗 패킷입니다. 프로필 페이지에서 사용하여 자신만의 독특한 습관을 만들어보세요!"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Een pakket met 10 magische zaden. Gebruik ze op de profielpagina om je eigen unieke gewoontes te creëren!"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pakiet 10 magicznych nasion. Użyj ich na stronie profilu, aby stworzyć własne unikalne nawyki!"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Um pacote de 10 sementes mágicas. Usa-as na página de perfil para criar os teus próprios hábitos únicos!"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Пакет с 10 магическими семенами. Используй их на странице профиля, чтобы создать свои собственные уникальные привычки!"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 sihirli tohum paketi. Profil sayfasında kendi benzersiz alışkanlıklarını yaratmak için kullan!"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "一包 10 颗魔法种子。在个人资料页面上使用它们来创造自己独特的习惯！"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "一包 10 顆魔法種子。在個人資料頁面上使用它們來創造自己獨特的習慣！"
+            "value": "Erstelle dir eigene Gewohnheiten. Für 10 Samen kannst du dir eigene Gewohnheiten erstellen."
           }
         }
       }
@@ -329115,6 +329307,101 @@
           "stringUnit": {
             "state": "translated",
             "value": "神奇種子"
+          }
+        }
+      }
+    },
+    "shop.tab.header": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewohnheiten"
           }
         }
       }
@@ -329310,6 +329597,101 @@
         }
       }
     },
+    "shop.tab.items.short": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        }
+      }
+    },
     "shop.tab.plants": {
       "comment": "",
       "extractionState": "manual",
@@ -329497,6 +329879,101 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gute Gewohnheiten"
+          }
+        }
+      }
+    },
+    "shop.tab.plants.short": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
           }
         }
       }
@@ -406516,481 +406993,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "目標"
-          }
-        }
-      }
-    },
-    "shop.tab.header": {
-      "extractionState": "manual",
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewohnheiten"
-          }
-        }
-      }
-    },
-    "shop.tab.items.short": {
-      "extractionState": "manual",
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        }
-      }
-    },
-    "shop.tab.plants.short": {
-      "extractionState": "manual",
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        }
-      }
-    },
-    "buy.heart.button": {
-      "extractionState": "manual",
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz kaufen"
-          }
-        }
-      }
-    },
-    "buy.heart.desc": {
-      "extractionState": "manual",
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herz gekauft"
           }
         }
       }

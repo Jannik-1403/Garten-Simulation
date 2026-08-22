@@ -1371,9 +1371,10 @@ struct PflanzeDetailListRowButtonStyle: ButtonStyle {
                         .fill(Color(.systemGray4))
                         .offset(y: isPressed ? 0 : 4)
                     RoundedRectangle(cornerRadius: 18, style: .continuous)
-                        .fill(Color.white)
+                        .fill(Color(UIColor.secondarySystemGroupedBackground))
                 }
             )
+            .foregroundStyle(Color.primary)
             .offset(y: isPressed ? 4 : 0)
             .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
             .sensoryFeedback(trigger: isPressed) { _, newValue in

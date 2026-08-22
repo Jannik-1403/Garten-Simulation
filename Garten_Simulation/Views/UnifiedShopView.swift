@@ -129,7 +129,7 @@ struct UnifiedShopView: View {
 
     var relevantHabitCategories: [HabitCategory] {
         let allUsedCats = Set(GameDatabase.allPlants.map { $0.habitCategory })
-        return HabitCategory.allCases.filter { allUsedCats.contains($0) }
+        return HabitCategory.allCases.filter { allUsedCats.contains($0) && $0 != .seeds }
     }
     
     var gefiltertePflanzen: [Plant] {
