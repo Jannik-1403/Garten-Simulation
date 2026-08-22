@@ -303,6 +303,8 @@ struct PaywallView: View {
             iapStore.isProUser = true
             UserDefaults.standard.set(true, forKey: "debug_isProUser")
             UserDefaults.standard.set(true, forKey: "isProUser_active")
+            UserDefaults(suiteName: "group.com.jannik.grovy")?.set(true, forKey: "isProUser_active")
+            UserDefaults(suiteName: "group.com.jannik.grovy")?.set(true, forKey: "debug_isProUser")
             UserDefaults.standard.synchronize()
             dismiss()
         } label: {

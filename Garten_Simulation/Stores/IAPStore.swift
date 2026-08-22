@@ -47,6 +47,10 @@ final class IAPStore: ObservableObject {
             self.isProUser = true
         }
         #endif
+        
+        // Fix for widgets: Ensure legacy pro users have their status synced to the app group
+        UserDefaults(suiteName: "group.com.jannik.grovy")?.set(self.isProUser, forKey: "isProUser_active")
+        
         transactionListener = listenForTransactions()
         Task { await loadProducts() }
     }
