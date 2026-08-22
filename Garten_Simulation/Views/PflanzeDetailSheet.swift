@@ -1431,7 +1431,7 @@ struct NoteRowView: View {
 
                 Image(systemName: "xmark.circle.fill")
                     .font(.system(size: 20))
-                    .foregroundStyle(Color.red.opacity(0.7))
+                    .foregroundStyle(Color.red)
                     .frame(width: 44, height: 44)
                     .contentShape(Rectangle())
                     .simultaneousGesture(
@@ -1499,7 +1499,7 @@ struct TimerRowView: View {
                 // X delete button — inside the label so it moves with the card.
                 Image(systemName: "xmark.circle.fill")
                     .font(.system(size: 20))
-                    .foregroundStyle(Color.red.opacity(0.8))
+                    .foregroundStyle(Color.red)
                     .frame(width: 44, height: 44)
                     .contentShape(Rectangle())
                     .simultaneousGesture(
@@ -1666,6 +1666,7 @@ struct TimerDayFullscreenEditView: View {
                             dismiss()
                         }
                         .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color.primary)
                     }
                 }
             }
