@@ -100179,85 +100179,85 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.off"
+            "value": "Off"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "común.apagado"
+            "value": "Off"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "commun.off"
+            "value": "Off"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "आम.बंद"
+            "value": "Off"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "comune.off"
+            "value": "Off"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "共通.オフ"
+            "value": "Off"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "공통.오프"
+            "value": "Off"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "gemeenschappelijk.uit"
+            "value": "Off"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "wspólne.wył"
+            "value": "Off"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "comum.desligado"
+            "value": "Off"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "общий.выкл."
+            "value": "Off"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "ortak kapalı"
+            "value": "Off"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "共同关闭"
+            "value": "关闭"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "共同關閉"
+            "value": "關閉"
           }
         }
       }
@@ -101129,79 +101129,79 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.select_day"
+            "value": "Tag auswählen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.select_day"
+            "value": "Select Day"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.select_day"
+            "value": "Select Day"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.select_day"
+            "value": "Select Day"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "सामान्य.चयन_दिन"
+            "value": "Select Day"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.select_day"
+            "value": "Select Day"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.select_day"
+            "value": "Select Day"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.select_day"
+            "value": "Select Day"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.select_day"
+            "value": "Select Day"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.select_day"
+            "value": "Select Day"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.select_day"
+            "value": "Select Day"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "выбрать день"
+            "value": "Select Day"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.select_day"
+            "value": "Select Day"
           }
         },
         "zh-Hans": {
@@ -101213,7 +101213,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "common.select_day"
+            "value": "選擇日期"
           }
         }
       }
@@ -128652,91 +128652,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mit Handy lernen"
+            "value": "Mit Handy"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone"
+            "value": "With Phone"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "enfoque.tiempo de pantalla.con_teléfono"
+            "value": "With Phone"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone"
+            "value": "With Phone"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "फोकस.स्क्रीनटाइम.साथ_फोन"
+            "value": "With Phone"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.con_telefono"
+            "value": "With Phone"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "フォーカス.スクリーンタイム.with_phone"
+            "value": "With Phone"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone"
+            "value": "With Phone"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone"
+            "value": "With Phone"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "fokus.czas ekranu.z_telefonem"
+            "value": "With Phone"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "foco.screentime.with_phone"
+            "value": "With Phone"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone"
+            "value": "With Phone"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone"
+            "value": "With Phone"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone"
+            "value": "使用手机"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone"
+            "value": "使用手機"
           }
         }
       }
@@ -128746,91 +128746,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wähle Apps, die NICHT blockiert werden"
+            "value": "Bildschirmzeit bleibt deaktiviert"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone.subtitle"
+            "value": "Screen Time remains disabled"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone.subtitle"
+            "value": "Screen Time remains disabled"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone.subtitle"
+            "value": "Screen Time remains disabled"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "फोकस.स्क्रीनटाइम.साथ_फ़ोन.उपशीर्षक"
+            "value": "Screen Time remains disabled"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.con_sottotitoli.telefono"
+            "value": "Screen Time remains disabled"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone.subtitle"
+            "value": "Screen Time remains disabled"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone.subtitle"
+            "value": "Screen Time remains disabled"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone.subtitle"
+            "value": "Screen Time remains disabled"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone.subtitle"
+            "value": "Screen Time remains disabled"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone.subtitle"
+            "value": "Screen Time remains disabled"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone.subtitle"
+            "value": "Screen Time remains disabled"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone.subtitle"
+            "value": "Screen Time remains disabled"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Error 500 (Server Error)!!1500.That’s an error.There was an error. Please try again later.That’s all we know."
+            "value": "屏幕使用时间保持停用"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.with_phone.subtitle"
+            "value": "螢幕使用時間保持停用"
           }
         }
       }
@@ -128840,91 +128840,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ohne Handy lernen"
+            "value": "Ohne Handy"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone"
+            "value": "Without Phone"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "enfoque.tiempo de pantalla.sin_teléfono"
+            "value": "Without Phone"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone"
+            "value": "Without Phone"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "फोकस.स्क्रीनटाइम.बिना_फ़ोन"
+            "value": "Without Phone"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone"
+            "value": "Without Phone"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone"
+            "value": "Without Phone"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone"
+            "value": "Without Phone"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.zonder_telefoon"
+            "value": "Without Phone"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.bez_telefonu"
+            "value": "Without Phone"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone"
+            "value": "Without Phone"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone"
+            "value": "Without Phone"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone"
+            "value": "Without Phone"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone"
+            "value": "不使用手机"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone"
+            "value": "不使用手機"
           }
         }
       }
@@ -128934,91 +128934,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alle Apps werden blockiert"
+            "value": "Aktiviert den strikten Bildschirmzeit-Modus"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone.subtitle"
+            "value": "Enables Screen Time strict mode"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "enfoque.tiempo de pantalla.sin_teléfono.subtítulo"
+            "value": "Enables Screen Time strict mode"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone.subtitle"
+            "value": "Enables Screen Time strict mode"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "फोकस.स्क्रीनटाइम.बिना_फ़ोन.उपशीर्षक"
+            "value": "Enables Screen Time strict mode"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.senza_telefono.sottotitolo"
+            "value": "Enables Screen Time strict mode"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone.subtitle"
+            "value": "Enables Screen Time strict mode"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone.subtitle"
+            "value": "Enables Screen Time strict mode"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.zonder_telefoon.ondertitel"
+            "value": "Enables Screen Time strict mode"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone.subtitle"
+            "value": "Enables Screen Time strict mode"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone.subtitle"
+            "value": "Enables Screen Time strict mode"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone.subtitle"
+            "value": "Enables Screen Time strict mode"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone.subtitle"
+            "value": "Enables Screen Time strict mode"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone.subtitle"
+            "value": "启用屏幕使用时间严格模式"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "focus.screentime.without_phone.subtitle"
+            "value": "啟用螢幕使用時間嚴格模式"
           }
         }
       }
@@ -149477,91 +149477,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "Käufe konnten nicht wiederhergestellt werden."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "Could not restore purchases."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "Could not restore purchases."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "Could not restore purchases."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "Could not restore purchases."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "Could not restore purchases."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "Could not restore purchases."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "Could not restore purchases."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "Could not restore purchases."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "Could not restore purchases."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "Could not restore purchases."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "ошибка_восстановления_iap"
+            "value": "Could not restore purchases."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "Could not restore purchases."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_error_restore"
+            "value": "无法恢复购买。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "iap_錯誤_恢復"
+            "value": "無法恢復購買。"
           }
         }
       }
@@ -301343,91 +301343,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "PERSONALISIERT"
+            "value": "Eigene Gewohnheiten"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "routine.custom_items.category"
+            "value": "Custom Habits"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "routine.custom_items.category"
+            "value": "Custom Habits"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "routine.custom_items.category"
+            "value": "Custom Habits"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "व्यक्तिगत"
+            "value": "Custom Habits"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "routine.custom_items.category"
+            "value": "Custom Habits"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "routine.custom_items.category"
+            "value": "Custom Habits"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "routine.custom_items.category"
+            "value": "Custom Habits"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "routine.custom_items.category"
+            "value": "Custom Habits"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "routine.custom_items.category"
+            "value": "Custom Habits"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "routine.custom_items.category"
+            "value": "Custom Habits"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "ПЕРСОНАЛИЗИРОВАННЫЙ"
+            "value": "Custom Habits"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "routine.custom_items.category"
+            "value": "Custom Habits"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "个性化"
+            "value": "自定义习惯"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "個人化"
+            "value": "自訂習慣"
           }
         }
       }
@@ -309453,91 +309453,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.bestaetigen"
+            "value": "Schwierigkeit bestätigen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.bestaetigen"
+            "value": "Confirm Difficulty"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.bestaetigen"
+            "value": "Confirm Difficulty"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.bestaetigen"
+            "value": "Confirm Difficulty"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कठिनाई.सत्यापित करें"
+            "value": "Confirm Difficulty"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.bestaetigen"
+            "value": "Confirm Difficulty"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.bestaetigen"
+            "value": "Confirm Difficulty"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.bestaetigen"
+            "value": "Confirm Difficulty"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.bestaetigen"
+            "value": "Confirm Difficulty"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.bestaetigen"
+            "value": "Confirm Difficulty"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.bestaetigen"
+            "value": "Confirm Difficulty"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "трудность.подтвердить"
+            "value": "Confirm Difficulty"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.bestaetigen"
+            "value": "Confirm Difficulty"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "难度.确认"
+            "value": "确认难度"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "難度.確認"
+            "value": "確認難度"
           }
         }
       }
@@ -309646,91 +309646,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.untertitel"
+            "value": "Wähle, wie hart du für deine Belohnungen arbeiten möchtest."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.untertitel"
+            "value": "Choose how hard you want to work for your rewards."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.untertitel"
+            "value": "Choose how hard you want to work for your rewards."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.untertitel"
+            "value": "Choose how hard you want to work for your rewards."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "कठिनाई.उपशीर्षक"
+            "value": "Choose how hard you want to work for your rewards."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.untertitel"
+            "value": "Choose how hard you want to work for your rewards."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.untertitel"
+            "value": "Choose how hard you want to work for your rewards."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.untertitel"
+            "value": "Choose how hard you want to work for your rewards."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.untertitel"
+            "value": "Choose how hard you want to work for your rewards."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.untertitel"
+            "value": "Choose how hard you want to work for your rewards."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.untertitel"
+            "value": "Choose how hard you want to work for your rewards."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "сложность.подзаголовок"
+            "value": "Choose how hard you want to work for your rewards."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "schwierigkeit.untertitel"
+            "value": "Choose how hard you want to work for your rewards."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "难度.字幕"
+            "value": "选择你想为奖励付出多大的努力。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "難度.字幕"
+            "value": "選擇你想為獎勵付出多大的努力。"
           }
         }
       }
@@ -312400,85 +312400,85 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.message"
+            "value": "Once the limit is set, you cannot increase it today!"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "mensaje.de.confirmación.de.límite.de.tiempo.de.pantalla"
+            "value": "Once the limit is set, you cannot increase it today!"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.message"
+            "value": "Once the limit is set, you cannot increase it today!"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.message"
+            "value": "Once the limit is set, you cannot increase it today!"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.message"
+            "value": "Once the limit is set, you cannot increase it today!"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.メッセージ"
+            "value": "Once the limit is set, you cannot increase it today!"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.message"
+            "value": "Once the limit is set, you cannot increase it today!"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.bericht"
+            "value": "Once the limit is set, you cannot increase it today!"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "wiadomość.limit.ekranu.potwierdź.wiadomość"
+            "value": "Once the limit is set, you cannot increase it today!"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.message"
+            "value": "Once the limit is set, you cannot increase it today!"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.message"
+            "value": "Once the limit is set, you cannot increase it today!"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.message"
+            "value": "Once the limit is set, you cannot increase it today!"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.message"
+            "value": "一旦设定了限制，今天就无法再增加了！"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.message"
+            "value": "一旦設定了限制，今天就無法再增加了！"
           }
         }
       }
@@ -312494,85 +312494,85 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "Are you sure?"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "Are you sure?"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "Are you sure?"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "Are you sure?"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "Are you sure?"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "Are you sure?"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "Are you sure?"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "Are you sure?"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.potwierdź.tytuł"
+            "value": "Are you sure?"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "Are you sure?"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "Are you sure?"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "Are you sure?"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "你确定吗？"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "screenTime.limit.confirm.title"
+            "value": "你確定嗎？"
           }
         }
       }
@@ -314030,7 +314030,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "स्क्रीन समय.निर्धारण.लॉक किया गया.सूचना"
+            "value": "No changes can be made while the schedule is active."
           }
         },
         "it": {
@@ -314072,7 +314072,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "информация о заблокированном расписании экранного времени"
+            "value": "No changes can be made while the schedule is active."
           }
         },
         "tr": {
@@ -314084,13 +314084,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "屏幕时间.计划.锁定.信息"
+            "value": "时间表处于活动状态时无法进行更改。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "No changes can be made while the schedule is active."
+            "value": "時間表處於活動狀態時無法進行更改。"
           }
         }
       }
@@ -314124,7 +314124,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "स्क्रीन समय शेड्यूल लॉक शीर्षक"
+            "value": "Schedule currently active"
           }
         },
         "it": {
@@ -314166,7 +314166,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Экранное время. Расписание. Заблокировано. Заголовок"
+            "value": "Schedule currently active"
           }
         },
         "tr": {
@@ -314178,13 +314178,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "屏幕时间计划已锁定"
+            "value": "时间表目前处于活动状态"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schedule currently active"
+            "value": "時間表目前處於活動狀態"
           }
         }
       }
