@@ -1130,7 +1130,7 @@ struct TimerEditSheetView: View {
                 .padding(.vertical, 16)
                 .contentShape(Rectangle())
             }
-            .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: false))
+            .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: false, isBlue: false))
         }
         .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
         .listRowBackground(
@@ -1360,6 +1360,7 @@ struct PlantWeeklyStreakView: View {
 // MARK: - List Row 3D Button Style
 struct PflanzeDetailListRowButtonStyle: ButtonStyle {
     var isVisualPressed: Bool = false
+    var isBlue: Bool = true
     @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
 
     func makeBody(configuration: Configuration) -> some View {
@@ -1368,13 +1369,13 @@ struct PflanzeDetailListRowButtonStyle: ButtonStyle {
             .background(
                 ZStack {
                     RoundedRectangle(cornerRadius: 18, style: .continuous)
-                        .fill(Color.blauSecondary)
+                        .fill(isBlue ? Color.blauSecondary : Color(.systemGray4))
                         .offset(y: isPressed ? 0 : 4)
                     RoundedRectangle(cornerRadius: 18, style: .continuous)
-                        .fill(Color.blauPrimary)
+                        .fill(isBlue ? Color.blauPrimary : Color(UIColor.secondarySystemGroupedBackground))
                 }
             )
-            .foregroundStyle(Color.white)
+            .foregroundStyle(isBlue ? Color.white : Color.primary)
             .offset(y: isPressed ? 4 : 0)
             .animation(.spring(response: 0.22, dampingFraction: 0.5), value: isPressed)
             .sensoryFeedback(trigger: isPressed) { _, newValue in
