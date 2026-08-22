@@ -564,3 +564,6 @@
 
 ## 2026-08-22 09:28 - Timer Benachrichtigungs Button
 - **Timer Bearbeiten**: Der Button mit der Aufschrift 'Benachrichtigung 8:00 Uhr' (oder 'Montag 8:00 Uhr') im Timer-Bearbeiten-Menü ist jetzt wieder klassisch weiß und nicht mehr fälschlicherweise blau.
+
+## 2026-08-22 09:37 - Eigene Einheit pro Gewohnheit
+- **Ziel festlegen**: Bei eigenen Gewohnheiten lässt sich beim 'Ziel festlegen' (Ziel-Wert) ab sofort auch die **Einheit** frei eintragen (z.B. Minuten, Seiten, Gramm) anstatt immer nur auf 'Std' beschränkt zu sein.
