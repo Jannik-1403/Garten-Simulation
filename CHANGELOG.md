@@ -1,3 +1,8 @@
+## [2026-08-22] - To-Do & Achievement Badge Translations Fix
+- Die englischen Standardtexte ('Add To-Do', 'Enter To-Do...', 'Custom To-Do') wurden nun in der Übersetzungsdatei für Chinesisch und alle weiteren Sprachen korrekt übersetzt (z.B. '新增待辦事項').
+- Die falsche Übersetzung des 'Speichern'-Buttons (Save) auf Chinesisch ('節省' statt '儲存') wurde behoben.
+- Bei der Erfolgs-Vorschau (Achievements) wurde ein Logikfehler behoben, wodurch die Seltenheit (z.B. 'BRONZE') hartcodiert auf Englisch angezeigt wurde. Nun wird der dynamisch übersetzte Begriff (z.B. '青銅') verwendet.
+
 ## [2026-08-22] - Screen Time Translations Fix
 - Die englischen Standard-Texte ('Schedule currently active' und 'No changes can be made while the schedule is active') auf der Bildschirmzeit-Seite wurden für alle restlichen Sprachen in der Lokalisierungsdatei übersetzt. (u.a. in Chinesisch: '時間表目前處於活動狀態')
 - Weitere unübersetzte Texte wie 'Are you sure?', 'With Phone' und 'Off' wurden ebenfalls identifiziert und in über 15 Sprachen in die `Localizable.xcstrings` injiziert, damit nicht mehr die rohen Key-Namen angezeigt werden.
