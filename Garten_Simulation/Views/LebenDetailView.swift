@@ -12,10 +12,6 @@ struct LebenDetailView: View {
                     // Aktuelle Leben anzeigen
                     VStack(spacing: 12) {
                         ZStack {
-                            Circle()
-                                .fill(Color.red.opacity(0.1))
-                                .frame(width: 120, height: 120)
-                            
                             Image("Heart")
                                 .resizable()
                                 .scaledToFit()
@@ -46,6 +42,42 @@ struct LebenDetailView: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                     .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
+                    
+                    if gardenStore.leben < 5 {
+                        Button(action: {
+                            if gardenStore.coins >= 500 {
+                                gardenStore.coinsAbziehen(amount: 500, beschreibung: String(localized: "buy.heart.desc", defaultValue: "Herz gekauft"))
+                                withAnimation {
+                                    gardenStore.leben += 1
+                                }
+                            }
+                        }) {
+                            HStack {
+                                Image(systemName: "heart.fill")
+                                Text(String(localized: "buy.heart.button", defaultValue: "Herz kaufen"))
+                                Spacer()
+                                HStack(spacing: 4) {
+                                    Text("500")
+                                    Image("Coin")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 16, height: 16)
+                                }
+                            }
+                            .font(.headline)
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 24)
+                            .padding(.vertical, 8)
+                        }
+                        .buttonStyle(Item3DButtonStyle(
+                            farbe: gardenStore.coins >= 500 ? .blauPrimary : .gray,
+                            sekundaerFarbe: gardenStore.coins >= 500 ? .blauSecondary : Color(white: 0.6),
+                            groesse: 56,
+                            isRectangular: true
+                        ))
+                        .disabled(gardenStore.coins < 500)
+                        .padding(.top, 16)
+                    }
                 }
                 .padding()
             }

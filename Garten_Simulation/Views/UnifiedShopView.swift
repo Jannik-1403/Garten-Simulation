@@ -385,11 +385,18 @@ struct UnifiedShopView: View {
     }
 
     private var shopSwitcher: some View {
-        Picker(String(localized: "shop.category.label", defaultValue: "Kategorie"), selection: $shopCategory) {
-            Text(String(localized: "shop.tab.items.new", defaultValue: "Schlechte Gewohnheiten")).tag(ShopCategory.gegenstande)
-            Text(String(localized: "shop.tab.plants.new", defaultValue: "Gute Gewohnheiten")).tag(ShopCategory.pflanzen)
+        VStack(spacing: 4) {
+            Text(String(localized: "shop.tab.header", defaultValue: "Gewohnheiten"))
+                .font(.caption)
+                .fontWeight(.medium)
+                .foregroundStyle(.secondary)
+            
+            Picker(String(localized: "shop.category.label", defaultValue: "Kategorie"), selection: $shopCategory) {
+                Text(String(localized: "shop.tab.items.short", defaultValue: "Schlechte")).tag(ShopCategory.gegenstande)
+                Text(String(localized: "shop.tab.plants.short", defaultValue: "Gute")).tag(ShopCategory.pflanzen)
+            }
+            .pickerStyle(.segmented)
         }
-        .pickerStyle(.segmented)
         .padding(.horizontal, 16)
     }
 

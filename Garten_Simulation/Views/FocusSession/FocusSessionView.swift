@@ -404,13 +404,8 @@ struct FocusSessionView: View {
                                 }
                             } else {
                                 // Falls keine Ziele gesetzt wurden
-                                VStack {
-                                    Text(String(localized: "focus.session.no_goals", defaultValue: "Laser-Fokus aktiv"))
-                                        .font(.system(size: 28, weight: .black, design: .rounded))
-                                        .foregroundStyle(.primary)
-                                        .padding(.top, 40)
-                                }
-                                .frame(maxWidth: .infinity, alignment: .center)
+                                Spacer()
+                                    .frame(height: 40)
                             }
                         }
                         .padding(.horizontal, 24)

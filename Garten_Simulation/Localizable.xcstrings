@@ -284,6 +284,7 @@
       }
     },
     "-1": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -86410,6 +86411,671 @@
           "stringUnit": {
             "state": "translated",
             "value": "復發"
+          }
+        }
+      }
+    },
+    "badhabit.category.digital": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digitales"
+          }
+        }
+      }
+    },
+    "badhabit.category.ernaehrung": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ernährung"
+          }
+        }
+      }
+    },
+    "badhabit.category.faulheit": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faulheit"
+          }
+        }
+      }
+    },
+    "badhabit.category.finanzen": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konsum"
+          }
+        }
+      }
+    },
+    "badhabit.category.freizeit": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Freizeit"
+          }
+        }
+      }
+    },
+    "badhabit.category.sonstiges": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonstiges"
+          }
+        }
+      }
+    },
+    "badhabit.category.sucht": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sucht & Laster"
           }
         }
       }
@@ -328549,6 +329215,101 @@
         }
       }
     },
+    "shop.tab.items.new": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte Gewohnheiten"
+          }
+        }
+      }
+    },
     "shop.tab.plants": {
       "comment": "",
       "extractionState": "manual",
@@ -328641,6 +329402,101 @@
           "stringUnit": {
             "state": "translated",
             "value": "植物"
+          }
+        }
+      }
+    },
+    "shop.tab.plants.new": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute Gewohnheiten"
           }
         }
       }
@@ -405664,857 +406520,477 @@
         }
       }
     },
-    "badhabit.category.sucht": {
+    "shop.tab.header": {
       "extractionState": "manual",
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sucht & Laster"
+            "value": "Gewohnheiten"
           }
         }
       }
     },
-    "badhabit.category.ernaehrung": {
+    "shop.tab.items.short": {
       "extractionState": "manual",
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ernährung"
+            "value": "Schlechte"
           }
         }
       }
     },
-    "badhabit.category.digital": {
+    "shop.tab.plants.short": {
       "extractionState": "manual",
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Digitales"
+            "value": "Gute"
           }
         }
       }
     },
-    "badhabit.category.finanzen": {
+    "buy.heart.button": {
       "extractionState": "manual",
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konsum"
+            "value": "Herz kaufen"
           }
         }
       }
     },
-    "badhabit.category.freizeit": {
+    "buy.heart.desc": {
       "extractionState": "manual",
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
+            "value": "Herz gekauft"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Freizeit"
-          }
-        }
-      }
-    },
-    "badhabit.category.faulheit": {
-      "extractionState": "manual",
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Faulheit"
-          }
-        }
-      }
-    },
-    "badhabit.category.sonstiges": {
-      "extractionState": "manual",
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sonstiges"
-          }
-        }
-      }
-    },
-    "shop.tab.items.new": {
-      "extractionState": "manual",
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte Gewohnheiten"
-          }
-        }
-      }
-    },
-    "shop.tab.plants.new": {
-      "extractionState": "manual",
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute Gewohnheiten"
+            "value": "Herz gekauft"
           }
         }
       }
