@@ -173,7 +173,7 @@ struct AddCustomHabitSheet: View {
                 
                 Section(header: Text(String(localized: "shop.category.label"))) {
                     Picker(String(localized: "shop.category.label"), selection: $selectedCategory) {
-                        ForEach(HabitCategory.allCases, id: \.self) { cat in
+                        ForEach(HabitCategory.allCases.filter { $0 != .seeds }, id: \.self) { cat in
                             Label(
                                 NSLocalizedString(cat.localizationKey, comment: ""),
                                 systemImage: cat.icon

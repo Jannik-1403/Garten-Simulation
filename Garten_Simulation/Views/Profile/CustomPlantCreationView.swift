@@ -180,7 +180,7 @@ struct CustomPlantCreationView: View {
                                         .padding(.horizontal, 4)
                                     
                                     Menu {
-                                        ForEach(HabitCategory.allCases, id: \.self) { cat in
+                                        ForEach(HabitCategory.allCases.filter { $0 != .seeds }, id: \.self) { cat in
                                             Button {
                                                 selectedCategory = cat
                                                 FeedbackManager.shared.playTap()
