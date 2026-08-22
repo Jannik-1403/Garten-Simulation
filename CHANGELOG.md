@@ -1,3 +1,5 @@
+## [2026-08-22] - Coin Page Badges Translation Fix
+- Die noch auf Englisch hartcodierten Shop-Badges ('Popular' und 'Best Value') auf der Coin-Seite wurden in den Localizable.xcstrings auf Chinesisch ('熱門', '超值') übersetzt.
 ## [2026-08-22] - App Group Entitlements & Widget Reload Fix
 - Die Main-App ('Garten_Simulation.entitlements') enthielt nicht die 'com.apple.security.application-groups' Entitlement. Dadurch konnten geschriebene UserDefaults-Werte der App-Group nicht vom Widget gelesen werden. Dies wurde behoben!
 - Das Widget wird nun automatisch neugeladen (`WidgetCenter.shared.reloadAllTimelines()`), sobald sich der Pro-Status in der Main-App ändert oder beim Start synchronisiert wird.
