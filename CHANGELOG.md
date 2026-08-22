@@ -1,3 +1,9 @@
+## [2026-08-22] - Lokalisierung & Chinesisch Fixes
+- Die fehlerhaften Übersetzungen für Chinesisch wurden behoben.
+- Die 'Custom To-Do' Ansicht ist nun zu 100% übersetzt (Titel, Icons, Platzhalter).
+- Fehlerhafte Kategorien ('Sucht & Laster', 'Ernährung', etc.) werden nun in Chinesisch richtig dargestellt.
+- Shop Tabs ('Gute', 'Schlechte', 'Gewohnheiten') sind repariert und vollständig lokalisiert.
+
 - Sprachfehler und hartcodierte englische Texte in den Routinen und Gewohnheiten ("Habits") korrigiert. 
 - Fehlende Localizable.xcstrings Übersetzungen für Custom To-Dos und Routinen-Menüs ergänzt.
 
