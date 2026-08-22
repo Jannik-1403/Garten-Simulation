@@ -1,3 +1,7 @@
+## [2026-08-22] - General Localization & Error Message Improvements
+- Die Fehlermeldungen bei der Einrichtung der Bildschirmzeit und beim Daten-Export/Import wurden überarbeitet. Statt rohen, englischen Systemfehlern (wie 'Schedule currently active now') werden nun saubere, lokalisierte Texte angezeigt.
+- Der wenig professionelle Text 'Laser Focus' wurde im gesamten Projekt durch passendere Begriffe wie 'Fokus-Session aktiv' oder 'Tiefenarbeit' ersetzt.
+
 ## [2026-08-22] - Coin Page Badges Translation Fix
 - Die noch auf Englisch hartcodierten Shop-Badges ('Popular' und 'Best Value') auf der Coin-Seite wurden in den Localizable.xcstrings auf Chinesisch ('熱門', '超值') übersetzt.
 ## [2026-08-22] - App Group Entitlements & Widget Reload Fix
