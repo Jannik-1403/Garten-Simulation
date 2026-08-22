@@ -356,6 +356,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     // Eigener Tracker (Manuell)
     @Published var customTrackerName: String? = nil
     @Published var customTrackerTarget: Double? = nil
+    @Published var customTargetUnit: String? = nil
     @Published var customTrackerProgress: Double = 0
     
     // Custom ToDos in Routines
@@ -678,7 +679,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case pfadAktiviertAm, pfadCheckedDates
         case individualSchwierigkeit
         case linkedHealthMetric, healthTarget, allowManualTrackingForHealth, isAppleHealthUnlinked
-        case customTrackerName, customTrackerTarget, customTrackerProgress
+        case customTrackerName, customTrackerTarget, customTargetUnit, customTrackerProgress
         case isRoutineOnly, customRoutineTaskName
         case isGenericFocus
         case challengeJokers
@@ -784,6 +785,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         isAppleHealthUnlinked = try container.decodeIfPresent(Bool.self, forKey: .isAppleHealthUnlinked) ?? false
         customTrackerName = try container.decodeIfPresent(String.self, forKey: .customTrackerName)
         customTrackerTarget = try container.decodeIfPresent(Double.self, forKey: .customTrackerTarget)
+        customTargetUnit = try container.decodeIfPresent(String.self, forKey: .customTargetUnit)
         customTrackerProgress = try container.decodeIfPresent(Double.self, forKey: .customTrackerProgress) ?? 0
         isRoutineOnly = try container.decodeIfPresent(Bool.self, forKey: .isRoutineOnly) ?? false
         customRoutineTaskName = try container.decodeIfPresent(String.self, forKey: .customRoutineTaskName)
@@ -843,6 +845,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         
         try container.encodeIfPresent(customTrackerName, forKey: .customTrackerName)
         try container.encodeIfPresent(customTrackerTarget, forKey: .customTrackerTarget)
+        try container.encodeIfPresent(customTargetUnit, forKey: .customTargetUnit)
         try container.encode(customTrackerProgress, forKey: .customTrackerProgress)
         
         try container.encode(isRoutineOnly, forKey: .isRoutineOnly)

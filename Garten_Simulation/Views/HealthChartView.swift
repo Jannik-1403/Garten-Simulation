@@ -286,6 +286,8 @@ struct HealthChartView: View {
 struct HealthTargetEditSheet: View {
     @Binding var target: Double?
     let unitString: String
+    var isCustomMetric: Bool = false
+    var customUnitBinding: Binding<String>? = nil
     @Environment(\.dismiss) private var dismiss
     @State private var inputText: String = ""
 
@@ -316,9 +318,16 @@ struct HealthTargetEditSheet: View {
                             .foregroundStyle(Color.gruenPrimary)
                             .multilineTextAlignment(.leading)
 
-                        Text(unitString)
-                            .font(.system(size: 16, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.secondary)
+                        if isCustomMetric, let binding = customUnitBinding {
+                            TextField(String(localized: "common.unit", defaultValue: "Einheit"), text: binding)
+                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                                .multilineTextAlignment(.trailing)
+                        } else {
+                            Text(unitString)
+                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                        }
                     }
                     .padding(16)
                     .background(Color(UIColor.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12))

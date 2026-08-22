@@ -486,9 +486,17 @@ struct PflanzeDetailSheet: View {
                     switch pflanze.linkedHealthMetric {
                     case .steps: return String(localized: "health.unit.steps", defaultValue: "Schritte")
                     case .water: return String(localized: "health.unit.water", defaultValue: "ml")
-                    default:     return String(localized: "health.unit.hours", defaultValue: "Std")
+                    default:     return pflanze.customTargetUnit ?? String(localized: "health.unit.hours", defaultValue: "Std")
                     }
-                }()
+                }(),
+                isCustomMetric: pflanze.linkedHealthMetric == nil,
+                customUnitBinding: Binding(
+                    get: { pflanze.customTargetUnit ?? "" },
+                    set: { newVal in
+                        pflanze.customTargetUnit = newVal.isEmpty ? nil : newVal
+                        gardenStore.savePlants()
+                    }
+                )
             )
         }
                         }
