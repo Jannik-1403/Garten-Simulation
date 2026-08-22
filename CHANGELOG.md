@@ -552,3 +552,8 @@
 ## 2026-08-22 08:51 - Kleinere Anpassungen für Samen und Timer
 - **Shop (Samen)**: Die Beschreibung für das Samen-Paket wurde deutlicher formuliert (Erstellen eigener Gewohnheiten) und die irrelevante Kategorie-Auswahl 'Samen' aus dem Shop-Filter entfernt.
 - **Pflanzen Detail**: Der Button für den Timer ('Tägliche Erinnerung') ist nicht mehr fälschlicherweise knallweiß mit blauem Text, sondern passt sich nun korrekt an Dark- und Lightmode an.
+
+## 2026-08-22 09:13 - Letzte UI und Samen Fixes
+- **Pflanzen Erstellen**: Die Kategorie 'Samen' wurde aus dem Kategorie-Menü (Dropdown) beim Erstellen einer eigenen Pflanze entfernt.
+- **Shop UI**: Die Kategorie 'Samen' ist in der Shop-Ansicht wieder aufgetaucht. Zusätzlich wurde das Textfeld (Line Limit) vergrößert, damit die neue Samen-Beschreibung nicht mehr abgeschnitten wird.
+- **Pflanzen Detail (Timer/To-Dos)**: Der Button-Hintergrund für Timer, Notizen und To-Dos ist jetzt wie gewünscht blau und nicht mehr weiß.
