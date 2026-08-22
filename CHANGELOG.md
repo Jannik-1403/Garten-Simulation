@@ -533,3 +533,12 @@
 - **Ziele & Streak**: Routine-Todos können nun nicht mehr versehentlich zu Wochen- oder Jahreszielen hinzugefügt werden. Zudem wurde der Bug behoben, dass der Gesamt-Streak manchmal trotz vollständiger Gewohnheiten auf 0 blieb, indem Routine-Todos von der täglichen Streak-Berechnung ausgenommen wurden und nun auch beim Löschen einer alten Pflanze der Streak-Status getriggert wird.
 - **Routine Listen Bearbeitung**: Ein Fehler in iOS verhinderte, dass ein langer Druck auf ein Element den Bearbeitungsmodus öffnet, da stattdessen direkt die standardmäßige iOS-Drag&Drop-Geste ausgelöst wurde. Das wurde behoben. Jetzt lassen sich Elemente nur noch nach einem langen Druck löschen und verschieben. Dadurch wurde auch die automatische 'Löschen'-Wischgeste vollständig deaktiviert, wenn man sich nicht im Bearbeitungsmodus befindet.
 - Behoben: Der allgemeine Streak wird nun korrekt erhöht, auch wenn man eine Routine abschließt (bzw. nur Routinen als Tasks hat).
+
+- Hardcoded Texte in `YearGoalBannerView` (Level) und `WeedStackIndicator` (Unkraut) behoben und als lokalisierte Strings hinzugefügt
+- 6 fehlende / falsch übersetzte Keys für den Routine-/Gewohnheits-Dialog ("Gewohnheit bearbeiten", etc.) in alle 14 Sprachen korrekt übersetzt und in die `Localizable.xcstrings` geschrieben
+
+## 2026-08-22 08:18 - UI & Logik Fixes
+- **Logik**: Herzen werden nicht mehr beim Sterben einer Pflanze abgezogen, sondern nur beim Abhaken von schlechten Gewohnheiten.
+- **UI**: Die 'Leben verloren durch' Übersicht wurde von der Herzseite entfernt und die Rest-UI im modernen 3D-Container verpackt.
+- **UI/Shop**: Gegenstände wurden in 'Schlechte Gewohnheiten' und Pflanzen in 'Gute Gewohnheiten' umbenannt. Die Kategorien für schlechte Gewohnheiten wurden modernisiert (z. B. Sucht, Finanzen, Digitales).
+- **Übersetzung**: Neue Strings wurden in alle Sprachen generiert und dem xcstrings-Katalog hinzugefügt.
