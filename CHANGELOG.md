@@ -1,3 +1,7 @@
+## [2026-08-22] - App Group Entitlements & Widget Reload Fix
+- Die Main-App ('Garten_Simulation.entitlements') enthielt nicht die 'com.apple.security.application-groups' Entitlement. Dadurch konnten geschriebene UserDefaults-Werte der App-Group nicht vom Widget gelesen werden. Dies wurde behoben!
+- Das Widget wird nun automatisch neugeladen (`WidgetCenter.shared.reloadAllTimelines()`), sobald sich der Pro-Status in der Main-App ändert oder beim Start synchronisiert wird.
+
 ## [2026-08-22] - Widget Pro Version Fix
 - Die Pro-Version Freischaltung wurde korrigiert, sodass Widgets den Kauf-Status (auch bei älteren Käufen) aus der Main-App erfolgreich über die App-Group ('group.com.jannik.grovy') übernehmen.
 - `isProUser_active` wird beim Start der App (`IAPStore`) in den Shared UserDefaults gesichert.
