@@ -302,7 +302,7 @@ struct ShareAchievementCard: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 16)
                 
-                Text(erfolg.tier.label.uppercased())
+                Text(erfolg.tier.localizedName.uppercased())
                     .font(.system(size: 14, weight: .black, design: .rounded))
                     .foregroundStyle(erfolg.tier.color)
                 

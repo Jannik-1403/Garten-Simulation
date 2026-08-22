@@ -100948,67 +100948,67 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Guardar"
+            "value": "Save"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enregistrer"
+            "value": "Save"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "बचाना"
+            "value": "Save"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Salva"
+            "value": "Save"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "保存"
+            "value": "Save"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "저장"
+            "value": "Save"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Opslaan"
+            "value": "Save"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zapisz"
+            "value": "Save"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Salvar"
+            "value": "Save"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сохранить"
+            "value": "Save"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kaydet"
+            "value": "Save"
           }
         },
         "zh-Hans": {
@@ -101020,7 +101020,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "節省"
+            "value": "儲存"
           }
         }
       }
@@ -119350,6 +119350,39 @@
           "stringUnit": {
             "state": "translated",
             "value": "美食日記"
+          }
+        }
+      }
+    },
+    "error.export_failed": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Fehler beim Erstellen des Backups."
+          }
+        }
+      }
+    },
+    "error.import_failed": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Fehler beim Importieren der Datei."
+          }
+        }
+      }
+    },
+    "error.screentime.setup_failed": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Fehler bei der Einrichtung. Möglicherweise ist aktuell bereits ein Zeitplan aktiv."
           }
         }
       }
@@ -210845,13 +210878,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Add To-Do"
+            "value": "新增待办事项"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Add To-Do"
+            "value": "新增待辦事項"
           }
         }
       }
@@ -211033,13 +211066,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enter To-Do..."
+            "value": "输入待办事项..."
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Enter To-Do..."
+            "value": "輸入待辦事項..."
           }
         }
       }
@@ -308056,7 +308089,7 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "रूटीन.काम.जोड़ें"
+            "value": "Custom To-Do"
           }
         },
         "it": {
@@ -308098,7 +308131,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "рутина.делать.Добавить"
+            "value": "Custom To-Do"
           }
         },
         "tr": {
@@ -308110,13 +308143,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "例行任务.待办.添加"
+            "value": "自定义待办事项"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Custom To-Do"
+            "value": "自訂待辦事項"
           }
         }
       }
@@ -350548,13 +350581,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "To-Dos"
+            "value": "待办事项"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "To-Dos"
+            "value": "待辦事項"
           }
         }
       }
@@ -386823,13 +386856,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "To-Do"
+            "value": "待办事项"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "To-Do"
+            "value": "待辦事項"
           }
         }
       }
