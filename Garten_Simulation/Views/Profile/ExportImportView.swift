@@ -103,8 +103,8 @@ struct ExportImportView: View {
                                         importURL = url
                                         showImportConfirm = true
                                     }
-                                case .failure(let error):
-                                    errorMessage = error.localizedDescription
+                                case .failure(_):
+                                    errorMessage = String(localized: "error.import_failed", defaultValue: "Fehler beim Importieren der Datei.")
                                 }
                             }
                             .alert(String(localized: "backup_import_bestaetigung_titel"), isPresented: $showImportConfirm) {
@@ -221,7 +221,7 @@ struct ExportImportView: View {
                 self.showShareSheet = true
                 self.isLoading = false
             } catch {
-                self.errorMessage = error.localizedDescription
+                self.errorMessage = String(localized: "error.export_failed", defaultValue: "Fehler beim Erstellen des Backups.")
                 self.isLoading = false
             }
         }
@@ -255,7 +255,7 @@ struct ExportImportView: View {
                     withAnimation { erfolgreich = false }
                 }
             } catch {
-                self.errorMessage = error.localizedDescription
+                self.errorMessage = String(localized: "error.import_failed", defaultValue: "Fehler beim Importieren der Datei.")
                 self.isLoading = false
             }
         }

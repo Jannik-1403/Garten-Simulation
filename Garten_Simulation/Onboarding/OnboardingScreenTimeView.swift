@@ -152,7 +152,7 @@ struct OnboardingScreenTimeView: View {
             } catch {
                 // If it failed, show the exact error message
                 await MainActor.run {
-                    self.errorMessage = error.localizedDescription
+                    self.errorMessage = String(localized: "error.screentime.setup_failed", defaultValue: "Fehler bei der Einrichtung. Möglicherweise ist aktuell bereits ein Zeitplan aktiv.")
                     self.showErrorAlert = true
                     
                     withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
