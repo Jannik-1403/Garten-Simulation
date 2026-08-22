@@ -1,3 +1,7 @@
+## [2026-08-22] - Screen Time Translations Fix
+- Die englischen Standard-Texte ('Schedule currently active' und 'No changes can be made while the schedule is active') auf der Bildschirmzeit-Seite wurden für alle restlichen Sprachen in der Lokalisierungsdatei übersetzt. (u.a. in Chinesisch: '時間表目前處於活動狀態')
+- Weitere unübersetzte Texte wie 'Are you sure?', 'With Phone' und 'Off' wurden ebenfalls identifiziert und in über 15 Sprachen in die `Localizable.xcstrings` injiziert, damit nicht mehr die rohen Key-Namen angezeigt werden.
+
 ## [2026-08-22] - General Localization & Error Message Improvements
 - Die Fehlermeldungen bei der Einrichtung der Bildschirmzeit und beim Daten-Export/Import wurden überarbeitet. Statt rohen, englischen Systemfehlern (wie 'Schedule currently active now') werden nun saubere, lokalisierte Texte angezeigt.
 - Der wenig professionelle Text 'Laser Focus' wurde im gesamten Projekt durch passendere Begriffe wie 'Fokus-Session aktiv' oder 'Tiefenarbeit' ersetzt.
