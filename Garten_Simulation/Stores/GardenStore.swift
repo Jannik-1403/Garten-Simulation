@@ -1500,13 +1500,19 @@ class GardenStore: ObservableObject {
             addBadHabitNote(id: id, text: noteText)
         }
         
-        // Unkraut spawnen (Bestrafung für Rückfall)
+        // Leben abziehen und Unkraut spawnen (Bestrafung für Rückfall)
         withAnimation {
+            leben = max(0, leben - 1)
+            
             if let decoration = placedDecorations.first(where: { $0.id == id }) ?? GameDatabase.allDecorations.first(where: { $0.id == id }) {
                 spawnWeed(removalCost: decoration.price * GameConstants.weedRemovalCostMultiplier, source: .decoration)
             } else {
                 spawnWeed(removalCost: 50, source: .decoration)
             }
+        }
+        
+        if leben <= 0 {
+            gartenGameOver()
         }
     }
 
@@ -1719,7 +1725,7 @@ class GardenStore: ObservableObject {
                         pflanze.isDead = true
                         pflanze.missedCycles = 2
                         pflanze.lastNotifiedCycle = 2
-                        pflanzeGestorben(pflanze)
+                        // pflanzeGestorben(pflanze) - Leben sollen beim Tod einer Pflanze nicht mehr abgezogen werden
                         
                         withAnimation {
                             spawnWeed(

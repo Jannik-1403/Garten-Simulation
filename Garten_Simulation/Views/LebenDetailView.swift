@@ -31,7 +31,9 @@ struct LebenDetailView: View {
                                 .foregroundStyle(.secondary)
                         }
                     }
-                    .padding(.top, 24)
+                    .padding(.vertical, 24)
+                    .frame(maxWidth: .infinity)
+                    .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
 
                     Divider()
 
@@ -42,50 +44,8 @@ struct LebenDetailView: View {
                         RuleRow(icon: "arrow.counterclockwise", color: .green, text: String(localized: "leben.regel3"), isSystemIcon: true)
                     }
                     .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 24)
-                            .fill(.ultraThinMaterial)
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 24)
-                            .stroke(Color.primary.opacity(0.05), lineWidth: 1)
-                    )
-
-                    // Welche Pflanzen haben Leben gekostet (Log)
-                    if !gardenStore.gestorbenePflanzenLog.isEmpty {
-                        VStack(alignment: .leading, spacing: 16) {
-                            Text(String(localized: "leben.verloren.durch"))
-                                .font(.system(size: 18, weight: .bold, design: .rounded))
-                                .padding(.horizontal, 4)
-                            
-                            VStack(spacing: 12) {
-                                ForEach(Array(gardenStore.gestorbenePflanzenLog.reversed().enumerated()), id: \.offset) { _, name in
-                                    HStack(spacing: 12) {
-                                        Image("Heart")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 20, height: 20)
-                                        Text(name)
-                                            .font(.subheadline)
-                                            .fontWeight(.medium)
-                                        Spacer()
-                                        Text("-1")
-                                            .font(.caption)
-                                            .fontWeight(.bold)
-                                            .foregroundStyle(.red)
-                                    }
-                                    .padding()
-                                    .background(Color.red.opacity(0.05))
-                                    .cornerRadius(12)
-                                }
-                            }
-                        }
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 24)
-                                .fill(.ultraThinMaterial)
-                        )
-                    }
+                    .frame(maxWidth: .infinity)
+                    .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
                 }
                 .padding()
             }

@@ -43,19 +43,27 @@ enum DecorationCategory: String, CaseIterable, Codable {
     case deko
     case pflanzen
 
-    var localizationKey: String {
-        "decoration.category.\(self.rawValue)"
+    var localizedName: String {
+        switch self {
+        case .moebel: return String(localized: "badhabit.category.sucht", defaultValue: "Sucht & Laster")
+        case .wasser: return String(localized: "badhabit.category.ernaehrung", defaultValue: "Ernährung")
+        case .tiere: return String(localized: "badhabit.category.digital", defaultValue: "Digitales")
+        case .pfade: return String(localized: "badhabit.category.finanzen", defaultValue: "Konsum")
+        case .beleuchtung: return String(localized: "badhabit.category.freizeit", defaultValue: "Freizeit")
+        case .deko: return String(localized: "badhabit.category.faulheit", defaultValue: "Faulheit")
+        case .pflanzen: return String(localized: "badhabit.category.sonstiges", defaultValue: "Sonstiges")
+        }
     }
 
     var icon: String {
         switch self {
-        case .moebel: return "chair.lounge.fill"
-        case .wasser: return "drop.fill"
-        case .tiere: return "bird.fill"
-        case .pfade: return "point.topleft.down.curvedto.point.bottomright.up"
-        case .beleuchtung: return "lightbulb.fill"
-        case .deko: return "sparkles"
-        case .pflanzen: return "leaf.fill"
+        case .moebel: return "pills.fill"
+        case .wasser: return "fork.knife"
+        case .tiere: return "iphone"
+        case .pfade: return "dollarsign.circle"
+        case .beleuchtung: return "gamecontroller.fill"
+        case .deko: return "bed.double.fill"
+        case .pflanzen: return "ellipsis.circle"
         }
     }
 }

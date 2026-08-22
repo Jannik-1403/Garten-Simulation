@@ -229,7 +229,7 @@ struct UnifiedShopView: View {
                                                 selectedDecorationCategory = nil
                                             }
                                             ForEach(DecorationCategory.allCases, id: \.self) { kat in
-                                                LiquidGlassFilterPill(title: NSLocalizedString(kat.localizationKey, comment: ""), isSelected: selectedDecorationCategory == kat) {
+                                                LiquidGlassFilterPill(title: kat.localizedName, isSelected: selectedDecorationCategory == kat) {
                                                     selectedDecorationCategory = kat
                                                 }
                                             }
@@ -385,9 +385,9 @@ struct UnifiedShopView: View {
     }
 
     private var shopSwitcher: some View {
-        Picker(String(localized: "shop.category.label"), selection: $shopCategory) {
-            Text(NSLocalizedString(ShopCategory.gegenstande.rawValue, comment: "")).tag(ShopCategory.gegenstande)
-            Text(NSLocalizedString(ShopCategory.pflanzen.rawValue, comment: "")).tag(ShopCategory.pflanzen)
+        Picker(String(localized: "shop.category.label", defaultValue: "Kategorie"), selection: $shopCategory) {
+            Text(String(localized: "shop.tab.items.new", defaultValue: "Schlechte Gewohnheiten")).tag(ShopCategory.gegenstande)
+            Text(String(localized: "shop.tab.plants.new", defaultValue: "Gute Gewohnheiten")).tag(ShopCategory.pflanzen)
         }
         .pickerStyle(.segmented)
         .padding(.horizontal, 16)
