@@ -1,6 +1,7 @@
 import StoreKit
 import Foundation
 import Combine
+import WidgetKit
 
 // MARK: - IAPStore (StoreKit 2)
 
@@ -50,6 +51,7 @@ final class IAPStore: ObservableObject {
         
         // Fix for widgets: Ensure legacy pro users have their status synced to the app group
         UserDefaults(suiteName: "group.com.jannik.grovy")?.set(self.isProUser, forKey: "isProUser_active")
+        WidgetCenter.shared.reloadAllTimelines()
         
         transactionListener = listenForTransactions()
         Task { await loadProducts() }
@@ -132,6 +134,7 @@ final class IAPStore: ObservableObject {
                     UserDefaults.standard.set(true, forKey: "isProUser_active")
                     UserDefaults.standard.set(product.id, forKey: "activeProSubscriptionID")
                     UserDefaults(suiteName: "group.com.jannik.grovy")?.set(true, forKey: "isProUser_active")
+                    WidgetCenter.shared.reloadAllTimelines()
                     UserDefaults.standard.synchronize()
                 }
                 await transaction.finish()
@@ -216,6 +219,7 @@ final class IAPStore: ObservableObject {
             #endif
             UserDefaults.standard.set(self.isProUser, forKey: "isProUser_active")
             UserDefaults(suiteName: "group.com.jannik.grovy")?.set(self.isProUser, forKey: "isProUser_active")
+            WidgetCenter.shared.reloadAllTimelines()
             UserDefaults.standard.synchronize()
         }
     }
@@ -244,6 +248,7 @@ final class IAPStore: ObservableObject {
         UserDefaults.standard.set(false, forKey: "debug_isProUser")
         UserDefaults(suiteName: "group.com.jannik.grovy")?.set(false, forKey: "debug_isProUser")
         #endif
+        WidgetCenter.shared.reloadAllTimelines()
         UserDefaults.standard.synchronize()
     }
 
