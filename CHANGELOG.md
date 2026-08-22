@@ -542,3 +542,9 @@
 - **UI**: Die 'Leben verloren durch' Übersicht wurde von der Herzseite entfernt und die Rest-UI im modernen 3D-Container verpackt.
 - **UI/Shop**: Gegenstände wurden in 'Schlechte Gewohnheiten' und Pflanzen in 'Gute Gewohnheiten' umbenannt. Die Kategorien für schlechte Gewohnheiten wurden modernisiert (z. B. Sucht, Finanzen, Digitales).
 - **Übersetzung**: Neue Strings wurden in alle Sprachen generiert und dem xcstrings-Katalog hinzugefügt.
+
+## 2026-08-22 08:40 - Kleinere UI Anpassungen
+- **Shop UI**: Die Tabs wurden auf 'Schlechte' und 'Gute' abgekürzt und mit dem Titel 'Gewohnheiten' überschrieben.
+- **Fokus**: Der Text 'Laser-Fokus aktiv' bei leeren Fokus-Sessions wurde komplett entfernt.
+- **Leben UI**: Der rote Hintergrund vom Herz wurde entfernt und es wurde ein 'Herz kaufen' Button (500 Coins) hinzugefügt.
+- **Übersetzungen**: Neue Keys wurden in alle 15 Sprachen übersetzt und hinzugefügt.
