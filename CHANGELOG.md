@@ -548,3 +548,7 @@
 - **Fokus**: Der Text 'Laser-Fokus aktiv' bei leeren Fokus-Sessions wurde komplett entfernt.
 - **Leben UI**: Der rote Hintergrund vom Herz wurde entfernt und es wurde ein 'Herz kaufen' Button (500 Coins) hinzugefügt.
 - **Übersetzungen**: Neue Keys wurden in alle 15 Sprachen übersetzt und hinzugefügt.
+
+## 2026-08-22 08:51 - Kleinere Anpassungen für Samen und Timer
+- **Shop (Samen)**: Die Beschreibung für das Samen-Paket wurde deutlicher formuliert (Erstellen eigener Gewohnheiten) und die irrelevante Kategorie-Auswahl 'Samen' aus dem Shop-Filter entfernt.
+- **Pflanzen Detail**: Der Button für den Timer ('Tägliche Erinnerung') ist nicht mehr fälschlicherweise knallweiß mit blauem Text, sondern passt sich nun korrekt an Dark- und Lightmode an.
