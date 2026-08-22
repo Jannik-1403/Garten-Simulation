@@ -561,3 +561,6 @@
 ## 2026-08-22 09:23 - Timer UI Finetuning
 - **Rotes X (Löschen)**: Das rote 'X' beim Timer und bei Notizen ist nun kräftiger und durchgehend rot (volle Deckkraft), sodass es auf dem blauen Hintergrund besser sichtbar ist.
 - **Timer Bearbeiten**: Der 'Fertig'-Button in der Timer-Einstellungsseite (Benachrichtigungen) ist nicht mehr im fehlerhaften Standard-Blau, sondern passt sich nun korrekt an (Weiß im Darkmode).
+
+## 2026-08-22 09:28 - Timer Benachrichtigungs Button
+- **Timer Bearbeiten**: Der Button mit der Aufschrift 'Benachrichtigung 8:00 Uhr' (oder 'Montag 8:00 Uhr') im Timer-Bearbeiten-Menü ist jetzt wieder klassisch weiß und nicht mehr fälschlicherweise blau.
