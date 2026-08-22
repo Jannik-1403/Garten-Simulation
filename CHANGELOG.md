@@ -557,3 +557,7 @@
 - **Pflanzen Erstellen**: Die Kategorie 'Samen' wurde aus dem Kategorie-Menü (Dropdown) beim Erstellen einer eigenen Pflanze entfernt.
 - **Shop UI**: Die Kategorie 'Samen' ist in der Shop-Ansicht wieder aufgetaucht. Zusätzlich wurde das Textfeld (Line Limit) vergrößert, damit die neue Samen-Beschreibung nicht mehr abgeschnitten wird.
 - **Pflanzen Detail (Timer/To-Dos)**: Der Button-Hintergrund für Timer, Notizen und To-Dos ist jetzt wie gewünscht blau und nicht mehr weiß.
+
+## 2026-08-22 09:23 - Timer UI Finetuning
+- **Rotes X (Löschen)**: Das rote 'X' beim Timer und bei Notizen ist nun kräftiger und durchgehend rot (volle Deckkraft), sodass es auf dem blauen Hintergrund besser sichtbar ist.
+- **Timer Bearbeiten**: Der 'Fertig'-Button in der Timer-Einstellungsseite (Benachrichtigungen) ist nicht mehr im fehlerhaften Standard-Blau, sondern passt sich nun korrekt an (Weiß im Darkmode).
