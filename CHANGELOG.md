@@ -1,3 +1,7 @@
+## [2026-08-22] - Widget Pro Version Fix
+- Die Pro-Version Freischaltung wurde korrigiert, sodass Widgets den Kauf-Status (auch bei älteren Käufen) aus der Main-App erfolgreich über die App-Group ('group.com.jannik.grovy') übernehmen.
+- `isProUser_active` wird beim Start der App (`IAPStore`) in den Shared UserDefaults gesichert.
+
 ## [2026-08-22] - Lokalisierung & Chinesisch Fixes
 - Die fehlerhaften Übersetzungen für Chinesisch wurden behoben.
 - Die 'Custom To-Do' Ansicht ist nun zu 100% übersetzt (Titel, Icons, Platzhalter).
