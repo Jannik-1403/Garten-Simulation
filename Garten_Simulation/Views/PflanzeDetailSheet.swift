@@ -106,10 +106,20 @@ struct PflanzeDetailSheet: View {
                     
                     
                     // Apple Health Integration (Pro Feature)
-                    healthKitConfigSection
+                    if pflanze.showStats {
+                        healthKitConfigSection
+                    }
+                    
+                    // Body Tracking (Krafttraining)
+                    if pflanze.effectiveHealthMetric == .strengthTraining && (pflanze.showWeight || pflanze.showMeasurements) {
+                        BodyTrackingWidgetGroup(pflanze: pflanze)
+                            .environmentObject(gardenStore)
+                            .environmentObject(settings)
+                    }
 
                     // To-Dos Accordion
-                    DisclosureGroup(isExpanded: $isTodosExpanded) {
+                    if pflanze.showTodos {
+                        DisclosureGroup(isExpanded: $isTodosExpanded) {
                         VStack(spacing: 12) {
                             ForEach(pflanze.todos.sorted {
                                 if $0.isCompleted != $1.isCompleted { return !$0.isCompleted }
@@ -157,9 +167,11 @@ struct PflanzeDetailSheet: View {
                     .tint(.gruenPrimary)
                     .tourAnchor(.plantTodos)
                     .id(TourStep.plantTodos)
+                    }
                     
                     // Notizen Accordion
-                    DisclosureGroup(isExpanded: $isNotesExpanded) {
+                    if pflanze.showNotes {
+                        DisclosureGroup(isExpanded: $isNotesExpanded) {
                         VStack(spacing: 8) {
                             // Snapshot der Notizen – verhindert Index-out-of-range beim Löschen
                             let noteSnapshot = Array(pflanze.notizen.enumerated())
@@ -221,9 +233,11 @@ struct PflanzeDetailSheet: View {
                     .tint(.blauPrimary)
                     .tourAnchor(.plantNotes)
                     .id(TourStep.plantNotes)
+                    }
 
                     // MARK: - Daily Reminders
-                    DisclosureGroup(isExpanded: $isRemindersExpanded) {
+                    if pflanze.showTimer {
+                        DisclosureGroup(isExpanded: $isRemindersExpanded) {
                         VStack(spacing: 8) {
                             if let schedule = pflanze.reminderSchedule, !schedule.entries.isEmpty {
                                 TimerRowView(
@@ -269,10 +283,13 @@ struct PflanzeDetailSheet: View {
                     .tint(.blauPrimary)
                     .tourAnchor(.plantTimer)
                     .id(TourStep.plantTimer)
+                    }
 
                     // MARK: - Ziel-Punkte Banner
-                    GoalPointsBannerView(pflanze: pflanze, goalStore: goalStore)
-                        .padding(.top, 16)
+                    if pflanze.showGoals {
+                        GoalPointsBannerView(pflanze: pflanze, goalStore: goalStore)
+                            .padding(.top, 16)
+                    }
 
                     HStack(spacing: 40) {
                         // Focus Session Button
@@ -332,6 +349,36 @@ struct PflanzeDetailSheet: View {
         // Zeige standard X nur, wenn wir keinen dismissEntireFlow haben
         .standardNavigationX(show: dismissEntireFlow == nil && !isTargetFocused)
         .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                if !isTargetFocused {
+                    Menu {
+                        Section(String(localized: "plant.detail.menu.tracken", defaultValue: "Tracken")) {
+                            Toggle(String(localized: "plant.detail.menu.stats", defaultValue: "Statistik"), isOn: $pflanze.showStats)
+                            Toggle(String(localized: "plant.detail.menu.todos", defaultValue: "To-Dos"), isOn: $pflanze.showTodos)
+                            Toggle(String(localized: "plant.detail.menu.notes", defaultValue: "Notizen"), isOn: $pflanze.showNotes)
+                            Toggle(String(localized: "plant.detail.menu.timer", defaultValue: "Timer"), isOn: $pflanze.showTimer)
+                            Toggle(String(localized: "plant.detail.menu.goals", defaultValue: "Ziele"), isOn: $pflanze.showGoals)
+                            
+                            if pflanze.effectiveHealthMetric == .strengthTraining {
+                                Divider()
+                                Toggle(String(localized: "plant.detail.menu.weight", defaultValue: "Gewicht"), isOn: $pflanze.showWeight)
+                                Toggle(String(localized: "plant.detail.menu.measurements", defaultValue: "Körperumfänge"), isOn: $pflanze.showMeasurements)
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle.fill")
+                            .font(.system(size: 24))
+                            .foregroundStyle(.tertiary)
+                    }
+                    .onChange(of: pflanze.showStats) { _, _ in gardenStore.savePlants() }
+                    .onChange(of: pflanze.showTodos) { _, _ in gardenStore.savePlants() }
+                    .onChange(of: pflanze.showNotes) { _, _ in gardenStore.savePlants() }
+                    .onChange(of: pflanze.showTimer) { _, _ in gardenStore.savePlants() }
+                    .onChange(of: pflanze.showGoals) { _, _ in gardenStore.savePlants() }
+                    .onChange(of: pflanze.showWeight) { _, _ in gardenStore.savePlants() }
+                    .onChange(of: pflanze.showMeasurements) { _, _ in gardenStore.savePlants() }
+                }
+            }
             ToolbarItem(placement: .topBarTrailing) {
                 if let dismissEntireFlow = dismissEntireFlow, !isTargetFocused {
                     Button {

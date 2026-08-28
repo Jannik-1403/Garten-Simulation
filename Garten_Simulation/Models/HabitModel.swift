@@ -373,6 +373,19 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var sliderProgress: Double = 0.0
     @Published var intradayProgressHistory: [DailyProgressEntry] = []
     
+    // UI Visibility Toggles
+    @Published var showStats: Bool = true
+    @Published var showTodos: Bool = true
+    @Published var showNotes: Bool = true
+    @Published var showTimer: Bool = true
+    @Published var showGoals: Bool = true
+    @Published var showWeight: Bool = true
+    @Published var showMeasurements: Bool = true
+    
+    // Body Tracking
+    @Published var manualWeightEntries: [DailyProgressEntry] = []
+    @Published var bodyMeasurements: [String: [DailyProgressEntry]] = [:]
+    
     // 90-Tage Challenge Joker System
     @Published var challengeJokers: Int = 0
     let maxChallengeJokers: Int = 3
@@ -664,6 +677,15 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         self.lebenBereitsAbgezogen = false
         self.sliderProgress = 0.0
         self.intradayProgressHistory = []
+        self.showStats = true
+        self.showTodos = true
+        self.showNotes = true
+        self.showTimer = true
+        self.showGoals = true
+        self.showWeight = true
+        self.showMeasurements = true
+        self.manualWeightEntries = []
+        self.bodyMeasurements = [:]
     }
 
     // MARK: - Codable
@@ -686,6 +708,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case todos
         case priority
         case sliderProgress, intradayProgressHistory
+        case showStats, showTodos, showNotes, showTimer, showGoals, showWeight, showMeasurements
+        case manualWeightEntries, bodyMeasurements
     }
 
     required init(from decoder: Decoder) throws {
@@ -794,6 +818,15 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         challengeJokers = try container.decodeIfPresent(Int.self, forKey: .challengeJokers) ?? 0
         sliderProgress = try container.decodeIfPresent(Double.self, forKey: .sliderProgress) ?? 0.0
         intradayProgressHistory = try container.decodeIfPresent([DailyProgressEntry].self, forKey: .intradayProgressHistory) ?? []
+        showStats = try container.decodeIfPresent(Bool.self, forKey: .showStats) ?? true
+        showTodos = try container.decodeIfPresent(Bool.self, forKey: .showTodos) ?? true
+        showNotes = try container.decodeIfPresent(Bool.self, forKey: .showNotes) ?? true
+        showTimer = try container.decodeIfPresent(Bool.self, forKey: .showTimer) ?? true
+        showGoals = try container.decodeIfPresent(Bool.self, forKey: .showGoals) ?? true
+        showWeight = try container.decodeIfPresent(Bool.self, forKey: .showWeight) ?? true
+        showMeasurements = try container.decodeIfPresent(Bool.self, forKey: .showMeasurements) ?? true
+        manualWeightEntries = try container.decodeIfPresent([DailyProgressEntry].self, forKey: .manualWeightEntries) ?? []
+        bodyMeasurements = try container.decodeIfPresent([String: [DailyProgressEntry]].self, forKey: .bodyMeasurements) ?? [:]
     }
 
     func encode(to encoder: Encoder) throws {
@@ -856,6 +889,15 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(todos, forKey: .todos)
         try container.encode(sliderProgress, forKey: .sliderProgress)
         try container.encode(intradayProgressHistory, forKey: .intradayProgressHistory)
+        try container.encode(showStats, forKey: .showStats)
+        try container.encode(showTodos, forKey: .showTodos)
+        try container.encode(showNotes, forKey: .showNotes)
+        try container.encode(showTimer, forKey: .showTimer)
+        try container.encode(showGoals, forKey: .showGoals)
+        try container.encode(showWeight, forKey: .showWeight)
+        try container.encode(showMeasurements, forKey: .showMeasurements)
+        try container.encode(manualWeightEntries, forKey: .manualWeightEntries)
+        try container.encode(bodyMeasurements, forKey: .bodyMeasurements)
     }
 }
 
