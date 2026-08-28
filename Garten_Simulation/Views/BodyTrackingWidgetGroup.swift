@@ -5,6 +5,37 @@ enum BodyTrackingType {
     case measurements
 }
 
+enum BodyDataTimeRange: String, CaseIterable, Identifiable {
+    case t    = "T"
+    case w    = "W"
+    case m    = "M"
+    case sixM = "6 M."
+    case j    = "J"
+    var id: String { rawValue }
+}
+
+enum BodyMeasurementCategory: String, CaseIterable, Identifiable {
+    case bizeps      = "body.measure.bizeps"
+    case unterarm    = "body.measure.unterarm"
+    case schultern   = "body.measure.schultern"
+    case oberschenkel = "body.measure.oberschenkel"
+    case waden       = "body.measure.waden"
+    case taille      = "body.measure.taille"
+
+    var id: String { rawValue }
+
+    var localizedName: String {
+        switch self {
+        case .bizeps:       return String(localized: "body.measure.bizeps",       defaultValue: "Bizeps (Oberarm)")
+        case .unterarm:     return String(localized: "body.measure.unterarm",     defaultValue: "Unterarm")
+        case .schultern:    return String(localized: "body.measure.schultern",    defaultValue: "Schultern")
+        case .oberschenkel: return String(localized: "body.measure.oberschenkel", defaultValue: "Oberschenkel")
+        case .waden:        return String(localized: "body.measure.waden",        defaultValue: "Waden")
+        case .taille:       return String(localized: "body.measure.taille",       defaultValue: "Taille (Bauch)")
+        }
+    }
+}
+
 struct BodyTrackingWidgetGroup: View {
     @ObservedObject var pflanze: HabitModel
     @EnvironmentObject var gardenStore: GardenStore
