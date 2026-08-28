@@ -1,3 +1,11 @@
+## [2026-08-28] - Body Tracking & Modul-Toggle-Menü für Krafttraining
+
+- **Pflanzen-Detailansicht – Toggle-Menü (3 Punkte, links oben):** Nutzer können jetzt einzelne Module (Statistik, To-Dos, Notizen, Timer, Ziele, Gewicht, Körperumfänge) individuell ein- und ausblenden. Einstellungen werden persistent gespeichert.
+- **Body Tracking – Gewicht:** Neues Widget in der Detailansicht bei Krafttraining-Gewohnheiten. Führt zur Datenfabrik-Ansicht (T / W / M / 6M / J Zeitfilter) mit LineChart und manuellem Eintrag per Plus-Button.
+- **Body Tracking – Körperumfänge:** Tracking für Bizeps (Oberarm), Unterarm, Schultern, Oberschenkel, Waden, Taille (Bauch). Picker zum Wechsel zwischen Muskelgruppen. Ebenfalls mit Datenfabrik-Ansicht und Chart.
+- **Apple HealthKit:** Berechtigung für `bodyMass` (Gewicht) und `waistCircumference` (Taillenumfang) hinzugefügt.
+- **Lokalisierung:** 25 neue Strings in allen 15 Sprachen (de, en, es, fr, hi, it, ja, ko, nl, pl, pt, ru, tr, zh-Hans, zh-Hant) vollständig übersetzt.
+
 ## [2026-08-22] - To-Do & Achievement Badge Translations Fix
 - Die englischen Standardtexte ('Add To-Do', 'Enter To-Do...', 'Custom To-Do') wurden nun in der Übersetzungsdatei für Chinesisch und alle weiteren Sprachen korrekt übersetzt (z.B. '新增待辦事項').
 - Die falsche Übersetzung des 'Speichern'-Buttons (Save) auf Chinesisch ('節省' statt '儲存') wurde behoben.
