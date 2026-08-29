@@ -107,20 +107,14 @@ struct BodyDataFactoryView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Item3DButton(
-                    farbe: Color(UIColor.label),
-                    sekundaerFarbe: Color(UIColor.secondaryLabel),
-                    groesse: 36,
-                    isRectangular: false,
-                    aktion: {
-                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                        inputValue = ""
-                        showAddSheet = true
-                    }
-                ) {
+                Button {
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    inputValue = ""
+                    showAddSheet = true
+                } label: {
                     Image(systemName: "plus")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundStyle(Color(UIColor.systemBackground))
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundStyle(.primary)
                 }
             }
         }
