@@ -760,42 +760,78 @@ struct BodyDataFactoryView: View {
                 
                 // Adaptive Goal Suggestions
                 if state == .wrongWay || state == .tooSlow {
-                    Item3DButton(
-                        farbe: .orange,
-                        sekundaerFarbe: Color(red: 0.8, green: 0.4, blue: 0.0),
-                        groesse: 38,
-                        isRectangular: true,
-                        aktion: {
-                            targetInput = currentTarget.map { String(format: "%.1f", $0) } ?? ""
-                            if let targetVal = currentTarget {
-                                let currentDiff = abs(targetVal - currentEntry.progress)
-                                let reqPerWeek = max(0.1, abs(requiredChangePerWeek))
-                                let weeks = max(1.0, currentDiff / reqPerWeek)
-                                targetDateInput = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
+                    HStack(spacing: 12) {
+                        Item3DButton(
+                            farbe: .orange,
+                            sekundaerFarbe: Color(red: 0.8, green: 0.4, blue: 0.0),
+                            groesse: 38,
+                            isRectangular: true,
+                            aktion: {
+                                if let targetVal = currentTarget {
+                                    let currentDiff = abs(targetVal - currentValue)
+                                    let reqPerWeek = max(0.1, abs(requiredChangePerWeek))
+                                    let weeks = max(1.0, currentDiff / reqPerWeek)
+                                    let newDate = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
+                                    if type == .weight {
+                                        pflanze.targetWeightDate = newDate
+                                    } else {
+                                        pflanze.targetMeasurementsDates[selectedMeasurement.rawValue] = newDate
+                                    }
+                                    gardenStore.savePlants()
+                                }
                             }
-                            showTargetSheet = true
+                        ) {
+                            Text("🗓️ Ziel verschieben")
+                                .font(.system(size: 13, weight: .bold, design: .rounded))
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 14)
                         }
-                    ) {
-                        Text("🗓️ Ziel verschieben")
-                            .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 14)
+                        
+                        Item3DButton(
+                            farbe: .red,
+                            sekundaerFarbe: Color(red: 0.8, green: 0.1, blue: 0.1),
+                            groesse: 38,
+                            isRectangular: true,
+                            aktion: {
+                                if let targetVal = currentTarget {
+                                    let currentDiff = abs(targetVal - currentValue)
+                                    let newReqPerWeek = max(0.1, abs(requiredChangePerWeek)) + (type == .weight ? 0.1 : 0.2)
+                                    let weeks = max(1.0, currentDiff / newReqPerWeek)
+                                    let newDate = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
+                                    if type == .weight {
+                                        pflanze.targetWeightDate = newDate
+                                    } else {
+                                        pflanze.targetMeasurementsDates[selectedMeasurement.rawValue] = newDate
+                                    }
+                                    gardenStore.savePlants()
+                                }
+                            }
+                        ) {
+                            Text("🔥 Tempo erhöhen")
+                                .font(.system(size: 13, weight: .bold, design: .rounded))
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 14)
+                        }
                     }
                     .padding(.top, 6)
-                } else if state == .tooFast || (state == .onTrack && actualChangePerWeek > abs(requiredChangePerWeek)) {
+                } else if state == .tooFast || (state == .onTrack && abs(actualChangePerWeek) > abs(requiredChangePerWeek)) {
                     Item3DButton(
                         farbe: .green,
                         sekundaerFarbe: Color(red: 0.0, green: 0.6, blue: 0.0),
                         groesse: 38,
                         isRectangular: true,
                         aktion: {
-                            targetInput = currentTarget.map { String(format: "%.1f", $0) } ?? ""
                             if let targetVal = currentTarget {
-                                let currentDiff = abs(targetVal - currentEntry.progress)
+                                let currentDiff = abs(targetVal - currentValue)
                                 let weeks = max(1.0, currentDiff / max(0.1, abs(actualChangePerWeek)))
-                                targetDateInput = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
+                                let newDate = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
+                                if type == .weight {
+                                    pflanze.targetWeightDate = newDate
+                                } else {
+                                    pflanze.targetMeasurementsDates[selectedMeasurement.rawValue] = newDate
+                                }
+                                gardenStore.savePlants()
                             }
-                            showTargetSheet = true
                         }
                     ) {
                         Text("🗓️ Ziel vorziehen")
