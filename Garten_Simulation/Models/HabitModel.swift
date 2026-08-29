@@ -387,6 +387,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     @Published var bodyMeasurements: [String: [DailyProgressEntry]] = [:]
     @Published var targetWeight: Double? = nil
     @Published var targetWeightDate: Date? = nil
+    @Published var targetMeasurements: [String: Double] = [:]
+    @Published var targetMeasurementsDates: [String: Date] = [:]
     
     // 90-Tage Challenge Joker System
     @Published var challengeJokers: Int = 0
@@ -713,6 +715,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case showStats, showTodos, showNotes, showTimer, showGoals, showWeight, showMeasurements
         case manualWeightEntries, bodyMeasurements
         case targetWeight, targetWeightDate
+        case targetMeasurements, targetMeasurementsDates
     }
 
     required init(from decoder: Decoder) throws {
@@ -832,6 +835,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         bodyMeasurements = try container.decodeIfPresent([String: [DailyProgressEntry]].self, forKey: .bodyMeasurements) ?? [:]
         targetWeight = try container.decodeIfPresent(Double.self, forKey: .targetWeight)
         targetWeightDate = try container.decodeIfPresent(Date.self, forKey: .targetWeightDate)
+        targetMeasurements = try container.decodeIfPresent([String: Double].self, forKey: .targetMeasurements) ?? [:]
+        targetMeasurementsDates = try container.decodeIfPresent([String: Date].self, forKey: .targetMeasurementsDates) ?? [:]
     }
 
     func encode(to encoder: Encoder) throws {
@@ -905,6 +910,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(bodyMeasurements, forKey: .bodyMeasurements)
         try container.encodeIfPresent(targetWeight, forKey: .targetWeight)
         try container.encodeIfPresent(targetWeightDate, forKey: .targetWeightDate)
+        try container.encode(targetMeasurements, forKey: .targetMeasurements)
+        try container.encode(targetMeasurementsDates, forKey: .targetMeasurementsDates)
     }
 }
 

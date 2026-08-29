@@ -21,8 +21,9 @@ struct BodyDataFactoryView: View {
     @State private var selectedDate: Date? = nil
     
     @State private var showTargetSheet = false
-    @State private var targetWeightInput = ""
+    @State private var targetInput = ""
     @State private var targetDateInput = Date()
+    @State private var isManualEntriesExpanded = false
 
     // MARK: - Body
 
@@ -104,11 +105,9 @@ struct BodyDataFactoryView: View {
                     chartView
                 }
                 
-                // Zielgewicht (nur bei Gewicht)
-                if type == .weight {
-                    targetWeightSection
-                        .padding(.top, 16)
-                }
+                // Ziel (bei Gewicht & Körperumfängen)
+                targetSection
+                    .padding(.top, 16)
                 
                 // Manuelle Einträge zum Löschen
                 manualEntriesSection
@@ -523,64 +522,83 @@ struct BodyDataFactoryView: View {
 
     // MARK: - Target Weight & Manual Entries UI
     
-    private var currentWeight: Double? {
+    private var currentValue: Double? {
         allData.last?.progress
     }
 
-    private var targetWeightSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(String(localized: "body.tracking.target_weight_title", defaultValue: "Zielgewicht"))
+    private var currentTarget: Double? {
+        if type == .weight {
+            return pflanze.targetWeight
+        } else {
+            return pflanze.targetMeasurements[selectedMeasurement.rawValue]
+        }
+    }
+
+    private var currentTargetDate: Date? {
+        if type == .weight {
+            return pflanze.targetWeightDate
+        } else {
+            return pflanze.targetMeasurementsDates[selectedMeasurement.rawValue]
+        }
+    }
+
+    private var targetSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(String(localized: "body.tracking.target_title", defaultValue: "Ziel"))
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .foregroundStyle(.secondary)
                 .padding(.horizontal)
             
             VStack(alignment: .leading, spacing: 16) {
-                HStack {
-                    if let targetWeight = pflanze.targetWeight {
+                HStack(alignment: .center) {
+                    if let targetVal = currentTarget {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("\(String(format: "%.1f", targetWeight)) kg")
+                            Text("\(String(format: "%.1f", targetVal)) \(unit)")
                                 .font(.system(size: 24, weight: .black, design: .rounded))
                                 .foregroundStyle(.pink)
                             
-                            if let date = pflanze.targetWeightDate {
+                            if let date = currentTargetDate {
                                 Text(String(localized: "body.tracking.until", defaultValue: "bis zum ") + date.formatted(.dateTime.day().month().year()))
                                     .font(.system(size: 13, weight: .semibold, design: .rounded))
                                     .foregroundStyle(.secondary)
                             }
                         }
                     } else {
-                        Text(String(localized: "body.tracking.no_target_weight", defaultValue: "Kein Zielgewicht festgelegt"))
+                        Text(type == .weight 
+                             ? String(localized: "body.tracking.no_target_weight", defaultValue: "Kein Zielgewicht festgelegt")
+                             : String(localized: "body.tracking.no_target_measurement", defaultValue: "Kein Zielwert festgelegt"))
                             .font(.system(size: 15, weight: .medium, design: .rounded))
                             .foregroundStyle(.secondary)
                     }
                     
                     Spacer()
                     
-                    Button {
-                        targetWeightInput = pflanze.targetWeight.map { String(format: "%.1f", $0) } ?? ""
-                        targetDateInput = pflanze.targetWeightDate ?? Calendar.current.date(byAdding: .month, value: 3, to: Date())!
-                        showTargetSheet = true
-                    } label: {
-                        Text(pflanze.targetWeight == nil 
-                             ? String(localized: "body.tracking.set_target", defaultValue: "Ziel festlegen")
-                             : String(localized: "body.tracking.edit_target", defaultValue: "Bearbeiten"))
+                    Item3DButton(
+                        farbe: .red,
+                        sekundaerFarbe: Color(red: 0.8, green: 0.1, blue: 0.1),
+                        groesse: 38,
+                        isRectangular: true,
+                        aktion: {
+                            targetInput = currentTarget.map { String(format: "%.1f", $0) } ?? ""
+                            targetDateInput = currentTargetDate ?? Calendar.current.date(byAdding: .month, value: 3, to: Date())!
+                            showTargetSheet = true
+                        }
+                    ) {
+                        Text(String(localized: "body.tracking.button.target", defaultValue: "Ziel"))
                             .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .background(Color.pink.opacity(0.1))
-                            .foregroundStyle(.pink)
-                            .cornerRadius(8)
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 14)
                     }
                 }
                 
                 // Realismus-Check
-                if let targetWeight = pflanze.targetWeight, let targetDate = pflanze.targetWeightDate, let current = currentWeight {
-                    let diff = targetWeight - current
+                if let targetVal = currentTarget, let targetDate = currentTargetDate, let current = currentValue {
+                    let diff = targetVal - current
                     let weeks = max(1.0, targetDate.timeIntervalSince(Date()) / (7.0 * 24.0 * 3600.0))
-                    let kgPerWeek = abs(diff) / weeks
+                    let changePerWeek = abs(diff) / weeks
                     
                     HStack(alignment: .top, spacing: 12) {
-                        let isRealistic = kgPerWeek <= 1.0
+                        let isRealistic = changePerWeek <= (type == .weight ? 1.0 : 2.0)
                         Image(systemName: isRealistic ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
                             .font(.system(size: 18))
                             .foregroundStyle(isRealistic ? .green : .orange)
@@ -592,9 +610,20 @@ struct BodyDataFactoryView: View {
                                 .font(.system(size: 14, weight: .bold, design: .rounded))
                                 .foregroundStyle(isRealistic ? .green : .orange)
                             
-                            Text(isRealistic 
-                                 ? String(format: String(localized: "body.tracking.realistic_desc", defaultValue: "Um dein Ziel zu erreichen, musst du ca. %.2f kg pro Woche ab- bzw. zunehmen. Das entspricht einer gesunden Rate von unter 1 kg/Woche."), kgPerWeek)
-                                 : String(format: String(localized: "body.tracking.unrealistic_desc", defaultValue: "Um dein Ziel zu erreichen, musst du ca. %.2f kg pro Woche verändern. Das ist über der empfohlenen Rate von 1 kg/Woche. Versuche, den Zeitraum zu verlängern oder dein Zielgewicht anzupassen."), kgPerWeek))
+                            // Text anpassen (abnehmen/zunehmen vs aufbauen/reduzieren)
+                            let actionText: String = {
+                                if type == .weight {
+                                    return diff < 0 
+                                        ? String(localized: "body.tracking.action.lose", defaultValue: "abzunehmen")
+                                        : String(localized: "body.tracking.action.gain", defaultValue: "zuzunehmen")
+                                } else {
+                                    return diff < 0 
+                                        ? String(localized: "body.tracking.action.reduce", defaultValue: "zu reduzieren")
+                                        : String(localized: "body.tracking.action.build", defaultValue: "aufzubauen")
+                                }
+                            }()
+                            
+                            Text(String(format: String(localized: "body.tracking.change_rate_desc", defaultValue: "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das entspricht einer gesunden Rate."), changePerWeek, unit, actionText))
                                 .font(.system(size: 12, design: .rounded))
                                 .foregroundStyle(.secondary)
                         }
@@ -602,55 +631,73 @@ struct BodyDataFactoryView: View {
                     .padding(.top, 8)
                 }
             }
-            .padding()
-            .background(Color(UIColor.secondarySystemGroupedBackground))
-            .cornerRadius(16)
+            .item3DContainer(farbe: Color(UIColor.secondarySystemGroupedBackground), sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground), shadowDepth: 4)
             .padding(.horizontal)
         }
     }
 
     private var manualEntriesSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text(String(localized: "body.tracking.manual_entries", defaultValue: "Manuelle Einträge"))
-                .font(.system(size: 14, weight: .bold, design: .rounded))
-                .foregroundStyle(.secondary)
+        VStack(alignment: .leading, spacing: 8) {
+            Button {
+                withAnimation(.easeInOut) {
+                    isManualEntriesExpanded.toggle()
+                }
+            } label: {
+                HStack {
+                    Text(String(localized: "body.tracking.manual_entries", defaultValue: "Manuelle Einträge"))
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundStyle(.secondary)
+                        .rotationEffect(.degrees(isManualEntriesExpanded ? 90 : 0))
+                }
                 .padding(.horizontal)
+            }
+            .buttonStyle(.plain)
             
-            let entries = type == .weight ? pflanze.manualWeightEntries : (pflanze.bodyMeasurements[selectedMeasurement.rawValue] ?? [])
-            
-            if entries.isEmpty {
-                Text(String(localized: "body.tracking.no_manual_entries", defaultValue: "Keine manuellen Einträge"))
-                    .font(.system(size: 13, design: .rounded))
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal)
-            } else {
-                VStack(spacing: 8) {
-                    ForEach(entries.sorted { $0.timestamp > $1.timestamp }, id: \.timestamp) { entry in
-                        HStack {
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("\(String(format: "%.1f", entry.progress)) \(unit)")
-                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                Text(entry.timestamp.formatted(.dateTime.day().month().year().hour().minute()))
-                                    .font(.system(size: 12, design: .rounded))
-                                    .foregroundStyle(.secondary)
-                            }
-                            Spacer()
-                            Button {
-                                deleteEntry(entry)
-                            } label: {
-                                Image(systemName: "trash")
-                                    .foregroundStyle(.red)
-                                    .font(.system(size: 14))
-                                    .padding(8)
-                                    .background(Color.red.opacity(0.1))
-                                    .clipShape(Circle())
-                            }
-                        }
-                        .padding()
-                        .background(Color(UIColor.secondarySystemGroupedBackground))
-                        .cornerRadius(12)
+            if isManualEntriesExpanded {
+                let entries = type == .weight ? pflanze.manualWeightEntries : (pflanze.bodyMeasurements[selectedMeasurement.rawValue] ?? [])
+                
+                if entries.isEmpty {
+                    Text(String(localized: "body.tracking.no_manual_entries", defaultValue: "Keine manuellen Einträge"))
+                        .font(.system(size: 13, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .padding(.all, 16)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .item3DContainer(farbe: Color(UIColor.secondarySystemGroupedBackground), sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground), shadowDepth: 4)
                         .padding(.horizontal)
+                } else {
+                    VStack(spacing: 8) {
+                        ForEach(entries.sorted { $0.timestamp > $1.timestamp }, id: \.timestamp) { entry in
+                            HStack {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("\(String(format: "%.1f", entry.progress)) \(unit)")
+                                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    Text(entry.timestamp.formatted(.dateTime.day().month().year().hour().minute()))
+                                        .font(.system(size: 12, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                                }
+                                Spacer()
+                                Button {
+                                    deleteEntry(entry)
+                                } label: {
+                                    Image(systemName: "trash")
+                                        .foregroundStyle(.red)
+                                        .font(.system(size: 14))
+                                        .padding(8)
+                                        .background(Color.red.opacity(0.1))
+                                        .clipShape(Circle())
+                                }
+                            }
+                            .padding()
+                            .background(Color(UIColor.secondarySystemGroupedBackground))
+                            .cornerRadius(12)
+                        }
                     }
+                    .item3DContainer(farbe: Color(UIColor.secondarySystemGroupedBackground), sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground), shadowDepth: 4)
+                    .padding(.horizontal)
                 }
             }
         }
@@ -670,11 +717,13 @@ struct BodyDataFactoryView: View {
     private var editTargetSheet: some View {
         NavigationStack {
             Form {
-                Section(header: Text(String(localized: "body.tracking.target_weight_title", defaultValue: "Zielgewicht"))) {
+                Section(header: Text(type == .weight 
+                                     ? String(localized: "body.tracking.target_weight_title", defaultValue: "Zielgewicht")
+                                     : String(localized: "body.tracking.target_measurement_title", defaultValue: "Zielwert"))) {
                     HStack {
-                        TextField("0", text: $targetWeightInput)
+                        TextField("0", text: $targetInput)
                             .keyboardType(.decimalPad)
-                        Text("kg")
+                        Text(unit)
                             .foregroundStyle(.secondary)
                     }
                 }
@@ -688,11 +737,16 @@ struct BodyDataFactoryView: View {
                     )
                 }
                 
-                if pflanze.targetWeight != nil {
+                if currentTarget != nil {
                     Section {
                         Button(role: .destructive) {
-                            pflanze.targetWeight = nil
-                            pflanze.targetWeightDate = nil
+                            if type == .weight {
+                                pflanze.targetWeight = nil
+                                pflanze.targetWeightDate = nil
+                            } else {
+                                pflanze.targetMeasurements.removeValue(forKey: selectedMeasurement.rawValue)
+                                pflanze.targetMeasurementsDates.removeValue(forKey: selectedMeasurement.rawValue)
+                            }
                             gardenStore.savePlants()
                             showTargetSheet = false
                         } label: {
@@ -712,16 +766,21 @@ struct BodyDataFactoryView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(String(localized: "common.save", defaultValue: "Speichern")) {
-                        let w = Double(targetWeightInput.replacingOccurrences(of: ",", with: ".")) ?? 0
+                        let w = Double(targetInput.replacingOccurrences(of: ",", with: ".")) ?? 0
                         if w > 0 {
-                            pflanze.targetWeight = w
-                            pflanze.targetWeightDate = targetDateInput
+                            if type == .weight {
+                                pflanze.targetWeight = w
+                                pflanze.targetWeightDate = targetDateInput
+                            } else {
+                                pflanze.targetMeasurements[selectedMeasurement.rawValue] = w
+                                pflanze.targetMeasurementsDates[selectedMeasurement.rawValue] = targetDateInput
+                            }
                             gardenStore.savePlants()
                         }
                         showTargetSheet = false
                     }
                     .bold()
-                    .disabled(targetWeightInput.isEmpty)
+                    .disabled(targetInput.isEmpty)
                 }
             }
         }
