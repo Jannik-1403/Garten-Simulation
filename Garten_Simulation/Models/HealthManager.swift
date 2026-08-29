@@ -63,14 +63,13 @@ class HealthManager: ObservableObject {
               let water = HKObjectType.quantityType(forIdentifier: .dietaryWater),
               let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis),
               let mindfulness = HKObjectType.categoryType(forIdentifier: .mindfulSession),
-              let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass),
-              let waist = HKObjectType.quantityType(forIdentifier: .waistCircumference) else {
+              let bodyMass = HKObjectType.quantityType(forIdentifier: .bodyMass) else {
             return
         }
         
         let workout = HKObjectType.workoutType()
         
-        let typesToRead: Set<HKObjectType> = [stepCount, water, sleep, mindfulness, workout, bodyMass, waist]
+        let typesToRead: Set<HKObjectType> = [stepCount, water, sleep, mindfulness, workout, bodyMass]
         
         healthStore.requestAuthorization(toShare: nil, read: typesToRead) { [weak self] success, error in
             DispatchQueue.main.async {
