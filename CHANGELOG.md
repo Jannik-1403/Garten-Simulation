@@ -620,3 +620,6 @@
 ## [2026-08-29] Body-Tracking Statistik (Achsen & Zeitraum)
 - Die Statistiken in `BodyDataFactoryView` nutzen nun feste Kalender-Zeiträume statt rollierenden Rückblicken (z.B. aktuelle Woche Mo-So statt "letzte 7 Tage", aktueller Monat statt "letzte 30 Tage").
 - Die X-Achse skaliert nun immer strikt von links nach rechts (Vergangenheit → Zukunft) für den ausgewählten Kalender-Zeitraum.
+
+## [2026-08-29] Body-Tracking UI (Plus-Button)
+- Der Plus-Button oben rechts in der `BodyDataFactoryView` wurde von einem auffälligen 3D-Button zu einem sauberen, einfachen iOS-Button geändert (ohne Hintergrund).
