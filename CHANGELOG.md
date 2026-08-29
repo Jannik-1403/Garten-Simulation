@@ -632,3 +632,6 @@
 ## [2026-08-29] Interaktive Statistiken & Apple Health Fix
 - **Apple Health (Gewicht):** Die Datenabfrage lädt nun direkt ein ganzes Jahr, damit du beim Wechseln der Zeiträume (Woche, Monat, Jahr) sofort die perfekten Apple-Health-Werte siehst, ohne dass es neu laden muss oder fehlschlägt.
 - **Interaktive Chart-Detailansicht (Drag & Hold):** Du kannst jetzt bei ALLEN Graphen (Schritte, Wasser, Gewicht, Körperumfänge, Laufen, Krafttraining) **den Finger auf dem Graph gedrückt halten und wischen**. Dir wird dann wie gewünscht genau oben über deinem Finger der genaue Wert und die genaue Uhrzeit/Datum angezeigt!
+
+## [2026-08-29] Apple Health (Gewicht) Berechtigungs-Fix
+- **Fehlende Berechtigungsabfrage:** Wenn du die App früher schon einmal mit Apple Health verbunden hast, hat iOS den System-Dialog für das Gewicht nie angezeigt (da dieser Parameter nachträglich zur App hinzugefügt wurde). Das wurde behoben. Beim nächsten Start der App triggert das System nun automatisch einmalig den Dialog, damit du das Gewicht und die Körperumfänge explizit für die App freigeben kannst!
