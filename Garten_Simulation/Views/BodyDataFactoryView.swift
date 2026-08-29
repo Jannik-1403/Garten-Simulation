@@ -49,20 +49,21 @@ struct BodyDataFactoryView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
                             ForEach(BodyMeasurementCategory.allCases) { cat in
-                                Button {
-                                    selectedMeasurement = cat
-                                } label: {
+                                Item3DButton(
+                                    farbe: selectedMeasurement == cat ? Color.pink : Color(UIColor.secondarySystemGroupedBackground),
+                                    sekundaerFarbe: selectedMeasurement == cat ? Color.pink.opacity(0.7) : Color(UIColor.tertiarySystemGroupedBackground),
+                                    groesse: 36,
+                                    isRectangular: true,
+                                    isPermanentlyPressed: selectedMeasurement == cat,
+                                    aktion: {
+                                        selectedMeasurement = cat
+                                    }
+                                ) {
                                     Text(cat.localizedName)
                                         .font(.system(size: 13, weight: .semibold, design: .rounded))
-                                        .padding(.horizontal, 12)
-                                        .padding(.vertical, 8)
-                                        .background(
-                                            Capsule()
-                                                .fill(selectedMeasurement == cat ? Color.pink : Color(UIColor.systemGray5))
-                                        )
                                         .foregroundStyle(selectedMeasurement == cat ? .white : .primary)
+                                        .padding(.horizontal, 10)
                                 }
-                                .buttonStyle(.plain)
                             }
                         }
                         .padding(.horizontal)
@@ -597,35 +598,68 @@ struct BodyDataFactoryView: View {
                     let weeks = max(1.0, targetDate.timeIntervalSince(Date()) / (7.0 * 24.0 * 3600.0))
                     let changePerWeek = abs(diff) / weeks
                     
+                    let limitMax = type == .weight ? 1.0 : 0.5
+                    let limitMin = type == .weight ? 0.3 : 0.1
+                    
+                    // Text anpassen (abnehmen/zunehmen vs aufbauen/reduzieren)
+                    let actionText: String = {
+                        if type == .weight {
+                            return diff < 0 
+                                ? String(localized: "body.tracking.action.lose", defaultValue: "abzunehmen")
+                                : String(localized: "body.tracking.action.gain", defaultValue: "zuzunehmen")
+                        } else {
+                            return diff < 0 
+                                ? String(localized: "body.tracking.action.reduce", defaultValue: "zu reduzieren")
+                                : String(localized: "body.tracking.action.build", defaultValue: "aufzubauen")
+                        }
+                    }()
+                    
                     HStack(alignment: .top, spacing: 12) {
-                        let isRealistic = changePerWeek <= (type == .weight ? 1.0 : 2.0)
-                        Image(systemName: isRealistic ? "checkmark.circle.fill" : "exclamationmark.triangle.fill")
-                            .font(.system(size: 18))
-                            .foregroundStyle(isRealistic ? .green : .orange)
-                        
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(isRealistic 
-                                 ? String(localized: "body.tracking.realistic_goal", defaultValue: "Realistisches Ziel")
-                                 : String(localized: "body.tracking.unrealistic_goal", defaultValue: "Sehr ambitioniertes Ziel"))
-                                .font(.system(size: 14, weight: .bold, design: .rounded))
-                                .foregroundStyle(isRealistic ? .green : .orange)
+                        if changePerWeek > limitMax {
+                            // Sehr ambitioniert
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .font(.system(size: 18))
+                                .foregroundStyle(.orange)
                             
-                            // Text anpassen (abnehmen/zunehmen vs aufbauen/reduzieren)
-                            let actionText: String = {
-                                if type == .weight {
-                                    return diff < 0 
-                                        ? String(localized: "body.tracking.action.lose", defaultValue: "abzunehmen")
-                                        : String(localized: "body.tracking.action.gain", defaultValue: "zuzunehmen")
-                                } else {
-                                    return diff < 0 
-                                        ? String(localized: "body.tracking.action.reduce", defaultValue: "zu reduzieren")
-                                        : String(localized: "body.tracking.action.build", defaultValue: "aufzubauen")
-                                }
-                            }()
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(String(localized: "body.tracking.unrealistic_goal", defaultValue: "Sehr ambitioniertes Ziel"))
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.orange)
+                                
+                                Text(String(format: String(localized: "body.tracking.unrealistic_desc", defaultValue: "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das ist über der empfohlenen Rate von %.1f %@/Woche. Versuche, den Zeitraum zu verlängern oder dein Ziel anzupassen."), changePerWeek, unit, actionText, limitMax, unit))
+                                    .font(.system(size: 12, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                        } else if changePerWeek >= limitMin {
+                            // Optimales Tempo
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.system(size: 18))
+                                .foregroundStyle(.green)
                             
-                            Text(String(format: String(localized: "body.tracking.change_rate_desc", defaultValue: "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das entspricht einer gesunden Rate."), changePerWeek, unit, actionText))
-                                .font(.system(size: 12, design: .rounded))
-                                .foregroundStyle(.secondary)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(String(localized: "body.tracking.realistic_goal", defaultValue: "Optimales Tempo"))
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.green)
+                                
+                                Text(String(format: String(localized: "body.tracking.realistic_desc", defaultValue: "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das entspricht einer gesunden und realistischen Rate."), changePerWeek, unit, actionText))
+                                    .font(.system(size: 12, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                        } else {
+                            // Sehr entspannt
+                            Image(systemName: "info.circle.fill")
+                                .font(.system(size: 18))
+                                .foregroundStyle(.blue)
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(String(localized: "body.tracking.easy_goal", defaultValue: "Sehr entspanntes Tempo"))
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .foregroundStyle(.blue)
+                                
+                                Text(String(format: String(localized: "body.tracking.easy_desc", defaultValue: "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das ist ein sehr entspanntes Tempo, du könntest dir bei Bedarf auch etwas mehr zutrauen."), changePerWeek, unit, actionText))
+                                        .font(.system(size: 12, design: .rounded))
+                                        .foregroundStyle(.secondary)
+                            }
                         }
                     }
                     .padding(.top, 8)
@@ -756,7 +790,7 @@ struct BodyDataFactoryView: View {
                     }
                 }
             }
-            .navigationTitle(String(localized: "body.tracking.edit_target", defaultValue: "Ziel bearbeiten"))
+            .navigationTitle(String(localized: "body.tracking.target_title", defaultValue: "Ziel"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

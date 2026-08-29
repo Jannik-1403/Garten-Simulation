@@ -1038,7 +1038,6 @@
         }
       }
     },
-    "%@ kg": {},
     "%lld": {
       "localizations": {
         "de": {
@@ -88308,6 +88307,46 @@
         }
       }
     },
+    "body.tracking.action.build": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "aufzubauen"
+          }
+        }
+      }
+    },
+    "body.tracking.action.gain": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "zuzunehmen"
+          }
+        }
+      }
+    },
+    "body.tracking.action.lose": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "abzunehmen"
+          }
+        }
+      }
+    },
+    "body.tracking.action.reduce": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "zu reduzieren"
+          }
+        }
+      }
+    },
     "body.tracking.add_entry": {
       "localizations": {
         "de": {
@@ -88590,6 +88629,26 @@
         }
       }
     },
+    "body.tracking.button.target": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziel"
+          }
+        }
+      }
+    },
+    "body.tracking.change_rate_desc": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das entspricht einer gesunden Rate."
+          }
+        }
+      }
+    },
     "body.tracking.delete_target": {
       "localizations": {
         "de": {
@@ -88818,6 +88877,16 @@
         }
       }
     },
+    "body.tracking.no_target_measurement": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Zielwert festgelegt"
+          }
+        }
+      }
+    },
     "body.tracking.no_target_weight": {
       "localizations": {
         "de": {
@@ -88828,32 +88897,12 @@
         }
       }
     },
-    "body.tracking.realistic_desc": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Um dein Ziel zu erreichen, musst du ca. %.2f kg pro Woche ab- bzw. zunehmen. Das entspricht einer gesunden Rate von unter 1 kg/Woche."
-          }
-        }
-      }
-    },
     "body.tracking.realistic_goal": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Realistisches Ziel"
-          }
-        }
-      }
-    },
-    "body.tracking.set_target": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ziel festlegen"
           }
         }
       }
@@ -88968,6 +89017,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Zieldatum"
+          }
+        }
+      }
+    },
+    "body.tracking.target_measurement_title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zielwert"
+          }
+        }
+      }
+    },
+    "body.tracking.target_title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziel"
           }
         }
       }
@@ -89374,16 +89443,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "今天"
-          }
-        }
-      }
-    },
-    "body.tracking.unrealistic_desc": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Um dein Ziel zu erreichen, musst du ca. %.2f kg pro Woche verändern. Das ist über der empfohlenen Rate von 1 kg/Woche. Versuche, den Zeitraum zu verlängern oder dein Zielgewicht anzupassen."
           }
         }
       }
@@ -162305,7 +162364,6 @@
         }
       }
     },
-    "kg": {},
     "leben.regel1": {
       "comment": "",
       "extractionState": "manual",
@@ -409245,92 +409303,22 @@
         }
       }
     },
-    "body.tracking.target_title": {
+    "body.tracking.easy_goal": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel"
+            "value": "Sehr entspanntes Tempo"
           }
         }
       }
     },
-    "body.tracking.no_target_measurement": {
+    "body.tracking.easy_desc": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kein Zielwert festgelegt"
-          }
-        }
-      }
-    },
-    "body.tracking.button.target": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ziel"
-          }
-        }
-      }
-    },
-    "body.tracking.target_measurement_title": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zielwert"
-          }
-        }
-      }
-    },
-    "body.tracking.action.lose": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "abzunehmen"
-          }
-        }
-      }
-    },
-    "body.tracking.action.gain": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "zuzunehmen"
-          }
-        }
-      }
-    },
-    "body.tracking.action.reduce": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "zu reduzieren"
-          }
-        }
-      }
-    },
-    "body.tracking.action.build": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "aufzubauen"
-          }
-        }
-      }
-    },
-    "body.tracking.change_rate_desc": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das entspricht einer gesunden Rate."
+            "value": "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das ist ein sehr entspanntes Tempo, du könntest dir bei Bedarf auch etwas mehr zutrauen."
           }
         }
       }
