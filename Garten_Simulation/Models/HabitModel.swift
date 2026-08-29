@@ -385,6 +385,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
     // Body Tracking
     @Published var manualWeightEntries: [DailyProgressEntry] = []
     @Published var bodyMeasurements: [String: [DailyProgressEntry]] = [:]
+    @Published var targetWeight: Double? = nil
+    @Published var targetWeightDate: Date? = nil
     
     // 90-Tage Challenge Joker System
     @Published var challengeJokers: Int = 0
@@ -710,6 +712,7 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         case sliderProgress, intradayProgressHistory
         case showStats, showTodos, showNotes, showTimer, showGoals, showWeight, showMeasurements
         case manualWeightEntries, bodyMeasurements
+        case targetWeight, targetWeightDate
     }
 
     required init(from decoder: Decoder) throws {
@@ -827,6 +830,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         showMeasurements = try container.decodeIfPresent(Bool.self, forKey: .showMeasurements) ?? true
         manualWeightEntries = try container.decodeIfPresent([DailyProgressEntry].self, forKey: .manualWeightEntries) ?? []
         bodyMeasurements = try container.decodeIfPresent([String: [DailyProgressEntry]].self, forKey: .bodyMeasurements) ?? [:]
+        targetWeight = try container.decodeIfPresent(Double.self, forKey: .targetWeight)
+        targetWeightDate = try container.decodeIfPresent(Date.self, forKey: .targetWeightDate)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -898,6 +903,8 @@ class HabitModel: Identifiable, ObservableObject, Codable {
         try container.encode(showMeasurements, forKey: .showMeasurements)
         try container.encode(manualWeightEntries, forKey: .manualWeightEntries)
         try container.encode(bodyMeasurements, forKey: .bodyMeasurements)
+        try container.encodeIfPresent(targetWeight, forKey: .targetWeight)
+        try container.encodeIfPresent(targetWeightDate, forKey: .targetWeightDate)
     }
 }
 
