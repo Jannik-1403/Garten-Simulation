@@ -649,3 +649,8 @@
 - **Detaillierte Realismus-Texte:** Der Realismus-Check unterscheidet nun sprachlich intelligent, ob du Gewicht verlierst (abnehmen) / zunimmst (zunehmen) oder Umfänge verringerst (reduzieren) / vergrößerst (aufbauen).
 - **Ziel-Sektion Redesign:** Die Sektion wurde in "Ziel" umbenannt. Der gesamte Ziel-Bereich liegt nun in einem schicken, weißen `item3DContainer` und der Bearbeitungsbutton ist ein roter, nativer `Item3DButton`.
 - **Manuelle Einträge Redesign:** Die Sektion lässt sich jetzt über einen Header mit Pfeil-Indikator auf- und zuklappen (mit Animation) und wird ebenfalls in einem modernen `item3DContainer` dargestellt.
+
+## [2026-08-29] Detaillierter Realismus-Check & 3D-Kategorie-Buttons
+- **3D-Kategorie-Buttons:** Die Körperumfang-Kategorie-Auswahl (Oberschenkel, Bizeps etc.) wurde von flachen Capsule-Buttons auf native Item3DButtons umgestellt.
+- **3-stufiger Realismus-Check:** Die Ziel-Bewertung unterscheidet jetzt drei Stufen: ✅ Grün "Optimales Tempo" (0,3–1 kg/Woche), 🔶 Orange "Sehr ambitioniert" (>1 kg/Woche), ℹ️ Blau "Sehr entspannt" (<0,3 kg/Woche). Für Körperumfänge gelten eigene angepasste Richtwerte.
+- **Ziel-Sheet-Titel:** Das Bearbeitungssheet zeigt jetzt nur noch kurz "Ziel" als Titel (statt "Ziel bearbeiten"), um Textabschneidung auf kleinen Displays zu vermeiden.
