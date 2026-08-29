@@ -229,6 +229,24 @@ struct BodyDataFactoryView: View {
                         .foregroundStyle(.secondary)
                 }
                 .padding(.top, 32)
+                
+                // Info / Empfehlung
+                HStack(alignment: .top, spacing: 12) {
+                    Image(systemName: "info.circle.fill")
+                        .font(.system(size: 16))
+                        .foregroundStyle(Color.pink)
+                    
+                    Text(type == .weight
+                         ? String(localized: "body.tracking.tip.weight", defaultValue: "Tipp: Für beste Ergebnisse empfehlen wir, das Gewicht jeden Morgen zur selben Zeit, nüchtern und ohne vorher etwas zu essen, zu tracken.")
+                         : String(localized: "body.tracking.tip.measurements", defaultValue: "Tipp: Körperumfänge verändern sich langsam. Wir empfehlen, sie nur einmal im Monat zu messen, um echte Fortschritte zu sehen."))
+                        .font(.system(size: 13, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding(16)
+                .background(Color(UIColor.secondarySystemGroupedBackground))
+                .cornerRadius(12)
+                .padding(.horizontal, 24)
 
                 if type == .measurements {
                     Picker("", selection: $selectedMeasurement) {
