@@ -638,3 +638,8 @@
 
 ## [2026-08-29] Apple Health Bereinigungen
 - Der versehentlich mit abgefragte "Taillenumfang" (Waist Circumference) wurde aus der Apple Health Anfrage entfernt. Die App fordert nun, wie gewünscht, nur noch das reine **Gewicht** (sowie die anderen Parameter wie Schritte, Wasser, etc.) von Apple Health an.
+
+## [2026-08-29] Zielgewicht, Realismus-Check & Löschen von Tracking-Einträgen
+- **Chart-Optimierung:** Der blasser werdende Farbverlauf (Schatten/AreaMark) unter dem Graphen in der Detailansicht wurde entfernt. Es ist nun eine saubere, übersichtliche Linie zu sehen.
+- **Löschen von Einträgen:** Unter dem Chart gibt es nun die Sektion "Manuelle Einträge". Jeder dort gelistete Eintrag kann über ein Mülltonnen-Symbol gelöscht werden (nur manuell erfasste Daten, da Apple Health-Daten dort verwaltet werden müssen).
+- **Zielgewicht & Realismus-Check (nur bei Gewicht):** Du kannst jetzt ein Zielgewicht und ein Zieldatum festlegen. Die App berechnet automatisch, wie viele Kilo du pro Woche ab- oder zunehmen musst, um dein Ziel zu erreichen, und gibt dir direkt ein Feedback, ob dies gesund und realistisch ist (unter 1 kg pro Woche) oder ob das Ziel zu ambitioniert ist.
