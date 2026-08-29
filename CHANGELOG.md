@@ -662,3 +662,7 @@
 - Fix: Fortschritts-Analyse zeigte rohe Lokalisierungskeys – auf switch-basierte Strings umgestellt.
 - Fix: Datenschwelle von 5 Tagen auf 1 Tag gesenkt (tägliche Einträge werden jetzt erkannt).
 - Feat: OptionButton (Körper/Haare/Augen/Mund-Auswahl) im Charakter-Editor nutzt jetzt Item3DButtonStyle.
+- Fix: Stats-Header zeigt jetzt aktuellen Wert (letzter Eintrag) statt Durchschnitt.
+- Fix: Fortschritts-Analyse zeigt Zeitraum (seit gestern, seit vorgestern, seit [Datum]).
+- Fix: Körperumfang-Kategorie-Auswahl nutzt quadratische Item3DButtons statt Pills.
+- Fix: GoalWeight-Buttons in CustomPlantCreationView sind wieder normale Item3DButtons.
