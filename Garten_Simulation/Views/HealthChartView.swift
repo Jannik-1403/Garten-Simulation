@@ -11,6 +11,8 @@ struct HealthChartView: View {
     var onEditTarget: (() -> Void)? = nil
     var onUnlink: (() -> Void)? = nil
 
+    @State private var selectedDate: Date? = nil
+
     // MARK: Computed
 
     private var chartTitle: String {
@@ -177,7 +179,34 @@ struct HealthChartView: View {
                                 .background(Capsule().fill(Color(UIColor.systemBackground)))
                         }
                 }
+                
+                if let selectedDate, let selectedEntry = findSelectedEntry(for: selectedDate) {
+                    RuleMark(x: .value("Selected", selectedEntry.0))
+                        .foregroundStyle(Color(UIColor.systemGray4))
+                        .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+                        .annotation(
+                            position: .top, spacing: 0,
+                            overflowResolution: .init(x: .fit(to: .chart), y: .disabled)
+                        ) {
+                            VStack(spacing: 4) {
+                                Text(formatNumber(selectedEntry.1))
+                                    .font(.system(size: 16, weight: .black, design: .rounded))
+                                    .foregroundStyle(Color.orangePrimary)
+                                Text(timeLabel(for: selectedEntry.0))
+                                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(.secondary)
+                            }
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                    .fill(Color(UIColor.secondarySystemGroupedBackground))
+                                    .shadow(color: .black.opacity(0.1), radius: 3, y: 2)
+                            )
+                        }
+                }
             }
+            .chartXSelection(value: $selectedDate)
             .chartXScale(domain: dayStart...max(dayStart.addingTimeInterval(3600), lastDataDate))
             .chartYScale(domain: 0...max(10, max(target ?? 10, max(todayTotal, hourlyAverageData.map { $0.1 }.max() ?? 0) * 1.2)))
             .chartXAxis {
@@ -280,6 +309,12 @@ struct HealthChartView: View {
             result.append((pointTime, sum))
         }
         return result
+    }
+
+    private func findSelectedEntry(for date: Date) -> (Date, Double)? {
+        let entries = cumulativeData()
+        guard !entries.isEmpty else { return nil }
+        return entries.min(by: { abs($0.0.timeIntervalSince(date)) < abs($1.0.timeIntervalSince(date)) })
     }
 }
 

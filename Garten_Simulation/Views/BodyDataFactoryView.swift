@@ -18,6 +18,7 @@ struct BodyDataFactoryView: View {
     @State private var inputValue: String = ""
     @State private var healthWeightData: [DailyProgressEntry] = []
     @State private var isLoadingHealth = false
+    @State private var selectedDate: Date? = nil
 
     // MARK: - Body
 
@@ -160,7 +161,34 @@ struct BodyDataFactoryView: View {
                 .foregroundStyle(Color.pink)
                 .symbolSize(40)
             }
+            
+            if let selectedDate, let selectedEntry = findSelectedEntry(for: selectedDate) {
+                RuleMark(x: .value("Selected", selectedEntry.timestamp))
+                    .foregroundStyle(Color(UIColor.systemGray4))
+                    .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+                    .annotation(
+                        position: .top, spacing: 0,
+                        overflowResolution: .init(x: .fit(to: .chart), y: .disabled)
+                    ) {
+                        VStack(spacing: 4) {
+                            Text(String(format: "%.1f", selectedEntry.progress))
+                                .font(.system(size: 16, weight: .black, design: .rounded))
+                                .foregroundStyle(Color.pink)
+                            Text(selectedEntry.timestamp.formatted(.dateTime.day().month().year()))
+                                .font(.system(size: 10, weight: .semibold, design: .rounded))
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                .fill(Color(UIColor.secondarySystemGroupedBackground))
+                                .shadow(color: .black.opacity(0.1), radius: 3, y: 2)
+                        )
+                    }
+            }
         }
+        .chartXSelection(value: $selectedDate)
         .chartXAxis {
             AxisMarks(values: xAxisValues) { value in
                 AxisGridLine(stroke: StrokeStyle(lineWidth: 0.5, dash: [4, 4]))
@@ -333,9 +361,9 @@ struct BodyDataFactoryView: View {
         guard let bodyMassType = HKQuantityType.quantityType(forIdentifier: .bodyMass) else { return }
 
         isLoadingHealth = true
-        let range = dateRange
-
-        let predicate = HKQuery.predicateForSamples(withStart: range.start, end: Date(), options: .strictStartDate)
+        // Fetch 1 year of data so local filtering works when timeRange changes
+        let start = Calendar.current.date(byAdding: .year, value: -1, to: Date()) ?? Date()
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: Date(), options: .strictStartDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
 
         let query = HKSampleQuery(sampleType: bodyMassType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { _, samples, _ in
@@ -479,9 +507,16 @@ struct BodyDataFactoryView: View {
         }
         gardenStore.savePlants()
     }
-}
 
-// MARK: - Safe Array Subscript
+    // MARK: - Safe Array Subscript
+
+    private func findSelectedEntry(for date: Date) -> DailyProgressEntry? {
+        let entries = filteredData
+        guard !entries.isEmpty else { return nil }
+        // Finde den Eintrag, der am nächsten am selektierten Datum liegt
+        return entries.min(by: { abs($0.timestamp.timeIntervalSince(date)) < abs($1.timestamp.timeIntervalSince(date)) })
+    }
+}
 
 private extension Array {
     subscript(safe index: Int) -> Element? {
