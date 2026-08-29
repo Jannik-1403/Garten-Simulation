@@ -609,3 +609,10 @@
 - `BodyTrackingModuleCard` (Gewicht & Körperumfänge) erhält jetzt das gleiche 3D-Container-Design wie Notizen & To-Dos (`item3DContainer` + `Item3DButton`)
 - Der `+` Button in der Toolbar der Detailansicht (`BodyDataFactoryView`) ist jetzt schwarz statt pink – konsistent mit dem System-Theme
 - Navigation zur Detailansicht über Tap auf die Card oder den + Button
+
+## [2026-08-29] Body-Tracking UI Polish
+- Gewicht & Körperumfänge-Karten verschoben: jetzt NACH Notizen, VOR Jahresziel
+- Spacing zwischen den Karten auf 12pt angeglichen (gleich wie alle anderen Sections)
+- Karten-Button: pink mit Chevron (→) statt schwarzem (+)
+- Drei-Punkte-Menü oben links: kein grauer Kreis mehr, nur schwarze Punkte
+- + Button in der Gewicht/Körperumfänge-Detailansicht: navigationBarTitleDisplayMode auf .inline → gleiche Höhe wie Zurück-Pfeil
