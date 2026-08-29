@@ -635,3 +635,6 @@
 
 ## [2026-08-29] Apple Health (Gewicht) Berechtigungs-Fix
 - **Fehlende Berechtigungsabfrage:** Wenn du die App früher schon einmal mit Apple Health verbunden hast, hat iOS den System-Dialog für das Gewicht nie angezeigt (da dieser Parameter nachträglich zur App hinzugefügt wurde). Das wurde behoben. Beim nächsten Start der App triggert das System nun automatisch einmalig den Dialog, damit du das Gewicht und die Körperumfänge explizit für die App freigeben kannst!
+
+## [2026-08-29] Apple Health Bereinigungen
+- Der versehentlich mit abgefragte "Taillenumfang" (Waist Circumference) wurde aus der Apple Health Anfrage entfernt. Die App fordert nun, wie gewünscht, nur noch das reine **Gewicht** (sowie die anderen Parameter wie Schritte, Wasser, etc.) von Apple Health an.
