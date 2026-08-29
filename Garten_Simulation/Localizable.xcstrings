@@ -89364,7 +89364,15 @@
       }
     },
     "body.tracking.realistic_desc" : {
-
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Um dein Ziel zu erreichen, musst du ca. %1$.2f %2$@ pro Woche %3$@. Das entspricht einer gesunden und realistischen Rate."
+          }
+        }
+      }
     },
     "body.tracking.realistic_goal" : {
       "localizations" : {

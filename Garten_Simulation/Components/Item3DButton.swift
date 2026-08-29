@@ -306,6 +306,7 @@ struct Item3DPillButtonStyle: ButtonStyle {
     let farbe: Color
     let sekundaerFarbe: Color
     let groesse: CGFloat
+    var cornerRadius: CGFloat = 16
     var iconSkalierung: CGFloat = 0.7
     var shadowDepthFactor: CGFloat = 0.08
     var isPermanentlyPressed: Bool = false
@@ -318,18 +319,18 @@ struct Item3DPillButtonStyle: ButtonStyle {
         
         ZStack {
             // Shadow / Base
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
+            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                 .fill(sekundaerFarbe)
-                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+                .overlay(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
             
             // Top Layer (Text defines width!)
             configuration.label
                 .padding(.horizontal, 10)
                 .frame(height: groesse)
                 .background(
-                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
                         .fill(farbe)
-                        .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+                        .overlay(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
                 )
                 .offset(y: isPressed ? 0 : -shadowDepth)
         }

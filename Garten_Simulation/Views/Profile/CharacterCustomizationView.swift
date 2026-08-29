@@ -280,52 +280,32 @@ struct OptionButton: View {
     var isLocked: Bool = false
     let action: () -> Void
     
-    private let size: CGFloat = 88
-    private let depth: CGFloat = 5
+    private let size: CGFloat = 86
     
     var body: some View {
         Button(action: action) {
             ZStack {
-                // Schatten-Schicht (3D-Tiefe)
-                RoundedRectangle(cornerRadius: 18, style: .continuous)
-                    .fill(isSelected
-                        ? Color.blauPrimary.opacity(0.5)
-                        : Color(UIColor.tertiarySystemGroupedBackground))
-                    .frame(width: size, height: size)
-                    .offset(y: depth)
-                
-                // Haupt-Schicht
-                RoundedRectangle(cornerRadius: 18, style: .continuous)
-                    .fill(isSelected
-                        ? Color.blauPrimary.opacity(0.12)
-                        : Color(UIColor.secondarySystemGroupedBackground))
-                    .frame(width: size, height: size)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 18, style: .continuous)
-                            .strokeBorder(
-                                isSelected ? Color.blauPrimary : Color.primary.opacity(0.06),
-                                lineWidth: isSelected ? 2.5 : 1
-                            )
-                    )
-                
-                // Bild
                 Image(imageName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 62, height: 62)
+                    .frame(width: 58, height: 58)
                     .opacity(isLocked ? 0.3 : 1.0)
                 
-                // Schloss
                 if isLocked {
                     Image(systemName: "lock.fill")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundStyle(.secondary)
                 }
             }
-            .frame(width: size, height: size + depth)
+            .frame(width: size)
         }
-        .buttonStyle(.plain)
-        .scaleEffect(isSelected ? 0.96 : 1.0)
-        .animation(.spring(response: 0.25, dampingFraction: 0.7), value: isSelected)
+        .buttonStyle(Item3DPillButtonStyle(
+            farbe: isSelected ? Color.blauPrimary : Color(UIColor.secondarySystemGroupedBackground),
+            sekundaerFarbe: isSelected ? Color.blauPrimary.darker() : Color(UIColor.tertiarySystemGroupedBackground),
+            groesse: size,
+            cornerRadius: 20,
+            shadowDepthFactor: 0.06,
+            isPermanentlyPressed: isSelected
+        ))
     }
 }

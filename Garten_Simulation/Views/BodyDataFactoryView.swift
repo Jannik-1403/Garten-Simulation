@@ -47,23 +47,21 @@ struct BodyDataFactoryView: View {
                 // Körperumfänge Picker
                 if type == .measurements {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
+                        HStack(spacing: 8) {
                             ForEach(BodyMeasurementCategory.allCases) { cat in
-                                Item3DButton(
+                                Item3DPillButton(
                                     farbe: selectedMeasurement == cat ? Color.pink : Color(UIColor.secondarySystemGroupedBackground),
                                     sekundaerFarbe: selectedMeasurement == cat ? Color(red: 0.8, green: 0.0, blue: 0.35) : Color(UIColor.tertiarySystemGroupedBackground),
-                                    groesse: 48,
-                                    isRectangular: true,
+                                    groesse: 36,
                                     isPermanentlyPressed: selectedMeasurement == cat,
                                     aktion: { selectedMeasurement = cat }
                                 ) {
                                     Text(cat.localizedName)
-                                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                                        .font(.system(size: 13, weight: .bold, design: .rounded))
                                         .foregroundStyle(selectedMeasurement == cat ? .white : .primary)
-                                        .lineLimit(2)
-                                        .multilineTextAlignment(.center)
-                                        .frame(width: 64)
-                                        .padding(.horizontal, 4)
+                                        .lineLimit(1)
+                                        .fixedSize(horizontal: true, vertical: false)
+                                        .padding(.horizontal, 10)
                                 }
                             }
                         }
@@ -655,7 +653,6 @@ struct BodyDataFactoryView: View {
 
     private func progressAnalysisView(currentValue: Double, diff: Double, requiredChangePerWeek: Double, limitMax: Double) -> some View {
         let entries = allData
-        // Mindestens 1 Tag alt, max. 21 Tage – damit auch tägliche Einträge auswertbar sind
         let candidates = entries.dropLast().filter {
             let days = (entries.last?.timestamp ?? Date()).timeIntervalSince($0.timestamp) / (24 * 3600)
             return days >= 1 && days <= 21
@@ -668,79 +665,84 @@ struct BodyDataFactoryView: View {
             return abs(7 - daysA) < abs(7 - daysB)
         }
         
-        let daysDiff = bestOldEntry.map { currentEntry.timestamp.timeIntervalSince($0.timestamp) / (24 * 3600) } ?? 0
-        // Absolute tatsächliche Änderung (nicht wöchentlich hochgerechnet)
-        let absoluteChange = bestOldEntry.map { currentEntry.progress - $0.progress } ?? 0.0
-        let absChange = abs(absoluteChange)
+        guard let oldEntry = bestOldEntry else {
+            return AnyView(
+                Text("Gib noch einen weiteren Datenpunkt ein, um deinen Fortschritt zu sehen.")
+                    .font(.system(size: 12, design: .rounded))
+                    .foregroundStyle(.secondary)
+            )
+        }
         
-        // Für Richtungscheck weiterhin Wochenrate verwenden
-        let actualChangePerWeek = (daysDiff > 0 && bestOldEntry != nil)
-            ? absoluteChange / (daysDiff / 7.0)
-            : 0.0
-        let absRequired = abs(requiredChangePerWeek)
+        let daysDiff = max(0.01, currentEntry.timestamp.timeIntervalSince(oldEntry.timestamp) / (24 * 3600))
+        let absoluteChange = currentEntry.progress - oldEntry.progress
+        let absChange = abs(absoluteChange)
+        let actualChangePerWeek = absoluteChange / (daysDiff / 7.0)
         
         let isGoalGain = diff > 0
         let isActualGain = actualChangePerWeek > 0
+        let weeksRequired = max(0.01, abs(diff) / max(0.001, abs(requiredChangePerWeek)))
         
-        enum ProgressState { case wrongWayGain, wrongWayLose, tooFast, tooSlow, onTrack }
-        let state: ProgressState
-        if isGoalGain != isActualGain && absChange > 0.05 {
-            state = isGoalGain ? .wrongWayGain : .wrongWayLose
-        } else if abs(actualChangePerWeek) > limitMax * 1.5 {
-            state = .tooFast
-        } else if abs(actualChangePerWeek) < absRequired * 0.5 {
-            state = .tooSlow
+        // Zeitraum-Label
+        let sinceLabel: String
+        if daysDiff < 1.5 {
+            sinceLabel = "seit gestern"
+        } else if daysDiff < 2.5 {
+            sinceLabel = "seit vorgestern"
         } else {
-            state = .onTrack
+            sinceLabel = "seit \(oldEntry.timestamp.formatted(.dateTime.day().month()))"
         }
+        
+        // Richtungsangabe
+        let dirVerb = isGoalGain ? "zugenommen" : "abgenommen"
+        let dirWrongVerb = isGoalGain ? "verloren" : "zugenommen"
+        let changeStr = String(format: "%.2f", absChange)
         
         let stateColor: Color
         let mainText: String
         let tipText: String
         
-        switch state {
-        case .wrongWayGain:
+        if isGoalGain != isActualGain && absChange > 0.05 {
+            // Falsche Richtung
             stateColor = .red
-            mainText = String(format: String(localized: "body.tracking.progress.wrong_way_gain", defaultValue: "Du hast %1$.2f %2$@ verloren, aber dein Ziel ist es, zuzunehmen."), absChange, unit)
-            tipText = String(localized: "body.tracking.progress.tip_wrong_gain", defaultValue: "Erhöhe deine tägliche Kalorienzufuhr und achte auf ausreichend Protein.")
-        case .wrongWayLose:
-            stateColor = .red
-            mainText = String(format: String(localized: "body.tracking.progress.wrong_way_lose", defaultValue: "Du hast %1$.2f %2$@ zugenommen, aber dein Ziel ist es, abzunehmen."), absChange, unit)
-            tipText = String(localized: "body.tracking.progress.tip_wrong_lose", defaultValue: "Achte auf dein Kaloriendefizit und kontrolliere deine Ernährung.")
-        case .tooFast:
+            mainText = "Du hast \(sinceLabel) \(changeStr) \(unit) \(dirWrongVerb) – dein Ziel ist es, \(isGoalGain ? "zuzunehmen" : "abzunehmen")."
+            tipText = isGoalGain
+                ? "Erhöhe deine tägliche Kalorienzufuhr und achte auf ausreichend Protein."
+                : "Achte auf dein Kaloriendefizit und kontrolliere deine Mahlzeiten."
+        } else if abs(actualChangePerWeek) > limitMax * 1.5 {
+            // Zu schnell
             stateColor = .orange
-            mainText = String(format: String(localized: "body.tracking.progress.too_fast", defaultValue: "Du hast %1$.2f %2$@ verändert – das ist etwas schnell."), absChange, unit)
-            tipText = String(localized: "body.tracking.progress.tip_too_fast", defaultValue: "Sehr schnelle Veränderungen können ungesund sein. Halte ein moderates Tempo.")
-        case .tooSlow:
+            mainText = "Du hast \(sinceLabel) \(changeStr) \(unit) \(dirVerb) – das ist etwas schnell."
+            tipText = "Sehr schnelle Veränderungen können ungesund sein. Halte ein moderates Tempo."
+        } else if abs(actualChangePerWeek) < abs(requiredChangePerWeek) * 0.5 && absChange > 0.01 {
+            // Zu langsam
             stateColor = .blue
-            mainText = String(format: String(localized: "body.tracking.progress.too_slow", defaultValue: "Du hast %1$.2f %2$@ verändert – du musst etwas mehr Gas geben."), absChange, unit)
-            tipText = String(localized: "body.tracking.progress.tip_too_slow", defaultValue: "Passe deine Routine an, um dein Ziel im gewählten Zeitraum zu erreichen.")
-        case .onTrack:
+            mainText = "Du hast \(sinceLabel) nur \(changeStr) \(unit) \(dirVerb)."
+            tipText = "Du musst etwas mehr Gas geben, um dein Ziel rechtzeitig zu erreichen."
+        } else if absChange < 0.01 {
+            // Keine Änderung
+            stateColor = .secondary
+            mainText = "Seit \(oldEntry.timestamp.formatted(.dateTime.day().month())) hat sich dein Wert nicht verändert."
+            tipText = "Bleib dran – konsistentes Tracking hilft dir, deinen Fortschritt zu sehen."
+        } else {
+            // Auf Kurs
             stateColor = .green
-            mainText = String(format: String(localized: "body.tracking.progress.on_track", defaultValue: "Super! Du hast %1$.2f %2$@ in die richtige Richtung verändert."), absChange, unit)
-            tipText = String(localized: "body.tracking.progress.tip_on_track", defaultValue: "Genau so weiter machen!")
+            mainText = "Du hast \(sinceLabel) \(changeStr) \(unit) \(dirVerb) – du bist auf Kurs! 🎯"
+            tipText = "Genau so weiter machen!"
         }
         
-        return VStack(alignment: .leading, spacing: 6) {
-            Text(String(localized: "body.tracking.progress_title", defaultValue: "Dein Fortschritt"))
-                .font(.system(size: 14, weight: .bold, design: .rounded))
-                .foregroundStyle(.primary)
-            
-            if let oldEntry = bestOldEntry {
-                let sinceLabel: String = {
-                    let days = currentEntry.timestamp.timeIntervalSince(oldEntry.timestamp) / (24 * 3600)
-                    if days < 1.5 {
-                        return String(localized: "body.tracking.since_yesterday", defaultValue: "seit gestern")
-                    } else if days < 2.5 {
-                        return String(localized: "body.tracking.since_2days", defaultValue: "seit vorgestern")
-                    } else {
-                        let formatted = oldEntry.timestamp.formatted(.dateTime.day().month())
-                        return String(format: String(localized: "body.tracking.since_date", defaultValue: "seit %@"), formatted)
-                    }
-                }()
+        // Erreichbarkeits-Hinweis: verbleibende Wochen vs. benötigte Wochen
+        let weeksLeft = max(0, currentEntry.timestamp.distance(to: currentEntry.timestamp) / (7 * 24 * 3600))
+        _ = weeksLeft
+        _ = weeksRequired
+        
+        return AnyView(
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Dein Fortschritt")
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .foregroundStyle(.primary)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(mainText + " (\(sinceLabel))")
+                    Text(mainText)
                         .font(.system(size: 13, weight: .semibold, design: .rounded))
                         .foregroundStyle(stateColor)
                     
@@ -748,12 +750,8 @@ struct BodyDataFactoryView: View {
                         .font(.system(size: 12, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
-            } else {
-                Text(String(localized: "body.tracking.progress_nodata", defaultValue: "Gib noch einen weiteren Datenpunkt ein, um deinen Fortschritt zu analysieren."))
-                    .font(.system(size: 12, design: .rounded))
-                    .foregroundStyle(.secondary)
             }
-        }
+        )
     }
 
     private var manualEntriesSection: some View {
