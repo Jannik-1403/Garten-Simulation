@@ -63,28 +63,27 @@ struct CharacterCustomizationView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
                             ForEach(CharacterCategory.allCases, id: \.self) { category in
-                                Button {
-                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                        selectedCategory = category
+                                let isSelected = selectedCategory == category
+                                Item3DPillButton(
+                                    farbe: isSelected ? Color.blauPrimary : Color(UIColor.secondarySystemGroupedBackground),
+                                    sekundaerFarbe: isSelected ? Color.blauPrimary.darker() : Color(UIColor.tertiarySystemGroupedBackground),
+                                    groesse: 42,
+                                    isPermanentlyPressed: isSelected,
+                                    aktion: {
+                                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                            selectedCategory = category
+                                        }
                                     }
-                                } label: {
+                                ) {
                                     Text(category.localizedName)
-                                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                                        .padding(.horizontal, 16)
-                                        .padding(.vertical, 10)
-                                        .background(
-                                            selectedCategory == category 
-                                            ? Color.blauPrimary 
-                                            : Color(UIColor.secondarySystemGroupedBackground)
-                                        )
-                                        .foregroundStyle(selectedCategory == category ? .white : .primary)
-                                        .clipShape(Capsule())
+                                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                                        .padding(.horizontal, 12)
+                                        .foregroundStyle(isSelected ? .white : .primary)
                                 }
-                                .buttonStyle(BadgeBounceButtonStyle())
                             }
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 16)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
                     }
                     
                     // BOTTOM SECTION: Selection Options
