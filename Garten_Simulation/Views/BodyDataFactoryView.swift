@@ -760,65 +760,48 @@ struct BodyDataFactoryView: View {
                 
                 // Adaptive Goal Suggestions
                 if state == .wrongWay || state == .tooSlow {
-                    HStack(spacing: 12) {
-                        Item3DPillButton(
-                            farbe: Color(UIColor.tertiarySystemGroupedBackground),
-                            sekundaerFarbe: Color(UIColor.systemGray5),
-                            groesse: 34,
-                            aktion: {}
-                        ) {
-                            Text("💪 Weiter so")
-                                .font(.system(size: 13, weight: .bold, design: .rounded))
-                                .foregroundStyle(.primary)
-                        }
-                        
-                        Item3DPillButton(
-                            farbe: .orange,
-                            sekundaerFarbe: Color(red: 0.8, green: 0.4, blue: 0.0),
-                            groesse: 34,
-                            aktion: {
-                                targetInput = currentTarget.map { String(format: "%.1f", $0) } ?? ""
-                                targetDateInput = currentTargetDate ?? Calendar.current.date(byAdding: .month, value: 3, to: Date())!
-                                showTargetSheet = true
+                    Item3DButton(
+                        farbe: .orange,
+                        sekundaerFarbe: Color(red: 0.8, green: 0.4, blue: 0.0),
+                        groesse: 38,
+                        isRectangular: true,
+                        aktion: {
+                            targetInput = currentTarget.map { String(format: "%.1f", $0) } ?? ""
+                            if let targetVal = currentTarget {
+                                let currentDiff = abs(targetVal - currentEntry.progress)
+                                let reqPerWeek = max(0.1, abs(requiredChangePerWeek))
+                                let weeks = max(1.0, currentDiff / reqPerWeek)
+                                targetDateInput = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
                             }
-                        ) {
-                            Text("📅 Ziel anpassen")
-                                .font(.system(size: 13, weight: .bold, design: .rounded))
-                                .foregroundStyle(.white)
+                            showTargetSheet = true
                         }
+                    ) {
+                        Text("🗓️ Ziel verschieben")
+                            .font(.system(size: 13, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 14)
                     }
                     .padding(.top, 6)
-                } else if state == .onTrack || state == .tooFast {
-                    HStack(spacing: 12) {
-                        Item3DPillButton(
-                            farbe: Color(UIColor.tertiarySystemGroupedBackground),
-                            sekundaerFarbe: Color(UIColor.systemGray5),
-                            groesse: 34,
-                            aktion: {}
-                        ) {
-                            Text("✅ Weiter so")
-                                .font(.system(size: 13, weight: .bold, design: .rounded))
-                                .foregroundStyle(.primary)
-                        }
-                        
-                        Item3DPillButton(
-                            farbe: .green,
-                            sekundaerFarbe: Color(red: 0.0, green: 0.6, blue: 0.0),
-                            groesse: 34,
-                            aktion: {
-                                targetInput = currentTarget.map { String(format: "%.1f", $0) } ?? ""
-                                if let targetVal = currentTarget {
-                                    let diff = abs(targetVal - currentEntry.progress)
-                                    let weeks = max(1.0, diff / max(0.1, abs(actualChangePerWeek)))
-                                    targetDateInput = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
-                                }
-                                showTargetSheet = true
+                } else if state == .tooFast || (state == .onTrack && actualChangePerWeek > abs(requiredChangePerWeek)) {
+                    Item3DButton(
+                        farbe: .green,
+                        sekundaerFarbe: Color(red: 0.0, green: 0.6, blue: 0.0),
+                        groesse: 38,
+                        isRectangular: true,
+                        aktion: {
+                            targetInput = currentTarget.map { String(format: "%.1f", $0) } ?? ""
+                            if let targetVal = currentTarget {
+                                let currentDiff = abs(targetVal - currentEntry.progress)
+                                let weeks = max(1.0, currentDiff / max(0.1, abs(actualChangePerWeek)))
+                                targetDateInput = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
                             }
-                        ) {
-                            Text("🎯 Ziel vorziehen")
-                                .font(.system(size: 13, weight: .bold, design: .rounded))
-                                .foregroundStyle(.white)
+                            showTargetSheet = true
                         }
+                    ) {
+                        Text("🗓️ Ziel vorziehen")
+                            .font(.system(size: 13, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 14)
                     }
                     .padding(.top, 6)
                 }
