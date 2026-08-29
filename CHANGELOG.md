@@ -623,3 +623,8 @@
 
 ## [2026-08-29] Body-Tracking UI (Plus-Button)
 - Der Plus-Button oben rechts in der `BodyDataFactoryView` wurde von einem auffälligen 3D-Button zu einem sauberen, einfachen iOS-Button geändert (ohne Hintergrund).
+
+## [2026-08-29] Body-Tracking Empfehlungen & Apple Health
+- Es wurde eine Empfehlungs-Box ("Tipp") direkt im "Eintrag hinzufügen"-Sheet für das Gewicht (jeden Morgen zur selben Zeit, nüchtern) und die Körperumfänge (nur einmal im Monat) hinzugefügt.
+- Die Texte wurden automatisch in alle Projektsprachen übersetzt (100% Abdeckung).
+- Bestätigt: Die App liest das Gewicht bereits automatisch aus Apple Health und fügt es nahtlos in die Statistik ein (Kombination aus manuellen Einträgen und Apple Health).
