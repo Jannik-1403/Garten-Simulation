@@ -674,3 +674,4 @@
 - Fix: Fortschritts-Analyse verwendet jetzt reine Swift-String-Interpolation – keine xcstrings Format-Konflikte mehr, kein '0 kg' oder '268850'-Unsinn.
 - Fix: Text zeigt jetzt korrekte absolute Änderung (z.B. '0.70 kg seit 24. Aug.') in Farbe des Zustands.
 - Feat: OptionButton in Charakter-Editor nutzt Item3DPillButtonStyle (square, cornerRadius 20) – identisch mit den Kategorie-Pillen oben.
+- Feat: Adaptive Ziel-Vorschläge im Tracking! Wenn du deutlich zu schnell oder zu langsam bist, erscheinen Buttons, mit denen du dein Ziel direkt anpassen (vorziehen oder verschieben) kannst.
