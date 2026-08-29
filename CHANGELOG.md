@@ -659,3 +659,6 @@
 - Update: Neues UI-Layout für die Ziel-Sektion (3D-Container).
 - Fix: Vertikaler Abstand in ScrollView-Pill-Leisten (Shop, CharacterCustomization) erhöht – kein Clipping mehr.
 - Feat: CharacterCustomizationView nutzt jetzt Item3DPillButton statt flacher Buttons.
+- Fix: Fortschritts-Analyse zeigte rohe Lokalisierungskeys – auf switch-basierte Strings umgestellt.
+- Fix: Datenschwelle von 5 Tagen auf 1 Tag gesenkt (tägliche Einträge werden jetzt erkannt).
+- Feat: OptionButton (Körper/Haare/Augen/Mund-Auswahl) im Charakter-Editor nutzt jetzt Item3DButtonStyle.
