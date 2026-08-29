@@ -283,33 +283,34 @@ struct OptionButton: View {
     var body: some View {
         Button(action: action) {
             ZStack {
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(Color(UIColor.secondarySystemGroupedBackground))
-                    .shadow(color: .black.opacity(0.05), radius: 5, y: 3)
-                
-                if isSelected {
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .stroke(Color.blauPrimary, lineWidth: 3)
-                }
-                
                 Image(imageName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 80, height: 80)
-                    .padding(10)
+                    .frame(width: 70, height: 70)
+                    .padding(12)
+                    .opacity(isLocked ? 0.3 : 1.0)
                 
                 if isLocked {
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .fill(Color.black.opacity(0.4))
-                    
                     Image(systemName: "lock.fill")
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundColor(.white)
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(.secondary)
+                }
+                
+                if isSelected {
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .strokeBorder(Color.blauPrimary, lineWidth: 3)
+                        .frame(width: 94, height: 94)
                 }
             }
-            .frame(width: 100, height: 100)
+            .frame(width: 94, height: 94)
         }
-        .buttonStyle(BadgeBounceButtonStyle())
+        .buttonStyle(Item3DButtonStyle(
+            farbe: isSelected ? Color.blauPrimary.opacity(0.15) : Color(UIColor.secondarySystemGroupedBackground),
+            sekundaerFarbe: isSelected ? Color.blauPrimary.opacity(0.3) : Color(UIColor.tertiarySystemGroupedBackground),
+            groesse: 94,
+            shadowDepthFactor: 0.05,
+            isRectangular: true
+        ))
     }
 }
 

@@ -649,9 +649,10 @@ struct BodyDataFactoryView: View {
 
     private func progressAnalysisView(currentValue: Double, diff: Double, requiredChangePerWeek: Double, limitMax: Double) -> some View {
         let entries = allData
-        let candidates = entries.filter {
+        // Mindestens 1 Tag alt, max. 21 Tage – damit auch tägliche Einträge auswertbar sind
+        let candidates = entries.dropLast().filter {
             let days = (entries.last?.timestamp ?? Date()).timeIntervalSince($0.timestamp) / (24 * 3600)
-            return days >= 5 && days <= 21
+            return days >= 1 && days <= 21
         }
         
         let currentEntry = entries.last ?? DailyProgressEntry(timestamp: Date(), progress: 0)
@@ -662,43 +663,55 @@ struct BodyDataFactoryView: View {
         }
         
         let daysDiff = bestOldEntry.map { currentEntry.timestamp.timeIntervalSince($0.timestamp) / (24 * 3600) } ?? 0
-        let actualChangePerWeek = bestOldEntry.map { (currentEntry.progress - $0.progress) / (daysDiff / 7.0) } ?? 0
+        let actualChangePerWeek = (daysDiff > 0 && bestOldEntry != nil)
+            ? (currentEntry.progress - bestOldEntry!.progress) / (daysDiff / 7.0)
+            : 0.0
         let absActual = abs(actualChangePerWeek)
         let absRequired = abs(requiredChangePerWeek)
         
         let isGoalGain = diff > 0
         let isActualGain = actualChangePerWeek > 0
         
+        // Zustand bestimmen
+        enum ProgressState { case wrongWayGain, wrongWayLose, tooFast, tooSlow, onTrack }
+        let state: ProgressState
+        if isGoalGain != isActualGain && absActual > 0.05 {
+            state = isGoalGain ? .wrongWayGain : .wrongWayLose
+        } else if absActual > limitMax * 1.5 {
+            state = .tooFast
+        } else if absActual < absRequired * 0.5 {
+            state = .tooSlow
+        } else {
+            state = .onTrack
+        }
+        
         let icon: String
         let color: Color
-        let textKey: String
-        let tipKey: String
         let hasIconBg: Bool
+        let mainText: String
+        let tipText: String
         
-        if isGoalGain != isActualGain && absActual > 0.1 {
-            icon = "exclamationmark.arrow.triangle.2.circlepath"
-            color = .red
-            textKey = isGoalGain ? "body.tracking.progress.wrong_way_gain" : "body.tracking.progress.wrong_way_lose"
-            tipKey = isGoalGain ? "body.tracking.progress.tip_wrong_gain" : "body.tracking.progress.tip_wrong_lose"
-            hasIconBg = true
-        } else if absActual > limitMax * 1.5 {
-            icon = "hare.fill"
-            color = .orange
-            textKey = "body.tracking.progress.too_fast"
-            tipKey = "body.tracking.progress.tip_too_fast"
-            hasIconBg = true
-        } else if absActual < absRequired * 0.5 {
-            icon = "tortoise.fill"
-            color = .blue
-            textKey = "body.tracking.progress.too_slow"
-            tipKey = "body.tracking.progress.tip_too_slow"
-            hasIconBg = true
-        } else {
-            icon = "star.fill"
-            color = .green
-            textKey = "body.tracking.progress.on_track"
-            tipKey = "body.tracking.progress.tip_on_track"
-            hasIconBg = false
+        switch state {
+        case .wrongWayGain:
+            icon = "exclamationmark.arrow.triangle.2.circlepath"; color = .red; hasIconBg = true
+            mainText = String(format: String(localized: "body.tracking.progress.wrong_way_gain", defaultValue: "Falsche Richtung: Du hast %1$.2f %2$@ verloren, statt %3$.2f %2$@ zuzunehmen."), absActual, unit, absRequired)
+            tipText = String(localized: "body.tracking.progress.tip_wrong_gain", defaultValue: "Tipp: Überprüfe deine tägliche Kalorienzufuhr und erhöhe sie leicht.")
+        case .wrongWayLose:
+            icon = "exclamationmark.arrow.triangle.2.circlepath"; color = .red; hasIconBg = true
+            mainText = String(format: String(localized: "body.tracking.progress.wrong_way_lose", defaultValue: "Falsche Richtung: Du hast %1$.2f %2$@ zugenommen, statt %3$.2f %2$@ abzunehmen."), absActual, unit, absRequired)
+            tipText = String(localized: "body.tracking.progress.tip_wrong_lose", defaultValue: "Tipp: Achte auf dein Kaloriendefizit und deine Ernährung.")
+        case .tooFast:
+            icon = "hare.fill"; color = .orange; hasIconBg = true
+            mainText = String(format: String(localized: "body.tracking.progress.too_fast", defaultValue: "Zu schnell: Du veränderst dich um %1$.2f %2$@/Woche (geplant: %3$.2f)."), absActual, unit, absRequired)
+            tipText = String(localized: "body.tracking.progress.tip_too_fast", defaultValue: "Tipp: Crash-Diäten oder zu schnelles Zunehmen ist ungesund. Werde etwas langsamer.")
+        case .tooSlow:
+            icon = "tortoise.fill"; color = .blue; hasIconBg = true
+            mainText = String(format: String(localized: "body.tracking.progress.too_slow", defaultValue: "Etwas zu langsam: Nur %1$.2f %2$@/Woche (geplant: %3$.2f)."), absActual, unit, absRequired)
+            tipText = String(localized: "body.tracking.progress.tip_too_slow", defaultValue: "Tipp: Du musst dich etwas mehr fordern, um dein Ziel im gewählten Zeitraum zu erreichen.")
+        case .onTrack:
+            icon = "star.fill"; color = .green; hasIconBg = false
+            mainText = String(format: String(localized: "body.tracking.progress.on_track", defaultValue: "Auf Kurs! (%1$.2f %2$@/Woche)"), absActual, unit)
+            tipText = String(localized: "body.tracking.progress.tip_on_track", defaultValue: "Perfekt! Genau so weiter machen.")
         }
         
         return VStack(alignment: .leading, spacing: 8) {
@@ -716,17 +729,17 @@ struct BodyDataFactoryView: View {
                         .clipShape(Circle())
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(String(format: String(localized: String.LocalizationValue(textKey)), absActual, unit, absRequired))
+                        Text(mainText)
                             .font(.system(size: 13, weight: .semibold, design: .rounded))
                             .foregroundStyle(.primary)
                         
-                        Text(String(localized: String.LocalizationValue(tipKey)))
+                        Text(tipText)
                             .font(.system(size: 12, design: .rounded))
                             .foregroundStyle(.secondary)
                     }
                 }
             } else {
-                Text(String(localized: "body.tracking.progress_nodata", defaultValue: "Sammle noch ein paar Tage Daten (mind. 5 Tage alt), um deinen echten Fortschritt hier zu analysieren."))
+                Text(String(localized: "body.tracking.progress_nodata", defaultValue: "Gib noch einen weiteren Datenpunkt ein, um deinen Fortschritt zu analysieren."))
                     .font(.system(size: 12, design: .rounded))
                     .foregroundStyle(.secondary)
             }
