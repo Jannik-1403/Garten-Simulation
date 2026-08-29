@@ -675,3 +675,6 @@
 - Fix: Text zeigt jetzt korrekte absolute Änderung (z.B. '0.70 kg seit 24. Aug.') in Farbe des Zustands.
 - Feat: OptionButton in Charakter-Editor nutzt Item3DPillButtonStyle (square, cornerRadius 20) – identisch mit den Kategorie-Pillen oben.
 - Feat: Adaptive Ziel-Vorschläge im Tracking! Wenn du deutlich zu schnell oder zu langsam bist, erscheinen Buttons, mit denen du dein Ziel direkt anpassen (vorziehen oder verschieben) kannst.
+- Fix: Die adaptiven Ziel-Buttons im Tracking haben nun das exakt gleiche quadratische 3D-Design wie der 'Ziel'-Button.
+- Fix: Der nutzlose 'Weiter so'-Button bei schlechtem Fortschritt wurde entfernt.
+- Fix: Das automatische Verschieben/Vorziehen des Zieldatums berechnet sich nun korrekt anhand des aktuell benötigten vs. tatsächlichen Fortschritts.
