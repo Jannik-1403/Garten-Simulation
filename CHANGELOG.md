@@ -643,3 +643,9 @@
 - **Chart-Optimierung:** Der blasser werdende Farbverlauf (Schatten/AreaMark) unter dem Graphen in der Detailansicht wurde entfernt. Es ist nun eine saubere, übersichtliche Linie zu sehen.
 - **Löschen von Einträgen:** Unter dem Chart gibt es nun die Sektion "Manuelle Einträge". Jeder dort gelistete Eintrag kann über ein Mülltonnen-Symbol gelöscht werden (nur manuell erfasste Daten, da Apple Health-Daten dort verwaltet werden müssen).
 - **Zielgewicht & Realismus-Check (nur bei Gewicht):** Du kannst jetzt ein Zielgewicht und ein Zieldatum festlegen. Die App berechnet automatisch, wie viele Kilo du pro Woche ab- oder zunehmen musst, um dein Ziel zu erreichen, und gibt dir direkt ein Feedback, ob dies gesund und realistisch ist (unter 1 kg pro Woche) oder ob das Ziel zu ambitioniert ist.
+
+## [2026-08-29] UI-Polishing: 3D-Buttons & Aufklappbare manuelle Einträge
+- **Ziele für Körperumfänge:** Du kannst nun für jeden Körperumfang (z.B. Bizeps) ein individuelles Ziel und Zieldatum festlegen.
+- **Detaillierte Realismus-Texte:** Der Realismus-Check unterscheidet nun sprachlich intelligent, ob du Gewicht verlierst (abnehmen) / zunimmst (zunehmen) oder Umfänge verringerst (reduzieren) / vergrößerst (aufbauen).
+- **Ziel-Sektion Redesign:** Die Sektion wurde in "Ziel" umbenannt. Der gesamte Ziel-Bereich liegt nun in einem schicken, weißen `item3DContainer` und der Bearbeitungsbutton ist ein roter, nativer `Item3DButton`.
+- **Manuelle Einträge Redesign:** Die Sektion lässt sich jetzt über einen Header mit Pfeil-Indikator auf- und zuklappen (mit Animation) und wird ebenfalls in einem modernen `item3DContainer` dargestellt.
