@@ -670,3 +670,7 @@
 - Fix: Fortschritts-Analyse zeigt jetzt absolute Änderung (z. B. 0,70 kg) statt hochgerechnete Wochenrate.
 - Fix: Kein rotes Icon-Kreis mehr, kein grauer Hintergrund in Fortschritts-Box.
 - Feat: Neuer maßgeschneiderter 3D-Button (OptionButton) für Charakter-Bildauswahl mit layered ZStack-Tiefe.
+- Fix: Körperumfang-Kategorie-Auswahl nutzt wieder Item3DPillButton.
+- Fix: Fortschritts-Analyse verwendet jetzt reine Swift-String-Interpolation – keine xcstrings Format-Konflikte mehr, kein '0 kg' oder '268850'-Unsinn.
+- Fix: Text zeigt jetzt korrekte absolute Änderung (z.B. '0.70 kg seit 24. Aug.') in Farbe des Zustands.
+- Feat: OptionButton in Charakter-Editor nutzt Item3DPillButtonStyle (square, cornerRadius 20) – identisch mit den Kategorie-Pillen oben.
