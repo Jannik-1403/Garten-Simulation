@@ -769,8 +769,9 @@ struct BodyDataFactoryView: View {
                             aktion: {
                                 if let targetVal = currentTarget {
                                     let currentDiff = abs(targetVal - currentValue)
-                                    let reqPerWeek = max(0.1, abs(requiredChangePerWeek))
-                                    let weeks = max(1.0, currentDiff / reqPerWeek)
+                                    // Use a realistic healthy rate to push the date back properly
+                                    let realisticRate = type == .weight ? 0.5 : 0.25
+                                    let weeks = max(1.0, currentDiff / realisticRate)
                                     let newDate = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
                                     if type == .weight {
                                         pflanze.targetWeightDate = newDate
@@ -781,7 +782,7 @@ struct BodyDataFactoryView: View {
                                 }
                             }
                         ) {
-                            Text("🗓️ Ziel verschieben")
+                            Text("Ziel verschieben")
                                 .font(.system(size: 13, weight: .bold, design: .rounded))
                                 .foregroundStyle(.white)
                                 .padding(.horizontal, 14)
@@ -807,7 +808,7 @@ struct BodyDataFactoryView: View {
                                 }
                             }
                         ) {
-                            Text("🔥 Tempo erhöhen")
+                            Text("Tempo erhöhen")
                                 .font(.system(size: 13, weight: .bold, design: .rounded))
                                 .foregroundStyle(.white)
                                 .padding(.horizontal, 14)
@@ -834,7 +835,7 @@ struct BodyDataFactoryView: View {
                             }
                         }
                     ) {
-                        Text("🗓️ Ziel vorziehen")
+                        Text("Ziel vorziehen")
                             .font(.system(size: 13, weight: .bold, design: .rounded))
                             .foregroundStyle(.white)
                             .padding(.horizontal, 14)
