@@ -88991,28 +88991,6 @@
         }
       }
     },
-    "body.tracking.progress_nodata" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Gib noch einen weiteren Datenpunkt ein, um deinen Fortschritt zu analysieren."
-          }
-        }
-      }
-    },
-    "body.tracking.progress_title" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Dein Fortschritt"
-          }
-        }
-      }
-    },
     "body.tracking.progress.on_track" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -111235,6 +111213,9 @@
           }
         }
       }
+    },
+    "Dein Fortschritt" : {
+
     },
     "Deine Ziele" : {
       "extractionState" : "manual",
@@ -138996,6 +138977,9 @@
           }
         }
       }
+    },
+    "Gib noch einen weiteren Datenpunkt ein, um deinen Fortschritt zu sehen." : {
+
     },
     "glasses.unlock.coins" : {
       "comment" : "",

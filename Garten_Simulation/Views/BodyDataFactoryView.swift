@@ -697,12 +697,15 @@ struct BodyDataFactoryView: View {
         let dirWrongVerb = isGoalGain ? "verloren" : "zugenommen"
         let changeStr = String(format: "%.2f", absChange)
         
+        enum ProgressState { case wrongWay, tooFast, tooSlow, noChange, onTrack }
+        let state: ProgressState
         let stateColor: Color
         let mainText: String
         let tipText: String
         
         if isGoalGain != isActualGain && absChange > 0.05 {
             // Falsche Richtung
+            state = .wrongWay
             stateColor = .red
             mainText = "Du hast \(sinceLabel) \(changeStr) \(unit) \(dirWrongVerb) – dein Ziel ist es, \(isGoalGain ? "zuzunehmen" : "abzunehmen")."
             tipText = isGoalGain
@@ -710,21 +713,25 @@ struct BodyDataFactoryView: View {
                 : "Achte auf dein Kaloriendefizit und kontrolliere deine Mahlzeiten."
         } else if abs(actualChangePerWeek) > limitMax * 1.5 {
             // Zu schnell
+            state = .tooFast
             stateColor = .orange
             mainText = "Du hast \(sinceLabel) \(changeStr) \(unit) \(dirVerb) – das ist etwas schnell."
             tipText = "Sehr schnelle Veränderungen können ungesund sein. Halte ein moderates Tempo."
         } else if abs(actualChangePerWeek) < abs(requiredChangePerWeek) * 0.5 && absChange > 0.01 {
             // Zu langsam
+            state = .tooSlow
             stateColor = .blue
             mainText = "Du hast \(sinceLabel) nur \(changeStr) \(unit) \(dirVerb)."
             tipText = "Du musst etwas mehr Gas geben, um dein Ziel rechtzeitig zu erreichen."
         } else if absChange < 0.01 {
             // Keine Änderung
+            state = .noChange
             stateColor = .secondary
             mainText = "Seit \(oldEntry.timestamp.formatted(.dateTime.day().month())) hat sich dein Wert nicht verändert."
             tipText = "Bleib dran – konsistentes Tracking hilft dir, deinen Fortschritt zu sehen."
         } else {
             // Auf Kurs
+            state = .onTrack
             stateColor = .green
             mainText = "Du hast \(sinceLabel) \(changeStr) \(unit) \(dirVerb) – du bist auf Kurs! 🎯"
             tipText = "Genau so weiter machen!"
@@ -749,6 +756,71 @@ struct BodyDataFactoryView: View {
                     Text(tipText)
                         .font(.system(size: 12, design: .rounded))
                         .foregroundStyle(.secondary)
+                }
+                
+                // Adaptive Goal Suggestions
+                if state == .wrongWay || state == .tooSlow {
+                    HStack(spacing: 12) {
+                        Item3DPillButton(
+                            farbe: Color(UIColor.tertiarySystemGroupedBackground),
+                            sekundaerFarbe: Color(UIColor.systemGray5),
+                            groesse: 34,
+                            aktion: {}
+                        ) {
+                            Text("💪 Weiter so")
+                                .font(.system(size: 13, weight: .bold, design: .rounded))
+                                .foregroundStyle(.primary)
+                        }
+                        
+                        Item3DPillButton(
+                            farbe: .orange,
+                            sekundaerFarbe: Color(red: 0.8, green: 0.4, blue: 0.0),
+                            groesse: 34,
+                            aktion: {
+                                targetInput = currentTarget.map { String(format: "%.1f", $0) } ?? ""
+                                targetDateInput = currentTargetDate ?? Calendar.current.date(byAdding: .month, value: 3, to: Date())!
+                                showTargetSheet = true
+                            }
+                        ) {
+                            Text("📅 Ziel anpassen")
+                                .font(.system(size: 13, weight: .bold, design: .rounded))
+                                .foregroundStyle(.white)
+                        }
+                    }
+                    .padding(.top, 6)
+                } else if state == .onTrack || state == .tooFast {
+                    HStack(spacing: 12) {
+                        Item3DPillButton(
+                            farbe: Color(UIColor.tertiarySystemGroupedBackground),
+                            sekundaerFarbe: Color(UIColor.systemGray5),
+                            groesse: 34,
+                            aktion: {}
+                        ) {
+                            Text("✅ Weiter so")
+                                .font(.system(size: 13, weight: .bold, design: .rounded))
+                                .foregroundStyle(.primary)
+                        }
+                        
+                        Item3DPillButton(
+                            farbe: .green,
+                            sekundaerFarbe: Color(red: 0.0, green: 0.6, blue: 0.0),
+                            groesse: 34,
+                            aktion: {
+                                targetInput = currentTarget.map { String(format: "%.1f", $0) } ?? ""
+                                if let targetVal = currentTarget {
+                                    let diff = abs(targetVal - currentEntry.progress)
+                                    let weeks = max(1.0, diff / max(0.1, abs(actualChangePerWeek)))
+                                    targetDateInput = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
+                                }
+                                showTargetSheet = true
+                            }
+                        ) {
+                            Text("🎯 Ziel vorziehen")
+                                .font(.system(size: 13, weight: .bold, design: .rounded))
+                                .foregroundStyle(.white)
+                        }
+                    }
+                    .padding(.top, 6)
                 }
             }
         )
