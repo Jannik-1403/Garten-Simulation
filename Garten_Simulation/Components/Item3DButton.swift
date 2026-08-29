@@ -189,3 +189,36 @@ extension View {
         self.modifier(Item3DContainerModifier(farbe: farbe, sekundaerFarbe: sekundaerFarbe, shadowDepth: shadowDepth))
     }
 }
+
+// MARK: - Flexible Pill ButtonStyle (no fixed height, label defines size)
+struct PillButtonStyle: ButtonStyle {
+    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
+    let farbe: Color
+    let sekundaerFarbe: Color
+    var cornerRadius: CGFloat = 12
+    var shadowDepth: CGFloat = 3
+    var isPermanentlyPressed: Bool = false
+
+    func makeBody(configuration: Configuration) -> some View {
+        let isPressed = configuration.isPressed || isPermanentlyPressed
+        
+        ZStack(alignment: .center) {
+            // Shadow layer
+            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                .fill(sekundaerFarbe)
+                .overlay(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+            
+            // Top layer
+            RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+                .fill(farbe)
+                .overlay(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+                .overlay { configuration.label }
+                .offset(y: isPressed ? 0 : -shadowDepth)
+        }
+        .padding(.bottom, isPressed ? 0 : shadowDepth)
+        .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: isPressed)
+        .sensoryFeedback(trigger: configuration.isPressed) { _, newValue in
+            (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.8) : nil
+        }
+    }
+}

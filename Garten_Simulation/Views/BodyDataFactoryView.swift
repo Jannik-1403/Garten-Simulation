@@ -59,12 +59,11 @@ struct BodyDataFactoryView: View {
                                         .padding(.horizontal, 16)
                                         .padding(.vertical, 10)
                                 }
-                                .buttonStyle(Item3DButtonStyle(
+                                .buttonStyle(PillButtonStyle(
                                     farbe: isSelected ? Color.pink : Color(UIColor.secondarySystemGroupedBackground),
                                     sekundaerFarbe: isSelected ? Color(red: 0.8, green: 0.0, blue: 0.35) : Color(UIColor.tertiarySystemGroupedBackground),
-                                    groesse: 38,
-                                    shadowDepthFactor: 0.1,
-                                    isRectangular: true,
+                                    cornerRadius: 12,
+                                    shadowDepth: 3,
                                     isPermanentlyPressed: isSelected
                                 ))
                             }
