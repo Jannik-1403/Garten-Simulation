@@ -657,3 +657,5 @@
 - Hinzugefügt: Intelligente Ziel-Analyse und adaptive Zeitraum-Empfehlungen für Gewichts-/Körperdaten.
 - Hinzugefügt: Fortschritts-Dashboard mit Analyse der historischen Daten der letzten Wochen inkl. Tipps.
 - Update: Neues UI-Layout für die Ziel-Sektion (3D-Container).
+- Fix: Vertikaler Abstand in ScrollView-Pill-Leisten (Shop, CharacterCustomization) erhöht – kein Clipping mehr.
+- Feat: CharacterCustomizationView nutzt jetzt Item3DPillButton statt flacher Buttons.
