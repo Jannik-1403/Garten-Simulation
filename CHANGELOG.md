@@ -628,3 +628,7 @@
 - Es wurde eine Empfehlungs-Box ("Tipp") direkt im "Eintrag hinzufügen"-Sheet für das Gewicht (jeden Morgen zur selben Zeit, nüchtern) und die Körperumfänge (nur einmal im Monat) hinzugefügt.
 - Die Texte wurden automatisch in alle Projektsprachen übersetzt (100% Abdeckung).
 - Bestätigt: Die App liest das Gewicht bereits automatisch aus Apple Health und fügt es nahtlos in die Statistik ein (Kombination aus manuellen Einträgen und Apple Health).
+
+## [2026-08-29] Interaktive Statistiken & Apple Health Fix
+- **Apple Health (Gewicht):** Die Datenabfrage lädt nun direkt ein ganzes Jahr, damit du beim Wechseln der Zeiträume (Woche, Monat, Jahr) sofort die perfekten Apple-Health-Werte siehst, ohne dass es neu laden muss oder fehlschlägt.
+- **Interaktive Chart-Detailansicht (Drag & Hold):** Du kannst jetzt bei ALLEN Graphen (Schritte, Wasser, Gewicht, Körperumfänge, Laufen, Krafttraining) **den Finger auf dem Graph gedrückt halten und wischen**. Dir wird dann wie gewünscht genau oben über deinem Finger der genaue Wert und die genaue Uhrzeit/Datum angezeigt!
