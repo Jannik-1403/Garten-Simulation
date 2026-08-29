@@ -678,3 +678,5 @@
 - Fix: Die adaptiven Ziel-Buttons im Tracking haben nun das exakt gleiche quadratische 3D-Design wie der 'Ziel'-Button.
 - Fix: Der nutzlose 'Weiter so'-Button bei schlechtem Fortschritt wurde entfernt.
 - Fix: Das automatische Verschieben/Vorziehen des Zieldatums berechnet sich nun korrekt anhand des aktuell benötigten vs. tatsächlichen Fortschritts.
+- Fix: Die adaptiven Ziel-Buttons ('Ziel verschieben', 'Ziel vorziehen', 'Tempo erhöhen') speichern das neu berechnete Zieldatum nun direkt ab, ohne dass sich noch ein Eingabefenster öffnet.
+- Feat: Neuer Button '🔥 Tempo erhöhen' für den Fall, dass du deinen Fortschritt aufholen und in der gleichen Zeit mehr zunehmen/abnehmen möchtest.
