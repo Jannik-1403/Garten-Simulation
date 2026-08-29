@@ -338,19 +338,21 @@ struct CustomPlantCreationView: View {
                                         let baseColor: Color = weight == .massive ? .green : (weight == .bit ? .orange : .red)
                                         let isSelected = selectedGoalWeight == weight
                                         
-                                        Item3DButton(
+                                        Item3DPillButton(
                                             farbe: isSelected ? baseColor : Color(UIColor.systemGray5),
                                             sekundaerFarbe: isSelected ? baseColor.darker() : Color(UIColor.systemGray4),
                                             groesse: 44,
-                                            isRectangular: true,
                                             aktion: { selectedGoalWeight = weight }
                                         ) {
                                             Text("\(weight.rawValue) \(String(localized: "common.points.short", defaultValue: "Pkt"))")
                                                 .font(.system(size: 16, weight: .bold, design: .rounded))
                                                 .foregroundColor(isSelected ? .white : .primary)
-                                                .frame(maxWidth: .infinity)
-                                                .padding(.vertical, 12)
+                                                .lineLimit(1)
+                                                .fixedSize(horizontal: true, vertical: false)
+                                                .padding(.horizontal, 8)
                                         }
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 12)
                                     }
                                 }
                             }
