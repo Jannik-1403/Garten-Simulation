@@ -47,31 +47,30 @@ struct BodyDataFactoryView: View {
                 // Körperumfänge Picker
                 if type == .measurements {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
+                        HStack(spacing: 12) {
                             ForEach(BodyMeasurementCategory.allCases) { cat in
-                                let isSelected = selectedMeasurement == cat
-                                Button {
-                                    selectedMeasurement = cat
-                                } label: {
+                                Item3DButton(
+                                    farbe: selectedMeasurement == cat ? Color.pink : Color(UIColor.secondarySystemGroupedBackground),
+                                    sekundaerFarbe: selectedMeasurement == cat ? Color(red: 0.8, green: 0.0, blue: 0.35) : Color(UIColor.tertiarySystemGroupedBackground),
+                                    groesse: 36,
+                                    isRectangular: true,
+                                    isPermanentlyPressed: selectedMeasurement == cat,
+                                    aktion: {
+                                        selectedMeasurement = cat
+                                    }
+                                ) {
                                     Text(cat.localizedName)
                                         .font(.system(size: 13, weight: .bold, design: .rounded))
-                                        .foregroundStyle(isSelected ? .white : .primary)
-                                        .padding(.horizontal, 16)
-                                        .padding(.vertical, 10)
+                                        .foregroundStyle(selectedMeasurement == cat ? .white : .primary)
+                                        .lineLimit(1)
+                                        .fixedSize(horizontal: true, vertical: false)
+                                        .padding(.horizontal, 8)
                                 }
-                                .buttonStyle(PillButtonStyle(
-                                    farbe: isSelected ? Color.pink : Color(UIColor.secondarySystemGroupedBackground),
-                                    sekundaerFarbe: isSelected ? Color(red: 0.8, green: 0.0, blue: 0.35) : Color(UIColor.tertiarySystemGroupedBackground),
-                                    cornerRadius: 12,
-                                    shadowDepth: 3,
-                                    isPermanentlyPressed: isSelected
-                                ))
                             }
                         }
                         .padding(.horizontal)
-                        .padding(.vertical, 6)
+                        .padding(.vertical, 10)
                     }
-                    .frame(height: 58)
                 }
 
                 // Stats Header
