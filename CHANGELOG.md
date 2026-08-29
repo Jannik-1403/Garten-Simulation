@@ -666,3 +666,7 @@
 - Fix: Fortschritts-Analyse zeigt Zeitraum (seit gestern, seit vorgestern, seit [Datum]).
 - Fix: Körperumfang-Kategorie-Auswahl nutzt quadratische Item3DButtons statt Pills.
 - Fix: GoalWeight-Buttons in CustomPlantCreationView sind wieder normale Item3DButtons.
+- Fix: body.tracking.realistic_desc zeigte raw key – defaultValue hinzugefügt.
+- Fix: Fortschritts-Analyse zeigt jetzt absolute Änderung (z. B. 0,70 kg) statt hochgerechnete Wochenrate.
+- Fix: Kein rotes Icon-Kreis mehr, kein grauer Hintergrund in Fortschritts-Box.
+- Feat: Neuer maßgeschneiderter 3D-Button (OptionButton) für Charakter-Bildauswahl mit layered ZStack-Tiefe.
