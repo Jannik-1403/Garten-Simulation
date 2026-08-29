@@ -616,3 +616,7 @@
 - Karten-Button: pink mit Chevron (→) statt schwarzem (+)
 - Drei-Punkte-Menü oben links: kein grauer Kreis mehr, nur schwarze Punkte
 - + Button in der Gewicht/Körperumfänge-Detailansicht: navigationBarTitleDisplayMode auf .inline → gleiche Höhe wie Zurück-Pfeil
+
+## [2026-08-29] Body-Tracking Statistik (Achsen & Zeitraum)
+- Die Statistiken in `BodyDataFactoryView` nutzen nun feste Kalender-Zeiträume statt rollierenden Rückblicken (z.B. aktuelle Woche Mo-So statt "letzte 7 Tage", aktueller Monat statt "letzte 30 Tage").
+- Die X-Achse skaliert nun immer strikt von links nach rechts (Vergangenheit → Zukunft) für den ausgewählten Kalender-Zeitraum.
