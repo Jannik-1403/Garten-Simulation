@@ -132,14 +132,13 @@ struct Item3DButtonStyle: ButtonStyle {
             
             // Top Layer
             if isRectangular {
-                configuration.label
-                    .padding(.horizontal, 10)
-                    .frame(height: groesse)
-                    .background(
-                        RoundedRectangle(cornerRadius: 16, style: .continuous)
-                            .fill(farbe)
-                            .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
-                    )
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(farbe)
+                    .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+                    .overlay {
+                        configuration.label
+                            .padding(.horizontal, 10)
+                    }
                     .offset(y: isPressed ? 0 : -shadowDepth)
             } else {
                 Circle()
@@ -220,6 +219,124 @@ struct PillButtonStyle: ButtonStyle {
         .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: isPressed)
         .sensoryFeedback(trigger: configuration.isPressed) { _, newValue in
             (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.8) : nil
+        }
+    }
+}
+
+// MARK: - Item3DPillButton (Text controls width, perfect for ScrollViews)
+struct Item3DPillButton: View {
+    var icon: String = ""
+    var farbe: Color
+    var sekundaerFarbe: Color
+    var groesse: CGFloat
+    var iconSkalierung: CGFloat = 0.7
+    var shadowDepthFactor: CGFloat = 0.08
+    var isPermanentlyPressed: Bool = false
+    var isDisabled: Bool = false
+    var aktion: (() -> Void)? = nil
+    
+    @State private var manualPress = false
+    @AppStorage("isHapticEnabled") private var isHapticEnabled: Bool = true
+    
+    private var customLabel: AnyView? = nil
+
+    init(icon: String, farbe: Color, sekundaerFarbe: Color, groesse: CGFloat, iconSkalierung: CGFloat = 0.7, isPermanentlyPressed: Bool = false, isDisabled: Bool = false, aktion: (() -> Void)? = nil) {
+        self.icon = icon
+        self.farbe = farbe
+        self.sekundaerFarbe = sekundaerFarbe
+        self.groesse = groesse
+        self.iconSkalierung = iconSkalierung
+        self.isPermanentlyPressed = isPermanentlyPressed
+        self.isDisabled = isDisabled
+        self.aktion = aktion
+    }
+
+    init<V: View>(farbe: Color, sekundaerFarbe: Color, groesse: CGFloat, iconSkalierung: CGFloat = 0.7, shadowDepthFactor: CGFloat = 0.08, isPermanentlyPressed: Bool = false, isDisabled: Bool = false, aktion: (() -> Void)? = nil, @ViewBuilder label: () -> V) {
+        self.icon = ""
+        self.farbe = farbe
+        self.sekundaerFarbe = sekundaerFarbe
+        self.groesse = groesse
+        self.iconSkalierung = iconSkalierung
+        self.shadowDepthFactor = shadowDepthFactor
+        self.isPermanentlyPressed = isPermanentlyPressed
+        self.isDisabled = isDisabled
+        self.aktion = aktion
+        self.customLabel = AnyView(label())
+    }
+    
+    var body: some View {
+        Button {
+            if isHapticEnabled {
+                let impactLight = UIImpactFeedbackGenerator(style: .soft)
+                impactLight.impactOccurred(intensity: 0.8)
+            }
+            
+            manualPress = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
+                manualPress = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.16) {
+                    aktion?()
+                }
+            }
+        } label: {
+            if let customLabel = customLabel {
+                customLabel
+            } else {
+                Image(systemName: icon)
+                    .font(.system(size: groesse * 0.45, weight: .bold))
+                    .foregroundStyle(.white)
+            }
+        }
+        .buttonStyle(Item3DPillButtonStyle(
+            farbe: isDisabled ? Color(UIColor.systemGray3) : farbe,
+            sekundaerFarbe: isDisabled ? Color(UIColor.systemGray4) : sekundaerFarbe,
+            groesse: groesse,
+            iconSkalierung: iconSkalierung,
+            shadowDepthFactor: shadowDepthFactor,
+            isPermanentlyPressed: isPermanentlyPressed,
+            isDisabled: isDisabled,
+            forcePressed: manualPress
+        ))
+        .disabled(isDisabled)
+    }
+}
+
+struct Item3DPillButtonStyle: ButtonStyle {
+    @AppStorage("isHapticEnabled") var isHapticEnabled: Bool = true
+    let farbe: Color
+    let sekundaerFarbe: Color
+    let groesse: CGFloat
+    var iconSkalierung: CGFloat = 0.7
+    var shadowDepthFactor: CGFloat = 0.08
+    var isPermanentlyPressed: Bool = false
+    var isDisabled: Bool = false
+    var forcePressed: Bool = false
+
+    func makeBody(configuration: Configuration) -> some View {
+        let shadowDepth: CGFloat = groesse * shadowDepthFactor
+        let isPressed = configuration.isPressed || isPermanentlyPressed || forcePressed
+        
+        ZStack {
+            // Shadow / Base
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .fill(sekundaerFarbe)
+                .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.1), lineWidth: 1))
+            
+            // Top Layer (Text defines width!)
+            configuration.label
+                .padding(.horizontal, 10)
+                .frame(height: groesse)
+                .background(
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .fill(farbe)
+                        .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+                )
+                .offset(y: isPressed ? 0 : -shadowDepth)
+        }
+        .frame(height: groesse)
+        .animation(.spring(response: 0.22, dampingFraction: 0.5, blendDuration: 0), value: isPressed)
+        .sensoryFeedback(trigger: configuration.isPressed) { _, newValue in
+            (isHapticEnabled && newValue && !forcePressed) ? .impact(flexibility: .soft, intensity: 0.8) : nil
         }
     }
 }

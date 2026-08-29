@@ -49,11 +49,10 @@ struct BodyDataFactoryView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
                             ForEach(BodyMeasurementCategory.allCases) { cat in
-                                Item3DButton(
+                                Item3DPillButton(
                                     farbe: selectedMeasurement == cat ? Color.pink : Color(UIColor.secondarySystemGroupedBackground),
                                     sekundaerFarbe: selectedMeasurement == cat ? Color(red: 0.8, green: 0.0, blue: 0.35) : Color(UIColor.tertiarySystemGroupedBackground),
                                     groesse: 36,
-                                    isRectangular: true,
                                     isPermanentlyPressed: selectedMeasurement == cat,
                                     aktion: {
                                         selectedMeasurement = cat
