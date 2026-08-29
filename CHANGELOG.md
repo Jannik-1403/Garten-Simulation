@@ -682,3 +682,5 @@
 - Feat: Neuer Button '🔥 Tempo erhöhen' für den Fall, dass du deinen Fortschritt aufholen und in der gleichen Zeit mehr zunehmen/abnehmen möchtest.
 - Fix: Emojis aus den adaptiven Buttons entfernt.
 - Fix: Die automatische Datums-Berechnung bei 'Ziel verschieben' nutzt nun eine fixe, realistische Rate (0.5kg bzw. 0.25 Einheiten), statt der aktuellen mathematisch nicht erreichbaren Rate – das Zieldatum wird nun wie gewünscht korrekt weiter in die Zukunft verschoben.
+- **BodyDataFactoryView**: Radikaler Umbau der Analyse-Architektur. Das alte Tages-Vergleichs-System wurde durch einen neuen "Wochentrend (Ø zu Ø)" basierend auf 7-Tage Moving Averages ersetzt.
+- **Lokalisierung**: Alle neuen Texte im Wochentrend inkl. der 4 neuen Status (Defizit, Stagnation, Perfektes Tempo, Fett-Warnung) in Localizable.xcstrings übersetzt.

@@ -598,252 +598,102 @@ struct BodyDataFactoryView: View {
                     }
                 }
                 
-                // Realismus-Check & Fortschritt
-                if let targetVal = currentTarget, let targetDate = currentTargetDate, let current = currentValue {
-                    let diff = targetVal - current
-                    let weeks = max(1.0, targetDate.timeIntervalSince(Date()) / (7.0 * 24.0 * 3600.0))
-                    let changePerWeek = abs(diff) / weeks
-                    
-                    let limitMax = type == .weight ? 1.0 : 0.5
-                    let limitMin = type == .weight ? 0.3 : 0.1
-                    
-                    let actionText = type == .weight ? (diff < 0 ? String(localized: "body.tracking.action.lose") : String(localized: "body.tracking.action.gain")) : (diff < 0 ? String(localized: "body.tracking.action.reduce") : String(localized: "body.tracking.action.build"))
-                    
-                    VStack(alignment: .leading, spacing: 16) {
-                        Divider()
-                        
-                        // 1. Ziel-Analyse (Schwierigkeit)
-                        HStack(alignment: .top, spacing: 12) {
-                            if changePerWeek > limitMax {
-                                Image(systemName: "exclamationmark.triangle.fill").font(.system(size: 18)).foregroundStyle(.orange)
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(String(localized: "body.tracking.unrealistic_goal")).font(.system(size: 14, weight: .bold, design: .rounded)).foregroundStyle(.orange)
-                                    let suggestedWeeks = Int(ceil(abs(diff) / limitMax))
-                                    Text(String(format: String(localized: "body.tracking.unrealistic_desc_adaptive"), changePerWeek, unit, actionText, suggestedWeeks))
-                                        .font(.system(size: 12, design: .rounded)).foregroundStyle(.secondary)
-                                }
-                            } else if changePerWeek >= limitMin {
-                                Image(systemName: "checkmark.circle.fill").font(.system(size: 18)).foregroundStyle(.green)
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(String(localized: "body.tracking.realistic_goal")).font(.system(size: 14, weight: .bold, design: .rounded)).foregroundStyle(.green)
-                                    Text(String(format: String(localized: "body.tracking.realistic_desc", defaultValue: "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das entspricht einer gesunden und realistischen Rate."), changePerWeek, unit, actionText))
-                                        .font(.system(size: 12, design: .rounded)).foregroundStyle(.secondary)
-                                }
-                            } else {
-                                Image(systemName: "info.circle.fill").font(.system(size: 18)).foregroundStyle(.blue)
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(String(localized: "body.tracking.easy_goal")).font(.system(size: 14, weight: .bold, design: .rounded)).foregroundStyle(.blue)
-                                    let suggestedWeeks = Int(ceil(abs(diff) / limitMax))
-                                    Text(String(format: String(localized: "body.tracking.easy_desc_adaptive"), changePerWeek, unit, actionText, suggestedWeeks))
-                                        .font(.system(size: 12, design: .rounded)).foregroundStyle(.secondary)
-                                }
-                            }
-                        }
-                        
-                        // 2. Fortschritts-Analyse (Historisch)
-                        progressAnalysisView(currentValue: current, diff: diff, requiredChangePerWeek: diff / weeks, limitMax: limitMax)
-                    }
+                // Wochentrend Statusbericht (Moving Averages)
+                weeklyStatusReportView
                     .padding(.top, 8)
-                }
             }
             .item3DContainer(farbe: Color(UIColor.secondarySystemGroupedBackground), sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground), shadowDepth: 4)
             .padding(.horizontal)
         }
     }
 
-    private func progressAnalysisView(currentValue: Double, diff: Double, requiredChangePerWeek: Double, limitMax: Double) -> some View {
+    @ViewBuilder
+    private var weeklyStatusReportView: some View {
         let entries = allData
-        let candidates = entries.dropLast().filter {
-            let days = (entries.last?.timestamp ?? Date()).timeIntervalSince($0.timestamp) / (24 * 3600)
-            return days >= 1 && days <= 21
-        }
+        let calendar: Calendar = {
+            var cal = Calendar.current
+            cal.firstWeekday = 2 // Montag
+            return cal
+        }()
+        let now = Date()
         
-        let currentEntry = entries.last ?? DailyProgressEntry(timestamp: Date(), progress: 0)
-        let bestOldEntry = candidates.min { a, b in
-            let daysA = currentEntry.timestamp.timeIntervalSince(a.timestamp) / (24 * 3600)
-            let daysB = currentEntry.timestamp.timeIntervalSince(b.timestamp) / (24 * 3600)
-            return abs(7 - daysA) < abs(7 - daysB)
-        }
+        let currentWeekStart = calendar.dateInterval(of: .weekOfYear, for: now)?.start ?? now
+        let previousWeekStart = calendar.date(byAdding: .weekOfYear, value: -1, to: currentWeekStart) ?? now
         
-        guard let oldEntry = bestOldEntry else {
-            return AnyView(
-                Text("Gib noch einen weiteren Datenpunkt ein, um deinen Fortschritt zu sehen.")
-                    .font(.system(size: 12, design: .rounded))
-                    .foregroundStyle(.secondary)
-            )
-        }
+        let currentWeekData = entries.filter { $0.timestamp >= currentWeekStart }
+        let previousWeekData = entries.filter { $0.timestamp >= previousWeekStart && $0.timestamp < currentWeekStart }
         
-        let daysDiff = max(0.01, currentEntry.timestamp.timeIntervalSince(oldEntry.timestamp) / (24 * 3600))
-        let absoluteChange = currentEntry.progress - oldEntry.progress
-        let absChange = abs(absoluteChange)
-        let actualChangePerWeek = absoluteChange / (daysDiff / 7.0)
+        let currentAvg = currentWeekData.isEmpty ? nil : currentWeekData.reduce(0) { $0 + $1.progress } / Double(currentWeekData.count)
+        let previousAvg = previousWeekData.isEmpty ? nil : previousWeekData.reduce(0) { $0 + $1.progress } / Double(previousWeekData.count)
         
-        let isGoalGain = diff > 0
-        let isActualGain = actualChangePerWeek > 0
-        let weeksRequired = max(0.01, abs(diff) / max(0.001, abs(requiredChangePerWeek)))
-        
-        // Zeitraum-Label
-        let sinceLabel: String
-        if daysDiff < 1.5 {
-            sinceLabel = "seit gestern"
-        } else if daysDiff < 2.5 {
-            sinceLabel = "seit vorgestern"
-        } else {
-            sinceLabel = "seit \(oldEntry.timestamp.formatted(.dateTime.day().month()))"
-        }
-        
-        // Richtungsangabe
-        let dirVerb = isGoalGain ? "zugenommen" : "abgenommen"
-        let dirWrongVerb = isGoalGain ? "verloren" : "zugenommen"
-        let changeStr = String(format: "%.2f", absChange)
-        
-        enum ProgressState { case wrongWay, tooFast, tooSlow, noChange, onTrack }
-        let state: ProgressState
-        let stateColor: Color
-        let mainText: String
-        let tipText: String
-        
-        if isGoalGain != isActualGain && absChange > 0.05 {
-            // Falsche Richtung
-            state = .wrongWay
-            stateColor = .red
-            mainText = "Du hast \(sinceLabel) \(changeStr) \(unit) \(dirWrongVerb) – dein Ziel ist es, \(isGoalGain ? "zuzunehmen" : "abzunehmen")."
-            tipText = isGoalGain
-                ? "Erhöhe deine tägliche Kalorienzufuhr und achte auf ausreichend Protein."
-                : "Achte auf dein Kaloriendefizit und kontrolliere deine Mahlzeiten."
-        } else if abs(actualChangePerWeek) > limitMax * 1.5 {
-            // Zu schnell
-            state = .tooFast
-            stateColor = .orange
-            mainText = "Du hast \(sinceLabel) \(changeStr) \(unit) \(dirVerb) – das ist etwas schnell."
-            tipText = "Sehr schnelle Veränderungen können ungesund sein. Halte ein moderates Tempo."
-        } else if abs(actualChangePerWeek) < abs(requiredChangePerWeek) * 0.5 && absChange > 0.01 {
-            // Zu langsam
-            state = .tooSlow
-            stateColor = .blue
-            mainText = "Du hast \(sinceLabel) nur \(changeStr) \(unit) \(dirVerb)."
-            tipText = "Du musst etwas mehr Gas geben, um dein Ziel rechtzeitig zu erreichen."
-        } else if absChange < 0.01 {
-            // Keine Änderung
-            state = .noChange
-            stateColor = .secondary
-            mainText = "Seit \(oldEntry.timestamp.formatted(.dateTime.day().month())) hat sich dein Wert nicht verändert."
-            tipText = "Bleib dran – konsistentes Tracking hilft dir, deinen Fortschritt zu sehen."
-        } else {
-            // Auf Kurs
-            state = .onTrack
-            stateColor = .green
-            mainText = "Du hast \(sinceLabel) \(changeStr) \(unit) \(dirVerb) – du bist auf Kurs! 🎯"
-            tipText = "Genau so weiter machen!"
-        }
-        
-        // Erreichbarkeits-Hinweis: verbleibende Wochen vs. benötigte Wochen
-        let weeksLeft = max(0, currentEntry.timestamp.distance(to: currentEntry.timestamp) / (7 * 24 * 3600))
-        _ = weeksLeft
-        _ = weeksRequired
-        
-        return AnyView(
-            VStack(alignment: .leading, spacing: 6) {
-                Text("Dein Fortschritt")
-                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                    .foregroundStyle(.primary)
+        VStack(alignment: .leading, spacing: 16) {
+            Divider()
+            
+            Text(String(localized: "body.tracking.weekly_trend", defaultValue: "Dein Wochentrend (Ø zu Ø)"))
+                .font(.system(size: 14, weight: .bold, design: .rounded))
+                .foregroundStyle(.primary)
+            
+            if let current = currentAvg, let previous = previousAvg {
+                let delta = current - previous
+                
+                // Wir ermitteln, ob der User zunehmen oder abnehmen will
+                let isGoalGain = (currentTarget ?? (entries.last?.progress ?? 0)) >= (entries.last?.progress ?? 0)
+                let status = getWeeklyStatus(delta: delta, isGoalGain: isGoalGain, type: type)
+                
+                HStack(alignment: .center, spacing: 16) {
+                    VStack(alignment: .center, spacing: 4) {
+                        Text(String(localized: "body.tracking.last_week", defaultValue: "Letzte Woche"))
+                            .font(.system(size: 10, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .textCase(.uppercase)
+                        Text(String(format: "%.1f", previous))
+                            .font(.system(size: 20, weight: .black, design: .rounded))
+                            .foregroundStyle(.primary)
+                    }
+                    
+                    Image(systemName: "arrow.right")
+                        .foregroundStyle(.secondary)
+                        .font(.system(size: 14, weight: .bold))
+                    
+                    VStack(alignment: .center, spacing: 4) {
+                        Text(String(localized: "body.tracking.this_week", defaultValue: "Diese Woche"))
+                            .font(.system(size: 10, weight: .bold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .textCase(.uppercase)
+                        Text(String(format: "%.1f", current))
+                            .font(.system(size: 20, weight: .black, design: .rounded))
+                            .foregroundStyle(status.color)
+                    }
+                    
+                    Spacer()
+                    
+                    Text(delta > 0 ? String(format: "+%.1f", delta) : String(format: "%.1f", delta))
+                        .font(.system(size: 24, weight: .black, design: .rounded))
+                        .foregroundStyle(status.color)
+                }
+                .padding(12)
+                .background(Color(UIColor.tertiarySystemGroupedBackground))
+                .cornerRadius(12)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(mainText)
-                        .font(.system(size: 13, weight: .semibold, design: .rounded))
-                        .foregroundStyle(stateColor)
+                    Text(status.title)
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                        .foregroundStyle(status.color)
                     
-                    Text(tipText)
-                        .font(.system(size: 12, design: .rounded))
+                    Text(status.desc)
+                        .font(.system(size: 13, design: .rounded))
                         .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
+                .padding(.top, 4)
                 
-                // Adaptive Goal Suggestions
-                if state == .wrongWay || state == .tooSlow {
-                    HStack(spacing: 12) {
-                        Item3DButton(
-                            farbe: .orange,
-                            sekundaerFarbe: Color(red: 0.8, green: 0.4, blue: 0.0),
-                            groesse: 38,
-                            isRectangular: true,
-                            aktion: {
-                                if let targetVal = currentTarget {
-                                    let currentDiff = abs(targetVal - currentValue)
-                                    // Use a realistic healthy rate to push the date back properly
-                                    let realisticRate = type == .weight ? 0.5 : 0.25
-                                    let weeks = max(1.0, currentDiff / realisticRate)
-                                    let newDate = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
-                                    if type == .weight {
-                                        pflanze.targetWeightDate = newDate
-                                    } else {
-                                        pflanze.targetMeasurementsDates[selectedMeasurement.rawValue] = newDate
-                                    }
-                                    gardenStore.savePlants()
-                                }
-                            }
-                        ) {
-                            Text("Ziel verschieben")
-                                .font(.system(size: 13, weight: .bold, design: .rounded))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 14)
-                        }
-                        
-                        Item3DButton(
-                            farbe: .red,
-                            sekundaerFarbe: Color(red: 0.8, green: 0.1, blue: 0.1),
-                            groesse: 38,
-                            isRectangular: true,
-                            aktion: {
-                                if let targetVal = currentTarget {
-                                    let currentDiff = abs(targetVal - currentValue)
-                                    let newReqPerWeek = max(0.1, abs(requiredChangePerWeek)) + (type == .weight ? 0.1 : 0.2)
-                                    let weeks = max(1.0, currentDiff / newReqPerWeek)
-                                    let newDate = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
-                                    if type == .weight {
-                                        pflanze.targetWeightDate = newDate
-                                    } else {
-                                        pflanze.targetMeasurementsDates[selectedMeasurement.rawValue] = newDate
-                                    }
-                                    gardenStore.savePlants()
-                                }
-                            }
-                        ) {
-                            Text("Tempo erhöhen")
-                                .font(.system(size: 13, weight: .bold, design: .rounded))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 14)
-                        }
-                    }
-                    .padding(.top, 6)
-                } else if state == .tooFast || (state == .onTrack && abs(actualChangePerWeek) > abs(requiredChangePerWeek)) {
-                    Item3DButton(
-                        farbe: .green,
-                        sekundaerFarbe: Color(red: 0.0, green: 0.6, blue: 0.0),
-                        groesse: 38,
-                        isRectangular: true,
-                        aktion: {
-                            if let targetVal = currentTarget {
-                                let currentDiff = abs(targetVal - currentValue)
-                                let weeks = max(1.0, currentDiff / max(0.1, abs(actualChangePerWeek)))
-                                let newDate = Calendar.current.date(byAdding: .day, value: Int(weeks * 7), to: Date()) ?? Date()
-                                if type == .weight {
-                                    pflanze.targetWeightDate = newDate
-                                } else {
-                                    pflanze.targetMeasurementsDates[selectedMeasurement.rawValue] = newDate
-                                }
-                                gardenStore.savePlants()
-                            }
-                        }
-                    ) {
-                        Text("Ziel vorziehen")
-                            .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 14)
-                    }
-                    .padding(.top, 6)
-                }
+            } else {
+                Text(String(localized: "body.tracking.need_more_data", defaultValue: "Wir brauchen mehr Daten. Trage dein Gewicht regelmäßig ein, um hier deinen biologisch korrekten Wochentrend (Ø zu Ø) zu sehen."))
+                    .font(.system(size: 13, design: .rounded))
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-        )
+        }
     }
 
     private var manualEntriesSection: some View {
@@ -995,6 +845,54 @@ struct BodyDataFactoryView: View {
             }
         }
         .presentationDetents([.medium])
+    }
+    
+    private func getWeeklyStatus(delta: Double, isGoalGain: Bool, type: BodyTrackingType) -> (color: Color, title: String, desc: String) {
+        let stateColor: Color
+        let stateTitle: String
+        let stateDesc: String
+        
+        // Bulking Logic (Muskelaufbau)
+        if isGoalGain || type != .weight {
+            if delta < 0.0 {
+                stateColor = .red
+                stateTitle = String(localized: "body.tracking.status.bulking.deficit.title", defaultValue: "🔴 Defizit-Warnung")
+                stateDesc = String(localized: "body.tracking.status.bulking.deficit.desc", defaultValue: "Du verbrennst mehr, als du isst. Kalorien sofort um 300 kcal hoch.")
+            } else if delta <= 0.2 {
+                stateColor = .yellow
+                stateTitle = String(localized: "body.tracking.status.bulking.stagnation.title", defaultValue: "🟡 Stagnation")
+                stateDesc = String(localized: "body.tracking.status.bulking.stagnation.desc", defaultValue: "Zu wenig Treibstoff. Erhöhe deine täglichen Kalorien ab morgen um 200 kcal.")
+            } else if delta <= 0.5 {
+                stateColor = .green
+                stateTitle = String(localized: "body.tracking.status.bulking.perfect.title", defaultValue: "🟢 Perfektes Tempo")
+                stateDesc = String(localized: "body.tracking.status.bulking.perfect.desc", defaultValue: "Aufbau läuft sauber. Makros beibehalten. Training progressiv im Gym steigern.")
+            } else {
+                stateColor = .red
+                stateTitle = String(localized: "body.tracking.status.bulking.fat.title", defaultValue: "🔴 Fett-Warnung")
+                stateDesc = String(localized: "body.tracking.status.bulking.fat.desc", defaultValue: "Gewichtszunahme zu aggressiv. Du baust unnötig Fett auf. Kalorien um 200 kcal senken.")
+            }
+        } else {
+            // Cutting Logic (Fettabbau) - Invertiert
+            if delta > 0.0 {
+                stateColor = .red
+                stateTitle = String(localized: "body.tracking.status.cutting.gain.title", defaultValue: "🔴 Zunahme-Warnung")
+                stateDesc = String(localized: "body.tracking.status.cutting.gain.desc", defaultValue: "Du nimmst zu statt ab. Reduziere deine täglichen Kalorien um 300 kcal.")
+            } else if delta > -0.2 {
+                stateColor = .yellow
+                stateTitle = String(localized: "body.tracking.status.cutting.stagnation.title", defaultValue: "🟡 Stagnation")
+                stateDesc = String(localized: "body.tracking.status.cutting.stagnation.desc", defaultValue: "Dein Gewichtsverlust stagniert. Senke deine Kalorien um 200 kcal oder erhöhe Cardio.")
+            } else if delta >= -0.7 {
+                stateColor = .green
+                stateTitle = String(localized: "body.tracking.status.cutting.perfect.title", defaultValue: "🟢 Perfektes Tempo")
+                stateDesc = String(localized: "body.tracking.status.cutting.perfect.desc", defaultValue: "Fettabbau läuft sauber. Makros beibehalten. Training intensiv fortführen.")
+            } else {
+                stateColor = .orange
+                stateTitle = String(localized: "body.tracking.status.cutting.muscleloss.title", defaultValue: "🟠 Muskelverlust-Warnung")
+                stateDesc = String(localized: "body.tracking.status.cutting.muscleloss.desc", defaultValue: "Gewichtsverlust zu aggressiv. Du verbrennst wertvolle Muskeln. Kalorien um 200 kcal erhöhen.")
+            }
+        }
+        
+        return (stateColor, stateTitle, stateDesc)
     }
 }
 
