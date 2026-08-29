@@ -594,7 +594,7 @@ struct BodyDataFactoryView: View {
                     }
                 }
                 
-                // Realismus-Check
+                // Realismus-Check & Fortschritt
                 if let targetVal = currentTarget, let targetDate = currentTargetDate, let current = currentValue {
                     let diff = targetVal - current
                     let weeks = max(1.0, targetDate.timeIntervalSince(Date()) / (7.0 * 24.0 * 3600.0))
@@ -603,66 +603,41 @@ struct BodyDataFactoryView: View {
                     let limitMax = type == .weight ? 1.0 : 0.5
                     let limitMin = type == .weight ? 0.3 : 0.1
                     
-                    // Text anpassen (abnehmen/zunehmen vs aufbauen/reduzieren)
-                    let actionText: String = {
-                        if type == .weight {
-                            return diff < 0 
-                                ? String(localized: "body.tracking.action.lose", defaultValue: "abzunehmen")
-                                : String(localized: "body.tracking.action.gain", defaultValue: "zuzunehmen")
-                        } else {
-                            return diff < 0 
-                                ? String(localized: "body.tracking.action.reduce", defaultValue: "zu reduzieren")
-                                : String(localized: "body.tracking.action.build", defaultValue: "aufzubauen")
-                        }
-                    }()
+                    let actionText = type == .weight ? (diff < 0 ? String(localized: "body.tracking.action.lose") : String(localized: "body.tracking.action.gain")) : (diff < 0 ? String(localized: "body.tracking.action.reduce") : String(localized: "body.tracking.action.build"))
                     
-                    HStack(alignment: .top, spacing: 12) {
-                        if changePerWeek > limitMax {
-                            // Sehr ambitioniert
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .font(.system(size: 18))
-                                .foregroundStyle(.orange)
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(String(localized: "body.tracking.unrealistic_goal", defaultValue: "Sehr ambitioniertes Ziel"))
-                                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.orange)
-                                
-                                Text(String(format: String(localized: "body.tracking.unrealistic_desc", defaultValue: "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das ist über der empfohlenen Rate von %.1f %@/Woche. Versuche, den Zeitraum zu verlängern oder dein Ziel anzupassen."), changePerWeek, unit, actionText, limitMax, unit))
-                                    .font(.system(size: 12, design: .rounded))
-                                    .foregroundStyle(.secondary)
-                            }
-                        } else if changePerWeek >= limitMin {
-                            // Optimales Tempo
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: 18))
-                                .foregroundStyle(.green)
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(String(localized: "body.tracking.realistic_goal", defaultValue: "Optimales Tempo"))
-                                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.green)
-                                
-                                Text(String(format: String(localized: "body.tracking.realistic_desc", defaultValue: "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das entspricht einer gesunden und realistischen Rate."), changePerWeek, unit, actionText))
-                                    .font(.system(size: 12, design: .rounded))
-                                    .foregroundStyle(.secondary)
-                            }
-                        } else {
-                            // Sehr entspannt
-                            Image(systemName: "info.circle.fill")
-                                .font(.system(size: 18))
-                                .foregroundStyle(.blue)
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(String(localized: "body.tracking.easy_goal", defaultValue: "Sehr entspanntes Tempo"))
-                                    .font(.system(size: 14, weight: .bold, design: .rounded))
-                                    .foregroundStyle(.blue)
-                                
-                                Text(String(format: String(localized: "body.tracking.easy_desc", defaultValue: "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das ist ein sehr entspanntes Tempo, du könntest dir bei Bedarf auch etwas mehr zutrauen."), changePerWeek, unit, actionText))
-                                        .font(.system(size: 12, design: .rounded))
-                                        .foregroundStyle(.secondary)
+                    VStack(alignment: .leading, spacing: 16) {
+                        Divider()
+                        
+                        // 1. Ziel-Analyse (Schwierigkeit)
+                        HStack(alignment: .top, spacing: 12) {
+                            if changePerWeek > limitMax {
+                                Image(systemName: "exclamationmark.triangle.fill").font(.system(size: 18)).foregroundStyle(.orange)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(String(localized: "body.tracking.unrealistic_goal")).font(.system(size: 14, weight: .bold, design: .rounded)).foregroundStyle(.orange)
+                                    let suggestedWeeks = Int(ceil(abs(diff) / limitMax))
+                                    Text(String(format: String(localized: "body.tracking.unrealistic_desc_adaptive"), changePerWeek, unit, actionText, suggestedWeeks))
+                                        .font(.system(size: 12, design: .rounded)).foregroundStyle(.secondary)
+                                }
+                            } else if changePerWeek >= limitMin {
+                                Image(systemName: "checkmark.circle.fill").font(.system(size: 18)).foregroundStyle(.green)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(String(localized: "body.tracking.realistic_goal")).font(.system(size: 14, weight: .bold, design: .rounded)).foregroundStyle(.green)
+                                    Text(String(format: String(localized: "body.tracking.realistic_desc"), changePerWeek, unit, actionText))
+                                        .font(.system(size: 12, design: .rounded)).foregroundStyle(.secondary)
+                                }
+                            } else {
+                                Image(systemName: "info.circle.fill").font(.system(size: 18)).foregroundStyle(.blue)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(String(localized: "body.tracking.easy_goal")).font(.system(size: 14, weight: .bold, design: .rounded)).foregroundStyle(.blue)
+                                    let suggestedWeeks = Int(ceil(abs(diff) / limitMax))
+                                    Text(String(format: String(localized: "body.tracking.easy_desc_adaptive"), changePerWeek, unit, actionText, suggestedWeeks))
+                                        .font(.system(size: 12, design: .rounded)).foregroundStyle(.secondary)
+                                }
                             }
                         }
+                        
+                        // 2. Fortschritts-Analyse (Historisch)
+                        progressAnalysisView(currentValue: current, diff: diff, requiredChangePerWeek: diff / weeks, limitMax: limitMax)
                     }
                     .padding(.top, 8)
                 }
@@ -670,6 +645,95 @@ struct BodyDataFactoryView: View {
             .item3DContainer(farbe: Color(UIColor.secondarySystemGroupedBackground), sekundaerFarbe: Color(UIColor.tertiarySystemGroupedBackground), shadowDepth: 4)
             .padding(.horizontal)
         }
+    }
+
+    private func progressAnalysisView(currentValue: Double, diff: Double, requiredChangePerWeek: Double, limitMax: Double) -> some View {
+        let entries = allData
+        let candidates = entries.filter {
+            let days = (entries.last?.timestamp ?? Date()).timeIntervalSince($0.timestamp) / (24 * 3600)
+            return days >= 5 && days <= 21
+        }
+        
+        let currentEntry = entries.last ?? DailyProgressEntry(timestamp: Date(), progress: 0)
+        let bestOldEntry = candidates.min { a, b in
+            let daysA = currentEntry.timestamp.timeIntervalSince(a.timestamp) / (24 * 3600)
+            let daysB = currentEntry.timestamp.timeIntervalSince(b.timestamp) / (24 * 3600)
+            return abs(7 - daysA) < abs(7 - daysB)
+        }
+        
+        let daysDiff = bestOldEntry.map { currentEntry.timestamp.timeIntervalSince($0.timestamp) / (24 * 3600) } ?? 0
+        let actualChangePerWeek = bestOldEntry.map { (currentEntry.progress - $0.progress) / (daysDiff / 7.0) } ?? 0
+        let absActual = abs(actualChangePerWeek)
+        let absRequired = abs(requiredChangePerWeek)
+        
+        let isGoalGain = diff > 0
+        let isActualGain = actualChangePerWeek > 0
+        
+        let icon: String
+        let color: Color
+        let textKey: String
+        let tipKey: String
+        let hasIconBg: Bool
+        
+        if isGoalGain != isActualGain && absActual > 0.1 {
+            icon = "exclamationmark.arrow.triangle.2.circlepath"
+            color = .red
+            textKey = isGoalGain ? "body.tracking.progress.wrong_way_gain" : "body.tracking.progress.wrong_way_lose"
+            tipKey = isGoalGain ? "body.tracking.progress.tip_wrong_gain" : "body.tracking.progress.tip_wrong_lose"
+            hasIconBg = true
+        } else if absActual > limitMax * 1.5 {
+            icon = "hare.fill"
+            color = .orange
+            textKey = "body.tracking.progress.too_fast"
+            tipKey = "body.tracking.progress.tip_too_fast"
+            hasIconBg = true
+        } else if absActual < absRequired * 0.5 {
+            icon = "tortoise.fill"
+            color = .blue
+            textKey = "body.tracking.progress.too_slow"
+            tipKey = "body.tracking.progress.tip_too_slow"
+            hasIconBg = true
+        } else {
+            icon = "star.fill"
+            color = .green
+            textKey = "body.tracking.progress.on_track"
+            tipKey = "body.tracking.progress.tip_on_track"
+            hasIconBg = false
+        }
+        
+        return VStack(alignment: .leading, spacing: 8) {
+            Text(String(localized: "body.tracking.progress_title", defaultValue: "Dein Fortschritt"))
+                .font(.system(size: 14, weight: .bold, design: .rounded))
+                .foregroundStyle(.primary)
+            
+            if bestOldEntry != nil {
+                HStack(alignment: .top, spacing: 12) {
+                    Image(systemName: icon)
+                        .font(.system(size: 14))
+                        .foregroundStyle(hasIconBg ? color : .white)
+                        .padding(8)
+                        .background(hasIconBg ? color.opacity(0.15) : color)
+                        .clipShape(Circle())
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(String(format: String(localized: String.LocalizationValue(textKey)), absActual, unit, absRequired))
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundStyle(.primary)
+                        
+                        Text(String(localized: String.LocalizationValue(tipKey)))
+                            .font(.system(size: 12, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            } else {
+                Text(String(localized: "body.tracking.progress_nodata", defaultValue: "Sammle noch ein paar Tage Daten (mind. 5 Tage alt), um deinen echten Fortschritt hier zu analysieren."))
+                    .font(.system(size: 12, design: .rounded))
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding(12)
+        .background(Color(UIColor.tertiarySystemGroupedBackground).opacity(0.5))
+        .cornerRadius(12)
     }
 
     private var manualEntriesSection: some View {
