@@ -192,6 +192,7 @@ struct BodyDataFactoryView: View {
             }
         }
         .chartYScale(domain: yMin...yMax)
+        .chartXScale(domain: dateRange.start...dateRange.end)
         .frame(height: 250)
         .padding(.horizontal)
     }
@@ -268,6 +269,51 @@ struct BodyDataFactoryView: View {
         .presentationDetents([.medium])
     }
 
+    private var dateRange: (start: Date, end: Date) {
+        let cal = Calendar.current
+        let now = Date()
+        var start: Date
+        var end: Date
+        
+        switch timeRange {
+        case .t:
+            start = cal.startOfDay(for: now)
+            end = cal.date(byAdding: .day, value: 1, to: start)?.addingTimeInterval(-1) ?? now
+        case .w:
+            // Configure week to start on Monday
+            var calendar = Calendar.current
+            calendar.firstWeekday = 2 // Monday
+            if let interval = calendar.dateInterval(of: .weekOfYear, for: now) {
+                start = interval.start
+                end = interval.end.addingTimeInterval(-1)
+            } else {
+                start = now; end = now
+            }
+        case .m:
+            if let interval = cal.dateInterval(of: .month, for: now) {
+                start = interval.start
+                end = interval.end.addingTimeInterval(-1)
+            } else {
+                start = now; end = now
+            }
+        case .sixM:
+            if let monthStart = cal.dateInterval(of: .month, for: now)?.start {
+                start = cal.date(byAdding: .month, value: -5, to: monthStart) ?? now
+                end = cal.dateInterval(of: .month, for: now)?.end.addingTimeInterval(-1) ?? now
+            } else {
+                start = now; end = now
+            }
+        case .j:
+            if let interval = cal.dateInterval(of: .year, for: now) {
+                start = interval.start
+                end = interval.end.addingTimeInterval(-1)
+            } else {
+                start = now; end = now
+            }
+        }
+        return (start, end)
+    }
+
     // MARK: - HealthKit Fetch (Gewicht)
 
     private func fetchHealthWeight() {
@@ -275,18 +321,9 @@ struct BodyDataFactoryView: View {
         guard let bodyMassType = HKQuantityType.quantityType(forIdentifier: .bodyMass) else { return }
 
         isLoadingHealth = true
-        let cal = Calendar.current
-        let now = Date()
-        var startDate: Date
-        switch timeRange {
-        case .t:    startDate = cal.startOfDay(for: now)
-        case .w:    startDate = cal.date(byAdding: .day, value: -7, to: now) ?? now
-        case .m:    startDate = cal.date(byAdding: .month, value: -1, to: now) ?? now
-        case .sixM: startDate = cal.date(byAdding: .month, value: -6, to: now) ?? now
-        case .j:    startDate = cal.date(byAdding: .year, value: -1, to: now) ?? now
-        }
+        let range = dateRange
 
-        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: now, options: .strictStartDate)
+        let predicate = HKQuery.predicateForSamples(withStart: range.start, end: Date(), options: .strictStartDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
 
         let query = HKSampleQuery(sampleType: bodyMassType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { _, samples, _ in
@@ -322,17 +359,8 @@ struct BodyDataFactoryView: View {
     }
 
     private var filteredData: [DailyProgressEntry] {
-        let now = Date()
-        let cal = Calendar.current
-        var startDate: Date
-        switch timeRange {
-        case .t:    startDate = cal.startOfDay(for: now)
-        case .w:    startDate = cal.date(byAdding: .day, value: -7, to: now) ?? now
-        case .m:    startDate = cal.date(byAdding: .month, value: -1, to: now) ?? now
-        case .sixM: startDate = cal.date(byAdding: .month, value: -6, to: now) ?? now
-        case .j:    startDate = cal.date(byAdding: .year, value: -1, to: now) ?? now
-        }
-        return allData.filter { $0.timestamp >= startDate }
+        let range = dateRange
+        return allData.filter { $0.timestamp >= range.start && $0.timestamp <= range.end }
     }
 
     private var currentAverage: Double {
@@ -365,34 +393,35 @@ struct BodyDataFactoryView: View {
 
     private var xAxisValues: [Date] {
         let cal = Calendar.current
-        let now = Date()
+        let start = dateRange.start
+        
         switch timeRange {
         case .t:
             // 0:00, 6:00, 12:00, 18:00
-            let start = cal.startOfDay(for: now)
             return [0, 6, 12, 18].compactMap {
                 cal.date(bySettingHour: $0, minute: 0, second: 0, of: start)
             }
         case .w:
-            // Letzten 7 Tage
+            // 7 Tage der aktuellen Woche (Montag bis Sonntag)
             return (0..<7).compactMap { i in
-                cal.date(byAdding: .day, value: -(6 - i), to: cal.startOfDay(for: now))
+                cal.date(byAdding: .day, value: i, to: start)
             }
         case .m:
-            // 1., 8., 15., 22., 29.
-            let start = cal.date(byAdding: .month, value: -1, to: now) ?? now
-            return stride(from: 0, through: 29, by: 7).compactMap { days in
-                cal.date(byAdding: .day, value: days, to: start)
+            // 1., 8., 15., 22., 29. des aktuellen Monats
+            return [1, 8, 15, 22, 29].compactMap { day in
+                var comps = cal.dateComponents([.year, .month], from: start)
+                comps.day = day
+                return cal.date(from: comps)
             }
         case .sixM:
-            // Jeden Monat einen Tick (6 Monate)
+            // Die 6 Monate von start
             return (0..<6).compactMap { i in
-                cal.date(byAdding: .month, value: -(5 - i), to: cal.startOfDay(for: now))
+                cal.date(byAdding: .month, value: i, to: start)
             }
         case .j:
-            // Jeden Monat
+            // Alle 12 Monate des aktuellen Jahres
             return (0..<12).compactMap { i in
-                cal.date(byAdding: .month, value: -(11 - i), to: cal.startOfDay(for: now))
+                cal.date(byAdding: .month, value: i, to: start)
             }
         }
     }
