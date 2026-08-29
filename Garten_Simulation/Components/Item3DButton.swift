@@ -132,13 +132,14 @@ struct Item3DButtonStyle: ButtonStyle {
             
             // Top Layer
             if isRectangular {
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(farbe)
-                    .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
-                    .overlay {
-                        configuration.label
-                            .padding(.horizontal, 10)
-                    }
+                configuration.label
+                    .padding(.horizontal, 10)
+                    .frame(height: groesse)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .fill(farbe)
+                            .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).stroke(Color.black.opacity(0.15), lineWidth: 1))
+                    )
                     .offset(y: isPressed ? 0 : -shadowDepth)
             } else {
                 Circle()
