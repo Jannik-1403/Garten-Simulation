@@ -628,7 +628,7 @@ struct BodyDataFactoryView: View {
                                 Image(systemName: "checkmark.circle.fill").font(.system(size: 18)).foregroundStyle(.green)
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(String(localized: "body.tracking.realistic_goal")).font(.system(size: 14, weight: .bold, design: .rounded)).foregroundStyle(.green)
-                                    Text(String(format: String(localized: "body.tracking.realistic_desc"), changePerWeek, unit, actionText))
+                                    Text(String(format: String(localized: "body.tracking.realistic_desc", defaultValue: "Um dein Ziel zu erreichen, musst du ca. %.2f %@ pro Woche %@. Das entspricht einer gesunden und realistischen Rate."), changePerWeek, unit, actionText))
                                         .font(.system(size: 12, design: .rounded)).foregroundStyle(.secondary)
                                 }
                             } else {
@@ -669,58 +669,59 @@ struct BodyDataFactoryView: View {
         }
         
         let daysDiff = bestOldEntry.map { currentEntry.timestamp.timeIntervalSince($0.timestamp) / (24 * 3600) } ?? 0
+        // Absolute tatsächliche Änderung (nicht wöchentlich hochgerechnet)
+        let absoluteChange = bestOldEntry.map { currentEntry.progress - $0.progress } ?? 0.0
+        let absChange = abs(absoluteChange)
+        
+        // Für Richtungscheck weiterhin Wochenrate verwenden
         let actualChangePerWeek = (daysDiff > 0 && bestOldEntry != nil)
-            ? (currentEntry.progress - bestOldEntry!.progress) / (daysDiff / 7.0)
+            ? absoluteChange / (daysDiff / 7.0)
             : 0.0
-        let absActual = abs(actualChangePerWeek)
         let absRequired = abs(requiredChangePerWeek)
         
         let isGoalGain = diff > 0
         let isActualGain = actualChangePerWeek > 0
         
-        // Zustand bestimmen
         enum ProgressState { case wrongWayGain, wrongWayLose, tooFast, tooSlow, onTrack }
         let state: ProgressState
-        if isGoalGain != isActualGain && absActual > 0.05 {
+        if isGoalGain != isActualGain && absChange > 0.05 {
             state = isGoalGain ? .wrongWayGain : .wrongWayLose
-        } else if absActual > limitMax * 1.5 {
+        } else if abs(actualChangePerWeek) > limitMax * 1.5 {
             state = .tooFast
-        } else if absActual < absRequired * 0.5 {
+        } else if abs(actualChangePerWeek) < absRequired * 0.5 {
             state = .tooSlow
         } else {
             state = .onTrack
         }
         
-        let icon: String
-        let color: Color
-        let hasIconBg: Bool
+        let stateColor: Color
         let mainText: String
         let tipText: String
         
         switch state {
         case .wrongWayGain:
-            icon = "exclamationmark.arrow.triangle.2.circlepath"; color = .red; hasIconBg = true
-            mainText = String(format: String(localized: "body.tracking.progress.wrong_way_gain", defaultValue: "Falsche Richtung: Du hast %1$.2f %2$@ verloren, statt %3$.2f %2$@ zuzunehmen."), absActual, unit, absRequired)
-            tipText = String(localized: "body.tracking.progress.tip_wrong_gain", defaultValue: "Tipp: Überprüfe deine tägliche Kalorienzufuhr und erhöhe sie leicht.")
+            stateColor = .red
+            mainText = String(format: String(localized: "body.tracking.progress.wrong_way_gain", defaultValue: "Du hast %1$.2f %2$@ verloren, aber dein Ziel ist es, zuzunehmen."), absChange, unit)
+            tipText = String(localized: "body.tracking.progress.tip_wrong_gain", defaultValue: "Erhöhe deine tägliche Kalorienzufuhr und achte auf ausreichend Protein.")
         case .wrongWayLose:
-            icon = "exclamationmark.arrow.triangle.2.circlepath"; color = .red; hasIconBg = true
-            mainText = String(format: String(localized: "body.tracking.progress.wrong_way_lose", defaultValue: "Falsche Richtung: Du hast %1$.2f %2$@ zugenommen, statt %3$.2f %2$@ abzunehmen."), absActual, unit, absRequired)
-            tipText = String(localized: "body.tracking.progress.tip_wrong_lose", defaultValue: "Tipp: Achte auf dein Kaloriendefizit und deine Ernährung.")
+            stateColor = .red
+            mainText = String(format: String(localized: "body.tracking.progress.wrong_way_lose", defaultValue: "Du hast %1$.2f %2$@ zugenommen, aber dein Ziel ist es, abzunehmen."), absChange, unit)
+            tipText = String(localized: "body.tracking.progress.tip_wrong_lose", defaultValue: "Achte auf dein Kaloriendefizit und kontrolliere deine Ernährung.")
         case .tooFast:
-            icon = "hare.fill"; color = .orange; hasIconBg = true
-            mainText = String(format: String(localized: "body.tracking.progress.too_fast", defaultValue: "Zu schnell: Du veränderst dich um %1$.2f %2$@/Woche (geplant: %3$.2f)."), absActual, unit, absRequired)
-            tipText = String(localized: "body.tracking.progress.tip_too_fast", defaultValue: "Tipp: Crash-Diäten oder zu schnelles Zunehmen ist ungesund. Werde etwas langsamer.")
+            stateColor = .orange
+            mainText = String(format: String(localized: "body.tracking.progress.too_fast", defaultValue: "Du hast %1$.2f %2$@ verändert – das ist etwas schnell."), absChange, unit)
+            tipText = String(localized: "body.tracking.progress.tip_too_fast", defaultValue: "Sehr schnelle Veränderungen können ungesund sein. Halte ein moderates Tempo.")
         case .tooSlow:
-            icon = "tortoise.fill"; color = .blue; hasIconBg = true
-            mainText = String(format: String(localized: "body.tracking.progress.too_slow", defaultValue: "Etwas zu langsam: Nur %1$.2f %2$@/Woche (geplant: %3$.2f)."), absActual, unit, absRequired)
-            tipText = String(localized: "body.tracking.progress.tip_too_slow", defaultValue: "Tipp: Du musst dich etwas mehr fordern, um dein Ziel im gewählten Zeitraum zu erreichen.")
+            stateColor = .blue
+            mainText = String(format: String(localized: "body.tracking.progress.too_slow", defaultValue: "Du hast %1$.2f %2$@ verändert – du musst etwas mehr Gas geben."), absChange, unit)
+            tipText = String(localized: "body.tracking.progress.tip_too_slow", defaultValue: "Passe deine Routine an, um dein Ziel im gewählten Zeitraum zu erreichen.")
         case .onTrack:
-            icon = "star.fill"; color = .green; hasIconBg = false
-            mainText = String(format: String(localized: "body.tracking.progress.on_track", defaultValue: "Auf Kurs! (%1$.2f %2$@/Woche)"), absActual, unit)
-            tipText = String(localized: "body.tracking.progress.tip_on_track", defaultValue: "Perfekt! Genau so weiter machen.")
+            stateColor = .green
+            mainText = String(format: String(localized: "body.tracking.progress.on_track", defaultValue: "Super! Du hast %1$.2f %2$@ in die richtige Richtung verändert."), absChange, unit)
+            tipText = String(localized: "body.tracking.progress.tip_on_track", defaultValue: "Genau so weiter machen!")
         }
         
-        return VStack(alignment: .leading, spacing: 8) {
+        return VStack(alignment: .leading, spacing: 6) {
             Text(String(localized: "body.tracking.progress_title", defaultValue: "Dein Fortschritt"))
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .foregroundStyle(.primary)
@@ -738,23 +739,14 @@ struct BodyDataFactoryView: View {
                     }
                 }()
                 
-                HStack(alignment: .top, spacing: 12) {
-                    Image(systemName: icon)
-                        .font(.system(size: 14))
-                        .foregroundStyle(hasIconBg ? color : .white)
-                        .padding(8)
-                        .background(hasIconBg ? color.opacity(0.15) : color)
-                        .clipShape(Circle())
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(mainText + " (\(sinceLabel))")
+                        .font(.system(size: 13, weight: .semibold, design: .rounded))
+                        .foregroundStyle(stateColor)
                     
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(mainText + " (\(sinceLabel))")
-                            .font(.system(size: 13, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.primary)
-                        
-                        Text(tipText)
-                            .font(.system(size: 12, design: .rounded))
-                            .foregroundStyle(.secondary)
-                    }
+                    Text(tipText)
+                        .font(.system(size: 12, design: .rounded))
+                        .foregroundStyle(.secondary)
                 }
             } else {
                 Text(String(localized: "body.tracking.progress_nodata", defaultValue: "Gib noch einen weiteren Datenpunkt ein, um deinen Fortschritt zu analysieren."))
@@ -762,9 +754,6 @@ struct BodyDataFactoryView: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .padding(12)
-        .background(Color(UIColor.tertiarySystemGroupedBackground).opacity(0.5))
-        .cornerRadius(12)
     }
 
     private var manualEntriesSection: some View {

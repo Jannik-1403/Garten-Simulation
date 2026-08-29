@@ -280,37 +280,52 @@ struct OptionButton: View {
     var isLocked: Bool = false
     let action: () -> Void
     
+    private let size: CGFloat = 88
+    private let depth: CGFloat = 5
+    
     var body: some View {
         Button(action: action) {
             ZStack {
+                // Schatten-Schicht (3D-Tiefe)
+                RoundedRectangle(cornerRadius: 18, style: .continuous)
+                    .fill(isSelected
+                        ? Color.blauPrimary.opacity(0.5)
+                        : Color(UIColor.tertiarySystemGroupedBackground))
+                    .frame(width: size, height: size)
+                    .offset(y: depth)
+                
+                // Haupt-Schicht
+                RoundedRectangle(cornerRadius: 18, style: .continuous)
+                    .fill(isSelected
+                        ? Color.blauPrimary.opacity(0.12)
+                        : Color(UIColor.secondarySystemGroupedBackground))
+                    .frame(width: size, height: size)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 18, style: .continuous)
+                            .strokeBorder(
+                                isSelected ? Color.blauPrimary : Color.primary.opacity(0.06),
+                                lineWidth: isSelected ? 2.5 : 1
+                            )
+                    )
+                
+                // Bild
                 Image(imageName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 70, height: 70)
-                    .padding(12)
+                    .frame(width: 62, height: 62)
                     .opacity(isLocked ? 0.3 : 1.0)
                 
+                // Schloss
                 if isLocked {
                     Image(systemName: "lock.fill")
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundColor(.secondary)
-                }
-                
-                if isSelected {
-                    RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .strokeBorder(Color.blauPrimary, lineWidth: 3)
-                        .frame(width: 94, height: 94)
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundStyle(.secondary)
                 }
             }
-            .frame(width: 94, height: 94)
+            .frame(width: size, height: size + depth)
         }
-        .buttonStyle(Item3DButtonStyle(
-            farbe: isSelected ? Color.blauPrimary.opacity(0.15) : Color(UIColor.secondarySystemGroupedBackground),
-            sekundaerFarbe: isSelected ? Color.blauPrimary.opacity(0.3) : Color(UIColor.tertiarySystemGroupedBackground),
-            groesse: 94,
-            shadowDepthFactor: 0.05,
-            isRectangular: true
-        ))
+        .buttonStyle(.plain)
+        .scaleEffect(isSelected ? 0.96 : 1.0)
+        .animation(.spring(response: 0.25, dampingFraction: 0.7), value: isSelected)
     }
 }
-
