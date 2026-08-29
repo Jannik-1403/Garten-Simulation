@@ -110,12 +110,7 @@ struct PflanzeDetailSheet: View {
                         healthKitConfigSection
                     }
                     
-                    // Body Tracking (Krafttraining)
-                    if pflanze.effectiveHealthMetric == .strengthTraining && (pflanze.showWeight || pflanze.showMeasurements) {
-                        BodyTrackingWidgetGroup(pflanze: pflanze)
-                            .environmentObject(gardenStore)
-                            .environmentObject(settings)
-                    }
+
 
                     // To-Dos Accordion
                     if pflanze.showTodos {
@@ -233,6 +228,13 @@ struct PflanzeDetailSheet: View {
                     .tint(.blauPrimary)
                     .tourAnchor(.plantNotes)
                     .id(TourStep.plantNotes)
+                    }
+
+                    // Body Tracking (Krafttraining) – nach Notizen, vor Jahresziel
+                    if pflanze.effectiveHealthMetric == .strengthTraining && (pflanze.showWeight || pflanze.showMeasurements) {
+                        BodyTrackingWidgetGroup(pflanze: pflanze)
+                            .environmentObject(gardenStore)
+                            .environmentObject(settings)
                     }
 
                     // MARK: - Daily Reminders
@@ -366,9 +368,10 @@ struct PflanzeDetailSheet: View {
                             }
                         }
                     } label: {
-                        Image(systemName: "ellipsis.circle.fill")
-                            .font(.system(size: 24))
-                            .foregroundStyle(.tertiary)
+                        Image(systemName: "ellipsis")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundStyle(.primary)
+                            .frame(width: 36, height: 36)
                     }
                     .onChange(of: pflanze.showStats) { _, _ in gardenStore.savePlants() }
                     .onChange(of: pflanze.showTodos) { _, _ in gardenStore.savePlants() }

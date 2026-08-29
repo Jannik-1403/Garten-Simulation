@@ -604,3 +604,8 @@
 
 ## 2026-08-22 09:37 - Eigene Einheit pro Gewohnheit
 - **Ziel festlegen**: Bei eigenen Gewohnheiten lässt sich beim 'Ziel festlegen' (Ziel-Wert) ab sofort auch die **Einheit** frei eintragen (z.B. Minuten, Seiten, Gramm) anstatt immer nur auf 'Std' beschränkt zu sein.
+
+## [2026-08-29] Body-Tracking UI Redesign
+- `BodyTrackingModuleCard` (Gewicht & Körperumfänge) erhält jetzt das gleiche 3D-Container-Design wie Notizen & To-Dos (`item3DContainer` + `Item3DButton`)
+- Der `+` Button in der Toolbar der Detailansicht (`BodyDataFactoryView`) ist jetzt schwarz statt pink – konsistent mit dem System-Theme
+- Navigation zur Detailansicht über Tap auf die Card oder den + Button

@@ -104,7 +104,7 @@ struct BodyDataFactoryView: View {
         .navigationTitle(type == .weight
             ? String(localized: "body.tracking.weight", defaultValue: "Gewicht")
             : String(localized: "body.tracking.measurements", defaultValue: "Körperumfänge"))
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Item3DButton(

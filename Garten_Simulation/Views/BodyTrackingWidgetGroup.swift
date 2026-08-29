@@ -41,7 +41,7 @@ struct BodyTrackingWidgetGroup: View {
     @EnvironmentObject var gardenStore: GardenStore
     
     var body: some View {
-        VStack(spacing: 24) {
+        VStack(spacing: 12) {
             if pflanze.showWeight {
                 BodyTrackingModuleCard(
                     title: String(localized: "body.tracking.weight", defaultValue: "Gewicht"),
@@ -78,8 +78,8 @@ struct BodyTrackingModuleCard: View {
                 .foregroundColor(.primary)
             Spacer()
             Item3DButton(
-                farbe: Color(UIColor.label),
-                sekundaerFarbe: Color(UIColor.secondaryLabel),
+                farbe: .pink,
+                sekundaerFarbe: .pink.darker(),
                 groesse: 36,
                 isRectangular: false,
                 aktion: {
@@ -87,9 +87,9 @@ struct BodyTrackingModuleCard: View {
                     navigateToDetail = true
                 }
             ) {
-                Image(systemName: "plus")
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundStyle(Color(UIColor.systemBackground))
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(.white)
             }
         }
         .contentShape(Rectangle())

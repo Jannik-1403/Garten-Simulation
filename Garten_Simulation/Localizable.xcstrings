@@ -89062,6 +89062,7 @@
       }
     },
     "body.tracking.tap_to_view" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
