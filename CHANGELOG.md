@@ -680,3 +680,5 @@
 - Fix: Das automatische Verschieben/Vorziehen des Zieldatums berechnet sich nun korrekt anhand des aktuell benötigten vs. tatsächlichen Fortschritts.
 - Fix: Die adaptiven Ziel-Buttons ('Ziel verschieben', 'Ziel vorziehen', 'Tempo erhöhen') speichern das neu berechnete Zieldatum nun direkt ab, ohne dass sich noch ein Eingabefenster öffnet.
 - Feat: Neuer Button '🔥 Tempo erhöhen' für den Fall, dass du deinen Fortschritt aufholen und in der gleichen Zeit mehr zunehmen/abnehmen möchtest.
+- Fix: Emojis aus den adaptiven Buttons entfernt.
+- Fix: Die automatische Datums-Berechnung bei 'Ziel verschieben' nutzt nun eine fixe, realistische Rate (0.5kg bzw. 0.25 Einheiten), statt der aktuellen mathematisch nicht erreichbaren Rate – das Zieldatum wird nun wie gewünscht korrekt weiter in die Zukunft verschoben.
