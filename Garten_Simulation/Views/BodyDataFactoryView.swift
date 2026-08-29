@@ -108,8 +108,8 @@ struct BodyDataFactoryView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Item3DButton(
-                    farbe: .pink,
-                    sekundaerFarbe: .pink.darker(),
+                    farbe: Color(UIColor.label),
+                    sekundaerFarbe: Color(UIColor.secondaryLabel),
                     groesse: 36,
                     isRectangular: false,
                     aktion: {
@@ -120,7 +120,7 @@ struct BodyDataFactoryView: View {
                 ) {
                     Image(systemName: "plus")
                         .font(.system(size: 16, weight: .bold))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color(UIColor.systemBackground))
                 }
             }
         }

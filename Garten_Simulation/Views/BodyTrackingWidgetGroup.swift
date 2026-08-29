@@ -64,31 +64,39 @@ struct BodyTrackingModuleCard: View {
     let title: String
     let type: BodyTrackingType
     @ObservedObject var pflanze: HabitModel
-    
+    @State private var navigateToDetail = false
+
     var body: some View {
-        NavigationLink(destination: BodyDataFactoryView(pflanze: pflanze, type: type)) {
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(title)
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .foregroundColor(.primary)
-                    Text(String(localized: "body.tracking.tap_to_view", defaultValue: "Tippen für Statistik & Eingabe"))
-                        .font(.system(size: 13, weight: .medium, design: .rounded))
-                        .foregroundColor(.secondary)
-                }
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundStyle(.tertiary)
-            }
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color(UIColor.systemBackground))
-                    .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 4)
-            )
-            .padding(.horizontal, 24)
+        NavigationLink(destination: BodyDataFactoryView(pflanze: pflanze, type: type), isActive: $navigateToDetail) {
+            EmptyView()
         }
-        .buttonStyle(.plain)
+        .hidden()
+
+        HStack {
+            Text(title)
+                .font(.system(size: 20, weight: .bold, design: .rounded))
+                .foregroundColor(.primary)
+            Spacer()
+            Item3DButton(
+                farbe: Color(UIColor.label),
+                sekundaerFarbe: Color(UIColor.secondaryLabel),
+                groesse: 36,
+                isRectangular: false,
+                aktion: {
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    navigateToDetail = true
+                }
+            ) {
+                Image(systemName: "plus")
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundStyle(Color(UIColor.systemBackground))
+            }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            navigateToDetail = true
+        }
+        .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
+        .padding(.horizontal, 24)
     }
 }
