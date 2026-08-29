@@ -47,23 +47,23 @@ struct BodyDataFactoryView: View {
                 // Körperumfänge Picker
                 if type == .measurements {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 12) {
+                        HStack(spacing: 10) {
                             ForEach(BodyMeasurementCategory.allCases) { cat in
-                                Item3DPillButton(
+                                Item3DButton(
                                     farbe: selectedMeasurement == cat ? Color.pink : Color(UIColor.secondarySystemGroupedBackground),
                                     sekundaerFarbe: selectedMeasurement == cat ? Color(red: 0.8, green: 0.0, blue: 0.35) : Color(UIColor.tertiarySystemGroupedBackground),
-                                    groesse: 36,
+                                    groesse: 48,
+                                    isRectangular: true,
                                     isPermanentlyPressed: selectedMeasurement == cat,
-                                    aktion: {
-                                        selectedMeasurement = cat
-                                    }
+                                    aktion: { selectedMeasurement = cat }
                                 ) {
                                     Text(cat.localizedName)
-                                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                                        .font(.system(size: 12, weight: .bold, design: .rounded))
                                         .foregroundStyle(selectedMeasurement == cat ? .white : .primary)
-                                        .lineLimit(1)
-                                        .fixedSize(horizontal: true, vertical: false)
-                                        .padding(.horizontal, 8)
+                                        .lineLimit(2)
+                                        .multilineTextAlignment(.center)
+                                        .frame(width: 64)
+                                        .padding(.horizontal, 4)
                                 }
                             }
                         }
@@ -72,17 +72,17 @@ struct BodyDataFactoryView: View {
                     }
                 }
 
-                // Stats Header
+                // Stats Header – zeigt aktuellen (letzten) Wert
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(String(localized: "body.tracking.average", defaultValue: "DURCHSCHNITT"))
+                    Text(String(localized: "body.tracking.current", defaultValue: "AKTUELL"))
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                         .kerning(1.2)
 
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        let avg = currentAverage
-                        if avg > 0 {
-                            Text(String(format: "%.1f", avg))
+                        let latest = allData.last?.progress ?? 0
+                        if latest > 0 {
+                            Text(String(format: "%.1f", latest))
                                 .font(.system(size: 42, weight: .black, design: .rounded))
                                 .foregroundStyle(.pink)
                             Text(unit)
@@ -95,9 +95,15 @@ struct BodyDataFactoryView: View {
                         }
                     }
 
-                    Text(dateRangeLabel)
-                        .font(.system(size: 13, weight: .semibold, design: .rounded))
-                        .foregroundStyle(.secondary)
+                    if let lastEntry = allData.last {
+                        Text(lastEntry.timestamp.formatted(.dateTime.day().month().year().hour().minute()))
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Text(dateRangeLabel)
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 .padding(.horizontal)
 
@@ -719,7 +725,19 @@ struct BodyDataFactoryView: View {
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .foregroundStyle(.primary)
             
-            if bestOldEntry != nil {
+            if let oldEntry = bestOldEntry {
+                let sinceLabel: String = {
+                    let days = currentEntry.timestamp.timeIntervalSince(oldEntry.timestamp) / (24 * 3600)
+                    if days < 1.5 {
+                        return String(localized: "body.tracking.since_yesterday", defaultValue: "seit gestern")
+                    } else if days < 2.5 {
+                        return String(localized: "body.tracking.since_2days", defaultValue: "seit vorgestern")
+                    } else {
+                        let formatted = oldEntry.timestamp.formatted(.dateTime.day().month())
+                        return String(format: String(localized: "body.tracking.since_date", defaultValue: "seit %@"), formatted)
+                    }
+                }()
+                
                 HStack(alignment: .top, spacing: 12) {
                     Image(systemName: icon)
                         .font(.system(size: 14))
@@ -729,7 +747,7 @@ struct BodyDataFactoryView: View {
                         .clipShape(Circle())
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(mainText)
+                        Text(mainText + " (\(sinceLabel))")
                             .font(.system(size: 13, weight: .semibold, design: .rounded))
                             .foregroundStyle(.primary)
                         
