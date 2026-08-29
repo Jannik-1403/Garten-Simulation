@@ -654,3 +654,6 @@
 - **3D-Kategorie-Buttons:** Die Körperumfang-Kategorie-Auswahl (Oberschenkel, Bizeps etc.) wurde von flachen Capsule-Buttons auf native Item3DButtons umgestellt.
 - **3-stufiger Realismus-Check:** Die Ziel-Bewertung unterscheidet jetzt drei Stufen: ✅ Grün "Optimales Tempo" (0,3–1 kg/Woche), 🔶 Orange "Sehr ambitioniert" (>1 kg/Woche), ℹ️ Blau "Sehr entspannt" (<0,3 kg/Woche). Für Körperumfänge gelten eigene angepasste Richtwerte.
 - **Ziel-Sheet-Titel:** Das Bearbeitungssheet zeigt jetzt nur noch kurz "Ziel" als Titel (statt "Ziel bearbeiten"), um Textabschneidung auf kleinen Displays zu vermeiden.
+- Hinzugefügt: Intelligente Ziel-Analyse und adaptive Zeitraum-Empfehlungen für Gewichts-/Körperdaten.
+- Hinzugefügt: Fortschritts-Dashboard mit Analyse der historischen Daten der letzten Wochen inkl. Tipps.
+- Update: Neues UI-Layout für die Ziel-Sektion (3D-Container).
