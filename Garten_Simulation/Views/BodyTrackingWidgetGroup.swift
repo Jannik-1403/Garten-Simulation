@@ -38,14 +38,22 @@ enum BodyMeasurementCategory: String, CaseIterable, Identifiable {
     }
 
     var infoText: String {
+        let prefix = String(localized: "body.measure.info.prefix", defaultValue: "Nimm ein flexibles Maßband, miss im kalten Zustand ohne Pump und setz das Band immer absolut waagerecht an. ")
         switch self {
-        case .brust:        return String(localized: "body.measure.info.brust",        defaultValue: "Miss den Umfang an der breitesten Stelle deiner Brust.")
-        case .bizeps:       return String(localized: "body.measure.info.bizeps",       defaultValue: "Miss an der dicksten Stelle deines Oberarms, während der Muskel angespannt ist.")
-        case .unterarm:     return String(localized: "body.measure.info.unterarm",     defaultValue: "Miss an der dicksten Stelle deines Unterarms.")
-        case .schultern:    return String(localized: "body.measure.info.schultern",    defaultValue: "Miss den gesamten Umfang um deine Schultern an der breitesten Stelle.")
-        case .oberschenkel: return String(localized: "body.measure.info.oberschenkel", defaultValue: "Miss an der dicksten Stelle deines Oberschenkels.")
-        case .waden:        return String(localized: "body.measure.info.waden",        defaultValue: "Miss an der dicksten Stelle deiner Wade.")
-        case .taille:       return String(localized: "body.measure.info.taille",       defaultValue: "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel.")
+        case .brust:        
+            return prefix + String(localized: "body.measure.info.brust", defaultValue: "Gerade stehen, normal ausatmen. Maßband waagerecht über die breiteste Stelle der Brust (meist auf Höhe der Brustwarzen) führen.")
+        case .bizeps:       
+            return prefix + String(localized: "body.measure.info.bizeps", defaultValue: "Arm auf Schulterhöhe 90 Grad anwinkeln, Bizeps und Trizeps maximal anspannen. Maßband exakt um die dickste Stelle (den Peak) legen.")
+        case .unterarm:     
+            return prefix + String(localized: "body.measure.info.unterarm", defaultValue: "Arm anwinkeln, Faust machen und Unterarm anspannen. Maßband um die dickste Stelle direkt unterhalb des Ellenbogens legen.")
+        case .schultern:    
+            return prefix + String(localized: "body.measure.info.schultern", defaultValue: "Gerade stehen, Arme hängen entspannt. Band waagerecht um die absolut breiteste Stelle des Schultergürtels führen. Mach das nicht allein, lass dir von jemandem helfen, sonst verrutscht das Band.")
+        case .oberschenkel: 
+            return prefix + String(localized: "body.measure.info.oberschenkel", defaultValue: "Aufrecht stehen, das zu messende Bein belasten und anspannen. Das Band waagerecht an der dicksten Stelle (meist direkt unter dem Gesäßansatz) anlegen.")
+        case .waden:        
+            return prefix + String(localized: "body.measure.info.waden", defaultValue: "Im Stehen messen. Ferse leicht anheben, um den Muskel voll anzuspannen. Auch hier exakt die dickste Stelle des Wadenmuskels suchen.")
+        case .taille:       
+            return prefix + String(localized: "body.measure.info.taille", defaultValue: "Normal ausatmen, nicht den Bauch einziehen. Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel.")
         }
     }
 }

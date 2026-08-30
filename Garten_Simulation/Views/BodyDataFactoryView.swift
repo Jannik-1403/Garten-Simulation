@@ -13,7 +13,7 @@ struct BodyDataFactoryView: View {
     @StateObject private var hm = HealthManager.shared
 
     @State private var timeRange: BodyDataTimeRange = .m
-    @State private var selectedMeasurement: BodyMeasurementCategory = .bizeps
+    @AppStorage("lastSelectedBodyMeasure") private var selectedMeasurement: BodyMeasurementCategory = .bizeps
     @State private var showAddSheet = false
     @State private var inputValue: String = ""
     @State private var healthWeightData: [DailyProgressEntry] = []
