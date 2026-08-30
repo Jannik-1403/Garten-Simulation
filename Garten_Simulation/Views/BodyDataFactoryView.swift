@@ -70,17 +70,17 @@ struct BodyDataFactoryView: View {
                     }
                 }
 
-                // Stats Header – zeigt aktuellen (letzten) Wert
+                // Stats Header – zeigt Durchschnitt
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(String(localized: "body.tracking.current", defaultValue: "AKTUELL"))
+                    Text(String(localized: "body.tracking.average", defaultValue: "DURCHSCHNITT"))
                         .font(.system(size: 12, weight: .bold, design: .rounded))
                         .foregroundStyle(.secondary)
                         .kerning(1.2)
 
                     HStack(alignment: .firstTextBaseline, spacing: 4) {
-                        let latest = allData.last?.progress ?? 0
-                        if latest > 0 {
-                            Text(String(format: "%.1f", latest))
+                        let avg = currentAverage
+                        if avg > 0 {
+                            Text(String(format: "%.1f", avg))
                                 .font(.system(size: 42, weight: .black, design: .rounded))
                                 .foregroundStyle(.pink)
                             Text(unit)
@@ -93,15 +93,9 @@ struct BodyDataFactoryView: View {
                         }
                     }
 
-                    if let lastEntry = allData.last {
-                        Text(lastEntry.timestamp.formatted(.dateTime.day().month().year().hour().minute()))
-                            .font(.system(size: 13, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                    } else {
-                        Text(dateRangeLabel)
-                            .font(.system(size: 13, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.secondary)
-                    }
+                    Text(dateRangeLabel)
+                        .font(.system(size: 13, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.secondary)
                 }
                 .padding(.horizontal)
 
@@ -410,13 +404,36 @@ struct BodyDataFactoryView: View {
 
     private var filteredData: [DailyProgressEntry] {
         let range = dateRange
-        return allData.filter { $0.timestamp >= range.start && $0.timestamp <= range.end }
+        let rawData = allData.filter { $0.timestamp >= range.start && $0.timestamp <= range.end }
+        
+        if timeRange == .sixM || timeRange == .j {
+            return aggregateByWeek(rawData)
+        }
+        
+        return rawData
+    }
+    
+    private func aggregateByWeek(_ data: [DailyProgressEntry]) -> [DailyProgressEntry] {
+        guard !data.isEmpty else { return [] }
+        var calendar = Calendar.current
+        calendar.firstWeekday = 2 // Monday
+        
+        let grouped = Dictionary(grouping: data) { entry -> Date in
+            let comps = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: entry.timestamp)
+            return calendar.date(from: comps) ?? entry.timestamp
+        }
+        
+        return grouped.map { (weekStart, entries) in
+            let avgProgress = entries.reduce(0) { $0 + $1.progress } / Double(entries.count)
+            return DailyProgressEntry(timestamp: weekStart, progress: avgProgress)
+        }.sorted { $0.timestamp < $1.timestamp }
     }
 
     private var currentAverage: Double {
-        let data = filteredData
-        guard !data.isEmpty else { return 0 }
-        return data.reduce(0) { $0 + $1.progress } / Double(data.count)
+        let range = dateRange
+        let rawData = allData.filter { $0.timestamp >= range.start && $0.timestamp <= range.end }
+        guard !rawData.isEmpty else { return 0 }
+        return rawData.reduce(0) { $0 + $1.progress } / Double(rawData.count)
     }
 
     private var yMin: Double {
