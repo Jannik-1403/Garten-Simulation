@@ -1,3 +1,8 @@
+## 2026-08-30 14:42:20 - Brustumfang & Info-Texte
+- Neuer Körperumfang 'Brustumfang' hinzugefügt.
+- Info-Texte (i-Icon) mit genauen Messanleitungen für alle Körperumfänge eingebaut.
+- Alle neuen Strings zu 100% lokalisiert (inklusive Fallback).
+
 ## 2026-08-30 14:33:57 - Brustumfang & Info-Texte
 - Neuer Körperumfang 'Brustumfang' hinzugefügt.
 - Info-Texte (i-Icon) mit genauen Messanleitungen für alle Körperumfänge eingebaut.
