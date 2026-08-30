@@ -177,8 +177,8 @@ struct TodoRowView: View {
                             UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         }
                     } label: {
-                        Text(pflanze.todos[index].priority.icon)
-                            .font(.system(size: 24, weight: .black, design: .rounded))
+                        Image(systemName: pflanze.todos[index].priority.icon)
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
                             .foregroundColor(pflanze.todos[index].priority.color)
                     }
                     
@@ -262,8 +262,8 @@ struct StandaloneTodoRowView: View {
                             UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         }
                     } label: {
-                        Text(gardenStore.standaloneTodos[index].priority.icon)
-                            .font(.system(size: 24, weight: .black, design: .rounded))
+                        Image(systemName: gardenStore.standaloneTodos[index].priority.icon)
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
                             .foregroundColor(gardenStore.standaloneTodos[index].priority.color)
                     }
                     

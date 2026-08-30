@@ -390,8 +390,8 @@ struct RoutineExpandableSection: View {
                         Button {
                             onPriorityTap?()
                         } label: {
-                            Text(routine?.priority.icon ?? "")
-                                .font(.system(size: 24, weight: .black, design: .rounded))
+                            Image(systemName: routine?.priority.icon ?? "circle")
+                                .font(.system(size: 24, weight: .bold, design: .rounded))
                                 .foregroundColor(routine?.priority.color ?? .primary)
                         }
                     }
