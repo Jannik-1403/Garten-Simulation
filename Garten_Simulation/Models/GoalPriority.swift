@@ -21,11 +21,11 @@ enum GoalPriority: String, CaseIterable, Equatable, Codable {
         }
     }
     
-    var icon: String {
+    var activeStars: Int {
         switch self {
-        case .low: return "cup.and.saucer.fill"
-        case .medium: return "calendar"
-        case .high: return "bolt.fill"
+        case .low: return 1
+        case .medium: return 2
+        case .high: return 3
         }
     }
     

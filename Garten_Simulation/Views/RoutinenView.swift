@@ -390,9 +390,15 @@ struct RoutineExpandableSection: View {
                         Button {
                             onPriorityTap?()
                         } label: {
-                            Image(systemName: routine?.priority.icon ?? "circle")
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
-                                .foregroundColor(routine?.priority.color ?? .primary)
+                            HStack(spacing: 2) {
+                                ForEach(0..<(routine?.priority.activeStars ?? 1), id: \.self) { _ in
+                                    Image("Powerup")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundColor(routine?.priority.color ?? .primary)
+                                }
+                            }
                         }
                     }
                     

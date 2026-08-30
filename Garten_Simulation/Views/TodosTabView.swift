@@ -177,9 +177,15 @@ struct TodoRowView: View {
                             UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         }
                     } label: {
-                        Image(systemName: pflanze.todos[index].priority.icon)
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                            .foregroundColor(pflanze.todos[index].priority.color)
+                        HStack(spacing: 2) {
+                            ForEach(0..<pflanze.todos[index].priority.activeStars, id: \.self) { _ in
+                                Image("Powerup")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 18, height: 18)
+                                    .foregroundColor(pflanze.todos[index].priority.color)
+                            }
+                        }
                     }
                     
                     Image(systemName: pflanze.todos[index].isCompleted ? "checkmark.circle.fill" : "circle")
@@ -262,9 +268,15 @@ struct StandaloneTodoRowView: View {
                             UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         }
                     } label: {
-                        Image(systemName: gardenStore.standaloneTodos[index].priority.icon)
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                            .foregroundColor(gardenStore.standaloneTodos[index].priority.color)
+                        HStack(spacing: 2) {
+                            ForEach(0..<gardenStore.standaloneTodos[index].priority.activeStars, id: \.self) { _ in
+                                Image("Powerup")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 18, height: 18)
+                                    .foregroundColor(gardenStore.standaloneTodos[index].priority.color)
+                            }
+                        }
                     }
                     
                     Image(systemName: gardenStore.standaloneTodos[index].isCompleted ? "checkmark.circle.fill" : "circle")
