@@ -15,6 +15,7 @@ enum BodyDataTimeRange: String, CaseIterable, Identifiable {
 }
 
 enum BodyMeasurementCategory: String, CaseIterable, Identifiable {
+    case brust       = "body.measure.brust"
     case bizeps      = "body.measure.bizeps"
     case unterarm    = "body.measure.unterarm"
     case schultern   = "body.measure.schultern"
@@ -26,12 +27,25 @@ enum BodyMeasurementCategory: String, CaseIterable, Identifiable {
 
     var localizedName: String {
         switch self {
+        case .brust:        return String(localized: "body.measure.brust",        defaultValue: "Brustumfang")
         case .bizeps:       return String(localized: "body.measure.bizeps",       defaultValue: "Bizeps (Oberarm)")
         case .unterarm:     return String(localized: "body.measure.unterarm",     defaultValue: "Unterarm")
         case .schultern:    return String(localized: "body.measure.schultern",    defaultValue: "Schultern")
         case .oberschenkel: return String(localized: "body.measure.oberschenkel", defaultValue: "Oberschenkel")
         case .waden:        return String(localized: "body.measure.waden",        defaultValue: "Waden")
         case .taille:       return String(localized: "body.measure.taille",       defaultValue: "Taille (Bauch)")
+        }
+    }
+
+    var infoText: String {
+        switch self {
+        case .brust:        return String(localized: "body.measure.info.brust",        defaultValue: "Miss den Umfang an der breitesten Stelle deiner Brust.")
+        case .bizeps:       return String(localized: "body.measure.info.bizeps",       defaultValue: "Miss an der dicksten Stelle deines Oberarms, während der Muskel angespannt ist.")
+        case .unterarm:     return String(localized: "body.measure.info.unterarm",     defaultValue: "Miss an der dicksten Stelle deines Unterarms.")
+        case .schultern:    return String(localized: "body.measure.info.schultern",    defaultValue: "Miss den gesamten Umfang um deine Schultern an der breitesten Stelle.")
+        case .oberschenkel: return String(localized: "body.measure.info.oberschenkel", defaultValue: "Miss an der dicksten Stelle deines Oberschenkels.")
+        case .waden:        return String(localized: "body.measure.info.waden",        defaultValue: "Miss an der dicksten Stelle deiner Wade.")
+        case .taille:       return String(localized: "body.measure.info.taille",       defaultValue: "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel.")
         }
     }
 }

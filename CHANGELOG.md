@@ -1,3 +1,6 @@
+## [2026-08-30] PDF Export Config Fix
+- Im PDF Export Konfigurator wurde die Zeilenlänge (lineLimit) auf 2 erhöht und eine minimale Skalierung (minimumScaleFactor) eingefügt, damit lange Titel wie "Statistiken (Gesamtfortschritt)" sauber dargestellt und nicht abgeschnitten werden.
+
 ## [2026-08-30] To-dos Fix
 - Die Skalierung für lange Gewohnheitsnamen (z.B. "Krafttraining") wurde nun auch auf der To-dos Übersicht (TodosTabView) und bei der Auswahl im Ritual (RitualPlantPickerSheet) hinzugefügt, damit das letzte Wort bzw. der letzte Buchstabe nicht mehr umbricht.
 

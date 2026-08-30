@@ -68,6 +68,17 @@ struct BodyDataFactoryView: View {
                         .padding(.horizontal)
                         .padding(.vertical, 10)
                     }
+                    
+                    HStack(alignment: .top, spacing: 8) {
+                        Image(systemName: "info.circle.fill")
+                            .foregroundStyle(Color.pink)
+                        Text(selectedMeasurement.infoText)
+                            .font(.system(size: 13, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding(.horizontal)
+                    .padding(.bottom, 8)
                 }
 
                 // Stats Header – zeigt Durchschnitt
