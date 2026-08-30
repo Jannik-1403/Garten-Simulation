@@ -126,7 +126,7 @@ struct CustomPlantCreationView: View {
                                     } label: {
                                         HStack {
                                             Image(systemName: "plus.circle.fill")
-                                            Text(String(localized: "plant.create.good_habit"))
+                                            Text(String(localized: "plant.create.good_habit.short", defaultValue: "Gute"))
                                         }
                                         .font(.system(size: 14, weight: .bold, design: .rounded))
                                         .frame(maxWidth: .infinity)
@@ -154,7 +154,7 @@ struct CustomPlantCreationView: View {
                                     } label: {
                                         HStack {
                                             Image(systemName: "minus.circle.fill")
-                                            Text(String(localized: "plant.create.preview.bad_habit"))
+                                            Text(String(localized: "plant.create.bad_habit.short", defaultValue: "Schlechte"))
                                         }
                                         .font(.system(size: 14, weight: .bold, design: .rounded))
                                         .frame(maxWidth: .infinity)

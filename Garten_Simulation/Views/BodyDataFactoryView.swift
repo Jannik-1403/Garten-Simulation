@@ -291,7 +291,7 @@ struct BodyDataFactoryView: View {
 
                 Spacer()
             }
-            .navigationTitle(String(localized: "body.tracking.add_entry", defaultValue: "Eintrag hinzufügen"))
+            .navigationTitle(String(localized: "common.new", defaultValue: "Neu"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

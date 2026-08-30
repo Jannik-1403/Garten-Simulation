@@ -1,3 +1,6 @@
+## [2026-08-30] Font Scaling Updates
+- Die minimale Schriftgröße (minimumScaleFactor) für Gewohnheits-Titel (z.B. "Krafttraining") wurde in mehreren Ansichten wie dem Habit-Shop (UnifiedShopView), der Pflanzendetailkarte (PflanzenCard) sowie in den Routine-Modals (EditRoutineSheet & EditRoutineHabitRow) von 0.8 auf 0.45 reduziert. Dadurch werden lange Wörter nicht mehr unschön umbrochen, sondern passend verkleinert.
+
 ## [2026-08-30] UI Updates
 - Das rote X-Symbol zum direkten Löschen des Timers auf der Pflanzen-Detailansicht (TimerRowView) wurde entfernt, um ein aufgeräumteres Erscheinungsbild zu schaffen.
 
