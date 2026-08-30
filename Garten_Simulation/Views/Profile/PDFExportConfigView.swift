@@ -114,6 +114,9 @@ struct PDFExportConfigView: View {
         } label: {
             HStack(spacing: 12) {
                 Text(title)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.45)
+                    .multilineTextAlignment(.leading)
                 Spacer()
                 Image(systemName: isSelected.wrappedValue ? "checkmark.square.fill" : "square")
                     .foregroundColor(isSelected.wrappedValue ? .blauPrimary : Color(hex: "#C7C7CC"))

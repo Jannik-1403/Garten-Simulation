@@ -1,3 +1,6 @@
+## [2026-08-30] To-dos Fix
+- Die Skalierung für lange Gewohnheitsnamen (z.B. "Krafttraining") wurde nun auch auf der To-dos Übersicht (TodosTabView) und bei der Auswahl im Ritual (RitualPlantPickerSheet) hinzugefügt, damit das letzte Wort bzw. der letzte Buchstabe nicht mehr umbricht.
+
 ## [2026-08-30] UI Text Optimizations
 - Auf der Pflanze-Erstellen-Seite wurden die Buttons für den Gewohnheitstyp zu den kürzeren Wörtern "Gute" und "Schlechte" umbenannt, damit sie besser ins Design passen.
 - Auf der Gewicht-Eintragen-Seite wurde der mittlere Titel zu "Neu" gekürzt, damit die Navigation Bar nicht mehr überladen aussieht.
