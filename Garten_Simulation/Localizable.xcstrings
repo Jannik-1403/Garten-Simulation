@@ -88308,6 +88308,7 @@
       }
     },
     "body.tracking.action.build": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -88318,6 +88319,7 @@
       }
     },
     "body.tracking.action.gain": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -88328,6 +88330,7 @@
       }
     },
     "body.tracking.action.lose": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -88338,6 +88341,7 @@
       }
     },
     "body.tracking.action.reduce": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -88743,6 +88747,7 @@
       }
     },
     "body.tracking.easy_goal": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -88759,6 +88764,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ziel bearbeiten"
+          }
+        }
+      }
+    },
+    "body.tracking.last_week": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letzte Woche"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last Week"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semana Pasada"
           }
         }
       }
@@ -88863,6 +88890,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "身體測量"
+          }
+        }
+      }
+    },
+    "body.tracking.need_more_data": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wir brauchen mehr Daten. Trage dein Gewicht regelmäßig ein, um hier deinen biologisch korrekten Wochentrend (Ø zu Ø) zu sehen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We need more data. Log your weight regularly to see your biologically accurate weekly trend here."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Necesitamos más datos. Registra tu peso regularmente para ver tu tendencia semanal biológicamente precisa aquí."
           }
         }
       }
@@ -89341,18 +89390,8 @@
         }
       }
     },
-    "body.tracking.realistic_desc": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Um dein Ziel zu erreichen, musst du ca. %1$.2f %2$@ pro Woche %3$@. Das entspricht einer gesunden und realistischen Rate."
-          }
-        }
-      }
-    },
     "body.tracking.realistic_goal": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -89557,6 +89596,358 @@
           "stringUnit": {
             "state": "translated",
             "value": "6個月"
+          }
+        }
+      }
+    },
+    "body.tracking.status.bulking.deficit.desc": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du verbrennst mehr, als du isst. Kalorien sofort um 300 kcal hoch."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You are burning more than you eat. Increase calories by 300 kcal immediately."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estás quemando más de lo que comes. Aumenta las calorías en 300 kcal inmediatamente."
+          }
+        }
+      }
+    },
+    "body.tracking.status.bulking.deficit.title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔴 Defizit-Warnung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔴 Deficit Warning"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔴 Advertencia de Déficit"
+          }
+        }
+      }
+    },
+    "body.tracking.status.bulking.fat.desc": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewichtszunahme zu aggressiv. Du baust unnötig Fett auf. Kalorien um 200 kcal senken."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight gain is too aggressive. You are building unnecessary fat. Reduce calories by 200 kcal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El aumento de peso es demasiado agresivo. Estás acumulando grasa innecesaria. Reduce las calorías en 200 kcal."
+          }
+        }
+      }
+    },
+    "body.tracking.status.bulking.fat.title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔴 Fett-Warnung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔴 Fat Warning"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔴 Advertencia de Grasa"
+          }
+        }
+      }
+    },
+    "body.tracking.status.bulking.perfect.desc": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufbau läuft sauber. Makros beibehalten. Training progressiv im Gym steigern."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bulking is clean. Maintain macros. Progressively increase gym training."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volumen limpio. Mantén los macros. Aumenta progresivamente el entrenamiento en el gimnasio."
+          }
+        }
+      }
+    },
+    "body.tracking.status.bulking.perfect.title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟢 Perfektes Tempo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟢 Perfect Pace"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟢 Ritmo Perfecto"
+          }
+        }
+      }
+    },
+    "body.tracking.status.bulking.stagnation.desc": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zu wenig Treibstoff. Erhöhe deine täglichen Kalorien ab morgen um 200 kcal."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not enough fuel. Increase your daily calories by 200 kcal starting tomorrow."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falta de combustible. Aumenta tus calorías diarias en 200 kcal a partir de mañana."
+          }
+        }
+      }
+    },
+    "body.tracking.status.bulking.stagnation.title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟡 Stagnation"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟡 Stagnation"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟡 Estancamiento"
+          }
+        }
+      }
+    },
+    "body.tracking.status.cutting.gain.desc": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du nimmst zu statt ab. Reduziere deine täglichen Kalorien um 300 kcal."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You are gaining instead of losing. Reduce your daily calories by 300 kcal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estás ganando peso en lugar de perderlo. Reduce tus calorías diarias en 300 kcal."
+          }
+        }
+      }
+    },
+    "body.tracking.status.cutting.gain.title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔴 Zunahme-Warnung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔴 Gain Warning"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🔴 Advertencia de Aumento"
+          }
+        }
+      }
+    },
+    "body.tracking.status.cutting.muscleloss.desc": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gewichtsverlust zu aggressiv. Du verbrennst wertvolle Muskeln. Kalorien um 200 kcal erhöhen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight loss is too aggressive. You are burning valuable muscle. Increase calories by 200 kcal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La pérdida de peso es demasiado agresiva. Estás quemando músculo valioso. Aumenta las calorías en 200 kcal."
+          }
+        }
+      }
+    },
+    "body.tracking.status.cutting.muscleloss.title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟠 Muskelverlust-Warnung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟠 Muscle Loss Warning"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟠 Advertencia de Pérdida Muscular"
+          }
+        }
+      }
+    },
+    "body.tracking.status.cutting.perfect.desc": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fettabbau läuft sauber. Makros beibehalten. Training intensiv fortführen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fat loss is clean. Maintain macros. Continue intensive training."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La pérdida de grasa es limpia. Mantén los macros. Continúa el entrenamiento intensivo."
+          }
+        }
+      }
+    },
+    "body.tracking.status.cutting.perfect.title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟢 Perfektes Tempo"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟢 Perfect Pace"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟢 Ritmo Perfecto"
+          }
+        }
+      }
+    },
+    "body.tracking.status.cutting.stagnation.desc": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Gewichtsverlust stagniert. Senke deine Kalorien um 200 kcal oder erhöhe Cardio."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your weight loss is stagnating. Reduce your calories by 200 kcal or increase cardio."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu pérdida de peso está estancada. Reduce tus calorías en 200 kcal o aumenta el cardio."
+          }
+        }
+      }
+    },
+    "body.tracking.status.cutting.stagnation.title": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟡 Stagnation"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟡 Stagnation"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🟡 Estancamiento"
           }
         }
       }
@@ -90043,6 +90434,7 @@
       }
     },
     "body.tracking.unrealistic_goal": {
+      "extractionState": "stale",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -90058,6 +90450,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "bis zum "
+          }
+        }
+      }
+    },
+    "body.tracking.weekly_trend": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Wochentrend (Ø zu Ø)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your Weekly Trend (Ø to Ø)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu Tendencia Semanal (Ø a Ø)"
           }
         }
       }
@@ -111214,7 +111628,6 @@
         }
       }
     },
-    "Dein Fortschritt": {},
     "Deine Ziele": {
       "extractionState": "manual",
       "localizations": {
@@ -138976,7 +139389,6 @@
         }
       }
     },
-    "Gib noch einen weiteren Datenpunkt ein, um deinen Fortschritt zu sehen.": {},
     "glasses.unlock.coins": {
       "comment": "",
       "extractionState": "manual",
@@ -353390,7 +353802,6 @@
         }
       }
     },
-    "Tempo erhöhen": {},
     "tier_bronze": {
       "comment": "",
       "extractionState": "manual",
@@ -364238,91 +364649,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Achte auf deine Umgebung! Schlechte Gewohnheiten sammeln sich als Müll an und stören deinen schönen Garten."
+            "value": "Schlechte Gewohnheiten können sich auf deinen Körper auswirken. Achte darauf so wenig wie möglich zu machen. Sei auch immer ehrlich zu dir selber."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pay attention to your surroundings! Bad habits accumulate as trash and ruin your beautiful garden."
+            "value": "Bad habits can affect your body. Make sure to do as little as possible. Always be honest with yourself."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "¡Presta atención a tu entorno! Los malos hábitos se acumulan como basura y arruinan tu hermoso jardín."
+            "value": "Los malos hábitos pueden afectar a tu cuerpo. Asegúrate de hacer lo menos posible. Sé siempre honesto contigo mismo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Faites attention à votre environnement ! Les mauvaises habitudes s'accumulent comme des déchets et ruinent votre beau jardin."
+            "value": "Les mauvaises habitudes peuvent affecter votre corps. Veillez à en faire le moins possible. Soyez toujours honnête avec vous-même."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अपने पर्यावरण पर ध्यान दें! बुरी आदतें कचरे के रूप में जमा होती हैं और आपके सुंदर बगीचे में परेशानी पैदा करती हैं।"
+            "value": "बुरी आदतें आपके शरीर को प्रभावित कर सकती हैं। सुनिश्चित करें कि आप जितना संभव हो उतना कम करें। हमेशा खुद के प्रति ईमानदार रहें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Presta attenzione all'ambiente circostante! Le cattive abitudini si accumulano come spazzatura e rovinano il tuo bellissimo giardino."
+            "value": "Le cattive abitudini possono influire sul tuo corpo. Assicurati di farne il meno possibile. Sii sempre onesto con te stesso."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "周囲の環境に注意してください！悪い習慣はゴミとしてたまり、あなたの美しい庭を台無しにします。"
+            "value": "悪い習慣は体に影響を与える可能性があります。できるだけ少なくするようにしてください。常に自分に正直になってください。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "주변 환경에 주의하세요! 나쁜 습관은 쓰레기처럼 쌓여 당신의 아름다운 정원을 망칩니다."
+            "value": "나쁜 습관은 몸에 영향을 미칠 수 있습니다. 가능한 한 적게 하도록 하세요. 항상 자신에게 정직해지세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Let op je omgeving! Slechte gewoonten hopen zich op als afval en verpesten je prachtige tuin."
+            "value": "Slechte gewoonten kunnen je lichaam beïnvloeden. Zorg ervoor dat je zo min mogelijk doet. Wees altijd eerlijk tegen jezelf."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zwracaj uwagę na otoczenie! Złe nawyki gromadzą się jak śmieci i niszczą twój piękny ogród."
+            "value": "Złe nawyki mogą wpływać na twoje ciało. Upewnij się, że robisz jak najmniej. Zawsze bądź ze sobą szczery."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Preste atenção ao seu redor! Maus hábitos se acumulam como lixo e arruínam seu lindo jardim."
+            "value": "Os maus hábitos podem afetar o seu corpo. Certifique-se de fazer o mínimo possível. Seja sempre honesto consigo mesmo."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Обратите внимание на свое окружение! Вредные привычки накапливаются как мусор и разрушают ваш прекрасный сад."
+            "value": "Плохие привычки могут сказаться на вашем теле. Старайтесь делать как можно меньше. Всегда будьте честны с собой."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Çevrenize dikkat edin! Kötü alışkanlıklar çöp gibi birikir ve güzel bahçenizi mahveder."
+            "value": "Kötü alışkanlıklar vücudunuzu etkileyebilir. Mümkün olduğunca az yapmaya dikkat edin. Kendinize karşı her zaman dürüst olun."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "注意你周围的环境！坏习惯会像垃圾一样堆积起来，破坏你美丽的花园。"
+            "value": "坏习惯会影响你的身体。尽量少做。始终对自己诚实。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "注意你周圍的環境！壞習慣會像垃圾一樣堆積起來，破壞你美麗的花園。"
+            "value": "壞習慣會影響你的身體。盡量少做。始終對自己誠實。"
           }
         }
       }
@@ -364430,91 +364841,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nutze deine Coins für hilfreiche Power-Ups. Du findest hier Trash-Items für schlechte Gewohnheiten, aber du kannst dort auch Pflanzen kaufen, die deine normalen Gewohnheiten widerspiegeln."
+            "value": "Nutze deine Coins um dir neue Gewohnheiten anzueignen. Hier kannst du auch deine schlechten Gewohnheiten anfangen zu tracken und jeden Tag ein kostenloses Glücksrad drehen, um Belohnungen freizuschalten."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Use your coins for helpful power-ups. You'll find trash items for bad habits here, but you can also buy plants that reflect your normal habits."
+            "value": "Use your coins to acquire new habits. Here you can also start tracking your bad habits and spin a free wheel of fortune every day to unlock rewards."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usa tus monedas para obtener potenciadores útiles. Encontrarás artículos de basura para los malos hábitos, pero también puedes comprar plantas que reflejen tus hábitos normales."
+            "value": "Usa tus monedas para adquirir nuevos hábitos. Aquí también puedes empezar a hacer un seguimiento de tus malos hábitos y girar una ruleta de la suerte gratis todos los días para desbloquear recompensas."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Utilisez vos pièces pour des power-ups. Vous trouverez des déchets pour les mauvaises habitudes, mais vous pouvez aussi acheter des plantes pour vos bonnes habitudes."
+            "value": "Utilisez vos pièces pour acquérir de nouvelles habitudes. Ici, vous pouvez également commencer à suivre vos mauvaises habitudes et faire tourner une roue de la fortune gratuite chaque jour pour débloquer des récompenses."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "अपने कॉइन्स का उपयोग उपयोगी पावर-अप्स के लिए करें। आप यहां बुरी आदतों के लिए ट्रैश-आइटम पाएंगे, लेकिन आप वहाँ पौधे भी खरीद सकते हैं, जो आपकी सामान्य आदतों को दर्शाते हैं।"
+            "value": "नई आदतें हासिल करने के लिए अपने सिक्कों का उपयोग करें। यहां आप अपनी बुरी आदतों को ट्रैक करना भी शुरू कर सकते हैं और पुरस्कार अनलॉक करने के लिए हर दिन एक मुफ्त लकी व्हील घुमा सकते हैं।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usa le tue monete per i power-up. Troverai spazzatura per le cattive abitudini, ma puoi anche comprare piante che riflettono le tue normali abitudini."
+            "value": "Usa le tue monete per acquisire nuove abitudini. Qui puoi anche iniziare a monitorare le tue cattive abitudini e girare una ruota della fortuna gratuita ogni giorno per sbloccare ricompense."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "コインを使って便利なパワーアップを手に入れましょう。悪い習慣のゴミアイテムもありますが、通常の習慣を反映した植物も買えます。"
+            "value": "コインを使って新しい習慣を身につけましょう。ここでは、悪い習慣の追跡を開始したり、毎日無料のルーレットを回して報酬をロック解除したりすることもできます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "코인을 사용하여 유용한 파워업을 얻으세요. 나쁜 습관을 위한 쓰레기 아이템도 있지만, 평소 습관을 반영하는 식물도 살 수 있습니다."
+            "value": "코인을 사용하여 새로운 습관을 얻으세요. 여기서 나쁜 습관을 추적하기 시작하고 매일 무료 행운의 룰렛을 돌려 보상을 잠금 해제할 수도 있습니다."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gebruik je munten voor power-ups. Je vindt hier afval voor slechte gewoonten, maar je kunt ook planten kopen die je normale gewoonten weerspiegelen."
+            "value": "Gebruik je munten om nieuwe gewoonten aan te leren. Hier kun je ook beginnen met het bijhouden van je slechte gewoonten en elke dag aan een gratis rad van fortuin draaien om beloningen te ontgrendelen."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wykorzystaj swoje monety na ulepszenia. Znajdziesz tu śmieci dla złych nawyków, ale możesz też kupić rośliny odzwierciedlające twoje normalne nawyki."
+            "value": "Użyj swoich monet, aby zdobyć nowe nawyki. Tutaj możesz również zacząć śledzić swoje złe nawyki i codziennie kręcić darmowym kołem fortuny, aby odblokować nagrody."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Use suas moedas para power-ups. Você encontrará lixo para maus hábitos, mas também pode comprar plantas que refletem seus hábitos normais."
+            "value": "Use suas moedas para adquirir novos hábitos. Aqui você também pode começar a monitorar seus maus hábitos e girar uma roda da fortuna grátis todos os dias para desbloquear recompensas."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Используйте свои монеты для получения полезных бонусов. Здесь вы можете найти предметы для мусора от вредных привычек, но вы также можете купить там растения, отражающие ваши обычные привычки."
+            "value": "Используйте свои монеты для приобретения новых привычек. Здесь вы также можете начать отслеживать свои плохие привычки и каждый день крутить бесплатное колесо фортуны, чтобы разблокировать награды."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Paralarınızı güçlendiriciler için kullanın. Kötü alışkanlıklar için çöp bulacaksınız, ancak normal alışkanlıklarınızı yansıtan bitkiler de satın alabilirsiniz."
+            "value": "Yeni alışkanlıklar edinmek için jetonlarınızı kullanın. Burada ayrıca kötü alışkanlıklarınızı izlemeye başlayabilir ve ödüllerin kilidini açmak için her gün ücretsiz bir şans çarkı çevirebilirsiniz."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "使用您的硬币来获得有用的能量。您可以在这里找到针对坏习惯的垃圾物品，但您也可以在那里购买反映您正常习惯的植物。"
+            "value": "使用您的金币来养成新习惯。在这里，您还可以开始追踪自己的坏习惯，并每天免费转动幸运轮盘来解锁奖励。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "使用您的硬幣來獲得有用的能量。您可以在這裡找到針對壞習慣的垃圾物品，但您也可以在那裡購買反映您正常習慣的植物。"
+            "value": "使用您的金幣來養成新習慣。在這裡，您還可以開始追蹤自己的壞習慣，並每天免費轉動幸運輪盤來解鎖獎勵。"
           }
         }
       }
@@ -364526,91 +364937,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Shop & Power-Ups"
+            "value": "Shop"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Shop & Power-Ups"
+            "value": "Shop"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tienda y potenciadores"
+            "value": "Tienda"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Boutique et power-ups"
+            "value": "Boutique"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "दुकान और पावर-अप्स"
+            "value": "दुकान"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Negozio e potenziamenti"
+            "value": "Negozio"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ショップとパワーアップ"
+            "value": "ショップ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "쇼핑 및 파워업"
+            "value": "상점"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Winkelen en power-ups"
+            "value": "Winkel"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sklepy i ulepszenia"
+            "value": "Sklep"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Loja e power-ups"
+            "value": "Loja"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Магазин и бонусы"
+            "value": "Магазин"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alışveriş ve Güçlendirmeler"
+            "value": "Dükkan"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "商店和强化道具"
+            "value": "商店"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "商店和強化道具"
+            "value": "商店"
           }
         }
       }
@@ -409897,426 +410308,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "目標"
-          }
-        }
-      }
-    },
-    "Ziel verschieben": {},
-    "Ziel vorziehen": {},
-    "body.tracking.weekly_trend": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dein Wochentrend (Ø zu Ø)"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your Weekly Trend (Ø to Ø)"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu Tendencia Semanal (Ø a Ø)"
-          }
-        }
-      }
-    },
-    "body.tracking.last_week": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Letzte Woche"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Last Week"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Semana Pasada"
-          }
-        }
-      }
-    },
-    "body.tracking.need_more_data": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wir brauchen mehr Daten. Trage dein Gewicht regelmäßig ein, um hier deinen biologisch korrekten Wochentrend (Ø zu Ø) zu sehen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "We need more data. Log your weight regularly to see your biologically accurate weekly trend here."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Necesitamos más datos. Registra tu peso regularmente para ver tu tendencia semanal biológicamente precisa aquí."
-          }
-        }
-      }
-    },
-    "body.tracking.status.bulking.deficit.title": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🔴 Defizit-Warnung"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🔴 Deficit Warning"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🔴 Advertencia de Déficit"
-          }
-        }
-      }
-    },
-    "body.tracking.status.bulking.deficit.desc": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Du verbrennst mehr, als du isst. Kalorien sofort um 300 kcal hoch."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You are burning more than you eat. Increase calories by 300 kcal immediately."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Estás quemando más de lo que comes. Aumenta las calorías en 300 kcal inmediatamente."
-          }
-        }
-      }
-    },
-    "body.tracking.status.bulking.stagnation.title": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟡 Stagnation"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟡 Stagnation"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟡 Estancamiento"
-          }
-        }
-      }
-    },
-    "body.tracking.status.bulking.stagnation.desc": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zu wenig Treibstoff. Erhöhe deine täglichen Kalorien ab morgen um 200 kcal."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not enough fuel. Increase your daily calories by 200 kcal starting tomorrow."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Falta de combustible. Aumenta tus calorías diarias en 200 kcal a partir de mañana."
-          }
-        }
-      }
-    },
-    "body.tracking.status.bulking.perfect.title": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟢 Perfektes Tempo"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟢 Perfect Pace"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟢 Ritmo Perfecto"
-          }
-        }
-      }
-    },
-    "body.tracking.status.bulking.perfect.desc": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aufbau läuft sauber. Makros beibehalten. Training progressiv im Gym steigern."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bulking is clean. Maintain macros. Progressively increase gym training."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Volumen limpio. Mantén los macros. Aumenta progresivamente el entrenamiento en el gimnasio."
-          }
-        }
-      }
-    },
-    "body.tracking.status.bulking.fat.title": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🔴 Fett-Warnung"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🔴 Fat Warning"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🔴 Advertencia de Grasa"
-          }
-        }
-      }
-    },
-    "body.tracking.status.bulking.fat.desc": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewichtszunahme zu aggressiv. Du baust unnötig Fett auf. Kalorien um 200 kcal senken."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weight gain is too aggressive. You are building unnecessary fat. Reduce calories by 200 kcal."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "El aumento de peso es demasiado agresivo. Estás acumulando grasa innecesaria. Reduce las calorías en 200 kcal."
-          }
-        }
-      }
-    },
-    "body.tracking.status.cutting.gain.title": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🔴 Zunahme-Warnung"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🔴 Gain Warning"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🔴 Advertencia de Aumento"
-          }
-        }
-      }
-    },
-    "body.tracking.status.cutting.gain.desc": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Du nimmst zu statt ab. Reduziere deine täglichen Kalorien um 300 kcal."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You are gaining instead of losing. Reduce your daily calories by 300 kcal."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Estás ganando peso en lugar de perderlo. Reduce tus calorías diarias en 300 kcal."
-          }
-        }
-      }
-    },
-    "body.tracking.status.cutting.stagnation.title": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟡 Stagnation"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟡 Stagnation"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟡 Estancamiento"
-          }
-        }
-      }
-    },
-    "body.tracking.status.cutting.stagnation.desc": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dein Gewichtsverlust stagniert. Senke deine Kalorien um 200 kcal oder erhöhe Cardio."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your weight loss is stagnating. Reduce your calories by 200 kcal or increase cardio."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu pérdida de peso está estancada. Reduce tus calorías en 200 kcal o aumenta el cardio."
-          }
-        }
-      }
-    },
-    "body.tracking.status.cutting.perfect.title": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟢 Perfektes Tempo"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟢 Perfect Pace"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟢 Ritmo Perfecto"
-          }
-        }
-      }
-    },
-    "body.tracking.status.cutting.perfect.desc": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fettabbau läuft sauber. Makros beibehalten. Training intensiv fortführen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fat loss is clean. Maintain macros. Continue intensive training."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La pérdida de grasa es limpia. Mantén los macros. Continúa el entrenamiento intensivo."
-          }
-        }
-      }
-    },
-    "body.tracking.status.cutting.muscleloss.title": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟠 Muskelverlust-Warnung"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟠 Muscle Loss Warning"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🟠 Advertencia de Pérdida Muscular"
-          }
-        }
-      }
-    },
-    "body.tracking.status.cutting.muscleloss.desc": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gewichtsverlust zu aggressiv. Du verbrennst wertvolle Muskeln. Kalorien um 200 kcal erhöhen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weight loss is too aggressive. You are burning valuable muscle. Increase calories by 200 kcal."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La pérdida de peso es demasiado agresiva. Estás quemando músculo valioso. Aumenta las calorías en 200 kcal."
           }
         }
       }

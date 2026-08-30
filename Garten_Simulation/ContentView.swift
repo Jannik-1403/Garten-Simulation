@@ -111,6 +111,11 @@ struct ContentView: View {
                 .zIndex(10002)
             }
         }
+        .onChange(of: interactiveTourManager.isActive) { isActive in
+            if isActive {
+                mockGardenStore.selectedTab = 0
+            }
+        }
         .sheet(isPresented: $showWeeklyReportPopup) {
             NavigationStack {
                 ScrollView {
