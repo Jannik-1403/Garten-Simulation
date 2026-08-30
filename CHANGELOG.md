@@ -1,3 +1,6 @@
+## [2026-08-30] UI Updates
+- Das rote X-Symbol zum direkten Löschen des Timers auf der Pflanzen-Detailansicht (TimerRowView) wurde entfernt, um ein aufgeräumteres Erscheinungsbild zu schaffen.
+
 ## [2026-08-30] UI & Chart Updates
 - Auf der Krafttraining-Seite wird der Timer nun oberhalb der Body-Tracking Sektion (Gewicht/Umfänge) angezeigt, direkt unter den Notizen.
 - Ein Bug in der Intraday-Fortschritts-Statistik wurde behoben, bei dem die Graph-Linie an neuen Tagen fehlerhaft vom linken unteren Bildschirmrand ins Bild ragte.

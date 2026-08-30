@@ -13,6 +13,8 @@ struct EditRoutineHabitRow: View {
             
             Text(habit.isRoutineOnly ? String(localized: String.LocalizationValue(habit.displayedHabitName)) : (settings.showHabitInsteadOfName ? String(localized: String.LocalizationValue(habit.displayedHabitName)) : String(localized: String.LocalizationValue(habit.name))))
                 .font(.system(size: 16, weight: .bold, design: .rounded))
+                .lineLimit(1)
+                .minimumScaleFactor(0.45)
         }
         .padding(.vertical, 4)
     }

@@ -184,7 +184,7 @@ struct PflanzenCard: View {
                             .foregroundStyle(Color.primary)
                             .lineLimit(2)
                             .multilineTextAlignment(.center)
-                            .minimumScaleFactor(0.8)
+                            .minimumScaleFactor(0.45)
                     }
                     
                     // Streak Display

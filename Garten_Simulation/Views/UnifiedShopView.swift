@@ -58,7 +58,7 @@ struct ShopItemCard: View {
                         .foregroundStyle(Color.primary)
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
-                        .minimumScaleFactor(0.8)
+                        .minimumScaleFactor(0.45)
                     if !subtitle.isEmpty {
                         Text(NSLocalizedString(subtitle, comment: ""))
                             .font(.system(size: 14))

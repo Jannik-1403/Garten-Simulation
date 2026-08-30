@@ -279,10 +279,14 @@ struct EditRoutineSheet: View {
                                                     Text(String(localized: String.LocalizationValue(plant.displayedHabitName)))
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                                         .foregroundStyle(.primary)
+                                                        .lineLimit(1)
+                                                        .minimumScaleFactor(0.45)
                                                 } else {
                                                     Text(String(localized: String.LocalizationValue(plant.name)))
                                                         .font(.system(size: 16, weight: .bold, design: .rounded))
                                                         .foregroundStyle(.primary)
+                                                        .lineLimit(1)
+                                                        .minimumScaleFactor(0.45)
                                                 }
                                                 Spacer()
                                             }
