@@ -1,3 +1,6 @@
+## [2026-08-30] Focus Session Timer UI Update
+- Der Abbrechen-Button im Focus Timer wurde von einem roten Text zu einem neutralen, schwarzen X-Icon geändert, um ein saubereres Design ohne störenden roten Hintergrund zu gewährleisten.
+
 ## [2026-08-30] - Body Tracking Chart Aggregation
 - **Body Tracking:** Bei den Filtern '6 Monate' und 'Jahr' werden die Datenpunkte im Diagramm nun zu übersichtlichen Wochendurchschnitten zusammengefasst.
 - **Body Tracking:** Der Header über dem Diagramm zeigt nun für den ausgewählten Zeitraum immer den Durchschnittswert ('DURCHSCHNITT') statt des aktuellsten Gewichts, analog zu Apple Health.

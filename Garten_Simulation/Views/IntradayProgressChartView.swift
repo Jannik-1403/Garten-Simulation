@@ -16,8 +16,12 @@ struct IntradayProgressChartView: View {
         return "%"
     }
     
+    private var todaysHistory: [DailyProgressEntry] {
+        return history.filter { Calendar.current.isDateInToday($0.timestamp) }
+    }
+    
     private var todayTotal: Double {
-        return (history.last?.progress ?? 0.0) * 100.0
+        return (todaysHistory.last?.progress ?? 0.0) * 100.0
     }
     
     private var dayStart: Date {
@@ -25,13 +29,13 @@ struct IntradayProgressChartView: View {
     }
     
     private var lastDataDate: Date {
-        history.last?.timestamp ?? Date()
+        todaysHistory.last?.timestamp ?? Date()
     }
     
     private var chartData: [(Date, Double)] {
         var result: [(Date, Double)] = []
         result.append((dayStart, 0.0))
-        for entry in history {
+        for entry in todaysHistory {
             result.append((entry.timestamp, entry.progress * 100.0))
         }
         return result

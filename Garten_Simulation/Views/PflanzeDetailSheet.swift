@@ -230,13 +230,6 @@ struct PflanzeDetailSheet: View {
                     .id(TourStep.plantNotes)
                     }
 
-                    // Body Tracking (Krafttraining) – nach Notizen, vor Jahresziel
-                    if pflanze.effectiveHealthMetric == .strengthTraining && (pflanze.showWeight || pflanze.showMeasurements) {
-                        BodyTrackingWidgetGroup(pflanze: pflanze)
-                            .environmentObject(gardenStore)
-                            .environmentObject(settings)
-                    }
-
                     // MARK: - Daily Reminders
                     if pflanze.showTimer {
                         DisclosureGroup(isExpanded: $isRemindersExpanded) {
@@ -285,6 +278,13 @@ struct PflanzeDetailSheet: View {
                     .tint(.blauPrimary)
                     .tourAnchor(.plantTimer)
                     .id(TourStep.plantTimer)
+                    }
+
+                    // Body Tracking (Krafttraining) – nach Notizen, vor Jahresziel
+                    if pflanze.effectiveHealthMetric == .strengthTraining && (pflanze.showWeight || pflanze.showMeasurements) {
+                        BodyTrackingWidgetGroup(pflanze: pflanze)
+                            .environmentObject(gardenStore)
+                            .environmentObject(settings)
                     }
 
                     // MARK: - Ziel-Punkte Banner
