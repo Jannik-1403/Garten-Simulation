@@ -416,9 +416,9 @@ struct FocusSessionView: View {
                         Button {
                             showMathChallenge = true
                         } label: {
-                            Image(systemName: "xmark")
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
-                                .foregroundStyle(.primary)
+                            Text(String(localized: "button.cancel"))
+                                .font(.system(size: 16, weight: .bold, design: .rounded))
+                                .foregroundStyle(.red)
                         }
                         .padding(.bottom, 40)
                     }

@@ -239,8 +239,7 @@ struct PflanzeDetailSheet: View {
                                     schedule: schedule,
                                     onTap: { 
                                         zeigeTimerEditSheet = true 
-                                    },
-                                    onConfirmDelete: { gardenStore.timerEntfernen(pflanze: pflanze) }
+                                    }
                                 )
                             } else {
                                 Text(String(localized: "plant.detail.no_reminders", defaultValue: "Keine Erinnerungen"))
@@ -1518,10 +1517,8 @@ struct TimerRowView: View {
     @EnvironmentObject var settings: SettingsStore
     let schedule: ReminderSchedule
     let onTap: () -> Void
-    let onConfirmDelete: () -> Void
 
     @State private var isVisualPressed = false
-    @State private var deleteConfirmShowing = false
 
     var body: some View {
         // The entire row (including X) lives in one Button so everything animates together.
@@ -1554,31 +1551,11 @@ struct TimerRowView: View {
                     }
                 }
                 Spacer()
-
-                // X delete button — inside the label so it moves with the card.
-                Image(systemName: "xmark.circle.fill")
-                    .font(.system(size: 20))
-                    .foregroundStyle(Color.red)
-                    .frame(width: 44, height: 44)
-                    .contentShape(Rectangle())
-                    .simultaneousGesture(
-                        TapGesture().onEnded { deleteConfirmShowing = true }
-                    )
             }
             .padding(.vertical, 6)
             .padding(.horizontal, 14)
         }
         .buttonStyle(PflanzeDetailListRowButtonStyle(isVisualPressed: isVisualPressed))
-        .confirmationDialog(
-            String(localized: "plant.detail.timer.cancel.confirm"),
-            isPresented: $deleteConfirmShowing,
-            titleVisibility: .visible
-        ) {
-            Button(String(localized: "plant.detail.timer.cancel.action"), role: .destructive) {
-                onConfirmDelete()
-            }
-            Button(String(localized: "button.cancel"), role: .cancel) { }
-        }
     }
 }
 
