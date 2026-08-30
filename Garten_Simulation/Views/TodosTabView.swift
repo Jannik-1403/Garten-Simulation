@@ -67,6 +67,8 @@ struct TodosTabView: View {
                                     VStack(alignment: .leading, spacing: 12) {
                                         Text(NSLocalizedString(pflanze.displayedHabitName, comment: ""))
                                             .font(.system(size: 20, weight: .black, design: .rounded))
+                                            .lineLimit(1)
+                                            .minimumScaleFactor(0.45)
                                             .padding(.horizontal, 24)
                                         
                                         VStack(spacing: 12) {
@@ -347,6 +349,7 @@ struct GlobalTodoAddSheet: View {
                                         .font(.system(size: 10, weight: .bold, design: .rounded))
                                         .foregroundColor(.primary)
                                         .lineLimit(2)
+                                        .minimumScaleFactor(0.45)
                                         .multilineTextAlignment(.center)
                                         .frame(width: 70)
                                 }

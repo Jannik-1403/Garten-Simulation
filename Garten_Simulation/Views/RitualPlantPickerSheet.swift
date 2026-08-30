@@ -60,6 +60,8 @@ struct RitualPlantPickerSheet: View {
                                         Text(NSLocalizedString(plant.habitName, comment: ""))
                                             .font(.system(size: 16, weight: .black, design: .rounded))
                                             .foregroundColor(isOwned ? .primary : .secondary)
+                                            .lineLimit(1)
+                                            .minimumScaleFactor(0.45)
                                         
                                         // PFLANZE ALS UNTERTITEL
                                         Text(NSLocalizedString(plant.name, comment: ""))

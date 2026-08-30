@@ -1,3 +1,8 @@
+## [2026-08-30] UI Text Optimizations
+- Auf der Pflanze-Erstellen-Seite wurden die Buttons für den Gewohnheitstyp zu den kürzeren Wörtern "Gute" und "Schlechte" umbenannt, damit sie besser ins Design passen.
+- Auf der Gewicht-Eintragen-Seite wurde der mittlere Titel zu "Neu" gekürzt, damit die Navigation Bar nicht mehr überladen aussieht.
+- Alle neuen Texte wurden in allen 11 Projektsprachen lokalisiert.
+
 ## [2026-08-30] Font Scaling Updates
 - Die minimale Schriftgröße (minimumScaleFactor) für Gewohnheits-Titel (z.B. "Krafttraining") wurde in mehreren Ansichten wie dem Habit-Shop (UnifiedShopView), der Pflanzendetailkarte (PflanzenCard) sowie in den Routine-Modals (EditRoutineSheet & EditRoutineHabitRow) von 0.8 auf 0.45 reduziert. Dadurch werden lange Wörter nicht mehr unschön umbrochen, sondern passend verkleinert.
 
