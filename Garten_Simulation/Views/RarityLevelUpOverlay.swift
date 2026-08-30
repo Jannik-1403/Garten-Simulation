@@ -60,7 +60,7 @@ struct RarityLevelUpOverlay: View {
                             .padding(.bottom, 8)
                     }
                         
-                    if let habitName = habit?.displayedHabitName {
+                    if let habitName = habit?.localizedHabitName {
                         let customText = String(format: String(localized: "level_up.custom_text", defaultValue: "Du hast %@ schon lange gemeistert. Es wird immer einfacher für dich, die Gewohnheit beizubehalten!"), habitName)
                         Text(customText)
                             .font(.system(size: 14, weight: .medium, design: .rounded))
