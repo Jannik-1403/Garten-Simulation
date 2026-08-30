@@ -1,3 +1,7 @@
+## [2026-08-30] - Body Tracking Chart Aggregation
+- **Body Tracking:** Bei den Filtern '6 Monate' und 'Jahr' werden die Datenpunkte im Diagramm nun zu übersichtlichen Wochendurchschnitten zusammengefasst.
+- **Body Tracking:** Der Header über dem Diagramm zeigt nun für den ausgewählten Zeitraum immer den Durchschnittswert ('DURCHSCHNITT') statt des aktuellsten Gewichts, analog zu Apple Health.
+
 ## [2026-08-30] - Update Display Mode Text & Remove 'Sonstiges'
 - **Profil & Einstellungen:** Der Beschreibungstext für den Anzeigemodus ('Name der Pflanze ohne die verknüpfte Gewohnheit') wurde in 15 Sprachen präzisiert und gekürzt.
 - **Schlechte Gewohnheiten:** Die überflüssige Kategorie 'Sonstiges' (.pflanzen) wurde aus den Trash-Items/Dekorationen entfernt.
