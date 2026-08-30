@@ -1,3 +1,7 @@
+## [2026-08-30] - Update Display Mode Text & Remove 'Sonstiges'
+- **Profil & Einstellungen:** Der Beschreibungstext für den Anzeigemodus ('Name der Pflanze ohne die verknüpfte Gewohnheit') wurde in 15 Sprachen präzisiert und gekürzt.
+- **Schlechte Gewohnheiten:** Die überflüssige Kategorie 'Sonstiges' (.pflanzen) wurde aus den Trash-Items/Dekorationen entfernt.
+
 ## [2026-08-30] - App Tour Routing & Localization Texts
 - **App Tour Routing:** Fixed a bug where restarting the App Tour from the Developer Menu would keep the user on the Profile tab instead of switching to the Habits tab.
 - **Localization:** Updated the descriptions for the 'Schlechte Gewohnheiten' and 'Shop & Power-Ups' tour steps. Ensured 100% translation coverage across all 15 languages.
