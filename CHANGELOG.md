@@ -1,3 +1,7 @@
+## [2026-08-30] - App Tour Routing & Localization Texts
+- **App Tour Routing:** Fixed a bug where restarting the App Tour from the Developer Menu would keep the user on the Profile tab instead of switching to the Habits tab.
+- **Localization:** Updated the descriptions for the 'Schlechte Gewohnheiten' and 'Shop & Power-Ups' tour steps. Ensured 100% translation coverage across all 15 languages.
+
 ## [2026-08-28] - Body Tracking & Modul-Toggle-Menü für Krafttraining
 
 - **Pflanzen-Detailansicht – Toggle-Menü (3 Punkte, links oben):** Nutzer können jetzt einzelne Module (Statistik, To-Dos, Notizen, Timer, Ziele, Gewicht, Körperumfänge) individuell ein- und ausblenden. Einstellungen werden persistent gespeichert.
