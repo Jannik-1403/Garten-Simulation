@@ -283,7 +283,6 @@ struct ShareAchievementCard: View {
                 // 1. Gorgeous scattered 3D diamonds/comets behind badge matching the detail sheet
                 ParticleEmitterView(tier: erfolg.tier)
                     .frame(width: 220, height: 220)
-                    .applyErfolgFarbe(for: erfolg.tier)
                 
                 // 2. Main badge
                 Image(erfolg.mixedImageName)

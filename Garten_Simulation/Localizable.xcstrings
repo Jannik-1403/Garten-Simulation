@@ -87837,6 +87837,777 @@
         }
       }
     },
+    "body.measure.brust": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brustumfang"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chest circumference"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Circunferencia del pecho"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tour de poitrine"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "छाती के व्यास"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Circonferenza torace"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "胸囲"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가슴둘레"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borstomtrek"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obwód klatki piersiowej"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Circunferência torácica"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обхват груди"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Göğüs çevresi"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "胸围"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "胸圍"
+          }
+        }
+      }
+    },
+    "body.measure.info.bizeps": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Oberarms, während der Muskel angespannt ist."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measure the thickest part of your upper arm while the muscle is tense."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Oberarms, während der Muskel angespannt ist."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesurez la partie la plus épaisse du haut de votre bras lorsque le muscle est tendu."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Oberarms, während der Muskel angespannt ist."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Misura la parte più spessa della parte superiore del braccio mentre il muscolo è teso."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "筋肉が緊張している状態で、上腕の最も太い部分を測定します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "근육이 긴장된 상태에서 팔뚝의 가장 두꺼운 부분을 측정합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meet het dikste deel van uw bovenarm terwijl de spier gespannen is."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zmierz najgrubszą część ramienia, gdy mięsień jest napięty."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meça a parte mais grossa do braço enquanto o músculo está tenso."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Измерьте самую толстую часть плеча, пока мышца напряжена."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaslar gerginken üst kolunuzun en kalın kısmını ölçün."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "当肌肉紧张时测量上臂最厚的部分。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "當肌肉緊張時測量上臂最厚的部分。"
+          }
+        }
+      }
+    },
+    "body.measure.info.brust": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measure the circumference at the widest part of your chest."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mide la circunferencia en la parte más ancha de tu pecho."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesurez la circonférence à la partie la plus large de votre poitrine."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपनी छाती के सबसे चौड़े हिस्से की परिधि को मापें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Misura la circonferenza nella parte più ampia del petto."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "胸の最も広い部分の周囲を測定します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가슴의 가장 넓은 부분의 둘레를 측정하세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測量胸部最寬處的周長。"
+          }
+        }
+      }
+    },
+    "body.measure.info.oberschenkel": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Oberschenkels."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measure at the thickest part of your thigh."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mide en la parte más gruesa de tu muslo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesurez à la partie la plus épaisse de votre cuisse."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपनी जांघ के सबसे मोटे हिस्से को मापें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Misura nella parte più spessa della coscia."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "太ももの一番太い部分を測ります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "허벅지의 가장 두꺼운 부분을 측정하세요."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meet op het dikste deel van uw dij."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zmierz w najgrubszym miejscu uda."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meça na parte mais grossa da coxa."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Измерьте самую толстую часть бедра."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyluğunuzun en kalın kısmından ölçün."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Oberschenkels."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測量大腿最粗的部分。"
+          }
+        }
+      }
+    },
+    "body.measure.info.prefix": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Nimm ein flexibles Maßband, miss im kalten Zustand ohne Pump und setz das Band immer absolut waagerecht an. "
+          }
+        }
+      }
+    },
+    "body.measure.info.schultern": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss den gesamten Umfang um deine Schultern an der breitesten Stelle."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measure the entire circumference around your shoulders at the widest point."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mide toda la circunferencia alrededor de tus hombros en el punto más ancho."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesurez toute la circonférence autour de vos épaules au point le plus large."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपने कंधों के चारों ओर की पूरी परिधि को सबसे चौड़े बिंदु पर मापें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Misura l'intera circonferenza delle spalle nel punto più largo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "肩の最も広い部分の周囲全体を測定します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가장 넓은 부분에서 어깨 둘레 전체 둘레를 측정합니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meet de gehele omtrek rond uw schouders op het breedste punt."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zmierz cały obwód ramion w najszerszym miejscu."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meça toda a circunferência ao redor dos ombros, no ponto mais largo."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Измерьте всю окружность плеч в самом широком месте."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omuzlarınızın etrafındaki tüm çevreyi en geniş noktada ölçün."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "测量肩膀最宽处的整个周长。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測量肩膀最寬處的整個週長。"
+          }
+        }
+      }
+    },
+    "body.measure.info.taille": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
+          }
+        }
+      }
+    },
+    "body.measure.info.unterarm": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Unterarms."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Measure at the thickest part of your forearm."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Unterarms."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Unterarms."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपनी बांह के सबसे मोटे हिस्से को मापें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Unterarms."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "前腕の最も太い部分を測定します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Unterarms."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Unterarms."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Unterarms."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meça na parte mais grossa do seu antebraço."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Измерьте самую толстую часть предплечья."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Önkolunuzun en kalın kısmından ölçün."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deines Unterarms."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測量前臂最粗的部分。"
+          }
+        }
+      }
+    },
+    "body.measure.info.waden": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mesurez à la partie la plus épaisse de votre mollet."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Miss an der dicksten Stelle deiner Wade."
+          }
+        }
+      }
+    },
     "body.measure.oberschenkel": {
       "localizations": {
         "de": {
@@ -89186,12 +89957,6 @@
             "value": "ACTUEL"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ТЕКУЩЕЕ"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -89232,6 +89997,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "AKTUELL"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ТЕКУЩЕЕ"
           }
         },
         "tr": {
@@ -89470,12 +90241,6 @@
             "value": "Pour atteindre votre objectif, vous avez besoin d'environ %1$.2f %2$@ par semaine pour %3$@. C'est très détendu, vous pourriez théoriquement l'atteindre en %4$d semaines."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Чтобы достичь цели, вам нужно примерно %1$.2f %2$@ в неделю, чтобы %3$@. Это очень расслабленный темп, теоретически вы могли бы достичь этого за %4$d недель."
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -89516,6 +90281,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Um dein Ziel zu erreichen, musst du ca. %1$.2f %2$@ pro Woche %3$@. Das ist sehr entspannt, du könntest es theoretisch auch in %4$d Wochen schaffen."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чтобы достичь цели, вам нужно примерно %1$.2f %2$@ в неделю, чтобы %3$@. Это очень расслабленный темп, теоретически вы могли бы достичь этого за %4$d недель."
           }
         },
         "tr": {
@@ -90507,12 +91278,6 @@
             "value": "En bonne voie ! (%1$.2f %2$@/sem)"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Идём по плану! (%1$.2f %2$@/нед)"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -90553,6 +91318,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Auf Kurs! (%1$.2f %2$@/Woche)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Идём по плану! (%1$.2f %2$@/нед)"
           }
         },
         "tr": {
@@ -90602,12 +91373,6 @@
             "value": "Parfait ! Continuez exactement comme ça."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Отлично! Продолжайте в том же духе."
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -90648,6 +91413,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Perfekt! Genau so weiter machen."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отлично! Продолжайте в том же духе."
           }
         },
         "tr": {
@@ -90697,12 +91468,6 @@
             "value": "Astuce : Les régimes drastiques ou une prise rapide ne sont pas sains. Ralentissez."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Совет: Экспресс-диеты или слишком быстрый набор веса вредны. Сбавьте темп."
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -90743,6 +91508,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tipp: Crash-Diäten oder zu schnelles Zunehmen ist ungesund. Werde etwas langsamer."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Совет: Экспресс-диеты или слишком быстрый набор веса вредны. Сбавьте темп."
           }
         },
         "tr": {
@@ -90792,12 +91563,6 @@
             "value": "Astuce : Vous devez vous mettre un peu plus au défi pour atteindre votre objectif à temps."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Совет: Вам нужно немного больше стараться, чтобы достичь цели вовремя."
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -90838,6 +91603,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tipp: Du musst dich etwas mehr fordern, um dein Ziel im gewählten Zeitraum zu erreichen."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Совет: Вам нужно немного больше стараться, чтобы достичь цели вовремя."
           }
         },
         "tr": {
@@ -90887,12 +91658,6 @@
             "value": "Astuce : Vérifiez votre apport calorique quotidien et augmentez-le légèrement."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Совет: Проверьте ежедневное потребление калорий и немного увеличьте его."
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -90933,6 +91698,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tipp: Überprüfe deine tägliche Kalorienzufuhr und erhöhe sie leicht."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Совет: Проверьте ежедневное потребление калорий и немного увеличьте его."
           }
         },
         "tr": {
@@ -90982,12 +91753,6 @@
             "value": "Astuce : Faites attention à votre déficit calorique et à votre nutrition."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Совет: Обратите внимание на дефицит калорий и питание."
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -91028,6 +91793,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tipp: Achte auf dein Kaloriendefizit und deine Ernährung."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Совет: Обратите внимание на дефицит калорий и питание."
           }
         },
         "tr": {
@@ -91077,12 +91848,6 @@
             "value": "Trop rapide : Vous changez de %1$.2f %2$@/sem (prévu : %3$.2f)."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Слишком быстро: Вы меняетесь на %1$.2f %2$@/нед (план: %3$.2f)."
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -91123,6 +91888,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Zu schnell: Du veränderst dich um %1$.2f %2$@/Woche (geplant: %3$.2f)."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Слишком быстро: Вы меняетесь на %1$.2f %2$@/нед (план: %3$.2f)."
           }
         },
         "tr": {
@@ -91172,12 +91943,6 @@
             "value": "Légèrement trop lent : Seulement %1$.2f %2$@/sem (prévu : %3$.2f)."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Слишком медленно: Всего %1$.2f %2$@/нед (план: %3$.2f)."
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -91218,6 +91983,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Etwas zu langsam: Nur %1$.2f %2$@/Woche (geplant: %3$.2f)."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Слишком медленно: Всего %1$.2f %2$@/нед (план: %3$.2f)."
           }
         },
         "tr": {
@@ -91267,12 +92038,6 @@
             "value": "Mauvaise direction : Vous avez perdu %1$.2f %2$@, au lieu de gagner %3$.2f %2$@."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Не в ту сторону: Вы потеряли %1$.2f %2$@ вместо того, чтобы набрать %3$.2f %2$@."
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -91313,6 +92078,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Falsche Richtung: Du hast %1$.2f %2$@ verloren, statt %3$.2f %2$@ zuzunehmen."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не в ту сторону: Вы потеряли %1$.2f %2$@ вместо того, чтобы набрать %3$.2f %2$@."
           }
         },
         "tr": {
@@ -91362,12 +92133,6 @@
             "value": "Mauvaise direction : Vous avez gagné %1$.2f %2$@, au lieu de perdre %3$.2f %2$@."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Не в ту сторону: Вы набрали %1$.2f %2$@ вместо того, чтобы сбросить %3$.2f %2$@."
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -91408,6 +92173,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Falsche Richtung: Du hast %1$.2f %2$@ zugenommen, statt %3$.2f %2$@ abzunehmen."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не в ту сторону: Вы набрали %1$.2f %2$@ вместо того, чтобы сбросить %3$.2f %2$@."
           }
         },
         "tr": {
@@ -91552,12 +92323,6 @@
             "value": "depuis avant-hier"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "с позавчера"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -91598,6 +92363,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "seit vorgestern"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "с позавчера"
           }
         },
         "tr": {
@@ -91647,12 +92418,6 @@
             "value": "depuis le %@"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "с %@"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -91693,6 +92458,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "seit %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "с %@"
           }
         },
         "tr": {
@@ -91742,12 +92513,6 @@
             "value": "depuis hier"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "со вчерашнего дня"
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -91788,6 +92553,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "seit gestern"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "со вчерашнего дня"
           }
         },
         "tr": {
@@ -94469,12 +95240,6 @@
             "value": "Pour atteindre votre objectif, vous avez besoin d'environ %1$.2f %2$@ par semaine pour %3$@. C'est trop rapide. Essayez de prolonger le délai à au moins %4$d semaines."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Чтобы достичь цели, вам нужно примерно %1$.2f %2$@ в неделю, чтобы %3$@. Это слишком быстро. Попробуйте увеличить срок как минимум до %4$d недель."
-          }
-        },
         "hi": {
           "stringUnit": {
             "state": "translated",
@@ -94515,6 +95280,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Um dein Ziel zu erreichen, musst du ca. %1$.2f %2$@ pro Woche %3$@. Das ist zu schnell. Versuche, den Zeitraum auf mindestens %4$d Wochen anzupassen."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чтобы достичь цели, вам нужно примерно %1$.2f %2$@ в неделю, чтобы %3$@. Это слишком быстро. Попробуйте увеличить срок как минимум до %4$d недель."
           }
         },
         "tr": {
@@ -107080,6 +107851,12 @@
             "value": "Nouv."
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neu"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -107116,22 +107893,16 @@
             "value": "Novo"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yeni"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neu"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Neu"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeni"
           }
         },
         "zh-Hans": {
@@ -123545,91 +124316,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Besitze 50 Pflanzen im Garten"
+            "value": "Besitze 19 Pflanzen im Garten"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Own 50 plants in the garden"
+            "value": "Own 19 plants in the garden"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Besitze 50 Pflanzen im Garten"
+            "value": "Besitze 19 Pflanzen im Garten"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Besitze 50 Pflanzen im Garten"
+            "value": "Besitze 19 Pflanzen im Garten"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "बगीचे में 50 पौधे लगाएं"
+            "value": "बगीचे में 19 पौधे लगाएं"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Besitze 50 Pflanzen im Garten"
+            "value": "Besitze 19 Pflanzen im Garten"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "庭に50本の植物を所有"
+            "value": "庭に19本の植物を所有"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "정원에 식물 50개를 소유하세요"
+            "value": "정원에 식물 19개를 소유하세요"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bezit 50 planten in de tuin"
+            "value": "Bezit 19 planten in de tuin"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Posiadaj 50 roślin w ogrodzie"
+            "value": "Posiadaj 19 roślin w ogrodzie"
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Besitze 50 Pflanzen im Garten"
+            "value": "Besitze 19 Pflanzen im Garten"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "В саду у меня 50 растений"
+            "value": "В саду у меня 19 растений"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bahçede 50 bitkiye sahip olun"
+            "value": "Bahçede 19 bitkiye sahip olun"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "在花园里有50棵植物"
+            "value": "在花园里有19棵植物"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "花園裡有 50 種植物"
+            "value": "花園裡有 19 種植物"
           }
         }
       }
@@ -213263,6 +214034,12 @@
             "value": "Mauvaise"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schlechte"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -213299,22 +214076,16 @@
             "value": "Má"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kötü"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schlechte"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Schlechte"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kötü"
           }
         },
         "zh-Hans": {
@@ -214028,6 +214799,12 @@
             "value": "Bonne"
           }
         },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gute"
+          }
+        },
         "it": {
           "stringUnit": {
             "state": "translated",
@@ -214064,22 +214841,16 @@
             "value": "Boa"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "İyi"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gute"
-          }
-        },
         "ru": {
           "stringUnit": {
             "state": "translated",
             "value": "Gute"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İyi"
           }
         },
         "zh-Hans": {
@@ -415273,766 +416044,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "目標"
-          }
-        }
-      }
-    },
-    "body.measure.brust": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Brustumfang"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Chest circumference"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Circunferencia del pecho"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tour de poitrine"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "छाती के व्यास"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Circonferenza torace"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "胸囲"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "가슴둘레"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Borstomtrek"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obwód klatki piersiowej"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Circunferência torácica"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Обхват груди"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Göğüs çevresi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "胸围"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "胸圍"
-          }
-        }
-      }
-    },
-    "body.measure.info.brust": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Measure the circumference at the widest part of your chest."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mide la circunferencia en la parte más ancha de tu pecho."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mesurez la circonférence à la partie la plus large de votre poitrine."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अपनी छाती के सबसे चौड़े हिस्से की परिधि को मापें।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Misura la circonferenza nella parte più ampia del petto."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "胸の最も広い部分の周囲を測定します。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "가슴의 가장 넓은 부분의 둘레를 측정하세요."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "測量胸部最寬處的周長。"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss den Umfang an der breitesten Stelle deiner Brust."
-          }
-        }
-      }
-    },
-    "body.measure.info.bizeps": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Oberarms, während der Muskel angespannt ist."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mesurez la partie la plus épaisse du haut de votre bras lorsque le muscle est tendu."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meça a parte mais grossa do braço enquanto o músculo está tenso."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Measure the thickest part of your upper arm while the muscle is tense."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Misura la parte più spessa della parte superiore del braccio mentre il muscolo è teso."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "筋肉が緊張している状態で、上腕の最も太い部分を測定します。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "근육이 긴장된 상태에서 팔뚝의 가장 두꺼운 부분을 측정합니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meet het dikste deel van uw bovenarm terwijl de spier gespannen is."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zmierz najgrubszą część ramienia, gdy mięsień jest napięty."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Измерьте самую толстую часть плеча, пока мышца напряжена."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kaslar gerginken üst kolunuzun en kalın kısmını ölçün."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "当肌肉紧张时测量上臂最厚的部分。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "當肌肉緊張時測量上臂最厚的部分。"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Oberarms, während der Muskel angespannt ist."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Oberarms, während der Muskel angespannt ist."
-          }
-        }
-      }
-    },
-    "body.measure.info.unterarm": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Unterarms."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अपनी बांह के सबसे मोटे हिस्से को मापें।"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meça na parte mais grossa do seu antebraço."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Измерьте самую толстую часть предплечья."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Önkolunuzun en kalın kısmından ölçün."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "測量前臂最粗的部分。"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Measure at the thickest part of your forearm."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "前腕の最も太い部分を測定します。"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Unterarms."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Unterarms."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Unterarms."
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Unterarms."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Unterarms."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Unterarms."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Unterarms."
-          }
-        }
-      }
-    },
-    "body.measure.info.schultern": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss den gesamten Umfang um deine Schultern an der breitesten Stelle."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Measure the entire circumference around your shoulders at the widest point."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mide toda la circunferencia alrededor de tus hombros en el punto más ancho."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mesurez toute la circonférence autour de vos épaules au point le plus large."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अपने कंधों के चारों ओर की पूरी परिधि को सबसे चौड़े बिंदु पर मापें।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Misura l'intera circonferenza delle spalle nel punto più largo."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "肩の最も広い部分の周囲全体を測定します。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "가장 넓은 부분에서 어깨 둘레 전체 둘레를 측정합니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meet de gehele omtrek rond uw schouders op het breedste punt."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zmierz cały obwód ramion w najszerszym miejscu."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meça toda a circunferência ao redor dos ombros, no ponto mais largo."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Измерьте всю окружность плеч в самом широком месте."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Omuzlarınızın etrafındaki tüm çevreyi en geniş noktada ölçün."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "测量肩膀最宽处的整个周长。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "測量肩膀最寬處的整個週長。"
-          }
-        }
-      }
-    },
-    "body.measure.info.oberschenkel": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Oberschenkels."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Measure at the thickest part of your thigh."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mide en la parte más gruesa de tu muslo."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mesurez à la partie la plus épaisse de votre cuisse."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "अपनी जांघ के सबसे मोटे हिस्से को मापें।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Misura nella parte più spessa della coscia."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "太ももの一番太い部分を測ります。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "허벅지의 가장 두꺼운 부분을 측정하세요."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meet op het dikste deel van uw dij."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zmierz w najgrubszym miejscu uda."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Meça na parte mais grossa da coxa."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Измерьте самую толстую часть бедра."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Uyluğunuzun en kalın kısmından ölçün."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "測量大腿最粗的部分。"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deines Oberschenkels."
-          }
-        }
-      }
-    },
-    "body.measure.info.waden": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mesurez à la partie la plus épaisse de votre mollet."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der dicksten Stelle deiner Wade."
-          }
-        }
-      }
-    },
-    "body.measure.info.taille": {
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Miss an der schmalsten Stelle deines Bauches, meist knapp über dem Bauchnabel."
           }
         }
       }

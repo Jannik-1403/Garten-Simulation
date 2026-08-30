@@ -32,7 +32,7 @@ class AchievementStore: ObservableObject {
             farbe: Color(hex: "#34C759"),
             kategorie: .sammler,
             imageName: "ErstePflanze",
-            targets: [1, 3, 7, 13, 19]
+            targets: [1, 3, 5, 10, 19]
         ),
         AchievementConfig(
             key: "streak",
@@ -42,7 +42,7 @@ class AchievementStore: ObservableObject {
             farbe: Color(hex: "#FF6B35"),
             kategorie: .streak,
             imageName: "Erste Woche",
-            targets: [3, 7, 14, 30, 365]
+            targets: [3, 7, 14, 30, 100]
         ),
         AchievementConfig(
             key: "giessen",
@@ -52,7 +52,7 @@ class AchievementStore: ObservableObject {
             farbe: Color(hex: "#007AFF"),
             kategorie: .garten,
             imageName: "Wassermann",
-            targets: [5, 15, 50, 150, 5000]
+            targets: [5, 15, 50, 150, 1000]
         ),
         AchievementConfig(
             key: "xp",
@@ -62,7 +62,7 @@ class AchievementStore: ObservableObject {
             farbe: Color(hex: "#FF9F0A"),
             kategorie: .garten,
             imageName: "XP-Sammler",
-            targets: [100, 250, 500, 1000, 100000]
+            targets: [100, 250, 500, 1000, 10000]
         ),
         AchievementConfig(
             key: "coins",
@@ -72,7 +72,7 @@ class AchievementStore: ObservableObject {
             farbe: Color(hex: "#FFD60A"),
             kategorie: .shop,
             imageName: "ErsteMünze",
-            targets: [50, 150, 500, 1000, 40000]
+            targets: [50, 150, 500, 1000, 10000]
         ),
         AchievementConfig(
             key: "kauf",
@@ -82,7 +82,7 @@ class AchievementStore: ObservableObject {
             farbe: Color(hex: "#AF52DE"),
             kategorie: .shop,
             imageName: "ErsterEinkauf",
-            targets: [1, 10, 25, 40, 48]
+            targets: [1, 3, 7, 15, 48]
         ),
         AchievementConfig(
             key: "challenge",
