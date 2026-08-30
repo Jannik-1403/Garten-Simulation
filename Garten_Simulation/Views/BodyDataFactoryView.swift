@@ -13,7 +13,10 @@ struct BodyDataFactoryView: View {
     @StateObject private var hm = HealthManager.shared
 
     @State private var timeRange: BodyDataTimeRange = .m
-    @AppStorage("lastSelectedBodyMeasure") private var selectedMeasurement: BodyMeasurementCategory = .bizeps
+    @State private var selectedMeasurement: BodyMeasurementCategory = {
+        let raw = UserDefaults.standard.string(forKey: "lastSelectedBodyMeasure") ?? BodyMeasurementCategory.brust.rawValue
+        return BodyMeasurementCategory(rawValue: raw) ?? .brust
+    }()
     @State private var showAddSheet = false
     @State private var inputValue: String = ""
     @State private var healthWeightData: [DailyProgressEntry] = []
@@ -67,6 +70,9 @@ struct BodyDataFactoryView: View {
                         }
                         .padding(.horizontal)
                         .padding(.vertical, 10)
+                        .onChange(of: selectedMeasurement) { _, newValue in
+                            UserDefaults.standard.set(newValue.rawValue, forKey: "lastSelectedBodyMeasure")
+                        }
                     }
                     
                     HStack(alignment: .top, spacing: 8) {
@@ -535,7 +541,8 @@ struct BodyDataFactoryView: View {
     // MARK: - Eintrag hinzufügen
 
     private func addEntry(_ value: Double) {
-        let entry = DailyProgressEntry(timestamp: Date(), progress: value)
+        let timestamp = selectedDate ?? Date()
+        let entry = DailyProgressEntry(timestamp: timestamp, progress: value)
         if type == .weight {
             pflanze.manualWeightEntries.append(entry)
         } else {
