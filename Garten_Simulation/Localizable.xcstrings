@@ -321160,91 +321160,91 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wähle, ob der Name der Pflanze/Schlechte Gewohnheit oder die verknüpfte Gewohnheit im Garten angezeigt werden soll."
+            "value": "Wähle, ob der Name der Pflanze ohne die verknüpfte Gewohnheit im Garten angezeigt werden soll."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose whether to display the plant/item name or the linked habit in the garden."
+            "value": "Choose whether the name of the plant should be displayed in the garden without the linked habit."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Elige si quieres ver el nombre de la planta o el hábito vinculado en el jardín."
+            "value": "Elige si quieres que el nombre de la planta se muestre en el jardín sin el hábito vinculado."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choisis si le nom de la plante ou l'habitude liée doit être affiché dans le jardin."
+            "value": "Choisissez si le nom de la plante doit être affiché dans le jardin sans l'habitude liée."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "चुनें कि पौधे/खराब आदत का नाम या बगीचे में जुड़ी हुई आदत दिखाई दे।"
+            "value": "चुनें कि क्या पौधे का नाम बगीचे में बिना जुड़ी आदत के प्रदर्शित किया जाना चाहिए।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose whether to display the plant name or the linked habit in the garden."
+            "value": "Scegli se il nome della pianta debba essere visualizzato nel giardino senza l'abitudine associata."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "庭内の植物の名前またはリンクされた習性を表示するかどうかを選択します。"
+            "value": "関連する習慣なしで植物の名前を庭に表示するかどうかを選択します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "정원에 식물 이름을 표시할지, 연결된 습관을 표시할지 선택합니다."
+            "value": "연결된 습관 없이 식물의 이름을 정원에 표시할지 여부를 선택하세요."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kies of u de plantnaam of de daaraan gekoppelde gewoonte in de tuin wilt weergeven."
+            "value": "Kies of de naam van de plant in de tuin moet worden weergegeven zonder de gekoppelde gewoonte."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wybierz, czy chcesz wyświetlać nazwę rośliny, czy powiązany zwyczaj w ogrodzie."
+            "value": "Wybierz, czy nazwa rośliny ma być wyświetlana w ogrodzie bez powiązanego nawyku."
           }
         },
         "pt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Escolhe se o nome da planta ou o hábito associado deve ser exibido no jardim."
+            "value": "Escolha se o nome da planta deve ser exibido no jardim sem o hábito vinculado."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Выберите, должно ли отображаться название растения/плохой привычки или связанная привычка в саду."
+            "value": "Выберите, должно ли имя растения отображаться в саду без связанной привычки."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bahçede bitki adının mı yoksa bağlantılı alışkanlığın mı görüntüleneceğini seçin."
+            "value": "Bağlı alışkanlık olmadan bitkinin adının bahçede gösterilip gösterilmeyeceğini seçin."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "选择是否显示植物名称/坏习惯或花园中的相关习惯。"
+            "value": "选择是否在没有关联习惯的情况下在花园中显示植物的名称。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "選擇是否顯示植物名稱/壞習慣或花園中的相關習慣。"
+            "value": "選擇是否在沒有關聯習慣的情況下在花園中顯示植物的名稱。"
           }
         }
       }

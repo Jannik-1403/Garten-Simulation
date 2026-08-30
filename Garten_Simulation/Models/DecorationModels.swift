@@ -41,7 +41,6 @@ enum DecorationCategory: String, CaseIterable, Codable {
     case pfade
     case beleuchtung
     case deko
-    case pflanzen
 
     var localizedName: String {
         switch self {
@@ -51,7 +50,6 @@ enum DecorationCategory: String, CaseIterable, Codable {
         case .pfade: return String(localized: "badhabit.category.finanzen", defaultValue: "Konsum")
         case .beleuchtung: return String(localized: "badhabit.category.freizeit", defaultValue: "Freizeit")
         case .deko: return String(localized: "badhabit.category.faulheit", defaultValue: "Faulheit")
-        case .pflanzen: return String(localized: "badhabit.category.sonstiges", defaultValue: "Sonstiges")
         }
     }
 
@@ -63,7 +61,6 @@ enum DecorationCategory: String, CaseIterable, Codable {
         case .pfade: return "dollarsign.circle"
         case .beleuchtung: return "gamecontroller.fill"
         case .deko: return "bed.double.fill"
-        case .pflanzen: return "ellipsis.circle"
         }
     }
 }
