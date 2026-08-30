@@ -114,15 +114,25 @@ struct WeeklyGoalBannerView: View {
                         Image("Goal")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 28, height: 28)
-                            .scaleEffect(2.2)
+                            .frame(width: 65, height: 65)
                         Text(String(localized: "goal.weekly.add", defaultValue: "Wochenziel festlegen"))
                             .font(.system(size: 16, weight: .bold, design: .rounded))
                             .foregroundColor(.primary)
                         Spacer()
-                        Image(systemName: "plus.circle.fill")
-                            .foregroundColor(Color(hex: "#4FC3F7"))
-                            .font(.title2)
+                        ZStack {
+                            Circle()
+                                .fill(Color(hex: "#0288D1")) // Shadow
+                                .offset(y: 3)
+                            
+                            Circle()
+                                .fill(Color(hex: "#4FC3F7"))
+                                .overlay(Circle().stroke(Color.black.opacity(0.15), lineWidth: 1))
+                            
+                            Image(systemName: "plus")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                        .frame(width: 36, height: 36)
                     }
                     .padding(.horizontal, 24)
                     .padding(.vertical, 16)
