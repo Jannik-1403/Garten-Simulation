@@ -111,7 +111,7 @@ struct ContentView: View {
                 .zIndex(10002)
             }
         }
-        .onChange(of: interactiveTourManager.isActive) { isActive in
+        .onChange(of: interactiveTourManager.isActive) { _, isActive in
             if isActive {
                 mockGardenStore.selectedTab = 0
             }

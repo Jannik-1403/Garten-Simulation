@@ -6,12 +6,23 @@ enum BodyTrackingType {
 }
 
 enum BodyDataTimeRange: String, CaseIterable, Identifiable {
-    case t    = "T"
-    case w    = "W"
-    case m    = "M"
-    case sixM = "6 M."
-    case j    = "J"
+    case t    = "body.timerange.t"
+    case w    = "body.timerange.w"
+    case m    = "body.timerange.m"
+    case sixM = "body.timerange.sixm"
+    case j    = "body.timerange.j"
+    
     var id: String { rawValue }
+    
+    var localizedName: String {
+        switch self {
+        case .t: return String(localized: "body.timerange.t", defaultValue: "T")
+        case .w: return String(localized: "body.timerange.w", defaultValue: "W")
+        case .m: return String(localized: "body.timerange.m", defaultValue: "M")
+        case .sixM: return String(localized: "body.timerange.sixm", defaultValue: "6 M.")
+        case .j: return String(localized: "body.timerange.j", defaultValue: "J")
+        }
+    }
 }
 
 enum BodyMeasurementCategory: String, CaseIterable, Identifiable {
@@ -89,11 +100,6 @@ struct BodyTrackingModuleCard: View {
     @State private var navigateToDetail = false
 
     var body: some View {
-        NavigationLink(destination: BodyDataFactoryView(pflanze: pflanze, type: type), isActive: $navigateToDetail) {
-            EmptyView()
-        }
-        .hidden()
-
         HStack {
             Text(title)
                 .font(.system(size: 20, weight: .bold, design: .rounded))
@@ -117,6 +123,9 @@ struct BodyTrackingModuleCard: View {
         .contentShape(Rectangle())
         .onTapGesture {
             navigateToDetail = true
+        }
+        .navigationDestination(isPresented: $navigateToDetail) {
+            BodyDataFactoryView(pflanze: pflanze, type: type)
         }
         .item3DContainer(farbe: Color(UIColor.systemBackground), sekundaerFarbe: Color(UIColor.systemGray5))
         .padding(.horizontal, 24)

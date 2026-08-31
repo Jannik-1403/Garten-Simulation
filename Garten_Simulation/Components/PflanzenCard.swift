@@ -438,7 +438,7 @@ struct PflanzenCardHorizontalButtonStyle: ButtonStyle {
         .sensoryFeedback(trigger: isPressed) { _, newValue in
             return (isHapticEnabled && newValue) ? .impact(flexibility: .soft, intensity: 0.75) : nil
         }
-        .onChange(of: configuration.isPressed) { newValue in
+        .onChange(of: configuration.isPressed) { _, newValue in
             onIsPressedChange?(newValue)
         }
     }
