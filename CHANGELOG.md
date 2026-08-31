@@ -735,3 +735,15 @@
 - Fix: Die automatische Datums-Berechnung bei 'Ziel verschieben' nutzt nun eine fixe, realistische Rate (0.5kg bzw. 0.25 Einheiten), statt der aktuellen mathematisch nicht erreichbaren Rate – das Zieldatum wird nun wie gewünscht korrekt weiter in die Zukunft verschoben.
 - **BodyDataFactoryView**: Radikaler Umbau der Analyse-Architektur. Das alte Tages-Vergleichs-System wurde durch einen neuen "Wochentrend (Ø zu Ø)" basierend auf 7-Tage Moving Averages ersetzt.
 - **Lokalisierung**: Alle neuen Texte im Wochentrend inkl. der 4 neuen Status (Defizit, Stagnation, Perfektes Tempo, Fett-Warnung) in Localizable.xcstrings übersetzt.
+- Erfolge-Ziele an die Textbeschreibungen (niedrigere Werte) angepasst (z.B. Coins 10.000, Pflanzen 19)
+- Rote Sterne beim Exportieren von Diamant-Erfolgen korrigiert (sind jetzt blau)
+- Anzeige des rohen Keys (z.B. 'habit.krafttraining') im Level-Up Popup behoben. Es wird nun korrekt der lokalisierte Text (z.B. 'Krafttraining') angezeigt.
+- Layout im 'Wochenziel festlegen' Banner korrigiert (Text weiter nach rechts) und Plus-Icon in 3D umgewandelt
+- Hintergrund von Wochenziel-Banner repariert (Icon nutzt wieder scaleEffect statt frame-Vergrößerung)
+- Neues Prioritäten-System (Alltags-Icons statt Ausrufezeichen)
+- Prioritäten-System auf 'Sterne-Logik' (1-3 Powerups) umgebaut
+- Lokalisierung: Fehlende Texte wie Zeiträume (T, W, M...), Ziel, Neu, und Pkt ins String Catalog aufgenommen und maschinell übersetzt.
+- Lokalisierung: Über 500 fehlerhafte, deutsche Fake-Übersetzungen in den chinesischen Sprachen durch korrekte maschinelle Übersetzungen ersetzt.
+- Lokalisierung: "Error 500 (Server Error)" Fehler in allen 16 Sprachen behoben, indem die fehlerhaften Einträge in Localizable.xcstrings zurückgesetzt wurden.
+- Lokalisierung: Chinesische Fake-Übersetzungen (wo noch deutscher Text stand) wurden durch echte chinesische Übersetzungen ausgetauscht.
+- UI: "Kilogramm Kilogramm" Fehler beim Hinzufügen-Gewicht-Bildschirm behoben, indem "kg" und "cm" explizit als LocalizedStringKeys übergeben wurden.
