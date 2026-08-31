@@ -158,7 +158,7 @@ class SettingsStore: ObservableObject {
     var appLocale: Locale { Locale(identifier: appLanguage) }
     
     var appLanguage: String {
-        get { Locale.current.language.languageCode?.identifier ?? "en" }
+        get { Bundle.main.preferredLocalizations.first ?? "de" }
         set { /* No-op, managed by iOS Native Settings */ }
     }
 

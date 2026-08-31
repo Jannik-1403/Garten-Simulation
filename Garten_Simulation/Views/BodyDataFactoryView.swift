@@ -517,21 +517,21 @@ struct BodyDataFactoryView: View {
             let h = cal.component(.hour, from: date)
             return "\(h):00"
         case .w:
-            // Mo, Di, Mi, Do, Fr, Sa, So
+            let formatter = DateFormatter()
+            formatter.locale = SettingsStore.shared.appLocale
             let weekday = cal.component(.weekday, from: date)
-            let symbols = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"]
-            return symbols[safe: weekday - 1] ?? ""
+            return formatter.shortWeekdaySymbols[weekday - 1]
         case .m:
             let day = cal.component(.day, from: date)
             return String(localized: "body.tracking.chart.day", defaultValue: "\(day).")
         case .sixM:
             let formatter = DateFormatter()
-            formatter.locale = Locale.current
+            formatter.locale = SettingsStore.shared.appLocale
             formatter.dateFormat = "MMM"
             return formatter.string(from: date)
         case .j:
             let formatter = DateFormatter()
-            formatter.locale = Locale.current
+            formatter.locale = SettingsStore.shared.appLocale
             let month = cal.component(.month, from: date)
             return formatter.veryShortMonthSymbols[month - 1]
         }

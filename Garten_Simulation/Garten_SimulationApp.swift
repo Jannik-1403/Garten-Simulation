@@ -89,6 +89,7 @@ struct Garten_SimulationApp: App {
                 container: container,
                 showSplash: $showSplash
             )
+            .environment(\.locale, container.settingsStore.appLocale)
             .onChange(of: scenePhase) {
                 if scenePhase == .active {
                     container.gardenStore.reloadData()
