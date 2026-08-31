@@ -1318,7 +1318,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld/5"
+            "value": "%lld / 5"
           }
         }
       }
@@ -88225,6 +88225,18 @@
             "state": "new",
             "value": "Nimm ein flexibles Maßband, miss im kalten Zustand ohne Pump und setz das Band immer absolut waagerecht an. "
           }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用柔性卷尺，在寒冷状态下测量且不要泵感，并将卷尺始终绝对水平放置。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用柔性卷尺，在寒冷状态下测量且不要泵感，并将卷尺始终绝对水平放置。"
+          }
         }
       }
     },
@@ -89542,13 +89554,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "添加记录"
+            "value": "添加条目"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "添加記錄"
+            "value": "添加条目"
           }
         }
       }
@@ -89636,13 +89648,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "点击+添加您的第一条记录。"
+            "value": "点击 + 添加您的第一个条目。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "點擊+添加您的第一條記錄。"
+            "value": "点击 + 添加您的第一个条目。"
           }
         }
       }
@@ -90014,13 +90026,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "AKTUELL"
+            "value": "当前值"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "AKTUELL"
+            "value": "当前值"
           }
         }
       }
@@ -90108,13 +90120,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel löschen"
+            "value": "删除目标"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel löschen"
+            "value": "删除目标"
           }
         }
       }
@@ -90488,13 +90500,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel bearbeiten"
+            "value": "编辑目标"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel bearbeiten"
+            "value": "编辑目标"
           }
         }
       }
@@ -90582,13 +90594,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Letzte Woche"
+            "value": "上周"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Letzte Woche"
+            "value": "上周"
           }
         }
       }
@@ -90676,13 +90688,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Manuelle Einträge"
+            "value": "手动条目"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Manuelle Einträge"
+            "value": "手动条目"
           }
         }
       }
@@ -90770,13 +90782,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "身体测量"
+            "value": "身体尺寸"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "身體測量"
+            "value": "身体尺寸"
           }
         }
       }
@@ -90958,13 +90970,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "暂无数据"
+            "value": "无数据"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "暫無數據"
+            "value": "无数据"
           }
         }
       }
@@ -94262,13 +94274,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erreichen bis"
+            "value": "达成期限"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erreichen bis"
+            "value": "达成期限"
           }
         }
       }
@@ -94356,13 +94368,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zieldatum"
+            "value": "目标日期"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zieldatum"
+            "value": "目标日期"
           }
         }
       }
@@ -94450,13 +94462,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zielwert"
+            "value": "目标值"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zielwert"
+            "value": "目标值"
           }
         }
       }
@@ -94544,13 +94556,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel"
+            "value": "目标"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziel"
+            "value": "目标"
           }
         }
       }
@@ -94638,13 +94650,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zielgewicht"
+            "value": "目标体重"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zielgewicht"
+            "value": "目标体重"
           }
         }
       }
@@ -95014,13 +95026,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp: Körperumfänge verändern sich langsam. Wir empfehlen, sie nur einmal im Monat zu messen, um echte Fortschritte zu sehen."
+            "value": "提示：身体尺寸变化缓慢。我们建议每月只测量一次以查看真实进展。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp: Körperumfänge verändern sich langsam. Wir empfehlen, sie nur einmal im Monat zu messen, um echte Fortschritte zu sehen."
+            "value": "提示：身体尺寸变化缓慢。我们建议每月只测量一次以查看真实进展。"
           }
         }
       }
@@ -95108,13 +95120,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp: Für beste Ergebnisse empfehlen wir, das Gewicht jeden Morgen zur selben Zeit, nüchtern und ohne vorher etwas zu essen, zu tracken."
+            "value": "提示：为了获得最佳结果，我们建议每天早上在同一时间、空腹追踪体重。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tipp: Für beste Ergebnisse empfehlen wir, das Gewicht jeden Morgen zur selben Zeit, nüchtern und ohne vorher etwas zu essen, zu tracken."
+            "value": "提示：为了获得最佳结果，我们建议每天早上在同一时间、空腹追踪体重。"
           }
         }
       }
@@ -95297,13 +95309,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Um dein Ziel zu erreichen, musst du ca. %1$.2f %2$@ pro Woche %3$@. Das ist zu schnell. Versuche, den Zeitraum auf mindestens %4$d Wochen anzupassen."
+            "value": "为了达到您的目标，您需要每周 %3$@ 大约 %1$.2f %2$@。这太快了。尝试将期限调整为至少 %4$d 周。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Um dein Ziel zu erreichen, musst du ca. %1$.2f %2$@ pro Woche %3$@. Das ist zu schnell. Versuche, den Zeitraum auf mindestens %4$d Wochen anzupassen."
+            "value": "为了达到您的目标，您需要每周 %3$@ 大约 %1$.2f %2$@。这太快了。尝试将期限调整为至少 %4$d 周。"
           }
         }
       }
@@ -95392,13 +95404,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sehr ambitioniertes Ziel"
+            "value": "非常有野心的目标"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sehr ambitioniertes Ziel"
+            "value": "非常有野心的目标"
           }
         }
       }
@@ -95486,13 +95498,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "bis zum "
+            "value": "直到 "
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "bis zum "
+            "value": "直到 "
           }
         }
       }
@@ -95580,13 +95592,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dein Wochentrend (Ø zu Ø)"
+            "value": "本周趋势（平均至平均）"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dein Wochentrend (Ø zu Ø)"
+            "value": "本周趋势（平均至平均）"
           }
         }
       }
@@ -95680,7 +95692,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "體重"
+            "value": "体重"
           }
         }
       }
@@ -98350,13 +98362,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Herz kaufen"
+            "value": "购买心"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Herz kaufen"
+            "value": "购买心"
           }
         }
       }
@@ -98445,13 +98457,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Herz gekauft"
+            "value": "已购买心"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Herz gekauft"
+            "value": "已购买心"
           }
         }
       }
@@ -106377,13 +106389,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "F"
+            "value": "五"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "F"
+            "value": "五"
           }
         }
       }
@@ -107813,13 +107825,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "M"
+            "value": "一"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "中號"
+            "value": "一"
           }
         }
       }
@@ -107908,13 +107920,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Neu"
+            "value": "新"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Neu"
+            "value": "新"
           }
         }
       }
@@ -108287,13 +108299,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "OK"
+            "value": "确定"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "OK"
+            "value": "确定"
           }
         }
       }
@@ -108572,13 +108584,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "铂"
+            "value": "分"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "鉑"
+            "value": "分"
           }
         }
       }
@@ -108860,13 +108872,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "S"
+            "value": "六"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "S"
+            "value": "六"
           }
         }
       }
@@ -109436,13 +109448,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "S"
+            "value": "日"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "S"
+            "value": "日"
           }
         }
       }
@@ -109628,13 +109640,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "D"
+            "value": "四"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "D"
+            "value": "四"
           }
         }
       }
@@ -109916,13 +109928,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "D"
+            "value": "二"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "D"
+            "value": "二"
           }
         }
       }
@@ -110011,13 +110023,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Einheit"
+            "value": "单位"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Einheit"
+            "value": "单位"
           }
         }
       }
@@ -110107,13 +110119,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "M"
+            "value": "三"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "中號"
+            "value": "三"
           }
         }
       }
@@ -127369,13 +127381,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fehler beim Erstellen des Backups."
+            "value": "创建备份失败。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fehler beim Erstellen des Backups."
+            "value": "创建备份失败。"
           }
         }
       }
@@ -127464,13 +127476,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fehler beim Importieren der Datei."
+            "value": "导入文件失败。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fehler beim Importieren der Datei."
+            "value": "导入文件失败。"
           }
         }
       }
@@ -127559,13 +127571,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fehler bei der Einrichtung. Möglicherweise ist aktuell bereits ein Zeitplan aktiv."
+            "value": "设置失败。当前可能已激活时间表。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fehler bei der Einrichtung. Möglicherweise ist aktuell bereits ein Zeitplan aktiv."
+            "value": "设置失败。当前可能已激活时间表。"
           }
         }
       }
@@ -130973,13 +130985,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erledigte Gewohnheiten: %lld (%@ im Vergleich zur Vorwoche)"
+            "value": "完成的习惯: %lld (与上周相比 %@)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Erledigte Gewohnheiten: %lld (%@ im Vergleich zur Vorwoche)"
+            "value": "完成的习惯: %lld (与上周相比 %@)"
           }
         }
       }
@@ -131258,13 +131270,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@: %lld Min"
+            "value": "%@: %lld 分钟"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@: %lld Min"
+            "value": "%@: %lld 分钟"
           }
         }
       }
@@ -131353,13 +131365,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@: %lld erledigt"
+            "value": "%@: 完成 %lld"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@: %lld erledigt"
+            "value": "%@: 完成 %lld"
           }
         }
       }
@@ -132113,13 +132125,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gesamt-Fokuszeit: %lld Minuten (%@ im Vergleich zur Vorwoche)"
+            "value": "总专注时间: %lld 分钟 (与上周相比 %@)"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gesamt-Fokuszeit: %lld Minuten (%@ im Vergleich zur Vorwoche)"
+            "value": "总专注时间: %lld 分钟 (与上周相比 %@)"
           }
         }
       }
@@ -135722,13 +135734,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "+ %@ weitere"
+            "value": "+ 还有 %@ 个任务"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "+ %@ weitere"
+            "value": "+ 还有 %@ 个任务"
           }
         }
       }
@@ -149770,7 +149782,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "格羅維"
+            "value": "Grovy"
           }
         }
       }
@@ -160858,7 +160870,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "刺蝟姿勢說謊"
+            "value": "igel_pose_liegen"
           }
         }
       }
@@ -161051,7 +161063,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "刺蝟姿勢種族"
+            "value": "igel_pose_rennen"
           }
         }
       }
@@ -161244,7 +161256,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "刺蝟姿勢睡眠"
+            "value": "igel_pose_schlafen"
           }
         }
       }
@@ -161629,7 +161641,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "刺蝟姿勢揮舞"
+            "value": "igel_pose_winken"
           }
         }
       }
@@ -174381,7 +174393,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "月。%lld"
+            "value": "month.%lld"
           }
         }
       }
@@ -194351,13 +194363,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apple Health Integration"
+            "value": "Apple Health 集成"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "你的日常節奏"
+            "value": "Apple Health 集成"
           }
         }
       }
@@ -204988,7 +205000,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_phase_description_%@"
+            "value": "pfad_phase_beschreibung_%@"
           }
         }
       }
@@ -205655,7 +205667,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "path_phase_tag_title_%@"
+            "value": "pfad_phase_tag_titel_%@"
           }
         }
       }
@@ -207384,7 +207396,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "路徑_難度_%@"
+            "value": "pfad_schwierigkeit_%@"
           }
         }
       }
@@ -207481,7 +207493,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "路徑_難度_%@_desc"
+            "value": "pfad_schwierigkeit_%@_desc"
           }
         }
       }
@@ -214091,13 +214103,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schlechte"
+            "value": "坏习惯"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schlechte"
+            "value": "坏习惯"
           }
         }
       }
@@ -214856,13 +214868,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gute"
+            "value": "好习惯"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gute"
+            "value": "好习惯"
           }
         }
       }
@@ -239198,7 +239210,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "詹尼克·席爾"
+            "value": "Jannik Schill"
           }
         }
       }
@@ -279477,13 +279489,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 1: %lld %@"
+            "value": "第 1 分钟: %lld %@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 1: %lld %@"
+            "value": "第 1 分钟: %lld %@"
           }
         }
       }
@@ -279572,13 +279584,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 2: %@"
+            "value": "第 2 分钟: %@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 2: %@"
+            "value": "第 2 分钟: %@"
           }
         }
       }
@@ -279667,13 +279679,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 3: 30s Pike Hold / Handstand"
+            "value": "第 3 分钟: 30秒 支撑/倒立"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 3: 30s Pike Hold / Handstand"
+            "value": "第 3 分钟: 30秒 支撑/倒立"
           }
         }
       }
@@ -279952,13 +279964,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 1: %@"
+            "value": "第 1 分钟: %@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 1: %@"
+            "value": "第 1 分钟: %@"
           }
         }
       }
@@ -280047,13 +280059,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 2: %lld Bodyweight Rows"
+            "value": "第 2 分钟: %lld 自重划船"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 2: %lld Bodyweight Rows"
+            "value": "第 2 分钟: %lld 自重划船"
           }
         }
       }
@@ -280142,13 +280154,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 3: 15-20 Leg Raises"
+            "value": "第 3 分钟: 15-20 抬腿"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 3: 15-20 Leg Raises"
+            "value": "第 3 分钟: 15-20 抬腿"
           }
         }
       }
@@ -280237,13 +280249,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pull & Core"
+            "value": "拉与核心"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pull & Core"
+            "value": "拉与核心"
           }
         }
       }
@@ -280617,13 +280629,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "3x 15 Jump Squats Finisher"
+            "value": "3x 15 深蹲跳收尾"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "3x 15 Jump Squats Finisher"
+            "value": "3x 15 深蹲跳收尾"
           }
         }
       }
@@ -281377,13 +281389,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 1: %lld %@"
+            "value": "第 1 分钟: %lld %@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 1: %lld %@"
+            "value": "第 1 分钟: %lld %@"
           }
         }
       }
@@ -281472,13 +281484,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 2: %lld Squats"
+            "value": "第 2 分钟: %lld 深蹲"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 2: %lld Squats"
+            "value": "第 2 分钟: %lld 深蹲"
           }
         }
       }
@@ -281567,13 +281579,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 3: 40s Plank / L-Sit"
+            "value": "第 3 分钟: 40秒 平板支撑 / L-Sit"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minute 3: 40s Plank / L-Sit"
+            "value": "第 3 分钟: 40秒 平板支撑 / L-Sit"
           }
         }
       }
@@ -282137,13 +282149,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "MetCon"
+            "value": "代谢调节"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "MetCon"
+            "value": "代谢调节"
           }
         }
       }
@@ -282707,13 +282719,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Dips"
+            "value": "%lld 臂屈伸"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Dips"
+            "value": "%lld 臂屈伸"
           }
         }
       }
@@ -283087,13 +283099,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lunges"
+            "value": "弓步"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lunges"
+            "value": "弓步"
           }
         }
       }
@@ -283752,13 +283764,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Pull-ups"
+            "value": "%lld 引体向上"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Pull-ups"
+            "value": "%lld 引体向上"
           }
         }
       }
@@ -283847,13 +283859,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Strict Pull-ups"
+            "value": "%lld 严格引体向上"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%lld Strict Pull-ups"
+            "value": "%lld 严格引体向上"
           }
         }
       }
@@ -283942,13 +283954,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Archer Push-ups"
+            "value": "射手俯卧撑"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Archer Push-ups"
+            "value": "射手俯卧撑"
           }
         }
       }
@@ -284132,13 +284144,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Strict Push-ups"
+            "value": "严格俯卧撑"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Strict Push-ups"
+            "value": "严格俯卧撑"
           }
         }
       }
@@ -284322,13 +284334,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 Bodyweight Rows"
+            "value": "10 自重划船"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "10 Bodyweight Rows"
+            "value": "10 自重划船"
           }
         }
       }
@@ -284417,13 +284429,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "200m"
+            "value": "200米"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "200m"
+            "value": "200米"
           }
         }
       }
@@ -284512,13 +284524,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "300m"
+            "value": "300米"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "300m"
+            "value": "300米"
           }
         }
       }
@@ -284607,13 +284619,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "400m"
+            "value": "400米"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "400m"
+            "value": "400米"
           }
         }
       }
@@ -302917,7 +302929,7 @@
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "稀有性。電壓%@"
+            "value": "rarity.%@"
           }
         }
       }
@@ -317933,13 +317945,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "s"
+            "value": "秒"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "s"
+            "value": "秒"
           }
         }
       }
@@ -325157,7 +325169,22 @@
         }
       }
     },
-    "Selected": {},
+    "Selected": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已选"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已选"
+          }
+        }
+      }
+    },
     "Selected Coins": {
       "extractionState": "manual",
       "localizations": {
@@ -335014,13 +335041,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kategorie"
+            "value": "类别"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kategorie"
+            "value": "类别"
           }
         }
       }
@@ -338552,13 +338579,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schlechte Gewohnheiten"
+            "value": "坏习惯"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Schlechte Gewohnheiten"
+            "value": "坏习惯"
           }
         }
       }
@@ -338838,13 +338865,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gute Gewohnheiten"
+            "value": "好习惯"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gute Gewohnheiten"
+            "value": "好习惯"
           }
         }
       }
@@ -339887,13 +339914,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+            "value": "太棒了！您不仅表现出强大的量，而且每天都保持极其稳定的表现。您的习惯几乎没有波动——您已经掌握了自己的系统。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beeindruckend! Du zeigst nicht nur starkes Volumen, sondern hältst deine Leistung auch über die Tage extrem stabil. Es gibt kaum Schwankungen in deiner Routine – du hast dein System gemeistert."
+            "value": "太棒了！您不仅表现出强大的量，而且每天都保持极其稳定的表现。您的习惯几乎没有波动——您已经掌握了自己的系统。"
           }
         }
       }
@@ -339982,13 +340009,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+            "value": "这周您的节奏非常不稳定。有些日子您非常高效，而在其他日子一切都崩溃了。试着下周不要做所有的事，而是每天做一点。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dein Rhythmus war diese Woche sehr instabil. An manchen Tagen warst du extrem produktiv, an anderen ist alles eingebrochen. Versuche nächste Woche nicht alles auf einmal zu wollen, sondern lieber jeden Tag ein kleines bisschen zu machen."
+            "value": "这周您的节奏非常不稳定。有些日子您非常高效，而在其他日子一切都崩溃了。试着下周不要做所有的事，而是每天做一点。"
           }
         }
       }
@@ -340077,13 +340104,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+            "value": "本周继续积累更多的专注时间或完成习惯，以获得对您节奏的真实分析。每一天都很重要！"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sammle in dieser Woche noch etwas mehr Fokuszeit oder hake Gewohnheiten ab, um eine echte Analyse deines Rhythmus zu erhalten. Jeder Tag zählt!"
+            "value": "本周继续积累更多的专注时间或完成习惯，以获得对您节奏的真实分析。每一天都很重要！"
           }
         }
       }
@@ -340172,13 +340199,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+            "value": "虽然完成任务的绝对数量仍然很少，但您的一致性很好。您避免了极端的波动，这是长期习惯的完美基础。下周温和地在此基础上再接再厉。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Die absolute Menge an erledigten Aufgaben ist zwar noch gering, aber deine Beständigkeit ist hervorragend. Du vermeidest extreme Schwankungen, was der perfekte Nährboden für langfristige Routinen ist. Baue nächste Woche sanft darauf auf."
+            "value": "虽然完成任务的绝对数量仍然很少，但您的一致性很好。您避免了极端的波动，这是长期习惯的完美基础。下周温和地在此基础上再接再厉。"
           }
         }
       }
@@ -340267,13 +340294,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hakst '%@' oft erst spät ab (gegen %d Uhr). Wenn du wirklich früh aufstehen willst, lege dein Handy abends in einen anderen Raum und stelle den Wecker 30 Minuten früher."
+            "value": "您经常在很晚（大约 %d 点）才完成 '%@'。如果您真的想早起，晚上把手机放在另一个房间，把闹钟调早 30 分钟。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hakst '%@' oft erst spät ab (gegen %d Uhr). Wenn du wirklich früh aufstehen willst, lege dein Handy abends in einen anderen Raum und stelle den Wecker 30 Minuten früher."
+            "value": "您经常在很晚（大约 %d 点）才完成 '%@'。如果您真的想早起，晚上把手机放在另一个房间，把闹钟调早 30 分钟。"
           }
         }
       }
@@ -340362,13 +340389,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine Routine ist sehr stabil! Halte diese Konsistenz aufrecht, indem du deine Gewohnheiten weiterhin an feste Zeiten koppelst."
+            "value": "您的作息非常稳定！通过继续将习惯固定在固定的时间来保持这种一致性。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine Routine ist sehr stabil! Halte diese Konsistenz aufrecht, indem du deine Gewohnheiten weiterhin an feste Zeiten koppelst."
+            "value": "您的作息非常稳定！通过继续将习惯固定在固定的时间来保持这种一致性。"
           }
         }
       }
@@ -340457,13 +340484,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sammle nächste Woche mehr Fokus-Sessions und hake Gewohnheiten ab, um präzise Tipps zu deinem Rhythmus zu erhalten."
+            "value": "下周积累更多的专注会议并完成习惯，以获得有关您的节奏的精确提示。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sammle nächste Woche mehr Fokus-Sessions und hake Gewohnheiten ab, um präzise Tipps zu deinem Rhythmus zu erhalten."
+            "value": "下周积累更多的专注会议并完成习惯，以获得有关您的节奏的精确提示。"
           }
         }
       }
@@ -340552,13 +340579,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast am %@ pausiert, bist aber sonst konstant. Um solche Aussetzer zu vermeiden, koppele deine Gewohnheiten an feste Anker in deinem Alltag (z.B. immer direkt nach dem Zähneputzen)."
+            "value": "您在 %@ 停了下来，但其他方面都保持一致。为了避免这种中断，将您的习惯与日常生活中的固定锚点结合起来（例如，总是在刷牙后）。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast am %@ pausiert, bist aber sonst konstant. Um solche Aussetzer zu vermeiden, koppele deine Gewohnheiten an feste Anker in deinem Alltag (z.B. immer direkt nach dem Zähneputzen)."
+            "value": "您在 %@ 停了下来，但其他方面都保持一致。为了避免这种中断，将您的习惯与日常生活中的固定锚点结合起来（例如，总是在刷牙后）。"
           }
         }
       }
@@ -340647,13 +340674,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du erledigst viele Gewohnheiten erst spät am Abend. Versuche, deine wichtigste Gewohnheit direkt morgens als Erstes abzuhaken (Eat the Frog) – dann hast du den Rest des Tages den Kopf frei."
+            "value": "您在晚上很晚才完成许多习惯。尝试在早上做的第一件事（吃青蛙）就是完成最重要的习惯——然后您在接下来的一天都会感到清醒。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du erledigst viele Gewohnheiten erst spät am Abend. Versuche, deine wichtigste Gewohnheit direkt morgens als Erstes abzuhaken (Eat the Frog) – dann hast du den Rest des Tages den Kopf frei."
+            "value": "您在晚上很晚才完成许多习惯。尝试在早上做的第一件事（吃青蛙）就是完成最重要的习惯——然后您在接下来的一天都会感到清醒。"
           }
         }
       }
@@ -340837,13 +340864,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Am Wochenende bricht deine Fokuszeit komplett ein. Versuche, auch an diesen Tagen zumindest eine kleine 15-Minuten-Session einzulegen, um den Rhythmus nicht zu verlieren."
+            "value": "在周末，您的专注时间完全下降。尝试在这些日子里至少进行一次 15 分钟的小型会议，以免失去节奏。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Am Wochenende bricht deine Fokuszeit komplett ein. Versuche, auch an diesen Tagen zumindest eine kleine 15-Minuten-Session einzulegen, um den Rhythmus nicht zu verlieren."
+            "value": "在周末，您的专注时间完全下降。尝试在这些日子里至少进行一次 15 分钟的小型会议，以免失去节奏。"
           }
         }
       }
@@ -340932,13 +340959,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eiserne Konstanz"
+            "value": "铁一般的恒心"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eiserne Konstanz"
+            "value": "铁一般的恒心"
           }
         }
       }
@@ -341027,13 +341054,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starke Schwankungen"
+            "value": "剧烈波动"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starke Schwankungen"
+            "value": "剧烈波动"
           }
         }
       }
@@ -341122,13 +341149,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mehr Daten benötigt"
+            "value": "需要更多数据"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mehr Daten benötigt"
+            "value": "需要更多数据"
           }
         }
       }
@@ -341217,13 +341244,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stabiles Fundament"
+            "value": "坚实的基础"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stabiles Fundament"
+            "value": "坚实的基础"
           }
         }
       }
@@ -395418,13 +395445,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Routine"
+            "value": "常规"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Routine"
+            "value": "常规"
           }
         }
       }
@@ -395702,13 +395729,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+            "value": "您在养成这种习惯时的常规仍然不规律。尝试将其与现有习惯结合起来。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deine Routine bei dieser Gewohnheit ist noch unregelmäßig. Versuche, sie an eine bereits bestehende Gewohnheit zu koppeln."
+            "value": "您在养成这种习惯时的常规仍然不规律。尝试将其与现有习惯结合起来。"
           }
         }
       }
@@ -395797,13 +395824,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+            "value": "这种习惯最近有些睡眠不足。为明天设定一个可行的小目标。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Diese Gewohnheit ist in letzter Zeit etwas eingeschlafen. Setze dir ein kleines, machbares Ziel für morgen."
+            "value": "这种习惯最近有些睡眠不足。为明天设定一个可行的小目标。"
           }
         }
       }
@@ -395892,13 +395919,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+            "value": "您才刚刚开始！坚持下去，很快就能看到第一个趋势。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast gerade erst angefangen! Bleib dran, um bald erste Trends zu sehen."
+            "value": "您才刚刚开始！坚持下去，很快就能看到第一个趋势。"
           }
         }
       }
@@ -395987,13 +396014,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+            "value": "太棒了！您坚持这种习惯。这是一个根深蒂固的常规。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wahnsinn! Du ziehst diese Gewohnheit extrem konstant durch. Das ist eine tief verankerte Routine."
+            "value": "太棒了！您坚持这种习惯。这是一个根深蒂固的常规。"
           }
         }
       }
@@ -396082,13 +396109,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+            "value": "您很稳定，即使不是每天都很完美。这正是正确的道路！"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du bist stetig dabei, auch wenn du nicht jeden Tag perfekt bist. Das ist genau der richtige Weg!"
+            "value": "您很稳定，即使不是每天都很完美。这正是正确的道路！"
           }
         }
       }
@@ -396272,13 +396299,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starke Schwankungen"
+            "value": "剧烈波动"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starke Schwankungen"
+            "value": "剧烈波动"
           }
         }
       }
@@ -396367,13 +396394,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wieder reinkommen"
+            "value": "回来"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wieder reinkommen"
+            "value": "回来"
           }
         }
       }
@@ -396462,13 +396489,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anfangsphase"
+            "value": "初始阶段"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anfangsphase"
+            "value": "初始阶段"
           }
         }
       }
@@ -396557,13 +396584,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eiserne Disziplin"
+            "value": "钢铁般的纪律"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eiserne Disziplin"
+            "value": "钢铁般的纪律"
           }
         }
       }
@@ -396652,13 +396679,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gute Basis"
+            "value": "良好的基础"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gute Basis"
+            "value": "良好的基础"
           }
         }
       }
@@ -406325,13 +406352,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du warst diese Woche sehr konstant und hast deine Zeiten solide gehalten. Konstanz ist der Schlüssel zum langfristigen Erfolg!"
+            "value": "本周您非常稳定并保持了扎实的时间。一致性是长期成功的关键！"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du warst diese Woche sehr konstant und hast deine Zeiten solide gehalten. Konstanz ist der Schlüssel zum langfristigen Erfolg!"
+            "value": "本周您非常稳定并保持了扎实的时间。一致性是长期成功的关键！"
           }
         }
       }
@@ -406420,13 +406447,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hattest diese Woche starke Schwankungen. An manchen Tagen warst du voll dabei, an anderen gar nicht. Dein Ziel für nächste Woche: Fokus auf deine wichtigsten 2 Gewohnheiten."
+            "value": "您这周有很大的波动。有些日子您全神贯注，而在其他日子您完全不在。下周的目标：专注于您最重要的 2 个习惯。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hattest diese Woche starke Schwankungen. An manchen Tagen warst du voll dabei, an anderen gar nicht. Dein Ziel für nächste Woche: Fokus auf deine wichtigsten 2 Gewohnheiten."
+            "value": "您这周有很大的波动。有些日子您全神贯注，而在其他日子您完全不在。下周的目标：专注于您最重要的 2 个习惯。"
           }
         }
       }
@@ -407370,13 +407397,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beeindruckend: Du hast deine Konsistenz um %@ gegenüber der Vorwoche gesteigert."
+            "value": "令人印象深刻：与上周相比，您的一致性提高了 %@。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beeindruckend: Du hast deine Konsistenz um %@ gegenüber der Vorwoche gesteigert."
+            "value": "令人印象深刻：与上周相比，您的一致性提高了 %@。"
           }
         }
       }
@@ -407465,13 +407492,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche zwar weniger Gewohnheiten erledigt, aber du warst jeden Tag gleichbleibend aktiv. Das ist das Fundament für echte Routine."
+            "value": "虽然您本周完成的习惯较少，但您每天的活跃度保持不变。这是真实常规的基础。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Du hast diese Woche zwar weniger Gewohnheiten erledigt, aber du warst jeden Tag gleichbleibend aktiv. Das ist das Fundament für echte Routine."
+            "value": "虽然您本周完成的习惯较少，但您每天的活跃度保持不变。这是真实常规的基础。"
           }
         }
       }
@@ -407560,13 +407587,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konstante Woche"
+            "value": "稳定的一周"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Konstante Woche"
+            "value": "稳定的一周"
           }
         }
       }
@@ -407655,13 +407682,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Variable Leistung"
+            "value": "多变的表现"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Variable Leistung"
+            "value": "多变的表现"
           }
         }
       }
@@ -408035,13 +408062,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Der Profi"
+            "value": "专业人士"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Der Profi"
+            "value": "专业人士"
           }
         }
       }
@@ -408130,13 +408157,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stabiler Aufbau"
+            "value": "稳定的积累"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stabiler Aufbau"
+            "value": "稳定的积累"
           }
         }
       }
@@ -415281,7 +415308,22 @@
         }
       }
     },
-    "x": {},
+    "x": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "x"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "x"
+          }
+        }
+      }
+    },
     "x%@": {
       "extractionState": "manual",
       "localizations": {
@@ -415559,13 +415601,13 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "%2$d XP bis %1$@"
+            "value": "距离 %1$@ 还有 %2$d XP"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "%2$d XP bis %1$@"
+            "value": "距离 %1$@ 还有 %2$d XP"
           }
         }
       }
@@ -415858,7 +415900,22 @@
         }
       }
     },
-    "y": {},
+    "y": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "y"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "y"
+          }
+        }
+      }
+    },
     "Zeit für Routine: %@": {
       "extractionState": "manual",
       "localizations": {

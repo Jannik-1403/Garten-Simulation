@@ -37,7 +37,7 @@ struct BodyDataFactoryView: View {
                 // Zeitbereich Picker
                 Picker("", selection: $timeRange) {
                     ForEach(BodyDataTimeRange.allCases) { r in
-                        Text(r.rawValue).tag(r)
+                        Text(r.localizedName).tag(r)
                     }
                 }
                 .pickerStyle(.segmented)
@@ -406,7 +406,7 @@ struct BodyDataFactoryView: View {
     // MARK: - Logic
 
     private var unit: String {
-        type == .weight ? "kg" : "cm"
+        type == .weight ? String(localized: "body.tracking.unit.kg", defaultValue: "kg") : String(localized: "body.tracking.unit.cm", defaultValue: "cm")
     }
 
     private var allData: [DailyProgressEntry] {
