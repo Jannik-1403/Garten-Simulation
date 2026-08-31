@@ -749,3 +749,4 @@
 - UI: "Kilogramm Kilogramm" Fehler beim Hinzufügen-Gewicht-Bildschirm behoben, indem "kg" und "cm" explizit als LocalizedStringKeys übergeben wurden.
 - Lokalisierung (Hotfix): Weitere 129 übersehene Fake-Übersetzungen (u.a. "Ziel", "Defizit-Warnung", "Keine manuellen Einträge") in Chinesisch korrigiert.
 - UI: Diagramm-Beschriftungen (Monatsnamen und Tage) wurden von festen deutschen Formaten auf dynamische `Locale.current` und lokalisierte Strings umgestellt.
+- Bugfix: Versehentlich gelöschter Code in `BodyDataFactoryView.swift` wurde wiederhergestellt (behebt Build-Fehler).
