@@ -195,7 +195,7 @@ struct BodyDataFactoryView: View {
                             Text(String(format: "%.1f", selectedEntry.progress))
                                 .font(.system(size: 16, weight: .black, design: .rounded))
                                 .foregroundStyle(Color.pink)
-                            Text(selectedEntry.timestamp.formatted(.dateTime.day().month().year()))
+                            Text(selectedEntry.timestamp.formatted(.dateTime.day().month().year().locale(SettingsStore.shared.appLocale)))
                                 .font(.system(size: 10, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.secondary)
                         }
@@ -599,7 +599,7 @@ struct BodyDataFactoryView: View {
                                 .foregroundStyle(.pink)
                             
                             if let date = currentTargetDate {
-                                Text(String(localized: "body.tracking.until", defaultValue: "bis zum ") + date.formatted(.dateTime.day().month().year()))
+                                Text(String(localized: "body.tracking.until", defaultValue: "bis zum ") + date.formatted(.dateTime.day().month().year().locale(SettingsStore.shared.appLocale)))
                                     .font(.system(size: 13, weight: .semibold, design: .rounded))
                                     .foregroundStyle(.secondary)
                             }
@@ -769,7 +769,7 @@ struct BodyDataFactoryView: View {
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text("\(String(format: "%.1f", entry.progress)) \(unit)")
                                         .font(.system(size: 16, weight: .bold, design: .rounded))
-                                    Text(entry.timestamp.formatted(.dateTime.day().month().year().hour().minute()))
+                                    Text(entry.timestamp.formatted(.dateTime.day().month().year().hour().minute().locale(SettingsStore.shared.appLocale)))
                                         .font(.system(size: 12, design: .rounded))
                                         .foregroundStyle(.secondary)
                                 }
@@ -829,6 +829,7 @@ struct BodyDataFactoryView: View {
                         in: Date()...,
                         displayedComponents: .date
                     )
+                    .environment(\.locale, SettingsStore.shared.appLocale)
                 }
                 
                 if currentTarget != nil {
