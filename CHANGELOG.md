@@ -751,3 +751,4 @@
 - UI: Diagramm-Beschriftungen (Monatsnamen und Tage) wurden von festen deutschen Formaten auf dynamische `Locale.current` und lokalisierte Strings umgestellt.
 - Bugfix: Versehentlich gelöschter Code in `BodyDataFactoryView.swift` wurde wiederhergestellt (behebt Build-Fehler).
 - Bugfix: Datums-Formatierungen (Zieldatum, Charts, manuelle Einträge) respektieren nun korrekt die in der App eingestellte Sprache.
+- Bugfix: Error 500 in Übersetzungen behoben. Datumsformate und DatePicker nutzen nun explizit SettingsStore.shared.appLocale.
