@@ -351,6 +351,177 @@ struct BodyDataFactoryView: View {
                 start = now; end = now
             }
         case .m:
+            if let interval = cal.dateInterval(of: .month, for: now) {
+                start = interval.start
+                end = interval.end.addingTimeInterval(-1)
+            } else {
+                start = now; end = now
+            }
+        case .sixM:
+            if let monthStart = cal.dateInterval(of: .month, for: now)?.start {
+                start = cal.date(byAdding: .month, value: -5, to: monthStart) ?? now
+                end = cal.dateInterval(of: .month, for: now)?.end.addingTimeInterval(-1) ?? now
+            } else {
+                start = now; end = now
+            }
+        case .j:
+            if let interval = cal.dateInterval(of: .year, for: now) {
+                start = interval.start
+                end = interval.end.addingTimeInterval(-1)
+            } else {
+                start = now; end = now
+            }
+        }
+        return (start, end)
+    }
+
+    // MARK: - HealthKit Fetch (Gewicht)
+
+    private func fetchHealthWeight() {
+        guard type == .weight, hm.isAuthorized else { return }
+        guard let bodyMassType = HKQuantityType.quantityType(forIdentifier: .bodyMass) else { return }
+
+        isLoadingHealth = true
+        // Fetch 1 year of data so local filtering works when timeRange changes
+        let start = Calendar.current.date(byAdding: .year, value: -1, to: Date()) ?? Date()
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: Date(), options: .strictStartDate)
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+
+        let query = HKSampleQuery(sampleType: bodyMassType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { _, samples, _ in
+            guard let samples = samples as? [HKQuantitySample] else {
+                DispatchQueue.main.async { self.isLoadingHealth = false }
+                return
+            }
+            let entries = samples.map { s in
+                DailyProgressEntry(timestamp: s.startDate, progress: s.quantity.doubleValue(for: .gramUnit(with: .kilo)))
+            }
+            DispatchQueue.main.async {
+                self.healthWeightData = entries
+                self.isLoadingHealth = false
+            }
+        }
+        HealthManager.shared.healthStore.execute(query)
+    }
+
+    // MARK: - Logic
+
+    private var unit: String {
+        type == .weight ? String(localized: "body.tracking.unit.kg", defaultValue: "kg") : String(localized: "body.tracking.unit.cm", defaultValue: "cm")
+    }
+
+    private var allData: [DailyProgressEntry] {
+        if type == .weight {
+            // Kombination: Apple Health + manuelle Einträge
+            let combined = healthWeightData + pflanze.manualWeightEntries
+            return combined.sorted { $0.timestamp < $1.timestamp }
+        } else {
+            return pflanze.bodyMeasurements[selectedMeasurement.rawValue] ?? []
+        }
+    }
+
+    private var filteredData: [DailyProgressEntry] {
+        let range = dateRange
+        let rawData = allData.filter { $0.timestamp >= range.start && $0.timestamp <= range.end }
+        
+        if timeRange == .sixM || timeRange == .j {
+            return aggregateByWeek(rawData)
+        }
+        
+        return rawData
+    }
+    
+    private func aggregateByWeek(_ data: [DailyProgressEntry]) -> [DailyProgressEntry] {
+        guard !data.isEmpty else { return [] }
+        var calendar = Calendar.current
+        calendar.firstWeekday = 2 // Monday
+        
+        let grouped = Dictionary(grouping: data) { entry -> Date in
+            let comps = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: entry.timestamp)
+            return calendar.date(from: comps) ?? entry.timestamp
+        }
+        
+        return grouped.map { (weekStart, entries) in
+            let avgProgress = entries.reduce(0) { $0 + $1.progress } / Double(entries.count)
+            return DailyProgressEntry(timestamp: weekStart, progress: avgProgress)
+        }.sorted { $0.timestamp < $1.timestamp }
+    }
+
+    private var currentAverage: Double {
+        let range = dateRange
+        let rawData = allData.filter { $0.timestamp >= range.start && $0.timestamp <= range.end }
+        guard !rawData.isEmpty else { return 0 }
+        return rawData.reduce(0) { $0 + $1.progress } / Double(rawData.count)
+    }
+
+    private var yMin: Double {
+        let vals = filteredData.map { $0.progress }
+        return max(0, (vals.min() ?? 0) - 5)
+    }
+
+    private var yMax: Double {
+        let vals = filteredData.map { $0.progress }
+        return (vals.max() ?? 100) + 5
+    }
+
+    private var dateRangeLabel: String {
+        switch timeRange {
+        case .t:    return String(localized: "body.tracking.today", defaultValue: "Heute")
+        case .w:    return String(localized: "body.tracking.this_week", defaultValue: "Diese Woche")
+        case .m:    return String(localized: "body.tracking.this_month", defaultValue: "Dieser Monat")
+        case .sixM: return String(localized: "body.tracking.six_months", defaultValue: "6 Monate")
+        case .j:    return String(localized: "body.tracking.this_year", defaultValue: "Dieses Jahr")
+        }
+    }
+
+    // MARK: - X-Achse Dynamisch
+
+    private var xAxisValues: [Date] {
+        let cal = Calendar.current
+        let start = dateRange.start
+        
+        switch timeRange {
+        case .t:
+            // 0:00, 6:00, 12:00, 18:00
+            return [0, 6, 12, 18].compactMap {
+                cal.date(bySettingHour: $0, minute: 0, second: 0, of: start)
+            }
+        case .w:
+            // 7 Tage der aktuellen Woche (Montag bis Sonntag)
+            return (0..<7).compactMap { i in
+                cal.date(byAdding: .day, value: i, to: start)
+            }
+        case .m:
+            // 1., 8., 15., 22., 29. des aktuellen Monats
+            return [1, 8, 15, 22, 29].compactMap { day in
+                var comps = cal.dateComponents([.year, .month], from: start)
+                comps.day = day
+                return cal.date(from: comps)
+            }
+        case .sixM:
+            // Die 6 Monate von start
+            return (0..<6).compactMap { i in
+                cal.date(byAdding: .month, value: i, to: start)
+            }
+        case .j:
+            // Alle 12 Monate des aktuellen Jahres
+            return (0..<12).compactMap { i in
+                cal.date(byAdding: .month, value: i, to: start)
+            }
+        }
+    }
+
+    private func xAxisLabel(for date: Date) -> String {
+        let cal = Calendar.current
+        switch timeRange {
+        case .t:
+            let h = cal.component(.hour, from: date)
+            return "\(h):00"
+        case .w:
+            // Mo, Di, Mi, Do, Fr, Sa, So
+            let weekday = cal.component(.weekday, from: date)
+            let symbols = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"]
+            return symbols[safe: weekday - 1] ?? ""
+        case .m:
             let day = cal.component(.day, from: date)
             return String(localized: "body.tracking.chart.day", defaultValue: "\(day).")
         case .sixM:
