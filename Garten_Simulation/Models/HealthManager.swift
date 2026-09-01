@@ -89,36 +89,12 @@ class HealthManager: ObservableObject {
         return nil
     }
     
-    var calculatedBodyFat: Double? {
-        guard let weight = activeWeight?.value, weight > 0 else { return nil }
-        
-        guard let data = SharedUserDefaults.suite.data(forKey: "active_habits"),
-              let habits = try? JSONDecoder().decode([HabitModel].self, from: data),
-              let strengthHabit = habits.first(where: { $0.effectiveHealthMetric == .strengthTraining }),
-              let waistEntries = strengthHabit.bodyMeasurements["body.measure.taille"],
-              let latestWaistEntry = waistEntries.max(by: { $0.timestamp < $1.timestamp }),
-              latestWaistEntry.progress > 0 else {
-            return nil
-        }
-        
-        let waistCm = latestWaistEntry.progress
-        let isFemale = (activeSex?.value == 1)
-        
-        let waistIn = waistCm / 2.54
-        let weightLbs = weight * 2.2046
-        
-        let constant = isFemale ? -76.76 : -98.42
-        let bodyFat = (constant + 4.15 * waistIn - 0.082 * weightLbs) / weightLbs * 100
-        
-        return min(max(bodyFat, 3.0), 60.0)
-    }
-    
     func recalculateGoals() {
         let weight = activeWeight?.value
         let height = activeHeight?.value
         let age = activeAge?.value
         let sex = activeSex?.value
-        let bodyFat = calculatedBodyFat ?? (manualBodyFat > 0 ? manualBodyFat : nil)
+        let bodyFat: Double? = nil
         
         if let rec = MacroCalculator.calculateRecommendation(
             weightKg: weight,

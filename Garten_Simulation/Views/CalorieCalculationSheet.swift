@@ -103,34 +103,6 @@ struct CalorieCalculationSheet: View {
                             isNumber: true
                         )
                         
-                        // BODY FAT
-                        VStack(alignment: .leading, spacing: 8) {
-                            HStack {
-                                Text(String(localized: "calorie.calc.bodyfat", defaultValue: "Körperfettanteil"))
-                                    .font(.headline)
-                                Spacer()
-                                if let cf = hm.calculatedBodyFat {
-                                    Text(String(format: "%.1f %%", cf))
-                                        .font(.title2.bold())
-                                        .foregroundColor(Color.green.darker())
-                                } else {
-                                    Text("-")
-                                        .font(.title2.bold())
-                                        .foregroundColor(.secondary)
-                                }
-                            }
-                            if hm.calculatedBodyFat != nil {
-                                Text(String(localized: "calorie.calc.bodyfat_linked", defaultValue: "Wird automatisch über deinen Taillenumfang (Krafttraining) und dein Gewicht berechnet."))
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            } else {
-                                Text(String(localized: "calorie.calc.bodyfat_missing", defaultValue: "Erfasse deinen Taillenumfang im Krafttraining-Ziel, um den Körperfettanteil automatisch zu berechnen."))
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                        .padding(.vertical, 4)
-                        
                         // SEX
                         let hkSex = hm.biologicalSex?.biologicalSex
                         let hasHkSex = hkSex != nil && hkSex != .notSet
