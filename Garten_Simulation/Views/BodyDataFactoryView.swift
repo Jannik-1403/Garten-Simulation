@@ -803,46 +803,11 @@ struct BodyDataFactoryView: View {
                 // Wir ermitteln, ob der User zunehmen oder abnehmen will
                 let isGoalGain = (currentTarget ?? (entries.last?.progress ?? 0)) >= (entries.last?.progress ?? 0)
                 let oldStatus = getWeeklyStatus(delta: delta, isGoalGain: isGoalGain, type: type)
+                let trendStatus = getWeeklyTrendStatus(entries: entries, type: type, now: now, unit: unit, oldStatus: oldStatus)
                 
-                var displayTitle = oldStatus.title
-                var displayDesc = oldStatus.desc
-                var displayColor = oldStatus.color
-                
-                if type == .weight, let targetW = currentTarget, let targetD = currentTargetDate {
-                    let logs = entries.map { WeightLogEntry(date: $0.timestamp, weight: $0.progress) }
-                    let goal = WeightGoal(targetWeight: targetW, targetDate: targetD)
-                    let trendSeries = WeightTrendEngine.calculateTrend(logs: logs)
-                    
-                    var recentChanges = [Double]()
-                    for i in (0..<4).reversed() {
-                        let d = Calendar.current.date(byAdding: .day, value: -(i * 7), to: now)!
-                        if let change = WeightTrendEngine.getWeeklyTrendChange(trendSeries: trendSeries, asOfDate: d) {
-                            recentChanges.append(change)
-                        }
-                    }
-                    
-                    let engineMessage = WeightTrendEngine.selectMessage(logs: logs, goal: goal, today: now, unit: unit, recentWeeklyChanges: recentChanges)
-                    
-                    displayDesc = engineMessage.localizedText
-                    
-                    switch engineMessage {
-                    case .insufficientData:
-                        displayTitle = String(localized: "weight.trend.title.insufficient", defaultValue: "Mehr Daten benötigt")
-                        displayColor = .secondary
-                    case .trendOnTrack, .goalClose, .goalReached, .goalDateAheadOfSchedule:
-                        displayTitle = String(localized: "weight.trend.title.good", defaultValue: "Alles im Plan")
-                        displayColor = .green
-                    case .trendStableWeeklyNoise, .plateauWarning:
-                        displayTitle = String(localized: "weight.trend.title.neutral", defaultValue: "Stabile Phase")
-                        displayColor = .yellow
-                    case .calorieDecreaseSuggested, .calorieIncreaseSuggested, .goalDateUnrealistic:
-                        displayTitle = String(localized: "weight.trend.title.adjust", defaultValue: "Anpassung empfohlen")
-                        displayColor = .orange
-                    case .goalUpdated:
-                        displayTitle = String(localized: "weight.trend.title.updated", defaultValue: "Ziel aktualisiert")
-                        displayColor = .blue
-                    }
-                }
+                let displayTitle = trendStatus.title
+                let displayDesc = trendStatus.desc
+                let displayColor = trendStatus.color
                 
                 HStack(alignment: .center, spacing: 16) {
                     VStack(alignment: .center, spacing: 4) {
@@ -1050,6 +1015,72 @@ struct BodyDataFactoryView: View {
             }
         }
         .presentationDetents([.medium])
+    }
+    
+    private func getWeeklyTrendStatus(entries: [DailyProgressEntry], type: BodyTrackingType, now: Date, unit: String, oldStatus: (color: Color, title: String, desc: String)) -> (color: Color, title: String, desc: String) {
+        if type != .weight {
+            return oldStatus
+        }
+        
+        let logs = entries.map { WeightLogEntry(date: $0.timestamp, weight: $0.progress) }
+        let trendSeries = WeightTrendEngine.calculateTrend(logs: logs)
+        
+        let recentChanges: [Double] = (0..<4).reversed().compactMap { i in
+            let d = Calendar.current.date(byAdding: .day, value: -(i * 7), to: now)!
+            return WeightTrendEngine.getWeeklyTrendChange(trendSeries: trendSeries, asOfDate: d)
+        }
+        
+        if let targetW = currentTarget, let targetD = currentTargetDate {
+            let goal = WeightGoal(targetWeight: targetW, targetDate: targetD)
+            let engineMessage = WeightTrendEngine.selectMessage(logs: logs, goal: goal, today: now, unit: unit, recentWeeklyChanges: recentChanges)
+            
+            let displayDesc = engineMessage.localizedText
+            let displayTitle: String
+            let displayColor: Color
+            
+            switch engineMessage {
+            case .insufficientData:
+                displayTitle = String(localized: "weight.trend.title.insufficient", defaultValue: "Mehr Daten benötigt")
+                displayColor = .secondary
+            case .trendOnTrack, .goalClose, .goalReached, .goalDateAheadOfSchedule:
+                displayTitle = String(localized: "weight.trend.title.good", defaultValue: "Alles im Plan")
+                displayColor = .green
+            case .trendStableWeeklyNoise, .plateauWarning:
+                displayTitle = String(localized: "weight.trend.title.neutral", defaultValue: "Stabile Phase")
+                displayColor = .yellow
+            case .calorieDecreaseSuggested, .calorieIncreaseSuggested, .goalDateUnrealistic:
+                displayTitle = String(localized: "weight.trend.title.adjust", defaultValue: "Anpassung empfohlen")
+                displayColor = .orange
+            case .goalUpdated:
+                displayTitle = String(localized: "weight.trend.title.updated", defaultValue: "Ziel aktualisiert")
+                displayColor = .blue
+            }
+            return (displayColor, displayTitle, displayDesc)
+        } else {
+            let weeklyChange = recentChanges.last ?? 0.0
+            let fmtChange = { (val: Double) -> String in
+                let f = NumberFormatter()
+                f.numberStyle = .decimal
+                f.maximumFractionDigits = 2
+                f.minimumFractionDigits = 1
+                f.positivePrefix = "+"
+                return f.string(from: NSNumber(value: val)) ?? "\(val)"
+            }
+            
+            if logs.count < 14 {
+                return (
+                    .secondary,
+                    String(localized: "weight.trend.title.insufficient", defaultValue: "Mehr Daten benötigt"),
+                    String(localized: "weight.trend.desc.insufficient", defaultValue: "Trag dein Gewicht weiter täglich ein, um einen verlässlichen Trend zu sehen.")
+                )
+            } else {
+                return (
+                    .primary,
+                    String(localized: "weight.trend.title.active", defaultValue: "Dein Wochentrend"),
+                    String(format: String(localized: "weight.trend.desc.active", defaultValue: "Dein geglätteter Trend liegt aktuell bei %@ %@/Woche."), fmtChange(weeklyChange), unit)
+                )
+            }
+        }
     }
     
     private func getWeeklyStatus(delta: Double, isGoalGain: Bool, type: BodyTrackingType) -> (color: Color, title: String, desc: String) {
