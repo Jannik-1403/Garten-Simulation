@@ -106,28 +106,30 @@ struct NutrientIndexView: View {
                         Divider()
                     }
                 }
-            }
-            .padding(24)
+            } // End of Legende VStack
             
-            if let onUnlink = onUnlink {
-                Item3DButton(
-                    farbe: .red,
-                    sekundaerFarbe: Color.red.opacity(0.7),
-                    groesse: 36,
-                    isRectangular: false,
-                    aktion: {
-                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                        onUnlink()
-                    }
-                ) {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundStyle(.white)
+        } // End of main VStack
+        .padding(24)
+        
+        if let onUnlink = onUnlink {
+            Item3DButton(
+                farbe: .red,
+                sekundaerFarbe: Color.red.opacity(0.7),
+                groesse: 36,
+                isRectangular: false,
+                aktion: {
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    onUnlink()
                 }
-                .padding(.top, 10)
-                .padding(.trailing, 10)
+            ) {
+                Image(systemName: "xmark")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(.white)
             }
+            .padding(.top, 10)
+            .padding(.trailing, 10)
         }
+        } // End of ZStack
         .onAppear {
             manager.fetchAllNutrients()
         }

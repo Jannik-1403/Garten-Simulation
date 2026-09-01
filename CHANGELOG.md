@@ -863,3 +863,4 @@
 - Synchronisation des Garten-Fortschrittsbalkens mit dem Nährstoff-Score
 - Behebung des Fehlers, dass der Obst & Gemüse Balken beim App-Start einen falschen Wert (z.B. 70%) anzeigt.
 - Der Entkoppeln-Button von Apple Health ist nun als einheitlicher roter 3D-Button oben rechts auf der Karte in allen Statistiken (Krafttraining, Jogging, etc.) zu sehen.
+- Layout-Anpassung: Der Apple-Health Entkoppeln Button (rotes X) ist nun bei allen Graphen noch etwas weiter oben rechts in der Ecke platziert.
