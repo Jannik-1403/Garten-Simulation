@@ -237,6 +237,23 @@ struct BodyDataFactoryView: View {
                 RuleMark(x: .value("Selected", selectedEntry.timestamp))
                     .foregroundStyle(Color(UIColor.systemGray4))
                     .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4, 4]))
+                    .annotation(position: .top, overflowResolution: .init(x: .fit, y: .disabled)) {
+                        VStack(spacing: 2) {
+                            Text("\(String(format: "%.1f", selectedEntry.progress)) \(unit)")
+                                .font(.system(size: 14, weight: .bold, design: .rounded))
+                                .foregroundStyle(Color.pink)
+                            Text(selectedEntry.timestamp.formatted(timeRange == .t ? .dateTime.hour().minute() : .dateTime.day().month().year()))
+                                .font(.system(size: 10, weight: .medium, design: .rounded))
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background {
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(Color(UIColor.tertiarySystemGroupedBackground))
+                                .shadow(color: .black.opacity(0.1), radius: 2, y: 1)
+                        }
+                    }
             }
         }
         .chartScrollableAxes(.horizontal)
