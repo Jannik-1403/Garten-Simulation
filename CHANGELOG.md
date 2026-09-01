@@ -923,3 +923,4 @@
   - Der "Ziel ändern"-Button ist nun in dunkelrot und hat einen 3D-Effekt.
   - Klickt man auf den Button, öffnet sich nun direkt der kompakte Editor (statt der gesamten Krafttraining-Seite). Änderungen hierin werden sofort mit der Krafttraining-Seite synchronisiert.
   - Im Krafttraining-Zielmenü kannst du jetzt zwischen "Datum" und "Tempo (Woche)" wechseln. Gibst du ein wöchentliches Tempo (z. B. 0.5 kg) ein, berechnet die App das entsprechende Zieldatum automatisch im Hintergrund!
+  - Die manuelle Eingabe des Körperfettanteils wurde entfernt. Stattdessen wird der Körperfettanteil nun automatisch über die wissenschaftliche YMCA-Formel berechnet, sobald ein Nutzer seinen Taillenumfang im Krafttraining-Feature erfasst und ein Körpergewicht hinterlegt hat. Dieser geschätzte Wert fließt direkt in die Kalorienberechnung ein.

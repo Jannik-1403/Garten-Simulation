@@ -497,7 +497,7 @@ struct SettingsView: View {
             .alert(String(localized: "settings.health.title", defaultValue: "Apple Health"), isPresented: $showHealthInfoAlert) {
                 Button(String(localized: "button.ok", defaultValue: "OK"), role: .cancel) { }
             } message: {
-                Text(String(localized: "settings.health.description", defaultValue: "Verbinde Apple Health, um deine Schritte und deinen Schlaf zu synchronisieren und so den Fortschritt in deinem Garten voranzutreiben."))
+                Text(String(localized: "settings.health.description", defaultValue: "Verbinde Apple Health, um deine Schritte und deinen Schlaf zu synchronisieren und so den Fortschritt in deinem Garten voranzutreiben. Zusätzlich werden Körper- und Ernährungsdaten (z. B. Gewicht, Größe, Alter, Geschlecht) verknüpft, um deine Ziele optimal zu berechnen."))
             }
 
             .alert("Wiederherstellung erfolgreich", isPresented: $showRecoveryAlert) {
