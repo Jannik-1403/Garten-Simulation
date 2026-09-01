@@ -64,7 +64,8 @@ struct HealthChartView: View {
     // MARK: Body
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        ZStack(alignment: .topTrailing) {
+            VStack(alignment: .leading, spacing: 0) {
 
             // Title
             HStack(spacing: 6) {
@@ -76,23 +77,6 @@ struct HealthChartView: View {
                     .foregroundStyle(Color.orangePrimary)
                 
                 Spacer()
-                
-                if let onUnlink = onUnlink {
-                    Item3DButton(
-                        farbe: .red,
-                        sekundaerFarbe: Color.red.opacity(0.7),
-                        groesse: 36,
-                        isRectangular: false,
-                        aktion: {
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                            onUnlink()
-                        }
-                    ) {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundStyle(.white)
-                    }
-                }
             }
             .padding(.bottom, 14)
 
@@ -268,6 +252,26 @@ struct HealthChartView: View {
             .buttonStyle(.plain)
         }
         .padding(20)
+        
+        if let onUnlink = onUnlink {
+            Item3DButton(
+                farbe: .red,
+                sekundaerFarbe: Color.red.opacity(0.7),
+                groesse: 36,
+                isRectangular: false,
+                aktion: {
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    onUnlink()
+                }
+            ) {
+                Image(systemName: "xmark")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(.white)
+            }
+            .padding(.top, 10)
+            .padding(.trailing, 10)
+        }
+        }
         .modifier(Item3DContainerModifier(
             farbe: Color(UIColor.systemBackground),
             sekundaerFarbe: Color(UIColor.systemGray5),

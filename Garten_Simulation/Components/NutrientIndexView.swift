@@ -42,27 +42,8 @@ struct NutrientIndexView: View {
     let fiberColor = Color(red: 0.98, green: 0.5, blue: 0.4)
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 24) {
-            
-            if let onUnlink = onUnlink {
-                HStack {
-                    Spacer()
-                    Item3DButton(
-                        farbe: .red,
-                        sekundaerFarbe: Color.red.opacity(0.7),
-                        groesse: 36,
-                        isRectangular: false,
-                        aktion: {
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                            onUnlink()
-                        }
-                    ) {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundStyle(.white)
-                    }
-                }
-            }
+        ZStack(alignment: .topTrailing) {
+            VStack(alignment: .leading, spacing: 24) {
             
             // Oben: Großes Chart und Text darunter
             VStack(alignment: .center, spacing: 16) {
@@ -126,8 +107,27 @@ struct NutrientIndexView: View {
                     }
                 }
             }
+            .padding(24)
+            
+            if let onUnlink = onUnlink {
+                Item3DButton(
+                    farbe: .red,
+                    sekundaerFarbe: Color.red.opacity(0.7),
+                    groesse: 36,
+                    isRectangular: false,
+                    aktion: {
+                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                        onUnlink()
+                    }
+                ) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundStyle(.white)
+                }
+                .padding(.top, 10)
+                .padding(.trailing, 10)
+            }
         }
-        .padding(24)
         .onAppear {
             manager.fetchAllNutrients()
         }

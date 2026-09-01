@@ -861,3 +861,5 @@
 - Nährstoff-Index-Ansicht ist nun an den Statistik-Toggle auf der Pflanzen-Detailseite gebunden
 - Hinzufügen des X-Buttons zum Entkoppeln von Apple Health für Obst & Gemüse
 - Synchronisation des Garten-Fortschrittsbalkens mit dem Nährstoff-Score
+- Behebung des Fehlers, dass der Obst & Gemüse Balken beim App-Start einen falschen Wert (z.B. 70%) anzeigt.
+- Der Entkoppeln-Button von Apple Health ist nun als einheitlicher roter 3D-Button oben rechts auf der Karte in allen Statistiken (Krafttraining, Jogging, etc.) zu sehen.
